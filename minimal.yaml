@@ -1,0 +1,24 @@
+repos:
+  - fedora
+  - fedora-updates
+# This minimal base starts just from: kernel + systemd + rpm-ostree + bootloader.
+# In Fedora there's a whole lot of deps; but it won't even have e.g. OpenSSH.
+packages:
+ # Kernel + systemd
+ - kernel systemd
+ # rpm-ostree
+ - rpm-ostree nss-altfiles
+
+# bootloader
+packages-aarch64:
+  - grub2-efi ostree-grub2 efibootmgr shim
+  - uboot-tools uboot-images-armv8 bcm283x-firmware
+packages-armhfp:
+  - extlinux-bootloader
+packages-ppc64le:
+  - grub2 ostree-grub2
+packages-s390x:
+  - s390utils-base
+packages-x86_64:
+  - grub2 grub2-efi-x64 ostree-grub2 efibootmgr shim
+  - microcode_ctl

@@ -1,0 +1,8 @@
+ref: fedora/28/x86_64/coreos
+releasever: 28
+include: fedora-coreos-base.yaml
+
+rojig:
+  license: MIT
+  name: fedora-coreos
+  summary: Fedora CoreOS base image
