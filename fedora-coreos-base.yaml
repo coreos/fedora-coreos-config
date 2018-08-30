@@ -1,6 +1,11 @@
 # Base packages for a Fedora CoreOS like system
 include: minimal.yaml
 
+releasever: 28
+repos:
+  - fedora
+  - fedora-updates
+
 packages:
  # SELinux
  - selinux-policy-targeted policycoreutils-python
