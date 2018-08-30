@@ -5,6 +5,18 @@ releasever: 28
 repos:
   - fedora
   - fedora-updates
+  - dustymabe-ignition
+
+ignore-removed-users:
+  - root
+ignore-removed-groups:
+  - root
+check-passwd:
+  type: "file"
+  filename: "passwd"
+check-groups:
+  type: "file"
+  filename: "group"
 
 packages:
  # SELinux
