@@ -1,5 +1,6 @@
 # This minimal base starts just from: kernel + systemd + rpm-ostree + bootloader.
 # In Fedora there's a whole lot of deps; but it won't even have e.g. OpenSSH.
+ref: fedora/28/x86_64/minimal
 packages:
  # Kernel + systemd
  - kernel systemd

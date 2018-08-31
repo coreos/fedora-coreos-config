@@ -7,6 +7,8 @@ include: fedora-coreos-base.yaml
 boot_location: new
 machineid-compat: false
 tmp-is-dir: true
+packages:
+  - rpm-ostree
 # end duplicates from fedora-coreos-base.yaml
 
 rojig:
