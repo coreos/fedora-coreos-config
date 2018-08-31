@@ -11,6 +11,11 @@ ignore-removed-users:
   - root
 ignore-removed-groups:
   - root
+etc-group-members:
+  - wheel
+  - sudo
+  - systemd-journal
+  - adm
 check-passwd:
   type: "file"
   filename: "passwd"
