@@ -3,13 +3,6 @@ ref: fedora/28/x86_64/coreos
 releasever: 28
 automatic_version_prefix: 28
 include: fedora-coreos-base.yaml
-# https://github.com/projectatomic/rpm-ostree/issues/1524
-boot_location: new
-machineid-compat: false
-tmp-is-dir: true
-packages:
-  - rpm-ostree
-# end duplicates from fedora-coreos-base.yaml
 
 rojig:
   license: MIT
