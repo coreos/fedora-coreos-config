@@ -24,6 +24,28 @@ check-groups:
   type: "file"
   filename: "group"
 
+postprocess:
+  - |
+    #!/usr/bin/env bash
+    set -xe
+    # See machineid-compat in host-base.yaml.
+    # Since that makes presets run on boot, we need to have our defaults in /usr
+    ln -sfr /usr/lib/systemd/system/{multi-user,default}.target
+    # Persistent journal by default
+    echo 'Storage=persistent' >> /etc/systemd/journald.conf
+    # https://github.com/openshift/os/issues/96
+    # sudo group https://github.com/openshift/os/issues/96
+    echo '%sudo        ALL=(ALL)       NOPASSWD: ALL' > /etc/sudoers.d/coreos-sudo-group
+    # We're not using resolved yet
+    rm -f /usr/lib/systemd/system/systemd-resolved.service
+    # Let's have a non-boring motd, just like CL (although theirs is more subdued
+    # nowadays compared to early versions with ASCII art).  One thing we do here
+    # is add --- as a "separator"; the idea is that any "dynamic" information should
+    # be below that.
+    cat > /etc/motd <<EOF
+    Fedora CoreOS (preview)
+    ---
+
 packages:
  # SELinux
  - selinux-policy-targeted policycoreutils-python
