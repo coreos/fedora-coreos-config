@@ -45,6 +45,11 @@ postprocess:
     echo '%sudo        ALL=(ALL)       NOPASSWD: ALL' > /etc/sudoers.d/coreos-sudo-group
     # We're not using resolved yet
     rm -f /usr/lib/systemd/system/systemd-resolved.service
+    cat >/usr/lib/systemd/system-preset/42-coreos.preset << EOF
+    # Presets here that eventually should live in the generic fedora presets
+    # This one is from https://github.com/dustymabe/ignition-dracut
+    enable coreos-firstboot-complete.service
+    EOF
     # Let's have a non-boring motd, just like CL (although theirs is more subdued
     # nowadays compared to early versions with ASCII art).  One thing we do here
     # is add --- as a "separator"; the idea is that any "dynamic" information should
@@ -52,6 +57,7 @@ postprocess:
     cat > /etc/motd <<EOF
     Fedora CoreOS (preview)
     ---
+    EOF
 
 packages:
  # SELinux
