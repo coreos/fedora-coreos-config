@@ -1,7 +1,8 @@
 # Base packages for a Fedora CoreOS like system
 include: minimal.yaml
 
-releasever: 28
+releasever: 29
+automatic_version_prefix: 29
 repos:
   - fedora
   - fedora-updates

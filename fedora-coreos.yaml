@@ -1,8 +1,9 @@
 # unified-core compatible
-ref: fedora/28/x86_64/coreos
-releasever: 28
-automatic_version_prefix: 28
+ref: fedora/29/x86_64/coreos
 include: fedora-coreos-base.yaml
+
+packages:
+  - fedora-release-coreos
 
 rojig:
   license: MIT
