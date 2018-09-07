@@ -1,6 +1,13 @@
 # Base packages for a Fedora CoreOS like system
 include: minimal.yaml
 
+# Modern defaults we want
+boot_location: new
+tmp-is-dir: true
+
+# Required by Ignition, and makes the system not compatible with Anaconda
+machineid-compat: false
+
 releasever: 29
 automatic_version_prefix: 29
 repos:
