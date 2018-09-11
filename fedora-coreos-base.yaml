@@ -90,6 +90,8 @@ packages:
  - authconfig sssd shadow-utils
  - logrotate
  # Used by admins interactively
- - sudo coreutils less tar xz gzip bzip2 rsync tmux
+ - sudo coreutils less tar xz gzip bzip2 tmux
  - nmap-ncat net-tools bind-utils
  - bash-completion
+ # Moving files around
+ - rsync fuse-sshfs
