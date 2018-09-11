@@ -35,6 +35,10 @@ postprocess:
   - |
     #!/usr/bin/env bash
     set -xe
+    # https://github.com/projectatomic/rpm-ostree/issues/1542#issuecomment-419684977
+    for x in /etc/yum.repos.d/*modular.repo; do
+      sed -i -e 's,enabled=[01],enabled=0,' ${x}
+    done
     # See machineid-compat in host-base.yaml.
     # Since that makes presets run on boot, we need to have our defaults in /usr
     ln -sfr /usr/lib/systemd/system/{multi-user,default}.target
