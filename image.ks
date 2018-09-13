@@ -24,10 +24,10 @@ clearpart --initlabel --all
 #  - $coreos_firstboot # This is actually a GRUB variable
 bootloader --timeout=1 --append="no_timer_check console=ttyS0,115200n8 console=tty0 net.ifnames=0 biosdevname=0 ip=dhcp rd.neednet=1 rw $coreos_firstboot"
 
-part /boot --size=300 --fstype="xfs"
+part /boot --size=300 --fstype="xfs" --label=boot
 part pv.01 --grow
 volgroup coreos pv.01
-logvol / --size=3000 --fstype="xfs" --name=root --vgname=coreos
+logvol / --size=3000 --fstype="xfs" --name=root --vgname=coreos --label=root
 
 reboot
 
