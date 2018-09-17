@@ -72,10 +72,10 @@ postprocess:
     cat > /usr/lib/systemd/system/coreos-growpart.service <<'EOF'
     [Unit]
     ConditionPathExists=!/var/lib/coreos-growpart.stamp
+    Before=sshd.service
     [Service]
     ExecStart=/usr/libexec/coreos-growpart /
     RemainAfterExit=yes
-    Before=sshd.service
     [Install]
     WantedBy=multi-user.target
     EOF
