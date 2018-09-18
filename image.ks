@@ -27,7 +27,8 @@ bootloader --timeout=1 --append="no_timer_check console=ttyS0,115200n8 console=t
 # https://github.com/coreos/fedora-coreos-tracker/issues/18
 # See also coreos-growpart.service defined in fedora-coreos-base.yaml
 part /boot --size=300 --fstype="xfs" --label=boot
-part / --size=3000 --fstype="xfs" --label=root --grow
+# Note no reflinks for /boot since the bootloader may not understand them
+part / --size=3000 --fstype="xfs" --label=root --grow --mkfsoptions="-m reflink=1"
 
 reboot
 
