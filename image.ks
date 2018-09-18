@@ -1,5 +1,19 @@
+# Currently the coreos-assembler tool is generating
+# disk images via Anaconda (inside virt-install).
+# This is likely to change in the future; see
+# https://github.com/coreos/coreos-assembler/issues/75#issuecomment-421139257
+# https://github.com/coreos/fedora-coreos-tracker/issues/18
+#
+# Note that coreos-assembler also injects an additional %post.
+#
+# For now, if you're doing something custom, you should
+# be tracking issues/PRs for both this repo and particularly
+# coreos-assembler.
+
 # This line is interpreted by coreos-virt-install
 #--coreos-virt-install-disk-size-gb: 8
+# We use this because Kickstart doesn't have a way to specify
+# the *total* size of the disk.
 text
 lang en_US.UTF-8
 keyboard us
@@ -26,6 +40,8 @@ bootloader --timeout=1 --append="no_timer_check console=ttyS0,115200n8 console=t
 
 # https://github.com/coreos/fedora-coreos-tracker/issues/18
 # See also coreos-growpart.service defined in fedora-coreos-base.yaml
+# You can change this partition layout, but note that the `boot` and `root`
+# filesystem labels are currently mandatory (they're interpreted by coreos-assembler).
 part /boot --size=300 --fstype="xfs" --label=boot
 # Note no reflinks for /boot since the bootloader may not understand them
 part / --size=3000 --fstype="xfs" --label=root --grow --mkfsoptions="-m reflink=1"
