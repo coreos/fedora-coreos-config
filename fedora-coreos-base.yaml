@@ -105,34 +105,34 @@ postprocess:
     EOF
 
 packages:
- # SELinux
- - selinux-policy-targeted policycoreutils-python
- - setools-console
- # System setup
- - ignition ignition-dracut
- - dracut-network
- - passwd
- # SSH
- - openssh-server openssh-clients
- # Containers
- - podman skopeo runc
- # Networking
- - bridge-utils nfs-utils biosdevname iptables-services
- - NetworkManager dnsmasq hostname
- # Storage
- - cloud-utils-growpart
- - lvm2 iscsi-initiator-utils sg3_utils
- - device-mapper-multipath
- - xfsprogs e2fsprogs mdadm
- - cryptsetup
- # Time sync
- - chrony
- # Extra runtime
- - authconfig sssd shadow-utils
- - logrotate
- # Used by admins interactively
- - sudo coreutils less tar xz gzip bzip2 tmux
- - nmap-ncat net-tools bind-utils
- - bash-completion
- # Moving files around
- - rsync fuse-sshfs
+  # SELinux
+  - selinux-policy-targeted policycoreutils-python
+  - setools-console
+  # System setup
+  - ignition ignition-dracut
+  - dracut-network
+  - passwd
+  # SSH
+  - openssh-server openssh-clients
+  # Containers
+  - podman skopeo runc
+  # Networking
+  - bridge-utils nfs-utils biosdevname iptables-services
+  - NetworkManager dnsmasq hostname
+  # Storage
+  - cloud-utils-growpart
+  - lvm2 iscsi-initiator-utils sg3_utils
+  - device-mapper-multipath
+  - xfsprogs e2fsprogs mdadm
+  - cryptsetup
+  # Time sync
+  - chrony
+  # Extra runtime
+  - authconfig sssd shadow-utils
+  - logrotate
+  # Used by admins interactively
+  - sudo coreutils less tar xz gzip bzip2 tmux
+  - nmap-ncat net-tools bind-utils
+  - bash-completion
+  # Moving files around
+  - rsync fuse-sshfs
