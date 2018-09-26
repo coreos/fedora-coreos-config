@@ -83,6 +83,7 @@ postprocess:
     # TODO: make this idempotent, and don't error out if
     # we can't resize.
     growpart ${parent_device} ${partition} || true
+    xfs_growfs /sysroot # this is already idempotent
     touch /var/lib/coreos-growpart.stamp
     EOF
 
