@@ -34,21 +34,27 @@ check-groups:
 postprocess:
   - |
     #!/usr/bin/env bash
-    set -xe
+    set -xeuo pipefail
+
     # https://github.com/projectatomic/rpm-ostree/issues/1542#issuecomment-419684977
     for x in /etc/yum.repos.d/*modular.repo; do
       sed -i -e 's,enabled=[01],enabled=0,' ${x}
     done
+
     # See machineid-compat in host-base.yaml.
     # Since that makes presets run on boot, we need to have our defaults in /usr
     ln -sfr /usr/lib/systemd/system/{multi-user,default}.target
+
     # Persistent journal by default
     echo 'Storage=persistent' >> /etc/systemd/journald.conf
+
     # https://github.com/openshift/os/issues/96
     # sudo group https://github.com/openshift/os/issues/96
     echo '%sudo        ALL=(ALL)       NOPASSWD: ALL' > /etc/sudoers.d/coreos-sudo-group
+
     # We're not using resolved yet
     rm -f /usr/lib/systemd/system/systemd-resolved.service
+
     # https://github.com/openshift/os/issues/191
     # install default PATH file to expand non-login shells PATH for kola
     cat > /etc/profile.d/path.sh << 'EOF'
@@ -59,6 +65,7 @@ postprocess:
     pathmunge /usr/local/bin
     pathmunge /usr/local/sbin
     EOF
+
     # https://github.com/coreos/fedora-coreos-tracker/issues/18
     # See also image.ks.
     # Growpart /, until we can fix Ignition for separate /var
@@ -78,6 +85,7 @@ postprocess:
     growpart ${parent_device} ${partition} || true
     touch /var/lib/coreos-growpart.stamp
     EOF
+
     chmod a+x /usr/libexec/coreos-growpart
     cat > /usr/lib/systemd/system/coreos-growpart.service <<'EOF'
     [Unit]
@@ -89,12 +97,14 @@ postprocess:
     [Install]
     WantedBy=multi-user.target
     EOF
+
     cat >/usr/lib/systemd/system-preset/42-coreos.preset << EOF
     # Presets here that eventually should live in the generic fedora presets
     # This one is from https://github.com/dustymabe/ignition-dracut
     enable coreos-firstboot-complete.service
     enable coreos-growpart.service
     EOF
+
     # Let's have a non-boring motd, just like CL (although theirs is more subdued
     # nowadays compared to early versions with ASCII art).  One thing we do here
     # is add --- as a "separator"; the idea is that any "dynamic" information should
@@ -102,6 +112,7 @@ postprocess:
     cat > /etc/motd <<EOF
     Fedora CoreOS (preview)
     ---
+
     EOF
 
 packages:
