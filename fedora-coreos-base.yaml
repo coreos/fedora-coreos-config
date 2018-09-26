@@ -57,6 +57,9 @@ postprocess:
     # Persistent journal by default
     echo 'Storage=persistent' >> /etc/systemd/journald.conf
 
+    # Fix /home to be /var/home - software wants to canonicalize this.
+    sed -i -e 's,^HOME=.*,HOME=/var/home,' /etc/default/useradd
+
     # https://github.com/openshift/os/issues/96
     # sudo group https://github.com/openshift/os/issues/96
     echo '%sudo        ALL=(ALL)       NOPASSWD: ALL' > /etc/sudoers.d/coreos-sudo-group
