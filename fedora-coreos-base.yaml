@@ -112,9 +112,14 @@ postprocess:
     # be below that.
     cat > /etc/motd <<EOF
     Fedora CoreOS (preview)
+    https://github.com/coreos/fedora-coreos-tracker
+    WARNING: All aspects subject to change, highly experimental
     ---
 
     EOF
+
+    # And mark as preview in the os-release too, this then shows up in eg. GRUB2
+    sed -i -e 's/CoreOS/CoreOS preview/' $(realpath /etc/os-release)
 
 packages:
   # SELinux
