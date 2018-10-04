@@ -41,6 +41,12 @@ postprocess:
       sed -i -e 's,enabled=[01],enabled=0,' ${x}
     done
 
+    # The grub bits are mainly designed for desktops, and IMO haven't seen
+    # enough testing in concert with ostree.  At some point we'll flesh out
+    # the full plan in https://github.com/coreos/fedora-coreos-tracker/issues/47
+    rm -v /etc/grub.d/01_{fallback_counting,menu_auto_hide}
+    rm -v /usr/lib/systemd/user/grub-boot-success*
+
     # See machineid-compat in host-base.yaml.
     # Since that makes presets run on boot, we need to have our defaults in /usr
     ln -sfr /usr/lib/systemd/system/{multi-user,default}.target
