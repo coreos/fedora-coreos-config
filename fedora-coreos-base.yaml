@@ -133,7 +133,7 @@ packages:
   # SSH
   - openssh-server openssh-clients
   # Containers
-  - podman skopeo runc
+  - podman skopeo runc moby-engine
   # Networking
   - bridge-utils nfs-utils biosdevname iptables-services
   - NetworkManager dnsmasq hostname
