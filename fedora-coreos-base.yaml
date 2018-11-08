@@ -135,7 +135,7 @@ packages:
   # Containers
   - podman skopeo runc moby-engine
   # Networking
-  - bridge-utils nfs-utils biosdevname iptables-services
+  - bridge-utils nfs-utils iptables-services
   - NetworkManager dnsmasq hostname
   # Storage
   - cloud-utils-growpart
