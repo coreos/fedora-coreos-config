@@ -20,9 +20,6 @@ keyboard us
 timezone --utc Etc/UTC
 selinux --enforcing
 rootpw --lock --iscrypted locked
-# create core user for now
-# https://github.com/openshift/os/issues/96
-user --name=core --groups='wheel,sudo,adm,systemd-journal'
 
 # Explicitly disable firewall since cloud providers generally provide
 # higher level firewall constructs (i.e. security groups).
