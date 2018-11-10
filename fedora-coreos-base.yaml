@@ -100,11 +100,25 @@ postprocess:
     WantedBy=multi-user.target
     EOF
 
+    # See https://github.com/coreos/ignition/issues/600
+    # which originated from https://github.com/coreos/coreos-metadata/pull/90#discussion_r202438581
+    cat > /usr/lib/systemd/system/coreos-useradd-core.service <<'EOF'
+    [Unit]
+    ConditionFirstBoot=true
+    Before=sshd.service
+    [Service]
+    ExecStart=/usr/bin/sh -c 'if !getent passwd core &>/dev/null; then /usr/sbin/useradd -G wheel,sudo,adm,systemd-journal core; fi'
+    RemainAfterExit=yes
+    [Install]
+    WantedBy=multi-user.target
+    EOF
+
     cat >/usr/lib/systemd/system-preset/42-coreos.preset << EOF
     # Presets here that eventually should live in the generic fedora presets
     # This one is from https://github.com/dustymabe/ignition-dracut
     enable coreos-firstboot-complete.service
     enable coreos-growpart.service
+    enable coreos-useradd-core.service
     EOF
 
     # Let's have a non-boring motd, just like CL (although theirs is more subdued
