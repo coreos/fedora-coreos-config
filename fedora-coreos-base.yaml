@@ -115,8 +115,8 @@ postprocess:
 
     cat >/usr/lib/systemd/system-preset/42-coreos.preset << EOF
     # Presets here that eventually should live in the generic fedora presets
-    # This one is from https://github.com/dustymabe/ignition-dracut
-    enable coreos-firstboot-complete.service
+    # This one is from https://github.com/coreos/ignition-dracut
+    enable ignition-firstboot-complete.service
     enable coreos-growpart.service
     enable coreos-useradd-core.service
     EOF
