@@ -5,6 +5,12 @@ include: minimal.yaml
 boot_location: new
 tmp-is-dir: true
 
+# Add a richer set of early boot drivers, including vmware storage
+initramfs-args:
+  - "--no-hostonly"
+  - "--add-drivers"
+  - "mptspi vmw_pvscsi"
+
 # Required by Ignition, and makes the system not compatible with Anaconda
 machineid-compat: false
 
