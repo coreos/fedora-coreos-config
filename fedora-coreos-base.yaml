@@ -16,7 +16,6 @@ repos:
   - fedora-updates-testing
   - dustymabe-ignition
   - rfairley-console-login-helper-messages
-  - lorbus-grub2 # NOTE: This can be removed once we move to f30.
 
 ignore-removed-users:
   - root
@@ -45,9 +44,10 @@ postprocess:
     done
 
     # The grub bits are mainly designed for desktops, and IMO haven't seen
-    # enough testing in concert with ostree.  At some point we'll flesh out
+    # enough testing in concert with ostree. At some point we'll flesh out
     # the full plan in https://github.com/coreos/fedora-coreos-tracker/issues/47
-    rm -v /etc/grub.d/01_{fallback_counting,menu_auto_hide}
+    # NOTE: Also remove 01_fallback_counting once we move to f30
+    rm -v /etc/grub.d/01_menu_auto_hide
     rm -v /usr/lib/systemd/user/grub-boot-success*
 
     # See machineid-compat in host-base.yaml.
