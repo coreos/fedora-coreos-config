@@ -70,4 +70,35 @@ rm -f /var/lib/random-seed
 
 echo "Removing /root/anaconda-ks.cfg"
 rm -f /root/anaconda-ks.cfg
+
+# Replace /etc/fstab with mount units; mostly so we can easily enable the "ro"
+# flag for /boot without having to parse/rewrite /etc/fstab.  But we also
+# use the labels rather than anaconda's UUID defaults.
+cat > /etc/systemd/system/-.mount << EOF
+[Unit]
+Before=local-fs.target
+[Mount]
+Where=/
+What=/dev/disk/by-label/root
+Type=xfs
+EOF
+
+cat > /etc/systemd/system/boot.mount << EOF
+[Unit]
+Before=local-fs.target
+[Mount]
+Where=/boot
+What=/dev/disk/by-label/boot
+Type=xfs
+Options=ro
+EOF
+
+rm /etc/fstab
+
+# Enable readonly /sysroot,/boot: https://github.com/ostreedev/ostree/issues/1265
+cat >> /ostree/repo/config << EOF
+[sysroot]
+readonly=true
+EOF
+
 %end
