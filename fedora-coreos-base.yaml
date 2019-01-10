@@ -159,8 +159,10 @@ packages:
   # Containers
   - podman skopeo runc moby-engine
   # Networking
-  - bridge-utils nfs-utils iptables-services
+  - bridge-utils nfs-utils
   - NetworkManager dnsmasq hostname
+  # Static firewalling
+  - iptables nftables iptables-nft iptables-services
   # Storage
   - cloud-utils-growpart
   - lvm2 iscsi-initiator-utils sg3_utils
