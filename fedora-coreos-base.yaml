@@ -7,6 +7,16 @@ tmp-is-dir: true
 
 # Required by Ignition, and makes the system not compatible with Anaconda
 machineid-compat: false
+# New model
+sysusers: true
+sysusers-users:
+  dbus: 81  # Historical
+  dnsmasq: 920 # No particular reason to start here
+  polkitd: 921
+  chrony: 922
+sysusers-groups:
+  utmp: 22 # Matches historical soft value
+  ssh_keys: 23 # Matches historical soft value
 
 releasever: "29"
 automatic_version_prefix: "29"
@@ -15,21 +25,6 @@ repos:
   - fedora-updates
   - dustymabe-ignition
 
-ignore-removed-users:
-  - root
-ignore-removed-groups:
-  - root
-etc-group-members:
-  - wheel
-  - sudo
-  - systemd-journal
-  - adm
-check-passwd:
-  type: "file"
-  filename: "passwd"
-check-groups:
-  type: "file"
-  filename: "group"
 
 postprocess:
   - |
