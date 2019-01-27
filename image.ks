@@ -1,3 +1,7 @@
+# THIS FILE IS DEPRECATED, use image.yaml
+#
+# original contents below:
+#
 # Currently the coreos-assembler tool is generating
 # disk images via Anaconda (inside virt-install).
 # This is likely to change in the future; see

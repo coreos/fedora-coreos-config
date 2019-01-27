@@ -1,0 +1,8 @@
+# This replaces image.ks
+# size is the target disk size in GB.
+# Currently, it is the only supported key.
+size: 8
+
+# After this, we plan to add support for the Ignition
+# storage/filesystems sections.  (Although one can do
+# that on boot as well)
