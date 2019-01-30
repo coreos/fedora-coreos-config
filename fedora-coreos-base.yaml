@@ -23,6 +23,7 @@ machineid-compat: false
 
 releasever: "29"
 automatic_version_prefix: "29"
+mutate-os-release: "29"
 repos:
   - fedora
   - fedora-updates
