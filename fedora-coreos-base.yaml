@@ -14,6 +14,7 @@ repos:
   - fedora
   - fedora-updates
   - dustymabe-ignition
+  - dustymabe-coreos-installer
 
 ignore-removed-users:
   - root
@@ -209,3 +210,5 @@ packages:
   - console-login-helper-messages-motdgen
   - console-login-helper-messages-issuegen
   - console-login-helper-messages-profile
+  # CoreOS Installer
+  - coreos-installer coreos-installer-dracut
