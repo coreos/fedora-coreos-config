@@ -202,8 +202,9 @@ packages:
   - sudo coreutils less tar xz gzip bzip2 tmux
   - nmap-ncat net-tools bind-utils
   - bash-completion
-  # Moving files around
+  # Moving files around and verifying them
   - rsync fuse-sshfs
+  - gnupg2
   # User experience
   - console-login-helper-messages
   - console-login-helper-messages-motdgen
