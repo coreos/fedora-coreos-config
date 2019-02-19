@@ -1,0 +1,20 @@
+site:
+  title: Local Preview
+  start_page: fedora-coreos::index
+content:
+  sources:
+   - url: .
+     branches: HEAD
+ui:
+  bundle:
+    url: https://asamalik.fedorapeople.org/ui-bundle.zip
+    snapshot: true
+  default_layout: with_menu
+output:
+  clean: true
+  dir: ./public
+  destinations:
+  - provider: archive
+runtime:
+  pull: true
+  cache_dir: ./cache
