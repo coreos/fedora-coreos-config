@@ -37,6 +37,11 @@ postprocess:
     #!/usr/bin/env bash
     set -xeuo pipefail
 
+    # Nuke this Red Hat Linux-era legacy
+    rm /etc/sysconfig -rf
+    # And drop support for the initscripts network format that lives in there
+    rm -v /usr/lib64/NetworkManager/*/libnm-settings-plugin-ifcfg-rh.so
+
     # https://github.com/projectatomic/rpm-ostree/issues/1542#issuecomment-419684977
     for x in /etc/yum.repos.d/*modular.repo; do
       sed -i -e 's,enabled=[01],enabled=0,' ${x}
