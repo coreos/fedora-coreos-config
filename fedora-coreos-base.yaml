@@ -101,6 +101,7 @@ postprocess:
     ConditionPathExists=!/var/lib/coreos-growpart.stamp
     Before=sshd.service
     [Service]
+    Type=oneshot
     ExecStart=/usr/libexec/coreos-growpart /
     RemainAfterExit=yes
     [Install]
@@ -114,6 +115,7 @@ postprocess:
     ConditionFirstBoot=true
     Before=sshd.service
     [Service]
+    Type=oneshot
     ExecStart=/usr/bin/sh -c 'if !getent passwd core &>/dev/null; then /usr/sbin/useradd -G wheel,sudo,adm,systemd-journal core; fi'
     RemainAfterExit=yes
     [Install]
