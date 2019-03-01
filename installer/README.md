@@ -5,5 +5,5 @@ directory and copies them to the base of the ISO.
 
 Files currently copied are:
 
-- boot.msg
-- isolinux.cfg
+- isolinux/boot.msg
+- isolinux/isolinux.cfg
