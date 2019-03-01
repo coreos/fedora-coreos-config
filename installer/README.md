@@ -7,3 +7,7 @@ Files currently copied are:
 
 - isolinux/boot.msg
 - isolinux/isolinux.cfg
+
+Files that get copied into efiboot.img in the ISO:
+
+- EFI/grub.cfg 
