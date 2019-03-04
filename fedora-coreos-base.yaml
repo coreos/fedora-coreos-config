@@ -5,6 +5,13 @@ include: minimal.yaml
 boot_location: new
 tmp-is-dir: true
 
+initramfs-args:
+  - --no-hostonly
+  # We don't support root on NFS, so we don't need it in the initramfs. It also
+  # conflicts with /var mount support.
+  - --omit
+  - nfs
+
 # Required by Ignition, and makes the system not compatible with Anaconda
 machineid-compat: false
 
