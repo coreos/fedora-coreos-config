@@ -4,6 +4,7 @@ include: fedora-coreos-base.yaml
 
 packages:
   - fedora-release-coreos
+  - fedora-repos-ostree
 
 rojig:
   license: MIT
