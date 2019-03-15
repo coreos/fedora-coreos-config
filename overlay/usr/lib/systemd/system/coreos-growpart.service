@@ -1,0 +1,13 @@
+# See also coreos-growpart script.
+
+[Unit]
+ConditionPathExists=!/var/lib/coreos-growpart.stamp
+Before=sshd.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-growpart /
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

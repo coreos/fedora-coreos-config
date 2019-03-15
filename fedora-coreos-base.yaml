@@ -46,145 +46,39 @@ check-groups:
   type: "file"
   filename: "group"
 
+default_target: multi-user.target
+
+remove-from-packages:
+  # We're not using resolved yet
+  - [systemd, /usr/lib/systemd/system/systemd-resolved.service]
+
+  # The grub bits are mainly designed for desktops, and IMO haven't seen
+  # enough testing in concert with ostree. At some point we'll flesh out
+  # the full plan in https://github.com/coreos/fedora-coreos-tracker/issues/47
+  # NOTE: Also remove 01_fallback_counting once we move to f30
+  - [grub2-tools, /etc/grub.d/01_menu_auto_hide,
+                  /usr/lib/systemd/.*]
+
+
+# ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 postprocess:
+  # This will be dropped once rpm-ostree because module-aware.
+  # https://github.com/projectatomic/rpm-ostree/issues/1542#issuecomment-419684977
+  # https://github.com/projectatomic/rpm-ostree/issues/1435
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
-
-    # https://github.com/projectatomic/rpm-ostree/issues/1542#issuecomment-419684977
     for x in /etc/yum.repos.d/*modular.repo; do
       sed -i -e 's,enabled=[01],enabled=0,' ${x}
     done
-
-    # The grub bits are mainly designed for desktops, and IMO haven't seen
-    # enough testing in concert with ostree. At some point we'll flesh out
-    # the full plan in https://github.com/coreos/fedora-coreos-tracker/issues/47
-    # NOTE: Also remove 01_fallback_counting once we move to f30
-    rm -v /etc/grub.d/01_menu_auto_hide
-    rm -v /usr/lib/systemd/user/grub-boot-success*
-
-    # See machineid-compat in host-base.yaml.
-    # Since that makes presets run on boot, we need to have our defaults in /usr
-    ln -sfr /usr/lib/systemd/system/{multi-user,default}.target
-
-    # Persistent journal by default
-    echo 'Storage=persistent' >> /etc/systemd/journald.conf
-
-    # https://github.com/openshift/os/issues/96
-    # sudo group https://github.com/openshift/os/issues/96
-    echo '%sudo        ALL=(ALL)       NOPASSWD: ALL' > /etc/sudoers.d/coreos-sudo-group
-
-    # We're not using resolved yet
-    rm -f /usr/lib/systemd/system/systemd-resolved.service
-
-    # https://github.com/openshift/os/issues/191
-    # install default PATH file to expand non-login shells PATH for kola
-    cat > /etc/profile.d/path.sh << 'EOF'
-    pathmunge /bin
-    pathmunge /sbin
-    pathmunge /usr/bin
-    pathmunge /usr/sbin
-    pathmunge /usr/local/bin
-    pathmunge /usr/local/sbin
-    EOF
-
-    # https://github.com/coreos/fedora-coreos-tracker/issues/18
-    # See also image.ks.
-    # Growpart /, until we can fix Ignition for separate /var
-    # (And eventually we want ignition-disks)
-    cat > /usr/libexec/coreos-growpart << 'EOF'
-    #!/bin/bash
-    set -euo pipefail
-    path=$1
-    shift
-    majmin=$(findmnt -nvr -o MAJ:MIN $path)
-    devpath=$(realpath /sys/dev/block/$majmin)
-    partition=$(cat $devpath/partition)
-    parent_path=$(dirname $devpath)
-    parent_device=/dev/$(basename ${parent_path})
-    # TODO: make this idempotent, and don't error out if
-    # we can't resize.
-    growpart ${parent_device} ${partition} || true
-    xfs_growfs /sysroot # this is already idempotent
-    touch /var/lib/coreos-growpart.stamp
-    EOF
-
-    chmod a+x /usr/libexec/coreos-growpart
-    cat > /usr/lib/systemd/system/coreos-growpart.service <<'EOF'
-    [Unit]
-    ConditionPathExists=!/var/lib/coreos-growpart.stamp
-    Before=sshd.service
-    [Service]
-    Type=oneshot
-    ExecStart=/usr/libexec/coreos-growpart /
-    RemainAfterExit=yes
-    [Install]
-    WantedBy=multi-user.target
-    EOF
-
-    # See https://github.com/coreos/ignition/issues/600
-    # which originated from https://github.com/coreos/coreos-metadata/pull/90#discussion_r202438581
-    cat > /usr/lib/systemd/system/coreos-useradd-core.service <<'EOF'
-    [Unit]
-    ConditionFirstBoot=true
-    Before=sshd.service
-    [Service]
-    Type=oneshot
-    ExecStart=/usr/bin/sh -c 'if ! getent passwd core &>/dev/null; then /usr/sbin/useradd -G wheel,sudo,adm,systemd-journal core; fi'
-    RemainAfterExit=yes
-    [Install]
-    WantedBy=multi-user.target
-    EOF
-
-    cat >/usr/lib/systemd/system-preset/42-coreos.preset << EOF
-    # Presets here that eventually should live in the generic fedora presets
-    # This one is from https://github.com/coreos/ignition-dracut
-    enable ignition-firstboot-complete.service
-    enable coreos-growpart.service
-    enable coreos-useradd-core.service
-    enable console-login-helper-messages-*.service
-    enable console-login-helper-messages-*.path
-    EOF
-
-    # Let's have a non-boring motd, just like CL (although theirs is more subdued
-    # nowadays compared to early versions with ASCII art).  One thing we do here
-    # is add --- as a "separator"; the idea is that any "dynamic" information should
-    # be below that.
-    cat > /etc/motd <<EOF
-    Fedora CoreOS (preview)
-    https://github.com/coreos/fedora-coreos-tracker
-    WARNING: All aspects subject to change, highly experimental
-    ---
-
-    EOF
-
-    # And mark as preview in the os-release too, this then shows up in eg. GRUB2
+  # This will be dropped once FCOS is out of preview.
+  # See also experimental.motd in overlay/.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/164
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
     sed -i -e 's/CoreOS/CoreOS preview/' $(realpath /etc/os-release)
 
-    # For now we are using kmsg [1] for multiplexing output to
-    # multiple console devices during early boot. We need to also tell 
-    # the kernel not to ratelimit kmsg during the initramfs.
-    # 
-    # We do not want to use kmsg in the future as there may be sensitive
-    # ignition data that leaks to non-root users (by reading the kernel
-    # ring buffer using `dmesg`). In the future we will rely on kernel
-    # console multiplexing [2] for this and will not use kmsg.
-    # 
-    # [1] https://github.com/coreos/ignition-dracut/blob/26f2396b116286dcb46644dc157e4211aea3aba5/dracut/99journald-conf/00-journal-log-forwarding.conf#L2
-    # [2] https://github.com/coreos/fedora-coreos-tracker/issues/136
-    mkdir -p /usr/lib/dracut/modules.d/10coreos-sysctl
-    cat << 'EOF' > /usr/lib/dracut/modules.d/10coreos-sysctl/module-setup.sh
-    #!/usr/bin/bash
-    check() { return 0; } # include by default
-    install() {
-        mkdir -p "$initdir/etc/sysctl.d"
-        echo "kernel.printk_devkmsg = on" > "$initdir/etc/sysctl.d/10-dont-ratelimit-kmsg.conf"
-    }
-    EOF
-    # After initramfs (in booted system), switch back to ratelimit
-    cat << 'EOF' > /usr/lib/sysctl.d/10-coreos-ratelimit-kmsg.conf
-    kernel.printk_devkmsg = ratelimit
-    EOF
 
 packages:
   # SELinux
