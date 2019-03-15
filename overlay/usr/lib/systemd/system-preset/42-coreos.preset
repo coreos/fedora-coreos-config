@@ -1,0 +1,7 @@
+# Presets here that eventually should live in the generic fedora presets
+enable coreos-growpart.service
+enable coreos-useradd-core.service
+enable console-login-helper-messages-*.service
+enable console-login-helper-messages-*.path
+# This one is from https://github.com/coreos/ignition-dracut
+enable ignition-firstboot-complete.service

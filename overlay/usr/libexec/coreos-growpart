@@ -1,0 +1,27 @@
+#!/bin/bash
+set -euo pipefail
+
+# See also coreos-growpart.service.
+
+# https://github.com/coreos/fedora-coreos-tracker/issues/18
+# See also image.ks.
+# Growpart /, until we can fix Ignition for separate /var
+# (And eventually we want ignition-disks)
+
+path=$1
+shift
+
+majmin=$(findmnt -nvr -o MAJ:MIN "$path")
+devpath=$(realpath "/sys/dev/block/$majmin")
+partition=$(cat "$devpath/partition")
+parent_path=$(dirname "$devpath")
+parent_device=/dev/$(basename "${parent_path}")
+
+# TODO: make this idempotent, and don't error out if
+# we can't resize.
+growpart "${parent_device}" "${partition}" || true
+
+# this part is already idempotent
+xfs_growfs /sysroot
+
+touch /var/lib/coreos-growpart.stamp
