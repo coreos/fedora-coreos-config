@@ -190,7 +190,7 @@ packages:
   - selinux-policy-targeted policycoreutils-python
   - setools-console
   # System setup
-  - ignition ignition-dracut
+  - ignition
   - dracut-network
   - passwd
   # SSH
