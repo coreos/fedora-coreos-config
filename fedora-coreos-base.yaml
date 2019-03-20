@@ -130,7 +130,7 @@ postprocess:
     Before=sshd.service
     [Service]
     Type=oneshot
-    ExecStart=/usr/bin/sh -c 'if !getent passwd core &>/dev/null; then /usr/sbin/useradd -G wheel,sudo,adm,systemd-journal core; fi'
+    ExecStart=/usr/bin/sh -c 'if ! getent passwd core &>/dev/null; then /usr/sbin/useradd -G wheel,sudo,adm,systemd-journal core; fi'
     RemainAfterExit=yes
     [Install]
     WantedBy=multi-user.target
