@@ -128,9 +128,8 @@ packages:
   - rsync fuse-sshfs
   - gnupg2
   # User experience
-  - console-login-helper-messages
-  - console-login-helper-messages-motdgen
   - console-login-helper-messages-issuegen
+  - console-login-helper-messages-motdgen
   - console-login-helper-messages-profile
   # CoreOS Installer
   - coreos-installer coreos-installer-dracut
