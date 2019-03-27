@@ -78,7 +78,12 @@ postprocess:
     #!/usr/bin/env bash
     set -xeuo pipefail
     sed -i -e 's/CoreOS/CoreOS preview/' $(realpath /etc/os-release)
-
+  # Undo RPM scripts enabling units; we want the presets to be canonical
+  # https://github.com/projectatomic/rpm-ostree/issues/1803
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    rm -vrf /etc/systemd/system/*
 
 packages:
   # SELinux
