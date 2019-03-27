@@ -71,6 +71,13 @@ postprocess:
     for x in /etc/yum.repos.d/*modular.repo; do
       sed -i -e 's,enabled=[01],enabled=0,' ${x}
     done
+  # Read the Ignition 2 and Afterburn SSH key fragments, pending better tooling
+  # https://github.com/coreos/fedora-coreos-tracker/issues/139
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
+    echo -e '\n# Read authorized_keys fragments written by Ignition and Afterburn\nAuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys.d/ignition .ssh/authorized_keys.d/afterburn' >> /etc/ssh/sshd_config
   # This will be dropped once FCOS is out of preview.
   # See also experimental.motd in overlay/.
   # https://github.com/coreos/fedora-coreos-tracker/issues/164
