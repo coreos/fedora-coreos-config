@@ -21,13 +21,15 @@ initramfs-args:
 # Required by Ignition, and makes the system not compatible with Anaconda
 machineid-compat: false
 
-releasever: "29"
-automatic-version-prefix: "29"
-mutate-os-release: "29"
+releasever: "30"
+automatic-version-prefix: "30"
+mutate-os-release: "30"
 repos:
   - fedora
   - fedora-updates
   - fedora-coreos-continuous
+  # until https://github.com/systemd/systemd/pull/12281 is in f30 proper
+  - jlebon-systemd
 
 ignore-removed-users:
   - root
