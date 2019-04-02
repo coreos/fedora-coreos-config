@@ -9,7 +9,6 @@ packages:
 # bootloader
 packages-aarch64:
   - grub2-efi ostree-grub2 efibootmgr shim
-  - uboot-tools uboot-images-armv8 bcm283x-firmware
 packages-armhfp:
   - extlinux-bootloader
 packages-ppc64le:
