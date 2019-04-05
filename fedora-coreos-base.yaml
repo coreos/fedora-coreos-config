@@ -89,7 +89,8 @@ postprocess:
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
-    rm -vrf /etc/systemd/system/*
+    rm -rf /etc/systemd/system/*
+    systemctl preset-all
 
 packages:
   # SELinux
