@@ -2,7 +2,7 @@
 include: minimal.yaml
 
 # Modern defaults we want
-boot_location: new
+boot-location: new
 tmp-is-dir: true
 
 initramfs-args:
@@ -22,7 +22,7 @@ initramfs-args:
 machineid-compat: false
 
 releasever: "29"
-automatic_version_prefix: "29"
+automatic-version-prefix: "29"
 mutate-os-release: "29"
 repos:
   - fedora
@@ -46,7 +46,7 @@ check-groups:
   type: "file"
   filename: "group"
 
-default_target: multi-user.target
+default-target: multi-user.target
 
 remove-from-packages:
   # We're not using resolved yet
