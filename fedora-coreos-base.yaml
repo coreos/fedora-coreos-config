@@ -27,8 +27,7 @@ mutate-os-release: "29"
 repos:
   - fedora
   - fedora-updates
-  - dustymabe-ignition
-  - dustymabe-coreos-installer
+  - fedora-coreos-continuous
 
 ignore-removed-users:
   - root
