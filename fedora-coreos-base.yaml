@@ -28,8 +28,6 @@ repos:
   - fedora
   - fedora-updates
   - fedora-coreos-continuous
-  # until https://github.com/systemd/systemd/pull/12281 is in f30 proper
-  - jlebon-systemd
 
 ignore-removed-users:
   - root
