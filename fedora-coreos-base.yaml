@@ -105,7 +105,7 @@ packages:
   # Containers
   - podman skopeo runc moby-engine
   # Networking
-  - bridge-utils nfs-utils
+  - bridge-utils nfs-utils-coreos
   - NetworkManager dnsmasq hostname
   # Static firewalling
   - iptables nftables iptables-nft iptables-services
@@ -118,7 +118,7 @@ packages:
   # Time sync
   - chrony
   # Extra runtime
-  - authconfig sssd shadow-utils
+  - sssd shadow-utils
   - logrotate
   # Used by admins interactively
   - sudo coreutils less tar xz gzip bzip2
