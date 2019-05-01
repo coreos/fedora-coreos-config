@@ -94,8 +94,7 @@ postprocess:
 
 packages:
   # SELinux
-  - selinux-policy-targeted policycoreutils-python
-  - setools-console
+  - selinux-policy-targeted
   # System setup
   - ignition
   - dracut-network
