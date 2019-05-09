@@ -4,3 +4,6 @@ enable console-login-helper-messages-issuegen.service
 enable console-login-helper-messages-motdgen.service
 # This one is from https://github.com/coreos/ignition-dracut
 enable ignition-firstboot-complete.service
+# Boot checkin services for cloud providers.
+enable afterburn-checkin.service
+enable afterburn-firstboot-checkin.service
