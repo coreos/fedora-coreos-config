@@ -1,8 +1,0 @@
-[fedora-coreos-continuous]
-name=Fedora coreos continuous $releasever - $basearch
-baseurl=https://kojipkgs.fedoraproject.org/repos-dist/f$releasever-coreos-continuous/latest/$basearch/
-enabled=1
-repo_gpgcheck=0
-type=rpm-md
-gpgcheck=0
-skip_if_unavailable=True

@@ -27,7 +27,7 @@ mutate-os-release: "30"
 repos:
   - fedora
   - fedora-updates
-  - fedora-coreos-continuous
+  - fedora-coreos-pool
 
 ignore-removed-users:
   - root
