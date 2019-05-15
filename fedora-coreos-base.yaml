@@ -92,6 +92,14 @@ postprocess:
     set -xeuo pipefail
     rm -rf /etc/systemd/system/*
     systemctl preset-all
+  # We don't want systemd-firstboot.service. It conceptually conflicts with
+  # Ignition.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    rm /usr/lib/systemd/system/sysinit.target.wants/systemd-firstboot.service
+    rm /usr/lib/systemd/system/systemd-firstboot.service
+    rm /usr/bin/systemd-firstboot
 
 packages:
   # SELinux
