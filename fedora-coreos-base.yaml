@@ -78,6 +78,14 @@ postprocess:
     set -xeuo pipefail
     sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
     echo -e '\n# Read authorized_keys fragments written by Ignition and Afterburn\nAuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys.d/ignition .ssh/authorized_keys.d/afterburn' >> /etc/ssh/sshd_config
+  # Disable SSH password logins by default
+  # Move to overlay once sshd_config fragments are supported
+  # https://github.com/coreos/fedora-coreos-tracker/issues/138
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    sed -Ei 's/^(PasswordAuthentication|PermitRootLogin)[[:blank:]]/#&/' /etc/ssh/sshd_config
+    echo -e '\n# Disable password logins by default\nPasswordAuthentication no\nPermitRootLogin prohibit-password' >> /etc/ssh/sshd_config
   # This will be dropped once FCOS is out of preview.
   # See also experimental.motd in overlay/.
   # https://github.com/coreos/fedora-coreos-tracker/issues/164
