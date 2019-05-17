@@ -1,7 +1,10 @@
 # This replaces image.ks
 # size is the target disk size in GB.
-# Currently, it is the only supported key.
 size: 8
+
+extra-kargs:
+    # Disable SMT on systems vulnerable to MDS or any similar future issue.
+    - mitigations=auto,nosmt
 
 # After this, we plan to add support for the Ignition
 # storage/filesystems sections.  (Although one can do
