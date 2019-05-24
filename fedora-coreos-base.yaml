@@ -123,7 +123,7 @@ packages:
   - podman skopeo runc moby-engine
   # Networking
   - bridge-utils nfs-utils-coreos
-  - NetworkManager dnsmasq hostname
+  - NetworkManager hostname
   # Static firewalling
   - iptables nftables iptables-nft iptables-services
   # Storage
