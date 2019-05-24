@@ -69,6 +69,12 @@ remove-from-packages:
   - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
 
 
+remove-files:
+  # We don't ship man(1) or info(1)
+  - usr/share/info
+  - usr/share/man
+
+
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 postprocess:
   # This will be dropped once rpm-ostree because module-aware.
