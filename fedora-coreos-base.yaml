@@ -28,6 +28,8 @@ repos:
   - fedora
   - fedora-updates
   - fedora-coreos-pool
+# Be minimal
+recommends: false
 
 ignore-removed-users:
   - root
@@ -119,8 +121,9 @@ postprocess:
     systemctl preset-all
 
 packages:
-  # SELinux
+  # Security
   - selinux-policy-targeted
+  - polkit
   # System setup
   - ignition
   - afterburn
@@ -133,6 +136,8 @@ packages:
   # Networking
   - bridge-utils nfs-utils-coreos
   - NetworkManager hostname
+  - iproute-tc
+  - adcli
   # Static firewalling
   - iptables nftables iptables-nft iptables-services
   # Storage
@@ -142,7 +147,7 @@ packages:
   - xfsprogs e2fsprogs mdadm
   - cryptsetup
   # Time sync
-  - chrony
+  - chrony timedatex
   # Extra runtime
   - sssd shadow-utils
   - logrotate
@@ -150,6 +155,7 @@ packages:
   - sudo coreutils less tar xz gzip bzip2
   - nmap-ncat net-tools bind-utils
   - bash-completion
+  - vim-minimal
   # Moving files around and verifying them
   - rsync fuse-sshfs
   - gnupg2
@@ -159,3 +165,6 @@ packages:
   - console-login-helper-messages-profile
   # CoreOS Installer
   - coreos-installer coreos-installer-dracut
+  # i18n
+  - kbd
+  - whois-nls
