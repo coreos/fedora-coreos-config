@@ -140,6 +140,7 @@ packages:
   - openssh-server openssh-clients
   # Containers
   - podman skopeo runc moby-engine
+  - fuse-overlayfs slirp4netns
   # Networking
   - bridge-utils nfs-utils-coreos
   - NetworkManager hostname
@@ -162,6 +163,7 @@ packages:
   - sudo coreutils less tar xz gzip bzip2
   - nmap-ncat net-tools bind-utils
   - bash-completion
+  - openssl
   - vim-minimal
   # Moving files around and verifying them
   - rsync fuse-sshfs
