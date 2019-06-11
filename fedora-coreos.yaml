@@ -1,10 +1,10 @@
-ref: fedora/${basearch}/coreos/testing
 include: fedora-coreos-base.yaml
 
 packages:
   - fedora-release-coreos
   - fedora-repos-ostree
 
+# XXX: this is used by coreos-assembler for artifact naming...
 rojig:
   license: MIT
   name: fedora-coreos
