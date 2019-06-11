@@ -24,10 +24,6 @@ machineid-compat: false
 releasever: "30"
 automatic-version-prefix: "30"
 mutate-os-release: "30"
-repos:
-  - fedora
-  - fedora-updates
-  - fedora-coreos-pool
 # Be minimal
 recommends: false
 

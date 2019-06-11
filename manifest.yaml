@@ -1,1 +1,7 @@
-fedora-coreos.yaml
+ref: fedora/${basearch}/coreos/testing
+include: fedora-coreos.yaml
+
+repos:
+  - fedora
+  - fedora-updates
+  - fedora-coreos-pool
