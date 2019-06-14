@@ -1,7 +1,8 @@
-ref: fedora/${basearch}/coreos/testing
+ref: fedora/${basearch}/coreos/bodhi-updates
 include: fedora-coreos.yaml
 
 repos:
   - fedora
   - fedora-updates
-  - fedora-coreos-pool
+  - fedora-modular
+  - fedora-updates-modular
