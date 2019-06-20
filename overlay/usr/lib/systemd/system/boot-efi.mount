@@ -1,7 +1,7 @@
 [Unit]
 Description=EFI System Partition
 Documentation=https://github.com/coreos/fedora-coreos-config
-ConditionPathExists=/boot/efi
+ConditionPathExists=/sys/firmware/efi/efivars
 
 [Mount]
 What=/dev/disk/by-label/EFI-SYSTEM
