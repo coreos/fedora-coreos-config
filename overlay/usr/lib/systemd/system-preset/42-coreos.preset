@@ -11,3 +11,5 @@ enable afterburn-firstboot-checkin.service
 enable afterburn-sshkeys@.service
 # mount /boot/efi
 enable boot-efi.mount
+# Update agent
+enable zincati.service
