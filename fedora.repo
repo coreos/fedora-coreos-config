@@ -1,8 +1,11 @@
+# Note we use metalink= here to abstract over the base URLs being different
+# between primary and secondary architectures.
+
 [fedora]
 name=Fedora $releasever - $basearch
 failovermethod=priority
-baseurl=https://dl.fedoraproject.org/pub/fedora/linux/releases/$releasever/Everything/$basearch/os/
-#metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
+#baseurl=https://dl.fedoraproject.org/pub/fedora/linux/releases/$releasever/Everything/$basearch/os/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
 enabled=1
 #metadata_expire=7d
 repo_gpgcheck=0
@@ -14,8 +17,8 @@ skip_if_unavailable=False
 [fedora-updates]
 name=Fedora $releasever - $basearch - Updates
 failovermethod=priority
-baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/$releasever/Everything/$basearch/
-#metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&arch=$basearch
+#baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/$releasever/Everything/$basearch/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&arch=$basearch
 enabled=1
 repo_gpgcheck=0
 type=rpm
@@ -27,8 +30,8 @@ skip_if_unavailable=False
 [fedora-updates-testing]
 name=Fedora $releasever - $basearch - Test Updates
 failovermethod=priority
-baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/testing/$releasever/Everything/$basearch/
-#metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$releasever&arch=$basearch
+#baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/testing/$releasever/Everything/$basearch/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$releasever&arch=$basearch
 enabled=1
 gpgcheck=1
 metadata_expire=6h
@@ -37,8 +40,8 @@ skip_if_unavailable=False
 
 [fedora-modular]
 name=Fedora Modular $releasever - $basearch
-baseurl=https://dl.fedoraproject.org/pub/fedora/linux/releases/$releasever/Modular/$basearch/os/
-#metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-modular-$releasever&arch=$basearch
+#baseurl=https://dl.fedoraproject.org/pub/fedora/linux/releases/$releasever/Modular/$basearch/os/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-modular-$releasever&arch=$basearch
 enabled=1
 #metadata_expire=7d
 repo_gpgcheck=0
@@ -50,8 +53,8 @@ skip_if_unavailable=False
 [fedora-updates-modular]
 name=Fedora Modular $releasever - $basearch - Updates
 failovermethod=priority
-baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/$releasever/Modular/$basearch/
-#metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-modular-f$releasever&arch=$basearch
+#baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/$releasever/Modular/$basearch/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-modular-f$releasever&arch=$basearch
 enabled=1
 repo_gpgcheck=0
 type=rpm
