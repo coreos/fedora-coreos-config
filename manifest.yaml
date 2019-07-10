@@ -7,6 +7,9 @@ repos:
   - fedora-modular
   - fedora-updates-modular
 
+add-commit-metadata:
+  fedora-coreos.stream: bodhi-updates
+
 postprocess:
   # Disable Zincati and fedora-coreos-pinger on non-production streams
   # https://github.com/coreos/fedora-coreos-tracker/issues/163
