@@ -22,7 +22,7 @@ initramfs-args:
 machineid-compat: false
 
 releasever: "30"
-automatic-version-prefix: "${releasever}.<date:%Y%m%d>"
+automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
 mutate-os-release: "${releasever}"
 
 # Be minimal
