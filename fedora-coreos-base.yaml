@@ -22,8 +22,9 @@ initramfs-args:
 machineid-compat: false
 
 releasever: "30"
-automatic-version-prefix: "30"
-mutate-os-release: "30"
+automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
+mutate-os-release: "${releasever}"
+
 # Be minimal
 recommends: false
 
@@ -122,6 +123,17 @@ postprocess:
     set -xeuo pipefail
     rm -rf /etc/systemd/system/*
     systemctl preset-all
+  # Disable Zincati and fedora-coreos-pinger on non-release builds
+  # https://github.com/coreos/fedora-coreos-tracker/issues/212
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    source /etc/os-release
+    if [[ $OSTREE_VERSION = *.dev* ]]; then
+      mkdir -p /etc/fedora-coreos-pinger/config.d /etc/zincati/config.d
+      echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/95-disable-on-dev.toml
+      echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nupdates.enabled = false' > /etc/zincati/config.d/95-disable-on-dev.toml
+    fi
 
 packages:
   # Security
