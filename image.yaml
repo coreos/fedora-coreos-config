@@ -6,6 +6,10 @@ extra-kargs:
     # Disable SMT on systems vulnerable to MDS or any similar future issue.
     - mitigations=auto,nosmt
 
+
+# Optional remote by which to prefix the deployed OSTree ref
+ostree-remote: fedora
+
 # After this, we plan to add support for the Ignition
 # storage/filesystems sections.  (Although one can do
 # that on boot as well)
