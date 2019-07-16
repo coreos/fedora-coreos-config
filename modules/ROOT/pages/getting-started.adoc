@@ -1,18 +1,19 @@
-== Fedora CoreOS - Getting Started
+:experimental:
+= Fedora CoreOS - Getting Started
 
 Fedora CoreOS has no install-time configuration. Every Fedora CoreOS system begins with a generic, unconfigured disk image. On first boot Ignition will read the supplied config and configure the system. Ignition configs are usually supplied via the cloud’s userdata mechanism, or, in the case of bare metal, injected at install time. This guide will show you how to launch Fedora CoreOS on AWS, QEMU, and bare metal as well as how to create Ignition configs.
 
-=== Launching Fedora CoreOS
+== Launching Fedora CoreOS
 
-==== Booting on AWS
+=== Booting on AWS
 
 To boot on AWS, find the correct AMI in the https://getfedora.org/coreos/download/[download page] and specify the Ignition config as the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user-data]. Note that while the AWS documentation mentions cloud-init and scripts, Fedora CoreOS only accepts Ignition configs; it does not support cloud-init or running scripts from userdata.
 
 .Example launching Fedora CoreOS on AWS
 [source, bash]
-aws ec2 run-instances <other options> --user-data file://config.ign 
+aws ec2 run-instances <other options> --user-data file://config.ign
 
-==== Booting with QEMU
+=== Booting with QEMU
 
 Download the QEMU Fedora CoreOS image from the https://getfedora.org/coreos/download/[download page].
 
@@ -25,11 +26,11 @@ qemu-system-x86_64 -machine accel=kvm -m 2048 -cpu host -nographic \
 	-device virtio-rng-pci \
 	-fw_cfg name=opt/com.coreos/config,file=path/to/ignition-config.ign
 
-==== Installing on bare metal
+=== Installing on bare metal
 
 Follow the https://github.com/coreos/coreos-installer/[coreos-installer instructions] to install Fedora CoreOS to disk. This will inject your specified Ignition config in the installed image.
 
-=== Generating Ignition configs
+== Generating Ignition configs
 
 Ignition configs are not intended to be hand-written. Instead, use the https://github.com/coreos/fcct[Fedora CoreOS Config Transpiler (FCCT)] to translate Fedora CoreOS Configs (FCCs) to Ignition configs. In addition to be easier to write, FCCT will also validate your config and check for errors. Here’s an example FCC that adds an SSH key to the `core` user’s authorized keys:
 
@@ -56,7 +57,7 @@ ssh core@<ip>
 
 Refer to the FCCT https://github.com/coreos/fcct/blob/master/docs/getting-started.md[getting started guide], https://github.com/coreos/fcct/blob/master/docs/examples.md[examples] and https://github.com/coreos/fcct/blob/master/docs/configuration-v1_0.md[configuration specification] for more information on using FCCT, more examples, and a complete list of configuration FCCT supports.
 
-==== Running containers
+=== Running containers
 
 Fedora CoreOS ships with both docker and podman installed. Use systemd units to start and stop containers.
 
@@ -72,21 +73,21 @@ systemd:
       contents: |
         [Unit]
         Description=MyApp
-        
+
         [Service]
         TimeoutStartSec=0
         ExecStartPre=-/bin/podman kill busybox1
         ExecStartPre=-/bin/podman rm busybox1
         ExecStartPre=/bin/podman pull busybox
         ExecStart=/bin/podman run --name busybox1 busybox /bin/sh -c "trap 'exit 0' INT TERM; while true; do echo Hello World; sleep 1; done"
-        
+
         [Install]
         WantedBy=multi-user.target
 ----
 
 Note that when using docker instead of podman, units starting docker containers will need `Requires=docker.service` and `After=docker.service` to ensure the docker daemon is running before trying to start containers.
 
-==== Running etcd
+=== Running etcd
 
 etcd is not shipped as part of Fedora CoreOS and should instead be run as a container.
 
@@ -102,7 +103,7 @@ systemd:
       contents: |
         [Unit]
         Description=Run single node etcd
-        
+
         [Service]
         ExecStartPre=mkdir -p /var/lib/etcd
         ExecStartPre=-/bin/podman kill etcd
@@ -115,13 +116,13 @@ systemd:
                 --initial-cluster node1=http://127.0.0.1:2380
 
         ExecStop=/bin/podman stop etcd
-        
+
         [Install]
         WantedBy=multi-user.target
 ----
 
 See the https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/container.md#docker[etcd documentation] for more information on running etcd in containers and how to set up multi-node etcd.
 
-=== Where to report bugs and ask questions
+== Where to report bugs and ask questions
 
 Report bugs to the https://github.com/coreos/fedora-coreos-tracker[Fedora CoreOS Tracker] and ask questions on the `#fedora-coreos` IRC channel on freenode or on the https://lists.fedoraproject.org/archives/list/coreos@lists.fedoraproject.org/[Fedora CoreOS mailing list].

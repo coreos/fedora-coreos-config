@@ -1,4 +1,5 @@
-== Fedora CoreOS Frequently Asked Questions
+:experimental:
+= Fedora CoreOS Frequently Asked Questions
 
 If you have other questions than are mentioned here or want to discuss
 further, join us in our IRC channel,
@@ -7,7 +8,7 @@ https://discussion.fedoraproject.org/c/server/coreos[discussion board].
 Please refer back here as some questions and answers will likely get
 updated.
 
-=== What is Fedora CoreOS?
+== What is Fedora CoreOS?
 
 Fedora CoreOS is an automatically updating, minimal, monolithic,
 container-focused operating system, designed for clusters but also
@@ -20,7 +21,7 @@ securely and at scale.
 
 https://discussion.fedoraproject.org/t/launch-faq-what-is-fedora-coreos/40[discuss]
 
-=== How does Fedora CoreOS relate to Red Hat CoreOS?
+== How does Fedora CoreOS relate to Red Hat CoreOS?
 
 Fedora CoreOS is a freely available, community distribution that is the
 upstream basis for Red Hat CoreOS. While Fedora CoreOS will embrace a
@@ -30,7 +31,7 @@ with the platform.
 
 https://discussion.fedoraproject.org/t/launch-faq-how-does-fedora-coreos-relate-to-red-hat-coreos/41[discuss]
 
-=== Does Fedora CoreOS replace Container Linux? What happens to CL?
+== Does Fedora CoreOS replace Container Linux? What happens to CL?
 
 Fedora CoreOS will eventually become the successor to Container Linux.
 The Container Linux project has a large installed base - it is a top
@@ -42,7 +43,7 @@ parallel, in a non-disruptive way.
 
 https://discussion.fedoraproject.org/t/launch-faq-does-fedora-coreos-replace-container-linux-what-happens-to-cl/42[discuss]
 
-=== Does Fedora CoreOS replace Fedora Atomic Host? What happens to Fedora Atomic Host and CentOS Atomic Host?
+== Does Fedora CoreOS replace Fedora Atomic Host? What happens to Fedora Atomic Host and CentOS Atomic Host?
 
 Fedora CoreOS will also become the successor to Fedora Atomic Host. The
 current plan is for Fedora Atomic Host to have at least a 29 version and
