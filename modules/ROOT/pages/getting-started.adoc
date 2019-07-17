@@ -11,7 +11,9 @@ To boot on AWS, find the correct AMI in the https://getfedora.org/coreos/downloa
 
 .Example launching Fedora CoreOS on AWS
 [source, bash]
+----
 aws ec2 run-instances <other options> --user-data file://config.ign
+----
 
 === Booting with QEMU
 
@@ -21,10 +23,12 @@ Specify your Ignition config by using `-fw_cfg` to set the `opt/com.coreos/confi
 
 .Example launching Fedora CoreOS with QEMU
 [source, bash]
+----
 qemu-system-x86_64 -machine accel=kvm -m 2048 -cpu host -nographic \
 	-drive if=virtio,file=path/to/fedora-coreos-qemu.qcow2 \
 	-device virtio-rng-pci \
 	-fw_cfg name=opt/com.coreos/config,file=path/to/ignition-config.ign
+----
 
 === Installing on bare metal
 
@@ -36,24 +40,31 @@ Ignition configs are not intended to be hand-written. Instead, use the https://g
 
 .Example FCC adding an SSH key to the core user
 [source,yaml]
+----
+variant: fcos
 version: 1.0.0
 passwd:
   users:
     - name: core
       ssh_authorized_keys:
         - ssh-rsa AAAA
+----
 
 Then use FCCT to convert the FCC to an Ignition config:
 
 .Using FCCT to convert from an FCC to an Ignition config
 [source,bash]
+----
 ./bin/amd64/fcct --strict --pretty --input your_config.fcc --output your_config.ign
+----
 
 Then launch or install Fedora CoreOS with that config as described above and check that you can SSH in:
 
 .SSHing in as the `core` user
 [source,bash]
+----
 ssh core@<ip>
+----
 
 Refer to the FCCT https://github.com/coreos/fcct/blob/master/docs/getting-started.md[getting started guide], https://github.com/coreos/fcct/blob/master/docs/examples.md[examples] and https://github.com/coreos/fcct/blob/master/docs/configuration-v1_0.md[configuration specification] for more information on using FCCT, more examples, and a complete list of configuration FCCT supports.
 
