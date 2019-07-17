@@ -1,6 +1,6 @@
 # Fedora Docs Template
 
-This repository contains the Fedora CoreOS documentation. The format is (https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/)[AsciiDoc] to enable integration into the official (https://docs.fedoraproject.org/en-US/docs/)[Fedora documentation].
+This repository contains the Fedora CoreOS documentation. The format is [AsciiDoc](https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/) to enable integration into the official [Fedora documentation](https://docs.fedoraproject.org/en-US/docs/).
 
 ## Structure
 
