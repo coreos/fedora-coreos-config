@@ -63,6 +63,10 @@ remove-from-packages:
               /usr/lib/systemd/system/systemd-resolved.service,
               /usr/lib/systemd/system/sysinit.target.wants/systemd-firstboot.service]
 
+  # We don't want auto-generated mount units. See also
+  # https://github.com/systemd/systemd/issues/13099
+  - [systemd-udev, /usr/lib/systemd/system-generators/systemd-gpt-auto-generator]
+
   # The grub bits are mainly designed for desktops, and IMO haven't seen
   # enough testing in concert with ostree. At some point we'll flesh out
   # the full plan in https://github.com/coreos/fedora-coreos-tracker/issues/47
