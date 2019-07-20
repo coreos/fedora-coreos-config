@@ -127,6 +127,8 @@ postprocess:
     set -xeuo pipefail
     rm -rf /etc/systemd/system/*
     systemctl preset-all
+    rm -rf /etc/systemd/user/*
+    systemctl --user --global preset-all
   # Disable Zincati and fedora-coreos-pinger on non-release builds
   # https://github.com/coreos/fedora-coreos-tracker/issues/212
   - |
