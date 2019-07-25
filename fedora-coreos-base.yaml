@@ -63,6 +63,10 @@ remove-from-packages:
               /usr/lib/systemd/system/systemd-resolved.service,
               /usr/lib/systemd/system/sysinit.target.wants/systemd-firstboot.service]
 
+  # We don't want auto-generated mount units. See also
+  # https://github.com/systemd/systemd/issues/13099
+  - [systemd-udev, /usr/lib/systemd/system-generators/systemd-gpt-auto-generator]
+
   # The grub bits are mainly designed for desktops, and IMO haven't seen
   # enough testing in concert with ostree. At some point we'll flesh out
   # the full plan in https://github.com/coreos/fedora-coreos-tracker/issues/47
@@ -123,6 +127,8 @@ postprocess:
     set -xeuo pipefail
     rm -rf /etc/systemd/system/*
     systemctl preset-all
+    rm -rf /etc/systemd/user/*
+    systemctl --user --global preset-all
   # Disable Zincati and fedora-coreos-pinger on non-release builds
   # https://github.com/coreos/fedora-coreos-tracker/issues/212
   - |
@@ -188,3 +194,5 @@ packages:
   - whois-nls
   # Updates
   - zincati
+  # User metrics
+  - fedora-coreos-pinger
