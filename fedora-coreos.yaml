@@ -9,3 +9,33 @@ rojig:
   license: MIT
   name: fedora-coreos
   summary: Fedora CoreOS base image
+
+# ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
+# See also the version of this in fedora-coreos-base.yaml
+postprocess:
+  # Disable Zincati and fedora-coreos-pinger on non-release builds
+  # https://github.com/coreos/fedora-coreos-tracker/issues/212
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    source /etc/os-release
+    if [[ $OSTREE_VERSION = *.dev* ]]; then
+      mkdir -p /etc/fedora-coreos-pinger/config.d /etc/zincati/config.d
+      echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/95-disable-on-dev.toml
+      echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nupdates.enabled = false' > /etc/zincati/config.d/95-disable-on-dev.toml
+    fi
+  # Disable SSH password logins by default
+  # Move to overlay once sshd_config fragments are supported
+  # https://github.com/coreos/fedora-coreos-tracker/issues/138
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    sed -Ei 's/^(PasswordAuthentication|PermitRootLogin)[[:blank:]]/#&/' /etc/ssh/sshd_config
+    echo -e '\n# Disable password logins by default\nPasswordAuthentication no\nPermitRootLogin prohibit-password' >> /etc/ssh/sshd_config
+  # This will be dropped once FCOS is out of preview.
+  # See also experimental.motd in overlay/.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/164
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    sed -i -e 's/CoreOS/CoreOS preview/' $(realpath /etc/os-release)
