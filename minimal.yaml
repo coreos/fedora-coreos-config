@@ -1,5 +1,9 @@
 # This minimal base starts just from: kernel + systemd + rpm-ostree + bootloader.
-# In Fedora there's a whole lot of deps; but it won't even have e.g. OpenSSH.
+# The intent of this is to inherit from this if you are doing something highly
+# custom that e.g. might not involve Ignition or podman, but you do want
+# rpm-ostree.
+# We expect most people though using coreos-assembler to inherit from
+# fedora-coreos-base.yaml.
 packages:
  # Kernel + systemd
  - kernel systemd
