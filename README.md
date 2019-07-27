@@ -15,3 +15,12 @@ on which all development happens. See
 [the design](https://github.com/coreos/fedora-coreos-tracker/blob/master/Design.md#release-streams)
 and [tooling](https://github.com/coreos/fedora-coreos-tracker/blob/master/stream-tooling.md)
 docs for more information about streams.
+
+All file changes in `testing-devel` are propagated to other
+branches (to `bodhi-updates` through
+[config-bot](https://github.com/coreos/fedora-coreos-releng-automation/tree/master/config-bot),
+and to `testing` through usual promotion), with the
+following exceptions:
+- `manifest.yaml`: contains the stream "identity", such as
+  the ref, additional commit metadata, and yum input repos.
+- lockfiles (`manifest-lock.*` files).
