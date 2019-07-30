@@ -136,7 +136,7 @@ packages:
   - podman skopeo runc moby-engine
   - fuse-overlayfs slirp4netns
   # Networking
-  - bridge-utils nfs-utils-coreos
+  - nfs-utils-coreos
   - NetworkManager hostname
   - iproute-tc
   - adcli
