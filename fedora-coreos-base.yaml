@@ -133,7 +133,7 @@ packages:
   # SSH
   - openssh-server openssh-clients
   # Containers
-  - podman skopeo runc moby-engine
+  - podman skopeo runc moby-engine systemd-container
   - fuse-overlayfs slirp4netns
   # Networking
   - nfs-utils-coreos
