@@ -84,6 +84,8 @@ systemd:
       contents: |
         [Unit]
         Description=MyApp
+        After=network-online.target
+        Wants=network-online.target
 
         [Service]
         TimeoutStartSec=0
@@ -114,6 +116,8 @@ systemd:
       contents: |
         [Unit]
         Description=Run single node etcd
+        After=network-online.target
+        Wants=network-online.target
 
         [Service]
         ExecStartPre=mkdir -p /var/lib/etcd
