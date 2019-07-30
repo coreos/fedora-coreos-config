@@ -1,4 +1,8 @@
-# Base packages for a Fedora CoreOS like system
+# This file is the base for a Fedora CoreOS like system; think (ignition, ostree, containers).
+# It may be used as an inheritance base by other projects like Fedora Silverblue or RHCOS.
+# One good model is to add feodra-coreos-config as a git submodule.  See:
+# https://github.com/coreos/coreos-assembler/pull/639
+
 include: minimal.yaml
 
 # Modern defaults we want
@@ -88,6 +92,7 @@ remove-files:
 
 
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
+# See also the version of this in fedora-coreos.yaml
 postprocess:
   # This will be dropped once rpm-ostree because module-aware.
   # https://github.com/projectatomic/rpm-ostree/issues/1542#issuecomment-419684977
@@ -105,21 +110,6 @@ postprocess:
     set -xeuo pipefail
     sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
     echo -e '\n# Read authorized_keys fragments written by Ignition and Afterburn\nAuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys.d/ignition .ssh/authorized_keys.d/afterburn' >> /etc/ssh/sshd_config
-  # Disable SSH password logins by default
-  # Move to overlay once sshd_config fragments are supported
-  # https://github.com/coreos/fedora-coreos-tracker/issues/138
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    sed -Ei 's/^(PasswordAuthentication|PermitRootLogin)[[:blank:]]/#&/' /etc/ssh/sshd_config
-    echo -e '\n# Disable password logins by default\nPasswordAuthentication no\nPermitRootLogin prohibit-password' >> /etc/ssh/sshd_config
-  # This will be dropped once FCOS is out of preview.
-  # See also experimental.motd in overlay/.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/164
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    sed -i -e 's/CoreOS/CoreOS preview/' $(realpath /etc/os-release)
   # Undo RPM scripts enabling units; we want the presets to be canonical
   # https://github.com/projectatomic/rpm-ostree/issues/1803
   - |
@@ -129,17 +119,6 @@ postprocess:
     systemctl preset-all
     rm -rf /etc/systemd/user/*
     systemctl --user --global preset-all
-  # Disable Zincati and fedora-coreos-pinger on non-release builds
-  # https://github.com/coreos/fedora-coreos-tracker/issues/212
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    source /etc/os-release
-    if [[ $OSTREE_VERSION = *.dev* ]]; then
-      mkdir -p /etc/fedora-coreos-pinger/config.d /etc/zincati/config.d
-      echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/95-disable-on-dev.toml
-      echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nupdates.enabled = false' > /etc/zincati/config.d/95-disable-on-dev.toml
-    fi
 
 packages:
   # Security
@@ -157,7 +136,7 @@ packages:
   - podman skopeo runc moby-engine
   - fuse-overlayfs slirp4netns
   # Networking
-  - bridge-utils nfs-utils-coreos
+  - nfs-utils-coreos
   - NetworkManager hostname
   - iproute-tc
   - adcli
