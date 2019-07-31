@@ -52,19 +52,22 @@ default-target: multi-user.target
 
 remove-from-packages:
   # We're not using resolved yet.
+  - [systemd, /usr/lib/systemd/systemd-resolved,
+              /usr/lib/systemd/system/systemd-resolved.service]
   # We're not using networkd.
-  # We don't want systemd-firstboot.service. It conceptually conflicts with
-  # Ignition.
   - [systemd, /etc/systemd/networkd.conf,
-              /usr/bin/systemd-firstboot,
               /usr/lib/systemd/systemd-networkd,
               /usr/lib/systemd/systemd-networkd-wait-online,
-              /usr/lib/systemd/systemd-resolved,
-              /usr/lib/systemd/system/systemd-firstboot.service,
+              /usr/lib/systemd/network/.*,
               /usr/lib/systemd/system/systemd-networkd.service,
               /usr/lib/systemd/system/systemd-networkd.socket,
-              /usr/lib/systemd/system/systemd-networkd-wait-online.service,
-              /usr/lib/systemd/system/systemd-resolved.service,
+              /usr/lib/systemd/system/systemd-networkd-wait-online.service]
+  - [systemd-container, /usr/lib/systemd/network/.*]
+  - [systemd-udev, /usr/lib/systemd/network/.*]
+  # We don't want systemd-firstboot.service. It conceptually conflicts with
+  # Ignition.
+  - [systemd, /usr/bin/systemd-firstboot,
+              /usr/lib/systemd/system/systemd-firstboot.service,
               /usr/lib/systemd/system/sysinit.target.wants/systemd-firstboot.service]
 
   # We don't want auto-generated mount units. See also
