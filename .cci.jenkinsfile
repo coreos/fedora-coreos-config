@@ -1,0 +1,22 @@
+@Library('github.com/jlebon/coreos-ci-lib@master') _
+
+coreos.pod([image: "quay.io/coreos-assembler/coreos-assembler:latest", kvm: true]) {
+    stage("Build") {
+        def commitHash = checkout(scm).GIT_COMMIT
+        coreos.shwrap("""
+            mkdir -p cosa && cd cosa
+            # XXX: need to fix cosa handling of relative dirs in unprivileged path
+            cosa init https://github.com/coreos/fedora-coreos-config
+            git -C src/config fetch origin ${commitHash}
+            git -C src/config checkout FETCH_HEAD
+            cosa build
+        """)
+    }
+    stage("Kola") {
+        checkout scm
+        coreos.shwrap("""
+            cd cosa
+            cosa kola run
+        """)
+    }
+}

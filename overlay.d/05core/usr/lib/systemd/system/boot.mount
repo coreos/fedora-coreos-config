@@ -1,0 +1,7 @@
+[Unit]
+Description=Boot partition
+Documentation=https://github.com/coreos/fedora-coreos-config
+
+[Mount]
+What=/dev/disk/by-label/boot
+Where=/boot
