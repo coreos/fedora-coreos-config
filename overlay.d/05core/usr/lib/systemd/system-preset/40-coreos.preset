@@ -1,0 +1,17 @@
+# Presets here that eventually should live in the generic fedora presets
+enable coreos-growpart.service
+enable console-login-helper-messages-issuegen.service
+enable console-login-helper-messages-motdgen.service
+# CA certs (probably to add to base fedora eventually)
+enable coreos-update-ca-trust.service
+# This one is from https://github.com/coreos/ignition-dracut
+enable ignition-firstboot-complete.service
+# Boot checkin services for cloud providers.
+enable afterburn-checkin.service
+enable afterburn-firstboot-checkin.service
+# Service to write SSH key snippets from cloud providers.
+enable afterburn-sshkeys@.service
+# mount /boot/efi
+enable boot-efi.mount
+# Update agent
+enable zincati.service
