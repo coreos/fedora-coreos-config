@@ -3,6 +3,11 @@
 
 This overlay matches `fedora-coreos-base.yaml`; core Ignition+ostree bits.
 
+10coreuser
+---------
+
+This part is separate from 05core to aid RHCOS, which still uses Ignition spec 2.
+
 15fcos
 ------
 
