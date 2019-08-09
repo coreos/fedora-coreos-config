@@ -82,9 +82,6 @@ remove-from-packages:
                   /etc/grub.d/12_menu_auto_hide,
                   /usr/lib/systemd/.*]
 
-  # Drop NetworkManager support for ifcfg files.
-  - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
-
 
 remove-files:
   # We don't ship man(1) or info(1)
