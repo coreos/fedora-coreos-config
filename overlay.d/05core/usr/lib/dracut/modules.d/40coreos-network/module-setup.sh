@@ -11,4 +11,6 @@ install() {
     inst_simple "$moddir/$unit" "$systemdsystemunitdir/$unit"
     inst_script "$moddir/coreos-teardown-initramfs-network.sh" \
         "/usr/sbin/coreos-teardown-initramfs-network"
+    mkdir -p "$initdir/$systemdsystemunitdir/ignition-complete.target.requires"
+    ln_r "../$unit" "$systemdsystemunitdir/ignition-complete.target.requires/$unit"
 }
