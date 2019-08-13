@@ -43,3 +43,7 @@ for unit in systemd-{journal-catalog-update,random-seed}.service; do
 After=systemd-tmpfiles-setup.service
 EOF
 done
+
+# TODO move this to tmpfiles.d once systemd-tmpfiles handles C! with --root correctly.
+# See https://github.com/coreos/fedora-coreos-config/pull/137
+cp /sysroot/etc/skel/.bash* /sysroot/root
