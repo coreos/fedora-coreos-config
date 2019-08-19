@@ -24,4 +24,7 @@ and to `testing` through usual promotion), with the
 following exceptions:
 - `manifest.yaml`: contains the stream "identity", such as
   the ref, additional commit metadata, and yum input repos.
-- lockfiles (`manifest-lock.*` files).
+- lockfiles (`manifest-lock.*` files): lockfiles are
+  imported from `bodhi-updates` to `testing-devel`.
+  Overrides (`manifest-lock.overrides.*`) are manually
+  curated.
