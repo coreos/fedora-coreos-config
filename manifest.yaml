@@ -3,6 +3,13 @@ include: fedora-coreos.yaml
 
 repos:
   - fedora-coreos-pool
+  # these repos are there to make it easier to add new packages to the OS and to
+  # use `cosa fetch --update-lockfile`; but note that all package versions are
+  # still pinned
+  - fedora
+  - fedora-updates
+  - fedora-modular
+  - fedora-updates-modular
 
 add-commit-metadata:
   fedora-coreos.stream: testing-devel

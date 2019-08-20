@@ -28,3 +28,23 @@ following exceptions:
   imported from `bodhi-updates` to `testing-devel`.
   Overrides (`manifest-lock.overrides.*`) are manually
   curated.
+
+## Adding packages to the OS
+
+Since `testing-devel` is directly promoted to `testing`, it
+must always be in a known state. The way we enforce this is
+by requiring all packages to have a corresponding entry in
+the lockfile.
+
+Therefore, to add new packages to the OS, one must also add
+the corresponding entries in the lockfiles:
+- for packages which should follow Bodhi updates, place them
+  in `manifest-lock.$basearch.json`
+- for packages which should remain pinned, place them
+  in `manifest-lock.overrides.$basearch.json`
+
+There will be better tooling to come to enable this, though
+one easy way to do this is for now:
+- add packages to the correct YAML manifest
+- run `cosa fetch --update-lockfile`
+- commit only the new package entries
