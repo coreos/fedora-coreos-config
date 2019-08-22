@@ -135,6 +135,8 @@ packages:
   # Containers
   - podman skopeo runc moby-engine systemd-container
   - fuse-overlayfs slirp4netns
+  # Remote IPC for podman
+  - libvarlink-util
   # Networking
   - nfs-utils-coreos
   - NetworkManager hostname
