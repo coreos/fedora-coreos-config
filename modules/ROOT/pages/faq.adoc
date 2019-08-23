@@ -130,9 +130,11 @@ https://discussion.fedoraproject.org/t/launch-faq-how-do-i-migrate-from-containe
 As with Container Linux, the best practice will be re-provisioning, due
 to the cloud-init/Ignition transition at least. Since Fedora CoreOS will
 be using rpm-ostree technology, it may be possible to rebase from Fedora
-Atomic Host to Fedora CoreOS. This will be part of a "migrating from
-Fedora Atomic Host" guide which will be published as soon as an actual
-version of Fedora CoreOS is available.
+Atomic Host to Fedora CoreOS, but it will not be recommended. It will
+be preferable to gain experience deploying systems using Ignition so
+that they can be re-provisioned easily if needed. This will all be part
+of a "migrating from Fedora Atomic Host" guide which will be published
+soon.
 
 https://discussion.fedoraproject.org/t/launch-faq-how-do-i-migrate-from-fedora-atomic-host-to-fedora-coreos/51/1[discuss]
 
