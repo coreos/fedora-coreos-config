@@ -1,6 +1,6 @@
-These files will be copied to the target installer ISO
-via the CoreOS Assembler buildextend-installer call. It
-picks up all files in the coreos/fedora-coreos-config/installer/
+These files will be copied to the target live ISO
+via the CoreOS Assembler buildextend-live call. It
+picks up all files in the coreos/fedora-coreos-config/live/
 directory and copies them to the base of the ISO. 
 
 Files currently copied are:
