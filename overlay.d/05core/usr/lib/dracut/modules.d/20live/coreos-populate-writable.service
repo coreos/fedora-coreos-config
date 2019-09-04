@@ -1,0 +1,10 @@
+[Unit]
+DefaultDependencies=false
+RequiresMountsFor=/writable
+Before=sysroot-etc.mount sysroot-var.mount
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/mkdir -m 755 -p /writable/etc/upper /writable/var
+ExecStart=/usr/bin/mkdir -m 700 -p /writable/etc/work
