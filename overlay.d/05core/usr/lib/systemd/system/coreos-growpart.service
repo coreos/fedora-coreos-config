@@ -1,6 +1,7 @@
 # See also coreos-growpart script.
 
 [Unit]
+ConditionPathExists=!/run/ostree-live
 ConditionPathExists=!/var/lib/coreos-growpart.stamp
 Before=sshd.service
 
