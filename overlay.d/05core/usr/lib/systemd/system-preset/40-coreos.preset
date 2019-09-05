@@ -11,7 +11,5 @@ enable afterburn-checkin.service
 enable afterburn-firstboot-checkin.service
 # Service to write SSH key snippets from cloud providers.
 enable afterburn-sshkeys@.service
-# mount /boot/efi
-enable boot-efi.mount
 # Update agent
 enable zincati.service
