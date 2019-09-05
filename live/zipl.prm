@@ -1,1 +1,1 @@
-rd.neednet=1 ip=dhcp ignition.firstboot ignition.platform.id=metal
+mitigations=auto,nosmt rd.neednet=1 ip=dhcp ignition.firstboot ignition.platform.id=metal
