@@ -39,3 +39,8 @@ postprocess:
     #!/usr/bin/env bash
     set -xeuo pipefail
     sed -i -e 's/CoreOS/CoreOS preview/' $(realpath /etc/os-release)
+
+remove-from-packages:
+  # Drop NetworkManager support for ifcfg files, see also corresponding
+  # overlay.d/14NetworkManager-plugins
+  - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
