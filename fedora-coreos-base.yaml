@@ -4,6 +4,10 @@
 # https://github.com/coreos/coreos-assembler/pull/639
 
 include: minimal.yaml
+arch-include:
+  x86_64: grub2-removals.yaml
+  aarch64: grub2-removals.yaml
+  ppc64le: grub2-removals.yaml
 
 # Modern defaults we want
 boot-location: new
@@ -74,13 +78,6 @@ remove-from-packages:
   # https://github.com/systemd/systemd/issues/13099
   - [systemd-udev, /usr/lib/systemd/system-generators/systemd-gpt-auto-generator]
 
-  # The grub bits are mainly designed for desktops, and IMO haven't seen
-  # enough testing in concert with ostree. At some point we'll flesh out
-  # the full plan in https://github.com/coreos/fedora-coreos-tracker/issues/47
-  - [grub2-tools, /etc/grub.d/08_fallback_counting,
-                  /etc/grub.d/10_reset_boot_success,
-                  /etc/grub.d/12_menu_auto_hide,
-                  /usr/lib/systemd/.*]
 
 
 remove-files:
