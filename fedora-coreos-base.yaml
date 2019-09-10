@@ -4,10 +4,6 @@
 # https://github.com/coreos/coreos-assembler/pull/639
 
 include: minimal.yaml
-arch-include:
-  x86_64: grub2-removals.yaml
-  aarch64: grub2-removals.yaml
-  ppc64le: grub2-removals.yaml
 
 # Modern defaults we want
 boot-location: new

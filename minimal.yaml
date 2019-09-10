@@ -22,3 +22,8 @@ packages-s390x:
 packages-x86_64:
   - grub2 grub2-efi-x64 ostree-grub2 efibootmgr shim
   - microcode_ctl
+# And remove some cruft from grub2
+arch-include:
+  x86_64: grub2-removals.yaml
+  aarch64: grub2-removals.yaml
+  ppc64le: grub2-removals.yaml
