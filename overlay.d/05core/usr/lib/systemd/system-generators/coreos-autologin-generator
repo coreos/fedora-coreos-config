@@ -1,0 +1,39 @@
+#!/bin/bash
+
+set -euo pipefail
+
+UNIT_DIR="${1:-/tmp}"
+
+have_karg() {
+    local arg="$1"
+    local cmdline=( $(</proc/cmdline) )
+    local i
+    for i in "${cmdline[@]}"; do
+        if [ "$arg" = "$i" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+# Only allow automatic autologin on live systems
+if [ ! -e /run/ostree-live ]; then
+    exit 0
+fi
+
+# Autologin on ISO boots but not PXE boots.  The only way to tell the
+# difference is a kernel argument.
+if ! have_karg coreos-iso; then
+    exit 0
+fi
+
+out_dir="${UNIT_DIR}/getty@.service.d"
+mkdir -p "${out_dir}"
+
+# /tmp isn't r/w yet, and the shell needs to cache the here-document
+TMPDIR=/run
+cat > "${out_dir}/10-autologin.conf" <<'EOF'
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin core -o '-p -f core' --noclear %I $TERM
+EOF
