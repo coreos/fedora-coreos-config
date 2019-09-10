@@ -1,4 +1,5 @@
 [Unit]
+Description=Initialize tmpfs for user data
 DefaultDependencies=false
 RequiresMountsFor=/writable
 Before=sysroot-etc.mount sysroot-var.mount
