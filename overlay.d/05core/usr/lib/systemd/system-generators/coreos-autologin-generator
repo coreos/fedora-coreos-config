@@ -27,6 +27,13 @@ if ! have_karg coreos-iso; then
     exit 0
 fi
 
+# If the user supplied an Ignition config, they have the ability to enable
+# autologin themselves.  Don't automatically render them insecure, since
+# they might be running in production and booting via e.g. IPMI.
+if [ -e /run/ignition.json ] ; then
+    exit 0
+fi
+
 out_dir="${UNIT_DIR}/getty@.service.d"
 mkdir -p "${out_dir}"
 
