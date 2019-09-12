@@ -1,6 +1,11 @@
 ref: fedora/${basearch}/coreos/bodhi-updates
 include: fedora-coreos.yaml
 
+rojig:
+  license: MIT
+  name: fedora-coreos
+  summary: Fedora CoreOS bodhi-updates
+
 repos:
   - fedora
   - fedora-updates
