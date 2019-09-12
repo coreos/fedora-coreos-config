@@ -1,6 +1,11 @@
 ref: fedora/${basearch}/coreos/testing
 include: fedora-coreos.yaml
 
+rojig:
+  license: MIT
+  name: fedora-coreos
+  summary: Fedora CoreOS testing
+
 repos:
   - fedora-coreos-pool
 
