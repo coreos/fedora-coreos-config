@@ -1,4 +1,4 @@
-@Library('github.com/jlebon/coreos-ci-lib@master') _
+@Library('github.com/coreos/coreos-ci-lib@master') _
 
 coreos.pod([image: "quay.io/coreos-assembler/coreos-assembler:latest", kvm: true]) {
     stage("Build") {
