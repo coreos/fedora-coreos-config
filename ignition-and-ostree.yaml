@@ -9,7 +9,7 @@
 include: bootable-rpm-ostree.yaml
 
 # Modern defaults we want
-boot-location: new
+boot-location: modules
 tmp-is-dir: true
 
 # Required by Ignition, and makes the system not compatible with Anaconda
