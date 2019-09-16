@@ -5,8 +5,9 @@
 # We expect most people though using coreos-assembler to inherit from
 # fedora-coreos-base.yaml.
 packages:
- # Kernel + systemd
- - kernel systemd
+ # Kernel + systemd.  Note we explicitly specify kernel-{core,modules}
+ # because otherwise depsolving could bring in kernel-debug.
+ - kernel kernel-core kernel-modules systemd
  # rpm-ostree
  - rpm-ostree nss-altfiles
 
