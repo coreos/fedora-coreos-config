@@ -5,8 +5,8 @@
 # One good model is to add feodra-coreos-config as a git submodule.  See:
 # https://github.com/coreos/coreos-assembler/pull/639
 
-# Include the very minimal bits
-include: minimal.yaml
+# Include rpm-ostree + kernel + bootloader
+include: bootable-rpm-ostree.yaml
 
 # Modern defaults we want
 boot-location: new
