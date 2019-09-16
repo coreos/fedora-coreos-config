@@ -18,10 +18,6 @@ initramfs-args:
   - --omit=multipath
   - --omit=iscsi
 
-releasever: "30"
-automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
-mutate-os-release: "${releasever}"
-
 # Be minimal
 recommends: false
 
@@ -141,8 +137,6 @@ packages:
   - whois-nls
   # Updates
   - zincati
-  # User metrics
-  - fedora-coreos-pinger
   # Parsing/Interacting with JSON data
   - jq
 
