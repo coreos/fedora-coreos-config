@@ -1,13 +1,9 @@
-# This file is the base for a Fedora CoreOS like system; think (ignition, ostree, containers).
-# It may be used as an inheritance base by other projects like Fedora Silverblue or RHCOS.
-# One good model is to add feodra-coreos-config as a git submodule.  See:
-# https://github.com/coreos/coreos-assembler/pull/639
+# This file is most of a Fedora CoreOS like system; it inherits from "core".
+# Add things in this file which are somewhat "opinionated", not necessarily
+# core functionality.
 
-include: minimal.yaml
-
-# Modern defaults we want
-boot-location: new
-tmp-is-dir: true
+include:
+  - ignition-and-ostree.yaml
 
 initramfs-args:
   - --no-hostonly
@@ -21,9 +17,6 @@ initramfs-args:
   - --omit=lvm
   - --omit=multipath
   - --omit=iscsi
-
-# Required by Ignition, and makes the system not compatible with Anaconda
-machineid-compat: false
 
 releasever: "30"
 automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
@@ -64,16 +57,6 @@ remove-from-packages:
               /usr/lib/systemd/system/systemd-networkd-wait-online.service]
   - [systemd-container, /usr/lib/systemd/network/.*]
   - [systemd-udev, /usr/lib/systemd/network/.*]
-  # We don't want systemd-firstboot.service. It conceptually conflicts with
-  # Ignition.
-  - [systemd, /usr/bin/systemd-firstboot,
-              /usr/lib/systemd/system/systemd-firstboot.service,
-              /usr/lib/systemd/system/sysinit.target.wants/systemd-firstboot.service]
-
-  # We don't want auto-generated mount units. See also
-  # https://github.com/systemd/systemd/issues/13099
-  - [systemd-udev, /usr/lib/systemd/system-generators/systemd-gpt-auto-generator]
-
 
 
 remove-files:
@@ -103,25 +86,15 @@ postprocess:
     set -xeuo pipefail
     sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
     echo -e '\n# Read authorized_keys fragments written by Ignition and Afterburn\nAuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys.d/ignition .ssh/authorized_keys.d/afterburn' >> /etc/ssh/sshd_config
-  # Undo RPM scripts enabling units; we want the presets to be canonical
-  # https://github.com/projectatomic/rpm-ostree/issues/1803
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    rm -rf /etc/systemd/system/*
-    systemctl preset-all
-    rm -rf /etc/systemd/user/*
-    systemctl --user --global preset-all
+
 
 packages:
   # Security
   - selinux-policy-targeted
   - polkit
   # System setup
-  - ignition
   - afterburn
   - afterburn-dracut
-  - dracut-network
   - passwd
   # SSH
   - openssh-server openssh-clients
