@@ -1,8 +1,18 @@
+# This manifest file defines things that should really only go
+# into "official" builds of Fedora CoreOS (such as including `fedora-release-coreos`)
+# or are very "opinionated" like disabling SSH passwords by default.
+
 include: fedora-coreos-base.yaml
+
+releasever: "30"
+automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
+mutate-os-release: "${releasever}"
 
 packages:
   - fedora-release-coreos
   - fedora-repos-ostree
+  # User metrics
+  - fedora-coreos-pinger
 
 # XXX: this is used by coreos-assembler for artifact naming...
 rojig:
