@@ -22,6 +22,8 @@ if [ ! -f /run/ostree-live ]; then
 Description=Boot partition
 Documentation=https://github.com/coreos/fedora-coreos-config
 Before=local-fs.target
+Requires=systemd-fsck@dev-disk-by\x2dlabel-boot.service
+After=systemd-fsck@dev-disk-by\x2dlabel-boot.service
 
 [Mount]
 What=/dev/disk/by-label/boot
@@ -39,6 +41,8 @@ EOF
 Description=EFI System Partition
 Documentation=https://github.com/coreos/fedora-coreos-config
 Before=local-fs.target
+Requires=systemd-fsck@dev-disk-by\x2dlabel-EFI\x2dSYSTEM.service
+After=systemd-fsck@dev-disk-by\x2dlabel-EFI\x2dSYSTEM.service
 
 [Mount]
 What=/dev/disk/by-label/EFI-SYSTEM

@@ -14,12 +14,12 @@ fi
 # Host and Silverblue:
 # https://github.com/rhinstaller/anaconda/blob/b9ea8ce4e68196b30a524c1cc5680dcdc4b89371/pyanaconda/payload/rpmostreepayload.py#L332
 
-# Simply manually mkdir /var/lib; the tmpfiles.d entries otherwise reference
+# Simply manually mkdir /var/{lib,log}; the tmpfiles.d entries otherwise reference
 # users/groups which we don't have access to from here (though... we *could*
 # import them from the sysroot, and have nss-altfiles in the initrd, but meh...
 # let's just wait for systemd-sysusers which will make this way easier:
 # https://github.com/coreos/fedora-coreos-config/pull/56/files#r262592361).
-mkdir -p /sysroot/var/lib
+mkdir -p /sysroot/var/lib /sysroot/var/log
 
 systemd-tmpfiles --create --boot --root=/sysroot \
     --prefix=/var/home \
