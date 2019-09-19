@@ -13,15 +13,15 @@ packages:
 
 # bootloader
 packages-aarch64:
-  - grub2-efi-aa64 ostree-grub2 efibootmgr shim
+  - grub2-efi-aa64 efibootmgr shim
 packages-armhfp:
   - extlinux-bootloader
 packages-ppc64le:
-  - grub2 ostree-grub2
+  - grub2
 packages-s390x:
   - s390utils-base
 packages-x86_64:
-  - grub2 grub2-efi-x64 ostree-grub2 efibootmgr shim
+  - grub2 grub2-efi-x64 efibootmgr shim
   - microcode_ctl
 # And remove some cruft from grub2
 arch-include:
