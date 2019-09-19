@@ -177,16 +177,16 @@
       "digest": "sha256:05fbace7ef9c6d5ca6eda86d098d82c729a0d3cc3190819f0a61f5b79bf29269"
     },
     "cryptsetup": {
-      "evra": "2.2.0-1.fc30.x86_64",
-      "digest": "sha256:8c195106af12d15b5d7c71211c7d9d50c32967d48a620d90aaee601273e916b9"
+      "evra": "2.2.1-1.fc30.x86_64",
+      "digest": "sha256:9e7e57cd6714057a871739639503f81f4400cb5a6c960ada55f1c36281cc07ea"
     },
     "cryptsetup-libs": {
-      "evra": "2.2.0-1.fc30.x86_64",
-      "digest": "sha256:2178989c36674820d3b46e55c348b84957f41e7539fe03eb3bc64800aaeab1b5"
+      "evra": "2.2.1-1.fc30.x86_64",
+      "digest": "sha256:5af22925afdf1a00e14660f460966b2119ded7372b8ad6483afaedad7973a734"
     },
     "cups-libs": {
-      "evra": "1:2.2.12-1.fc30.x86_64",
-      "digest": "sha256:fe451e618668947051c3b78f2c65e2e906c693e82bd2ceb04f61fbca4fb22a6c"
+      "evra": "1:2.2.12-2.fc30.x86_64",
+      "digest": "sha256:1eaa88c8bb22c42b01efa35bcd3fcbfe2e05f1a9b37abde48485f9e444eecf2f"
     },
     "curl": {
       "evra": "7.65.3-4.fc30.x86_64",
@@ -569,16 +569,16 @@
       "digest": "sha256:5e08d7f13d4ded6e96e152d2b8b803f24edcc73a480815008b712161d35dfe5a"
     },
     "kernel": {
-      "evra": "5.2.14-200.fc30.x86_64",
-      "digest": "sha256:8c5a6f64e04ebd6f81d20384caceb106204cb4bf0612b61e7d3c617a79ec553d"
+      "evra": "5.2.15-200.fc30.x86_64",
+      "digest": "sha256:593778db8877494b21747220611b483f5ffdcdffe4b57e751eca2e036067ba65"
     },
     "kernel-core": {
-      "evra": "5.2.14-200.fc30.x86_64",
-      "digest": "sha256:b2131132581909eb13f3eb645cc0657793758ae64a28ce4d280f7b762c9d7114"
+      "evra": "5.2.15-200.fc30.x86_64",
+      "digest": "sha256:02acb05c735f2ccf0cccd5367caede8f1bd995f127237b5bed04c030528c7fe6"
     },
     "kernel-modules": {
-      "evra": "5.2.14-200.fc30.x86_64",
-      "digest": "sha256:a2be00013555b6d43a8db685af343286055d80edfa67d4eba4cd390040fab330"
+      "evra": "5.2.15-200.fc30.x86_64",
+      "digest": "sha256:4ab2768b80606214621aa2b6fe4883dbffd223f482230674a29bc3fb94e76a10"
     },
     "keyutils": {
       "evra": "1.6-2.fc30.x86_64",
@@ -849,8 +849,8 @@
       "digest": "sha256:541ef5ea761398b2e8e9736d7a19b4c9e716a584b029462f5903d3a77324cfa1"
     },
     "libsmbclient": {
-      "evra": "2:4.10.7-0.fc30.x86_64",
-      "digest": "sha256:d2931ef03121d8a30cacc8669e983f9cef03d2170b5b5ba078951021780cc25b"
+      "evra": "2:4.10.8-0.fc30.x86_64",
+      "digest": "sha256:4d405a5466e3d357a607f7354307d0e6eb5629c98eae21cd3ab07652f35ae12e"
     },
     "libsolv": {
       "evra": "0.7.5-1.fc30.x86_64",
@@ -937,8 +937,8 @@
       "digest": "sha256:86bac27bb30f51f7c3bebf4e36947e7d0649e0c2e5dff53b889180fe292966ed"
     },
     "libwbclient": {
-      "evra": "2:4.10.7-0.fc30.x86_64",
-      "digest": "sha256:63812d30c6a9e947f67577218ce31da1b1b57f551a9cb0d0624505004ab47de4"
+      "evra": "2:4.10.8-0.fc30.x86_64",
+      "digest": "sha256:570c15a4cb6e161c07b768e32e65e662b43865202d593ab02fbf74c5a4340acf"
     },
     "libxcrypt": {
       "evra": "4.4.9-1.fc30.x86_64",
@@ -1100,10 +1100,6 @@
       "evra": "2019.2-1.fc30.x86_64",
       "digest": "sha256:e8d864202022d9dd0329a5fa59d84667b35608ec10643a096b715772a41e2420"
     },
-    "ostree-grub2": {
-      "evra": "2019.2-1.fc30.x86_64",
-      "digest": "sha256:a6b890040a410a1272336cdf821e61ae5d1f2452e98b11403ea70aa6a08d9e8e"
-    },
     "ostree-libs": {
       "evra": "2019.2-1.fc30.x86_64",
       "digest": "sha256:7215c0dfdda04bb59abb89d87f7c74a89883e0678e116cb4ddb0b24288e40fbf"
@@ -1233,20 +1229,20 @@
       "digest": "sha256:1be3fa84f31c94474ef7a249140acce1e26f7cace6910c99d7e559607ffc925a"
     },
     "samba-client-libs": {
-      "evra": "2:4.10.7-0.fc30.x86_64",
-      "digest": "sha256:8de0ddba41dd38395afd736644fcb0a62f91a69a8a8d8cd663e9010fab27fef0"
+      "evra": "2:4.10.8-0.fc30.x86_64",
+      "digest": "sha256:45bdfbc2f080f499d08b756b70e268003c603d99947eda044ab92292c04db671"
     },
     "samba-common": {
-      "evra": "2:4.10.7-0.fc30.noarch",
-      "digest": "sha256:3c0a02b2823fbc7f6f1da90646829c30d4b3e0e201ea48957b9bb31b0125df3e"
+      "evra": "2:4.10.8-0.fc30.noarch",
+      "digest": "sha256:4082edbd5d2252e1254348fc0d5a3bc3fd1cb697d141012a4e73778768e2feab"
     },
     "samba-common-libs": {
-      "evra": "2:4.10.7-0.fc30.x86_64",
-      "digest": "sha256:b0719a3b12122df8428f2f6f2e1fd9e7daa77cbc548c58684aff8c31bc261906"
+      "evra": "2:4.10.8-0.fc30.x86_64",
+      "digest": "sha256:db4a0608ecc1bf2bacb280caba905bd5ee6559091feeba8f98d8595b9ebf87cb"
     },
     "samba-libs": {
-      "evra": "2:4.10.7-0.fc30.x86_64",
-      "digest": "sha256:9877882d0007b2f0c1e7695e1f15219f76e32e6a4ee74f8879a2d5e1aa024797"
+      "evra": "2:4.10.8-0.fc30.x86_64",
+      "digest": "sha256:fc026c3aa61e89b79f3860c34b52f29e2513f95b9a1af246b4242561e1960392"
     },
     "sed": {
       "evra": "4.5-3.fc30.x86_64",
