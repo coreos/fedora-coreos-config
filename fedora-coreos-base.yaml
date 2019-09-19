@@ -30,6 +30,11 @@ etc-group-members:
   - sudo
   - systemd-journal
   - adm
+  # Add the docker group to /etc/group
+  # https://github.com/coreos/fedora-coreos-tracker/issues/2
+  # This will be no longer needed when systemd-sysusers has been implemented:
+  # https://github.com/projectatomic/rpm-ostree/issues/49
+  - docker
 check-passwd:
   type: "file"
   filename: "passwd"
