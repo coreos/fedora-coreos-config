@@ -16,6 +16,22 @@ have_karg() {
     return 1
 }
 
+write_dropin() {
+    local service="$1"; shift
+    local args="$1"; shift
+
+    local out_dir="${UNIT_DIR}/${service}.d"
+    mkdir -p "${out_dir}"
+
+    # /tmp isn't r/w yet, and the shell needs to cache the here-document
+    TMPDIR=/run
+    cat > "${out_dir}/10-autologin.conf" <<EOF
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin core -o '-p -f core' ${args} %I \$TERM
+EOF
+}
+
 # Only allow automatic autologin on live systems
 if [ ! -e /run/ostree-live ]; then
     exit 0
@@ -34,13 +50,6 @@ if [ -e /run/ignition.json ] ; then
     exit 0
 fi
 
-out_dir="${UNIT_DIR}/getty@.service.d"
-mkdir -p "${out_dir}"
-
-# /tmp isn't r/w yet, and the shell needs to cache the here-document
-TMPDIR=/run
-cat > "${out_dir}/10-autologin.conf" <<'EOF'
-[Service]
-ExecStart=
-ExecStart=-/sbin/agetty --autologin core -o '-p -f core' --noclear %I $TERM
-EOF
+write_dropin "getty@.service"        "--noclear"
+# Also autologin on serial console if someone enables that
+write_dropin "serial-getty@.service" "--keep-baud 115200,38400,9600"
