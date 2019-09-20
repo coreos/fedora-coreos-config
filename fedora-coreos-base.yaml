@@ -30,11 +30,7 @@ etc-group-members:
   - sudo
   - systemd-journal
   - adm
-  # Add the docker group to /etc/group
-  # https://github.com/coreos/fedora-coreos-tracker/issues/2
-  # This will be no longer needed when systemd-sysusers has been implemented:
-  # https://github.com/projectatomic/rpm-ostree/issues/49
-  - docker
+
 check-passwd:
   type: "file"
   filename: "passwd"
@@ -107,7 +103,7 @@ packages:
   # SSH
   - openssh-server openssh-clients
   # Containers
-  - podman skopeo runc moby-engine systemd-container
+  - podman skopeo runc systemd-container
   - fuse-overlayfs slirp4netns
   # Remote IPC for podman
   - libvarlink-util
@@ -148,8 +144,6 @@ packages:
   # i18n
   - kbd
   - whois-nls
-  # Updates
-  - zincati
   # Parsing/Interacting with JSON data
   - jq
 

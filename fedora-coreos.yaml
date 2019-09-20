@@ -11,8 +11,19 @@ mutate-os-release: "${releasever}"
 packages:
   - fedora-release-coreos
   - fedora-repos-ostree
+  # CL ships this.
+  - moby-engine
   # User metrics
   - fedora-coreos-pinger
+  # Updates
+  - zincati
+
+etc-group-members:
+  # Add the docker group to /etc/group
+  # https://github.com/coreos/fedora-coreos-tracker/issues/2
+  # This will be no longer needed when systemd-sysusers has been implemented:
+  # https://github.com/projectatomic/rpm-ostree/issues/49
+  - docker
 
 # XXX: this is used by coreos-assembler for artifact naming...
 rojig:
