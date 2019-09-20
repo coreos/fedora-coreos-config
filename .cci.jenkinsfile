@@ -10,7 +10,14 @@ cosaPod {
         cosa init ${env.WORKSPACE}
         curl -LO https://raw.githubusercontent.com/coreos/fedora-coreos-releng-automation/master/scripts/download-overrides.py
         python3 download-overrides.py
+        # prep from the latest builds so that we generate a diff on PRs that add packages
+        cosa buildprep https://builds.coreos.fedoraproject.org/prod/streams/testing-devel/builds
     """)
 
     fcosBuild(skipInit: true)
+
+    // also print the pkgdiff as a separate stage to make it more visible
+    stage("RPM Diff") {
+        shwrap("jq .pkgdiff /srv/fcos/builds/latest/x86_64/meta.json")
+    }
 }
