@@ -25,6 +25,9 @@ install() {
     install_and_enable_unit "coreos-live-unmount-tmpfs-var.service" \
         "initrd-switch-root.target"
 
+    install_and_enable_unit "coreos-live-clear-sssd-cache.service" \
+        "ignition-complete.target"
+
     inst_simple "$moddir/writable.mount" \
         "$systemdsystemunitdir/writable.mount"
 }
