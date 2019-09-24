@@ -67,3 +67,15 @@ gpgcheck=1
 metadata_expire=6h
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 skip_if_unavailable=False
+
+[fedora-updates-testing-modular]
+name=Fedora Modular $releasever - $basearch - Test Updates
+failovermethod=priority
+baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/testing/$releasever/Modular/$basearch/
+        https://dl.fedoraproject.org/pub/fedora-secondary/updates/testing/$releasever/Modular/$basearch/
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$releasever&arch=$basearch
+enabled=1
+gpgcheck=1
+metadata_expire=6h
+gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+skip_if_unavailable=False
