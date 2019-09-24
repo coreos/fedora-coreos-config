@@ -88,6 +88,11 @@ postprocess:
     sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
     echo -e '\n# Read authorized_keys fragments written by Ignition and Afterburn\nAuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys.d/ignition .ssh/authorized_keys.d/afterburn' >> /etc/ssh/sshd_config
 
+  # Enable SELinux booleans used by OpenShift
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    setsebool -P -N container_use_cephfs on  # RHBZ#1692369
 
 packages:
   # Security
