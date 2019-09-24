@@ -49,6 +49,22 @@ postprocess:
     #!/usr/bin/env bash
     set -xeuo pipefail
     sed -i -e 's/CoreOS/CoreOS preview/' $(realpath /etc/os-release)
+  # Users shouldn't be configuring `rpm-ostreed.conf`
+  # https://github.com/coreos/fedora-coreos-tracker/issues/271
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    cat > /tmp/rpm-ostreed.conf << 'EOF'
+    # By default, this system has its OS updates managed by
+    # `zincati.service`.  Changes made to this file may
+    # conflict with the configuation of `zincati.service`.
+    # See https://github.com/coreos/zincati for additional
+    # information.
+
+    EOF
+    cat /usr/etc/rpm-ostreed.conf >> /tmp/rpm-ostreed.conf
+    cp /tmp/rpm-ostreed.conf /usr/etc/rpm-ostreed.conf
+    rm /tmp/rpm-ostreed.conf
 
 remove-from-packages:
   # Drop NetworkManager support for ifcfg files, see also corresponding
