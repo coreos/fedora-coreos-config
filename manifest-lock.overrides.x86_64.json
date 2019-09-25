@@ -1,4 +1,20 @@
 {
   "packages": {
+    "ostree": {
+      "evra": "2019.4-1.fc30.x86_64",
+      "digest": "sha256:96cdbdd3417be58c2c8399adf30c7efd1b74c4571460fcac34d2ea2dd5442b51"
+    },
+    "ostree-libs": {
+      "evra": "2019.4-1.fc30.x86_64",
+      "digest": "sha256:809815cf9a9dd80d0e710afbd3804d06ceea56fba43d73dffb43bbd539591f38"
+    },
+    "rpm-ostree": {
+      "evra": "2019.6-1.fc30.x86_64",
+      "digest": "sha256:300a06a8bcff60c7f40266fcb654a5904e41bfcd20f4b619e40adc56c9864c90"
+    },
+    "rpm-ostree-libs": {
+      "evra": "2019.6-1.fc30.x86_64",
+      "digest": "sha256:9466a002f00b553ce039f2bd1efcc3ca5eb8db41f16f29a8bcb292c2824ef745"
+    }
   }
 }
