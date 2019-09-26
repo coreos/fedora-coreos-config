@@ -65,6 +65,12 @@ install() {
     inst_simple "$moddir/multipath-generator" \
         "$systemdutildir/system-generators/multipath-generator"
 
+    inst_multiple jq chattr getfattr lsmod dd modprobe
+    inst_script "$moddir/ignition-ostree-dracut-rootfs.sh" "/usr/libexec/ignition-ostree-dracut-rootfs"
+    for x in detect save restore; do
+        install_ignition_unit ignition-ostree-rootfs-${x}.service
+    done
+
     # Disk support
     install_ignition_unit ignition-ostree-mount-firstboot-sysroot.service diskful
     install_ignition_unit ignition-ostree-mount-subsequent-sysroot.service diskful-subsequent

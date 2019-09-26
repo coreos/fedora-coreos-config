@@ -1,0 +1,15 @@
+[Unit]
+Description=Ignition OSTree: save rootfs
+DefaultDependencies=false
+After=ignition-ostree-rootfs-detect.service
+Before=ignition-disks.service
+ConditionKernelCommandLine=ostree
+ConditionPathIsDirectory=/run/ignition-ostree-rootfs
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+EnvironmentFile=/run/ignition.env
+# So we can transiently mount sysroot
+MountFlags=slave
+ExecStart=/usr/libexec/ignition-ostree-dracut-rootfs save
