@@ -1,6 +1,7 @@
 [Unit]
 Description=Mount OSTree /var
 DefaultDependencies=false
+ConditionKernelCommandLine=ostree
 ConditionPathExists=!/run/ostree-live
 
 # Make sure ExecStop= runs before we switch root

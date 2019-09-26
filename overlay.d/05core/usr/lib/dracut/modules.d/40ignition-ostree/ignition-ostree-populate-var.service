@@ -1,6 +1,8 @@
 [Unit]
 Description=Populate OSTree /var
 DefaultDependencies=false
+ConditionKernelCommandLine=|ostree
+ConditionPathExists=|/run/ostree-live
 
 # Need to do this with all mount points active
 After=ignition-mount.service
