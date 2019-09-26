@@ -1,0 +1,17 @@
+[Unit]
+Description=Mount OSTree /sysroot
+DefaultDependencies=false
+# If root is specified, then systemd's generator will win
+ConditionKernelCommandLine=!root
+ConditionKernelCommandLine=ostree
+ConditionPathExists=!/run/ostree-live
+
+Before=initrd-root-fs.target
+After=ignition-disks.service
+# These have an explicit dependency on After=sysroot.mount today
+Before=ostree-prepare-root.service ignition-remount-sysroot.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/ignition-ostree-mount-sysroot
