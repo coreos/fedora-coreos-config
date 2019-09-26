@@ -53,7 +53,8 @@ install() {
         rm        \
         sed       \
         sfdisk    \
-        sgdisk
+        sgdisk    \
+        find
 
     for x in mount populate; do
         install_ignition_unit ignition-ostree-${x}-var.service
@@ -65,6 +66,12 @@ install() {
 
     inst_simple "$moddir/multipath-generator" \
         "$systemdutildir/system-generators/multipath-generator"
+
+    inst_multiple jq chattr
+    inst_script "$moddir/ignition-ostree-dracut-rootfs.sh" "/usr/libexec/ignition-ostree-dracut-rootfs"
+    for x in detect save restore; do
+        install_ignition_unit ignition-ostree-rootfs-${x}.service
+    done
 
     # Disk support
     install_ignition_unit ignition-ostree-mount-firstboot-sysroot.service diskful
