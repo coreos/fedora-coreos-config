@@ -26,4 +26,8 @@ install() {
     install_ignition_unit ignition-ostree-populate-var.service
     inst_script "$moddir/ignition-ostree-populate-var.sh" \
         "/usr/sbin/ignition-ostree-populate-var"
+
+    install_ignition_unit ignition-ostree-mount-sysroot.service
+    inst_script "$moddir/ignition-ostree-mount-sysroot.sh" \
+        "/usr/sbin/ignition-ostree-mount-sysroot"
 }
