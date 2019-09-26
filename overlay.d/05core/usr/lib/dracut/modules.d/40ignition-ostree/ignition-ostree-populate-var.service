@@ -11,4 +11,4 @@ Before=ignition-files.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/sbin/coreos-populate-var
+ExecStart=/usr/sbin/ignition-ostree-populate-var

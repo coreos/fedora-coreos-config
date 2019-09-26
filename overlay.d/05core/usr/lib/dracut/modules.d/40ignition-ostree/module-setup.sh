@@ -19,11 +19,11 @@ install() {
 
     mkdir -p "$initdir/$systemdsystemunitdir/ignition-complete.target.requires"
 
-    install_ignition_unit coreos-mount-var.service
-    inst_script "$moddir/coreos-mount-var.sh" \
-        "/usr/sbin/coreos-mount-var"
+    install_ignition_unit ignition-ostree-mount-var.service
+    inst_script "$moddir/ignition-ostree-mount-var.sh" \
+        "/usr/sbin/ignition-ostree-mount-var"
 
-    install_ignition_unit coreos-populate-var.service
-    inst_script "$moddir/coreos-populate-var.sh" \
-        "/usr/sbin/coreos-populate-var"
+    install_ignition_unit ignition-ostree-populate-var.service
+    inst_script "$moddir/ignition-ostree-populate-var.sh" \
+        "/usr/sbin/ignition-ostree-populate-var"
 }
