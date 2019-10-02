@@ -1,0 +1,31 @@
+= Platforms
+
+Fedora CoreOS is provisioned via prebuilt disk images, and configured on first-boot via https://github.com/coreos/ignition[Ignition]. Each platform may require specific logic and components, thus dedicated images are provided for each supported environment. Additionally, a unique platform ID is available in the host environment for runtime introspection.
+
+== Runtime introspection
+
+Each Fedora CoreOS image boots with a platform-specific identifier, available on the kernel command-line. The name of the parameter is `ignition.platform.id` and the list of supported platform is documented here.
+
+Platform ID can be introspected at runtime, as follows:
+
+.CLI example of platform introspection
+[source, bash]
+----
+$ grep -o ignition.platform.id='[[:alnum:]]*' /proc/cmdline
+
+ignition.platform.id=aws
+----
+
+Platform ID is consumed by OS components such as https://github.com/coreos/ignition[Ignition] and https://github.com/coreos/afterburn[Afterburn]. Additionally, it can be used in systemd units via https://www.freedesktop.org/software/systemd/man/systemd.unit.html#ConditionKernelCommandLine=[`ConditionKernelCommandLine=`].
+
+== Well-known IDs
+
+Here is a list of all supported platforms and their identifier:
+
+ * `aws`: Amazon Web Services (cloud platform)
+ * `azure`: Microsoft Azure (cloud platform)
+ * `gcp`: Google Cloud Platform (cloud platform)
+ * `metal`: bare metal with BIOS or UEFI boot
+ * `openstack`: OpenStack (cloud platform)
+ * `qemu`: QEMU (hypervisor)
+ * `vmware`: VMware ESXi (hypervisor)
