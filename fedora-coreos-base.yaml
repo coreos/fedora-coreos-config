@@ -1,13 +1,9 @@
-# This file is the base for a Fedora CoreOS like system; think (ignition, ostree, containers).
-# It may be used as an inheritance base by other projects like Fedora Silverblue or RHCOS.
-# One good model is to add feodra-coreos-config as a git submodule.  See:
-# https://github.com/coreos/coreos-assembler/pull/639
+# This file is most of a Fedora CoreOS like system; it inherits from "core".
+# Add things in this file which are somewhat "opinionated", not necessarily
+# core functionality.
 
-include: minimal.yaml
-
-# Modern defaults we want
-boot-location: new
-tmp-is-dir: true
+include:
+  - ignition-and-ostree.yaml
 
 initramfs-args:
   - --no-hostonly
@@ -22,13 +18,6 @@ initramfs-args:
   - --omit=multipath
   - --omit=iscsi
 
-# Required by Ignition, and makes the system not compatible with Anaconda
-machineid-compat: false
-
-releasever: "30"
-automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
-mutate-os-release: "${releasever}"
-
 # Be minimal
 recommends: false
 
@@ -41,6 +30,11 @@ etc-group-members:
   - sudo
   - systemd-journal
   - adm
+  # Add the docker group to /etc/group
+  # https://github.com/coreos/fedora-coreos-tracker/issues/2
+  # This will be no longer needed when systemd-sysusers has been implemented:
+  # https://github.com/projectatomic/rpm-ostree/issues/49
+  - docker
 check-passwd:
   type: "file"
   filename: "passwd"
@@ -64,23 +58,6 @@ remove-from-packages:
               /usr/lib/systemd/system/systemd-networkd-wait-online.service]
   - [systemd-container, /usr/lib/systemd/network/.*]
   - [systemd-udev, /usr/lib/systemd/network/.*]
-  # We don't want systemd-firstboot.service. It conceptually conflicts with
-  # Ignition.
-  - [systemd, /usr/bin/systemd-firstboot,
-              /usr/lib/systemd/system/systemd-firstboot.service,
-              /usr/lib/systemd/system/sysinit.target.wants/systemd-firstboot.service]
-
-  # We don't want auto-generated mount units. See also
-  # https://github.com/systemd/systemd/issues/13099
-  - [systemd-udev, /usr/lib/systemd/system-generators/systemd-gpt-auto-generator]
-
-  # The grub bits are mainly designed for desktops, and IMO haven't seen
-  # enough testing in concert with ostree. At some point we'll flesh out
-  # the full plan in https://github.com/coreos/fedora-coreos-tracker/issues/47
-  - [grub2-tools, /etc/grub.d/08_fallback_counting,
-                  /etc/grub.d/10_reset_boot_success,
-                  /etc/grub.d/12_menu_auto_hide,
-                  /usr/lib/systemd/.*]
 
 
 remove-files:
@@ -110,25 +87,22 @@ postprocess:
     set -xeuo pipefail
     sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
     echo -e '\n# Read authorized_keys fragments written by Ignition and Afterburn\nAuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys.d/ignition .ssh/authorized_keys.d/afterburn' >> /etc/ssh/sshd_config
-  # Undo RPM scripts enabling units; we want the presets to be canonical
-  # https://github.com/projectatomic/rpm-ostree/issues/1803
+
+  # Enable SELinux booleans used by OpenShift
+  # https://github.com/coreos/fedora-coreos-tracker/issues/284
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
-    rm -rf /etc/systemd/system/*
-    systemctl preset-all
-    rm -rf /etc/systemd/user/*
-    systemctl --user --global preset-all
+    setsebool -P -N container_use_cephfs on  # RHBZ#1692369
+    setsebool -P -N virt_use_samba on  # RHBZ#1754825
 
 packages:
   # Security
   - selinux-policy-targeted
   - polkit
   # System setup
-  - ignition
   - afterburn
   - afterburn-dracut
-  - dracut-network
   - passwd
   # SSH
   - openssh-server openssh-clients
@@ -150,6 +124,7 @@ packages:
   - device-mapper-multipath
   - xfsprogs e2fsprogs mdadm
   - cryptsetup
+  - cifs-utils
   # Time sync
   - chrony timedatex
   # Extra runtime
@@ -175,7 +150,18 @@ packages:
   - whois-nls
   # Updates
   - zincati
-  # User metrics
-  - fedora-coreos-pinger
   # Parsing/Interacting with JSON data
   - jq
+
+# This thing is crying out to be pulled into systemd, but that hasn't happened
+# yet.  Also we may want to add to rpm-ostree something like arch negation;
+# basically right now it doesn't exist on s390x.
+# Anyways, it was requested by the Red Hat perf team for RHCOS, so we have it here.
+# https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
+# https://access.redhat.com/solutions/41535
+packages-x86_64:
+  - irqbalance
+packages-ppc64le:
+  - irqbalance
+packages-aarch64:
+  - irqbalance

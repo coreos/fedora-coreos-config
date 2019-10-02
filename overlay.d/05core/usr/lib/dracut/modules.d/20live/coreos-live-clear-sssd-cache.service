@@ -1,0 +1,18 @@
+# SSSD caches passwd data from /etc in /var.  If we have a persistent /var
+# but not a persistent /etc, ignition-files.service can think a user
+# already exists when in fact it needs to be (re-)created.  Clear the
+# cache to avoid this.
+
+[Unit]
+Description=Clear SSSD NSS cache in persistent /var
+DefaultDependencies=false
+ConditionPathExists=/run/ostree-live
+ConditionPathExists=/sysroot/var/lib/sss/mc
+
+After=ignition-mount.service
+Before=ignition-files.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/rm -r /sysroot/var/lib/sss/mc

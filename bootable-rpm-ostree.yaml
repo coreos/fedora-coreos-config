@@ -5,14 +5,15 @@
 # We expect most people though using coreos-assembler to inherit from
 # fedora-coreos-base.yaml.
 packages:
- # Kernel + systemd
- - kernel systemd
+ # Kernel + systemd.  Note we explicitly specify kernel-{core,modules}
+ # because otherwise depsolving could bring in kernel-debug.
+ - kernel kernel-core kernel-modules systemd
  # rpm-ostree
  - rpm-ostree nss-altfiles
 
 # bootloader
 packages-aarch64:
-  - grub2-efi-aa64 ostree-grub2 efibootmgr shim
+  - grub2-efi-aa64 efibootmgr shim
 packages-armhfp:
   - extlinux-bootloader
 packages-ppc64le:
@@ -20,5 +21,10 @@ packages-ppc64le:
 packages-s390x:
   - s390utils-base
 packages-x86_64:
-  - grub2 grub2-efi-x64 ostree-grub2 efibootmgr shim
+  - grub2 grub2-efi-x64 efibootmgr shim
   - microcode_ctl
+# And remove some cruft from grub2
+arch-include:
+  x86_64: grub2-removals.yaml
+  aarch64: grub2-removals.yaml
+  ppc64le: grub2-removals.yaml

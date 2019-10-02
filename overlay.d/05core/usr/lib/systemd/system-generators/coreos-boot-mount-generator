@@ -1,0 +1,52 @@
+#!/bin/bash
+
+set -euo pipefail
+
+UNIT_DIR="${1:-/tmp}"
+
+add_wants() {
+    local name="$1"; shift
+    local wants_dir="${UNIT_DIR}/local-fs.target.wants"
+    mkdir -p "${wants_dir}"
+    ln -sf "../${name}" "${wants_dir}/${name}"
+}
+
+# Don't create mount units for /boot or /boot/efi on live systems.
+# ConditionPathExists won't work here because conditions don't affect
+# the dependency on the underlying device unit.
+if [ ! -f /run/ostree-live ]; then
+    add_wants boot.mount
+    cat > "${UNIT_DIR}/boot.mount" <<EOF
+# Automatically created by coreos-boot-mount-generator
+[Unit]
+Description=Boot partition
+Documentation=https://github.com/coreos/fedora-coreos-config
+Before=local-fs.target
+Requires=systemd-fsck@dev-disk-by\x2dlabel-boot.service
+After=systemd-fsck@dev-disk-by\x2dlabel-boot.service
+
+[Mount]
+What=/dev/disk/by-label/boot
+Where=/boot
+EOF
+
+    # Only mount the EFI System Partition on machines where it exists,
+    # which are 1) machines actually booted through EFI, and 2) x86_64
+    # when booted through BIOS.
+    if [ "$(uname -m)" = "x86_64" -o -d /sys/firmware/efi ]; then
+        add_wants boot-efi.mount
+        cat > "${UNIT_DIR}/boot-efi.mount" <<EOF
+# Automatically created by coreos-boot-mount-generator
+[Unit]
+Description=EFI System Partition
+Documentation=https://github.com/coreos/fedora-coreos-config
+Before=local-fs.target
+Requires=systemd-fsck@dev-disk-by\x2dlabel-EFI\x2dSYSTEM.service
+After=systemd-fsck@dev-disk-by\x2dlabel-EFI\x2dSYSTEM.service
+
+[Mount]
+What=/dev/disk/by-label/EFI-SYSTEM
+Where=/boot/efi
+EOF
+    fi
+fi
