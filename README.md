@@ -29,6 +29,20 @@ following exceptions:
   Overrides (`manifest-lock.overrides.*`) are manually
   curated.
 
+## Layout
+
+We intend for Fedora CoreOS to be used directly for a wide variety
+of use cases.  However, we also want to support "custom" derivatives
+such as Fedora Silverblue, etc.  Hence the configuration in this
+repository is split up into reusable "layers" and components on
+the rpm-ostree side.
+
+To derive from this repository, the recommendation is to add it
+as a git submodule.  Then create your own `manifest.yaml` which does
+`include: fedora-coreos-config/ignition-and-ostree.yaml` for example.
+You will also want to create an `overlay.d` and symlink in components
+in this repository's `overlay.d.
+
 ## Adding packages to the OS
 
 Since `testing-devel` is directly promoted to `testing`, it
