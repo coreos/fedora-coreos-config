@@ -1,7 +1,7 @@
 ref: fedora/${basearch}/coreos/testing-devel
 include: fedora-coreos.yaml
 
-releasever: "30"
+releasever: "31"
 
 rojig:
   license: MIT
@@ -13,10 +13,11 @@ repos:
   # these repos are there to make it easier to add new packages to the OS and to
   # use `cosa fetch --update-lockfile`; but note that all package versions are
   # still pinned
-  - fedora
-  - fedora-updates
-  - fedora-modular
-  - fedora-updates-modular
+  # NB: we use -next for now until f31 is GA and the repo structure is finalized
+  - fedora-next
+  - fedora-next-updates
+  - fedora-next-modular
+  - fedora-next-updates-modular
 
 add-commit-metadata:
   fedora-coreos.stream: testing-devel
