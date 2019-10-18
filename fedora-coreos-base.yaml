@@ -54,6 +54,9 @@ remove-from-packages:
               /usr/lib/systemd/system/systemd-networkd-wait-online.service]
   - [systemd-container, /usr/lib/systemd/network/.*]
   - [systemd-udev, /usr/lib/systemd/network/.*]
+  # We're still using the legacy dracut network module for now. Dracut keys off
+  # of this: https://github.com/dracutdevs/dracut/blob/1fcc70fe57eea0ea658aa2de5c0044683fe85cf1/modules.d/40network/module-setup.sh#L11
+  - [NetworkManager, /usr/libexec/nm-initrd-generator]
 
 
 remove-files:
