@@ -1,7 +1,7 @@
 ref: fedora/${basearch}/coreos/bodhi-updates
 include: fedora-coreos.yaml
 
-releasever: "30"
+releasever: "31"
 
 rojig:
   license: MIT
@@ -9,10 +9,10 @@ rojig:
   summary: Fedora CoreOS bodhi-updates
 
 repos:
-  - fedora
-  - fedora-updates
-  - fedora-modular
-  - fedora-updates-modular
+  - fedora-next
+  - fedora-next-updates
+  - fedora-next-modular
+  - fedora-next-updates-modular
   # temporary hack for
   # https://github.com/coreos/fedora-coreos-tracker/issues/290
   - fedora-coreos-pool
