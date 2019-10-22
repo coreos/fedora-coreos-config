@@ -15,10 +15,7 @@ coreos.pod([image: "quay.io/coreos-assembler/coreos-assembler:latest", kvm: true
     stage("Kola") {
         dir("cosa") {
             coreos.shwrap("""
-                # This is known to fail right now. See:
-                # https://github.com/coreos/fedora-coreos-tracker/issues/280
-                # https://github.com/coreos/mantle/issues/1103
-                cosa kola -- run --blacklist-test fcos.python
+                cosa kola run
             """)
         }
     }
