@@ -1,7 +1,16 @@
 #!/bin/bash
 set -euo pipefail
 
-# Today this is trivial, but in the future this will require integration
-# with Ignition.
-mountflags=prjquota
-mount -o "${mountflags}" /dev/disk/by-label/root /sysroot
+# We use prjquota on XFS by default to aid multi-tenant
+# Kubernetes (and other container) clusters.  See
+# https://github.com/coreos/coreos-assembler/pull/303/commits/6103effbd006bb6109467830d6a3e42dd847668d
+# In the future this will be augmented with a check for whether
+# or not we've reprovisioned the rootfs, since we don't want to
+# force on prjquota there.
+rootpath=/dev/disk/by-label/root
+eval $(blkid -o export ${rootpath})
+mountflags=
+if [ "${TYPE}" == "xfs" ]; then
+  mountflags=prjquota
+fi
+mount -o "${mountflags}" "${rootpath}" /sysroot
