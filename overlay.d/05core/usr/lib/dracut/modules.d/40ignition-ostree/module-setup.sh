@@ -30,4 +30,9 @@ install() {
     install_ignition_unit ignition-ostree-mount-sysroot.service
     inst_script "$moddir/ignition-ostree-mount-sysroot.sh" \
         "/usr/sbin/ignition-ostree-mount-sysroot"
+
+    # This unit comes from ostree upstream, but forms part of our
+    # Ignition sequence.  Make it required by ignition-complete.target
+    # so that if it fails we get the same OnFailure= behavior.
+    ln_r "../ostree-prepare-root.service" "$systemdsystemunitdir/ignition-complete.target.requires/ostree-prepare-root.service"
 }
