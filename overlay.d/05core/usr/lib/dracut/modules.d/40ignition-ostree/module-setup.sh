@@ -7,9 +7,12 @@ depends() {
 }
 
 install_ignition_unit() {
-    unit=$1; shift
+    local unit=$1; shift
+    local target=${1:-complete}
     inst_simple "$moddir/$unit" "$systemdsystemunitdir/$unit"
-    ln_r "../$unit" "$systemdsystemunitdir/ignition-complete.target.requires/$unit"
+    local targetpath="$systemdsystemunitdir/ignition-${target}.target.requires/"
+    mkdir -p "${initdir}/${targetpath}"
+    ln_r "../$unit" "${targetpath}/${unit}"
 }
 
 install() {
@@ -17,17 +20,13 @@ install() {
         systemd-sysusers \
         systemd-tmpfiles
 
-    mkdir -p "$initdir/$systemdsystemunitdir/ignition-complete.target.requires"
+    for x in mount populate; do
+        install_ignition_unit ignition-ostree-${x}-var.service
+        inst_script "$moddir/ignition-ostree-${x}-var.sh" "/usr/sbin/ignition-ostree-${x}-var"
+    done
 
-    install_ignition_unit ignition-ostree-mount-var.service
-    inst_script "$moddir/ignition-ostree-mount-var.sh" \
-        "/usr/sbin/ignition-ostree-mount-var"
-
-    install_ignition_unit ignition-ostree-populate-var.service
-    inst_script "$moddir/ignition-ostree-populate-var.sh" \
-        "/usr/sbin/ignition-ostree-populate-var"
-
-    install_ignition_unit ignition-ostree-mount-sysroot.service
+    install_ignition_unit ignition-ostree-mount-firstboot-sysroot.service
+    install_ignition_unit ignition-ostree-mount-subsequent-sysroot.service subsequent
     inst_script "$moddir/ignition-ostree-mount-sysroot.sh" \
         "/usr/sbin/ignition-ostree-mount-sysroot"
 }
