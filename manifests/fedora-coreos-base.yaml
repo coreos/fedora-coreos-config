@@ -136,6 +136,9 @@ packages:
   - bash-completion
   - openssl
   - vim-minimal
+  # file-transfer: note fuse-sshfs is not in RHEL
+  # so we can't put it in file-transfer.yaml
+  - fuse-sshfs
   # User experience
   - console-login-helper-messages-issuegen
   - console-login-helper-messages-motdgen
