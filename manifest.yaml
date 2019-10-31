@@ -1,5 +1,5 @@
 ref: fedora/${basearch}/coreos/testing
-include: fedora-coreos.yaml
+include: manifests/fedora-coreos.yaml
 
 releasever: "30"
 
