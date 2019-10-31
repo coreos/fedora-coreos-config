@@ -13,9 +13,6 @@ repos:
   - fedora-next-updates
   - fedora-next-modular
   - fedora-next-updates-modular
-  # temporary hack for
-  # https://github.com/coreos/fedora-coreos-tracker/issues/290
-  - fedora-coreos-pool
 
 add-commit-metadata:
   fedora-coreos.stream: bodhi-updates
