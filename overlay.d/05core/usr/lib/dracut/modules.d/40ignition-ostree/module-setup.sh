@@ -17,6 +17,7 @@ install_ignition_unit() {
 
 install() {
     inst_multiple \
+        realpath \
         systemd-sysusers \
         systemd-tmpfiles
 
