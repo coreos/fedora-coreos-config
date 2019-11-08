@@ -13,6 +13,9 @@ repos:
   - fedora-next-updates
   - fedora-next-modular
   - fedora-next-updates-modular
+  # We don't actually want this here... it's only until we update the lockfile a
+  # better way, see: https://github.com/coreos/fedora-coreos-tracker/issues/293
+  - fedora-coreos-pool
 
 add-commit-metadata:
   fedora-coreos.stream: bodhi-updates
