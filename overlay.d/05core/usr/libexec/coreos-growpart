@@ -31,7 +31,7 @@ parent_device=/dev/$(basename "${parent_path}")
 # we can't resize.
 growpart "${parent_device}" "${partition}" || true
 
-eval $(blkid -o export "${parent_device}${partition}")
+eval $(blkid -o export "${src}")
 if [ "${TYPE}" == "crypto_LUKS" ]; then
     luks_name=$(dmsetup info ${src} -C -o name --noheadings)
     cryptsetup resize ${luks_name}
