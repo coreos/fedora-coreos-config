@@ -132,7 +132,7 @@ packages:
   - logrotate
   # Used by admins interactively
   - sudo coreutils less tar xz gzip bzip2
-  - nmap-ncat net-tools bind-utils
+  - socat net-tools bind-utils
   - bash-completion
   - openssl
   - vim-minimal
