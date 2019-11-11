@@ -44,6 +44,30 @@ as a git submodule.  Then create your own `manifest.yaml` which does
 You will also want to create an `overlay.d` and symlink in components
 in this repository's `overlay.d.
 
+## Overriding packages
+
+By default, all packages for FCOS come from the stable
+Fedora repos. However, it is sometimes necessary to either
+hold back some packages, or pull in fixes ahead of Bodhi. To
+add such overrides, one needs to add the packages to
+`manifest-lock.overrides.$basearch.yaml`. E.g.:
+
+```yaml
+packages:
+  # document reason here and link to any Bodhi update
+  foobar:
+    evra: 1.2.3-1.fc31.x86_64
+```
+
+Whenever possible, in the case of pulling in a newer
+package, it is important that the package be submitted as an
+update to Bodhi so that we don't have to carry the override
+forever.
+
+Once an override PR is merged,
+[`coreos-koji-tagger`](https://github.com/coreos/fedora-coreos-releng-automation/tree/master/coreos-koji-tagger)
+will automatically tag overridden packages into the pool.
+
 ## Adding packages to the OS
 
 Since `testing-devel` is directly promoted to `testing`, it
