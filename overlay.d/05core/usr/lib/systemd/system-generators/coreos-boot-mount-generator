@@ -21,8 +21,9 @@ fi
 
 # Don't create mount units for /boot or /boot/efi on live systems.
 # ConditionPathExists won't work here because conditions don't affect
-# the dependency on the underlying device unit.
-if [ ! -f /run/ostree-live ]; then
+# the dependency on the underlying device unit.  Note this can't
+# test for /run/ostree-live as that races with the live-generator.
+if ! is_live_image; then
     add_wants boot.mount
     cat > "${UNIT_DIR}/boot.mount" <<EOF
 # Automatically created by coreos-boot-mount-generator

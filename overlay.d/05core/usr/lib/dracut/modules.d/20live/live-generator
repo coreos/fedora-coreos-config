@@ -13,7 +13,7 @@ add_requires() {
     ln -sf "../${name}" "${requires_dir}/${name}"
 }
 
-if [ -e /root.squashfs ]; then
+if is-live-image; then
     # Create stamp file that everything else should use to detect a live boot
     > /run/ostree-live
 
