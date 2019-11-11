@@ -55,7 +55,7 @@ the corresponding entries in the lockfiles:
 - for packages which should follow Bodhi updates, place them
   in `manifest-lock.$basearch.json`
 - for packages which should remain pinned, place them
-  in `manifest-lock.overrides.$basearch.json`
+  in `manifest-lock.overrides.$basearch.yaml`
 
 There will be better tooling to come to enable this, though
 one easy way to do this is for now:
