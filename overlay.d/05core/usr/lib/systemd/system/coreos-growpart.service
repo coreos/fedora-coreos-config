@@ -4,7 +4,8 @@
 Description=Resize root partition
 ConditionPathExists=!/run/ostree-live
 ConditionPathExists=!/var/lib/coreos-growpart.stamp
-Before=sshd.service
+DefaultDependencies=no
+Before=basic.target
 
 [Service]
 Type=oneshot
@@ -12,4 +13,4 @@ ExecStart=/usr/libexec/coreos-growpart /
 RemainAfterExit=yes
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=basic.target
