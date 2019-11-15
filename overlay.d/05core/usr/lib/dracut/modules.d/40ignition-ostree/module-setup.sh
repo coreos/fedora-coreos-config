@@ -21,6 +21,9 @@ install() {
         systemd-sysusers \
         systemd-tmpfiles
 
+    # growpart deps
+    inst_multiple sfdisk awk realpath basename dirname sfdisk xfs_growfs growpart touch
+
     for x in mount populate; do
         install_ignition_unit ignition-ostree-${x}-var.service
         inst_script "$moddir/ignition-ostree-${x}-var.sh" "/usr/sbin/ignition-ostree-${x}-var"
@@ -30,4 +33,7 @@ install() {
     install_ignition_unit ignition-ostree-mount-subsequent-sysroot.service subsequent
     inst_script "$moddir/ignition-ostree-mount-sysroot.sh" \
         "/usr/sbin/ignition-ostree-mount-sysroot"
+
+    install_ignition_unit ignition-ostree-growfs.service
+    inst_script "$moddir/coreos-growpart" /usr/libexec/coreos-growpart
 }
