@@ -13,3 +13,4 @@ enable afterburn-firstboot-checkin.service
 enable afterburn-sshkeys@.service
 # Update agent
 enable zincati.service
+enable coreos-keep-cgroup-v1.service
