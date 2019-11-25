@@ -4,7 +4,6 @@
 
 include:
   - ignition-and-ostree.yaml
-  - file-transfer.yaml
 
 initramfs-args:
   - --no-hostonly
@@ -55,9 +54,6 @@ remove-from-packages:
               /usr/lib/systemd/system/systemd-networkd-wait-online.service]
   - [systemd-container, /usr/lib/systemd/network/.*]
   - [systemd-udev, /usr/lib/systemd/network/.*]
-  # We're still using the legacy dracut network module for now. Dracut keys off
-  # of this: https://github.com/dracutdevs/dracut/blob/1fcc70fe57eea0ea658aa2de5c0044683fe85cf1/modules.d/40network/module-setup.sh#L11
-  - [NetworkManager, /usr/libexec/nm-initrd-generator]
 
 
 remove-files:
@@ -126,24 +122,23 @@ packages:
   - cryptsetup
   - cifs-utils
   # Time sync
-  - chrony
+  - chrony timedatex
   # Extra runtime
   - sssd shadow-utils
   - logrotate
   # Used by admins interactively
   - sudo coreutils less tar xz gzip bzip2
-  - socat net-tools bind-utils
+  - nmap-ncat net-tools bind-utils
   - bash-completion
   - openssl
   - vim-minimal
-  # file-transfer: note fuse-sshfs is not in RHEL
-  # so we can't put it in file-transfer.yaml
-  - fuse-sshfs
+  # Moving files around and verifying them
+  - rsync fuse-sshfs
+  - gnupg2
   # User experience
   - console-login-helper-messages-issuegen
   - console-login-helper-messages-motdgen
   - console-login-helper-messages-profile
-  - toolbox
   # CoreOS Installer
   - coreos-installer coreos-installer-dracut
   # i18n

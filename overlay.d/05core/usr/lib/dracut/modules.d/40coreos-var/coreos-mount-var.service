@@ -1,7 +1,6 @@
 [Unit]
 Description=Mount OSTree /var
 DefaultDependencies=false
-ConditionKernelCommandLine=ostree
 ConditionPathExists=!/run/ostree-live
 
 # Make sure ExecStop= runs before we switch root
@@ -22,5 +21,5 @@ Before=ignition-mount.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/sbin/ignition-ostree-mount-var mount
-ExecStop=/usr/sbin/ignition-ostree-mount-var umount
+ExecStart=/usr/sbin/coreos-mount-var mount
+ExecStop=/usr/sbin/coreos-mount-var umount

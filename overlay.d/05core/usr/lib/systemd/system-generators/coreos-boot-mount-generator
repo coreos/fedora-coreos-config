@@ -11,14 +11,6 @@ add_wants() {
     ln -sf "../${name}" "${wants_dir}/${name}"
 }
 
-# If there's no aleph version from https://github.com/coreos/coreos-assembler/pull/768
-# then this is a non-FCOS system, likely RHCOS pre-4.3.  In
-# that case, we don't want to overwrite what the systemd-fstab-generator
-# will do.
-if ! [ -f /sysroot/.coreos-aleph-version.json ]; then
-    exit 0
-fi
-
 # Don't create mount units for /boot or /boot/efi on live systems.
 # ConditionPathExists won't work here because conditions don't affect
 # the dependency on the underlying device unit.
