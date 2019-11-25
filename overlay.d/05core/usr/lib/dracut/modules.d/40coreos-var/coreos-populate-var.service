@@ -1,8 +1,6 @@
 [Unit]
 Description=Populate OSTree /var
 DefaultDependencies=false
-ConditionKernelCommandLine=|ostree
-ConditionPathExists=|/run/ostree-live
 
 # Need to do this with all mount points active
 After=ignition-mount.service
@@ -13,4 +11,4 @@ Before=ignition-files.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/sbin/ignition-ostree-populate-var
+ExecStart=/usr/sbin/coreos-populate-var

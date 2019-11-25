@@ -1,1078 +1,1412 @@
 {
   "packages": {
+    "GeoIP": {
+      "evra": "1.6.12-5.fc30.x86_64",
+      "digest": "sha256:21dc1220cfdacd089c8c8ed9985801a9d09edb7c26543694cef57ada1d8aafa8"
+    },
+    "GeoIP-GeoLite-data": {
+      "evra": "2018.06-3.fc30.noarch",
+      "digest": "sha256:b871f757d061af1125280219dca15b5066018b6ff20c08010c5774c484f127a8"
+    },
     "NetworkManager": {
-      "evra": "1:1.20.6-1.fc31.x86_64"
+      "evra": "1:1.16.4-1.fc30.x86_64",
+      "digest": "sha256:b58f5090e41bfa72da3263b0e6682f2408b474e289d618b9f64cfae0daf909ce"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.20.6-1.fc31.x86_64"
+      "evra": "1:1.16.4-1.fc30.x86_64",
+      "digest": "sha256:d3eac4be990408fd1d1e72d15e6a24bce6658d846a7fd20de995a19c1d7fb285"
     },
     "acl": {
-      "evra": "2.2.53-4.fc31.x86_64"
+      "evra": "2.2.53-3.fc30.x86_64",
+      "digest": "sha256:af5d6641b71ec62d126fa71322a8451aa3de7948202633da802bccd1fd6ece45"
     },
     "adcli": {
-      "evra": "0.8.2-7.fc31.x86_64"
+      "evra": "0.8.2-3.fc30.x86_64",
+      "digest": "sha256:ff7862e1b1fefe936f3ae614d008835e686ccdc6ec06e7cf445e8f75d73d50f0"
     },
     "afterburn": {
-      "evra": "4.1.3-1.module_f31+6563+49f1a537.x86_64"
+      "evra": "4.1.3-1.module_f30+6561+89082b01.x86_64",
+      "digest": "sha256:d6ffec3253c7567de07c4f91194278d4ffe677b74e15ba93a8e2f490ac6dad5a"
     },
     "afterburn-dracut": {
-      "evra": "4.1.3-1.module_f31+6563+49f1a537.x86_64"
+      "evra": "4.1.3-1.module_f30+6561+89082b01.x86_64",
+      "digest": "sha256:31d26999bda6b142e39a371ee31d718f46427bc70b78dc4d9cbd8dec37f22f3e"
     },
     "alternatives": {
-      "evra": "1.11-5.fc31.x86_64"
+      "evra": "1.11-4.fc30.x86_64",
+      "digest": "sha256:79102f5296cfc94f54f1dc658019f480d1450830162f76fb8da391d24372af6f"
     },
     "audit-libs": {
-      "evra": "3.0-0.15.20191104git1c2f876.fc31.x86_64"
+      "evra": "3.0-0.9.20190507gitf58ec40.fc30.x86_64",
+      "digest": "sha256:e42fd9ac5910942f5221760a64c365973f745a0a2b06b6c6ae8987dfca38e1e7"
     },
     "avahi-libs": {
-      "evra": "0.7-20.fc31.x86_64"
+      "evra": "0.7-18.fc30.x86_64",
+      "digest": "sha256:335068a13191336a4264eefcdd744d7453e0a5af451e1d60fd7b215a1620d534"
     },
     "basesystem": {
-      "evra": "11-8.fc31.noarch"
+      "evra": "11-7.fc30.noarch",
+      "digest": "sha256:df96312e6f1e9966393b3908be58821e3aaa793fe0ae386c154ddd26e11a4928"
     },
     "bash": {
-      "evra": "5.0.7-3.fc31.x86_64"
+      "evra": "5.0.7-1.fc30.x86_64",
+      "digest": "sha256:f75d26fc2ff4983cfcde7a1fd67e998b5c9a9e4dca58c92ea888e9dd80e9e897"
     },
     "bash-completion": {
-      "evra": "1:2.8-7.fc31.noarch"
+      "evra": "1:2.8-6.fc30.noarch",
+      "digest": "sha256:630cc3a17382d3dcdc8dc95a76e051c9050368fd168328661e7b26f79a74173b"
     },
     "bc": {
-      "evra": "1.07.1-9.fc31.x86_64"
+      "evra": "1.07.1-8.fc30.x86_64",
+      "digest": "sha256:7196621cc59f01766548788ee77312eec55724ba0e369c9d3fedf3ff4e94f840"
+    },
+    "bind-export-libs": {
+      "evra": "32:9.11.10-1.fc30.x86_64",
+      "digest": "sha256:93369f711c5e1117a0842ace640c853a93a2ab1de342828f8d7b55ee1ed4fd6c"
     },
     "bind-libs": {
-      "evra": "32:9.11.11-1.fc31.x86_64"
+      "evra": "32:9.11.10-1.fc30.x86_64",
+      "digest": "sha256:2c5bf0fd05128de75814695c4a5a63d74618ce6ad42fbbdcfae2a7b612956497"
     },
     "bind-libs-lite": {
-      "evra": "32:9.11.11-1.fc31.x86_64"
+      "evra": "32:9.11.10-1.fc30.x86_64",
+      "digest": "sha256:af44fa0af1b265565514b90cc55076bc00b8204a437f9762b0e5784547774477"
     },
     "bind-license": {
-      "evra": "32:9.11.11-1.fc31.noarch"
+      "evra": "32:9.11.10-1.fc30.noarch",
+      "digest": "sha256:2faf8076de01779ca98233aa6277ddd3c608f339877028b6a6e9ab0a09591ab4"
     },
     "bind-utils": {
-      "evra": "32:9.11.11-1.fc31.x86_64"
+      "evra": "32:9.11.10-1.fc30.x86_64",
+      "digest": "sha256:82071bf94f54fd7bca4371d570db0bd3629b4310072ebd652e768fb1fa7845a2"
     },
     "brotli": {
-      "evra": "1.0.7-6.fc31.x86_64"
+      "evra": "1.0.7-3.fc30.x86_64",
+      "digest": "sha256:44f3111c71d2bfc3456be489a03eda9be054c1ea903395a918f1d731d0104fbf"
     },
     "btrfs-progs": {
-      "evra": "5.2.1-1.fc31.x86_64"
+      "evra": "5.2.1-1.fc30.x86_64",
+      "digest": "sha256:a7857bc595732f816edd4718ff2b9819d85d1a459c39ce6bda27988b3953a0ca"
     },
     "bubblewrap": {
-      "evra": "0.3.3-3.fc31.x86_64"
+      "evra": "0.3.3-2.fc30.x86_64",
+      "digest": "sha256:1476456bf1aebcbf1f6a793a751c83fc5a9e47062b4816a149c96d593a7cc976"
     },
     "bzip2": {
-      "evra": "1.0.8-1.fc31.x86_64"
+      "evra": "1.0.6-29.fc30.x86_64",
+      "digest": "sha256:be206924278c745fc04b6b299ac46b4d0c9fe3d979bf34232e0a4071c434741a"
     },
     "bzip2-libs": {
-      "evra": "1.0.8-1.fc31.x86_64"
+      "evra": "1.0.6-29.fc30.x86_64",
+      "digest": "sha256:bd91504396b619a0e177db238e07283bbcf24cfd92630d5a5af99342c3952d0d"
     },
     "c-ares": {
-      "evra": "1.15.0-4.module_f31+5271+b9c46c4d.x86_64"
+      "evra": "1.15.0-4.module_f30+5262+10ab6e6f.x86_64",
+      "digest": "sha256:3c6f0a34fef90fa792baa763105fb4d73984c7a216a6422271ce5cd4d9383d77"
     },
     "ca-certificates": {
-      "evra": "2019.2.32-3.fc31.noarch"
+      "evra": "2018.2.26-3.fc30.noarch",
+      "digest": "sha256:14d724a423050ba9aed308f9ab04f54482008cf0112dbfeb9c784ba861cd60e3"
     },
     "chrony": {
-      "evra": "3.5-4.fc31.x86_64"
+      "evra": "3.5-1.fc30.x86_64",
+      "digest": "sha256:dc96069efc1430d879776bfa8f8fa1cbfc61d604d8b86fad9f0be66d4e30044e"
     },
     "cifs-utils": {
-      "evra": "6.9-2.fc31.x86_64"
+      "evra": "6.9-1.fc30.x86_64",
+      "digest": "sha256:0f01346700be362afe051b2c0dbd74d707f692b1a17286d1c0e948e10c0a6cea"
     },
     "cloud-utils-growpart": {
-      "evra": "0.31-3.fc31.noarch"
-    },
-    "compat-readline5": {
-      "evra": "5.2-34.fc31.x86_64"
-    },
-    "conmon": {
-      "evra": "2:2.0.2-1.fc31.x86_64"
+      "evra": "0.31-2.fc30.noarch",
+      "digest": "sha256:bf653bf6dfc1e9055086f9e43f32cc607724c75a40cd516bff86c27cb7261047"
     },
     "console-login-helper-messages": {
-      "evra": "0.17-1.fc31.noarch"
+      "evra": "0.17-1.fc30.noarch",
+      "digest": "sha256:cb109a1ab1cd1c87ca5f60fb48b8bf1144fb6edb18fd78c936cf1b48980f18a9"
     },
     "console-login-helper-messages-issuegen": {
-      "evra": "0.17-1.fc31.noarch"
+      "evra": "0.17-1.fc30.noarch",
+      "digest": "sha256:3f8f72a0e3cf8da579c5c5e586d21bb12097865300a14b705f3b8e9d681bba6e"
     },
     "console-login-helper-messages-motdgen": {
-      "evra": "0.17-1.fc31.noarch"
+      "evra": "0.17-1.fc30.noarch",
+      "digest": "sha256:b4adfda294a4a5bbdc12b6aa50dff9f7c5c2fb05af79be09b40957532955d6bf"
     },
     "console-login-helper-messages-profile": {
-      "evra": "0.17-1.fc31.noarch"
+      "evra": "0.17-1.fc30.noarch",
+      "digest": "sha256:faf84a8981e452e7f24b1e0e336e97cac53a9ec68de3b75e7c15348c5a5bf53e"
     },
     "container-selinux": {
-      "evra": "2:2.119.0-2.fc31.noarch"
-    },
-    "containerd": {
-      "evra": "1.2.6-2.20190627gitd68b593.fc31.x86_64"
+      "evra": "2:2.117.0-1.gitbfde70a.fc30.noarch",
+      "digest": "sha256:5a9d8574a640b5e066648d35e52a8ef9c8125154bc88923be7a334025acb77bd"
     },
     "containernetworking-plugins": {
-      "evra": "0.8.2-2.1.dev.git485be65.fc31.x86_64"
+      "evra": "0.8.2-2.git485be65.fc30.x86_64",
+      "digest": "sha256:3107a04fd500cf0c27d3b70c3a1bebec95c046e55705e0ed7ce88c468a75728e"
     },
     "containers-common": {
-      "evra": "1:0.1.40-3.fc31.x86_64"
+      "evra": "1:0.1.37-2.fc30.x86_64",
+      "digest": "sha256:ba28419aff035892db722dd5ff95e502d18c4cc1b9e7c9ec89fa766cd22b1a87"
     },
     "coreos-installer": {
-      "evra": "0-10.git2fcf441.fc31.noarch"
+      "evra": "0-9.git2fcf441.fc30.noarch",
+      "digest": "sha256:1b2f606bff1c627c92f143e7cba248dbf340efa738360d34aad5dd641dd8ff6d"
     },
     "coreos-installer-dracut": {
-      "evra": "0-10.git2fcf441.fc31.noarch"
+      "evra": "0-9.git2fcf441.fc30.noarch",
+      "digest": "sha256:53d8d74accc073f066f988558a68788f99475d02bb8fcb6e193ed8cbbcee8925"
     },
     "coreutils": {
-      "evra": "8.31-6.fc31.x86_64"
+      "evra": "8.31-2.fc30.x86_64",
+      "digest": "sha256:66b37467f3bb56cc611215608108e4d24c8e00fc591ea89f9eefeaa7c2297c88"
     },
     "coreutils-common": {
-      "evra": "8.31-6.fc31.x86_64"
+      "evra": "8.31-2.fc30.x86_64",
+      "digest": "sha256:350cfdf938a4d40270243cc1393691d2bffd975a03cd88c5394a4a7c6bedf29d"
     },
     "cpio": {
-      "evra": "2.12-12.fc31.x86_64"
+      "evra": "2.12-10.fc30.x86_64",
+      "digest": "sha256:4453af1c5e7d91972c06fa4c4ab76746d2686c872d022f0502b20d8a573f5772"
     },
     "cracklib": {
-      "evra": "2.9.6-21.fc31.x86_64"
-    },
-    "crun": {
-      "evra": "0.10.6-1.fc31.x86_64"
+      "evra": "2.9.6-19.fc30.x86_64",
+      "digest": "sha256:6122e4c9ea335d18cb69534176835987816a71f91c3b2bae591c67b940b93558"
     },
     "crypto-policies": {
-      "evra": "20191002-1.gitc93dc99.fc31.noarch"
+      "evra": "20190527-1.git0b3add8.fc30.noarch",
+      "digest": "sha256:05fbace7ef9c6d5ca6eda86d098d82c729a0d3cc3190819f0a61f5b79bf29269"
     },
     "cryptsetup": {
-      "evra": "2.2.2-1.fc31.x86_64"
+      "evra": "2.2.1-1.fc30.x86_64",
+      "digest": "sha256:9e7e57cd6714057a871739639503f81f4400cb5a6c960ada55f1c36281cc07ea"
     },
     "cryptsetup-libs": {
-      "evra": "2.2.2-1.fc31.x86_64"
+      "evra": "2.2.1-1.fc30.x86_64",
+      "digest": "sha256:5af22925afdf1a00e14660f460966b2119ded7372b8ad6483afaedad7973a734"
     },
     "cups-libs": {
-      "evra": "1:2.2.12-3.fc31.x86_64"
+      "evra": "1:2.2.12-2.fc30.x86_64",
+      "digest": "sha256:1eaa88c8bb22c42b01efa35bcd3fcbfe2e05f1a9b37abde48485f9e444eecf2f"
     },
     "curl": {
-      "evra": "7.66.0-1.fc31.x86_64"
+      "evra": "7.65.3-4.fc30.x86_64",
+      "digest": "sha256:08479fb764b842b403a78869fb7760bc02b5adad3fc7dc8136445a1a06447bc2"
     },
     "cyrus-sasl-gssapi": {
-      "evra": "2.1.27-2.fc31.x86_64"
+      "evra": "2.1.27-0.6rc7.fc30.x86_64",
+      "digest": "sha256:7d31523ee065ca44f3ea1e7df72e70bb4ed95cb7b496e1832aba931d5f937daf"
     },
     "cyrus-sasl-lib": {
-      "evra": "2.1.27-2.fc31.x86_64"
+      "evra": "2.1.27-0.6rc7.fc30.x86_64",
+      "digest": "sha256:7e61fb39689669e2c96909008f7970ea5037046fd4133c9bb38364ce82813966"
     },
     "dbus": {
-      "evra": "1:1.12.16-3.fc31.x86_64"
+      "evra": "1:1.12.16-1.fc30.x86_64",
+      "digest": "sha256:a17e1c586cf85f1e0a19fb3eb77077e260a95ea626fdb6ccd907ca123c1a6bd0"
     },
     "dbus-broker": {
-      "evra": "21-6.fc31.x86_64"
+      "evra": "21-3.fc30.x86_64",
+      "digest": "sha256:986791ae0d288bfb9f02b8f44b1841cf5acf3f6ef10216245f3d107104cb900c"
     },
     "dbus-common": {
-      "evra": "1:1.12.16-3.fc31.noarch"
+      "evra": "1:1.12.16-1.fc30.noarch",
+      "digest": "sha256:d99dd45aecf906a2cc6bfed434c54c8bd83b9492341ea6f2d838217507ca60a8"
     },
     "dbus-libs": {
-      "evra": "1:1.12.16-3.fc31.x86_64"
+      "evra": "1:1.12.16-1.fc30.x86_64",
+      "digest": "sha256:c6808c708d69c9014ced032c04a21aa4be30aa87f7b4e67eac381da128cdc722"
     },
     "dbxtool": {
-      "evra": "8-10.fc31.x86_64"
+      "evra": "8-9.fc30.x86_64",
+      "digest": "sha256:e4ffb590576ed0ae312352ecc1eb76afb997519806e3dac0cf9bff5da3418531"
     },
     "device-mapper": {
-      "evra": "1.02.165-1.fc31.x86_64"
+      "evra": "1.02.154-3.fc30.x86_64",
+      "digest": "sha256:f45e5b6bdbcac77f80cad19000b3749a405510870e3bbca45078c07a3e79359c"
     },
     "device-mapper-event": {
-      "evra": "1.02.165-1.fc31.x86_64"
+      "evra": "1.02.154-3.fc30.x86_64",
+      "digest": "sha256:ef1f79f61157850280e2423548ebe16a551cca7189cfb37113eaadab272f5b1f"
     },
     "device-mapper-event-libs": {
-      "evra": "1.02.165-1.fc31.x86_64"
+      "evra": "1.02.154-3.fc30.x86_64",
+      "digest": "sha256:bab211b2b6055f75f20505268d34f4daa63162834ee996dc3143eef22ca2b86a"
     },
     "device-mapper-libs": {
-      "evra": "1.02.165-1.fc31.x86_64"
+      "evra": "1.02.154-3.fc30.x86_64",
+      "digest": "sha256:082e0a93da3ee9e80f00f2f17e0da1e91afa94385703a8b949d20facb0fed212"
     },
     "device-mapper-multipath": {
-      "evra": "0.8.0-3.fc31.x86_64"
+      "evra": "0.7.9-6.git2df6110.fc30.x86_64",
+      "digest": "sha256:128194d4bdc87682c727a0110151294b84990df06664299dc8020fba465328be"
     },
     "device-mapper-multipath-libs": {
-      "evra": "0.8.0-3.fc31.x86_64"
+      "evra": "0.7.9-6.git2df6110.fc30.x86_64",
+      "digest": "sha256:21106359883801054b110525781103cf48d57d3b56596d70f32efc0e9c9a3248"
     },
     "device-mapper-persistent-data": {
-      "evra": "0.8.5-2.fc31.x86_64"
+      "evra": "0.7.6-4.fc30.x86_64",
+      "digest": "sha256:8f4f0e1f76e4506d8c792770f87be25c6416b19ef0869754fb7f90e62bc01655"
     },
     "dhcp-client": {
-      "evra": "12:4.4.1-19.fc31.x86_64"
+      "evra": "12:4.3.6-37.fc30.x86_64",
+      "digest": "sha256:1d2e7b26b38eb27933ef189649528fbbb6382124256154c56445c486fd19762d"
     },
     "dhcp-common": {
-      "evra": "12:4.4.1-19.fc31.noarch"
+      "evra": "12:4.3.6-37.fc30.noarch",
+      "digest": "sha256:c10b4892e1a406299838f820bec0b4ee909365de7eb3559ff89db3552f5b2358"
+    },
+    "dhcp-libs": {
+      "evra": "12:4.3.6-37.fc30.x86_64",
+      "digest": "sha256:3bcb6f3dc9e3d813a8f8ea42b260707018935d14bb8d5efb7fe5542fb993b13a"
     },
     "diffutils": {
-      "evra": "3.7-3.fc31.x86_64"
+      "evra": "3.7-2.fc30.x86_64",
+      "digest": "sha256:5e513268eb8aca54e2375d4ee7d4bceec74fd1396462652b199a80343449b704"
     },
     "dosfstools": {
-      "evra": "4.1-9.fc31.x86_64"
+      "evra": "4.1-8.fc30.x86_64",
+      "digest": "sha256:69ba0efe62cea8df8aaf3a0e08420d51c9e297e4363d3bc45155f05675802174"
     },
     "dracut": {
-      "evra": "049-27.git20181204.fc31.1.x86_64"
+      "evra": "049-26.git20181204.fc30.x86_64",
+      "digest": "sha256:76962ec5ea720cb22eb43f808013d8c974fb6862ebd6c193a76e49c987341856"
     },
     "dracut-network": {
-      "evra": "049-27.git20181204.fc31.1.x86_64"
+      "evra": "049-26.git20181204.fc30.x86_64",
+      "digest": "sha256:3eb93cde35ec0042540266ab2ce7cb30d158fab8ed3afe79dd7cebddbe3049d0"
     },
     "e2fsprogs": {
-      "evra": "1.45.3-1.fc31.x86_64"
+      "evra": "1.44.6-1.fc30.x86_64",
+      "digest": "sha256:109f8a9036587d3df953290ef6424780f81b11f4fc162f44d1f1bd20fa8f90a7"
     },
     "e2fsprogs-libs": {
-      "evra": "1.45.3-1.fc31.x86_64"
+      "evra": "1.44.6-1.fc30.x86_64",
+      "digest": "sha256:4eefc58e32aca46c0b3d64da2454ffd52aa0beb03a7ce5e00c3cff0e49736639"
     },
     "efi-filesystem": {
-      "evra": "4-3.fc31.noarch"
+      "evra": "4-2.fc30.noarch",
+      "digest": "sha256:53d5b0c005d8c04fd115202678e6e8afafca67e42c7b76500797783a887a122d"
     },
     "efibootmgr": {
-      "evra": "16-6.fc31.x86_64"
+      "evra": "16-5.fc30.x86_64",
+      "digest": "sha256:557b44968db563d51e083edb8a9f3a0399ba12850935c350c01ce77ec4cb7da1"
     },
     "efivar-libs": {
-      "evra": "37-1.fc30.x86_64"
+      "evra": "37-1.fc30.x86_64",
+      "digest": "sha256:22fa9d5fecdf138f787ac05b179969d4588f170a3f75fdf5405f057ecc9cefd2"
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.177-1.fc31.noarch"
+      "evra": "0.177-1.fc30.noarch",
+      "digest": "sha256:014a56ea775c754902d7cebb03c7ac15d513778eab3d0eb5535fe867867968a5"
     },
     "elfutils-libelf": {
-      "evra": "0.177-1.fc31.x86_64"
+      "evra": "0.177-1.fc30.x86_64",
+      "digest": "sha256:67bbb1f791b8d556e2e2f52eed4910a777f2a6b01a2a5155b52b494082583217"
     },
     "elfutils-libs": {
-      "evra": "0.177-1.fc31.x86_64"
+      "evra": "0.177-1.fc30.x86_64",
+      "digest": "sha256:9d89a4f7336ec61cd1728bbe330157da6b481fed79d3965a9b7c4b64ba4385d3"
     },
     "expat": {
-      "evra": "2.2.8-1.fc31.x86_64"
+      "evra": "2.2.8-1.fc30.x86_64",
+      "digest": "sha256:72e33bce41d5a0bf23552b7ad216a960b14238f8d783fc5d176642b6d2cbbe17"
     },
     "fedora-coreos-pinger": {
-      "evra": "0.0.4-1.module_f31+5371+3c747891.x86_64"
+      "evra": "0.0.4-1.module_f30+5099+4493ad29.x86_64",
+      "digest": "sha256:8a9d4dfc4b78cf2d13b42b92aaac20b3147d54a116c39c57697bfb785e02e028"
     },
     "fedora-gpg-keys": {
-      "evra": "31-1.noarch"
+      "evra": "30-2.noarch",
+      "digest": "sha256:42d4cef468915c90b554c9c609fe61258e44fcae8f027f494a84a1ff012059c6"
     },
     "fedora-release-common": {
-      "evra": "31-2.noarch"
+      "evra": "30-5.noarch",
+      "digest": "sha256:30f913543314bf1459c4297971ecfba3a836bf2d7085a251e45d5fb20a797608"
     },
     "fedora-release-coreos": {
-      "evra": "31-2.noarch"
+      "evra": "30-5.noarch",
+      "digest": "sha256:c01b85fffef1a55d09da88591fd310c341c24b912c753f8c275bad70051535d2"
     },
     "fedora-repos": {
-      "evra": "31-1.noarch"
+      "evra": "30-2.noarch",
+      "digest": "sha256:790b1d8572e37f1f9f41329b25126c62ab7ae8a9d2506dc8a070245f07f8ad2f"
     },
     "fedora-repos-ostree": {
-      "evra": "31-1.noarch"
+      "evra": "30-2.noarch",
+      "digest": "sha256:664fe42b92075538e821c0dcfaf5e15f813b82d98a61e773bd4bd4a98e277e8c"
     },
     "file": {
-      "evra": "5.37-8.fc31.x86_64"
+      "evra": "5.36-4.fc30.x86_64",
+      "digest": "sha256:de6be4e3e4ef188aa0f5f9c43e3c25b14832de90ddf3cb0be0509769acf34baa"
     },
     "file-libs": {
-      "evra": "5.37-8.fc31.x86_64"
+      "evra": "5.36-4.fc30.x86_64",
+      "digest": "sha256:530fce13e500122e70fa5e84d6aee28873d214d47e16d412db9050885261b8d1"
     },
     "filesystem": {
-      "evra": "3.12-2.fc31.x86_64"
+      "evra": "3.10-1.fc30.x86_64",
+      "digest": "sha256:b5aefbaeb5bcb388ebcdcaa20e7b97164460cc7556f2f563a414c66e38b3feed"
     },
     "findutils": {
-      "evra": "1:4.6.0-24.fc31.x86_64"
+      "evra": "1:4.6.0-22.fc30.x86_64",
+      "digest": "sha256:39ab8f885ac9ba90b29abc1afbd57c47908fdf5acfb0640f4c7cbdbbca298566"
     },
     "fipscheck": {
-      "evra": "1.5.0-7.fc31.x86_64"
+      "evra": "1.5.0-6.fc30.x86_64",
+      "digest": "sha256:6a64e010e8a06e3f176c4a6aaa0aa66da14e502b8283314894862a8e9b1fa2af"
     },
     "fipscheck-lib": {
-      "evra": "1.5.0-7.fc31.x86_64"
-    },
-    "flatpak-session-helper": {
-      "evra": "1.4.3-3.fc31.x86_64"
+      "evra": "1.5.0-6.fc30.x86_64",
+      "digest": "sha256:c68c89d4ed5a399566713e4f0d3291fbec8a3ea401fa7a63847eeeb3faf0f488"
     },
     "freetype": {
-      "evra": "2.10.0-3.fc31.x86_64"
+      "evra": "2.9.1-7.fc30.x86_64",
+      "digest": "sha256:e02c9bccd9c5366b2b60c6e84490e38ec5f736db209947e2fae5aa7a9a7c26c7"
     },
     "fstrm": {
-      "evra": "0.5.0-1.fc31.x86_64"
+      "evra": "0.4.0-3.fc30.x86_64",
+      "digest": "sha256:c4af9eeca77bb4cf6d21fe800dd1b0a15b0267fd07cef0091ed3d91b4afdcb2c"
     },
     "fuse": {
-      "evra": "2.9.9-8.fc31.x86_64"
+      "evra": "2.9.9-7.fc30.x86_64",
+      "digest": "sha256:7dcca11043d110987c00d34f6e6672e216e0e8bdc55e0253f559cdf899f525a0"
     },
     "fuse-common": {
-      "evra": "3.6.2-1.fc31.x86_64"
+      "evra": "3.6.2-1.fc30.x86_64",
+      "digest": "sha256:b9254f87befb1cbb1a9b69964c00379f9cadb40e7a548df0ee1b326568449721"
     },
     "fuse-libs": {
-      "evra": "2.9.9-8.fc31.x86_64"
+      "evra": "2.9.9-7.fc30.x86_64",
+      "digest": "sha256:0a3e94f596ece254aabc6d988ded67b5706de4a5cc840582184c26e9b6ee25d5"
     },
     "fuse-overlayfs": {
-      "evra": "0.7-1.fc31.x86_64"
+      "evra": "0.6.3-2.0.dev.git46c0f8e.fc30.x86_64",
+      "digest": "sha256:db250f70de12f2b38f7874c6eaf0bb39af6e469952735729e807c058d58aa545"
     },
     "fuse-sshfs": {
-      "evra": "3.6.0-1.fc31.x86_64"
+      "evra": "3.5.2-1.fc30.x86_64",
+      "digest": "sha256:6aa085ebe3d745084d46a19c7fd3b992584cc429dfe240051ec627d129b4583a"
     },
     "fuse3": {
-      "evra": "3.6.2-1.fc31.x86_64"
+      "evra": "3.6.2-1.fc30.x86_64",
+      "digest": "sha256:5d108e7d4c528f10a7b7286b16278a163dfd63c7e6428dad9b75cf1bccd0254f"
     },
     "fuse3-libs": {
-      "evra": "3.6.2-1.fc31.x86_64"
+      "evra": "3.6.2-1.fc30.x86_64",
+      "digest": "sha256:b6b0bac91c0feb4eb2c165f62ff4f10d3e29dafceb00dde8f926c2cb5b145025"
     },
     "gawk": {
-      "evra": "5.0.1-5.fc31.x86_64"
+      "evra": "4.2.1-6.fc30.x86_64",
+      "digest": "sha256:30b5721170f5b8318731925b49f1932cedb9e93c0d2f92938b2d0094cb81ffbd"
     },
     "gdbm-libs": {
-      "evra": "1:1.18.1-1.fc31.x86_64"
+      "evra": "1:1.18-4.fc30.x86_64",
+      "digest": "sha256:f92ada67c2247a5ffc9bbaf014eb786d5aaee74ad9e0ae6f4d3a7d8ee780f643"
     },
     "gdisk": {
-      "evra": "1.0.4-5.fc31.x86_64"
+      "evra": "1.0.4-4.fc30.x86_64",
+      "digest": "sha256:220455fe67921ca54d89b9ec93e040740e9d05046f728599619bda589f4d6ae4"
     },
     "gettext": {
-      "evra": "0.20.1-2.fc31.x86_64"
+      "evra": "0.19.8.1-22.fc30.x86_64",
+      "digest": "sha256:a14c46d6f0289e02a76fe070825e9b7c111faa24e07f473737d530d909287a6d"
     },
     "gettext-libs": {
-      "evra": "0.20.1-2.fc31.x86_64"
-    },
-    "git-core": {
-      "evra": "2.23.0-1.fc31.x86_64"
+      "evra": "0.19.8.1-22.fc30.x86_64",
+      "digest": "sha256:3f259d649243c840e7c73a0806898d894b642f1e4401639e45ab6f0f391928aa"
     },
     "glib2": {
-      "evra": "2.62.2-1.fc31.x86_64"
+      "evra": "2.60.7-1.fc30.x86_64",
+      "digest": "sha256:911db4c2d92eb446b4cf2d68b4de5cfa11c5c8fedfbe281e1e050fe372439caf"
     },
     "glibc": {
-      "evra": "2.30-7.fc31.x86_64"
+      "evra": "2.29-22.fc30.x86_64",
+      "digest": "sha256:4358592ce176af1670537721504d09e05ed94dde7cbd903cfd17e9646fc1eee2"
     },
     "glibc-all-langpacks": {
-      "evra": "2.30-7.fc31.x86_64"
+      "evra": "2.29-22.fc30.x86_64",
+      "digest": "sha256:0319130a9c9a0460d8be0768e2f5ea8c203a52dea11f6432f44a531e8c438ee1"
     },
     "glibc-common": {
-      "evra": "2.30-7.fc31.x86_64"
+      "evra": "2.29-22.fc30.x86_64",
+      "digest": "sha256:f00928e07c0848b00d0917af9445c6c82094cda70008145ef243623fb4b4ba1c"
     },
     "gmp": {
-      "evra": "1:6.1.2-10.fc31.x86_64"
+      "evra": "1:6.1.2-10.fc30.x86_64",
+      "digest": "sha256:93256e48e8fd63034e9f5d6144b17eb7116a8dd32cf888052fa79aca01b0c27a"
     },
     "gnupg2": {
-      "evra": "2.2.17-2.fc31.x86_64"
+      "evra": "2.2.17-1.fc30.x86_64",
+      "digest": "sha256:b40f6934f7aafc1243074c7b567837872ee8f601c3cf2b67fc9c600c6480ca16"
     },
     "gnutls": {
-      "evra": "3.6.10-1.fc31.x86_64"
+      "evra": "3.6.8-1.fc30.x86_64",
+      "digest": "sha256:ed08020c9644275a92bbde4ede6c7bf9235492d76a50586804b1c4fd6d73e31c"
     },
     "gpgme": {
-      "evra": "1.13.1-3.fc31.x86_64"
+      "evra": "1.12.0-1.fc30.x86_64",
+      "digest": "sha256:aa336e86f8122e43403a8242d3b64a286902af763fac774b3f0eb54db911619c"
     },
     "grep": {
-      "evra": "3.3-3.fc31.x86_64"
+      "evra": "3.1-9.fc30.x86_64",
+      "digest": "sha256:806617532d01219c819194085466aab3a6bc4a0b16da7d5851370576861116b0"
     },
     "grub2-common": {
-      "evra": "1:2.02-100.fc31.noarch"
+      "evra": "1:2.02-81.fc30.noarch",
+      "digest": "sha256:b0d085332d332b3c04ee2725bc93e18b20d7b375608717d7d0503314160e7d72"
     },
     "grub2-efi-x64": {
-      "evra": "1:2.02-100.fc31.x86_64"
+      "evra": "1:2.02-81.fc30.x86_64",
+      "digest": "sha256:5135fe8b635f9d2dd0417149937bfba2c44d4ff763307f5ef07e0ccf14165d9a"
     },
     "grub2-pc": {
-      "evra": "1:2.02-100.fc31.x86_64"
+      "evra": "1:2.02-81.fc30.x86_64",
+      "digest": "sha256:f8fc7bbdfe726413ff316e920872f4cf1fc54d6bc135350029d0158a41bdad17"
     },
     "grub2-pc-modules": {
-      "evra": "1:2.02-100.fc31.noarch"
+      "evra": "1:2.02-81.fc30.noarch",
+      "digest": "sha256:de77fdb62f3260ea0cea0643b87e79d65a2d001eb6805e8b93b15cc4f0b25d30"
     },
     "grub2-tools": {
-      "evra": "1:2.02-100.fc31.x86_64"
+      "evra": "1:2.02-81.fc30.x86_64",
+      "digest": "sha256:e658723269ffec9932cc489ce18f04a7315cfdf6dd8c812bd7ea8536180bce88"
     },
     "grub2-tools-extra": {
-      "evra": "1:2.02-100.fc31.x86_64"
+      "evra": "1:2.02-81.fc30.x86_64",
+      "digest": "sha256:1e945530a0b201b5f4b56303eb0b6635d8f8a75661959fa4b90128cf5709d3cb"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.02-100.fc31.x86_64"
+      "evra": "1:2.02-81.fc30.x86_64",
+      "digest": "sha256:f13ec0b9da4c9fb728acaf383bc5cbbad8455a3dd3b9143522a600dbeca0e09e"
     },
     "gzip": {
-      "evra": "1.10-1.fc31.x86_64"
+      "evra": "1.9-9.fc30.x86_64",
+      "digest": "sha256:ccd53ff031cec803697b64ee66854d077b17ae5e8a3fa74f49b6fff7dbc83023"
     },
     "hostname": {
-      "evra": "3.20-9.fc31.x86_64"
+      "evra": "3.20-8.fc30.x86_64",
+      "digest": "sha256:9c1bba4390716676d0dc4d325433295fd91064f6da3f27b90fd817bf131a7b3c"
     },
     "ignition": {
-      "evra": "2.0.1-5.git641ec6a.fc31.x86_64"
+      "evra": "2.0.1-4.git641ec6a.fc30.x86_64",
+      "digest": "sha256:d0251f9f7fd2428621f7bdbb08e162bcd223a1300202ead478db827ed06195a8"
     },
     "ipcalc": {
-      "evra": "0.2.5-3.fc31.x86_64"
+      "evra": "0.2.5-2.fc30.x86_64",
+      "digest": "sha256:e82a48e2d3685306798a8e13eeae7ab7cf40bc3d068b83ad524ef7a2f14787f3"
     },
     "iproute": {
-      "evra": "5.3.0-1.fc31.x86_64"
+      "evra": "5.2.0-1.fc30.x86_64",
+      "digest": "sha256:fbb5e46ed9d180522266d280c13ec1e8c95d298448503f05326df4975663c7a2"
     },
     "iproute-tc": {
-      "evra": "5.3.0-1.fc31.x86_64"
+      "evra": "5.2.0-1.fc30.x86_64",
+      "digest": "sha256:c65eac9173146c8bf9340297591d0af705825dd4a6b78589decc2e0c16667b91"
     },
     "iptables": {
-      "evra": "1.8.3-5.fc31.x86_64"
+      "evra": "1.8.2-3.fc30.x86_64",
+      "digest": "sha256:83ccade002f2df955fb09cef4487d202b9acd88d1a682cf7b8ff7f3327ff96c9"
     },
     "iptables-libs": {
-      "evra": "1.8.3-5.fc31.x86_64"
+      "evra": "1.8.2-3.fc30.x86_64",
+      "digest": "sha256:1418bce56436038c1b99676793db825ca6700e91fa7005f64010ff6454ec9f96"
     },
     "iptables-nft": {
-      "evra": "1.8.3-5.fc31.x86_64"
+      "evra": "1.8.2-3.fc30.x86_64",
+      "digest": "sha256:f96d999ad925c2b09e3b725a6f0683949a11566a24865253c27124e71c01e46d"
     },
     "iptables-services": {
-      "evra": "1.8.3-5.fc31.x86_64"
+      "evra": "1.8.2-3.fc30.x86_64",
+      "digest": "sha256:f7b8facdb14be71f7c8ab7c715b32204aabdf353f9c633daaa9c4f1624261d44"
     },
     "iputils": {
-      "evra": "20190515-3.fc31.x86_64"
+      "evra": "20180629-4.fc30.x86_64",
+      "digest": "sha256:8d9bb910aa1901d5e22ff720ca4f4099d9e09da3b0f07e3a917990dca66b0c2f"
     },
     "irqbalance": {
-      "evra": "2:1.4.0-4.fc31.x86_64"
+      "evra": "2:1.4.0-3.fc30.x86_64",
+      "digest": "sha256:ea802e1701497f23c749f0ee333f438aa690cf17ebcf81356cf2a14186a4d493"
     },
     "iscsi-initiator-utils": {
-      "evra": "6.2.0.876-10.gitf3c8e90.fc31.x86_64"
+      "evra": "6.2.0.876-8.gitf3c8e90.fc30.x86_64",
+      "digest": "sha256:bf707f9218018d6c33742837496a1d21bbb100fb941228fe9ee046a64fc45b3b"
     },
     "iscsi-initiator-utils-iscsiuio": {
-      "evra": "6.2.0.876-10.gitf3c8e90.fc31.x86_64"
+      "evra": "6.2.0.876-8.gitf3c8e90.fc30.x86_64",
+      "digest": "sha256:4471e0602939be56fc6556f48882da79650877184f683a78a10dc33b188df257"
     },
     "isns-utils-libs": {
-      "evra": "0.97-9.fc31.x86_64"
+      "evra": "0.97-8.fc30.x86_64",
+      "digest": "sha256:658119b19aceb53f7b113957948e049348e74ff0f6c41da057073cd16079238b"
     },
     "jansson": {
-      "evra": "2.12-4.fc31.x86_64"
+      "evra": "2.12-2.fc30.x86_64",
+      "digest": "sha256:f4270a5ace04775e27156a29424c98ddbf7d3f76ecef4d865fbc0c8634a67b56"
     },
     "jq": {
-      "evra": "1.6-3.fc31.x86_64"
+      "evra": "1.6-2.fc30.x86_64",
+      "digest": "sha256:39e04188f8a6a4957d6501e6d61e21a7262822820c6ef428de371d8dd6741b54"
     },
     "json-c": {
-      "evra": "0.13.1-7.fc31.x86_64"
+      "evra": "0.13.1-4.fc30.x86_64",
+      "digest": "sha256:3c182282d05793662145ccd8c2178966707b90619f842fcc1b89fb3f32e55ae1"
     },
     "json-glib": {
-      "evra": "1.4.4-3.fc31.x86_64"
+      "evra": "1.4.4-2.fc30.x86_64",
+      "digest": "sha256:b9a298accfb70c8d0a1ed899ab736302a58f1812c7ebbd8a6f3b8139fd4fa5ad"
     },
     "kbd": {
-      "evra": "2.0.4-14.fc31.x86_64"
+      "evra": "2.0.4-13.fc30.x86_64",
+      "digest": "sha256:f699504ac38b027c05025e613748b55a9f8c619304906c11402daf6ff571c0e5"
     },
     "kbd-legacy": {
-      "evra": "2.0.4-14.fc31.noarch"
+      "evra": "2.0.4-13.fc30.noarch",
+      "digest": "sha256:dd843efc22afe0b6dfac7c5787a4940390158dbbeb372b979bb50df57a19027d"
     },
     "kbd-misc": {
-      "evra": "2.0.4-14.fc31.noarch"
+      "evra": "2.0.4-13.fc30.noarch",
+      "digest": "sha256:5e08d7f13d4ded6e96e152d2b8b803f24edcc73a480815008b712161d35dfe5a"
     },
     "kernel": {
-      "evra": "5.3.11-300.fc31.x86_64"
+      "evra": "5.2.18-200.fc30.x86_64",
+      "digest": "sha256:17a6c3b8d1530fa96290021e50e9c0fd6c4779b49ab14eb1f8d92cb642c4ed25"
     },
     "kernel-core": {
-      "evra": "5.3.11-300.fc31.x86_64"
+      "evra": "5.2.18-200.fc30.x86_64",
+      "digest": "sha256:faee5e86cbf66ad60c178cdc395eadbd9d10552158685a0d5566b8f3d2ea2840"
     },
     "kernel-modules": {
-      "evra": "5.3.11-300.fc31.x86_64"
+      "evra": "5.2.18-200.fc30.x86_64",
+      "digest": "sha256:b9ec2f8cedc67c0e19b269e2eb771d5153d304f51c3bae537914ad1559b892bf"
     },
     "keyutils": {
-      "evra": "1.6-3.fc31.x86_64"
+      "evra": "1.6-2.fc30.x86_64",
+      "digest": "sha256:cd65636e28d5280f005d2d226af35d8e459823c1cd19968d24facc8104b75d55"
     },
     "keyutils-libs": {
-      "evra": "1.6-3.fc31.x86_64"
+      "evra": "1.6-2.fc30.x86_64",
+      "digest": "sha256:bd59fe862701bfb967d676e9c959fd07a3822779130236ab66b920dae19ae8f3"
     },
     "kmod": {
-      "evra": "26-4.fc31.x86_64"
+      "evra": "26-3.fc30.x86_64",
+      "digest": "sha256:9a0376f39e92e4aff164357ebc6c587fd4f9ca10785285c52dc8d51d0840ff2e"
     },
     "kmod-libs": {
-      "evra": "26-4.fc31.x86_64"
+      "evra": "26-3.fc30.x86_64",
+      "digest": "sha256:61e86e49cde4e187b2b6ed851a307da2403b7c24f75f5bc5e604186da9e10bb3"
     },
     "kpartx": {
-      "evra": "0.8.0-3.fc31.x86_64"
+      "evra": "0.7.9-6.git2df6110.fc30.x86_64",
+      "digest": "sha256:98a23fe54fab141322b689f536d81185e049465ca872780349335378aeed75ef"
     },
     "krb5-libs": {
-      "evra": "1.17-45.fc31.x86_64"
+      "evra": "1.17-15.fc30.x86_64",
+      "digest": "sha256:8cf2496c07dcabc232332b135fafb7ff0ade7f55f32c2937c50353dde6c17eee"
     },
     "less": {
-      "evra": "551-2.fc31.x86_64"
+      "evra": "551-1.fc30.x86_64",
+      "digest": "sha256:285a2633266872c82310a51c1a5d0f948276fc9eb22762094941b846a17ee557"
     },
     "libacl": {
-      "evra": "2.2.53-4.fc31.x86_64"
+      "evra": "2.2.53-3.fc30.x86_64",
+      "digest": "sha256:3e6447319bec0728eada85a5be6691a528048d7523b2d9d599f82dc280460ab2"
     },
     "libaio": {
-      "evra": "0.3.111-6.fc31.x86_64"
+      "evra": "0.3.111-4.fc30.x86_64",
+      "digest": "sha256:48ada36d31c735b5a4abddd76914d7509fd8784e121cc1b8fe8705dcefd9803c"
     },
     "libarchive": {
-      "evra": "3.4.0-1.fc31.x86_64"
+      "evra": "3.3.3-6.fc30.x86_64",
+      "digest": "sha256:a295be635243bea187b36a988ce0952ace6134454e1d217236c12cd8211d973f"
     },
     "libargon2": {
-      "evra": "20171227-3.fc31.x86_64"
+      "evra": "20161029-8.fc30.x86_64",
+      "digest": "sha256:9afee22223a94d15c22cec22903000b3db996b59595655f661f51fcd455b1cbf"
     },
     "libassuan": {
-      "evra": "2.5.3-2.fc31.x86_64"
+      "evra": "2.5.2-2.fc30.x86_64",
+      "digest": "sha256:3e85d01ceb7bbf3889c6c48a939912500dbf1a9a331ee8347ceb1d5ea3c69b7a"
     },
     "libattr": {
-      "evra": "2.4.48-7.fc31.x86_64"
+      "evra": "2.4.48-5.fc30.x86_64",
+      "digest": "sha256:0172b7efdf5ea3755d94f8666528c8f21266613e33dbda6457bfe7c654f1bb80"
     },
     "libbasicobjects": {
-      "evra": "0.1.1-43.fc31.x86_64"
+      "evra": "0.1.1-42.fc30.x86_64",
+      "digest": "sha256:f4901f45e0d98262d2043272c3f72984a2caaf09020cfa70394e78d5cbfcab61"
     },
     "libblkid": {
-      "evra": "2.34-3.fc31.x86_64"
+      "evra": "2.33.2-2.fc30.x86_64",
+      "digest": "sha256:2f6e8b3849b4539b55bfac296e9128c9e538a637a89fdff73cea323e14e7d4cd"
     },
     "libcap": {
-      "evra": "2.26-6.fc31.x86_64"
+      "evra": "2.26-5.fc30.x86_64",
+      "digest": "sha256:357edbf61be34137a6af69de8df83971dc90b0bf6bddb75b94f5eecf9bc90ccb"
     },
     "libcap-ng": {
-      "evra": "0.7.10-1.fc31.x86_64"
+      "evra": "0.7.9-7.fc30.x86_64",
+      "digest": "sha256:84f7b37e3db3c56336ee1f154ce49143e8ac2085e82f8a8d8720015259ae07cb"
     },
     "libcollection": {
-      "evra": "0.7.0-43.fc31.x86_64"
+      "evra": "0.7.0-42.fc30.x86_64",
+      "digest": "sha256:8ae1cf015e52d904623f376eabfa164e0672e53be35577130838f0d7e06e0dc4"
     },
     "libcom_err": {
-      "evra": "1.45.3-1.fc31.x86_64"
+      "evra": "1.44.6-1.fc30.x86_64",
+      "digest": "sha256:9fdaf5dbbdcf51c0f04be5dd9399b7b3ffbabcb050e9ccf2930126429be2a5e8"
     },
     "libcroco": {
-      "evra": "0.6.13-2.fc31.x86_64"
+      "evra": "0.6.13-1.fc30.x86_64",
+      "digest": "sha256:a23402032226ecf3bd7b09b04895486f74657672aca6140839e695675bcb3e54"
     },
     "libcurl": {
-      "evra": "7.66.0-1.fc31.x86_64"
+      "evra": "7.65.3-4.fc30.x86_64",
+      "digest": "sha256:828ce713ca4030b090ed20cde1295e0c8e44282f92b0293123bbfe7a03389a49"
     },
     "libdb": {
-      "evra": "5.3.28-38.fc31.x86_64"
+      "evra": "5.3.28-37.fc30.x86_64",
+      "digest": "sha256:b603ed64c7c03e52ab1f1331d9115cf09850dae0453f3d4faad619857d4fbd88"
     },
     "libdb-utils": {
-      "evra": "5.3.28-38.fc31.x86_64"
+      "evra": "5.3.28-37.fc30.x86_64",
+      "digest": "sha256:856a4422002f7cde063b9d2db9043d426177eeb9f27ebf7f81682239ea161df2"
     },
     "libdhash": {
-      "evra": "0.5.0-43.fc31.x86_64"
+      "evra": "0.5.0-42.fc30.x86_64",
+      "digest": "sha256:7a4446a6e5a2e84010695a9c765ebba847b69971f18b3f9224de20188d55819e"
     },
     "libedit": {
-      "evra": "3.1-29.20191025cvs.fc31.x86_64"
+      "evra": "3.1-27.20190324cvs.fc30.x86_64",
+      "digest": "sha256:fead142beb05c9cbfa0ae99a5a5179bb16d5bbaf407d67110aba21e327b87786"
     },
     "libevent": {
-      "evra": "2.1.8-7.fc31.x86_64"
+      "evra": "2.1.8-7.fc30.x86_64",
+      "digest": "sha256:3a3ebb7f22029d79fa271bbd6ef9dd3f64cd1efacd09de891853a58b5dbe9b61"
     },
     "libfdisk": {
-      "evra": "2.34-3.fc31.x86_64"
+      "evra": "2.33.2-2.fc30.x86_64",
+      "digest": "sha256:641144ecf8c2e4167c59a3d87624f9d82c049d1291441b3c25acebb38445bea6"
     },
     "libffi": {
-      "evra": "3.1-23.fc31.x86_64"
+      "evra": "3.1-19.fc30.x86_64",
+      "digest": "sha256:236ece5789ab5ad2a0eb779d5b702e47ce9b4447dc9623b1fc927522acc85e1b"
     },
     "libgcc": {
-      "evra": "9.2.1-1.fc31.x86_64"
+      "evra": "9.2.1-1.fc30.x86_64",
+      "digest": "sha256:416b08b5b7bdadc33877043320064047c11286ab59e11364b1c19b510b70ae77"
     },
     "libgcrypt": {
-      "evra": "1.8.5-1.fc31.x86_64"
+      "evra": "1.8.5-1.fc30.x86_64",
+      "digest": "sha256:e102f8945bd212958ba12237d7ed27c7b7f5b73ed8c424ba3e48b15105993933"
     },
     "libgomp": {
-      "evra": "9.2.1-1.fc31.x86_64"
+      "evra": "9.2.1-1.fc30.x86_64",
+      "digest": "sha256:808da026e247299daa0df65d5b22b17aa58857b574fa0d234e80b81eada3bc3a"
     },
     "libgpg-error": {
-      "evra": "1.36-2.fc31.x86_64"
+      "evra": "1.33-2.fc30.x86_64",
+      "digest": "sha256:d2cf8c720c6cc726a1e61a1ccf9962865f14160ec4a3ff71091a859ee97f7a39"
     },
     "libidn2": {
-      "evra": "2.3.0-1.fc31.x86_64"
+      "evra": "2.2.0-1.fc30.x86_64",
+      "digest": "sha256:75c2b714233da460b651f1368c780be37fd2ff93d6b201e0d6029cf9aadc831e"
     },
     "libini_config": {
-      "evra": "1.3.1-43.fc31.x86_64"
+      "evra": "1.3.1-42.fc30.x86_64",
+      "digest": "sha256:e4ec24cc383eeb7af33d65418188411f9a68cd82d4b944d1d9502c100f4c1ce2"
     },
     "libipa_hbac": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:542f9cf694562601d6031808d68f98028abf77ff2944f8c909296a669b09465f"
     },
     "libkcapi": {
-      "evra": "1.1.5-1.fc31.x86_64"
+      "evra": "1.1.4-1.fc30.x86_64",
+      "digest": "sha256:11e5c8aec13c3f4772eeb4ff30bf4ec422861b9118f3303309b398923425ec83"
     },
     "libkcapi-hmaccalc": {
-      "evra": "1.1.5-1.fc31.x86_64"
+      "evra": "1.1.4-1.fc30.x86_64",
+      "digest": "sha256:a830cbf94355b3190de5c18eb8d893dba5e54791d9ddd1f64c35d55fa8968453"
     },
     "libksba": {
-      "evra": "1.3.5-10.fc31.x86_64"
+      "evra": "1.3.5-9.fc30.x86_64",
+      "digest": "sha256:098ec35542e478c1c4e95f0c5e27b773053b582a7755b15745b867fcf70c36e9"
     },
     "libldb": {
-      "evra": "2.0.7-1.fc31.x86_64"
-    },
-    "libmaxminddb": {
-      "evra": "1.2.0-8.fc31.x86_64"
+      "evra": "1.5.5-1.fc30.x86_64",
+      "digest": "sha256:e83bc29dc562d32b73ff907965bc42d8125c9f713e90f6dbdeda528780eab947"
     },
     "libmetalink": {
-      "evra": "0.1.3-9.fc31.x86_64"
+      "evra": "0.1.3-8.fc30.x86_64",
+      "digest": "sha256:bc4c90b8a114628000825c39a64b959f567aea4c7023b452342e95e498986643"
     },
     "libmnl": {
-      "evra": "1.0.4-10.fc31.x86_64"
+      "evra": "1.0.4-9.fc30.x86_64",
+      "digest": "sha256:57f1407c5abbdaed24a4cba49987cffde0fd107597fa2bcbfffc54d6dae57292"
     },
     "libmodulemd1": {
-      "evra": "1.8.16-1.fc31.x86_64"
+      "evra": "1.8.15-3.fc30.1.x86_64",
+      "digest": "sha256:3ec80d5fa9f160be01d1f2a440396e375b640014abd4658d06eda9c335c5cd47"
     },
     "libmount": {
-      "evra": "2.34-3.fc31.x86_64"
+      "evra": "2.33.2-2.fc30.x86_64",
+      "digest": "sha256:f04919118216e8a0ef7d9520349220ec930dc9be00029d9697365e9cdfdab5a7"
     },
     "libndp": {
-      "evra": "1.7-4.fc31.x86_64"
+      "evra": "1.7-3.fc30.x86_64",
+      "digest": "sha256:68fe3a1c4fdc6a6af6fc66ca002628348bea7b08db95e81acbcf94c860d9aa75"
     },
     "libnetfilter_conntrack": {
-      "evra": "1.0.7-3.fc31.x86_64"
+      "evra": "1.0.7-2.fc30.x86_64",
+      "digest": "sha256:c15a4853180a0959b45e5339ea27d90f49398ca11cffd58a250e4ac6aa0fc53e"
     },
     "libnfnetlink": {
-      "evra": "1.0.1-16.fc31.x86_64"
+      "evra": "1.0.1-15.fc30.x86_64",
+      "digest": "sha256:0674062e4b0dfc4abea4e6049e615a359f213601a4748721df9b1c7a909dd289"
     },
     "libnfsidmap": {
-      "evra": "1:2.4.1-2.rc1.fc31.x86_64"
+      "evra": "1:2.4.1-0.rc1.fc30.x86_64",
+      "digest": "sha256:6c6d981b97b5722cfd5c6fafa7560ff6d8235e25435d848e03c9063e304d6020"
     },
     "libnftnl": {
-      "evra": "1.1.3-2.fc31.x86_64"
+      "evra": "1.1.3-1.fc30.x86_64",
+      "digest": "sha256:1229a631c19c565788cec5c08761d2be14fffa2cfc810bbefd624ee38307d9fd"
     },
     "libnghttp2": {
-      "evra": "1.39.2-2.fc31.x86_64"
+      "evra": "1.39.2-1.module_f30+5957+05aeb4f9.x86_64",
+      "digest": "sha256:cdca175a10023e47d3c7026630a66e873e4725720006a282ab1f13139cb42e68"
     },
     "libnl3": {
-      "evra": "3.5.0-1.fc31.x86_64"
+      "evra": "3.4.0-8.fc30.x86_64",
+      "digest": "sha256:3decbcea0c843cf6d2c05eadcf6bbe87f2af3cdebd24f0cd091a1de443609148"
     },
     "libnsl2": {
-      "evra": "1.2.0-5.20180605git4a062cf.fc31.x86_64"
+      "evra": "1.2.0-4.20180605git4a062cf.fc30.x86_64",
+      "digest": "sha256:73e6f74db52a24756b87b5f7438e96bf3bff296cbc0537be5874c3b402b113ae"
     },
     "libpath_utils": {
-      "evra": "0.2.1-43.fc31.x86_64"
+      "evra": "0.2.1-42.fc30.x86_64",
+      "digest": "sha256:703799d270c225c7d6a847f563f089c7faa69be636c6ce89f1f560275e78f647"
     },
     "libpcap": {
-      "evra": "14:1.9.1-1.fc31.x86_64"
+      "evra": "14:1.9.0-3.fc30.x86_64",
+      "digest": "sha256:98b6fbe0d1b2d498a9afb92031e76f155951f71054d2896fee96f24264514ae1"
     },
     "libpkgconf": {
-      "evra": "1.6.3-2.fc31.x86_64"
+      "evra": "1.6.1-1.fc30.x86_64",
+      "digest": "sha256:9289b05e30e617a67b71d334c6d59c67b0fa57e7a4b841cfe2092fb08cf4ff72"
     },
     "libpng": {
-      "evra": "2:1.6.37-2.fc31.x86_64"
+      "evra": "2:1.6.36-1.fc30.x86_64",
+      "digest": "sha256:ead1fe0bc4caa4fb8a4575bd1fba4d8962181e5b1a9db18ffeaefeffd5172e35"
     },
     "libpsl": {
-      "evra": "0.21.0-2.fc31.x86_64"
+      "evra": "0.20.2-6.fc30.x86_64",
+      "digest": "sha256:2b3ff69a6f442bf640daf1e8263a0520a2d617e64513046c6bdde854689cd8ca"
     },
     "libpwquality": {
-      "evra": "1.4.2-1.fc31.x86_64"
+      "evra": "1.4.0-12.fc30.x86_64",
+      "digest": "sha256:2dea26dc63b21d71bc9adc4a6b7bc978e6f26f84e57684d86332673d631a39bf"
     },
     "libref_array": {
-      "evra": "0.1.5-43.fc31.x86_64"
+      "evra": "0.1.5-42.fc30.x86_64",
+      "digest": "sha256:e544e919192b6fecdf9785168297344ae1a924e246d1c388b1f35cf9e88d7f27"
     },
     "librepo": {
-      "evra": "1.11.0-1.fc31.x86_64"
+      "evra": "1.10.6-1.fc30.x86_64",
+      "digest": "sha256:068e214ce199ab125497b42070b5745c773572d9c5594de04a25a5f41eb68288"
     },
     "libreport-filesystem": {
-      "evra": "2.11.3-1.fc31.noarch"
+      "evra": "2.10.1-1.fc30.noarch",
+      "digest": "sha256:d9df4d1655f3ea4fde115503f1c78b3a3e21db657e3e08096f5b1bb84114627f"
     },
     "libseccomp": {
-      "evra": "2.4.2-1.fc31.x86_64"
+      "evra": "2.4.1-0.fc30.x86_64",
+      "digest": "sha256:45016f21530aacce1e0ca85e4466ac9f48b7cb2eca31ceacd5be12be89edfcdc"
     },
     "libselinux": {
-      "evra": "2.9-5.fc31.x86_64"
+      "evra": "2.9-3.1.fc30.x86_64",
+      "digest": "sha256:23f2d3bcdf745bfc7439da5e0530b83a8039cb4fdf86c723c32e076b7c2cdd09"
     },
     "libselinux-utils": {
-      "evra": "2.9-5.fc31.x86_64"
+      "evra": "2.9-3.1.fc30.x86_64",
+      "digest": "sha256:0c0408113f1c37d8c5cac519efb00a6f7091e429866e9360500aeb2c0f34e6c2"
     },
     "libsemanage": {
-      "evra": "2.9-3.fc31.x86_64"
+      "evra": "2.9-1.fc30.x86_64",
+      "digest": "sha256:835813f87c48afef832488374fa1517a175626a5b8a36836f0abd73fe298b581"
     },
     "libsepol": {
-      "evra": "2.9-2.fc31.x86_64"
+      "evra": "2.9-1.fc30.x86_64",
+      "digest": "sha256:b4ec9920a5840aeb7f00458f556243c0529956e07d74808e38daaaa18eebbeb7"
     },
     "libsigsegv": {
-      "evra": "2.11-8.fc31.x86_64"
+      "evra": "2.11-7.fc30.x86_64",
+      "digest": "sha256:eee373d61bdf7a33ba1eaaf2f10908dec1c0e3cd1ac0010c052bcde73c173fab"
     },
     "libsmartcols": {
-      "evra": "2.34-3.fc31.x86_64"
+      "evra": "2.33.2-2.fc30.x86_64",
+      "digest": "sha256:541ef5ea761398b2e8e9736d7a19b4c9e716a584b029462f5903d3a77324cfa1"
     },
     "libsmbclient": {
-      "evra": "2:4.11.2-1.fc31.x86_64"
+      "evra": "2:4.10.8-0.fc30.x86_64",
+      "digest": "sha256:4d405a5466e3d357a607f7354307d0e6eb5629c98eae21cd3ab07652f35ae12e"
     },
     "libsolv": {
-      "evra": "0.7.8-1.fc31.x86_64"
+      "evra": "0.7.5-1.fc30.x86_64",
+      "digest": "sha256:0a8274e34f7120ba0821ac6c5dc71267089381a82dc8f8ce0a47e81b14873a9f"
     },
     "libss": {
-      "evra": "1.45.3-1.fc31.x86_64"
+      "evra": "1.44.6-1.fc30.x86_64",
+      "digest": "sha256:b60f7d9ac5f9964da1d78f3a071edc9efe883be47905b29ba35c77d5921a3957"
     },
     "libssh": {
-      "evra": "0.9.2-1.fc31.x86_64"
+      "evra": "0.9.0-5.fc30.x86_64",
+      "digest": "sha256:c6e38e2426d6379cc6578431c6e134c201e1fde975223fa6d90836006834bf61"
     },
     "libssh-config": {
-      "evra": "0.9.2-1.fc31.noarch"
+      "evra": "0.9.0-5.fc30.noarch",
+      "digest": "sha256:f198b772ccaacd2d5f80cf394ea2893dfd51068361cba77c5589e34a7939603e"
     },
     "libsss_certmap": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:7ec26c8d77f3960d09e26c76ec925bdf08c1f956fe1b0e6ed6b34ba69776a54c"
     },
     "libsss_idmap": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:c4d56204ae7a6ba0919738dfeebe39c146dc01bb7c8dfb9b6e341d34c351f5bc"
     },
     "libsss_nss_idmap": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:aa5f9d6a80451594e9cfc7070a9e9f51377066bda52475590469e6baff1e725d"
     },
     "libstdc++": {
-      "evra": "9.2.1-1.fc31.x86_64"
+      "evra": "9.2.1-1.fc30.x86_64",
+      "digest": "sha256:465100ac543561b320a380eacdd0653f184635d40855ab4b466a4ea6696555da"
     },
     "libtalloc": {
-      "evra": "2.3.0-1.fc31.x86_64"
+      "evra": "2.1.16-1.fc30.x86_64",
+      "digest": "sha256:4887d615317c468838c8ff9324e86b18217af7c3f8aba66188bf354cf92fac5c"
     },
     "libtasn1": {
-      "evra": "4.14-2.fc31.x86_64"
+      "evra": "4.13-7.fc30.x86_64",
+      "digest": "sha256:d25336cd602e5701f2daa4619c8524f41a42a5f5d3d59e2c3ad32a0fa4b33593"
     },
     "libtdb": {
-      "evra": "1.4.2-1.fc31.x86_64"
+      "evra": "1.3.18-1.fc30.x86_64",
+      "digest": "sha256:fe2ba19f756b2e89383759b193f8afbfa63f79c998d4e301a509cbbf351ddb91"
     },
     "libtevent": {
-      "evra": "0.10.1-1.fc31.x86_64"
-    },
-    "libtextstyle": {
-      "evra": "0.20.1-2.fc31.x86_64"
+      "evra": "0.9.39-1.fc30.x86_64",
+      "digest": "sha256:6a652570625dc6db2f383d032f5eba1552c913e8bef95b3c7a21a0739d4a5e2b"
     },
     "libtirpc": {
-      "evra": "1.1.4-2.rc3.fc31.x86_64"
+      "evra": "1.1.4-2.rc3.fc30.x86_64",
+      "digest": "sha256:5f1e054b02d95ae0f91ce49584f913d5acb814f742f3b82cafc8a994ec22f3df"
+    },
+    "libtool-ltdl": {
+      "evra": "2.4.6-29.fc30.x86_64",
+      "digest": "sha256:c33b81e41d02b47da60a0b57eacdedc60b140695c7d2d2fff80a285d1ab4ef9b"
     },
     "libunistring": {
-      "evra": "0.9.10-6.fc31.x86_64"
+      "evra": "0.9.10-5.fc30.x86_64",
+      "digest": "sha256:c558d2ea2bd82bfd2f5e56c5e4ddc38d795458128977c33c9f64481b2b2e8994"
     },
     "libusbx": {
-      "evra": "1.0.22-4.fc31.x86_64"
+      "evra": "1.0.22-2.fc30.x86_64",
+      "digest": "sha256:2c804c587c203abef8457c2a6be0d65e7ab169fc323ecad1759ba39a7fdb7a8a"
     },
     "libuser": {
-      "evra": "0.62-21.fc31.x86_64"
+      "evra": "0.62-20.fc30.x86_64",
+      "digest": "sha256:7ac5d5c299dc3b99437af992b1246cd37fc363ad5b5f76eb7b60f68a2685b304"
     },
     "libutempter": {
-      "evra": "1.1.6-17.fc31.x86_64"
+      "evra": "1.1.6-16.fc30.x86_64",
+      "digest": "sha256:babf4400c75a472a3b5fa14dbfd1a4a0f25af93c0722ab0efb6f1bed397a931e"
     },
     "libuuid": {
-      "evra": "2.34-3.fc31.x86_64"
+      "evra": "2.33.2-2.fc30.x86_64",
+      "digest": "sha256:a866279f1ecd594d54f55f98ae4f2ee85d27b0fc9f0c51805a8a544e9a3cd0c0"
     },
     "libvarlink-util": {
-      "evra": "18-2.fc31.x86_64"
+      "evra": "18-1.fc30.x86_64",
+      "digest": "sha256:16f84bc9969ffc5e09e61c0d6efb25559f6008c552682d2fa7b3c3bc541aaf65"
     },
     "libverto": {
-      "evra": "0.3.0-8.fc31.x86_64"
+      "evra": "0.3.0-7.fc30.x86_64",
+      "digest": "sha256:86bac27bb30f51f7c3bebf4e36947e7d0649e0c2e5dff53b889180fe292966ed"
     },
     "libwbclient": {
-      "evra": "2:4.11.2-1.fc31.x86_64"
+      "evra": "2:4.10.8-0.fc30.x86_64",
+      "digest": "sha256:570c15a4cb6e161c07b768e32e65e662b43865202d593ab02fbf74c5a4340acf"
     },
     "libxcrypt": {
-      "evra": "4.4.10-1.fc31.x86_64"
+      "evra": "4.4.10-1.fc30.x86_64",
+      "digest": "sha256:c7c04a5add108f9d0af1fb39ff2c04a6188813ba79de6430cb8c52de611761a1"
     },
     "libxml2": {
-      "evra": "2.9.10-1.fc31.x86_64"
+      "evra": "2.9.9-2.fc30.x86_64",
+      "digest": "sha256:216e42da408ac84d4d2bd7ca26a64837cffc381c1fc7680b90a840004abdd041"
     },
     "libyaml": {
-      "evra": "0.2.2-2.fc31.x86_64"
+      "evra": "0.2.1-5.fc30.x86_64",
+      "digest": "sha256:4ffdfed19b5c371e8a2b817c61b0df9bc8caf1087665401fa402039857d44020"
     },
     "libzstd": {
-      "evra": "1.4.2-1.fc31.x86_64"
+      "evra": "1.4.2-1.fc30.x86_64",
+      "digest": "sha256:9b55854b0b84a1510c9465fdaf25d8b93aac131f7c5fd0cff42eb3e2bf4d34f1"
     },
     "linux-atm-libs": {
-      "evra": "2.5.1-25.fc31.x86_64"
+      "evra": "2.5.1-25.fc30.x86_64",
+      "digest": "sha256:7ce820eda792e471ebc4cd9fc447cb5a4b09a1478045eb8062df4ccd0a257f56"
     },
     "linux-firmware": {
-      "evra": "20191022-103.fc31.noarch"
+      "evra": "20190923-102.fc30.noarch",
+      "digest": "sha256:a72ecfdd65c7e9b46cb9c3924ee0742a1a4df76f7e5abf4326d91e57141b73d8"
     },
     "linux-firmware-whence": {
-      "evra": "20191022-103.fc31.noarch"
+      "evra": "20190923-102.fc30.noarch",
+      "digest": "sha256:91976cfef3013401b4956bccc7b14c78fd2ea20f17db753ffaf526ad594d512e"
     },
     "lmdb-libs": {
-      "evra": "0.9.23-3.fc31.x86_64"
+      "evra": "0.9.23-2.fc30.x86_64",
+      "digest": "sha256:4eb413e838c35f19c2094ada4896dadb2a9e24094a375ec2e86c117d3f81e101"
     },
     "logrotate": {
-      "evra": "3.15.1-1.fc31.x86_64"
+      "evra": "3.15.1-1.fc30.x86_64",
+      "digest": "sha256:68590718bcbce620ef9bc46d3f59747901c1311e6ce44f7497e767a8ba154c09"
     },
     "lua-libs": {
-      "evra": "5.3.5-6.fc31.x86_64"
+      "evra": "5.3.5-5.fc30.x86_64",
+      "digest": "sha256:c47afda1cffc329bae30c1a9ae35c2f49f5b3843e9fd9e7eb378a3320ee33d92"
     },
     "lvm2": {
-      "evra": "2.03.06-1.fc31.x86_64"
+      "evra": "2.02.183-3.fc30.x86_64",
+      "digest": "sha256:6705680f795f4e7aede662642d7ac53ca070c817b05d68b0e3636c21ecc081a6"
     },
     "lvm2-libs": {
-      "evra": "2.03.06-1.fc31.x86_64"
+      "evra": "2.02.183-3.fc30.x86_64",
+      "digest": "sha256:dd8f4fccd7dea1b83b39a7ab5f91faaea2d889ed2556eb2352d7209079bdcbd9"
     },
     "lz4-libs": {
-      "evra": "1.9.1-1.fc31.x86_64"
+      "evra": "1.9.1-1.fc30.x86_64",
+      "digest": "sha256:84f9354878ad6aa1a7b02c9b05dfea16521fc30f3261505ac409def3cc6839f2"
     },
     "lzo": {
-      "evra": "2.08-16.fc31.x86_64"
+      "evra": "2.08-15.fc30.x86_64",
+      "digest": "sha256:a5e4899b4024a43b4bfd487a9dcf0e45120e00a1e6261569562b16123fe7fee2"
     },
     "mdadm": {
-      "evra": "4.1-rc2.0.5.fc31.1.x86_64"
+      "evra": "4.1-rc2.0.3.fc30.x86_64",
+      "digest": "sha256:702f0f7a1c8fc14adf0754a63e4716b2ddf118da5bed65385dedf0e4392fdf8e"
     },
     "microcode_ctl": {
-      "evra": "2:2.1-34.fc31.x86_64"
+      "evra": "2:2.1-32.fc30.x86_64",
+      "digest": "sha256:679545ffc9ca60853ef257625c0cbfb8dfec6851453b19ba168de8ba103085df"
     },
     "moby-engine": {
-      "evra": "18.09.8-2.ce.git0dd43dd.fc31.x86_64"
+      "evra": "18.06.3-2.ce.gitd7080c1.fc30.x86_64",
+      "digest": "sha256:8b59e837de4b29f5a2092784e1952b5b6fa449dec070ea8b8d193845c19bea43"
     },
     "mokutil": {
-      "evra": "1:0.3.0-11.fc30.x86_64"
+      "evra": "1:0.3.0-11.fc30.x86_64",
+      "digest": "sha256:90068b54fa85fea27042f2015fc8a86e56ef16d5ca28cc05187036ebca98bfaa"
     },
     "mozjs60": {
-      "evra": "60.9.0-3.fc31.x86_64"
+      "evra": "60.9.0-2.fc30.x86_64",
+      "digest": "sha256:a68d3748fa6b9648e86169241be7853138d3be493a24a6432a21f79c90335fa7"
     },
     "mpfr": {
-      "evra": "3.1.6-5.fc31.x86_64"
+      "evra": "3.1.6-4.fc30.x86_64",
+      "digest": "sha256:f765d04e57f34ecce5a069e379a86ebd33b711d1f080273271d404a736fdd1e6"
     },
     "ncurses": {
-      "evra": "6.1-12.20190803.fc31.x86_64"
+      "evra": "6.1-10.20180923.fc30.x86_64",
+      "digest": "sha256:c1d983d692ed0c4d8f0024e47358c58d60422f1514b57dbee5420fd5f7a211d7"
     },
     "ncurses-base": {
-      "evra": "6.1-12.20190803.fc31.noarch"
+      "evra": "6.1-10.20180923.fc30.noarch",
+      "digest": "sha256:671c524212be4d306647fbd55be35d0ac8c805c8a32948eb342fcf60b17c7393"
     },
     "ncurses-libs": {
-      "evra": "6.1-12.20190803.fc31.x86_64"
+      "evra": "6.1-10.20180923.fc30.x86_64",
+      "digest": "sha256:62cc133de48fa8200da3e75b5fbc5881c8e4e9e5e97c6f5b67d4c917e801533c"
     },
     "net-tools": {
-      "evra": "2.0-0.55.20160912git.fc31.x86_64"
+      "evra": "2.0-0.54.20160912git.fc30.x86_64",
+      "digest": "sha256:a11fdb06106ee2c9d09a9e47e648bf78ae57c9d4fba14ffa7e71c71db8d32f06"
     },
     "nettle": {
-      "evra": "3.5.1-3.fc31.x86_64"
+      "evra": "3.4.1rc1-2.fc30.x86_64",
+      "digest": "sha256:1ce954a72d83aac87fbe4419c250c5e3b8bbdbbe287225c24f789a658430902f"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.4.1-2.rc1.fc31.x86_64"
+      "evra": "1:2.4.1-0.rc1.fc30.x86_64",
+      "digest": "sha256:f3fb96d49a29933a2d831383c137b93047904dfe3e4cffa61653e6bf84fe402d"
     },
     "nftables": {
-      "evra": "1:0.9.1-3.fc31.x86_64"
+      "evra": "1:0.9.1-2.fc30.x86_64",
+      "digest": "sha256:d838fcbb10ef4f03296b8530a0020306a1819f69995c86204696d4338042f15b"
+    },
+    "nmap-ncat": {
+      "evra": "2:7.70-7.fc30.x86_64",
+      "digest": "sha256:260773095d0c104dbb660063f485cead2a4eac93d69c1dc6237604423ec05e6a"
     },
     "npth": {
-      "evra": "1.6-3.fc31.x86_64"
+      "evra": "1.6-2.fc30.x86_64",
+      "digest": "sha256:d7ee7c25c30e8ad57edee0e90dff929a401df71755df94914469f6443347f645"
     },
     "nss-altfiles": {
-      "evra": "2.18.1-15.fc31.x86_64"
+      "evra": "2.18.1-14.fc30.x86_64",
+      "digest": "sha256:e38ca12071225b5aa7919c800308fe5033f3f7c30f618a176ccb4133e9758779"
     },
     "numactl-libs": {
-      "evra": "2.0.12-3.fc31.x86_64"
+      "evra": "2.0.12-2.fc30.x86_64",
+      "digest": "sha256:d968eb68ced08596e7784cc0b2d482d2e2b4d26cb417df13e2891f7082b90fea"
     },
     "oniguruma": {
-      "evra": "6.9.4-0.1.rc1.fc31.x86_64"
+      "evra": "6.9.2-2.fc30.x86_64",
+      "digest": "sha256:fe5661860677db979300e03327ef1d5196ab8014330f06693d6b1e2d48f5ecba"
     },
     "openldap": {
-      "evra": "2.4.47-3.fc31.x86_64"
+      "evra": "2.4.47-1.fc30.x86_64",
+      "digest": "sha256:bf464c355bcd729b8f9d2e53474b32dd6630544b9f23acfcc97e38c56f4a9d2f"
     },
     "openssh": {
-      "evra": "8.1p1-1.fc31.x86_64"
+      "evra": "8.0p1-5.fc30.x86_64",
+      "digest": "sha256:d8c4ccae1258a96708ea5893a88e72b2acef53c09410da48cfeed983e8708b1d"
     },
     "openssh-clients": {
-      "evra": "8.1p1-1.fc31.x86_64"
+      "evra": "8.0p1-5.fc30.x86_64",
+      "digest": "sha256:863689984d4e4f765e8bba4ab8e2d0f8aa3276cc36a292d67d49b343192f40c6"
     },
     "openssh-server": {
-      "evra": "8.1p1-1.fc31.x86_64"
+      "evra": "8.0p1-5.fc30.x86_64",
+      "digest": "sha256:49e53a4ab2ed0ea4fcc84e894116e21b4f959bfef2328885c0cbec01b06b33ea"
     },
     "openssl": {
-      "evra": "1:1.1.1d-2.fc31.x86_64"
+      "evra": "1:1.1.1d-2.fc30.x86_64",
+      "digest": "sha256:8aa6df378b50d19fc360600f8254c02e61aef70b105444138aa55b3a78f2dfdc"
     },
     "openssl-libs": {
-      "evra": "1:1.1.1d-2.fc31.x86_64"
+      "evra": "1:1.1.1d-2.fc30.x86_64",
+      "digest": "sha256:ff4470986856c05d4a3d1097323dc558e213fd10d316b7ac253118f390221d4f"
     },
     "os-prober": {
-      "evra": "1.77-3.fc31.x86_64"
+      "evra": "1.74-8.fc30.x86_64",
+      "digest": "sha256:1f63cc5a84cae32b50a7af3299656905238d703d1b6c1a99d39027fcd510a2dc"
     },
     "ostree": {
-      "evra": "2019.5-2.fc31.x86_64"
+      "evra": "2019.4-2.fc30.x86_64",
+      "digest": "sha256:751b8de2f3c87ff8c926e81f16acd2b3e4d63c2887a4fb33168359450c5a35a2"
     },
     "ostree-libs": {
-      "evra": "2019.5-2.fc31.x86_64"
+      "evra": "2019.4-2.fc30.x86_64",
+      "digest": "sha256:91c0a5a61a973cf0c6afc9961251d99b8fa24106024fa9aae9b73fdbe177059c"
     },
     "p11-kit": {
-      "evra": "0.23.16.1-2.fc31.x86_64"
+      "evra": "0.23.16.1-1.fc30.x86_64",
+      "digest": "sha256:8c58696c94fe983b56bd31bc7f07b3325c046f08985e29410d5d8e78546e67bb"
     },
     "p11-kit-trust": {
-      "evra": "0.23.16.1-2.fc31.x86_64"
+      "evra": "0.23.16.1-1.fc30.x86_64",
+      "digest": "sha256:93fc37c77db9c12f9cdf76b3689856f1228ad653e544a335f6be20bc9f1392f3"
     },
     "pam": {
-      "evra": "1.3.1-18.fc31.x86_64"
+      "evra": "1.3.1-17.fc30.x86_64",
+      "digest": "sha256:3ab42452b4ca0975751ea5028cd52e7f6116395b03659520b1c1c97e2d84a36e"
     },
     "passwd": {
-      "evra": "0.80-6.fc31.x86_64"
+      "evra": "0.80-5.fc30.x86_64",
+      "digest": "sha256:e476c8b36e1b4d3fbfcdff03e0d7581ad287dd6ab49e8394d1e98b43bf223ce7"
     },
     "pcre": {
-      "evra": "8.43-2.fc31.1.x86_64"
+      "evra": "8.43-2.fc30.x86_64",
+      "digest": "sha256:c4c5816967eee8170a52c8fc9d0f743601dd2228c551a746f249240b112c889d"
     },
     "pcre2": {
-      "evra": "10.33-16.fc31.x86_64"
+      "evra": "10.33-14.fc30.x86_64",
+      "digest": "sha256:32104f2961f1db71cd3ea61ffb16bbde2eba2c964d66442d783262232fcf809a"
     },
     "pigz": {
-      "evra": "2.4-5.fc31.x86_64"
+      "evra": "2.4-4.fc30.x86_64",
+      "digest": "sha256:2f47f346769b16e5dc38fe76f08beed1bb575bedc664fe95d3ccf668b040578e"
     },
     "pkgconf": {
-      "evra": "1.6.3-2.fc31.x86_64"
+      "evra": "1.6.1-1.fc30.x86_64",
+      "digest": "sha256:ac8be746a791ddc60abe45d1dce4c1d265040e8fa72ac0acf212bb2d0d31e651"
     },
     "pkgconf-m4": {
-      "evra": "1.6.3-2.fc31.noarch"
+      "evra": "1.6.1-1.fc30.noarch",
+      "digest": "sha256:f22be247dec0302e5d2351806623e86648ff045a89e2d7bb159cd7a90cb2e759"
     },
     "pkgconf-pkg-config": {
-      "evra": "1.6.3-2.fc31.x86_64"
+      "evra": "1.6.1-1.fc30.x86_64",
+      "digest": "sha256:6e6c1c37ad9e0aee305e92628c1208fe0014535bc057e46f4e2a56d7b3e3c606"
     },
     "podman": {
-      "evra": "2:1.6.2-2.fc31.x86_64"
+      "evra": "2:1.5.1-3.fc30.x86_64",
+      "digest": "sha256:5c27c5f3021c261d625a9b872bde124d07e9626ba0ee3cc4ed3f899851b2840e"
     },
     "policycoreutils": {
-      "evra": "2.9-5.fc31.x86_64"
+      "evra": "2.9-4.fc30.x86_64",
+      "digest": "sha256:3634b17b58b92d30021a01cee2549db8a283bdf548cde9a4f06af41b60e89259"
     },
     "polkit": {
-      "evra": "0.116-4.fc31.1.x86_64"
+      "evra": "0.116-2.fc30.x86_64",
+      "digest": "sha256:70e097f75323850daf88f142b2ed034311ec15f4bff65b7ec3c30e7e91511d7f"
     },
     "polkit-libs": {
-      "evra": "0.116-4.fc31.1.x86_64"
+      "evra": "0.116-2.fc30.x86_64",
+      "digest": "sha256:2b7860571e37376d4620472d77ea8977b8aec9ac6986b7f35e7b87e3096697d0"
     },
     "polkit-pkla-compat": {
-      "evra": "0.1-15.fc31.x86_64"
+      "evra": "0.1-14.fc30.x86_64",
+      "digest": "sha256:e0ff9c9052ee9b82957f9602de6c04cbf58271530d0474634774b02dedec36f5"
     },
     "popt": {
-      "evra": "1.16-18.fc31.x86_64"
+      "evra": "1.16-17.fc30.x86_64",
+      "digest": "sha256:845c029bb782c6d7b677bb51f5d3b1f796a236d42ec553d0bbefb8715e43ddcb"
     },
     "procps-ng": {
-      "evra": "3.3.15-6.fc31.x86_64"
+      "evra": "3.3.15-5.fc30.x86_64",
+      "digest": "sha256:05ed44c64fbe7f2af3f54ad7d0a3d19a27cd39ec967abcdd347c801545bd370b"
     },
     "protobuf-c": {
-      "evra": "1.3.1-3.fc31.x86_64"
+      "evra": "1.3.1-2.fc30.x86_64",
+      "digest": "sha256:20b8f2f222c576e2dd5e5e9356e8ad162decd93b3ea7de9b6976f0497062bc83"
     },
     "publicsuffix-list-dafsa": {
-      "evra": "20190417-2.fc31.noarch"
+      "evra": "20190128-2.fc30.noarch",
+      "digest": "sha256:b03a6f6ff807e1854e010e5ad5d68c2eb75a74e71975562374e49fa1c4c93cdf"
     },
     "python-pip-wheel": {
-      "evra": "19.1.1-5.fc31.noarch"
+      "evra": "19.0.3-3.fc30.noarch",
+      "digest": "sha256:7da3d901711270f2da397cb05c16760443f49e4272323502e7a207eef4e7c74a"
     },
     "python-setuptools-wheel": {
-      "evra": "41.2.0-1.fc31.noarch"
-    },
-    "python3": {
-      "evra": "3.7.5-1.fc31.x86_64"
+      "evra": "40.8.0-1.fc30.noarch",
+      "digest": "sha256:a3f99311b0a25d80b6b6ea5a46395e748d4a62dd4f093a3932333780f2cb7085"
     },
     "python3-libs": {
-      "evra": "3.7.5-1.fc31.x86_64"
+      "evra": "3.7.4-1.fc30.x86_64",
+      "digest": "sha256:5c95ef3ac10ab93b581a3ca8adc0f9bb7f85ca974dcad98f39ded7754c23a3f0"
     },
     "qrencode-libs": {
-      "evra": "4.0.2-4.fc31.x86_64"
+      "evra": "3.4.4-8.fc30.x86_64",
+      "digest": "sha256:8d8d05c87ab44bc777ebd1b9d24b34d34f6d8a8f326e098548d41a1dd3bde267"
     },
     "readline": {
-      "evra": "8.0-3.fc31.x86_64"
-    },
-    "rpcbind": {
-      "evra": "1.2.5-5.rc1.fc31.x86_64"
+      "evra": "8.0-2.fc30.x86_64",
+      "digest": "sha256:2d1c77e39ccdb6aad1565f4c461f9dc6eef7a858beb30e6e305be6af2d0c788d"
     },
     "rpm": {
-      "evra": "4.15.0-6.fc31.x86_64"
+      "evra": "4.14.2.1-5.fc30.x86_64",
+      "digest": "sha256:5e2207d08397330804ac191ab36af5210d2aab11159b35abd32ecfae189bd1c7"
     },
     "rpm-libs": {
-      "evra": "4.15.0-6.fc31.x86_64"
+      "evra": "4.14.2.1-5.fc30.x86_64",
+      "digest": "sha256:17c57606c03f4a171a6d9ca47ff5b60e4246a027a8fe68293f814bd9880201fd"
     },
     "rpm-ostree": {
-      "evra": "2019.6-1.fc31.x86_64"
+      "evra": "2019.6-1.fc30.x86_64",
+      "digest": "sha256:300a06a8bcff60c7f40266fcb654a5904e41bfcd20f4b619e40adc56c9864c90"
     },
     "rpm-ostree-libs": {
-      "evra": "2019.6-1.fc31.x86_64"
+      "evra": "2019.6-1.fc30.x86_64",
+      "digest": "sha256:9466a002f00b553ce039f2bd1efcc3ca5eb8db41f16f29a8bcb292c2824ef745"
     },
     "rpm-plugin-selinux": {
-      "evra": "4.15.0-6.fc31.x86_64"
+      "evra": "4.14.2.1-5.fc30.x86_64",
+      "digest": "sha256:33b2201fd4b119d17417157c151ba5d10c7c26beb05f0060ed2579b89451c930"
     },
     "rsync": {
-      "evra": "3.1.3-10.fc31.x86_64"
+      "evra": "3.1.3-8.fc30.x86_64",
+      "digest": "sha256:5de7990e3cffcc77d53b1bebc55be1869794b76872934937c2f2e5aed4b8420c"
     },
     "runc": {
-      "evra": "2:1.0.0-101.rc9.gitc1485a1.fc31.x86_64"
+      "evra": "2:1.0.0-93.dev.gitb9b6cc6.fc30.x86_64",
+      "digest": "sha256:1be3fa84f31c94474ef7a249140acce1e26f7cace6910c99d7e559607ffc925a"
     },
     "samba-client-libs": {
-      "evra": "2:4.11.2-1.fc31.x86_64"
+      "evra": "2:4.10.8-0.fc30.x86_64",
+      "digest": "sha256:45bdfbc2f080f499d08b756b70e268003c603d99947eda044ab92292c04db671"
     },
     "samba-common": {
-      "evra": "2:4.11.2-1.fc31.noarch"
+      "evra": "2:4.10.8-0.fc30.noarch",
+      "digest": "sha256:4082edbd5d2252e1254348fc0d5a3bc3fd1cb697d141012a4e73778768e2feab"
     },
     "samba-common-libs": {
-      "evra": "2:4.11.2-1.fc31.x86_64"
+      "evra": "2:4.10.8-0.fc30.x86_64",
+      "digest": "sha256:db4a0608ecc1bf2bacb280caba905bd5ee6559091feeba8f98d8595b9ebf87cb"
     },
     "samba-libs": {
-      "evra": "2:4.11.2-1.fc31.x86_64"
+      "evra": "2:4.10.8-0.fc30.x86_64",
+      "digest": "sha256:fc026c3aa61e89b79f3860c34b52f29e2513f95b9a1af246b4242561e1960392"
     },
     "sed": {
-      "evra": "4.5-4.fc31.x86_64"
+      "evra": "4.5-3.fc30.x86_64",
+      "digest": "sha256:186ef5b0bb66b00bbe38390dfcb5c3168b697db4df08f0b440bed649200c1a7e"
     },
     "selinux-policy": {
-      "evra": "3.14.4-40.fc31.noarch"
+      "evra": "3.14.3-46.fc30.noarch",
+      "digest": "sha256:380e8e344262b695d0b35f198cf33de1409dbfc4521a74720f937866650a4e46"
     },
     "selinux-policy-targeted": {
-      "evra": "3.14.4-40.fc31.noarch"
+      "evra": "3.14.3-46.fc30.noarch",
+      "digest": "sha256:7295dfd977cb56f2b70c5e45c820c45b30a2a6b917a802db36e1fafae4e02ee9"
     },
     "setup": {
-      "evra": "2.13.6-1.fc31.noarch"
+      "evra": "2.13.3-1.fc30.noarch",
+      "digest": "sha256:c72d60d6f0af6ea7203fff9099ee65ada34047ffbb05a88bbfeb2d3800d2e064"
     },
     "sg3_utils": {
-      "evra": "1.42-8.fc31.x86_64"
+      "evra": "1.42-7.fc30.x86_64",
+      "digest": "sha256:ff29785321879c29e6b03e549028675fbcf82c14a369482d3e78d51ab77808bc"
     },
     "sg3_utils-libs": {
-      "evra": "1.42-8.fc31.x86_64"
+      "evra": "1.42-7.fc30.x86_64",
+      "digest": "sha256:25df3f025ba113d816734c9bb5f4a1566c2e91e4b52eb00f88b75688d5b32602"
     },
     "shadow-utils": {
-      "evra": "2:4.6-16.fc31.x86_64"
+      "evra": "2:4.6-8.fc30.x86_64",
+      "digest": "sha256:35fad41514d37405dece870c76d0222c0f3c60a5f71b428a0e135605ac8307ca"
     },
     "shim-x64": {
-      "evra": "15-8.x86_64"
+      "evra": "15-8.x86_64",
+      "digest": "sha256:4c17048c301b39d20ce3c07702602b291dd3d598a31f791625fbea0bf592fe59"
     },
     "skopeo": {
-      "evra": "1:0.1.40-3.fc31.x86_64"
+      "evra": "1:0.1.37-2.fc30.x86_64",
+      "digest": "sha256:6dd0f06a5e9c56272f8c4e594f07f39ed02420cdddd29ce541a9c0db4a0f454d"
     },
     "slirp4netns": {
-      "evra": "0.4.0-20.1.dev.gitbbd6f25.fc31.x86_64"
-    },
-    "socat": {
-      "evra": "1.7.3.3-2.fc31.x86_64"
+      "evra": "0.4.0-4.git19d199a.fc30.x86_64",
+      "digest": "sha256:8b4e1a9b9db855d3b5e92a572f12b3ede9327845355f000f0953951993852719"
     },
     "sqlite-libs": {
-      "evra": "3.30.0-1.fc31.x86_64"
+      "evra": "3.26.0-6.fc30.x86_64",
+      "digest": "sha256:a1d28e8abba689ae75fb2a1c26d98a22a83937aecb2ca37c7ec591ea3088832f"
     },
     "sssd": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:eae11cdb0ce36e22d29a49926d69e869893dda89e63e95c0f126e45aa8cde2e8"
     },
     "sssd-ad": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:c6b7bd34759398b80fa6b085e36734f600047aa8d13d1dbd79f3267316093f1c"
     },
     "sssd-client": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:c02271f9ae1cd87cd84dda129c6d30578a1dd6938e9161eb67adaf861698a0d2"
     },
     "sssd-common": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:674cb83611bf8b597b99660af482e27914262fefb986bd0a3539816afd4174c2"
     },
     "sssd-common-pac": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:ceea926809e4f82093b29e9b879dc1865c29dd48745ba8a5bbde96d2a39e6bc6"
     },
     "sssd-ipa": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:4f53696fcd5d28e3844325ddde1729117fdd94064da48d918cda594b9988733a"
     },
     "sssd-krb5": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:a5615e17ae5f9e0206d9bd71ac5257ac12c8da7ccd642dace2e435aa92d95649"
     },
     "sssd-krb5-common": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:db61a8eba0cde18782bd85e81fa181d1570055e134adc22ef8e33d61855b5f16"
     },
     "sssd-ldap": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.2-1.fc30.x86_64",
+      "digest": "sha256:6d185e1c6b0f03003aedc15f5dbce09b755bd14a0a8a0527a73f8a69a7790d24"
     },
     "sudo": {
-      "evra": "1.8.29-1.fc31.x86_64"
+      "evra": "1.8.27-1.fc30.x86_64",
+      "digest": "sha256:a73aa4e3d1944deb368fe7be3ff795109a991dae46e6333d972d00575dae992d"
     },
     "systemd": {
-      "evra": "243.4-1.fc31.x86_64"
+      "evra": "241-12.git323cdf4.fc30.x86_64",
+      "digest": "sha256:5a320c5b140b24e05dff160d7e322fb1a4c0d88e15d9e096555282c502d47060"
     },
     "systemd-container": {
-      "evra": "243.4-1.fc31.x86_64"
+      "evra": "241-12.git323cdf4.fc30.x86_64",
+      "digest": "sha256:1ed5b6932a210eb07d35e8abe394e8ca707823aaaae6df2dc3de2384c0818d23"
     },
     "systemd-libs": {
-      "evra": "243.4-1.fc31.x86_64"
+      "evra": "241-12.git323cdf4.fc30.x86_64",
+      "digest": "sha256:10d257db114966818b2c65dc346aa093d3971db8fa83caf726d12119ee561f07"
     },
     "systemd-pam": {
-      "evra": "243.4-1.fc31.x86_64"
+      "evra": "241-12.git323cdf4.fc30.x86_64",
+      "digest": "sha256:ac1400b83cf86250ab1f4a4afcdb32ea5fe0e1fa4db13fe7aa14510f89288984"
     },
     "systemd-rpm-macros": {
-      "evra": "243.4-1.fc31.noarch"
+      "evra": "241-12.git323cdf4.fc30.noarch",
+      "digest": "sha256:5de5556dd8b1b141a12210f074ece3552508b7b01a555132c758263226d11752"
     },
     "systemd-udev": {
-      "evra": "243.4-1.fc31.x86_64"
+      "evra": "241-12.git323cdf4.fc30.x86_64",
+      "digest": "sha256:7c23d829dc96dfbabc7e1a54a1b553beb805b9f8b01222fe7e06ea7c26a23b56"
     },
     "tar": {
-      "evra": "2:1.32-2.fc31.x86_64"
+      "evra": "2:1.32-1.fc30.x86_64",
+      "digest": "sha256:1bd48b2f0a39d9da68ef67a6edcebaf31ee6a9e8b59b3e55264c33634528f192"
     },
-    "toolbox": {
-      "evra": "0.0.16-1.fc31.noarch"
+    "timedatex": {
+      "evra": "0.6-1.fc30.x86_64",
+      "digest": "sha256:03aaf0db192ce9809f3b4c57f672361ececcab0c4d77a2aa2f2c5933f16de061"
     },
     "tzdata": {
-      "evra": "2019c-1.fc31.noarch"
+      "evra": "2019c-1.fc30.noarch",
+      "digest": "sha256:583542c6520fa71a2db3f6b839328594bf07b3f05f831147d6410ef8cf49be52"
     },
     "userspace-rcu": {
-      "evra": "0.11.1-2.fc31.x86_64"
+      "evra": "0.10.1-5.fc30.x86_64",
+      "digest": "sha256:ca3924b710a7b49cd7bda6736eef992876287908a7c7e0ef509fee9d36dd42d6"
     },
     "util-linux": {
-      "evra": "2.34-3.fc31.x86_64"
+      "evra": "2.33.2-2.fc30.x86_64",
+      "digest": "sha256:3dd2f9d8c0a511003c6372396ac03025b9de5f3e77e7dae380f0f63646720a16"
     },
     "vim-minimal": {
-      "evra": "2:8.1.2267-1.fc31.x86_64"
+      "evra": "2:8.1.1991-2.fc30.x86_64",
+      "digest": "sha256:83131cf12abe51376d191e3787708555198681507f1c4b7e7604d49d84cce983"
     },
     "which": {
-      "evra": "2.21-15.fc31.x86_64"
+      "evra": "2.21-14.fc30.x86_64",
+      "digest": "sha256:2ad9d60a9bf352dee558606b97365112483db96f85bdb671784460f2e1544449"
     },
     "whois-nls": {
-      "evra": "5.5.3-1.fc31.noarch"
+      "evra": "5.5.2-1.fc30.noarch",
+      "digest": "sha256:d160c855e0453b4126e8606cc88f3ad1f8a33b4d637179d3cbf4abaa6cb0fd2c"
     },
     "xfsprogs": {
-      "evra": "5.1.0-2.fc31.x86_64"
+      "evra": "4.19.0-5.fc30.x86_64",
+      "digest": "sha256:c9e3574873ddd5df41c93dc80eb3ebc2d33523cb4f717a4f739afcf17f714f8d"
     },
     "xz": {
-      "evra": "5.2.4-6.fc31.x86_64"
+      "evra": "5.2.4-5.fc30.x86_64",
+      "digest": "sha256:5a0f63abfe45536f0e5cbe572138cfc1380fbd5020b226ada8fbd10ba2352da3"
     },
     "xz-libs": {
-      "evra": "5.2.4-6.fc31.x86_64"
-    },
-    "yajl": {
-      "evra": "2.1.0-13.fc31.x86_64"
+      "evra": "5.2.4-5.fc30.x86_64",
+      "digest": "sha256:d700611e6230567bdd8a71b9048639589df6e6132b97deea27f915fae9630ec6"
     },
     "zchunk-libs": {
-      "evra": "1.1.4-1.fc31.x86_64"
+      "evra": "1.1.2-2.fc30.x86_64",
+      "digest": "sha256:59f1cad496fa8bcebce5fdda1177f0f94ea533bcd55c9a3d1c7819515b4ca3d5"
     },
     "zincati": {
-      "evra": "0.0.5-1.module_f31+6700+1b2863ea.x86_64"
+      "evra": "0.0.5-1.module_f30+6699+1eaa40c6.x86_64",
+      "digest": "sha256:5794ce6a4cff30f9b699eb35ec369f293dd7ac1076f1ed9b3943f906c37027ae"
     },
     "zlib": {
-      "evra": "1.2.11-20.fc31.x86_64"
+      "evra": "1.2.11-18.fc30.x86_64",
+      "digest": "sha256:2ab0ac4c04890c42ae2742b7a0345542fc848dc2a6c734b3c7e68e070c3d206a"
     }
   }
 }

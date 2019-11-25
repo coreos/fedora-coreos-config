@@ -1,6 +1,6 @@
 @Library('github.com/coreos/coreos-ci-lib@master') _
 
-coreos.pod([image: "quay.io/coreos-assembler/coreos-assembler:latest", kvm: true, memory: "9Gi"]) {
+coreos.pod([image: "quay.io/coreos-assembler/coreos-assembler:latest", kvm: true]) {
     stage("Build") {
         dir("fedora-coreos-config") {
             checkout scm
@@ -15,7 +15,7 @@ coreos.pod([image: "quay.io/coreos-assembler/coreos-assembler:latest", kvm: true
     stage("Kola") {
         dir("cosa") {
             coreos.shwrap("""
-                cosa kola run -- --parallel 8
+                cosa kola run
             """)
         }
     }
