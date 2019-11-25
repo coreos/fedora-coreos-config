@@ -5,6 +5,9 @@ size: 8
 extra-kargs:
     # Disable SMT on systems vulnerable to MDS or any similar future issue.
     - mitigations=auto,nosmt
+    # https://github.com/coreos/fedora-coreos-tracker/issues/292
+    # https://fedoraproject.org/wiki/Changes/CGroupsV2
+    - systemd.unified_cgroup_hierarchy=0
 
 
 # Optional remote by which to prefix the deployed OSTree ref
