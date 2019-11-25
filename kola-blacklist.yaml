@@ -1,0 +1,6 @@
+# This file documents currently known-to-fail kola tests. It is consumed by
+# coreos-assembler to automatically blacklist some tests. For more information,
+# see: https://github.com/coreos/coreos-assembler/pull/866.
+
+- pattern: fcos.python
+  tracker: https://github.com/coreos/mantle/issues/1103

@@ -12,16 +12,6 @@ path=$1
 shift
 
 majmin=$(findmnt -nvr -o MAJ:MIN "$path")
-
-# Detect if the rootfs is on a luks container and map
-# it to the underlying partition. This assumes that the
-# LUKS volumes is housed in a partition.
-src=$(findmnt -nvr -o SOURCE "$path")
-is_luks=0
-if [[ "${src}" =~ /dev/mapper ]]; then
-    majmin=$(dmsetup table ${src} | cut -d " " -f7)
-fi
-
 devpath=$(realpath "/sys/dev/block/$majmin")
 partition=$(cat "$devpath/partition")
 parent_path=$(dirname "$devpath")
@@ -30,12 +20,6 @@ parent_device=/dev/$(basename "${parent_path}")
 # TODO: make this idempotent, and don't error out if
 # we can't resize.
 growpart "${parent_device}" "${partition}" || true
-
-eval $(blkid -o export "${parent_device}${partition}")
-if [ "${TYPE}" == "crypto_LUKS" ]; then
-    luks_name=$(dmsetup info ${src} -C -o name --noheadings)
-    cryptsetup resize ${luks_name}
-fi
 
 # this part is already idempotent
 xfs_growfs /sysroot

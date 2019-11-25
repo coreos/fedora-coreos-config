@@ -62,3 +62,20 @@ one easy way to do this is for now:
 - add packages to the correct YAML manifest
 - run `cosa fetch --update-lockfile`
 - commit only the new package entries
+
+## Moving to a new major version of Fedora
+
+Updating this repo itself is easy:
+
+1. bump `releasever` in `manifest.yaml`
+2. update the repos in `manifest.yaml` if needed
+3. run `cosa fetch --update-lockfile`
+4. PR the result
+
+Though there are also some releng-related knobs that may need changes:
+
+1. verify that the `f${releasever}-coreos-signing-pending` Koji tag has
+   been created
+2. update RoboSignatory config so that:
+    - [tagged packages are signed with the right key](https://infrastructure.fedoraproject.org/cgit/ansible.git/tree/roles/robosignatory/templates/robosignatory.toml.j2?id=c27f4644d4bc2f7916c9c85dc1c1a9ee9a724cc0#n181)
+    - [CoreOS artifacts are signed with the right key](https://infrastructure.fedoraproject.org/cgit/ansible.git/tree/roles/robosignatory/templates/robosignatory.toml.j2?id=c27f4644d4bc2f7916c9c85dc1c1a9ee9a724cc0#n458)
