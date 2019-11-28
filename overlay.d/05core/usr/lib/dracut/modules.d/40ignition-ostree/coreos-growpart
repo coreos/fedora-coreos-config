@@ -11,7 +11,9 @@ set -euo pipefail
 path=$1
 shift
 
-majmin=$(findmnt -nvr -o MAJ:MIN "$path")
+# remove dupes; we'll still error if somehow there are multiple mounts from
+# different devices on there... which is then ambiguous what we should do anyway
+majmin=$(findmnt -nvr -o MAJ:MIN "$path" | sort | uniq)
 devpath=$(realpath "/sys/dev/block/$majmin")
 partition=$(cat "$devpath/partition")
 parent_path=$(dirname "$devpath")
