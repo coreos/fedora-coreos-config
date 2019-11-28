@@ -1,0 +1,12 @@
+[Unit]
+Description=Ignition OSTree: Grow root filesystem
+DefaultDependencies=false
+ConditionKernelCommandLine=ostree
+ConditionPathExists=!/run/ostree-live
+Before=initrd-root-fs.target
+After=ignition-ostree-mount-firstboot-sysroot.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-growpart /sysroot
+RemainAfterExit=yes

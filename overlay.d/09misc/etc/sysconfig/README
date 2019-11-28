@@ -1,0 +1,9 @@
+This directory is a legacy of Red Hat Linux days.
+Do not write new software that uses configuration
+files here.  Instead your software should use a regular
+config file in `/etc/foo.conf`, a configuration directory
+such as `/etc/foo/`.
+
+Where appropriate, it's also best practice to use "systemd style config"
+where default config files live in `/usr/lib/foo` that can be
+overridden in `/etc` and `/run`.

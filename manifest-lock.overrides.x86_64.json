@@ -1,28 +1,10 @@
 {
   "packages": {
     "ignition": {
-      "evra": "2.0.1-4.git641ec6a.fc30.x86_64"
+      "evra": "2.0.1-5.git641ec6a.fc31.x86_64"
     },
-    "zincati": {
-      "evra": "0.0.5-1.module_f30+6699+1eaa40c6.x86_64"
-    },
-    "systemd": {
-      "evra": "241-12.git323cdf4.fc30.x86_64"
-    },
-    "systemd-container": {
-      "evra": "241-12.git323cdf4.fc30.x86_64"
-    },
-    "systemd-libs": {
-      "evra": "241-12.git323cdf4.fc30.x86_64"
-    },
-    "systemd-pam": {
-      "evra": "241-12.git323cdf4.fc30.x86_64"
-    },
-    "systemd-rpm-macros": {
-      "evra": "241-12.git323cdf4.fc30.noarch"
-    },
-    "systemd-udev": {
-      "evra": "241-12.git323cdf4.fc30.x86_64"
+    "nfs-utils-coreos": {
+      "evra": "1:2.4.1-2.rc1.fc31.x86_64"
     }
   }
 }

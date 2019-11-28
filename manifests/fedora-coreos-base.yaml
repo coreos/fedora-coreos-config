@@ -4,6 +4,7 @@
 
 include:
   - ignition-and-ostree.yaml
+  - file-transfer.yaml
 
 initramfs-args:
   - --no-hostonly
@@ -54,6 +55,9 @@ remove-from-packages:
               /usr/lib/systemd/system/systemd-networkd-wait-online.service]
   - [systemd-container, /usr/lib/systemd/network/.*]
   - [systemd-udev, /usr/lib/systemd/network/.*]
+  # We're still using the legacy dracut network module for now. Dracut keys off
+  # of this: https://github.com/dracutdevs/dracut/blob/1fcc70fe57eea0ea658aa2de5c0044683fe85cf1/modules.d/40network/module-setup.sh#L11
+  - [NetworkManager, /usr/libexec/nm-initrd-generator]
 
 
 remove-files:
@@ -122,23 +126,24 @@ packages:
   - cryptsetup
   - cifs-utils
   # Time sync
-  - chrony timedatex
+  - chrony
   # Extra runtime
   - sssd shadow-utils
   - logrotate
   # Used by admins interactively
   - sudo coreutils less tar xz gzip bzip2
-  - nmap-ncat net-tools bind-utils
+  - socat net-tools bind-utils
   - bash-completion
   - openssl
   - vim-minimal
-  # Moving files around and verifying them
-  - rsync fuse-sshfs
-  - gnupg2
+  # file-transfer: note fuse-sshfs is not in RHEL
+  # so we can't put it in file-transfer.yaml
+  - fuse-sshfs
   # User experience
   - console-login-helper-messages-issuegen
   - console-login-helper-messages-motdgen
   - console-login-helper-messages-profile
+  - toolbox
   # CoreOS Installer
   - coreos-installer coreos-installer-dracut
   # i18n
@@ -146,13 +151,6 @@ packages:
   - whois-nls
   # Parsing/Interacting with JSON data
   - jq
-  # HACK for https://github.com/coreos/fedora-coreos-config/pull/238#issuecomment-558707064
-  - brotli-1.0.7-3.fc30.x86_64
-  - curl-7.65.3-4.fc30.x86_64
-  - libcurl-7.65.3-4.fc30.x86_64
-  - libmetalink-0.1.3-8.fc30.x86_64
-  - libssh-0.9.0-5.fc30.x86_64
-  - libssh-config-0.9.0-5.fc30.noarch
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;
