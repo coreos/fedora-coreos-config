@@ -19,7 +19,9 @@ install() {
     inst_multiple \
         realpath \
         systemd-sysusers \
-        systemd-tmpfiles
+        systemd-tmpfiles \
+        sort \
+        uniq
 
     # growpart deps
     inst_multiple sfdisk awk realpath basename dirname sfdisk xfs_growfs growpart touch
