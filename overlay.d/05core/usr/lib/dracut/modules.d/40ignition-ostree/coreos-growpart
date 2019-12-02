@@ -11,9 +11,10 @@ set -euo pipefail
 path=$1
 shift
 
-# remove dupes; we'll still error if somehow there are multiple mounts from
-# different devices on there... which is then ambiguous what we should do anyway
-majmin=$(findmnt -nvr -o MAJ:MIN "$path" | sort | uniq)
+# The use of tail is to avoid errors from duplicate mounts;
+# this shouldn't happen for us but we're being conservative.
+src=$(findmnt -nvr -o SOURCE "$path" | tail -n1)
+majmin=$(findmnt -nvr -o MAJ:MIN "$path" | tail -n1)
 devpath=$(realpath "/sys/dev/block/$majmin")
 partition=$(cat "$devpath/partition")
 parent_path=$(dirname "$devpath")
@@ -23,7 +24,13 @@ parent_device=/dev/$(basename "${parent_path}")
 # we can't resize.
 growpart "${parent_device}" "${partition}" || true
 
-# this part is already idempotent
-xfs_growfs /sysroot
+eval $(blkid -o export "${src}")
+# TODO: Add XFS to https://github.com/systemd/systemd/blob/master/src/partition/growfs.c
+# and use it instead.
+case "${TYPE}" in
+    xfs) xfs_growfs /sysroot ;;
+    ext4) resize2fs "${src}" ;;
+    *) echo "error: Unsupported filesystem for /sysroot: ${TYPE}" 1>&2; exit 1 ;;
+esac
 
 touch /var/lib/coreos-growpart.stamp

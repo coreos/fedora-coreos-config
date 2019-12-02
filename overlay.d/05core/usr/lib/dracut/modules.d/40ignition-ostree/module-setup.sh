@@ -24,7 +24,7 @@ install() {
         uniq
 
     # growpart deps
-    inst_multiple sfdisk awk realpath basename dirname sfdisk xfs_growfs growpart touch
+    inst_multiple sfdisk awk realpath basename dirname sfdisk xfs_growfs resize2fs growpart touch
 
     for x in mount populate; do
         install_ignition_unit ignition-ostree-${x}-var.service
