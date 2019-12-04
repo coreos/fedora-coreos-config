@@ -7,6 +7,31 @@ By default, the OS performs continuous auto-updates via two components:
  * https://github.com/coreos/rpm-ostree[rpm-ostree] handles multiple on-disk OSTree deployments, and it can switch between them at boot-time.
  * https://github.com/coreos/zincati[Zincati] continuously checks for OS updates and applies them via rpm-ostree.
 
+== Configuring Update/Rollout Wariness
+
+The Zincati service runs on a Fedora CoreOS node and checks with the remote Cincinnati service to see when updates are available. It can be configured with a custom "rollout wariness" value (see https://github.com/coreos/zincati/blob/0.0.6/docs/usage/auto-updates.md#phased-rollouts-client-wariness-canaries[documentation]) to let the server know how eager, or how risk-averse the node is to receiving updates. `rollout_wariness` can be a floating point value between `0.0` (most eager) and `1.0` (most conservative). In order to receive updates very early in the phased rollout cycle, a node can be configured with a low `rollout_wariness` value (e.g. `0.001`). This can be done during provisioning by using the https://github.com/coreos/fcct[FCCT] configuration snippet shown below:
+
+.Example FCC adding a file to configure rollout_wariness
+[source,yaml]
+----
+variant: fcos
+version: 1.0.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - ssh-rsa AAA...
+storage:
+  files:
+    - path: /etc/zincati/config.d/51-rollout-wariness.toml
+      contents:
+        inline: |
+          [identity]
+          rollout_wariness = 0.001
+----
+
+To see how to use the config snippet above and provision a machine see the xref:getting-started.adoc[Getting Started Guide].
+
 == OS-update finalization
 
 In order to finalize an OS update, a machine needs to perform a reboot.
@@ -17,4 +42,4 @@ The following finalization strategies are available:
  * immediately reboot to apply an update, as soon as it is downloaded and staged locally
  * use an external lock-manager to reboot a fleet of machines in a coordinated way
 
-For further documentation on how to configure updates finalization, check Zincati documentation on https://github.com/coreos/zincati/blob/master/docs/usage/updates-strategy.md[updates strategy].
+For further documentation on how to configure updates finalization, check Zincati documentation on https://github.com/coreos/zincati/blob/0.0.6/docs/usage/updates-strategy.md[updates strategy].
