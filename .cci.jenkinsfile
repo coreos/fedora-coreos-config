@@ -15,10 +15,15 @@ coreos.pod([image: "quay.io/coreos-assembler/coreos-assembler:latest", kvm: true
         }
     }
     stage("Kola") {
-        dir("cosa") {
-            coreos.shwrap("""
-                cosa kola run -- --parallel 8
-            """)
+        try {
+            dir("cosa") {
+                coreos.shwrap("""
+                    cosa kola run -- --parallel 8
+                """)
+            }
+        } finally {
+            coreos.shwrap("tar -cf - cosa/tmp/kola/ | xz -c9 > ${env.WORKSPACE}/kola.tar.xz")
+            archiveArtifacts allowEmptyArchive: true, artifacts: 'kola.tar.xz'
         }
     }
 }
