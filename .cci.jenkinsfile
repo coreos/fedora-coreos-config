@@ -8,6 +8,8 @@ coreos.pod([image: "quay.io/coreos-assembler/coreos-assembler:latest", kvm: true
         dir("cosa") {
             coreos.shwrap("""
                 cosa init ${env.WORKSPACE}/fedora-coreos-config
+                curl -LO https://raw.githubusercontent.com/coreos/fedora-coreos-releng-automation/master/scripts/download-overrides.py
+                python3 download-overrides.py
                 cosa build
             """)
         }
