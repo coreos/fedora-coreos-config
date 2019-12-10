@@ -31,7 +31,7 @@
       "evra": "11-8.fc31.noarch"
     },
     "bash": {
-      "evra": "5.0.7-3.fc31.x86_64"
+      "evra": "5.0.11-1.fc31.x86_64"
     },
     "bash-completion": {
       "evra": "1:2.8-7.fc31.noarch"
@@ -40,22 +40,22 @@
       "evra": "1.07.1-9.fc31.x86_64"
     },
     "bind-libs": {
-      "evra": "32:9.11.13-2.fc31.x86_64"
+      "evra": "32:9.11.13-3.fc31.x86_64"
     },
     "bind-libs-lite": {
-      "evra": "32:9.11.13-2.fc31.x86_64"
+      "evra": "32:9.11.13-3.fc31.x86_64"
     },
     "bind-license": {
-      "evra": "32:9.11.13-2.fc31.noarch"
+      "evra": "32:9.11.13-3.fc31.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.11.13-2.fc31.x86_64"
+      "evra": "32:9.11.13-3.fc31.x86_64"
     },
     "brotli": {
       "evra": "1.0.7-6.fc31.x86_64"
     },
     "btrfs-progs": {
-      "evra": "5.2.1-1.fc31.x86_64"
+      "evra": "5.4-1.fc31.x86_64"
     },
     "bubblewrap": {
       "evra": "0.4.0-1.fc31.x86_64"
@@ -100,7 +100,7 @@
       "evra": "0.17-1.fc31.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.119.0-2.fc31.noarch"
+      "evra": "2:2.123.0-1.fc31.noarch"
     },
     "containerd": {
       "evra": "1.2.6-2.20190627gitd68b593.fc31.x86_64"
@@ -109,7 +109,7 @@
       "evra": "0.8.2-2.1.dev.git485be65.fc31.x86_64"
     },
     "containers-common": {
-      "evra": "1:0.1.40-3.fc31.x86_64"
+      "evra": "1:0.1.40-4.fc31.x86_64"
     },
     "coreos-installer": {
       "evra": "0-10.git2fcf441.fc31.noarch"
@@ -289,7 +289,7 @@
       "evra": "2.9.9-8.fc31.x86_64"
     },
     "fuse-overlayfs": {
-      "evra": "0.7-1.fc31.x86_64"
+      "evra": "0.7.2-2.fc31.x86_64"
     },
     "fuse-sshfs": {
       "evra": "3.6.0-1.fc31.x86_64"
@@ -322,22 +322,22 @@
       "evra": "2.62.3-1.fc31.x86_64"
     },
     "glibc": {
-      "evra": "2.30-7.fc31.x86_64"
+      "evra": "2.30-8.fc31.x86_64"
     },
     "glibc-all-langpacks": {
-      "evra": "2.30-7.fc31.x86_64"
+      "evra": "2.30-8.fc31.x86_64"
     },
     "glibc-common": {
-      "evra": "2.30-7.fc31.x86_64"
+      "evra": "2.30-8.fc31.x86_64"
     },
     "gmp": {
       "evra": "1:6.1.2-10.fc31.x86_64"
     },
     "gnupg2": {
-      "evra": "2.2.17-2.fc31.x86_64"
+      "evra": "2.2.18-2.fc31.x86_64"
     },
     "gnutls": {
-      "evra": "3.6.10-1.fc31.x86_64"
+      "evra": "3.6.11-1.fc31.x86_64"
     },
     "gpgme": {
       "evra": "1.13.1-3.fc31.x86_64"
@@ -346,25 +346,25 @@
       "evra": "3.3-3.fc31.x86_64"
     },
     "grub2-common": {
-      "evra": "1:2.02-103.fc31.noarch"
+      "evra": "1:2.02-104.fc31.noarch"
     },
     "grub2-efi-x64": {
-      "evra": "1:2.02-103.fc31.x86_64"
+      "evra": "1:2.02-104.fc31.x86_64"
     },
     "grub2-pc": {
-      "evra": "1:2.02-103.fc31.x86_64"
+      "evra": "1:2.02-104.fc31.x86_64"
     },
     "grub2-pc-modules": {
-      "evra": "1:2.02-103.fc31.noarch"
+      "evra": "1:2.02-104.fc31.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.02-103.fc31.x86_64"
+      "evra": "1:2.02-104.fc31.x86_64"
     },
     "grub2-tools-extra": {
-      "evra": "1:2.02-103.fc31.x86_64"
+      "evra": "1:2.02-104.fc31.x86_64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.02-103.fc31.x86_64"
+      "evra": "1:2.02-104.fc31.x86_64"
     },
     "gzip": {
       "evra": "1.10-1.fc31.x86_64"
@@ -373,10 +373,10 @@
       "evra": "3.20-9.fc31.x86_64"
     },
     "ignition": {
-      "evra": "2.0.1-5.git641ec6a.fc31.x86_64"
+      "evra": "2.0.1-9.gita8f91fa.fc31.x86_64"
     },
     "ipcalc": {
-      "evra": "0.2.5-3.fc31.x86_64"
+      "evra": "0.3.0-1.fc31.x86_64"
     },
     "iproute": {
       "evra": "5.3.0-1.fc31.x86_64"
@@ -433,13 +433,13 @@
       "evra": "2.0.4-14.fc31.noarch"
     },
     "kernel": {
-      "evra": "5.3.13-300.fc31.x86_64"
+      "evra": "5.3.15-300.fc31.x86_64"
     },
     "kernel-core": {
-      "evra": "5.3.13-300.fc31.x86_64"
+      "evra": "5.3.15-300.fc31.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.3.13-300.fc31.x86_64"
+      "evra": "5.3.15-300.fc31.x86_64"
     },
     "keyutils": {
       "evra": "1.6-3.fc31.x86_64"
@@ -844,7 +844,7 @@
       "evra": "1.3.1-18.fc31.x86_64"
     },
     "passwd": {
-      "evra": "0.80-6.fc31.x86_64"
+      "evra": "0.80-7.fc31.x86_64"
     },
     "pcre": {
       "evra": "8.43-2.fc31.1.x86_64"
@@ -970,7 +970,7 @@
       "evra": "15-8.x86_64"
     },
     "skopeo": {
-      "evra": "1:0.1.40-3.fc31.x86_64"
+      "evra": "1:0.1.40-4.fc31.x86_64"
     },
     "slirp4netns": {
       "evra": "0.4.0-20.1.dev.gitbbd6f25.fc31.x86_64"
@@ -1069,10 +1069,30 @@
       "evra": "1.1.4-1.fc31.x86_64"
     },
     "zincati": {
-      "evra": "0.0.5-1.module_f31+6700+1b2863ea.x86_64"
+      "evra": "0.0.6-1.fc31.x86_64"
     },
     "zlib": {
       "evra": "1.2.11-20.fc31.x86_64"
+    }
+  },
+  "metadata": {
+    "generated": "2019-12-10T18:16:10Z",
+    "rpmmd_repos": {
+      "fedora": {
+        "generated": "2019-10-23T22:52:47Z"
+      },
+      "fedora-coreos-pool": {
+        "generated": "2019-12-09T22:43:12Z"
+      },
+      "fedora-modular": {
+        "generated": "2019-10-23T22:53:13Z"
+      },
+      "fedora-updates": {
+        "generated": "2019-12-10T02:39:37Z"
+      },
+      "fedora-updates-modular": {
+        "generated": "2019-12-07T00:15:39Z"
+      }
     }
   }
 }
