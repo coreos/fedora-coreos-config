@@ -18,13 +18,14 @@ install_ignition_unit() {
 install() {
     inst_multiple \
         realpath \
+        setfiles \
         systemd-sysusers \
         systemd-tmpfiles \
         sort \
         uniq
 
     # growpart deps
-    inst_multiple sfdisk awk realpath basename dirname sfdisk xfs_growfs growpart touch
+    inst_multiple sfdisk awk realpath basename dirname sfdisk xfs_growfs resize2fs growpart touch
 
     for x in mount populate; do
         install_ignition_unit ignition-ostree-${x}-var.service
@@ -38,4 +39,6 @@ install() {
 
     install_ignition_unit ignition-ostree-growfs.service
     inst_script "$moddir/coreos-growpart" /usr/libexec/coreos-growpart
+
+    inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
 }

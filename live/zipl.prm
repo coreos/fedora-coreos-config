@@ -1,1 +1,1 @@
-coreos-iso @@KERNEL-ARGS@@ rd.neednet=1 ip=dhcp ignition.firstboot ignition.platform.id=metal
+@@KERNEL-ARGS@@ rd.neednet=1 ip=dhcp ignition.firstboot ignition.platform.id=metal

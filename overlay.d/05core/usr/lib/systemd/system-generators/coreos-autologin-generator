@@ -9,7 +9,7 @@ have_karg() {
     local cmdline=( $(</proc/cmdline) )
     local i
     for i in "${cmdline[@]}"; do
-        if [ "$arg" = "$i" ]; then
+        if [[ "$i" =~ "$arg=" ]]; then
             return 0
         fi
     done
@@ -39,7 +39,7 @@ fi
 
 # Autologin on ISO boots but not PXE boots.  The only way to tell the
 # difference is a kernel argument.
-if ! have_karg coreos-iso; then
+if ! have_karg coreos.liveiso; then
     exit 0
 fi
 
