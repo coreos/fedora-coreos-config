@@ -122,7 +122,7 @@ packages:
   - cloud-utils-growpart
   - lvm2 iscsi-initiator-utils sg3_utils
   - device-mapper-multipath
-  - xfsprogs e2fsprogs mdadm
+  - xfsprogs e2fsprogs btrfs-progs mdadm
   - cryptsetup
   - cifs-utils
   # Time sync

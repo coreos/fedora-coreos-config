@@ -11,11 +11,10 @@ add_wants() {
     ln -sf "../${name}" "${wants_dir}/${name}"
 }
 
-# If there's no aleph version from https://github.com/coreos/coreos-assembler/pull/768
-# then this is a non-FCOS system, likely RHCOS pre-4.3.  In
-# that case, we don't want to overwrite what the systemd-fstab-generator
-# will do.
-if ! [ -f /sysroot/.coreos-aleph-version.json ]; then
+# If there's already an /etc/fstab entries for /boot, then this is is a non-FCOS
+# system, likely RHCOS pre-4.3 (which still used Anaconda).  In that case, we
+# don't want to overwrite what the systemd-fstab-generator will do.
+if findmnt --fstab /boot &>/dev/null; then
     exit 0
 fi
 

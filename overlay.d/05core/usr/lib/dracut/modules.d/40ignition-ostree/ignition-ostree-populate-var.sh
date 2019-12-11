@@ -14,34 +14,28 @@ fi
 # Host and Silverblue:
 # https://github.com/rhinstaller/anaconda/blob/b9ea8ce4e68196b30a524c1cc5680dcdc4b89371/pyanaconda/payload/rpmostreepayload.py#L332
 
-# Simply manually mkdir /var/{lib,log}; the tmpfiles.d entries otherwise reference
-# users/groups which we don't have access to from here (though... we *could*
-# import them from the sysroot, and have nss-altfiles in the initrd, but meh...
-# let's just wait for systemd-sysusers which will make this way easier:
-# https://github.com/coreos/fedora-coreos-config/pull/56/files#r262592361).
-mkdir -p /sysroot/var/lib /sysroot/var/log
+for varsubdir in lib log home roothome opt srv usrlocal mnt media; do
 
-systemd-tmpfiles --create --boot --root=/sysroot \
-    --prefix=/var/home \
-    --prefix=/var/roothome \
-    --prefix=/var/opt \
-    --prefix=/var/srv \
-    --prefix=/var/usrlocal \
-    --prefix=/var/mnt \
-    --prefix=/var/media
+    # If the directory already existed, just ignore. This addresses the live
+    # image case with persistent `/var`; we don't want to relabel all the files
+    # there on each boot.
+    if [ -d "/sysroot/var/${varsubdir}" ]; then
+        continue
+    fi
 
-# Ask for /var to be relabeled.
-# See also: https://github.com/coreos/ignition/issues/635.
-mkdir -p /run/tmpfiles.d
-echo "Z /var - - -" > /run/tmpfiles.d/var-relabel.conf
+    if [[ $varsubdir == lib ]] || [[ $varsubdir == log ]]; then
+        # Simply manually mkdir /var/{lib,log}; the tmpfiles.d entries otherwise
+        # reference users/groups which we don't have access to from here
+        # (though... we *could* import them from the sysroot, and have
+        # nss-altfiles in the initrd, but meh...  let's just wait for
+        # systemd-sysusers which will make this way easier:
+        # https://github.com/coreos/fedora-coreos-config/pull/56/files#r262592361).
+        mkdir -p /sysroot/var/${varsubdir}
+    else
+        systemd-tmpfiles --create --boot --root=/sysroot --prefix="/var/${varsubdir}"
+    fi
 
-# XXX: https://github.com/systemd/systemd/pull/11903
-for unit in systemd-{journal-catalog-update,random-seed}.service; do
-    mkdir -p /run/systemd/system/${unit}.d
-    cat > /run/systemd/system/${unit}.d/after-tmpfiles.conf <<EOF
-[Unit]
-After=systemd-tmpfiles-setup.service
-EOF
+    coreos-relabel "/var/${varsubdir}"
 done
 
 # TODO move this to tmpfiles.d once systemd-tmpfiles handles C! with --root correctly.
