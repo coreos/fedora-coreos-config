@@ -131,7 +131,7 @@ packages:
   - sssd shadow-utils
   - logrotate
   # Used by admins interactively
-  - sudo coreutils less tar xz gzip bzip2
+  - sudo coreutils attr less tar xz gzip bzip2
   - socat net-tools bind-utils
   - bash-completion
   - openssl
