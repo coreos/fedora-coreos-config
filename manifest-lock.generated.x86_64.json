@@ -21,6 +21,9 @@
     "alternatives": {
       "evra": "1.11-5.fc31.x86_64"
     },
+    "attr": {
+      "evra": "2.4.48-7.fc31.x86_64"
+    },
     "audit-libs": {
       "evra": "3.0-0.15.20191104git1c2f876.fc31.x86_64"
     },
@@ -100,7 +103,7 @@
       "evra": "0.17-1.fc31.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.123.0-1.fc31.noarch"
+      "evra": "2:2.123.0-2.fc31.noarch"
     },
     "containerd": {
       "evra": "1.2.6-2.20190627gitd68b593.fc31.x86_64"
@@ -589,7 +592,7 @@
       "evra": "1.1.3-2.fc31.x86_64"
     },
     "libnghttp2": {
-      "evra": "1.39.2-2.fc31.x86_64"
+      "evra": "1.40.0-1.module_f31+7164+9e64a937.x86_64"
     },
     "libnl3": {
       "evra": "3.5.0-1.fc31.x86_64"
@@ -646,7 +649,7 @@
       "evra": "2.34-3.fc31.x86_64"
     },
     "libsmbclient": {
-      "evra": "2:4.11.2-1.fc31.x86_64"
+      "evra": "2:4.11.3-0.fc31.x86_64"
     },
     "libsolv": {
       "evra": "0.7.8-1.fc31.x86_64"
@@ -712,7 +715,7 @@
       "evra": "0.3.0-8.fc31.x86_64"
     },
     "libwbclient": {
-      "evra": "2:4.11.2-1.fc31.x86_64"
+      "evra": "2:4.11.3-0.fc31.x86_64"
     },
     "libxcrypt": {
       "evra": "4.4.10-1.fc31.x86_64"
@@ -934,25 +937,22 @@
       "evra": "2:1.0.0-101.rc9.gitc1485a1.fc31.x86_64"
     },
     "samba-client-libs": {
-      "evra": "2:4.11.2-1.fc31.x86_64"
+      "evra": "2:4.11.3-0.fc31.x86_64"
     },
     "samba-common": {
-      "evra": "2:4.11.2-1.fc31.noarch"
+      "evra": "2:4.11.3-0.fc31.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.11.2-1.fc31.x86_64"
-    },
-    "samba-libs": {
-      "evra": "2:4.11.2-1.fc31.x86_64"
+      "evra": "2:4.11.3-0.fc31.x86_64"
     },
     "sed": {
       "evra": "4.5-4.fc31.x86_64"
     },
     "selinux-policy": {
-      "evra": "3.14.4-40.fc31.noarch"
+      "evra": "3.14.4-43.fc31.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "3.14.4-40.fc31.noarch"
+      "evra": "3.14.4-43.fc31.noarch"
     },
     "setup": {
       "evra": "2.13.6-1.fc31.noarch"
@@ -1076,22 +1076,22 @@
     }
   },
   "metadata": {
-    "generated": "2019-12-10T18:16:10Z",
+    "generated": "2019-12-13T18:48:32Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2019-10-23T22:52:47Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2019-12-09T22:43:12Z"
+        "generated": "2019-12-11T14:19:09Z"
       },
       "fedora-modular": {
         "generated": "2019-10-23T22:53:13Z"
       },
       "fedora-updates": {
-        "generated": "2019-12-10T02:39:37Z"
+        "generated": "2019-12-13T00:45:58Z"
       },
       "fedora-updates-modular": {
-        "generated": "2019-12-07T00:15:39Z"
+        "generated": "2019-12-11T01:49:32Z"
       }
     }
   }
