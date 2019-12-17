@@ -1,4 +1,4 @@
-ref: fedora/${basearch}/coreos/testing
+ref: fedora/${basearch}/coreos/stable
 include: manifests/fedora-coreos.yaml
 
 releasever: "31"
@@ -6,10 +6,10 @@ releasever: "31"
 rojig:
   license: MIT
   name: fedora-coreos
-  summary: Fedora CoreOS testing
+  summary: Fedora CoreOS stable
 
 repos:
   - fedora-coreos-pool
 
 add-commit-metadata:
-  fedora-coreos.stream: testing
+  fedora-coreos.stream: stable
