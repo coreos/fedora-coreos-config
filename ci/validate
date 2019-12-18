@@ -1,0 +1,39 @@
+#!/usr/bin/python3
+# Validate basic syntax of shell script and yaml.
+
+import os
+import stat
+import subprocess
+import yaml
+
+validated=0
+
+def validate_shell(rootfd, name):
+    subprocess.check_call(['bash', '-n', name], preexec_fn=lambda: os.fchdir(rootfd))
+    global validated
+    validated +=1
+
+for root, dirs, files, rootfd in os.fwalk('.'):
+    # Skip .git
+    if '.git' in dirs:
+        dirs.remove('.git')
+    for name in files:
+        if name.endswith(('.yaml', '.yml')):
+            with open(os.open(name, dir_fd=rootfd, flags=os.O_RDONLY)) as f:
+                yaml.safe_load(f)
+                validated +=1
+            continue
+        elif name.endswith('.sh'):
+            validate_shell(rootfd, name)
+            continue
+        stbuf = os.lstat(name, dir_fd=rootfd)
+        if not stat.S_ISREG(stbuf.st_mode):
+            continue
+        if not stbuf.st_mode & stat.S_IXUSR:
+            continue
+        mimetype = subprocess.check_output(['file', '-b', '--mime-type', name], encoding='UTF-8',
+                                        preexec_fn=lambda: os.fchdir(rootfd)).strip()
+        if mimetype == 'text/x-shellscript':
+            validate_shell(rootfd, name)
+
+print(f"Validated {validated} files")
