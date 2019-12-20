@@ -7,20 +7,20 @@ By default, the OS performs continuous auto-updates via two components:
  * https://github.com/coreos/rpm-ostree[rpm-ostree] handles multiple on-disk OSTree deployments, and it can switch between them at boot-time.
  * https://github.com/coreos/zincati[Zincati] continuously checks for OS updates and applies them via rpm-ostree.
 
-== Configuring Update/Rollout Wariness
+== Wariness to updates
 
-The Zincati service runs on a Fedora CoreOS node and checks with the remote Cincinnati service to see when updates are available. It can be configured with a custom "rollout wariness" value (see https://github.com/coreos/zincati/blob/0.0.6/docs/usage/auto-updates.md#phased-rollouts-client-wariness-canaries[documentation]) to let the server know how eager, or how risk-averse the node is to receiving updates. `rollout_wariness` can be a floating point value between `0.0` (most eager) and `1.0` (most conservative). In order to receive updates very early in the phased rollout cycle, a node can be configured with a low `rollout_wariness` value (e.g. `0.001`). This can be done during provisioning by using the https://github.com/coreos/fcct[FCCT] configuration snippet shown below:
+The local Zincati agent periodically checks with a remote service to see when updates are available.
+A custom "rollout wariness" value (see https://github.com/coreos/zincati/blob/0.0.6/docs/usage/auto-updates.md#phased-rollouts-client-wariness-canaries[documentation]) can be provided to let the server know how eager, or how risk-averse the node is to receiving updates.
 
-.Example FCC adding a file to configure rollout_wariness
+The `rollout_wariness` parameter can be set to a floating point value between `0.0` (most eager) and `1.0` (most conservative).
+In order to receive updates very early in the phased rollout cycle, a node can be configured with a low value (e.g. `0.001`).
+This can be done during provisioning by using the https://github.com/coreos/fcct[FCCT] configuration snippet shown below:
+
+.Example: configuring Zincati rollout wariness
 [source,yaml]
 ----
 variant: fcos
 version: 1.0.0
-passwd:
-  users:
-    - name: core
-      ssh_authorized_keys:
-        - ssh-rsa AAA...
 storage:
   files:
     - path: /etc/zincati/config.d/51-rollout-wariness.toml
@@ -29,8 +29,6 @@ storage:
           [identity]
           rollout_wariness = 0.001
 ----
-
-To see how to use the config snippet above and provision a machine see the xref:getting-started.adoc[Getting Started Guide].
 
 == OS-update finalization
 
@@ -42,4 +40,24 @@ The following finalization strategies are available:
  * immediately reboot to apply an update, as soon as it is downloaded and staged locally
  * use an external lock-manager to reboot a fleet of machines in a coordinated way
 
-For further documentation on how to configure updates finalization, check Zincati documentation on https://github.com/coreos/zincati/blob/0.0.6/docs/usage/updates-strategy.md[updates strategy].
+A specific finalization strategy can be configured on each node.
+
+The https://github.com/coreos/fcct[FCCT] snippet below shows how to use a custom lock-manager:
+
+.Example: configuring Zincati updates strategy
+[source,yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/zincati/config.d/55-updates-strategy.toml
+      contents:
+        inline: |
+          [updates]
+          strategy = "fleet_lock"
+          [updates.fleet_lock]
+          base_url = "https://example.com/lock-manager/"
+----
+
+For further details on updates finalization, check the https://github.com/coreos/zincati/blob/0.0.6/docs/usage/updates-strategy.md[Zincati documentation].
