@@ -1,0 +1,23 @@
+= Kernel tunables (sysctl)
+
+The Linux kernel offers a plethora of knobs under `/proc/sys` to control the availability of different features and tune performance parameters.
+
+Values under `/proc/sys` can be changed directly at runtime, but such changes will not be persisted across reboots.
+Persistent settings should be written under `/etc/sysctl.d/` during provisioning, in order to be applied on each boot.
+
+As an example, the https://github.com/coreos/fcct[FCCT] snippet below shows how to disable _SysRq_ keys:
+
+.Example: configuring kernel tunable to disable SysRq keys
+[source,yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/sysctl.d/90-sysrq.conf
+      contents:
+        inline: |
+          kernel.sysrq = 0
+----
+
+Further details can be found in the systemd man pages https://www.freedesktop.org/software/systemd/man/sysctl.d.html[sysctl.d(5)] and https://www.freedesktop.org/software/systemd/man/systemd-sysctl.service.html[systemd-sysctl.service(8)].
