@@ -16,6 +16,7 @@ aws ec2 run-instances <other options> --user-data file://config.ign
 ----
 
 === Booting with QEMU
+For a detailed tutorial, see link://installing-on-VM.html[Booting FCOS in a VM].
 
 Download the QEMU Fedora CoreOS image from the https://getfedora.org/coreos/download/[download page].
 
