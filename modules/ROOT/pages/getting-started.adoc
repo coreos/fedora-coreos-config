@@ -1,143 +1,67 @@
 :experimental:
 = Fedora CoreOS - Getting Started
 
-Fedora CoreOS has no install-time configuration. Every Fedora CoreOS system begins with a generic, unconfigured disk image. On first boot Ignition will read the supplied config and configure the system. Ignition configs are usually supplied via the cloud’s userdata mechanism, or, in the case of bare metal, injected at install time. This guide will show you how to launch Fedora CoreOS on AWS, QEMU, and bare metal as well as how to create Ignition configs.
+== Background
+
+Fedora CoreOS (FCOS) has no install-time configuration. Every FCOS system begins with a generic disk image. For each deployment mechanism (bare metal, local VM, or cloud VM), the configuration must be supplied at first boot. This is done via a configuration file and FCOS Ignition. For cloud deployments, Ignition supplies the configuration via the cloud’s userdata mechanism. In the case of bare metal, Ignition injects the configuration at install time.
+
+This guide will show you how to launch Fedora CoreOS on AWS, QEMU, and bare metal.
+
+=== Prerequisite
+Before you can launch FCOS, you must have an Ignition configuration file. To produce an Ignition file, see xref:producing-ign.adoc[Producing an Ignition File].
 
 == Launching Fedora CoreOS
 
 === Booting on AWS
 
-To boot on AWS, find the correct AMI in the https://getfedora.org/coreos/download/[download page] and specify the Ignition config as the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user-data]. Note that while the AWS documentation mentions cloud-init and scripts, Fedora CoreOS only accepts Ignition configs; it does not support cloud-init or running scripts from userdata.
+Download the correct AMI in the https://getfedora.org/coreos/download/[download page].
+
+Then, specify the Ignition configuration file as the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user-data].
+
+NOTE: While the AWS documentation mentions cloud-init and scripts, FCOS accepts only Ignition configuration files; it does not support cloud-init or running scripts from user-data.
 
 .Example launching Fedora CoreOS on AWS
 [source, bash]
 ----
-aws ec2 run-instances <other options> --user-data file://config.ign
+aws ec2 run-instances <other options> --user-data file://example.ign
 ----
 
 === Booting with QEMU
-For a detailed tutorial, see link://installing-on-VM.html[Booting FCOS in a VM].
+Go to the https://getfedora.org/coreos/download/[download page] to retrieve the latest FCOS qcow file.
 
-Download the QEMU Fedora CoreOS image from the https://getfedora.org/coreos/download/[download page].
+Extract the file. Assuming that the downloaded file is called `fedora-coreos-qemu.qcow2.xz`, the command would be the following:
 
-Specify your Ignition config by using `-fw_cfg` to set the `opt/com.coreos/config` key in the QEMU firmware configuration device.
+
+`unxz fedora-coreos-qemu.qcow2.xz`
+
+Ensure the correct ownership of the file:
+
+`chown fcos_user:kvm fedora-coreos-qemu.qcow2`
+
+TIP: The above example assumes that you have created the fcos_user on your local machine. If you did not, replace fcos_user with the user that will boot FCOS on the local host.
+
+To boot FCOS with the Ignition file, you must specify the Ignition file to the hypervisor. In the case of QEMU, do so with the `-fw_cfg` parameter. This sets the `opt/com.coreos/config` key in the QEMU firmware configuration device.
+
+NOTE: You must use absolute file paths in the command below. QEMU cannot resolve relative file paths for these options.
 
 .Example launching Fedora CoreOS with QEMU
-[source, bash]
+
+[source,bash]
 ----
 qemu-system-x86_64 -machine accel=kvm -m 2048 -cpu host -nographic \
 	-drive if=virtio,file=path/to/fedora-coreos-qemu.qcow2 \
 	-device virtio-rng-pci \
-	-fw_cfg name=opt/com.coreos/config,file=path/to/ignition-config.ign
+	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign
 ----
+Once FCOS boots, it will display the IP address of the VM.
 
-=== Installing on bare metal
+You can then SSH into the FCOS VM as `fcos_user`:
 
-Follow the https://github.com/coreos/coreos-installer/[coreos-installer instructions] to install Fedora CoreOS to disk. This will inject your specified Ignition config in the installed image.
+`ssh fcos_user@<ip address>`
 
-== Generating Ignition configs
+== Installing on Bare Metal
 
-Ignition configs are not intended to be hand-written. Instead, use the https://github.com/coreos/fcct[Fedora CoreOS Config Transpiler (FCCT)] to translate Fedora CoreOS Configs (FCCs) to Ignition configs. In addition to be easier to write, FCCT will also validate your config and check for errors. Here’s an example FCC that adds an SSH key to the `core` user’s authorized keys:
-
-.Example FCC adding an SSH key to the core user
-[source,yaml]
-----
-variant: fcos
-version: 1.0.0
-passwd:
-  users:
-    - name: core
-      ssh_authorized_keys:
-        - ssh-rsa AAAA
-----
-
-Then use FCCT to convert the FCC to an Ignition config:
-
-.Using FCCT to convert from an FCC to an Ignition config
-[source,bash]
-----
-./bin/amd64/fcct --strict --pretty --input your_config.fcc --output your_config.ign
-----
-
-Then launch or install Fedora CoreOS with that config as described above and check that you can SSH in:
-
-.SSHing in as the `core` user
-[source,bash]
-----
-ssh core@<ip>
-----
-
-Refer to the FCCT https://github.com/coreos/fcct/blob/master/docs/getting-started.md[getting started guide], https://github.com/coreos/fcct/blob/master/docs/examples.md[examples] and https://github.com/coreos/fcct/blob/master/docs/configuration-v1_0.md[configuration specification] for more information on using FCCT, more examples, and a complete list of configuration FCCT supports.
-
-=== Running containers
-
-Fedora CoreOS ships with both docker and podman installed. Use systemd units to start and stop containers.
-
-.Example for running busybox using systemd and podman
-[source,yaml]
-----
-variant: fcos
-version: 1.0.0
-systemd:
-  units:
-    - name: hello.service
-      enabled: true
-      contents: |
-        [Unit]
-        Description=MyApp
-        After=network-online.target
-        Wants=network-online.target
-
-        [Service]
-        TimeoutStartSec=0
-        ExecStartPre=-/bin/podman kill busybox1
-        ExecStartPre=-/bin/podman rm busybox1
-        ExecStartPre=/bin/podman pull busybox
-        ExecStart=/bin/podman run --name busybox1 busybox /bin/sh -c "trap 'exit 0' INT TERM; while true; do echo Hello World; sleep 1; done"
-
-        [Install]
-        WantedBy=multi-user.target
-----
-
-Note that when using docker instead of podman, units starting docker containers will need `Requires=docker.service` and `After=docker.service` to ensure the docker daemon is running before trying to start containers.
-
-=== Running etcd
-
-etcd is not shipped as part of Fedora CoreOS and should instead be run as a container.
-
-.FCC for setting up single node etcd
-[source,yaml]
-----
-variant: fcos
-version: 1.0.0
-systemd:
-  units:
-    - name: etcd-member.service
-      enabled: true
-      contents: |
-        [Unit]
-        Description=Run single node etcd
-        After=network-online.target
-        Wants=network-online.target
-
-        [Service]
-        ExecStartPre=mkdir -p /var/lib/etcd
-        ExecStartPre=-/bin/podman kill etcd
-        ExecStartPre=-/bin/podman rm etcd
-        ExecStartPre=-/bin/podman pull quay.io/coreos/etcd
-        ExecStart=/bin/podman run --name etcd --volume /var/lib/etcd:/etcd-data:z --net=host quay.io/coreos/etcd:latest /usr/local/bin/etcd --data-dir /etcd-data --name node1 \
-                --initial-advertise-peer-urls http://127.0.0.1:2380 --listen-peer-urls http://127.0.0.1:2380 \
-                --advertise-client-urls http://127.0.0.1:2379 \
-                --listen-client-urls http://127.0.0.1:2379 \
-                --initial-cluster node1=http://127.0.0.1:2380
-
-        ExecStop=/bin/podman stop etcd
-
-        [Install]
-        WantedBy=multi-user.target
-----
-
-See the https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/container.md#docker[etcd documentation] for more information on running etcd in containers and how to set up multi-node etcd.
+Follow the https://github.com/coreos/coreos-installer/[coreos-installer instructions] to install Fedora CoreOS to disk. This will inject your specified Ignition configuration at install time.
 
 == Where to report bugs and ask questions
 
