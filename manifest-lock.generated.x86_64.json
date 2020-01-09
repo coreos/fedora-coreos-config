@@ -39,9 +39,6 @@
     "bash-completion": {
       "evra": "1:2.8-7.fc31.noarch"
     },
-    "bc": {
-      "evra": "1.07.1-9.fc31.x86_64"
-    },
     "bind-libs": {
       "evra": "32:9.11.13-3.fc31.x86_64"
     },
@@ -115,10 +112,10 @@
       "evra": "1:0.1.40-4.fc31.x86_64"
     },
     "coreos-installer": {
-      "evra": "0-10.git2fcf441.fc31.noarch"
+      "evra": "0.1.2-1.fc31.x86_64"
     },
-    "coreos-installer-dracut": {
-      "evra": "0-10.git2fcf441.fc31.noarch"
+    "coreos-installer-systemd": {
+      "evra": "0.1.2-1.fc31.x86_64"
     },
     "coreutils": {
       "evra": "8.31-6.fc31.x86_64"
@@ -1076,19 +1073,19 @@
     }
   },
   "metadata": {
-    "generated": "2020-01-08T12:56:48Z",
+    "generated": "2020-01-09T17:15:23Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2019-10-23T22:52:47Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2019-12-21T04:09:01Z"
+        "generated": "2020-01-09T17:02:21Z"
       },
       "fedora-modular": {
         "generated": "2019-10-23T22:53:13Z"
       },
       "fedora-updates": {
-        "generated": "2020-01-08T11:29:50Z"
+        "generated": "2020-01-09T00:51:45Z"
       },
       "fedora-updates-modular": {
         "generated": "2020-01-05T00:11:12Z"
