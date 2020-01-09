@@ -1,5 +1,7 @@
 packages:
-  # https://github.com/coreos/ignition/pull/846
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2019-8f331fb834
-  ignition:
-    evra: 2.0.1-9.gita8f91fa.fc31.x86_64
+  # New rust based coreos-installer
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a507c2d7c1
+  coreos-installer:
+    evra: 0.1.2-1.fc31.x86_64
+  coreos-installer-systemd:
+    evra: 0.1.2-1.fc31.x86_64
