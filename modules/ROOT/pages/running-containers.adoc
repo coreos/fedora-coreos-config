@@ -1,0 +1,72 @@
+= Running Containers
+
+== Introduction
+Fedora CoreOS ships with both docker and podman installed. This page explains how to use systemd units to start and stop containers with podman.
+
+== Example Configuration
+The following FCOS Configuration (FCC) snippet configures the systemd hello.service to run busybox.
+
+.Example for running busybox using systemd and podman
+[source,yaml]
+----
+variant: fcos
+version: 1.0.0
+systemd:
+  units:
+    - name: hello.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=MyApp
+        After=network-online.target
+        Wants=network-online.target
+
+        [Service]
+        TimeoutStartSec=0
+        ExecStartPre=-/bin/podman kill busybox1
+        ExecStartPre=-/bin/podman rm busybox1
+        ExecStartPre=/bin/podman pull busybox
+        ExecStart=/bin/podman run --name busybox1 busybox /bin/sh -c "trap 'exit 0' INT TERM; while true; do echo Hello World; sleep 1; done"
+
+        [Install]
+        WantedBy=multi-user.target
+----
+
+=== Running etcd
+
+etcd is not shipped as part of Fedora CoreOS. To use it, run it as a container, as shown below.
+
+.FCC for setting up single node etcd
+[source,yaml]
+----
+variant: fcos
+version: 1.0.0
+systemd:
+  units:
+    - name: etcd-member.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Run single node etcd
+        After=network-online.target
+        Wants=network-online.target
+
+        [Service]
+        ExecStartPre=mkdir -p /var/lib/etcd
+        ExecStartPre=-/bin/podman kill etcd
+        ExecStartPre=-/bin/podman rm etcd
+        ExecStartPre=-/bin/podman pull quay.io/coreos/etcd
+        ExecStart=/bin/podman run --name etcd --volume /var/lib/etcd:/etcd-data:z --net=host quay.io/coreos/etcd:latest /usr/local/bin/etcd --data-dir /etcd-data --name node1 \
+                --initial-advertise-peer-urls http://127.0.0.1:2380 --listen-peer-urls http://127.0.0.1:2380 \
+                --advertise-client-urls http://127.0.0.1:2379 \
+                --listen-client-urls http://127.0.0.1:2379 \
+                --initial-cluster node1=http://127.0.0.1:2380
+
+        ExecStop=/bin/podman stop etcd
+
+        [Install]
+        WantedBy=multi-user.target
+----
+
+=== For More Information
+See the https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/container.md#docker[etcd documentation] for more information on running etcd in containers and how to set up multi-node etcd.

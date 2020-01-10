@@ -3,49 +3,51 @@
 
 == Background
 
-Fedora CoreOS (FCOS) has no install-time configuration. Every FCOS system begins with a generic disk image. For each deployment mechanism (bare metal, local VM, or cloud VM), the configuration must be supplied at first boot. This is done via a configuration file and FCOS Ignition. For cloud deployments, Ignition supplies the configuration via the cloud’s userdata mechanism. In the case of bare metal, Ignition injects the configuration at install time.
+Fedora CoreOS (FCOS) has no install-time configuration. Every FCOS system begins with a generic disk image. For each deployment mechanism (bare metal, local VM, or cloud VM), the configuration must be supplied at first boot. This is done via a configuration file and https://github.com/coreos/ignition[Ignition]. For cloud deployments, Ignition gathers the configuration via the cloud’s user-data mechanism. In the case of bare metal, Ignition injects the configuration at install time.
 
-This guide will show you how to launch Fedora CoreOS on AWS, QEMU, and bare metal.
+This guide will show you how to launch Fedora CoreOS (FCOS) on AWS, QEMU, and bare metal.
 
 === Prerequisite
-Before you can launch FCOS, you must have an Ignition configuration file. To produce an Ignition file, see xref:producing-ign.adoc[Producing an Ignition File].
+To launch FCOS, you must feed it an Ignition configuration file. To produce an Ignition file, see xref:producing-ign.adoc[Producing an Ignition File].
 
 == Launching Fedora CoreOS
 
-=== Booting on AWS
+=== Booting on Amazon Web Services (AWS)
 
-Download the correct AMI in the https://getfedora.org/coreos/download/[download page].
+To boot FCOS on AWS:
 
-Then, specify the Ignition configuration file as the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user-data].
+. Go to the https://getfedora.org/coreos/download/[download page] to identify the correct AMI.
 
-NOTE: While the AWS documentation mentions cloud-init and scripts, FCOS accepts only Ignition configuration files; it does not support cloud-init or running scripts from user-data.
+. Specify the Ignition configuration file as the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user-data].
+
 
 .Example launching Fedora CoreOS on AWS
 [source, bash]
 ----
-aws ec2 run-instances <other options> --user-data file://example.ign
+aws ec2 run-instances <other options> --image-id <ami> --user-data file://example.ign
 ----
 
+While the AWS documentation mentions cloud-init and scripts, FCOS accepts only Ignition configuration files. It does not support cloud-init or the ability to run scripts from user-data.
+
 === Booting with QEMU
-Go to the https://getfedora.org/coreos/download/[download page] to retrieve the latest FCOS qcow file.
+. Go to the https://getfedora.org/coreos/download/[download page] to retrieve the latest image suitable for QEMU.
 
-Extract the file. Assuming that the downloaded file is called `fedora-coreos-qemu.qcow2.xz`, the command would be the following:
+. Uncompress the file. Assuming that the downloaded file is called `fedora-coreos-qemu.qcow2.xz`, the command would be the following:
 
-
++
 `unxz fedora-coreos-qemu.qcow2.xz`
++
+. Ensure the correct ownership of the file:
++
+`chown core:kvm fedora-coreos-qemu.qcow2`
++
+TIP: The above example assumes that you have created the user named `core` on your local machine. If you did not, replace `core` with the user that will boot FCOS on the local host.
 
-Ensure the correct ownership of the file:
-
-`chown fcos_user:kvm fedora-coreos-qemu.qcow2`
-
-TIP: The above example assumes that you have created the fcos_user on your local machine. If you did not, replace fcos_user with the user that will boot FCOS on the local host.
-
-To boot FCOS with the Ignition file, you must specify the Ignition file to the hypervisor. In the case of QEMU, do so with the `-fw_cfg` parameter. This sets the `opt/com.coreos/config` key in the QEMU firmware configuration device.
-
-NOTE: You must use absolute file paths in the command below. QEMU cannot resolve relative file paths for these options.
-
+. Specify the Ignition file to the hypervisor. In the case of QEMU, this is done with the `-fw_cfg` parameter. This sets the `opt/com.coreos/config` key in the QEMU firmware configuration device.
++
+You must use absolute file paths here. QEMU cannot resolve relative file paths for these options.
++
 .Example launching Fedora CoreOS with QEMU
-
 [source,bash]
 ----
 qemu-system-x86_64 -machine accel=kvm -m 2048 -cpu host -nographic \
@@ -53,15 +55,18 @@ qemu-system-x86_64 -machine accel=kvm -m 2048 -cpu host -nographic \
 	-device virtio-rng-pci \
 	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign
 ----
-Once FCOS boots, it will display the IP address of the VM.
++
+Once the VM has finished booting, its IP addresses will appear on the serial console.
 
-You can then SSH into the FCOS VM as `fcos_user`:
-
-`ssh fcos_user@<ip address>`
+. You can then SSH into the FCOS VM as the `core` user:
++
+`ssh core@<ip address>`
 
 == Installing on Bare Metal
 
-Follow the https://github.com/coreos/coreos-installer/[coreos-installer instructions] to install Fedora CoreOS to disk. This will inject your specified Ignition configuration at install time.
+Follow the https://github.com/coreos/coreos-installer/[coreos-installer instructions] to install Fedora CoreOS to disk. This procedure injects the specified Ignition configuration at install time.
+
+//To do: Move the install instructions to this page or another page on this site.
 
 == Where to report bugs and ask questions
 

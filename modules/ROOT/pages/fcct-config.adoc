@@ -1,107 +1,13 @@
 :experimental:
-= FCCT Configuration and Common Use Cases
+= Provisioning and Configuration
 
-== Scope
-This document provides the configuration specification for human-readable FCCT YAML files. Once written, use fcct to convert the YAML file into the machine-readable JSON Ignition file.
+== Introduction
+This document provides the configuration specification for human-friendly FCOS Configuration (FCC) YAML files. Once written, use the FCOS Configuration Transpiler, `fcct`, to convert the YAML file into the machine-friendly JSON Ignition file.
 
-Fedora CoreOS (FCOS) Ignition files specify the configuration of FCOS. The process begins with a YAML configuration file. The FCOS Configuration Transpiler (FCCT) converts the human-readable YAML file into machine-readable JSON.
+Ignition files specify the configuration of FCOS and are ingested upon first boot of FCOS. Upon subsequent boots of the FCOS machine, the Ignition file is not used.
 
 == FCCT Configuration Specification
 
 Refer to the https://github.com/coreos/fcct/blob/master/docs/configuration-v1_0.md[Configuration Specification] for a full list of options.
 
-== Common Use Cases
-
-=== Running Containers
-
-Fedora CoreOS ships with both docker and podman installed. Use systemd units to start and stop containers.
-
-.Example for running busybox using systemd and podman
-[source,yaml]
-----
-variant: fcos
-version: 1.0.0
-systemd:
-  units:
-    - name: hello.service
-      enabled: true
-      contents: |
-        [Unit]
-        Description=MyApp
-        After=network-online.target
-        Wants=network-online.target
-
-        [Service]
-        TimeoutStartSec=0
-        ExecStartPre=-/bin/podman kill busybox1
-        ExecStartPre=-/bin/podman rm busybox1
-        ExecStartPre=/bin/podman pull busybox
-        ExecStart=/bin/podman run --name busybox1 busybox /bin/sh -c "trap 'exit 0' INT TERM; while true; do echo Hello World; sleep 1; done"
-
-        [Install]
-        WantedBy=multi-user.target
-----
-
-NOTE: When using docker instead of podman, units starting docker containers will need `Requires=docker.service` and `After=docker.service` to ensure the docker daemon is running before trying to start containers.
-
-=== Running etcd
-
-etcd is not shipped as part of Fedora CoreOS and should instead be run as a container.
-
-.FCC for setting up single node etcd
-[source,yaml]
-----
-variant: fcos
-version: 1.0.0
-systemd:
-  units:
-    - name: etcd-member.service
-      enabled: true
-      contents: |
-        [Unit]
-        Description=Run single node etcd
-        After=network-online.target
-        Wants=network-online.target
-
-        [Service]
-        ExecStartPre=mkdir -p /var/lib/etcd
-        ExecStartPre=-/bin/podman kill etcd
-        ExecStartPre=-/bin/podman rm etcd
-        ExecStartPre=-/bin/podman pull quay.io/coreos/etcd
-        ExecStart=/bin/podman run --name etcd --volume /var/lib/etcd:/etcd-data:z --net=host quay.io/coreos/etcd:latest /usr/local/bin/etcd --data-dir /etcd-data --name node1 \
-                --initial-advertise-peer-urls http://127.0.0.1:2380 --listen-peer-urls http://127.0.0.1:2380 \
-                --advertise-client-urls http://127.0.0.1:2379 \
-                --listen-client-urls http://127.0.0.1:2379 \
-                --initial-cluster node1=http://127.0.0.1:2380
-
-        ExecStop=/bin/podman stop etcd
-
-        [Install]
-        WantedBy=multi-user.target
-----
-
-See the https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/container.md#docker[etcd documentation] for more information on running etcd in containers and how to set up multi-node etcd.
-
-=== Kernel tunables (sysctl)
-
-The Linux kernel offers a plethora of knobs under `/proc/sys` to control the availability of different features and tune performance parameters.
-
-Values under `/proc/sys` can be changed directly at runtime, but such changes will not be persisted across reboots.
-Persistent settings should be written under `/etc/sysctl.d/` during provisioning, in order to be applied on each boot.
-
-As an example, the https://github.com/coreos/fcct[FCCT] snippet below shows how to disable _SysRq_ keys:
-
-.Example: configuring kernel tunable to disable SysRq keys
-[source,yaml]
-----
-variant: fcos
-version: 1.0.0
-storage:
-  files:
-    - path: /etc/sysctl.d/90-sysrq.conf
-      contents:
-        inline: |
-          kernel.sysrq = 0
-----
-
-Further details can be found in the systemd man pages https://www.freedesktop.org/software/systemd/man/sysctl.d.html[sysctl.d(5)] and https://www.freedesktop.org/software/systemd/man/systemd-sysctl.service.html[systemd-sysctl.service(8)].
+// Future plans: Sections for YAML, JSON, and transpiling; FCC; Ignition
