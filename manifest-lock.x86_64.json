@@ -433,13 +433,13 @@
       "evra": "2.0.4-14.fc31.noarch"
     },
     "kernel": {
-      "evra": "5.4.7-200.fc31.x86_64"
+      "evra": "5.4.8-200.fc31.x86_64"
     },
     "kernel-core": {
-      "evra": "5.4.7-200.fc31.x86_64"
+      "evra": "5.4.8-200.fc31.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.4.7-200.fc31.x86_64"
+      "evra": "5.4.8-200.fc31.x86_64"
     },
     "keyutils": {
       "evra": "1.6-3.fc31.x86_64"
@@ -865,7 +865,10 @@
       "evra": "1.6.3-2.fc31.x86_64"
     },
     "podman": {
-      "evra": "2:1.6.2-2.fc31.x86_64"
+      "evra": "2:1.7.0-2.fc31.x86_64"
+    },
+    "podman-plugins": {
+      "evra": "2:1.7.0-2.fc31.x86_64"
     },
     "policycoreutils": {
       "evra": "2.9-5.fc31.x86_64"
@@ -1073,7 +1076,7 @@
     }
   },
   "metadata": {
-    "generated": "2020-01-09T17:15:23Z",
+    "generated": "2020-01-10T04:56:52Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2019-10-23T22:52:47Z"
@@ -1085,7 +1088,7 @@
         "generated": "2019-10-23T22:53:13Z"
       },
       "fedora-updates": {
-        "generated": "2020-01-09T00:51:45Z"
+        "generated": "2020-01-10T01:57:25Z"
       },
       "fedora-updates-modular": {
         "generated": "2020-01-05T00:11:12Z"
