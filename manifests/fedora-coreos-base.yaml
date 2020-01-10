@@ -96,6 +96,23 @@ postprocess:
     setsebool -P -N container_use_cephfs on  # RHBZ#1692369
     setsebool -P -N virt_use_samba on  # RHBZ#1754825
 
+  # Make iptables-nft the default iptables implementation by raising its priority
+  # above (from 5 to 15) iptables-legacy's priority (10) with `update-alternatives`.
+  # This will be dropped once iptables-nft becomes the default implementation in F32.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/342
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    pfx=/usr/sbin/iptables
+    pfx6=/usr/sbin/ip6tables
+    update-alternatives --install $pfx iptables $pfx-nft 15 \
+      --slave $pfx6 ip6tables $pfx6-nft \
+      --slave $pfx-restore iptables-restore $pfx-nft-restore \
+      --slave $pfx-save iptables-save $pfx-nft-save \
+      --slave $pfx6-restore ip6tables-restore $pfx6-nft-restore \
+      --slave $pfx6-save ip6tables-save $pfx6-nft-save
+    update-alternatives --auto iptables
+
 packages:
   # Security
   - selinux-policy-targeted
