@@ -5,3 +5,10 @@ packages:
     evra: 0.1.2-1.fc31.x86_64
   coreos-installer-systemd:
     evra: 0.1.2-1.fc31.x86_64
+  # crypto-policies without python dependencies
+  # We're pulling from rawhide here as this is a brand new change
+  # and the maintainer is not comfortable sending it to F31 yet.
+  # https://src.fedoraproject.org/rpms/crypto-policies/pull-request/6#comment-35958
+  crypto-policies:
+    evra: 20191128-3.gitcd267a5.fc32.noarch
+

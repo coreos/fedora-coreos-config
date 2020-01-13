@@ -52,13 +52,6 @@ postprocess:
     set -xeuo pipefail
     sed -Ei 's/^(PasswordAuthentication|PermitRootLogin)[[:blank:]]/#&/' /etc/ssh/sshd_config
     echo -e '\n# Disable password logins by default\nPasswordAuthentication no\nPermitRootLogin prohibit-password' >> /etc/ssh/sshd_config
-  # This will be dropped once FCOS is out of preview.
-  # See also experimental.motd in overlay/.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/164
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    sed -i -e 's/CoreOS/CoreOS preview/' $(realpath /etc/os-release)
   # Users shouldn't be configuring `rpm-ostreed.conf`
   # https://github.com/coreos/fedora-coreos-tracker/issues/271
   - |
