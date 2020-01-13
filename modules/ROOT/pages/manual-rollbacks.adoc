@@ -1,12 +1,12 @@
-= Manual rollbacks
+= Manual Rollbacks
 
-In case of a misbehaving OS update, it is possible to temporarily or permanently switch back to the previous working OS version.
-This is a manual operation which requires human intervention and console access.
+When an update is complete, the previous OS deployment remains on disk. If an update causes issues, you can use it as a fallback. This is a manual operation that requires human intervention and console access.
 
-Upon updates, the previous OS deployment is kept on disk so that it can be used as a fallback if something goes wrong.
+== Temporary rollback
 
-In order to temporarily boot into the previous OS deployment, hold down `Shift` during OS bootup and select the relevant OS entry in the bootloader menu.
-The default boot configuration is not affected by this action, and the next reboot will select again the updated OS.
+To temporarily boot the previous OS deployment, hold down `Shift` during the OS boot process. When the bootloader menus appears, select the relevant OS entry in the menu.
 
-In order to permanently revert to the previous OS deployment, login to the target node and run `rpm-ostree rollback -r`.
-This operation will update boot-loader configuration, marking the previous OS deployment as the default one and immediately rebooting into it.
+== Permanent rollback
+
+To permanently revert to the previous OS deployment, log into the target node, and run `rpm-ostree rollback -r`.
+This operation marks the previous OS deployment as the default, and immediately reboots into it.

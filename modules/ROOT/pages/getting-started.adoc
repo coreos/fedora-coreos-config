@@ -1,20 +1,15 @@
 :experimental:
 = Fedora CoreOS - Getting Started
 
-== Background
+Fedora CoreOS (FCOS) has no install-time configuration. Every FCOS system begins with a generic disk image. For each deployment mechanism (cloud VM, local VM, bare metal), the configuration must be supplied at first boot. FCOS reads the configuration file with https://github.com/coreos/ignition[Ignition]. For cloud deployments, Ignition gathers the configuration via the cloud’s user-data mechanism. In the case of bare metal, Ignition injects the configuration at install time.
 
-Fedora CoreOS (FCOS) has no install-time configuration. Every FCOS system begins with a generic disk image. For each deployment mechanism (bare metal, local VM, or cloud VM), the configuration must be supplied at first boot. This is done via a configuration file and https://github.com/coreos/ignition[Ignition]. For cloud deployments, Ignition gathers the configuration via the cloud’s user-data mechanism. In the case of bare metal, Ignition injects the configuration at install time.
+NOTE: To launch FCOS, you must provide an Ignition configuration file. Refer to the documentation for xref:producing-ign.adoc[Producing an Ignition File].
 
-This guide will show you how to launch Fedora CoreOS (FCOS) on AWS, QEMU, and bare metal.
+== Launching FCOS
 
-=== Prerequisite
-To launch FCOS, you must feed it an Ignition configuration file. To produce an Ignition file, see xref:producing-ign.adoc[Producing an Ignition File].
+=== Launching on Amazon Web Services (AWS)
 
-== Launching Fedora CoreOS
-
-=== Booting on Amazon Web Services (AWS)
-
-To boot FCOS on AWS:
+To launch FCOS on AWS:
 
 . Go to the https://getfedora.org/coreos/download/[download page] to identify the correct AMI.
 
@@ -27,13 +22,12 @@ To boot FCOS on AWS:
 aws ec2 run-instances <other options> --image-id <ami> --user-data file://example.ign
 ----
 
-While the AWS documentation mentions cloud-init and scripts, FCOS accepts only Ignition configuration files. It does not support cloud-init or the ability to run scripts from user-data.
+While the AWS documentation mentions cloud-init and scripts, FCOS does not support cloud-init or the ability to run scripts from user-data. It accepts only Ignition configuration files.
 
-=== Booting with QEMU
+=== Launching with QEMU
 . Go to the https://getfedora.org/coreos/download/[download page] to retrieve the latest image suitable for QEMU.
 
 . Uncompress the file. Assuming that the downloaded file is called `fedora-coreos-qemu.qcow2.xz`, the command would be the following:
-
 +
 `unxz fedora-coreos-qemu.qcow2.xz`
 +
@@ -43,17 +37,23 @@ While the AWS documentation mentions cloud-init and scripts, FCOS accepts only I
 +
 TIP: The above example assumes that you have created the user named `core` on your local machine. If you did not, replace `core` with the user that will boot FCOS on the local host.
 
-. Specify the Ignition file to the hypervisor. In the case of QEMU, this is done with the `-fw_cfg` parameter. This sets the `opt/com.coreos/config` key in the QEMU firmware configuration device.
+. Specify the Ignition file to the hypervisor. In the case of QEMU, this is done with the `-fw_cfg` parameter, which sets the `opt/com.coreos/config` key in the QEMU firmware configuration device.
 +
 You must use absolute file paths here. QEMU cannot resolve relative file paths for these options.
 +
 .Example launching Fedora CoreOS with QEMU
-[source,bash]
+[source, bash]
 ----
 qemu-system-x86_64 -machine accel=kvm -m 2048 -cpu host -nographic \
 	-drive if=virtio,file=path/to/fedora-coreos-qemu.qcow2 \
 	-device virtio-rng-pci \
 	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign
+----
++
+.Example launching FCOS with virt-install
+[source, bash]
+----
+virt-install -n fcos --vcpus 2 -r 4096 --os-variant=fedora30 --import --network bridge=virbr0 --disk=/var/lib/libvirt/images/fedora-coreos-30.20190905.0-qemuqcow2,format=qcow2,bus=virtio --noautoconsole --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=/path/to/example.ign"
 ----
 +
 Once the VM has finished booting, its IP addresses will appear on the serial console.
@@ -62,11 +62,9 @@ Once the VM has finished booting, its IP addresses will appear on the serial con
 +
 `ssh core@<ip address>`
 
-== Installing on Bare Metal
+== Installing on bare metal
 
-Follow the https://github.com/coreos/coreos-installer/[coreos-installer instructions] to install Fedora CoreOS to disk. This procedure injects the specified Ignition configuration at install time.
-
-//To do: Move the install instructions to this page or another page on this site.
+Follow the xref:bare-metal.adoc[Bare Metal Installation Instructions] to install Fedora CoreOS to disk. This procedure injects the specified Ignition configuration at install time.
 
 == Where to report bugs and ask questions
 

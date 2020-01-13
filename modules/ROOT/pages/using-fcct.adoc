@@ -1,0 +1,38 @@
+:experimental:
+
+= Fedora CoreOS Configuration Transpiler (`fcct`)
+
+The `fcct` utility verifies and converts a human-friendly (YAML) Fedora CoreOS Configuration (FCC) file into a machine-friendly (JSON) Ignition configuration file. Upon first boot, Ignition, which runs during the creation of initramfs, ingests the Ignition configuration file and provisions the FCOS system as specified in the file.
+
+This guide explains how to obtain and use `fcct`.
+
+NOTE: Unless otherwise noted, new releases of `fcct` are backwards compatible with old releases.
+
+== Getting FCCT
+You can run `fcct` as a container with docker or podman or download it as a standalone binary.
+
+=== Container
+
+This example uses podman, but you can use docker in a similar manner.
+
+In this example, substitute `v0.2.0` with the desired version, as the `latest` tag corresponds with `master` and not with the latest release.
+
+. Pull the container: `podman pull quay.io/coreos/fcct:v0.2.0`
+
+. Run `fcct` either by using standard in and standard out or by using files. Refer to the examples below.
++
+.Example running `fcct` using standard in and standard out:
+`podman run -i --rm quay.io/coreos/fcct:v0.2.0 -pretty -strict < your_config.fcc > transpiled_config.ign`
++
+.Example running `fcct` using files:
+`podman run --rm -v /path/to/your_config.fcc:/config.fcc:z quay.io/coreos/fcct:v0.2.0 -pretty -strict -input /config.fcc > transpiled_config.ign`
++
+NOTE: `fcct` sends its output to `stdout`, so the examples above pipe that output to a file named `transpiled_config.ign`.
+
+=== Standalone binary
+To use the `fcct` binary on Linux, follow these steps:
+
+. If you have not already done so, download the http://coreos.com/security/app-signing-key/[CoreOS Application Signing Key] and import it: `gpg --import <key>`
++
+. Download the latest version of `fcct` and the detached signature from the https://github.com/coreos/fcct/releases[releases page].
+. Verify it with gpg: `gpg --verify <detached sig> <fcct binary>`

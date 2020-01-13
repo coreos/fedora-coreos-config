@@ -1,0 +1,63 @@
+:experimental:
+= Ignition metadata (`ignition`)
+The optional `ignition` block defines the metadata for the Ignition configuration. It allows you to specify a remote configuration file for platforms that do not allow the direct ingestion of large configuration files. It tells Ignition to start the first boot of FCOS, at which time, Ignition will fetch the specified Ignition file from a remote server.
+
+== Nodes
+The `ignition` node contains the following nodes:
+
+* `config` - provides the location of the remote Ignition file and specifies whether to `merge` it with the current file or `replace` it.
+* `timeouts` - specifies how to handle http responses.
+* `security` - specifies a tls certificate authority, if necessary.
+
+=== Remote configuration file (`config`)
+The first line of the `config` node specifies whether you want to `merge` or `replace` the remote configuration. Regardless of this choice, the following lines are the same:
+
+* `src` defines the remote location as a URL. The supported schemes are `http`, `https`, `s3`, `tftp`, and `https://tools.ietf.org/html/rfc2397[data]`.
+* `verification` is optional but recommended when using the `http` scheme. It contains a hash of the configuration
+** `hash` provides the hash string in the form `<type>-<value>` where `type` is `sha512`.
+
+=== Handling HTTP responses (`timeouts`)
+This node is optional but recommended when fetching Ignition files via `http` or `https`.
+
+* `http_response_headers` is an integer for the time to wait (in seconds) for the server's response headers (but not the body) after making the request. The default is `10`. To specify no timeout, set the value to `0`.
+* `http_total` is an integer for the time limit (in seconds) for the entire operation (connection, request, and response), including any retries. The default is `0` for no timeout.
+
+=== Network security (`security`)
+This optional node provides options related to TLS when fetching an Ignition file via `https`. It contains the `tls` object, which contains the `certificate_authorities`, a list of certificate authorities (in addition to system authorities) to be used for TLS verification. All certificate authorities must have a unique `source`:
+
+* `source` is a string that specifies the URL of the certificate in PEM format. The supported schemes are `http`, `https`, `s3`, `tftp`, and `https://tools.ietf.org/html/rfc2397[data]`.
+* `verification` is optional but recommended when using the `http` scheme. It contains a hash of the configuration.
+** `hash` provides the hash string in the form `<type>-<value>` where `type` is `sha512`.
+
+== Examples
+The following examples show how to retrieve an Ignition file from a remote source. They are both set to replace the current configuration with a remote Ignition file.
+
+.Retrieving a remote Ignition file via http
+[source,yaml]
+----
+variant: fcos
+version: 1.0.0
+ignition:
+  config:
+    replace:
+      - source: http://example.com/sample.ign
+        verification:
+        - hash: sha512-e2bb19fdbc3604f511b13d66f4c675f011a63dd967b97e2fe4f5d50bf6cb224e902182221ba0f9dd87c0bb4abcbd2ab428eb7965aa7f177eb5630e7a1793e2e6
+----
+
+.Retrieving a remote Ignition file via https
+[source,yaml]
+----
+variant: fcos
+version: 1.0.0
+ignition:
+  config:
+    replace:
+      - source: https://example.com/sample.ign
+  security:
+    tls:
+      certificate_authorities:
+        - source: https://example.com/source1
+          verification:
+            - hash: sha512-e2bb19fdbc3604f511b13d66f4c675f011a63dd967b97e2fe4f5d50bf6cb224e902182221ba0f9dd87c0bb4abcbd2ab428eb7965aa7f177eb5630e7a1793e2e6
+----

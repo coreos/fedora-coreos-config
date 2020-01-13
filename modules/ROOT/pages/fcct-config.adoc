@@ -1,13 +1,54 @@
 :experimental:
 = Provisioning and Configuration
 
-== Introduction
-This document provides the configuration specification for human-friendly FCOS Configuration (FCC) YAML files. Once written, use the FCOS Configuration Transpiler, `fcct`, to convert the YAML file into the machine-friendly JSON Ignition file.
+This guide introduces the in-depth configuration specification for human-friendly FCOS Configuration (FCC) YAML files.
 
-Ignition files specify the configuration of FCOS and are ingested upon first boot of FCOS. Upon subsequent boots of the FCOS machine, the Ignition file is not used.
+TIP: Rather than read these detailed instructions, advanced users may want to reference the https://github.com/coreos/fcct/blob/master/docs/configuration-v1_0.md[configuration specification] for an abbreviated list of options.
 
-== FCCT Configuration Specification
+== Ignition overview
+Ignition is a provisioning utility that reads a configuration file (in JSON format) and provisions an FCOS system based on that configuration. Configurable components include storage and filesystems, systemd units, and users.
 
-Refer to the https://github.com/coreos/fcct/blob/master/docs/configuration-v1_0.md[Configuration Specification] for a full list of options.
+Ignition runs only once during the first boot of the system (in initramfs). Because Ignition runs so early in the boot process, it can re-partition disks, format filesystems, create users, and write files before the userspace begins to boot. As a result, systemd services are already written to disk when systemd starts, speeding the time to boot.
 
-// Future plans: Sections for YAML, JSON, and transpiling; FCC; Ignition
+=== Configuration process
+Ignition configurations are formatted as JSON, which is quick and easy for a machine to read. However, these files are not easy for humans to read or write. The solution is a two-step configuration process that is friendly for both humans and machines:
+
+. Produce a YAML-formatted Fedora CoreOS Configuration (FCC) file.
+. Run the Fedora CoreOS Configuration Transpiler (`fcct`) to convert the YAML file into a JSON Ignition file.
+
+During the transpilation process, `fcct` verifies the syntax of the YAML file, which can catch errors before you use it to launch the FCOS system.
+
+Once you have an Ignition (`.ign`) file, you can use it to boot an FCOS system in a VM or install it on bare metal.
+
+=== FCC file structure
+The FCC file follows YAML syntax and contains the following top-level nodes:
+
+* `variant`: specifies `fcos` as the operating system
+* `version`: specifies the version of `fcct`
+* `ignition`: specifies a remote configuration (for convenience or for platforms that do not allow for the ingestion of large configuration files)
+* `storage`: provisions storage and configures the filesystem
+* `systemd`: controls systemd units
+* `passwd`: configures users
+
+TIP: YAML files must have consistent indentation. See the https://yaml.org/spec/[YAML Specification] for further details.
+
+== FCC file metadata (`variant` and `version`)
+
+The first two lines of an FCC file define `fcos` as the operating system and the semantic version of the document specification (`1.0.0`). Both lines are required.
+
+.Example of the FCC file metadata
+[source,yaml]
+----
+variant: fcos
+version: 1.0.0
+----
+
+include::ign-config-metadata.adoc[leveloffset=1]
+
+include::ign-storage.adoc[leveloffset=1]
+
+include::ign-systemd.adoc[leveloffset=1]
+
+include::ign-passwd.adoc[leveloffset=1]
+
+// https://coreos.com/ignition/docs/latest/operator-notes.html

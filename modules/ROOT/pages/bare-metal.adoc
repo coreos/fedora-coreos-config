@@ -1,0 +1,53 @@
+:experimental:
+= Installing CoreOS on Bare Metal
+
+This guide provides instructions to install Fedora CoreOS to bare metal. Two options are available:
+
+* Installing from ISO
+* Installing from PXE
+
+== Prerequisite
+
+Before installing FCOS, you must have an Ignition configuration file. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+== Installing from ISO
+
+To install FCOS onto bare metal with an ISO, follow these steps:
+
+. Download an ISO image from the https://getfedora.org/coreos/download/[FCOS download page].
++
+NOTE: You can install in either legacy boot (BIOS) mode or in UEFI mode, regardless of what mode the OS will use once installed.
++
+. Burn the ISO to disk and boot it.
+. From the boot menu, press `<TAB>` (isolinux) or `e` (grub) to edit the kernel command line.
+. Add the following parameters to the kernel command line:
+* `coreos.inst.install_dev=/dev/sda`
+* `coreos.inst.stream=testing`
+* `coreos.inst.ignition_url=http://example.com/config.ign`
+* `coreos.inst.platform_id=qemu`
+. Press `<ENTER>` (isolinux) or `<CTRL-x>` (grub) to start the installation.
+
+Once the installation is complete, the machine reboots. After rebooting, the first boot process begins. It is at this time that Ignition ingests the configuration file and provisions the system as specified.
+
+== Installing from PXE
+
+To install from PXE, follow these steps:
+
+. Download an FCOS PXE kernel and initramfs image from the https://getfedora.org/coreos/download/[FCOS download page].
++
+NOTE: You can install in either legacy boot (BIOS) mode or in UEFI mode, regardless of what mode the OS will use once installed.
++
+. Follow this example `pxelinux.cfg` for booting the installer images with PXELINUX:
++
+[source]
+----
+DEFAULT pxeboot
+TIMEOUT 20
+PROMPT 0
+LABEL pxeboot
+    KERNEL fedora-coreos-30.20191014.1-live-kernel-x86_64
+    APPEND ip=dhcp rd.neednet=1 initrd=fedora-coreos-30.20191014.1-live-initramfs.x86_64.img console=tty0 console=ttyS0 coreos.inst.install_dev=/dev/sda coreos.inst.stream=testing coreos.inst.ignition_url=http://192.168.1.101:8000/config.ign
+IPAPPEND 2
+----
+
+For more details on how to use this information, see the https://dustymabe.com/2019/01/04/easy-pxe-boot-testing-with-only-http-using-ipxe-and-libvirt/[instructions] for testing a PXE installation via a local VM and `libvirt`.

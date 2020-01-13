@@ -1,4 +1,4 @@
-= Auto-updates
+= Auto-Updates and Manual Rollbacks
 
 Fedora CoreOS provides atomic updates and rollbacks via https://ostree.readthedocs.io/en/latest/[OSTree] deployments.
 
@@ -14,7 +14,7 @@ A custom "rollout wariness" value (see https://github.com/coreos/zincati/blob/0.
 
 The `rollout_wariness` parameter can be set to a floating point value between `0.0` (most eager) and `1.0` (most conservative).
 In order to receive updates very early in the phased rollout cycle, a node can be configured with a low value (e.g. `0.001`).
-This can be done during provisioning by using the https://github.com/coreos/fcct[FCCT] configuration snippet shown below:
+This can be done during provisioning by using the xref:fcct-config.adoc[FCCT] configuration snippet shown below:
 
 .Example: configuring Zincati rollout wariness
 [source,yaml]
@@ -30,8 +30,7 @@ storage:
           rollout_wariness = 0.001
 ----
 
-== OS-update finalization
-
+== OS update finalization
 To finalize an OS update, the machine must reboot.
 As this is an invasive action which may cause service disruption, Zincati allows the cluster administrator to control when nodes are allowed to reboot for update finalization.
 
@@ -42,7 +41,7 @@ The following finalization strategies are available:
 
 A specific finalization strategy can be configured on each node.
 
-The https://github.com/coreos/fcct[FCCT] snippet below shows how to use a custom lock-manager:
+The xref:fcct-config.adoc[FCCT] snippet below shows how to use a custom lock-manager:
 
 .Example: configuring Zincati updates strategy
 [source,yaml]
@@ -59,5 +58,6 @@ storage:
           [updates.fleet_lock]
           base_url = "https://example.com/lock-manager/"
 ----
-
 For further details on updates finalization, check the https://github.com/coreos/zincati/blob/0.0.6/docs/usage/updates-strategy.md[Zincati documentation].
+
+include::manual-rollbacks.adoc[leveloffset=1]

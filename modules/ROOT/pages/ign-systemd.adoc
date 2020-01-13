@@ -1,0 +1,19 @@
+:experimental:
+= Configuring systemd Units (`systemd`)
+
+The `systemd` node of an FCC file allows you to add and configure https://www.freedesktop.org/software/systemd/man/systemd.unit.html[systemd] units on the FCOS machine.
+
+== Nodes
+
+The `systemd` node contains one top-level node: a list of units. For each unit, the following options are available:
+
+* `name` (string, required, must be unique): the full name of the unit the form of `thing.service`.
+* `enabled` (boolean): When set to `true`, the unit is enabled. By default, the service is unmodified. For a unit to run, it must have an `[Install]` section.
+* `mask` (boolean): determines whether the unit is masked. When set to `true`, the service is masked by a symlink to `/dev/null`.
+* `contents` (string): the contents of the unit.
+* `dropins` (list of objects): a list of drop-ins for the unit.
+** `name` (string, required, must be unique): the name of the drop-in, which must have a suffix of `.conf`.
+** `contents` (string): the contents of the drop-in.
+
+== Examples
+xref:running-containers.adoc[Running Containers] shows some examples of adding systemd units to an FCC file.

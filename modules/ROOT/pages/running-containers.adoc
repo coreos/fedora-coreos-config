@@ -3,7 +3,7 @@
 == Introduction
 Fedora CoreOS ships with both docker and podman installed. This page explains how to use systemd units to start and stop containers with podman.
 
-== Example Configuration
+== Example configuration
 The following FCOS Configuration (FCC) snippet configures the systemd hello.service to run busybox.
 
 .Example for running busybox using systemd and podman
@@ -68,5 +68,5 @@ systemd:
         WantedBy=multi-user.target
 ----
 
-=== For More Information
+=== For more information
 See the https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/container.md#docker[etcd documentation] for more information on running etcd in containers and how to set up multi-node etcd.
