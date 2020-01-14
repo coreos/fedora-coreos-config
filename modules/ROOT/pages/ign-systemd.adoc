@@ -7,7 +7,7 @@ The `systemd` node of an FCC file allows you to add and configure https://www.fr
 
 The `systemd` node contains one top-level node: a list of units. For each unit, the following options are available:
 
-* `name` (string, required, must be unique): the full name of the unit the form of `thing.service`.
+* `name` (string, required, must be unique): the full name of the unit in the form of `thing.service`.
 * `enabled` (boolean): When set to `true`, the unit is enabled. By default, the service is unmodified. For a unit to run, it must have an `[Install]` section.
 * `mask` (boolean): determines whether the unit is masked. When set to `true`, the service is masked by a symlink to `/dev/null`.
 * `contents` (string): the contents of the unit.
