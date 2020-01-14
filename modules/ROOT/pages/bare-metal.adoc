@@ -8,7 +8,7 @@ This guide provides instructions to install Fedora CoreOS to bare metal. Two opt
 
 == Prerequisite
 
-Before installing FCOS, you must have an Ignition configuration file. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+Before installing FCOS, you must have an Ignition configuration file and host it somewhere (e.g. using `python3 -m http.server`). If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
 == Installing from ISO
 
@@ -18,15 +18,17 @@ To install FCOS onto bare metal with an ISO, follow these steps:
 +
 NOTE: You can install in either legacy boot (BIOS) mode or in UEFI mode, regardless of what mode the OS will use once installed.
 +
-. Burn the ISO to disk and boot it.
-. From the boot menu, press `<TAB>` (isolinux) or `e` (grub) to edit the kernel command line.
-. Add the following parameters to the kernel command line:
-* `coreos.inst.install_dev=/dev/sda`
-* `coreos.inst.stream=stable`
-* `coreos.inst.ignition_url=http://example.com/config.ign`
-. Press `<ENTER>` (isolinux) or `<CTRL-x>` (grub) to start the installation.
+. Burn the ISO to disk and boot it on the target system. The ISO is capable of bringing up a fully functioning FCOS system purely from memory (i.e. without using any disk storage). Once booted, you will have access to a bash command prompt.
+. You can now fetch your Ignition config and run `coreos-installer`:
+[source, bash]
+----
+curl -LO http://example.com/example.ign
+sudo coreos-installer install /dev/sda --ignition example.ign
+----
 
-Once the installation is complete, the machine reboots. After rebooting, the first boot process begins. It is at this time that Ignition ingests the configuration file and provisions the system as specified.
+Once the installation is complete, you can simply `sudo reboot`. After rebooting, the first boot process begins. It is at this time that Ignition ingests the configuration file and provisions the system as specified.
+
+TIP: Check out `coreos-installer install --help` for more options on how to install Fedora CoreOS.
 
 == Installing from PXE
 
