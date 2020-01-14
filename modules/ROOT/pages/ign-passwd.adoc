@@ -10,7 +10,7 @@ The top-level nodes for `passwd` include `users` and `groups`. These are both li
 
 * `users` (list of objects): the lists of accounts to create on FCOS.
 ** `name` (string, required, must be unique): the username
-** `password_hash ``(string): the hashed password for the account.
+** `password_hash` (string): the hashed password for the account.
 ** `ssh_authorized_keys` (list of strings, each must be unique): a list of SSH keys to be added as an SSH key fragment in the user's home directory (`.ssh/authorized_keys.d/ignition`).
 ** `uid` (integer): the user ID of the account
 ** `gecos` (string): the GECOS field of the account

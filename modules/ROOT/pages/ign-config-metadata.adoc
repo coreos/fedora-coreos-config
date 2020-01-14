@@ -26,7 +26,7 @@ This node is optional but recommended when fetching Ignition files via `http` or
 This optional node provides options related to TLS when fetching an Ignition file via `https`. It contains the `tls` object, which contains the `certificate_authorities`, a list of certificate authorities (in addition to system authorities) to be used for TLS verification. All certificate authorities must have a unique `source`:
 
 * `source` is a string that specifies the URL of the certificate in PEM format. The supported schemes are `http`, `https`, `s3`, `tftp`, and `https://tools.ietf.org/html/rfc2397[data]`.
-* `verification` is optional but recommended when using the `http` scheme. It contains a hash of the configuration.
+* `verification` is optional but recommended when using the `http` scheme. It contains a hash of the certificate.
 ** `hash` provides the hash string in the form `<type>-<value>` where `type` is `sha512`.
 
 == Examples

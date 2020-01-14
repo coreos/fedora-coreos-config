@@ -53,7 +53,7 @@ qemu-system-x86_64 -machine accel=kvm -m 2048 -cpu host -nographic \
 .Example launching FCOS with virt-install
 [source, bash]
 ----
-virt-install -n fcos --vcpus 2 -r 4096 --os-variant=fedora30 --import --network bridge=virbr0 --disk=/var/lib/libvirt/images/fedora-coreos-30.20190905.0-qemuqcow2,format=qcow2,bus=virtio --noautoconsole --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=/path/to/example.ign"
+virt-install -n fcos --vcpus 2 -r 2048 --os-variant=fedora30 --import --network bridge=virbr0 --disk=/var/lib/libvirt/images/fedora-coreos-30.20190905.0-qemu.qcow2,format=qcow2,bus=virtio --noautoconsole --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=/path/to/example.ign"
 ----
 +
 Once the VM has finished booting, its IP addresses will appear on the serial console.
