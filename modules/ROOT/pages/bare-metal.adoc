@@ -24,7 +24,6 @@ NOTE: You can install in either legacy boot (BIOS) mode or in UEFI mode, regardl
 * `coreos.inst.install_dev=/dev/sda`
 * `coreos.inst.stream=stable`
 * `coreos.inst.ignition_url=http://example.com/config.ign`
-* `coreos.inst.platform_id=qemu`
 . Press `<ENTER>` (isolinux) or `<CTRL-x>` (grub) to start the installation.
 
 Once the installation is complete, the machine reboots. After rebooting, the first boot process begins. It is at this time that Ignition ingests the configuration file and provisions the system as specified.
