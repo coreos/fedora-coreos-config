@@ -1,9 +1,9 @@
 :experimental:
 = Fedora CoreOS - Getting Started
 
-Fedora CoreOS (FCOS) has no install-time configuration. Every FCOS system begins with a generic disk image. For each deployment mechanism (cloud VM, local VM, bare metal), the configuration must be supplied at first boot. FCOS reads the configuration file with https://github.com/coreos/ignition[Ignition]. For cloud deployments, Ignition gathers the configuration via the cloud’s user-data mechanism. In the case of bare metal, Ignition injects the configuration at install time.
+Fedora CoreOS (FCOS) has no install-time configuration. Every FCOS system begins with a generic disk image. For each deployment mechanism (cloud VM, local VM, bare metal), configuration can be supplied at first boot. FCOS reads and applies the configuration file with https://github.com/coreos/ignition[Ignition]. For cloud deployments, Ignition gathers the configuration via the cloud’s user-data mechanism. In the case of bare metal, Ignition injects the configuration at install time.
 
-NOTE: To launch FCOS, you must provide an Ignition configuration file. Refer to the documentation for xref:producing-ign.adoc[Producing an Ignition File].
+NOTE: For more information on configuration, refer to the documentation for xref:producing-ign.adoc[Producing an Ignition File].
 
 == Launching FCOS
 
@@ -13,13 +13,18 @@ To launch FCOS on AWS:
 
 . Go to the https://getfedora.org/coreos/download/[download page] to identify the correct AMI.
 
-. Specify the Ignition configuration file as the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user-data].
+. Specify the Ignition configuration file as the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user-data]. You can skip this step, but you will want to specify a key using `--key-name` so that you can still access the node. This provides an easy way to test out FCOS without first creating an Ignition configuration.
 
-
-.Example launching Fedora CoreOS on AWS
+.Example launching Fedora CoreOS on AWS using an Ignition configuration file
 [source, bash]
 ----
 aws ec2 run-instances <other options> --image-id <ami> --user-data file://example.ign
+----
+
+.Example launching Fedora CoreOS on AWS using a registered SSH key pair
+[source, bash]
+----
+aws ec2 run-instances <other options> --image-id <ami> --key-name my-key
 ----
 
 While the AWS documentation mentions cloud-init and scripts, FCOS does not support cloud-init or the ability to run scripts from user-data. It accepts only Ignition configuration files.
