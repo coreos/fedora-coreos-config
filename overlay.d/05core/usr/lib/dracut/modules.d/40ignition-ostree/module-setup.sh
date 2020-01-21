@@ -60,9 +60,13 @@ install() {
     done
 
     install_ignition_unit ignition-ostree-mount-firstboot-sysroot.service
-    install_ignition_unit ignition-ostree-mount-subsequent-sysroot.service subsequent
+    inst_simple "$moddir/ignition-ostree-mount-subsequent-sysroot.service" "$systemdsystemunitdir/ignition-ostree-mount-subsequent-sysroot.service"
+    # The -subsequent service activation is handled via generator below
     inst_script "$moddir/ignition-ostree-mount-sysroot.sh" \
         "/usr/sbin/ignition-ostree-mount-sysroot"
+
+    inst_simple "$moddir/ignition-ostree-generator" \
+        "$systemdutildir/system-generators/ignition-ostree-generator"
 
     install_ignition_unit ignition-ostree-growfs.service
     inst_script "$moddir/coreos-growpart" /usr/libexec/coreos-growpart
