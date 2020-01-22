@@ -52,3 +52,19 @@ IPAPPEND 2
 ----
 
 For more details on how to use this information, see this https://dustymabe.com/2019/01/04/easy-pxe-boot-testing-with-only-http-using-ipxe-and-libvirt/[blog post] for testing a PXE installation via a local VM and `libvirt`.
+
+== Live PXE
+
+In this model, rather than performing a "persistent" installation to disk, you can run directly from RAM.  This is useful in e.g. "diskless" scenarios.
+The steps are similar to the above, just omit the `coreos.inst` arguments, and instead have the system itself run Ignition:
+
+[source]
+----
+DEFAULT pxeboot
+TIMEOUT 20
+PROMPT 0
+LABEL pxeboot
+    KERNEL fedora-coreos-30.20191014.1-live-kernel-x86_64
+    APPEND ip=dhcp rd.neednet=1 initrd=fedora-coreos-30.20191014.1-live-initramfs.x86_64.img console=tty0 console=ttyS0 ignition.firstboot ignition.platform.id=metal ignition.config.url=http://192.168.1.101/config.ign
+IPAPPEND 2
+----
