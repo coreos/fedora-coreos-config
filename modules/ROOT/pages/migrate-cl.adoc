@@ -1,0 +1,33 @@
+:experimental:
+= Migrating from CoreOS Container Linux (CL) to Fedora CoreOS (FCOS)
+
+Because Container Linux is being folded into the FCOS project, it will reach its End-of-Life sometime in 2020. This page documents the differences between CL and FCOS and provides some tips to migrate to FCOS.
+
+:toc:
+
+== Introduction
+
+To migrate from CL to FCOS, you will need to convert your old Container Linux configurations, Ignition configs, and cloud-configs to a xref:fcct-config.adoc[Fedora CoreOS Config (FCC)] and the contents adapted for FCOS. Since many of the configuration options have changed, you should reference this page and https://github.com/coreos/fedora-coreos-tracker/issues/159[Container Linux migration documentation] on GitHub.
+
+== Installation changes
+* To accommodate changes to the Ignition specification, the `coreos-install` script has been deprecated in favor of https://github.com/coreos/coreos-installer[`coreos-installer`].
+* The autologin kernel command-line parameter is not currently supported in FCOS. To preview FCOS, you can use xref:bare-metal.adoc[Live PXE].
+* Certain CL image types are not yet supported in FCOS. Refer to the https://getfedora.org/coreos/download/[Download page] to see a list of the available image types.
+* There are no official Vagrant cloud images for FCOS, and the team has no plans to create OCI container images for FCOS. FCOS is intended to be a host OS for running containers, rather than a host for producing containers.
+
+== Configuration changes
+The xref:fcct-config.adoc[Ignition specification] has changed in both syntax and function. As a result, consider the following when you write new FCC files:
+
+* Users and groups are defined in the xref:ign-passwd.adoc[`passwd`] node of the FCC file.
+//* CLC --> FCC changes
+//* coreos-metadata rename
+//* PXE custom OEMs
+* Use https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sect-using_chrony[`chronyd`] rather than `ntpd` or `systemd-timesyncd`.
+* etcd is not included in FCOS. Refer to xref:running-containers.adoc[Running etcd] for instructions to run it as a container in FCOS.
+//* flannel is not currently supported.
+* The functionality of the reboot manager (locksmith) is rolled into https://github.com/coreos/zincati/blob/master/README.md[zincati].
+* Along with Fedora 31, SSH password logins are disabled by default. For full details on how to set up users, refer to the documentation for the xref:ign-passwd.adoc[`passwd`] node of the FCC file.
+//* docker version selection
+* In the short-term, the `docker` group does exist in the /etc/group file in FCOS. This is a stop-gap to allow the smooth operation of docker on early versions of FCOS. The team is prioritizing work that will make `usermod` more functional.
+* The creation of directories below the `root` folder is not supported. Refer to the documentation for the xref:ign-storage.adoc['storage'] node of the FCC configuration for details about writing directories and files to FCOS.
+* 
