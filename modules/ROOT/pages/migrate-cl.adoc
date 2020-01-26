@@ -1,13 +1,13 @@
 :experimental:
 = Migrating from CoreOS Container Linux (CL) to Fedora CoreOS (FCOS)
 
-Because Container Linux is being folded into the FCOS project, it will reach its End-of-Life sometime in 2020. This page documents the differences between CL and FCOS and provides some tips to migrate to FCOS.
+Because Container Linux is being folded into the FCOS project, it will reach its End-of-Life sometime in 2020. This page documents differences between CL and FCOS to ease the transition to FCOS.
 
 :toc:
 
 == Introduction
 
-To migrate from CL to FCOS, you will need to convert your old Container Linux configurations, Ignition configs, and cloud-configs to a xref:fcct-config.adoc[Fedora CoreOS Config (FCC)] and the contents adapted for FCOS. Since many of the configuration options have changed, you should reference this page and https://github.com/coreos/fedora-coreos-tracker/issues/159[Container Linux migration documentation] on GitHub.
+To migrate from CL to FCOS, you must convert your old Container Linux configs, Ignition configs, and cloud-configs to a xref:fcct-config.adoc[Fedora CoreOS Config (FCC)] and adapt the contents for FCOS. Since many of the configuration options have changed, you should reference this page and https://github.com/coreos/fedora-coreos-tracker/issues/159[CL migration documentation] on GitHub.
 
 == Installation changes
 * To accommodate changes to the Ignition specification, the `coreos-install` script has been deprecated in favor of https://github.com/coreos/coreos-installer[`coreos-installer`].
@@ -19,15 +19,31 @@ To migrate from CL to FCOS, you will need to convert your old Container Linux co
 The xref:fcct-config.adoc[Ignition specification] has changed in both syntax and function. As a result, consider the following when you write new FCC files:
 
 * Users and groups are defined in the xref:ign-passwd.adoc[`passwd`] node of the FCC file.
-//* CLC --> FCC changes
-//* coreos-metadata rename
-//* PXE custom OEMs
+//* CLC --> FCC changes. Need more info.
+//* coreos-metadata rename - need more info.
+//* PXE custom OEMs - need more info.
 * Use https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sect-using_chrony[`chronyd`] rather than `ntpd` or `systemd-timesyncd`.
-* etcd is not included in FCOS. Refer to xref:running-containers.adoc[Running etcd] for instructions to run it as a container in FCOS.
-//* flannel is not currently supported.
-* The functionality of the reboot manager (locksmith) is rolled into https://github.com/coreos/zincati/blob/master/README.md[zincati].
-* Along with Fedora 31, SSH password logins are disabled by default. For full details on how to set up users, refer to the documentation for the xref:ign-passwd.adoc[`passwd`] node of the FCC file.
+* `etcd` is not included in FCOS. Refer to xref:running-containers.adoc[Running etcd] for instructions to run it as a container on FCOS.
+* flannel is not supported. `fcct` should support the configuration you need without the use of flannel.
+* The functionality of the reboot manager (`locksmith`) is rolled into https://github.com/coreos/zincati/blob/master/README.md[`zincati`].
+* Along with Fedora 31, FCOS does not allow SSH password logins by default. For full details on how to set up users, refer to the documentation for the xref:ign-passwd.adoc[`passwd`] node of the FCC file.
 //* docker version selection
-* In the short-term, the `docker` group does exist in the /etc/group file in FCOS. This is a stop-gap to allow the smooth operation of docker on early versions of FCOS. The team is prioritizing work that will make `usermod` more functional.
-* The creation of directories below the `root` folder is not supported. Refer to the documentation for the xref:ign-storage.adoc['storage'] node of the FCC configuration for details about writing directories and files to FCOS.
-* 
+* Because `usermod` is not yet fully-functional on FCOS, there is a `docker` group in the `/etc/group` file. This is a stop-gap measure to facilitate a smooth transition to FCOS. The team is working on a more functional `usermod`, at which time the `docker` group will no longer be included by default.
+* There is no way to create directories below the `root` directory. Changes are restricted to `/etc` and `/var`. Refer to the documentation for the xref:ign-storage.adoc[`storage`] node of the FCC configuration for details about writing directories and files to FCOS.
+
+== Operator notes
+* CL had three release channels: Stable, Beta, and Alpha. FCOS maintains the Fedora standard of two release streams: test and stable. See the https://getfedora.org/coreos/download/[download page] for more details.
+* Automatic updates are coordinated by Zincati, as described in the https://github.com/coreos/zincati/blob/master/docs/usage/auto-updates.md[Zincati documentation]. Each update requires a system reboot, and https://github.com/coreos/rpm-ostree/blob/master/README.md[`rpm-ostree`] provides a rollback mechanism in the grub menu.
+* The `update-ssh-keys` tool is not shipped on FCOS. The preferred method is to use the https://www.ssh.com/ssh/authorized_keys/openssh/[`AuthorizedKeysFile`].
+//*SELinux policy differences. What are they?
+* In CL, metrics/telemetry data was collected by the update mechanism. In FCOS, the plan is to collect data (without unique identifiers) via https://github.com/coreos/fedora-coreos-pinger/issues/30[`fedora-coreos-pinger`]. Users will have the ability to disable data collection.
+* Cloud CLI clients are not included in FCOS. There is an initiative to create a "tools" container to run on FCOS.
+\\* Sticky directory - https://github.com/coreos/bugs/issues/2577
+* CL left Simultaneous Multi-Threading (SMT) enabled but advised users to turn it off if their systems were vulnerable to certain issues such as https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html[L1TF] or https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html[MDS]. By default, FCOS https://github.com/coreos/fedora-coreos-tracker/issues/181[automatically disables SMT] for vulnerable systems.
+
+== Implementation notes
+//* Partition layout differences. CL is at https://coreos.com/os/docs/latest/sdk-disk-partitions.html. I can't make heads or tails of the results of the discussions in https://github.com/coreos/fedora-coreos-tracker/issues/94.
+* The default filesystem choices on CL were ext4, btrfs, and xfs. On FCOS, the choices are xfs and ext4. If you wish to use btrfs, you can use xref:ign-storage.adoc[Ignition] to reformat `/var` to btrfs.
+//* sshd socket activation - I need more info on FCOS implementation. CL is here: https://coreos.com/os/docs/latest/customizing-sshd.html
+//* OEM partition support. Need more info.
+//* Filesystem resizing differences. Need more info on FCOS side.
