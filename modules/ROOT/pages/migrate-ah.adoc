@@ -1,0 +1,44 @@
+:experimental:
+
+= Migrating from Atomic Host (AH) to Fedora CoreOS (FCOS)
+
+== Overview
+
+https://www.projectatomic.io/[Atomic Host] is a system to deploy applications in containers. Atomic Hosts users are encouraged to migrate to FCOS, as the project is being folded into FCOS.
+
+Atomic Host uses a cloud-config file to define parameters of the containers. There is currently no tool to migrate cloud-config files to FCOS Ignition files. The conversion is not direct, as some parameters in Ignition are located in different Atomic Host files.
+
+== Examples
+
+=== Converting `user-data`
+
+An Atomic Host `user-data` file looks like the following:
+
+.Example of Atomic Host `user-data` file:
+----
+#cloud-config
+password: atomic
+ssh_pwauth: True
+chpasswd: { expire: False }
+
+ssh_authorized_keys:
+  - ssh-rsa ...
+----
+
+Manually translate this into a xref:ign-passwd.adoc[`passwd`] node in the FCC file:
+
+.Example of users:
+[source, yaml]
+----
+passwd:
+  users:
+    - name: core
+      password_hash: "$6$5s2u6/jR$un0AvWnqilcgaNB3Mkxd5yYv6mTlWfOoCYHZmfi3LDKVltj.E8XNKEcwWm..."
+      ssh_authorized_keys:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGdByTgSVHq......."
+      groups: [ sudo, docker ]
+----
+
+=== Converting storage definitions
+
+With Atomic Host, add storage space when defining a VM (e.g., by adding a new drive in virt-manager), then configure the added drive by editing `/etc/sysconfig/docker-storage-setup`. With FCOS, define the storage in the xref:ign-storage.adoc[`storage`] section of the FCC file.
