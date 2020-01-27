@@ -1,3 +1,4 @@
+# Note this unit is conditionally enabled by ignition-ostree-generator
 [Unit]
 Description=CoreOS: Mount (subsequent) /sysroot
 # These dependencies should match the "other" in

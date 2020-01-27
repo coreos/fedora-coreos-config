@@ -1,0 +1,16 @@
+#!/bin/bash
+# -*- mode: shell-script; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
+# ex: ts=8 sw=4 sts=4 et filetype=sh
+# This generator handles the non-live case; see also live-generator
+
+set -euo pipefail
+
+UNIT_DIR="${1:-/tmp}"
+
+if is-live-image; then
+    exit 0
+fi
+
+requiresdir="${UNIT_DIR}/ignition-subsequent.target.requires"
+mkdir -p "${requiresdir}"
+ln -sr /usr/lib/systemd/system/ignition-ostree-mount-subsequent-sysroot.service ${requiresdir}/
