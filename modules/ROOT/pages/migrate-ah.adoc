@@ -1,20 +1,18 @@
 :experimental:
 
-= Migrating from Atomic Host (AH) to Fedora CoreOS (FCOS)
+= Migrating from Fedora Atomic Host (FAH) to Fedora CoreOS (FCOS)
 
 == Overview
 
-https://www.projectatomic.io/[Atomic Host] is a system to deploy applications in containers. Atomic Hosts users are encouraged to migrate to FCOS, as the project is being folded into FCOS.
+https://www.projectatomic.io/[Fedora Atomic Host] was a system to deploy applications in containers. Existing FAH users are encouraged to migrate to FCOS, as the project is reaching its end-of-life.
 
-Atomic Host uses a cloud-config file to define parameters of the containers. There is currently no tool to migrate cloud-config files to FCOS Ignition files. The conversion is not direct, as some parameters in Ignition are located in different Atomic Host files.
+FAH used `cloud-init` for provisioning, which required users to provide a `cloud-config` file as userdata for configuration of the instance. Since FCOS Ignition and `cloud-init` are different and have overlapping feature sets, it is not trivial to convert `cloud-init` files to Ignition. Currently, there is no tool for this conversion, so you must manually provision FCOS instances with Ignition. Refer to xref:fcct-config.adoc[FCCT Specification] for an explanation of the available configuration options.
 
-== Examples
+== Converting `cloud-init` and `cloud-config` userdata
 
-=== Converting `user-data`
+The following examples show the difference between FAH userdata and user configuration with Ignition.
 
-An Atomic Host `user-data` file looks like the following:
-
-.Example of Atomic Host `user-data` file:
+.Example of FAH userdata file:
 ----
 #cloud-config
 password: atomic
@@ -25,7 +23,7 @@ ssh_authorized_keys:
   - ssh-rsa ...
 ----
 
-Manually translate this into a xref:ign-passwd.adoc[`passwd`] node in the FCC file:
+Manually configure with a xref:ign-passwd.adoc[`passwd`] node in the FCC file:
 
 .Example of users:
 [source, yaml]
@@ -39,6 +37,6 @@ passwd:
       groups: [ sudo, docker ]
 ----
 
-=== Converting storage definitions
+== Converting storage definitions
 
-With Atomic Host, add storage space when defining a VM (e.g., by adding a new drive in virt-manager), then configure the added drive by editing `/etc/sysconfig/docker-storage-setup`. With FCOS, define the storage in the xref:ign-storage.adoc[`storage`] section of the FCC file.
+With FAH, you could configure additional storage for the system with either `cloud-init` or  `docker-storage-setup` via the `/etc/sysconfig/docker-storage-setup` file. With FCOS, you should configure additional storage at provisioning time via Ignition in the xref:ign-storage.adoc[`storage`] node of the FCC file.
