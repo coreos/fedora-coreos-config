@@ -29,6 +29,8 @@ This optional node provides options related to TLS when fetching an Ignition fil
 * `verification` is optional but recommended when using the `http` scheme. It contains a hash of the certificate.
 ** `hash` provides the hash string in the form `<type>-<value>` where `type` is `sha512`.
 
+Note that certificate authorities listed here are not automatically added to the host filesystem. They are solely used by Ignition itself when fetching over `https`. If you'd like to also install them on the host filesystem, include them as usual under the `storage.files` array.
+
 == Examples
 The following examples show how to retrieve an Ignition file from a remote source. They are both set to replace the current configuration with a remote Ignition file.
 
