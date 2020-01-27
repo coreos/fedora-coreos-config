@@ -59,7 +59,7 @@ install() {
         inst_script "$moddir/ignition-ostree-${x}-var.sh" "/usr/sbin/ignition-ostree-${x}-var"
     done
 
-    install_ignition_unit ignition-ostree-mount-firstboot-sysroot.service
+    install_ignition_unit ignition-ostree-mount-firstboot-sysroot.service diskful
     inst_simple "$moddir/ignition-ostree-mount-subsequent-sysroot.service" "$systemdsystemunitdir/ignition-ostree-mount-subsequent-sysroot.service"
     # The -subsequent service activation is handled via generator below
     inst_script "$moddir/ignition-ostree-mount-sysroot.sh" \
