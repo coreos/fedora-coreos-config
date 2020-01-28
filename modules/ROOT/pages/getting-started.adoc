@@ -11,17 +11,17 @@ NOTE: For more information on configuration, refer to the documentation for xref
 
 To launch FCOS on AWS:
 
-. Go to the https://getfedora.org/coreos/download/[download page] to identify the correct AMI.
+. Identify the correct AMI image ID for your region from https://getfedora.org/coreos/download/[the download page]
 
-. Specify the Ignition configuration file as the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user-data]. You can skip this step, but you will want to specify a key using `--key-name` so that you can still access the node. This provides an easy way to test out FCOS without first creating an Ignition configuration.
+. Launch the VM using `aws ec2 run-instances`. The Ignition file can be passed to the VM as its https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user data]. You can skip this step if you just want SSH access; simply pass a https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html[registered key name] via `--key-name`. This provides an easy way to test out FCOS without first creating an Ignition configuration.
 
-.Example launching Fedora CoreOS on AWS using an Ignition configuration file
+.Example launching FCOS on AWS using an Ignition configuration file
 [source, bash]
 ----
 aws ec2 run-instances <other options> --image-id <ami> --user-data file://example.ign
 ----
 
-.Example launching Fedora CoreOS on AWS using a registered SSH key pair
+.Example launching FCOS on AWS using a registered SSH key pair
 [source, bash]
 ----
 aws ec2 run-instances <other options> --image-id <ami> --key-name my-key
@@ -29,43 +29,55 @@ aws ec2 run-instances <other options> --image-id <ami> --key-name my-key
 
 While the AWS documentation mentions cloud-init and scripts, FCOS does not support cloud-init or the ability to run scripts from user-data. It accepts only Ignition configuration files.
 
-=== Launching with QEMU
-. Go to the https://getfedora.org/coreos/download/[download page] to retrieve the latest image suitable for QEMU.
+=== Launching with QEMU or libvirt
+. https://getfedora.org/coreos/download/[Download and verify] the latest image suitable for QEMU.
 
 . Uncompress the file. Assuming that the downloaded file is called `fedora-coreos-qemu.qcow2.xz`, the command would be the following:
 +
-`unxz fedora-coreos-qemu.qcow2.xz`
-+
-. Ensure the correct ownership of the file:
-+
-`chown core:kvm fedora-coreos-qemu.qcow2`
-+
-TIP: The above example assumes that you have created the user named `core` on your local machine. If you did not, replace `core` with the user that will boot FCOS on the local host.
-
-. Specify the Ignition file to the hypervisor. In the case of QEMU, this is done with the `-fw_cfg` parameter, which sets the `opt/com.coreos/config` key in the QEMU firmware configuration device.
-+
-You must use absolute file paths here. QEMU cannot resolve relative file paths for these options.
-+
-.Example launching Fedora CoreOS with QEMU
 [source, bash]
 ----
-qemu-system-x86_64 -machine accel=kvm -m 2048 -cpu host -nographic \
-	-drive if=virtio,file=path/to/fedora-coreos-qemu.qcow2 \
-	-device virtio-rng-pci \
+unxz fedora-coreos-qemu.qcow2.xz
+----
++
+TIP: Make sure that your user has access to `/dev/kvm` (this should already be the case on modern distros), or if `/dev/kvm` is owned by the `kvm` group, adding yourself to that group with `usermod -aG kvm $USER`.
+
+. Launch the VM using `qemu-kvm` or `virt-install`. The Ignition file is passed to the VM via the `-fw_cfg` parameter, which sets the `opt/com.coreos/config` key in the QEMU firmware configuration device. For libvirt, you must pass this through the `--qemu-commandline` argument. You can use `-snapshot` to make `qemu-kvm` allocate temporary storage for the VM, or `qemu-img create` to first create a layered qcow2.
++
+.Example launching FCOS with QEMU (temporary storage)
+[source, bash]
+----
+qemu-kvm -m 2048 -cpu host -nographic -snapshot \
+	-drive if=virtio,file=fedora-coreos-qemu.qcow2 \
+	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign
+----
++
+.Example launching FCOS with QEMU (persistent storage)
+[source, bash]
+----
+qemu-img create qcow2 -b fedora-coreos-qemu.qcow2 my-fcos-vm.qcow2
+qemu-kvm -m 2048 -cpu host -nographic \
+	-drive if=virtio,file=my-fcos-vm.qcow2 \
 	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign
 ----
 +
 .Example launching FCOS with virt-install
 [source, bash]
 ----
-virt-install -n fcos --vcpus 2 -r 2048 --os-variant=fedora31 --import --network bridge=virbr0 --disk=/var/lib/libvirt/images/fedora-coreos-30.20190905.0-qemu.qcow2,format=qcow2,bus=virtio --noautoconsole --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=/path/to/example.ign"
+virt-install --connect qemu:///system -n fcos -r 2048 --os-variant=fedora31 --import \
+	--graphics=none --disk size=10,backing_store=/path/to/fedora-coreos-qemu.qcow2 \
+	--qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=/path/to/example.ign"
 ----
-+
-Once the VM has finished booting, its IP addresses will appear on the serial console.
 
-. You can then SSH into the FCOS VM as the `core` user:
-+
-`ssh core@<ip address>`
+NOTE: When using `virt-install`, you must specify absolute paths to the image and the Ignition file.
+
+TIP: If running with SELinux enabled, you may need to change the label of the Ignition file to allow access: `chcon -t svirt_home_t path/to/example.ign`
+
+Once the VM has finished booting, its IP addresses will appear on the serial console. You can then SSH into the FCOS VM as the `core` user:
+
+[source, bash]
+----
+ssh core@<ip address>
+----
 
 == Installing on bare metal
 
