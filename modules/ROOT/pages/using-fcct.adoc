@@ -30,7 +30,7 @@ NOTE: `fcct` sends its output to `stdout`, so the examples above pipe that outpu
 === Standalone binary
 To use the `fcct` binary on Linux, follow these steps:
 
-. If you have not already done so, download the http://coreos.com/security/app-signing-key/[CoreOS Application Signing Key] and import it: `gpg --import <key>`
+. If you have not already done so, download the https://getfedora.org/static/fedora.gpg[Fedora signing keys] and import them: `gpg --import <key>`
 +
 . Download the latest version of `fcct` and the detached signature from the https://github.com/coreos/fcct/releases[releases page].
 . Verify it with gpg: `gpg --verify <detached sig> <fcct binary>`
