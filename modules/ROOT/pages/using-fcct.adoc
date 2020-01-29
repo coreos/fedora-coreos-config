@@ -13,19 +13,17 @@ You can run `fcct` as a container with docker or podman or download it as a stan
 
 === Container
 
-This example uses podman, but you can use docker in a similar manner.
+This example uses podman, but you can use docker in a similar manner. Note that the `release` tag tracks the most recent release, and the `latest` tag tracks the Git development branch.
 
-In this example, substitute `v0.2.0` with the desired version, as the `latest` tag corresponds with `master` and not with the latest release.
-
-. Pull the container: `podman pull quay.io/coreos/fcct:v0.2.0`
+. Pull the container: `podman pull quay.io/coreos/fcct:release`
 
 . Run `fcct` either by using standard in and standard out or by using files. Refer to the examples below.
 +
 .Example running `fcct` using standard in and standard out:
-`podman run -i --rm quay.io/coreos/fcct:v0.2.0 -pretty -strict < your_config.fcc > transpiled_config.ign`
+`podman run -i --rm quay.io/coreos/fcct:release -pretty -strict < your_config.fcc > transpiled_config.ign`
 +
 .Example running `fcct` using files:
-`podman run --rm -v /path/to/your_config.fcc:/config.fcc:z quay.io/coreos/fcct:v0.2.0 -pretty -strict -input /config.fcc > transpiled_config.ign`
+`podman run --rm -v /path/to/your_config.fcc:/config.fcc:z quay.io/coreos/fcct:release -pretty -strict -input /config.fcc > transpiled_config.ign`
 +
 NOTE: `fcct` sends its output to `stdout`, so the examples above pipe that output to a file named `transpiled_config.ign`.
 

@@ -47,11 +47,11 @@ An easy way to use `fcct` is to run it in a container with `podman`:
 
 . Pull the container for `fcct`:
 +
-`podman pull quay.io/coreos/fcct:v0.2.0`
+`podman pull quay.io/coreos/fcct:release`
 +
 . Run fcct on the FCC file:
 +
-`podman run -i --rm quay.io/coreos/fcct:v0.2.0 -pretty -strict < example.fcc > example.ign`
+`podman run -i --rm quay.io/coreos/fcct:release -pretty -strict < example.fcc > example.ign`
 +
 . Use the `example.ign` file to xref:getting-started.adoc[boot FCOS].
 
