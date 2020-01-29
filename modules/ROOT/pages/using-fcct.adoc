@@ -20,10 +20,10 @@ This example uses podman, but you can use docker in a similar manner. Note that 
 . Run `fcct` either by using standard in and standard out or by using files. Refer to the examples below.
 +
 .Example running `fcct` using standard in and standard out:
-`podman run -i --rm quay.io/coreos/fcct:release -pretty -strict < your_config.fcc > transpiled_config.ign`
+`podman run -i --rm quay.io/coreos/fcct:release --pretty --strict < your_config.fcc > transpiled_config.ign`
 +
 .Example running `fcct` using files:
-`podman run --rm -v /path/to/your_config.fcc:/config.fcc:z quay.io/coreos/fcct:release -pretty -strict -input /config.fcc > transpiled_config.ign`
+`podman run --rm -v /path/to/your_config.fcc:/config.fcc:z quay.io/coreos/fcct:release --pretty --strict --input /config.fcc > transpiled_config.ign`
 +
 NOTE: `fcct` sends its output to `stdout`, so the examples above pipe that output to a file named `transpiled_config.ign`.
 
