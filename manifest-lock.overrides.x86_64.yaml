@@ -1,10 +1,4 @@
 packages:
-  # New rust based coreos-installer
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a507c2d7c1
-  coreos-installer:
-    evra: 0.1.2-1.fc31.x86_64
-  coreos-installer-systemd:
-    evra: 0.1.2-1.fc31.x86_64
   # crypto-policies without python dependencies
   # We're pulling from rawhide here as this is a brand new change
   # and the maintainer is not comfortable sending it to F31 yet.
