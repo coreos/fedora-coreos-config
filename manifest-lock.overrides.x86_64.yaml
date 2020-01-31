@@ -5,4 +5,7 @@ packages:
   # https://src.fedoraproject.org/rpms/crypto-policies/pull-request/6#comment-35958
   crypto-policies:
     evra: 20191128-3.gitcd267a5.fc32.noarch
-
+  # For https://github.com/coreos/ignition-dracut/pull/151.
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-fbb7cb5f05
+  ignition:
+    evra: 2.1.1-5.git40c0b57.fc31.x86_64
