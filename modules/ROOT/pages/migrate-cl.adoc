@@ -1,7 +1,7 @@
 :experimental:
 = Migrating from CoreOS Container Linux (CL) to Fedora CoreOS (FCOS)
 
-Fedora CoreOS is the successor of CoreOS Container Linux, and current users of CL are encouraged to migrate to FCOS. This page attempts to document the differences between CL and FCOS to ease the transition to FCOS.
+Fedora CoreOS is the official successor of CoreOS Container Linux. This page attempts to document the differences between CL and FCOS to ease the transition to FCOS.
 
 :toc:
 
@@ -46,6 +46,7 @@ For more info, see the https://github.com/coreos/afterburn/blob/master/README.md
 
 == Operator notes
 
+* FCOS provides https://fedoramagazine.org/fedora-coreos-out-of-preview/[best-effort stability], and may occasionally include regressions or breaking changes for some use cases or workloads.
 * CL had three release channels: `alpha`, `beta`, and `stable`. The FCOS production https://github.com/coreos/fedora-coreos-tracker/blob/master/Design.md#release-streams[release streams] are `next`, `testing`, and `stable`, with somewhat different semantics.
 * In general, SELinux confinement should work the same as in Fedora.
 * To deploy an Ignition config as part of a PXE image (a "custom OEM" in CL terminology), follow the https://coreos.com/os/docs/latest/booting-with-pxe.html#adding-a-custom-oem[same process] as in CL, but place the `config.ign` file in the root of the archive.
