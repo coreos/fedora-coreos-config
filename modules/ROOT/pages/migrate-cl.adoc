@@ -39,15 +39,17 @@ When writing FCC files, note the following changes:
 
 For more info, see the https://github.com/coreos/afterburn/blob/master/README.md[Afterburn readme].
 
-* To deploy an Igntion config as part of a PXE image (a "custom OEM" in CL terminology), follow the https://coreos.com/os/docs/latest/booting-with-pxe.html#adding-a-custom-oem[same process] as in CL, but place the `config.ign` file in the root of the archive.
 * By default, FCOS does not allow password logins via SSH. We recommend configuring SSH keys instead.
 * Because `usermod` is not yet fully-functional on FCOS, there is a `docker` group in the `/etc/group` file. This is a stop-gap measure to facilitate a smooth transition to FCOS. The team is working on a more functional `usermod`, at which time the `docker` group will no longer be included by default. See the https://github.com/coreos/fedora-coreos-tracker/issues/2[docker group issue].
 * There is no way to create directories below the `/` directory. Changes are restricted to `/etc` and `/var`. Refer to the documentation for the xref:ign-storage.adoc[`storage`] node of the FCC configuration for details about writing directories and files to FCOS.
+* FCCs no longer have a separate section for network configuration. Use the FCC `files` section to write a https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[NetworkManager key file] instead.
 
 == Operator notes
-* CL had three release channels: `alpha`, `beta`, and `stable`. The FCOS production https://github.com/coreos/fedora-coreos-tracker/blob/master/Design.md#release-streams[release streams] are `next`, `testing`, and `stable`, with somewhat different semantics. See the https://getfedora.org/coreos/download/[download page] for more info.
+
+* CL had three release channels: `alpha`, `beta`, and `stable`. The FCOS production https://github.com/coreos/fedora-coreos-tracker/blob/master/Design.md#release-streams[release streams] are `next`, `testing`, and `stable`, with somewhat different semantics.
 * In general, SELinux confinement should work the same as in Fedora.
-* In CL, metrics/telemetry data was collected by the update mechanism. In FCOS, the data is collected (without unique identifiers) by https://github.com/coreos/fedora-coreos-pinger/issues/30[`fedora-coreos-pinger`].
+* To deploy an Ignition config as part of a PXE image (a "custom OEM" in CL terminology), follow the https://coreos.com/os/docs/latest/booting-with-pxe.html#adding-a-custom-oem[same process] as in CL, but place the `config.ign` file in the root of the archive.
+* In CL, metrics/telemetry data was collected by the update mechanism. In FCOS, the data is collected (without unique identifiers) by https://github.com/coreos/fedora-coreos-pinger[`fedora-coreos-pinger`].
 ** To prevent any information from being collected or transmitted by the pinger, you can disable reporting. To do so, drop a config snippet into `/etc/fedora-coreos-pinger/config.d/99-disable-reporting.toml` containing the following:
 +
 [source]
@@ -56,8 +58,8 @@ For more info, see the https://github.com/coreos/afterburn/blob/master/README.md
 enabled = false
 ----
 * Cloud CLI clients are not included in FCOS. There is an initiative to create a "tools" container to run on FCOS.
-* When opening an existing file in a sticky directory, the behavior differs from CL. See https://github.com/coreos/bugs/issues/2577.
-* CL left Simultaneous Multi-Threading (SMT) enabled but advised users to turn it off if their systems were vulnerable to certain issues such as https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html[L1TF] or https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html[MDS]. By default, FCOS https://github.com/coreos/fedora-coreos-tracker/issues/181[automatically disables SMT] for vulnerable systems.
+* When opening an existing file in a sticky directory, the behavior differs from CL. See https://github.com/systemd/systemd/commit/2732587540035227fe59e4b64b60127352611b35[the relevant systemd commit].
+* CL left Simultaneous Multi-Threading (SMT) enabled but advised users to turn it off if their systems were vulnerable to certain issues such as https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html[L1TF] or https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html[MDS]. By default, FCOS https://github.com/coreos/fedora-coreos-tracker/blob/master/Design.md#automatically-disable-smt-when-needed-to-address-vulnerabilities[automatically disables SMT] for vulnerable systems.
 
 == Implementation notes
 //* Partition layout differences. CL is at https://coreos.com/os/docs/latest/sdk-disk-partitions.html. I can't make heads or tails of the results of the discussions in https://github.com/coreos/fedora-coreos-tracker/issues/94.
