@@ -13,39 +13,50 @@ To migrate from CL to FCOS, you must convert your old Container Linux Configs, I
 
 The following changes have been made to the installation process:
 
-* The `coreos-install` script has been deprecated in favor of https://github.com/coreos/coreos-installer[`coreos-installer`], which offers similar functionality.
-* The `autologin` kernel command-line parameter is not currently supported in FCOS.
+* The `coreos-install` script has been replaced with https://github.com/coreos/coreos-installer[`coreos-installer`]. It offers similar functionality.
+* The `coreos.autologin` kernel command-line parameter is not currently supported in FCOS.
 * Certain CL platforms, such as Vagrant, are not yet supported in FCOS. Refer to the https://getfedora.org/coreos/download/[Download page] to see a list of the available image types.
 
 == Configuration changes
 
-When writing FCC files, keep the following changes in mind:
+When writing FCC files, note the following changes:
 
-* Users and groups are defined in the xref:ign-passwd.adoc[`passwd`] node of the FCC file.
-* `coreos-metadata` is now https://github.com/coreos/afterburn/blob/master/README.md[Afterburn]. You will have to evaluate the environment variables in your systemd unit files. For the sake of comparison, you can refer to the https://github.com/coreos/afterburn/blob/master/docs/container-linux-legacy.md[legacy documentation].
-* PXE images can be customized with a bundled Ignition config. Follow the xref:bare-metal.adoc[PXE live boot] instructions.
+* `coreos-metadata` is now https://github.com/coreos/afterburn/blob/master/README.md[Afterburn]. The prefix of the variable names has changed from `COREOS_` to `AFTERBURN_`, and the following platform names have changed:
+** `\_EC2_` is now `\_AWS_`
+** `\__GCE__` is now `\__GCP__`
+
+NOTE: For more info, see the https://github.com/coreos/afterburn/blob/master/README.md[Afterburn readme doc].
+
+* To customize a PXE image with an Ignition config, place the `config.ign` in the root of the archive.
 * Use https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sect-using_chrony[`chronyd`] rather than `ntpd` or `systemd-timesyncd`.
 * `etcd` is not included in FCOS. Refer to xref:running-containers.adoc[Running etcd] for instructions to run it as a container on FCOS.
 * flannel is not supported on FCOS.
 * The functionality of the reboot manager (`locksmith`) is rolled into https://github.com/coreos/zincati/blob/master/README.md[Zincati].
-* Be default, FCOS does not allow SSH password logins. For full details on how to set up users, refer to the documentation for the xref:ign-passwd.adoc[`passwd`] node of the FCC file.
+* Be default, FCOS does not allow SSH password logins. As described in xref:ign-passwd.adoc[`passwd`], there are two authentication options: SSH key login or password hash.
 * FCOS does not have a mechanism to select the version of docker.
 * Because `usermod` is not yet fully-functional on FCOS, there is a `docker` group in the `/etc/group` file. This is a stop-gap measure to facilitate a smooth transition to FCOS. The team is working on a more functional `usermod`, at which time the `docker` group will no longer be included by default. See the https://github.com/coreos/fedora-coreos-tracker/issues/2[docker group issue].
 * There is no way to create directories below the `/` directory. Changes are restricted to `/etc` and `/var`. Refer to the documentation for the xref:ign-storage.adoc[`storage`] node of the FCC configuration for details about writing directories and files to FCOS.
 
 == Operator notes
-* CL had three release channels: Stable, Beta, and Alpha. The FCOS production https://github.com/coreos/fedora-coreos-tracker/blob/master/Design.md#release-streams[release streams] are `testing`, `stable`, and `next`.
+* CL had three release channels: Alpha, Beta, and Stable. The FCOS production https://github.com/coreos/fedora-coreos-tracker/blob/master/Design.md#release-streams[release streams] are `next`, `testing`, and `stable`, with somewhat different semantics. See the https://getfedora.org/coreos/download/[download page] for more info.
 * Automatic updates are now coordinated by Zincati, as described in the https://github.com/coreos/zincati/blob/master/docs/usage/auto-updates.md[Zincati documentation]. The rollback mechanism (via grub) is now provided by https://github.com/coreos/rpm-ostree/blob/master/README.md[`rpm-ostree`].
-* The `update-ssh-keys` tool is not shipped on FCOS. To update ssh keys, edit `authorized_keys` directly. Keep in mind that Ignition and Afterburn have their own files in `~/.ssh/authorized_keys.d`.
+* The `update-ssh-keys` tool is not shipped on FCOS. To update SSH keys, edit `~/ssh/authorized_keys.d` directly. Note that Ignition and Afterburn have their own files in `~/.ssh/authorized_keys.d`.
 * In general, SELinux confinement should work the same as in Fedora.
-* In CL, metrics/telemetry data was collected by the update mechanism. In FCOS, the data is collected (without unique identifiers) by https://github.com/coreos/fedora-coreos-pinger/issues/30[`fedora-coreos-pinger`]. You can disable data collection.
+* In CL, metrics/telemetry data was collected by the update mechanism. In FCOS, the data is collected (without unique identifiers) by https://github.com/coreos/fedora-coreos-pinger/issues/30[`fedora-coreos-pinger`].
+** To prevent any information from being collected or transmitted by the pinger, you can disable reporting. To do so, drop a config snippet into `/etc/fedora-coreos-pinger/config.d/99-disable-reporting.toml` containing the following:
++
+[source]
+----
+[reporting]
+enabled = false
+----
 * Cloud CLI clients are not included in FCOS. There is an initiative to create a "tools" container to run on FCOS.
-//* Sticky directory - https://github.com/coreos/bugs/issues/2577
+* When opening an existing file in a sticky directory, the behavior differs from CL. See https://github.com/coreos/bugs/issues/2577.
 * CL left Simultaneous Multi-Threading (SMT) enabled but advised users to turn it off if their systems were vulnerable to certain issues such as https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html[L1TF] or https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html[MDS]. By default, FCOS https://github.com/coreos/fedora-coreos-tracker/issues/181[automatically disables SMT] for vulnerable systems.
 
 == Implementation notes
 //* Partition layout differences. CL is at https://coreos.com/os/docs/latest/sdk-disk-partitions.html. I can't make heads or tails of the results of the discussions in https://github.com/coreos/fedora-coreos-tracker/issues/94.
-* The filesystem choices on CL were ext4 (default), btrfs, or xfs. On FCOS, you can use xfs (default) or ext4. If you wish to use btrfs, you can use xref:ign-storage.adoc[Ignition] to reformat `/var` to btrfs.
-* While CL used systemd socket activation for sshd, FCOS uses the standard sshd (a persistent server process).
-* CL had an "OEM partition" at `/usr/share/oem`, but FCOS does not have this.
+* The default filesystem on CL was ext4. On FCOS, the default is xfs.
+* While CL used systemd socket activation for sshd, FCOS starts sshd at startup by default.
+* CL had an "OEM partition" at `/usr/share/oem` with a user-customizable GRUB config and some additional tools, but FCOS does not have this.
 //* Filesystem resizing differences. Need more info on FCOS side.
