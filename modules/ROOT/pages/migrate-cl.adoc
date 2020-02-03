@@ -19,7 +19,7 @@ The following changes have been made to the installation process:
 
 == Software package changes
 
-* `etcd` is not included in FCOS. Refer to xref:running-containers.adoc[Running etcd] for instructions to run it as a container on FCOS.
+* `etcd` is not included in FCOS. Refer to xref:running-containers.adoc#running-etcd[Running etcd] for instructions to run it as a container on FCOS.
 * `flannel` is not included in FCOS.
 * The Podman container runtime is included in FCOS and is the recommended container runtime. The rkt container runtime is not included.
 * FCOS does not have a recommended mechanism to select the version of `docker`.
