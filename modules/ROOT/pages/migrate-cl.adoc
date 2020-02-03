@@ -36,7 +36,7 @@ When writing FCC files, note the following changes:
 * `coreos-metadata` is now https://github.com/coreos/afterburn/blob/master/README.md[Afterburn]. The prefix of the metadata variable names has changed from `COREOS_` to `AFTERBURN_`, and the following platform names have changed:
 ** `EC2` is now `AWS`
 ** `GCE` is now `GCP`
-
++
 For more info, see the https://github.com/coreos/afterburn/blob/master/README.md[Afterburn readme].
 
 * By default, FCOS does not allow password logins via SSH. We recommend configuring SSH keys instead.
