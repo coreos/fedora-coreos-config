@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# See also coreos-growpart.service.
+# See also ignition-ostree-growfs.service.
 
 # https://github.com/coreos/fedora-coreos-tracker/issues/18
 # See also image.ks.
