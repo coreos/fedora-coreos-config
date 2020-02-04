@@ -23,7 +23,7 @@ ssh_authorized_keys:
   - ssh-rsa ...
 ----
 
-Manually configure with a xref:ign-passwd.adoc[`passwd`] node in the FCC file:
+This can be manually translated into a xref:ign-passwd.adoc[`passwd`] node within the FCC file:
 
 .Example of users:
 [source, yaml]
