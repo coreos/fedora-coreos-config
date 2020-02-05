@@ -5,7 +5,8 @@ Base manifest configuration for
 Use https://github.com/coreos/coreos-assembler to build it.
 
 Discussions in
-https://discussion.fedoraproject.org/c/server/coreos and
+https://discussion.fedoraproject.org/c/server/coreos. Bug
+tracking and feature requests at
 https://github.com/coreos/fedora-coreos-tracker.
 
 ## About this repo
