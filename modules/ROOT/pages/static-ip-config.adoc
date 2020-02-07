@@ -22,7 +22,7 @@ storage:
       mode: 0600
       overwrite: true
       contents:
-        inline:
+        inline: |
           [connection]
           type=ethernet
           interface-name=eth0
@@ -39,8 +39,12 @@ storage:
 ----
 NOTE: During the initramfs portion of the boot process, dracut will attempt to grab a DHCP address. When it times out, Ignition will take over and write the above configuration into the filesystem.
 
-If the interface does not come up correctly on first boot, issue the following commands to force the static IP to take effect:
+If the interface does not come up correctly on first boot (see https://github.com/coreos/fedora-coreos-tracker/issues/358[tracker issue 358]), you have two possible workarounds.
+
+1. If you configured a username and password in your Ignition configuration, you can login to the host via the console and issue the following commands to force the static IP to take effect:
 
 `nmcli connection down eth0`
 
 `nmcli connection up eth0`
+
+2. If you are not able to access the host via the console, you can reboot the host and the static IP configuration will take effect.
