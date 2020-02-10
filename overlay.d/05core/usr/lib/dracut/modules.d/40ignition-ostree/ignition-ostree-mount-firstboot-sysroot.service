@@ -6,6 +6,7 @@ DefaultDependencies=false
 # If root is specified, then systemd's generator will win
 ConditionKernelCommandLine=!root
 ConditionKernelCommandLine=ostree
+# This is redundant since we're queued on -diskful.target, but eh.
 ConditionPathExists=!/run/ostree-live
 # There can be only one, Highlander style
 Conflicts=ignition-ostree-mount-subsequent-sysroot.service
