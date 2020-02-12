@@ -193,3 +193,19 @@ Kubernetes cluster, you will be able to use upcoming tools to coordinate
 updates and reboots.
 
 https://discussion.fedoraproject.org/t/launch-faq-how-do-i-coordinate-cluster-wide-os-updates-is-locksmith-or-the-container-linux-update-operator-available-for-fedora-coreos/56[discuss]
+
+== How do I upload Fedora CoreOS to private AWS EC2 regions?
+
+Fedora CoreOS today is only uploaded to the standard AWS regions. For regions
+in other AWS partitions like GovCloud and AWS China, you must upload the images
+yourself.
+
+Note that Fedora CoreOS uses a unified BIOS/UEFI partition layout. As such, it
+is not compatible with the `aws ec2 import-image` API (for more information,
+see https://github.com/openshift/os/pull/396[related discussions]). Instead,
+you must use `aws ec2 import-snapshot` combined with `aws ec2 register-image`.
+
+To learn more about these APIs, see the AWS documentation for
+https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-import-snapshot.html[importing snapshots]
+and
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#creating-launching-ami-from-snapshot[creating EBS-backed AMIs].
