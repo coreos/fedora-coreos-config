@@ -3,26 +3,26 @@
 
 This guide provides instructions to install Fedora CoreOS to bare metal. Two options are available:
 
-* Installing from ISO
+* Installing from live ISO
 * Installing from PXE
 
 == Prerequisite
 
 Before installing FCOS, you must have an Ignition configuration file and host it somewhere (e.g. using `python3 -m http.server`). If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-== Installing from ISO
+== Installing from live ISO
 
-To install FCOS onto bare metal with an ISO, follow these steps:
+To install FCOS onto bare metal using the live ISO, follow these steps:
 
-. Download an ISO image from the https://getfedora.org/coreos/download/[FCOS download page].
+. Download the ISO image from the https://getfedora.org/coreos/download/[FCOS download page].
 +
-NOTE: You can install in either legacy boot (BIOS) mode or in UEFI mode, regardless of what mode the OS will use once installed.
+NOTE: The live system requires at least 3 GiB of RAM. You can boot it in either legacy BIOS or UEFI mode, regardless of what mode the OS will use once installed.
 +
 . Burn the ISO to disk and boot it on the target system. The ISO is capable of bringing up a fully functioning FCOS system purely from memory (i.e. without using any disk storage). Once booted, you will have access to a bash command prompt.
 . You can now fetch your Ignition config and run `coreos-installer`:
 [source, bash]
 ----
-curl -LO http://example.com/example.ign
+curl -LO https://example.com/example.ign
 sudo coreos-installer install /dev/sda --ignition example.ign
 ----
 
