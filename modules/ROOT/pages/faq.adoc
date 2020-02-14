@@ -24,30 +24,27 @@ https://discussion.fedoraproject.org/t/launch-faq-what-is-fedora-coreos/40[discu
 == How does Fedora CoreOS relate to Red Hat CoreOS?
 
 Fedora CoreOS is a freely available, community distribution that is the
-upstream basis for Red Hat CoreOS. While Fedora CoreOS will embrace a
-variety of containerized use cases, Red Hat CoreOS will provide a
-focused immutable host for OpenShift, released and life-cycled in tandem
+upstream basis for Red Hat CoreOS. While Fedora CoreOS embraces a
+variety of containerized use cases, Red Hat CoreOS provides a
+focused OS for OpenShift, released and life-cycled in tandem
 with the platform.
 
 https://discussion.fedoraproject.org/t/launch-faq-how-does-fedora-coreos-relate-to-red-hat-coreos/41[discuss]
 
 == Does Fedora CoreOS replace Container Linux? What happens to CL?
 
-Fedora CoreOS will eventually become the successor to Container Linux.
-The Container Linux project has a large installed base - it is a top
-priority to not disrupt that. The project will continue to be supported
-at least throughout 2019, allowing users ample time to migrate and
-provide feedback. Existing Container Linux users can be confident that
-support will continue while the next version is being created in
-parallel, in a non-disruptive way.
+Fedora CoreOS is the official successor to Container Linux, but it
+is not a drop-in replacement.
+The Container Linux project has an https://coreos.com/os/eol/[end-of-life timeline]
+sprawling across 2020, allowing remaining users to perform migrations.
 
 https://discussion.fedoraproject.org/t/launch-faq-does-fedora-coreos-replace-container-linux-what-happens-to-cl/42[discuss]
 
 == Does Fedora CoreOS replace Fedora Atomic Host? What happens to Fedora Atomic Host and CentOS Atomic Host?
 
-Fedora CoreOS will also become the successor to Fedora Atomic Host. The
-current plan is for Fedora Atomic Host to have at least a 29 version and
-6 months of lifecycle.
+Fedora CoreOS is the official successor to Fedora Atomic Host. The
+last Fedora Atomic Host release was version 29, and it already reached
+end-of-life.
 
 CentOS Atomic Host will continue producing downstream rebuilds of RHEL
 Atomic Host and will align with the end-of-life. The Fedora CoreOS
@@ -90,7 +87,7 @@ https://discussion.fedoraproject.org/t/launch-faq-what-are-the-communication-cha
 
 === Where can I download Fedora CoreOS?
 
-Fedora CoreOS is under active development. There is currently a preview release available at https://getfedora.org/en/coreos/download/[getfedora.org].
+Fedora CoreOS artifacts are available at https://getfedora.org/en/coreos/download/[getfedora.org].
 
 https://discussion.fedoraproject.org/t/launch-faq-where-can-i-download-fedora-coreos/47/1[discuss]
 
@@ -108,7 +105,7 @@ https://discussion.fedoraproject.org/t/launch-faq-does-fedora-coreos-embrace-the
 
 == How are Fedora CoreOS nodes provisioned? Can I re-use existing cloud-init configurations?
 
-Fedora CoreOS will be provisioned with Ignition. However, existing
+Fedora CoreOS is provisioned with Ignition. However, existing
 Ignition configurations may require changes, as the OS configuration
 will be different from Container Linux. Existing cloud-init
 configurations are not supported and will need to be migrated into their
@@ -118,7 +115,7 @@ https://discussion.fedoraproject.org/t/launch-faq-how-are-fedora-coreos-nodes-pr
 
 == How do I migrate from Container Linux to Fedora CoreOS?
 
-Migration will be accomplished by re-provisioning the machine with
+Migrations can be accomplished by re-provisioning the machine with
 Fedora CoreOS. We will provide documentation to make this easier, as
 well as tooling to help convert existing cloud-configs and Ignition
 configs for use on Fedora CoreOS.
@@ -142,24 +139,22 @@ https://discussion.fedoraproject.org/t/launch-faq-how-do-i-migrate-from-fedora-a
 
 == Which container runtimes are available on Fedora CoreOS?
 
-Fedora CoreOS includes the Docker, podman, and CRI-O container runtimes
-by default. Based on community engagement and support this list could
+Fedora CoreOS includes Docker and podman by default.
+Based on community engagement and support this list could
 change over time.
 
 https://discussion.fedoraproject.org/t/launch-faq-which-container-runtimes-are-available-on-fedora-coreos/52/1[discuss]
 
 == Which platforms does Fedora CoreOS support?
 
-Fedora CoreOS is expected to run on at least
+Fedora CoreOS runs on at least
 
+* Alibaba Cloud,
 * AWS,
 * Azure,
-* DigitalOcean,
 * GCP,
 * OpenStack,
-* Packet,
 * QEMU,
-* VirtualBox,
 * VMware,
 * and bare-metal systems if installed to disk or network-booted.
 
@@ -181,7 +176,7 @@ On Fedora CoreOS, containers are the way to install and configure any
 software not provided by the base operating system. The package layering
 mechanism provided by rpm-ostree will continue to exist for use in
 debugging a Fedora CoreOS machine, but we strongly discourage its use in
-production. For more about this, please refer to upcoming documentation.
+production. For more about this, please refer to https://docs.fedoraproject.org/en-US/fedora-coreos/running-containers/[documentation].
 
 https://discussion.fedoraproject.org/t/launch-faq-how-do-i-run-custom-applications-on-fedora-coreos/55/1[discuss]
 
