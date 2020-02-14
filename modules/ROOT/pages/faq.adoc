@@ -96,7 +96,7 @@ https://discussion.fedoraproject.org/t/launch-faq-where-can-i-download-fedora-co
 
 Yes, Fedora CoreOS comes with automatic
 updates and regular releases. Multiple update channels are provided
-catering to different users' needs. It will introduce a new node-update
+catering to different users' needs. It introduces a new node-update
 service based on rpm-ostree technologies, with a server component that
 can be optionally self-hosted. Failures that prevent an update from
 booting will automatically be reverted.
@@ -106,7 +106,7 @@ https://discussion.fedoraproject.org/t/launch-faq-does-fedora-coreos-embrace-the
 == How are Fedora CoreOS nodes provisioned? Can I re-use existing cloud-init configurations?
 
 Fedora CoreOS is provisioned with Ignition. However, existing
-Ignition configurations may require changes, as the OS configuration
+Ignition configurations will require changes, as the OS configuration
 will be different from Container Linux. Existing cloud-init
 configurations are not supported and will need to be migrated into their
 Ignition equivalent.
@@ -172,8 +172,8 @@ https://discussion.fedoraproject.org/t/launch-faq-can-i-run-kubernetes-on-fedora
 On Fedora CoreOS, containers are the way to install and configure any
 software not provided by the base operating system. The package layering
 mechanism provided by rpm-ostree will continue to exist for use in
-debugging a Fedora CoreOS machine, but we strongly discourage its use in
-production. For more about this, please refer to https://docs.fedoraproject.org/en-US/fedora-coreos/running-containers/[documentation].
+debugging a Fedora CoreOS machine, but we strongly discourage its use.
+For more about this, please refer to xref:running-containers.adoc[documentation].
 
 https://discussion.fedoraproject.org/t/launch-faq-how-do-i-run-custom-applications-on-fedora-coreos/55/1[discuss]
 
