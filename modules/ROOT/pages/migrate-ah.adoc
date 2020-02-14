@@ -37,6 +37,8 @@ passwd:
       groups: [ sudo, docker ]
 ----
 
+NOTE: Fedora CoreOS disables password login over SSH by default. It is strongly recommended to only use key authentication. Setting passwords can be useful however for logging into the console directly.
+
 == Converting storage definitions
 
 With FAH, you could configure additional storage for the system with either `cloud-init` or  `docker-storage-setup` via the `/etc/sysconfig/docker-storage-setup` file. With FCOS, you should configure additional storage at provisioning time via Ignition in the xref:ign-storage.adoc[`storage`] node of the FCC file.

@@ -14,7 +14,7 @@ To migrate from CL to FCOS, you must convert your old Container Linux Configs, I
 The following changes have been made to the installation process:
 
 * The `coreos-install` script has been replaced with https://github.com/coreos/coreos-installer[`coreos-installer`]. It offers similar functionality.
-* The `coreos.autologin` kernel command-line parameter is not currently supported in FCOS.
+* The `coreos.autologin` kernel command-line parameter is not currently supported in FCOS. For access recovery purposes, there are instructions available xref:access-recovery.adoc[here].
 * Certain CL platforms, such as Vagrant, are not yet supported in FCOS. Refer to the https://getfedora.org/coreos/download/[Download page] to see the available image types.
 
 == Software package changes
