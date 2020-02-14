@@ -33,17 +33,18 @@ https://discussion.fedoraproject.org/t/launch-faq-how-does-fedora-coreos-relate-
 
 == Does Fedora CoreOS replace Container Linux? What happens to CL?
 
-Fedora CoreOS is the official successor to Container Linux, but it
-is not a drop-in replacement.
-The Container Linux project has an https://coreos.com/os/eol/[end-of-life timeline]
-sprawling across 2020, allowing remaining users to perform migrations.
+Fedora CoreOS is the official successor to CoreOS Container Linux, but it
+is not a drop-in replacement.  CoreOS Container Linux will reach its
+https://coreos.com/os/eol/[end of life] on May 26, 2020, and will no longer
+receive updates after that date.  For notes on migrating from Container Linux
+to Fedora CoreOS, see the xref:migrate-cl.adoc[migration guide].
 
 https://discussion.fedoraproject.org/t/launch-faq-does-fedora-coreos-replace-container-linux-what-happens-to-cl/42[discuss]
 
 == Does Fedora CoreOS replace Fedora Atomic Host? What happens to Fedora Atomic Host and CentOS Atomic Host?
 
 Fedora CoreOS is the official successor to Fedora Atomic Host. The
-last Fedora Atomic Host release was version 29, and it already reached
+last Fedora Atomic Host release was version 29, which has now reached
 end-of-life.
 
 CentOS Atomic Host will continue producing downstream rebuilds of RHEL
@@ -93,8 +94,7 @@ https://discussion.fedoraproject.org/t/launch-faq-where-can-i-download-fedora-co
 
 == Does Fedora CoreOS embrace the Container Linux Update Philosophy?
 
-The CoreOS https://coreos.com/why/#updates[Update Philosophy] stays as
-important to us as always. Yes, Fedora CoreOS comes with automatic
+Yes, Fedora CoreOS comes with automatic
 updates and regular releases. Multiple update channels are provided
 catering to different users' needs. It will introduce a new node-update
 service based on rpm-ostree technologies, with a server component that
@@ -116,24 +116,21 @@ https://discussion.fedoraproject.org/t/launch-faq-how-are-fedora-coreos-nodes-pr
 == How do I migrate from Container Linux to Fedora CoreOS?
 
 Migrations can be accomplished by re-provisioning the machine with
-Fedora CoreOS. We will provide documentation to make this easier, as
-well as tooling to help convert existing cloud-configs and Ignition
-configs for use on Fedora CoreOS.
-
-See xref:migrate-cl.adoc[Container Linux Migration Notes] for a list of differences.
+Fedora CoreOS.  For notes on migrating from Container Linux
+to Fedora CoreOS, see the xref:migrate-cl.adoc[migration guide].
 
 https://discussion.fedoraproject.org/t/launch-faq-how-do-i-migrate-from-container-linux-to-fedora-coreos/50/1[discuss]
 
 == How do I migrate from Fedora Atomic Host to Fedora CoreOS?
 
-As with Container Linux, the best practice will be re-provisioning, due
-to the cloud-init/Ignition transition at least. Since Fedora CoreOS will
-be using rpm-ostree technology, it may be possible to rebase from Fedora
-Atomic Host to Fedora CoreOS, but it will not be recommended. It will
-be preferable to gain experience deploying systems using Ignition so
-that they can be re-provisioned easily if needed. This will all be part
-of a "migrating from Fedora Atomic Host" guide which will be published
-soon.
+As with Container Linux, the best practice is to re-provision the node, due
+to the cloud-init/Ignition transition at least. Since Fedora CoreOS uses
+rpm-ostree technology, it may be possible to rebase from Fedora
+Atomic Host to Fedora CoreOS, but it is not recommended. It's
+preferable to gain experience deploying systems using Ignition so
+that they can be re-provisioned easily if needed. For notes on migrating
+from Atomic Host to Fedora CoreOS, see the
+xref:migrate-ah.adoc[migration guide].
 
 https://discussion.fedoraproject.org/t/launch-faq-how-do-i-migrate-from-fedora-atomic-host-to-fedora-coreos/51/1[discuss]
 
