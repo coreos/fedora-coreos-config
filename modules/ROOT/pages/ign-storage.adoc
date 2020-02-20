@@ -114,6 +114,41 @@ storage:
 <4> We use the previously defined partitions as devices in a RAID1 md array.
 <5> The resulting md array is used to create an EXT4 file system.
 
+.Example for adding a /var partition to the primary disk
+[source,yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  disks:
+  - device: /dev/vda <1>
+    wipe_table: false <2>
+    partitions:
+    - size_mib: 0
+      start_mib: 0
+      label: var <3>
+  filesystems:
+    - path: /var
+      device: /dev/disk/by-partlabel/var
+      format: xfs
+systemd:
+  units:
+    - name: var.mount <4>
+      enabled: true
+      contents: |
+        [Unit]
+        Before=local-fs.target
+        [Mount]
+        Where=/var
+        What=/dev/disk/by-partlabel/var
+        [Install]
+        WantedBy=local-fs.target
+----
+<1> The name of the primary block device. In virtio-based setups, this is likely `/dev/vda`. Elsewhere, it's likely `/dev/sda`.
+<2> We do not want to wipe the partition table since this is the primary device.
+<3> We assign a descriptive label to the partition. This is important for referring to it in a device-agnostic way in other parts of the configuration.
+<4> We need to create a systemd mount unit so that `/var` actually gets mounted on `/var`.
+
 == Files
 The `files` node lets you define a list of files, identified by a unique path, that Ignition will create with the required contents and attributes as needed.
 
