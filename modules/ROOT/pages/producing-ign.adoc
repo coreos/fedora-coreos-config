@@ -17,7 +17,10 @@ The overall steps are as follows:
 . Use `fcct` to convert the FCC file into an Ignition (JSON) file.
 
 === Prerequisite
-Create the `core` user on your local machine, and https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sec-security#sec-SSH[generate an SSH key] for this user. When the user logs in via SSH, you will use the SSH key from the local host.
+
+This example uses a pair of SSH public and private keys. If you don't already have it, you can https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sec-security#sec-SSH[generate an SSH key pair].
+
+The SSH public key will be provisioned to the FCOS machine (via Ignition). The SSH private key needs to be available to your user on the local workstation, in order to remotely authenticate yourself over SSH.
 
 === Writing the FCC file
 
@@ -34,7 +37,7 @@ passwd:
         - ssh-rsa AAAA...
 ----
 +
-. Replace the above line starting from `ssh` with the contents of core's SSH public key file.
+. Replace the above line starting with `ssh-rsa` with the contents of your SSH public key file.
 +
 . Save the file with the name `example.fcc`.
 
