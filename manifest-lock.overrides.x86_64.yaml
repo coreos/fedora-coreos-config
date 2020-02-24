@@ -1,14 +1,11 @@
 packages:
-  # New rust based coreos-installer
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a507c2d7c1
-  coreos-installer:
-    evra: 0.1.2-1.fc31.x86_64
-  coreos-installer-systemd:
-    evra: 0.1.2-1.fc31.x86_64
   # crypto-policies without python dependencies
   # We're pulling from rawhide here as this is a brand new change
   # and the maintainer is not comfortable sending it to F31 yet.
   # https://src.fedoraproject.org/rpms/crypto-policies/pull-request/6#comment-35958
   crypto-policies:
     evra: 20191128-3.gitcd267a5.fc32.noarch
-
+  # For https://github.com/coreos/ignition-dracut/pull/151.
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-fbb7cb5f05
+  ignition:
+    evra: 2.1.1-5.git40c0b57.fc31.x86_64
