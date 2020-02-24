@@ -67,7 +67,7 @@
       "evra": "1.0.8-1.fc31.x86_64"
     },
     "c-ares": {
-      "evra": "1.15.0-4.module_f31+5271+b9c46c4d.x86_64"
+      "evra": "1.15.0-5.module_f31+7521+8d6677fc.x86_64"
     },
     "ca-certificates": {
       "evra": "2020.2.40-1.1.fc31.noarch"
@@ -109,7 +109,7 @@
       "evra": "0.8.5-1.fc31.x86_64"
     },
     "containers-common": {
-      "evra": "1:0.1.40-4.fc31.x86_64"
+      "evra": "1:0.1.41-1.fc31.x86_64"
     },
     "coreos-installer": {
       "evra": "0.1.2-1.fc31.x86_64"
@@ -136,10 +136,10 @@
       "evra": "20191128-3.gitcd267a5.fc32.noarch"
     },
     "cryptsetup": {
-      "evra": "2.2.2-1.fc31.x86_64"
+      "evra": "2.3.0-1.fc31.x86_64"
     },
     "cryptsetup-libs": {
-      "evra": "2.2.2-1.fc31.x86_64"
+      "evra": "2.3.0-1.fc31.x86_64"
     },
     "cups-libs": {
       "evra": "1:2.2.12-3.fc31.x86_64"
@@ -271,7 +271,7 @@
       "evra": "1.5.0-7.fc31.x86_64"
     },
     "flatpak-session-helper": {
-      "evra": "1.4.3-3.fc31.x86_64"
+      "evra": "1.4.4-2.fc31.x86_64"
     },
     "freetype": {
       "evra": "2.10.0-3.fc31.x86_64"
@@ -394,7 +394,7 @@
       "evra": "1.8.3-7.fc31.x86_64"
     },
     "iputils": {
-      "evra": "20190515-3.fc31.x86_64"
+      "evra": "20190515-5.fc31.x86_64"
     },
     "irqbalance": {
       "evra": "2:1.4.0-4.fc31.x86_64"
@@ -430,13 +430,13 @@
       "evra": "2.0.4-14.fc31.noarch"
     },
     "kernel": {
-      "evra": "5.4.17-200.fc31.x86_64"
+      "evra": "5.5.5-200.fc31.x86_64"
     },
     "kernel-core": {
-      "evra": "5.4.17-200.fc31.x86_64"
+      "evra": "5.5.5-200.fc31.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.4.17-200.fc31.x86_64"
+      "evra": "5.5.5-200.fc31.x86_64"
     },
     "keyutils": {
       "evra": "1.6-3.fc31.x86_64"
@@ -466,7 +466,7 @@
       "evra": "0.3.111-6.fc31.x86_64"
     },
     "libarchive": {
-      "evra": "3.4.0-1.fc31.x86_64"
+      "evra": "3.4.2-1.fc31.x86_64"
     },
     "libargon2": {
       "evra": "20171227-3.fc31.x86_64"
@@ -580,13 +580,13 @@
       "evra": "1.0.1-16.fc31.x86_64"
     },
     "libnfsidmap": {
-      "evra": "1:2.4.2-3.rc3.fc31.x86_64"
+      "evra": "1:2.4.3-0.fc31.x86_64"
     },
     "libnftnl": {
       "evra": "1.1.3-2.fc31.x86_64"
     },
     "libnghttp2": {
-      "evra": "1.40.0-1.module_f31+7164+9e64a937.x86_64"
+      "evra": "1.40.0-2.module_f31+7692+42f50940.x86_64"
     },
     "libnl3": {
       "evra": "3.5.0-1.fc31.x86_64"
@@ -619,7 +619,7 @@
       "evra": "1.11.1-1.fc31.x86_64"
     },
     "libreport-filesystem": {
-      "evra": "2.11.3-1.fc31.noarch"
+      "evra": "2.12.0-1.fc31.noarch"
     },
     "libseccomp": {
       "evra": "2.4.2-2.fc31.x86_64"
@@ -712,10 +712,10 @@
       "evra": "2:4.11.6-0.fc31.x86_64"
     },
     "libxcrypt": {
-      "evra": "4.4.12-1.fc31.x86_64"
+      "evra": "4.4.14-1.fc31.x86_64"
     },
     "libxml2": {
-      "evra": "2.9.10-2.fc31.x86_64"
+      "evra": "2.9.10-3.fc31.x86_64"
     },
     "libyaml": {
       "evra": "0.2.2-2.fc31.x86_64"
@@ -737,6 +737,9 @@
     },
     "logrotate": {
       "evra": "3.15.1-1.fc31.x86_64"
+    },
+    "lsof": {
+      "evra": "4.93.2-2.fc31.x86_64"
     },
     "lua-libs": {
       "evra": "5.3.5-6.fc31.x86_64"
@@ -766,7 +769,7 @@
       "evra": "1:0.3.0-14.fc31.x86_64"
     },
     "mozjs60": {
-      "evra": "60.9.0-3.fc31.x86_64"
+      "evra": "60.9.0-5.fc31.x86_64"
     },
     "mpfr": {
       "evra": "3.1.6-5.fc31.x86_64"
@@ -787,7 +790,7 @@
       "evra": "3.5.1-3.fc31.x86_64"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.4.2-3.rc3.fc31.x86_64"
+      "evra": "1:2.4.3-0.fc31.x86_64"
     },
     "nftables": {
       "evra": "1:0.9.1-3.fc31.x86_64"
@@ -907,10 +910,10 @@
       "evra": "4.15.1-1.fc31.x86_64"
     },
     "rpm-ostree": {
-      "evra": "2019.7-1.fc31.x86_64"
+      "evra": "2020.1-1.fc31.x86_64"
     },
     "rpm-ostree-libs": {
-      "evra": "2019.7-1.fc31.x86_64"
+      "evra": "2020.1-1.fc31.x86_64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.15.1-1.fc31.x86_64"
@@ -934,10 +937,10 @@
       "evra": "4.5-4.fc31.x86_64"
     },
     "selinux-policy": {
-      "evra": "3.14.4-47.fc31.noarch"
+      "evra": "3.14.4-48.fc31.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "3.14.4-47.fc31.noarch"
+      "evra": "3.14.4-48.fc31.noarch"
     },
     "setup": {
       "evra": "2.13.6-1.fc31.noarch"
@@ -955,7 +958,7 @@
       "evra": "15-8.x86_64"
     },
     "skopeo": {
-      "evra": "1:0.1.40-4.fc31.x86_64"
+      "evra": "1:0.1.41-1.fc31.x86_64"
     },
     "slirp4netns": {
       "evra": "0.4.0-20.1.dev.gitbbd6f25.fc31.x86_64"
@@ -997,22 +1000,22 @@
       "evra": "1.8.29-1.fc31.x86_64"
     },
     "systemd": {
-      "evra": "243.6-1.fc31.x86_64"
+      "evra": "243.7-1.fc31.x86_64"
     },
     "systemd-container": {
-      "evra": "243.6-1.fc31.x86_64"
+      "evra": "243.7-1.fc31.x86_64"
     },
     "systemd-libs": {
-      "evra": "243.6-1.fc31.x86_64"
+      "evra": "243.7-1.fc31.x86_64"
     },
     "systemd-pam": {
-      "evra": "243.6-1.fc31.x86_64"
+      "evra": "243.7-1.fc31.x86_64"
     },
     "systemd-rpm-macros": {
-      "evra": "243.6-1.fc31.noarch"
+      "evra": "243.7-1.fc31.noarch"
     },
     "systemd-udev": {
-      "evra": "243.6-1.fc31.x86_64"
+      "evra": "243.7-1.fc31.x86_64"
     },
     "tar": {
       "evra": "2:1.32-2.fc31.x86_64"
@@ -1030,7 +1033,7 @@
       "evra": "2.34-4.fc31.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.158-1.fc31.x86_64"
+      "evra": "2:8.2.236-1.fc31.x86_64"
     },
     "which": {
       "evra": "2.21-15.fc31.x86_64"
@@ -1061,22 +1064,22 @@
     }
   },
   "metadata": {
-    "generated": "2020-02-10T04:55:51Z",
+    "generated": "2020-02-23T04:56:04Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2019-10-23T22:52:47Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2020-02-09T16:07:31Z"
+        "generated": "2020-02-21T15:48:23Z"
       },
       "fedora-modular": {
         "generated": "2019-10-23T22:53:13Z"
       },
       "fedora-updates": {
-        "generated": "2020-02-10T00:56:32Z"
+        "generated": "2020-02-23T01:00:07Z"
       },
       "fedora-updates-modular": {
-        "generated": "2020-02-10T02:00:45Z"
+        "generated": "2020-02-20T06:01:12Z"
       }
     }
   }

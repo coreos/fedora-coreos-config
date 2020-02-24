@@ -141,6 +141,7 @@ packages:
   - bash-completion
   - openssl
   - vim-minimal
+  - lsof
   # file-transfer: note fuse-sshfs is not in RHEL
   # so we can't put it in file-transfer.yaml
   - fuse-sshfs
@@ -169,3 +170,16 @@ packages-ppc64le:
   - irqbalance
 packages-aarch64:
   - irqbalance
+
+# Things we don't expect to ship on the host.  We currently
+# have recommends: false so these could only come in via
+# hard requirement, in which case the build will fail.
+exclude-packages:
+  - python
+  - python2
+  - python3
+  - perl
+  - nodejs
+  - dnf
+  - grubby
+  - cowsay  # Just in case
