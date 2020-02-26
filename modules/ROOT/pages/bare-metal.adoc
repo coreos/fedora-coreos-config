@@ -23,7 +23,7 @@ NOTE: The live system requires at least 3 GiB of RAM. You can boot it in either 
 [source, bash]
 ----
 curl -LO https://example.com/example.ign
-sudo coreos-installer install /dev/sda --ignition example.ign
+sudo coreos-installer install /dev/sda --ignition-file example.ign
 ----
 
 Once the installation is complete, you can simply `sudo reboot`. After rebooting, the first boot process begins. It is at this time that Ignition ingests the configuration file and provisions the system as specified.
