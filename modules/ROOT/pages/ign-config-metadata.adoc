@@ -12,7 +12,7 @@ The `ignition` node contains the following nodes:
 === Remote configuration file (`config`)
 The first line of the `config` node specifies whether you want to `merge` or `replace` the remote configuration. Regardless of this choice, the following lines are the same:
 
-* `src` defines the remote location as a URL. The supported schemes are `http`, `https`, `s3`, `tftp`, and `https://tools.ietf.org/html/rfc2397[data]`.
+* `source` defines the remote location as a URL. The supported schemes are `http`, `https`, `s3`, `tftp`, and `https://tools.ietf.org/html/rfc2397[data]`.
 * `verification` is optional but recommended when using the `http` scheme. It contains a hash of the configuration
 ** `hash` provides the hash string in the form `<type>-<value>` where `type` is `sha512`.
 
@@ -42,9 +42,9 @@ version: 1.0.0
 ignition:
   config:
     replace:
-      - source: http://example.com/sample.ign
-        verification:
-        - hash: sha512-e2bb19fdbc3604f511b13d66f4c675f011a63dd967b97e2fe4f5d50bf6cb224e902182221ba0f9dd87c0bb4abcbd2ab428eb7965aa7f177eb5630e7a1793e2e6
+      source: http://example.com/sample.ign
+      verification:
+        hash: sha512-e2bb19fdbc3604f511b13d66f4c675f011a63dd967b97e2fe4f5d50bf6cb224e902182221ba0f9dd87c0bb4abcbd2ab428eb7965aa7f177eb5630e7a1793e2e6
 ----
 
 .Retrieving a remote Ignition file via https
@@ -55,11 +55,11 @@ version: 1.0.0
 ignition:
   config:
     replace:
-      - source: https://example.com/sample.ign
+      source: https://example.com/sample.ign
   security:
     tls:
       certificate_authorities:
         - source: https://example.com/source1
           verification:
-            - hash: sha512-e2bb19fdbc3604f511b13d66f4c675f011a63dd967b97e2fe4f5d50bf6cb224e902182221ba0f9dd87c0bb4abcbd2ab428eb7965aa7f177eb5630e7a1793e2e6
+            hash: sha512-e2bb19fdbc3604f511b13d66f4c675f011a63dd967b97e2fe4f5d50bf6cb224e902182221ba0f9dd87c0bb4abcbd2ab428eb7965aa7f177eb5630e7a1793e2e6
 ----
