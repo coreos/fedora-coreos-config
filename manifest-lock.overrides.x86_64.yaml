@@ -1,7 +1,7 @@
 packages:
   # crypto-policies without python dependencies
-  # We're pulling from rawhide here as this is a brand new change
+  # We're pulling from f32 here as this is a brand new change
   # and the maintainer is not comfortable sending it to F31 yet.
   # https://src.fedoraproject.org/rpms/crypto-policies/pull-request/6#comment-35958
   crypto-policies:
-    evra: 20191128-3.gitcd267a5.fc32.noarch
+    evra: 20191128-5.gitcd267a5.fc32.noarch
