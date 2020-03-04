@@ -1,0 +1,22 @@
+# This service is currently specific to CoreOS distros,
+# but we may want to add it to the base OS in the future.
+# The idea here is to allow users to set SELinux booleans
+# without having to modify the on-disk policy, by enabling
+# the appropriate systemd service via Ignition
+[Unit]
+Description=Turn ON SELinux boolean %I
+# We want to run quite early, in particular before anything
+# that may require any access permitted by the boolean;
+# it may make sense to do this in the initramfs too.
+DefaultDependencies=no
+After=local-fs.target
+Conflicts=setsebool-off@%i.service
+
+[Service]
+ExecStart=/usr/sbin/setsebool %i on
+Type=oneshot
+RemainAfterExit=yes
+ExecStop=/usr/sbin/setsebool %i off
+
+[Install]
+WantedBy=sysinit.target
