@@ -116,6 +116,8 @@ packages:
   - NetworkManager hostname
   - iproute-tc
   - adcli
+  ## Teaming https://github.com/coreos/fedora-coreos-config/pull/289 and http://bugzilla.redhat.com/1758162
+  - NetworkManager-team teamd
   # Static firewalling
   - iptables nftables iptables-nft iptables-services
   # Storage
