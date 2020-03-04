@@ -54,7 +54,7 @@ qemu-kvm -m 2048 -cpu host -nographic -snapshot \
 .Example launching FCOS with QEMU (persistent storage)
 [source, bash]
 ----
-qemu-img create qcow2 -b fedora-coreos-qemu.qcow2 my-fcos-vm.qcow2
+qemu-img create -f qcow2 -b fedora-coreos-qemu.qcow2 my-fcos-vm.qcow2
 qemu-kvm -m 2048 -cpu host -nographic \
 	-drive if=virtio,file=my-fcos-vm.qcow2 \
 	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign
