@@ -201,3 +201,35 @@ To learn more about these APIs, see the AWS documentation for
 https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-import-snapshot.html[importing snapshots]
 and
 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#creating-launching-ami-from-snapshot[creating EBS-backed AMIs].
+
+== Can I run containers via docker and podman at the same time?
+
+No. Running containers via `docker` and `podman` at the same time can cause
+issues and unexpected behavior. We highly recommend against trying to use them
+both at the same time. 
+
+It is worth noting that in Fedora CoreOS we have `docker.service`
+disabled by default but it is easily started if anything communicates
+with the `/var/run/docker.sock` because `docker.socket` is enabled by
+default. This means that if a user runs any `docker` command (via
+`sudo docker`) then the daemon will be activated. We did this to make
+the transition easier for users of Container Linux.
+
+In https://github.com/coreos/fedora-coreos-tracker/issues/408[coreos/fedora-coreos-tracker#408]
+it was pointed out that because of socket activation users who are
+using `podman` for containers could unintentionally start the docker
+daemon. This could weaken the security of the system because of the
+interaction of both container runtimes with the firewall on the system.
+To prevent making this mistake you can disable `docker` completely by
+masking the `docker.service` systemd unit.
+
+.Example fcct config for disabling docker.service
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+systemd:
+  units:
+    - name: docker.service
+      mask: true
+----
