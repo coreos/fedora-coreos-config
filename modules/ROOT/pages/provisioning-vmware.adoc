@@ -1,0 +1,75 @@
+= Provisioning Fedora CoreOS on VMware
+
+This guide shows how to provision new Fedora CoreOS (FCOS) nodes on the VMware hypervisor.
+
+== Prerequisite
+
+Before provisioning a FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+You also need to have access to a working VMware infrastructure.
+
+== Downloading the OVA
+
+Fedora CoreOS is designed to be updated automatically, with different schedules per stream.
+Once you have picked the relevant stream, you can download the latest OVA:
+
+[source, bash]
+----
+export STREAM="stable"
+mkdir ova-templates
+coreos-installer download -s "${STREAM}" -p vmware -f ova -C ./ova-templates/
+----
+
+Alternatively, OVA images can be manually downloaded from the https://getfedora.org/coreos/download/[download page].
+
+=== Encoding Ignition configuration
+
+For the `vmware` provider, Ignition requires two "guestinfo" fields to be present when the VM is first booted:
+
+* `guestinfo.ignition.config.data.encoding`: the encoding of the Ignition configuration.
+* `guestinfo.ignition.config.data`: the content of the Ignition configuration, encoded according to the format above.
+
+For maximum compatibility, it is recommended to use `base64` encoding and to prepare the Ignition configuration as such:
+[source, bash]
+----
+export CONFIG_B64=`cat example.ign | base64 -w0 -`
+----
+
+== Booting a new VM on vSphere
+
+This section shows how to use vSphere facilities to configure and run VMs, via the https://github.com/vmware/govmomi/blob/v0.22.2/govc/README.md[govc utility].
+
+=== Importing the OVA
+
+The downloaded OVA has to be first imported into vSphere library:
+
+[source, bash]
+----
+export FCOS_OVA='./ova-templates/fedora-coreos-31.20200210.3.0-vmware.x86_64.ova'
+export LIBRARY='fcos-stable'
+export TEMPLATE_NAME='fcos-31.20200210.3.0'
+govc session.login -u 'user:password@host'
+govc library.create "${LIBRARY}"
+govc library.import -n "${TEMPLATE_NAME}" "${LIBRARY}" "${FCOS_OVA}"
+----
+
+=== Setting up a new VM
+
+You can now deploy a new VM, starting from the template in the library and the encoded Ignition configuration:
+
+[source, bash]
+----
+export VM_NAME='fcos-stable-node01'
+govc library.deploy "${LIBRARY}/${TEMPLATE_NAME}" "${VM_NAME}"
+govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data.encoding=base64"
+govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data=${CONFIG_B64}"
+----
+
+A new `fcos-stable-node01` VM is now available for booting. Its hardware configuration can be further customized at this point, and then powered-up:
+
+[source, bash]
+----
+govc vm.info -e "${VM_NAME}"
+govc vm.power -on "${VM_NAME}"
+----
+
