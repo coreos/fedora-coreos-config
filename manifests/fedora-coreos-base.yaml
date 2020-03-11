@@ -165,6 +165,9 @@ packages-x86_64:
   - irqbalance
 packages-ppc64le:
   - irqbalance
+  - librtas
+  - powerpc-utils-core
+  - ppc64-diag-rtas
 packages-aarch64:
   - irqbalance
 
