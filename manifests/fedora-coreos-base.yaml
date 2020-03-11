@@ -16,8 +16,10 @@ initramfs-args:
   - --omit=nfs
   # Omit these since we don't use them
   - --omit=lvm
-  - --omit=multipath
   - --omit=iscsi
+  - --add=multipath
+  - --include
+  - /etc/multipath.conf
 
 # Be minimal
 recommends: false
@@ -95,6 +97,13 @@ postprocess:
     set -xeuo pipefail
     setsebool -P -N container_use_cephfs on  # RHBZ#1692369
     setsebool -P -N virt_use_samba on  # RHBZ#1754825
+
+    cat > /etc/multipath.conf <<EOF
+    defaults {
+        user_friendly_names yes
+        find_multipaths yes
+    }
+    EOF
 
 packages:
   # Security
