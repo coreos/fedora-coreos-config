@@ -13,4 +13,9 @@ mountflags=
 if [ "${TYPE}" == "xfs" ]; then
   mountflags=prjquota
 fi
+# in case of using multipath devices, we need to make sure all
+# /dev/disk/by-label/ links are fully populated and updated.
+udevadm trigger --type=subsystems --action=add
+udevadm trigger --type=devices --action=add
+udevadm settle
 mount -o "${mountflags}" "${rootpath}" /sysroot

@@ -17,6 +17,8 @@ After=dev-disk-by\x2dlabel-root.device
 Before=initrd-root-fs.target
 # This has an explicit dependency on After=sysroot.mount today
 Before=ostree-prepare-root.service
+Wants=systemd-udevd.service multipathd.service
+After=systemd-udevd.service multipathd.service
 
 [Service]
 Type=oneshot
