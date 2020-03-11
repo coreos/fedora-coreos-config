@@ -16,9 +16,21 @@ shift
 src=$(findmnt -nvr -o SOURCE "$path" | tail -n1)
 majmin=$(findmnt -nvr -o MAJ:MIN "$path" | tail -n1)
 devpath=$(realpath "/sys/dev/block/$majmin")
-partition=$(cat "$devpath/partition")
-parent_path=$(dirname "$devpath")
-parent_device=/dev/$(basename "${parent_path}")
+devname=${devpath##*/}
+
+if [[ "${devname:0:3}" = "dm-" ]]; then
+    # we assume and only support file system in kpartx partition on
+    # device-mapper multipath device
+    dmname=$(cat "$devpath/dm/name")
+    partition=$(echo "$dmname" | sed 's/^.*[^[:digit:]]\([[:digit:]\+]\)$/\1/')
+    parent_dmdev=$(ls "$devpath/slaves/")
+    parent_device=/dev/mapper/$(cat "/sys/block/$parent_dmdev/dm/name")
+else
+    partition=$(cat "$devpath/partition")
+    parent_path=$(dirname "$devpath")
+    parent_device=/dev/$(basename "${parent_path}")
+fi
+
 
 # TODO: make this idempotent, and don't error out if
 # we can't resize.
