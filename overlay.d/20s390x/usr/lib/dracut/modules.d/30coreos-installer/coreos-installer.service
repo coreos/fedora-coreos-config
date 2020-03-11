@@ -1,0 +1,16 @@
+[Unit]
+Description=CoreOS Installer
+Before=coreos-installer.target
+After=network-online.target
+Wants=network-online.target
+ConditionKernelCommandLine=coreos.inst.install_dev
+
+Requires=basic.target dracut-cmdline.service dracut-pre-trigger.service dracut-initqueue.service
+After=basic.target dracut-cmdline.service dracut-pre-trigger.service dracut-initqueue.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-installer-service
+StandardOutput=kmsg+console
+StandardError=kmsg+console
+

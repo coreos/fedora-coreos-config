@@ -27,6 +27,19 @@ Disables the Red Hat Linux legacy `ifcfg` format.
 
 Things that are more closely "Fedora CoreOS"; branding, services.
 
+20s390x
+-------
+
+For CoreOS installation on IBM Z we need to have coreos-installer within initramfs. 
+Usually for Linux installation on zVM we fetch kernel, ramdisk and parameters file
+into 'reader queue' and boot kernel like this:
+
+`#cp ipl c`
+
+During `cosa buildextend-live` ramdisk gets generated, but contains no coreos-installer,
+so DASD disk couldn't be formatted and partitioned, and consequently used. 
+That's why we put coreos-installer into initramfs and perform CoreOS installation. 
+
 80experimental
 --------------
 
