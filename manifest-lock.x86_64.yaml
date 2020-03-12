@@ -1,0 +1,7 @@
+packages:
+  # freezing at 2019.5 until we resolve issues with sysroot.readonly
+  # https://github.com/coreos/fedora-coreos-tracker/issues/343
+  ostree:
+    evra: 2019.5-2.fc31.x86_64
+  ostree-libs:
+    evra: 2019.5-2.fc31.x86_64
