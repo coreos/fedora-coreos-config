@@ -1,30 +1,23 @@
-@Library('github.com/coreos/coreos-ci-lib@master') _
+// Documentation: https://github.com/coreos/coreos-ci/blob/master/README-upstream-ci.md
 
-coreos.pod([image: "quay.io/coreos-assembler/coreos-assembler:latest", kvm: true, memory: "9Gi"]) {
-    stage("Build") {
-        dir("fedora-coreos-config") {
-            checkout scm
-            coreos.shwrap("./ci/validate")
-        }
-        dir("cosa") {
-            coreos.shwrap("""
-                cosa init ${env.WORKSPACE}/fedora-coreos-config
-                curl -LO https://raw.githubusercontent.com/coreos/fedora-coreos-releng-automation/master/scripts/download-overrides.py
-                python3 download-overrides.py
-                cosa build
-            """)
-        }
-    }
-    stage("Kola") {
-        try {
-            dir("cosa") {
-                coreos.shwrap("""
-                    cosa kola run -- --parallel 8
-                """)
-            }
-        } finally {
-            coreos.shwrap("tar -cf - cosa/tmp/kola/ | xz -c9 > ${env.WORKSPACE}/kola.tar.xz")
-            archiveArtifacts allowEmptyArchive: true, artifacts: 'kola.tar.xz'
-        }
+cosaPod {
+    checkout scm
+
+    shwrap("ci/validate")
+
+    shwrap("""
+        mkdir -p /srv/fcos && cd /srv/fcos
+        cosa init ${env.WORKSPACE}
+        curl -LO https://raw.githubusercontent.com/coreos/fedora-coreos-releng-automation/master/scripts/download-overrides.py
+        python3 download-overrides.py
+        # prep from the latest builds so that we generate a diff on PRs that add packages
+        cosa buildprep https://builds.coreos.fedoraproject.org/prod/streams/testing-devel/builds
+    """)
+
+    fcosBuild(skipInit: true)
+
+    // also print the pkgdiff as a separate stage to make it more visible
+    stage("RPM Diff") {
+        shwrap("jq .pkgdiff /srv/fcos/builds/latest/x86_64/meta.json")
     }
 }
