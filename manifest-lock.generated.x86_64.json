@@ -570,8 +570,8 @@
     "libmnl": {
       "evra": "1.0.4-10.fc31.x86_64"
     },
-    "libmodulemd1": {
-      "evra": "1.8.16-1.fc31.x86_64"
+    "libmodulemd": {
+      "evra": "2.9.1-1.fc31.x86_64"
     },
     "libmount": {
       "evra": "2.34-4.fc31.x86_64"
@@ -841,10 +841,10 @@
       "evra": "1.77-3.fc31.x86_64"
     },
     "ostree": {
-      "evra": "2019.5-2.fc31.x86_64"
+      "evra": "2020.3-2.fc31.x86_64"
     },
     "ostree-libs": {
-      "evra": "2019.5-2.fc31.x86_64"
+      "evra": "2020.3-2.fc31.x86_64"
     },
     "p11-kit": {
       "evra": "0.23.20-1.fc31.x86_64"
@@ -925,10 +925,10 @@
       "evra": "4.15.1-1.fc31.x86_64"
     },
     "rpm-ostree": {
-      "evra": "2020.1-1.fc31.x86_64"
+      "evra": "2020.1.21.ge9011530-2.fc31.x86_64"
     },
     "rpm-ostree-libs": {
-      "evra": "2020.1-1.fc31.x86_64"
+      "evra": "2020.1.21.ge9011530-2.fc31.x86_64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.15.1-1.fc31.x86_64"
@@ -1082,7 +1082,7 @@
     }
   },
   "metadata": {
-    "generated": "2020-03-16T15:54:46Z",
+    "generated": "2020-03-16T17:26:22Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2019-10-23T22:52:47Z"
