@@ -1,25 +1,25 @@
-ref: fedora/${basearch}/coreos/testing-devel
+ref: fedora/${basearch}/coreos/next-devel
 include: manifests/fedora-coreos.yaml
 
-releasever: "31"
+releasever: "32"
 
 rojig:
   license: MIT
   name: fedora-coreos
-  summary: Fedora CoreOS testing-devel
+  summary: Fedora CoreOS next-devel
 
 repos:
   - fedora-coreos-pool
   # these repos are there to make it easier to add new packages to the OS and to
   # use `cosa fetch --update-lockfile`; but note that all package versions are
   # still pinned
-  - fedora
-  - fedora-updates
-  - fedora-modular
-  - fedora-updates-modular
+  - fedora-next
+  - fedora-next-updates
+  - fedora-next-modular
+  - fedora-next-updates-modular
 
 add-commit-metadata:
-  fedora-coreos.stream: testing-devel
+  fedora-coreos.stream: next-devel
 
 postprocess:
   # Disable Zincati and fedora-coreos-pinger on non-production streams
