@@ -292,7 +292,7 @@
       "evra": "2.9.9-8.fc31.x86_64"
     },
     "fuse-overlayfs": {
-      "evra": "0.7.5-2.fc31.x86_64"
+      "evra": "0.7.6-2.fc31.x86_64"
     },
     "fuse-sshfs": {
       "evra": "3.7.0-2.fc31.x86_64"
@@ -316,7 +316,7 @@
       "evra": "0.20.1-3.fc31.x86_64"
     },
     "git-core": {
-      "evra": "2.24.1-1.fc31.x86_64"
+      "evra": "2.25.1-2.fc31.x86_64"
     },
     "glib2": {
       "evra": "2.62.5-1.fc31.x86_64"
@@ -570,8 +570,8 @@
     "libmnl": {
       "evra": "1.0.4-10.fc31.x86_64"
     },
-    "libmodulemd1": {
-      "evra": "1.8.16-1.fc31.x86_64"
+    "libmodulemd": {
+      "evra": "2.9.1-1.fc31.x86_64"
     },
     "libmount": {
       "evra": "2.34-4.fc31.x86_64"
@@ -607,7 +607,7 @@
       "evra": "0.2.1-43.fc31.x86_64"
     },
     "libpcap": {
-      "evra": "14:1.9.1-1.fc31.x86_64"
+      "evra": "14:1.9.1-2.fc31.x86_64"
     },
     "libpkgconf": {
       "evra": "1.6.3-2.fc31.x86_64"
@@ -841,10 +841,10 @@
       "evra": "1.77-3.fc31.x86_64"
     },
     "ostree": {
-      "evra": "2019.5-2.fc31.x86_64"
+      "evra": "2020.3-2.fc31.x86_64"
     },
     "ostree-libs": {
-      "evra": "2019.5-2.fc31.x86_64"
+      "evra": "2020.3-2.fc31.x86_64"
     },
     "p11-kit": {
       "evra": "0.23.20-1.fc31.x86_64"
@@ -859,7 +859,7 @@
       "evra": "0.80-7.fc31.x86_64"
     },
     "pcre": {
-      "evra": "8.43-3.fc31.x86_64"
+      "evra": "8.44-1.fc31.x86_64"
     },
     "pcre2": {
       "evra": "10.34-7.fc31.x86_64"
@@ -925,10 +925,10 @@
       "evra": "4.15.1-1.fc31.x86_64"
     },
     "rpm-ostree": {
-      "evra": "2020.1-1.fc31.x86_64"
+      "evra": "2020.1.21.ge9011530-2.fc31.x86_64"
     },
     "rpm-ostree-libs": {
-      "evra": "2020.1-1.fc31.x86_64"
+      "evra": "2020.1.21.ge9011530-2.fc31.x86_64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.15.1-1.fc31.x86_64"
@@ -1082,22 +1082,22 @@
     }
   },
   "metadata": {
-    "generated": "2020-03-14T02:31:38Z",
+    "generated": "2020-03-17T04:55:55Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2019-10-23T22:52:47Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2020-03-11T22:29:27Z"
+        "generated": "2020-03-16T14:55:10Z"
       },
       "fedora-modular": {
         "generated": "2019-10-23T22:53:13Z"
       },
       "fedora-updates": {
-        "generated": "2020-03-14T00:03:21Z"
+        "generated": "2020-03-17T01:27:07Z"
       },
       "fedora-updates-modular": {
-        "generated": "2020-03-12T23:11:53Z"
+        "generated": "2020-03-15T13:59:58Z"
       }
     }
   }
