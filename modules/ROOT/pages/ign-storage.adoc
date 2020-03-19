@@ -37,21 +37,29 @@ variant: fcos
 version: 1.0.0
 storage:
   disks:
-    - device: /dev/disk/by-id/wwn-0x50014e2eb507fcdf <1>
-      wipe_table: true <2>
+    -
+      # Mandatory. We use the World-Wide Number ID of the drive to ensure
+      # uniqueness.
+      device: /dev/disk/by-id/wwn-0x50014e2eb507fcdf
+      # This ensures that the partition table is re-created, along with all
+      # the partitions.
+      wipe_table: true
       partitions:
-        - label: part1 <3>
+        # The first partition (slot number 1) is 32 GiB and starts at the
+        # beginning of the device. Its type_guid identifies it as a Linux
+        # swap partition.
+        - label: part1
           number: 1
           size_mib: 32768
           start_mib: 0
           type_guid: 0657fd6d-a4ab-43c4-84e5-0933c84b4f4f
-        - label: part2 <4>
+        # The second partition (implicit slot number 2) will be placed after
+        # partition 1 and will occupy the rest of the available space.
+        # Since type_guid is not specified, it will be a Linux native
+        # partition.
+        - label: part2
           number: 0
 ----
-<1> Mandatory. We use the World-Wide Number ID of the drive to ensure unicity.
-<2> This ensures that the partition table is re-created, along with all the partitions.
-<3> The first partition (slot number 1) is 32 GiB and starts at the beginning of the device. Its `type_guid` identifies it as a Linux swap partition.
-<4> The second partition (implicit slot number 2) will be placed after partition 1 and will occupy the rest of the available space. Since `type_guid` is not specified, it will be a Linux native partition.
 
 == Raid
 
@@ -82,11 +90,17 @@ variant: fcos
 version: 1.0.0
 storage:
   disks:
-  - device: /dev/disk/by-id/wwn-0x50014ee261e524e4 <1>
+  # This defines two partitions, each on its own disk. The disks are
+  # identified by their WWN.
+  - device: /dev/disk/by-id/wwn-0x50014ee261e524e4
     wipe_table: true
     partitions:
-    - label: "raid.1.1" <2>
-      number: 1 <3>
+    -
+      # Each partition gets a human-readable label.
+      label: "raid.1.1"
+      # Each partition is placed at the beginning of the disk and is 64 GiB
+      # long.
+      number: 1
       size_mib: 65536
       start_mib: 0
   - device: /dev/disk/by-id/wwn-0x50014ee0b8442cd3
@@ -96,23 +110,20 @@ storage:
       number: 1
       size_mib: 65536
       start_mib: 0
-  raid:  <4>
+  # We use the previously defined partitions as devices in a RAID1 md array.
+  raid:
     - name: publicdata
       level: raid1
       devices:
       - /dev/disk/by-partlabel/raid.1.1
       - /dev/disk/by-partlabel/raid.1.2
-  filesystems: <5>
+  # The resulting md array is used to create an EXT4 file system.
+  filesystems:
     - path: /var/publicdata
       device: /dev/md/publicdata
       format: ext4
       label: PUB
 ----
-<1> This defines two partitions, each on its own disk. The disks are identified by their WWN.
-<2> Each partition gets a human-readable label.
-<3> Each partition is placed at the beginning of the disk and is 64 GiB long.
-<4> We use the previously defined partitions as devices in a RAID1 md array.
-<5> The resulting md array is used to create an EXT4 file system.
 
 .Example for adding a /var partition to the primary disk
 [source,yaml]
@@ -121,19 +132,30 @@ variant: fcos
 version: 1.0.0
 storage:
   disks:
-  - device: /dev/vda <1>
-    wipe_table: false <2>
+  -
+    # The name of the primary block device. In virtio-based setups, this is
+    # likely `/dev/vda`. Elsewhere, it's likely `/dev/sda`.
+    device: /dev/vda
+    # We do not want to wipe the partition table since this is the primary
+    # device.
+    wipe_table: false
     partitions:
     - size_mib: 0
       start_mib: 0
-      label: var <3>
+      # We assign a descriptive label to the partition. This is important
+      # for referring to it in a device-agnostic way in other parts of the
+      # configuration.
+      label: var
   filesystems:
     - path: /var
       device: /dev/disk/by-partlabel/var
       format: xfs
 systemd:
   units:
-    - name: var.mount <4>
+    -
+      # We need to create a systemd mount unit so that /var actually gets
+      # mounted on /var.
+      name: var.mount
       enabled: true
       contents: |
         [Unit]
@@ -144,10 +166,6 @@ systemd:
         [Install]
         WantedBy=local-fs.target
 ----
-<1> The name of the primary block device. In virtio-based setups, this is likely `/dev/vda`. Elsewhere, it's likely `/dev/sda`.
-<2> We do not want to wipe the partition table since this is the primary device.
-<3> We assign a descriptive label to the partition. This is important for referring to it in a device-agnostic way in other parts of the configuration.
-<4> We need to create a systemd mount unit so that `/var` actually gets mounted on `/var`.
 
 == Files
 The `files` node lets you define a list of files, identified by a unique path, that Ignition will create with the required contents and attributes as needed.
@@ -223,39 +241,48 @@ The contents of `links` is as follows. Unless specified as optional, all nodes a
 variant: fcos
 version: 1.0.0
 storage:
-  directories: <1>
+  # This creates a directory.  Its mode is set to 0755 by default, that
+  # is, readable and executable by all, and writable by the owner.
+  directories:
   - path: /opt/tools
     overwrite: true
   files:
-    - path: /var/helloworld <2>
+    -
+      # Creates a file /var/helloworld containing a string defined in-line.
+      path: /var/helloworld
       overwrite: true
       contents:
         inline: Hello, world!
-      mode: 0644 <3>
+      # Sets the file mode to 0644 (readable by all, also writable by the
+      # owner).
+      mode: 0644
       user:
-        id: 500 <4>
+        # The owner uid and group are defined by their numerical IDs.
+        id: 500
       group:
         id: 500
-    - path: /opt/tools/transmogrifier <5>
+    -
+      # We need the nifty (and alas imaginary) transmogrifier tool.
+      path: /opt/tools/transmogrifier
       overwrite: true
-      contents: <6>
+      # Deploys this tool by copying an executable from an https link. The
+      # file is compressed with gzip.
+      contents:
         source: https://mytools.example.com/path/to/archive.gzip
         compression: gzip
         verification:
-          hash: sha512-5c84785eb10c9efdea1f... <7>
-      mode: 0555 <8>
+          # The hash is sha512- followed by the 128 hex characters given by
+          # the sha512sum command.
+          hash: sha512-5c84785eb10c9efdea1f...
+      # Makes the tool file readable and executable by all.
+      mode: 0555
   links:
-    - path: /usr/local/bin/transmogrifier <9>
+    -
+      # Creates a symlink to the tool location from /usr/local/bin. This is
+      # useful to let local processes invoke this tool without altering
+      # their PATH environment variable.
+      path: /usr/local/bin/transmogrifier
       overwrite: true
       target: /opt/tools/transmogrifier
       hard: false
 ----
-<1> This creates a directory. Its `mode` is set to `0755` by default, that is, readable and executable by all, and writable by the owner.
-<2> Creates a file `/var/helloworld` containing a string defined in-line.
-<3> Sets the file `mode` to `0644` (readable by all, also writable by the owner).
-<4> The owner uid and group are defined by their numerical IDs.
-<5> We need the nifty (and alas imaginary) transmogrifier tool.
-<6> Deploys this tool by copying an executable from an https link. The file is compressed with `gzip`.
-<7> The `hash` is `sha512-` followed by the 128 hex characters given by the `sha512sum` command.
-<8> Makes the tool file readable and executable by all.
-<9> Creates a symlink to the tool location from `/usr/local/bin`. This is useful to let local processes invoke this tool without altering their `PATH` environment variable.
