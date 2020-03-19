@@ -37,16 +37,16 @@ variant: fcos
 version: 1.0.0
 storage:
   disks:
-    device: /dev/disk/by-id/wwn-0x50014e2eb507fcdf <1>
-    wipe_table: true <2>
-    partitions:
-      - label: part1 <3>
-        number: 1
-        size_mib: 32768
-        start_mib: 0
-        type_guid: 0657fd6d-a4ab-43c4-84e5-0933c84b4f4f
-      - label: part2 <4>
-        number: 0
+    - device: /dev/disk/by-id/wwn-0x50014e2eb507fcdf <1>
+      wipe_table: true <2>
+      partitions:
+        - label: part1 <3>
+          number: 1
+          size_mib: 32768
+          start_mib: 0
+          type_guid: 0657fd6d-a4ab-43c4-84e5-0933c84b4f4f
+        - label: part2 <4>
+          number: 0
 ----
 <1> Mandatory. We use the World-Wide Number ID of the drive to ensure unicity.
 <2> This ensures that the partition table is re-created, along with all the partitions.
