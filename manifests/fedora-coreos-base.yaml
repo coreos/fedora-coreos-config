@@ -116,6 +116,10 @@ packages:
   - NetworkManager hostname
   - iproute-tc
   - adcli
+  # We still need this for now, but may drop it once we have NM in the initrd
+  # https://github.com/coreos/fedora-coreos-tracker/issues/394
+  # https://github.com/coreos/fedora-coreos-tracker/issues/429
+  - dhcp-client
   ## Teaming https://github.com/coreos/fedora-coreos-config/pull/289 and http://bugzilla.redhat.com/1758162
   - NetworkManager-team teamd
   # Static firewalling
