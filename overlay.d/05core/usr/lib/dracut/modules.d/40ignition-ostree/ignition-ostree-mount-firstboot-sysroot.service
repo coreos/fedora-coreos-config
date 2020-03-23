@@ -15,6 +15,7 @@ After=ignition-disks.service
 # Note we don't have a Requires: /dev/disk/by-label/root here like
 # the -subsequent service does because ignition-disks may have
 # regenerated it.
+Requires=ignition-disks.service
 # These have an explicit dependency on After=sysroot.mount today
 Before=ostree-prepare-root.service ignition-remount-sysroot.service
 
