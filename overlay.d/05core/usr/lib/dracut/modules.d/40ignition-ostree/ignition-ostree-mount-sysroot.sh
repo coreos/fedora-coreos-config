@@ -8,6 +8,10 @@ set -euo pipefail
 # or not we've reprovisioned the rootfs, since we don't want to
 # force on prjquota there.
 rootpath=/dev/disk/by-label/root
+if ! [ -b "${rootpath}" ]; then
+  echo "ignition-ostree-mount-sysroot: Failed to find ${rootpath}" 1>&2
+  exit 1
+fi
 eval $(blkid -o export ${rootpath})
 mountflags=
 if [ "${TYPE}" == "xfs" ]; then
