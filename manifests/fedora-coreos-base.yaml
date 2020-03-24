@@ -55,9 +55,6 @@ remove-from-packages:
               /usr/lib/systemd/system/systemd-networkd-wait-online.service]
   - [systemd-container, /usr/lib/systemd/network/.*]
   - [systemd-udev, /usr/lib/systemd/network/.*]
-  # We're still using the legacy dracut network module for now. Dracut keys off
-  # of this: https://github.com/dracutdevs/dracut/blob/1fcc70fe57eea0ea658aa2de5c0044683fe85cf1/modules.d/40network/module-setup.sh#L11
-  - [NetworkManager, /usr/libexec/nm-initrd-generator]
 
 
 remove-files:
@@ -116,10 +113,6 @@ packages:
   - NetworkManager hostname
   - iproute-tc
   - adcli
-  # We still need this for now, but may drop it once we have NM in the initrd
-  # https://github.com/coreos/fedora-coreos-tracker/issues/394
-  # https://github.com/coreos/fedora-coreos-tracker/issues/429
-  - dhcp-client
   ## Teaming https://github.com/coreos/fedora-coreos-config/pull/289 and http://bugzilla.redhat.com/1758162
   - NetworkManager-team teamd
   # Static firewalling
