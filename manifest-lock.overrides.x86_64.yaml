@@ -1,11 +1,13 @@
 packages:
   # crypto-policies without python dependencies
-  # We're pulling from rawhide here as this is a brand new change
+  # We're pulling from f32 here as this is a brand new change
   # and the maintainer is not comfortable sending it to F31 yet.
   # https://src.fedoraproject.org/rpms/crypto-policies/pull-request/6#comment-35958
   crypto-policies:
-    evra: 20191128-3.gitcd267a5.fc32.noarch
-  # For https://github.com/coreos/ignition-dracut/pull/151.
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-fbb7cb5f05
-  ignition:
-    evra: 2.1.1-5.git40c0b57.fc31.x86_64
+    evra: 20191128-5.gitcd267a5.fc32.noarch
+  # New release of podman with fix for https://github.com/containers/libpod/issues/5306
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-fc91673e24
+  podman:
+    evra: 2:1.8.1-2.fc31.x86_64
+  podman-plugins:
+    evra: 2:1.8.1-2.fc31.x86_64

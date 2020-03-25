@@ -6,6 +6,9 @@
     "NetworkManager-libnm": {
       "evra": "1:1.20.10-1.fc31.x86_64"
     },
+    "NetworkManager-team": {
+      "evra": "1:1.20.10-1.fc31.x86_64"
+    },
     "acl": {
       "evra": "2.2.53-4.fc31.x86_64"
     },
@@ -13,10 +16,10 @@
       "evra": "0.8.2-7.fc31.x86_64"
     },
     "afterburn": {
-      "evra": "4.1.3-1.module_f31+6563+49f1a537.x86_64"
+      "evra": "4.3.1-2.fc31.x86_64"
     },
     "afterburn-dracut": {
-      "evra": "4.1.3-1.module_f31+6563+49f1a537.x86_64"
+      "evra": "4.3.1-2.fc31.x86_64"
     },
     "alternatives": {
       "evra": "1.11-5.fc31.x86_64"
@@ -130,10 +133,10 @@
       "evra": "2.9.6-21.fc31.x86_64"
     },
     "crun": {
-      "evra": "0.12.1-1.fc31.x86_64"
+      "evra": "0.12.2.1-1.fc31.x86_64"
     },
     "crypto-policies": {
-      "evra": "20191128-3.gitcd267a5.fc32.noarch"
+      "evra": "20191128-5.gitcd267a5.fc32.noarch"
     },
     "cryptsetup": {
       "evra": "2.3.0-1.fc31.x86_64"
@@ -220,7 +223,7 @@
       "evra": "16-6.fc31.x86_64"
     },
     "efivar-libs": {
-      "evra": "37-1.fc30.x86_64"
+      "evra": "37-6.fc31.x86_64"
     },
     "elfutils-default-yama-scope": {
       "evra": "0.178-7.fc31.noarch"
@@ -292,7 +295,7 @@
       "evra": "0.7.5-2.fc31.x86_64"
     },
     "fuse-sshfs": {
-      "evra": "3.6.0-1.fc31.x86_64"
+      "evra": "3.7.0-2.fc31.x86_64"
     },
     "fuse3": {
       "evra": "3.6.2-1.fc31.x86_64"
@@ -316,7 +319,7 @@
       "evra": "2.24.1-1.fc31.x86_64"
     },
     "glib2": {
-      "evra": "2.62.4-2.fc31.x86_64"
+      "evra": "2.62.5-1.fc31.x86_64"
     },
     "glibc": {
       "evra": "2.30-10.fc31.x86_64"
@@ -376,10 +379,10 @@
       "evra": "0.3.0-1.fc31.x86_64"
     },
     "iproute": {
-      "evra": "5.3.0-1.fc31.x86_64"
+      "evra": "5.4.0-1.fc31.x86_64"
     },
     "iproute-tc": {
-      "evra": "5.3.0-1.fc31.x86_64"
+      "evra": "5.4.0-1.fc31.x86_64"
     },
     "iptables": {
       "evra": "1.8.3-7.fc31.x86_64"
@@ -430,13 +433,13 @@
       "evra": "2.0.4-14.fc31.noarch"
     },
     "kernel": {
-      "evra": "5.5.5-200.fc31.x86_64"
+      "evra": "5.5.8-200.fc31.x86_64"
     },
     "kernel-core": {
-      "evra": "5.5.5-200.fc31.x86_64"
+      "evra": "5.5.8-200.fc31.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.5.5-200.fc31.x86_64"
+      "evra": "5.5.8-200.fc31.x86_64"
     },
     "keyutils": {
       "evra": "1.6-3.fc31.x86_64"
@@ -501,6 +504,9 @@
     "libcurl": {
       "evra": "7.66.0-1.fc31.x86_64"
     },
+    "libdaemon": {
+      "evra": "0.14-18.fc31.x86_64"
+    },
     "libdb": {
       "evra": "5.3.28-38.fc31.x86_64"
     },
@@ -541,7 +547,7 @@
       "evra": "1.3.1-43.fc31.x86_64"
     },
     "libipa_hbac": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "libkcapi": {
       "evra": "1.1.5-1.fc31.x86_64"
@@ -589,6 +595,9 @@
       "evra": "1.40.0-2.module_f31+7692+42f50940.x86_64"
     },
     "libnl3": {
+      "evra": "3.5.0-1.fc31.x86_64"
+    },
+    "libnl3-cli": {
       "evra": "3.5.0-1.fc31.x86_64"
     },
     "libnsl2": {
@@ -658,13 +667,13 @@
       "evra": "0.9.3-1.fc31.noarch"
     },
     "libsss_certmap": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "libsss_idmap": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "libsss_nss_idmap": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "libstdc++": {
       "evra": "9.2.1-1.fc31.x86_64"
@@ -678,6 +687,9 @@
     "libtdb": {
       "evra": "1.4.2-1.fc31.x86_64"
     },
+    "libteam": {
+      "evra": "1.29-2.fc31.x86_64"
+    },
     "libtevent": {
       "evra": "0.10.1-1.fc31.x86_64"
     },
@@ -685,7 +697,7 @@
       "evra": "0.20.1-3.fc31.x86_64"
     },
     "libtirpc": {
-      "evra": "1.2.5-0.fc31.x86_64"
+      "evra": "1.2.5-1.rc2.fc31.x86_64"
     },
     "libunistring": {
       "evra": "0.9.10-6.fc31.x86_64"
@@ -712,7 +724,7 @@
       "evra": "2:4.11.6-0.fc31.x86_64"
     },
     "libxcrypt": {
-      "evra": "4.4.14-1.fc31.x86_64"
+      "evra": "4.4.15-1.fc31.x86_64"
     },
     "libxml2": {
       "evra": "2.9.10-3.fc31.x86_64"
@@ -847,10 +859,10 @@
       "evra": "0.80-7.fc31.x86_64"
     },
     "pcre": {
-      "evra": "8.43-2.fc31.1.x86_64"
+      "evra": "8.43-3.fc31.x86_64"
     },
     "pcre2": {
-      "evra": "10.34-5.fc31.x86_64"
+      "evra": "10.34-7.fc31.x86_64"
     },
     "pigz": {
       "evra": "2.4-5.fc31.x86_64"
@@ -865,10 +877,10 @@
       "evra": "1.6.3-2.fc31.x86_64"
     },
     "podman": {
-      "evra": "2:1.8.0-2.fc31.x86_64"
+      "evra": "2:1.8.1-0.7.rc4.fc31.x86_64"
     },
     "podman-plugins": {
-      "evra": "2:1.8.0-2.fc31.x86_64"
+      "evra": "2:1.8.1-0.7.rc4.fc31.x86_64"
     },
     "policycoreutils": {
       "evra": "2.9-5.fc31.x86_64"
@@ -890,6 +902,9 @@
     },
     "protobuf-c": {
       "evra": "1.3.1-3.fc31.x86_64"
+    },
+    "psmisc": {
+      "evra": "23.3-2.fc31.x86_64"
     },
     "publicsuffix-list-dafsa": {
       "evra": "20190417-2.fc31.noarch"
@@ -937,10 +952,10 @@
       "evra": "4.5-4.fc31.x86_64"
     },
     "selinux-policy": {
-      "evra": "3.14.4-48.fc31.noarch"
+      "evra": "3.14.4-49.fc31.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "3.14.4-48.fc31.noarch"
+      "evra": "3.14.4-49.fc31.noarch"
     },
     "setup": {
       "evra": "2.13.6-1.fc31.noarch"
@@ -952,7 +967,7 @@
       "evra": "1.42-8.fc31.x86_64"
     },
     "shadow-utils": {
-      "evra": "2:4.6-16.fc31.x86_64"
+      "evra": "2:4.6-17.fc31.x86_64"
     },
     "shim-x64": {
       "evra": "15-8.x86_64"
@@ -970,34 +985,34 @@
       "evra": "3.30.0-1.fc31.x86_64"
     },
     "sssd": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "sssd-ad": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "sssd-client": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "sssd-common": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "sssd-common-pac": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "sssd-ipa": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "sssd-krb5": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "sssd-krb5-common": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "sssd-ldap": {
-      "evra": "2.2.2-3.fc31.x86_64"
+      "evra": "2.2.3-13.fc31.x86_64"
     },
     "sudo": {
-      "evra": "1.8.29-1.fc31.x86_64"
+      "evra": "1.9.0-0.1.b1.fc31.x86_64"
     },
     "systemd": {
       "evra": "243.7-1.fc31.x86_64"
@@ -1020,6 +1035,9 @@
     "tar": {
       "evra": "2:1.32-2.fc31.x86_64"
     },
+    "teamd": {
+      "evra": "1.29-2.fc31.x86_64"
+    },
     "toolbox": {
       "evra": "0.0.18-1.fc31.noarch"
     },
@@ -1033,13 +1051,13 @@
       "evra": "2.34-4.fc31.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.236-1.fc31.x86_64"
+      "evra": "2:8.2.348-1.fc31.x86_64"
     },
     "which": {
       "evra": "2.21-15.fc31.x86_64"
     },
     "whois-nls": {
-      "evra": "5.5.5-1.fc31.noarch"
+      "evra": "5.5.6-1.fc31.noarch"
     },
     "xfsprogs": {
       "evra": "5.1.0-2.fc31.x86_64"
@@ -1064,22 +1082,22 @@
     }
   },
   "metadata": {
-    "generated": "2020-02-23T04:56:04Z",
+    "generated": "2020-03-10T22:57:04Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2019-10-23T22:52:47Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2020-02-21T15:48:23Z"
+        "generated": "2020-03-10T21:52:56Z"
       },
       "fedora-modular": {
         "generated": "2019-10-23T22:53:13Z"
       },
       "fedora-updates": {
-        "generated": "2020-02-23T01:00:07Z"
+        "generated": "2020-03-09T21:47:41Z"
       },
       "fedora-updates-modular": {
-        "generated": "2020-02-20T06:01:12Z"
+        "generated": "2020-03-06T22:30:57Z"
       }
     }
   }
