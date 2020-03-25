@@ -1,0 +1,12 @@
+[Unit]
+Description=Network Manager (CoreOS initrd)
+Wants=network.target
+After=network-pre.target dbus.service
+Before=network.target network.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/libexec/nm-initrd-generator rd.neednet=1 ip=dhcp,dhcp6
+ExecStart=/usr/sbin/NetworkManager --configure-and-quit=initrd --no-daemon
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_DAC_OVERRIDE CAP_NET_RAW CAP_NET_BIND_SERVICE CAP_SETGID CAP_SETUID CAP_SYS_MODULE CAP_AUDIT_WRITE CAP_KILL CAP_SYS_CHROOT
