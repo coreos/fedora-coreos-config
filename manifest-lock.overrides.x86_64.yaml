@@ -26,3 +26,7 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-6db5551bf6
   ignition:
     evra: 2.2.1-1.git2d3ff58.fc31.x86_64
+  # Fast track new zincati with proxy support
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-6877a1f53d
+  zincati:
+    evra: 0.0.9-1.fc31.x86_64
