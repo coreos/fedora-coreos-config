@@ -1,4 +1,10 @@
 packages:
+  # Fast-tracking to get exoscale support working
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-3b08fdffe8
+  afterburn:
+    evra: 4.3.2-1.fc31.x86_64
+  afterburn-dracut:
+    evra: 4.3.2-1.fc31.x86_64
   # crypto-policies without python dependencies
   # We're pulling from f32 here as this is a brand new change
   # and the maintainer is not comfortable sending it to F31 yet.
