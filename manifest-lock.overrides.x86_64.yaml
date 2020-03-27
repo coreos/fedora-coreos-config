@@ -11,19 +11,9 @@ packages:
   # https://src.fedoraproject.org/rpms/crypto-policies/pull-request/6#comment-35958
   crypto-policies:
     evra: 20191128-5.gitcd267a5.fc32.noarch
-  # New release of podman with fix for https://github.com/containers/libpod/issues/5306
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-fc91673e24
-  podman:
-    evra: 2:1.8.1-2.fc31.x86_64
-  podman-plugins:
-    evra: 2:1.8.1-2.fc31.x86_64
-  # Cherry-pick new {rpm-,}ostree to resolve issues with /read-only sysroot
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-d920214f63
+  # Cherry-pick rpm-ostree git snapshot to resolve issues with /read-only
+  # sysroot. We can nuke this when we cut a new release.
   # https://github.com/coreos/fedora-coreos-tracker/issues/343
-  ostree:
-    evra: 2020.3-2.fc31.x86_64
-  ostree-libs:
-    evra: 2020.3-2.fc31.x86_64
   rpm-ostree:
     evra: 2020.1.21.ge9011530-2.fc31.x86_64
   rpm-ostree-libs:
