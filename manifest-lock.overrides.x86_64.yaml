@@ -19,9 +19,9 @@ packages:
   rpm-ostree-libs:
     evra: 2020.1.21.ge9011530-2.fc31.x86_64
   # Fast track new Ignition with initramfs network takedown
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-6db5551bf6
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-9bcebc7e9a
   ignition:
-    evra: 2.2.1-1.git2d3ff58.fc31.x86_64
+    evra: 2.2.1-3.git2d3ff58.fc31.x86_64
   # Fast track new zincati with proxy support
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-6877a1f53d
   zincati:
