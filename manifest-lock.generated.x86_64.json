@@ -520,13 +520,13 @@
       "evra": "3.1-23.fc31.x86_64"
     },
     "libgcc": {
-      "evra": "9.2.1-1.fc31.x86_64"
+      "evra": "9.3.1-1.fc31.x86_64"
     },
     "libgcrypt": {
       "evra": "1.8.5-1.fc31.x86_64"
     },
     "libgomp": {
-      "evra": "9.2.1-1.fc31.x86_64"
+      "evra": "9.3.1-1.fc31.x86_64"
     },
     "libgpg-error": {
       "evra": "1.36-2.fc31.x86_64"
@@ -667,7 +667,7 @@
       "evra": "2.2.3-13.fc31.x86_64"
     },
     "libstdc++": {
-      "evra": "9.2.1-1.fc31.x86_64"
+      "evra": "9.3.1-1.fc31.x86_64"
     },
     "libtalloc": {
       "evra": "2.3.0-1.fc31.x86_64"
@@ -853,7 +853,10 @@
       "evra": "8.44-1.fc31.x86_64"
     },
     "pcre2": {
-      "evra": "10.34-7.fc31.x86_64"
+      "evra": "10.34-8.fc31.x86_64"
+    },
+    "pcre2-syntax": {
+      "evra": "10.34-8.fc31.noarch"
     },
     "pigz": {
       "evra": "2.4-5.fc31.x86_64"
@@ -1070,19 +1073,19 @@
     }
   },
   "metadata": {
-    "generated": "2020-03-31T04:57:28Z",
+    "generated": "2020-04-01T04:57:37Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2019-10-23T22:52:47Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2020-03-30T20:40:54Z"
+        "generated": "2020-03-31T20:55:52Z"
       },
       "fedora-modular": {
         "generated": "2019-10-23T22:53:13Z"
       },
       "fedora-updates": {
-        "generated": "2020-03-31T02:48:22Z"
+        "generated": "2020-04-01T01:37:45Z"
       },
       "fedora-updates-modular": {
         "generated": "2020-03-27T11:04:17Z"
