@@ -36,4 +36,7 @@ install() {
 
     inst_simple "$moddir/coreos-liveiso-network-kargs.service" \
         "$systemdsystemunitdir/coreos-liveiso-network-kargs.service"
+
+    inst_simple "$moddir/coreos-liveiso-reconfigure-nm-wait-online.service" \
+        "$systemdsystemunitdir/coreos-liveiso-reconfigure-nm-wait-online.service"
 }
