@@ -126,6 +126,10 @@ packages:
   - cifs-utils
   # Time sync
   - chrony
+  # Allow communication between sudo and SSSD 
+  # for caching sudo rules by SSSD.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/445
+  - libsss_sudo
   # Extra runtime
   - sssd shadow-utils
   # There are things that write outside of the journal still (such as the classic wtmp, etc.)
