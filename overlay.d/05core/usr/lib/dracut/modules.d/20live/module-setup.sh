@@ -30,4 +30,13 @@ install() {
 
     inst_simple "$moddir/writable.mount" \
         "$systemdsystemunitdir/writable.mount"
+
+    inst_simple "$moddir/coreos-liveiso-network-kargs.sh" \
+        "/usr/sbin/coreos-liveiso-network-kargs"
+
+    inst_simple "$moddir/coreos-liveiso-network-kargs.service" \
+        "$systemdsystemunitdir/coreos-liveiso-network-kargs.service"
+
+    inst_simple "$moddir/coreos-liveiso-reconfigure-nm-wait-online.service" \
+        "$systemdsystemunitdir/coreos-liveiso-reconfigure-nm-wait-online.service"
 }
