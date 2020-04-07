@@ -88,7 +88,7 @@
       "evra": "5.2-34.fc31.x86_64"
     },
     "conmon": {
-      "evra": "2:2.0.10-2.fc31.x86_64"
+      "evra": "2:2.0.11-1.fc31.x86_64"
     },
     "console-login-helper-messages": {
       "evra": "0.17-1.fc31.noarch"
@@ -133,7 +133,7 @@
       "evra": "2.9.6-21.fc31.x86_64"
     },
     "crun": {
-      "evra": "0.12.2.1-1.fc31.x86_64"
+      "evra": "0.13-1.fc31.x86_64"
     },
     "crypto-policies": {
       "evra": "20191128-5.gitcd267a5.fc32.noarch"
@@ -145,7 +145,7 @@
       "evra": "2.3.0-1.fc31.x86_64"
     },
     "cups-libs": {
-      "evra": "1:2.2.12-3.fc31.x86_64"
+      "evra": "1:2.2.12-6.fc31.x86_64"
     },
     "curl": {
       "evra": "7.66.0-1.fc31.x86_64"
@@ -205,10 +205,10 @@
       "evra": "4.1-9.fc31.x86_64"
     },
     "dracut": {
-      "evra": "049-27.git20181204.fc31.1.x86_64"
+      "evra": "050-26.git20200316.fc31.x86_64"
     },
     "dracut-network": {
-      "evra": "049-27.git20181204.fc31.1.x86_64"
+      "evra": "050-26.git20200316.fc31.x86_64"
     },
     "e2fsprogs": {
       "evra": "1.45.5-1.fc31.x86_64"
@@ -292,10 +292,10 @@
       "evra": "2.9.9-8.fc31.x86_64"
     },
     "fuse-overlayfs": {
-      "evra": "0.7.5-2.fc31.x86_64"
+      "evra": "0.7.6-2.fc31.x86_64"
     },
     "fuse-sshfs": {
-      "evra": "3.7.0-2.fc31.x86_64"
+      "evra": "3.7.0-3.fc31.x86_64"
     },
     "fuse3": {
       "evra": "3.6.2-1.fc31.x86_64"
@@ -316,7 +316,7 @@
       "evra": "0.20.1-3.fc31.x86_64"
     },
     "git-core": {
-      "evra": "2.24.1-1.fc31.x86_64"
+      "evra": "2.25.1-2.fc31.x86_64"
     },
     "glib2": {
       "evra": "2.62.5-1.fc31.x86_64"
@@ -346,25 +346,25 @@
       "evra": "3.3-3.fc31.x86_64"
     },
     "grub2-common": {
-      "evra": "1:2.02-105.fc31.noarch"
+      "evra": "1:2.02-106.fc31.noarch"
     },
     "grub2-efi-x64": {
-      "evra": "1:2.02-105.fc31.x86_64"
+      "evra": "1:2.02-106.fc31.x86_64"
     },
     "grub2-pc": {
-      "evra": "1:2.02-105.fc31.x86_64"
+      "evra": "1:2.02-106.fc31.x86_64"
     },
     "grub2-pc-modules": {
-      "evra": "1:2.02-105.fc31.noarch"
+      "evra": "1:2.02-106.fc31.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.02-105.fc31.x86_64"
+      "evra": "1:2.02-106.fc31.x86_64"
     },
     "grub2-tools-extra": {
-      "evra": "1:2.02-105.fc31.x86_64"
+      "evra": "1:2.02-106.fc31.x86_64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.02-105.fc31.x86_64"
+      "evra": "1:2.02-106.fc31.x86_64"
     },
     "gzip": {
       "evra": "1.10-1.fc31.x86_64"
@@ -433,13 +433,13 @@
       "evra": "2.0.4-14.fc31.noarch"
     },
     "kernel": {
-      "evra": "5.5.8-200.fc31.x86_64"
+      "evra": "5.5.10-200.fc31.x86_64"
     },
     "kernel-core": {
-      "evra": "5.5.8-200.fc31.x86_64"
+      "evra": "5.5.10-200.fc31.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.5.8-200.fc31.x86_64"
+      "evra": "5.5.10-200.fc31.x86_64"
     },
     "keyutils": {
       "evra": "1.6-3.fc31.x86_64"
@@ -559,7 +559,7 @@
       "evra": "1.3.5-10.fc31.x86_64"
     },
     "libldb": {
-      "evra": "2.0.8-1.fc31.x86_64"
+      "evra": "2.0.9-1.fc31.x86_64"
     },
     "libmaxminddb": {
       "evra": "1.2.0-8.fc31.x86_64"
@@ -570,8 +570,8 @@
     "libmnl": {
       "evra": "1.0.4-10.fc31.x86_64"
     },
-    "libmodulemd1": {
-      "evra": "1.8.16-1.fc31.x86_64"
+    "libmodulemd": {
+      "evra": "2.9.1-1.fc31.x86_64"
     },
     "libmount": {
       "evra": "2.34-4.fc31.x86_64"
@@ -607,7 +607,7 @@
       "evra": "0.2.1-43.fc31.x86_64"
     },
     "libpcap": {
-      "evra": "14:1.9.1-1.fc31.x86_64"
+      "evra": "14:1.9.1-2.fc31.x86_64"
     },
     "libpkgconf": {
       "evra": "1.6.3-2.fc31.x86_64"
@@ -652,7 +652,7 @@
       "evra": "2.34-4.fc31.x86_64"
     },
     "libsmbclient": {
-      "evra": "2:4.11.6-0.fc31.x86_64"
+      "evra": "2:4.11.7-0.fc31.x86_64"
     },
     "libsolv": {
       "evra": "0.7.11-1.fc31.x86_64"
@@ -721,7 +721,7 @@
       "evra": "0.3.0-8.fc31.x86_64"
     },
     "libwbclient": {
-      "evra": "2:4.11.6-0.fc31.x86_64"
+      "evra": "2:4.11.7-0.fc31.x86_64"
     },
     "libxcrypt": {
       "evra": "4.4.15-1.fc31.x86_64"
@@ -739,10 +739,10 @@
       "evra": "2.5.1-25.fc31.x86_64"
     },
     "linux-firmware": {
-      "evra": "20200122-105.fc31.noarch"
+      "evra": "20200316-106.fc31.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20200122-105.fc31.noarch"
+      "evra": "20200316-106.fc31.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.23-3.fc31.x86_64"
@@ -769,7 +769,7 @@
       "evra": "2.08-16.fc31.x86_64"
     },
     "mdadm": {
-      "evra": "4.1-1.fc31.x86_64"
+      "evra": "4.1-4.fc31.x86_64"
     },
     "microcode_ctl": {
       "evra": "2:2.1-34.fc31.x86_64"
@@ -841,10 +841,10 @@
       "evra": "1.77-3.fc31.x86_64"
     },
     "ostree": {
-      "evra": "2019.5-2.fc31.x86_64"
+      "evra": "2020.3-2.fc31.x86_64"
     },
     "ostree-libs": {
-      "evra": "2019.5-2.fc31.x86_64"
+      "evra": "2020.3-2.fc31.x86_64"
     },
     "p11-kit": {
       "evra": "0.23.20-1.fc31.x86_64"
@@ -859,7 +859,7 @@
       "evra": "0.80-7.fc31.x86_64"
     },
     "pcre": {
-      "evra": "8.43-3.fc31.x86_64"
+      "evra": "8.44-1.fc31.x86_64"
     },
     "pcre2": {
       "evra": "10.34-7.fc31.x86_64"
@@ -877,10 +877,10 @@
       "evra": "1.6.3-2.fc31.x86_64"
     },
     "podman": {
-      "evra": "2:1.8.1-0.7.rc4.fc31.x86_64"
+      "evra": "2:1.8.1-2.fc31.x86_64"
     },
     "podman-plugins": {
-      "evra": "2:1.8.1-0.7.rc4.fc31.x86_64"
+      "evra": "2:1.8.1-2.fc31.x86_64"
     },
     "policycoreutils": {
       "evra": "2.9-5.fc31.x86_64"
@@ -925,10 +925,10 @@
       "evra": "4.15.1-1.fc31.x86_64"
     },
     "rpm-ostree": {
-      "evra": "2020.1-1.fc31.x86_64"
+      "evra": "2020.1.21.ge9011530-2.fc31.x86_64"
     },
     "rpm-ostree-libs": {
-      "evra": "2020.1-1.fc31.x86_64"
+      "evra": "2020.1.21.ge9011530-2.fc31.x86_64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.15.1-1.fc31.x86_64"
@@ -940,13 +940,13 @@
       "evra": "2:1.0.0-102.dev.gitdc9208a.fc31.x86_64"
     },
     "samba-client-libs": {
-      "evra": "2:4.11.6-0.fc31.x86_64"
+      "evra": "2:4.11.7-0.fc31.x86_64"
     },
     "samba-common": {
-      "evra": "2:4.11.6-0.fc31.noarch"
+      "evra": "2:4.11.7-0.fc31.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.11.6-0.fc31.x86_64"
+      "evra": "2:4.11.7-0.fc31.x86_64"
     },
     "sed": {
       "evra": "4.5-4.fc31.x86_64"
@@ -1082,22 +1082,22 @@
     }
   },
   "metadata": {
-    "generated": "2020-03-10T22:57:04Z",
+    "generated": "2020-03-23T19:23:37Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2019-10-23T22:52:47Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2020-03-10T21:52:56Z"
+        "generated": "2020-03-20T16:24:57Z"
       },
       "fedora-modular": {
         "generated": "2019-10-23T22:53:13Z"
       },
       "fedora-updates": {
-        "generated": "2020-03-09T21:47:41Z"
+        "generated": "2020-03-23T02:27:40Z"
       },
       "fedora-updates-modular": {
-        "generated": "2020-03-06T22:30:57Z"
+        "generated": "2020-03-22T02:22:09Z"
       }
     }
   }

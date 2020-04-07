@@ -8,6 +8,10 @@
 # Include rpm-ostree + kernel + bootloader
 include: bootable-rpm-ostree.yaml
 
+initramfs-args:
+  # make it a hard error if Ignition can't be included
+  - --add=ignition
+
 # Modern defaults we want
 boot-location: modules
 tmp-is-dir: true
