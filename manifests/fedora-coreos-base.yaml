@@ -117,6 +117,8 @@ packages:
   - NetworkManager-team teamd
   # Static firewalling
   - iptables nftables iptables-nft iptables-services
+  # Interactive Networking configuration during coreos-install
+  - NetworkManager-tui
   # Storage
   - cloud-utils-growpart
   - lvm2 iscsi-initiator-utils sg3_utils
