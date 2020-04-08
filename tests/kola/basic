@@ -1,2 +1,10 @@
 #!/bin/bash
-exec systemctl is-enabled logrotate.service
+# Miscellaneous read-only/nondestructive tests.
+set -xeuo pipefail
+
+systemctl is-enabled logrotate.service
+
+if ! test -d /run/bin; then
+  echo "Missing /run/bin" 1>&2
+  exit 1
+fi
