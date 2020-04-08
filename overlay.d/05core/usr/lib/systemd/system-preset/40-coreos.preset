@@ -13,3 +13,5 @@ enable afterburn-firstboot-checkin.service
 enable afterburn-sshkeys@.service
 # Update agent
 enable zincati.service
+# Testing aid
+enable coreos-liveiso-success.service
