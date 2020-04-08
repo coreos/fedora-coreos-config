@@ -1,0 +1,30 @@
+# This is used by our test framework in coreos-assembler
+# since for the "live ISO without Ignition" case we
+# don't have an easy way to test it.
+[Unit]
+Description=CoreOS Live ISO virtio success
+Documentation=https://github.com/coreos/fedora-coreos-config
+# Only run on the Live ISO, and only if there's no Ignition config;
+# the second bits here invert the conditionals in coreos-liveiso-network-kargs.service.
+ConditionKernelCommandLine=coreos.liveiso
+ConditionPathExists=!/config.ign
+ConditionVirtualization=|kvm
+ConditionVirtualization=|qemu
+# Start running late to help ensure that the below conditional works
+After=systemd-user-sessions.service
+ConditionPathExists=/dev/virtio-ports/coreos.liveiso-success
+
+[Service]
+Type=simple
+# https://stackoverflow.com/questions/44358723/systemd-unit-file-problems-with-tr
+IgnoreSIGPIPE=false
+# See https://cgit.freedesktop.org/systemd/systemd/plain/src/systemd/sd-messages.h for the MESSAGE_ID source.
+# The logic here is that we're doing a streaming journalctl query (-f to follow)
+# and the `| head` bit will cause the pipeline to wait until at least one line is
+# emitted, which will happen when a user login starts.  We then just write a static
+# message to the virtio channel, which https://github.com/coreos/coreos-assembler/pull/1330
+# knows how to read.
+ExecStart=/bin/sh -c 'journalctl -b -q -f --no-tail -o cat -u systemd-logind.service MESSAGE_ID=8d45620c1a4348dbb17410da57c60c66 | head -1; echo coreos-liveiso-success > /dev/virtio-ports/coreos.liveiso-success'
+
+[Install]
+WantedBy=multi-user.target
