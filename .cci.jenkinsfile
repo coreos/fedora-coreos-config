@@ -14,11 +14,7 @@ cosaPod {
         cosa buildprep https://builds.coreos.fedoraproject.org/prod/streams/${env.CHANGE_TARGET}/builds
     """)
 
-    // temporarily skip kola upgrade tests since there aren't any next-devel
-    // builds yet (but see https://github.com/coreos/coreos-ci-lib/pull/19)
-    // this modification will get nuked on the next sync from testing-devel.
-    fcosBuild(skipInit: true, skipKola: true)
-    fcosKola(skipUpgrade: true)
+    fcosBuild(skipInit: true)
 
     // also print the pkgdiff as a separate stage to make it more visible
     stage("RPM Diff") {
