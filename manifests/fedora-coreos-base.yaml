@@ -187,3 +187,6 @@ exclude-packages:
   - dnf
   - grubby
   - cowsay  # Just in case
+  # Let's make sure initscripts doesn't get pulled back in
+  # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
+  - initscripts
