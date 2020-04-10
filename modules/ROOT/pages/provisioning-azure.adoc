@@ -1,0 +1,71 @@
+= Provisioning Fedora CoreOS on Azure
+
+This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Azure.  Fedora currently does not publish Fedora CoreOS images within Azure, so you must download an Azure image from Fedora and upload it to your Azure subscription.
+
+== Prerequisites
+
+Before provisioning a FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+You also need to have access to an Azure subscription.  The examples below use the https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest[Azure CLI].
+
+== Downloading an Azure image
+
+Fedora CoreOS is designed to be updated automatically, with different schedules per stream.
+Once you have picked the relevant stream, download, verify, and decompress the latest Azure image:
+
+[source, bash]
+----
+stream="stable"
+coreos-installer download --decompress -s "${stream}" -p azure -f vhd.xz
+----
+
+Alternatively, you can manually download an Azure image from the https://getfedora.org/coreos/download?tab=cloud_operators[download page].  Verify the download, following the instructions on that page, and decompress it.
+
+== Uploading the image to Azure
+
+. Create any resources that don't already exist in your Azure account:
++
+.Example creating Azure resources
+[source, bash]
+----
+az_region="westus2"
+az_resource_group="my-group"
+az_storage_account="mystorageacct"
+az_container="my-container"
+# Create resource group
+az group create -l "${az_region}" -n "${az_resource_group}"
+# Create storage account for uploading FCOS image
+az storage account create -g "${az_resource_group}" -n "${az_storage_account}"
+# Retrieve connection string for storage account
+cs=$(az storage account show-connection-string -n "${az_storage_account}" | jq -r .connectionString)
+# Create storage container for uploading FCOS image
+az storage container create --connection-string "${cs}" -n "${az_container}"
+----
+
+. Create an FCOS image:
++
+.Example creating Azure image
+[source, bash]
+----
+downloaded_image_file="./image.vhd"
+az_image_name="my-fcos-image"
+az_image_blob="${az_image_name}.vhd"
+# Upload image blob
+az storage blob upload --connection-string "${cs}" -c "${az_container}" -f "${downloaded_image_file}" -n "${az_image_blob}"
+# Create the image
+az image create -n "${az_image_name}" -g "${az_resource_group}" --source "https://${az_storage_account}.blob.core.windows.net/${az_container}/${az_image_blob}" --location "${az_region}" --os-type Linux
+# Delete the uploaded blob
+az storage blob delete --connection-string "$cs" -c "${az_container}" -n "${az_image_blob}"
+----
+
+== Launching a VM instance
+
+. Launch a VM. Your Ignition configuration can be passed to the VM as custom data, or you can skip passing custom data if you just want SSH access. Your SSH public key from `~/.ssh` will automatically be added to the VM. This provides an easy way to test out FCOS without first creating an Ignition config.
++
+.Example launching Azure image
+[source, bash]
+----
+az_vm_name="my-fcos-vm"
+ignition_path="./config.ign"
+az vm create -n "${az_vm_name}" -g "${az_resource_group}" --image "${az_image_name}" --admin-username core --custom-data "$(cat ${ignition_path})"
+----
