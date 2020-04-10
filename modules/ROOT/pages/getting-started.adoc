@@ -14,19 +14,19 @@ To launch FCOS on AWS:
 . Identify the correct AMI image ID for your region from https://getfedora.org/coreos/download/[the download page]
 
 . Launch the VM using `aws ec2 run-instances`. The Ignition file can be passed to the VM as its https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user data]. You can skip this step if you just want SSH access; simply pass a https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html[registered key name] via `--key-name`. This provides an easy way to test out FCOS without first creating an Ignition configuration.
-
++
 .Example launching FCOS on AWS using an Ignition configuration file
 [source, bash]
 ----
 aws ec2 run-instances <other options> --image-id <ami> --user-data file://example.ign
 ----
-
++
 .Example launching FCOS on AWS using a registered SSH key pair
 [source, bash]
 ----
 aws ec2 run-instances <other options> --image-id <ami> --key-name my-key
 ----
-
++
 While the AWS documentation mentions cloud-init and scripts, FCOS does not support cloud-init or the ability to run scripts from user-data. It accepts only Ignition configuration files.
 
 === Launching with QEMU or libvirt
