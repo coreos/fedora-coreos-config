@@ -1,0 +1,49 @@
+= Provisioning Fedora CoreOS on DigitalOcean
+
+This guide shows how to provision new Fedora CoreOS (FCOS) nodes on DigitalOcean.  Fedora CoreOS images are currently not published directly on DigitalOcean, so you must download a Fedora CoreOS DigitalOcean image and upload it to your DigitalOcean account as a https://www.digitalocean.com/docs/images/custom-images/[custom image].
+
+== Prerequisites
+
+Before provisioning a FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+You also need to have access to a DigitalOcean account.  The examples below use the https://github.com/digitalocean/doctl[doctl] command-line tool.
+
+== Creating a DigitalOcean custom image
+
+Fedora CoreOS is designed to be updated automatically, with different schedules per stream.
+
+. Once you have picked the relevant stream, find the corresponding DigitalOcean image on the https://getfedora.org/coreos/download?tab=cloud_operators[download page] and copy the URL of the Download link.
+
+. Create the custom image:
++
+.Example uploading FCOS to a DigitalOcean custom image
+[source, bash]
+----
+doctl compute image create my-fcos-image --region sfo2 --image-url <download-url>
+# Wait for image creation to finish
+while ! doctl compute image list-user | grep my-fcos-image; do sleep 5; done
+----
+
+=== Launching a droplet
+
+. If you don't already have an SSH key uploaded to DigitalOcean, upload one:
++
+.Example uploading an SSH key to DigitalOcean
+[source, bash]
+----
+doctl compute ssh-key create my-key --public-key "$(cat ~/.ssh/id_rsa.pub)"
+----
+
+. Launch a droplet. Your Ignition configuration can be passed to the VM as its https://www.digitalocean.com/docs/droplets/resources/metadata/[user data], or you can skip passing user data if you just want SSH access. This provides an easy way to test out FCOS without first creating an Ignition config.
++
+When creating a FCOS DigitalOcean droplet, you must specify an SSH key for the droplet, even if you plan to inject SSH keys via Ignition.
++
+.Example launching FCOS on DigitalOcean using an Ignition configuration file
+[source, bash]
+----
+image_id=$(doctl compute image list-user | grep my-fcos-image | cut -f1 -d\ )
+key_id=$(doctl compute ssh-key list | grep my-key | cut -f1 -d\ )
+doctl compute droplet create my-fcos-droplet --image "${image_id}" --region sfo2 --size 2gb --user-data-file <ignition-config-path> --ssh-keys "${key_id}" --wait
+----
++
+While the DigitalOcean documentation mentions cloud-init and scripts, FCOS does not support cloud-init or the ability to run scripts from user-data. It accepts only Ignition configuration files.
