@@ -7,7 +7,10 @@ set -euo pipefail
 # In the future this will be augmented with a check for whether
 # or not we've reprovisioned the rootfs, since we don't want to
 # force on prjquota there.
-rootpath=/dev/disk/by-label/root
+rootpath=$(lsblk --list --paths --output LABEL,NAME | grep mapper | grep root | awk '{print $2}') || echo -n ''
+if [ -z $rootpath ]; then
+    rootpath="/dev/disk/by-label/root"
+fi
 if ! [ -b "${rootpath}" ]; then
   echo "ignition-ostree-mount-sysroot: Failed to find ${rootpath}" 1>&2
   exit 1
