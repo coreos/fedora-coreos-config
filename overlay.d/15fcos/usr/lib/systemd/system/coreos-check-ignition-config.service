@@ -1,0 +1,11 @@
+# This service is used for printing a message if 
+# no ignition config is provided.
+[Unit]
+Description=Check if ignition config is provided
+Before=console-login-helper-messages-issuegen.service
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-check-ignition-config.sh
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
