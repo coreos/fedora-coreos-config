@@ -55,6 +55,9 @@ remove-from-packages:
               /usr/lib/systemd/system/systemd-networkd-wait-online.service]
   - [systemd-container, /usr/lib/systemd/network/.*]
   - [systemd-udev, /usr/lib/systemd/network/.*]
+  # We don't want initscripts but audit insists on requiring it
+  # https://src.fedoraproject.org/rpms/audit/pull-request/5
+  - [initscripts, .*]
 
 
 remove-files:
@@ -94,9 +97,10 @@ postprocess:
     setsebool -P -N virt_use_samba on  # RHBZ#1754825
 
 packages:
-  # Security
+  # Security/Auditing
   - selinux-policy-targeted
   - polkit
+  - audit # https://github.com/coreos/fedora-coreos-tracker/issues/220
   # System setup
   - afterburn
   - afterburn-dracut
@@ -187,6 +191,3 @@ exclude-packages:
   - dnf
   - grubby
   - cowsay  # Just in case
-  # Let's make sure initscripts doesn't get pulled back in
-  # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
-  - initscripts
