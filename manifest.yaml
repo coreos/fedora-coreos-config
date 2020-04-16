@@ -1,4 +1,4 @@
-ref: fedora/${basearch}/coreos/next-devel
+ref: fedora/${basearch}/coreos/next
 include: manifests/fedora-coreos.yaml
 
 releasever: "32"
@@ -6,7 +6,7 @@ releasever: "32"
 rojig:
   license: MIT
   name: fedora-coreos
-  summary: Fedora CoreOS next-devel
+  summary: Fedora CoreOS next
 
 repos:
   - fedora-coreos-pool
@@ -19,7 +19,7 @@ repos:
   - fedora-next-updates-modular
 
 add-commit-metadata:
-  fedora-coreos.stream: next-devel
+  fedora-coreos.stream: next
 
 postprocess:
   # Disable Zincati and fedora-coreos-pinger on non-production streams
