@@ -1,2 +1,20 @@
 #!/bin/bash
-exec systemctl is-enabled logrotate.service
+set -euo pipefail
+systemctl is-enabled logrotate.service
+echo "ok logrotate"
+
+validate_not_writable_mount() {
+    local mnt=$1
+    shift
+    findmnt "${mnt}" -o OPTIONS | grep -q ro
+    if test -w "${mnt}"; then
+        echo "writable ${mnt}"
+        exit 1
+    fi
+    echo "ok not writable ${mnt}"
+}
+
+validate_not_writable_mount /boot
+if test -d /boot/efi; then
+    validate_not_writable_mount /boot/efi
+fi

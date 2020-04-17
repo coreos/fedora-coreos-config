@@ -18,6 +18,10 @@ if findmnt --fstab /boot &>/dev/null; then
     exit 0
 fi
 
+# Some security hardening guidelines like to see this.
+# https://bugzilla.redhat.com/show_bug.cgi?id=1627633
+boot_options="ro,nodev,nosuid"
+
 # Don't create mount units for /boot or /boot/efi on live systems.
 # ConditionPathExists won't work here because conditions don't affect
 # the dependency on the underlying device unit.
@@ -35,6 +39,7 @@ After=systemd-fsck@dev-disk-by\x2dlabel-boot.service
 [Mount]
 What=/dev/disk/by-label/boot
 Where=/boot
+Options=${boot_options}
 EOF
 
     # Only mount the EFI System Partition on machines where it exists,
@@ -54,6 +59,7 @@ After=systemd-fsck@dev-disk-by\x2dlabel-EFI\x2dSYSTEM.service
 [Mount]
 What=/dev/disk/by-label/EFI-SYSTEM
 Where=/boot/efi
+Options=${boot_options}
 EOF
     fi
 fi
