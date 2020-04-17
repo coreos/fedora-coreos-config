@@ -1,0 +1,45 @@
+# This unit will run early in boot and detect if the user copied
+# in firstboot networking config files into the installed system
+# (most likely by using `coreos-installer install --copy-network`).
+# Since this unit is modifying network configuration there are some
+# dependencies that we have:
+#
+# - Need to look for networking configuration on the /boot partition
+#     - i.e. after /dev/disk/by-label/boot is available
+# - Need to run before networking is brought up.
+#     - This is done in nm-run.sh [1] that runs as part of dracut-initqueue [2]
+#     - i.e. Before=dracut-initqueue.service
+# - Need to make sure karg networking configuration isn't applied
+#     - There are two ways to do this.
+#         - One is to run *before* the nm-config.sh [3] that runs as part of
+#           dracut-cmdline [4] and `ln -sf /bin/true /usr/libexec/nm-initrd-generator`.
+#             - i.e. Before=dracut-cmdline.service
+#         - Another is to run *after* nm-config.sh [3] in dracut-cmdline [4]
+#           and just delete all the files created by nm-initrd-generator.
+#             - i.e. After=dracut-cmdline.service, but Before=dracut-initqueue.service
+#     - We'll go with the second option here because the need for the /boot
+#       device (mentioned above) means we can't start before dracut-cmdline.service
+#
+# [1] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/nm-run.sh
+# [2] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/module-setup.sh#L37
+# [3] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/nm-config.sh
+# [4] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/module-setup.sh#L36
+#
+[Unit]
+Description=Copy CoreOS Firstboot Networking Config
+ConditionPathExists=/usr/lib/initrd-release
+DefaultDependencies=false
+Before=ignition-diskful.target
+Before=dracut-initqueue.service
+After=dracut-cmdline.service
+# Since we are mounting /boot/, require the device first
+Requires=dev-disk-by\x2dlabel-boot.device
+After=dev-disk-by\x2dlabel-boot.device   
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# The MountFlags=slave is so the umount of /boot is guaranteed to happen
+# /boot will only be mounted for the lifetime of the unit.
+MountFlags=slave
+ExecStart=/usr/sbin/coreos-copy-firstboot-network
