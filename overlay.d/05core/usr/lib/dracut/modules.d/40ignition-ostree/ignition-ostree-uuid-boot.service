@@ -1,0 +1,20 @@
+[Unit]
+Description=Ignition OSTree: Regenerate filesystem UUID (boot)
+DefaultDependencies=false
+ConditionPathExists=/usr/lib/initrd-release
+ConditionKernelCommandLine=ostree
+ConditionPathExists=!/run/ostree-live
+# We run pretty early
+Before=coreos-copy-firstboot-network.service
+Before=ignition-fetch.service
+Before=ignition-setup-base.service
+Before=ignition-setup-user.service
+
+Before=systemd-fsck@dev-disk-by\x2dlabel-boot.service
+Requires=dev-disk-by\x2dlabel-boot.device
+After=dev-disk-by\x2dlabel-boot.device
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/ignition-ostree-firstboot-uuid boot
