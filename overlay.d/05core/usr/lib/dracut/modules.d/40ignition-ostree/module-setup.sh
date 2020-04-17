@@ -35,7 +35,9 @@ install() {
         realpath   \
         resize2fs  \
         tail       \
+        tune2fs    \
         touch      \
+        xfs_admin  \
         xfs_growfs \
         wipefs
 
@@ -75,6 +77,11 @@ install() {
 
     # Disk support
     install_ignition_unit ignition-ostree-mount-firstboot-sysroot.service diskful
+    for p in boot root; do
+        install_ignition_unit ignition-ostree-uuid-${p}.service diskful
+    done
+    inst_script "$moddir/ignition-ostree-firstboot-uuid" \
+        "/usr/sbin/ignition-ostree-firstboot-uuid"
     install_ignition_unit ignition-ostree-mount-subsequent-sysroot.service diskful-subsequent
     inst_script "$moddir/ignition-ostree-mount-sysroot.sh" \
         "/usr/sbin/ignition-ostree-mount-sysroot"
