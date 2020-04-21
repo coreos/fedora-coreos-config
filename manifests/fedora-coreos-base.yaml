@@ -117,6 +117,8 @@ packages:
   - NetworkManager-team teamd
   # Static firewalling
   - iptables nftables iptables-nft iptables-services
+  # Interactive Networking configuration during coreos-install
+  - NetworkManager-tui
   # Storage
   - cloud-utils-growpart
   - lvm2 iscsi-initiator-utils sg3_utils
@@ -126,6 +128,10 @@ packages:
   - cifs-utils
   # Time sync
   - chrony
+  # Allow communication between sudo and SSSD 
+  # for caching sudo rules by SSSD.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/445
+  - libsss_sudo
   # Extra runtime
   - sssd shadow-utils
   # There are things that write outside of the journal still (such as the classic wtmp, etc.)
@@ -153,7 +159,6 @@ packages:
   - coreos-installer coreos-installer-systemd
   # i18n
   - kbd
-  - whois-nls
   # Parsing/Interacting with JSON data
   - jq
 
