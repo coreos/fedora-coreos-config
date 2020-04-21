@@ -12,6 +12,9 @@
 # existing connections when the vip is removed. This is useful for draining
 # connections - take ourselves out of the vip, but service existing conns.
 #
+# Additionally, clients can write a file to /run/gcp-routes/$IP.down to force
+# a VIP as down. This is useful for graceful shutdown / upgrade.
+#
 # ~cdc~
 
 set -e
@@ -25,7 +28,7 @@ curler() {
 }
 
 CHAIN_NAME="gcp-vips"
-
+RUN_DIR="/run/gcp-routes"
 
 # Create a chan if it doesn't exist
 ensure_chain() {
@@ -55,13 +58,15 @@ initialize() {
     # Need this so that existing flows (with an entry in conntrack) continue to be
     # balanced, even if the DNAT entry is removed
     ensure_rule filter INPUT -m comment --comment 'gcp LB vip existing' -m addrtype ! --dst-type LOCAL -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+    mkdir -p "${RUN_DIR}"
 }
 
 remove_stale() {
     ## find extra iptables rules
     for ipt_vip in $(iptables -w -t nat -S "${CHAIN_NAME}" | awk '$4{print $4}' | awk -F/ '{print $1}'); do
-        echo checking if "${ipt_vip}" is stale
         if [[ -z "${vips[${ipt_vip}]}" ]]; then
+            echo removing stale vip "${ipt_vip}"
             iptables -w -t nat -D "${CHAIN_NAME}" --dst "${ipt_vip}" -j REDIRECT
         fi
     done
@@ -80,17 +85,42 @@ clear_rules() {
 
 # out paramater: vips
 list_lb_ips() {
-   local net_path="network-interfaces/"
-   for vif in $(curler ${net_path}); do
-      local hw_addr; hw_addr=$(curler "${net_path}${vif}mac")
-      local fwip_path; fwip_path="${net_path}${vif}forwarded-ips/"
-      for level in $(curler "${fwip_path}"); do
-          for fwip in $(curler "${fwip_path}${level}"); do
-              echo "Processing route for NIC ${vif}${hw_addr} for ${fwip}"
-              vips[${fwip}]="${fwip}"
-          done
-      done
-   done
+    for k in "${!vips[@]}"; do
+        unset vips["${k}"]
+    done
+
+    local net_path="network-interfaces/"
+    for vif in $(curler ${net_path}); do
+        local hw_addr; hw_addr=$(curler "${net_path}${vif}mac")
+        local fwip_path; fwip_path="${net_path}${vif}forwarded-ips/"
+        for level in $(curler "${fwip_path}"); do
+            for fwip in $(curler "${fwip_path}${level}"); do
+                if [[ -e "${RUN_DIR}/${fwip}.down" ]]; then
+                    echo "${fwip} is manually marked as down, skipping..."
+                else
+                    echo "Processing route for NIC ${vif}${hw_addr} for ${fwip}"
+                    vips[${fwip}]="${fwip}"
+                fi
+            done
+        done
+    done
+}
+
+sleep_or_watch() {
+    if hash inotifywait &> /dev/null; then
+        inotifywait -t 240 -r "${RUN_DIR}" &> /dev/null || true
+    else
+        # no inotify, need to manually poll
+        for (( tries=0; tries<48; tries++ )); do
+            for vip in "${!vips[@]}"; do
+                if [[ -e "${RUN_DIR}/${vip}.down" ]]; then
+                    echo "new downfile detected"
+                    break 2
+                fi
+            done
+            sleep 5
+        done
+    fi
 }
 
 case "$1" in
@@ -101,7 +131,7 @@ case "$1" in
       remove_stale
       add_rules
       echo "done applying vip rules"
-      sleep 30
+      sleep_or_watch
     done
     ;;
   cleanup)
