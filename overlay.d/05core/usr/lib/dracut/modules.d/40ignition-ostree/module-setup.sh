@@ -68,4 +68,6 @@ install() {
     inst_script "$moddir/coreos-growpart" /usr/libexec/coreos-growpart
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
+
+    install_ignition_unit ignition-ostree-delete-etc-services.service
 }
