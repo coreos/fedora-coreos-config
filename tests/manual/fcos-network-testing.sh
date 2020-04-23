@@ -45,6 +45,14 @@ storage:
         verification:
           hash: sha512-d904690e4fc5defb804c2151e397cbe2aeeea821639995610aa377bb2446214c3433616a8708163776941df585b657648f20955e50d4b011ea2a96e7d8e08c66'
 
+ignitionhostname='ignitionhost'
+fcct_hostname='
+    - path: /etc/hostname
+      mode: 0644
+      contents:
+        inline: |
+          $ignitionhostname'
+
 fcct_static_eth0='
     - path: /etc/NetworkManager/system-connections/eth0.nmconnection
       mode: 0600
@@ -231,11 +239,13 @@ check_vm() {
     local interfaces=$1
     local ip=$2
     local dev=$3
-    local sshkeyfile=$4
+    local hostname=$4
+    local sshkeyfile=$5
     local ssh_config=' -o CheckHostIP=no'
     ssh_config+=' -o UserKnownHostsFile=/dev/null'
     ssh_config+=' -o StrictHostKeyChecking=no'
     ssh_config+=" -i $sshkeyfile"
+    export SSH_AUTH_SOCK=  # since we're providing our own key
     local ssh="ssh -q $ssh_config -l core $ip"
 
     # Wait for system to come up
@@ -290,7 +300,14 @@ check_vm() {
     #     }
     #   ]
     ipinfo=$($ssh ip -j -4 -o address show up)
+    hostnameinfo=$($ssh hostnamectl | grep 'Static hostname')
     rc=0
+
+    # verify that the hostname is correct
+    if [[ ! $hostnameinfo =~ "Static hostname: $hostname" ]]; then
+        rc=1
+        echo "ERROR: Hostname information was not what was expected" 1>&2
+    fi
 
     # verify that there are the right number of ipv4 devices "up"
     if [ $(jq length <<< $ipinfo) != "$((interfaces+1))" ]; then
@@ -314,11 +331,12 @@ check_vm() {
     fi
 
     if [ "$rc" != '0' ]; then
+        echo "$hostnameinfo"
         jq -r .[].addr_info[].dev 1>&2 <<< $ipinfo
         jq -r .[].addr_info[].local 1>&2 <<< $ipinfo
         true
     else
-        echo "Networking check for ${dev}/${ip} passed!"
+        echo "Check for ${hostname} + ${dev}/${ip} passed!"
     fi
     return $rc
     #$ssh sudo nmcli connection show
@@ -351,6 +369,7 @@ main() {
     local prefix='24'
     local gateway='192.168.122.1'
     local nameserver='192.168.122.1'
+    local initramfshostname='initrdhost'
     local kernel="${PWD}/fcos-nettest-kernel"
     local initramfs="${PWD}/fcos-nettest-initramfs"
     local sshkeyfile="${PWD}/fcos-nettest-sshkey"
@@ -368,7 +387,7 @@ main() {
 
     # export these values so we can substitute the values
     # in using the envsubst command
-    export ip prefix nameserver gateway sshpubkey
+    export ip prefix nameserver gateway sshpubkey ignitionhostname
 
     # Grab kernel/initramfs from the disk
     files=$(virt-ls -a $qcow -m /dev/sda1 -R /ostree/)
@@ -403,32 +422,32 @@ main() {
 
     devname=eth0
     x="${common_args} rd.neednet=1 ip=eth1:off"
-    x+=" ip=${ip}::${gateway}:${netmask}:fcos:${devname}:none:${nameserver}"
+    x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserver}"
     initramfs_static_eth0=$x
 
     devname=bond0
     x="${common_args} rd.neednet=1"
-    x+=" ip=${ip}::${gateway}:${netmask}:fcos:${devname}:none:${nameserver}"
+    x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserver}"
     x+=" bond=${devname}:eth0,eth1:mode=active-backup,miimon=100"
     initramfs_static_bond0=$x
 
     devname=team0
     x="${common_args} rd.neednet=1"
-    x+=" ip=${ip}::${gateway}:${netmask}:fcos:${devname}:none:${nameserver}"
+    x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserver}"
     x+=" team=${devname}:eth0,eth1"
     initramfs_static_team0=$x
 
     devname=br0
     x="${common_args} rd.neednet=1"
-    x+=" ip=${ip}::${gateway}:${netmask}:fcos:${devname}:none:${nameserver}"
+    x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserver}"
     x+=" bridge=${devname}:eth0,eth1"
     initramfs_static_br0=$x
 
     fcct_none=$(echo "${fcct_common}" | envsubst)
-    fcct_static_eth0=$(echo "${fcct_common}${fcct_static_eth0}" | envsubst)
-    fcct_static_bond0=$(echo "${fcct_common}${fcct_static_bond0}" | envsubst)
-    fcct_static_team0=$(echo "${fcct_common}${fcct_static_team0}" | envsubst)
-    fcct_static_br0=$(echo "${fcct_common}${fcct_static_br0}" | envsubst)
+    fcct_static_eth0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_eth0}" | envsubst)
+    fcct_static_bond0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_bond0}" | envsubst)
+    fcct_static_team0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_team0}" | envsubst)
+    fcct_static_br0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_br0}" | envsubst)
 
     # If the VM is still around for whatever reason, destroy it
     destroy_vm || true
@@ -457,11 +476,13 @@ main() {
             if [ "${fcctnet}" == 'none' ]; then
                 # because we propagate initramfs networking if no real root networking 
                 devname=${initramfsnet##*_}
+                hostname=${initramfshostname}
                 # If we're using dhcp for initramfs and not providing any real root 
                 # networking config then we can't predict the IP. Skip it
                 [ "${initramfsnet}" == 'dhcp_eth0' ] && continue
             else
                 devname=${fcctnet##*_}
+                hostname=${ignitionhostname}
             fi
             fcctvar="fcct_${fcctnet}"
             fcctconfig=${!fcctvar}
@@ -473,9 +494,9 @@ main() {
             echo "$fcctconfig" | fcct --strict --output $ignitionfile
             chcon --verbose unconfined_u:object_r:svirt_home_t:s0 $ignitionfile &>/dev/null
             start_vm $qcow $ignitionfile $kernel $initramfs "${kernel_args}"
-            check_vm 1 $ip $devname $sshkeyfile
+            check_vm 1 $ip $devname $hostname $sshkeyfile
             reboot_vm
-            check_vm 1 $ip $devname $sshkeyfile
+            check_vm 1 $ip $devname $hostname $sshkeyfile
             destroy_vm
         done
     done
