@@ -404,6 +404,14 @@ main() {
         fi
     done
 
+    #Here is an example where you can quickly hack the initramfs and
+    #add files that you want to use to test (when developing). For
+    # example if you want to test out coreos-teardown-initramfs-network.sh
+    # you can do:
+   #mkdir -p /tmp/fakeroot/usr/sbin
+   #cp /path/to/ignition-dracut/dracut/30ignition/coreos-teardown-initramfs-network.sh /tmp/fakeroot/usr/sbin/coreos-teardown-initramfs-network
+   #(cd /tmp/fakeroot; find . | cpio -o -c) >> $initramfs
+
     # Grab kernel arguments from the disk and use them
     # - strip `options ` from the front of the line
     # - strip `$ignition_firstboot`
