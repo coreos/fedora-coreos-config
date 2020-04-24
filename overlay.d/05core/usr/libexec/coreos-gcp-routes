@@ -53,7 +53,9 @@ ensure_rule() {
 # set the chain, ensure entry rules, ensure ESTABLISHED rule
 initialize() {
     ensure_chain nat "${CHAIN_NAME}"
+    ensure_chain nat "${CHAIN_NAME}-local"
     ensure_rule nat PREROUTING -m comment --comment 'gcp LB vip DNAT' -j ${CHAIN_NAME}
+    ensure_rule nat OUTPUT -m comment --comment 'gcp LB vip DNAT for local clients' -j ${CHAIN_NAME}-local
 
     # Need this so that existing flows (with an entry in conntrack) continue to be
     # balanced, even if the DNAT entry is removed
@@ -66,21 +68,33 @@ remove_stale() {
     ## find extra iptables rules
     for ipt_vip in $(iptables -w -t nat -S "${CHAIN_NAME}" | awk '$4{print $4}' | awk -F/ '{print $1}'); do
         if [[ -z "${vips[${ipt_vip}]}" ]]; then
-            echo removing stale vip "${ipt_vip}"
+            echo removing stale vip "${ipt_vip}" for external clients
             iptables -w -t nat -D "${CHAIN_NAME}" --dst "${ipt_vip}" -j REDIRECT
+        fi
+    done
+    for ipt_vip in $(iptables -w -t nat -S "${CHAIN_NAME}-local" | awk '$4{print $4}' | awk -F/ '{print $1}'); do
+        if [[ -z "${vips[${ipt_vip}]}" ]] || [[ "${vips[${ipt_vip}]}" = down ]]; then
+            echo removing stale vip "${ipt_vip}" for local clients
+            iptables -w -t nat -D "${CHAIN_NAME}-local" --dst "${ipt_vip}" -j REDIRECT
         fi
     done
 }
 
 add_rules() {
-    for vip in "${vips[@]}"; do
-        echo "ensuring rule for ${vip}"
+    for vip in "${!vips[@]}"; do
+        echo "ensuring rule for ${vip} for external clients"
         ensure_rule nat "${CHAIN_NAME}" --dst "${vip}" -j REDIRECT
+
+        if [[ "${vips[${vip}]}" != down ]]; then
+            echo "ensuring rule for ${vip} for internal clients"
+            ensure_rule nat "${CHAIN_NAME}-local" --dst "${vip}" -j REDIRECT
+        fi
     done
 }
 
 clear_rules() {
     iptables -t nat -F "${CHAIN_NAME}" || true
+    iptables -t nat -F "${CHAIN_NAME}-local" || true
 }
 
 # out paramater: vips
@@ -96,7 +110,8 @@ list_lb_ips() {
         for level in $(curler "${fwip_path}"); do
             for fwip in $(curler "${fwip_path}${level}"); do
                 if [[ -e "${RUN_DIR}/${fwip}.down" ]]; then
-                    echo "${fwip} is manually marked as down, skipping..."
+                    echo "${fwip} is manually marked as down, skipping for internal clients..."
+                    vips[${fwip}]="down"
                 else
                     echo "Processing route for NIC ${vif}${hw_addr} for ${fwip}"
                     vips[${fwip}]="${fwip}"
@@ -108,13 +123,16 @@ list_lb_ips() {
 
 sleep_or_watch() {
     if hash inotifywait &> /dev/null; then
-        inotifywait -t 240 -r "${RUN_DIR}" &> /dev/null || true
+        inotifywait -t 30 -r "${RUN_DIR}" &> /dev/null || true
     else
         # no inotify, need to manually poll
-        for (( tries=0; tries<48; tries++ )); do
+        for (( tries=0; tries<6; tries++ )); do
             for vip in "${!vips[@]}"; do
-                if [[ -e "${RUN_DIR}/${vip}.down" ]]; then
+                if [[ "${vips[${vip}]}" != down ]] && [[ -e "${RUN_DIR}/${vip}.down" ]]; then
                     echo "new downfile detected"
+                    break 2
+                elif [[ "${vips[${vip}]}" = down ]] && ! [[ -e "${RUN_DIR}/${vip}.down" ]]; then
+                    echo "downfile disappeared"
                     break 2
                 fi
             done
