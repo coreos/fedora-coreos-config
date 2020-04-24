@@ -53,33 +53,33 @@ fcct_hostname='
       mode: 0644
       contents:
         inline: |
-          $ignitionhostname'
+          ${ignitionhostname}'
 
-fcct_static_eth0='
-    - path: /etc/NetworkManager/system-connections/eth0.nmconnection
+fcct_static_nic0='
+    - path: /etc/NetworkManager/system-connections/${nic0}.nmconnection
       mode: 0600
       contents:
         inline: |
           [connection]
-          id=eth0
+          id=${nic0}
           type=ethernet
-          interface-name=eth0
+          interface-name=${nic0}
           [ipv4]
-          address1=$ip/$prefix,$gateway
-          dns=$nameserver;
+          address1=${ip}/${prefix},${gateway}
+          dns=${nameserver};
           dns-search=
           may-fail=false
           method=manual
           [ipv6]
           method=disabled
-    - path: /etc/NetworkManager/system-connections/eth1.nmconnection
+    - path: /etc/NetworkManager/system-connections/${nic1}.nmconnection
       mode: 0600
       contents:
         inline: |
           [connection]
-          id=eth1
+          id=${nic1}
           type=ethernet
-          interface-name=eth1
+          interface-name=${nic1}
           [ipv4]
           method=disabled
           [ipv6]
@@ -97,31 +97,31 @@ fcct_static_team0='
           [team]
           config={"runner": {"name": "activebackup"}, "link_watch": {"name": "ethtool"}}
           [ipv4]
-          address1=$ip/$prefix,$gateway
-          dns=$nameserver;
+          address1=${ip}/${prefix},${gateway}
+          dns=${nameserver};
           dns-search=
           may-fail=false
           method=manual
-    - path: /etc/NetworkManager/system-connections/team0-slave-eth0.nmconnection
+    - path: /etc/NetworkManager/system-connections/team0-slave-${nic0}.nmconnection
       mode: 0600
       contents:
         inline: |
           [connection]
-          id=team0-slave-eth0
+          id=team0-slave-${nic0}
           type=ethernet
-          interface-name=eth0
+          interface-name=${nic0}
           master=team0
           slave-type=team
           [team-port]
           config={"prio": 100}
-    - path: /etc/NetworkManager/system-connections/team0-slave-eth1.nmconnection
+    - path: /etc/NetworkManager/system-connections/team0-slave-${nic1}.nmconnection
       mode: 0600
       contents:
         inline: |
           [connection]
-          id=team0-slave-eth1
+          id=team0-slave-${nic1}
           type=ethernet
-          interface-name=eth1
+          interface-name=${nic1}
           master=team0
           slave-type=team
           [team-port]
@@ -140,29 +140,29 @@ fcct_static_bond0='
           miimon=100
           mode=active-backup
           [ipv4]
-          address1=$ip/$prefix,$gateway
-          dns=$nameserver;
+          address1=${ip}/${prefix},${gateway}
+          dns=${nameserver};
           dns-search=
           may-fail=false
           method=manual
-    - path: /etc/NetworkManager/system-connections/bond0-slave-eth0.nmconnection
+    - path: /etc/NetworkManager/system-connections/bond0-slave-${nic0}.nmconnection
       mode: 0600
       contents:
         inline: |
           [connection]
-          id=bond0-slave-eth0
+          id=bond0-slave-${nic0}
           type=ethernet
-          interface-name=eth0
+          interface-name=${nic0}
           master=bond0
           slave-type=bond
-    - path: /etc/NetworkManager/system-connections/bond0-slave-eth1.nmconnection
+    - path: /etc/NetworkManager/system-connections/bond0-slave-${nic1}.nmconnection
       mode: 0600
       contents:
         inline: |
           [connection]
-          id=bond0-slave-eth1
+          id=bond0-slave-${nic1}
           type=ethernet
-          interface-name=eth1
+          interface-name=${nic1}
           master=bond0
           slave-type=bond'
 
@@ -177,33 +177,41 @@ fcct_static_br0='
           interface-name=br0
           [bridge]
           [ipv4]
-          address1=$ip/$prefix,$gateway
-          dns=$nameserver;
+          address1=${ip}/${prefix},${gateway}
+          dns=${nameserver};
           dns-search=
           may-fail=false
           method=manual
-    - path: /etc/NetworkManager/system-connections/br0-slave-eth0.nmconnection
+    - path: /etc/NetworkManager/system-connections/br0-slave-${nic0}.nmconnection
       mode: 0600
       contents:
         inline: |
           [connection]
-          id=br0-slave-eth0
+          id=br0-slave-${nic0}
           type=ethernet
-          interface-name=eth0
+          interface-name=${nic0}
           master=br0
           slave-type=bridge
           [bridge-port]
-    - path: /etc/NetworkManager/system-connections/br0-slave-eth1.nmconnection
+    - path: /etc/NetworkManager/system-connections/br0-slave-${nic1}.nmconnection
       mode: 0600
       contents:
         inline: |
           [connection]
-          id=br0-slave-eth1
+          id=br0-slave-${nic1}
           type=ethernet
-          interface-name=eth1
+          interface-name=${nic1}
           master=br0
           slave-type=bridge
           [bridge-port]'
+
+check_requirement() {
+    req=$1
+    if ! which $req &>/dev/null; then
+        echo "No $req. Can't continue" 1>&2
+        return 1
+    fi
+}
 
 check_requirements() {
     reqs=(
@@ -219,7 +227,7 @@ check_requirements() {
         virt-ls
     )
     for req in ${reqs[@]}; do
-        which $req &>/dev/null
+        check_requirement $req
     done
 }
 
@@ -362,6 +370,16 @@ destroy_vm() {
     virsh undefine --nvram --remove-all-storage $vmname 1>/dev/null
 }
 
+create_ignition_file() {
+    local fcctconfig=$1
+    local ignitionfile=$2
+    if [ "$rhcos" == 1 ]; then
+        echo "$fcctconfig" | fcct --strict | ign-converter -downtranslate -output $ignitionfile
+    else
+        echo "$fcctconfig" | fcct --strict --output $ignitionfile
+    fi
+    chcon --verbose unconfined_u:object_r:svirt_home_t:s0 $ignitionfile &>/dev/null
+}
 
 
 main() {
@@ -387,9 +405,6 @@ main() {
     ssh-keygen -N '' -C '' -f $sshkeyfile &>/dev/null
     sshpubkey=$(cat $sshpubkeyfile)
 
-    # export these values so we can substitute the values
-    # in using the envsubst command
-    export ip prefix nameserver gateway sshpubkey ignitionhostname
 
     # Grab kernel/initramfs from the disk
     files=$(virt-ls -a $qcow -m /dev/sda1 -R /ostree/)
@@ -406,6 +421,27 @@ main() {
         fi
     done
 
+    # Dumb detection of if this is RHCOS or FCOS and setting variables
+    # accordingly
+    if [[ $qcow =~ 'rhcos' ]]; then
+        rhcos=1
+        nic0=ens2
+        nic1=ens3
+        bls_file=ostree-1-rhcos.conf
+    else
+        rhcos=0
+        nic0=eth0
+        nic1=eth1
+        bls_file=ostree-1-fedora-coreos.conf
+    fi
+    nics="${nic0},${nic1}"
+
+    if [ "$rhcos" == 1 ]; then
+        # We need ign-converter from https://github.com/coreos/ign-converter
+        # to be somewhere in our path
+        check_requirement ign-converter
+    fi
+
     #Here is an example where you can quickly hack the initramfs and
     #add files that you want to use to test (when developing). For
     # example if you want to test out coreos-teardown-initramfs-network.sh
@@ -417,7 +453,7 @@ main() {
     # Grab kernel arguments from the disk and use them
     # - strip `options ` from the front of the line
     # - strip `$ignition_firstboot`
-    common_args=$(virt-cat -a $qcow -m /dev/sda1 /loader.1/entries/ostree-1-fedora-coreos.conf | \
+    common_args=$(virt-cat -a $qcow -m /dev/sda1 "/loader.1/entries/${bls_file}" | \
                   grep -P '^options' | \
                   sed -e 's/options //' | \
                   sed -e 's/$ignition_firstboot//')
@@ -426,35 +462,39 @@ main() {
 
     # nameserver= doesn't work as I would expect
     # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/issues/391
-    devname=eth0
-    x="${common_args} rd.neednet=1 ip=eth0:dhcp"
-    initramfs_dhcp_eth0=$x
+    devname=$nic0
+    x="${common_args} rd.neednet=1 ip=${devname}:dhcp"
+    initramfs_dhcp_nic0=$x
 
-    devname=eth0
-    x="${common_args} rd.neednet=1 ip=eth1:off"
+    devname=$nic0
+    x="${common_args} rd.neednet=1 ip=${nic1}:off"
     x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserver}"
-    initramfs_static_eth0=$x
+    initramfs_static_nic0=$x
 
     devname=bond0
     x="${common_args} rd.neednet=1"
     x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserver}"
-    x+=" bond=${devname}:eth0,eth1:mode=active-backup,miimon=100"
+    x+=" bond=${devname}:${nics}:mode=active-backup,miimon=100"
     initramfs_static_bond0=$x
 
     devname=team0
     x="${common_args} rd.neednet=1"
     x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserver}"
-    x+=" team=${devname}:eth0,eth1"
+    x+=" team=${devname}:${nics}"
     initramfs_static_team0=$x
 
     devname=br0
     x="${common_args} rd.neednet=1"
     x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserver}"
-    x+=" bridge=${devname}:eth0,eth1"
+    x+=" bridge=${devname}:${nics}"
     initramfs_static_br0=$x
 
+    # export these values so we can substitute the values
+    # in using the envsubst command
+    export ip prefix nameserver gateway sshpubkey ignitionhostname nic0 nic1
+
     fcct_none=$(echo "${fcct_common}" | envsubst)
-    fcct_static_eth0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_eth0}" | envsubst)
+    fcct_static_nic0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_nic0}" | envsubst)
     fcct_static_bond0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_bond0}" | envsubst)
     fcct_static_team0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_team0}" | envsubst)
     fcct_static_br0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_br0}" | envsubst)
@@ -466,8 +506,8 @@ main() {
     # https://bugzilla.redhat.com/show_bug.cgi?id=1814038#c1
     # https://bugzilla.redhat.com/show_bug.cgi?id=1784363
     initramfsloop=(
-        dhcp_eth0
-        static_eth0
+        dhcp_nic0
+        static_nic0
         static_bond0
        #static_team0
         static_br0
@@ -475,7 +515,7 @@ main() {
 
     fcctloop=(
         none
-        static_eth0
+        static_nic0
         static_bond0
         static_team0
         static_br0
@@ -489,11 +529,13 @@ main() {
                 hostname=${initramfshostname}
                 # If we're using dhcp for initramfs and not providing any real root 
                 # networking config then we can't predict the IP. Skip it
-                [ "${initramfsnet}" == 'dhcp_eth0' ] && continue
+                [ "${initramfsnet}" == 'dhcp_nic0' ] && continue
             else
                 devname=${fcctnet##*_}
                 hostname=${ignitionhostname}
             fi
+            # If devname=nic0 then replace with ${nic0} variable
+            [ $devname == "nic0" ] && devname=${nic0}
             fcctvar="fcct_${fcctnet}"
             fcctconfig=${!fcctvar}
             initramfsvar="initramfs_${initramfsnet}"
@@ -501,8 +543,7 @@ main() {
 
             echo -e "\n###### Testing initramfs: ${initramfsnet} + ignition/fcct: ${fcctnet}\n"
 
-            echo "$fcctconfig" | fcct --strict --output $ignitionfile
-            chcon --verbose unconfined_u:object_r:svirt_home_t:s0 $ignitionfile &>/dev/null
+            create_ignition_file "$fcctconfig" $ignitionfile
             start_vm $qcow $ignitionfile $kernel $initramfs "${kernel_args}"
             check_vm 1 $ip $devname $hostname $sshkeyfile
             reboot_vm
