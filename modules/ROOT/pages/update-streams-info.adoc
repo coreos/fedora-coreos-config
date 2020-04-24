@@ -1,0 +1,22 @@
+
+= Individual Update Streams
+
+Fedora CoreOS (FCOS) has several individual update streams that are available to end users. They are:
+
+* `stable`
+    ** The `stable` stream is the most reliable stream offered with changes
+       only reaching that stream after spending a period of time in the `testing`
+       stream.
+* `testing`
+    ** The `testing` stream represents what is coming in the next `stable`
+       release. Content in this stream is updated regularly and offers our
+       community an opportunity to catch breaking changes before they hit
+       the `stable` stream.
+* `next`
+    ** The `next` stream represents the future. It will often be
+       used to experiment with new features and also test out rebases of our
+       platform on top of the next major version of Fedora. The content in
+       the `next` stream will also eventually filter down into `testing`
+       and on to `stable`.
+
+When following a stream, a system is updated automatically when a new release is rolled out on that stream. While all streams of FCOS are automatically tested, it is strongly encouraged for users to devote a percentage of their FCOS deployment to running the `testing` and `next` streams. This ensures possible breaking changes can be caught early enough that `stable` deployments experience fewer regressions.

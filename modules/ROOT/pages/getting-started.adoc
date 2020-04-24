@@ -1,6 +1,14 @@
 :experimental:
 = Fedora CoreOS - Getting Started
 
+== Introduction
+
+=== Update Streams
+
+There are three Fedora CoreOS (FCOS) update streams available: `stable`, `testing`, and `next`. In general, you will want to use `stable`, but it is recommended to run some machines on `testing` and `next` as well. For more information on streams and switching between them, see xref:update-streams.adoc[Update Streams].
+
+=== Provisioning Philosophy
+
 Fedora CoreOS (FCOS) has no install-time configuration. Every FCOS system begins with a generic disk image. For each deployment mechanism (cloud VM, local VM, bare metal), configuration can be supplied at first boot. FCOS reads and applies the configuration file with https://github.com/coreos/ignition[Ignition]. For cloud deployments, Ignition gathers the configuration via the cloud’s user-data mechanism. In the case of bare metal, Ignition injects the configuration at install time.
 
 NOTE: For more information on configuration, refer to the documentation for xref:producing-ign.adoc[Producing an Ignition File].
