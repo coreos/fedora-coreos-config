@@ -11,6 +11,8 @@ set -eu -o pipefail
 # for more details: https://github.com/coreos/fedora-coreos-tracker/issues/394
 # - Dusty Mabe - dusty@dustymabe.com
 
+vmname="coreos-nettest"
+
 fcct_common=\
 'variant: fcos
 version: 1.0.0
@@ -222,13 +224,13 @@ check_requirements() {
 }
 
 start_vm() {
-    echo "Starting domain: fcos"
+    echo "Starting domain: $vmname"
     local disk=$1; shift
     local ignitionfile=$1; shift
     local kernel=$1; shift
     local initramfs=$1; shift
     local kernel_args=$@
-    virt-install --name fcos --ram 3096 --vcpus 2 --graphics=none --noautoconsole \
+    virt-install --name $vmname --ram 3096 --vcpus 2 --graphics=none --noautoconsole \
                    --quiet --network bridge=virbr0 --network bridge=virbr0 \
                    --disk size=20,backing_store=${disk} \
                    --install kernel=${kernel},initrd=${initramfs},kernel_args_overwrite=yes,kernel_args="${kernel_args}" \
@@ -343,21 +345,21 @@ check_vm() {
 }
 
 reboot_vm() {
-    echo "Rebooting domain: fcos"
+    echo "Rebooting domain: $vmname"
     # The reboot after a virt-install --install will not boot the VM
     # back up so `virsh reboot` && `virsh start`
-    virsh reboot fcos 1>/dev/null
+    virsh reboot $vmname 1>/dev/null
     sleep 5
-    virsh start fcos 1>/dev/null
+    virsh start $vmname 1>/dev/null
 }
 
 destroy_vm() {
-    echo "Destroying domain: fcos"
+    echo "Destroying domain: $vmname"
     # If the domain doesn't exist then return
-    virsh dominfo fcos &>/dev/null || return 0
+    virsh dominfo $vmname &>/dev/null || return 0
     # Destroy domain and recover storage
-    virsh destroy fcos 1>/dev/null
-    virsh undefine --nvram --remove-all-storage fcos 1>/dev/null
+    virsh destroy $vmname 1>/dev/null
+    virsh undefine --nvram --remove-all-storage $vmname 1>/dev/null
 }
 
 
