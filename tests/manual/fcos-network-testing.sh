@@ -372,11 +372,11 @@ main() {
     local gateway='192.168.122.1'
     local nameserver='192.168.122.1'
     local initramfshostname='initrdhost'
-    local kernel="${PWD}/fcos-nettest-kernel"
-    local initramfs="${PWD}/fcos-nettest-initramfs"
-    local sshkeyfile="${PWD}/fcos-nettest-sshkey"
-    local sshpubkeyfile="${PWD}/fcos-nettest-sshkey.pub"
-    local ignitionfile="${PWD}/fcos-nettest-config.ign"
+    local kernel="${PWD}/coreos-nettest-kernel"
+    local initramfs="${PWD}/coreos-nettest-initramfs"
+    local sshkeyfile="${PWD}/coreos-nettest-sshkey"
+    local sshpubkeyfile="${PWD}/coreos-nettest-sshkey.pub"
+    local ignitionfile="${PWD}/coreos-nettest-config.ign"
     local sshpubkey
     local fcct
      
