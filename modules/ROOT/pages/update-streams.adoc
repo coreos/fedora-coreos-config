@@ -1,5 +1,63 @@
+:experimental:
+
 = Update Streams
 
-include::update-streams-info.adoc[leveloffset=1]
+== Individual Update Streams
 
-include::update-streams-switching.adoc[leveloffset=1]
+Fedora CoreOS (FCOS) has several individual update streams that are available to end users. They are:
+
+* `stable`
+
+** The `stable` stream is the most reliable stream offered with changes
+   only reaching that stream after spending a period of time in the `testing`
+   stream.
+
+* `testing`
+
+** The `testing` stream represents what is coming in the next `stable`
+   release. Content in this stream is updated regularly and offers our
+   community an opportunity to catch breaking changes before they hit
+   the `stable` stream.
+
+* `next`
+
+** The `next` stream represents the future. It will often be
+   used to experiment with new features and also test out rebases of our
+   platform on top of the next major version of Fedora. The content in
+   the `next` stream will also eventually filter down into `testing`
+   and on to `stable`.
+
+When following a stream, a system is updated automatically when a new release is rolled out on that stream. While all streams of FCOS are automatically tested, it is strongly encouraged for users to devote a percentage of their FCOS deployment to running the `testing` and `next` streams. This ensures possible breaking changes can be caught early enough that `stable` deployments experience fewer regressions.
+
+== Switching to a Different Stream
+
+In order to switch between the different streams of Fedora CoreOS (FCOS) a user can leverage the `rpm-ostree rebase` command.
+
+[TIP]
+====
+It may be a good idea to backup data under `/var` before switching streams.
+====
+
+[NOTE]
+====
+Software updates generally follow the `next` -> `testing` -> `stable` flow, meaning `next` has the newest software and `stable` has the oldest software. Upstream software components are generally tested for upgrading, not downgrading, which means that upstream software typically can handle a data/configuration migration forward (upgrade), but not backwards (downgrade). For this reason it is typically safer to rebase from `stable` -> `testing` or `testing` -> `next`, but less safe to go the other direction.
+====
+
+
+[NOTE]
+====
+Switching between streams may introduce regressions or bugs due to skipping update barriers. If you experience a regression please attempt a xref:manual-rollbacks.adoc[rollback].
+====
+
+[source,bash]
+----
+# Stop the service that performs automatic updates
+sudo systemctl stop zincati.service
+
+# Perform the rebase to a different stream
+# Available streams: "stable", "testing", and "next"
+STREAM="testing"
+sudo rpm-ostree rebase "fedora/x86_64/coreos/$\{STREAM\}"
+----
+
+After inspecting the package difference the user can reboot. After boot the system will be loaded into the latest release on the new stream and will follow that stream for future updates.
