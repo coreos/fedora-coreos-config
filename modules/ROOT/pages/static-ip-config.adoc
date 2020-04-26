@@ -41,10 +41,10 @@ NOTE: During the initramfs portion of the boot process, dracut will attempt to g
 
 If the interface does not come up correctly on first boot (see https://github.com/coreos/fedora-coreos-tracker/issues/358[tracker issue 358]), you have two possible workarounds.
 
-1. If you configured a username and password in your Ignition configuration, you can log in to the
+. If you configured a username and password in your Ignition configuration, you can log in to the
 host via the console and issue the following commands to force the static IP to take effect:
 
     nmcli connection down eth0
     nmcli connection up eth0
 
-1. If you are not able to access the host via the console, you can reboot the host and the static IP configuration will take effect.
+. If you are not able to access the host via the console, you can reboot the host and the static IP configuration will take effect.
