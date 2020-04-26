@@ -21,7 +21,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         echo ""
         echo "This build script is using Podman to run the build in an isolated environment."
         echo ""
-	podman run --rm -it -v $(pwd):/antora:z $image $cmd
+        podman run --rm -it -v $(pwd):/antora:z $image $cmd
 
     elif [ -f /usr/bin/docker ]; then
         echo ""
@@ -29,18 +29,18 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         echo ""
 
         if groups | grep -wq "docker"; then
-	    docker run --rm -it -v $(pwd):/antora:z $image $cmd
-	else
+            docker run --rm -it -v $(pwd):/antora:z $image $cmd
+        else
             echo ""
             echo "This build script is using $runtime to run the build in an isolated environment. You might be asked for your password."
             echo "You can avoid this by adding your user to the 'docker' group, but be aware of the security implications. See https://docs.docker.com/install/linux/linux-postinstall/."
             echo ""
             sudo docker run --rm -it -v $(pwd):/antora:z $image $cmd
-	fi
+        fi
     else
         echo ""
-	echo "Error: Container runtime haven't been found on your system. Fix it by:"
-	echo "$ sudo dnf install podman"
-	exit 1
+        echo "Error: Container runtime haven't been found on your system. Fix it by:"
+        echo "$ sudo dnf install podman"
+        exit 1
     fi
 fi
