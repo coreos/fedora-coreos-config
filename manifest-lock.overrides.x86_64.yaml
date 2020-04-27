@@ -22,3 +22,7 @@ packages:
   # This is a major version bump we need to consider.
   moby-engine:
     evra: 18.09.8-2.ce.git0dd43dd.fc31.x86_64
+  # Fast track new Ignition with more networking fixes
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-0a3fdd111c
+  ignition:
+    evra: 2.2.1-5.git2d3ff58.fc31.x86_64
