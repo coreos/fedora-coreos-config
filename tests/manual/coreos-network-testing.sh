@@ -246,15 +246,36 @@ start_vm() {
 }
 
 check_vm() {
-    local interfaces=$1
-    local ip=$2
-    local dev=$3
-    local hostname=$4
-    local sshkeyfile=$5
+    local dhcp=$1
+    local interfaces=$2
+    local ip=$3
+    local dev=$4
+    local hostname=$5
+    local sshkeyfile=$6
     local ssh_config=' -o CheckHostIP=no'
     ssh_config+=' -o UserKnownHostsFile=/dev/null'
     ssh_config+=' -o StrictHostKeyChecking=no'
     ssh_config+=" -i $sshkeyfile"
+
+    if [ $dhcp == 'dhcp' ]; then
+        macinfo=$(virsh dumpxml $vmname | grep 'mac address' | head -n 1)
+        macregex='(..:..:..:..:..:..)'
+        if ! [[ $macinfo =~ $macregex ]]; then
+            echo -e "\nCould not detect MAC in $macinfo" 2>&1
+            return 1
+        fi
+        mac="${BASH_REMATCH[1]}"
+        echo "Using DHCP.. Detected MAC address is ${mac}"
+        echo "Waiting a bit to give networking some time"
+        sleep 30 # wait a long enough time for real root networking to be brought up
+        ip=$(ip -j neighbor show dev virbr0 | jq -r ".[] | select(.lladdr == \"${mac}\").dst")
+        echo "Detected IP address is ${ip}"
+        if [ -z "$ip" ]; then
+            echo -e "\nCould not detect DHCP ipv4 address" 2>&1
+            return 1
+        fi
+    fi
+
     export SSH_AUTH_SOCK=  # since we're providing our own key
     local ssh="ssh -q $ssh_config -l core $ip"
 
@@ -523,13 +544,18 @@ main() {
         
     for initramfsnet in ${initramfsloop[@]}; do
         for fcctnet in ${fcctloop[@]}; do
+            method='none'; interfaces=1
             if [ "${fcctnet}" == 'none' ]; then
                 # because we propagate initramfs networking if no real root networking 
                 devname=${initramfsnet##*_}
                 hostname=${initramfshostname}
                 # If we're using dhcp for initramfs and not providing any real root 
-                # networking config then we can't predict the IP. Skip it
-                [ "${initramfsnet}" == 'dhcp_nic0' ] && continue
+                # networking then we need to tell check_vm we're using DHCP
+                if [ "${initramfsnet}" == 'dhcp_nic0' ]; then
+                    method='dhcp'
+                    interfaces=2
+                    hostname='n/a'
+                fi
             else
                 devname=${fcctnet##*_}
                 hostname=${ignitionhostname}
@@ -545,9 +571,9 @@ main() {
 
             create_ignition_file "$fcctconfig" $ignitionfile
             start_vm $qcow $ignitionfile $kernel $initramfs "${kernel_args}"
-            check_vm 1 $ip $devname $hostname $sshkeyfile
+            check_vm $method $interfaces $ip $devname $hostname $sshkeyfile
             reboot_vm
-            check_vm 1 $ip $devname $hostname $sshkeyfile
+            check_vm $method $interfaces $ip $devname $hostname $sshkeyfile
             destroy_vm
         done
     done
