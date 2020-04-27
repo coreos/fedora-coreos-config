@@ -38,3 +38,7 @@ packages:
     evra: 31-2.noarch
   fedora-release-coreos:
     evra: 31-2.noarch
+  # Hold back moby engine. It has been bumped to 19.03 in stable.
+  # This is a major version bump we need to consider.
+  moby-engine:
+    evra: 18.09.8-2.ce.git0dd43dd.fc31.x86_64
