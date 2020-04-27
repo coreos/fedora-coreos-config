@@ -519,9 +519,21 @@ main() {
     fcct_static_bond0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_bond0}" | envsubst)
     fcct_static_team0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_team0}" | envsubst)
     fcct_static_br0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_br0}" | envsubst)
+    fcct_static_nic0_ifcfg=$(echo "${fcct_common}${fcct_hostname}${fcct_static_nic0_ifcfg}" | envsubst)
 
     # If the VM is still around for whatever reason, destroy it
     destroy_vm || true
+
+    # Do a `coreos.no_persist_ip` check. In this case we won't pass any networking
+    # configuration via Ignition either, so we'll just end up with DHCP and a
+    # static hostname that is unset (`n/a`).
+    echo -e "\n###### Testing coreos.no_persist_ip disables initramfs propagation\n"
+    create_ignition_file "$fcct_none" $ignitionfile
+    start_vm $qcow $ignitionfile $kernel $initramfs "${initramfs_static_nic0} coreos.no_persist_ip"
+    check_vm 'dhcp' 2 $ip $nic0 'n/a' $sshkeyfile
+    reboot_vm
+    check_vm 'dhcp' 2 $ip $nic0 'n/a' $sshkeyfile
+    destroy_vm
 
     # Note 'static_team0' initramfs teaming doesn't work so leave it out for now
     # https://bugzilla.redhat.com/show_bug.cgi?id=1814038#c1
