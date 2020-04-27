@@ -1,0 +1,51 @@
+#!/bin/bash
+#
+# This creates a config-only initramfs that is signed for use by Grub2.
+#
+
+create() {
+    local archive="/boot/initramfs-etc.img"
+    local includes="${@}";
+
+    if [ ! -d "${key_path}" ]; then
+        key_gen
+    fi
+
+    echo "Generating new ${archive} using Dracut"
+    echo "${archive} will only contain configuration data, no logic"
+
+    local cur_d="${PWD}"
+    local work_d=$(mktemp -d)
+    trap "rm -rf ${work_d}" EXIT
+
+    # Generate a real initrd, but we'll throw it away later
+    # This ensures that we get a "filtered" config, plus the
+    # extra's that we need.
+    dracut "${work_d}/work.img" $(uname -r) \
+           --add "lvm dm multipath" \
+           --hostonly-i18n \
+           --lvmconf \
+           --mdadmconf \
+           --no-hostonly-cmdline \
+           --no-compress \
+           --no-early-microcode \
+           -o "clevis" >> /dev/null
+
+    pushd "${work_d}" >> /dev/null
+    cpio -ic "etc*" < "${work_d}/work.img"
+    for x in "${includes_cfg[@]}"; do
+        test -e "etc/${x}" && cp -auR -t etc "etc/${x}"
+    done
+
+    rm -rf etc/systemd
+    find etc -print | cpio -o -c > "${work_d}/new.img"
+    popd >>/dev/null
+
+    mv "${work_d}/new.img" "${archive}"
+    pushd /boot >> /dev/null
+    ls -1 initramfs* > /boot/coreos.checksums
+    popd >> /dev/null
+    cat /boot/coreos.checksums
+}
+
+create

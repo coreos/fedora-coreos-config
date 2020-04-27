@@ -1,0 +1,28 @@
+#!/bin/sh
+exec tail -n +3 $0
+
+# NOTE: This is superfluous without setting a password on Grub.
+#       However, this makes it far more difficult for someone to
+#       load up a different initramfs-etc.
+#
+# This code-path is enabled by running as root:
+#    /usr/sbin/initramfs-etc --create
+#
+# Then, in the blsconfig add "$initramfs_etc" to the initrd line, i.e
+#    initrd /initrd $initramfs_etc
+
+set initramfs_etc=""
+if [ -f "/initramfs-etc.img" ]; then
+     set initramfs_etc="/initramfs-etc.img"
+fi
+
+if [ -f "/coreos.checksums" ]; then
+    insmod gcry_sha256
+    hashsum --hash sha256 --check "/coreos.checksums"
+    if [ "$?" != "0" ]; then
+        unset initramfs_etc
+        echo "Failed to checksum"
+        sleep 30
+    fi
+fi
+
