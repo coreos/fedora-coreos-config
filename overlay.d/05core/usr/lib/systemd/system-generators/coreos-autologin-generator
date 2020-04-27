@@ -32,12 +32,11 @@ ExecStart=-/sbin/agetty --autologin core -o '-p -f core' ${args} %I \$TERM
 EOF
 }
 
-# We can remove this when we fix https://github.com/coreos/fedora-coreos-tracker/issues/220
-silence_audit_on_console() {
-    mkdir -p /run/sysctl.d
+quiet_kernel_console_messages() {
     cat <<'EOF' > /etc/sysctl.d/20-coreos-autologin-kernel-printk.conf
 # Raise console message logging level from DEBUG (7) to WARNING (4)
-# so that audit messages don't get interspersed on the console that
+# so that kernel debug message don't get interspersed on the console
+# that
 # may frustrate a user trying to interactively do an install with
 # nmtui and coreos-installer.
 kernel.printk=4
@@ -66,5 +65,8 @@ write_dropin "getty@.service"        "--noclear"
 # Also autologin on serial console if someone enables that
 write_dropin "serial-getty@.service" "--keep-baud 115200,38400,9600"
 
-# We can remove this when we fix https://github.com/coreos/fedora-coreos-tracker/issues/220
-silence_audit_on_console
+# When the installer runs a lot of things happen on the system (audit
+# messages from running via sudo, re-reading partition table messages,
+# mounting filesystem messages, etc.). Quieting the verbosity of the
+# kernel console will help us keep our sanity.
+quiet_kernel_console_messages
