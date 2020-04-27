@@ -55,6 +55,31 @@ fcct_hostname='
         inline: |
           ${ignitionhostname}'
 
+fcct_static_nic0_ifcfg='
+    - path: /etc/sysconfig/network-scripts/ifcfg-${nic0}
+      mode: 0600
+      contents:
+        inline: |
+          TYPE=Ethernet
+          BOOTPROTO=none
+          IPADDR=${ip}
+          PREFIX=${prefix}
+          GATEWAY=${gateway}
+          DEFROUTE=yes
+          IPV4_FAILURE_FATAL=no
+          NAME=ethernet-${nic0}
+          DEVICE=${nic0}
+          ONBOOT=yes
+    - path: /etc/sysconfig/network-scripts/ifcfg-${nic1}
+      mode: 0600
+      contents:
+        inline: |
+          TYPE=Ethernet
+          BOOTPROTO=none
+          NAME=ethernet-${nic1}
+          DEVICE=${nic1}
+          ONBOOT=no'
+
 fcct_static_nic0='
     - path: /etc/NetworkManager/system-connections/${nic0}.nmconnection
       mode: 0600
@@ -523,6 +548,19 @@ main() {
 
     # If the VM is still around for whatever reason, destroy it
     destroy_vm || true
+
+    # On RHCOS we support both ifcfg and NM keyfiles. If we provide an
+    # ifcfg file via Ignition then we SHOULD NOT propagate initramfs
+    # networking. Do a ifcfg check to make sure.
+    if [ "$rhcos" == 1 ]; then
+        echo -e "\n###### Testing ifcfg file via Ignition disables initramfs propagation\n"
+        create_ignition_file "$fcct_static_nic0_ifcfg" $ignitionfile
+        start_vm $qcow $ignitionfile $kernel $initramfs "$initramfs_static_bond0"
+        check_vm 'none' 1 $ip $nic0 $ignitionhostname $sshkeyfile
+        reboot_vm
+        check_vm 'none' 1 $ip $nic0 $ignitionhostname $sshkeyfile
+        destroy_vm
+    fi
 
     # Do a `coreos.no_persist_ip` check. In this case we won't pass any networking
     # configuration via Ignition either, so we'll just end up with DHCP and a
