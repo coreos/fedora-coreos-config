@@ -627,6 +627,12 @@ main() {
             destroy_vm
         done
     done
+
+    # clean up temporary files
+    for file in $kernel $initramfs $sshkeyfile $sshpubkeyfile $ignitionfile; do
+        rm -f $file
+    done
+
 }
 
 
