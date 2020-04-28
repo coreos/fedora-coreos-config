@@ -32,15 +32,38 @@ ExecStart=-/sbin/agetty --autologin core -o '-p -f core' ${args} %I \$TERM
 EOF
 }
 
-# We can remove this when we fix https://github.com/coreos/fedora-coreos-tracker/issues/220
-silence_audit_on_console() {
-    mkdir -p /run/sysctl.d
+quiet_kernel_console_messages() {
     cat <<'EOF' > /etc/sysctl.d/20-coreos-autologin-kernel-printk.conf
 # Raise console message logging level from DEBUG (7) to WARNING (4)
-# so that audit messages don't get interspersed on the console that
+# so that kernel debug message don't get interspersed on the console
+# that
 # may frustrate a user trying to interactively do an install with
 # nmtui and coreos-installer.
 kernel.printk=4
+EOF
+}
+
+write_interactive_live_issue() {
+    cat <<'EOF' > /etc/issue.d/80-interactive-live.issue
+
+###########################################################################
+Welcome to the Fedora CoreOS Live environment. This system is running
+completely from memory, making it a good candidate for hardware discovery
+and installing persistently to disk. Here is an example of running an
+install to disk via `coreos-installer`:
+
+curl -O https://example.com/example.ign
+sudo coreos-installer install /dev/sda \\
+         --ignition-file ./example.ign \\
+         --image-url https://example.com/image.raw.xz
+
+You may configure networking via `sudo nmcli` or `sudo nmtui` and have
+that configuration persist into the installed system by passing the
+`--copy-network` argument to `coreos-installer install`. Please run
+`coreos-installer install --help` for more information on the possible
+install options.
+###########################################################################
+
 EOF
 }
 
@@ -66,5 +89,13 @@ write_dropin "getty@.service"        "--noclear"
 # Also autologin on serial console if someone enables that
 write_dropin "serial-getty@.service" "--keep-baud 115200,38400,9600"
 
-# We can remove this when we fix https://github.com/coreos/fedora-coreos-tracker/issues/220
-silence_audit_on_console
+# When the installer runs a lot of things happen on the system (audit
+# messages from running via sudo, re-reading partition table messages,
+# mounting filesystem messages, etc.). Quieting the verbosity of the
+# kernel console will help us keep our sanity.
+quiet_kernel_console_messages
+
+
+# Write a issue.d that will let the user know about the live environment
+# and what is possible.
+write_interactive_live_issue
