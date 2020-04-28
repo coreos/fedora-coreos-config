@@ -395,7 +395,6 @@ check_vm() {
         echo "Check for ${hostname} + ${dev}/${ip} passed!"
     fi
     return $rc
-    #$ssh sudo nmcli connection show
 }
 
 reboot_vm() {
