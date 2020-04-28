@@ -43,6 +43,30 @@ kernel.printk=4
 EOF
 }
 
+write_interactive_live_issue() {
+    cat <<'EOF' > /etc/issue.d/80-interactive-live.issue
+
+###########################################################################
+Welcome to the Fedora CoreOS Live environment. This system is running
+completely from memory, making it a good candidate for hardware discovery
+and installing persistently to disk. Here is an example of running an
+install to disk via `coreos-installer`:
+
+curl -O https://example.com/example.ign
+sudo coreos-installer install /dev/sda \\
+         --ignition-file ./example.ign \\
+         --image-url https://example.com/image.raw.xz
+
+You may configure networking via `sudo nmcli` or `sudo nmtui` and have
+that configuration persist into the installed system by passing the
+`--copy-network` argument to `coreos-installer install`. Please run
+`coreos-installer install --help` for more information on the possible
+install options.
+###########################################################################
+
+EOF
+}
+
 # Only allow automatic autologin on live systems
 if [ ! -e /run/ostree-live ]; then
     exit 0
@@ -70,3 +94,8 @@ write_dropin "serial-getty@.service" "--keep-baud 115200,38400,9600"
 # mounting filesystem messages, etc.). Quieting the verbosity of the
 # kernel console will help us keep our sanity.
 quiet_kernel_console_messages
+
+
+# Write a issue.d that will let the user know about the live environment
+# and what is possible.
+write_interactive_live_issue
