@@ -31,5 +31,5 @@ Here is a list of all supported platforms and their identifier:
  * `metal`: bare metal with BIOS or UEFI boot
  * `openstack`: OpenStack (cloud platform)
  * `qemu`: QEMU (hypervisor)
- * `vmware`: VMware ESXi (hypervisor - requires hardware version 13 or later, see https://kb.vmware.com/s/article/1003746)
+ * `vmware`: VMware ESXi (hypervisor) - only on https://kb.vmware.com/s/article/1003746[hardware version] 13 or later
  * `vultr`: Vultr (cloud platform)
