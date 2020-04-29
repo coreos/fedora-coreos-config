@@ -50,8 +50,8 @@ postprocess:
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
-    sed -Ei 's/^(PasswordAuthentication|PermitRootLogin)[[:blank:]]/#&/' /etc/ssh/sshd_config
-    echo -e '\n# Disable password logins by default\nPasswordAuthentication no\nPermitRootLogin prohibit-password' >> /etc/ssh/sshd_config
+    sed -Ei 's/^PasswordAuthentication[[:blank:]]/#&/' /etc/ssh/sshd_config
+    echo -e '\n# Disable password logins by default\nPasswordAuthentication no' >> /etc/ssh/sshd_config
   # Users shouldn't be configuring `rpm-ostreed.conf`
   # https://github.com/coreos/fedora-coreos-tracker/issues/271
   - |
