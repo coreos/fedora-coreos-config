@@ -1,10 +1,10 @@
 = Access Recovery
 
-If you've lost the private key of an SSH keypair used to log into Fedora CoreOS, and do not have any password logins set up to use at the console, you can gain access back to the machine using the `init=/bin/sh` trick:
+If you've lost the private key of an SSH keypair used to log into Fedora CoreOS, and do not have any password logins set up to use at the console, you can gain access back to the machine by booting into single user mode with the `single` kernel command-line argument:
 
-. When booting the system, intercept the GRUB menu and edit the entry to append `init=/bin/sh` to the kernel argument list, then press Ctrl-X to resume booting.
-. Once the system has booted into a shell prompt, load the SELinux policy with `/sbin/load_policy -i`. If you miss this step before running `passwd`, you'll want to run `/sbin/restorecon -v /etc/{passwd,shadow}` before rebooting.
+. When booting the system, intercept the GRUB menu and edit the entry to append `single` to the kernel argument list, then press Ctrl-X to resume booting.
+. Wait for the system to boot into a shell prompt
 . Set or reset the password for the target user using the `passwd` utility.
-. And finally, reboot the system with `/sbin/reboot -f`.
+. Finally, reboot the system with `/sbin/reboot -f`.
 
 You should now be able to log back into the system at the console. From there, you can e.g. fetch a new public SSH key to add to `~/.ssh/authorized_keys` and delete the old one. You may also want to lock the password you've set (using `passwd -l`). Note that Fedora CoreOS by default does not allow SSH login via password authentication.
