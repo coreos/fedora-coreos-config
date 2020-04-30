@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
+# Generators don't have logging right now
+# https://github.com/systemd/systemd/issues/15638
+exec 1>/dev/kmsg; exec 2>&1
+
 UNIT_DIR="${1:-/tmp}"
 
 have_karg() {

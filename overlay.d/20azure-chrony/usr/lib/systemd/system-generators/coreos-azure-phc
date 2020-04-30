@@ -4,8 +4,8 @@ set -euo pipefail
 # and https://github.com/openshift/installer/pull/3513
 
 # Generators don't have logging right now
-exec 1>/dev/kmsg
-exec 2>&1
+# https://github.com/systemd/systemd/issues/15638
+exec 1>/dev/kmsg; exec 2>&1
 
 self=$(basename $0)
 
