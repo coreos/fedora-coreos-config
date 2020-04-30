@@ -1,0 +1,28 @@
+packages:
+  # crypto-policies without python dependencies
+  # We're pulling from f32 here as this is a brand new change
+  # and the maintainer is not comfortable sending it to F31 yet.
+  # https://src.fedoraproject.org/rpms/crypto-policies/pull-request/6#comment-35958
+  crypto-policies:
+    evra: 20191128-5.gitcd267a5.fc32.noarch
+  # Cherry-pick rpm-ostree git snapshot to resolve issues with /read-only
+  # sysroot. We can nuke this when we cut a new release.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/343
+  rpm-ostree:
+    evra: 2020.1.21.ge9011530-2.fc31.ppc64le
+  rpm-ostree-libs:
+    evra: 2020.1.21.ge9011530-2.fc31.ppc64le
+  # Hold back fedora-release-common rpm because of lua script
+  # https://github.com/coreos/fedora-coreos-tracker/issues/459
+  fedora-release-common:
+    evra: 31-2.noarch
+  fedora-release-coreos:
+    evra: 31-2.noarch
+  # Hold back moby engine. It has been bumped to 19.03 in stable.
+  # This is a major version bump we need to consider.
+  moby-engine:
+    evra: 18.09.8-2.ce.git0dd43dd.fc31.ppc64le
+  # Fast track new Ignition with more networking fixes
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-0a3fdd111c
+  ignition:
+    evra: 2.2.1-5.git2d3ff58.fc31.ppc64le
