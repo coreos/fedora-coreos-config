@@ -148,7 +148,7 @@
       "evra": "2.3.0-1.fc31.x86_64"
     },
     "cups-libs": {
-      "evra": "1:2.2.12-6.fc31.x86_64"
+      "evra": "1:2.2.12-8.fc31.x86_64"
     },
     "curl": {
       "evra": "7.66.0-1.fc31.x86_64"
@@ -241,10 +241,10 @@
       "evra": "31-3.noarch"
     },
     "fedora-release-common": {
-      "evra": "31-3.noarch"
+      "evra": "31-2.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "31-3.noarch"
+      "evra": "31-2.noarch"
     },
     "fedora-repos": {
       "evra": "31-3.noarch"
@@ -289,7 +289,7 @@
       "evra": "2.9.9-8.fc31.x86_64"
     },
     "fuse-overlayfs": {
-      "evra": "0.7.8-1.fc31.x86_64"
+      "evra": "1.0.0-1.fc31.x86_64"
     },
     "fuse-sshfs": {
       "evra": "3.7.0-3.fc31.x86_64"
@@ -370,7 +370,7 @@
       "evra": "3.20-9.fc31.x86_64"
     },
     "ignition": {
-      "evra": "2.2.1-3.git2d3ff58.fc31.x86_64"
+      "evra": "2.2.1-5.git2d3ff58.fc31.x86_64"
     },
     "iproute": {
       "evra": "5.4.0-1.fc31.x86_64"
@@ -427,13 +427,13 @@
       "evra": "2.0.4-14.fc31.noarch"
     },
     "kernel": {
-      "evra": "5.6.6-200.fc31.x86_64"
+      "evra": "5.6.7-200.fc31.x86_64"
     },
     "kernel-core": {
-      "evra": "5.6.6-200.fc31.x86_64"
+      "evra": "5.6.7-200.fc31.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.6.6-200.fc31.x86_64"
+      "evra": "5.6.7-200.fc31.x86_64"
     },
     "keyutils": {
       "evra": "1.6-3.fc31.x86_64"
@@ -697,7 +697,7 @@
       "evra": "0.20.1-3.fc31.x86_64"
     },
     "libtirpc": {
-      "evra": "1.2.5-1.rc2.fc31.x86_64"
+      "evra": "1.2.6-0.fc31.x86_64"
     },
     "libunistring": {
       "evra": "0.9.10-6.fc31.x86_64"
@@ -775,7 +775,7 @@
       "evra": "2:2.1-34.fc31.x86_64"
     },
     "moby-engine": {
-      "evra": "19.03.8-1.ce.gitafacb8b.fc31.x86_64"
+      "evra": "18.09.8-2.ce.git0dd43dd.fc31.x86_64"
     },
     "mokutil": {
       "evra": "1:0.3.0-14.fc31.x86_64"
@@ -1088,22 +1088,22 @@
     }
   },
   "metadata": {
-    "generated": "2020-04-27T16:08:24Z",
+    "generated": "2020-05-01T19:05:28Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2019-10-23T22:52:47Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2020-04-07T20:43:47Z"
+        "generated": "2020-04-30T13:19:01Z"
       },
       "fedora-modular": {
         "generated": "2019-10-23T22:53:13Z"
       },
       "fedora-updates": {
-        "generated": "2020-04-27T02:36:17Z"
+        "generated": "2020-05-01T03:30:03Z"
       },
       "fedora-updates-modular": {
-        "generated": "2020-04-25T05:28:19Z"
+        "generated": "2020-04-30T05:21:35Z"
       }
     }
   }
