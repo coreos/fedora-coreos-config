@@ -20,13 +20,3 @@ repos:
 
 add-commit-metadata:
   fedora-coreos.stream: next
-
-postprocess:
-  # Disable Zincati and fedora-coreos-pinger on non-production streams
-  # https://github.com/coreos/fedora-coreos-tracker/issues/163
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    mkdir -p /etc/fedora-coreos-pinger/config.d /etc/zincati/config.d
-    echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/90-disable-on-non-production-stream.toml
-    echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nupdates.enabled = false' > /etc/zincati/config.d/90-disable-on-non-production-stream.toml
