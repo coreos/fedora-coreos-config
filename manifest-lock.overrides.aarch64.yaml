@@ -39,3 +39,12 @@ packages:
     evra: 0.2.0-1.fc32.aarch64
   coreos-installer-systemd:
     evra: 0.2.0-1.fc32.aarch64
+  # Fast track new afterburn to have latest released changes, including
+  # vmware support, present in upcoming FCOS release. Note: use fc32
+  # builds rather than fc31 to mitigate rust toolchain issue in Fedora
+  # 31 (https://pagure.io/fedora-rust/sig/issue/12).
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-abdcced19a
+  afterburn:
+    evra: 4.3.3-1.fc32.aarch64
+  afterburn-dracut:
+    evra: 4.3.3-1.fc32.aarch64
