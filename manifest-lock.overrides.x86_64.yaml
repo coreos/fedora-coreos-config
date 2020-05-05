@@ -28,3 +28,10 @@ packages:
     evra: 0.2.0-1.fc32.x86_64
   coreos-installer-systemd:
     evra: 0.2.0-1.fc32.x86_64
+  # Fast track new afterburn to have latest released changes, including
+  # vmware support, present in upcoming FCOS release.
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-abdcced19a
+  afterburn:
+    evra: 4.3.3-1.fc32.x86_64
+  afterburn-dracut:
+    evra: 4.3.3-1.fc32.x86_64
