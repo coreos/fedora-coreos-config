@@ -30,3 +30,12 @@ packages:
   # https://src.fedoraproject.org/rpms/container-selinux/pull-request/3
   container-selinux:
     evra: 2:2.124.0-3.fc31.noarch
+  # Fast track new coreos-installer to have latest released changes
+  # present in upcoming FCOS release. Note: use fc32 builds rather
+  # than fc31 to mitigate rust toolchain issue in Fedora 31
+  # (https://pagure.io/fedora-rust/sig/issue/12).
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-abdcced19a
+  coreos-installer:
+    evra: 0.2.0-1.fc32.x86_64
+  coreos-installer-systemd:
+    evra: 0.2.0-1.fc32.x86_64
