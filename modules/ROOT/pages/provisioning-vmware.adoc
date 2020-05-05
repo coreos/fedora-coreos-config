@@ -2,13 +2,14 @@
 
 This guide shows how to provision new Fedora CoreOS (FCOS) nodes on the VMware hypervisor.
 
-== Prerequisite
+== Prerequisites
 
 Before provisioning a FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-You also need to have access to a working VMware infrastructure.
+You also need to have access to a working VMware infrastructure, with DHCP-based networking and supporting VMs with at least hardware version 13.
+The examples below use the https://github.com/vmware/govmomi/blob/v0.22.2/govc/README.md[govc] command-line tool.
 
-== Downloading the OVA
+=== Downloading the OVA
 
 Fedora CoreOS is designed to be updated automatically, with different schedules per stream.
 Once you have picked the relevant stream, you can download the latest OVA:
@@ -37,7 +38,7 @@ export CONFIG_B64=`cat example.ign | base64 -w0 -`
 
 == Booting a new VM on vSphere
 
-This section shows how to use vSphere facilities to configure and run VMs, via the https://github.com/vmware/govmomi/blob/v0.22.2/govc/README.md[govc utility].
+This section shows how to use vSphere facilities to configure and run VMs from the command-line. Similar steps can be performed via the graphical UI too.
 
 === Importing the OVA
 
@@ -46,7 +47,7 @@ The downloaded OVA has to be first imported into vSphere library:
 [source, bash]
 ----
 export FCOS_OVA='./ova-templates/fedora-coreos-31.20200210.3.0-vmware.x86_64.ova'
-export LIBRARY='fcos-stable'
+export LIBRARY='fcos-images'
 export TEMPLATE_NAME='fcos-31.20200210.3.0'
 govc session.login -u 'user:password@host'
 govc library.create "${LIBRARY}"
@@ -59,13 +60,13 @@ You can now deploy a new VM, starting from the template in the library and the e
 
 [source, bash]
 ----
-export VM_NAME='fcos-stable-node01'
+export VM_NAME='fcos-node01'
 govc library.deploy "${LIBRARY}/${TEMPLATE_NAME}" "${VM_NAME}"
 govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data.encoding=base64"
 govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data=${CONFIG_B64}"
 ----
 
-A new `fcos-stable-node01` VM is now available for booting. Its hardware configuration can be further customized at this point, and then powered-up:
+A new `fcos-node01` VM is now available for booting. Its hardware configuration can be further customized at this point, and then powered-up:
 
 [source, bash]
 ----
