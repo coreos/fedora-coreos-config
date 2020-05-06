@@ -32,6 +32,18 @@ ExecStart=-/sbin/agetty --autologin core -o '-p -f core' ${args} %I \$TERM
 EOF
 }
 
+# We can remove this when we fix https://github.com/coreos/fedora-coreos-tracker/issues/220
+silence_audit_on_console() {
+    mkdir -p /run/sysctl.d
+    cat <<'EOF' > /etc/sysctl.d/20-coreos-autologin-kernel-printk.conf
+# Raise console message logging level from DEBUG (7) to WARNING (4)
+# so that audit messages don't get interspersed on the console that
+# may frustrate a user trying to interactively do an install with
+# nmtui and coreos-installer.
+kernel.printk=4
+EOF
+}
+
 # Only allow automatic autologin on live systems
 if [ ! -e /run/ostree-live ]; then
     exit 0
@@ -53,3 +65,6 @@ fi
 write_dropin "getty@.service"        "--noclear"
 # Also autologin on serial console if someone enables that
 write_dropin "serial-getty@.service" "--keep-baud 115200,38400,9600"
+
+# We can remove this when we fix https://github.com/coreos/fedora-coreos-tracker/issues/220
+silence_audit_on_console

@@ -119,14 +119,42 @@ Before=ignition-mount.service
 EOF
 }
 
-common_etcvar_unit > "${UNIT_DIR}/sysroot-etc.mount"
-cat >>"${UNIT_DIR}/sysroot-etc.mount" <<EOF
+supports_squashfs_overlayfs=1
+case "$(uname -r)" in
+    4.18.*) supports_squashfs_overlayfs=0
+esac
+
+if [ "${supports_squashfs_overlayfs}" = 1 ]; then
+    common_etcvar_unit > "${UNIT_DIR}/sysroot-etc.mount"
+    cat >>"${UNIT_DIR}/sysroot-etc.mount" <<EOF
 [Mount]
 What=overlay
 Where=/sysroot/etc
 Type=overlay
 Options=lowerdir=/sysroot/etc,upperdir=/writable/etc/upper,workdir=/writable/etc/work,redirect_dir=on,index=on,xino=on
 EOF
+else
+    # RHEL8 can't do overlayfs on squashfs, so we just copy
+    # /etc fully into RAM.  It's not a large amount of data.
+    common_etcvar_unit > "${UNIT_DIR}/sysroot-etc-copy.service"
+    cat >>"${UNIT_DIR}/sysroot-etc-copy.service" <<EOF
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/cp -a /sysroot/etc /writable/etc-copy
+EOF
+
+    common_etcvar_unit > "${UNIT_DIR}/sysroot-etc.mount"
+cat >>"${UNIT_DIR}/sysroot-etc.mount" <<EOF
+After=sysroot-etc-copy.service
+Requires=sysroot-etc-copy.service
+[Mount]
+What=/writable/etc-copy
+Where=/sysroot/etc
+Type=none
+Options=bind
+EOF
+fi
 
 common_etcvar_unit >"${UNIT_DIR}/sysroot-var.mount"
 cat >>"${UNIT_DIR}/sysroot-var.mount" <<EOF
