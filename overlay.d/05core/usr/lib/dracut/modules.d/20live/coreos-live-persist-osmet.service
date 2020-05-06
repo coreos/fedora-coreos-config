@@ -1,0 +1,10 @@
+[Unit]
+Description=Persist osmet files
+DefaultDependencies=false
+ConditionPathExists=/run/ostree-live
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/mkdir -p /run/coreos-installer/osmet
+ExecStart=/usr/bin/sh -c "if ls /*.osmet &>/dev/null; then cp /*.osmet /run/coreos-installer/osmet; fi"

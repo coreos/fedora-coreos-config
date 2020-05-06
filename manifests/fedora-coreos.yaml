@@ -44,14 +44,17 @@ postprocess:
       echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/95-disable-on-dev.toml
       echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nupdates.enabled = false' > /etc/zincati/config.d/95-disable-on-dev.toml
     fi
-  # Disable SSH password logins by default
-  # Move to overlay once sshd_config fragments are supported
+  # Disable SSH password logins by default on Fedora 31
+  # On newer Fedora we handle this via sshd_config.d
   # https://github.com/coreos/fedora-coreos-tracker/issues/138
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
-    sed -Ei 's/^(PasswordAuthentication|PermitRootLogin)[[:blank:]]/#&/' /etc/ssh/sshd_config
-    echo -e '\n# Disable password logins by default\nPasswordAuthentication no\nPermitRootLogin prohibit-password' >> /etc/ssh/sshd_config
+    . /etc/os-release
+    if [ "${VERSION_ID}" = 31 ]; then
+      sed -Ei 's/^PasswordAuthentication[[:blank:]]/#&/' /etc/ssh/sshd_config
+      echo -e '\n# Disable password logins by default\nPasswordAuthentication no' >> /etc/ssh/sshd_config
+    fi
   # Users shouldn't be configuring `rpm-ostreed.conf`
   # https://github.com/coreos/fedora-coreos-tracker/issues/271
   - |
@@ -89,3 +92,9 @@ exclude-packages:
   # Let's make sure initscripts doesn't get pulled back in
   # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
   - initscripts
+
+# And remove some cruft from grub2
+arch-include:
+  x86_64: grub2-removals.yaml
+  aarch64: grub2-removals.yaml
+  ppc64le: grub2-removals.yaml
