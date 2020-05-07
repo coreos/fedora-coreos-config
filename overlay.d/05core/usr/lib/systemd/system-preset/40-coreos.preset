@@ -15,3 +15,6 @@ enable afterburn-sshkeys@.service
 enable zincati.service
 # Testing aid
 enable coreos-liveiso-success.service
+# Enable multipathd
+enable multipathd-configure.service
+enable multipathd.service
