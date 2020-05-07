@@ -12,5 +12,5 @@ install() {
     # Only run this when ignition runs and only when the system
     # has disks. ignition-diskful.target should suffice.
     install_and_enable_unit "coreos-copy-firstboot-network.service" \
-        "ignition-diskful.target"
+        "ignition-prepare.target"
 }
