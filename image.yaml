@@ -8,7 +8,7 @@ extra-kargs:
     # https://github.com/coreos/fedora-coreos-tracker/issues/292
     # https://fedoraproject.org/wiki/Changes/CGroupsV2
     - systemd.unified_cgroup_hierarchy=0
-
+    - rd.multipath=default
 
 # Optional remote by which to prefix the deployed OSTree ref
 ostree-remote: fedora

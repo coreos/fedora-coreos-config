@@ -64,7 +64,7 @@ install() {
     inst_script "$moddir/ignition-ostree-mount-sysroot.sh" \
         "/usr/sbin/ignition-ostree-mount-sysroot"
 
-    install_ignition_unit ignition-ostree-growfs.service
+    install_ignition_unit ignition-ostree-growfs.service ignition-prepare.target
     inst_script "$moddir/coreos-growpart" /usr/libexec/coreos-growpart
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel

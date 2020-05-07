@@ -14,6 +14,7 @@ Conflicts=ignition-ostree-mount-firstboot-sysroot.service
 # the root device to be ready.
 Requires=dev-disk-by\x2dlabel-root.device
 After=dev-disk-by\x2dlabel-root.device
+After=ignition-diskful-udev.service
 Before=initrd-root-fs.target
 # This has an explicit dependency on After=sysroot.mount today
 Before=ostree-prepare-root.service
