@@ -6,10 +6,10 @@ packages:
     evra: 2020.1.21.ge9011530-2.fc32.x86_64
   rpm-ostree-libs:
     evra: 2020.1.21.ge9011530-2.fc32.x86_64
-  # Fast track new Ignition with more networking fixes
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-0a3fdd111c
+  # Fast track new Ignition with spec 3.1.0
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-5c09bf50d4
   ignition:
-    evra: 2.2.1-5.git2d3ff58.fc32.x86_64
+    evra: 2.3.0-1.gitee616d5.fc32.x86_64
   # Fast-track zincati but also we want it here because there's no zincati in
   # the f32 repos right now
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-722047b7e5
