@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 image="docker.io/antora/antora"
 cmd="--html-url-extension-style=indexify site.yml"
