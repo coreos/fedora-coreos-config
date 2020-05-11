@@ -16,7 +16,7 @@ Once you have picked the relevant stream, you can download the latest OVA:
 
 [source, bash]
 ----
-export STREAM="stable"
+STREAM="stable"
 mkdir ova-templates
 coreos-installer download -s "${STREAM}" -p vmware -f ova -C ./ova-templates/
 ----
@@ -33,7 +33,7 @@ For the `vmware` provider, Ignition requires two "guestinfo" fields to be presen
 For maximum compatibility, it is recommended to use `base64` encoding and to prepare the Ignition configuration as such:
 [source, bash]
 ----
-export CONFIG_B64=`cat example.ign | base64 -w0 -`
+CONFIG_B64=`cat example.ign | base64 -w0 -`
 ----
 
 == Booting a new VM on vSphere
@@ -46,9 +46,9 @@ The downloaded OVA has to be first imported into vSphere library:
 
 [source, bash]
 ----
-export FCOS_OVA='./ova-templates/fedora-coreos-31.20200210.3.0-vmware.x86_64.ova'
-export LIBRARY='fcos-images'
-export TEMPLATE_NAME='fcos-31.20200210.3.0'
+FCOS_OVA='./ova-templates/fedora-coreos-31.20200210.3.0-vmware.x86_64.ova'
+LIBRARY='fcos-images'
+TEMPLATE_NAME='fcos-31.20200210.3.0'
 govc session.login -u 'user:password@host'
 govc library.create "${LIBRARY}"
 govc library.import -n "${TEMPLATE_NAME}" "${LIBRARY}" "${FCOS_OVA}"
@@ -60,7 +60,7 @@ You can now deploy a new VM, starting from the template in the library and the e
 
 [source, bash]
 ----
-export VM_NAME='fcos-node01'
+VM_NAME='fcos-node01'
 govc library.deploy "${LIBRARY}/${TEMPLATE_NAME}" "${VM_NAME}"
 govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data.encoding=base64"
 govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data=${CONFIG_B64}"
