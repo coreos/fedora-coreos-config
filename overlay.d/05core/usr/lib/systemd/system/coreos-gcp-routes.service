@@ -1,5 +1,12 @@
+# NOTE:
+# This functionality should eventually be moved into nm-cloud-setup, see:
+# https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/407
+
 [Unit]
 Description=Update GCP routes for forwarded IPs.
+Documentation=https://github.com/coreos/fedora-coreos-config
+# The gce platform identifier is legacy
+# and will likely be removed in the future 
 ConditionKernelCommandLine=|ignition.platform.id=gce
 ConditionKernelCommandLine=|ignition.platform.id=gcp
 After=network.target

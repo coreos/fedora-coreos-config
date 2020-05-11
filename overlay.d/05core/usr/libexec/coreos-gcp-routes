@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Update iptables rules based on google cloud load balancer VIPS
 #
@@ -17,7 +18,9 @@
 #
 # ~cdc~
 
-set -e
+# NOTE: 
+# This functionality should eventually be moved into nm-cloud-setup, see:
+# https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/407
 
 # the list of load balancer IPs that are assigned to this node
 # keys = values, for easy searching
