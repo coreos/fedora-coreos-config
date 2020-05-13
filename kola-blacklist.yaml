@@ -1,3 +1,8 @@
 # This file documents currently known-to-fail kola tests. It is consumed by
 # coreos-assembler to automatically blacklist some tests. For more information,
 # see: https://github.com/coreos/coreos-assembler/pull/866.
+
+# ignore coreos.ignition.journald-log since ignition-2.3.0-1.gitee616d5.fc31
+# hasn't made it to this stream yet
+- pattern: coreos.ignition.journald-log
+  tracker: none
