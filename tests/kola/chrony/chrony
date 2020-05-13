@@ -7,6 +7,7 @@ cd $(mktemp -d)
 platform="$(grep -Eo ' ignition.platform.id=[a-z]+' /proc/cmdline | cut -f 2 -d =)"
 case "${platform}" in
     aws) chronyc sources |grep '169.254.169.123'; echo "ok chrony aws" ;;
-    azure) chronyc sources |grep 'refclock PHC /dev/ptp0'; echo "ok chrony azure" ;;
+    azure) chronyc sources |grep 'PHC0'; echo "ok chrony azure" ;;
+    gcp) chronyc sources | grep metadata.google.internal; echo "ok chrony gcp" ;;
     *) echo "unhandled platform ${platform} ?"; exit 1 ;;
 esac
