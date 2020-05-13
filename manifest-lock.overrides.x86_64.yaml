@@ -48,3 +48,14 @@ packages:
     evra: 4.3.3-1.fc32.x86_64
   afterburn-dracut:
     evra: 4.3.3-1.fc32.x86_64
+  # Bug fix for podman (includes conmon and containernetworking-plugins)
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-bebbeaab8b
+  # https://github.com/coreos/fedora-coreos-tracker/issues/479
+  podman:
+    evra: 2:1.9.2-1.fc31.x86_64
+  podman-plugins:
+    evra: 2:1.9.2-1.fc31.x86_64
+  conmon:
+    evra: 2:2.0.16-2.fc31.x86_64
+  containernetworking-plugins:
+    evra: 0.8.6-1.fc31.x86_64
