@@ -111,7 +111,7 @@ packages:
   # SSH
   - openssh-server openssh-clients
   # Containers
-  - podman skopeo runc systemd-container
+  - podman skopeo runc systemd-container catatonit
   - fuse-overlayfs slirp4netns
   # Remote IPC for podman
   - libvarlink-util
