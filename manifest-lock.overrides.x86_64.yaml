@@ -1,11 +1,11 @@
 packages:
-  # Cherry-pick rpm-ostree git snapshot to resolve issues with /read-only
-  # sysroot. We can nuke this when we cut a new release.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/343
+  # Fast-track new release for:
+  # https://github.com/coreos/fedora-coreos-tracker/issues/481
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-e5dac04be2
   rpm-ostree:
-    evra: 2020.1.21.ge9011530-2.fc32.x86_64
+    evra: 2020.2-3.fc32.x86_64
   rpm-ostree-libs:
-    evra: 2020.1.21.ge9011530-2.fc32.x86_64
+    evra: 2020.2-3.fc32.x86_64
   # Fast track new Ignition with spec 3.1.0
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-5c09bf50d4
   ignition:
