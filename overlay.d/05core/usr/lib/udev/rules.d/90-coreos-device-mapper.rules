@@ -1,0 +1,20 @@
+ACTION=="remove", GOTO="dm_label_end"
+SUBSYSTEM!="block", GOTO="dm_label_end"
+KERNEL!="dm-*", GOTO="dm_label_end"
+
+# Ensure that the device mapper target is active
+ENV{DM_ACTIVATION}!="1", GOTO="dm_label_end"
+
+# Unless we have a label, skip
+ENV{ID_FS_LABEL_ENC}!="?*", GOTO="dm_label_end"
+
+# Only act on filesystems
+ENV{ID_FS_USAGE}!="filesystem", GOTO="dm_label_end"
+
+ENV{DM_MPATH}=="?*", \
+    ENV{DM_SUSPENDED}=="Active"
+    SYMLINK+="disk/by-label/dm-mpath-$env{ID_FS_LABEL_ENC}",
+    SYMLINK+="disk/by-uuid/dm-mpath-$env{ID_FS_UUID_ENC}"
+
+LABEL="dm_label_end"
+
