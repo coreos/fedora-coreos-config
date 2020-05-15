@@ -22,6 +22,17 @@ This part is separate from 05core to aid RHCOS, which still uses Ignition spec 2
 
 Disables the Red Hat Linux legacy `ifcfg` format.
 
+21dhcp-chrony
+-------------
+
+Handle DHCP-provided NTP servers and configure chrony to use them,
+without overwriting platform-specific configuration. Can be removed
+once changes in upstream chrony with support for per-platform
+defaults (https://bugzilla.redhat.com/show_bug.cgi?id=1828434),
+and handling in 20-chrony and chrony-helper using the defaults
+lands in downstream packages. See upstream thread:
+https://listengine.tuxfamily.org/chrony.tuxfamily.org/chrony-dev/2020/05/msg00022.html
+
 15fcos
 ------
 

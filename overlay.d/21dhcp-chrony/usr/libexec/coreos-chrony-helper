@@ -1,0 +1,102 @@
+#!/bin/bash
+#
+# This is a copy of /usr/libexec/chrony-helper carried in FCOS/RHCOS
+# temporarily while upstream changes and the package update to
+# chrony-helper percolate (see
+# https://src.fedoraproject.org/rpms/chrony/pull-request/3). It should
+# not by used by any script other than the 20-coreos-chrony-dhcp NM
+# dispatcher script.
+#
+# This script configures running chronyd to use NTP servers obtained from
+# DHCP and _ntp._udp DNS SRV records. Files with servers from DHCP are managed
+# externally (e.g. by a dhclient script). Files with servers from DNS SRV
+# records are updated here using the dig utility. The script can also list
+# and set static sources in the chronyd configuration file.
+
+chronyc=/usr/bin/chronyc
+helper_dir=/var/run/coreos-chrony-helper
+server_dir=/var/run/coreos-chrony-dhcp
+
+network_sysconfig_file=/etc/sysconfig/network
+dhcp_servers_files="${server_dir}/chrony.servers.*"
+added_servers_file=$helper_dir/added_servers
+
+. $network_sysconfig_file &> /dev/null
+
+chrony_command() {
+    $chronyc -a -n -m "$1"
+}
+
+is_running() {
+    chrony_command "tracking" &> /dev/null
+}
+
+get_servers_files() {
+    [ "$PEERNTP" != "no" ] && echo "$dhcp_servers_files"
+}
+
+is_update_needed() {
+    for file in $(get_servers_files) $added_servers_file; do
+        [ -e "$file" ] && return 0
+    done
+    return 1
+}
+
+update_daemon() {
+    local all_servers_with_args all_servers added_servers
+
+    if ! is_running; then
+        rm -f $added_servers_file
+        return 0
+    fi
+
+    all_servers_with_args=$(cat $(get_servers_files) 2> /dev/null)
+
+    all_servers=$(
+        echo "$all_servers_with_args" |
+            while read -r server serverargs; do
+                echo "$server"
+            done | sort -u)
+    added_servers=$( (
+        cat $added_servers_file 2> /dev/null
+        echo "$all_servers_with_args" |
+            while read -r server serverargs; do
+                [ -z "$server" ] && continue
+                chrony_command "add server $server $serverargs" &> /dev/null &&
+                    echo "$server"
+            done) | sort -u)
+
+    comm -23 <(echo -n "$added_servers") <(echo -n "$all_servers") |
+        while read -r server; do
+            chrony_command "delete $server" &> /dev/null
+        done
+
+    added_servers=$(comm -12 <(echo -n "$added_servers") <(echo -n "$all_servers"))
+
+    if [ -n "$added_servers" ]; then
+        echo "$added_servers" > $added_servers_file
+    else
+        rm -f $added_servers_file
+    fi
+}
+
+prepare_helper_dir() {
+    mkdir -p $helper_dir
+    exec 100> $helper_dir/lock
+    if ! flock -w 20 100; then
+        echo "Failed to lock $helper_dir" >&2
+        return 1
+    fi
+}
+
+case "$1" in
+    update-daemon)
+        is_update_needed || exit 0
+        prepare_helper_dir && update_daemon
+        ;;
+    *)
+        echo "unhandled command in coreos-chrony-helper"
+        exit 2
+esac
+
+exit $?
