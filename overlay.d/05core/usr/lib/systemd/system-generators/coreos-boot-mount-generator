@@ -33,10 +33,11 @@ fi
 # device that systemd will fsck. This code ensures that if the label
 # is backed by a device-mapper target the dev-mapper.*.device is used.
 mk_mount() {
-    local unit_name="${1}.mount"; shift
+    local mount_pt=${1}; shift
     local label="${1}"; shift
-    local mount_pt="${1:-/$label}"
+    local conditions="${1:-}"
     local path="/dev/disk/by-label/${label}"
+    local unit_name=$(systemd-escape -p ${mount_pt} --suffix=mount)
 
     eval $(udevadm info --query property --export "${path}")
     device="$(systemd-escape ${path})"
@@ -45,21 +46,22 @@ mk_mount() {
         device="$(systemd-escape dev/mapper/${DM_NAME})"
     fi
     device="${device//-dev/dev}"
-    echo "coreos-boot-mount-generator: using ${device} for ${label} mount to ${mount_pt}"
+    echo "coreos-boot-mount-generator: using ${device} for ${label} mount ${unit_name}"
 
     cat > "${UNIT_DIR}/${unit_name}" <<EOF
 # Automatically created by coreos-boot-mount-generator
 [Unit]
-Description=CoreOS Dynamic Mount for ${mount_pt}
+Description=CoreOS Dynamic Mount for ${path}
 Documentation=https://github.com/coreos/fedora-coreos-config
 
 Before=local-fs.target
 Requires=systemd-fsck@${device}.service
 After=systemd-fsck@${device}.service
+${conditions}
 
 [Mount]
 What=${path}
-Where=${mount_pt}
+Where=/${mount_pt}
 EOF
 
     add_wants "${unit_name}"
@@ -72,10 +74,14 @@ EOF
 if [ ! -f /run/ostree-live ]; then
     mk_mount boot boot
 
-    # Only mount the EFI System Partition on machines where it exists,
-    # which are 1) machines actually booted through EFI, and 2) x86_64
-    # when booted through BIOS.
+    # Only mount the EFI System Partition on machines where it exists.
+    # First, machines actually booted through EFI (including aarch64) mount it.
+    # We still generate the mount on x86_64 even when booted through BIOS
+    # for consistency.  Except AWS/EC2 because it's actively hostile
+    # to the presence of the partition, because their high level VM import/export
+    # APIs want to do things like convert UEFI to BIOS and don't understand our 
+    # "dual" setup.  See https://github.com/openshift/os/pull/396
     if [ "$(uname -m)" = "x86_64" -o -d /sys/firmware/efi ]; then
-        mk_mount boot-efi EFI-SYSTEM "/boot/efi"
+        mk_mount boot/efi EFI-SYSTEM "ConditionKernelCommandLine=!ignition.platform.id=aws"
     fi
 fi
