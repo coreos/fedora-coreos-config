@@ -14,7 +14,7 @@ cosaPod {
         cosa buildprep https://builds.coreos.fedoraproject.org/prod/streams/${env.CHANGE_TARGET}/builds
     """)
 
-    fcosBuild(skipInit: true)
+    fcosBuild(skipInit: true, extraFetchArgs: '--with-cosa-overrides')
 
     // also print the pkgdiff as a separate stage to make it more visible
     stage("RPM Diff") {
