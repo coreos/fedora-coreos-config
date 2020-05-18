@@ -77,13 +77,20 @@ postprocess:
     for x in /etc/yum.repos.d/*modular.repo; do
       sed -i -e 's,enabled=[01],enabled=0,' ${x}
     done
-  # Read the Ignition 2 and Afterburn SSH key fragments, pending better tooling
+  # Disable the default-enabled AuthorizedKeysFile directive so we can
+  # override it in a config fragment
   # https://github.com/coreos/fedora-coreos-tracker/issues/139
+  # https://bugzilla.redhat.com/1824913
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
     sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
-    echo -e '\n# Read authorized_keys fragments written by Ignition and Afterburn\nAuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys.d/ignition .ssh/authorized_keys.d/afterburn' >> /etc/ssh/sshd_config
+    . /etc/os-release
+    if [ "${VERSION_ID}" = 31 ]; then
+      # Fedora 31 doesn't read the config fragment, so we need to do this
+      # here.
+      echo -e '\n# Read authorized_keys fragments written by Ignition and Afterburn\nAuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys.d/ignition .ssh/authorized_keys.d/afterburn' >> /etc/ssh/sshd_config
+    fi
 
   # Enable SELinux booleans used by OpenShift
   # https://github.com/coreos/fedora-coreos-tracker/issues/284

@@ -28,6 +28,9 @@ install() {
     install_and_enable_unit "coreos-live-clear-sssd-cache.service" \
         "ignition-complete.target"
 
+    install_and_enable_unit "coreos-live-persist-osmet.service" \
+        "default.target"
+
     inst_simple "$moddir/writable.mount" \
         "$systemdsystemunitdir/writable.mount"
 

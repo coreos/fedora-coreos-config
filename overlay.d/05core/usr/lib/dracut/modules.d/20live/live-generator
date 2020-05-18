@@ -2,6 +2,10 @@
 # -*- mode: shell-script; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
 # ex: ts=8 sw=4 sts=4 et filetype=sh
 
+# Generators don't have logging right now
+# https://github.com/systemd/systemd/issues/15638
+exec 1>/dev/kmsg; exec 2>&1
+
 command -v getarg >/dev/null || . /usr/lib/dracut-lib.sh
 
 set -e
