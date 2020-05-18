@@ -11,6 +11,9 @@ ConditionDirectoryNotEmpty=/etc/pki/ca-trust/source/anchors/
 # that may speak TLS to external services.  In the future,
 # it may make sense to do this in the initramfs too.
 DefaultDependencies=no
+# This ensures we run after important bits like ostree-prepare-root.service
+After=sysinit.target
+Requires=sysinit.target
 
 [Service]
 ExecStart=/usr/bin/update-ca-trust extract
