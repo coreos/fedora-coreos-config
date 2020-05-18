@@ -19,10 +19,10 @@
       "evra": "0.9.0-1.fc32.x86_64"
     },
     "afterburn": {
-      "evra": "4.3.2-1.fc32.x86_64"
+      "evra": "4.3.3-1.fc32.x86_64"
     },
     "afterburn-dracut": {
-      "evra": "4.3.2-1.fc32.x86_64"
+      "evra": "4.3.3-1.fc32.x86_64"
     },
     "alternatives": {
       "evra": "1.11-6.fc32.x86_64"
@@ -70,10 +70,13 @@
       "evra": "1.0.8-2.fc32.x86_64"
     },
     "c-ares": {
-      "evra": "1.16.0-1.module_f32+8330+e40f9292.x86_64"
+      "evra": "1.16.0-1.module_f32+8723+aeaf79ed.x86_64"
     },
     "ca-certificates": {
       "evra": "2020.2.40-3.fc32.noarch"
+    },
+    "catatonit": {
+      "evra": "0.1.5-2.fc32.x86_64"
     },
     "chrony": {
       "evra": "3.5-8.fc32.x86_64"
@@ -88,19 +91,19 @@
       "evra": "5.2-36.fc32.x86_64"
     },
     "conmon": {
-      "evra": "2:2.0.15-1.fc32.x86_64"
+      "evra": "2:2.0.16-2.fc32.x86_64"
     },
     "console-login-helper-messages": {
-      "evra": "0.17-2.fc32.noarch"
+      "evra": "0.18.1-1.fc32.noarch"
     },
     "console-login-helper-messages-issuegen": {
-      "evra": "0.17-2.fc32.noarch"
+      "evra": "0.18.1-1.fc32.noarch"
     },
     "console-login-helper-messages-motdgen": {
-      "evra": "0.17-2.fc32.noarch"
+      "evra": "0.18.1-1.fc32.noarch"
     },
     "console-login-helper-messages-profile": {
-      "evra": "0.17-2.fc32.noarch"
+      "evra": "0.18.1-1.fc32.noarch"
     },
     "container-selinux": {
       "evra": "2:2.132.0-1.fc32.noarch"
@@ -109,16 +112,16 @@
       "evra": "1.3.3-1.fc32.x86_64"
     },
     "containernetworking-plugins": {
-      "evra": "0.8.5-1.1.gitf5c3d1b.fc32.x86_64"
+      "evra": "0.8.6-1.fc32.x86_64"
     },
     "containers-common": {
       "evra": "1:0.2.0-1.fc32.x86_64"
     },
     "coreos-installer": {
-      "evra": "0.1.3-1.fc31.x86_64"
+      "evra": "0.2.0-1.fc32.x86_64"
     },
     "coreos-installer-systemd": {
-      "evra": "0.1.3-1.fc31.x86_64"
+      "evra": "0.2.0-1.fc32.x86_64"
     },
     "coreutils": {
       "evra": "8.32-4.fc32.1.x86_64"
@@ -160,7 +163,7 @@
       "evra": "1:1.12.16-4.fc32.x86_64"
     },
     "dbus-broker": {
-      "evra": "22-1.fc32.x86_64"
+      "evra": "23-2.fc32.x86_64"
     },
     "dbus-common": {
       "evra": "1:1.12.16-4.fc32.noarch"
@@ -319,34 +322,34 @@
       "evra": "1:6.1.2-13.fc32.x86_64"
     },
     "gnupg2": {
-      "evra": "2.2.19-1.fc32.x86_64"
+      "evra": "2.2.20-2.fc32.x86_64"
     },
     "gnutls": {
-      "evra": "3.6.13-1.fc32.x86_64"
+      "evra": "3.6.13-2.fc32.x86_64"
     },
     "gpgme": {
-      "evra": "1.13.1-6.fc32.x86_64"
+      "evra": "1.13.1-7.fc32.x86_64"
     },
     "grep": {
       "evra": "3.3-4.fc32.x86_64"
     },
     "grub2-common": {
-      "evra": "1:2.04-15.fc32.noarch"
+      "evra": "1:2.04-16.fc32.noarch"
     },
     "grub2-efi-x64": {
-      "evra": "1:2.04-15.fc32.x86_64"
+      "evra": "1:2.04-16.fc32.x86_64"
     },
     "grub2-pc": {
-      "evra": "1:2.04-15.fc32.x86_64"
+      "evra": "1:2.04-16.fc32.x86_64"
     },
     "grub2-pc-modules": {
-      "evra": "1:2.04-15.fc32.noarch"
+      "evra": "1:2.04-16.fc32.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.04-15.fc32.x86_64"
+      "evra": "1:2.04-16.fc32.x86_64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.04-15.fc32.x86_64"
+      "evra": "1:2.04-16.fc32.x86_64"
     },
     "gzip": {
       "evra": "1.10-2.fc32.x86_64"
@@ -355,7 +358,7 @@
       "evra": "3.23-2.fc32.x86_64"
     },
     "ignition": {
-      "evra": "2.2.1-5.git2d3ff58.fc32.x86_64"
+      "evra": "2.3.0-1.gitee616d5.fc32.x86_64"
     },
     "iproute": {
       "evra": "5.5.0-1.fc32.x86_64"
@@ -397,7 +400,7 @@
       "evra": "1.6-4.fc32.x86_64"
     },
     "json-c": {
-      "evra": "0.13.1-11.fc32.x86_64"
+      "evra": "0.13.1-12.fc32.x86_64"
     },
     "json-glib": {
       "evra": "1.4.4-4.fc32.x86_64"
@@ -412,13 +415,13 @@
       "evra": "2.2.0-1.fc32.noarch"
     },
     "kernel": {
-      "evra": "5.6.8-300.fc32.x86_64"
+      "evra": "5.6.12-300.fc32.x86_64"
     },
     "kernel-core": {
-      "evra": "5.6.8-300.fc32.x86_64"
+      "evra": "5.6.12-300.fc32.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.6.8-300.fc32.x86_64"
+      "evra": "5.6.12-300.fc32.x86_64"
     },
     "keyutils": {
       "evra": "1.6-4.fc32.x86_64"
@@ -517,13 +520,13 @@
       "evra": "1.3.1-2.fc32.x86_64"
     },
     "libgcc": {
-      "evra": "10.0.1-0.13.fc32.x86_64"
+      "evra": "10.1.1-1.fc32.x86_64"
     },
     "libgcrypt": {
       "evra": "1.8.5-3.fc32.x86_64"
     },
     "libgomp": {
-      "evra": "10.0.1-0.13.fc32.x86_64"
+      "evra": "10.1.1-1.fc32.x86_64"
     },
     "libgpg-error": {
       "evra": "1.36-3.fc32.x86_64"
@@ -553,7 +556,7 @@
       "evra": "2.1.2-1.fc32.x86_64"
     },
     "libmaxminddb": {
-      "evra": "1.3.2-2.fc32.x86_64"
+      "evra": "1.4.2-1.fc32.x86_64"
     },
     "libmetalink": {
       "evra": "0.1.3-10.fc32.x86_64"
@@ -583,7 +586,7 @@
       "evra": "1.1.5-2.fc32.x86_64"
     },
     "libnghttp2": {
-      "evra": "1.40.0-2.module_f32+8199+88b63a05.x86_64"
+      "evra": "1.40.0-2.module_f32+8723+aeaf79ed.x86_64"
     },
     "libnl3": {
       "evra": "3.5.0-2.fc32.x86_64"
@@ -616,7 +619,7 @@
       "evra": "1.11.3-1.fc32.x86_64"
     },
     "libreport-filesystem": {
-      "evra": "2.12.0-3.fc32.noarch"
+      "evra": "2.13.1-4.fc32.noarch"
     },
     "libseccomp": {
       "evra": "2.4.2-3.fc32.x86_64"
@@ -670,7 +673,7 @@
       "evra": "2.2.3-13.fc32.x86_64"
     },
     "libstdc++": {
-      "evra": "10.0.1-0.13.fc32.x86_64"
+      "evra": "10.1.1-1.fc32.x86_64"
     },
     "libtalloc": {
       "evra": "2.3.1-2.fc32.x86_64"
@@ -766,7 +769,7 @@
       "evra": "4.1-4.fc32.x86_64"
     },
     "microcode_ctl": {
-      "evra": "2:2.1-35.fc32.x86_64"
+      "evra": "2:2.1-36.fc32.x86_64"
     },
     "moby-engine": {
       "evra": "19.03.8-1.ce.gitafacb8b.fc32.x86_64"
@@ -814,7 +817,7 @@
       "evra": "2.0.12-4.fc32.x86_64"
     },
     "oniguruma": {
-      "evra": "6.9.4-1.fc32.1.x86_64"
+      "evra": "6.9.5-1.rev1.fc32.x86_64"
     },
     "openldap": {
       "evra": "2.4.47-4.fc32.x86_64"
@@ -859,10 +862,10 @@
       "evra": "8.44-1.fc32.x86_64"
     },
     "pcre2": {
-      "evra": "10.34-9.fc32.x86_64"
+      "evra": "10.35-1.fc32.x86_64"
     },
     "pcre2-syntax": {
-      "evra": "10.34-9.fc32.noarch"
+      "evra": "10.35-1.fc32.noarch"
     },
     "pigz": {
       "evra": "2.4-6.fc32.x86_64"
@@ -877,10 +880,10 @@
       "evra": "1.6.3-3.fc32.x86_64"
     },
     "podman": {
-      "evra": "2:1.9.1-1.fc32.x86_64"
+      "evra": "2:1.9.2-1.fc32.x86_64"
     },
     "podman-plugins": {
-      "evra": "2:1.9.1-1.fc32.x86_64"
+      "evra": "2:1.9.2-1.fc32.x86_64"
     },
     "policycoreutils": {
       "evra": "3.0-2.module_f32+7989+651e8914.x86_64"
@@ -919,19 +922,19 @@
       "evra": "1.2.5-5.rc1.fc32.1.x86_64"
     },
     "rpm": {
-      "evra": "4.15.1-2.fc32.1.x86_64"
+      "evra": "4.15.1-3.fc32.1.x86_64"
     },
     "rpm-libs": {
-      "evra": "4.15.1-2.fc32.1.x86_64"
+      "evra": "4.15.1-3.fc32.1.x86_64"
     },
     "rpm-ostree": {
-      "evra": "2020.1.21.ge9011530-2.fc32.x86_64"
+      "evra": "2020.2-3.fc32.x86_64"
     },
     "rpm-ostree-libs": {
-      "evra": "2020.1.21.ge9011530-2.fc32.x86_64"
+      "evra": "2020.2-3.fc32.x86_64"
     },
     "rpm-plugin-selinux": {
-      "evra": "4.15.1-2.fc32.1.x86_64"
+      "evra": "4.15.1-3.fc32.1.x86_64"
     },
     "rsync": {
       "evra": "3.1.3-11.fc32.x86_64"
@@ -952,10 +955,10 @@
       "evra": "4.5-5.fc32.x86_64"
     },
     "selinux-policy": {
-      "evra": "3.14.5-32.fc32.noarch"
+      "evra": "3.14.5-38.fc32.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "3.14.5-32.fc32.noarch"
+      "evra": "3.14.5-38.fc32.noarch"
     },
     "setup": {
       "evra": "2.13.6-2.fc32.noarch"
@@ -1045,7 +1048,7 @@
       "evra": "0.0.18-2.fc32.noarch"
     },
     "tzdata": {
-      "evra": "2019c-3.fc32.noarch"
+      "evra": "2020a-1.fc32.noarch"
     },
     "userspace-rcu": {
       "evra": "0.11.1-3.fc32.x86_64"
@@ -1054,7 +1057,7 @@
       "evra": "2.35.1-8.fc32.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.587-1.fc32.x86_64"
+      "evra": "2:8.2.752-1.fc32.x86_64"
     },
     "which": {
       "evra": "2.21-19.fc32.x86_64"
@@ -1082,22 +1085,22 @@
     }
   },
   "metadata": {
-    "generated": "2020-05-05T21:07:16Z",
+    "generated": "2020-05-17T21:07:32Z",
     "rpmmd_repos": {
+      "fedora": {
+        "generated": "2020-04-22T22:22:36Z"
+      },
       "fedora-coreos-pool": {
-        "generated": "2020-05-01T19:48:16Z"
+        "generated": "2020-05-16T21:34:41Z"
       },
-      "fedora-next": {
-        "generated": "2020-04-24T11:00:23Z"
+      "fedora-modular": {
+        "generated": "2020-04-22T21:03:13Z"
       },
-      "fedora-next-modular": {
-        "generated": "2020-04-24T09:32:34Z"
+      "fedora-updates": {
+        "generated": "2020-05-17T01:32:50Z"
       },
-      "fedora-next-updates": {
-        "generated": "2020-05-05T02:51:21Z"
-      },
-      "fedora-next-updates-modular": {
-        "generated": "2020-05-05T07:27:39Z"
+      "fedora-updates-modular": {
+        "generated": "2020-05-16T05:56:42Z"
       }
     }
   }
