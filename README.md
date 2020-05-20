@@ -102,6 +102,13 @@ Update server changes:
 1. Set a new update barrier for N-2 on all streams.
    See [discussion](https://github.com/coreos/fedora-coreos-tracker/issues/480#issuecomment-631724629).
 
+CoreOS Installer changes:
+
+1. Update CoreOS Installer to know about the signing key used for the
+   future new major version of Fedora (N+1). Note that the signing
+   keys for N+1 won't get created until releng branches and rawhide
+   becomes N+1.
+
 Release engineering changes:
 
 1. verify that the `f${releasever}-coreos-signing-pending` Koji tag has
