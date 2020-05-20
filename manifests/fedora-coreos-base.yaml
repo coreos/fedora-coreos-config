@@ -16,7 +16,6 @@ initramfs-args:
   - --omit=nfs
   # Omit these since we don't use them
   - --omit=lvm
-  - --omit=multipath
   - --omit=iscsi
 
 # Be minimal
@@ -135,7 +134,7 @@ packages:
   - cifs-utils
   # Time sync
   - chrony
-  # Allow communication between sudo and SSSD 
+  # Allow communication between sudo and SSSD
   # for caching sudo rules by SSSD.
   # https://github.com/coreos/fedora-coreos-tracker/issues/445
   - libsss_sudo
