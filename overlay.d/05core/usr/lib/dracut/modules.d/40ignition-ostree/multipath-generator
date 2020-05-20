@@ -1,0 +1,83 @@
+#!/bin/bash
+# -*- mode: shell-script; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
+# ex: ts=8 sw=4 sts=4 et filetype=sh
+
+# On a regular boot we rely on `/dev/disk/by-label/{boot,root} to exist.
+# However, if multipath is enabled, then automatic discovery of boot/root
+# gets racy. If the user has not put `rd.multipath` then generator exists
+# without making any modifications.
+
+set -e
+
+# Generators don't have logging right now
+# https://github.com/systemd/systemd/issues/15638
+exec 1>/dev/kmsg; exec 2>&1
+
+UNIT_DIR="${1:-/tmp}"
+mkdir -p "${UNIT_DIR}"
+
+skip() {
+    echo "multipath-generator: skipping root on multipath: ${@}"
+    exit 0
+}
+
+# Check if we expect multipath root. These are the commdline options
+# checked by Dracut in https://github.com/dracutdevs/dracut/blob/master/modules.d/90multipath/multipathd.service#L9-L12
+[ -f /etc/multipath.conf ] && mpath=1 || mpath=0
+
+for arg in $(</proc/cmdline);
+do
+    case "${arg}" in
+        multipath=off)                   skip "karg multipath=off";;
+        rd.multipath=0|rd.multipath=off) skip "karg rd.multipath=(0|off)";;
+        rd_NO_MULTIPATH)                 skip "karg rd_NO_MULTIPATH";;
+        root=*)                          skip "karg root= explicit";;
+        rd.multipath=*)                  mpath=1;;
+    esac
+done
+
+# Unless there is a multipath.conf and automatic multipath,
+# then bail.
+if [ "${mpath}" == "0" ]; then
+    echo "no indicator that multipath should be used"
+    exit 0
+fi
+
+echo "multipath-generator: requiring root to be on a multipath device"
+
+cat > /run/sysroot.env <<EOF
+ROOT_DEVICE_PATH=/dev/disk/by-label/dm-mpath-root
+EOF
+
+boot_device="dev-disk-by\x2dlabel-dm\x2dmpath\x2dboot.device"
+root_device="dev-disk-by\x2dlabel-dm\x2dmpath\x2droot.device"
+
+# Reconfigure ignition-diskful.target.d
+firstboot_cfg="${UNIT_DIR}/ignition-diskful.target.d"
+mkdir -p "${firstboot_cfg}"
+cat > "${firstboot_cfg}/ignition-mpath.conf" <<EOF
+# Added by multipath-generator
+[Unit]
+After=multipathd.service
+Wants=multipathd.service
+
+Requires=${boot_device}
+After=${boot_device}
+
+Requires=${root_device}
+After=${root_device}
+EOF
+
+# Reconfigure ignition-ostree-mount-subsequent-sysroot.service.d, which is
+# required by ignition-diskful-subsquent.target.
+secondboot_cfg="${UNIT_DIR}/ignition-ostree-mount-subsequent-sysroot.service.d"
+mkdir -p "${secondboot_cfg}"
+cat >> "${secondboot_cfg}/ignition-mpath.conf" <<EOF
+# Added by multipath-generator
+[Unit]
+After=multipathd.service
+Wants=multipathd.service
+
+After=${root_device}
+Requires=${root_device}
+EOF

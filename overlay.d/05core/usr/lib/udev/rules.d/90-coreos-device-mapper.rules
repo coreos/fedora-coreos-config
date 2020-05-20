@@ -12,7 +12,7 @@ ENV{ID_FS_LABEL_ENC}!="?*", GOTO="dm_label_end"
 ENV{ID_FS_USAGE}!="filesystem", GOTO="dm_label_end"
 
 ENV{DM_MPATH}=="?*", \
-    ENV{DM_SUSPENDED}=="Active"
+    ENV{DM_SUSPENDED}=="Active",
     SYMLINK+="disk/by-label/dm-mpath-$env{ID_FS_LABEL_ENC}",
     SYMLINK+="disk/by-uuid/dm-mpath-$env{ID_FS_UUID_ENC}"
 
