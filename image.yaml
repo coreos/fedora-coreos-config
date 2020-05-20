@@ -13,10 +13,6 @@ extra-kargs:
 # Optional remote by which to prefix the deployed OSTree ref
 ostree-remote: fedora
 
-# We want read-only /sysroot to protect from unintentional damage.
-# https://github.com/ostreedev/ostree/issues/1265
-sysroot-readonly: true
-
 # After this, we plan to add support for the Ignition
 # storage/filesystems sections.  (Although one can do
 # that on boot as well)
