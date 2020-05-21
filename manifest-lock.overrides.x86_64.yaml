@@ -5,6 +5,14 @@ packages:
   # https://src.fedoraproject.org/rpms/crypto-policies/pull-request/6#comment-35958
   crypto-policies:
     evra: 20191128-5.gitcd267a5.fc32.noarch
+  # Fast-track to neuter sysroot.readonly:
+  # https://github.com/coreos/fedora-coreos-tracker/issues/488
+  # https://github.com/ostreedev/ostree/pull/2108
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-d4b7192f11
+  ostree:
+    evra: 2020.3-4.fc31.x86_64
+  ostree-libs:
+    evra: 2020.3-4.fc31.x86_64
   # Fast-forward new release for:
   # https://github.com/coreos/fedora-coreos-tracker/issues/481
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-400ece1e9c
