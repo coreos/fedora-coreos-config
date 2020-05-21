@@ -6,13 +6,14 @@
 # - the user didn't already request networking via rd.neednet
 # - the user provided a ignition.config.url karg, implying
 #   the need for networking
-# - there is an embedded ignition config
+# - there is an embedded ignition config (unless disabled, see below)
 #
 # For the case of the embedded Ignition config there could be a
 # case where the user embeds an Ignition config (via coreos-installer
-# iso embed) but doesn't want networking. In that case we'll have
-# smarter detection in the future (https://github.com/coreos/fedora-coreos-tracker/issues/443)
-# but the user can override with `rd.neednet=0` now if needed.
+# iso embed) but doesn't want networking (in particular the DHCP default).
+# As of recently we support:
+# `coreos-installer iso embed --disable-initramfs-networking`
+# but the goal is smarter detection in the future (https://github.com/coreos/fedora-coreos-tracker/issues/443).
 #
 # If we do determine we need network and there are no other
 # `ip=` kargs then we'll use `ip=dhcp,dhcp6` by default.
@@ -38,6 +39,8 @@ ConditionPathExists=/usr/lib/initrd-release
 ConditionKernelCommandLine=!rd.neednet
 ConditionKernelCommandLine=coreos.liveiso
 ConditionPathExists=/run/ostree-live
+# We need to support disabling networking in the initramfs event
+ConditionPathExists=!/etc/coreos-liveiso-disable-initramfs-network
 
 # We'll assume we need network in either of these two following
 # cases (see description from above)
