@@ -1,0 +1,14 @@
+= Access the emergency shell
+
+
+Sometimes you may want to access the emergency shell. For instance, to debug first boot provisioning errors.
+
+To access the emergency shell intercept the GRUB menu, edit the entry and drop all `console` parameters from the kernel line except for the one you need and press Ctrl+X to resume booting.
+
+[NOTE]
+====
+By default these console parameters are provided:
+
+ - `console=ttyS0,115200n8` for serial consoles.
+ - `console=tty0` for VGA.
+====
