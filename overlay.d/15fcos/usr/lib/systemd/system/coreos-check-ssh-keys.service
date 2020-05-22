@@ -1,0 +1,17 @@
+# This service is used for printing a message if no ssh keys were added 
+# by ignition/afterburn
+[Unit]
+Description=Check that ssh-keys are added by aferburn/ignition
+Before=console-login-helper-messages-issuegen.service
+# https://github.com/coreos/afterburn/issues/417 is created
+# to track the issue that would allow other units to synchronize 
+# around any instance of `afterburn-sshkeys@` and not just the 
+# `core` user.
+After=afterburn-sshkeys@core.service
+ProtectHome=read-only
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-check-ssh-keys.sh
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target

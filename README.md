@@ -88,16 +88,28 @@ one easy way to do this is for now:
 - run `cosa fetch --update-lockfile`
 - commit only the new package entries
 
-## Moving to a new major version of Fedora
+## Moving to a new major version (N) of Fedora
 
-Updating this repo itself is easy:
+Updating this repo:
 
 1. bump `releasever` in `manifest.yaml`
 2. update the repos in `manifest.yaml` if needed
 3. run `cosa fetch --update-lockfile`
 4. PR the result
 
-Though there are also some releng-related knobs that may need changes:
+Update server changes:
+
+1. Set a new update barrier for N-2 on all streams.
+   See [discussion](https://github.com/coreos/fedora-coreos-tracker/issues/480#issuecomment-631724629).
+
+CoreOS Installer changes:
+
+1. Update CoreOS Installer to know about the signing key used for the
+   future new major version of Fedora (N+1). Note that the signing
+   keys for N+1 won't get created until releng branches and rawhide
+   becomes N+1.
+
+Release engineering changes:
 
 1. verify that the `f${releasever}-coreos-signing-pending` Koji tag has
    been created
