@@ -32,14 +32,10 @@ DefaultDependencies=false
 Before=ignition-diskful.target
 Before=dracut-initqueue.service
 After=dracut-cmdline.service
-# Since we are mounting /boot/, require the device first
-Requires=dev-disk-by\x2dlabel-boot.device
-After=dev-disk-by\x2dlabel-boot.device   
+
+RequiresMountsFor=/boot
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-# The MountFlags=slave is so the umount of /boot is guaranteed to happen
-# /boot will only be mounted for the lifetime of the unit.
-MountFlags=slave
 ExecStart=/usr/sbin/coreos-copy-firstboot-network
