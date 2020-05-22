@@ -68,7 +68,7 @@ Requires=${root_device}
 After=${root_device}
 EOF
 
-# Reconfigure ignition-ostree-mount-subsequent-sysroot.service.d, which is
+# Reconfigure ignition-ostree-mount-subsequent-sysroot.service.d
 # required by ignition-diskful-subsquent.target.
 secondboot_cfg="${UNIT_DIR}/ignition-ostree-mount-subsequent-sysroot.service.d"
 mkdir -p "${secondboot_cfg}"
@@ -80,4 +80,19 @@ Wants=multipathd.service
 
 After=${root_device}
 Requires=${root_device}
+EOF
+
+boot_cfg="${UNIT_DIR}/boot.mount.d"
+mkdir -p "${boot_cfg}"
+cat > "${boot_cfg}/ignition-mpath.conf" <<EOF
+[Unit]
+After=
+Requires=
+
+Requires=${boot_device}
+After=${boot_device}
+
+[Mount]
+What=
+What=/dev/disk/by-label/dm-mpath-boot
 EOF
