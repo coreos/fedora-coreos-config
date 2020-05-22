@@ -1,2 +1,5 @@
 # User metrics client
 enable fedora-coreos-pinger.service
+# Provide information if no ignition is provided
+enable coreos-check-ignition-config.service
+enable coreos-check-ssh-keys.service
