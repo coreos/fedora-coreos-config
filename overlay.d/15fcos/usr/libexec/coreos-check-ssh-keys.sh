@@ -10,12 +10,18 @@ main() {
     # See https://github.com/coreos/ignition/pull/964 for the MESSAGE_ID 
     # source. It will track the authorized-ssh-keys entries in journald 
     # provided via ignition.
-    ignitionusers=$(journalctl -o json-pretty MESSAGE_ID=225067b87bbd4a0cb6ab151f82fa364b | jq -r '.MESSAGE')
+    ignitionusers=$(
+            journalctl -o json-pretty MESSAGE_ID=225067b87bbd4a0cb6ab151f82fa364b | \
+            jq -r '.MESSAGE' | \
+            xargs -I{} echo "Ignition: {}")
 
     # See https://github.com/coreos/afterburn/pull/397 for the MESSAGE_ID 
     # source. It will track the authorized-ssh-keys entries in journald  
     # provided via afterburn.
-    afterburnusers=$(journalctl -o json-pretty MESSAGE_ID=0f7d7a502f2d433caa1323440a6b4190 | jq -r '.MESSAGE')
+    afterburnusers=$(
+            journalctl -o json-pretty MESSAGE_ID=0f7d7a502f2d433caa1323440a6b4190 | \
+            jq -r '.MESSAGE' | \
+            xargs -I{} echo "Afterburn: {}")
 
     output=''
     if [ -n "$ignitionusers" ]; then
