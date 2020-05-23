@@ -52,7 +52,8 @@ install() {
 	rm        \
 	sed       \
 	sfdisk    \
-	sgdisk
+	sgdisk    \
+	rsync
 
     for x in mount populate; do
         install_ignition_unit ignition-ostree-${x}-var.service
