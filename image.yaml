@@ -9,6 +9,10 @@ extra-kargs:
     # https://fedoraproject.org/wiki/Changes/CGroupsV2
     - systemd.unified_cgroup_hierarchy=0
 
+# Kernel arguments to be used on first-boot.
+ignition-network-kcmdline:
+    - 'rd.neednet=1'
+    - 'ip=dhcp,dhcp6'
 
 # Optional remote by which to prefix the deployed OSTree ref
 ostree-remote: fedora
