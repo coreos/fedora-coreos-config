@@ -22,6 +22,14 @@ This part is separate from 05core to aid RHCOS, which still uses Ignition spec 2
 
 Disables the Red Hat Linux legacy `ifcfg` format.
 
+20platform-chrony
+-----------------
+
+Add static chrony configuration for NTP servers provided on platforms
+such as `azure`, `aws`, `gcp`. The chrony config for these NTP servers
+should override other chrony configuration (e.g. DHCP-provided)
+configuration.
+
 21dhcp-chrony
 -------------
 
