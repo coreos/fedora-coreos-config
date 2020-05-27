@@ -98,6 +98,19 @@ postprocess:
     set -xeuo pipefail
     setsebool -P -N container_use_cephfs on  # RHBZ#1692369
     setsebool -P -N virt_use_samba on  # RHBZ#1754825
+  # Enable Multipath in Initramfs
+  # https://github.com/coreos/fedora-coreos-tracker/issues/430
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    cat > /etc/multipath.conf <<EOF
+    defaults {
+        user_friendly_names yes
+        find_multipaths yes
+    }
+    blacklist {
+    }
+    EOF
 
 packages:
   # Security
