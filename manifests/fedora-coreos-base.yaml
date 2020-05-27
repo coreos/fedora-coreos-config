@@ -84,12 +84,6 @@ postprocess:
     #!/usr/bin/env bash
     set -xeuo pipefail
     sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
-    . /etc/os-release
-    if [ "${VERSION_ID}" = 31 ]; then
-      # Fedora 31 doesn't read the config fragment, so we need to do this
-      # here.
-      echo -e '\n# Read authorized_keys fragments written by Ignition and Afterburn\nAuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys.d/ignition .ssh/authorized_keys.d/afterburn' >> /etc/ssh/sshd_config
-    fi
 
   # Enable SELinux booleans used by OpenShift
   # https://github.com/coreos/fedora-coreos-tracker/issues/284
