@@ -7,10 +7,7 @@ set -euo pipefail
 # In the future this will be augmented with a check for whether
 # or not we've reprovisioned the rootfs, since we don't want to
 # force on prjquota there.
-rootpath="${ROOT_DEVICE_PATH:-/dev/disk/by-label/root}"
-
-# If root is on a multipath device, we use that one.
-# this link is created by our own udev rule.
+rootpath=/dev/disk/by-label/root
 if ! [ -b "${rootpath}" ]; then
   echo "ignition-ostree-mount-sysroot: Failed to find ${rootpath}" 1>&2
   exit 1

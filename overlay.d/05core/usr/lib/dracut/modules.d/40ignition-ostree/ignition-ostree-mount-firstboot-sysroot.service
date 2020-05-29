@@ -22,5 +22,4 @@ Before=ostree-prepare-root.service ignition-remount-sysroot.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-EnvironmentFile=-/run/sysroot.env
 ExecStart=/usr/sbin/ignition-ostree-mount-sysroot
