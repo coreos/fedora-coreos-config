@@ -14,3 +14,9 @@ packages:
     evra: 2020.2-3.fc32.s390x
   rpm-ostree-libs:
     evra: 2020.2-3.fc32.s390x
+  # Fast-track F32 signing keys
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-3aff453794
+  coreos-installer:
+    evra: 0.2.1-2.fc32.s390x
+  coreos-installer-systemd:
+    evra: 0.2.1-2.fc32.s390x
