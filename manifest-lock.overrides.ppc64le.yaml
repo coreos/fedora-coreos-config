@@ -20,3 +20,8 @@ packages:
     evra: 0.2.1-2.fc32.ppc64le
   coreos-installer-systemd:
     evra: 0.2.1-2.fc32.ppc64le
+  # Fast-track Ignition for failure handling
+  # https://github.com/coreos/ignition-dracut/pull/188
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a3f96fc5bd
+  ignition:
+    evra: 2.3.0-2.gitee616d5.fc32.ppc64le
