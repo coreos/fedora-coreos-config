@@ -1,16 +1,16 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.22.12-1.fc32.x86_64"
+      "evra": "1:1.22.14-1.fc32.x86_64"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.22.12-1.fc32.x86_64"
+      "evra": "1:1.22.14-1.fc32.x86_64"
     },
     "NetworkManager-team": {
-      "evra": "1:1.22.12-1.fc32.x86_64"
+      "evra": "1:1.22.14-1.fc32.x86_64"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.22.12-1.fc32.x86_64"
+      "evra": "1:1.22.14-1.fc32.x86_64"
     },
     "acl": {
       "evra": "2.2.53-5.fc32.x86_64"
@@ -46,16 +46,16 @@
       "evra": "1:2.8-8.fc32.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.11.18-1.fc32.x86_64"
+      "evra": "32:9.11.19-1.fc32.x86_64"
     },
     "bind-libs-lite": {
-      "evra": "32:9.11.18-1.fc32.x86_64"
+      "evra": "32:9.11.19-1.fc32.x86_64"
     },
     "bind-license": {
-      "evra": "32:9.11.18-1.fc32.noarch"
+      "evra": "32:9.11.19-1.fc32.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.11.18-1.fc32.x86_64"
+      "evra": "32:9.11.19-1.fc32.x86_64"
     },
     "btrfs-progs": {
       "evra": "5.6-1.fc32.x86_64"
@@ -142,10 +142,10 @@
       "evra": "20200527-1.gitb234a47.fc32.noarch"
     },
     "cryptsetup": {
-      "evra": "2.3.0-1.fc32.x86_64"
+      "evra": "2.3.3-1.fc32.x86_64"
     },
     "cryptsetup-libs": {
-      "evra": "2.3.0-1.fc32.x86_64"
+      "evra": "2.3.3-1.fc32.x86_64"
     },
     "cups-libs": {
       "evra": "1:2.3.3-2.fc32.x86_64"
@@ -202,10 +202,10 @@
       "evra": "4.1-10.fc32.x86_64"
     },
     "dracut": {
-      "evra": "050-26.git20200316.fc32.x86_64"
+      "evra": "050-61.git20200529.fc32.x86_64"
     },
     "dracut-network": {
-      "evra": "050-26.git20200316.fc32.x86_64"
+      "evra": "050-61.git20200529.fc32.x86_64"
     },
     "e2fsprogs": {
       "evra": "1.45.5-3.fc32.x86_64"
@@ -652,7 +652,7 @@
       "evra": "2:4.12.3-0.fc32.1.x86_64"
     },
     "libsolv": {
-      "evra": "0.7.12-1.fc32.x86_64"
+      "evra": "0.7.14-1.fc32.x86_64"
     },
     "libss": {
       "evra": "1.45.5-3.fc32.x86_64"
@@ -1088,19 +1088,19 @@
     }
   },
   "metadata": {
-    "generated": "2020-05-31T21:07:54Z",
+    "generated": "2020-06-01T21:07:38Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-04-22T22:22:36Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2020-05-31T18:55:41Z"
+        "generated": "2020-06-01T20:28:30Z"
       },
       "fedora-modular": {
         "generated": "2020-04-22T21:03:13Z"
       },
       "fedora-updates": {
-        "generated": "2020-05-31T02:52:37Z"
+        "generated": "2020-06-01T01:18:12Z"
       },
       "fedora-updates-modular": {
         "generated": "2020-05-28T04:54:06Z"
