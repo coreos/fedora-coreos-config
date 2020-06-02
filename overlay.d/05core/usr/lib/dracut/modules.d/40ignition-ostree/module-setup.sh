@@ -59,6 +59,13 @@ install() {
         inst_script "$moddir/ignition-ostree-${x}-var.sh" "/usr/sbin/ignition-ostree-${x}-var"
     done
 
+    inst_simple \
+        /usr/lib/udev/rules.d/90-coreos-device-mapper.rules
+
+    inst_simple "$moddir/multipath-generator" \
+        "$systemdutildir/system-generators/multipath-generator"
+
+    # Disk support
     install_ignition_unit ignition-ostree-mount-firstboot-sysroot.service diskful
     install_ignition_unit ignition-ostree-mount-subsequent-sysroot.service diskful-subsequent
     inst_script "$moddir/ignition-ostree-mount-sysroot.sh" \

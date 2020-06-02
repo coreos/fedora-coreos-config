@@ -14,15 +14,37 @@ shift
 # The use of tail is to avoid errors from duplicate mounts;
 # this shouldn't happen for us but we're being conservative.
 src=$(findmnt -nvr -o SOURCE "$path" | tail -n1)
-majmin=$(findmnt -nvr -o MAJ:MIN "$path" | tail -n1)
-devpath=$(realpath "/sys/dev/block/$majmin")
-partition=$(cat "$devpath/partition")
-parent_path=$(dirname "$devpath")
-parent_device=/dev/$(basename "${parent_path}")
 
-# TODO: make this idempotent, and don't error out if
-# we can't resize.
-growpart "${parent_device}" "${partition}" || true
+if [[ "${src}" =~ "/dev/mapper" ]]; then
+    eval $(udevadm info --query property --export "${src}")
+    # get the partition, if any, and the name for the device mapper
+    partition="${ID_PART_ENTRY_NUMBER:-}"
+    dm_name="${DM_NAME//$partition/}"
+    # identify the type of device mapper.
+    subsystem=$(dmsetup info ${dm_name} -C -o subsystem --noheadings)
+
+    # for now, we only support multipath devices
+    if [ "${subsystem}" == "mpath" ] && [ -n "${partition}" ]; then
+        # growpart does not understand device mapper, instead of having sfdisk inform the kernel,
+        # use kpartx to inform the kernel and the device mapper linear maps.
+        echo ", +" | sfdisk --no-reread --no-tell-kernel --force -N "${ID_PART_ENTRY_NUMBER}" "/dev/mapper/${dm_name}"
+        kpartx -fu /dev/mapper/${dm_name}
+    else
+        echo "coreos-growpart: unsupported device-mapper target: ${dm_name}"
+        exit 0
+    fi
+else
+    # Handle traditional disk/partitions
+    majmin=$(findmnt -nvr -o MAJ:MIN "$path" | tail -n1)
+    devpath=$(realpath "/sys/dev/block/$majmin")
+    partition="${partition:-$(cat "$devpath/partition")}"
+    parent_path=$(dirname "$devpath")
+    parent_device=/dev/$(basename "${parent_path}")
+
+    # TODO: make this idempotent, and don't error out if
+    # we can't resize.
+    growpart "${parent_device}" "${partition}" || true
+fi
 
 eval $(blkid -o export "${src}")
 # TODO: Add XFS to https://github.com/systemd/systemd/blob/master/src/partition/growfs.c

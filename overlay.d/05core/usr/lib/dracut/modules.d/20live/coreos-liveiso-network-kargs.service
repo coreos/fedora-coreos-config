@@ -6,13 +6,10 @@
 # - the user didn't already request networking via rd.neednet
 # - the user provided a ignition.config.url karg, implying
 #   the need for networking
-# - there is an embedded ignition config
 #
-# For the case of the embedded Ignition config there could be a
-# case where the user embeds an Ignition config (via coreos-installer
-# iso embed) but doesn't want networking. In that case we'll have
-# smarter detection in the future (https://github.com/coreos/fedora-coreos-tracker/issues/443)
-# but the user can override with `rd.neednet=0` now if needed.
+# As of recently we skip networking if a config is injected via
+# `coreos-installer iso embed` in order to allow automating
+# installs on networks without DHCP.
 #
 # If we do determine we need network and there are no other
 # `ip=` kargs then we'll use `ip=dhcp,dhcp6` by default.
@@ -39,10 +36,8 @@ ConditionKernelCommandLine=!rd.neednet
 ConditionKernelCommandLine=coreos.liveiso
 ConditionPathExists=/run/ostree-live
 
-# We'll assume we need network in either of these two following
-# cases (see description from above)
+# We'll assume we need network in the following case (see description from above)
 ConditionKernelCommandLine=|ignition.config.url
-ConditionPathExists=|/config.ign
 
 [Service]
 Type=oneshot
