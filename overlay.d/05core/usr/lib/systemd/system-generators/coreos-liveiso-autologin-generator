@@ -59,9 +59,7 @@ installing persistently to disk. Here is an example of running an install
 to disk via coreos-installer:
 
 curl -O https://example.com/example.ign
-sudo coreos-installer install /dev/sda \\
-         --ignition-file ./example.ign \\
-         --image-url https://example.com/image.raw.xz
+sudo coreos-installer install /dev/sda --ignition-file ./example.ign 
 
 You may configure networking via 'sudo nmcli' or 'sudo nmtui' and have
 that configuration persist into the installed system by passing the

@@ -9,9 +9,17 @@ extra-kargs:
     # https://fedoraproject.org/wiki/Changes/CGroupsV2
     - systemd.unified_cgroup_hierarchy=0
 
+# Kernel arguments to be used on first-boot.
+ignition-network-kcmdline:
+    - 'rd.neednet=1'
+    - 'ip=dhcp,dhcp6'
 
 # Optional remote by which to prefix the deployed OSTree ref
 ostree-remote: fedora
+
+# We want read-only /sysroot to protect from unintentional damage.
+# https://github.com/ostreedev/ostree/issues/1265
+sysroot-readonly: true
 
 # After this, we plan to add support for the Ignition
 # storage/filesystems sections.  (Although one can do
