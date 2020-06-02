@@ -1,61 +1,27 @@
 packages:
-  # crypto-policies without python dependencies
-  # We're pulling from f32 here as this is a brand new change
-  # and the maintainer is not comfortable sending it to F31 yet.
-  # https://src.fedoraproject.org/rpms/crypto-policies/pull-request/6#comment-35958
-  crypto-policies:
-    evra: 20191128-5.gitcd267a5.fc32.noarch
-  # Fast-forward new release for:
+  # Fast-track to neuter sysroot.readonly:
+  # https://github.com/coreos/fedora-coreos-tracker/issues/488
+  # https://github.com/ostreedev/ostree/pull/2108
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-344e9b4232
+  ostree:
+    evra: 2020.3-4.fc32.s390x
+  ostree-libs:
+    evra: 2020.3-4.fc32.s390x
+  # Fast-track new release for:
   # https://github.com/coreos/fedora-coreos-tracker/issues/481
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-400ece1e9c
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-e5dac04be2
   rpm-ostree:
-    evra: 2020.2-3.fc31.s390x
+    evra: 2020.2-3.fc32.s390x
   rpm-ostree-libs:
-    evra: 2020.2-3.fc31.s390x
-  # Hold back fedora-release-common rpm because of lua script
-  # https://github.com/coreos/fedora-coreos-tracker/issues/459
-  fedora-release-common:
-    evra: 31-2.noarch
-  fedora-release-coreos:
-    evra: 31-2.noarch
-  # Hold back moby engine. It has been bumped to 19.03 in stable.
-  # This is a major version bump we need to consider.
-  moby-engine:
-    evra: 18.09.8-2.ce.git0dd43dd.fc31.s390x
-  # Fast track new Ignition with more networking fixes
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-0a3fdd111c
-  ignition:
-    evra: 2.2.1-5.git2d3ff58.fc31.s390x
-  # Latest version has a hard dep on selinux-policy-minimal, which wants python
-  # https://src.fedoraproject.org/rpms/container-selinux/pull-request/3
-  container-selinux:
-    evra: 2:2.124.0-3.fc31.noarch
-  # Fast track new coreos-installer to have latest released changes
-  # present in upcoming FCOS release. Note: use fc32 builds rather
-  # than fc31 to mitigate rust toolchain issue in Fedora 31
-  # (https://pagure.io/fedora-rust/sig/issue/12).
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-abdcced19a
+    evra: 2020.2-3.fc32.s390x
+  # Fast-track F32 signing keys
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-3aff453794
   coreos-installer:
-    evra: 0.2.0-1.fc32.s390x
+    evra: 0.2.1-2.fc32.s390x
   coreos-installer-systemd:
-    evra: 0.2.0-1.fc32.s390x
-  # Fast track new afterburn to have latest released changes, including
-  # vmware support, present in upcoming FCOS release. Note: use fc32
-  # builds rather than fc31 to mitigate rust toolchain issue in Fedora
-  # 31 (https://pagure.io/fedora-rust/sig/issue/12).
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-abdcced19a
-  afterburn:
-    evra: 4.3.3-1.fc32.s390x
-  afterburn-dracut:
-    evra: 4.3.3-1.fc32.s390x
-  # Bug fix for podman (includes conmon and containernetworking-plugins)
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-bebbeaab8b
-  # https://github.com/coreos/fedora-coreos-tracker/issues/479
-  podman:
-    evra: 2:1.9.2-1.fc31.s390x
-  podman-plugins:
-    evra: 2:1.9.2-1.fc31.s390x
-  conmon:
-    evra: 2:2.0.16-2.fc31.s390x
-  containernetworking-plugins:
-    evra: 0.8.6-1.fc31.s390x
+    evra: 0.2.1-2.fc32.s390x
+  # Fast-track Ignition for failure handling
+  # https://github.com/coreos/ignition-dracut/pull/188
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a3f96fc5bd
+  ignition:
+    evra: 2.3.0-2.gitee616d5.fc32.s390x
