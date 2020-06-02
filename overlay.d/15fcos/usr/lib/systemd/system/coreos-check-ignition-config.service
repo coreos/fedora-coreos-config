@@ -3,6 +3,12 @@
 [Unit]
 Description=Check if ignition config is provided
 Before=console-login-helper-messages-issuegen.service
+# Only perform checks on the first (Ignition) boot as they are
+# mostly useful only on that boot. This ensures systems started
+# before Ignition/Afterburn started logging structured data don't
+# get misleading messages. Also handles the case where the journal
+# gets rotated and no longer has the structured log messages.
+ConditionKernelCommandLine=ignition.firstboot
 [Service]
 Type=oneshot
 ExecStart=/usr/libexec/coreos-check-ignition-config.sh
