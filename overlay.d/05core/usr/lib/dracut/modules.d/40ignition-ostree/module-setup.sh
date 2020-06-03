@@ -25,18 +25,19 @@ install() {
         uniq
 
     # coreos-growpart deps
-    inst_multiple \
-        basename  \
-        blkid     \
-        cat       \
-        dirname   \
-        findmnt   \
-        growpart  \
-        realpath  \
-        resize2fs \
-        tail      \
-        touch     \
-        xfs_growfs
+    inst_multiple  \
+        basename   \
+        blkid      \
+        cat        \
+        dirname    \
+        findmnt    \
+        growpart   \
+        realpath   \
+        resize2fs  \
+        tail       \
+        touch      \
+        xfs_growfs \
+        wipefs
 
     # growpart deps
     # Mostly generated from the following command:

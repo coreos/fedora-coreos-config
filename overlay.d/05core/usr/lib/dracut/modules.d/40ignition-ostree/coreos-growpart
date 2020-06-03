@@ -15,6 +15,16 @@ shift
 # this shouldn't happen for us but we're being conservative.
 src=$(findmnt -nvr -o SOURCE "$path" | tail -n1)
 
+# Get the filesystem type before extending the partition.  This matters
+# because the partition, once extended, might include leftover superblocks
+# from the previous contents of the disk (notably ZFS), causing blkid to
+# refuse to return any filesystem type at all.
+eval $(blkid -o export "${src}")
+case "${TYPE:-}" in
+    xfs|ext4) ;;
+    *) echo "error: Unsupported filesystem for ${path}: '${TYPE:-}'" 1>&2; exit 1 ;;
+esac
+
 if [[ "${src}" =~ "/dev/mapper" ]]; then
     eval $(udevadm info --query property --export "${src}")
     # get the partition, if any, and the name for the device mapper
@@ -46,13 +56,15 @@ else
     growpart "${parent_device}" "${partition}" || true
 fi
 
-eval $(blkid -o export "${src}")
+# Wipe any filesystem signatures from the extended partition that don't
+# correspond to the FS type we detected earlier.
+wipefs -af -t "no${TYPE}" "${src}"
+
 # TODO: Add XFS to https://github.com/systemd/systemd/blob/master/src/partition/growfs.c
 # and use it instead.
-case "${TYPE:-}" in
+case "${TYPE}" in
     xfs) xfs_growfs /sysroot ;;
     ext4) resize2fs "${src}" ;;
-    *) echo "error: Unsupported filesystem for ${path}: '${TYPE:-}'" 1>&2; exit 1 ;;
 esac
 
 touch /var/lib/coreos-growpart.stamp
