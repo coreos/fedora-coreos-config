@@ -25,3 +25,9 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a3f96fc5bd
   ignition:
     evra: 2.3.0-2.gitee616d5.fc32.ppc64le
+  # Fast-track slirp4netns. The maintainers forgot to submit the update
+  # to bodhi and now we're seeing a "downgrade" when going from Fedora
+  # 31 FCOS to Fedora 32 FCOS.
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-157c71d962
+  slirp4netns:
+    evra: 1.0.1-1.fc32.ppc64le
