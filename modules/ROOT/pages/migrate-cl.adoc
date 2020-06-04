@@ -39,7 +39,7 @@ When writing FCC files, note the following changes:
 +
 For more info, see the https://github.com/coreos/afterburn/blob/master/README.md[Afterburn readme].
 
-* By default, FCOS does not allow password logins via SSH. We recommend configuring SSH keys instead.
+* By default, FCOS does not allow password logins via SSH. We recommend xref:authentication.adoc#using-an-ssh-key[configuring SSH keys] instead. If needed, you can xref:authentication.adoc#enabling-ssh-password-authentication[enable SSH password authentication].
 * Because `usermod` is not yet fully-functional on FCOS, there is a `docker` group in the `/etc/group` file. This is a stop-gap measure to facilitate a smooth transition to FCOS. The team is working on a more functional `usermod`, at which time the `docker` group will no longer be included by default. See the https://github.com/coreos/fedora-coreos-tracker/issues/2[docker group issue].
 * There is no way to create directories below the `/` directory. Changes are restricted to `/etc` and `/var`. Refer to the documentation for the xref:ign-storage.adoc[`storage`] node of the FCC configuration for details about writing directories and files to FCOS.
 * FCCs no longer have a separate section for network configuration. Use the FCC `files` section to write a https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[NetworkManager key file] instead.
