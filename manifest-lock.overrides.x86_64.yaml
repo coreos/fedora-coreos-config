@@ -31,3 +31,7 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-157c71d962
   slirp4netns:
     evra: 1.0.1-1.fc32.x86_64
+  podman:
+    evra: 2:2.0.0-0.3.rc7.fc32.x86_64
+  podman-plugins:
+    evra: 2:2.0.0-0.3.rc7.fc32.x86_64
