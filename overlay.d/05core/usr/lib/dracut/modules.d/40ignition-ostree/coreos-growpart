@@ -63,7 +63,7 @@ wipefs -af -t "no${TYPE}" "${src}"
 # TODO: Add XFS to https://github.com/systemd/systemd/blob/master/src/partition/growfs.c
 # and use it instead.
 case "${TYPE}" in
-    xfs) xfs_growfs /sysroot ;;
+    xfs) xfs_growfs "${path}" ;;
     ext4) resize2fs "${src}" ;;
 esac
 
