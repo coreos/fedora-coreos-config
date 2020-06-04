@@ -1,0 +1,63 @@
+= Configuring Authentication
+
+== Using an SSH key
+
+To configure an SSH key for a local user, you can use a Fedora CoreOS Config:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5QFS...
+----
+
+== Using password authentication
+
+Fedora CoreOS ships with no default passwords. You can use a Fedora CoreOS Config to set a password for a local user:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+passwd:
+  users:
+    - name: core
+      password_hash: "$y$j9T$A0Y3wwVOKP69S.1K/zYGN.$S596l11UGH3XjN..."
+----
+
+To generate a secure password hash, use the `mkpasswd` command:
+
+[source]
+----
+$ mkpasswd --method=yescrypt
+Password: 
+$y$j9T$A0Y3wwVOKP69S.1K/zYGN.$S596l11UGH3XjN...
+----
+
+The `yescrypt` hashing method is recommended for new passwords. For more details on hashing methods, see `man 5 crypt`.
+
+The configured password will be accepted for local authentication at the console. By default, Fedora CoreOS does not allow password authentication via SSH.
+
+== Enabling SSH password authentication
+
+To enable password authentication via SSH, use the following Fedora CoreOS Config:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+storage:
+  files:
+    - path: /etc/ssh/sshd_config.d/02-enable-passwords.conf
+      mode: 0644
+      contents:
+        inline: |
+          # Fedora CoreOS disables SSH password login by default.
+          # Enable it.
+          # This file must sort before 04-disable-passwords.conf.
+          PasswordAuthentication yes
+----
