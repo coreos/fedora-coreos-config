@@ -41,19 +41,19 @@ install() {
 
     # growpart deps
     # Mostly generated from the following command:
-    # 	$ bash --rpm-requires /usr/bin/growpart | sort | uniq | grep executable
+    #   $ bash --rpm-requires /usr/bin/growpart | sort | uniq | grep executable
     # with a few false positives (rq, rqe, -v) and one missed (mktemp)
     inst_multiple \
-	awk       \
-	cat       \
-	dd        \
-	grep      \
-	mktemp    \
-	partx     \
-	rm        \
-	sed       \
-	sfdisk    \
-	sgdisk
+        awk       \
+        cat       \
+        dd        \
+        grep      \
+        mktemp    \
+        partx     \
+        rm        \
+        sed       \
+        sfdisk    \
+        sgdisk
 
     for x in mount populate; do
         install_ignition_unit ignition-ostree-${x}-var.service
