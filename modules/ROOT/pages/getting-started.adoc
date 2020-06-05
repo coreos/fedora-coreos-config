@@ -9,35 +9,18 @@ There are three Fedora CoreOS (FCOS) update streams available: `stable`, `testin
 
 === Provisioning Philosophy
 
-Fedora CoreOS (FCOS) has no install-time configuration. Every FCOS system begins with a generic disk image. For each deployment mechanism (cloud VM, local VM, bare metal), configuration can be supplied at first boot. FCOS reads and applies the configuration file with https://github.com/coreos/ignition[Ignition]. For cloud deployments, Ignition gathers the configuration via the cloud’s user-data mechanism. In the case of bare metal, Ignition injects the configuration at install time.
+Fedora CoreOS (FCOS) has no install-time configuration. Every FCOS system begins with a generic disk image. For each deployment mechanism (cloud VM, local VM, bare-metal server), configuration can be supplied at first boot. FCOS reads and applies the configuration file with https://github.com/coreos/ignition[Ignition]. For cloud deployments, Ignition gathers the configuration via the cloud’s user-data mechanism. In the case of bare metal, Ignition injects the configuration at install time.
 
 NOTE: For more information on configuration, refer to the documentation for xref:producing-ign.adoc[Producing an Ignition File].
 
-== Launching FCOS
+== Quickstart
 
-=== Launching on Amazon Web Services (AWS)
+=== On a cloud VM (AWS example)
 
-To launch FCOS on AWS:
+include::getting-started-aws.adoc[]
 
-. Identify the correct AMI image ID for your region from https://getfedora.org/coreos/download/[the download page]
+=== On a local hypervisor (QEMU example)
 
-. Launch the VM using `aws ec2 run-instances`. The Ignition file can be passed to the VM as its https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user data]. You can skip this step if you just want SSH access; simply pass a https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html[registered key name] via `--key-name`. This provides an easy way to test out FCOS without first creating an Ignition configuration.
-+
-.Example launching FCOS on AWS using an Ignition configuration file
-[source, bash]
-----
-aws ec2 run-instances <other options> --image-id <ami> --user-data file://example.ign
-----
-+
-.Example launching FCOS on AWS using a registered SSH key pair
-[source, bash]
-----
-aws ec2 run-instances <other options> --image-id <ami> --key-name my-key
-----
-+
-While the AWS documentation mentions cloud-init and scripts, FCOS does not support cloud-init or the ability to run scripts from user-data. It accepts only Ignition configuration files.
-
-=== Launching with QEMU or libvirt
 . https://getfedora.org/coreos/download/[Download and verify] the latest image suitable for QEMU.
 
 . Uncompress the file. Assuming that the downloaded file is called `fedora-coreos-qemu.qcow2.xz`, the command would be the following:
@@ -87,9 +70,9 @@ Once the VM has finished booting, its IP addresses will appear on the serial con
 ssh core@<ip address>
 ----
 
-== Installing on bare metal
+== On a bare-metal server (install to disk example)
 
-Follow the xref:bare-metal.adoc[Bare Metal Installation Instructions] to install Fedora CoreOS to disk. This procedure injects the specified Ignition configuration at install time.
+Follow the xref:bare-metal.adoc[Bare Metal Installation Instructions] to install Fedora CoreOS to disk for a bare-metal server. This procedure injects the specified Ignition configuration at install time.
 
 == Where to report bugs and ask questions
 

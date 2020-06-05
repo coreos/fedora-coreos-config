@@ -1,0 +1,24 @@
+:page-partial:
+
+New AWS instances can be directly created and booted from public FCOS images. The correct AMI image ID for each region can be found in the https://getfedora.org/coreos/download/[download page].
+
+If you are only interested in exploring FCOS without further customization, you can directly use a https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html[registered SSH key-pair] for the default `core` user.
+
+In order to test out FCOS this way, simply select the relevant SSH key-pair via `--key-name` when launching the new instance:
+
+.Launching a new instance
+[source, bash]
+----
+SSH_KEY_NAME="my-key"
+aws ec2 run-instances <other options> --image-id <ami> --key-name "${SSH_KEY_NAME}"
+----
+
+In order to launch a customized FCOS instance, a valid Ignition configuration must be passed as its https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user data] at creation time:
+
+.Launching and customizing a new instance
+[source, bash]
+----
+aws ec2 run-instances <other options> --image-id <ami> --user-data file://example.ign
+----
+
+NOTE: By design, cloud-init configuration and startup scripts are not supported on FCOS. Instead, it is recommended to encode any startup logic as systemd service units in the Ignition configuration.
