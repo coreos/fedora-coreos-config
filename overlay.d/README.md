@@ -17,11 +17,6 @@ https://bugzilla.redhat.com/show_bug.cgi?id=1700056
 
 Warning about `/etc/sysconfig`.
 
-10coreuser
----------
-
-This part is separate from 05core to aid RHCOS, which still uses Ignition spec 2.
-
 14NetworkManager-plugins
 ------------------------
 
