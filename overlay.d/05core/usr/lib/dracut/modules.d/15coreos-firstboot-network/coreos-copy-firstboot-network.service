@@ -34,7 +34,11 @@ Before=dracut-initqueue.service
 After=dracut-cmdline.service
 # Since we are mounting /boot/, require the device first
 Requires=dev-disk-by\x2dlabel-boot.device
-After=dev-disk-by\x2dlabel-boot.device   
+After=dev-disk-by\x2dlabel-boot.device
+
+# We want to make sure we're not racing with multipath taking ownership of the
+# boot device.
+Before=multipathd.service
 
 [Service]
 Type=oneshot
