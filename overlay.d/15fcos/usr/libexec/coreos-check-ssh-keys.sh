@@ -28,6 +28,10 @@ main() {
         output+="$ignitionusers"
     fi
     if [ -n "$afterburnusers" ]; then
+        # add newline if needed
+        if [ -n "$output" ]; then
+            output+=$'\n'
+        fi
         output+="$afterburnusers"
     fi
 
