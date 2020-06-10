@@ -84,6 +84,12 @@
     "cifs-utils": {
       "evra": "6.9-3.fc32.x86_64"
     },
+    "clevis": {
+      "evra": "13-1.fc32.x86_64"
+    },
+    "clevis-luks": {
+      "evra": "13-1.fc32.x86_64"
+    },
     "cloud-utils-growpart": {
       "evra": "0.31-6.fc32.noarch"
     },
@@ -133,6 +139,9 @@
       "evra": "2.13-4.fc32.x86_64"
     },
     "cracklib": {
+      "evra": "2.9.6-22.fc32.x86_64"
+    },
+    "cracklib-dicts": {
       "evra": "2.9.6-22.fc32.x86_64"
     },
     "crun": {
@@ -399,6 +408,9 @@
     "jansson": {
       "evra": "2.12-5.fc32.x86_64"
     },
+    "jose": {
+      "evra": "10-6.fc32.x86_64"
+    },
     "jq": {
       "evra": "1.6-4.fc32.x86_64"
     },
@@ -546,6 +558,9 @@
     "libipa_hbac": {
       "evra": "2.3.0-1.fc32.x86_64"
     },
+    "libjose": {
+      "evra": "10-6.fc32.x86_64"
+    },
     "libkcapi": {
       "evra": "1.1.5-2.fc32.x86_64"
     },
@@ -557,6 +572,9 @@
     },
     "libldb": {
       "evra": "2.1.3-1.fc32.x86_64"
+    },
+    "libluksmeta": {
+      "evra": "9-7.fc32.x86_64"
     },
     "libmaxminddb": {
       "evra": "1.4.2-1.fc32.x86_64"
@@ -755,6 +773,9 @@
     },
     "lua-libs": {
       "evra": "5.3.5-7.fc32.x86_64"
+    },
+    "luksmeta": {
+      "evra": "9-7.fc32.x86_64"
     },
     "lvm2": {
       "evra": "2.03.09-1.fc32.x86_64"
@@ -1050,6 +1071,12 @@
     "toolbox": {
       "evra": "0.0.18-2.fc32.noarch"
     },
+    "tpm2-tools": {
+      "evra": "4.1.3-1.fc32.x86_64"
+    },
+    "tpm2-tss": {
+      "evra": "2.4.1-1.fc32.x86_64"
+    },
     "tzdata": {
       "evra": "2020a-1.fc32.noarch"
     },
@@ -1088,7 +1115,7 @@
     }
   },
   "metadata": {
-    "generated": "2020-06-09T21:07:58Z",
+    "generated": "2020-06-10T15:57:12Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-04-22T22:22:36Z"

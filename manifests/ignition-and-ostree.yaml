@@ -22,6 +22,15 @@ machineid-compat: false
 packages:
   - ignition
   - dracut-network
+  - clevis
+  - clevis-luks
+  - cracklib-dicts
+  - jose
+  - libjose
+  - libluksmeta
+  - luksmeta
+  - tpm2-tools
+  - tpm2-tss
 
 remove-from-packages:
   # We don't want systemd-firstboot.service. It conceptually conflicts with
