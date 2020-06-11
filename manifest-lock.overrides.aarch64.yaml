@@ -31,15 +31,8 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-157c71d962
   slirp4netns:
     evra: 1.0.1-1.fc32.aarch64
-  # Override with a build of fedora-coreos-pinger that doesn't use
+  # Fast-track a build of fedora-coreos-pinger that doesn't use
   # modular repos (https://github.com/coreos/fedora-coreos-tracker/issues/525).
-  # Currently there is no Bodhi update, due to Koji tag issues,
-  # now pending a side tag build into F32 being done for the more
-  # recently built rust-fedora-coreos-pinger-0.0.4-4.fc33.
-  # In the current Koji deployment a Fedora admin needs to do the
-  # side tag (see https://pagure.io/releng/issue/9229).
-  # TODO: open a Bodhi update for
-  # rust-fedora-coreos-pinger-0.0.4-4.fc32 once built,
-  # and change the override below to use the 0.0.4-4.fc32 build.
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a4f6437bd1
   fedora-coreos-pinger:
-    evra: 0.0.4-3.fc32.aarch64
+    evra: 0.0.4-4.fc32.aarch64
