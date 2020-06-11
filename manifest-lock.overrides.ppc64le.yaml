@@ -31,3 +31,8 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-157c71d962
   slirp4netns:
     evra: 1.0.1-1.fc32.ppc64le
+  # Fast-track a build of fedora-coreos-pinger that doesn't use
+  # modular repos (https://github.com/coreos/fedora-coreos-tracker/issues/525).
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a4f6437bd1
+  fedora-coreos-pinger:
+    evra: 0.0.4-4.fc32.ppc64le
