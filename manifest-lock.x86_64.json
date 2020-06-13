@@ -106,7 +106,7 @@
       "evra": "0.18.1-1.fc32.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.132.0-1.fc32.noarch"
+      "evra": "2:2.135.0-1.fc32.noarch"
     },
     "containerd": {
       "evra": "1.3.3-1.fc32.x86_64"
@@ -115,7 +115,7 @@
       "evra": "0.8.6-1.fc32.x86_64"
     },
     "containers-common": {
-      "evra": "1:0.2.0-1.fc32.x86_64"
+      "evra": "1:1.0.0-1.fc32.x86_64"
     },
     "coreos-installer": {
       "evra": "0.2.1-2.fc32.x86_64"
@@ -337,22 +337,22 @@
       "evra": "3.3-4.fc32.x86_64"
     },
     "grub2-common": {
-      "evra": "1:2.04-19.fc32.noarch"
+      "evra": "1:2.04-20.fc32.noarch"
     },
     "grub2-efi-x64": {
-      "evra": "1:2.04-19.fc32.x86_64"
+      "evra": "1:2.04-20.fc32.x86_64"
     },
     "grub2-pc": {
-      "evra": "1:2.04-19.fc32.x86_64"
+      "evra": "1:2.04-20.fc32.x86_64"
     },
     "grub2-pc-modules": {
-      "evra": "1:2.04-19.fc32.noarch"
+      "evra": "1:2.04-20.fc32.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.04-19.fc32.x86_64"
+      "evra": "1:2.04-20.fc32.x86_64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.04-19.fc32.x86_64"
+      "evra": "1:2.04-20.fc32.x86_64"
     },
     "gzip": {
       "evra": "1.10-2.fc32.x86_64"
@@ -958,10 +958,10 @@
       "evra": "4.5-5.fc32.x86_64"
     },
     "selinux-policy": {
-      "evra": "3.14.5-39.fc32.noarch"
+      "evra": "3.14.5-40.fc32.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "3.14.5-39.fc32.noarch"
+      "evra": "3.14.5-40.fc32.noarch"
     },
     "setup": {
       "evra": "2.13.6-2.fc32.noarch"
@@ -979,7 +979,7 @@
       "evra": "15-8.x86_64"
     },
     "skopeo": {
-      "evra": "1:0.2.0-1.fc32.x86_64"
+      "evra": "1:1.0.0-1.fc32.x86_64"
     },
     "slang": {
       "evra": "2.3.2-7.fc32.x86_64"
@@ -1060,7 +1060,7 @@
       "evra": "2.35.2-1.fc32.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.869-1.fc32.x86_64"
+      "evra": "2:8.2.905-1.fc32.x86_64"
     },
     "which": {
       "evra": "2.21-19.fc32.x86_64"
@@ -1088,7 +1088,7 @@
     }
   },
   "metadata": {
-    "generated": "2020-06-11T21:07:49Z",
+    "generated": "2020-06-13T21:07:22Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-04-22T22:22:36Z"
@@ -1097,7 +1097,7 @@
         "generated": "2020-06-11T16:37:24Z"
       },
       "fedora-updates": {
-        "generated": "2020-06-07T18:20:54Z"
+        "generated": "2020-06-11T22:51:32Z"
       }
     }
   }
