@@ -40,7 +40,7 @@
       "evra": "11-9.fc32.noarch"
     },
     "bash": {
-      "evra": "5.0.11-2.fc32.x86_64"
+      "evra": "5.0.17-1.fc32.x86_64"
     },
     "bash-completion": {
       "evra": "1:2.8-8.fc32.noarch"
@@ -58,7 +58,7 @@
       "evra": "32:9.11.19-1.fc32.x86_64"
     },
     "btrfs-progs": {
-      "evra": "5.6-1.fc32.x86_64"
+      "evra": "5.6.1-1.fc32.x86_64"
     },
     "bubblewrap": {
       "evra": "0.4.1-1.fc32.x86_64"
@@ -91,7 +91,7 @@
       "evra": "5.2-36.fc32.x86_64"
     },
     "conmon": {
-      "evra": "2:2.0.16-2.fc32.x86_64"
+      "evra": "2:2.0.17-1.fc32.x86_64"
     },
     "console-login-helper-messages": {
       "evra": "0.18.1-1.fc32.noarch"
@@ -106,7 +106,7 @@
       "evra": "0.18.1-1.fc32.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.132.0-1.fc32.noarch"
+      "evra": "2:2.135.0-1.fc32.noarch"
     },
     "containerd": {
       "evra": "1.3.3-1.fc32.x86_64"
@@ -115,7 +115,7 @@
       "evra": "0.8.6-1.fc32.x86_64"
     },
     "containers-common": {
-      "evra": "1:0.2.0-1.fc32.x86_64"
+      "evra": "1:1.0.0-2.fc32.x86_64"
     },
     "coreos-installer": {
       "evra": "0.2.1-2.fc32.x86_64"
@@ -160,16 +160,16 @@
       "evra": "2.1.27-4.fc32.x86_64"
     },
     "dbus": {
-      "evra": "1:1.12.16-4.fc32.x86_64"
+      "evra": "1:1.12.18-1.fc32.x86_64"
     },
     "dbus-broker": {
       "evra": "23-2.fc32.x86_64"
     },
     "dbus-common": {
-      "evra": "1:1.12.16-4.fc32.noarch"
+      "evra": "1:1.12.18-1.fc32.noarch"
     },
     "dbus-libs": {
-      "evra": "1:1.12.16-4.fc32.x86_64"
+      "evra": "1:1.12.18-1.fc32.x86_64"
     },
     "dbxtool": {
       "evra": "8-11.fc32.x86_64"
@@ -235,22 +235,22 @@
       "evra": "2.2.8-2.fc32.x86_64"
     },
     "fedora-coreos-pinger": {
-      "evra": "0.0.4-3.fc32.x86_64"
+      "evra": "0.0.4-4.fc32.x86_64"
     },
     "fedora-gpg-keys": {
-      "evra": "32-2.noarch"
+      "evra": "32-3.noarch"
     },
     "fedora-release-common": {
-      "evra": "32-2.noarch"
+      "evra": "32-3.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "32-2.noarch"
+      "evra": "32-3.noarch"
     },
     "fedora-repos": {
-      "evra": "32-2.noarch"
+      "evra": "32-3.noarch"
     },
     "fedora-repos-ostree": {
-      "evra": "32-2.noarch"
+      "evra": "32-3.noarch"
     },
     "file": {
       "evra": "5.38-2.fc32.x86_64"
@@ -328,7 +328,7 @@
       "evra": "2.2.20-2.fc32.x86_64"
     },
     "gnutls": {
-      "evra": "3.6.13-4.fc32.x86_64"
+      "evra": "3.6.14-1.fc32.x86_64"
     },
     "gpgme": {
       "evra": "1.13.1-7.fc32.x86_64"
@@ -337,22 +337,22 @@
       "evra": "3.3-4.fc32.x86_64"
     },
     "grub2-common": {
-      "evra": "1:2.04-19.fc32.noarch"
+      "evra": "1:2.04-20.fc32.noarch"
     },
     "grub2-efi-x64": {
-      "evra": "1:2.04-19.fc32.x86_64"
+      "evra": "1:2.04-20.fc32.x86_64"
     },
     "grub2-pc": {
-      "evra": "1:2.04-19.fc32.x86_64"
+      "evra": "1:2.04-20.fc32.x86_64"
     },
     "grub2-pc-modules": {
-      "evra": "1:2.04-19.fc32.noarch"
+      "evra": "1:2.04-20.fc32.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.04-19.fc32.x86_64"
+      "evra": "1:2.04-20.fc32.x86_64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.04-19.fc32.x86_64"
+      "evra": "1:2.04-20.fc32.x86_64"
     },
     "gzip": {
       "evra": "1.10-2.fc32.x86_64"
@@ -418,13 +418,13 @@
       "evra": "2.2.0-1.fc32.noarch"
     },
     "kernel": {
-      "evra": "5.6.14-300.fc32.x86_64"
+      "evra": "5.6.16-300.fc32.x86_64"
     },
     "kernel-core": {
-      "evra": "5.6.14-300.fc32.x86_64"
+      "evra": "5.6.16-300.fc32.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.6.14-300.fc32.x86_64"
+      "evra": "5.6.16-300.fc32.x86_64"
     },
     "keyutils": {
       "evra": "1.6-4.fc32.x86_64"
@@ -589,7 +589,7 @@
       "evra": "1.1.5-2.fc32.x86_64"
     },
     "libnghttp2": {
-      "evra": "1.40.0-2.module_f32+8723+aeaf79ed.x86_64"
+      "evra": "1.41.0-1.fc32.x86_64"
     },
     "libnl3": {
       "evra": "3.5.0-2.fc32.x86_64"
@@ -619,7 +619,7 @@
       "evra": "0.1.5-44.fc32.x86_64"
     },
     "librepo": {
-      "evra": "1.11.3-1.fc32.x86_64"
+      "evra": "1.12.0-1.fc32.x86_64"
     },
     "libreport-filesystem": {
       "evra": "2.13.1-4.fc32.noarch"
@@ -826,13 +826,13 @@
       "evra": "2.4.47-4.fc32.x86_64"
     },
     "openssh": {
-      "evra": "8.3p1-1.fc32.x86_64"
+      "evra": "8.3p1-2.fc32.x86_64"
     },
     "openssh-clients": {
-      "evra": "8.3p1-1.fc32.x86_64"
+      "evra": "8.3p1-2.fc32.x86_64"
     },
     "openssh-server": {
-      "evra": "8.3p1-1.fc32.x86_64"
+      "evra": "8.3p1-2.fc32.x86_64"
     },
     "openssl": {
       "evra": "1:1.1.1g-1.fc32.x86_64"
@@ -883,10 +883,10 @@
       "evra": "1.6.3-3.fc32.x86_64"
     },
     "podman": {
-      "evra": "2:1.9.2-1.fc32.x86_64"
+      "evra": "2:1.9.3-1.fc32.x86_64"
     },
     "podman-plugins": {
-      "evra": "2:1.9.2-1.fc32.x86_64"
+      "evra": "2:1.9.3-1.fc32.x86_64"
     },
     "policycoreutils": {
       "evra": "3.0-2.fc32.x86_64"
@@ -958,10 +958,10 @@
       "evra": "4.5-5.fc32.x86_64"
     },
     "selinux-policy": {
-      "evra": "3.14.5-39.fc32.noarch"
+      "evra": "3.14.5-40.fc32.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "3.14.5-39.fc32.noarch"
+      "evra": "3.14.5-40.fc32.noarch"
     },
     "setup": {
       "evra": "2.13.6-2.fc32.noarch"
@@ -979,19 +979,19 @@
       "evra": "15-8.x86_64"
     },
     "skopeo": {
-      "evra": "1:0.2.0-1.fc32.x86_64"
+      "evra": "1:1.0.0-2.fc32.x86_64"
     },
     "slang": {
       "evra": "2.3.2-7.fc32.x86_64"
     },
     "slirp4netns": {
-      "evra": "1.0.0-1.fc32.x86_64"
+      "evra": "1.0.1-1.fc32.x86_64"
     },
     "socat": {
       "evra": "1.7.3.4-2.fc32.x86_64"
     },
     "sqlite-libs": {
-      "evra": "3.31.1-1.fc32.x86_64"
+      "evra": "3.32.1-1.fc32.x86_64"
     },
     "sssd": {
       "evra": "2.3.0-1.fc32.x86_64"
@@ -1024,22 +1024,22 @@
       "evra": "1.9.0-0.1.b4.fc32.x86_64"
     },
     "systemd": {
-      "evra": "245.4-1.fc32.x86_64"
+      "evra": "245.6-2.fc32.x86_64"
     },
     "systemd-container": {
-      "evra": "245.4-1.fc32.x86_64"
+      "evra": "245.6-2.fc32.x86_64"
     },
     "systemd-libs": {
-      "evra": "245.4-1.fc32.x86_64"
+      "evra": "245.6-2.fc32.x86_64"
     },
     "systemd-pam": {
-      "evra": "245.4-1.fc32.x86_64"
+      "evra": "245.6-2.fc32.x86_64"
     },
     "systemd-rpm-macros": {
-      "evra": "245.4-1.fc32.noarch"
+      "evra": "245.6-2.fc32.noarch"
     },
     "systemd-udev": {
-      "evra": "245.4-1.fc32.x86_64"
+      "evra": "245.6-2.fc32.x86_64"
     },
     "tar": {
       "evra": "2:1.32-4.fc32.x86_64"
@@ -1060,7 +1060,7 @@
       "evra": "2.35.2-1.fc32.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.806-1.fc32.x86_64"
+      "evra": "2:8.2.905-1.fc32.x86_64"
     },
     "which": {
       "evra": "2.21-19.fc32.x86_64"
@@ -1088,22 +1088,16 @@
     }
   },
   "metadata": {
-    "generated": "2020-06-01T21:07:36Z",
+    "generated": "2020-06-14T21:07:23Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-04-22T22:22:36Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2020-06-01T20:28:30Z"
-      },
-      "fedora-modular": {
-        "generated": "2020-04-22T21:03:13Z"
+        "generated": "2020-06-11T16:37:24Z"
       },
       "fedora-updates": {
-        "generated": "2020-06-01T01:18:12Z"
-      },
-      "fedora-updates-modular": {
-        "generated": "2020-05-28T04:54:06Z"
+        "generated": "2020-06-14T16:47:09Z"
       }
     }
   }

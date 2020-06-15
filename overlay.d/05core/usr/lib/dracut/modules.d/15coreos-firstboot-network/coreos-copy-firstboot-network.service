@@ -6,6 +6,7 @@
 #
 # - Need to look for networking configuration on the /boot partition
 #     - i.e. after /dev/disk/by-label/boot is available
+#     - and after the ignition-dracut GPT generator (see below)
 # - Need to run before networking is brought up.
 #     - This is done in nm-run.sh [1] that runs as part of dracut-initqueue [2]
 #     - i.e. Before=dracut-initqueue.service
@@ -32,9 +33,16 @@ DefaultDependencies=false
 Before=ignition-diskful.target
 Before=dracut-initqueue.service
 After=dracut-cmdline.service
+# Any services looking at mounts need to order after this
+# because it causes device re-probing.
+After=coreos-gpt-setup.service
+# Older unit name kept for compatibility. This will be safe to remove once the
+# dracut-ignition changes from [1] are available in the latest ignition RPM.
+# [1] https://github.com/coreos/ignition-dracut/pull/191
+After=coreos-gpt-setup@dev-disk-by\x2dlabel-root.service
 # Since we are mounting /boot/, require the device first
 Requires=dev-disk-by\x2dlabel-boot.device
-After=dev-disk-by\x2dlabel-boot.device   
+After=dev-disk-by\x2dlabel-boot.device
 
 [Service]
 Type=oneshot
