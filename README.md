@@ -88,19 +88,38 @@ one easy way to do this is for now:
 - run `cosa fetch --update-lockfile`
 - commit only the new package entries
 
-## Moving to a new major version of Fedora
+## Moving to a new major version (N) of Fedora
 
-Updating this repo itself is easy:
+Updating this repo:
 
 1. bump `releasever` in `manifest.yaml`
 2. update the repos in `manifest.yaml` if needed
 3. run `cosa fetch --update-lockfile`
 4. PR the result
 
-Though there are also some releng-related knobs that may need changes:
+Update server changes:
+
+1. Set a new update barrier for N-2 on all streams.
+   See [discussion](https://github.com/coreos/fedora-coreos-tracker/issues/480#issuecomment-631724629).
+
+CoreOS Installer changes:
+
+1. Update CoreOS Installer to know about the signing key used for the
+   future new major version of Fedora (N+1). Note that the signing
+   keys for N+1 won't get created until releng branches and rawhide
+   becomes N+1.
+
+Release engineering changes:
 
 1. verify that the `f${releasever}-coreos-signing-pending` Koji tag has
-   been created
+   been created (this should have already been done by releng scripts on
+   branching)
 2. update RoboSignatory config so that:
     - [tagged packages are signed with the right key](https://infrastructure.fedoraproject.org/cgit/ansible.git/tree/roles/robosignatory/templates/robosignatory.toml.j2?id=c27f4644d4bc2f7916c9c85dc1c1a9ee9a724cc0#n181)
     - [CoreOS artifacts are signed with the right key](https://infrastructure.fedoraproject.org/cgit/ansible.git/tree/roles/robosignatory/templates/robosignatory.toml.j2?id=c27f4644d4bc2f7916c9c85dc1c1a9ee9a724cc0#n458)
+3. `koji untag` N-2 packages from the pool (at some point we'll have GC
+   in place to do this for us, but for now we must remember to do this
+   manually or otherwise distRepo will fail once the signed packages are
+   GC'ed). For example:
+    - `koji list-tagged coreos-pool --quiet | grep fc30 | cut -f1 -d' ' | sort | uniq`
+    - Sanity-check the output, then pipe it to `xargs koji untag-build coreos-pool`
