@@ -10,3 +10,11 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a4f6437bd1
   fedora-coreos-pinger:
     evra: 0.0.4-4.fc32.x86_64
+  # Fast-track a build of microcode_ctl that is part of a set of fixes
+  # for a recent CVE (CVE-2020-0543). The bug for the CVE is BZ1827165
+  # which links to two Fedora specific bugs: BZ1845629 (kernel) and
+  # BZ1845630 (microcode_ctl). The kernel update (kernel-5.6.18-300.fc32)
+  # already made it to stable. The microcode_ctl update has not yet.
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-7bb2398b6b
+  microcode_ctl:
+    evra: 2:2.1-38.fc32.x86_64
