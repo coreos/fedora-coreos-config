@@ -148,7 +148,7 @@
       "evra": "2.3.3-1.fc32.x86_64"
     },
     "cups-libs": {
-      "evra": "1:2.3.3-2.fc32.x86_64"
+      "evra": "1:2.3.3-6.fc32.x86_64"
     },
     "curl": {
       "evra": "7.69.1-3.fc32.x86_64"
@@ -264,6 +264,12 @@
     "findutils": {
       "evra": "1:4.7.0-4.fc32.x86_64"
     },
+    "fipscheck": {
+      "evra": "1.5.0-8.fc32.x86_64"
+    },
+    "fipscheck-lib": {
+      "evra": "1.5.0-8.fc32.x86_64"
+    },
     "firewalld-filesystem": {
       "evra": "0.8.2-3.fc32.noarch"
     },
@@ -328,7 +334,7 @@
       "evra": "2.2.20-2.fc32.x86_64"
     },
     "gnutls": {
-      "evra": "3.6.14-1.fc32.x86_64"
+      "evra": "3.6.14-2.fc32.x86_64"
     },
     "gpgme": {
       "evra": "1.13.1-7.fc32.x86_64"
@@ -826,13 +832,13 @@
       "evra": "2.4.47-4.fc32.x86_64"
     },
     "openssh": {
-      "evra": "8.3p1-2.fc32.x86_64"
+      "evra": "8.2p1-2.fc32.x86_64"
     },
     "openssh-clients": {
-      "evra": "8.3p1-2.fc32.x86_64"
+      "evra": "8.2p1-2.fc32.x86_64"
     },
     "openssh-server": {
-      "evra": "8.3p1-2.fc32.x86_64"
+      "evra": "8.2p1-2.fc32.x86_64"
     },
     "openssl": {
       "evra": "1:1.1.1g-1.fc32.x86_64"
@@ -991,7 +997,7 @@
       "evra": "1.7.3.4-2.fc32.x86_64"
     },
     "sqlite-libs": {
-      "evra": "3.32.1-1.fc32.x86_64"
+      "evra": "3.32.2-1.fc32.x86_64"
     },
     "sssd": {
       "evra": "2.3.0-1.fc32.x86_64"
@@ -1088,7 +1094,7 @@
     }
   },
   "metadata": {
-    "generated": "2020-06-15T21:08:52Z",
+    "generated": "2020-06-16T16:46:56Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-04-22T22:22:36Z"
@@ -1097,7 +1103,7 @@
         "generated": "2020-06-15T19:29:45Z"
       },
       "fedora-updates": {
-        "generated": "2020-06-15T01:50:58Z"
+        "generated": "2020-06-16T01:08:17Z"
       }
     }
   }
