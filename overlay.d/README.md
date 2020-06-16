@@ -33,6 +33,7 @@ Disables the Red Hat Linux legacy `ifcfg` format.
 Things that are more closely "Fedora CoreOS":
 
 * disable password logins by default over SSH
+* enable SSH keys written by Ignition and Afterburn
 * branding (MOTD)
 * enable services by default (fedora-coreos-pinger)
 * display warnings on the console if no ignition config was provided or no ssh
