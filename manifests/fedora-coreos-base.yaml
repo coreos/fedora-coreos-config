@@ -76,14 +76,6 @@ postprocess:
     for x in /etc/yum.repos.d/*modular.repo; do
       sed -i -e 's,enabled=[01],enabled=0,' ${x}
     done
-  # Disable the default-enabled AuthorizedKeysFile directive so we can
-  # override it in a config fragment
-  # https://github.com/coreos/fedora-coreos-tracker/issues/139
-  # https://bugzilla.redhat.com/1824913
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
 
   # Enable SELinux booleans used by OpenShift
   # https://github.com/coreos/fedora-coreos-tracker/issues/284
