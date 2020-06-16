@@ -52,12 +52,12 @@ variant: fcos
 version: 1.1.0
 storage:
   files:
-    - path: /etc/ssh/sshd_config.d/02-enable-passwords.conf
+    - path: /etc/ssh/sshd_config.d/20-enable-passwords.conf
       mode: 0644
       contents:
         inline: |
           # Fedora CoreOS disables SSH password login by default.
           # Enable it.
-          # This file must sort before 04-disable-passwords.conf.
+          # This file must sort before 40-disable-passwords.conf.
           PasswordAuthentication yes
 ----
