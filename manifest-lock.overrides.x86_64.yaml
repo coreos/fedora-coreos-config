@@ -22,3 +22,7 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-e8835a5f8e
   microcode_ctl:
     evra: 2:2.1-39.fc32.x86_64
+  podman:
+    evra: 2:2.0.0-0.3.rc7.fc32.x86_64
+  podman-plugins:
+    evra: 2:2.0.0-0.3.rc7.fc32.x86_64
