@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Copyright (c) 2020 The CoreOS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+usage() {
+    echo "Usage: $0 [-d|-p|-h] <device>" 1>&2
+}
+
+# Get partition ID from device name, e.g. '/dev/nvme0n1p2' -> '1'
+namespace_id() {
+    NSID=$(echo -n "$1" | cut -f 3 -d 'n' | cut -f 1 -d 'p')
+    echo "_NS_ID=${NSID}"
+}
+
+# Get device name from raw metadata,
+devname() {
+    RAWVOL=$(nvme id-ctrl --raw-binary "$1" | cut -c3073-3104 | tr -s ' ' | sed 's/ $//g')
+    VOL="${RAWVOL#/dev/}"
+    if [[ -n "$VOL" ]]; then
+        echo "${VOL}"
+    else
+        exit 1
+    fi
+}
+
+while getopts "hd:n:" o; do
+    case "${o}" in
+        d)
+            devname "${OPTARG}"
+            exit 0
+            ;;
+        n)
+            namespace_id "${OPTARG}"
+            exit 0
+            ;;
+        h)
+            usage
+            exit 0
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+done

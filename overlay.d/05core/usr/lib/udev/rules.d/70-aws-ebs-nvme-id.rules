@@ -1,0 +1,14 @@
+#AWS EBS NVMe
+ACTION!="add|change", GOTO="aws_ebs_nvme_end"
+SUBSYSTEM!="block", GOTO="aws_ebs_nvme_end"
+
+# NVMe devices
+KERNEL=="nvme[0-9]*n[0-9]*", ENV{DEVTYPE}=="disk", ATTRS{model}=="Amazon Elastic Block Store", ATTRS{serial}=="?*", SYMLINK+="disk/by-id/nvme-$attr{model}_$attr{serial}-ns-%n", OPTIONS+="string_escape=replace"
+KERNEL=="nvme[0-9]*n[0-9]*", ENV{DEVTYPE}=="disk", ATTRS{model}=="Amazon Elastic Block Store", ATTRS{serial}=="?*", PROGRAM="/usr/lib/udev/bin/aws-ebs-nvme-id -d /dev/%k", SYMLINK+="%c"
+
+# NVMe partitions
+KERNEL=="nvme[0-9]*n[0-9]*p[0-9]*", ENV{DEVTYPE}=="partition", ATTRS{model}=="Amazon Elastic Block Store", ATTRS{serial}=="?*", IMPORT{program}="/usr/lib/udev/bin/aws-ebs-nvme-id -d /dev/%k"
+KERNEL=="nvme[0-9]*n[0-9]*p[0-9]*", ENV{DEVTYPE}=="partition", ATTRS{model}=="Amazon Elastic Block Store", ATTRS{serial}=="?*", ENV{_NS_ID}=="?*", SYMLINK+="disk/by-id/nvme-$attr{model}_$attr{serial}-ns-$env{_NS_ID}-part%n", OPTIONS+="string_escape=replace"
+KERNEL=="nvme[0-9]*n[0-9]*p[0-9]*", ENV{DEVTYPE}=="partition", ATTRS{model}=="Amazon Elastic Block Store", ATTRS{serial}=="?*", ENV{_NS_ID}=="?*", PROGRAM="/usr/lib/udev/bin/aws-ebs-nvme-id -d /dev/%k", SYMLINK+="%c%n"
+
+LABEL="aws_ebs_nvme_end"
