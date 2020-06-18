@@ -35,9 +35,11 @@ for varsubdir in lib log home roothome opt srv usrlocal mnt media; do
         systemd-tmpfiles --create --boot --root=/sysroot --prefix="/var/${varsubdir}"
     fi
 
+    if [[ $varsubdir == roothome ]]; then
+        # TODO move this to tmpfiles.d once systemd-tmpfiles handles C! with --root correctly.
+        # See https://github.com/coreos/fedora-coreos-config/pull/137
+        cp /sysroot/etc/skel/.bash* /sysroot/var/${varsubdir}
+    fi
+
     coreos-relabel "/var/${varsubdir}"
 done
-
-# TODO move this to tmpfiles.d once systemd-tmpfiles handles C! with --root correctly.
-# See https://github.com/coreos/fedora-coreos-config/pull/137
-cp /sysroot/etc/skel/.bash* /sysroot/root
