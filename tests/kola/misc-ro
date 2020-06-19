@@ -41,3 +41,12 @@ elif [[ $nm_ts -gt $switchroot_ts ]] && on_platform aws; then
     fatal "NetworkManager not started in initramfs!"
 fi
 ok conditional initrd networking
+
+# check that no files are unlabeled
+unlabeled=$(find /var /etc -context '*:unlabeled_t:*')
+if [ -n "${unlabeled}" ]; then
+    echo "Found unlabeled files:"
+    echo "${unlabeled}"
+    exit 1
+fi
+ok no files with unlabeled_t SELinux label
