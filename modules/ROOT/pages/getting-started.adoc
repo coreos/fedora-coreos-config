@@ -32,14 +32,15 @@ unxz fedora-coreos-qemu.qcow2.xz
 +
 TIP: Make sure that your user has access to `/dev/kvm` (this should already be the case on modern distros), or if `/dev/kvm` is owned by the `kvm` group, adding yourself to that group with `usermod -aG kvm $USER`.
 
-. Launch the VM using `qemu-kvm` or `virt-install`. The Ignition file is passed to the VM via the `-fw_cfg` parameter, which sets the `opt/com.coreos/config` key in the QEMU firmware configuration device. For libvirt, you must pass this through the `--qemu-commandline` argument. You can use `-snapshot` to make `qemu-kvm` allocate temporary storage for the VM, or `qemu-img create` to first create a layered qcow2.
+. Launch the VM using `qemu-kvm` or `virt-install`. The Ignition file is passed to the VM via the `-fw_cfg` parameter, which sets the `opt/com.coreos/config` key in the QEMU firmware configuration device. For libvirt, you must pass this through the `--qemu-commandline` argument. You can use `-snapshot` to make `qemu-kvm` allocate temporary storage for the VM, or `qemu-img create` to first create a layered qcow2. For QEMU usermode networking, the assigned IP address is not reachable from the host, so `hostfwd` is used to forward a port on `localhost` to the default SSH port on the guest machine.
 +
 .Example launching FCOS with QEMU (temporary storage)
 [source, bash]
 ----
 qemu-kvm -m 2048 -cpu host -nographic -snapshot \
 	-drive if=virtio,file=fedora-coreos-qemu.qcow2 \
-	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign
+	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign \
+	-nic user,model=virtio,hostfwd=tcp::2222-:22
 ----
 +
 .Example launching FCOS with QEMU (persistent storage)
@@ -48,7 +49,8 @@ qemu-kvm -m 2048 -cpu host -nographic -snapshot \
 qemu-img create -f qcow2 -b fedora-coreos-qemu.qcow2 my-fcos-vm.qcow2
 qemu-kvm -m 2048 -cpu host -nographic \
 	-drive if=virtio,file=my-fcos-vm.qcow2 \
-	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign
+	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign \
+	-nic user,model=virtio,hostfwd=tcp::2222-:22
 ----
 +
 .Example launching FCOS with virt-install
@@ -63,7 +65,7 @@ NOTE: When using `virt-install`, you must specify absolute paths to the image an
 
 TIP: If running with SELinux enabled, you may need to change the label of the Ignition file to allow access: `chcon -t svirt_home_t path/to/example.ign`
 
-Once the VM has finished booting, its IP addresses will appear on the serial console. You can then SSH into the FCOS VM as the `core` user:
+Once the VM has finished booting, its IP addresses will appear on the serial console. You can then SSH into the FCOS VM as the `core` user (if using QEMU, use `localhost` and pass `-p 2222` or whichever port you've forwarded):
 
 [source, bash]
 ----
