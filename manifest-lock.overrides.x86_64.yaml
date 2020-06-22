@@ -10,10 +10,6 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a4f6437bd1
   fedora-coreos-pinger:
     evra: 0.0.4-4.fc32.x86_64
-  # Pin crypto-policies to avoid Lua script in newer versions
-  # https://github.com/coreos/fedora-coreos-tracker/issues/540
-  crypto-policies:
-    evra: 20200527-1.gitb234a47.fc32.noarch
   # Fast-track a build of microcode_ctl that is part of a set of fixes
   # for a recent CVE (CVE-2020-0543). The bug for the CVE is BZ1827165
   # which links to two Fedora specific bugs: BZ1845629 (kernel) and
