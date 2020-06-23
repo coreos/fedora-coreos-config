@@ -1,20 +1,2 @@
-packages:
-  # Fast-track slirp4netns. The previous version we were using 
-  # (1.0.1-1.fc32) was obsoleted before it hit stable so we're
-  # now moving to the current candidate in bodhi updates-testing.
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-c11b99377e
-  slirp4netns:
-    evra: 1.1.1-1.fc32.x86_64
-  # Fast-track a build of fedora-coreos-pinger that doesn't use
-  # modular repos (https://github.com/coreos/fedora-coreos-tracker/issues/525).
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a4f6437bd1
-  fedora-coreos-pinger:
-    evra: 0.0.4-4.fc32.x86_64
-  # Fast-track a build of microcode_ctl that is part of a set of fixes
-  # for a recent CVE (CVE-2020-0543). The bug for the CVE is BZ1827165
-  # which links to two Fedora specific bugs: BZ1845629 (kernel) and
-  # BZ1845630 (microcode_ctl). The kernel update (kernel-5.6.18-300.fc32)
-  # already made it to stable. The microcode_ctl update has not yet.
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-e8835a5f8e
-  microcode_ctl:
-    evra: 2:2.1-39.fc32.x86_64
+# no overrides at this time
+packages: {}
