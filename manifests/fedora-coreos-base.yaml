@@ -94,6 +94,7 @@ packages:
   - passwd
   # SSH
   - openssh-server openssh-clients
+  - ssh-key-dir
   # Containers
   - podman skopeo runc systemd-container catatonit
   - fuse-overlayfs slirp4netns

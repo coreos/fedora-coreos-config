@@ -1,2 +1,5 @@
-# no overrides at this time
-packages: {}
+packages:
+  # Fast-track initial build of ssh-key-dir
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-2d340985eb
+  ssh-key-dir:
+    evra: 0.1.2-2.fc32.s390x
