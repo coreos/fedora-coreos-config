@@ -1,0 +1,16 @@
+[Unit]
+Description=CoreOS Keep Legacy Network Interface Names
+Documentation=https://github.com/coreos/fedora-coreos-tracker/issues/484
+RequiresMountsFor=/boot
+ConditionPathExists=!/usr/lib/systemd/network/99-default.link
+# NOTE: we do not conditionalize on ConditionKernelCommandLine= here because
+# kernel args might have been tweaked manually just for this boot; we still
+# want to change the BLS entries in that case.
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/libexec/coreos-keep-legacy-ifnames
+
+[Install]
+WantedBy=multi-user.target
