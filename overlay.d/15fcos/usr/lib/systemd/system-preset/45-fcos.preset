@@ -3,6 +3,3 @@ enable fedora-coreos-pinger.service
 # Provide information if no ignition is provided
 enable coreos-check-ignition-config.service
 enable coreos-check-ssh-keys.service
-# Pinning script for legacy interface names, see
-# https://github.com/coreos/fedora-coreos-tracker/issues/484
-enable coreos-keep-legacy-ifnames.service
