@@ -1,12 +1,2 @@
-packages:
-  # Fast-track slirp4netns. The previous version we were using 
-  # (1.0.1-1.fc32) was obsoleted before it hit stable so we're
-  # now moving to the current candidate in bodhi updates-testing.
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-c11b99377e
-  slirp4netns:
-    evra: 1.1.1-1.fc32.s390x
-  # Fast-track a build of fedora-coreos-pinger that doesn't use
-  # modular repos (https://github.com/coreos/fedora-coreos-tracker/issues/525).
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a4f6437bd1
-  fedora-coreos-pinger:
-    evra: 0.0.4-4.fc32.s390x
+# no overrides at this time
+packages: {}
