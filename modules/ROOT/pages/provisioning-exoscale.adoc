@@ -1,0 +1,74 @@
+= Provisioning Fedora CoreOS on Exoscale
+
+This guide shows how to provision new Fedora CoreOS (FCOS) instances on https://exoscale.com[Exoscale] Cloud Hosting.
+
+== Prerequisites
+
+Before provisioning a FCOS instance, you may want to have at hand an Ignition configuration file containing your customizations. If you need one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+You also need to have access to an Exoscale account. https://portal.exoscale.com/register[Register] if you don't have one.
+
+== About images
+
+Fedora CoreOS images are periodically updated by Exoscale on their platform. The future goal is to have an Exoscale FCOS link in the  https://getfedora.org/en/coreos/download?tab=cloud_launchable[Cloud Lauchable] section, to be updated at every release.
+
+== Launching a VM instance (Web Portal)
+
+You can provision a FCOS instance using the Exoscale https://portal.exoscale.com/compute/instances/add?os-group=coreos[Web Portal]. Then you can choose your FCOS version and follow the instance creation wizard.
+
+If you just want SSH access and no further customization, you don't need to pass any custom instance user-data.
+Depending on your Exoscale Organization, relevant SSH public keys will be automatically added to the VM. This provides an easy way to test out FCOS without first creating an Ignition config.
+
+If you need to apply any customization, you can provide an Ignition configuration as user-data when creating a new machine instance.
+
+== Launching a VM instance (CLI)
+
+If you prefer to use a CLI you can provision an FCOS instance using the https://community.exoscale.com/documentation/tools/exoscale-command-line-interface/[Exoscale CLI].
+
+.Launching a new instance with Exoscale CLI
+[source, bash]
+----
+VM_NAME='fcos-node01'
+exo vm create "${VM_NAME}" \
+    --template "Linux Fedora CoreOS 32 64-bit" \
+    --keypair "my_key_name" \
+    --cloud-init-file "path/to/ignition-file.ign" # Optional, if you want to launch a customized FCOS instance.
+----
+
+.SSH to the instance
+[source, bash]
+----
+VM_NAME='fcos-node01'
+exo ssh "${VM_NAME}"
+----
+
+== Uploading an FCOS image as a custom Template
+
+Exoscale provides https://community.exoscale.com/documentation/compute/custom-templates[custom Template] to be able to upload any cloud image.
+
+.Download the QCOW2 image with https://github.com/coreos/coreos-installer[coreos-installer]
+[source, bash]
+----
+STREAM="stable"
+coreos-installer download -s "${STREAM}" -p exoscale -f qcow2.xz
+----
+
+Alternatively, QCOW2 images can be manually downloaded from the https://getfedora.org/coreos/download?tab=cloud_operators[download page].
+
+.Uncompress the file
+[source, bash]
+----
+unxz "fedora-coreos-$VERSION-exoscale.x86_64.qcow2.xz"
+----
+
+You need to resize the image virtual size to 10G.
+
+.Resize image virtual size with qemu-img
+[source, bash]
+----
+qemu-img resize "fedora-coreos-$VERSION-exoscale.x86_64.qcow2" +2G
+----
+
+Then you need to https://community.exoscale.com/documentation/compute/custom-templates/#register-a-custom-template[register your custom Template] from the Web Portal or the Exoscale CLI.
+
+Once it is done, you can use it like an official Exoscale Template Image.
