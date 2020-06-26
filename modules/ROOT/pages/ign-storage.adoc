@@ -14,7 +14,7 @@ The `storage` block contains a list of objects, which can be of the following ty
 == Disks
 Every entry under the `disks` node must correspond to a unique device. For each device, specify a list of GPT partitions. Unless specified as optional, all nodes are mandatory. The contents of `disks` is as follows:
 
-* `device` (string): Absolute path of the disk device. Disks are typically referenced by the `+/dev/disk-by-*+` symlinks. Avoid specifying the disk device `/dev/sdx` directly: when new disks are inserted, the system might re-enumerate devices at boot. This could change the order of the `/dev/sdx` devices. The `+/dev/disk-by-*+` symlinks always point to the right devices.
+* `device` (string): Absolute path of the disk device. Disks are typically referenced by the `+/dev/disk/by-*+` symlinks. Avoid specifying the disk device `/dev/sdx` directly: when new disks are inserted, the system might re-enumerate devices at boot. This could change the order of the `/dev/sdx` devices. The `+/dev/disk/by-*+` symlinks always point to the right devices.
 * `wipe_table` (boolean, optional): When `true`, Ignition erases the partition table before proceeding. Otherwise, the table's existing partition entries are left alone.
 * `partitions` (object list, optional): List of partitions to be written to the partition table of the device. Each partition occupies a slot in the table. You can either specify the slot directly with the `number` node, or specify `number: 0` and supply a unique `label`.
 ** `label` (string, optional): GPT PARTLABEL for the partition.
