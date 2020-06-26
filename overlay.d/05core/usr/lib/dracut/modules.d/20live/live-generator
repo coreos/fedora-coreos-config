@@ -90,6 +90,7 @@ Requires=${isosrc_escaped}
 [Mount]
 What=/${isosrc}
 Where=/run/media/iso
+Options=ro
 Type=iso9660
 EOF
 
