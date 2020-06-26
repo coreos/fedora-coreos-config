@@ -475,8 +475,8 @@ main() {
         bls_file=ostree-1-rhcos.conf
     else
         rhcos=0
-        nic0=eth0
-        nic1=eth1
+        nic0=ens2
+        nic1=ens3
         bls_file=ostree-1-fedora-coreos.conf
     fi
     nics="${nic0},${nic1}"
@@ -507,6 +507,12 @@ main() {
 
     # nameserver= doesn't work as I would expect
     # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/issues/391
+
+    # For net.ifnames=0 check (i.e., eth0 check)
+    devname=eth0
+    x="${common_args} rd.neednet=1 ip=${devname}:dhcp"
+    initramfs_dhcp_eth0=$x
+
     devname=$nic0
     x="${common_args} rd.neednet=1 ip=${devname}:dhcp"
     initramfs_dhcp_nic0=$x
@@ -570,6 +576,16 @@ main() {
     check_vm 'dhcp' 2 $ip $nic0 'n/a' $sshkeyfile
     reboot_vm
     check_vm 'dhcp' 2 $ip $nic0 'n/a' $sshkeyfile
+    destroy_vm
+
+    # Do a `net.ifnames=0` check and make sure eth0 is the interface name.
+    # We don't pass any hostname information so it will just be (`n/a`).
+    echo -e "\n###### Testing net.ifnames=0 gives us legacy NIC naming\n"
+    create_ignition_file "$fcct_none" $ignitionfile
+    start_vm $qcow $ignitionfile $kernel $initramfs "${initramfs_dhcp_eth0} net.ifnames=0"
+    check_vm 'dhcp' 2 $ip 'eth0' 'n/a' $sshkeyfile
+    # Don't reboot and do another check because we didn't persist the net.ifnames=0 karg
+    # TODO persist the net.ifnames karg and do another check after a reboot.
     destroy_vm
 
     # Note 'static_team0' initramfs teaming doesn't work so leave it out for now
