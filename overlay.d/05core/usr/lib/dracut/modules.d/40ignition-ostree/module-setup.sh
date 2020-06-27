@@ -3,7 +3,7 @@
 # ex: ts=8 sw=4 sts=4 et filetype=sh
 
 depends() {
-    echo ignition
+    echo ignition rdcore
 }
 
 install_ignition_unit() {
@@ -90,4 +90,6 @@ install() {
     inst_script "$moddir/coreos-growpart" /usr/libexec/coreos-growpart
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
+
+    install_ignition_unit coreos-inject-rootmap.service diskful
 }
