@@ -18,7 +18,7 @@ The overall steps are as follows:
 
 === Prerequisite
 
-This example uses a pair of SSH public and private keys. If you don't already have it, you can https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sec-security#sec-SSH[generate an SSH key pair].
+This example uses a pair of SSH public and private keys. If you don't already have it, you can https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index#sec-SSH[generate an SSH key pair].
 
 The SSH public key will be provisioned to the FCOS machine (via Ignition). The SSH private key needs to be available to your user on the local workstation, in order to remotely authenticate yourself over SSH.
 
