@@ -1,20 +1,22 @@
-:experimental:
-= Fedora CoreOS - Producing an Ignition File
+= Producing an Ignition File
 
-This guide provides easy, step-by-step instructions to produce a basic Ignition file.
+This guide provides step-by-step instructions on how to produce a basic Ignition file.
 
-Fedora CoreOS (FCOS) Ignition files specify the configuration of FCOS. The process begins with a YAML configuration file. The FCOS Configuration Transpiler (FCCT) converts the human-friendly YAML file into machine-friendly JSON.
+Fedora CoreOS (FCOS) Ignition files specify the configuration for provisioning FCOS instances. The process begins with a YAML configuration file. The FCOS Configuration Transpiler (FCCT) converts the human-friendly YAML file into machine-friendly JSON, which is the final configuration file for Ignition.
 
-TIP: Once FCOS boots and ingests the Ignition file, the configuration is meant to be immutable. Therefore, plan your Ignition file with the full configuration specifications that you will need.
+FCOS ingests the Ignition file only on first boot, applying the whole configuration or failing to boot in case of errors. After that, instance configuration is meant to be immutable.
+
+TIP: Before provisioning an FCOS instance, plan your configuration with the full set of customization details. If you forgot something, simply fix the configuration and re-deploy the instance from a fresh image.
 
 == A simple example
+
 Create a basic Ignition file that modifies the default FCOS user `core` to allow this user login with an SSH key.
 
 The overall steps are as follows:
 
 . Write the Fedora CoreOS Configuration (FCC) file in the YAML format.
-. Download and install the Fedora CoreOS Configuration Transpiler (`fcct`).
-. Use `fcct` to convert the FCC file into an Ignition (JSON) file.
+. Use the `quay.io/coreos/fcct:release` container image to convert the FCC file into an Ignition (JSON) file.
+. Boot a fresh FCOS image with the resulting Ignition configuration.
 
 === Prerequisite
 
