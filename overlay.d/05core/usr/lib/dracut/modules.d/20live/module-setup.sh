@@ -7,6 +7,8 @@ install_and_enable_unit() {
 }
 
 install() {
+    inst_multiple truncate
+
     inst_script "$moddir/is-live-image.sh" \
         "/usr/bin/is-live-image"
 
@@ -15,9 +17,6 @@ install() {
 
     inst_simple "$moddir/live-generator" \
         "$systemdutildir/system-generators/live-generator"
-
-    inst_simple "$moddir/coreos-populate-writable.service" \
-        "$systemdsystemunitdir/coreos-populate-writable.service"
 
     inst_simple "$moddir/coreos-live-unmount-tmpfs-var.sh" \
         "/usr/sbin/coreos-live-unmount-tmpfs-var"
@@ -30,9 +29,6 @@ install() {
 
     install_and_enable_unit "coreos-live-persist-osmet.service" \
         "default.target"
-
-    inst_simple "$moddir/writable.mount" \
-        "$systemdsystemunitdir/writable.mount"
 
     inst_simple "$moddir/coreos-liveiso-network-kargs.sh" \
         "/usr/sbin/coreos-liveiso-network-kargs"
