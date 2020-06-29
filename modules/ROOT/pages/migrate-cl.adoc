@@ -27,7 +27,7 @@ The following changes have been made to the installation process:
 * For time synchronization, use https://docs.fedoraproject.org/en-US/fedora/rawhide/system-administrators-guide/servers/Configuring_NTP_Using_the_chrony_Suite/[`chronyd`] rather than `ntpd` or `systemd-timesyncd`.
 * Automatic updates are now coordinated by Zincati, as described in the https://github.com/coreos/zincati/blob/master/docs/usage/auto-updates.md[Zincati documentation]. The rollback mechanism (via grub) is now provided by https://github.com/coreos/rpm-ostree/blob/master/README.md[`rpm-ostree`].
 * The functionality of the reboot manager (`locksmith`) is rolled into https://github.com/coreos/zincati/blob/master/README.md[Zincati].
-* The `update-ssh-keys` tool is not provided on FCOS. To update SSH keys, edit `~/ssh/authorized_keys` directly. Note that Ignition and Afterburn place SSH keys in separate files in `~/.ssh/authorized_keys.d`.
+* The `update-ssh-keys` tool is not provided on FCOS. sshd uses a xref:authentication.adoc#ssh-key-locations[helper program] to read key files directly out of `~/.ssh/authorized_keys.d`.
 
 == Configuration changes
 
