@@ -111,6 +111,9 @@ packages:
   - iptables nftables iptables-nft iptables-services
   # Interactive Networking configuration during coreos-install
   - NetworkManager-tui
+  # Automatically configure NetworkManager in cloud
+  # https://bugzilla.redhat.com/show_bug.cgi?id=1822603
+  - NetworkManager-cloud-setup
   # Storage
   - cloud-utils-growpart
   - lvm2 iscsi-initiator-utils sg3_utils
