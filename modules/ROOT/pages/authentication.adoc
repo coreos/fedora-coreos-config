@@ -15,6 +15,17 @@ passwd:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5QFS...
 ----
 
+=== SSH key locations
+
+sshd uses a https://github.com/coreos/ssh-key-dir[helper program] to read public keys from files in a user's `~/.ssh/authorized_keys.d` directory. Key files are read in alphabetical order, ignoring dotfiles. The standard `~/.ssh/authorized_keys` file is read afterward, in the usual way. To debug the reading of `~/.ssh/authorized_keys.d`, manually run the helper program and inspect its output:
+
+[source,bash]
+----
+/usr/libexec/ssh-key-dir
+----
+
+Ignition writes configured SSH keys to `~/.ssh/authorized_keys.d/ignition`. On platforms where SSH keys can be configured at the platform level, such as AWS, Afterburn writes those keys to `~/.ssh/authorized_keys.d/afterburn`.
+
 == Using password authentication
 
 Fedora CoreOS ships with no default passwords. You can use a Fedora CoreOS Config to set a password for a local user:
