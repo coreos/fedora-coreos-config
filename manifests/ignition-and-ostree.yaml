@@ -2,7 +2,7 @@
 # plus other default tweaks.  Things in this file should be something we expect
 # basically everyone using both Ignition and (rpm-)ostree to want.
 # It may be used as an inheritance base by other projects like Fedora Silverblue or RHCOS.
-# One good model is to add feodra-coreos-config as a git submodule.  See:
+# One good model is to add fedora-coreos-config as a git submodule.  See:
 # https://github.com/coreos/coreos-assembler/pull/639
 
 # Include rpm-ostree + kernel + bootloader
