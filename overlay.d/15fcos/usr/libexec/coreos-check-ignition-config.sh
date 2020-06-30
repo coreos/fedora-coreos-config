@@ -11,7 +11,7 @@ warn='\033[0;33m'
 nc='\033[0m'
 
 # See https://github.com/coreos/ignition/pull/958 for the MESSAGE_ID source.
-# It will track the journal messages related to an ignition config provided 
+# It will track the journal messages related to an Ignition config provided 
 # by the user.
 output=$(journalctl -o json-pretty MESSAGE_ID=57124006b5c94805b77ce473e92a8aeb | jq -s '.[] | select(.IGNITION_CONFIG_TYPE == "user")'| wc -l)
 

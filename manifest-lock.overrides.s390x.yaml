@@ -1,36 +1,10 @@
 packages:
-  # Fast-track to neuter sysroot.readonly:
-  # https://github.com/coreos/fedora-coreos-tracker/issues/488
-  # https://github.com/ostreedev/ostree/pull/2108
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-344e9b4232
-  ostree:
-    evra: 2020.3-4.fc32.s390x
-  ostree-libs:
-    evra: 2020.3-4.fc32.s390x
-  # Fast-track new release for:
-  # https://github.com/coreos/fedora-coreos-tracker/issues/481
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-e5dac04be2
-  rpm-ostree:
-    evra: 2020.2-3.fc32.s390x
-  rpm-ostree-libs:
-    evra: 2020.2-3.fc32.s390x
-  # Fast-track F32 signing keys
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-3aff453794
-  coreos-installer:
-    evra: 0.2.1-2.fc32.s390x
-  coreos-installer-systemd:
-    evra: 0.2.1-2.fc32.s390x
-  # Fast-track Ignition for failure handling
-  # https://github.com/coreos/ignition-dracut/pull/188
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a3f96fc5bd
-  ignition:
-    evra: 2.3.0-2.gitee616d5.fc32.s390x
-  # Fast-track slirp4netns. The maintainers forgot to submit the update
-  # to bodhi and now we're seeing a "downgrade" when going from Fedora
-  # 31 FCOS to Fedora 32 FCOS.
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-157c71d962
+  # Fast-track slirp4netns. The previous version we were using 
+  # (1.0.1-1.fc32) was obsoleted before it hit stable so we're
+  # now moving to the current candidate in bodhi updates-testing.
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-c11b99377e
   slirp4netns:
-    evra: 1.0.1-1.fc32.s390x
+    evra: 1.1.1-1.fc32.s390x
   # Fast-track a build of fedora-coreos-pinger that doesn't use
   # modular repos (https://github.com/coreos/fedora-coreos-tracker/issues/525).
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-a4f6437bd1
