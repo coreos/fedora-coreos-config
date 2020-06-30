@@ -114,10 +114,7 @@ Release engineering changes:
 1. verify that the `f${releasever}-coreos-signing-pending` Koji tag has
    been created (this should have already been done by releng scripts on
    branching)
-2. update RoboSignatory config so that:
-    - [tagged packages are signed with the right key](https://infrastructure.fedoraproject.org/cgit/ansible.git/tree/roles/robosignatory/templates/robosignatory.toml.j2?id=c27f4644d4bc2f7916c9c85dc1c1a9ee9a724cc0#n181)
-    - [CoreOS artifacts are signed with the right key](https://infrastructure.fedoraproject.org/cgit/ansible.git/tree/roles/robosignatory/templates/robosignatory.toml.j2?id=c27f4644d4bc2f7916c9c85dc1c1a9ee9a724cc0#n458)
-3. `koji untag` N-2 packages from the pool (at some point we'll have GC
+2. `koji untag` N-2 packages from the pool (at some point we'll have GC
    in place to do this for us, but for now we must remember to do this
    manually or otherwise distRepo will fail once the signed packages are
    GC'ed). For example:
