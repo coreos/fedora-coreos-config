@@ -88,9 +88,12 @@ EOF
 
 [Unit]
 DefaultDependencies=false
-After=initrd-root-device.target
 # HACK for https://github.com/coreos/fedora-coreos-config/issues/437
-After=systemd-udev-settle.service
+Wants=systemd-udev-settle.service
+# Note that `man bootup` implies that initrd-root-device is After=basic.target
+# but that appears to not be the case.  We explicitly order after sysinit.target
+After=sysinit.target
+After=initrd-root-device.target
 Before=initrd-root-fs.target
 
 [Mount]
@@ -166,9 +169,6 @@ After=sysroot.mount
 # And after OSTree has set up the chroot() equivalent
 After=ostree-prepare-root.service
 
-# We're part of assembling the root fs
-Before=initrd-root-fs.target
-
 [Service]
 Type=oneshot
 RemainAfterExit=yes
@@ -184,6 +184,8 @@ DefaultDependencies=false
 # Make sure our tmpfs is available
 Requires=sysroot-xfs-ephemeral-setup.service
 After=sysroot-xfs-ephemeral-setup.service
+# We're part of assembling the root fs
+Before=initrd-root-fs.target
 EOF
 }
 
