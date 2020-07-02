@@ -1,0 +1,19 @@
+#!/bin/bash
+# This is a place to put random quick read-only tests.
+set -euo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+systemctl is-enabled logrotate.service
+ok logrotate
+
+# https://github.com/coreos/fedora-coreos-config/commit/2a5c2abc796ac645d705700bf445b50d4cda8f5f
+systemd-run -P -p ConditionVirtualization=kvm --wait /bin/sh -c 'set -euo pipefail; ip link | grep -o -e " ens[0-9]:"'
+ok nic naming
