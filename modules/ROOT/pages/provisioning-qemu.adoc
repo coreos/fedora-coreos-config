@@ -1,0 +1,66 @@
+= Provisioning Fedora CoreOS on QEMU
+
+This guide shows how to provision new Fedora CoreOS (FCOS) instances on a bare https://www.qemu.org/[QEMU] hypervisor.
+
+== Prerequisites
+
+Before provisioning a FCOS instance, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+You also need to have access to an host machine with https://www.linux-kvm.org/page/Main_Page[KVM] support. The examples below use the `qemu-kvm` command-line tool, which must be separately installed beforehand.
+
+TIP: If running with SELinux enabled, make sure your OS image and Ignition file are labeled as `svirt_home_t`, for example by placing them under `~/.local/share/libvirt/images/`.
+
+== Booting a new VM on QEMU
+
+This section shows how to boot a new VM on QEMU. On this platform, The Ignition file is passed to the VM via the `-fw_cfg` parameter, which sets the `opt/com.coreos/config` key in the QEMU firmware configuration device.
+
+You can use `-snapshot` to make `qemu-kvm` allocate temporary storage for the VM, or `qemu-img create` to first create a layered qcow2.
+
+=== Fetching the QCOW2 image
+
+Fetch the latest image suitable for your target stream (or https://getfedora.org/coreos/download/[download and verify] it from the web).
+
+[source, bash]
+----
+STREAM="stable"
+coreos-installer download -s "${STREAM}" -p qemu -f qcow2.xz --decompress -C ~/.local/share/libvirt/images/
+----
+
+=== Setting up a new VM
+
+Launch the new VM using `qemu-kvm`.
+
+In snaphost mode, all changes that are performed live after boot are discarded once the machine is powered off.
+If you need to persist your changes, it is recommended to setup a dedicated persistent disk first. 
+
+.Launching FCOS with QEMU (temporary storage)
+[source, bash]
+----
+qemu-kvm -m 2048 -cpu host -nographic -snapshot \
+	-drive if=virtio,file=fedora-coreos-qemu.qcow2 \
+	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign \
+	-nic user,model=virtio,hostfwd=tcp::2222-:22
+----
+
+.Launching FCOS with QEMU (persistent storage)
+[source, bash]
+----
+qemu-img create -f qcow2 -b fedora-coreos-qemu.qcow2 my-fcos-vm.qcow2
+qemu-kvm -m 2048 -cpu host -nographic \
+	-drive if=virtio,file=my-fcos-vm.qcow2 \
+	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign \
+	-nic user,model=virtio,hostfwd=tcp::2222-:22
+----
+
+=== Exploring the OS
+
+With QEMU usermode networking, the assigned IP address is not reachable from the host.
+
+The examples above use `hostfwd` to selectively forward the SSH port on the guest machine to the local host (port 2222).
+
+If you set up an xref:authentication.adoc[SSH key] for the default `core` user, you can SSH into the VM via the forwarded port:
+
+[source, bash]
+----
+ssh -p 2222 core@localhost
+----

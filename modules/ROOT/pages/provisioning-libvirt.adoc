@@ -1,0 +1,15 @@
+= Provisioning Fedora CoreOS on libvirt
+
+This guide shows how to provision new Fedora CoreOS (FCOS) instances on a https://libvirt.org/[libvirt] platform, using the https://www.qemu.org/[QEMU] hypervisor.
+
+== Prerequisites
+
+Before provisioning a FCOS instance, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+You also need to have access to an host machine with `libvirt`. The examples below use the `virt-install` command-line tool, which must be separately installed beforehand.
+
+TIP: If running with SELinux enabled, make sure your OS image and Ignition file are labeled as `svirt_home_t`, for example by placing them under `~/.local/share/libvirt/images/`.
+
+== Launching a VM instance
+
+include::getting-started-libvirt.adoc[]

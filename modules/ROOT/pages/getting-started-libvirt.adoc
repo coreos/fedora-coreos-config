@@ -1,0 +1,29 @@
+:page-partial:
+
+. Fetch the latest image suitable for the `qemu` platform (or https://getfedora.org/coreos/download/[download and verify] it from the web).
++
+[source, bash]
+----
+STREAM="stable"
+coreos-installer download -s "${STREAM}" -p qemu -f qcow2.xz --decompress -C ~/.local/share/libvirt/images/
+----
++
+
+. Launch a new machine via `virt-install`, using the Ignition file with your customizations.
++
+[source, bash]
+----
+IGNITION_CONFIG="/path/to/example.ign"
+IMAGE="/path/to/image.qcow2"
+VM_NAME="fcos-test-01"
+RAM_MB="2048"
+DISK_GB="10"
+
+virt-install --connect qemu:///system -n "${VM_NAME}" -r "${RAM_MB}" --os-variant=fedora32 \
+        --import --graphics=none --disk "size=${DISK_GB},backing_store=${IMAGE}" \
+        --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${IGNITION_CONFIG}"
+----
+
+NOTE: `virt-install` requires both the OS image and Ignition file to be specified as absolute paths.
+
+TIP: Make sure that your user has access to `/dev/kvm`. On most modern distribution, this means adding yourself to the `kvm` group.

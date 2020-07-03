@@ -1,81 +1,46 @@
-:experimental:
-= Fedora CoreOS - Getting Started
+= Getting Started with Fedora CoreOS
 
 == Introduction
 
 === Update Streams
 
-There are three Fedora CoreOS (FCOS) update streams available: `stable`, `testing`, and `next`. In general, you will want to use `stable`, but it is recommended to run some machines on `testing` and `next` as well. For more information on streams and switching between them, see xref:update-streams.adoc[Update Streams].
+There are three Fedora CoreOS (FCOS) update streams available: `stable`, `testing`, and `next`. In general, you will want to use `stable`, but it is recommended to run some machines on `testing` and `next` as well.
+
+For more information on streams and switching between them, see xref:update-streams.adoc[Update Streams].
 
 === Provisioning Philosophy
 
-Fedora CoreOS (FCOS) has no install-time configuration. Every FCOS system begins with a generic disk image. For each deployment mechanism (cloud VM, local VM, bare-metal server), configuration can be supplied at first boot. FCOS reads and applies the configuration file with https://github.com/coreos/ignition[Ignition]. For cloud deployments, Ignition gathers the configuration via the cloud’s user-data mechanism. In the case of bare metal, Ignition injects the configuration at install time.
+Fedora CoreOS does not have a separate install disk. Instead, every instance starts from a generic disk image which is customized on first boot via https://github.com/coreos/ignition[Ignition].
 
-NOTE: For more information on configuration, refer to the documentation for xref:producing-ign.adoc[Producing an Ignition File].
+Each platform has specific logic to retrieve and apply the first boot configuration. For cloud deployments, Ignition gathers the configuration via user-data mechanisms. In the case of bare metal, Ignition can fetch its configuration from the disk or from a remote source.
+
+For more information on configuration, refer to the documentation for xref:producing-ign.adoc[Producing an Ignition File].
 
 == Quickstart
 
-=== On a cloud VM (AWS example)
+=== Booting on a cloud VM (AWS example)
 
 include::getting-started-aws.adoc[]
 
-=== On a local hypervisor (QEMU example)
+=== Booting on a local hypervisor (libvirt example)
 
-. https://getfedora.org/coreos/download/[Download and verify] the latest image suitable for QEMU.
+include::getting-started-libvirt.adoc[]
 
-. Uncompress the file. Assuming that the downloaded file is called `fedora-coreos-qemu.qcow2.xz`, the command would be the following:
-+
-[source, bash]
-----
-unxz fedora-coreos-qemu.qcow2.xz
-----
-+
-TIP: Make sure that your user has access to `/dev/kvm` (this should already be the case on modern distros), or if `/dev/kvm` is owned by the `kvm` group, adding yourself to that group with `usermod -aG kvm $USER`.
+=== Exploring the OS
 
-. Launch the VM using `qemu-kvm` or `virt-install`. The Ignition file is passed to the VM via the `-fw_cfg` parameter, which sets the `opt/com.coreos/config` key in the QEMU firmware configuration device. For libvirt, you must pass this through the `--qemu-commandline` argument. You can use `-snapshot` to make `qemu-kvm` allocate temporary storage for the VM, or `qemu-img create` to first create a layered qcow2. For QEMU usermode networking, the assigned IP address is not reachable from the host, so `hostfwd` is used to forward a port on `localhost` to the default SSH port on the guest machine.
-+
-.Example launching FCOS with QEMU (temporary storage)
-[source, bash]
-----
-qemu-kvm -m 2048 -cpu host -nographic -snapshot \
-	-drive if=virtio,file=fedora-coreos-qemu.qcow2 \
-	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign \
-	-nic user,model=virtio,hostfwd=tcp::2222-:22
-----
-+
-.Example launching FCOS with QEMU (persistent storage)
-[source, bash]
-----
-qemu-img create -f qcow2 -b fedora-coreos-qemu.qcow2 my-fcos-vm.qcow2
-qemu-kvm -m 2048 -cpu host -nographic \
-	-drive if=virtio,file=my-fcos-vm.qcow2 \
-	-fw_cfg name=opt/com.coreos/config,file=path/to/example.ign \
-	-nic user,model=virtio,hostfwd=tcp::2222-:22
-----
-+
-.Example launching FCOS with virt-install
-[source, bash]
-----
-virt-install --connect qemu:///system -n fcos -r 2048 --os-variant=fedora31 --import \
-	--graphics=none --disk size=10,backing_store=/path/to/fedora-coreos-qemu.qcow2 \
-	--qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=/path/to/example.ign"
-----
+Once the VM has finished booting, its IP addresses will appear on the serial console. By design, there are no hard-coded default credentials.
 
-NOTE: When using `virt-install`, you must specify absolute paths to the image and the Ignition file.
-
-TIP: If running with SELinux enabled, you may need to change the label of the Ignition file to allow access: `chcon -t svirt_home_t path/to/example.ign`
-
-Once the VM has finished booting, its IP addresses will appear on the serial console. You can then SSH into the FCOS VM as the `core` user (if using QEMU, use `localhost` and pass `-p 2222` or whichever port you've forwarded):
+If you set up an xref:authentication.adoc[SSH key] for the default `core` user, you can SSH into the VM and explore the OS:
 
 [source, bash]
 ----
 ssh core@<ip address>
 ----
 
-== On a bare-metal server (install to disk example)
+== Getting in touch
 
-Follow the xref:bare-metal.adoc[Bare Metal Installation Instructions] to install Fedora CoreOS to disk for a bare-metal server. This procedure injects the specified Ignition configuration at install time.
+Bugs can be reported to the https://github.com/coreos/fedora-coreos-tracker[Fedora CoreOS Tracker].
 
-== Where to report bugs and ask questions
+For live questions, feel free to reach out on the `#fedora-coreos` IRC channel on freenode.
 
-Report bugs to the https://github.com/coreos/fedora-coreos-tracker[Fedora CoreOS Tracker] and ask questions on the `#fedora-coreos` IRC channel on freenode, the https://discussion.fedoraproject.org/c/server/coreos/[Fedora CoreOS forum], or the https://lists.fedoraproject.org/archives/list/coreos@lists.fedoraproject.org/[mailing list].
+For doubts and longer discussions related to Fedora CoreOS, a https://discussion.fedoraproject.org/c/server/coreos/[forum] and a https://lists.fedoraproject.org/archives/list/coreos@lists.fedoraproject.org/[mailing list] are available.
