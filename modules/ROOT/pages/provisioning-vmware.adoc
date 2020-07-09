@@ -6,7 +6,7 @@ This guide shows how to provision new Fedora CoreOS (FCOS) nodes on the VMware h
 
 Before provisioning a FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-You also need to have access to a working VMware infrastructure, with DHCP-based networking and supporting VMs with at least hardware version 13.
+You also need to have access to a working VMware infrastructure, supporting VMs with at least hardware version 13.
 The examples below use the https://github.com/vmware/govmomi/blob/v0.22.2/govc/README.md[govc] command-line tool.
 
 === Downloading the OVA
@@ -31,6 +31,7 @@ For the `vmware` provider, Ignition requires two "guestinfo" fields to be presen
 * `guestinfo.ignition.config.data`: the content of the Ignition configuration, encoded according to the format above.
 
 For maximum compatibility, it is recommended to use `base64` encoding and to prepare the Ignition configuration as such:
+
 [source, bash]
 ----
 CONFIG_B64=`cat example.ign | base64 -w0 -`
@@ -74,3 +75,30 @@ govc vm.info -e "${VM_NAME}"
 govc vm.power -on "${VM_NAME}"
 ----
 
+=== First-boot networking and Ignition
+
+Ignition supports referencing remote content in configuration and fetching it at provisioning time.
+For this reason, on first-boot FCOS instances try to perform network autoconfiguration via DHCP.
+
+If your VMware setup employs static network configuration instead, you can override this automatic DHCP setup with your own custom configuration.
+Custom networking command-line `ip=` parameter can be configured via guestinfo properties as shown below, before booting a VM for the first time.
+
+The provisioning flow follows the usual steps, plus an additional `guestinfo.afterburn.initrd.network-kargs` entry.
+
+[source, bash]
+----
+VM_NAME='fcos-node02'
+IFACE='ens9'
+IPCFG="ip=192.0.2.42::192.0.2.1:255.255.255.0:${VM_NAME}:${IFACE}:off"
+
+govc library.deploy "${LIBRARY}/${TEMPLATE_NAME}" "${VM_NAME}"
+govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data.encoding=base64"
+govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data=${CONFIG_B64}"
+govc vm.change -vm "${VM_NAME}" -e "guestinfo.afterburn.initrd.network-kargs=${IPCFG}"
+govc vm.info -e "${VM_NAME}"
+govc vm.power -on "${VM_NAME}"
+----
+
+The full syntax of the `ip=` parameter is documented in https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html[Dracut manpages].
+
+For further information on first-boot networking, see https://github.com/coreos/afterburn/blob/master/docs/usage/initrd-network-cmdline.md[Afterburn documentation].
