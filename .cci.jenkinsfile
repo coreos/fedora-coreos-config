@@ -5,11 +5,6 @@ apiVersion: "v1"
 kind: "Pod"
 spec:
   containers:
-  - name: "jnlp"
-    image: "jenkins-slave-base-centos7:latest"
-    args:
-    - "$(JENKINS_SECRET)"
-    - "$(JENKINS_NAME)"
   - image: "quay.io/coreos-assembler/coreos-assembler:latest"
     #image: "registry.fedoraproject.org/fedora:32"
     name: "worker"
@@ -17,8 +12,6 @@ spec:
     command:
     - "/usr/bin/sleep"
     - "infinity"
-    securityContext:
-      runAsUser: 0
 '''
 
 def label = "pod-${UUID.randomUUID().toString()}"
