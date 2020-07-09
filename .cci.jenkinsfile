@@ -10,8 +10,8 @@ spec:
     args:
     - "$(JENKINS_SECRET)"
     - "$(JENKINS_NAME)"
-  - image: "registry.fedoraproject.org/fedora:32"
-    #image: "quay.io/coreos-assembler/coreos-assembler:latest"
+  - image: "quay.io/coreos-assembler/coreos-assembler:latest"
+    #image: "registry.fedoraproject.org/fedora:32"
     name: "worker"
     imagePullPolicy: "Always"
     command:
@@ -21,7 +21,7 @@ spec:
 
 def label = "pod-${UUID.randomUUID().toString()}"
 
-podTemplate(cloud: 'openshift', yaml: podYAML, label: label) {
+podTemplate(cloud: 'openshift', yaml: podYAML, label: label, inheritFrom: '') {
     node(label) { container('worker') {
       checkout scm
 
