@@ -1,11 +1,33 @@
 // Documentation: https://github.com/coreos/coreos-ci/blob/master/README-upstream-ci.md
 
-pod(image: 'quay.io/coreos-assembler/coreos-assembler:latest') {
+def podYAML = '''
+apiVersion: "v1"
+kind: "Pod"
+spec:
+  containers:
+  - name: "jnlp"
+    image: "jenkins-slave-base-centos7:latest"
+    args:
+    - "$(JENKINS_SECRET)"
+    - "$(JENKINS_NAME)"
+  - image: "quay.io/coreos-assembler/coreos-assembler:latest"
+    name: "worker"
+    imagePullPolicy: "Always"
+    command:
+    - "/usr/bin/sleep"
+    - "infinity"
+'''
+
+def label = "pod-${UUID.randomUUID().toString()}"
+
+podTemplate(cloud: 'openshift', yaml: podYAML, label: label) {
+    node(label) { container('worker') {
       checkout scm
 
       sh("echo test1")
 
       shwrap("echo test2")
+    }}
 }
 
 //cosaPod {
