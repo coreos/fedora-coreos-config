@@ -13,6 +13,7 @@ spec:
   - image: "quay.io/coreos-assembler/coreos-assembler:latest"
     name: "worker"
     imagePullPolicy: "Always"
+    workingDir: /home/jenkins/agent
     command:
     - "/usr/bin/sleep"
     - "infinity"
@@ -20,7 +21,7 @@ spec:
 
 def label = "pod-${UUID.randomUUID().toString()}"
 
-podTemplate(cloud: 'openshift', yaml: podYAML, label: label, workingDir: '/home/jenkins/agent') {
+podTemplate(cloud: 'openshift', yaml: podYAML, label: label) {
     node(label) { container('worker') {
       checkout scm
 
