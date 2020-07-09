@@ -10,10 +10,10 @@ spec:
     args:
     - "$(JENKINS_SECRET)"
     - "$(JENKINS_NAME)"
-  - image: "quay.io/coreos-assembler/coreos-assembler:latest"
+  - image: "registry.fedoraproject.org/fedora:32"
+    #image: "quay.io/coreos-assembler/coreos-assembler:latest"
     name: "worker"
     imagePullPolicy: "Always"
-    workingDir: /
     command:
     - "/usr/bin/sleep"
     - "infinity"
