@@ -3,3 +3,10 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-2d340985eb
   ssh-key-dir:
     evra: 0.1.2-2.fc32.ppc64le
+  # Pin podman major version for now while we let the next major
+  # version soak in the `next` stream.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/560
+  podman:
+    evra: 2:1.9.3-1.fc32.ppc64le
+  podman-plugins:
+    evra: 2:1.9.3-1.fc32.ppc64le
