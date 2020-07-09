@@ -20,7 +20,7 @@ spec:
 
 def label = "pod-${UUID.randomUUID().toString()}"
 
-podTemplate(cloud: 'openshift', yaml: podYAML, label: label) {
+podTemplate(cloud: 'openshift', yaml: podYAML, label: label, workingDir: '/home/jenkins/agent') {
     node(label) { container('worker') {
       checkout scm
 
