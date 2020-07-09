@@ -1,6 +1,6 @@
 // Documentation: https://github.com/coreos/coreos-ci/blob/master/README-upstream-ci.md
 
-pod(image: 'registry.fedoraproject.org/fedora:32') {
+pod(image: 'quay.io/coreos-assembler/coreos-assembler:latest') {
       checkout scm
 
       sh("echo test1")
