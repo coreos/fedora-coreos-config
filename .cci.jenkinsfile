@@ -13,7 +13,7 @@ spec:
   - image: "quay.io/coreos-assembler/coreos-assembler:latest"
     name: "worker"
     imagePullPolicy: "Always"
-    workingDir: /home/jenkins/agent
+    workingDir: /
     command:
     - "/usr/bin/sleep"
     - "infinity"
