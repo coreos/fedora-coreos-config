@@ -12,6 +12,11 @@ and we don't have a use case for FCOS with nouveau.
 "Cannot boot an p3.2xlarge instance with RHCOS (g3.4xlarge is working)"
 https://bugzilla.redhat.com/show_bug.cgi?id=1700056
 
+09misc
+------
+
+Warning about `/etc/sysconfig`.
+
 10coreuser
 ---------
 
@@ -25,9 +30,16 @@ Disables the Red Hat Linux legacy `ifcfg` format.
 15fcos
 ------
 
-Things that are more closely "Fedora CoreOS"; branding, services.
+Things that are more closely "Fedora CoreOS":
 
-80experimental
---------------
+* disable password logins by default over SSH
+* enable SSH keys written by Ignition and Afterburn
+* branding (MOTD)
+* enable services by default (fedora-coreos-pinger)
+* display warnings on the console if no ignition config was provided or no ssh
+  key found.
 
-Very FCOS specific, adds an experimental notice to the MOTD.
+20platform-chrony
+-----------------
+
+Platform aware timeserver setup for chrony daemon.
