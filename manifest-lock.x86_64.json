@@ -70,7 +70,7 @@
       "evra": "1.0.8-2.fc32.x86_64"
     },
     "c-ares": {
-      "evra": "1.16.1-1.module_f32+9057+e2442e24.x86_64"
+      "evra": "1.15.0-5.fc32.x86_64"
     },
     "ca-certificates": {
       "evra": "2020.2.41-1.1.fc32.noarch"
@@ -589,7 +589,7 @@
       "evra": "1.1.5-2.fc32.x86_64"
     },
     "libnghttp2": {
-      "evra": "1.41.0-1.module_f32+9074+fe0d4bd5.x86_64"
+      "evra": "1.41.0-1.fc32.x86_64"
     },
     "libnl3": {
       "evra": "3.5.0-2.fc32.x86_64"
@@ -889,7 +889,7 @@
       "evra": "2:2.0.2-1.fc32.x86_64"
     },
     "policycoreutils": {
-      "evra": "3.0-2.module_f32+7989+651e8914.x86_64"
+      "evra": "3.0-2.fc32.x86_64"
     },
     "polkit": {
       "evra": "0.116-7.fc32.x86_64"
@@ -1091,22 +1091,16 @@
     }
   },
   "metadata": {
-    "generated": "2020-07-10T02:49:55Z",
+    "generated": "2020-07-10T16:18:08Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-04-22T22:22:36Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2020-07-06T18:32:06Z"
-      },
-      "fedora-modular": {
-        "generated": "2020-04-22T21:03:13Z"
+        "generated": "2020-07-10T14:49:32Z"
       },
       "fedora-updates": {
         "generated": "2020-07-10T00:53:44Z"
-      },
-      "fedora-updates-modular": {
-        "generated": "2020-07-01T02:31:57Z"
       }
     }
   }
