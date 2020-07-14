@@ -43,6 +43,10 @@ After=coreos-gpt-setup@dev-disk-by\x2dlabel-root.service
 # Since we are mounting /boot/, require the device first
 Requires=dev-disk-by\x2dlabel-boot.device
 After=dev-disk-by\x2dlabel-boot.device
+# Need to run after fetch-offline stage since it may re-run the NM cmdline
+# hook which will generate NM configs from the network kargs, but we want to
+# have precedence.
+After=ignition-fetch-offline.service
 
 [Service]
 Type=oneshot
