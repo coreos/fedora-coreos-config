@@ -24,6 +24,10 @@
 # prompt without requiring networking on boot. The user can
 # then configure the networking interactively.
 #
+# Note that this script is only used on RHCOS now. We should be able to remove
+# it once RHCOS moves to spec3. On FCOS/spec3, this is replaced by the
+# conditional networking work:
+# https://github.com/coreos/fedora-coreos-config/pull/426
 [Unit]
 Description=Request live ISO networking
 DefaultDependencies=no
