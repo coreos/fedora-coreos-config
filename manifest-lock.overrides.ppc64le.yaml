@@ -1,4 +1,8 @@
 packages:
+  # Fast-track new Ignition release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-e55693d009
+  ignition:
+    evra: 2.4.0-1.gitd18bf90.fc32.ppc64le
   # Pin podman major version for now while we let the next major
   # version soak in the `next` stream.
   # https://github.com/coreos/fedora-coreos-tracker/issues/560
