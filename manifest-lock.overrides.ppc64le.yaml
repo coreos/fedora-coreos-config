@@ -1,2 +1,5 @@
-# no overrides at this time
-packages: {}
+packages:
+  # Fast-track new Ignition release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-750faadc24
+  ignition:
+    evra: 2.4.0-2.gitd18bf90.fc32.ppc64le
