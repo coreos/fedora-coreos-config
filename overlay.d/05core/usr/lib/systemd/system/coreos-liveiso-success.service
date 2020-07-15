@@ -4,8 +4,7 @@
 [Unit]
 Description=CoreOS Live ISO virtio success
 Documentation=https://github.com/coreos/fedora-coreos-config
-# Only run on the Live ISO, and only if there's no Ignition config;
-# the second bits here invert the conditionals in coreos-liveiso-network-kargs.service.
+# Only run on the Live ISO, and only if there's no Ignition config
 ConditionKernelCommandLine=coreos.liveiso
 ConditionPathExists=!/config.ign
 ConditionVirtualization=|kvm

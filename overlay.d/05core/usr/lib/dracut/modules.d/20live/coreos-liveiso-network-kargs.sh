@@ -2,6 +2,11 @@
 
 # For a description of how this is used see coreos-liveiso-network-kargs.service
 
+# Note that this script is only used on RHCOS now. We should be able to remove
+# it once RHCOS moves to spec3. On FCOS/spec3, this is replaced by the
+# conditional networking work:
+# https://github.com/coreos/fedora-coreos-config/pull/426
+
 # Load the dracut library for getarg
 source /usr/lib/dracut-lib.sh
 

@@ -1,6 +1,9 @@
 # Presets here that eventually should live in the generic fedora presets
 enable coreos-growpart.service
+# console-login-helper-messages - https://github.com/coreos/console-login-helper-messages
+enable console-login-helper-messages-issuegen.path
 enable console-login-helper-messages-issuegen.service
+enable console-login-helper-messages-motdgen.path
 enable console-login-helper-messages-motdgen.service
 # CA certs (probably to add to base fedora eventually)
 enable coreos-update-ca-trust.service
