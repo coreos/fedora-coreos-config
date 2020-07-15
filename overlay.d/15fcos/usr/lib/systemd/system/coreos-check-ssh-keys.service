@@ -14,9 +14,10 @@ After=afterburn-sshkeys@core.service
 # get misleading messages. Also handles the case where the journal
 # gets rotated and no longer has the structured log messages.
 ConditionKernelCommandLine=ignition.firstboot
-ProtectHome=read-only
+
 [Service]
 Type=oneshot
+ProtectHome=read-only
 ExecStart=/usr/libexec/coreos-check-ssh-keys.sh
 RemainAfterExit=yes
 [Install]
