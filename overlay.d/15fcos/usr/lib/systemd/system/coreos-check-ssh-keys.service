@@ -2,7 +2,6 @@
 # by Ignition/Afterburn
 [Unit]
 Description=Check that ssh-keys are added by Afterburn/Ignition
-Before=console-login-helper-messages-issuegen.service
 # https://github.com/coreos/afterburn/issues/417 is created
 # to track the issue that would allow other units to synchronize 
 # around any instance of `afterburn-sshkeys@` and not just the 
