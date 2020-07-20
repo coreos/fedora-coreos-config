@@ -1,37 +1,64 @@
 = Provisioning Fedora CoreOS on Vultr
 
-This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Vultr.  Fedora CoreOS images are currently not published directly on Vultr, so you must download a Fedora CoreOS Vultr image and upload it to your Vultr account as a https://www.vultr.com/docs/requirements-for-uploading-an-os-iso-to-vultr[custom image].
+This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Vultr. FCOS images are currently not published directly on Vultr, but they can be uploaded as https://www.vultr.com/docs/requirements-for-uploading-an-os-iso-to-vultr[custom images].
 
 == Prerequisites
 
 Before provisioning a FCOS machine, you must have an Ignition configuration file that sets SSH authorized keys for the core user. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File]. While the Vultr documentation mentions cloud-init and scripts, FCOS does not support cloud-init or the ability to run scripts from user-data. It accepts only Ignition configuration files.
 
+You also need to have access to a Vultr account.  The examples below use the https://github.com/vultr/vultr-cli[vultr-cli] and https://s3tools.org/s3cmd[s3cmd] command-line tools.
 
-You also need to have access to a Vultr account.  The examples below use the https://github.com/vultr/vultr-cli[vultr-cli] command-line tool.
+== Using a custom snapshot
 
-== Creating a Vultr custom snapshot
+Vultr supports creating custom snapshots from public raw images.
 
-Fedora CoreOS is designed to be updated automatically, with different schedules per stream.
+These steps show how to download a FCOS image and upload it to an existing storage bucket, in order to create a snapshot from that.
 
-. Once you have picked the relevant stream, find the corresponding Vultr image on the https://getfedora.org/coreos/download?tab=cloud_operators[download page] and copy the URL of the Download link.
+See https://www.vultr.com/docs/vultr-object-storage[Vultr documentation] for further details on how to create a bucket and configure `s3cmd` to use it.
 
-. Create the custom image:
+=== Creating a snapshot
+
+Fedora CoreOS comes in three streams, with different update schedules per stream. These steps show the `stable` stream as an example, but can be used for other streams too.
+
+. Fetch the latest image suitable for your target stream (or https://getfedora.org/coreos/download/[download and verify] it from the web).
 +
-.Example uploading FCOS to a Vultr custom snapshot
 [source, bash]
 ----
-export VULTR_API_KEY=<token>
-vultr-cli snapshot create-url -u <download-url>
+STREAM='stable'
+coreos-installer download -s "${STREAM}" -p vultr -f raw.xz --decompress
 ----
 
-=== Launching an instance
+. https://www.vultr.com/docs/vultr-object-storage#s3cmd__Example_CLI_tool[Use s3cmd to upload] the raw image to your bucket, and note its public URL.
++
+[source, bash]
+----
+BUCKET='my-bucket'
+FCOS_VERSION='...'
+s3cmd put -P "fedora-coreos-${FCOS_VERSION}-vultr.x86_64.raw" "s3://{BUCKET}/"
+----
 
-Create a FCOS Vultr instance using the snapshot id. This example creates a 1 vCPU, 1GB RAM instance in NYC. Use `vultr-cli regions list` and `vultr plans list` for other options.
+. Create the snapshot from your object URL, and note its ID.
++
+[source, bash]
+----
+IMAGE_URL='https://...'
+VULTR_API_KEY='<token>'
+vultr-cli snapshot create-url -u "${IMAGE_URL}"
+----
+
+=== Launching an instance from a snapshot
+
+You can now create a FCOS Vultr instance using the snapshot ID above.
+
+This example creates a 1 vCPU, 1GB RAM instance in NYC. Use `vultr-cli regions list` and `vultr plans list` for other options.
 
 [source, bash]
 ----
-vultr-cli server create --snapshot <snapshot-id> --region 1 --plan 201 --userdata "$(cat example.ign)"
+SNAPSHOT_ID='...'
+REGION='1'
+PLAN='201'
+vultr-cli server create --snapshot "${SNAPSHOT_ID}" --region "${REGION}" --plan "${PLAN}" --userdata "$(cat example.ign)"
 ----
 
-NOTE: Vultr firewall rules must be adjusted if you wish to ssh to the instance.
+NOTE: Vultr default firewall does not allow incoming SSH connections. Rules must be adjusted if you wish to reach the instance over SSH.
 
