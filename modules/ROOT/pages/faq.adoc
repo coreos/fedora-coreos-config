@@ -206,7 +206,7 @@ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#cre
 
 No. Running containers via `docker` and `podman` at the same time can cause
 issues and unexpected behavior. We highly recommend against trying to use them
-both at the same time. 
+both at the same time.
 
 It is worth noting that in Fedora CoreOS we have `docker.service`
 disabled by default but it is easily started if anything communicates
@@ -233,3 +233,9 @@ systemd:
     - name: docker.service
       mask: true
 ----
+
+== Are Fedora CoreOS disk images hybrid BIOS+UEFI bootable?
+
+The bare metal images we provide can be used for either BIOS (legacy) boot or UEFI boot, You can boot it in either BIOS (legacy) or UEFI mode regardless of what mode the OS will use once installed.
+
+https://discussion.fedoraproject.org/t/are-fedora-coreos-disk-images-hybrid-bios-uefi-bootable/21911[Discuss]
