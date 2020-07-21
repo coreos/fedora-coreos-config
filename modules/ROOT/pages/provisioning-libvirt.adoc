@@ -8,7 +8,7 @@ Before provisioning a FCOS instance, you must have an Ignition configuration fil
 
 You also need to have access to an host machine with `libvirt`. The examples below use the `virt-install` command-line tool, which must be separately installed beforehand.
 
-TIP: If running with SELinux enabled, make sure your OS image and Ignition file are labeled as `svirt_home_t`. You can do this by placing them under `~/.local/share/libvirt/images/` or running `chcon -t svirt_home_t /path/to/file`.
+TIP: If running on a host with SELinux enabled (use the `sestatus` command to check SELinux status), make sure your OS image and Ignition file are labeled as `svirt_home_t`. You can do this by placing them under `~/.local/share/libvirt/images/` or running `chcon -t svirt_home_t /path/to/file`.
 
 == Launching a VM instance
 
