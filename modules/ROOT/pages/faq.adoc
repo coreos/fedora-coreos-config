@@ -236,6 +236,6 @@ systemd:
 
 == Are Fedora CoreOS x86_64 disk images hybrid BIOS+UEFI bootable?
 
-The x86_64 images we provide can be used for either BIOS (legacy) boot or UEFI boot. They contain a hybrid BIOS/UEFI partition setup that allows them to be used for either. The exception to that is the `metal4k` 4k native image, which is targeted at disks with 4k sectors and [does not have a BIOS boot partition](https://github.com/coreos/coreos-assembler/blob/12029fea7798fa5d3535eafcf8c3d02f9a6095e4/src/cmd-buildextend-metal#L200-L202) because 4k native disks are [only supported with UEFI](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/hard-drives-and-partitions#advanced-format-drives).
+The x86_64 images we provide can be used for either BIOS (legacy) boot or UEFI boot. They contain a hybrid BIOS/UEFI partition setup that allows them to be used for either. The exception to that is the `metal4k` 4k native image, which is targeted at disks with 4k sectors and https://github.com/coreos/coreos-assembler/blob/12029fea7798fa5d3535eafcf8c3d02f9a6095e4/src/cmd-buildextend-metal#L200-L202[does not have a BIOS boot partition] because 4k native disks are https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/hard-drives-and-partitions#advanced-format-drives[only supported with UEFI].
 
 https://discussion.fedoraproject.org/t/are-fedora-coreos-disk-images-hybrid-bios-uefi-bootable/21911[Discuss]
