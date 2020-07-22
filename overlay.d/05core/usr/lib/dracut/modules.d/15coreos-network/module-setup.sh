@@ -7,6 +7,11 @@ install_and_enable_unit() {
 }
 
 install() {
+    inst_simple "$moddir/coreos-enable-network.sh" \
+        "/usr/sbin/coreos-enable-network"
+    install_and_enable_unit "coreos-enable-network.service" \
+        "initrd.target"
+
     inst_simple "$moddir/coreos-copy-firstboot-network.sh" \
         "/usr/sbin/coreos-copy-firstboot-network"
     # Only run this when ignition runs and only when the system
