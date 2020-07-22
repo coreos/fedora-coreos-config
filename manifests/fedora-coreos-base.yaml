@@ -111,6 +111,8 @@ packages:
   - iptables nftables iptables-nft iptables-services
   # Interactive Networking configuration during coreos-install
   - NetworkManager-tui
+  # WireGuard https://github.com/coreos/fedora-coreos-tracker/issues/362
+  - wireguard-tools
   # Storage
   - cloud-utils-growpart
   - lvm2 iscsi-initiator-utils sg3_utils
