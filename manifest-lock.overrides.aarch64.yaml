@@ -3,6 +3,12 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-58ce0a6896
   ignition:
     evra: 2.4.1-1.git5260a5b.fc32.aarch64
+  # Fast-track coreos-installer release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-e078b3c893
+  coreos-installer:
+    evra: 0.3.0-2.fc32.aarch64
+  coreos-installer-systemd:
+    evra: 0.3.0-2.fc32.aarch64
   # Pin podman major version for now while we let the next major
   # version soak in the `next` stream.
   # https://github.com/coreos/fedora-coreos-tracker/issues/560
