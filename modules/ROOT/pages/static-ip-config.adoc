@@ -4,7 +4,7 @@ By default, an FCOS instance will attempt to grab a DHCP address from the local 
 
 As with any custom configuration on FCOS, you can write specific files in the xref:ign-storage.adoc[`storage` node] of the Ignition file.
 
-The following snippet shows how to assign the following to eth0:
+The following snippet shows how to assign the following to enp1s0:
 
 * static IP: `192.0.2.10/24`
 * gateway: `192.0.2.1`
@@ -18,14 +18,15 @@ variant: fcos
 version: 1.0.0
 storage:
   files:
-    - path: /etc/NetworkManager/system-connections/eth0.nmconnection
+    - path: /etc/NetworkManager/system-connections/enp1s0.nmconnection
       mode: 0600
       overwrite: true
       contents:
         inline: |
           [connection]
           type=ethernet
-          interface-name=eth0
+          id='Custom interface'
+          interface-name=enp1s0
 
           [ethernet]
           mac-address=<insert MAC address>
@@ -44,7 +45,10 @@ If the interface does not come up correctly on first boot (see https://github.co
 . If you configured a username and password in your Ignition configuration, you can log in to the
 host via the console and issue the following commands to force the static IP to take effect:
 
-    nmcli connection down eth0
-    nmcli connection up eth0
+    nmcli connection down enp1s0
+    nmcli connection up enp1s0
 
 . If you are not able to access the host via the console, you can reboot the host and the static IP configuration will take effect.
+
+Also, interfaces should be named based on the `predictable interface names`, if a user try to configure an interface using for intance `eth0` this change might not be taken into account.
+Additional parameters can be found in the https://developer.gnome.org/NetworkManager/stable/settings-connection.html[NetworkManager] documentation.
