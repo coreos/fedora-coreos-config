@@ -1,0 +1,43 @@
+#!/bin/bash
+# This is a place to put random quick read-only tests.
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+on_platform() {
+    grep -q " ignition.platform.id=$1 " /proc/cmdline
+}
+
+get_journal_msg_timestamp() {
+    journalctl -o json -b 0 --grep "$1" \
+        | jq -r --slurp '.[0]["__MONOTONIC_TIMESTAMP"]'
+}
+
+systemctl is-enabled logrotate.service
+ok logrotate
+
+# https://github.com/coreos/fedora-coreos-config/commit/2a5c2abc796ac645d705700bf445b50d4cda8f5f
+if ip link | grep -o -e " eth[0-9]:"; then
+    fatal "detected eth* NIC naming on node"
+fi
+ok nic naming
+
+switchroot_ts=$(get_journal_msg_timestamp 'Switching root.')
+nm_ts=$(get_journal_msg_timestamp 'NetworkManager .* starting')
+# by default, kola on QEMU shouldn't need to bring up networking
+# https://github.com/coreos/fedora-coreos-config/pull/426
+if [[ $nm_ts -lt $switchroot_ts ]] && on_platform qemu; then
+    fatal "NetworkManager started in initramfs!"
+# and as a sanity-check that this test works, verify that on AWS
+# we did bring up networking in the initrd
+elif [[ $nm_ts -gt $switchroot_ts ]] && on_platform aws; then
+    fatal "NetworkManager not started in initramfs!"
+fi
+ok conditional initrd networking
