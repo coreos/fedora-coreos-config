@@ -1,0 +1,22 @@
+[Unit]
+Description=Start network if needed
+ConditionPathExists=/etc/initrd-release
+DefaultDependencies=false
+After=basic.target
+
+# Triggering conditions for cases where we need network
+ConditionPathExists=|/run/ignition/neednet
+
+# Creates /run/ignition/neednet
+After=ignition-fetch-offline.service
+# Needs networking
+Before=ignition-fetch.service
+
+# See hack in coreos-enable-network, as well as coreos-copy-firstboot-network.service.
+After=dracut-cmdline.service
+Before=dracut-initqueue.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/coreos-enable-network
