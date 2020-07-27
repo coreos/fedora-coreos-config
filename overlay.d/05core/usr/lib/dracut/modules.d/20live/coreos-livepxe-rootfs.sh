@@ -53,7 +53,7 @@ after these dates will not boot without a rootfs image:
         next:    August 25, 2020
         testing: September 22, 2020
         stable:  October 6, 2020
-https://docs.fedoraproject.org/en-US/fedora-coreos/bare-metal/#pxe-rootfs-image[0m
+https://docs.fedoraproject.org/en-US/fedora-coreos/bare-metal/#_pxe_rootfs_image[0m
 
 EOF
 else
