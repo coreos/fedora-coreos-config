@@ -15,12 +15,6 @@ packages:
     evra: 4.4.2-1.fc32.aarch64
   afterburn-dracut:
     evra: 4.4.2-1.fc32.aarch64
-  # Pin ostree to fix live image boot failure
-  # https://github.com/coreos/fedora-coreos-tracker/issues/589
-  ostree:
-    evra: 2020.3-5.fc32.aarch64
-  ostree-libs:
-    evra: 2020.3-5.fc32.aarch64
   # Pin podman major version for now while we let the next major
   # version soak in the `next` stream.
   # https://github.com/coreos/fedora-coreos-tracker/issues/560
