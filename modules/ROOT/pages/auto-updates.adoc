@@ -10,7 +10,7 @@ By default, the OS performs continual auto-updates via two components:
 == Wariness to updates
 
 The local Zincati agent periodically checks with a remote service to see when updates are available.
-A custom "rollout wariness" value (see https://github.com/coreos/zincati/blob/0.0.6/docs/usage/auto-updates.md#phased-rollouts-client-wariness-canaries[documentation]) can be provided to let the server know how eager, or how risk-averse, the node is to receiving updates.
+A custom "rollout wariness" value (see https://github.com/coreos/zincati/blob/master/docs/usage/auto-updates.md#phased-rollouts-client-wariness-canaries[documentation]) can be provided to let the server know how eager, or how risk-averse, the node is to receiving updates.
 
 The `rollout_wariness` parameter can be set to a floating point value between `0.0` (most eager) and `1.0` (most conservative).
 In order to receive updates very early in the phased rollout cycle, a node can be configured with a low value (e.g. `0.001`).
@@ -31,6 +31,7 @@ storage:
 ----
 
 == OS update finalization
+
 To finalize an OS update, the machine must reboot.
 As this is an invasive action which may cause service disruption, Zincati allows the cluster administrator to control when nodes are allowed to reboot for update finalization.
 
@@ -38,10 +39,11 @@ The following finalization strategies are available:
 
  * As soon as the update is downloaded and staged locally, immediately reboot to apply an update.
  * Use an external lock-manager to coordinate the reboot of a fleet of machines.
+ * Allow reboots only within configured maintenance windows, defined on a weekly UTC schedule.
 
 A specific finalization strategy can be configured on each node.
 
-The xref:fcct-config.adoc[FCCT] snippet below shows how to use a custom lock-manager:
+The xref:fcct-config.adoc[FCCT] snippet below shows how to define two maintenance windows during weekend days, starting at 22:30 UTC and lasting one hour each:
 
 .Example: configuring Zincati updates strategy
 [source,yaml]
@@ -54,10 +56,12 @@ storage:
       contents:
         inline: |
           [updates]
-          strategy = "fleet_lock"
-          [updates.fleet_lock]
-          base_url = "https://example.com/lock-manager/"
+          strategy = "periodic"
+          [[updates.periodic.window]]
+          days = [ "Sat", "Sun" ]
+          start_time = "22:30"
+          length_minutes = 60
 ----
-For further details on updates finalization, check the https://github.com/coreos/zincati/blob/0.0.6/docs/usage/updates-strategy.md[Zincati documentation].
+For further details on updates finalization, check the https://github.com/coreos/zincati/blob/master/docs/usage/updates-strategy.md[Zincati documentation].
 
 include::manual-rollbacks.adoc[leveloffset=1]
