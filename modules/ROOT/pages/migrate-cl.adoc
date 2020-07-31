@@ -61,6 +61,7 @@ enabled = false
 * Cloud CLI clients are not included in FCOS. There is an initiative to create a "tools" container to run on FCOS.
 * When opening an existing file in a sticky directory, the behavior differs from CL. See https://github.com/systemd/systemd/commit/2732587540035227fe59e4b64b60127352611b35[the relevant systemd commit].
 * CL left Simultaneous Multi-Threading (SMT) enabled but advised users to turn it off if their systems were vulnerable to certain issues such as https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html[L1TF] or https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html[MDS]. By default, FCOS https://github.com/coreos/fedora-coreos-tracker/blob/master/Design.md#automatically-disable-smt-when-needed-to-address-vulnerabilities[automatically disables SMT] for vulnerable systems.
+* In general, `docker` uses the default configuration from Fedora, which is different under many aspects. Notably the logging driver is set to `journald` and live-restore is enabled.
 
 == Implementation notes
 //* Partition layout differences. CL is at https://coreos.com/os/docs/latest/sdk-disk-partitions.html. I can't make heads or tails of the results of the discussions in https://github.com/coreos/fedora-coreos-tracker/issues/94.
