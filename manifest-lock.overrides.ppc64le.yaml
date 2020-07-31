@@ -15,9 +15,3 @@ packages:
     evra: 4.4.2-1.fc32.ppc64le
   afterburn-dracut:
     evra: 4.4.2-1.fc32.ppc64le
-  # Pin ostree to fix live image boot failure
-  # https://github.com/coreos/fedora-coreos-tracker/issues/589
-  ostree:
-    evra: 2020.3-5.fc32.ppc64le
-  ostree-libs:
-    evra: 2020.3-5.fc32.ppc64le
