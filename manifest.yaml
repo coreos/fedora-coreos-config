@@ -33,3 +33,13 @@ postprocess:
     mkdir -p /etc/fedora-coreos-pinger/config.d /etc/zincati/config.d
     echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/90-disable-on-non-production-stream.toml
     echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nupdates.enabled = false' > /etc/zincati/config.d/90-disable-on-non-production-stream.toml
+    # In order to make chrony use NTP settings from DHCP 
+    # (https://github.com/coreos/fedora-coreos-config/pull/412), we need 
+    # to chmod the following files to unset the writable permissions.
+    # Git tracks only the executable bit of the permissions so when
+    # the files get pulled locally they could have the group write bit set.
+    # When that happens we get an error like:
+    # `Cannot execute '/etc/NetworkManager/dispatcher.d/20-coreos-chrony-dhcp': writable by group or other`
+    chmod 755 /etc/NetworkManager/dispatcher.d/20-coreos-chrony-dhcp
+    chmod 755 /usr/libexec/coreos-chrony-helper
+    chmod 755 /usr/lib/systemd/system-generators/coreos-platform-chrony
