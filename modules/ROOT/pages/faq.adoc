@@ -239,3 +239,20 @@ systemd:
 The x86_64 images we provide can be used for either BIOS (legacy) boot or UEFI boot. They contain a hybrid BIOS/UEFI partition setup that allows them to be used for either. The exception to that is the `metal4k` 4k native image, which is targeted at disks with 4k sectors and https://github.com/coreos/coreos-assembler/blob/12029fea7798fa5d3535eafcf8c3d02f9a6095e4/src/cmd-buildextend-metal#L200-L202[does not have a BIOS boot partition] because 4k native disks are https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/hard-drives-and-partitions#advanced-format-drives[only supported with UEFI].
 
 https://discussion.fedoraproject.org/t/are-fedora-coreos-disk-images-hybrid-bios-uefi-bootable/21911[Discuss]
+
+== What's the difference between Ignition and FCCT configurations?
+
+Ignition configuration is a low-level interface used to define the whole set of customizations for an instance.
+It is primarily meant as a machine-friendly interface, with content encoded as JSON and a fixed structure defined via JSON-Schema.
+This JSON configuration is processed by each FCOS instance upon first boot.
+
+Many high-level tools exist that can produce an Ignition configuration starting from their own specific input formats,
+such as `terraform`, `matchbox`, `openshift-installer`, and `fcct`.
+
+Fedora CoreOS Configuration Transpiler (`fcct`) is one of such high-level tools.
+It is primarily meant as a human-friendly interface, thus defining its own richer configuration entries and using YAML documents as input.
+This YAML configuration is never directly processed by FCOS instances (only the resulting Ignitiong configuration is).
+
+Although similar, Ignition configurations and FCCT ones do not have the same structure; thus, converting between them is not just a direct YAML-to-JSON translation, but it involves additional logic.
+FCCT exposes several customization helpers (e.g. distribution specific entries and common abstractions) that are not present in Ignition and make the formats not interchangeable.
+Additionally, the different formats (YAML for FCCT, JSON for Ignition) help to avoid mixing up inputs by mistake.
