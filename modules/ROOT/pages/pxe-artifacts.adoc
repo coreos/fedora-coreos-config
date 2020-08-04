@@ -1,0 +1,18 @@
+:page-partial:
+
+NOTE: Before August 2020, the Fedora CoreOS PXE image included two components: a `kernel` image and an `initramfs` image.  Beginning August 11, a third `rootfs` image will be added.  During an initial migration period, the `rootfs` image will be optional, and Fedora CoreOS will display a warning on login if the system was booted without it.  After the migration period, the `rootfs` image will be mandatory and the live PXE system will not boot without it.
+
+The migration timeline is:
+
+- August 11: `rootfs` image available in `next`, `testing`, and `stable` streams
+- August 25: `rootfs` image required in `next` stream
+- September 22: `rootfs` image required in `testing` stream
+- October 6: `rootfs` image required in `stable` stream
+
+To boot with the `rootfs` artifact, make one of the following changes to your PXE config:
+
+- Specify both `initramfs` and `rootfs` files as initrds in your PXE configuration. This can be done via multiple `initrd` directives, or using additional `initrd=` parameters as kernel arguments.
+- Concatenate the `initramfs` and `rootfs` files together, and specify the combined file as the initrd.
+- Specify only the `initramfs` file as the initrd, and pass an HTTP(S) URL for the `rootfs` using the `coreos.live.rootfs_url=` kernel argument.
+
+For more information on this change, see the https://github.com/coreos/fedora-coreos-tracker/issues/390[tracker issue].

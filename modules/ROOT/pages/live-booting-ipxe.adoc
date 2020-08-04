@@ -1,0 +1,42 @@
+= Booting live Fedora CoreOS via iPXE
+
+This guide shows how to boot a transient Fedora CoreOS (FCOS) system via iPXE. By default this will run FCOS in a stateless way, completely out of RAM. Separately, FCOS can also be installed to disk.
+
+== Prerequisite
+
+Before booting FCOS, you must have an Ignition configuration file and host it somewhere (e.g. on a reachable web server). If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+NOTE: The live system requires at least 3 GiB of RAM.
+
+== PXE images
+
+include::pxe-artifacts.adoc[]
+
+== Setting up the Boot Script
+
+An iPXE-capable machine needs to be provided with a relevant Boot Script to fetch and load FCOS artifacts.
+
+The example below shows how to load those directly from Fedora infrastructure. For performance and reliability reasons it is recommended to mirror them on the local infrastructure, and then tweak the `BASEURL` as needed.
+
+[source]
+----
+#!ipxe
+
+set STREAM stable
+set VERSION 32.20200726.3.0
+set CONFIGURL https://example.com/config.ign
+
+set BASEURL https://builds.coreos.fedoraproject.org/prod/streams/${STREAM}/builds/${VERSION}/x86_64
+
+kernel ${BASEURL}/fedora-coreos-${VERSION}-live-kernel-x86_64 ignition.firstboot ignition.platform.id=metal ignition.config.url=${CONFIGURL}
+initrd ${BASEURL}/fedora-coreos-${VERSION}-live-initramfs.x86_64.img
+initrd ${BASEURL}/fedora-coreos-${VERSION}-live-rootfs.x86_64.img
+
+boot
+----
+
+== Update process
+
+Since the traditional FCOS upgrade process requires a disk, live-PXE systems are not able to auto-update in place. For this reason, Zincati is not running there.
+
+Instead, it is reccomended that images references in the PXE configuration are regularly refreshed. Once infrastructure and configurations are updated, the live-PXE instance simply needs to be rebooted in order to start running the new FCOS version.
