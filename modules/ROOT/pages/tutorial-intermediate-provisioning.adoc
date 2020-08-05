@@ -1,0 +1,168 @@
+= Booting Fedora CoreOS: Intermediate Provisioning Scenario
+
+This tutorial begin where xref:getting-started-tutorial.adoc[Getting Started with Fedora CoreOS Tutorial] left off.
+Where we configured the Fedora CoreOS related tools and provisioned a basic instance with a Systemd dropin unit.
+
+For a more intermediate provisioning scenario let's add an SSH key to our `authorized_keys` file and run a script on the first boot.
+We'll add to the `fcct` config from the previous scenario such that the provisioning configuration will now tell Ignition to:
+
+* Add a systedmd dropin for auto login from serial console.
+* Disable automatic updates
+* Add a script at `/usr/local/bin/public-ipv4.sh` to run on boot
+* Configure a systemd service to run the script on first boot.
+
+== Write the Script
+
+[source,bash]
+----
+#!/bin/bash
+echo "Detected Public IPv4: is $(curl https://ipv4.icanhazip.com)" > \
+         /run/console-login-helper-messages/issue.d/30_public-ipv4.issue
+----
+
+This script uses https://icanhazip.com/[icanhazip.com] to update the issuegen from https://github.com/coreos/console-login-helper-messages[console-login-helper-messages] to output the node's public IPv4 address on the serial console during bootup.
+This is useful in cloud environments when you might have different public and private addresses.
+
+We'll store this script into `/usr/local/bin/public-ipv4.sh` when we provision the machine. We'll encode it into an FCCT config here shortly.
+
+=== Write the Systemd Service
+
+We need to call the script from the previous section by using a systemd unit.
+Here is one that works for what we want, which is to execute on first boot and not again:
+
+[source,service]
+----
+[Unit]
+Before=console-login-helper-messages-issuegen.service
+After=network-online.target
+ConditionPathExists=!/var/lib/issuegen-public-ipv4
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/public-ipv4.sh
+ExecStartPost=/usr/local/bin/touch /var/lib/issuegen-public-ipv4
+RemainAfterExit=yes
+[Install]
+WantedBy=console-login-helper-messages-issuegen.service
+----
+
+We'll call this unit `issuegen-public-ipv4.service` and we'll embed it into the FCCT config in the next section.
+
+=== Write FCCT and convert to Ignition
+
+The final FCCT for what we want to do is shown below.
+We'll store these contents in `fcct-intermediate.yaml`.
+
+[source,yml]
+
+----
+variant: fcos
+version: 1.0.0
+systemd:
+  units:
+    - name: serial-getty@ttyeS0.service
+      dropins:
+      - name: autologin-core.conf
+        contents: |
+          [Service]
+          # Override Execstart in main unit
+          ExecStart=
+          # Add new Execstart with `-` prefix to ignore failure
+          ExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM
+          TTYVTDisallocate=no
+    - name: issuegen-public-ipv.service
+      enabled: true
+      contents: |
+        [Unit]
+        Before=console-login-helper-messages-issuegen.service
+        After=network-online.target
+        ConditionPathExists=!/var/lib/issuegen-public-ipv4
+        [Service]
+        Type=oneshot
+        ExecStart=/usr/local/bin/public-ipv4.sh
+        ExecStartPost=/usr/bin/touch /var/lib/issuegen-public-ipv4
+        RemailAfterExit=yes
+        [Install]
+        WantedBy=console-login-helper-messages-issuegen.service
+storage:
+  files:
+    - path: /etc/zincati/config.d/90-disable-auto-updates.toml
+      contents:
+        inline: |
+          [updates]
+          enabled = false
+    - path: /usr/local/bin/public-ipv4.sh
+      mode: 0755
+      contents:
+        inline: |
+          [updates]
+          enabled = false
+    - path: /usr/local/bin/public-ipv4.sh
+      mode: 0755
+      contents:
+        inline: |
+          #!/bin/bash
+          echo "Detected Public IPv4: is $(curl https://ipv4.icanhazip.com)" > \
+              /run/console-login-helper-messages/issue.d/30_public-ipv4.issue
+----
+
+And then convert to Ignition:
+
+[source,bash]
+----
+[host]$ fcct --pretty --strict fcct-intermediate.yaml --output intermediate.ign
+----
+
+=== Test it out
+
+Just as before we'll use the following to boot the instance:
+
+[source,bash]
+----
+[host]$ chcon --verbost unconfined_u:object_r:svirt_home_t:s0 intermediate.ign
+[host]$ virt-install --name=fcos --vcpus=2 --ram=2048 --import \
+            --network=bridge=virbr0 --graphics=none \
+            --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${PWD}/intermediate.ign" \
+            --disk=size=20,backing_store=${PWD}/fedora-coreos[stream_version].qcow2
+----
+
+And view on the serial console that the `Detected Public IPv4` is shown in the serial console output right before you're dropped to a login prompt:
+
+[source,bash]
+----
+[  OK  ] Started RPM-OSTree System Management Daemon.
+
+Fedora CoreOS preview [stream_version]
+Kernel 5.4.7-200.fc31.x86_64 on an x86_64 (ttyS0)
+
+eth0: 192.168.122.20 fe80::5054:ff:feb2:e7f9
+localhost login: core (automatic login)
+
+[core@localhost ~]$
+----
+
+And the service shows it was launched successfully:
+
+[source,bash]
+----
+$ systemctl status issuegen-public-ipv4.service | cat
+● issuegen-public-ipv4.service
+   Loaded: loaded (/etc/systemd/system/issuegen-public-ipv4.service; enabled; vendor preset: enabled)
+   Active: active (exited) since Mon 2020-01-20 20:57:04 UTC; 3min 21s ago
+  Process: 1118 ExecStart=/usr/local/bin/public-ipv4.sh (code=exited, status=0/SUCCESS)
+  Process: 1205 ExecStartPost=/usr/bin/touch /var/lib/issuegen-public-ipv4 (code=exited, status=0/SUCCESS)
+ Main PID: 1118 (code=exited, status=0/SUCCESS)
+
+Jan 20 20:57:03 localhost systemd[1]: Starting issuegen-public-ipv4.service...
+Jan 20 20:57:03 localhost public-ipv4.sh[1118]:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+Jan 20 20:57:03 localhost public-ipv4.sh[1118]:                                  Dload  Upload   Total   Spent    Left  Speed
+Jan 20 20:57:04 localhost public-ipv4.sh[1118]: [237B blob data]
+Jan 20 20:57:04 localhost systemd[1]: Started issuegen-public-ipv4.service.
+----
+
+Now let's take down the instance for the next test. First, disconnect from the serial console by pressing `CTRL` + `]` and then destroy the machine:
+
+[source,bash]
+----
+[host]$ virsh destory fcos
+[host]$ virsh undefined --remove-all-storage fcos
+----
