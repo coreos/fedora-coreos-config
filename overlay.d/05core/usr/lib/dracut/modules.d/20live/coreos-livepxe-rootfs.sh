@@ -32,9 +32,11 @@ elif [[ -n "${rootfs_url}" ]]; then
     fi
     # We don't need to verify TLS certificates because we're checking the
     # image hash.
+    # bsdtar can read cpio archives and we already depend on it for
+    # coreos-liveiso-persist-osmet.service, so use it instead of cpio.
     if ! curl --silent --insecure --location --retry 5 "${rootfs_url}" | \
             rdcore stream-hash /etc/coreos-live-want-rootfs | \
-            cpio -i -H newc -D / --quiet ; then
+            bsdtar -xf - -C / ; then
         echo "Couldn't fetch, verify, and unpack image specified by coreos.live.rootfs_url=" >&2
         echo "Check that the URL is correct and that the rootfs version matches the initramfs." >&2
         exit 1
