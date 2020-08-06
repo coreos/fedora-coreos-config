@@ -3,7 +3,7 @@ Description=Acquire live PXE rootfs image
 DefaultDependencies=false
 ConditionPathExists=/usr/lib/initrd-release
 ConditionPathExists=/run/ostree-live
-ConditionPathExists=/etc/coreos-live-want-rootfs
+ConditionKernelCommandLine=!coreos.liveiso
 
 After=basic.target
 # Network is enabled here
