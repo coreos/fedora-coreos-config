@@ -13,7 +13,7 @@ install_and_enable_unit() {
 
 install() {
     inst_multiple \
-        cpio \
+        bsdtar \
         curl \
         truncate
 
