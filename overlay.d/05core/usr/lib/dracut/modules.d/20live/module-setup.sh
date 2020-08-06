@@ -15,7 +15,6 @@ install() {
     inst_multiple \
         cpio \
         curl \
-        gunzip \
         truncate
 
     inst_script "$moddir/is-live-image.sh" \
