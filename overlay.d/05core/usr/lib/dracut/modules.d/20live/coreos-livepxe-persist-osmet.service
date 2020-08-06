@@ -1,9 +1,11 @@
 [Unit]
-Description=Persist osmet files
+Description=Persist osmet files (PXE)
 DefaultDependencies=false
 ConditionPathExists=/run/ostree-live
+ConditionKernelCommandLine=!coreos.liveiso
 # Downloads and unpacks the osmet files if not already appended
 After=coreos-livepxe-rootfs.service
+Before=initrd-switch-root.target
 
 [Service]
 Type=oneshot
