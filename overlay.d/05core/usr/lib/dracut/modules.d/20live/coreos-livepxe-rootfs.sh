@@ -34,7 +34,6 @@ elif [[ -n "${rootfs_url}" ]]; then
     # image hash.
     if ! curl --silent --insecure --location --retry 5 "${rootfs_url}" | \
             rdcore stream-hash /etc/coreos-live-want-rootfs | \
-            gunzip -c | \
             cpio -i -H newc -D / --quiet ; then
         echo "Couldn't fetch, verify, and unpack image specified by coreos.live.rootfs_url=" >&2
         echo "Check that the URL is correct and that the rootfs version matches the initramfs." >&2
