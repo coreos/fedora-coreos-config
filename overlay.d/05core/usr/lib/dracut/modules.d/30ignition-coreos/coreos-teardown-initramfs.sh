@@ -146,6 +146,14 @@ down_interfaces() {
                     continue
                     ;;
             esac
+            # When we start taking down devices some other devices can
+            # start to disappear (for example vlan on top of interface).
+            # If the device we're about to take down has disappeared
+            # since the start of this loop then skip taking it down.
+            if [ ! -e "$f" ]; then
+                echo "info: skipping teardown of ${interface}; no longer exists."
+                continue
+            fi
             down_interface $interface
         done
     fi
