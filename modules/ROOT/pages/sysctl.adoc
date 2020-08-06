@@ -11,7 +11,7 @@ As an example, the https://github.com/coreos/fcct[FCCT] snippet below shows how 
 [source,yaml]
 ----
 variant: fcos
-version: 1.0.0
+version: 1.1.0
 storage:
   files:
     - path: /etc/sysctl.d/90-sysrq.conf

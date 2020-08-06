@@ -67,7 +67,7 @@ We can create a simple FCCT config file named `fcct-simple.yaml` now as:
 [source,yaml]
 ----
 variant: fcos
-version: 1.0.0
+version: 1.1.0
 systemd:
   units:
     - name: serial-getty@tty0.service

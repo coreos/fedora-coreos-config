@@ -21,7 +21,7 @@ We'll create this config in a file called `./fcct-advanced.yaml`
 ----
 [host]$ cat fcct-advanced.yaml
 variant: fcos
-version: 1.0.0
+version: 1.1.0
 passwd:
   users:
     - name: core
