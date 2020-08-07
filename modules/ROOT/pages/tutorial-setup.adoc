@@ -1,0 +1,103 @@
+= Prerequisites
+
+Those tutorials are written targeting a Linux environment with a working `libvirt` setup and hardware virtualization support via `KVM`. For instructions to setup `libvirt` and `KVM` you may refer to the link:https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/[Getting started with virtualization] guide from Fedora. Although this setup guide is focused on Fedora, those tutorials should work on any distribution with `libvirt` installed.
+
+== Downloading a Fedora CoreOS QCOW2 image
+
+First of all, we have to download the latest stable release of Fedora CoreOS. As we will use `libvirt`, we will download an archive containing a QEMU image from link:https://getfedora.org/en/coreos/download?tab=metal_virtualized&stream=stable[getfedora.org]:
+
+[source,bash]
+----
+RELEASE="32.20200715.3.0" # Update this with the latest release from https://getfedora.org/en/coreos
+curl -O https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$RELEASE/x86_64/fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz
+curl -O https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$RELEASE/x86_64/fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz.sig
+----
+
+Once the archive has been downloaded, make sure to verify its integrity by following the instructions available by clicking on the `Verify signature & SHA256` button. You will have to download the checksum file, the signature and Fedora GPG keys to verify your download:
+
+[source,bash]
+----
+curl https://getfedora.org/static/fedora.gpg | gpg --import
+gpg --verify fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz.sig
+----
+
+Once you have verified the archive, you can extract it with:
+
+[source,bash]
+----
+unxz fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz
+----
+
+To make the tutorial simpler, you should rename this image to a shorter name:
+
+[source,bash]
+----
+mv fedora-coreos-$RELEASE-qemu.x86_64.qcow2 fedora-coreos.qcow2
+----
+
+== Installing `fcct` and `ignition-validate`
+
+To generate and validate Ignition configuration files, we need the following tools:
+
+- `fcct`: Fedora CoreOS Config Transpiler,
+- `ignition-validate`: Validate Ignition configuration files.
+
+If you are running on Fedora, you can install them via:
+
+[source,bash]
+----
+sudo dnf install -y fcct ignition-validate
+----
+
+You may also run them in a container by using either podman or Docker:
+
+[source,bash]
+----
+podman pull quay.io/coreos/fcct
+podman pull quay.io/coreos/ignition-validate
+----
+
+For example:
+
+[source,bash]
+----
+podman run --rm --interactive quay.io/coreos/ignition-validate - < myconfig.ign
+----
+
+Or you may directly download the latest https://github.com/coreos/fcct/releases[fcct] and https://github.com/coreos/ignition/releases[ignition-validate] releases from GitHub:
+
+[source,bash]
+----
+# fcct
+curl -OL https://github.com/coreos/fcct/releases/download/v0.6.0/fcct-x86_64-unknown-linux-gnu
+curl -OL https://github.com/coreos/fcct/releases/download/v0.6.0/fcct-x86_64-unknown-linux-gnu.asc
+gpg --verify fcct-x86_64-unknown-linux-gnu.asc
+mv fcct-x86_64-unknown-linux-gnu fcct
+chmod a+x fcct
+
+# ignition-validate
+curl -OL https://github.com/coreos/ignition/releases/download/v2.5.0/ignition-validate-x86_64-linux
+curl -OL https://github.com/coreos/ignition/releases/download/v2.5.0/ignition-validate-x86_64-linux.asc
+gpg --verify ignition-validate-x86_64-linux.asc
+mv ignition-validate-x86_64-linux ignition-validate
+chmod a+x ignition-validate
+----
+
+You may then setup aliases for `fcct` and `ignition-validate`:
+
+[source,bash]
+----
+alias fcct="${PWD}/fcct"
+alias ignition-validate="${PWD}/ignition-validate"
+----
+
+Or move those commands to a folder in your `$PATH`, for example:
+
+[source,bash]
+----
+mv fcct ignition-validate "${HOME}/.local/bin/"
+# Or
+mv fcct ignition-validate "${HOME}/bin"
+----
+
+You are now ready to proceed with the xref:tutorial-autologin.adoc[first tutorial].
