@@ -1,0 +1,49 @@
+:experimental:
+= How to Customize a NIC Name
+
+== Using a systemd Link File
+You can create a systemd xref:https://www.freedesktop.org/software/systemd/man/systemd.link.html[link file] with Ignition configs.
+
+For example, to name NIC with the MAC address `12:34:56:78:9a:bc` to "infra", place a systemd link file at `/etc/systemd/network/25-infra.link` using the xref:fcct-config.adoc[FCCT] configuration snippet shown below:
+
+.Example: Customize NIC via systemd Link File
+[source,yaml]
+----
+storage:
+  files:
+    - path: /etc/systemd/network/25-infra.link
+      mode: 0644
+      contents:
+        inline: |
+          [Match]
+          MACAddress=12:34:56:78:9a:bc
+          [Link]
+          Name=infra
+----
+
+== Using Udev Rules
+Similarly, also through Ignition configs, to name NIC with the MAC address `12:34:56:78:9a:bc` to "infra", create a xref:https://linux.die.net/man/8/udev[udev rule] at `/etc/udev/rules.d/80-ifname.rules` using the xref:fcct-config.adoc[FCCT] configuration snippet shown below:
+
+.Example: Customize NIC via Udev Rules
+[source,yaml]
+----
+storage:
+  files:
+    - path: /etc/udev/rules.d/80-ifname.rules
+      mode: 0644
+      contents:
+        inline: |
+          SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="12:34:56:78:9a:bc", ATTR{type}=="1", NAME="infra"'
+----
+
+== Networking in the Initramfs via Kernel Arguments
+If networking in the initramfs is required, the kernel argument `ifname=` will dynamically create a udev rule to change the name of a NIC.
+
+Currently, unlike other parts of the networking config from the initramfs (e.g. static IPs, hostnames, etc.), these udev rules are not persisted into the real root. If the custom name needs to be applied to the real root, either a link file or udev rule must be created, as shown above. See xref:https://github.com/coreos/fedora-coreos-tracker/issues/553[this issue] for more details.
+
+For example, to give the NIC with the MAC address `12:34:56:78:9a:bc` a name of "infra", provide a `ifname=infra:12:34:56:78:9a:bc` kernel argument. A udev rule would be created in the initramfs like:
+[source]
+----
+# cat /etc/udev/rules.d/80-ifname.rules
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="12:34:56:78:9a:bc", ATTR{type}=="1", NAME="infra"
+----
