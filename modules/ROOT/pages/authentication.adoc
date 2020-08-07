@@ -1,6 +1,26 @@
-= Configuring Authentication
+= Configuring Users
 
-== Using an SSH key
+== Default User
+
+By default, a privileged user named `core` is created on the Fedora CoreOS system, but it is not configured with a default password or SSH key. If you wish to use the `core` user, you must provide an Ignition config which includes a password and/or SSH key(s) for the `core` user. Alternately you may create additional, new users via Ignition configs.
+
+== Creating a New User
+
+To create a new user (or users), add it to the `users` list of your Fedora CoreOS Config. In the following example, the config creates two new usernames, but doesn't configure them to be especially useful.
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+passwd:
+  users:
+    - name: jlebon
+    - name: miabbott
+----
+
+You  will typically want to configure SSH keys or a password, in order to be able to login as those users.
+
+== Using an SSH Key
 
 To configure an SSH key for a local user, you can use a Fedora CoreOS Config:
 
@@ -12,10 +32,17 @@ passwd:
   users:
     - name: core
       ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHn2eh...
+    - name: jlebon
+      ssh_authorized_keys:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5QFS...
+        - sh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
+    - name: miabbott
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTey7R...
 ----
 
-=== SSH key locations
+=== SSH Key Locations
 
 sshd uses a https://github.com/coreos/ssh-key-dir[helper program] to read public keys from files in a user's `~/.ssh/authorized_keys.d` directory. Key files are read in alphabetical order, ignoring dotfiles. The standard `~/.ssh/authorized_keys` file is read afterward, in the usual way. To debug the reading of `~/.ssh/authorized_keys.d`, manually run the helper program and inspect its output:
 
@@ -26,9 +53,9 @@ sshd uses a https://github.com/coreos/ssh-key-dir[helper program] to read public
 
 Ignition writes configured SSH keys to `~/.ssh/authorized_keys.d/ignition`. On platforms where SSH keys can be configured at the platform level, such as AWS, Afterburn writes those keys to `~/.ssh/authorized_keys.d/afterburn`.
 
-== Using password authentication
+== Using Password Authentication
 
-Fedora CoreOS ships with no default passwords. You can use a Fedora CoreOS Config to set a password for a local user:
+Fedora CoreOS ships with no default passwords. You can use a Fedora CoreOS Config to set a password for a local user. Building on the previous example, we can confgure the `password_hash` for one or more users:
 
 [source,yaml]
 ----
@@ -37,7 +64,16 @@ version: 1.1.0
 passwd:
   users:
     - name: core
-      password_hash: "$y$j9T$A0Y3wwVOKP69S.1K/zYGN.$S596l11UGH3XjN..."
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHn2eh...
+    - name: jlebon
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5QFS...
+        - sh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
+    - name: miabbott
+      password_hash: $y$j9T$aUmgEDoFIDPhGxEe2FUjc/$C5A...
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTey7R...
 ----
 
 To generate a secure password hash, use the `mkpasswd` command:
@@ -51,11 +87,109 @@ $y$j9T$A0Y3wwVOKP69S.1K/zYGN.$S596l11UGH3XjN...
 
 The `yescrypt` hashing method is recommended for new passwords. For more details on hashing methods, see `man 5 crypt`.
 
-The configured password will be accepted for local authentication at the console. By default, Fedora CoreOS does not allow password authentication via SSH.
+The configured password will be accepted for local authentication at the console. By default, Fedora CoreOS does not allow <<_enabling_ssh_password_authentication,password authentication via SSH>>.
 
-== Enabling SSH password authentication
+== Configuring Groups
 
-To enable password authentication via SSH, use the following Fedora CoreOS Config:
+Fedora CoreOS comes with a few groups configured by default: `root`, `adm`, `wheel`, `sudo`, `systemd-journal`, `docker`
+
+When configuring users via Fedora CoreOS Configs, we can specify groups that the user(s) should be a part of.
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHn2eh...
+    - name: jlebon
+      groups:
+        - wheel
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5QFS...
+        - sh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
+    - name: miabbott
+      groups:
+        - docker
+        - wheel
+      password_hash: $y$j9T$aUmgEDoFIDPhGxEe2FUjc/$C5A...
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTey7R...
+----
+
+If a group does not exist, users should create them as part of the Fedora CoreOS Config.
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+passwd:
+  groups:
+    - name: engineering
+    - name: marketing
+      gid: 9000
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHn2eh...
+    - name: jlebon
+      groups:
+        - engineering
+        - wheel
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5QFS...
+        - sh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
+    - name: miabbott
+      groups:
+        - docker
+        - marketing
+        - wheel
+      password_hash: $y$j9T$aUmgEDoFIDPhGxEe2FUjc/$C5A...
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTey7R...
+----
+
+== Configuring Administrative Privileges
+
+The easiest way for users to be granted administrative privileges is to have them added to the `sudo` and `wheel` groups as part of the Fedora CoreOS Config.
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+passwd:
+  groups:
+    - name: engineering
+    - name: marketing
+      gid: 9000
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHn2eh...
+    - name: jlebon
+      groups:
+        - engineering
+        - wheel
+        - sudo
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5QFS...
+        - sh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
+    - name: miabbott
+      groups:
+        - docker
+        - marketing
+        - wheel
+        - sudo
+      password_hash: $y$j9T$aUmgEDoFIDPhGxEe2FUjc/$C5A...
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTey7R...
+----
+
+== Enabling SSH Password Authentication
+
+To enable password authentication via SSH, add the following to your Fedora CoreOS Config:
 
 [source,yaml]
 ----
