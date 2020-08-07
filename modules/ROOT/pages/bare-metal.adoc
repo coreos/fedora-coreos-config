@@ -1,10 +1,11 @@
 :experimental:
 = Installing CoreOS on Bare Metal
 
-This guide provides instructions to install Fedora CoreOS to bare metal. Two options are available:
+This guide provides instructions to install Fedora CoreOS to bare metal. Three options are available:
 
 * Installing from live ISO
 * Installing from PXE
+* Installing from the container
 
 == Prerequisite
 
@@ -52,6 +53,20 @@ IPAPPEND 2
 ----
 
 For more details on how to use this information, see this https://dustymabe.com/2019/01/04/easy-pxe-boot-testing-with-only-http-using-ipxe-and-libvirt/[blog post] for testing a PXE installation via a local VM and `libvirt`.
+
+== Installing from the container
+
+You can use the `coreos-installer` https://quay.io/repository/coreos/coreos-installer[container] from an existing system to install to an attached block device. For example (substitute `docker` for `podman` if needed):
+
+[source, bash]
+----
+sudo podman run --pull=always --privileged --rm \
+    -v /dev:/dev -v /run/udev:/run/udev -v ${PWD}:/data \
+    quay.io/coreos/coreos-installer:release \
+    install /dev/vdb -i /data/config.ign
+----
+
+In this example, `coreos-installer` will download the latest stable FCOS metal image and install it onto `/dev/vdb`. It will then inject the Ignition file `config.ign` in the current directory into the image.  Use `--help` to see all the available options.
 
 == Live PXE
 
