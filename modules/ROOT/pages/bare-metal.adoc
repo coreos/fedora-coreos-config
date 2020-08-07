@@ -68,6 +68,20 @@ sudo podman run --pull=always --privileged --rm \
 
 In this example, `coreos-installer` will download the latest stable FCOS metal image and install it onto `/dev/vdb`. It will then inject the Ignition file `config.ign` in the current directory into the image.  Use `--help` to see all the available options.
 
+== Downloading and mirroring the metal image
+
+Sometimes, it's necessary to download the metal image ahead of time and then have it passed locally to `coreos-installer` for installation. You can download the metal image directly from the https://getfedora.org/en/coreos/download?tab=metal_virtualized[FCOS download page], or you can use `coreos-installer download`.
+
+TIP: When installing via the live ISO or PXE, there is no need to download the metal image. It is already part of those environments.
+
+There are two metal images: one for 512b-sector disks (labeled "Raw" on the download page), and one for 4k-sector native disks (labeled "Raw (4K Native)"). Unless you know to be targeting a 4k native disk, use the 512b one, which is the most common. See https://en.wikipedia.org/wiki/Advanced_Format#4K_native[this page] for more information.
+
+To download the 4kn native metal image with `coreos-installer download`, use the `--format 4k.raw.xz` switch.
+
+NOTE: The metal image uses a hybrid partition layout which supports both BIOS and UEFI booting.
+
+When you're finally ready to install FCOS, you can point it at your downloaded image using `coreos-installer install --image-url <LOCAL_MIRROR>` or `coreos-install --image-file <PATH>`.
+
 == Live PXE
 
 In this model, rather than performing a "persistent" installation to disk, you can run directly from RAM.  This is useful in e.g. "diskless" scenarios.
