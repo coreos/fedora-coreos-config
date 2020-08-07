@@ -2,6 +2,8 @@
 Description=Persist osmet files
 DefaultDependencies=false
 ConditionPathExists=/run/ostree-live
+# Downloads and unpacks the osmet files if not already appended
+After=coreos-livepxe-rootfs.service
 
 [Service]
 Type=oneshot
