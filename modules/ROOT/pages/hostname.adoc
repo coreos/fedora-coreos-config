@@ -1,0 +1,23 @@
+:experimental:
+= Setting a Hostname
+
+To set a custom hostname for your system, use the following FCC to write to `/etc/hostname`:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - $pubkey
+storage:
+  files:
+    - path: /etc/hostname
+      mode: 0644
+      contents:
+        inline: myhostname
+----
+
+Once booted, you can also verify that the desired hostname has been set using `hostnamectl`.
