@@ -8,8 +8,6 @@ ConditionPathExists=/etc/coreos-live-want-rootfs
 After=basic.target
 # Network is enabled here
 After=dracut-initqueue.service
-# Needs /root.squashfs
-Before=sysroot.mount
 
 # If we fail, the boot will fail.  Be explicit about it.
 OnFailure=emergency.target
