@@ -1,10 +1,102 @@
 = Prerequisites
 
-Those tutorials are written targeting a Linux environment with a working `libvirt` setup and hardware virtualization support via `KVM`. For instructions to setup `libvirt` and `KVM` you may refer to the link:https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/[Getting started with virtualization] guide from Fedora. Although this setup guide is focused on Fedora, those tutorials should work on any distribution with `libvirt` installed.
+== Virtualization with `libvirt`
 
-== Downloading a Fedora CoreOS QCOW2 image
+Those tutorials are written targeting a Linux environment with a working `libvirt` setup and hardware virtualization support via `KVM`. For instructions to setup `libvirt` and `KVM` you may refer to the https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/[Getting started with virtualization] guide from Fedora. Although this setup guide is focused on Fedora, those tutorials should work on any distribution with `libvirt` installed.
 
-First of all, we have to download the latest stable release of Fedora CoreOS. As we will use `libvirt`, we will download an archive containing a QEMU image from link:https://getfedora.org/en/coreos/download?tab=metal_virtualized&stream=stable[getfedora.org]:
+== CoreOS tools
+
+For those tutorials, we will need the following tools:
+
+  * `coreos-installer`: To download the latest Fedora CoreOS QCOW2 image.
+  * `fcct`: To generate Ignition configuration from Fedora CoreOS Config files.
+  * `ignition-validate`: To validate Ignition configuration files.
+
+To keep all configurations files and Fedora CoreOS images in the same place, we will create a new directory to work from:
+
+[source,bash]
+----
+mkdir ~/coreos
+cd ~/coreos
+----
+
+=== Setup with `podman` or `docker`
+
+All of the tools required to work with Fedora CoreOS are available from containers hosted on https://quay.io/[quay.io]:
+
+[source,bash]
+----
+podman pull quay.io/coreos/coreos-installer:release
+podman pull quay.io/coreos/fcct:release
+podman pull quay.io/coreos/ignition-validate:release
+----
+
+To make it simpler to type, you should setup the following aliases:
+
+[source,bash]
+----
+alias coreos-installer='podman run --pull=always            \
+                        --rm --tty --interactive            \
+                        --security-opt label=disable        \
+                        --volume ${PWD}:/pwd --workdir /pwd \
+                        quay.io/coreos/coreos-installer:release'
+
+alias ignition-validate='podman run --rm --tty --interactive \
+                         --security-opt label=disable        \
+                         --volume ${PWD}:/pwd --workdir /pwd \
+                         quay.io/coreos/ignition-validate:release'
+
+alias fcct='podman run --rm --tty --interactive \
+            --security-opt label=disable        \
+            --volume ${PWD}:/pwd --workdir /pwd \
+            quay.io/coreos/fcct:release'
+----
+
+You can then use `coreos-installer` to download the latest stable image with:
+
+[source,bash]
+----
+coreos-installer download -p qemu -f qcow2.xz --decompress
+----
+
+To make the tutorial simpler, you should rename the image that we have just downloaded to a shorter name:
+
+[source,bash]
+----
+mv fedora-coreos-32.20200715.3.0-qemu.x86_64.qcow2 fedora-coreos.qcow2
+----
+
+You are now ready to proceed with the xref:tutorial-autologin.adoc[first tutorial].
+
+=== Installing via Fedora packages
+
+NOTE: Although this should work, we recommended that you run the tools from containers (as described in the previous section) to make sure that you always use the latest versions. If you use the packaged version, make sure that your system is fully updated to the latest Fedora stable release.
+
+All three tools (`coreos-installer`, `fcct` and `ignition-validate`) are available as Fedora packages:
+
+[source,bash]
+----
+# Installing the tools
+sudo dnf install -y coreos-installer fcct ignition-validate
+
+# Downloading the latest Fedora CoreOS stable QCOW2 image
+coreos-installer download -p qemu -f qcow2.xz --decompress
+----
+
+To make the tutorial simpler, you should rename the image that we have just downloaded to a shorter name:
+
+[source,bash]
+----
+mv fedora-coreos-32.20200715.3.0-qemu.x86_64.qcow2 fedora-coreos.qcow2
+----
+
+You are now ready to proceed with the xref:tutorial-autologin.adoc[first tutorial].
+
+=== Manual download
+
+NOTE: Although this should work, we recommended that you run the tools from containers (as described in the first section) to make sure that you always use the latest versions.
+
+If none of the previous solutions work for you, you can still manually download Fedora CoreOS from https://getfedora.org/en/coreos/download?tab=metal_virtualized&stream=stable[getfedora.org] with:
 
 [source,bash]
 ----
@@ -28,43 +120,14 @@ Once you have verified the archive, you can extract it with:
 unxz fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz
 ----
 
-To make the tutorial simpler, you should rename this image to a shorter name:
+To make the tutorial simpler, you should rename the image that we have just downloaded to a shorter name:
 
 [source,bash]
 ----
-mv fedora-coreos-$RELEASE-qemu.x86_64.qcow2 fedora-coreos.qcow2
+mv fedora-coreos-32.20200715.3.0-qemu.x86_64.qcow2 fedora-coreos.qcow2
 ----
 
-== Installing `fcct` and `ignition-validate`
-
-To generate and validate Ignition configuration files, we need the following tools:
-
-- `fcct`: Fedora CoreOS Config Transpiler,
-- `ignition-validate`: Validate Ignition configuration files.
-
-If you are running on Fedora, you can install them via:
-
-[source,bash]
-----
-sudo dnf install -y fcct ignition-validate
-----
-
-You may also run them in a container by using either podman or Docker:
-
-[source,bash]
-----
-podman pull quay.io/coreos/fcct
-podman pull quay.io/coreos/ignition-validate
-----
-
-For example:
-
-[source,bash]
-----
-podman run --rm --interactive quay.io/coreos/ignition-validate - < myconfig.ign
-----
-
-Or you may directly download the latest https://github.com/coreos/fcct/releases[fcct] and https://github.com/coreos/ignition/releases[ignition-validate] releases from GitHub:
+You should then download the latest https://github.com/coreos/fcct/releases[fcct] and https://github.com/coreos/ignition/releases[ignition-validate] releases from GitHub:
 
 [source,bash]
 ----
