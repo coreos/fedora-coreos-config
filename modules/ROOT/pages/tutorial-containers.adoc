@@ -1,0 +1,233 @@
+= Setting up SSH access and starting containers at boot
+
+[NOTE]
+====
+Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
+====
+
+In this tutorial, we will setup SSH access and start a container at boot. Fedora CoreOS is focused on running applications/services in containers thus we recommend trying to only run containers and not modifying the host directly. This makes automatic updates more reliable and allows for separation of concerns with the Fedora CoreOS team responsible for the OS and end-user operators/sysadmins responsible for the applications.
+
+As usual we will setup console autologin, a hostname, and raise kernel logging level, but we will also:
+
+* Add an SSH Key for the `core` user,
+* Add a systemd service (`failure.service`) that fails on boot,
+* Add a systemd service that will use a container to bring up a hosted service.
+
+== Writing the Fedora CoreOS config and converting to Ignition
+
+Similarly to what we did in the second provisioning scenario, we will write the following Fedora CoreOS config in a file called `fcct-containers.yaml`:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - ssh-rsa AAAA...
+systemd:
+  units:
+    - name: serial-getty@ttyS0.service
+      dropins:
+      - name: autologin-core.conf
+        contents: |
+          [Service]
+          # Override Execstart in main unit
+          ExecStart=
+          # Add new Execstart with `-` prefix to ignore failure
+          ExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM
+          TTYVTDisallocate=no
+    - name: failure.service
+      enabled: true
+      contents: |
+        [Service]
+        Type=oneshot
+        ExecStart=/usr/bin/false
+        RemainAfterExit=yes
+        [Install]
+        WantedBy=multi-user.target
+    - name: etcd-member.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Run a single node etcd
+        After=network-online.target
+        Wants=network-online.target
+        [Service]
+        ExecStartPre=mkdir -p /var/lib/etcd
+        ExecStartPre=-/bin/podman kill etcd
+        ExecStartPre=-/bin/podman rm etcd
+        ExecStartPre=-/bin/podman pull quay.io/coreos/etcd
+        ExecStart=/bin/podman run --name etcd --net=host \
+                    --volume /var/lib/etcd:/etcd-data:z  \
+                    quay.io/coreos/etcd:latest /usr/local/bin/etcd              \
+                            --data-dir /etcd-data --name node1                  \
+                            --initial-advertise-peer-urls http://127.0.0.1:2380 \
+                            --listen-peer-urls http://127.0.0.1:2380            \
+                            --advertise-client-urls http://127.0.0.1:2379       \
+                            --listen-client-urls http://127.0.0.1:2379          \
+                            --initial-cluster node1=http://127.0.0.1:2380
+        ExecStop=/bin/podman stop etcd
+        [Install]
+        WantedBy=multi-user.target
+storage:
+  files:
+    - path: /etc/hostname
+      mode: 0644
+      contents:
+        inline: |
+          tutorial
+    - path: /etc/sysctl.d/20-silence-audit.conf
+      mode: 0644
+      contents:
+        inline: |
+          # Raise console message logging level from DEBUG (7) to WARNING (4)
+          # to hide audit messages from the interactive console
+          kernel.printk=4
+----
+
+_Optional:_ You can replace the SSH pubkey in the yaml file with your own public key so you can log in to the booted instance. If you choose not to do this you'll still be auto logged in to the serial console.
+
+Run `fcct` to convert that to an Ignition config:
+
+[source,bash]
+----
+fcct --pretty --strict fcct-containers.yaml --output containers.ign
+----
+
+Now let's provision it:
+
+[source, bash]
+----
+# Setup the correct SELinux label to allow access to the config
+chcon --verbose unconfined_u:object_r:svirt_home_t:s0 containers.ign
+
+# Start a Fedora CoreOS virtual machine
+virt-install --name=fcos --vcpus=2 --ram=2048 --import \
+    --network=bridge=virbr0 --graphics=none \
+    --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${PWD}/containers.ign" \
+    --disk=size=20,backing_store=${PWD}/fedora-coreos.qcow2
+----
+
+On the serial console you will see:
+
+[source,bash]
+----
+[  OK  ] Reached target Login Prompts.
+
+Fedora CoreOS 32.20200715.3.0
+Kernel 5.7.8-200.fc32.x86_64 on an x86_64 (ttyS0)
+
+SSH host key: SHA256:rLJvpsONtyYXW4QCTdHD3Vvn56ERq1AbakWxwRImH2g (ECDSA)
+SSH host key: SHA256:/UUqh9nMlFf+2wFSjTMtyLemF6qVEuMHbAh1Td8nJeE (ED25519)
+SSH host key: SHA256:ZoKsIc9NZVRLe8ao9uPvc1vsbHa6StdSVMvF6rGWhAI (RSA)
+ens2: 192.168.122.142 fe80::5054:ff:fec1:a01f
+Ignition: user provided config was applied
+Ignition: wrote ssh authorized keys file for user: core
+tutorial login: core (automatic login)
+
+[systemd]
+Failed Units: 1
+  failure.service
+[core@tutorial ~]$
+----
+
+If you would like to connect via SSH, disconnect from the serial console by pressing `CTRL` + `]` and then use the reported IP address for `eth0` from the serial console to log in using the `core` user via SSH:
+
+[source,bash]
+----
+ssh core@192.168.122.142
+The authenticity of host '192.168.122.142 (192.168.122.142)' can't be established.
+ECDSA key fingerprint is SHA256:rLJvpsONtyYXW4QCTdHD3Vvn56ERq1AbakWxwRImH2g.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.122.142' (ECDSA) to the list of known hosts.
+Fedora CoreOS 32.20200715.3.0
+Tracker: https://github.com/coreos/fedora-coreos-tracker
+Discuss: https://discussion.fedoraproject.org/c/server/coreos/
+
+Last login: Fri Aug  7 10:10:45 2020
+[systemd]
+Failed Units: 1
+  failure.service
+[core@tutorial ~]$
+----
+
+The `Failed Units` message is coming from the https://github.com/coreos/console-login-helper-messages[console login helper messages] helpers. This particular helper shows us when `systemd` has services that are in a failed state. In this case we made `failure.service` with `ExecStart=/usr/bin/false`, so we intentionally created a service that will always fail in order to illustrate the helper messages.
+
+Now that we’re up and we don’t have any real failures we can check out the service that we care about (`etcd-member.service`):
+
+[source,bash]
+----
+[core@tutorial ~]$ systemctl status etcd-member.service
+● etcd-member.service - Run a single node etcd
+     Loaded: loaded (/etc/systemd/system/etcd-member.service; enabled; vendor preset: enabled)
+     Active: active (running) since Fri 2020-08-07 10:10:45 UTC; 4min 30s ago
+    Process: 1926 ExecStartPre=/usr/bin/mkdir -p /var/lib/etcd (code=exited, status=0/SUCCESS)
+    Process: 1928 ExecStartPre=/bin/podman kill etcd (code=exited, status=125)
+    Process: 2034 ExecStartPre=/bin/podman rm etcd (code=exited, status=1/FAILURE)
+    Process: 2063 ExecStartPre=/bin/podman pull quay.io/coreos/etcd (code=exited, status=0/SUCCESS)
+   Main PID: 2155 (podman)
+      Tasks: 11 (limit: 2288)
+     Memory: 134.2M
+     CGroup: /system.slice/etcd-member.service
+             ├─2155 /bin/podman run ...
+             └─2203 /usr/bin/conmon ...
+
+Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.035534 I | raft: b71f75320dc06a6c became candidate at term 2
+Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.035966 I | raft: b71f75320dc06a6c received MsgVoteResp from b71f75320dc06a6c at term 2
+Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.036297 I | raft: b71f75320dc06a6c became leader at term 2
+Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.036774 I | raft: raft.node: b71f75320dc06a6c elected leader b71f75320dc06a6c at term 2
+Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.037468 I | etcdserver: setting up the initial cluster version to 3.3
+Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.050863 N | etcdserver/membership: set the initial cluster version to 3.3
+Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.050955 I | etcdserver/api: enabled capabilities for version 3.3
+Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.050998 I | etcdserver: published {Name:node1 ClientURLs:[http://127.0.0.1:2379]} to cluster 1c45a069f3a1d796
+Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.051115 I | embed: ready to serve client requests
+Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.052367 N | embed: serving insecure client requests on 127.0.0.1:2379, this is strongly discouraged!
+----
+
+We can also inspect the state of the container that was run by the systemd service:
+
+[source,bash]
+----
+[core@tutorial ~]$ sudo podman ps -a
+CONTAINER ID  IMAGE                       COMMAND               CREATED        STATUS            PORTS  NAMES
+618991ee6db1  quay.io/coreos/etcd:latest  /usr/local/bin/et...  5 minutes ago  Up 5 minutes ago         etcd
+----
+
+And we can set a key/value pair in etcd. For now let’s set the key `fedora` to the value `fun`:
+
+[source,bash]
+----
+[core@tutorial ~]$ curl -L -X PUT http://127.0.0.1:2379/v2/keys/fedora -d value="fun"
+{"action":"set","node":{"key":"/fedora","value":"fun","modifiedIndex":4,"createdIndex":4}}
+[core@tutorial ~]$ curl -L http://127.0.0.1:2379/v2/keys/ 2>/dev/null | jq .
+{
+  "action": "get",
+  "node": {
+    "dir": true,
+    "nodes": [
+      {
+        "key": "/fedora",
+        "value": "fun",
+        "modifiedIndex": 4,
+        "createdIndex": 4
+      }
+    ]
+  }
+}
+----
+
+Looks like everything is working!
+
+== Cleanup
+
+Now let's take down the instance for the next test. Disconnect from the serial console by pressing `CTRL` + `]` or from SSH and then destroy the machine:
+
+[source,bash]
+----
+virsh destory fcos
+virsh undefined --remove-all-storage fcos
+----
+
+You may now proceed with the xref:tutorial-updates.adoc[next tutorial].
