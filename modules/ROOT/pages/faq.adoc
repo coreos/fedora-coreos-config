@@ -251,7 +251,7 @@ such as `terraform`, `matchbox`, `openshift-installer`, and `fcct`.
 
 Fedora CoreOS Configuration Transpiler (`fcct`) is one of such high-level tools.
 It is primarily meant as a human-friendly interface, thus defining its own richer configuration entries and using YAML documents as input.
-This YAML configuration is never directly processed by FCOS instances (only the resulting Ignitiong configuration is).
+This YAML configuration is never directly processed by FCOS instances (only the resulting Ignition configuration is).
 
 Although similar, Ignition configurations and FCCT ones do not have the same structure; thus, converting between them is not just a direct YAML-to-JSON translation, but it involves additional logic.
 FCCT exposes several customization helpers (e.g. distribution specific entries and common abstractions) that are not present in Ignition and make the formats not interchangeable.
