@@ -1,9 +1,6 @@
 = Testing Fedora CoreOS updates
 
-[NOTE]
-====
-Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
-====
+NOTE: Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
 
 In this tutorial, we will not focus on provisionning but on what happens during updates and the options that are available in case of failures.
 
@@ -90,7 +87,10 @@ Run `fcct` to convert that to an Ignition config:
 fcct --pretty --strict fcct-updates.yaml --output updates.ign
 ----
 
+== Startup and intial update
+
 Now let's provision it. Make sure that you are starting from the older Fedora CoreOS image in this step:
+
 [source, bash]
 ----
 # Setup the correct SELinux label to allow access to the config
@@ -103,67 +103,128 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --import \
     --disk=size=20,backing_store=${PWD}/fedora-coreos-older.qcow2
 ----
 
-Shortly after the first boot completes, the system should reboot to apply the latest update.
-
-When we log back in we can view the current version of Fedora CoreOS is now `31.20200113.3.1`.
-The rpm-ostree status output will also how the older version, which still exists in case we need to rollback:
+As the system is not up to date, Zincati will notice this and will immediately start updating the system. If you are fast enough, you should see the update process happening right away:
 
 [source,bash]
 ----
-$ rpm-ostree status
-State: idle
-AutomaticUpdates: disabled
+[core@localhost ~]$ sudo systemctl status --no-pager zincati.service
+● zincati.service - Zincati Update Agent
+     Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
+     Active: active (running) since Fri 2020-08-07 17:42:14 UTC; 24s ago
+       Docs: https://github.com/coreos/zincati
+   Main PID: 889 (zincati)
+      Tasks: 6 (limit: 2290)
+     Memory: 17.9M
+     CGroup: /system.slice/zincati.service
+             ├─ 889 /usr/libexec/zincati agent -v
+             └─1889 rpm-ostree deploy --lock-finalization revision=a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869 --disallow-downgrade
+
+Aug 07 17:42:14 localhost systemd[1]: Started Zincati Update Agent.
+Aug 07 17:42:14 localhost zincati[889]: [INFO ] starting update agent (zincati 0.0.11)
+Aug 07 17:42:17 localhost zincati[889]: [INFO ] Cincinnati service: https://updates.coreos.fedoraproject.org
+Aug 07 17:42:17 localhost zincati[889]: [INFO ] agent running on node '2ce419a50b0a4a4f8b10e5e9cf487b68', in update group 'default'
+Aug 07 17:42:17 localhost zincati[889]: [INFO ] initialization complete, auto-updates logic enabled
+Aug 07 17:42:18 localhost zincati[889]: [INFO ] target release '32.20200715.3.0' selected, proceeding to stage it
+
+[core@localhost ~]$ rpm-ostree status
+State: busy
+Transaction: deploy --lock-finalization revision=a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869 --disallow-downgrade
+  Initiator: caller :1.18
 Deployments:
 ● ostree://fedora:fedora/x86_64/coreos/stable
-                   Version: 31.20200113.3.1 (2020-01-14T00:20:15Z)
-                    Commit: f480038412cba26ab010d2cd5a09ddec736204a6e9faa8370edaa943cf33c932
-              GPGSignature: Valid signature by 7D22D5867F2A4236474BF7B850CB390B3C3359C4
+                   Version: 32.20200629.3.0 (2020-07-10T17:58:03Z)
+                    Commit: 6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890
+              GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
 
-  ostree://fedora:fedora/x86_64/coreos/stable
-                   Version: 31.20200108.3.0 (2020-01-09T21:51:07Z)
-                    Commit: 113aa27efe1bbcf6324af7423f64ef7deb0acbf21b928faec84bf66a60a5c933
-              GPGSignature: Valid signature by 7D22D5867F2A4236474BF7B850CB390B3C3359C4
+[core@localhost ~]$ systemctl status --no-pager zincati.service
+● zincati.service - Zincati Update Agent
+     Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
+     Active: active (running) since Fri 2020-08-07 17:42:14 UTC; 51s ago
+       Docs: https://github.com/coreos/zincati
+   Main PID: 889 (zincati)
+      Tasks: 5 (limit: 2290)
+     Memory: 17.8M
+     CGroup: /system.slice/zincati.service
+             ├─ 889 /usr/libexec/zincati agent -v
+             └─4463 rpm-ostree finalize-deployment a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869
+
+Aug 07 17:42:14 localhost systemd[1]: Started Zincati Update Agent.
+Aug 07 17:42:14 localhost zincati[889]: [INFO ] starting update agent (zincati 0.0.11)
+Aug 07 17:42:17 localhost zincati[889]: [INFO ] Cincinnati service: https://updates.coreos.fedoraproject.org
+Aug 07 17:42:17 localhost zincati[889]: [INFO ] agent running on node '2ce419a50b0a4a4f8b10e5e9cf487b68', in update group 'default'
+Aug 07 17:42:17 localhost zincati[889]: [INFO ] initialization complete, auto-updates logic enabled
+Aug 07 17:42:18 localhost zincati[889]: [INFO ] target release '32.20200715.3.0' selected, proceeding to stage it
+Aug 07 17:43:05 localhost zincati[889]: [INFO ] staged deployment '32.20200715.3.0' available, proceeding to finalize it
 ----
 
-*NOTE:* The currently booted deployment is denoted by the `●` character.
+Shortly after the update has been staged, the system should reboot to apply the latest update.
+
+When we log back in we can view the current version of Fedora CoreOS is now `32.20200715.3.0`. The rpm-ostree status output will also show the older version, which still exists in case we need to rollback:
+
+[source,bash]
+----
+[core@localhost ~]$ rpm-ostree status
+State: idle
+Deployments:
+● ostree://fedora:fedora/x86_64/coreos/stable
+                   Version: 32.20200715.3.0 (2020-07-27T11:36:29Z)
+                    Commit: a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869
+              GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
+
+  ostree://fedora:fedora/x86_64/coreos/stable
+                   Version: 32.20200629.3.0 (2020-07-10T17:58:03Z)
+                    Commit: 6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890
+              GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
+----
+
+NOTE: The currently booted deployment is denoted by the `●` character.
 
 You can view the differences between the two versions by running an `rpm-ostree db diff` command:
 
 [source,bash]
 ----
-$ rpm-ostree db diff 113aa27efe1bbcf6324af7423f64ef7deb0acbf21b928faec84bf66a60a5c933 f480038412cba26ab010d2cd5a09ddec736204a6e9faa8370edaa943cf33c932
-ostree diff commit from: 113aa27efe1bbcf6324af7423f64ef7deb0acbf21b928faec84bf66a60a5c933
-ostree diff commit to:   f480038412cba26ab010d2cd5a09ddec736204a6e9faa8370edaa943cf33c932
+[core@localhost ~]$ rpm-ostree db diff
+ostree diff commit from: 6df95bdb (6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890)
+ostree diff commit to:   a3b08ee5 (a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869)
 Upgraded:
-  bind-libs 32:9.11.13-3.fc31 -> 32:9.11.14-2.fc31
+  btrfs-progs 5.6.1-1.fc32 -> 5.7-1.fc32
+  console-login-helper-messages 0.18.1-1.fc32 -> 0.18.2-1.fc32
+  console-login-helper-messages-issuegen 0.18.1-1.fc32 -> 0.18.2-1.fc32
+  console-login-helper-messages-motdgen 0.18.1-1.fc32 -> 0.18.2-1.fc32
+  console-login-helper-messages-profile 0.18.1-1.fc32 -> 0.18.2-1.fc32
+  crun 0.13-2.fc32 -> 0.14.1-1.fc32
+  crypto-policies 20200610-1.git7f9d474.fc32 -> 20200619-1.git781bbd4.fc32
+  dbus 1:1.12.18-1.fc32 -> 1:1.12.20-1.fc32
+  dbus-common 1:1.12.18-1.fc32 -> 1:1.12.20-1.fc32
+  dbus-libs 1:1.12.18-1.fc32 -> 1:1.12.20-1.fc32
   ...
 ----
+
+== Reverting to the previous version
 
 If the system is not functioning fully for whatever reason we can go back to the previous version:
 
 [source,bash]
 ----
-$ sudo rpm-ostree rollback --reboot
+[core@localhost ~]$ sudo rpm-ostree rollback --reboot
 ----
 
-After logging back in after reboot we can see we are now booted back into the old `31.20200108.3.0` deployment from before the upgrade occurred:
+After logging back in after reboot we can see we are now booted back into the old `32.20200629.3.0` deployment from before the upgrade occurred:
 
 [source,bash]
 ----
-$ rpm-ostree status
+[core@localhost ~]$ rpm-ostree status
 State: idle
-AutomaticUpdates: disabled
 Deployments:
 ● ostree://fedora:fedora/x86_64/coreos/stable
-                   Version: 31.20200108.3.0 (2020-01-09T21:51:07Z)
-                    Commit: 113aa27efe1bbcf6324af7423f64ef7deb0acbf21b928faec84bf66a60a5c933
-              GPGSignature: Valid signature by 7D22D5867F2A4236474BF7B850CB390B3C3359C4
+                   Version: 32.20200629.3.0 (2020-07-10T17:58:03Z)
+                    Commit: 6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890
+              GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
 
   ostree://fedora:fedora/x86_64/coreos/stable
-                   Version: 31.20200113.3.1 (2020-01-14T00:20:15Z)
-                    Commit: f480038412cba26ab010d2cd5a09ddec736204a6e9faa8370edaa943cf33c932
-              GPGSignature: Valid signature by 7D22D5867F2A4236474BF7B850CB390B3C3359C4
-
+                   Version: 32.20200715.3.0 (2020-07-27T11:36:29Z)
+                    Commit: a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869
+              GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
 ----
 
 == Cleanup
