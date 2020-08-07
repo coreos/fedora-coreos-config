@@ -1,0 +1,181 @@
+= Starting a script on first boot via a systemd service
+
+[NOTE]
+====
+Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
+====
+
+In this tutorial, we will run a script on the first boot via a systemd service. We will add the following to the Fedora CoreOS config from the previous scenario:
+
+* Add a script at `/usr/local/bin/public-ipv4.sh`,
+* Configure a systemd service to run the script on first boot.
+
+== Writing the script
+
+Let's write a simple script that uses https://icanhazip.com/[icanhazip.com] to update the issuegen from https://github.com/coreos/console-login-helper-messages[console-login-helper-messages] to output the node's public IPv4 address on the serial console during bootup:
+
+[source,bash]
+----
+#!/bin/bash
+echo "Detected Public IPv4: is $(curl https://ipv4.icanhazip.com)" > \
+    /run/console-login-helper-messages/issue.d/50_public-ipv4.issue
+----
+
+This could be useful in cloud environments where you might have different public and private addresses.
+
+We will store this script into `/usr/local/bin/public-ipv4.sh` when we provision the machine. We will include it in the Fedora CoreOS config shortly.
+
+== Writing the systemd service
+
+We need to call the script from the previous section by using a systemd unit. Here is one that works for what we want, which is to execute on first boot and not again:
+
+[source,service]
+----
+[Unit]
+Before=console-login-helper-messages-issuegen.service
+After=network-online.target
+ConditionPathExists=!/var/lib/issuegen-public-ipv4
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/public-ipv4.sh
+ExecStartPost=/usr/bin/touch /var/lib/issuegen-public-ipv4
+RemainAfterExit=yes
+
+[Install]
+WantedBy=console-login-helper-messages-issuegen.service
+----
+
+We will call this unit `issuegen-public-ipv4.service` and we will embed it into the Fedora CoreOS config in the next section.
+
+== Writing the Fedora CoreOS config and converting to Ignition
+
+We can you create a Fedora CoreOS config by including the script and the systemd unit directly as inline content into the systemd/units and storage/files sections. The final Fedora CoreOS config, stored in `fcct-services.yaml`, will be:
+
+[source,yml]
+
+----
+variant: fcos
+version: 1.1.0
+systemd:
+  units:
+    - name: serial-getty@ttyS0.service
+      dropins:
+      - name: autologin-core.conf
+        contents: |
+          [Service]
+          # Override Execstart in main unit
+          ExecStart=
+          # Add new Execstart with `-` prefix to ignore failure`
+          ExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM
+    - name: issuegen-public-ipv4.service
+      enabled: true
+      contents: |
+        [Unit]
+        Before=console-login-helper-messages-issuegen.service
+        After=network-online.target
+        ConditionPathExists=!/var/lib/issuegen-public-ipv4
+        [Service]
+        Type=oneshot
+        ExecStart=/usr/local/bin/public-ipv4.sh
+        ExecStartPost=/usr/bin/touch /var/lib/issuegen-public-ipv4
+        RemainAfterExit=yes
+        [Install]
+        WantedBy=console-login-helper-messages-issuegen.service
+storage:
+  files:
+    - path: /etc/hostname
+      mode: 0644
+      contents:
+        inline: |
+          tutorial
+    - path: /etc/sysctl.d/20-silence-audit.conf
+      mode: 0644
+      contents:
+        inline: |
+          # Raise console message logging level from DEBUG (7) to WARNING (4)
+          # to hide audit messages from the interactive console
+          kernel.printk=4
+    - path: /usr/local/bin/public-ipv4.sh
+      mode: 0755
+      contents:
+        inline: |
+          #!/bin/bash
+          echo "Detected Public IPv4: is $(curl https://ipv4.icanhazip.com)" > \
+              /run/console-login-helper-messages/issue.d/50_public-ipv4.issue
+----
+
+And then convert to Ignition:
+
+[source,bash]
+----
+fcct --pretty --strict fcct-services.yaml --output services.ign
+----
+
+== Testing
+
+Just as before we will use the following to boot the instance:
+
+[source,bash]
+----
+# Setup the correct SELinux label to allow access to the config
+chcon --verbost unconfined_u:object_r:svirt_home_t:s0 services.ign
+
+# Start a Fedora CoreOS virtual machine
+virt-install --name=fcos --vcpus=2 --ram=2048 --import \
+    --network=bridge=virbr0 --graphics=none \
+    --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${PWD}/services.ign" \
+    --disk=size=20,backing_store=${PWD}/fedora-coreos.qcow2
+----
+
+And view on the serial console that the `Detected Public IPv4` is shown in the serial console output right before you are dropped to a login prompt:
+
+[source,bash]
+----
+[  OK  ] Finished Update UTMP about System Runlevel Changes.
+
+Fedora CoreOS 32.20200715.3.0
+Kernel 5.7.8-200.fc32.x86_64 on an x86_64 (ttyS0)
+
+SSH host key: SHA256:1MdFJOw3JlNppvfcztG7k6EAWcLq1ktLnK9ftVybrOo (ECDSA)
+SSH host key: SHA256:bXD4Dfn2AdrHOdMJ3cfWLkcT+XTWUdaj8qb4KH+bu20 (ED25519)
+SSH host key: SHA256:crY6RMBzPLz/heXmYPX8fGRte+pbSihG9m9WyDyHgAo (RSA)
+ens2: 192.168.122.136 fe80::5054:ff:fe74:611d
+Ignition: user provided config was applied
+No ssh authorized keys provided by Ignition or Afterburn
+Detected Public IPv4: is 82.255.80.95
+tutorial login: core (automatic login)
+
+[core@tutorial ~]$
+----
+
+And the service shows it was launched successfully:
+
+[source,bash]
+----
+[core@tutorial ~]$ systemctl status issuegen-public-ipv4.service | cat
+● issuegen-public-ipv.service
+     Loaded: loaded (/etc/systemd/system/issuegen-public-ipv.service; enabled; vendor preset: enabled)
+     Active: active (exited) since Fri 2020-08-07 09:35:59 UTC; 57s ago
+    Process: 1871 ExecStart=/usr/local/bin/public-ipv4.sh (code=exited, status=0/SUCCESS)
+    Process: 1920 ExecStartPost=/usr/bin/touch /var/lib/issuegen-public-ipv4 (code=exited, status=0/SUCCESS)
+   Main PID: 1871 (code=exited, status=0/SUCCESS)
+
+Aug 07 09:35:58 tutorial systemd[1]: Starting issuegen-public-ipv.service...
+Aug 07 09:35:58 tutorial public-ipv4.sh[1874]:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+Aug 07 09:35:58 tutorial public-ipv4.sh[1874]:                                  Dload  Upload   Total   Spent    Left  Speed
+Aug 07 09:35:59 tutorial public-ipv4.sh[1874]: [158B blob data]
+Aug 07 09:35:59 tutorial systemd[1]: Finished issuegen-public-ipv.service.
+----
+
+== Cleanup
+
+Now let's take down the instance for the next test. First, disconnect from the serial console by pressing `CTRL` + `]` and then destroy the machine:
+
+[source,bash]
+----
+virsh destory fcos
+virsh undefined --remove-all-storage fcos
+----
+
+You may now proceed with the xref:tutorial-containers.adoc[next tutorial].
