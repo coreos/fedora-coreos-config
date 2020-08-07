@@ -5,7 +5,7 @@
 Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
 ====
 
-== Provisionning Fedora CoreOS
+== Provisioning Fedora CoreOS
 
 Fedora CoreOS does not have a separate install disk. Instead, every instance starts from a generic disk image which is customized on first boot via https://github.com/coreos/ignition[Ignition].
 
