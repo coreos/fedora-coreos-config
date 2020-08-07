@@ -31,11 +31,6 @@ add_requires sysroot.mount     initrd-root-fs.target
 add_requires sysroot-etc.mount initrd-root-fs.target
 add_requires sysroot-var.mount initrd-root-fs.target
 
-# Need to be flexible here until RHCOS moves to spec3.
-if ! (ignition -help || :) |& grep -q 'fetch-offline'; then
-    add_requires coreos-liveiso-network-kargs.service              initrd.target
-fi
-
 add_requires coreos-liveiso-reconfigure-nm-wait-online.service initrd.target
 
 mkdir -p "${UNIT_DIR}/ostree-prepare-root.service.d"
