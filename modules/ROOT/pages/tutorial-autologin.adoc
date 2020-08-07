@@ -1,9 +1,6 @@
 = Enabling autologin and setting a custom hostname
 
-[NOTE]
-====
-Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
-====
+NOTE: Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
 
 == Provisioning Fedora CoreOS
 
@@ -56,7 +53,7 @@ This configuration can then be converted into an Ignition config with `fcct`:
 
 [source,bash]
 ----
-$ fcct --pretty --strict fcct-autologion.yaml --output autologin.ign
+$ fcct --pretty --strict fcct-autologin.yaml --output autologin.ign
 ----
 
 The resulting Ignition configuration produced by `fcct` as `autologin.ign` has the following content:
@@ -105,7 +102,7 @@ Luckily `fcct` outputs valid Ignition configs. However, if you are tweaking the 
 
 [source,bash]
 ----
-ignition-validate autologin.ign && echo 'success!'
+ignition-validate autologin.ign && echo 'Success!'
 ----
 
 == Booting Fedora CoreOS
@@ -218,7 +215,7 @@ And check on zincati.service, which communicates with our update server and tell
 
 [source,bash]
 ----
-[core@tutorial ~]$ systemctl status zincati.service | cat
+[core@tutorial ~]$ systemctl status --no-pager zincati.service
 ● zincati.service - Zincati Update Agent
      Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
      Active: active (running) since Thu 2020-08-06 14:50:36 UTC; 1h 41min ago
@@ -240,7 +237,7 @@ One other interesting thing to do is view the logs from Ignition in case there i
 
 [source,bash]
 ----
-[core@tutorial ~]$ journalctl -t ignition | cat
+[core@tutorial ~]$ journalctl --no-pager -t ignition
 ...
 ----
 
@@ -252,17 +249,11 @@ And finally, of course we can use the podman (or Docker) command to inspect the 
 [core@tutorial ~]$ podman info
 ----
 
-[NOTE]
-====
-`podman` commands can be run as root or as non-root user. `docker` commands need to be run as root via `sudo` unless the user has been added to the `docker` group.
-====
+NOTE: `podman` commands can be run as root or as non-root user. `docker` commands need to be run as root via `sudo` unless the user has been added to the `docker` group.
 
-[NOTE]
-====
-Running containers via `docker` and `podman` at the same time can cause issues and result in unexpected behaviour. Refer to the https://docs.fedoraproject.org/en-US/fedora-coreos/faq/#_can_i_run_containers_via_docker_and_podman_at_the_same_time[FAQ Entry] for more details.
+NOTE: Running containers via `docker` and `podman` at the same time can cause issues and result in unexpected behaviour. Refer to the https://docs.fedoraproject.org/en-US/fedora-coreos/faq/#_can_i_run_containers_via_docker_and_podman_at_the_same_time[FAQ Entry] for more details.
 
-The Docker daemon is not started by default but running any `docker` command will start it as it is socket activated via systemd.
-====
+NOTE: The Docker daemon is not started by default but running any `docker` command will start it as it is socket activated via systemd.
 
 == Taking down the Virtual Machine
 

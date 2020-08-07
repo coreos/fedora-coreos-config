@@ -1,9 +1,6 @@
 = Starting a script on first boot via a systemd service
 
-[NOTE]
-====
-Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
-====
+NOTE: Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
 
 In this tutorial, we will run a script on the first boot via a systemd service. We will add the following to the Fedora CoreOS config from the previous scenario:
 
@@ -153,7 +150,7 @@ And the service shows it was launched successfully:
 
 [source,bash]
 ----
-[core@tutorial ~]$ systemctl status issuegen-public-ipv4.service | cat
+[core@tutorial ~]$ systemctl status --no-pager issuegen-public-ipv4.service
 ● issuegen-public-ipv.service
      Loaded: loaded (/etc/systemd/system/issuegen-public-ipv.service; enabled; vendor preset: enabled)
      Active: active (exited) since Fri 2020-08-07 09:35:59 UTC; 57s ago

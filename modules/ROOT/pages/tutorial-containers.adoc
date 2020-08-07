@@ -1,9 +1,6 @@
 = Setting up SSH access and starting containers at boot
 
-[NOTE]
-====
-Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
-====
+NOTE: Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
 
 In this tutorial, we will setup SSH access and start a container at boot. Fedora CoreOS is focused on running applications/services in containers thus we recommend trying to only run containers and not modifying the host directly. This makes automatic updates more reliable and allows for separation of concerns with the Fedora CoreOS team responsible for the OS and end-user operators/sysadmins responsible for the applications.
 
