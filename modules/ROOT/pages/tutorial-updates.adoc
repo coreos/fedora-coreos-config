@@ -1,0 +1,181 @@
+= Testing Fedora CoreOS updates
+
+[NOTE]
+====
+Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
+====
+
+In this tutorial, we will not focus on provisionning but on what happens during updates and the options that are available in case of failures.
+
+== Downloading an older Fedora CoreOS release
+
+One of the defining feature of Fedora CoreOS is automatic updates. To see them in action, we have to download an older Fedora CoreOS release. Start by picking an older release from the https://getfedora.org/en/coreos?stream=stable[Fedora CoreOS release page]:
+
+[source,bash]
+----
+RELEASE="32.20200629.3.0"
+curl -O https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$RELEASE/x86_64/fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz
+curl -O https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$RELEASE/x86_64/fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz.sig
+----
+
+Once the archive has been downloaded, make sure to verify its integrity:
+
+[source,bash]
+----
+gpg --verify fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz.sig
+----
+
+Once you have verified the archive, you can extract it with:
+
+[source,bash]
+----
+unxz fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz
+----
+
+To make the tutorial simpler, you should rename this image to a shorter name:
+
+[source,bash]
+----
+mv fedora-coreos-$RELEASE-qemu.x86_64.qcow2 fedora-coreos-older.qcow2
+----
+
+== Writing the Fedora CoreOS config and converting to Ignition
+
+We will create a Fedora CoreOS config that:
+
+* Sets up console autologin,
+* Raise kernel console logging level to hide audit messages from the console,
+* Add an SSH Key for the `core` user.
+
+Let's write this Fedora CoreOS config to a file called `fcct-updates.yaml`:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - ssh-rsa AAAA...
+systemd:
+  units:
+    - name: serial-getty@ttyS0.service
+      dropins:
+      - name: autologin-core.conf
+        contents: |
+          [Service]
+          # Override Execstart in main unit
+          ExecStart=
+          # Add new Execstart with `-` prefix to ignore failure
+          ExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM
+          TTYVTDisallocate=no
+storage:
+  files:
+    - path: /etc/sysctl.d/20-silence-audit.conf
+      mode: 0644
+      contents:
+        inline: |
+          # Raise console message logging level from DEBUG (7) to WARNING (4)
+          # to hide audit messages from the interactive console
+          kernel.printk=4
+----
+
+_Optional:_ You can replace the SSH pubkey in the yaml file with your own public key so you can log in to the booted instance. If you choose not to do this you'll still be auto logged in to the serial console.
+
+Run `fcct` to convert that to an Ignition config:
+
+[source,bash]
+----
+fcct --pretty --strict fcct-updates.yaml --output updates.ign
+----
+
+Now let's provision it. Make sure that you are starting from the older Fedora CoreOS image in this step:
+[source, bash]
+----
+# Setup the correct SELinux label to allow access to the config
+chcon --verbose unconfined_u:object_r:svirt_home_t:s0 updates.ign
+
+# Start a Fedora CoreOS virtual machine
+virt-install --name=fcos --vcpus=2 --ram=2048 --import \
+    --network=bridge=virbr0 --graphics=none \
+    --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${PWD}/updates.ign" \
+    --disk=size=20,backing_store=${PWD}/fedora-coreos-older.qcow2
+----
+
+Shortly after the first boot completes, the system should reboot to apply the latest update.
+
+When we log back in we can view the current version of Fedora CoreOS is now `31.20200113.3.1`.
+The rpm-ostree status output will also how the older version, which still exists in case we need to rollback:
+
+[source,bash]
+----
+$ rpm-ostree status
+State: idle
+AutomaticUpdates: disabled
+Deployments:
+● ostree://fedora:fedora/x86_64/coreos/stable
+                   Version: 31.20200113.3.1 (2020-01-14T00:20:15Z)
+                    Commit: f480038412cba26ab010d2cd5a09ddec736204a6e9faa8370edaa943cf33c932
+              GPGSignature: Valid signature by 7D22D5867F2A4236474BF7B850CB390B3C3359C4
+
+  ostree://fedora:fedora/x86_64/coreos/stable
+                   Version: 31.20200108.3.0 (2020-01-09T21:51:07Z)
+                    Commit: 113aa27efe1bbcf6324af7423f64ef7deb0acbf21b928faec84bf66a60a5c933
+              GPGSignature: Valid signature by 7D22D5867F2A4236474BF7B850CB390B3C3359C4
+----
+
+*NOTE:* The currently booted deployment is denoted by the `●` character.
+
+You can view the differences between the two versions by running an `rpm-ostree db diff` command:
+
+[source,bash]
+----
+$ rpm-ostree db diff 113aa27efe1bbcf6324af7423f64ef7deb0acbf21b928faec84bf66a60a5c933 f480038412cba26ab010d2cd5a09ddec736204a6e9faa8370edaa943cf33c932
+ostree diff commit from: 113aa27efe1bbcf6324af7423f64ef7deb0acbf21b928faec84bf66a60a5c933
+ostree diff commit to:   f480038412cba26ab010d2cd5a09ddec736204a6e9faa8370edaa943cf33c932
+Upgraded:
+  bind-libs 32:9.11.13-3.fc31 -> 32:9.11.14-2.fc31
+  ...
+----
+
+If the system is not functioning fully for whatever reason we can go back to the previous version:
+
+[source,bash]
+----
+$ sudo rpm-ostree rollback --reboot
+----
+
+After logging back in after reboot we can see we are now booted back into the old `31.20200108.3.0` deployment from before the upgrade occurred:
+
+[source,bash]
+----
+$ rpm-ostree status
+State: idle
+AutomaticUpdates: disabled
+Deployments:
+● ostree://fedora:fedora/x86_64/coreos/stable
+                   Version: 31.20200108.3.0 (2020-01-09T21:51:07Z)
+                    Commit: 113aa27efe1bbcf6324af7423f64ef7deb0acbf21b928faec84bf66a60a5c933
+              GPGSignature: Valid signature by 7D22D5867F2A4236474BF7B850CB390B3C3359C4
+
+  ostree://fedora:fedora/x86_64/coreos/stable
+                   Version: 31.20200113.3.1 (2020-01-14T00:20:15Z)
+                    Commit: f480038412cba26ab010d2cd5a09ddec736204a6e9faa8370edaa943cf33c932
+              GPGSignature: Valid signature by 7D22D5867F2A4236474BF7B850CB390B3C3359C4
+
+----
+
+== Cleanup
+
+Now let's take down the instance for the next test. Disconnect from the serial console by pressing `CTRL` + `]` or from SSH and then destroy the machine:
+
+[source,bash]
+----
+virsh destory fcos
+virsh undefined --remove-all-storage fcos
+----
+
+== Conclusion
+
+In these tutorials we have learned a little bit about Fedora CoreOS. We have learned how it is delivered as a pre-created disk image, how it is provisioned in an automated fashion via Ignition, and also how automated updates are configured and achieved via Zincati and rpm-ostree. The next step is to try out Fedora CoreOS for your own use cases and https://github.com/coreos/fedora-coreos-tracker/blob/master/README.md#communication-channels-for-fedora-coreos[join the community]!
