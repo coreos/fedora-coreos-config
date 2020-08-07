@@ -1,0 +1,21 @@
+# Fedora CoreOS Release Note
+
+This directory stores the Fedora CoreOS release note yaml snippets which will be picked up by
+`fedora-coreos-releng-automation/coreos-release-note-generator` [1] script to produce the final
+`release-notes.yaml` for a release. After `release-notes.yaml` has been generated / updated,
+all snippets under `release-notes.d` are expected to be cleaned up for future release notes.
+
+Please name the yaml file with the corresponding project name, e.g. afterburn.yaml, since the project name
+is determined by the yaml file name. And the release notes for a specfic version will be sorted by different
+project sections on the FCOS download website. For example, in the FCOS download website:
+
+---
+32.20200715.3.0:
+ - Afterburn: fix a bug that prevents xxx (https://github.com/coreos/fedora-coreos-tracker/issues/789) (details)
+ - Ignition: introduce a new feature that improves the yyy workflow (details)
+ - coreos-assembler: add a new sub-command that automates zzz (details)
+---
+
+_Note_: Clicking on the `details` button will show the body of the release note item.
+
+[1] https://github.com/coreos/fedora-coreos-releng-automation

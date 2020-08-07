@@ -1,0 +1,13 @@
+# Each list item should be a dictionary with structure:
+# - subject (required): removed package xyz
+#   body (optional): xyz introduced bug which is related to (https://example.com/bug3).
+#
+# For example:
+# - subject: removed package xyz
+#   body: This package was causing problems. Workaround by foo foo foo.
+# - subject: added package abc
+# - subject: fixed [bug3](https://example.com/bug3)
+
+# item 1
+- subject: ""
+  body: ""
