@@ -1,0 +1,14 @@
+# Each list item should be a dictionary with structure:
+# - component (required): [Custom Project Name] | miscellaneous
+#   subject (required): xxx
+#   body (optional): xxx
+#
+# For example:
+# - component: coreos-installer
+#   subject: Retired the xxx sub-command
+#   body: The sub-command was constantly causing xxx failure (https://github.com/coreos/fedora-coreos-tracker/issues/ISSUE_NUMBER)
+# - component: miscellaneous
+#   subject: Added package abc as per (https://github.com/coreos/fedora-coreos-tracker/issues/ISSUE_NUMBER)
+- component: ""
+  subject: ""
+  body: ""
