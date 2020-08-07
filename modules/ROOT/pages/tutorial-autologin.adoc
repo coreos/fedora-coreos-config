@@ -1,0 +1,277 @@
+= Enabling autologin and setting a custom hostname
+
+[NOTE]
+====
+Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
+====
+
+== Provisionning Fedora CoreOS
+
+Fedora CoreOS does not have a separate install disk. Instead, every instance starts from a generic disk image which is customized on first boot via https://github.com/coreos/ignition[Ignition].
+
+Ignition config files are written in JSON but are typically not user friendly. Configurations are thus written in a simpler format, Fedora CoreOS Config, that is then converted into an Ignition config. The tool responsible for converting Fedora CoreOS Configs into Ignition configs is called the Fedora CoreOS Config Transpiler (or FCCT).
+
+== First Ignition config via Fedora CoreOS Config Transpiler
+
+Let's create a very simple Fedora CoreOS config that will perform the following actions:
+
+- Add a systemd dropin to override the default `serial-getty@ttyS0.service`. The override will make the service automatically log the `core` user in to the serial console of the booted machine.
+- Set the system hostname by dropping a file at `/etc/hostname`,
+- Raise kernel console logging level to hide audit messages from the console.
+
+We can create a config file named `fcct-autologin.yaml` now as:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+systemd:
+  units:
+    - name: serial-getty@ttyS0.service
+      dropins:
+      - name: autologin-core.conf
+        contents: |
+          [Service]
+          # Override Execstart in main unit
+          ExecStart=
+          # Add new Execstart with `-` prefix to ignore failure`
+          ExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM
+storage:
+  files:
+    - path: /etc/hostname
+      mode: 0644
+      contents:
+        inline: |
+          tutorial
+    - path: /etc/sysctl.d/20-silence-audit.conf
+      mode: 0644
+      contents:
+        inline: |
+          # Raise console message logging level from DEBUG (7) to WARNING (4)
+          # to hide audit messages from the interactive console
+          kernel.printk=4
+----
+
+This configuration can then be converted into an Ignition config with `fcct`:
+
+[source,bash]
+----
+$ fcct --pretty --strict fcct-autologion.yaml --output autologin.ign
+----
+
+The resulting Ignition configuration produced by `fcct` as `autologin.ign` has the following content:
+
+[source,json]
+----
+{
+  "ignition": {
+    "version": "3.1.0"
+  },
+  "storage": {
+    "files": [
+      {
+        "path": "/etc/hostname",
+        "contents": {
+          "source": "data:,tutorial%0A"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/sysctl.d/20-silence-audit.conf",
+        "contents": {
+          "source": "data:,%23%20Raise%20console%20message%20logging%20level%20from%20DEBUG%20(7)%20to%20WARNING%20(4)%0A%23%20to%20hide%20audit%20messages%20from%20the%20interactive%20console%0Akernel.printk%3D4%0A"
+        },
+        "mode": 420
+      }
+    ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "dropins": [
+          {
+            "contents": "[Service]\n# Override Execstart in main unit\nExecStart=\n# Add new Execstart with `-` prefix to ignore failure`\nExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM\n",
+            "name": "autologin-core.conf"
+          }
+        ],
+        "name": "serial-getty@ttyS0.service"
+      }
+    ]
+  }
+}
+----
+
+Luckily `fcct` outputs valid Ignition configs. However, if you are tweaking the config after `fcct`, or manually creating Ignition configs, you will have to verify that the config format is valid with `ignition-validate`:
+
+[source,bash]
+----
+ignition-validate autologin.ign && echo 'success!'
+----
+
+== Booting Fedora CoreOS
+
+Now that we have an Ignition config, we can boot a virtual machine with it. This tutorial uses the QEMU image with `libvirt`, but you should be able to use the same Ignition config on all the platforms supported by Fedora CoreOS.
+
+We use `virt-install` to create a new Fedora CoreOS virutal machine with a specific config:
+
+[source,bash]
+----
+# Setup the correct SELinux label to allow access to the config
+chcon --verbose unconfined_u:object_r:svirt_home_t:s0 autologin.ign
+
+# Start a Fedora CoreOS virtual machine
+virt-install --name=fcos --vcpus=2 --ram=2048 --import \
+    --network=bridge=virbr0 --graphics=none \
+    --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${PWD}/autologin.ign" \
+    --disk=size=20,backing_store=${PWD}/fedora-coreos.qcow2
+----
+
+The `virt-install` command will start an instance named `fcos` from the `fedora-coreos.qcow2` image using the `simple.ign` Ignition config. It will auto-attach the serial console of the machine so you will be able to see the image bootup messages.
+
+We use the `backing_store` option to `virt-install --disk` to quickly create a new disk image and avoid writing to the original image we have downloaded. This new disk image can be easily thrown away.
+
+Once the machine is booted up you should see a few prompts and then you should be automatically logged in and presented with a bash shell:
+
+[source,bash]
+----
+[  OK  ] Started rpm-ostree System Management Daemon.
+
+Fedora CoreOS 32.20200715.3.0
+Kernel 5.7.8-200.fc32.x86_64 on an x86_64 (ttyS0)
+
+SSH host key: SHA256:XlbayjbgDKNoAAHQxsEL5Q7BdwLxxWSw4NXN9SALLmo (ED25519)
+SSH host key: SHA256:3sx5jseteO4BvdOMWIi0J4koQL015mLonnD0UPTtnZk (ECDSA)
+SSH host key: SHA256:K0fn5/TMJOoMs7Fu7RRkE7IBEf2t8OYCfVaVc+GJWGs (RSA)
+ens2: 192.168.122.127 fe80::5054:ff:feb9:3d97
+Ignition: user provided config was applied
+No ssh authorized keys provided by Ignition or Afterburn
+tutorial login: core (automatic login)
+
+[core@tutorial ~]$
+----
+
+Let's verify that our configuration has been correctly applied. As we were automatically logged in to the terminal, we can safely assume that the systemd dropin has been created:
+
+[source,bash]
+----
+[core@tutorial ~]$ systemctl cat serial-getty@ttyS0.service
+# /usr/lib/systemd/system/serial-getty@.service
+...
+
+# /etc/systemd/system/serial-getty@ttyS0.service.d/autologin-core.conf
+[Service]
+# Override Execstart in main unit
+ExecStart=
+# Add new Execstart with `-` prefix to ignore failure`
+ExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM
+----
+
+We can also check that the hostname has correctly been set:
+
+[source,bash]
+----
+[core@tutorial ~]$ cat /etc/hostname
+tutorial
+[core@tutorial ~]$ hostnamectl
+   Static hostname: tutorial
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: d06466128a1c4a6ab255d9581748755c
+           Boot ID: 2a19abb9681e442cb1e10271350bfff3
+    Virtualization: kvm
+  Operating System: Fedora CoreOS 32.20200715.3.0
+       CPE OS Name: cpe:/o:fedoraproject:fedora:32
+            Kernel: Linux 5.7.8-200.fc32.x86_64
+      Architecture: x86-64
+----
+
+== Exploring Fedora CoreOS internals
+
+Once we have access to the console of the machine we can browse around a bit to see some of the different pieces of the operating system. For example, even though this is an OSTree based system it was still composed via RPMs and we can inspect the system to see what it was composed of:
+
+[source,bash]
+----
+[core@tutorial ~]$ rpm -q ignition kernel moby-engine podman systemd rpm-ostree zincati
+ignition-2.4.1-1.git5260a5b.fc32.x86_64
+kernel-5.7.8-200.fc32.x86_64
+moby-engine-19.03.11-1.ce.git42e35e6.fc32.x86_64
+podman-1.9.3-1.fc32.x86_64
+systemd-245.6-2.fc32.x86_64
+rpm-ostree-2020.3-1.fc32.x86_64
+zincati-0.0.12-2.fc32.x86_64
+----
+
+We can also inspect the current revision of Fedora CoreOS:
+
+[source,bash]
+----
+[core@tutorial ~]$ rpm-ostree status
+State: idle
+Deployments:
+* ostree://fedora:fedora/x86_64/coreos/stable
+                   Version: 32.20200715.3.0 (2020-07-27T11:36:29Z)
+                    Commit: a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869
+              GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
+----
+
+And check on zincati.service, which communicates with our update server and tells rpm-ostree when to do an update and to what version to update to:
+
+[source,bash]
+----
+[core@tutorial ~]$ systemctl status zincati.service | cat
+● zincati.service - Zincati Update Agent
+     Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2020-08-06 14:50:36 UTC; 1h 41min ago
+       Docs: https://github.com/coreos/zincati
+   Main PID: 889 (zincati)
+      Tasks: 2 (limit: 2288)
+     Memory: 14.2M
+     CGroup: /system.slice/zincati.service
+             └─889 /usr/libexec/zincati agent -v
+
+Aug 06 14:50:36 tutorial systemd[1]: Started Zincati Update Agent.
+Aug 06 14:50:36 tutorial zincati[889]: [INFO ] starting update agent (zincati 0.0.12)
+Aug 06 14:50:39 tutorial zincati[889]: [INFO ] Cincinnati service: https://updates.coreos.fedoraproject.org
+Aug 06 14:50:39 tutorial zincati[889]: [INFO ] agent running on node 'dbe8968f75c34d9eb3d3c4c226aa8fdf', in update group 'default'
+Aug 06 14:50:39 tutorial zincati[889]: [INFO ] initialization complete, auto-updates logic enabled
+----
+
+One other interesting thing to do is view the logs from Ignition in case there is anything interesting there we may want to investigate:
+
+[source,bash]
+----
+[core@tutorial ~]$ journalctl -t ignition | cat
+...
+----
+
+And finally, of course we can use the podman (or Docker) command to inspect the current state of containers on the system:
+
+[source,bash]
+----
+[core@tutorial ~]$ podman version
+[core@tutorial ~]$ podman info
+----
+
+[NOTE]
+====
+`podman` commands can be run as root or as non-root user. `docker` commands need to be run as root via `sudo` unless the user has been added to the `docker` group.
+====
+
+[NOTE]
+====
+Running containers via `docker` and `podman` at the same time can cause issues and result in unexpected behaviour. Refer to the https://docs.fedoraproject.org/en-US/fedora-coreos/faq/#_can_i_run_containers_via_docker_and_podman_at_the_same_time[FAQ Entry] for more details.
+
+The Docker daemon is not started by default but running any `docker` command will start it as it is socket activated via systemd.
+====
+
+== Taking down the Virtual Machine
+
+Let's now get rid of that virtual machine so we can start again from scratch. First escape out of the serial console by pressing `CTRL + ]` and then type:
+
+[source,bash]
+----
+virsh destroy fcos
+virsh undefine --remove-all-storage fcos
+----
+
+You may now proceed with the xref:tutorial-services.adoc[second tutorial].
