@@ -1,11 +1,20 @@
 = Tutorials
 
-The following tutorials are focused on helping you getting started with provisioning scenarios for Fedora CoreOS.
-Each tutorial has its roots in its previous tutorial scenario and it's recommended to follow them sequentially.
+The following tutorials are focused on helping you getting started with Fedora CoreOS by learning how to automatically configure (or provision) an instance on first boot. Each tutorial has its roots in the previous one thus it is recommended to follow them sequentially.
 
-xref:tutorial-basic-provisioning-and-customization.adoc[**Basic Provisioing with Fedora CoreOS**] - Getting Started with Fedora CoreOS Tutorial.
-It includes basic configuration steps and serves as a 101 guide for newcomers.
+If you don't know what Fedora CoreOS is, you can refer to the xref:faq.adoc[FAQ] for more information.
 
-xref:tutorial-intermediate-provisioning.adoc[**Intermediate Provisioning Scenario**] - An intermediate Fedora CoreOS provisioning scenario. It's based on the Getting Started tutorial.
+[NOTE]
+====
+If you need any help or need to ask any questions while going through those tutorials, please join the link:irc://irc.freenode.org/#fedora-coreos[IRC channel], or join our link:https://discussion.fedoraproject.org/c/server/coreos[discussion board]. If you find any issue in the tutorial, please report them in the link:https://github.com/coreos/fedora-coreos-docs/issues[fedora-coreos-docs issue tracker].
+====
 
-xref:tutorial-advanced-provisioning.adoc[**Advanced Provisioning Scenario**] - An advanced Fedora CoreOS provisioning scenario with Podman.
+xref:tutorial-setup.adoc[Initial setup]: Setup instructions that must be completed first to be able to follow the tutorials.
+
+xref:tutorial-autologin.adoc[Enabling autologin and custom hostname]: In this tutorial, you will write your first Ignition config and start a Fedora CoreOS instance with it.
+
+xref:tutorial-services.adoc[Starting a service on first boot]: In this tutorial, you will learn how to start a custom script via a systemd unit on the first boot of a Fedora CoreOS instance.
+
+xref:tutorial-containers.adoc[SSH access and starting containers]: In this tutorial, you will learn how to start a container at first boot with podman.
+
+xref:tutorial-updates.adoc[Testing Fedora CoreOS updates]: In this tutorial, you will learn how updates are automatic updates are handled in Fedora CoreOS and how to rollback in case of failures.
