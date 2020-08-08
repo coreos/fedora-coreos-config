@@ -109,7 +109,6 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
 
 On the serial console you will see:
 
-[source,bash]
 ----
 [  OK  ] Reached target Login Prompts.
 
@@ -132,7 +131,6 @@ Failed Units: 1
 
 If you would like to connect via SSH, disconnect from the serial console by pressing `CTRL` + `]` and then use the reported IP address for `ens2` from the serial console to log in using the `core` user via SSH:
 
-[source,bash]
 ----
 ssh core@192.168.122.142
 The authenticity of host '192.168.122.142 (192.168.122.142)' can't be established.
@@ -154,7 +152,6 @@ The `Failed Units` message is coming from the https://github.com/coreos/console-
 
 Now that we’re up and we don’t have any real failures we can check out the service that we care about (`etcd-member.service`):
 
-[source,bash]
 ----
 [core@tutorial ~]$ systemctl status --no-pager --full etcd-member.service
 ● etcd-member.service - Run a single node etcd
@@ -185,7 +182,6 @@ Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.052367 N | embed: ser
 
 We can also inspect the state of the container that was run by the systemd service:
 
-[source,bash]
 ----
 [core@tutorial ~]$ sudo podman ps -a
 CONTAINER ID  IMAGE                       COMMAND               CREATED        STATUS            PORTS  NAMES
@@ -194,7 +190,6 @@ CONTAINER ID  IMAGE                       COMMAND               CREATED        S
 
 And we can set a key/value pair in etcd. For now let’s set the key `fedora` to the value `fun`:
 
-[source,bash]
 ----
 [core@tutorial ~]$ curl -L -X PUT http://127.0.0.1:2379/v2/keys/fedora -d value="fun"
 {"action":"set","node":{"key":"/fedora","value":"fun","modifiedIndex":4,"createdIndex":4}}
@@ -221,7 +216,6 @@ Looks like everything is working!
 
 Now let's take down the instance for the next test. Disconnect from the serial console by pressing `CTRL` + `]` or from SSH and then destroy the machine:
 
-[source,bash]
 ----
 virsh destroy fcos
 virsh undefine --remove-all-storage fcos

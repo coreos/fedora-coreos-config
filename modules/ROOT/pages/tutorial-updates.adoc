@@ -107,7 +107,6 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
 
 As the system is not up to date, Zincati will notice this and will immediately start updating the system. If you are fast enough, you should see the update process happening right away:
 
-[source,bash]
 ----
 [core@localhost ~]$ systemctl status --no-pager --full zincati.service
 ● zincati.service - Zincati Update Agent
@@ -163,7 +162,6 @@ Shortly after the update has been staged, the system should reboot to apply the 
 
 When we log back in we can view the current version of Fedora CoreOS is now `32.20200715.3.0`. The `rpm-ostree status` output will also show the older version, which still exists in case we need to rollback:
 
-[source,bash]
 ----
 [core@localhost ~]$ rpm-ostree status
 State: idle
@@ -183,7 +181,6 @@ NOTE: The currently booted deployment is denoted by the `●` character.
 
 You can view the differences between the two versions by running an `rpm-ostree db diff` command:
 
-[source,bash]
 ----
 [core@localhost ~]$ rpm-ostree db diff
 ostree diff commit from: rollback deployment (6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890)
@@ -213,7 +210,6 @@ If the system is not functioning fully for whatever reason we can go back to the
 
 After logging back in after reboot we can see we are now booted back into the old `32.20200629.3.0` deployment from before the upgrade occurred:
 
-[source,bash]
 ----
 [core@localhost ~]$ rpm-ostree status
 State: idle
@@ -254,7 +250,6 @@ Aug 08 15:55:19 localhost zincati[674]: [INFO ] initialization complete, auto-up
 
 Now let's take down the instance for the next test. Disconnect from the serial console by pressing `CTRL` + `]` or from SSH and then destroy the machine:
 
-[source,bash]
 ----
 virsh destroy fcos
 virsh undefine --remove-all-storage fcos

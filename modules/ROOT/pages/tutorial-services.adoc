@@ -126,7 +126,6 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
 
 And view on the serial console that the `Detected Public IPv4` is shown in the serial console output right before you are dropped to a login prompt:
 
-[source,bash]
 ----
 [  OK  ] Finished Update UTMP about System Runlevel Changes.
 
@@ -147,7 +146,6 @@ tutorial login: core (automatic login)
 
 And the service shows it was launched successfully:
 
-[source,bash]
 ----
 [core@tutorial ~]$ systemctl status --no-pager --full issuegen-public-ipv4.service
 ● issuegen-public-ipv.service
@@ -168,7 +166,6 @@ Aug 07 09:35:59 tutorial systemd[1]: Finished issuegen-public-ipv.service.
 
 Now let's take down the instance for the next test. First, disconnect from the serial console by pressing `CTRL` + `]` and then destroy the machine:
 
-[source,bash]
 ----
 virsh destroy fcos
 virsh undefine --remove-all-storage fcos

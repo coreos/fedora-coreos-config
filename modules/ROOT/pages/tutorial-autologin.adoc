@@ -130,7 +130,6 @@ We use the `backing_store` option to `virt-install --disk` to quickly create a n
 
 Once the machine is booted up you should see a few prompts and then you should be automatically logged in and presented with a bash shell:
 
-[source,bash]
 ----
 [  OK  ] Started rpm-ostree System Management Daemon.
 
@@ -166,7 +165,6 @@ ExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM
 
 We can also check that the hostname has correctly been set:
 
-[source,bash]
 ----
 [core@tutorial ~]$ cat /etc/hostname
 tutorial
@@ -187,7 +185,6 @@ tutorial
 
 Once we have access to the console of the machine we can browse around a bit to see some of the different pieces of the operating system. For example, even though this is an OSTree based system it was still composed via RPMs and we can inspect the system to see what it was composed of:
 
-[source,bash]
 ----
 [core@tutorial ~]$ rpm -q ignition kernel moby-engine podman systemd rpm-ostree zincati
 ignition-2.4.1-1.git5260a5b.fc32.x86_64
@@ -201,7 +198,6 @@ zincati-0.0.12-2.fc32.x86_64
 
 We can also inspect the current revision of Fedora CoreOS:
 
-[source,bash]
 ----
 [core@tutorial ~]$ rpm-ostree status
 State: idle
@@ -214,7 +210,6 @@ Deployments:
 
 And check on `zincati.service`, which communicates with our update server and tells `rpm-ostree` when to do an update and to what version to update to:
 
-[source,bash]
 ----
 [core@tutorial ~]$ systemctl status --no-pager --full zincati.service
 ● zincati.service - Zincati Update Agent
@@ -236,7 +231,6 @@ Aug 06 14:50:39 tutorial zincati[889]: [INFO ] initialization complete, auto-upd
 
 One other interesting thing to do is view the logs from Ignition in case there is anything interesting there we may want to investigate:
 
-[source,bash]
 ----
 [core@tutorial ~]$ journalctl --no-pager -t ignition
 ...
@@ -244,7 +238,6 @@ One other interesting thing to do is view the logs from Ignition in case there i
 
 And finally, of course we can use the `podman` (or `docker`) command to inspect the current state of containers on the system:
 
-[source,bash]
 ----
 [core@tutorial ~]$ podman version
 [core@tutorial ~]$ podman info
@@ -260,7 +253,6 @@ NOTE: The Docker daemon is not started by default but running any `docker` comma
 
 Let's now get rid of that virtual machine so we can start again from scratch. First escape out of the serial console by pressing `CTRL + ]` and then type:
 
-[source,bash]
 ----
 virsh destroy fcos
 virsh undefine --remove-all-storage fcos
