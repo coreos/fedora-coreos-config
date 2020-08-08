@@ -10,3 +10,9 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-4ac68728c8
   ignition:
     evra: 2.6.0-1.git947598e.fc32.s390x
+  # Fast-track coreos-installer release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-651a2bec22
+  coreos-installer:
+    evra: 0.5.0-1.fc32.s390x
+  coreos-installer-bootinfra:
+    evra: 0.5.0-1.fc32.s390x
