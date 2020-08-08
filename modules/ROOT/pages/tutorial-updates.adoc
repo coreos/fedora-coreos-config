@@ -71,6 +71,12 @@ systemd:
           TTYVTDisallocate=no
 storage:
   files:
+    - path: /etc/profile.d/systemd-pager.sh
+      mode: 0644
+      contents:
+        inline: |
+          # Tell systemd to not use a pager when printing information
+          export SYSTEMD_PAGER=cat
     - path: /etc/sysctl.d/20-silence-audit.conf
       mode: 0644
       contents:
@@ -108,7 +114,7 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
 As the system is not up to date, Zincati will notice this and will immediately start updating the system. If you are fast enough, you should see the update process happening right away:
 
 ----
-[core@localhost ~]$ systemctl status --no-pager --full zincati.service
+[core@localhost ~]$ systemctl status --full zincati.service
 ● zincati.service - Zincati Update Agent
      Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
      Active: active (running) since Fri 2020-08-07 17:42:14 UTC; 24s ago
@@ -137,7 +143,7 @@ Deployments:
                     Commit: 6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890
               GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
 
-[core@localhost ~]$ systemctl status --no-pager --full zincati.service
+[core@localhost ~]$ systemctl status --full zincati.service
 ● zincati.service - Zincati Update Agent
      Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
      Active: active (running) since Fri 2020-08-07 17:42:14 UTC; 51s ago
@@ -228,7 +234,7 @@ Deployments:
 And you can also verify that Zincati will not try to update to the new version we just rollbacked from:
 
 ----
-[core@localhost ~]$ systemctl status --no-pager --full zincati.service
+[core@localhost ~]$ systemctl status --full zincati.service
 ● zincati.service - Zincati Update Agent
      Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
      Active: active (running) since Sat 2020-08-08 15:55:15 UTC; 2min 19s ago

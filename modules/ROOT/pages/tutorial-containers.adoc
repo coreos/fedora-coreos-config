@@ -4,7 +4,7 @@ NOTE: Make sure that you have completed the steps described in the xref:tutorial
 
 In this tutorial, we will setup SSH access and start a container at boot. Fedora CoreOS is focused on running applications/services in containers thus we recommend trying to run containers and avoid modifying the host directly. Running containers and keeping a pristine host layer makes automatic updates more reliable and allows for separation of concerns with the Fedora CoreOS team responsible for the OS and end-user operators/sysadmins responsible for the applications.
 
-As usual we will setup console autologin, a hostname, and raise kernel logging level, but we will also:
+As usual we will setup console autologin, a hostname, systemd pager configuration, and raise kernel logging level, but we will also:
 
 * Add an SSH Key for the `core` user.
 * Add a systemd service (`failure.service`) that fails on boot.
@@ -75,6 +75,12 @@ storage:
       contents:
         inline: |
           tutorial
+    - path: /etc/profile.d/systemd-pager.sh
+      mode: 0644
+      contents:
+        inline: |
+          # Tell systemd to not use a pager when printing information
+          export SYSTEMD_PAGER=cat
     - path: /etc/sysctl.d/20-silence-audit.conf
       mode: 0644
       contents:
@@ -153,7 +159,7 @@ The `Failed Units` message is coming from the https://github.com/coreos/console-
 Now that we’re up and we don’t have any real failures we can check out the service that we care about (`etcd-member.service`):
 
 ----
-[core@tutorial ~]$ systemctl status --no-pager --full etcd-member.service
+[core@tutorial ~]$ systemctl status --full etcd-member.service
 ● etcd-member.service - Run a single node etcd
      Loaded: loaded (/etc/systemd/system/etcd-member.service; enabled; vendor preset: enabled)
      Active: active (running) since Fri 2020-08-07 10:10:45 UTC; 4min 30s ago

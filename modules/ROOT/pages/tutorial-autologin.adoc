@@ -15,6 +15,7 @@ Let's create a very simple Fedora CoreOS config that will perform the following 
 - Add a systemd dropin to override the default `serial-getty@ttyS0.service`.
     - The override will make the service automatically log the `core` user in to the serial console of the booted machine.
 - Set the system hostname by dropping a file at `/etc/hostname`,
+- Add a bash profile that tells systemd to not use a pager for output.
 - Raise kernel console logging level to hide audit messages from the console.
 
 We can create a config file named `fcct-autologin.yaml` now as:
@@ -41,6 +42,12 @@ storage:
       contents:
         inline: |
           tutorial
+    - path: /etc/profile.d/systemd-pager.sh
+      mode: 0644
+      contents:
+        inline: |
+          # Tell systemd to not use a pager when printing information
+          export SYSTEMD_PAGER=cat
     - path: /etc/sysctl.d/20-silence-audit.conf
       mode: 0644
       contents:
@@ -71,6 +78,13 @@ The resulting Ignition configuration produced by `fcct` as `autologin.ign` has t
         "path": "/etc/hostname",
         "contents": {
           "source": "data:,tutorial%0A"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/profile.d/systemd-pager.sh",
+        "contents": {
+          "source": "data:,%23%20Tell%20systemd%20to%20not%20use%20a%20pager%20when%20printing%20information%0Aexport%20SYSTEMD_PAGER%3Dcat%0A"
         },
         "mode": 420
       },
@@ -151,7 +165,7 @@ Let's verify that our configuration has been correctly applied. As we were autom
 
 [source,bash]
 ----
-[core@tutorial ~]$ systemctl cat --no-pager serial-getty@ttyS0.service
+[core@tutorial ~]$ systemctl cat serial-getty@ttyS0.service
 # /usr/lib/systemd/system/serial-getty@.service
 ...
 
@@ -211,7 +225,7 @@ Deployments:
 And check on `zincati.service`, which communicates with our update server and tells `rpm-ostree` when to do an update and to what version to update to:
 
 ----
-[core@tutorial ~]$ systemctl status --no-pager --full zincati.service
+[core@tutorial ~]$ systemctl status --full zincati.service
 ● zincati.service - Zincati Update Agent
      Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
      Active: active (running) since Thu 2020-08-06 14:50:36 UTC; 1h 41min ago
@@ -232,7 +246,7 @@ Aug 06 14:50:39 tutorial zincati[889]: [INFO ] initialization complete, auto-upd
 One other interesting thing to do is view the logs from Ignition in case there is anything interesting there we may want to investigate:
 
 ----
-[core@tutorial ~]$ journalctl --no-pager -t ignition
+[core@tutorial ~]$ journalctl -t ignition
 ...
 ----
 
