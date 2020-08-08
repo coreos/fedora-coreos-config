@@ -5,3 +5,10 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: podman.workflow
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
+# The coreos.ignition.symlink test was added to test setting absolute
+# symlinks that was recently broken. The fix hasn't landed on this
+# branch yet so we'll deny it for now.
+# https://github.com/coreos/fedora-coreos-tracker/issues/512
+# https://github.com/coreos/coreos-assembler/pull/1641
+- pattern: coreos.ignition.symlink
+  tracker: https://github.com/coreos/fedora-coreos-config/pull/557
