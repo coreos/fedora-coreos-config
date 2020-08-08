@@ -117,8 +117,8 @@ We use `virt-install` to create a new Fedora CoreOS virutal machine with a speci
 chcon --verbose unconfined_u:object_r:svirt_home_t:s0 autologin.ign
 
 # Start a Fedora CoreOS virtual machine
-virt-install --name=fcos --vcpus=2 --ram=2048 --import \
-    --network=bridge=virbr0 --graphics=none \
+virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
+    --import --network=bridge=virbr0 --graphics=none \
     --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${PWD}/autologin.ign" \
     --disk=size=20,backing_store=${PWD}/fedora-coreos.qcow2
 ----
