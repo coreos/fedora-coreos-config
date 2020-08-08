@@ -4,7 +4,7 @@ NOTE: Make sure that you have completed the steps described in the xref:tutorial
 
 In this tutorial, we will run a script on the first boot via a systemd service. We will add the following to the Fedora CoreOS config from the previous scenario:
 
-* Add a script at `/usr/local/bin/public-ipv4.sh`,
+* Add a script at `/usr/local/bin/public-ipv4.sh`.
 * Configure a systemd service to run the script on first boot.
 
 == Writing the script
@@ -20,7 +20,7 @@ echo "Detected Public IPv4: is $(curl https://ipv4.icanhazip.com)" > \
 
 This could be useful in cloud environments where you might have different public and private addresses.
 
-We will store this script into `/usr/local/bin/public-ipv4.sh` when we provision the machine. We will include it in the Fedora CoreOS config shortly.
+We will store this script into `/usr/local/bin/public-ipv4.sh` when we provision the machine.
 
 == Writing the systemd service
 
@@ -49,8 +49,7 @@ We will call this unit `issuegen-public-ipv4.service` and we will embed it into 
 
 We can you create a Fedora CoreOS config by including the script and the systemd unit directly as inline content into the systemd/units and storage/files sections. The final Fedora CoreOS config, stored in `fcct-services.yaml`, will be:
 
-[source,yml]
-
+[source,yaml]
 ----
 variant: fcos
 version: 1.1.0
@@ -116,7 +115,7 @@ Just as before we will use the following to boot the instance:
 [source,bash]
 ----
 # Setup the correct SELinux label to allow access to the config
-chcon --verbose unconfined_u:object_r:svirt_home_t:s0 services.ign
+chcon --verbose --type svirt_home_t services.ign
 
 # Start a Fedora CoreOS virtual machine
 virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
@@ -171,8 +170,8 @@ Now let's take down the instance for the next test. First, disconnect from the s
 
 [source,bash]
 ----
-virsh destory fcos
-virsh undefined --remove-all-storage fcos
+virsh destroy fcos
+virsh undefine --remove-all-storage fcos
 ----
 
 You may now proceed with the xref:tutorial-containers.adoc[next tutorial].

@@ -2,11 +2,11 @@
 
 == Virtualization with `libvirt`
 
-Those tutorials are written targeting a Linux environment with a working `libvirt` setup and hardware virtualization support via `KVM`. For instructions to setup `libvirt` and `KVM` you may refer to the https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/[Getting started with virtualization] guide from Fedora. Although this setup guide is focused on Fedora, those tutorials should work on any distribution with `libvirt` installed.
+These tutorials are written targeting a Linux environment with a working `libvirt` setup and hardware virtualization support via `KVM`. For instructions to setup `libvirt` and `KVM` you may refer to the https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/[Getting started with virtualization] guide from Fedora. Although this setup guide is focused on Fedora, the tutorials should work on any distribution with `libvirt` installed and running.
 
 == CoreOS tools
 
-For those tutorials, we will need the following tools:
+For the tutorials, we will need the following tools:
 
   * `coreos-installer`: To download the latest Fedora CoreOS QCOW2 image.
   * `fcct`: To generate Ignition configuration from Fedora CoreOS Config files.

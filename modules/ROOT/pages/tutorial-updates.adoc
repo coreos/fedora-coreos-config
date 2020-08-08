@@ -22,6 +22,8 @@ Once the archive has been downloaded, make sure to verify its integrity:
 gpg --verify fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz.sig
 ----
 
+TIP: Look for *"Good signature from"* in the output. 
+
 Once you have verified the archive, you can extract it with:
 
 [source,bash]
@@ -40,8 +42,8 @@ mv fedora-coreos-$RELEASE-qemu.x86_64.qcow2 fedora-coreos-older.qcow2
 
 We will create a Fedora CoreOS config that:
 
-* Sets up console autologin,
-* Raise kernel console logging level to hide audit messages from the console,
+* Sets up console autologin.
+* Raise kernel console logging level to hide audit messages from the console.
 * Add an SSH Key for the `core` user.
 
 Let's write this Fedora CoreOS config to a file called `fcct-updates.yaml`:
@@ -78,7 +80,7 @@ storage:
           kernel.printk=4
 ----
 
-_Optional:_ You can replace the SSH pubkey in the yaml file with your own public key so you can log in to the booted instance. If you choose not to do this you'll still be auto logged in to the serial console.
+TIP: Optionally you can replace the SSH pubkey in the yaml file with your own public key so you can log in to the booted instance. If you choose not to do this you'll still be auto logged in to the serial console.
 
 Run `fcct` to convert that to an Ignition config:
 
@@ -94,7 +96,7 @@ Now let's provision it. Make sure that you are starting from the older Fedora Co
 [source, bash]
 ----
 # Setup the correct SELinux label to allow access to the config
-chcon --verbose unconfined_u:object_r:svirt_home_t:s0 updates.ign
+chcon --verbose --type svirt_home_t updates.ign
 
 # Start a Fedora CoreOS virtual machine
 virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
@@ -159,7 +161,7 @@ Aug 07 17:43:05 localhost zincati[889]: [INFO ] staged deployment '32.20200715.3
 
 Shortly after the update has been staged, the system should reboot to apply the latest update.
 
-When we log back in we can view the current version of Fedora CoreOS is now `32.20200715.3.0`. The rpm-ostree status output will also show the older version, which still exists in case we need to rollback:
+When we log back in we can view the current version of Fedora CoreOS is now `32.20200715.3.0`. The `rpm-ostree status` output will also show the older version, which still exists in case we need to rollback:
 
 [source,bash]
 ----
@@ -254,8 +256,8 @@ Now let's take down the instance for the next test. Disconnect from the serial c
 
 [source,bash]
 ----
-virsh destory fcos
-virsh undefined --remove-all-storage fcos
+virsh destroy fcos
+virsh undefine --remove-all-storage fcos
 ----
 
 == Conclusion

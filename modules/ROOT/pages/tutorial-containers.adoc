@@ -2,12 +2,12 @@
 
 NOTE: Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
 
-In this tutorial, we will setup SSH access and start a container at boot. Fedora CoreOS is focused on running applications/services in containers thus we recommend trying to only run containers and not modifying the host directly. This makes automatic updates more reliable and allows for separation of concerns with the Fedora CoreOS team responsible for the OS and end-user operators/sysadmins responsible for the applications.
+In this tutorial, we will setup SSH access and start a container at boot. Fedora CoreOS is focused on running applications/services in containers thus we recommend trying to run containers and avoid modifying the host directly. Running containers and keeping a pristine host layer makes automatic updates more reliable and allows for separation of concerns with the Fedora CoreOS team responsible for the OS and end-user operators/sysadmins responsible for the applications.
 
 As usual we will setup console autologin, a hostname, and raise kernel logging level, but we will also:
 
-* Add an SSH Key for the `core` user,
-* Add a systemd service (`failure.service`) that fails on boot,
+* Add an SSH Key for the `core` user.
+* Add a systemd service (`failure.service`) that fails on boot.
 * Add a systemd service that will use a container to bring up a hosted service.
 
 == Writing the Fedora CoreOS config and converting to Ignition
@@ -84,7 +84,7 @@ storage:
           kernel.printk=4
 ----
 
-_Optional:_ You can replace the SSH pubkey in the yaml file with your own public key so you can log in to the booted instance. If you choose not to do this you'll still be auto logged in to the serial console.
+TIP: Optionally you can replace the SSH pubkey in the yaml file with your own public key so you can log in to the booted instance. If you choose not to do this you'll still be auto logged in to the serial console.
 
 Run `fcct` to convert that to an Ignition config:
 
@@ -95,10 +95,10 @@ fcct --pretty --strict fcct-containers.yaml --output containers.ign
 
 Now let's provision it:
 
-[source, bash]
+[source,bash]
 ----
 # Setup the correct SELinux label to allow access to the config
-chcon --verbose unconfined_u:object_r:svirt_home_t:s0 containers.ign
+chcon --verbose --type svirt_home_t containers.ign
 
 # Start a Fedora CoreOS virtual machine
 virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
@@ -130,7 +130,7 @@ Failed Units: 1
 [core@tutorial ~]$
 ----
 
-If you would like to connect via SSH, disconnect from the serial console by pressing `CTRL` + `]` and then use the reported IP address for `eth0` from the serial console to log in using the `core` user via SSH:
+If you would like to connect via SSH, disconnect from the serial console by pressing `CTRL` + `]` and then use the reported IP address for `ens2` from the serial console to log in using the `core` user via SSH:
 
 [source,bash]
 ----
@@ -223,8 +223,8 @@ Now let's take down the instance for the next test. Disconnect from the serial c
 
 [source,bash]
 ----
-virsh destory fcos
-virsh undefined --remove-all-storage fcos
+virsh destroy fcos
+virsh undefine --remove-all-storage fcos
 ----
 
 You may now proceed with the xref:tutorial-updates.adoc[next tutorial].

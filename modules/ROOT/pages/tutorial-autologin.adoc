@@ -8,11 +8,12 @@ Fedora CoreOS does not have a separate install disk. Instead, every instance sta
 
 Ignition config files are written in JSON but are typically not user friendly. Configurations are thus written in a simpler format, Fedora CoreOS Config, that is then converted into an Ignition config. The tool responsible for converting Fedora CoreOS Configs into Ignition configs is called the Fedora CoreOS Config Transpiler (or FCCT).
 
-== First Ignition config via Fedora CoreOS Config Transpiler
+== First Ignition config via FCCT
 
 Let's create a very simple Fedora CoreOS config that will perform the following actions:
 
-- Add a systemd dropin to override the default `serial-getty@ttyS0.service`. The override will make the service automatically log the `core` user in to the serial console of the booted machine.
+- Add a systemd dropin to override the default `serial-getty@ttyS0.service`.
+    - The override will make the service automatically log the `core` user in to the serial console of the booted machine.
 - Set the system hostname by dropping a file at `/etc/hostname`,
 - Raise kernel console logging level to hide audit messages from the console.
 
@@ -109,12 +110,12 @@ ignition-validate autologin.ign && echo 'Success!'
 
 Now that we have an Ignition config, we can boot a virtual machine with it. This tutorial uses the QEMU image with `libvirt`, but you should be able to use the same Ignition config on all the platforms supported by Fedora CoreOS.
 
-We use `virt-install` to create a new Fedora CoreOS virutal machine with a specific config:
+We use `virt-install` to create a new Fedora CoreOS virtual machine with a specific config:
 
 [source,bash]
 ----
 # Setup the correct SELinux label to allow access to the config
-chcon --verbose unconfined_u:object_r:svirt_home_t:s0 autologin.ign
+chcon --verbose --type svirt_home_t autologin.ign
 
 # Start a Fedora CoreOS virtual machine
 virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
@@ -123,7 +124,7 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
     --disk=size=20,backing_store=${PWD}/fedora-coreos.qcow2
 ----
 
-The `virt-install` command will start an instance named `fcos` from the `fedora-coreos.qcow2` image using the `simple.ign` Ignition config. It will auto-attach the serial console of the machine so you will be able to see the image bootup messages.
+The `virt-install` command will start an instance named `fcos` from the `fedora-coreos.qcow2` image using the `autologin.ign` Ignition config. It will auto-attach the serial console of the machine so you will be able to see the image bootup messages.
 
 We use the `backing_store` option to `virt-install --disk` to quickly create a new disk image and avoid writing to the original image we have downloaded. This new disk image can be easily thrown away.
 
@@ -151,7 +152,7 @@ Let's verify that our configuration has been correctly applied. As we were autom
 
 [source,bash]
 ----
-[core@tutorial ~]$ systemctl cat serial-getty@ttyS0.service
+[core@tutorial ~]$ systemctl cat --no-pager serial-getty@ttyS0.service
 # /usr/lib/systemd/system/serial-getty@.service
 ...
 
@@ -211,7 +212,7 @@ Deployments:
               GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
 ----
 
-And check on zincati.service, which communicates with our update server and tells rpm-ostree when to do an update and to what version to update to:
+And check on `zincati.service`, which communicates with our update server and tells `rpm-ostree` when to do an update and to what version to update to:
 
 [source,bash]
 ----
@@ -241,7 +242,7 @@ One other interesting thing to do is view the logs from Ignition in case there i
 ...
 ----
 
-And finally, of course we can use the podman (or Docker) command to inspect the current state of containers on the system:
+And finally, of course we can use the `podman` (or `docker`) command to inspect the current state of containers on the system:
 
 [source,bash]
 ----
