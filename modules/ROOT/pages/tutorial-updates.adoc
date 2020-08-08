@@ -184,8 +184,8 @@ You can view the differences between the two versions by running an `rpm-ostree 
 [source,bash]
 ----
 [core@localhost ~]$ rpm-ostree db diff
-ostree diff commit from: 6df95bdb (6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890)
-ostree diff commit to:   a3b08ee5 (a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869)
+ostree diff commit from: rollback deployment (6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890)
+ostree diff commit to:   booted deployment (a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869)
 Upgraded:
   btrfs-progs 5.6.1-1.fc32 -> 5.7-1.fc32
   console-login-helper-messages 0.18.1-1.fc32 -> 0.18.2-1.fc32
@@ -225,6 +225,27 @@ Deployments:
                    Version: 32.20200715.3.0 (2020-07-27T11:36:29Z)
                     Commit: a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869
               GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
+----
+
+And you can also verify that Zincati will not try to update to the new version we just rollbacked from:
+
+----
+[core@localhost ~]$ systemctl status --no-pager --full zincati.service
+● zincati.service - Zincati Update Agent
+     Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
+     Active: active (running) since Sat 2020-08-08 15:55:15 UTC; 2min 19s ago
+       Docs: https://github.com/coreos/zincati
+   Main PID: 674 (zincati)
+      Tasks: 2 (limit: 2290)
+     Memory: 17.8M
+     CGroup: /system.slice/zincati.service
+             └─674 /usr/libexec/zincati agent -v
+
+Aug 08 15:55:15 localhost systemd[1]: Started Zincati Update Agent.
+Aug 08 15:55:15 localhost zincati[674]: [INFO ] starting update agent (zincati 0.0.11)
+Aug 08 15:55:19 localhost zincati[674]: [INFO ] Cincinnati service: https://updates.coreos.fedoraproject.org
+Aug 08 15:55:19 localhost zincati[674]: [INFO ] agent running on node '817ccb9a75ec4f2b845e74fdb81e8850', in update group 'default'
+Aug 08 15:55:19 localhost zincati[674]: [INFO ] initialization complete, auto-updates logic enabled
 ----
 
 == Cleanup
