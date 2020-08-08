@@ -107,7 +107,7 @@ As the system is not up to date, Zincati will notice this and will immediately s
 
 [source,bash]
 ----
-[core@localhost ~]$ sudo systemctl status --no-pager zincati.service
+[core@localhost ~]$ systemctl status --no-pager --full zincati.service
 ● zincati.service - Zincati Update Agent
      Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
      Active: active (running) since Fri 2020-08-07 17:42:14 UTC; 24s ago
@@ -136,7 +136,7 @@ Deployments:
                     Commit: 6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890
               GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
 
-[core@localhost ~]$ systemctl status --no-pager zincati.service
+[core@localhost ~]$ systemctl status --no-pager --full zincati.service
 ● zincati.service - Zincati Update Agent
      Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
      Active: active (running) since Fri 2020-08-07 17:42:14 UTC; 51s ago

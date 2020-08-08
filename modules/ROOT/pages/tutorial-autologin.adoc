@@ -215,7 +215,7 @@ And check on zincati.service, which communicates with our update server and tell
 
 [source,bash]
 ----
-[core@tutorial ~]$ systemctl status --no-pager zincati.service
+[core@tutorial ~]$ systemctl status --no-pager --full zincati.service
 ● zincati.service - Zincati Update Agent
      Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
      Active: active (running) since Thu 2020-08-06 14:50:36 UTC; 1h 41min ago

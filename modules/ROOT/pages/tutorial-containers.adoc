@@ -156,7 +156,7 @@ Now that we’re up and we don’t have any real failures we can check out the s
 
 [source,bash]
 ----
-[core@tutorial ~]$ systemctl status etcd-member.service
+[core@tutorial ~]$ systemctl status --no-pager --full etcd-member.service
 ● etcd-member.service - Run a single node etcd
      Loaded: loaded (/etc/systemd/system/etcd-member.service; enabled; vendor preset: enabled)
      Active: active (running) since Fri 2020-08-07 10:10:45 UTC; 4min 30s ago
