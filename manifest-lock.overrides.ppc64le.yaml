@@ -6,3 +6,7 @@ packages:
     evra: 2:1.9.3-1.fc32.ppc64le
   podman-plugins:
     evra: 2:1.9.3-1.fc32.ppc64le
+  # Fast-track new Ignition release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-4ac68728c8
+  ignition:
+    evra: 2.6.0-1.git947598e.fc32.ppc64le
