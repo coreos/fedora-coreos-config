@@ -1,1 +1,5 @@
-packages: {}
+packages:
+  # Fast-track new Ignition release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-4ac68728c8
+  ignition:
+    evra: 2.6.0-1.git947598e.fc32.ppc64le
