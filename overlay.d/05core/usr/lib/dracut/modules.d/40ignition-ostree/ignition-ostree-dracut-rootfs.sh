@@ -7,6 +7,7 @@ set -euo pipefail
 ignition_cfg=/run/ignition.json
 rootdisk=/dev/disk/by-label/root
 saved_sysroot=/run/ignition-ostree-rootfs
+partstate=/run/ignition-ostree-rootfs-partstate.json
 
 case "${1:-}" in
     detect)
@@ -21,6 +22,8 @@ case "${1:-}" in
         mount "${rootdisk}" /sysroot
         echo "Moving rootfs to RAM..."
         cp -aT /sysroot "${saved_sysroot}"
+        # also store the state of the partition
+        lsblk "${rootdisk}" --nodeps --json -b -o PATH,SIZE | jq -c . > "${partstate}"
         ;;
     restore)
         # This one is in a private mount namespace since we're not "offically" mounting
