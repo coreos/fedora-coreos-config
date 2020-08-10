@@ -95,7 +95,7 @@ Run `fcct` to convert that to an Ignition config:
 fcct --pretty --strict fcct-updates.yaml --output updates.ign
 ----
 
-== Startup and intial update
+== Startup and initial update
 
 Now let's provision it. Make sure that you are starting from the older Fedora CoreOS image in this step:
 

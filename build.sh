@@ -14,7 +14,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # Running on Linux.
-    # Check whether podman is available, else faill back to docker
+    # Check whether podman is available, else fall back to docker
     # which requires root.
 
     if [ -f /usr/bin/podman ]; then

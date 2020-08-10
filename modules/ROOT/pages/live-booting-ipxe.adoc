@@ -39,4 +39,4 @@ boot
 
 Since the traditional FCOS upgrade process requires a disk, live-PXE systems are not able to auto-update in place. For this reason, Zincati is not running there.
 
-Instead, it is reccomended that images references in the PXE configuration are regularly refreshed. Once infrastructure and configurations are updated, the live-PXE instance simply needs to be rebooted in order to start running the new FCOS version.
+Instead, it is recommended that images references in the PXE configuration are regularly refreshed. Once infrastructure and configurations are updated, the live-PXE instance simply needs to be rebooted in order to start running the new FCOS version.

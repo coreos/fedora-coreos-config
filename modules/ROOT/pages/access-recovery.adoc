@@ -1,6 +1,6 @@
 = Access Recovery
 
-If you've lost the private key of an SSH keypair used to log into Fedora CoreOS, and do not have any password logins set up to use at the console, you can gain access back to the machine by booting into single user mode with the `single` kernel command-line argument:
+If you've lost the private key of an SSH key pair used to log into Fedora CoreOS, and do not have any password logins set up to use at the console, you can gain access back to the machine by booting into single user mode with the `single` kernel command-line argument:
 
 . When booting the system, intercept the GRUB menu and edit the entry to append `single` to the kernel argument list, then press Ctrl-X to resume booting.
 . Wait for the system to boot into a shell prompt
