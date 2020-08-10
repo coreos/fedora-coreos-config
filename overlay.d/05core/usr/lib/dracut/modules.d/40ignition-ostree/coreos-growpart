@@ -87,4 +87,5 @@ case "${TYPE}" in
     ext4) resize2fs "${src}" ;;
 esac
 
-touch /var/lib/coreos-growpart.stamp
+# this is useful for tests
+touch /run/coreos-growpart.stamp
