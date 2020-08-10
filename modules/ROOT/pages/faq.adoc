@@ -256,3 +256,19 @@ This YAML configuration is never directly processed by FCOS instances (only the 
 Although similar, Ignition configurations and FCCT ones do not have the same structure; thus, converting between them is not just a direct YAML-to-JSON translation, but it involves additional logic.
 FCCT exposes several customization helpers (e.g. distribution specific entries and common abstractions) that are not present in Ignition and make the formats not interchangeable.
 Additionally, the different formats (YAML for FCCT, JSON for Ignition) help to avoid mixing up inputs by mistake.
+
+## What is the format of the version number?
+
+This is covered in detail in the https://github.com/coreos/fedora-coreos-tracker/blob/master/Design.md#version-numbers[design docs].
+
+The summary is that Fedora CoreOS uses the format `X.Y.Z.A`
+
+* `X` is the Fedora major version (i.e. `32`)
+* `Y` is the datestamp that the package set was snapshotted from Fedora (i.e. `20200715`)
+* `Z` is a code number used by official builds
+** `1` for the `next` stream
+** `2` for the `testing` stream
+** `3` for the `stable` stream
+* `A` is a revision number that is incremented for each new build with the same `X.Y.Z` parameters
+
+The version numbering scheme is subject to change and is not intended to be parsed by machine.
