@@ -1,0 +1,19 @@
+[Unit]
+Description=Acquire live PXE rootfs image
+DefaultDependencies=false
+ConditionPathExists=/usr/lib/initrd-release
+ConditionPathExists=/run/ostree-live
+ConditionKernelCommandLine=!coreos.liveiso
+
+After=basic.target
+# Network is enabled here
+After=dracut-initqueue.service
+
+# If we fail, the boot will fail.  Be explicit about it.
+OnFailure=emergency.target
+OnFailureJobMode=isolate
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/coreos-livepxe-rootfs
