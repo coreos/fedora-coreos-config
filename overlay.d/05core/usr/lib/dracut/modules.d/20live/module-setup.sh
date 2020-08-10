@@ -1,3 +1,8 @@
+depends() {
+    # We need the rdcore binary
+    echo rdcore
+}
+
 install_and_enable_unit() {
     unit="$1"; shift
     target="$1"; shift
@@ -7,7 +12,10 @@ install_and_enable_unit() {
 }
 
 install() {
-    inst_multiple truncate
+    inst_multiple \
+        bsdtar \
+        curl \
+        truncate
 
     inst_script "$moddir/is-live-image.sh" \
         "/usr/bin/is-live-image"
@@ -21,20 +29,23 @@ install() {
     inst_simple "$moddir/coreos-live-unmount-tmpfs-var.sh" \
         "/usr/sbin/coreos-live-unmount-tmpfs-var"
 
+    inst_simple "$moddir/coreos-livepxe-rootfs.sh" \
+        "/usr/sbin/coreos-livepxe-rootfs"
+
     install_and_enable_unit "coreos-live-unmount-tmpfs-var.service" \
         "initrd-switch-root.target"
+
+    install_and_enable_unit "coreos-livepxe-rootfs.service" \
+        "initrd-root-fs.target"
 
     install_and_enable_unit "coreos-live-clear-sssd-cache.service" \
         "ignition-complete.target"
 
-    install_and_enable_unit "coreos-live-persist-osmet.service" \
+    install_and_enable_unit "coreos-liveiso-persist-osmet.service" \
         "default.target"
 
-    inst_simple "$moddir/coreos-liveiso-network-kargs.sh" \
-        "/usr/sbin/coreos-liveiso-network-kargs"
-
-    inst_simple "$moddir/coreos-liveiso-network-kargs.service" \
-        "$systemdsystemunitdir/coreos-liveiso-network-kargs.service"
+    install_and_enable_unit "coreos-livepxe-persist-osmet.service" \
+        "default.target"
 
     inst_simple "$moddir/coreos-liveiso-reconfigure-nm-wait-online.service" \
         "$systemdsystemunitdir/coreos-liveiso-reconfigure-nm-wait-online.service"

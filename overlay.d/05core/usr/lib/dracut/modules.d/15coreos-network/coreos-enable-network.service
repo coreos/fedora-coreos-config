@@ -6,6 +6,7 @@ After=basic.target
 
 # Triggering conditions for cases where we need network
 ConditionPathExists=|/run/ignition/neednet
+ConditionKernelCommandLine=|coreos.live.rootfs_url
 
 # Creates /run/ignition/neednet
 After=ignition-fetch-offline.service
