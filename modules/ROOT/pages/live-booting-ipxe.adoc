@@ -28,9 +28,8 @@ set CONFIGURL https://example.com/config.ign
 
 set BASEURL https://builds.coreos.fedoraproject.org/prod/streams/${STREAM}/builds/${VERSION}/x86_64
 
-kernel ${BASEURL}/fedora-coreos-${VERSION}-live-kernel-x86_64 ignition.firstboot ignition.platform.id=metal ignition.config.url=${CONFIGURL} systemd.unified_cgroup_hierarchy=0
+kernel ${BASEURL}/fedora-coreos-${VERSION}-live-kernel-x86_64 coreos.live.rootfs_url=${BASEURL}/fedora-coreos-${VERSION}-live-rootfs.x86_64.img ignition.firstboot ignition.platform.id=metal ignition.config.url=${CONFIGURL} systemd.unified_cgroup_hierarchy=0
 initrd ${BASEURL}/fedora-coreos-${VERSION}-live-initramfs.x86_64.img
-initrd ${BASEURL}/fedora-coreos-${VERSION}-live-rootfs.x86_64.img
 
 boot
 ----
