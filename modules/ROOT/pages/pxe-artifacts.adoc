@@ -11,8 +11,8 @@ The migration timeline is:
 
 To boot with the `rootfs` artifact, make one of the following changes to your PXE config:
 
+- Specify only the `initramfs` file as the initrd, and pass an HTTP(S) URL for the `rootfs` using the `coreos.live.rootfs_url=` kernel argument.
 - Specify both `initramfs` and `rootfs` files as initrds in your PXE configuration. This can be done via multiple `initrd` directives, or using additional `initrd=` parameters as kernel arguments.
 - Concatenate the `initramfs` and `rootfs` files together, and specify the combined file as the initrd.
-- Specify only the `initramfs` file as the initrd, and pass an HTTP(S) URL for the `rootfs` using the `coreos.live.rootfs_url=` kernel argument.
 
 For more information on this change, see the https://github.com/coreos/fedora-coreos-tracker/issues/390[tracker issue].
