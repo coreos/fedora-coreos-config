@@ -15,7 +15,12 @@ Before installing FCOS, you must have an Ignition configuration file and host it
 
 To install FCOS onto bare metal using the live ISO, follow these steps:
 
-. Download the ISO image from the https://getfedora.org/coreos/download/[FCOS download page].
+. Download the ISO image:
+[source, bash]
+----
+podman run --privileged --pull=always --rm -v .:/data -w /data \
+    quay.io/coreos/coreos-installer:release download -f iso
+----
 +
 NOTE: The live system requires at least 3 GiB of RAM. You can boot it in either legacy BIOS or UEFI mode, regardless of what mode the OS will use once installed.
 +
@@ -35,7 +40,12 @@ TIP: Check out `coreos-installer install --help` for more options on how to inst
 
 To install from PXE, follow these steps:
 
-. Download an FCOS PXE kernel and initramfs image from the https://getfedora.org/coreos/download/[FCOS download page].
+. Download an FCOS PXE kernel, initramfs, and rootfs image:
+[source, bash]
+----
+podman run --privileged --pull=always --rm -v .:/data -w /data \
+    quay.io/coreos/coreos-installer:release download -f pxe
+----
 +
 NOTE: You can install in either legacy boot (BIOS) mode or in UEFI mode, regardless of what mode the OS will use once installed.
 +
