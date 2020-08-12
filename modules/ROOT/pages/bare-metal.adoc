@@ -61,9 +61,9 @@ You can use the `coreos-installer` https://quay.io/repository/coreos/coreos-inst
 [source, bash]
 ----
 sudo podman run --pull=always --privileged --rm \
-    -v /dev:/dev -v /run/udev:/run/udev -v ${PWD}:/data \
+    -v /dev:/dev -v /run/udev:/run/udev -v .:/data -w /data \
     quay.io/coreos/coreos-installer:release \
-    install /dev/vdb -i /data/config.ign
+    install /dev/vdb -i config.ign
 ----
 
 In this example, `coreos-installer` will download the latest stable FCOS metal image and install it onto `/dev/vdb`. It will then inject the Ignition file `config.ign` in the current directory into the image.  Use `--help` to see all the available options.
