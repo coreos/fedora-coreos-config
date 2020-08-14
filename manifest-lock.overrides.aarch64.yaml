@@ -9,3 +9,9 @@ packages:
     evra: 0.5.0-1.fc32.aarch64
   coreos-installer-bootinfra:
     evra: 0.5.0-1.fc32.aarch64
+  # Fast-track afterburn release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-2b573e2ac6
+  afterburn:
+    evra: 4.5.0-1.fc32.aarch64
+  afterburn-dracut:
+    evra: 4.5.0-1.fc32.aarch64
