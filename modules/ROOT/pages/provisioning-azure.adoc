@@ -1,12 +1,12 @@
 = Provisioning Fedora CoreOS on Azure
 
-This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Azure.  Fedora currently does not publish Fedora CoreOS images within Azure, so you must download an Azure image from Fedora and upload it to your Azure subscription.
+This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Azure. Fedora currently does not publish Fedora CoreOS images within Azure, so you must download an Azure image from Fedora and upload it to your Azure subscription.
 
 == Prerequisites
 
 Before provisioning a FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-You also need to have access to an Azure subscription.  The examples below use the https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest[Azure CLI].
+You also need to have access to an Azure subscription. The examples below use the https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest[Azure CLI].
 
 == Downloading an Azure image
 
@@ -19,7 +19,7 @@ stream="stable"
 coreos-installer download --decompress -s "${stream}" -p azure -f vhd.xz
 ----
 
-Alternatively, you can manually download an Azure image from the https://getfedora.org/coreos/download?tab=cloud_operators[download page].  Verify the download, following the instructions on that page, and decompress it.
+Alternatively, you can manually download an Azure image from the https://getfedora.org/coreos/download?tab=cloud_operators[download page]. Verify the download, following the instructions on that page, and decompress it.
 
 == Uploading the image to Azure
 

@@ -1,4 +1,3 @@
-:experimental:
 = Configuring FCOS to Use a Static IP Address
 By default, an FCOS instance will attempt to grab a DHCP address from the local network. However, if you need FCOS to use a static IP address, you can do so by specifying the NetworkManager configuration in the Ignition configuration file.
 

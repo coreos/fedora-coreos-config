@@ -241,7 +241,7 @@ The contents of `links` is as follows. Unless specified as optional, all nodes a
 variant: fcos
 version: 1.1.0
 storage:
-  # This creates a directory.  Its mode is set to 0755 by default, that
+  # This creates a directory. Its mode is set to 0755 by default, that
   # is, readable and executable by all, and writable by the owner.
   directories:
   - path: /opt/tools

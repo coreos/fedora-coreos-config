@@ -45,7 +45,7 @@ To generate a secure password hash, use the `mkpasswd` command:
 [source]
 ----
 $ mkpasswd --method=yescrypt
-Password: 
+Password:
 $y$j9T$A0Y3wwVOKP69S.1K/zYGN.$S596l11UGH3XjN...
 ----
 

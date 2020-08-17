@@ -1,12 +1,12 @@
 = Provisioning Fedora CoreOS on DigitalOcean
 
-This guide shows how to provision new Fedora CoreOS (FCOS) nodes on DigitalOcean.  Fedora CoreOS images are currently not published directly on DigitalOcean, so you must download a Fedora CoreOS DigitalOcean image and upload it to your DigitalOcean account as a https://www.digitalocean.com/docs/images/custom-images/[custom image].
+This guide shows how to provision new Fedora CoreOS (FCOS) nodes on DigitalOcean. Fedora CoreOS images are currently not published directly on DigitalOcean, so you must download a Fedora CoreOS DigitalOcean image and upload it to your DigitalOcean account as a https://www.digitalocean.com/docs/images/custom-images/[custom image].
 
 == Prerequisites
 
 Before provisioning a FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-You also need to have access to a DigitalOcean account.  The examples below use the https://github.com/digitalocean/doctl[doctl] command-line tool.
+You also need to have access to a DigitalOcean account. The examples below use the https://github.com/digitalocean/doctl[doctl] command-line tool.
 
 == Creating a DigitalOcean custom image
 

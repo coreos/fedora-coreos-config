@@ -22,7 +22,7 @@ Once the archive has been downloaded, make sure to verify its integrity:
 gpg --verify fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz.sig
 ----
 
-TIP: Look for *"Good signature from"* in the output. 
+TIP: Look for *"Good signature from"* in the output.
 
 Once you have verified the archive, you can extract it with:
 

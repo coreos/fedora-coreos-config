@@ -1,4 +1,3 @@
-:experimental:
 = Installing CoreOS on Bare Metal
 
 This guide provides instructions to install Fedora CoreOS to bare metal. Three options are available:
@@ -76,7 +75,7 @@ sudo podman run --pull=always --privileged --rm \
     install /dev/vdb -i config.ign
 ----
 
-In this example, `coreos-installer` will download the latest stable FCOS metal image and install it onto `/dev/vdb`. It will then inject the Ignition file `config.ign` in the current directory into the image.  Use `--help` to see all the available options.
+In this example, `coreos-installer` will download the latest stable FCOS metal image and install it onto `/dev/vdb`. It will then inject the Ignition file `config.ign` in the current directory into the image. Use `--help` to see all the available options.
 
 == Downloading and mirroring the metal image
 
@@ -94,7 +93,7 @@ When you're finally ready to install FCOS, you can point it at your downloaded i
 
 == Live PXE
 
-In this model, rather than performing a "persistent" installation to disk, you can run directly from RAM.  This is useful in e.g. "diskless" scenarios.
+In this model, rather than performing a "persistent" installation to disk, you can run directly from RAM. This is useful in e.g. "diskless" scenarios.
 The steps are similar to the above, just omit the `coreos.inst` arguments, and instead have the system itself run Ignition:
 
 [source]

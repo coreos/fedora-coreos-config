@@ -1,4 +1,3 @@
-:experimental:
 = Ignition metadata (`ignition`)
 The optional `ignition` block defines the metadata for the Ignition configuration. It allows you to specify a remote configuration file for platforms that do not allow the direct ingestion of large configuration files. It tells Ignition to start the first boot of FCOS, at which time, Ignition will fetch the specified Ignition file from a remote server.
 

@@ -31,7 +31,7 @@ coreos-installer download -s "${STREAM}" -p qemu -f qcow2.xz --decompress -C ~/.
 Launch the new VM using `qemu-kvm`.
 
 In snaphost mode, all changes that are performed live after boot are discarded once the machine is powered off.
-If you need to persist your changes, it is recommended to setup a dedicated persistent disk first. 
+If you need to persist your changes, it is recommended to setup a dedicated persistent disk first.
 
 .Launching FCOS with QEMU (temporary storage)
 [source, bash]
