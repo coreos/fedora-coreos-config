@@ -19,7 +19,9 @@ else
     eval $(lsblk --output PTUUID,PKNAME --pairs --paths --nodeps "$1")
 fi
 
-[ "$PTUUID" != "$UNINITIALIZED_GUID" ] && exit 0
+# s390x DASD disks don't have PTUUID and any of the other traditional partition
+# table attributes of GPT disks
+([ -z ${PTUUID:-} ] || [ "$PTUUID" != "$UNINITIALIZED_GUID" ]) && exit 0
 
 sgdisk --disk-guid=R --move-second-header "$PKNAME"
 udevadm settle
