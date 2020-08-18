@@ -29,6 +29,11 @@ if ip link | grep -o -e " eth[0-9]:"; then
 fi
 ok nic naming
 
+if test -w /sysroot; then
+    fatal "found writable /sysroot"
+fi
+ok sysroot ro
+
 switchroot_ts=$(get_journal_msg_timestamp 'Switching root.')
 nm_ts=$(get_journal_msg_timestamp 'NetworkManager .* starting')
 # by default, kola on QEMU shouldn't need to bring up networking
