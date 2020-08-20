@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# This script creates two veth interfaces i.e. one for the host machine 
+# and other for the container(dnsmasq server). This setup will be helpful
+# to verify the DHCP propagation of NTP servers. This will also avoid any 
+# regression that might cause in RHCOS or FCOS when the upstream changes 
+# come down and obsolete the temporary work (https://github.com/coreos/fedora-coreos-config/pull/412)
+
+set -xeuo pipefail
+
+# kola: { "tags": "needs-internet" }
+
+test_setup() {
+
+    # This is needed to run a container with systemd
+    setsebool container_manage_cgroup 1
+
+    # create a network namespace
+    ip netns add container
+
+    # create veth pair and assign a namespace to veth-container
+    ip link add veth-host type veth peer name veth-container
+    ip link set veth-container netns container
+
+    # assign an IP address to the `veth-container` interface and bring it up
+    ip netns exec container ip address add 172.16.0.1/24 dev veth-container
+    ip netns exec container ip link set veth-container up
+
+    # create a static ethernet connection for the `veth-host`
+    nmcli dev set veth-host managed yes
+    ip link set veth-host up
+
+    # run podman commands to set up dnsmasq server
+    pushd $(mktemp -d)
+    NTPHOSTIP=$(getent hosts time-c-g.nist.gov | cut -d ' ' -f 1)
+    cat <<EOF >Dockerfile
+FROM registry.fedoraproject.org/fedora:32
+RUN dnf -y install systemd dnsmasq iproute iputils \
+&& dnf clean all \
+&& systemctl enable dnsmasq
+RUN echo -e 'dhcp-range=172.16.0.10,172.16.0.20,12h\nbind-interfaces\ninterface=veth-container\ndhcp-option=option:ntp-server,$NTPHOSTIP' > /etc/dnsmasq.d/dhcp
+CMD [ "/sbin/init" ]
+EOF
+    podman build -t dnsmasq .
+    popd
+    podman run -d --rm --name dnsmasq --privileged --network ns:/var/run/netns/container dnsmasq
+
+}
+
+main() {
+
+    test_setup
+
+    # check for NTP server information
+    # Name: time-c-g.nist.gov  IP address: 129.6.15.30
+    NTPSERVER=""
+    retries=300
+    while [[ $retries -gt 0 && ! $NTPSERVER =~ "time-c-g.nist.gov" ]]; do
+         NTPSERVER=$(chronyc sources)
+         if [[ $NTPSERVER != *"time-c-g.nist.gov"* ]]; then
+             echo "waiting for ntp server to appear"
+             sleep 1
+             retries=$((retries - 1))
+         fi
+    done
+
+    if [ $retries -eq  0 ]; then
+        echo "propagation of ntp server information via dhcp failed"
+        exit 1
+    fi
+}
+
+main
