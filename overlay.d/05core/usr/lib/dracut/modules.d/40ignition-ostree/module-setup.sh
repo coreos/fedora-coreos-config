@@ -82,6 +82,8 @@ install() {
     install_ignition_unit ignition-ostree-mount-subsequent-sysroot.service diskful-subsequent
     inst_script "$moddir/ignition-ostree-mount-sysroot.sh" \
         "/usr/sbin/ignition-ostree-mount-sysroot"
+    inst_script "$moddir/coreos-rootflags.sh" \
+        "/usr/sbin/coreos-rootflags"
 
     install_ignition_unit ignition-ostree-growfs.service
     inst_script "$moddir/coreos-growpart" /usr/libexec/coreos-growpart
