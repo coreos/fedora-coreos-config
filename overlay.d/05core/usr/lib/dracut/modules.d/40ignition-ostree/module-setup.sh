@@ -66,9 +66,6 @@ install() {
     inst_simple \
         /usr/lib/udev/rules.d/90-coreos-device-mapper.rules
 
-    inst_simple "$moddir/multipath-generator" \
-        "$systemdutildir/system-generators/multipath-generator"
-
     inst_multiple jq chattr
     inst_script "$moddir/ignition-ostree-dracut-rootfs.sh" "/usr/libexec/ignition-ostree-dracut-rootfs"
     for x in detect save restore; do
