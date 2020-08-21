@@ -34,6 +34,11 @@ if test -w /sysroot; then
 fi
 ok sysroot ro
 
+if ! lsattr -d / | grep -qe '--i--'; then
+    fatal "missing immutable bit on /"
+fi
+ok immutable bit
+
 switchroot_ts=$(get_journal_msg_timestamp 'Switching root.')
 nm_ts=$(get_journal_msg_timestamp 'NetworkManager .* starting')
 # by default, kola on QEMU shouldn't need to bring up networking
