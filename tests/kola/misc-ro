@@ -20,8 +20,11 @@ get_journal_msg_timestamp() {
         | jq -r --slurp '.[0]["__MONOTONIC_TIMESTAMP"]'
 }
 
-systemctl is-enabled logrotate.service
-ok logrotate
+for unit in logrotate systemd-resolved; do
+    if ! systemctl is-enabled ${unit}; then
+        fatal "Unit ${unit} should be enabled"
+    fi
+done
 
 # https://github.com/coreos/fedora-coreos-config/commit/2a5c2abc796ac645d705700bf445b50d4cda8f5f
 if ip link | grep -o -e " eth[0-9]:"; then
