@@ -29,6 +29,16 @@ if ip link | grep -o -e " eth[0-9]:"; then
 fi
 ok nic naming
 
+if test -w /sysroot; then
+    fatal "found writable /sysroot"
+fi
+ok sysroot ro
+
+if ! lsattr -d / | grep -qe '--i--'; then
+    fatal "missing immutable bit on /"
+fi
+ok immutable bit
+
 switchroot_ts=$(get_journal_msg_timestamp 'Switching root.')
 nm_ts=$(get_journal_msg_timestamp 'NetworkManager .* starting')
 # by default, kola on QEMU shouldn't need to bring up networking
@@ -41,3 +51,12 @@ elif [[ $nm_ts -gt $switchroot_ts ]] && on_platform aws; then
     fatal "NetworkManager not started in initramfs!"
 fi
 ok conditional initrd networking
+
+# check that no files are unlabeled
+unlabeled=$(find /var /etc -context '*:unlabeled_t:*')
+if [ -n "${unlabeled}" ]; then
+    echo "Found unlabeled files:"
+    echo "${unlabeled}"
+    exit 1
+fi
+ok no files with unlabeled_t SELinux label

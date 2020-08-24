@@ -2,6 +2,8 @@
 set -euo pipefail
 # Test the coreos-platform-chrony generator.
 
+# kola: { "platforms": "aws,azure,gcp" }
+
 cd $(mktemp -d)
 
 platform="$(grep -Eo ' ignition.platform.id=[a-z]+' /proc/cmdline | cut -f 2 -d =)"
