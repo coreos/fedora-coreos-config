@@ -26,6 +26,21 @@ case "${platform}" in
     *) exit 0 ;;
 esac
 
+# If not set already (by host customization or this script), set
+# PEERNTP=no so that DHCP-provided NTP servers are not added to chrony.
+# By doing this we assume the better NTP server choice is the
+# platform-provided link-local NTP server rather than others from DHCP.
+# TODO: once https://bugzilla.redhat.com/show_bug.cgi?id=1828434 is
+# resolved, this won't be required.
+if [ ! -e /etc/sysconfig/network ] || ! grep -q "PEERNTP" /etc/sysconfig/network; then
+    cat <<EOF >> /etc/sysconfig/network
+# PEERNTP=no is automatically added by default when a platform-provided time
+# source is available, but this behavior may be overridden through an Ignition
+# config specifying PEERNTP=yes. See https://github.com/coreos/fedora-coreos-config/pull/412.
+PEERNTP=no
+EOF
+fi
+
 if ! cmp {/usr,}/etc/chrony.conf >/dev/null; then
     echo "$self: /etc/chrony.conf is modified; not changing the default"
     exit 0
