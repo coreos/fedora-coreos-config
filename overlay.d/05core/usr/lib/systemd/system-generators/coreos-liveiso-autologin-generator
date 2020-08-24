@@ -58,8 +58,8 @@ from memory, making it a good candidate for hardware discovery and
 installing persistently to disk. Here is an example of running an install
 to disk via coreos-installer:
 
-curl -O https://example.com/example.ign
-sudo coreos-installer install /dev/sda --ignition-file ./example.ign 
+sudo coreos-installer install /dev/sda \
+    --ignition-url https://example.com/example.ign
 
 You may configure networking via 'sudo nmcli' or 'sudo nmtui' and have
 that configuration persist into the installed system by passing the
@@ -101,22 +101,10 @@ fi
 # If the user supplied an Ignition config, they have the ability to enable
 # autologin themselves.  Don't automatically render them insecure, since
 # they might be running in production and booting via e.g. IPMI.
-
-# This is a hack for RHCOS Ignition which doesn't have
-# https://github.com/coreos/ignition/pull/958. This works because right now both
-# RHCOS and FCOS unconditionally bake in a base config. Once RHCOS moves to
-# Ignition v2, we can drop this and just leave the else block.
-ign_basecfg_msg=$(journalctl -q MESSAGE_ID=57124006b5c94805b77ce473e92a8aeb IGNITION_CONFIG_TYPE=base)
-if [ -z "${ign_basecfg_msg}" ]; then
-    if [ -e /run/ignition.json ]; then
-        exit 0
-    fi
-else
-    # See https://github.com/coreos/ignition/pull/958 for the MESSAGE_ID source.
-    ign_usercfg_msg=$(journalctl -q MESSAGE_ID=57124006b5c94805b77ce473e92a8aeb IGNITION_CONFIG_TYPE=user)
-    if [ -n "${ign_usercfg_msg}" ]; then
-        exit 0
-    fi
+# See https://github.com/coreos/ignition/pull/958 for the MESSAGE_ID source.
+ign_usercfg_msg=$(journalctl -q MESSAGE_ID=57124006b5c94805b77ce473e92a8aeb IGNITION_CONFIG_TYPE=user)
+if [ -n "${ign_usercfg_msg}" ]; then
+    exit 0
 fi
 
 write_dropin "getty@.service"        "--noclear"
