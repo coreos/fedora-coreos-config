@@ -1,11 +1,17 @@
 packages:
   # Fast-track new Ignition release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-4ac68728c8
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-646408ac29
   ignition:
-    evra: 2.6.0-1.git947598e.fc32.aarch64
+    evra: 2.6.0-2.git947598e.fc32.aarch64
   # Fast-track coreos-installer release
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-651a2bec22
   coreos-installer:
     evra: 0.5.0-1.fc32.aarch64
   coreos-installer-bootinfra:
     evra: 0.5.0-1.fc32.aarch64
+  # Fast-track afterburn release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-2b573e2ac6
+  afterburn:
+    evra: 4.5.0-1.fc32.aarch64
+  afterburn-dracut:
+    evra: 4.5.0-1.fc32.aarch64
