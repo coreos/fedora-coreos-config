@@ -92,6 +92,8 @@ packages:
   - afterburn
   - afterburn-dracut
   - passwd
+  # Dependency of 20live dracut module
+  - bsdtar
   # SSH
   - openssh-server openssh-clients
   - ssh-key-dir
