@@ -8,7 +8,9 @@
 
 set -xeuo pipefail
 
-# kola: { "tags": "needs-internet" }
+# Just run on QEMU; it should work theoretically on cloud platforms, but many
+# of those have platform-specific sources which take precedence.
+# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv" }
 
 test_setup() {
 
