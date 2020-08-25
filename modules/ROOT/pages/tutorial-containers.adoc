@@ -42,6 +42,7 @@ systemd:
         Type=oneshot
         ExecStart=/usr/bin/false
         RemainAfterExit=yes
+
         [Install]
         WantedBy=multi-user.target
     - name: etcd-member.service
@@ -51,6 +52,7 @@ systemd:
         Description=Run a single node etcd
         After=network-online.target
         Wants=network-online.target
+
         [Service]
         ExecStartPre=mkdir -p /var/lib/etcd
         ExecStartPre=-/bin/podman kill etcd
@@ -66,6 +68,7 @@ systemd:
                             --listen-client-urls http://127.0.0.1:2379          \
                             --initial-cluster node1=http://127.0.0.1:2380
         ExecStop=/bin/podman stop etcd
+
         [Install]
         WantedBy=multi-user.target
 storage:
