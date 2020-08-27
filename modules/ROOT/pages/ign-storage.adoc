@@ -1,6 +1,6 @@
 = Storage specification
 
-This section describes the FCOS Configuration (FCC) YAML format for defining the desired state of storage associated with a FCOS instance.
+This section describes the FCOS Configuration (FCC) YAML format for defining the desired state of storage associated with a FCOS instance. See also xref:storage.adoc[Configuring Storage] which contains examples for customizing the default storage layout.
 
 The `storage` block contains a list of objects, which can be of the following type:
 
@@ -123,48 +123,6 @@ storage:
       device: /dev/md/publicdata
       format: ext4
       label: PUB
-----
-
-.Example for adding a /var partition to the primary disk
-[source,yaml]
-----
-variant: fcos
-version: 1.1.0
-storage:
-  disks:
-  -
-    # The name of the primary block device. In virtio-based setups, this is
-    # likely `/dev/vda`. Elsewhere, it's likely `/dev/sda`.
-    device: /dev/vda
-    # We do not want to wipe the partition table since this is the primary
-    # device.
-    wipe_table: false
-    partitions:
-    - size_mib: 0
-      start_mib: 0
-      # We assign a descriptive label to the partition. This is important
-      # for referring to it in a device-agnostic way in other parts of the
-      # configuration.
-      label: var
-  filesystems:
-    - path: /var
-      device: /dev/disk/by-partlabel/var
-      format: xfs
-systemd:
-  units:
-    -
-      # We need to create a systemd mount unit so that /var actually gets
-      # mounted on /var.
-      name: var.mount
-      enabled: true
-      contents: |
-        [Unit]
-        Before=local-fs.target
-        [Mount]
-        Where=/var
-        What=/dev/disk/by-partlabel/var
-        [Install]
-        WantedBy=local-fs.target
 ----
 
 == Files

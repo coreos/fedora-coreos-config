@@ -1,0 +1,89 @@
+= Configuring Storage
+
+Fedora CoreOS ships with a simple default storage layout: the root partition is the last one and expands to take the full size of the disk. Apart from the boot partition, all data is stored on the root partition.
+
+Below, we provide examples of various ways you can customize this.
+
+== Setting up separate /var mounts
+
+Here's an example FCC file to set up `/var` on a separate partition on the same primary disk:
+
+.Adding a /var partition to the primary disk
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+storage:
+  disks:
+  - # The name of the primary block device. In virtio-based setups, this is
+    # likely `/dev/vda`. Elsewhere, it's likely `/dev/sda`.
+    device: /dev/vda
+    # We do not want to wipe the partition table since this is the primary
+    # device.
+    wipe_table: false
+    partitions:
+    - size_mib: 0
+      # Start at 5G so that we leave enough space for the root partition.
+      # See the important NOTE below about this.
+      start_mib: 5000
+      # We assign a descriptive label to the partition. This is important
+      # for referring to it in a device-agnostic way in other parts of the
+      # configuration.
+      label: var
+  filesystems:
+    - path: /var
+      device: /dev/disk/by-partlabel/var
+      # We can select the filesystem we'd like.
+      format: ext4
+      # Ask FCCT to generate a mount unit for us so that this filesystem gets
+      # mounted in the real root.
+      with_mount_unit: true
+----
+
+NOTE: The `start_mib` field is very important. In the future, we will make more clear how much space should be reserved for the root filesystem (see https://github.com/coreos/fedora-coreos-tracker/issues/586). For now, make sure to leave at least 5G.
+
+You can of course mount only a subset of `/var` into a separate partition. For example, to mount `/var/lib/containers`:
+
+.Adding a /var/lib/containers partition to the primary disk
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+storage:
+  disks:
+  - device: /dev/vda
+    wipe_table: false
+    partitions:
+    - size_mib: 0
+      # Start at 5G so that we leave enough space for the root partition.
+      # See the important NOTE above about this.
+      start_mib: 5000
+      label: containers
+  filesystems:
+    - path: /var/lib/containers
+      device: /dev/disk/by-partlabel/containers
+      format: xfs
+      with_mount_unit: true
+----
+
+Alternatively, you can also mount storage from a separate disk. For example, here we mount `/var/log` from a partition on `/dev/vdb`:
+
+.Adding /var/log from a secondary disk
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+storage:
+  disks:
+  - device: /dev/vdb
+    wipe_table: false
+    partitions:
+    - size_mib: 0
+      start_mib: 0
+      label: log
+  filesystems:
+    - path: /var/log
+      device: /dev/disk/by-partlabel/log
+      format: xfs
+      with_mount_unit: true
+----
