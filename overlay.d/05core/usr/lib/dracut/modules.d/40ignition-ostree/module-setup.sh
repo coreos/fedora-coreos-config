@@ -3,7 +3,7 @@
 # ex: ts=8 sw=4 sts=4 et filetype=sh
 
 depends() {
-    echo ignition
+    echo ignition rdcore
 }
 
 install_ignition_unit() {
@@ -35,7 +35,9 @@ install() {
         realpath   \
         resize2fs  \
         tail       \
+        tune2fs    \
         touch      \
+        xfs_admin  \
         xfs_growfs \
         wipefs
 
@@ -53,7 +55,8 @@ install() {
         rm        \
         sed       \
         sfdisk    \
-        sgdisk
+        sgdisk    \
+        find
 
     for x in mount populate; do
         install_ignition_unit ignition-ostree-${x}-var.service
@@ -63,17 +66,29 @@ install() {
     inst_simple \
         /usr/lib/udev/rules.d/90-coreos-device-mapper.rules
 
-    inst_simple "$moddir/multipath-generator" \
-        "$systemdutildir/system-generators/multipath-generator"
+    inst_multiple jq chattr
+    inst_script "$moddir/ignition-ostree-dracut-rootfs.sh" "/usr/libexec/ignition-ostree-dracut-rootfs"
+    for x in detect save restore; do
+        install_ignition_unit ignition-ostree-rootfs-${x}.service
+    done
 
     # Disk support
     install_ignition_unit ignition-ostree-mount-firstboot-sysroot.service diskful
+    for p in boot root; do
+        install_ignition_unit ignition-ostree-uuid-${p}.service diskful
+    done
+    inst_script "$moddir/ignition-ostree-firstboot-uuid" \
+        "/usr/sbin/ignition-ostree-firstboot-uuid"
     install_ignition_unit ignition-ostree-mount-subsequent-sysroot.service diskful-subsequent
     inst_script "$moddir/ignition-ostree-mount-sysroot.sh" \
         "/usr/sbin/ignition-ostree-mount-sysroot"
+    inst_script "$moddir/coreos-rootflags.sh" \
+        "/usr/sbin/coreos-rootflags"
 
     install_ignition_unit ignition-ostree-growfs.service
     inst_script "$moddir/coreos-growpart" /usr/libexec/coreos-growpart
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
+
+    install_ignition_unit coreos-inject-rootmap.service diskful
 }

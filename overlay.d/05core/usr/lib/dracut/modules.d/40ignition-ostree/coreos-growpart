@@ -8,12 +8,32 @@ set -euo pipefail
 # Growpart /, until we can fix Ignition for separate /var
 # (And eventually we want ignition-disks)
 
+saved_partstate=/run/ignition-ostree-rootfs-partstate.json
+
 path=$1
 shift
 
 # The use of tail is to avoid errors from duplicate mounts;
 # this shouldn't happen for us but we're being conservative.
 src=$(findmnt -nvr -o SOURCE "$path" | tail -n1)
+
+if [ "${path}" == /sysroot ] && [ -f "${saved_partstate}" ]; then
+    # We're still ironing out our rootfs automatic growpart story, see e.g.:
+    # https://github.com/coreos/fedora-coreos-tracker/issues/570
+    # https://github.com/coreos/fedora-coreos-tracker/issues/586
+    #
+    # In the context of rootfs reprovisioning, for now our rule is the
+    # following: if the rootfs partition was moved off of the boot disk or it
+    # was resized, then we don't growpart.
+    #
+    # To detect this, we compare the output of `lsblk -o PATH,SIZE` before and
+    # after `ignition-disks.service`.
+    partstate=$(lsblk "${src}" --nodeps --json -b -o PATH,SIZE | jq -c .)
+    if [ "${partstate}" != "$(cat "${saved_partstate}")" ]; then
+        echo "coreos-growpart: detected rootfs partition changes; not auto-growing"
+        exit 0
+    fi
+fi
 
 # Get the filesystem type before extending the partition.  This matters
 # because the partition, once extended, might include leftover superblocks
@@ -67,4 +87,5 @@ case "${TYPE}" in
     ext4) resize2fs "${src}" ;;
 esac
 
-touch /var/lib/coreos-growpart.stamp
+# this is useful for tests
+touch /run/coreos-growpart.stamp
