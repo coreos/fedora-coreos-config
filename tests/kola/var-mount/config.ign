@@ -1,0 +1,36 @@
+{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "disks": [
+      {
+        "device": "/dev/vda",
+        "partitions": [
+          {
+            "label": "var",
+            "sizeMiB": 0,
+            "startMiB": 5000
+          }
+        ],
+        "wipeTable": false
+      }
+    ],
+    "filesystems": [
+      {
+        "device": "/dev/disk/by-partlabel/var",
+        "format": "xfs",
+        "path": "/var"
+      }
+    ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "contents": "[Unit]\nBefore=local-fs.target\nRequires=systemd-fsck@/dev/disk/by-partlabel/var\nAfter=systemd-fsck@/dev/disk/by-partlabel/var\n\n[Mount]\nWhere=/var\nWhat=/dev/disk/by-partlabel/var\nType=xfs\n\n[Install]\nRequiredBy=local-fs.target",
+        "enabled": true,
+        "name": "var.mount"
+      }
+    ]
+  }
+}
