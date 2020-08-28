@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# This script runs a rootless podman container with systemd inside
+# that brings up httpd. Tests that rootless+systemd works. See issue:
+# https://github.com/containers/podman/issues/7441
+#
+# If it gets easy to change the kargs in the future we should try this
+# both on cgroups v1 and cgroups v2.
+
+set -euxo pipefail
+
+# Just run on QEMU for now. If this test works in one place it should
+# work everywhere.
+# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv" }
+
+# Script to be executed as the `core` user to build and
+# run a rootless podman container that uses systemd inside.
+runascoreuserscript='
+#!/bin/bash
+set -euxo pipefail
+
+# build systemd container (runs httpd via systemd)
+# NOTE: we may want to not build this in the future and run
+#       from a common testutils container. See
+#       https://github.com/coreos/coreos-assembler/issues/1645
+cd $(mktemp -d)
+cat <<EOF > Containerfile
+FROM registry.fedoraproject.org/fedora:32
+RUN dnf -y install systemd httpd \
+&& dnf clean all \
+&& systemctl enable httpd
+ENTRYPOINT [ "/sbin/init" ]
+EOF
+podman build -t httpd .
+
+# Run systemd container
+# Pass `-t` so systemd will print logs so `podman logs` will work
+podman run -t -d --name httpd --publish 8080:80 httpd
+'
+
+runascoreuser() {
+    # NOTE: If we don't use `| cat` the output won't get copied
+    # to our unit and won't show up in the `systemctl status` output
+    # of the ext test.
+    sudo -u core "$@" | cat
+}
+
+main() {
+
+    # Execute script as the core user to build/run the container
+    echo "$runascoreuserscript" > /tmp/runascoreuserscript
+    chmod +x /tmp/runascoreuserscript
+    runascoreuser /tmp/runascoreuserscript
+
+    # Let it come up
+    sleep 5
+
+    if ! curl http://localhost:8080 1>/dev/null; then
+        echo TEST FAILED 1>&2
+        runascoreuser podman logs httpd
+        return 1
+    fi
+}
+
+main
+exit $?
