@@ -40,14 +40,6 @@ check-groups:
 
 default-target: multi-user.target
 
-remove-files:
-  # We don't ship man(1) or info(1)
-  - usr/share/info
-  - usr/share/man
-  # Drop text docs too
-  - usr/share/doc
-
-
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos.yaml
 postprocess:
