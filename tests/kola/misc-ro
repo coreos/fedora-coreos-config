@@ -56,6 +56,11 @@ if ! lsattr -d / | grep -qe '--i--'; then
 fi
 ok immutable bit
 
+# See remove-files in the manifest
+if test -d /usr/share/info; then
+    fatal "found /usr/share/info"
+fi
+
 switchroot_ts=$(get_journal_msg_timestamp 'Switching root.')
 nm_ts=$(get_journal_msg_timestamp 'NetworkManager .* starting')
 # by default, kola on QEMU shouldn't need to bring up networking
