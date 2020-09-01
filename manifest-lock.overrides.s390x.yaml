@@ -6,12 +6,6 @@ packages:
     evra: 2:2.0.6-1.fc32.s390x
   podman-plugins:
     evra: 2:2.0.6-1.fc32.s390x
-  # Fast-track afterburn release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-2b573e2ac6
-  afterburn:
-    evra: 4.5.0-1.fc32.s390x
-  afterburn-dracut:
-    evra: 4.5.0-1.fc32.s390x
   # Fast-track coreos-installer release
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-993ba29131
   coreos-installer:
