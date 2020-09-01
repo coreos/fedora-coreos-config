@@ -1,20 +1,17 @@
 #!/bin/bash
 set -euo pipefail
 
-# We use prjquota on XFS by default to aid multi-tenant
-# Kubernetes (and other container) clusters.  See
-# https://github.com/coreos/coreos-assembler/pull/303/commits/6103effbd006bb6109467830d6a3e42dd847668d
-# In the future this will be augmented with a check for whether
-# or not we've reprovisioned the rootfs, since we don't want to
-# force on prjquota there.
+# Note that on *new machines* this script is now only ever used on firstboot. On
+# subsequent boots, systemd-fstab-generator mounts /sysroot from the
+# root=UUID=... and rootflags=... kargs.
+
+# We may do a migration window at some point where older machines have these
+# kargs injected so that we can simplify the model further.
+
 rootpath=/dev/disk/by-label/root
 if ! [ -b "${rootpath}" ]; then
   echo "ignition-ostree-mount-sysroot: Failed to find ${rootpath}" 1>&2
   exit 1
 fi
-eval $(blkid -o export ${rootpath})
-mountflags=
-if [ "${TYPE}" == "xfs" ]; then
-  mountflags=prjquota
-fi
-mount -o "${mountflags}" "${rootpath}" /sysroot
+
+mount -o "$(coreos-rootflags)" "${rootpath}" /sysroot

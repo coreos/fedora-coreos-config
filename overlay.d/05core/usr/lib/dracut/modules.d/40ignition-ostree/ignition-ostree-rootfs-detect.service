@@ -1,0 +1,18 @@
+[Unit]
+Description=Ignition OSTree: detect rootfs replacement
+DefaultDependencies=false
+After=ignition-fetch.service
+Before=ignition-disks.service
+Before=initrd-root-fs.target
+Before=sysroot.mount
+ConditionKernelCommandLine=ostree
+
+# This stage requires udevd to detect disks
+Requires=systemd-udevd.service
+After=systemd-udevd.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+EnvironmentFile=/run/ignition.env
+ExecStart=/usr/libexec/ignition-ostree-dracut-rootfs detect
