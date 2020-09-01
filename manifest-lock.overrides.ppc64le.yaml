@@ -1,7 +1,14 @@
 packages:
-  # Fast-track afterburn release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-2b573e2ac6
-  afterburn:
-    evra: 4.5.0-1.fc32.ppc64le
-  afterburn-dracut:
-    evra: 4.5.0-1.fc32.ppc64le
+  # Fast track podman 2.0.6
+  # https://github.com/coreos/fedora-coreos-tracker/issues/575
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-0c1986cdf7
+  podman:
+    evra: 2:2.0.6-1.fc32.ppc64le
+  podman-plugins:
+    evra: 2:2.0.6-1.fc32.ppc64le
+  # Fast-track coreos-installer release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-993ba29131
+  coreos-installer:
+    evra: 0.6.0-1.fc32.ppc64le
+  coreos-installer-bootinfra:
+    evra: 0.6.0-1.fc32.ppc64le
