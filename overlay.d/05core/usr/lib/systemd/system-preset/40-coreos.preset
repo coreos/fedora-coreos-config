@@ -20,3 +20,5 @@ enable afterburn-sshkeys@.service
 enable zincati.service
 # Testing aid
 enable coreos-liveiso-success.service
+# See bootupd.yaml - not enabled by default right now
+# enable bootupd.socket
