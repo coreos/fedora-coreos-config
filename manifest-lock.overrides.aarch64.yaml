@@ -6,15 +6,3 @@ packages:
     evra: 2:1.9.3-1.fc32.aarch64
   podman-plugins:
     evra: 2:1.9.3-1.fc32.aarch64
-  # Fast-track afterburn release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-2b573e2ac6
-  afterburn:
-    evra: 4.5.0-1.fc32.aarch64
-  afterburn-dracut:
-    evra: 4.5.0-1.fc32.aarch64
-  # Fast-track coreos-installer release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-993ba29131
-  coreos-installer:
-    evra: 0.6.0-1.fc32.aarch64
-  coreos-installer-bootinfra:
-    evra: 0.6.0-1.fc32.aarch64
