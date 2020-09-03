@@ -1,8 +1,8 @@
 packages:
-  # Pin podman major version for now while we let the next major
-  # version soak in the `next` stream.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/560
+  # Fast track podman 2.0.6
+  # https://github.com/coreos/fedora-coreos-tracker/issues/575
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-0c1986cdf7
   podman:
-    evra: 2:1.9.3-1.fc32.ppc64le
+    evra: 2:2.0.6-1.fc32.ppc64le
   podman-plugins:
-    evra: 2:1.9.3-1.fc32.ppc64le
+    evra: 2:2.0.6-1.fc32.ppc64le
