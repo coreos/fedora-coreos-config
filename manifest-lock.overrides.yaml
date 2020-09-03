@@ -8,5 +8,16 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
-
+packages:
+  ostree:
+    evr: 2026.3-1.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-da86341d50
+      reason: https://github.com/coreos/fedora-coreos-config/pull/4265#issuecomment-5091027307
+      type: fast-track
+  ostree-libs:
+    evr: 2026.3-1.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-da86341d50
+      reason: https://github.com/coreos/fedora-coreos-config/pull/4265#issuecomment-5091027307
+      type: fast-track
