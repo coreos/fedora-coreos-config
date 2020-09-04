@@ -22,3 +22,10 @@ packages:
     evra: 4.5.0-1.fc32.x86_64
   afterburn-dracut:
     evra: 4.5.0-1.fc32.x86_64
+  # Fast track ostree 2020.6
+  # https://github.com/coreos/fedora-coreos-tracker/issues/617
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-eb29bce63d
+  ostree:
+    evra: 2020.6-2.fc32.x86_64
+  ostree-libs:
+    evra: 2020.6-2.fc32.x86_64
