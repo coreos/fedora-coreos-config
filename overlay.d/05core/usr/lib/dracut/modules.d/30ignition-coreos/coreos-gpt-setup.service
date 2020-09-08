@@ -7,7 +7,7 @@ Before=ignition-diskful.target
 Wants=systemd-udevd.service
 After=systemd-udevd.service
 
-# This unit must the first to run when the disk holding the root partition
+# This unit must be the first to run when the disk holding the root partition
 # becomes available. To avoid relying on the name of the root partition which
 # is different between RHCOS LUKS setup and current FCOS setup, we wait for the
 # partition labeled 'boot' to become available. This is reliable as we don't
