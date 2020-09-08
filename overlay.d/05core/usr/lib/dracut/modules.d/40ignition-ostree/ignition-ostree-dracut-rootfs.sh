@@ -11,6 +11,11 @@ partstate=/run/ignition-ostree-rootfs-partstate.json
 
 case "${1:-}" in
     detect)
+        # first, store the state of the partition; putting this here is abusing
+        # things a bit because it's used even when the rootfs isn't
+        # reprovisioned, but they *are* strongly related
+        lsblk "${rootdisk}" --nodeps --json -b -o PATH,SIZE | jq -c . > "${partstate}"
+
         wipes_root=$(jq '.storage?.filesystems? // [] | map(select(.label == "root" and .wipeFilesystem == true)) | length' "${ignition_cfg}")
         if [ "${wipes_root}" = "0" ]; then
             exit 0
@@ -22,8 +27,6 @@ case "${1:-}" in
         mount "${rootdisk}" /sysroot
         echo "Moving rootfs to RAM..."
         cp -aT /sysroot "${saved_sysroot}"
-        # also store the state of the partition
-        lsblk "${rootdisk}" --nodeps --json -b -o PATH,SIZE | jq -c . > "${partstate}"
         ;;
     restore)
         # This one is in a private mount namespace since we're not "offically" mounting
