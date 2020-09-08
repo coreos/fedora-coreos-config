@@ -69,6 +69,7 @@ Before=initrd-root-fs.target
 What=/root.squashfs
 Where=/sysroot
 Type=squashfs
+Options=loop
 EOF
 else
     # And in this case, it's on the ISO
@@ -114,7 +115,7 @@ Type=squashfs
 # Offset of the squashfs within the rootfs cpio.  Assumes newc format
 # and that a file named "root.squashfs" is the first member.  This offset
 # is checked by coreos-assembler cmd-buildextend-live at build time.
-Options=offset=124
+Options=loop,offset=124
 EOF
 fi
 
