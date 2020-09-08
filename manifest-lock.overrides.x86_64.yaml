@@ -6,9 +6,10 @@ packages:
     evra: 2:2.0.6-1.fc32.x86_64
   podman-plugins:
     evra: 2:2.0.6-1.fc32.x86_64
-  # Fast-track coreos-installer release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-993ba29131
-  coreos-installer:
-    evra: 0.6.0-1.fc32.x86_64
-  coreos-installer-bootinfra:
-    evra: 0.6.0-1.fc32.x86_64
+  # Fast track ostree 2020.6
+  # https://github.com/coreos/fedora-coreos-tracker/issues/617
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-eb29bce63d
+  ostree:
+    evra: 2020.6-2.fc32.x86_64
+  ostree-libs:
+    evra: 2020.6-2.fc32.x86_64
