@@ -52,6 +52,10 @@ elif [[ $nm_ts -gt $switchroot_ts ]] && on_platform aws; then
 fi
 ok conditional initrd networking
 
+if ! test -f /usr/share/licenses/fedora-coreos-config/LICENSE; then
+    fatal missing LICENSE
+fi
+
 # check that no files are unlabeled
 unlabeled=$(find /var /etc -context '*:unlabeled_t:*')
 if [ -n "${unlabeled}" ]; then
