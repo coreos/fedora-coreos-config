@@ -1,11 +1,4 @@
 packages:
-  # Fast track podman 2.0.6
-  # https://github.com/coreos/fedora-coreos-tracker/issues/575
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-0c1986cdf7
-  podman:
-    evra: 2:2.0.6-1.fc32.s390x
-  podman-plugins:
-    evra: 2:2.0.6-1.fc32.s390x
   # Fast track ostree 2020.6
   # https://github.com/coreos/fedora-coreos-tracker/issues/617
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-eb29bce63d
