@@ -1,0 +1,25 @@
+{
+  "ignition": {
+    "version": "3.2.0-experimental"
+  },
+  "storage": {
+    "luks": [
+      {
+        "name": "myluksdev",
+        "device": "/dev/disk/by-partlabel/root",
+        "clevis": {
+          "tpm2": true
+        },
+        "label": "root"
+      }
+    ],
+    "filesystems": [
+      {
+        "device": "/dev/mapper/myluksdev",
+        "format": "xfs",
+        "wipeFilesystem": true,
+        "label": "root"
+      }
+    ]
+  }
+}
