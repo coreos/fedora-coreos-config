@@ -19,3 +19,11 @@ packages:
     evra: 0.19-1.fc32.noarch
   console-login-helper-messages-profile:
     evra: 0.19-1.fc32.noarch
+  # Fast track afterburn 4.5.1
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-84e7af0cba
+  # Afterburn 4.5.1 includes https://github.com/coreos/afterburn/pull/481
+  # so https://github.com/coreos/fedora-coreos-config/pull/571 not blocked.
+  afterburn:
+    evra: 4.5.1-1.fc32.s390x
+  afterburn-dracut:
+    evra: 4.5.1-1.fc32.s390x
