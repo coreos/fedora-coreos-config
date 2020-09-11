@@ -27,3 +27,14 @@ packages:
     evra: 4.5.1-1.fc32.aarch64
   afterburn-dracut:
     evra: 4.5.1-1.fc32.aarch64
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-af9f9ccb12
+  # To get root-on-LUKS earlier for testing
+  # 14-1 is in stable, but is missing some fixes
+  clevis:
+    evra: 14-4.fc32.aarch64
+  clevis-dracut:
+    evra: 14-4.fc32.aarch64
+  clevis-luks:
+    evra: 14-4.fc32.aarch64
+  clevis-systemd:
+    evra: 14-4.fc32.aarch64
