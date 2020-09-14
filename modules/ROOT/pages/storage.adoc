@@ -87,3 +87,47 @@ storage:
       format: xfs
       with_mount_unit: true
 ----
+
+== Reconfiguring the root filesystem
+
+It is possible to reconfigure the root filesystem itself. You can use the path `/dev/disk/by-label/root` to refer to the original root partition. You must ensure that the new filesystem also has a label of `/root`.
+
+NOTE: You must have at least 4G of RAM for root reprovisioning to work.
+
+Here's an example of moving from xfs to ext4, but reusing the same partition on the primary disk:
+
+.Changing the root filesystem to ext4
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+storage:
+  filesystems:
+    - device: /dev/disk/by-partlabel/root
+      wipe_filesystem: true
+      format: ext4
+      label: root
+----
+
+Similarly to the previous section, you can also move the root filesystem entirely. Here, we're moving root to a RAID1 device:
+
+.Moving the root filesystem to RAID1
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+storage:
+  raid:
+    - name: myroot
+      level: raid1
+      devices:
+        - /dev/disk/by-id/virtio-disk1
+        - /dev/disk/by-id/virtio-disk2
+  filesystems:
+    - device: /dev/md/myroot
+      format: xfs
+      wipe_filesystem: true
+      label: root
+----
+
+NOTE: You don't need the `path` or `with_mount_unit` keys; FCOS knows that the root partition is special and will figure out how to find it and mount it.
