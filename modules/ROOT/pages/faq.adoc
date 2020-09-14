@@ -116,6 +116,17 @@ Ignition equivalent.
 
 https://discussion.fedoraproject.org/t/launch-faq-how-are-fedora-coreos-nodes-provisioned-can-i-re-use-existing-cloud-init-configurations/49/1[Discuss on discussion.fedoraproject.org]
 
+== What data persists across upgrades and reboots?
+
+The directories `/etc` and `/var` are mounted as read-write which lets users
+write and modify files.
+
+The directory `/etc` may be changed by deployments, but will not override user
+made changes. The content under `/var` is left untouched by rpm-ostree when
+applying upgrades or rollbacks. For more information, refer to the
+https://rpm-ostree.readthedocs.io/en/latest/manual/administrator-handbook/#filesystem-layout[filesystem
+layout].
+
 == How do I migrate from Container Linux to Fedora CoreOS?
 
 Migrations can be accomplished by re-provisioning the machine with
