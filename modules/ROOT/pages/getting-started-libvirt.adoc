@@ -19,8 +19,8 @@ VM_NAME="fcos-test-01"
 RAM_MB="2048"
 DISK_GB="10"
 
-virt-install --connect qemu:///system -n "${VM_NAME}" -r "${RAM_MB}" --os-variant=fedora32 \
-        --import --graphics=none --disk "size=${DISK_GB},backing_store=${IMAGE}" \
+virt-install --connect="qemu:///system" --name="${VM_NAME}" --memory="${RAM_MB}" --os-variant="fedora32" \
+        --import --graphics="none" --disk="size=${DISK_GB},backing_store=${IMAGE}" \
         --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${IGNITION_CONFIG}"
 ----
 
