@@ -1,11 +1,4 @@
 packages:
-  # Fast track ostree 2020.6
-  # https://github.com/coreos/fedora-coreos-tracker/issues/617
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-eb29bce63d
-  ostree:
-    evra: 2020.6-2.fc32.ppc64le
-  ostree-libs:
-    evra: 2020.6-2.fc32.ppc64le
   # Fast-track console-login-helper-messages release
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-ac71e211b4
   # New updates in console-login-helper-messages v0.19 are required for 
@@ -19,14 +12,6 @@ packages:
     evra: 0.19-1.fc32.noarch
   console-login-helper-messages-profile:
     evra: 0.19-1.fc32.noarch
-  # Fast track afterburn 4.5.1
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-84e7af0cba
-  # Afterburn 4.5.1 includes https://github.com/coreos/afterburn/pull/481
-  # so https://github.com/coreos/fedora-coreos-config/pull/571 not blocked.
-  afterburn:
-    evra: 4.5.1-1.fc32.ppc64le
-  afterburn-dracut:
-    evra: 4.5.1-1.fc32.ppc64le
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-af9f9ccb12
   # To get root-on-LUKS earlier for testing
   # 14-1 is in stable, but is missing some fixes
