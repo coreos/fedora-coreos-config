@@ -23,3 +23,10 @@ packages:
     evra: 14-4.fc32.aarch64
   clevis-systemd:
     evra: 14-4.fc32.aarch64
+  # Fast-track catatonit 0.1.5-3. For some reason the package went
+  # backwards in Fedora because rhcontainerbot built 0.1.5-1 *after*
+  # lokesh had built 0.1.5-2. Let's fast-track 0.1.5-3 so we don't
+  # downgrade catatonit, which is currently what is happening.
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-33358ae219
+  catatonit:
+    evra: 0.1.5-3.fc32.aarch64
