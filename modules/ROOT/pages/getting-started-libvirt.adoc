@@ -21,7 +21,8 @@ RAM_MB="3072"
 DISK_GB="10"
 
 virt-install --connect="qemu:///system" --name="${VM_NAME}" --vcpus="${VCPUS}" --memory="${RAM_MB}" \
-        --os-variant="fedora32" --import --graphics="none" --disk="size=${DISK_GB},backing_store=${IMAGE}" \
+        --os-variant="fedora32" --import --graphics="none" \
+        --disk="size=${DISK_GB},backing_store=${IMAGE}" \
         --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${IGNITION_CONFIG}"
 ----
 
