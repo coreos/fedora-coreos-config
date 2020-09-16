@@ -16,11 +16,12 @@ coreos-installer download -s "${STREAM}" -p qemu -f qcow2.xz --decompress -C ~/.
 IGNITION_CONFIG="/path/to/example.ign"
 IMAGE="/path/to/image.qcow2"
 VM_NAME="fcos-test-01"
-RAM_MB="2048"
+VCPUS="3"
+RAM_MB="3072"
 DISK_GB="10"
 
-virt-install --connect="qemu:///system" --name="${VM_NAME}" --memory="${RAM_MB}" --os-variant="fedora32" \
-        --import --graphics="none" --disk="size=${DISK_GB},backing_store=${IMAGE}" \
+virt-install --connect="qemu:///system" --name="${VM_NAME}" --vcpus="${VCPUS}" --memory="${RAM_MB}" \
+        --os-variant="fedora32" --import --graphics="none" --disk="size=${DISK_GB},backing_store=${IMAGE}" \
         --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${IGNITION_CONFIG}"
 ----
 
