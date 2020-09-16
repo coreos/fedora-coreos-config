@@ -1,6 +1,6 @@
 = Configuring Storage
 
-Fedora CoreOS ships with a simple default storage layout: the root partition is the last one and expands to take the full size of the disk. Apart from the boot partition, all data is stored on the root partition.
+Fedora CoreOS ships with a simple default storage layout: the root partition is the last one and expands to take the full size of the disk. Apart from the boot partition, all data is stored on the root partition. See the xref:#_disk_layout[Disk layout section] for more details.
 
 Below, we provide examples of various ways you can customize this.
 
@@ -174,3 +174,69 @@ storage:
 ----
 
 NOTE: You don't need the `path` or `with_mount_unit` keys; FCOS knows that the root partition is special and will figure out how to find it and mount it.
+
+== Disk Layout
+
+All Fedora CoreOS systems start with the same disk image which varies slightly between architectures based on what is needed for bootloading. On first boot the root filesystem is expanded to fill the rest of the disk. The disk image can be customized using Fedora CoreOS configs to repartition the disk and create/reformat filesystems. Bare metal installations are not different; the installer only copies the raw image to the target disk and injects the specified config into `/boot` for use on first boot.
+
+NOTE: The boot partition cannot be reformatted, deleted, or moved.
+
+NOTE: See xref:#_reconfiguring_the_root_filesystem[Reconfiguring the root filesystem] for examples regarding the supported changes to the root partition.
+
+=== Partition Tables
+
+Using partition numbers to refer to specific partitions is discouraged and labels or UUIDs should be used instead. Fedora CoreOS reserves the `boot`, `root`, `BIOS-BOOT` and `EFI-SYSTEM` labels. Creating partitions or filesystems with those labels is not supported.
+
+=== x86_64 Partition Table
+
+The x86_64 disk image is GPT formatted with a protective MBR. It supports booting via both BIOS and UEFI (including Secure Boot).
+
+.Partition Table for x86_64
+|============================================================================================
+| Number | Label      | Description                                          | Partition Type
+| 1      | boot       | Contains GRUB configuration, kernel/initramfs images | ext4
+| 2      | EFI-SYSTEM | Contains EFI GRUB image and Secure Boot shim         | FAT32
+| 3      | BIOS-BOOT  | Contains BIOS GRUB image                             | raw data
+| 4      | root       | Contains the root filesystem                         | xfs
+|============================================================================================
+
+The EFI-SYSTEM partition can be deleted or reformatted when BIOS booting. Similarly, the BIOS-BOOT partition can be deleted or reformatted when
+EFI booting.
+
+== Mounted Filesystems
+
+Fedora CoreOS uses OSTree, which is a system for managing multiple bootable operating system trees that share storage. This is distinct from e.g. Container Linux which used a dual partition system. In Fedora CoreOS each operating system version will be part of the `/` filesystem.  All deployments share the same `/var` which can be on the same filesystem, or mounted separately.
+
+This shows the default mountpoints for a Fedora CoreOS system installed on a `/dev/vda` disk:
+
+.Default mountpoints on x86_64
+[source,bash]
+----
+$ findmnt --real # Some details are elided
+TARGET        SOURCE                                                   FSTYPE  OPTIONS
+/             /dev/vda4[/ostree/deploy/fedora-coreos/deploy/$hash]     xfs     rw
+|-/sysroot    /dev/vda4                                                xfs     ro
+|-/etc        /dev/vda4[/ostree/deploy/fedora-coreos/deploy/$hash/etc] xfs     rw
+|-/usr        /dev/vda4[/ostree/deploy/fedora-coreos/deploy/$hash/usr] xfs     ro
+|-/var        /dev/vda4[/ostree/deploy/fedora-coreos/deploy/var]       xfs     rw
+`-/boot       /dev/vda1                                                ext4    rw
+  `-/boot/efi /dev/vda2                                                vfat    rw
+----
+
+=== Immutable `/`, read only `/usr`
+
+As OSTree is used to manage all files belonging to the operating system, the `/` and `/usr` mountpoints are not writable. Any changes to the operating system should be applied via https://coreos.github.io/rpm-ostree/administrator-handbook/[`rpm-ostree`].
+
+Similarly, the `/boot` and `/boot/efi` mountpoints are managed by `rpm-ostree` and changes must not be directly performed by an administrator in those directories. They are not yet mounted as read only but this is expected to change in the future.
+
+Adding top level directories (i.e. `/foo`) is currently unsupported and disallowed by the immutable attribute.
+
+The *real* `/` (as in the root of the filesystem in the `root` partition) is mounted readonly in `/sysroot` and must not be accessed or modified directly.
+
+=== Configuration in `/etc` and state in `/var`
+
+The only supported writable locations are `/etc` and `/var`. `/etc` should contain only configuration files and is not expected to store data. All data must be kept under `/var` and will not be touched by system upgrades. Traditional places that might hold state (e.g. `/home`, or `/srv`) are symlinks to directories in `/var` (e.g. `/var/home` or `/var/srv`).
+
+=== Version selection and bootup
+
+A GRUB menu entry is created for each version of Fedora CoreOS currently available on a system. This menu entry references an `ostree` deployment which consist of a Linux kernel, an initramfs and a hash linking to an `ostree` commit (passed via the `ostree=` kernel argument). During bootup, `ostree` will read this kernel argument to determine which deployment to use as the root filesystem. Each update or change to the system (package installation, addition of kernel arguments) creates a new deployment. This enables rolling back to a previous deployment if the update causes problems.
