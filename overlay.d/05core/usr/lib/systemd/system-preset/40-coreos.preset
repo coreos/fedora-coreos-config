@@ -14,6 +14,8 @@ enable afterburn-checkin.service
 enable afterburn-firstboot-checkin.service
 # Target to write SSH key snippets from cloud providers.
 enable afterburn-sshkeys.target
+# And the main Afterburn service itself for cloud metadata.
+enable afterburn.service
 # Service to write SSH key snippets from cloud providers.
 enable afterburn-sshkeys@.service
 # Update agent
