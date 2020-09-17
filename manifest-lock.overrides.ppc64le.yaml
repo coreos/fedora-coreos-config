@@ -1,4 +1,15 @@
 packages:
+  # Fast-track new kernel. This kernel has both a fix for a recent
+  # CVE and a fix for a recent set of NFS issues.
+  # https://bugzilla.redhat.com/show_bug.cgi?id=1875699
+  # https://bugzilla.redhat.com/show_bug.cgi?id=1873720
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-9f10c3dfae
+  kernel:
+   evra: 5.8.10-200.fc32.ppc64le
+  kernel-core:
+   evra: 5.8.10-200.fc32.ppc64le
+  kernel-modules:
+   evra: 5.8.10-200.fc32.ppc64le
   # Fast track podman 2.0.6
   # https://github.com/coreos/fedora-coreos-tracker/issues/575
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-0c1986cdf7
