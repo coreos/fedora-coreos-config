@@ -12,6 +12,8 @@ enable ignition-firstboot-complete.service
 # Boot checkin services for cloud providers.
 enable afterburn-checkin.service
 enable afterburn-firstboot-checkin.service
+# Target to write SSH key snippets from cloud providers.
+enable afterburn-sshkeys.target
 # Service to write SSH key snippets from cloud providers.
 enable afterburn-sshkeys@.service
 # Update agent
