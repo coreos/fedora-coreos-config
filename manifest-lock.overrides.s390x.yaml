@@ -1,1 +1,32 @@
 packages:
+  # Fast-track console-login-helper-messages release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-ac71e211b4
+  # New updates in console-login-helper-messages v0.19 are required for 
+  # c-l-h-m's kola tests to pass, and subsequently have c-l-h-m added to the 
+  # CoreOS CI.
+  console-login-helper-messages:
+    evra: 0.19-1.fc32.noarch
+  console-login-helper-messages-issuegen:
+    evra: 0.19-1.fc32.noarch
+  console-login-helper-messages-motdgen:
+    evra: 0.19-1.fc32.noarch
+  console-login-helper-messages-profile:
+    evra: 0.19-1.fc32.noarch
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-af9f9ccb12
+  # To get root-on-LUKS earlier for testing
+  # 14-1 is in stable, but is missing some fixes
+  clevis:
+    evra: 14-4.fc32.s390x
+  clevis-dracut:
+    evra: 14-4.fc32.s390x
+  clevis-luks:
+    evra: 14-4.fc32.s390x
+  clevis-systemd:
+    evra: 14-4.fc32.s390x
+  # Fast-track catatonit 0.1.5-3. For some reason the package went
+  # backwards in Fedora because rhcontainerbot built 0.1.5-1 *after*
+  # lokesh had built 0.1.5-2. Let's fast-track 0.1.5-3 so we don't
+  # downgrade catatonit, which is currently what is happening.
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-33358ae219
+  catatonit:
+    evra: 0.1.5-3.fc32.s390x
