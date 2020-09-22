@@ -41,3 +41,19 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-33358ae219
   catatonit:
     evra: 0.1.5-3.fc32.aarch64
+  # Fast-track systemd 245.8-2 to support preset operations for 
+  # non-service instantiated units.
+  # related to https://github.com/coreos/ignition/issues/1064
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-0d29e88946
+  systemd:
+    evra: 245.8-2.fc32.aarch64
+  systemd-container:
+    evra: 245.8-2.fc32.aarch64  
+  systemd-libs:
+    evra: 245.8-2.fc32.aarch64
+  systemd-pam:
+    evra: 245.8-2.fc32.aarch64
+  systemd-rpm-macros:
+    evra: 245.8-2.fc32.noarch
+  systemd-udev:
+    evra: 245.8-2.fc32.aarch64
