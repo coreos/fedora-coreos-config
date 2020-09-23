@@ -1,4 +1,8 @@
 packages:
+  # Fast-track podman-2.1.0-2.fc32 for baking on the `next` stream.
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-76fcd0ba34
+  podman:                            
+    evra: 2:2.1.0-2.fc32.aarch64
   # Fast-track console-login-helper-messages release
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-9701ebbdfd
   # Update fixes the issue where a large amount of errors occur
