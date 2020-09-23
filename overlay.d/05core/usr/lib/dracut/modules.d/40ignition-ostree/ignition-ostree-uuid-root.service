@@ -1,0 +1,22 @@
+[Unit]
+Description=Ignition OSTree: Regenerate filesystem UUID (root)
+# These conditions match mount-firstboot-sysroot.service
+DefaultDependencies=false
+ConditionKernelCommandLine=!root
+ConditionKernelCommandLine=ostree
+ConditionPathExists=!/run/ostree-live
+Before=initrd-root-fs.target
+After=ignition-disks.service
+
+# Avoid racing with fsck
+Before=systemd-fsck@dev-disk-by\x2dlabel-boot.service
+
+# Note we don't have a Requires: /dev/disk/by-label/root here like
+# the -subsequent service does because ignition-disks may have
+# regenerated it.
+Before=ignition-ostree-mount-firstboot-sysroot.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/ignition-ostree-firstboot-uuid root

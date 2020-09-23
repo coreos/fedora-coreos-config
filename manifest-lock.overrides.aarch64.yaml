@@ -1,27 +1,22 @@
 packages:
-  # Pin podman major version for now while we let the next major
-  # version soak in the `next` stream.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/560
+  # Fast-track new kernel. This kernel has both a fix for a recent
+  # CVE and a fix for a recent set of NFS issues.
+  # https://bugzilla.redhat.com/show_bug.cgi?id=1875699
+  # https://bugzilla.redhat.com/show_bug.cgi?id=1873720
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-9f10c3dfae
+  kernel:
+   evra: 5.8.10-200.fc32.aarch64
+  kernel-core:
+   evra: 5.8.10-200.fc32.aarch64
+  kernel-modules:
+   evra: 5.8.10-200.fc32.aarch64
+  # Fast track podman 2.0.6
+  # https://github.com/coreos/fedora-coreos-tracker/issues/575
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-0c1986cdf7
   podman:
-    evra: 2:1.9.3-1.fc32.aarch64
+    evra: 2:2.0.6-1.fc32.aarch64
   podman-plugins:
-    evra: 2:1.9.3-1.fc32.aarch64
-  # Fast-track new Ignition release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-646408ac29
-  ignition:
-    evra: 2.6.0-2.git947598e.fc32.aarch64
-  # Fast-track coreos-installer release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-651a2bec22
-  coreos-installer:
-    evra: 0.5.0-1.fc32.aarch64
-  coreos-installer-bootinfra:
-    evra: 0.5.0-1.fc32.aarch64
-  # Fast-track afterburn release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-2b573e2ac6
-  afterburn:
-    evra: 4.5.0-1.fc32.aarch64
-  afterburn-dracut:
-    evra: 4.5.0-1.fc32.aarch64
+    evra: 2:2.0.6-1.fc32.aarch64
   # Fast track ostree 2020.6
   # https://github.com/coreos/fedora-coreos-tracker/issues/617
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-eb29bce63d
