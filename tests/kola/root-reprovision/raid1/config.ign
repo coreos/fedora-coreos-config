@@ -1,0 +1,25 @@
+{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "raid": [
+      {
+        "devices": [
+          "/dev/disk/by-id/virtio-disk1",
+          "/dev/disk/by-id/virtio-disk2"
+        ],
+        "level": "raid1",
+        "name": "foobar"
+      }
+    ],
+    "filesystems": [
+      {
+        "device": "/dev/md/foobar",
+        "format": "xfs",
+        "wipeFilesystem": true,
+        "label": "root"
+      }
+    ]
+  }
+}
