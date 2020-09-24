@@ -418,11 +418,9 @@ destroy_vm() {
 create_ignition_file() {
     local fcctconfig=$1
     local ignitionfile=$2
-    if [ "$rhcos" == 1 ]; then
-        echo "$fcctconfig" | fcct --strict | ign-converter -downtranslate -output $ignitionfile
-    else
+    # uncomment and use ign-converter instead if on rhcos less than 4.6
+    #echo "$fcctconfig" | fcct --strict | ign-converter -downtranslate -output $ignitionfile
         echo "$fcctconfig" | fcct --strict --output $ignitionfile
-    fi
     chcon --verbose unconfined_u:object_r:svirt_home_t:s0 $ignitionfile &>/dev/null
 }
 
@@ -480,12 +478,6 @@ main() {
         bls_file=ostree-1-fedora-coreos.conf
     fi
     nics="${nic0},${nic1}"
-
-    if [ "$rhcos" == 1 ]; then
-        # We need ign-converter from https://github.com/coreos/ign-converter
-        # to be somewhere in our path
-        check_requirement ign-converter
-    fi
 
     #Here is an example where you can quickly hack the initramfs and
     #add files that you want to use to test (when developing). For
