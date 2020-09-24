@@ -1,7 +1,7 @@
 ref: fedora/${basearch}/coreos/next
 include: manifests/fedora-coreos.yaml
 
-releasever: "32"
+releasever: "33"
 
 rojig:
   license: MIT
@@ -13,3 +13,10 @@ repos:
 
 add-commit-metadata:
   fedora-coreos.stream: next
+
+# Move this section back into fedora-coreos-base.yaml once all streams are
+# on Fedora 33.
+packages:
+  # fedora-repos-modular was converted into its own subpackage in f33
+  # Continue to include it in case users want to use it.
+  - fedora-repos-modular
