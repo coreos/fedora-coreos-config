@@ -52,6 +52,10 @@ elif [[ $nm_ts -gt $switchroot_ts ]] && on_platform aws; then
 fi
 ok conditional initrd networking
 
+if ! test -f /usr/share/licenses/fedora-coreos-config/LICENSE; then
+    fatal missing LICENSE
+fi
+
 # check that no files are unlabeled
 unlabeled=$(find /var /etc -context '*:unlabeled_t:*')
 if [ -n "${unlabeled}" ]; then
@@ -60,3 +64,10 @@ if [ -n "${unlabeled}" ]; then
     exit 1
 fi
 ok no files with unlabeled_t SELinux label
+
+# make sure we stick with bdb until we're ready to move to sqlite
+# https://github.com/coreos/fedora-coreos-tracker/issues/623
+if [ ! -f /usr/share/rpm/Packages ]; then
+    fatal "Didn't find bdb file /usr/share/rpm/Packages"
+fi
+ok rpmdb is bdb

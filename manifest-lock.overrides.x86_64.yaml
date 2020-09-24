@@ -1,26 +1,53 @@
 packages:
-  # Fast-track new kernel. This kernel has both a fix for a recent
-  # CVE and a fix for a recent set of NFS issues.
-  # https://bugzilla.redhat.com/show_bug.cgi?id=1875699
-  # https://bugzilla.redhat.com/show_bug.cgi?id=1873720
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-9f10c3dfae
-  kernel:
-   evra: 5.8.10-200.fc32.x86_64
-  kernel-core:
-   evra: 5.8.10-200.fc32.x86_64
-  kernel-modules:
-   evra: 5.8.10-200.fc32.x86_64
-  # Fast track podman 2.0.6
-  # https://github.com/coreos/fedora-coreos-tracker/issues/575
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-0c1986cdf7
-  podman:
-    evra: 2:2.0.6-1.fc32.x86_64
-  podman-plugins:
-    evra: 2:2.0.6-1.fc32.x86_64
-  # Fast track ostree 2020.6
-  # https://github.com/coreos/fedora-coreos-tracker/issues/617
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-eb29bce63d
-  ostree:
-    evra: 2020.6-2.fc32.x86_64
-  ostree-libs:
-    evra: 2020.6-2.fc32.x86_64
+  # Fast-track podman-2.1.0-2.fc32 for baking on the `next` stream.
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-76fcd0ba34
+  podman:                            
+    evra: 2:2.1.0-2.fc32.x86_64
+  # Fast-track console-login-helper-messages release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-9701ebbdfd
+  # Update fixes the issue where a large amount of errors occur
+  # when the `console-login-helper-messages` %pre script runs during
+  # a `cosa build`.
+  # https://bugzilla.redhat.com/show_bug.cgi?id=1879233
+  console-login-helper-messages:
+    evra: 0.19-2.fc32.noarch
+  console-login-helper-messages-issuegen:
+    evra: 0.19-2.fc32.noarch
+  console-login-helper-messages-motdgen:
+    evra: 0.19-2.fc32.noarch
+  console-login-helper-messages-profile:
+    evra: 0.19-2.fc32.noarch
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-af9f9ccb12
+  # To get root-on-LUKS earlier for testing
+  # 14-1 is in stable, but is missing some fixes
+  clevis:
+    evra: 14-4.fc32.x86_64
+  clevis-dracut:
+    evra: 14-4.fc32.x86_64
+  clevis-luks:
+    evra: 14-4.fc32.x86_64
+  clevis-systemd:
+    evra: 14-4.fc32.x86_64
+  # Fast-track catatonit 0.1.5-3. For some reason the package went
+  # backwards in Fedora because rhcontainerbot built 0.1.5-1 *after*
+  # lokesh had built 0.1.5-2. Let's fast-track 0.1.5-3 so we don't
+  # downgrade catatonit, which is currently what is happening.
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-33358ae219
+  catatonit:
+    evra: 0.1.5-3.fc32.x86_64
+  # Fast-track systemd 245.8-2 to support preset operations for 
+  # non-service instantiated units.
+  # related to https://github.com/coreos/ignition/issues/1064
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-0d29e88946
+  systemd:
+    evra: 245.8-2.fc32.x86_64
+  systemd-container:
+    evra: 245.8-2.fc32.x86_64
+  systemd-libs:
+    evra: 245.8-2.fc32.x86_64
+  systemd-pam:
+    evra: 245.8-2.fc32.x86_64
+  systemd-rpm-macros:
+    evra: 245.8-2.fc32.noarch
+  systemd-udev:
+    evra: 245.8-2.fc32.x86_64
