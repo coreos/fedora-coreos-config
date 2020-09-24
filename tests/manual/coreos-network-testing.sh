@@ -400,9 +400,9 @@ check_vm() {
 reboot_vm() {
     echo "Rebooting domain: $vmname"
     # The reboot after a virt-install --install will not boot the VM
-    # back up so `virsh reboot` && `virsh start`
-    virsh reboot $vmname 1>/dev/null
-    sleep 5
+    # back up. Let's use `virsh shutdown` && `virsh start` instead
+    virsh shutdown $vmname 1>/dev/null
+    sleep 10
     virsh start $vmname 1>/dev/null
 }
 
