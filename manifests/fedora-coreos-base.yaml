@@ -172,3 +172,8 @@ packages-ppc64le:
   - irqbalance
 packages-aarch64:
   - irqbalance
+
+# See https://github.com/coreos/bootupd
+arch-include:
+  x86_64: bootupd.yaml
+  aarch64: bootupd.yaml
