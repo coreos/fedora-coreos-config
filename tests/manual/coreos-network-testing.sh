@@ -376,7 +376,7 @@ check_vm() {
     # with `wc -l <<< $keyfiles`.
     if [ ${detectedkeyfiles} != ${numkeyfiles} ]; then
         rc=1
-        echo "ERROR: Incorrect number of NM keyfiles created" 1>&2 
+        echo "ERROR: Expected ${numkeyfiles} NM keyfiles, found ${detectedkeyfiles}" 1>&2
     fi
 
     # verify that the nameserver got set
