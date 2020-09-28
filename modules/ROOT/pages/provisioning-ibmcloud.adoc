@@ -1,0 +1,106 @@
+= Provisioning Fedora CoreOS on IBM Cloud
+
+This guide shows how to provision new Fedora CoreOS (FCOS) instances in IBM Cloud VPC Generation 2.
+
+== Prerequisites
+
+Before provisioning a FCOS instance, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+You also need to have access to an https://cloud.ibm.com/login[IBM Cloud account]. The examples below use the https://cloud.ibm.com/docs/cli?topic=cli-getting-started[`ibmcloud`] command-line tool, which must be separately installed and configured beforehand. There are also several pieces that need to be in place first, like a VPC, SSH keys, networks, permissions, etc. Unfortunately, this guide is not a comprehensive IBM Cloud guide. If you are new to IBM Cloud please familiarize yourself using https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started[the documentation for VPC Gen2] first.
+
+Regarding the `ibmcloud` CLI, it is worth noting that it is supported to run the CLI https://cloud.ibm.com/docs/cli?topic=cli-using-idt-from-docker[via a container]. You'll need both the `cloud-object-storage` and `infrastructure-service` plugins installed. This can be done with:
+
+ * `ibmcloud plugin install cloud-object-storage`
+ * `ibmcloud plugin install infrastructure-service`
+
+After you've logged in using `ibmcloud login` you can set a target region:
+
+.Target a specific region
+[source, bash]
+----
+REGION='us-east' # run `ibmcloud regions` to view options
+ibmcloud target -r $REGION
+----
+
+=== Creating an Image
+
+The following sets of commands will show you how to download the most recent image for a stream, upload it to cloud storage, and then create the cloud image in IBM Cloud. It is worth noting that Fedora CoreOS comes in three streams, with different update schedules per stream. These steps show the `stable` stream as an example, but can be used for other streams too.
+
+
+.Fetch the latest image suitable for your target stream (or https://getfedora.org/coreos/download/[download and verify] it from the web).
+[source, bash]
+----
+STREAM='stable'
+coreos-installer download -s "${STREAM}" -p ibmcloud -f qcow2.xz --decompress
+----
+
+.Create a Service Account for uploading and an Authorization Policy to allow creating images from the uploaded objects.
+[source, bash]
+----
+BUCKET='my-unique-bucket'
+ibmcloud resource service-instance-create "${BUCKET}-service-instance" cloud-object-storage standard global
+
+SERVICE_INSTANCE_ID='25df0db0-89a4-4cb8-900f-ed8b44259f80' # from just created service account
+ibmcloud iam authorization-policy-create is --source-resource-type image cloud-object-storage Reader --target-service-instance-id $SERVICE_INSTANCE_ID 
+----
+
+.Upload the fetched image file to IBM Cloud Object Storage.
+[source, bash]
+----
+FCOS_VERSION='...'
+FILE=fedora-coreos-${FCOS_VERSION}-ibmcloud.x86_64.qcow2
+ibmcloud cos create-bucket --bucket $BUCKET --ibm-service-instance-id $SERVICE_INSTANCE_ID
+ibmcloud cos upload --bucket=$BUCKET --key=$FILE --file=$FILE
+----
+
+.Create the image from the storage object.
+[source, bash]
+----
+IMAGE=${FILE:0:-6}     # pull off .qcow2
+IMAGE=${IMAGE//[._]/-} # replace . and _ with -
+ibmcloud is image-create $IMAGE --file "cos://${REGION}/${BUCKET}/${FILE}" --os-name centos-7-amd64
+----
+
+NOTE: Specifying `--os-name centos-7-amd64` is required for now until IBM expands the list of OS types.
+
+You'll have to wait for the image creation process to finish and go from `pending` to `available` before you can use the image. Monitor with the following command:
+
+.Monitor image creation progress by viewing the images in your account
+[source, bash]
+----
+ibmcloud is images --visibility private
+----
+
+== Launching a VM instance
+
+Now that you have an image created in your account you can launch a VM instance. You'll have to specify several pieces of information in the command. Embedded in the example below are tips for how to grab that information before launching an instance.
+
+You'll also need the Ignition config you created earlier. Here it is represented in the example command as `@example.ign`, which indicates a file in the current directory named `example.ign`.
+
+.Lauching a VM instance
+[source, bash]
+----
+NAME='instance1'
+ZONE="${REGION}-1" # view more with `ibmcloud is zones`
+PROFILE='bx2-2x8' # view more with `ibmcloud is instance-profiles`
+VPC='r014-c9c65cc4-cfd3-44de-ad54-865aac182ea1'    # `ibmcloud is vpcs`
+IMAGE='r014-1823b4cf-9c63-499e-8a27-b771be714ad8'  # `ibmcloud is images --visibility private`
+SUBNET='0777-bf99cbf4-bc82-4c46-895a-5b7304201182' # `ibmcloud is subnets`
+SSHKEY='r014-b44c37d0-5c21-4c2b-aba2-438a5b0a228d' # `ibmcloud is keys`
+ibmcloud is instance-create $NAME $VPC $ZONE $PROFILE $SUBNET --image-id $IMAGE --key-ids $SSHKEY --user-data @example.ign
+----
+
+TIP: If needed you may have to first create a subnet with a command like `'ibmcloud is subnet-create my-subnet $VPC --ipv4-address-count 256 --zone $ZONE'`.
+
+Next, if you'd like to SSH into the instance from outside IBM Cloud, you can assign a public IP to the instance:
+
+.Create and Assign a Floating IP
+[source, bash]
+----
+ibmcloud is floating-ip-reserve floating-ip-1 --zone=$ZONE
+FIP='72251a2e-d6c5-42b4-97b0-b5f8e8d1f479'
+NIC='0777-dd174c80-dbd9-41b1-b221-39bbcef8a481' # find from `ibmcloud is instance` output
+ibmcloud is floating-ip-update $FIP --nic-id $NIC
+----
+
+And you now should be able to SSH into the instance using the IP address associated with the floating IP.
