@@ -1,1 +1,5 @@
-packages: {}
+packages:
+  # Fast-track zincati-0.0.13-1.fc32
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-5c6383c702
+  zincati:
+    evra: 0.0.13-1.fc32.ppc64le
