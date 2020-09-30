@@ -1,15 +1,1 @@
-packages:
-  # Fast-track console-login-helper-messages release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-9701ebbdfd
-  # Update fixes the issue where a large amount of errors occur
-  # when the `console-login-helper-messages` %pre script runs during
-  # a `cosa build`.
-  # https://bugzilla.redhat.com/show_bug.cgi?id=1879233
-  console-login-helper-messages:
-    evra: 0.19-2.fc32.noarch
-  console-login-helper-messages-issuegen:
-    evra: 0.19-2.fc32.noarch
-  console-login-helper-messages-motdgen:
-    evra: 0.19-2.fc32.noarch
-  console-login-helper-messages-profile:
-    evra: 0.19-2.fc32.noarch
+packages: {}
