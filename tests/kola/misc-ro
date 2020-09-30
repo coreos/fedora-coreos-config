@@ -20,8 +20,25 @@ get_journal_msg_timestamp() {
         | jq -r --slurp '.[0]["__MONOTONIC_TIMESTAMP"]'
 }
 
-systemctl is-enabled logrotate.service
-ok logrotate
+# Test some services are enabled or disabled appropriately
+for unit in logrotate; do
+    if ! systemctl is-enabled ${unit} 1>/dev/null; then
+        fatal "Unit ${unit} should be enabled"
+    fi
+done
+# systemd-resolved should be disabled on f32 but
+# enabled on f33+.
+source /etc/os-release
+if systemctl is-enabled systemd-resolved 1>/dev/null; then
+    if [ "$VERSION_ID" == "32" ]; then
+        fatal "Unit ${unit} should not be enabled"
+    fi
+else
+    if [ "$VERSION_ID" != "32" ]; then
+        fatal "Unit ${unit} should be enabled"
+    fi
+fi
+ok services
 
 # https://github.com/coreos/fedora-coreos-config/commit/2a5c2abc796ac645d705700bf445b50d4cda8f5f
 if ip link | grep -o -e " eth[0-9]:"; then
