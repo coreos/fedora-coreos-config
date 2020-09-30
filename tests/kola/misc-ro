@@ -59,6 +59,9 @@ ok LICENSE
 
 case "$(arch)" in
     x86_64|aarch64)
+        if runuser -u core -- ls /boot/efi &>/dev/null; then
+            fatal "Was able to access /boot/efi as non-root"
+        fi
         if systemctl is-enabled bootupd.socket; then
             fatal "Not expecting bootupd.socket to be enabled"
         fi
