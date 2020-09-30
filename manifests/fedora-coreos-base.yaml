@@ -40,18 +40,6 @@ check-groups:
 
 default-target: multi-user.target
 
-remove-from-packages:
-  # We're not using networkd.
-  - [systemd, /etc/systemd/networkd.conf,
-              /usr/lib/systemd/systemd-networkd,
-              /usr/lib/systemd/systemd-networkd-wait-online,
-              /usr/lib/systemd/network/.*,
-              /usr/lib/systemd/system/systemd-networkd.service,
-              /usr/lib/systemd/system/systemd-networkd.socket,
-              /usr/lib/systemd/system/systemd-networkd-wait-online.service]
-  - [systemd-container, /usr/lib/systemd/network/.*]
-
-
 remove-files:
   # We don't ship man(1) or info(1)
   - usr/share/info
