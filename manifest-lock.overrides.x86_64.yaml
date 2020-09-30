@@ -3,3 +3,9 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-5c6383c702
   zincati:
     evra: 0.0.13-1.fc32.x86_64
+  # Fast-track coreos-installer 0.7.0
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-2188476aa5
+  coreos-installer:
+    evra: 0.7.0-2.fc32.x86_64
+  coreos-installer-bootinfra:
+    evra: 0.7.0-2.fc32.x86_64
