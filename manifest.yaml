@@ -24,6 +24,20 @@ lockfile-repos:
 add-commit-metadata:
   fedora-coreos.stream: testing-devel
 
+# Put this in manifest.yaml for now and we'll delete when we move to
+# F33 where all of these files have been broken out to the systemd-networkd
+# subpackage.
+remove-from-packages:
+  # We're not using networkd.
+  - [systemd, /etc/systemd/networkd.conf,
+              /usr/lib/systemd/systemd-networkd,
+              /usr/lib/systemd/systemd-networkd-wait-online,
+              /usr/lib/systemd/network/.*,
+              /usr/lib/systemd/system/systemd-networkd.service,
+              /usr/lib/systemd/system/systemd-networkd.socket,
+              /usr/lib/systemd/system/systemd-networkd-wait-online.service]
+  - [systemd-container, /usr/lib/systemd/network/.*]
+
 postprocess:
   # Disable Zincati and fedora-coreos-pinger on non-production streams
   # https://github.com/coreos/fedora-coreos-tracker/issues/163
