@@ -36,7 +36,7 @@ test_setup() {
     pushd $(mktemp -d)
     NTPHOSTIP=$(getent hosts time-c-g.nist.gov | cut -d ' ' -f 1)
     cat <<EOF >Dockerfile
-FROM registry.fedoraproject.org/fedora:32
+FROM registry.fedoraproject.org/fedora:33
 RUN dnf -y install systemd dnsmasq iproute iputils \
 && dnf clean all \
 && systemctl enable dnsmasq
