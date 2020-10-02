@@ -33,10 +33,11 @@ fi
 # device that systemd will fsck. This code ensures that if the label
 # is backed by a device-mapper target the dev-mapper.*.device is used.
 mk_mount() {
-    local unit_name="${1}.mount"; shift
+    local mount_pt="${1}"; shift
     local label="${1}"; shift
-    local mount_pt="${1:-/$label}"
     local path="/dev/disk/by-label/${label}"
+
+    local unit_name=$(systemd-escape -p ${mount_pt} --suffix=mount)
 
     eval $(udevadm info --query property --export "${path}")
     device="$(systemd-escape ${path})"
@@ -70,13 +71,13 @@ EOF
 # ConditionPathExists won't work here because conditions don't affect
 # the dependency on the underlying device unit.
 if [ ! -f /run/ostree-live ]; then
-    mk_mount boot boot
+    mk_mount /boot boot
 
     # Only mount the EFI System Partition on machines where it exists,
     # which are 1) machines actually booted through EFI, and 2) x86_64
     # when booted through BIOS.
     if [ "$(uname -m)" = "x86_64" -o -d /sys/firmware/efi ]; then
-        mk_mount boot-efi EFI-SYSTEM "/boot/efi"
+        mk_mount /boot/efi EFI-SYSTEM
         # In the general case the ESP might have per-machine or private
         # data on it.  Let's not make it world readable on general
         # principle.
