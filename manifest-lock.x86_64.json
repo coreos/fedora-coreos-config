@@ -46,16 +46,16 @@
       "evra": "1:2.8-8.fc32.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.11.22-1.fc32.x86_64"
+      "evra": "32:9.11.23-1.fc32.x86_64"
     },
     "bind-libs-lite": {
-      "evra": "32:9.11.22-1.fc32.x86_64"
+      "evra": "32:9.11.23-1.fc32.x86_64"
     },
     "bind-license": {
-      "evra": "32:9.11.22-1.fc32.noarch"
+      "evra": "32:9.11.23-1.fc32.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.11.22-1.fc32.x86_64"
+      "evra": "32:9.11.23-1.fc32.x86_64"
     },
     "bootupd": {
       "evra": "0.1.2-2.fc32.x86_64"
@@ -112,16 +112,16 @@
       "evra": "2:2.0.21-2.fc32.x86_64"
     },
     "console-login-helper-messages": {
-      "evra": "0.19-2.fc32.noarch"
+      "evra": "0.20.1-1.fc32.noarch"
     },
     "console-login-helper-messages-issuegen": {
-      "evra": "0.19-2.fc32.noarch"
+      "evra": "0.20.1-1.fc32.noarch"
     },
     "console-login-helper-messages-motdgen": {
-      "evra": "0.19-2.fc32.noarch"
+      "evra": "0.20.1-1.fc32.noarch"
     },
     "console-login-helper-messages-profile": {
-      "evra": "0.19-2.fc32.noarch"
+      "evra": "0.20.1-1.fc32.noarch"
     },
     "container-selinux": {
       "evra": "2:2.145.0-1.fc32.noarch"
@@ -133,13 +133,13 @@
       "evra": "0.8.7-1.fc32.x86_64"
     },
     "containers-common": {
-      "evra": "1:1.1.1-1.fc32.x86_64"
+      "evra": "1:1.1.1-5.fc32.x86_64"
     },
     "coreos-installer": {
-      "evra": "0.6.0-1.fc32.x86_64"
+      "evra": "0.7.0-3.fc32.x86_64"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.6.0-1.fc32.x86_64"
+      "evra": "0.7.0-3.fc32.x86_64"
     },
     "coreutils": {
       "evra": "8.32-4.fc32.1.x86_64"
@@ -154,7 +154,7 @@
       "evra": "2.9.6-22.fc32.x86_64"
     },
     "crun": {
-      "evra": "0.14.1-5.fc32.x86_64"
+      "evra": "0.15-5.fc32.x86_64"
     },
     "crypto-policies": {
       "evra": "20200619-1.git781bbd4.fc32.noarch"
@@ -439,13 +439,13 @@
       "evra": "2.2.0-1.fc32.noarch"
     },
     "kernel": {
-      "evra": "5.8.11-200.fc32.x86_64"
+      "evra": "5.8.12-200.fc32.x86_64"
     },
     "kernel-core": {
-      "evra": "5.8.11-200.fc32.x86_64"
+      "evra": "5.8.12-200.fc32.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.8.11-200.fc32.x86_64"
+      "evra": "5.8.12-200.fc32.x86_64"
     },
     "keyutils": {
       "evra": "1.6-4.fc32.x86_64"
@@ -877,10 +877,10 @@
       "evra": "1.77-4.fc32.x86_64"
     },
     "ostree": {
-      "evra": "2020.6-2.fc32.x86_64"
+      "evra": "2020.6-4.fc32.x86_64"
     },
     "ostree-libs": {
-      "evra": "2020.6-2.fc32.x86_64"
+      "evra": "2020.6-4.fc32.x86_64"
     },
     "p11-kit": {
       "evra": "0.23.21-2.fc32.x86_64"
@@ -916,10 +916,7 @@
       "evra": "1.6.3-3.fc32.x86_64"
     },
     "podman": {
-      "evra": "2:2.0.6-1.fc32.x86_64"
-    },
-    "podman-plugins": {
-      "evra": "2:2.0.6-1.fc32.x86_64"
+      "evra": "2:2.1.1-7.fc32.x86_64"
     },
     "policycoreutils": {
       "evra": "3.0-2.fc32.x86_64"
@@ -1012,7 +1009,7 @@
       "evra": "15-8.x86_64"
     },
     "skopeo": {
-      "evra": "1:1.1.1-1.fc32.x86_64"
+      "evra": "1:1.1.1-5.fc32.x86_64"
     },
     "slang": {
       "evra": "2.3.2-7.fc32.x86_64"
@@ -1102,7 +1099,7 @@
       "evra": "2.35.2-1.fc32.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.1551-1.fc32.x86_64"
+      "evra": "2:8.2.1770-1.fc32.x86_64"
     },
     "which": {
       "evra": "2.21-19.fc32.x86_64"
@@ -1126,23 +1123,23 @@
       "evra": "1.1.5-2.fc32.x86_64"
     },
     "zincati": {
-      "evra": "0.0.12-2.fc32.x86_64"
+      "evra": "0.0.13-1.fc32.x86_64"
     },
     "zlib": {
       "evra": "1.2.11-21.fc32.x86_64"
     }
   },
   "metadata": {
-    "generated": "2020-09-30T16:15:20Z",
+    "generated": "2020-10-03T19:34:06Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-04-22T22:22:36Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2020-09-28T16:00:53Z"
+        "generated": "2020-10-03T03:22:57Z"
       },
       "fedora-updates": {
-        "generated": "2020-09-30T01:57:02Z"
+        "generated": "2020-10-03T01:36:58Z"
       }
     }
   }
