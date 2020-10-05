@@ -1,5 +1,5 @@
 #!/bin/bash
-# kola: {"platforms": "qemu", "minMemory": 4096}
+# kola: {"platforms": "qemu", "minMemory": 6144}
 set -xeuo pipefail
 
 fstype=$(findmnt -nvr / -o FSTYPE)

@@ -1,5 +1,5 @@
 #!/bin/bash
-# kola: {"platforms": "qemu", "minMemory": 4096, "additionalDisks": ["5G", "5G"]}
+# kola: {"platforms": "qemu", "minMemory": 6144, "additionalDisks": ["5G", "5G"]}
 set -xeuo pipefail
 
 srcdev=$(findmnt -nvr / -o SOURCE)
