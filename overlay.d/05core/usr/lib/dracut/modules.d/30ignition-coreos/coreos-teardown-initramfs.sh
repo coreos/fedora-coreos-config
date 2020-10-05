@@ -64,34 +64,60 @@ propagate_initramfs_networking() {
 
 # Propagate the ip= karg hostname if desired. The policy here is:
 #
-#     - IF a hostname is specified in static networking ip= kargs
+#     - IF a hostname was detected in ip= kargs by NetworkManager
 #     - AND no hostname was set via Ignition (realroot `/etc/hostname`)
-#     - THEN we make the last hostname specified in an ip= karg apply
-#       permanently by writing it into `/etc/hostname`
+#     - THEN we make the hostname detected by NM apply permanently
+#       by writing it into `/etc/hostname`
 #
-# This may no longer be needed when the following bug is fixed:
-# https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/419
 propagate_initramfs_hostname() {
     if [ -e '/sysroot/etc/hostname' ]; then
         echo "info: hostname is defined in the real root"
         echo "info: will not attempt to propagate initramfs hostname"
         return 0
     fi
-    # Detect if any hostname was provided via static ip= kargs
-    # run in a subshell so we don't pollute our environment
-    hostnamefile=$(mktemp)
-    (
-        last_nonempty_hostname=''
-        # Inspired from ifup.sh from the 40network dracut module. Note that
-        # $hostname from ip_to_var will only be nonempty for static networking.
-        for iparg in $(dracut_func getargs ip=); do
-            dracut_func ip_to_var $iparg
-            [ -n "${hostname:-}" ] && last_nonempty_hostname="$hostname"
-        done
-        echo -n "$last_nonempty_hostname" > $hostnamefile
-    )
-    hostname=$(<$hostnamefile); rm $hostnamefile
-    if [ -n "$hostname" ]; then
+
+    # COMPAT: keep two code paths, one for older NetworkManager and
+    #         one for newer NetworkManager that supports writing to
+    #         /run/NetworkManager/initrd/hostname. We can delete this
+    #         block once RHCOS and FCOS minimum NM version is >= 1.26.0
+    #         See https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/commit/ff70adf
+    barrierversion='1.26.0'
+    nmversion=$(/usr/sbin/NetworkManager --version)
+    sorted=$((echo $barrierversion; echo $nmversion) | sort -V | tail -n 1)
+    if [ $sorted == $barrierversion ]; then
+        # The version of NM on the system is older than we need
+        # execute compat code in this block.
+        echo "info: NM version is older than $barrierversion. Executing compat code path."
+
+        # Detect if any hostname was provided via static ip= kargs
+        # run in a subshell so we don't pollute our environment
+        hostnamefile=$(mktemp)
+        (
+            last_nonempty_hostname=''
+            # Inspired from ifup.sh from the 40network dracut module. Note that
+            # $hostname from ip_to_var will only be nonempty for static networking.
+            for iparg in $(dracut_func getargs ip=); do
+                dracut_func ip_to_var $iparg
+                [ -n "${hostname:-}" ] && last_nonempty_hostname="$hostname"
+            done
+            echo -n "$last_nonempty_hostname" > $hostnamefile
+        )
+        hostname=$(<$hostnamefile); rm $hostnamefile
+        if [ -n "$hostname" ]; then
+            echo "info: propagating initramfs hostname (${hostname}) to the real root"
+            echo $hostname > /sysroot/etc/hostname
+            selinux_relabel /etc/hostname
+        else
+            echo "info: no initramfs hostname information to propagate"
+        fi
+        return 0
+    fi
+
+    # If any hostname was provided NetworkManager will write it out to
+    # /run/NetworkManager/initrd/hostname. See
+    # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/merge_requests/481
+    if [ -s /run/NetworkManager/initrd/hostname ]; then
+        hostname=$(</run/NetworkManager/initrd/hostname)
         echo "info: propagating initramfs hostname (${hostname}) to the real root"
         echo $hostname > /sysroot/etc/hostname
         selinux_relabel /etc/hostname
