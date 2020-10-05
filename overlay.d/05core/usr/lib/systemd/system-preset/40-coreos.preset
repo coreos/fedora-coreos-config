@@ -2,9 +2,9 @@
 enable coreos-growpart.service
 # console-login-helper-messages - https://github.com/coreos/console-login-helper-messages
 enable console-login-helper-messages-issuegen.path
-enable console-login-helper-messages-issuegen.service
 enable console-login-helper-messages-motdgen.path
-enable console-login-helper-messages-motdgen.service
+enable console-login-helper-messages-gensnippet-os-release.service
+enable console-login-helper-messages-gensnippet-ssh-keys.service
 # CA certs (probably to add to base fedora eventually)
 enable coreos-update-ca-trust.service
 # This one is from https://github.com/coreos/ignition-dracut
@@ -12,6 +12,8 @@ enable ignition-firstboot-complete.service
 # Boot checkin services for cloud providers.
 enable afterburn-checkin.service
 enable afterburn-firstboot-checkin.service
+# Target to write SSH key snippets from cloud providers.
+enable afterburn-sshkeys.target
 # Service to write SSH key snippets from cloud providers.
 enable afterburn-sshkeys@.service
 # Update agent
