@@ -191,6 +191,13 @@ For more about this, please refer to xref:running-containers.adoc[documentation]
 
 https://discussion.fedoraproject.org/t/launch-faq-how-do-i-run-custom-applications-on-fedora-coreos/55/1[Discuss on discussion.fedoraproject.org]
 
+== Where is my preferred tool for troubleshooting?
+
+The FCOS image is kept minimal by design. Not every troubleshooting tool are
+included by default. Instead, it is recommended to use the `toolbox` utility.
+
+xref:debugging-with-toolbox.adoc[Debugging with Toolbox].
+
 == How do I coordinate cluster-wide OS updates? Is locksmith or the Container Linux Update Operator available for Fedora CoreOS?
 
 The `etcd-lock` feature from https://github.com/coreos/locksmith[locksmith] has
