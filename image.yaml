@@ -20,6 +20,11 @@ ostree-remote: fedora
 # https://github.com/ostreedev/ostree/issues/1265
 sysroot-readonly: true
 
+# For now, temporarily use the coreos-installer from COSA in order
+# to work around https://github.com/coreos/coreos-assembler/issues/1761
+# when building F33 based FCOS.
+osmet-pack-with-cosa-coreinst: true
+
 # After this, we plan to add support for the Ignition
 # storage/filesystems sections.  (Although one can do
 # that on boot as well)
