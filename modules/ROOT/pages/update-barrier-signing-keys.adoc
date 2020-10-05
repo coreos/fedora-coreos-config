@@ -1,0 +1,39 @@
+= Signing keys and updates
+
+All binary artifacts, ostree commits, and OS images belonging to Fedora and Fedora CoreOS (FCOS) are signed via GPG. The current set of trusted signing keys is available at https://getfedora.org/security/.
+
+== Keys rotation and update barriers
+
+At the beginning of every new Fedora major release cycle, a new signing key is generated and its public portion published on the Fedora website. The new key will be later used to sign new artifacts, replacing the currently used one. This is done in order to establish an automatic chain of trust from an older release to a more recent one, which can be possibly signed by a different newer key.
+
+In order to make automatic updates of Fedora CoreOS work across major Fedora releases, the above set of embedded signing key is refreshed at least once per Fedora release cycle. When that happens, an update barrier is put in place in the FCOS update graph.
+
+The primary reason for such update barrier is to make sure that older (and possibly stale) instances automatically receive and trust newly generated keys. This is achieved by forcing such machines to progressively catch up on intermediate updates (signed by an already trusted key) before jumping to the latest published release.
+
+== Example
+
+Taking the Fedora 32 release cycle as an example, in the beginning FCOS images only know about signing keys for 32 and 33 majors:
+
+----
+$ grep OSTREE /etc/os-release 
+OSTREE_VERSION='32.20200615.3.0'
+
+$ ls -v /usr/etc/pki/rpm-gpg/*primary | tail -3
+/usr/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-31-primary
+/usr/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-32-primary
+/usr/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-33-primary
+----
+
+Later in that release cycle, the signing key is generated for future Fedora 34 releases and added to FCOS. A barrier is put in place in FCOS update graph, for example on release `32.20200907.3.0`. Inspecting that image shows the following:
+
+----
+$ grep OSTREE /etc/os-release 
+OSTREE_VERSION='32.20200907.3.0'
+
+$ ls -v /usr/etc/pki/rpm-gpg/*primary | tail -3
+/usr/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-32-primary
+/usr/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-33-primary
+/usr/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-34-primary
+----
+
+With this barrier in place, older instances must first upgrade to `32.20200907.3.0` in order to make sure they know (and trust) the signing key for Fedora 34, before being able to upgrade to new releases based on that.
