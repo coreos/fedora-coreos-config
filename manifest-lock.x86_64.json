@@ -400,7 +400,7 @@
       "evra": "3.23-3.fc33.x86_64"
     },
     "hwdata": {
-      "evra": "0.339-1.fc33.noarch"
+      "evra": "0.340-1.fc33.noarch"
     },
     "ignition": {
       "evra": "2.6.0-2.git947598e.fc33.x86_64"
@@ -463,13 +463,13 @@
       "evra": "2.3.0-2.fc33.noarch"
     },
     "kernel": {
-      "evra": "5.8.12-300.fc33.x86_64"
+      "evra": "5.8.13-300.fc33.x86_64"
     },
     "kernel-core": {
-      "evra": "5.8.12-300.fc33.x86_64"
+      "evra": "5.8.13-300.fc33.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.8.12-300.fc33.x86_64"
+      "evra": "5.8.13-300.fc33.x86_64"
     },
     "keyutils": {
       "evra": "1.6-5.fc33.x86_64"
@@ -916,19 +916,19 @@
       "evra": "1.11.1-2.fc33.x86_64"
     },
     "oniguruma": {
-      "evra": "6.9.5-2.rev1.fc33.1.x86_64"
+      "evra": "6.9.5-3.rev1.fc33.x86_64"
     },
     "openldap": {
       "evra": "2.4.50-5.fc33.x86_64"
     },
     "openssh": {
-      "evra": "8.3p1-4.fc33.x86_64"
+      "evra": "8.4p1-1.1.fc33.x86_64"
     },
     "openssh-clients": {
-      "evra": "8.3p1-4.fc33.x86_64"
+      "evra": "8.4p1-1.1.fc33.x86_64"
     },
     "openssh-server": {
-      "evra": "8.3p1-4.fc33.x86_64"
+      "evra": "8.4p1-1.1.fc33.x86_64"
     },
     "openssl": {
       "evra": "1:1.1.1g-15.fc33.x86_64"
@@ -985,7 +985,7 @@
       "evra": "1.7.3-2.fc33.x86_64"
     },
     "podman": {
-      "evra": "2:2.1.1-10.fc33.x86_64"
+      "evra": "2:2.1.1-9.fc33.x86_64"
     },
     "policycoreutils": {
       "evra": "3.1-4.fc33.x86_64"
@@ -1208,16 +1208,13 @@
     }
   },
   "metadata": {
-    "generated": "2020-10-05T22:20:09Z",
+    "generated": "2020-10-06T21:06:27Z",
     "rpmmd_repos": {
-      "coreos-assembler-local-overrides": {
-        "generated": "2020-10-05T22:19:52Z"
-      },
       "fedora-coreos-pool": {
-        "generated": "2020-10-05T16:21:27Z"
+        "generated": "2020-10-06T20:41:49Z"
       },
       "fedora-next": {
-        "generated": "2020-10-05T10:31:13Z"
+        "generated": "2020-10-06T17:34:30Z"
       },
       "fedora-updates": {
         "generated": "2018-02-20T19:18:14Z"
