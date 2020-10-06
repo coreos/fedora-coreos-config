@@ -131,3 +131,46 @@ storage:
 ----
 
 NOTE: You don't need the `path` or `with_mount_unit` keys; FCOS knows that the root partition is special and will figure out how to find it and mount it.
+
+== Encrypted storage (LUKS)
+
+Here is an example to configure a LUKS device at `/var/lib/data`.
+
+[source.yaml]
+----
+variant: fcos
+version: 1.2.0-experimental
+storage:
+  luks:
+    - name: data
+      device: /dev/vdb
+  filesystems:
+    - path: /var/lib/data
+      device: /dev/mapper/data
+      format: xfs
+      label: DATA
+      with_mount_unit: true
+----
+
+The root filesystem can also be moved to LUKS. In the case of the root filesystem the LUKS device must be backed by https://github.com/coreos/ignition/blob/master/docs/operator-notes.md#clevis-based-devices[clevis].
+
+.Moving the root filesystem to LUKS
+[source.yaml]
+----
+variant: fcos
+version: 1.2.0-experimental
+storage:
+  luks:
+    - name: root
+      device: /dev/disk/by-partlabel/root
+      clevis:
+        tpm2: true
+      wipe_volume: true
+  filesystems:
+    - device: /dev/mapper/root
+      format: xfs
+      wipe_filesystem: true
+      label: root
+----
+
+NOTE: You don't need the `path` or `with_mount_unit` keys; FCOS knows that the root partition is special and will figure out how to find it and mount it.
