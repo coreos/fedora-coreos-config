@@ -41,7 +41,7 @@ fi
 # refuse to return any filesystem type at all.
 eval $(blkid -o export "${src}")
 case "${TYPE:-}" in
-    xfs|ext4) ;;
+    xfs|ext4|btrfs) ;;
     *) echo "error: Unsupported filesystem for ${path}: '${TYPE:-}'" 1>&2; exit 1 ;;
 esac
 
@@ -64,9 +64,16 @@ if [[ "${src}" =~ "/dev/mapper" ]]; then
         exit 0
     fi
 else
-    # Handle traditional disk/partitions
-    majmin=$(findmnt -nvr -o MAJ:MIN "$path" | tail -n1)
-    devpath=$(realpath "/sys/dev/block/$majmin")
+    if test "${TYPE:-}" = "btrfs"; then
+        # Theoretically btrfs can have multiple devices, but when
+        # we start we will always have exactly one.
+        devpath=$(btrfs device usage /sysroot | grep /dev | cut -f 1 -d ,)
+        devpath=$(realpath /sys/class/block/${devpath#/dev/})
+    else
+        # Handle traditional disk/partitions
+        majmin=$(findmnt -nvr -o MAJ:MIN "$path" | tail -n1)
+        devpath=$(realpath "/sys/dev/block/$majmin")
+    fi
     partition="${partition:-$(cat "$devpath/partition")}"
     parent_path=$(dirname "$devpath")
     parent_device=/dev/$(basename "${parent_path}")
@@ -85,6 +92,7 @@ wipefs -af -t "no${TYPE}" "${src}"
 case "${TYPE}" in
     xfs) xfs_growfs "${path}" ;;
     ext4) resize2fs "${src}" ;;
+    btrfs) btrfs filesystem resize max ${path} ;;
 esac
 
 # this is useful for tests
