@@ -9,3 +9,15 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-99d3d89771
   podman:
     evra: 2:2.1.1-11.fc33.ppc64le
+  # Fast-track fedora-repos-33-0.14 to get archive repo
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-868d76a5eb
+  fedora-repos:
+    evra: 33-0.14.noarch
+  fedora-repos-ostree:
+    evra: 33-0.14.noarch
+  fedora-repos-archive:
+    evra: 33-0.14.noarch
+  fedora-repos-modular:
+    evra: 33-0.14.noarch
+  fedora-gpg-keys:
+    evra: 33-0.14.noarch
