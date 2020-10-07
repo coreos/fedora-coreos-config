@@ -5,3 +5,7 @@ packages:
     evra: 0.7.0-4.fc33.s390x
   coreos-installer-bootinfra:
     evra: 0.7.0-4.fc33.s390x
+  # Fast-track podman-2.1.1-11.fc33
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-99d3d89771
+  podman:
+    evra: 2:2.1.1-11.fc33.s390x
