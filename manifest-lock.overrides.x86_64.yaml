@@ -22,3 +22,13 @@ packages:
     evra: 0.20.1-1.fc32.noarch
   console-login-helper-messages-profile:
     evra: 0.20.1-1.fc32.noarch
+  # Fast-track fedora-repos-32-7 to get archive repo
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-ab02250f9d
+  fedora-repos:
+    evra: 32-7.noarch
+  fedora-repos-ostree:
+    evra: 32-7.noarch
+  fedora-repos-archive:
+    evra: 32-7.noarch
+  fedora-gpg-keys:
+    evra: 32-7.noarch
