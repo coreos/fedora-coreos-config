@@ -1,1 +1,7 @@
-packages: {}
+packages:
+  # Fast-track coreos-installer 0.7.0-4
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-20d5ab2cd7
+  coreos-installer:
+    evra: 0.7.0-4.fc33.s390x
+  coreos-installer-bootinfra:
+    evra: 0.7.0-4.fc33.s390x
