@@ -5,3 +5,17 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: podman.workflow
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
+# The ext.config.chrony.dhcp-propagation test is failing on Fedora 33
+# for now. Exclude running the test on `next` and `next-devel`.
+- pattern: ext.config.chrony.dhcp-propagation
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/643
+  streams:
+    - next
+    - next-devel
+# The ext.config.root-reprovision* tests are failing on Fedora 33
+# for now. Exclude running the test on `next` and `next-devel`.
+- pattern: ext.config.root-reprovision.*
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/644
+  streams:
+    - next
+    - next-devel

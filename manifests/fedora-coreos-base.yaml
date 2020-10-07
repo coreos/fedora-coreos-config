@@ -40,29 +40,6 @@ check-groups:
 
 default-target: multi-user.target
 
-remove-from-packages:
-  # We're not using resolved yet.
-  - [systemd, /usr/lib/systemd/systemd-resolved,
-              /usr/lib/systemd/system/systemd-resolved.service]
-  # We're not using networkd.
-  - [systemd, /etc/systemd/networkd.conf,
-              /usr/lib/systemd/systemd-networkd,
-              /usr/lib/systemd/systemd-networkd-wait-online,
-              /usr/lib/systemd/network/.*,
-              /usr/lib/systemd/system/systemd-networkd.service,
-              /usr/lib/systemd/system/systemd-networkd.socket,
-              /usr/lib/systemd/system/systemd-networkd-wait-online.service]
-  - [systemd-container, /usr/lib/systemd/network/.*]
-
-
-remove-files:
-  # We don't ship man(1) or info(1)
-  - usr/share/info
-  - usr/share/man
-  # Drop text docs too
-  - usr/share/doc
-
-
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos.yaml
 postprocess:
@@ -83,6 +60,41 @@ postprocess:
     set -xeuo pipefail
     setsebool -P -N container_use_cephfs on  # RHBZ#1692369
     setsebool -P -N virt_use_samba on  # RHBZ#1754825
+
+  # No tracker issue filed. This handled build environment variation.
+  # In order to make chrony use NTP settings from DHCP 
+  # (https://github.com/coreos/fedora-coreos-config/pull/412), we need 
+  # to chmod the following files to unset the writable permissions.
+  # Git tracks only the executable bit of the permissions so when
+  # the files get pulled locally they could have the group write bit set.
+  # When that happens we get an error like:
+  # `Cannot execute '/etc/NetworkManager/dispatcher.d/20-coreos-chrony-dhcp': writable by group or other`
+  - |
+    #!/usr/bin/env bash
+    chmod 755 /etc/NetworkManager/dispatcher.d/20-coreos-chrony-dhcp
+    chmod 755 /usr/libexec/coreos-chrony-helper
+    chmod 755 /usr/lib/systemd/system-generators/coreos-platform-chrony
+
+  # For F33 let's re-enable RSA-SHA1 keys for now so our kola tests will
+  # work. The plan is to only re-enable this briefly while we wait for
+  # an upstream feature [1] to be implemented. We had moved to an ecdsa
+  # key [2] but AWS doesn't support non RSA keys [3] so we reverted it
+  # for now in [4].
+  #
+  # [1] https://github.com/golang/go/issues/37278#issuecomment-704287991
+  # [2] https://github.com/coreos/coreos-assembler/pull/1749
+  # [3] https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#how-to-generate-your-own-key-and-import-it-to-aws
+  # [4] https://github.com/coreos/coreos-assembler/pull/1767
+  - |
+    #!/usr/bin/env bash
+    source /etc/os-release
+    if [ "$VERSION_ID" != "32" ]; then
+       cat > /etc/ssh/sshd_config.d/10-fcos-insecure-rsa-key.conf <<EOF
+    # For now allow RSA-SHA1 keys.
+    # https://github.com/coreos/coreos-assembler/issues/1772
+    PubkeyAcceptedKeyTypes=+ssh-rsa
+    EOF
+    fi
 
 packages:
   # Security
@@ -143,6 +155,8 @@ packages:
   - openssl
   - vim-minimal
   - lsof
+  # Provides terminal tools like clear, reset, tput, and tset
+  - ncurses
   # file-transfer: note fuse-sshfs is not in RHEL
   # so we can't put it in file-transfer.yaml
   - fuse-sshfs
@@ -172,3 +186,8 @@ packages-ppc64le:
   - irqbalance
 packages-aarch64:
   - irqbalance
+
+# See https://github.com/coreos/bootupd
+arch-include:
+  x86_64: bootupd.yaml
+  aarch64: bootupd.yaml

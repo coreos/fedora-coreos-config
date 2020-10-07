@@ -66,6 +66,13 @@ remove-from-packages:
   # overlay.d/14NetworkManager-plugins
   - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
 
+remove-files:
+  # We don't ship man(1) or info(1)
+  - usr/share/info
+  - usr/share/man
+  # Drop text docs too
+  - usr/share/doc
+
 # Things we don't expect to ship on the host.  We currently
 # have recommends: false so these could only come in via
 # hard requirement, in which case the build will fail.

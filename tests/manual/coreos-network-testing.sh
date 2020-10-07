@@ -70,6 +70,7 @@ fcct_static_nic0_ifcfg='
           NAME=ethernet-${nic0}
           DEVICE=${nic0}
           ONBOOT=yes
+          DNS1=${nameserverstatic}
     - path: /etc/sysconfig/network-scripts/ifcfg-${nic1}
       mode: 0600
       contents:
@@ -91,7 +92,7 @@ fcct_static_nic0='
           interface-name=${nic0}
           [ipv4]
           address1=${ip}/${prefix},${gateway}
-          dns=${nameserver};
+          dns=${nameserverstatic};
           dns-search=
           may-fail=false
           method=manual
@@ -123,7 +124,7 @@ fcct_static_team0='
           config={"runner": {"name": "activebackup"}, "link_watch": {"name": "ethtool"}}
           [ipv4]
           address1=${ip}/${prefix},${gateway}
-          dns=${nameserver};
+          dns=${nameserverstatic};
           dns-search=
           may-fail=false
           method=manual
@@ -166,7 +167,7 @@ fcct_static_bond0='
           mode=active-backup
           [ipv4]
           address1=${ip}/${prefix},${gateway}
-          dns=${nameserver};
+          dns=${nameserverstatic};
           dns-search=
           may-fail=false
           method=manual
@@ -203,7 +204,7 @@ fcct_static_br0='
           [bridge]
           [ipv4]
           address1=${ip}/${prefix},${gateway}
-          dns=${nameserver};
+          dns=${nameserverstatic};
           dns-search=
           may-fail=false
           method=manual
@@ -273,10 +274,12 @@ start_vm() {
 check_vm() {
     local dhcp=$1
     local interfaces=$2
-    local ip=$3
-    local dev=$4
-    local hostname=$5
-    local sshkeyfile=$6
+    local numkeyfiles=$3
+    local ip=$4
+    local dev=$5
+    local hostname=$6
+    local nameserver=$7
+    local sshkeyfile=$8
     local ssh_config=' -o CheckHostIP=no'
     ssh_config+=' -o UserKnownHostsFile=/dev/null'
     ssh_config+=' -o StrictHostKeyChecking=no'
@@ -294,7 +297,7 @@ check_vm() {
         echo "Waiting a bit to give networking some time"
         sleep 30 # wait a long enough time for real root networking to be brought up
         ip=$(ip -j neighbor show dev virbr0 | jq -r ".[] | select(.lladdr == \"${mac}\").dst")
-        echo "Detected IP address is ${ip}"
+        echo "Detected IP address is '${ip}'"
         if [ -z "$ip" ]; then
             echo -e "\nCould not detect DHCP ipv4 address" 2>&1
             return 1
@@ -357,12 +360,34 @@ check_vm() {
     #   ]
     ipinfo=$($ssh ip -j -4 -o address show up)
     hostnameinfo=$($ssh hostnamectl | grep 'Static hostname')
+    resolvedotconf=$($ssh cat /etc/resolv.conf)
+    keyfiles=$($ssh ls /etc/NetworkManager/system-connections/)
+    detectedkeyfiles=$($ssh ls /etc/NetworkManager/system-connections/ | wc -l)
     rc=0
 
     # verify that the hostname is correct
     if [[ ! $hostnameinfo =~ "Static hostname: $hostname" ]]; then
         rc=1
         echo "ERROR: Hostname information was not what was expected" 1>&2
+    fi
+
+    # verify that the right number of NetworkManager keyfiles got created
+    # use `echo -n | wc -l` so we can properly detect 0. Wasn't working
+    # with `wc -l <<< $keyfiles`.
+    if [ ${detectedkeyfiles} != ${numkeyfiles} ]; then
+        rc=1
+        echo "ERROR: Expected ${numkeyfiles} NM keyfiles, found ${detectedkeyfiles}" 1>&2
+    fi
+
+    # verify that the nameserver got set
+    if grep systemd-resolved &>/dev/null <<< "$resolvedotconf"; then
+        nameserverinfo=$($ssh resolvectl dns)
+    else
+        nameserverinfo="$resolvedotconf"
+    fi
+    if ! grep $nameserver &>/dev/null <<< "$nameserverinfo"; then
+        rc=1
+        echo "ERROR: Nameserver information was not what was expected" 1>&2
     fi
 
     # verify that there are the right number of ipv4 devices "up"
@@ -388,11 +413,13 @@ check_vm() {
 
     if [ "$rc" != '0' ]; then
         echo "$hostnameinfo"
+        echo "$nameserverinfo"
+        echo "$keyfiles"
         jq -r .[].addr_info[].dev 1>&2 <<< $ipinfo
         jq -r .[].addr_info[].local 1>&2 <<< $ipinfo
         true
     else
-        echo "Check for ${hostname} + ${dev}/${ip} passed!"
+        echo "Check for ${hostname} + dns:${nameserver} + ${dev}/${ip} passed!"
     fi
     return $rc
 }
@@ -400,9 +427,9 @@ check_vm() {
 reboot_vm() {
     echo "Rebooting domain: $vmname"
     # The reboot after a virt-install --install will not boot the VM
-    # back up so `virsh reboot` && `virsh start`
-    virsh reboot $vmname 1>/dev/null
-    sleep 5
+    # back up. Let's use `virsh shutdown` && `virsh start` instead
+    virsh shutdown $vmname 1>/dev/null
+    sleep 10
     virsh start $vmname 1>/dev/null
 }
 
@@ -418,11 +445,9 @@ destroy_vm() {
 create_ignition_file() {
     local fcctconfig=$1
     local ignitionfile=$2
-    if [ "$rhcos" == 1 ]; then
-        echo "$fcctconfig" | fcct --strict | ign-converter -downtranslate -output $ignitionfile
-    else
-        echo "$fcctconfig" | fcct --strict --output $ignitionfile
-    fi
+    # uncomment and use ign-converter instead if on rhcos less than 4.6
+    #echo "$fcctconfig" | fcct --strict | ign-converter -downtranslate -output $ignitionfile
+    echo "$fcctconfig" | fcct --strict --output $ignitionfile
     chcon --verbose unconfined_u:object_r:svirt_home_t:s0 $ignitionfile &>/dev/null
 }
 
@@ -433,7 +458,8 @@ main() {
     local netmask='255.255.255.0'
     local prefix='24'
     local gateway='192.168.122.1'
-    local nameserver='192.168.122.1'
+    local nameserverdhcp='192.168.122.1'
+    local nameserverstatic='208.67.222.222' # opendns server
     local initramfshostname='initrdhost'
     local kernel="${PWD}/coreos-nettest-kernel"
     local initramfs="${PWD}/coreos-nettest-initramfs"
@@ -481,12 +507,6 @@ main() {
     fi
     nics="${nic0},${nic1}"
 
-    if [ "$rhcos" == 1 ]; then
-        # We need ign-converter from https://github.com/coreos/ign-converter
-        # to be somewhere in our path
-        check_requirement ign-converter
-    fi
-
     #Here is an example where you can quickly hack the initramfs and
     #add files that you want to use to test (when developing). For
     # example if you want to test out coreos-teardown-initramfs-network.sh
@@ -505,8 +525,6 @@ main() {
     common_args+=' ignition.firstboot' # manually set ignition.firstboot
    #common_args+=' rd.break=pre-pivot'
 
-    # nameserver= doesn't work as I would expect
-    # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/issues/391
 
     # For net.ifnames=0 check (i.e., eth0 check)
     devname=eth0
@@ -518,31 +536,37 @@ main() {
     initramfs_dhcp_nic0=$x
 
     devname=$nic0
-    x="${common_args} rd.neednet=1 ip=${nic1}:off"
-    x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserver}"
+    x="${common_args} rd.neednet=1 ip=${nic0}:dhcp ip=${nic1}:dhcp"
+    initramfs_dhcp_nic0nic1=$x
+
+    # Have to add ipv6.disable=1 for Fedora 33+ because of
+    # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/539
+    devname=$nic0
+    x="${common_args} rd.neednet=1 ip=${nic1}:off ipv6.disable=1"
+    x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserverstatic}"
     initramfs_static_nic0=$x
 
     devname=bond0
     x="${common_args} rd.neednet=1"
-    x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserver}"
+    x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserverstatic}"
     x+=" bond=${devname}:${nics}:mode=active-backup,miimon=100"
     initramfs_static_bond0=$x
 
     devname=team0
     x="${common_args} rd.neednet=1"
-    x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserver}"
+    x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserverstatic}"
     x+=" team=${devname}:${nics}"
     initramfs_static_team0=$x
 
     devname=br0
     x="${common_args} rd.neednet=1"
-    x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserver}"
+    x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserverstatic}"
     x+=" bridge=${devname}:${nics}"
     initramfs_static_br0=$x
 
     # export these values so we can substitute the values
     # in using the envsubst command
-    export ip prefix nameserver gateway sshpubkey ignitionhostname nic0 nic1
+    export ip prefix nameserverstatic gateway sshpubkey ignitionhostname nic0 nic1
 
     fcct_none=$(echo "${fcct_common}" | envsubst)
     fcct_static_nic0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_nic0}" | envsubst)
@@ -561,9 +585,9 @@ main() {
         echo -e "\n###### Testing ifcfg file via Ignition disables initramfs propagation\n"
         create_ignition_file "$fcct_static_nic0_ifcfg" $ignitionfile
         start_vm $qcow $ignitionfile $kernel $initramfs "$initramfs_static_bond0"
-        check_vm 'none' 1 $ip $nic0 $ignitionhostname $sshkeyfile
+        check_vm 'none' 1 0 $ip $nic0 $ignitionhostname $nameserverstatic $sshkeyfile
         reboot_vm
-        check_vm 'none' 1 $ip $nic0 $ignitionhostname $sshkeyfile
+        check_vm 'none' 1 0 $ip $nic0 $ignitionhostname $nameserverstatic $sshkeyfile
         destroy_vm
     fi
 
@@ -573,9 +597,35 @@ main() {
     echo -e "\n###### Testing coreos.no_persist_ip disables initramfs propagation\n"
     create_ignition_file "$fcct_none" $ignitionfile
     start_vm $qcow $ignitionfile $kernel $initramfs "${initramfs_static_nic0} coreos.no_persist_ip"
-    check_vm 'dhcp' 2 $ip $nic0 'n/a' $sshkeyfile
+    check_vm 'dhcp' 2 0 $ip $nic0 'n/a' $nameserverdhcp $sshkeyfile
     reboot_vm
-    check_vm 'dhcp' 2 $ip $nic0 'n/a' $sshkeyfile
+    check_vm 'dhcp' 2 0 $ip $nic0 'n/a' $nameserverdhcp $sshkeyfile
+    destroy_vm
+
+    # Do a check for the `nameserver=` initramfs arg. Need to test along with
+    # the $initramfs_dhcp_nic0nic1 because that brings up more than one
+    # interface and is one that doesn't specify the nameserver as part of the
+    # ip= karg.
+    #
+    # The upstream bug [1] is multi-faceted and there are several checks that
+    # need to be done to verify it is fixed. The first is to verify that placing
+    # namesever= before ip= kargs doesn't yield an extra default.nm_connection
+    # file. The second is to verify that the nameserver entry gets placed into
+    # all connections that get created (i.e. ens2.nm_connection and ens3.nm_connection).
+    # 
+    # We'll perform the first check automatically in check_vm by verifying the
+    # number of keyfiles is 2, along with checking that the dns server did make
+    # it into the resolv.conf or resolvectl (systemd-resolvd). We won't
+    # automatically check that each file has the dns entry for now, but anyone
+    # can manually run this and grab a console to the VM and verify that.
+    # 
+    # [1] https://gitlab.freedesktop.org/NetworkManager/NetworkManager/issues/391
+    echo -e "\n###### Testing initramfs nameserver= option\n"
+    create_ignition_file "$fcct_none" $ignitionfile
+    start_vm $qcow $ignitionfile $kernel $initramfs "nameserver=${nameserverstatic} ${initramfs_dhcp_nic0nic1}"
+    check_vm 'dhcp' 2 2 $ip $nic0 'n/a' $nameserverstatic $sshkeyfile
+    reboot_vm
+    check_vm 'dhcp' 2 2 $ip $nic0 'n/a' $nameserverstatic $sshkeyfile
     destroy_vm
 
     # Do a `net.ifnames=0` check and make sure eth0 is the interface name.
@@ -583,7 +633,7 @@ main() {
     echo -e "\n###### Testing net.ifnames=0 gives us legacy NIC naming\n"
     create_ignition_file "$fcct_none" $ignitionfile
     start_vm $qcow $ignitionfile $kernel $initramfs "${initramfs_dhcp_eth0} net.ifnames=0"
-    check_vm 'dhcp' 2 $ip 'eth0' 'n/a' $sshkeyfile
+    check_vm 'dhcp' 2 1 $ip 'eth0' 'n/a' $nameserverdhcp $sshkeyfile
     # Don't reboot and do another check because we didn't persist the net.ifnames=0 karg
     # TODO persist the net.ifnames karg and do another check after a reboot.
     destroy_vm
@@ -609,21 +659,36 @@ main() {
         
     for initramfsnet in ${initramfsloop[@]}; do
         for fcctnet in ${fcctloop[@]}; do
-            method='none'; interfaces=1
+            method='none'; interfaces=1;
+            nameserver=${nameserverstatic}
+            numkeyfiles=3
             if [ "${fcctnet}" == 'none' ]; then
                 # because we propagate initramfs networking if no real root networking 
                 devname=${initramfsnet##*_}
                 hostname=${initramfshostname}
                 # If we're using dhcp for initramfs and not providing any real root 
-                # networking then we need to tell check_vm we're using DHCP
+                # networking then we need to tell check_vm we're using DHCP and set
+                # a few other values.
                 if [ "${initramfsnet}" == 'dhcp_nic0' ]; then
                     method='dhcp'
                     interfaces=2
+                    numkeyfiles=1
                     hostname='n/a'
+                    nameserver=${nameserverdhcp}
+                fi
+                # If we're not using a virtual NIC (bond, bridge, team, etc)
+                # then only two keyfiles will be created.
+                if [ "${initramfsnet}" == 'static_nic0' ]; then
+                    numkeyfiles=2
                 fi
             else
                 devname=${fcctnet##*_}
                 hostname=${ignitionhostname}
+                # If we're not using a virtual NIC (bond, bridge, team, etc)
+                # then only two keyfiles will be created.
+                if [ "${fcctnet}" == 'static_nic0' ]; then
+                    numkeyfiles=2
+                fi
             fi
             # If devname=nic0 then replace with ${nic0} variable
             [ $devname == "nic0" ] && devname=${nic0}
@@ -636,9 +701,9 @@ main() {
 
             create_ignition_file "$fcctconfig" $ignitionfile
             start_vm $qcow $ignitionfile $kernel $initramfs "${kernel_args}"
-            check_vm $method $interfaces $ip $devname $hostname $sshkeyfile
+            check_vm $method $interfaces $numkeyfiles $ip $devname $hostname $nameserver $sshkeyfile
             reboot_vm
-            check_vm $method $interfaces $ip $devname $hostname $sshkeyfile
+            check_vm $method $interfaces $numkeyfiles $ip $devname $hostname $nameserver $sshkeyfile
             destroy_vm
         done
     done
