@@ -1,6 +1,8 @@
 // Documentation: https://github.com/coreos/coreos-ci/blob/master/README-upstream-ci.md
 
-cosaPod {
+// Use the exttests container here in CI to get extra coverage; xref
+// https://github.com/coreos/coreos-assembler/pull/1745
+cosaPod(image: "registry.svc.ci.openshift.org/coreos/cosa-exttests:latest") {
     checkoutToDir(scm, 'config')
 
     shwrap("cd config && ci/validate")
