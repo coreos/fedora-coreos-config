@@ -1,11 +1,15 @@
 :page-partial:
 
-. Fetch the latest image suitable for the `qemu` platform (or https://getfedora.org/coreos/download/[download and verify] it from the web).
+. Fetch the latest image suitable for the `qemu` platform using `coreos-installer` (or https://getfedora.org/coreos/download/[download and verify] it from the web). You can use `coreos-installer` https://quay.io/repository/coreos/coreos-installer[as a container], or on Fedora install it from the repos.
 +
 [source, bash]
 ----
 STREAM="stable"
+# as an installed binary:
 coreos-installer download -s "${STREAM}" -p qemu -f qcow2.xz --decompress -C ~/.local/share/libvirt/images/
+# or as a container:
+podman run --pull=always --rm -v $HOME/.local/share/libvirt/images/:/data -w /data \
+    quay.io/coreos/coreos-installer:release download -s "${STREAM}" -p qemu -f qcow2.xz --decompress
 ----
 +
 
