@@ -61,20 +61,6 @@ postprocess:
     setsebool -P -N container_use_cephfs on  # RHBZ#1692369
     setsebool -P -N virt_use_samba on  # RHBZ#1754825
 
-  # No tracker issue filed. This handled build environment variation.
-  # In order to make chrony use NTP settings from DHCP 
-  # (https://github.com/coreos/fedora-coreos-config/pull/412), we need 
-  # to chmod the following files to unset the writable permissions.
-  # Git tracks only the executable bit of the permissions so when
-  # the files get pulled locally they could have the group write bit set.
-  # When that happens we get an error like:
-  # `Cannot execute '/etc/NetworkManager/dispatcher.d/20-coreos-chrony-dhcp': writable by group or other`
-  - |
-    #!/usr/bin/env bash
-    chmod 755 /etc/NetworkManager/dispatcher.d/20-coreos-chrony-dhcp
-    chmod 755 /usr/libexec/coreos-chrony-helper
-    chmod 755 /usr/lib/systemd/system-generators/coreos-platform-chrony
-
   # For F33 let's re-enable RSA-SHA1 keys for now so our kola tests will
   # work. The plan is to only re-enable this briefly while we wait for
   # an upstream feature [1] to be implemented. We had moved to an ecdsa
