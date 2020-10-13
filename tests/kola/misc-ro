@@ -61,6 +61,13 @@ if test -d /usr/share/info; then
     fatal "found /usr/share/info"
 fi
 
+# See https://github.com/coreos/coreos-assembler/pull/1786
+path=/usr/lib/systemd/system-generators/coreos-platform-chrony
+mode=$(stat -c '%a' ${path})
+if test "${mode}" != 555; then
+    fatal "For path ${path} expected mode 555, found ${mode}"
+fi
+
 switchroot_ts=$(get_journal_msg_timestamp 'Switching root.')
 nm_ts=$(get_journal_msg_timestamp 'NetworkManager .* starting')
 # by default, kola on QEMU shouldn't need to bring up networking
