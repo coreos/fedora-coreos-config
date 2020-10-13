@@ -14,8 +14,6 @@ packages:
 # bootloader
 packages-aarch64:
   - grub2-efi-aa64 efibootmgr shim
-packages-armhfp:
-  - extlinux-bootloader
 packages-ppc64le:
   - grub2 ostree-grub2
 packages-s390x:
