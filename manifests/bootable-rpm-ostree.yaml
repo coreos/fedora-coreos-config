@@ -17,7 +17,7 @@ packages-aarch64:
 packages-armhfp:
   - extlinux-bootloader
 packages-ppc64le:
-  - grub2 ostree-grub2
+  - grub2
 packages-s390x:
   - s390utils-base
 packages-x86_64:
