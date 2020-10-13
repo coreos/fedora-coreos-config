@@ -5,10 +5,6 @@ packages:
     evra: 0.7.0-4.fc33.x86_64
   coreos-installer-bootinfra:
     evra: 0.7.0-4.fc33.x86_64
-  # Fast-track podman-2.1.1-11.fc33
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-99d3d89771
-  podman:
-    evra: 2:2.1.1-11.fc33.x86_64
   # Fast-track fedora-repos-33-0.14 to get archive repo
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-868d76a5eb
   fedora-repos:
