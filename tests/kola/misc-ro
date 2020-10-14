@@ -115,3 +115,11 @@ if [ ! -f /usr/share/rpm/Packages ]; then
     fatal "Didn't find bdb file /usr/share/rpm/Packages"
 fi
 ok rpmdb is bdb
+
+# make sure we don't default to having swap on zram
+# https://github.com/coreos/fedora-coreos-tracker/issues/509
+# https://github.com/coreos/fedora-coreos-config/pull/687
+if [ -e /dev/zram0 ]; then
+    fatal "zram0 swap device set up on default install"
+fi
+ok no zram swap by default
