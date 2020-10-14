@@ -21,7 +21,7 @@ storage:
 ----
 
 == Using Udev Rules
-Similarly, also through Ignition configs, to name NIC with the MAC address `12:34:56:78:9a:bc` to "infra", create a xref:https://linux.die.net/man/8/udev[udev rule] at `/etc/udev/rules.d/80-ifname.rules` using the xref:fcct-config.adoc[FCCT] configuration snippet shown below:
+Similarly, also through Ignition configs, to name NIC with the MAC address `12:34:56:78:9a:bc` to "infra", create a https://man7.org/linux/man-pages/man7/udev.7.html[udev rule] at `/etc/udev/rules.d/80-ifname.rules` using the xref:fcct-config.adoc[FCCT] configuration snippet shown below:
 
 .Example: Customize NIC via Udev Rules
 [source,yaml]
