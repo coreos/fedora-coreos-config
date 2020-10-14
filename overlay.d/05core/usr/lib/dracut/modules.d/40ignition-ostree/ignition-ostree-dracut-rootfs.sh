@@ -29,8 +29,7 @@ case "${1:-}" in
         # This one is in a private mount namespace since we're not "offically" mounting
         mount "${rootdisk}" /sysroot
         echo "Restoring rootfs from RAM..."
-        cd "${saved_sysroot}"
-        find . -mindepth 1 -maxdepth 1 -exec mv -t /sysroot {} \;
+        find "${saved_sysroot}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot {} \;
         chattr +i $(ls -d /sysroot/ostree/deploy/*/deploy/*/)
         ;;
     *)
