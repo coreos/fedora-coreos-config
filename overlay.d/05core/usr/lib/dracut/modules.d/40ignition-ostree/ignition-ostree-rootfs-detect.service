@@ -15,3 +15,4 @@ After=systemd-udevd.service
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/libexec/ignition-ostree-dracut-rootfs detect
+ExecStop=/usr/libexec/ignition-ostree-dracut-rootfs cleanup
