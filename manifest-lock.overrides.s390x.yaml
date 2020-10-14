@@ -5,3 +5,9 @@ packages:
     evra: 2020.7-2.fc32.s390x
   ostree-libs:
     evra: 2020.7-2.fc32.s390x
+  # Fast-track rust-afterburn-4.5.1-3.fc32 for SSH key fetching on OpenStack
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-100d049813
+  afterburn:
+    evra: 4.5.1-3.fc32.s390x
+  afterburn-dracut:
+    evra: 4.5.1-3.fc32.s390x
