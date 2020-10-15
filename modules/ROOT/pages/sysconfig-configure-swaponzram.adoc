@@ -1,0 +1,26 @@
+= Configuring Swap on ZRAM
+
+In Fedora 33 some editions https://www.fedoraproject.org/wiki/Releases/33/ChangeSet#swap_on_zram[enabled swap on ZRAM by default]. Fedora CoreOS currently has the `zram-generator` included but no configuration in place to enable swap on ZRAM by default. In order to configure swap on ZRAM you can lay down a configuration file via Ignition that will tell the zram generator to set up swap on top of a zram device. 
+
+The documentation for the config file format lives in the https://github.com/systemd/zram-generator/blob/master/man/zram-generator.conf.md[upstream documentation] along with a comprehensive https://github.com/systemd/zram-generator/blob/master/zram-generator.conf.example[example]. The most basic form of a configuration file that will set up a `zram0` device for swap is:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - $pubkey
+storage:
+  files:
+    - path: /etc/systemd/zram-generator.conf
+      mode: 0644
+      contents:
+        inline: |
+          # This config file enables a /dev/zram0 device with the default settings
+          [zram0]
+----
+
+Once booted, you can verify the swap device is set up by viewing the `swapon --show` output. You can also view the true compression ratio of the currently configured zram devices by running `zramctl`.
