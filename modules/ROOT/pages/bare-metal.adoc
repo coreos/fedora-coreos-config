@@ -21,7 +21,7 @@ podman run --privileged --pull=always --rm -v .:/data -w /data \
     quay.io/coreos/coreos-installer:release download -f iso
 ----
 +
-NOTE: The live system requires at least 3 GiB of RAM. You can boot it in either legacy BIOS or UEFI mode, regardless of what mode the OS will use once installed.
+NOTE: You can boot the live ISO in either legacy BIOS or UEFI mode, regardless of what mode the OS will use once installed.
 +
 . Burn the ISO to disk and boot it on the target system. The ISO is capable of bringing up a fully functioning FCOS system purely from memory (i.e. without using any disk storage). Once booted, you will have access to a bash command prompt.
 . You can now run `coreos-installer`:
@@ -46,7 +46,7 @@ podman run --privileged --pull=always --rm -v .:/data -w /data \
     quay.io/coreos/coreos-installer:release download -f pxe
 ----
 +
-NOTE: You can install in either legacy boot (BIOS) mode or in UEFI mode, regardless of what mode the OS will use once installed.
+NOTE: Booting the live PXE image requires at least 2 GiB of RAM with the `coreos.live.rootfs_url` kernel argument, and 3 GiB otherwise. You can install in either legacy boot (BIOS) mode or in UEFI mode, regardless of what mode the OS will use once installed.
 +
 . Follow this example `pxelinux.cfg` for booting the installer images with PXELINUX:
 +
