@@ -11,3 +11,7 @@ packages:
     evra: 4.5.1-3.fc32.s390x
   afterburn-dracut:
     evra: 4.5.1-3.fc32.s390x
+  # Fast-track new Ignition release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-d754fb71b5
+  ignition:
+    evra: 2.7.0-1.git5be43fd.fc32.s390x
