@@ -298,3 +298,41 @@ The summary is that Fedora CoreOS uses the format `X.Y.Z.A`
 * `A` is a revision number that is incremented for each new build with the same `X.Y.Z` parameters
 
 The version numbering scheme is subject to change and is not intended to be parsed by machine.
+
+== Why is the dnsmasq.service systemd unit masked?
+
+We have found that the dnsmasq binary can be used for several host
+applications, including podman and NetworkManager. For this reason we
+include the dnsmasq package in the base OSTree layer, but we discourage
+the use of the dnsmasq.service in the host by masking it with
+`systemctl mask dnsmasq.service`.
+
+_"Why do you mask the service?"_
+
+dnsmasq is useful for running a DHCP/DNS/TFTP server for external clients
+(i.e. not local to the host), too, but that is something we'd prefer users
+to do in a container. Putting the service in a container insulates the
+hosted service from breakage as a result of host layer changes. For
+example, if NetworkManager and podman stopped using dnsmasq, we would
+remove it from the host and the service you depend on would cease to
+work.
+
+_"But, I really want to use it!"_
+
+We don't recommend it, but if you really want to use it you can just
+unmask and enable it:
+
+.Example fcct config for unmasking dnsmasq.service
+[source, yaml]
+----
+variant: fcos
+version: 1.1.0
+systemd:
+  units:
+    - name: dnsmasq.service
+      mask: false
+      enabled: true
+----
+
+For more information see
+https://github.com/coreos/fedora-coreos-tracker/issues/519[the tracker issue discussion].
