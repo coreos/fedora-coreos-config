@@ -8,3 +8,5 @@ enable coreos-reset-stub-resolv-selinux-context.path
 # Run once on startup to prevent some race conditions with
 # NetworkManager and systemd-resolved starting up.
 enable coreos-reset-stub-resolv-selinux-context.service
+# Enable the migration service to systemd-resolved
+enable coreos-migrate-to-systemd-resolved.service
