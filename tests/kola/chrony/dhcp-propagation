@@ -28,15 +28,11 @@ test_setup() {
     ip netns exec container ip address add 172.16.0.1/24 dev veth-container
     ip netns exec container ip link set veth-container up
 
-    # create a static ethernet connection for the `veth-host`
-    nmcli dev set veth-host managed yes
-    ip link set veth-host up
-
     # run podman commands to set up dnsmasq server
     pushd $(mktemp -d)
     NTPHOSTIP=$(getent hosts time-c-g.nist.gov | cut -d ' ' -f 1)
     cat <<EOF >Dockerfile
-FROM registry.fedoraproject.org/fedora:32
+FROM registry.fedoraproject.org/fedora:33
 RUN dnf -y install systemd dnsmasq iproute iputils \
 && dnf clean all \
 && systemctl enable dnsmasq
@@ -47,6 +43,10 @@ EOF
     popd
     podman run -d --rm --name dnsmasq --privileged --network ns:/var/run/netns/container dnsmasq
 
+    # Tell NM to manage the `veth-host` interface and bring it up (will attempt DHCP).
+    # Do this after we start dnsmasq so we don't have to deal with DHCP timeouts.
+    nmcli dev set veth-host managed yes
+    ip link set veth-host up
 }
 
 main() {

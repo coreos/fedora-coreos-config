@@ -56,6 +56,18 @@ if ! lsattr -d / | grep -qe '--i--'; then
 fi
 ok immutable bit
 
+# See remove-files in the manifest
+if test -d /usr/share/info; then
+    fatal "found /usr/share/info"
+fi
+
+# See https://github.com/coreos/coreos-assembler/pull/1786
+path=/usr/lib/systemd/system-generators/coreos-platform-chrony
+mode=$(stat -c '%a' ${path})
+if test "${mode}" != 555; then
+    fatal "For path ${path} expected mode 555, found ${mode}"
+fi
+
 switchroot_ts=$(get_journal_msg_timestamp 'Switching root.')
 nm_ts=$(get_journal_msg_timestamp 'NetworkManager .* starting')
 # by default, kola on QEMU shouldn't need to bring up networking
@@ -79,13 +91,10 @@ case "$(arch)" in
         if runuser -u core -- ls /boot/efi &>/dev/null; then
             fatal "Was able to access /boot/efi as non-root"
         fi
-        if systemctl is-enabled bootupd.socket; then
-            fatal "Not expecting bootupd.socket to be enabled"
-        fi
         # This is just a basic sanity check; at some point we
         # will implement "project-owned tests run in the pipeline"
-        # and be able to run the existing bootupd tests.
-        systemctl start bootupd.socket
+        # and be able to run the existing bootupd tests:
+        # https://github.com/coreos/fedora-coreos-config/pull/677
         bootupctl status
         ok bootupctl
         ;;
@@ -106,3 +115,18 @@ if [ ! -f /usr/share/rpm/Packages ]; then
     fatal "Didn't find bdb file /usr/share/rpm/Packages"
 fi
 ok rpmdb is bdb
+
+# make sure we don't default to having swap on zram
+# https://github.com/coreos/fedora-coreos-tracker/issues/509
+# https://github.com/coreos/fedora-coreos-config/pull/687
+if [ -e /dev/zram0 ]; then
+    fatal "zram0 swap device set up on default install"
+fi
+ok no zram swap by default
+
+# make sure dnsmasq is masked
+# https://github.com/coreos/fedora-coreos-tracker/issues/519#issuecomment-705140528
+if [ $(systemctl is-enabled dnsmasq.service) != 'masked' ]; then
+    fatal "dnsmasq.service systemd unit should be masked"
+fi
+ok "dnsmasq.service systemd unit is masked"
