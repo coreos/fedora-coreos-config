@@ -12,15 +12,3 @@
   streams:
     - next
     - next-devel
-# The ext.config.root-reprovision.luks test is targeting the 
-# 3.2.0-experimental Ignition spec which is currently being
-# stabilized. Disable for now until the package is bumped and the
-# test is updated to use the 3.2.0 spec to prevent CI lockstepping.
-- pattern: ext.config.root-reprovision.luks
-  tracker: https://github.com/coreos/ignition/issues/1110
-  streams:
-    - next
-    - next-devel
-    - testing
-    - testing-devel
-    - stable
