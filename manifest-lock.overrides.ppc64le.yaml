@@ -5,18 +5,6 @@ packages:
     evra: 0.7.0-4.fc33.ppc64le
   coreos-installer-bootinfra:
     evra: 0.7.0-4.fc33.ppc64le
-  # Fast-track fedora-repos-33-0.14 to get archive repo
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-868d76a5eb
-  fedora-repos:
-    evra: 33-0.14.noarch
-  fedora-repos-ostree:
-    evra: 33-0.14.noarch
-  fedora-repos-archive:
-    evra: 33-0.14.noarch
-  fedora-repos-modular:
-    evra: 33-0.14.noarch
-  fedora-gpg-keys:
-    evra: 33-0.14.noarch
   # Fast-track rust-afterburn-4.5.1-3.fc33 for SSH key fetching on OpenStack
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-9b29bc5487
   afterburn:
