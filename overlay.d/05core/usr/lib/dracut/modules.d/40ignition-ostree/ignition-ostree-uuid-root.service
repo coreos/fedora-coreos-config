@@ -9,7 +9,7 @@ Before=initrd-root-fs.target
 After=ignition-disks.service
 
 # Avoid racing with fsck
-Before=systemd-fsck@dev-disk-by\x2dlabel-boot.service
+Before=systemd-fsck@dev-disk-by\x2dlabel-root.service
 
 # Note we don't have a Requires: /dev/disk/by-label/root here like
 # the -subsequent service does because ignition-disks may have

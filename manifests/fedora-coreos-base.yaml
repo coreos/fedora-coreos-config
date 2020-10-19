@@ -128,6 +128,8 @@ packages:
   - openssl
   - vim-minimal
   - lsof
+  # Provides terminal tools like clear, reset, tput, and tset
+  - ncurses
   # file-transfer: note fuse-sshfs is not in RHEL
   # so we can't put it in file-transfer.yaml
   - fuse-sshfs
@@ -157,3 +159,8 @@ packages-ppc64le:
   - irqbalance
 packages-aarch64:
   - irqbalance
+
+# See https://github.com/coreos/bootupd
+arch-include:
+  x86_64: bootupd.yaml
+  aarch64: bootupd.yaml
