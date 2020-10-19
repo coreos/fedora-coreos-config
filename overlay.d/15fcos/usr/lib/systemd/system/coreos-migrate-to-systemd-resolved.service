@@ -1,0 +1,17 @@
+# This unit is used to migrate existing systems running default
+# configurations to systemd-resolved as part of the Fedora 33 change.
+# https://fedoraproject.org/wiki/Changes/systemd-resolved
+[Unit]
+Description=CoreOS Migrate to Systemd Resolved
+Documentation=https://github.com/coreos/fedora-coreos-tracker/issues/646
+# Run before NetworkManager and systemd-resolved start
+Before=NetworkManager.service
+Before=systemd-resolved.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/libexec/coreos-migrate-to-systemd-resolved
+
+[Install]
+WantedBy=multi-user.target
