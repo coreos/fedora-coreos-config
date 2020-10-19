@@ -1,6 +1,8 @@
 # Presets here that eventually should live in the generic fedora presets
 enable coreos-growpart.service
 # console-login-helper-messages - https://github.com/coreos/console-login-helper-messages
+enable console-login-helper-messages-issuegen.service
+enable console-login-helper-messages-motdgen.service
 enable console-login-helper-messages-issuegen.path
 enable console-login-helper-messages-motdgen.path
 enable console-login-helper-messages-gensnippet-os-release.service
@@ -14,9 +16,9 @@ enable afterburn-checkin.service
 enable afterburn-firstboot-checkin.service
 # Target to write SSH key snippets from cloud providers.
 enable afterburn-sshkeys.target
-# Service to write SSH key snippets from cloud providers.
-enable afterburn-sshkeys@.service
 # Update agent
 enable zincati.service
 # Testing aid
 enable coreos-liveiso-success.service
+# See bootupd.yaml - not enabled by default right now
+# enable bootupd.socket
