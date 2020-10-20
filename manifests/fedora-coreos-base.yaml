@@ -61,27 +61,6 @@ postprocess:
     setsebool -P -N container_use_cephfs on  # RHBZ#1692369
     setsebool -P -N virt_use_samba on  # RHBZ#1754825
 
-  # For F33 let's re-enable RSA-SHA1 keys for now so our kola tests will
-  # work. The plan is to only re-enable this briefly while we wait for
-  # an upstream feature [1] to be implemented. We had moved to an ecdsa
-  # key [2] but AWS doesn't support non RSA keys [3] so we reverted it
-  # for now in [4].
-  #
-  # [1] https://github.com/golang/go/issues/37278#issuecomment-704287991
-  # [2] https://github.com/coreos/coreos-assembler/pull/1749
-  # [3] https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#how-to-generate-your-own-key-and-import-it-to-aws
-  # [4] https://github.com/coreos/coreos-assembler/pull/1767
-  - |
-    #!/usr/bin/env bash
-    source /etc/os-release
-    if [ "$VERSION_ID" != "32" ]; then
-       cat > /etc/ssh/sshd_config.d/10-fcos-insecure-rsa-key.conf <<EOF
-    # For now allow RSA-SHA1 keys.
-    # https://github.com/coreos/coreos-assembler/issues/1772
-    PubkeyAcceptedKeyTypes=+ssh-rsa
-    EOF
-    fi
-
   # Mask dnsmasq. We include dnsmasq for host services that use the dnsmasq
   # binary but intentionally mask the systemd service so users can't easily
   # use it as an external dns server. We prefer they use a container for that.
