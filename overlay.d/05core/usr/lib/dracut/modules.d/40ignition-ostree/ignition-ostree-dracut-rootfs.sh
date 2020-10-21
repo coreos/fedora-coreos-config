@@ -17,6 +17,10 @@ case "${1:-}" in
         fi
         echo "Detected rootfs replacement in fetched Ignition config: /run/ignition.json"
         mkdir "${saved_sysroot}"
+        # use 80% of RAM: we want to be greedy since the boot breaks anyway, but
+        # we still want to leave room for everything else so it hits ENOSPC and
+        # doesn't invoke the OOM killer
+        mount -t tmpfs tmpfs "${saved_sysroot}" -o size=80%
         ;;
     save)
         mount "${rootdisk}" /sysroot
@@ -29,9 +33,14 @@ case "${1:-}" in
         # This one is in a private mount namespace since we're not "offically" mounting
         mount "${rootdisk}" /sysroot
         echo "Restoring rootfs from RAM..."
-        cd "${saved_sysroot}"
-        find . -mindepth 1 -maxdepth 1 -exec mv -t /sysroot {} \;
+        find "${saved_sysroot}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot {} \;
         chattr +i $(ls -d /sysroot/ostree/deploy/*/deploy/*/)
+        ;;
+    cleanup)
+        if [ -d "${saved_sysroot}" ]; then
+            umount "${saved_sysroot}"
+            rm -rf "${saved_sysroot}" "${partstate}"
+        fi
         ;;
     *)
         echo "Unsupported operation: ${1:-}" 1>&2; exit 1

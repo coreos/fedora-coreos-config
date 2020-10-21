@@ -10,6 +10,9 @@ mutate-os-release: "${releasever}"
 packages:
   - fedora-release-coreos
   - fedora-repos-ostree
+  # the archive repo for more reliable package layering
+  # https://github.com/coreos/fedora-coreos-tracker/issues/400
+  - fedora-repos-archive
   # CL ships this.
   - moby-engine
   # User metrics
