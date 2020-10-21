@@ -1,5 +1,5 @@
 [Unit]
-Description=Start network if needed
+Description=CoreOS Enable Network
 ConditionPathExists=/etc/initrd-release
 DefaultDependencies=false
 After=basic.target
