@@ -1,0 +1,42 @@
+= Modifying Kernel Arguments
+
+Currently to change kernel arguments, you must script a systemd service which runs `rpm-ostree kargs --reboot`. The command supports appending kernel arguments (via `--append KEY[=VAL]`), deleting them (via `--delete KEY[=VAL]`), and replacing them (via `--replace KEY[=VALUE]`).
+
+NOTE: In the future, we will have a more Ignition-friendly method of doing this with stronger guarantees. See https://github.com/coreos/ignition/issues/1051[this upstream issue] for more information.
+
+Here's an example which drops the default `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine uses cgroups v2:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - $pubkey
+systemd:
+  units:
+    - name: cgroups-v2-karg.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Switch To cgroups v2
+        # We run after `systemd-machine-id-commit.service` to ensure that
+        # `ConditionFirstBoot=true` services won't rerun on the next boot.
+        After=systemd-machine-id-commit.service
+        ConditionKernelCommandLine=systemd.unified_cgroup_hierarchy
+        ConditionPathExists=!/var/lib/cgroups-v2-karg.stamp
+
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/bin/rpm-ostree kargs --delete=systemd.unified_cgroup_hierarchy
+        ExecStart=/bin/touch /var/lib/cgroups-v2-karg.stamp
+        ExecStart=/bin/systemctl --no-block reboot
+
+        [Install]
+        WantedBy=multi-user.target
+----
+
+NOTE:  The `After=systemd-machine-id-commit.service` directive is important to avoid some subtle issues. Similarly, any `ConditionFirstBoot=true` services should use `Before=first-boot-complete.target systemd-machine-id-commit.service`. See https://github.com/systemd/systemd/blob/3045c416e1cbbd8ab40577790522217fd1b9cb3b/man/systemd.unit.xml#L1315[the systemd documentation] for more details.
