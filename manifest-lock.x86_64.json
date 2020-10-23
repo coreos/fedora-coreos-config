@@ -228,6 +228,9 @@
     "dracut-network": {
       "evra": "050-61.git20200529.fc32.x86_64"
     },
+    "dracut-squash": {
+      "evra": "050-61.git20200529.fc32.x86_64"
+    },
     "e2fsprogs": {
       "evra": "1.45.5-3.fc32.x86_64"
     },
@@ -251,6 +254,9 @@
     },
     "elfutils-libs": {
       "evra": "0.181-1.fc32.x86_64"
+    },
+    "ethtool": {
+      "evra": "2:5.9-1.fc32.x86_64"
     },
     "expat": {
       "evra": "2.2.8-2.fc32.x86_64"
@@ -452,6 +458,9 @@
     },
     "kernel-modules": {
       "evra": "5.8.15-201.fc32.x86_64"
+    },
+    "kexec-tools": {
+      "evra": "2.0.20-17.fc32.x86_64"
     },
     "keyutils": {
       "evra": "1.6-4.fc32.x86_64"
@@ -1026,11 +1035,17 @@
     "slirp4netns": {
       "evra": "1.1.4-1.fc32.x86_64"
     },
+    "snappy": {
+      "evra": "1.1.8-2.fc32.x86_64"
+    },
     "socat": {
       "evra": "1.7.3.4-2.fc32.x86_64"
     },
     "sqlite-libs": {
       "evra": "3.33.0-2.fc32.x86_64"
+    },
+    "squashfs-tools": {
+      "evra": "4.3-25.fc32.x86_64"
     },
     "ssh-key-dir": {
       "evra": "0.1.2-2.fc32.x86_64"
