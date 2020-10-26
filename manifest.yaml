@@ -1,28 +1,20 @@
-ref: fedora/${basearch}/coreos/testing-devel
+ref: fedora/${basearch}/coreos/eln-devel
 include: manifests/fedora-coreos.yaml
 
-releasever: "32"
+# FIXME needs to be in sync with target eln
+releasever: "34"
 
 rojig:
   license: MIT
   name: fedora-coreos
-  summary: Fedora CoreOS testing-devel
+  summary: Fedora CoreOS eln-devel
 
 repos:
-  # these repos are there to make it easier to add new packages to the OS and to
-  # use `cosa fetch --update-lockfile`; but note that all package versions are
-  # still pinned
-  - fedora
-  - fedora-updates
-
-# All Fedora CoreOS streams share the same pool for locked files.
-# This will be in fedora-coreos.yaml in the future so it can be more easily be
-# shared between all the streams
-lockfile-repos:
-  - fedora-coreos-pool
+  - fedora-eln-baseos
+  - fedora-eln-appstream
 
 add-commit-metadata:
-  fedora-coreos.stream: testing-devel
+  fedora-coreos.stream: eln-devel
 
 # Put this in manifest.yaml for now and we'll delete when we move to
 # F33 where all of these files have been broken out to the systemd-networkd

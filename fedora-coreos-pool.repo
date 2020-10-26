@@ -1,8 +1,0 @@
-[fedora-coreos-pool]
-name=Fedora coreos pool repository - $basearch
-baseurl=https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/$basearch/
-enabled=1
-repo_gpgcheck=0
-type=rpm-md
-gpgcheck=1
-skip_if_unavailable=True

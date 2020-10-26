@@ -1,0 +1,26 @@
+# Note we use baseurl= here because using auto-selected mirrors conflicts with
+# change detection: https://github.com/coreos/fedora-coreos-pipeline/issues/85.
+
+[fedora-eln-baseos]
+name=Fedora ELN BaseOS $releasever - $basearch
+failovermethod=priority
+baseurl=https://odcs.fedoraproject.org/composes/production/latest-Fedora-ELN/compose/BaseOS/$basearch/os/
+enabled=1
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+skip_if_unavailable=False
+
+[fedora-eln-appstream]
+name=Fedora ELN AppStream $releasever - $basearch - Updates
+failovermethod=priority
+baseurl=https://odcs.fedoraproject.org/composes/production/latest-Fedora-ELN/compose/AppStream/$basearch/os/
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&arch=$basearch
+enabled=1
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+metadata_expire=6h
+gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+skip_if_unavailable=False
