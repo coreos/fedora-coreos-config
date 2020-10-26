@@ -1,7 +1,7 @@
 = How to Customize a NIC Name
 
 == Using a systemd Link File
-You can create a systemd xref:https://www.freedesktop.org/software/systemd/man/systemd.link.html[link file] with Ignition configs.
+You can create a systemd link:https://www.freedesktop.org/software/systemd/man/systemd.link.html[link file] with Ignition configs.
 
 For example, to name NIC with the MAC address `12:34:56:78:9a:bc` to "infra", place a systemd link file at `/etc/systemd/network/25-infra.link` using the xref:fcct-config.adoc[FCCT] configuration snippet shown below:
 
