@@ -4,16 +4,16 @@
       "evra": "1.14.2-1.fc33.x86_64"
     },
     "NetworkManager": {
-      "evra": "1:1.26.2-2.fc33.x86_64"
+      "evra": "1:1.26.4-1.fc33.x86_64"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.26.2-2.fc33.x86_64"
+      "evra": "1:1.26.4-1.fc33.x86_64"
     },
     "NetworkManager-team": {
-      "evra": "1:1.26.2-2.fc33.x86_64"
+      "evra": "1:1.26.4-1.fc33.x86_64"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.26.2-2.fc33.x86_64"
+      "evra": "1:1.26.4-1.fc33.x86_64"
     },
     "acl": {
       "evra": "2.2.53-9.fc33.x86_64"
@@ -22,10 +22,10 @@
       "evra": "0.9.0-4.fc33.x86_64"
     },
     "afterburn": {
-      "evra": "4.5.1-3.fc33.x86_64"
+      "evra": "4.5.3-1.fc33.x86_64"
     },
     "afterburn-dracut": {
-      "evra": "4.5.1-3.fc33.x86_64"
+      "evra": "4.5.3-1.fc33.x86_64"
     },
     "alternatives": {
       "evra": "1.14-3.fc33.x86_64"
@@ -37,7 +37,7 @@
       "evra": "3.0-0.21.20191104git1c2f876.fc33.x86_64"
     },
     "avahi-libs": {
-      "evra": "0.8-3.fc33.x86_64"
+      "evra": "0.8-6.fc33.x86_64"
     },
     "basesystem": {
       "evra": "11-10.fc33.noarch"
@@ -61,7 +61,7 @@
       "evra": "32:9.11.23-1.fc33.x86_64"
     },
     "bootupd": {
-      "evra": "0.1.1-1.fc33.x86_64"
+      "evra": "0.1.3-2.fc33.x86_64"
     },
     "bsdtar": {
       "evra": "3.4.3-3.fc33.x86_64"
@@ -88,7 +88,7 @@
       "evra": "0.1.5-3.fc33.x86_64"
     },
     "chrony": {
-      "evra": "4.0-0.9.pre4.fc33.x86_64"
+      "evra": "4.0-1.fc33.x86_64"
     },
     "cifs-utils": {
       "evra": "6.9-4.fc33.x86_64"
@@ -214,7 +214,7 @@
       "evra": "0.8.5-4.fc33.x86_64"
     },
     "diffutils": {
-      "evra": "3.7-4.fc32.x86_64"
+      "evra": "3.7-7.fc33.x86_64"
     },
     "dmidecode": {
       "evra": "1:3.2-8.fc33.x86_64"
@@ -226,10 +226,13 @@
       "evra": "4.1-12.fc33.x86_64"
     },
     "dracut": {
-      "evra": "050-63.git20200529.fc33.x86_64"
+      "evra": "050-64.git20200529.fc33.x86_64"
     },
     "dracut-network": {
-      "evra": "050-63.git20200529.fc33.x86_64"
+      "evra": "050-64.git20200529.fc33.x86_64"
+    },
+    "dracut-squash": {
+      "evra": "050-64.git20200529.fc33.x86_64"
     },
     "e2fsprogs": {
       "evra": "1.45.6-4.fc33.x86_64"
@@ -255,6 +258,9 @@
     "elfutils-libs": {
       "evra": "0.181-1.fc33.x86_64"
     },
+    "ethtool": {
+      "evra": "2:5.9-1.fc33.x86_64"
+    },
     "expat": {
       "evra": "2.2.8-3.fc33.x86_64"
     },
@@ -265,13 +271,13 @@
       "evra": "33-1.noarch"
     },
     "fedora-release-common": {
-      "evra": "33-1.noarch"
+      "evra": "33-2.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "33-1.noarch"
+      "evra": "33-2.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "33-1.noarch"
+      "evra": "33-2.noarch"
     },
     "fedora-repos": {
       "evra": "33-1.noarch"
@@ -319,7 +325,7 @@
       "evra": "2.9.9-10.fc33.x86_64"
     },
     "fuse-overlayfs": {
-      "evra": "1.1.2-1.fc33.x86_64"
+      "evra": "1.2.0-1.fc33.x86_64"
     },
     "fuse-sshfs": {
       "evra": "3.7.0-4.fc33.x86_64"
@@ -352,7 +358,7 @@
       "evra": "2.66.0-1.fc33.x86_64"
     },
     "glib2": {
-      "evra": "2.66.1-3.fc33.x86_64"
+      "evra": "2.66.2-1.fc33.x86_64"
     },
     "glibc": {
       "evra": "2.32-1.fc33.x86_64"
@@ -469,13 +475,16 @@
       "evra": "2.3.0-2.fc33.noarch"
     },
     "kernel": {
-      "evra": "5.8.15-301.fc33.x86_64"
+      "evra": "5.8.16-300.fc33.x86_64"
     },
     "kernel-core": {
-      "evra": "5.8.15-301.fc33.x86_64"
+      "evra": "5.8.16-300.fc33.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.8.15-301.fc33.x86_64"
+      "evra": "5.8.16-300.fc33.x86_64"
+    },
+    "kexec-tools": {
+      "evra": "2.0.20-17.fc33.x86_64"
     },
     "keyutils": {
       "evra": "1.6-5.fc33.x86_64"
@@ -523,7 +532,7 @@
       "evra": "2.36-3.fc33.x86_64"
     },
     "libbrotli": {
-      "evra": "1.0.7-14.fc33.x86_64"
+      "evra": "1.0.9-3.fc33.x86_64"
     },
     "libcap": {
       "evra": "2.26-8.fc33.x86_64"
@@ -577,13 +586,13 @@
       "evra": "1.4-3.fc33.x86_64"
     },
     "libgcc": {
-      "evra": "10.2.1-3.fc33.x86_64"
+      "evra": "10.2.1-5.fc33.x86_64"
     },
     "libgcrypt": {
       "evra": "1.8.6-4.fc33.x86_64"
     },
     "libgomp": {
-      "evra": "10.2.1-3.fc33.x86_64"
+      "evra": "10.2.1-5.fc33.x86_64"
     },
     "libgpg-error": {
       "evra": "1.37-2.fc33.x86_64"
@@ -607,10 +616,10 @@
       "evra": "1.3.1-46.fc33.x86_64"
     },
     "libipa_hbac": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "libjcat": {
-      "evra": "0.1.3-3.fc33.x86_64"
+      "evra": "0.1.4-1.fc33.x86_64"
     },
     "libjose": {
       "evra": "10-8.fc33.x86_64"
@@ -685,7 +694,7 @@
       "evra": "14:1.9.1-5.fc33.x86_64"
     },
     "libpkgconf": {
-      "evra": "1.7.3-2.fc33.x86_64"
+      "evra": "1.7.3-5.fc33.x86_64"
     },
     "libproxy": {
       "evra": "0.4.15-25.fc33.x86_64"
@@ -694,7 +703,7 @@
       "evra": "0.21.1-2.fc33.x86_64"
     },
     "libpwquality": {
-      "evra": "1.4.2-5.fc33.x86_64"
+      "evra": "1.4.4-1.fc33.x86_64"
     },
     "libqmi": {
       "evra": "1.26.4-1.fc33.x86_64"
@@ -703,10 +712,10 @@
       "evra": "0.1.5-46.fc33.x86_64"
     },
     "librepo": {
-      "evra": "1.12.0-4.fc33.x86_64"
+      "evra": "1.12.1-1.fc33.x86_64"
     },
     "libreport-filesystem": {
-      "evra": "2.14.0-11.fc33.noarch"
+      "evra": "2.14.0-12.fc33.noarch"
     },
     "libseccomp": {
       "evra": "2.5.0-3.fc33.x86_64"
@@ -739,7 +748,7 @@
       "evra": "2.4.2-10.fc33.x86_64"
     },
     "libsolv": {
-      "evra": "0.7.14-4.fc33.x86_64"
+      "evra": "0.7.15-1.fc33.x86_64"
     },
     "libsoup": {
       "evra": "2.72.0-3.fc33.x86_64"
@@ -754,19 +763,19 @@
       "evra": "0.9.5-1.fc33.noarch"
     },
     "libsss_certmap": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "libsss_idmap": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "libsss_nss_idmap": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "libsss_sudo": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "libstdc++": {
-      "evra": "10.2.1-3.fc33.x86_64"
+      "evra": "10.2.1-5.fc33.x86_64"
     },
     "libtalloc": {
       "evra": "2.3.1-5.fc33.x86_64"
@@ -832,10 +841,10 @@
       "evra": "2.5.1-27.fc33.x86_64"
     },
     "linux-firmware": {
-      "evra": "20200918-112.fc33.noarch"
+      "evra": "20201022-113.fc33.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20200918-112.fc33.noarch"
+      "evra": "20201022-113.fc33.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.26-1.fc33.x86_64"
@@ -847,7 +856,7 @@
       "evra": "4.93.2-4.fc33.x86_64"
     },
     "lua-libs": {
-      "evra": "5.4.0-7.fc33.x86_64"
+      "evra": "5.4.1-1.fc33.x86_64"
     },
     "luksmeta": {
       "evra": "9-8.fc33.x86_64"
@@ -877,7 +886,7 @@
       "evra": "2:0.4.0-2.fc33.x86_64"
     },
     "mozjs78": {
-      "evra": "78.3.0-1.fc33.x86_64"
+      "evra": "78.4.0-1.fc33.x86_64"
     },
     "mpfr": {
       "evra": "4.1.0-2.fc33.x86_64"
@@ -922,19 +931,19 @@
       "evra": "1.11.1-2.fc33.x86_64"
     },
     "oniguruma": {
-      "evra": "6.9.5-3.rev1.fc33.x86_64"
+      "evra": "6.9.6-0.4.rc4.fc33.x86_64"
     },
     "openldap": {
       "evra": "2.4.50-5.fc33.x86_64"
     },
     "openssh": {
-      "evra": "8.4p1-1.1.fc33.x86_64"
+      "evra": "8.4p1-2.fc33.x86_64"
     },
     "openssh-clients": {
-      "evra": "8.4p1-1.1.fc33.x86_64"
+      "evra": "8.4p1-2.fc33.x86_64"
     },
     "openssh-server": {
-      "evra": "8.4p1-1.1.fc33.x86_64"
+      "evra": "8.4p1-2.fc33.x86_64"
     },
     "openssl": {
       "evra": "1:1.1.1g-15.fc33.x86_64"
@@ -958,7 +967,7 @@
       "evra": "0.23.21-2.fc33.x86_64"
     },
     "pam": {
-      "evra": "1.4.0-4.fc33.x86_64"
+      "evra": "1.4.0-5.fc33.x86_64"
     },
     "passwd": {
       "evra": "0.80-9.fc33.x86_64"
@@ -970,7 +979,7 @@
       "evra": "3.6.4-2.fc33.x86_64"
     },
     "pcre": {
-      "evra": "8.44-1.fc33.1.x86_64"
+      "evra": "8.44-2.fc33.x86_64"
     },
     "pcre2": {
       "evra": "10.35-7.fc33.x86_64"
@@ -982,13 +991,13 @@
       "evra": "2.4-7.fc33.x86_64"
     },
     "pkgconf": {
-      "evra": "1.7.3-2.fc33.x86_64"
+      "evra": "1.7.3-5.fc33.x86_64"
     },
     "pkgconf-m4": {
-      "evra": "1.7.3-2.fc33.noarch"
+      "evra": "1.7.3-5.fc33.noarch"
     },
     "pkgconf-pkg-config": {
-      "evra": "1.7.3-2.fc33.x86_64"
+      "evra": "1.7.3-5.fc33.x86_64"
     },
     "podman": {
       "evra": "2:2.1.1-10.fc33.x86_64"
@@ -1104,41 +1113,47 @@
     "slirp4netns": {
       "evra": "1.1.4-4.dev.giteecccdb.fc33.x86_64"
     },
+    "snappy": {
+      "evra": "1.1.8-4.fc33.x86_64"
+    },
     "socat": {
       "evra": "1.7.3.4-3.fc33.x86_64"
     },
     "sqlite-libs": {
-      "evra": "3.33.0-1.fc33.x86_64"
+      "evra": "3.33.0-2.fc33.x86_64"
+    },
+    "squashfs-tools": {
+      "evra": "4.4-2.20200513gitc570c61.fc33.x86_64"
     },
     "ssh-key-dir": {
       "evra": "0.1.2-5.fc33.x86_64"
     },
     "sssd": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "sssd-ad": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "sssd-client": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "sssd-common": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "sssd-common-pac": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "sssd-ipa": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "sssd-krb5": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "sssd-krb5-common": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "sssd-ldap": {
-      "evra": "2.3.1-4.fc33.x86_64"
+      "evra": "2.4.0-2.fc33.x86_64"
     },
     "sudo": {
       "evra": "1.9.2-1.fc33.x86_64"
@@ -1177,7 +1192,7 @@
       "evra": "3.0.1-1.fc33.x86_64"
     },
     "tzdata": {
-      "evra": "2020a-4.fc33.noarch"
+      "evra": "2020d-1.fc33.noarch"
     },
     "userspace-rcu": {
       "evra": "0.12.1-2.fc33.x86_64"
@@ -1186,13 +1201,13 @@
       "evra": "2.36-3.fc33.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.1770-1.fc33.x86_64"
+      "evra": "2:8.2.1885-1.fc33.x86_64"
     },
     "which": {
       "evra": "2.21-20.fc33.x86_64"
     },
     "wireguard-tools": {
-      "evra": "1.0.20200827-1.fc33.x86_64"
+      "evra": "1.0.20200827-2.fc33.x86_64"
     },
     "xfsprogs": {
       "evra": "5.7.0-1.fc33.x86_64"
@@ -1220,16 +1235,16 @@
     }
   },
   "metadata": {
-    "generated": "2020-10-22T20:51:48Z",
+    "generated": "2020-10-27T14:03:50Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2020-10-20T21:24:32Z"
+        "generated": "2020-10-24T00:41:55Z"
       },
       "fedora-next": {
-        "generated": "2020-10-22T10:26:25Z"
+        "generated": "2020-10-23T10:52:23Z"
       },
       "fedora-updates": {
-        "generated": "2018-02-20T19:18:14Z"
+        "generated": "2020-10-27T01:05:21Z"
       }
     }
   }
