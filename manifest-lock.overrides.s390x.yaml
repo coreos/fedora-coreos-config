@@ -11,3 +11,9 @@ packages:
     evra: 4.5.3-1.fc32.s390x
   afterburn-dracut:
     evra: 4.5.3-1.fc32.s390x
+  # Fast-track coreos-installer release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-d992496d18
+  coreos-installer:
+    evra: 0.7.2-1.fc32.s390x
+  coreos-installer-bootinfra:
+    evra: 0.7.2-1.fc32.s390x
