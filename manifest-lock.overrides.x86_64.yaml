@@ -5,4 +5,9 @@ packages:
     evra: 4.5.3-1.fc33.x86_64
   afterburn-dracut:
     evra: 4.5.3-1.fc33.x86_64
-
+  # Fast-track coreos-installer release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-8357a5bd7c
+  coreos-installer:
+    evra: 0.7.2-1.fc33.x86_64
+  coreos-installer-bootinfra:
+    evra: 0.7.2-1.fc33.x86_64
