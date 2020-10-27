@@ -5,10 +5,6 @@ packages:
     evra: 2020.7-2.fc32.x86_64
   ostree-libs:
     evra: 2020.7-2.fc32.x86_64
-  # Fast-track new Ignition release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-d754fb71b5
-  ignition:
-    evra: 2.7.0-1.git5be43fd.fc32.x86_64
   # Fast-track Afterburn release
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-c609473844
   afterburn:
