@@ -36,11 +36,11 @@ fi
 source /etc/os-release
 if systemctl is-enabled systemd-resolved 1>/dev/null; then
     if [ "$VERSION_ID" == "32" ]; then
-        fatal "Unit ${unit} should not be enabled"
+        fatal "Unit systemd-resolved should not be enabled"
     fi
 else
     if [ "$VERSION_ID" != "32" ]; then
-        fatal "Unit ${unit} should be enabled"
+        fatal "Unit systemd-resolved should be enabled"
     fi
 fi
 ok services
