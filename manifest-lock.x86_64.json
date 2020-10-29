@@ -1,8 +1,5 @@
 {
   "packages": {
-    "ModemManager-glib": {
-      "evra": "1.14.2-1.fc33.x86_64"
-    },
     "NetworkManager": {
       "evra": "1:1.26.4-1.fc33.x86_64"
     },
@@ -130,7 +127,7 @@
       "evra": "2:2.145.0-1.fc33.noarch"
     },
     "containerd": {
-      "evra": "1.3.3-1.fc33.x86_64"
+      "evra": "1.4.1-1.fc33.x86_64"
     },
     "containernetworking-plugins": {
       "evra": "0.8.7-1.fc33.x86_64"
@@ -215,9 +212,6 @@
     },
     "diffutils": {
       "evra": "3.7-7.fc33.x86_64"
-    },
-    "dmidecode": {
-      "evra": "1:3.2-8.fc33.x86_64"
     },
     "dnsmasq": {
       "evra": "2.82-3.fc33.x86_64"
@@ -306,9 +300,6 @@
     "firewalld-filesystem": {
       "evra": "0.8.4-1.fc33.noarch"
     },
-    "flashrom": {
-      "evra": "1.2-3.fc33.x86_64"
-    },
     "flatpak-session-helper": {
       "evra": "1.8.2-2.fc33.x86_64"
     },
@@ -337,7 +328,7 @@
       "evra": "3.9.4-1.fc33.x86_64"
     },
     "fwupd": {
-      "evra": "1.4.6-1.fc33.x86_64"
+      "evra": "1.5.0-1.fc33.x86_64"
     },
     "gawk": {
       "evra": "5.1.0-2.fc33.x86_64"
@@ -579,9 +570,6 @@
     "libfido2": {
       "evra": "1.4.0-3.fc33.x86_64"
     },
-    "libftdi": {
-      "evra": "1.4-3.fc33.x86_64"
-    },
     "libgcab1": {
       "evra": "1.4-3.fc33.x86_64"
     },
@@ -642,9 +630,6 @@
     "libmaxminddb": {
       "evra": "1.4.2-3.fc33.x86_64"
     },
-    "libmbim": {
-      "evra": "1.24.2-1.fc33.x86_64"
-    },
     "libmetalink": {
       "evra": "0.1.3-13.fc33.x86_64"
     },
@@ -704,9 +689,6 @@
     },
     "libpwquality": {
       "evra": "1.4.4-1.fc33.x86_64"
-    },
-    "libqmi": {
-      "evra": "1.26.4-1.fc33.x86_64"
     },
     "libref_array": {
       "evra": "0.1.5-46.fc33.x86_64"
@@ -1000,10 +982,10 @@
       "evra": "1.7.3-5.fc33.x86_64"
     },
     "podman": {
-      "evra": "2:2.1.1-10.fc33.x86_64"
+      "evra": "2:2.1.1-12.fc33.x86_64"
     },
     "podman-plugins": {
-      "evra": "2:2.1.1-10.fc33.x86_64"
+      "evra": "2:2.1.1-12.fc33.x86_64"
     },
     "policycoreutils": {
       "evra": "3.1-4.fc33.x86_64"
@@ -1235,7 +1217,7 @@
     }
   },
   "metadata": {
-    "generated": "2020-10-28T21:07:09Z",
+    "generated": "2020-10-29T21:13:17Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
         "generated": "2020-10-28T00:11:03Z"
@@ -1244,7 +1226,7 @@
         "generated": "2020-10-23T10:52:23Z"
       },
       "fedora-updates": {
-        "generated": "2020-10-28T01:53:20Z"
+        "generated": "2020-10-29T00:52:34Z"
       }
     }
   }
