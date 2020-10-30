@@ -5,7 +5,7 @@ set -euo pipefail
 # out a way to ask Ignition directly whether there's a filesystem with label
 # "root" being set up.
 ignition_cfg=/run/ignition.json
-rootdisk=/dev/disk/by-label/root
+root_part=/dev/disk/by-label/root
 saved_data=/run/ignition-ostree-transposefs
 saved_root=${saved_data}/root
 partstate_root=/run/ignition-ostree-rootfs-partstate.json
@@ -24,15 +24,15 @@ case "${1:-}" in
         mount -t tmpfs tmpfs "${saved_data}" -o size=80%
         ;;
     save)
-        mount "${rootdisk}" /sysroot
+        mount "${root_part}" /sysroot
         echo "Moving rootfs to RAM..."
         cp -a /sysroot "${saved_root}"
         # also store the state of the partition
-        lsblk "${rootdisk}" --nodeps --paths --json -b -o NAME,SIZE | jq -c . > "${partstate_root}"
+        lsblk "${root_part}" --nodeps --paths --json -b -o NAME,SIZE | jq -c . > "${partstate_root}"
         ;;
     restore)
         # This one is in a private mount namespace since we're not "offically" mounting
-        mount "${rootdisk}" /sysroot
+        mount "${root_part}" /sysroot
         echo "Restoring rootfs from RAM..."
         find "${saved_root}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot {} \;
         chattr +i $(ls -d /sysroot/ostree/deploy/*/deploy/*/)
