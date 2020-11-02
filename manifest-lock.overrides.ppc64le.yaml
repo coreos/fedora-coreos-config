@@ -1,24 +1,13 @@
 packages:
-  # Fast-track coreos-installer 0.7.0-4
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-20d5ab2cd7
-  coreos-installer:
-    evra: 0.7.0-4.fc33.ppc64le
-  coreos-installer-bootinfra:
-    evra: 0.7.0-4.fc33.ppc64le
-  # Fast-track rust-afterburn-4.5.1-3.fc33 for SSH key fetching on OpenStack
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-9b29bc5487
+  # Fast-track Afterburn release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-f01ad0c76c
   afterburn:
-    evra: 4.5.1-3.fc33.ppc64le
+    evra: 4.5.3-1.fc33.ppc64le
   afterburn-dracut:
-    evra: 4.5.1-3.fc33.ppc64le
-  # Fast-track new Ignition release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-8efd8baff0
-  ignition:
-    evra: 2.7.0-1.git5be43fd.fc33.ppc64le
-  # Related to https://github.com/coreos/fedora-coreos-tracker/issues/643
-  # Fast-track SELinux Policy to fix read access issue with chronyd
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-5cd3fad6d5
-  selinux-policy:
-    evra: 3.14.6-29.fc33.noarch
-  selinux-policy-targeted:
-    evra: 3.14.6-29.fc33.noarch
+    evra: 4.5.3-1.fc33.ppc64le
+  # Fast-track coreos-installer release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-8357a5bd7c
+  coreos-installer:
+    evra: 0.7.2-1.fc33.ppc64le
+  coreos-installer-bootinfra:
+    evra: 0.7.2-1.fc33.ppc64le

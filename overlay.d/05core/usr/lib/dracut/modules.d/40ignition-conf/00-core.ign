@@ -1,0 +1,19 @@
+{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "name": "core",
+        "gecos": "CoreOS Admin",
+        "groups": [
+          "adm",
+          "sudo",
+          "systemd-journal",
+          "wheel"
+        ]
+      }
+    ]
+  }
+}

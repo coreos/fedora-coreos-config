@@ -1,0 +1,13 @@
+{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "systemd": {
+    "units": [
+      {
+        "enabled": true,
+        "name": "afterburn-sshkeys@core.service"
+      }
+    ]
+  }
+}
