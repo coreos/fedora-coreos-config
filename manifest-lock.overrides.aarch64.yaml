@@ -1,24 +1,17 @@
 packages:
-  # Fast-track zincati-0.0.13-1.fc32
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-5c6383c702
-  zincati:
-    evra: 0.0.13-1.fc32.aarch64
-  # Fast-track coreos-installer 0.7.0
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-9062a0b276
-  coreos-installer:
-    evra: 0.7.0-3.fc32.aarch64
-  coreos-installer-bootinfra:
-    evra: 0.7.0-3.fc32.aarch64
-  # Fast-track console-login-helper-messages release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-6a8030eeee
-  # New updates in console-login-helper-messages v0.20.1 fixes
-  # segmentation faults when non real devices are added.
-  # https://bugzilla.redhat.com/show_bug.cgi?id=1884236
-  console-login-helper-messages:
-    evra: 0.20.1-1.fc32.noarch
-  console-login-helper-messages-issuegen:
-    evra: 0.20.1-1.fc32.noarch
-  console-login-helper-messages-motdgen:
-    evra: 0.20.1-1.fc32.noarch
-  console-login-helper-messages-profile:
-    evra: 0.20.1-1.fc32.noarch
+  # Fast-track ostree-2020.7-2.fc32 for testing and to unblock initramfs-etc
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-e2f1868876
+  ostree:
+    evra: 2020.7-2.fc32.aarch64
+  ostree-libs:
+    evra: 2020.7-2.fc32.aarch64
+  # Fast-track rust-afterburn-4.5.1-3.fc32 for SSH key fetching on OpenStack
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-100d049813
+  afterburn:
+    evra: 4.5.1-3.fc32.aarch64
+  afterburn-dracut:
+    evra: 4.5.1-3.fc32.aarch64
+  # Fast-track new Ignition release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-d754fb71b5
+  ignition:
+    evra: 2.7.0-1.git5be43fd.fc32.aarch64
