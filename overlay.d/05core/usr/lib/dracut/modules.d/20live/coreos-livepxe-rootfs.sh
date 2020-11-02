@@ -41,22 +41,6 @@ elif [[ -n "${rootfs_url}" ]]; then
         echo "Check that the URL is correct and that the rootfs version matches the initramfs." >&2
         exit 1
     fi
-elif [[ -f /root.squashfs ]]; then
-    # Image was built with cosa buildextend-live --legacy-pxe and the user
-    # didn't append the rootfs.  Inject a warning MOTD.  Remove this case
-    # after the deprecation period.
-    mkdir -p /run/motd.d
-    cat > /run/motd.d/80-pxe-rootfs.motd <<EOF
-
-[33;1mDetected PXE boot without rootfs image.  Please update your PXE configuration
-to add the rootfs image as a second initrd.  Fedora CoreOS PXE images released
-after these dates will not boot without a rootfs image:
-        next:    August 25, 2020
-        testing: September 22, 2020
-        stable:  October 6, 2020
-https://docs.fedoraproject.org/en-US/fedora-coreos/bare-metal/#_pxe_rootfs_image[0m
-
-EOF
 else
     # Nothing.  Fail.
     echo "No rootfs image found.  Modify your PXE configuration to add the rootfs" >&2

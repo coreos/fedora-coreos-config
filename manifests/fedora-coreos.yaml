@@ -10,6 +10,9 @@ mutate-os-release: "${releasever}"
 packages:
   - fedora-release-coreos
   - fedora-repos-ostree
+  # the archive repo for more reliable package layering
+  # https://github.com/coreos/fedora-coreos-tracker/issues/400
+  - fedora-repos-archive
   # CL ships this.
   - moby-engine
   # User metrics
@@ -65,6 +68,13 @@ remove-from-packages:
   # Drop NetworkManager support for ifcfg files, see also corresponding
   # overlay.d/14NetworkManager-plugins
   - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
+
+remove-files:
+  # We don't ship man(1) or info(1)
+  - usr/share/info
+  - usr/share/man
+  # Drop text docs too
+  - usr/share/doc
 
 # Things we don't expect to ship on the host.  We currently
 # have recommends: false so these could only come in via
