@@ -1,0 +1,1 @@
+FCOS enables `afterburn-sshkeys@core.service` from `30-afterburn-sshkeys-core.ign`, allowing the user to prevent Ignition from enabling the service with a user config if the user wants to change the username. Unlike FCOS, RHCOS doesn't fetch SSH keys from cloud providers and thus doesn't need `afterburn-sshkeys@core.service`.
