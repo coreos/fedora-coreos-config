@@ -8,6 +8,7 @@ ConditionPathExists=!/run/ostree-live
 Before=initrd-root-fs.target
 After=ignition-disks.service
 
+After=dev-disk-by\x2dlabel-root.device
 # Avoid racing with fsck
 Before=systemd-fsck@dev-disk-by\x2dlabel-root.service
 
