@@ -18,3 +18,12 @@ if ! grep -q 'zram0' /proc/swaps; then
     fatal "expected zram0 to be set up"
 fi
 ok "swap on zram was set up correctly"
+
+# Make sure that coreos-update-ca-trust kicked in and observe the result.
+if ! systemctl show coreos-update-ca-trust.service -p ActiveState | grep ActiveState=active; then
+    fatal "coreos-update-ca-trust.service not active"
+fi
+if ! grep '^# coreos.com$' /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt; then
+    fatal "expected coreos.com in ca-bundle"
+fi
+ok "coreos-update-ca-trust.service"
