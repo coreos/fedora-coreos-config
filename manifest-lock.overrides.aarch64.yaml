@@ -5,12 +5,6 @@ packages:
     evra: 2020.7-2.fc32.aarch64
   ostree-libs:
     evra: 2020.7-2.fc32.aarch64
-  # Fast-track Afterburn release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-c609473844
-  afterburn:
-    evra: 4.5.3-1.fc32.aarch64
-  afterburn-dracut:
-    evra: 4.5.3-1.fc32.aarch64
   # Fast-track coreos-installer release
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-d992496d18
   coreos-installer:
