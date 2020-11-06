@@ -55,7 +55,7 @@ Ignition writes configured SSH keys to `~/.ssh/authorized_keys.d/ignition`. On p
 
 == Using Password Authentication
 
-Fedora CoreOS ships with no default passwords. You can use a Fedora CoreOS Config to set a password for a local user. Building on the previous example, we can confgure the `password_hash` for one or more users:
+Fedora CoreOS ships with no default passwords. You can use a Fedora CoreOS Config to set a password for a local user. Building on the previous example, we can configure the `password_hash` for one or more users:
 
 [source,yaml]
 ----
