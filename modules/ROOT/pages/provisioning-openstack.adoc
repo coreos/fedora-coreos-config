@@ -1,0 +1,100 @@
+= Provisioning Fedora CoreOS on OpenStack
+
+This guide shows how to provision new Fedora CoreOS (FCOS) nodes on an
+OpenStack cloud environment, either private, or public (like https://vexxhost.com/[VEXXHOST]).
+
+The steps below were tested against the OpenStack Victoria release.
+
+== Prerequisites
+
+Before provisioning an FCOS machine, you must have an Ignition configuration file
+containing your customizations. If you do not have one, see
+xref:producing-ign.adoc[Producing an Ignition File].
+
+You also need to have access to an OpenStack environment and a functioning
+https://docs.openstack.org/python-designateclient/latest/user/shell-v2.html[`openstack` CLI].
+Typically you'll https://docs.openstack.org/python-openstackclient/latest/configuration/index.html[configure the client]
+by using a `clouds.yaml` file or via environment variables. If you're starting from scratch, this
+environment may need networks, SSH keypairs, security groups, etc.. set up. Please consult the
+https://docs.openstack.org/[OpenStack Documentation] to learn more.
+
+== Downloading an OpenStack Image
+
+Fedora CoreOS is designed to be updated automatically, with different schedules per stream.
+Once you have picked the relevant stream, download, verify, and decompress the latest
+OpenStack image:
+
+NOTE: For more information on FCOS stream offerings see xref:update-streams.adoc[Update Streams].
+
+[source, bash]
+----
+STREAM='stable'
+coreos-installer download --decompress -s $STREAM -p openstack -f qcow2.xz
+----
+
+Alternatively, you can manually download an OpenStack image from the
+https://getfedora.org/coreos/download?tab=cloud_operators[download page].
+Verify the download, following the instructions on that page, and decompress it.
+
+== Uploading the Image to OpenStack
+
+.Create the FCOS image in OpenStack
+[source, bash]
+----
+FILE=fedora-coreos-XX.XXXXXXXX.X.X-openstack.x86_64.qcow2
+IMAGE=${FILE:0:-6} # pull off .qcow2
+openstack image create --disk-format=qcow2 --min-disk=10 --min-ram=2 --file=$FILE $IMAGE
+----
+
+.Monitor image creation progress by listing the image
+[source, bash]
+----
+openstack image list --name=$IMAGE
+----
+
+== Launching a VM instance
+
+Now that you have an image created in your account you can launch a VM
+instance. You’ll have to specify several pieces of information in the
+command, such as instance flavor, network information, SSH key, etc...
+
+You'll also need the Ignition config you created earlier. Here it is
+represented in the example command as `./example.ign`, which indicates
+a file in the current directory named `example.ign`.
+
+.Lauching a VM instance
+[source, bash]
+----
+OPENSTACK_NETWORK=private
+OPENSTACK_KEYPAIR=mykeypair # optional
+OPENSTACK_FLAVOR=v1-standard-2
+INSTANCE_NAME=myinstance # choose a name
+openstack server create            \
+     --key-name=$OPENSTACK_KEYPAIR \
+     --network=$OPENSTACK_NETWORK  \
+     --flavor=$OPENSTACK_FLAVOR    \
+     --image=$IMAGE                \
+     --user-data ./example.ign     \
+     $INSTANCE_NAME
+----
+
+NOTE: Specifying `--key-name` is optional if you provide an SSH key in your Ignition config.
+
+TIP: Monitor progress of the instance creation with `openstack server show $INSTANCE_NAME`.
+
+Next, if you'd like to SSH into the instance from outside the
+OpenStack environment, you can assign a public IP to the instance:
+
+.Create and Assign a Floating IP
+[source, bash]
+----
+OPENSTACK_NETWORK=public
+openstack floating ip create $OPENSTACK_NETWORK
+
+FLOATING_IP=1.1.1.1  # from just created floating IP
+openstack server add floating ip $INSTANCE_NAME $FLOATING_IP
+----
+
+Now you should be able to SSH into the instance using the IP address
+associated with the floating IP. If you didn't change the defaults, the
+username is `core` and `ssh core@$FLOATING_IP` should work.
