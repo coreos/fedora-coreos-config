@@ -638,14 +638,11 @@ main() {
     # TODO persist the net.ifnames karg and do another check after a reboot.
     destroy_vm
 
-    # Note 'static_team0' initramfs teaming doesn't work so leave it out for now
-    # https://bugzilla.redhat.com/show_bug.cgi?id=1814038#c1
-    # https://bugzilla.redhat.com/show_bug.cgi?id=1784363
     initramfsloop=(
         dhcp_nic0
         static_nic0
         static_bond0
-       #static_team0
+        static_team0
         static_br0
     )
 
