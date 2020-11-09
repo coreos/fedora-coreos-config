@@ -1,0 +1,199 @@
+= Provisioning Fedora CoreOS on Alibaba Cloud (Aliyun)
+
+This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Alibaba Cloud.  Fedora currently does not publish Fedora CoreOS images within Alibaba Cloud, so you must download an Alibaba Cloud image from Fedora and upload it to one of your Object Storage Service (OSS) buckets.
+
+== Prerequisites
+
+Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+You also need to have access to an Alibaba Cloud account and https://www.alibabacloud.com/help/doc-detail/31884.htm?spm=a2c63.p38356.879954.10.3d1264baRYHfmB#task-njz-hf4-tdb[activated Object Storage Service (OSS)].
+The examples below use the https://www.alibabacloud.com/help/product/29991.htm[Alibaba Cloud CLI] and https://stedolan.github.io/jq/[jq] as a command-line JSON processor.
+
+== Downloading an Alibaba Cloud image
+
+Fedora CoreOS is designed to be updated automatically, with different schedules per stream.
+Once you have picked the relevant stream, download, verify, and decompress the latest Alibaba Cloud image:
+
+[source, bash]
+----
+STREAM="stable"
+coreos-installer download --decompress -s "${STREAM}" -p aliyun -f qcow2.xz
+----
+
+Alternatively, you can manually download an Alibaba Cloud image from the https://getfedora.org/coreos/download?tab=cloud_operators[download page].  Verify the download, following the instructions on that page, and decompress it.
+
+== Uploading the image to Alibaba Cloud
+
+. Create any bucket that doesn't already exist in your Alibaba Cloud account with a globally unique name or reuse an existing bucket:
++
+.Example creating Alibaba Cloud OSS (Object Storage Service) bucket
+[source, bash]
+----
+REGION="ap-southeast-1"
+BUCKET_NAME="my-bucket"
+BUCKET_URL="oss://${BUCKET_NAME}"
+aliyun oss mb "${BUCKET_URL}" --region="${REGION}" --acl=private
+----
+
+. Upload an FCOS image:
++
+.Example uploading FCOS to an Alibaba Cloud OSS bucket
+[source, bash]
+----
+DOWNLOADED_IMAGE="./image.qcow2"
+IMAGE_NAME="my-fcos-image"
+IMAGE_BLOB="${IMAGE_NAME}.qcow2"
+aliyun oss cp "${DOWNLOADED_IMAGE}" "${BUCKET_URL}/${IMAGE_BLOB}" \
+    --region="${REGION}" --acl=private
+----
+
+. Import uploaded FCOS image:
++
+.Example importing FCOS to Alibaba Cloud ECS
+[source, bash]
+----
+TASK_ID=$(aliyun ecs ImportImage \
+    --region="${REGION}" \
+    --DiskDeviceMapping.1.OSSBucket="${BUCKET_NAME}" \
+    --DiskDeviceMapping.1.OSSObject="${IMAGE_BLOB}" \
+    --ImageName="${IMAGE_NAME}" \
+    | jq --raw-output .TaskId)
+----
+
+. Wait until the image was successfully imported
++
+.Example waiting with a timeout equal to one hour
+[source, bash]
+----
+aliyun ecs DescribeTasks --region="${REGION}" --TaskIds="${TASK_ID}" \
+    --waiter expr='TaskSet.Task[0].TaskStatus' to=Finished timeout=3600
+----
+
+. Determine id of imported FCOS image:
++
+.Example determining id of the imported FCOS image
+[source, bash]
+----
+IMAGE_ID=$(aliyun ecs DescribeImages --region="${REGION}" --ImageName="${IMAGE_NAME}" \
+    | jq --raw-output .Images.Image[0].ImageId)
+----
+
+. Delete uploaded blob
++
+.Example deleting uploaded blob
+[source, bash]
+----
+aliyun oss rm "${BUCKET_URL}/${IMAGE_BLOB}" --region "${REGION}"
+----
+
+== Creating a VSwitch
+
+There exists no default VPCs or VSwitches in Alibaba Cloud. Hence, for creating any instances a VSwitch must exist. Pick some existing or create one with the following steps.
+
+. Create a new VPC:
++
+.Example creating a new VPC
+[source, bash]
+----
+VPC_CIDR="172.16.0.0/12"
+VPC_NAME="fcos-test"
+VPC_ID=$(aliyun vpc CreateVpc --region="${REGION}" \
+    --CidrBlock="${VPC_CIDR}" --VpcName="${VPC_NAME}" \
+    | jq --raw-output .VpcId)
+----
+
+. Pick some availability zone for creating a VSwitch:
++
+.Example pick some availability zone
+[source,bash]
+----
+ZONE_ID=$(aliyun ecs DescribeZones --region="${REGION}" \
+    | jq --raw-output .Zones.Zone[0].ZoneId)
+----
+
+. Create a new VSwitch:
++
+.Example creating a new VSwitch
+[source, bash]
+----
+VSWITCH_CIDR="172.16.0.0/16"
+VSWITCH_NAME="${VPC_NAME}"
+VSWITCH_ID=$(aliyun vpc CreateVSwitch \
+    --region="${REGION}" \
+    --CidrBlock="${VSWITCH_CIDR}" \
+    --VpcId="${VPC_ID}" \
+    --VSwitchName="${VSWITCH_NAME}" \
+    --ZoneId="${ZONE_ID}" \
+    | jq --raw-output .VSwitchId)
+----
+
+== Launching an ECS instance
+
+. Upload an SSH public key to Alibaba Cloud ECS
++
+.Example uploading an SSH public key
+[source, bash]
+----
+KEY_PAIR_NAME="fcos-key"
+PUBLIC_KEY_PATH="<Please fill the path to your public key>"
+PUBLIC_KEY_BODY=$(cat ${PUBLIC_KEY_PATH})
+aliyun ecs ImportKeyPair --region="${REGION}" \
+    --KeyPairName="${KEY_PAIR_NAME}" --PublicKeyBody="${PUBLIC_KEY_BODY}"
+----
+
+. Creating an ECS instance
++
+.Example creating ECS instance
+[source, bash]
+----
+INSTANCE_NAME="my-fcos-vm"
+INSTANCE_TYPE="ecs.t6-c1m1.large"
+INSTANCE_ID=$(aliyun ecs CreateInstance \
+    --region="${REGION}" \
+    --KeyPairName="${KEY_PAIR_NAME}" \
+    --ImageId="${IMAGE_ID}" \
+    --InstanceName="${INSTANCE_NAME}" \
+    --InstanceType="${INSTANCE_TYPE}" \
+    --InternetChargeType=PayByTraffic \
+    --InternetMaxBandwidthIn=5 \
+    --InternetMaxBandwidthOut=5 \
+    --VSwitchId="${VSWITCH_ID}" \
+    | jq --raw-output .InstanceId)
+----
+
+. Allocate a public IPv4 address for the previously created instance
++
+.Example allocating a public IP address
+[source, bash]
+----
+PUBLIC_IP=$(aliyun ecs AllocatePublicIpAddress \
+    --region="${REGION}" --InstanceId="${INSTANCE_ID}" \
+    | jq --raw-output .IpAddress)
+----
+
+. Start the instance
++
+.Example starting an instance
+[source, bash]
+----
+aliyun ecs StartInstance --region="${REGION}" --InstanceId="${INSTANCE_ID}"
+----
+
+. Wait until the instance is running
++
+.Example waiting and determining the public IP address
+[source, bash]
+----
+aliyun ecs DescribeInstanceStatus --InstanceId.1="$INSTANCE_ID" --region="${REGION}" \
+    --waiter expr='InstanceStatuses.InstanceStatus[0].Status' to=Running timeout=600
+----
+
+. Connect to the new instance via SSH
++
+.Example connecting
+[source, bash]
+----
+ssh core@"${PUBLIC_IP}"
+----
+
+You can start a customized instance with your Ignition file by adding the parameter `--UserData=$(cat <Path to your ignition file> | base64)` to the above command that creates a new instance.
