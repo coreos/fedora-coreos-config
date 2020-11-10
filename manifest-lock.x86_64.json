@@ -189,9 +189,6 @@
     "dbus-libs": {
       "evra": "1:1.12.20-1.fc32.x86_64"
     },
-    "dbxtool": {
-      "evra": "8-12.fc32.x86_64"
-    },
     "device-mapper": {
       "evra": "1.02.171-1.fc32.x86_64"
     },
@@ -324,6 +321,9 @@
     "fuse3-libs": {
       "evra": "3.9.1-1.fc32.x86_64"
     },
+    "fwupd": {
+      "evra": "1.5.1-1.fc32.x86_64"
+    },
     "gawk": {
       "evra": "5.0.1-7.fc32.x86_64"
     },
@@ -338,6 +338,9 @@
     },
     "git-core": {
       "evra": "2.26.2-1.fc32.x86_64"
+    },
+    "glib-networking": {
+      "evra": "2.64.3-1.fc32.x86_64"
     },
     "glib2": {
       "evra": "2.64.6-1.fc32.x86_64"
@@ -383,6 +386,9 @@
     },
     "grub2-tools-minimal": {
       "evra": "1:2.04-23.fc32.x86_64"
+    },
+    "gsettings-desktop-schemas": {
+      "evra": "3.36.1-1.fc32.x86_64"
     },
     "gzip": {
       "evra": "1.10-2.fc32.x86_64"
@@ -555,6 +561,9 @@
     "libfido2": {
       "evra": "1.3.1-2.fc32.x86_64"
     },
+    "libgcab1": {
+      "evra": "1.4-2.fc32.x86_64"
+    },
     "libgcc": {
       "evra": "10.2.1-6.fc32.x86_64"
     },
@@ -567,6 +576,12 @@
     "libgpg-error": {
       "evra": "1.36-3.fc32.x86_64"
     },
+    "libgudev": {
+      "evra": "232-7.fc32.x86_64"
+    },
+    "libgusb": {
+      "evra": "0.3.5-1.fc32.x86_64"
+    },
     "libicu": {
       "evra": "65.1-2.fc32.x86_64"
     },
@@ -578,6 +593,9 @@
     },
     "libipa_hbac": {
       "evra": "2.4.0-1.fc32.x86_64"
+    },
+    "libjcat": {
+      "evra": "0.1.2-2.fc32.x86_64"
     },
     "libjose": {
       "evra": "10-6.fc32.x86_64"
@@ -605,6 +623,9 @@
     },
     "libmnl": {
       "evra": "1.0.4-11.fc32.x86_64"
+    },
+    "libmodman": {
+      "evra": "2.0.1-21.fc32.x86_64"
     },
     "libmodulemd": {
       "evra": "2.9.3-1.fc32.x86_64"
@@ -648,6 +669,9 @@
     "libpkgconf": {
       "evra": "1.6.3-3.fc32.x86_64"
     },
+    "libproxy": {
+      "evra": "0.4.15-19.fc32.x86_64"
+    },
     "libpsl": {
       "evra": "0.21.0-4.fc32.x86_64"
     },
@@ -688,10 +712,16 @@
       "evra": "2.35.2-1.fc32.x86_64"
     },
     "libsmbclient": {
-      "evra": "2:4.12.8-1.fc32.x86_64"
+      "evra": "2:4.12.10-0.fc32.x86_64"
+    },
+    "libsmbios": {
+      "evra": "2.4.2-7.fc32.x86_64"
     },
     "libsolv": {
       "evra": "0.7.14-1.fc32.x86_64"
+    },
+    "libsoup": {
+      "evra": "2.70.0-1.fc32.x86_64"
     },
     "libss": {
       "evra": "1.45.5-3.fc32.x86_64"
@@ -760,13 +790,16 @@
       "evra": "0.3.0-9.fc32.x86_64"
     },
     "libwbclient": {
-      "evra": "2:4.12.8-1.fc32.x86_64"
+      "evra": "2:4.12.10-0.fc32.x86_64"
     },
     "libxcrypt": {
       "evra": "4.4.17-1.fc32.x86_64"
     },
     "libxml2": {
       "evra": "2.9.10-7.fc32.x86_64"
+    },
+    "libxmlb": {
+      "evra": "0.1.14-2.fc32.x86_64"
     },
     "libyaml": {
       "evra": "0.2.2-3.fc32.x86_64"
@@ -994,13 +1027,13 @@
       "evra": "2:1.0.0-144.dev.gite6555cc.fc32.x86_64"
     },
     "samba-client-libs": {
-      "evra": "2:4.12.8-1.fc32.x86_64"
+      "evra": "2:4.12.10-0.fc32.x86_64"
     },
     "samba-common": {
-      "evra": "2:4.12.8-1.fc32.noarch"
+      "evra": "2:4.12.10-0.fc32.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.12.8-1.fc32.x86_64"
+      "evra": "2:4.12.10-0.fc32.x86_64"
     },
     "sed": {
       "evra": "4.5-5.fc32.x86_64"
@@ -1022,6 +1055,9 @@
     },
     "shadow-utils": {
       "evra": "2:4.8.1-2.fc32.x86_64"
+    },
+    "shared-mime-info": {
+      "evra": "1.15-3.fc32.x86_64"
     },
     "shim-x64": {
       "evra": "15-8.x86_64"
@@ -1123,7 +1159,7 @@
       "evra": "2.35.2-1.fc32.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.1885-1.fc32.x86_64"
+      "evra": "2:8.2.1941-1.fc32.x86_64"
     },
     "which": {
       "evra": "2.21-19.fc32.x86_64"
@@ -1157,16 +1193,16 @@
     }
   },
   "metadata": {
-    "generated": "2020-11-08T21:07:20Z",
+    "generated": "2020-11-10T17:56:16Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-04-22T22:22:36Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2020-11-06T00:05:44Z"
+        "generated": "2020-11-09T21:08:22Z"
       },
       "fedora-updates": {
-        "generated": "2020-11-08T00:52:00Z"
+        "generated": "2020-11-10T01:15:40Z"
       }
     }
   }
