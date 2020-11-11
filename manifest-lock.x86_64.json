@@ -112,22 +112,22 @@
       "evra": "2:2.0.21-3.fc33.x86_64"
     },
     "console-login-helper-messages": {
-      "evra": "0.20.1-1.fc33.noarch"
+      "evra": "0.20.2-1.fc33.noarch"
     },
     "console-login-helper-messages-issuegen": {
-      "evra": "0.20.1-1.fc33.noarch"
+      "evra": "0.20.2-1.fc33.noarch"
     },
     "console-login-helper-messages-motdgen": {
-      "evra": "0.20.1-1.fc33.noarch"
+      "evra": "0.20.2-1.fc33.noarch"
     },
     "console-login-helper-messages-profile": {
-      "evra": "0.20.1-1.fc33.noarch"
+      "evra": "0.20.2-1.fc33.noarch"
     },
     "container-selinux": {
       "evra": "2:2.145.0-1.fc33.noarch"
     },
     "containerd": {
-      "evra": "1.4.1-1.fc33.x86_64"
+      "evra": "1.4.1-2.fc33.x86_64"
     },
     "containernetworking-plugins": {
       "evra": "0.8.7-1.fc33.x86_64"
@@ -928,10 +928,10 @@
       "evra": "8.4p1-2.fc33.x86_64"
     },
     "openssl": {
-      "evra": "1:1.1.1g-15.fc33.x86_64"
+      "evra": "1:1.1.1h-1.fc33.x86_64"
     },
     "openssl-libs": {
-      "evra": "1:1.1.1g-15.fc33.x86_64"
+      "evra": "1:1.1.1h-1.fc33.x86_64"
     },
     "os-prober": {
       "evra": "1.77-6.fc33.x86_64"
@@ -1063,10 +1063,10 @@
       "evra": "4.8-5.fc33.x86_64"
     },
     "selinux-policy": {
-      "evra": "3.14.6-29.fc33.noarch"
+      "evra": "3.14.6-30.fc33.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "3.14.6-29.fc33.noarch"
+      "evra": "3.14.6-30.fc33.noarch"
     },
     "setup": {
       "evra": "2.13.7-2.fc33.noarch"
@@ -1183,7 +1183,7 @@
       "evra": "2.36-3.fc33.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.1941-1.fc33.x86_64"
+      "evra": "2:8.2.1961-1.fc33.x86_64"
     },
     "which": {
       "evra": "2.21-20.fc33.x86_64"
@@ -1217,16 +1217,16 @@
     }
   },
   "metadata": {
-    "generated": "2020-11-10T21:07:37Z",
+    "generated": "2020-11-11T16:42:40Z",
     "rpmmd_repos": {
-      "fedora-coreos-pool": {
-        "generated": "2020-11-10T19:44:38Z"
+      "fedora": {
+        "generated": "2020-10-19T23:27:19Z"
       },
-      "fedora-next": {
-        "generated": "2020-10-23T10:52:23Z"
+      "fedora-coreos-pool": {
+        "generated": "2020-11-10T21:43:02Z"
       },
       "fedora-updates": {
-        "generated": "2020-11-10T01:08:36Z"
+        "generated": "2020-11-11T00:55:35Z"
       }
     }
   }
