@@ -12,7 +12,7 @@ repos:
   # these repos are there to make it easier to add new packages to the OS and to
   # use `cosa fetch --update-lockfile`; but note that all package versions are
   # still pinned
-  - fedora-next
+  - fedora
   - fedora-updates
 
 # All Fedora CoreOS streams share the same pool for locked files.
