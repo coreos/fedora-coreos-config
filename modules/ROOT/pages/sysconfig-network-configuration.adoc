@@ -1,0 +1,978 @@
+= Host Network Configuration
+
+== Host Network Configuration Options
+
+=== Background
+
+By default, Fedora CoreOS (FCOS) will attempt DHCP on every interface
+with a cable plugged in. However, if you need to use static addressing or more
+complex networking (vlans, bonds, bridges, teams, etc..), you can do
+so in a number of ways which are summarized below. Regardless of the
+way you choose to configure networking it all ends up as configuration
+for NetworkManager, which takes the form of NetworkManager keyfiles.
+More information on the keyfile format can be found
+https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[here].
+More information on the subsection options for keyfiles can be found
+https://developer.gnome.org/NetworkManager/stable/ref-settings.html[here].
+
+=== Configuration Options
+
+FCOS machines are primarily configured via Ignition, which runs from the initramfs
+on the machine's first boot. Depending on the platform the machine may need
+network access to retrieve remote resources; either the Ignition config itself,
+or remote resources specified inside the Ignition config.
+
+NOTE: Networking will only be started in the initramfs if determined
+      to be required, or if explicitly requested by the user with
+      `*rd.neednet=1*`.
+
+Whether or not a machine needs networking in the initramfs can dictate how a
+user will configure networking for the machine. The options for
+configuring networking for a machine are:
+
+* via kernel arguments
+** these get processed by dracut modules in the initramfs on first boot
+* via `coreos-installer --copy-network`
+** by propagating the ISO/PXE install environment networking configuration 
+* via Afterburn
+** by applying network configuration injected by various platforms
+* via Ignition
+** by laying down files that NetworkManager then uses on startup
+
+NOTE: If you need networking connectivity to pull your Ignition
+      configuration, or if your Ignition has remote references, you
+      won't be able to provide your networking configuration via
+      Ignition.
+
+NOTE: If you provide networking configuration in multiple ways (i.e.
+      via kernel arguments and via Ignition) then the configuration
+      supplied via Ignition will win and be what is applied to the
+      real root of the machine. It is not supported to provide half
+      configuration via kernel arguments and half via Ignition.
+
+We'll cover each one of these options now.
+
+
+==== via Kernel Arguments
+
+On the first boot of a machine a user can provide kernel arguments
+that define networking configuration. These kernel arguments are
+mostly defined in the
+https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html[dracut.cmdline man page].
+There are a few different ways to apply these kernel arguments on
+first boot.
+
+1. In the most generic form, you can stop an instance at the GRUB
+   prompt on the first boot (Ignition boot) and add them to the existing
+   set of kernel arguments. 
+
+2. For a bare metal install where you automate the install via kernel
+   arguments added, (i.e., `coreos.inst.install_dev=`), you can also
+   append networking arguments there and they will apply to the install boot and
+   also the first boot (Ignition boot) of the installed machine.
+
+3. For a PXE boot you can add networking kernel arguments to your
+   existing set of kernel arguments in your PXE configuration.
+
+An example set of kernel arguments for statically configuring an IP
+address for `ens2` looks like like:
+
+[source, bash]
+----
+ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:ens2:none:8.8.8.8
+----
+
+The syntax is a bit hard to work with. An easy way to work with
+it is to write a small script that will fill in the items for you.
+For the example above, something like this should work:
+
+[source, bash]
+----
+ip='10.10.10.10'
+gateway='10.10.10.1'
+netmask='255.255.255.0'
+hostname='myhostname'
+interface='ens2'
+nameserver='8.8.8.8'
+echo "ip=${ip}::${gateway}:${netmask}:${hostname}:${interface}:none:${nameserver}"
+----
+
+
+==== via `coreos-installer --copy-network`
+
+For manual bare metal install workflows it may not be preferable to use
+dracut kernel arguments for configuring network:
+
+- the syntax is not very user friendly
+- manipulating kernel arguments by grabbing the GRUB prompt can be challenging
+
+The `--copy-network` option to the `coreos-installer` will copy the
+files from `/etc/NetworkManager/system-connections/` directory into
+the installed system. For an interactive install this allows the user
+to populate networking configuration in a variety of ways before doing
+the install:
+
+- using the `nmcli` command
+- using the `nmtui` TUI interface
+- writing files directly
+- using another tool of choice
+
+It also allows the user to do hardware discovery on the node (i.e.
+"what are my interface names?"). For an example of this workflow
+see https://dustymabe.com/2020/11/18/coreos-install-via-live-iso-copy-network/[this demo]
+which shows it in detail.
+
+
+==== via Afterburn
+
+On certain platforms Afterburn will inject networking configuration,
+either configured by the user or by the platform, during the initramfs.
+
+Currently this is only utilized on VMWare. The implementation there allows
+for users to specify networking configuration in the form of dracut networking
+arguments without having to stop the boot of the machine and manually
+inject those arguemnts themselves.
+
+See 
+https://github.com/coreos/afterburn/blob/master/docs/usage/initrd-network-cmdline.md[the Afterburn documentation]
+for more information.
+
+==== via Ignition
+
+WARNING: If you need networking to grab your Ignition conifg and your environment
+         requires more complex networking than the default of DHCP to grab the
+         Ignition config, then you'll need to use another method other than
+         Ignition to configure the network.
+
+Networking configuration can be performed by writing out files
+described in an Ignition config. These are 
+https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[NetworkManager keyfiles]
+that are written to `/etc/NetworkManager/system-connections/` that
+tell NetworkManager what to do.
+
+Any configuration provided via Ignition will be considered at a higher
+priority than any other method of configuring the Network for a Fedora CoreOS
+instance. If you specify Networking configuration via Ignition, try
+not to use other mechanisms to configure the network.
+
+An example
+https://docs.fedoraproject.org/en-US/fedora-coreos/producing-ign/[FCC]
+configuration for the same static networking example
+that we showed above is:
+
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/ens2.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=ens2
+          type=ethernet
+          interface-name=ens2
+          [ipv4]
+          address1=10.10.10.10/24,10.10.10.1
+          dns=8.8.8.8;
+          dns-search=
+          may-fail=false
+          method=manual
+----
+
+
+== Host Network Configuration Examples
+
+In this section we'll go through common examples of setting up
+different types of networking devices using both dracut kernel
+arguments as well as NetworkManager keyfiles via Ignition/FCCT.
+
+Examples in this section that use a static IP will assume these
+values unless otherwise stated:
+
+[source, bash]
+----
+ip='10.10.10.10'
+gateway='10.10.10.1'
+netmask='255.255.255.0'
+prefix='24'
+hostname='myhostname'
+interface='ens2'
+nameserver='8.8.8.8'
+bondname='bond0'
+teamname='team0'
+bridgename='br0'
+subnic1='ens2'
+subnic2='ens3'
+vlanid='100'
+----
+
+NOTE: FCOS uses https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/[predictable interface names]
+      by https://lists.fedoraproject.org/archives/list/coreos-status@lists.fedoraproject.org/thread/6IPTZL57Z5NLBMPYMXNVSYAGLRFZBLIP/[default].
+      Please take care to use the correct interface name for your hardware.
+
+=== Generating NetworkManager Keyfiles using `nm-initrd-generator`
+
+NetworkManager ships a tool,
+https://developer.gnome.org/NetworkManager/stable/nm-initrd-generator.html[nm-initrd-generator],
+that can generate keyfiles from dracut kernel argument syntax. This
+might be a good way to either convert from kernel arguments to keyfiles
+or to just quickly generate some keyfiles giving a small amount of input
+and then tweak some more detailed settings.
+
+Here's an example of generating keyfiles for a bond via
+`nm-initrd-generator`:
+
+[source, bash]
+----
+$ kargs="ip=bond0:dhcp bond=bond0:ens2,ens3:mode=active-backup,miimon=100 nameserver=8.8.8.8"
+$ /usr/libexec/nm-initrd-generator -s -- $kargs
+
+*** Connection 'bond0' ***
+
+[connection]
+id=bond0
+uuid=643c17b5-b364-4137-b273-33f450a45476
+type=bond
+interface-name=bond0
+multi-connect=1
+permissions=
+
+[ethernet]
+mac-address-blacklist=
+
+[bond]
+miimon=100
+mode=active-backup
+
+[ipv4]
+dns=8.8.8.8;
+dns-search=
+may-fail=false
+method=auto
+
+[ipv6]
+addr-gen-mode=eui64
+dns-search=
+method=auto
+
+[proxy]
+
+*** Connection 'ens3' ***
+
+[connection]
+id=ens3
+uuid=b42cc917-fd87-47df-9ac2-34622ecddd8c
+type=ethernet
+interface-name=ens3
+master=643c17b5-b364-4137-b273-33f450a45476
+multi-connect=1
+permissions=
+slave-type=bond
+
+[ethernet]
+mac-address-blacklist=
+
+*** Connection 'ens2' ***
+
+[connection]
+id=ens2
+uuid=e111bb4e-3ee3-4612-afc2-1d2dfff97671
+type=ethernet
+interface-name=ens2
+master=643c17b5-b364-4137-b273-33f450a45476
+multi-connect=1
+permissions=
+slave-type=bond
+
+[ethernet]
+mac-address-blacklist=
+----
+
+This run generates three keyfiles. One for `bond0`, one for `ens3`,
+and one for `ens2`. You can take the generated output, add more
+settings or tweak existing settings, and then deliver the files via
+Ignition.
+
+
+=== Configuring a Static IP
+
+==== Dracut Kernel Arguments
+
+.Template
+[source, bash]
+----
+ip=${ip}::${gateway}:${netmask}:${hostname}:${interface}:none:${nameserver}
+----
+
+.Rendered
+[source, bash]
+----
+ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:ens2:none:8.8.8.8
+----
+
+==== FCC for Ignition
+
+.Template
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/${interface}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${interface}
+          type=ethernet
+          interface-name=${interface}
+          [ipv4]
+          address1=${ip}/${prefix},${gateway}
+          dhcp-hostname=${hostname}
+          dns=${nameserver};
+          dns-search=
+          may-fail=false
+          method=manual
+----
+
+.Rendered
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/ens2.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=ens2
+          type=ethernet
+          interface-name=ens2
+          [ipv4]
+          address1=10.10.10.10/24,10.10.10.1
+          dhcp-hostname=myhostname
+          dns=8.8.8.8;
+          dns-search=
+          may-fail=false
+          method=manual
+----
+
+
+
+=== Configuring a Bond (Static IP)
+
+==== Dracut Kernel Arguments
+
+.Template
+[source, bash]
+----
+ip=${ip}::${gateway}:${netmask}:${hostname}:${bondname}:none:${nameserver}
+bond=${bondname}:${subnic1},${subnic2}:mode=active-backup,miimon=100
+----
+
+.Rendered
+[source, bash]
+----
+ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:bond0:none:8.8.8.8
+bond=bond0:ens2,ens3:mode=active-backup,miimon=100
+----
+
+==== FCC for Ignition
+
+.Template
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/${bondname}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${bondname}
+          type=bond
+          interface-name=${bondname}
+          [bond]
+          miimon=100
+          mode=active-backup
+          [ipv4]
+          address1=${ip}/${prefix},${gateway}
+          dhcp-hostname=${hostname}
+          dns=${nameserver};
+          dns-search=
+          may-fail=false
+          method=manual
+    - path: /etc/NetworkManager/system-connections/${bondname}-slave-${subnic1}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${bondname}-slave-${subnic1}
+          type=ethernet
+          interface-name=${subnic1}
+          master=${bondname}
+          slave-type=bond
+    - path: /etc/NetworkManager/system-connections/${bondname}-slave-${subnic2}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${bondname}-slave-${subnic2}
+          type=ethernet
+          interface-name=${subnic2}
+          master=${bondname}
+          slave-type=bond
+----
+
+.Rendered
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/bond0.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=bond0
+          type=bond
+          interface-name=bond0
+          [bond]
+          miimon=100
+          mode=active-backup
+          [ipv4]
+          address1=10.10.10.10/24,10.10.10.1
+          dhcp-hostname=myhostname
+          dns=8.8.8.8;
+          dns-search=
+          may-fail=false
+          method=manual
+    - path: /etc/NetworkManager/system-connections/bond0-slave-ens2.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=bond0-slave-ens2
+          type=ethernet
+          interface-name=ens2
+          master=bond0
+          slave-type=bond
+    - path: /etc/NetworkManager/system-connections/bond0-slave-ens3.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=bond0-slave-ens3
+          type=ethernet
+          interface-name=ens3
+          master=bond0
+          slave-type=bond
+----
+
+
+=== Configuring a Bridge (DHCP)
+
+==== Dracut Kernel Arguments
+
+.Template
+[source, bash]
+----
+ip=${bridgename}:dhcp
+bridge=${bridgename}:${subnic1},${subnic2}
+----
+
+.Rendered
+[source, bash]
+----
+ip=br0:dhcp
+bridge=br0:ens2,ens3
+----
+
+==== FCC for Ignition
+
+.Template
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/${bridgename}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${bridgename}
+          type=bridge
+          interface-name=${bridgename}
+          [bridge]
+          [ipv4]
+          dns-search=
+          may-fail=false
+          method=auto
+    - path: /etc/NetworkManager/system-connections/${bridgename}-slave-${subnic1}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${bridgename}-slave-${subnic1}
+          type=ethernet
+          interface-name=${subnic1}
+          master=${bridgename}
+          slave-type=bridge
+          [bridge-port]
+    - path: /etc/NetworkManager/system-connections/${bridgename}-slave-${subnic2}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${bridgename}-slave-${subnic2}
+          type=ethernet
+          interface-name=${subnic2}
+          master=${bridgename}
+          slave-type=bridge
+          [bridge-port]
+----
+
+.Rendered
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/br0.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=br0
+          type=bridge
+          interface-name=br0
+          [bridge]
+          [ipv4]
+          dns-search=
+          may-fail=false
+          method=auto
+    - path: /etc/NetworkManager/system-connections/br0-slave-ens2.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=br0-slave-ens2
+          type=ethernet
+          interface-name=ens2
+          master=br0
+          slave-type=bridge
+          [bridge-port]
+    - path: /etc/NetworkManager/system-connections/br0-slave-ens3.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=br0-slave-ens3
+          type=ethernet
+          interface-name=ens3
+          master=br0
+          slave-type=bridge
+          [bridge-port]
+----
+
+
+=== Configuring a Team (DHCP)
+
+==== Dracut Kernel Arguments
+
+.Template
+[source, bash]
+----
+ip=${teamname}:dhcp
+team=${teamname}:${subnic1},${subnic2}
+----
+
+.Rendered
+[source, bash]
+----
+ip=team0:dhcp
+team=team0:ens2,ens3
+----
+
+==== FCC for Ignition
+
+.Template
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/${teamname}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${teamname}
+          type=team
+          interface-name=${teamname}
+          [team]
+          config={"runner": {"name": "activebackup"}, "link_watch": {"name": "ethtool"}}
+          [ipv4]
+          dns-search=
+          may-fail=false
+          method=auto
+    - path: /etc/NetworkManager/system-connections/${teamname}-slave-${subnic1}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${teamname}-slave-${subnic1}
+          type=ethernet
+          interface-name=${subnic1}
+          master=${teamname}
+          slave-type=team
+          [team-port]
+          config={"prio": 100}
+    - path: /etc/NetworkManager/system-connections/${teamname}-slave-${subnic2}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${teamname}-slave-${subnic2}
+          type=ethernet
+          interface-name=${subnic2}
+          master=${teamname}
+          slave-type=team
+          [team-port]
+          config={"prio": 100}
+----
+
+.Rendered
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/team0.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=team0
+          type=team
+          interface-name=team0
+          [team]
+          config={"runner": {"name": "activebackup"}, "link_watch": {"name": "ethtool"}}
+          [ipv4]
+          dns-search=
+          may-fail=false
+          method=auto
+    - path: /etc/NetworkManager/system-connections/team0-slave-ens2.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=team0-slave-ens2
+          type=ethernet
+          interface-name=ens2
+          master=team0
+          slave-type=team
+          [team-port]
+          config={"prio": 100}
+    - path: /etc/NetworkManager/system-connections/team0-slave-ens3.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=team0-slave-ens3
+          type=ethernet
+          interface-name=ens3
+          master=team0
+          slave-type=team
+          [team-port]
+          config={"prio": 100}
+----
+
+
+=== Configuring a Vlan (Static IP)
+
+==== Dracut Kernel Arguments
+
+NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/509[a bug]
+      that causes the subinterface of the vlan to also try DHCP. We'll workaround by specifying
+      `*ip=${interface}:off*` here to disable it.
+
+.Template
+[source, bash]
+----
+ip=${ip}::${gateway}:${netmask}:${hostname}:${interface}.${vlanid}:none:${nameserver}
+ip=${interface}:off
+vlan=${interface}.${vlanid}:${interface}
+----
+
+.Rendered
+[source, bash]
+----
+ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:ens2.100:none:8.8.8.8
+ip=ens2:off
+vlan=ens2.100:ens2
+----
+
+==== FCC for Ignition
+
+.Template
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/${interface}.${vlanid}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${interface}.${vlanid}
+          type=vlan
+          interface-name=${interface}.${vlanid}
+          [vlan]
+          egress-priority-map=
+          flags=1
+          id=${vlanid}
+          ingress-priority-map=
+          parent=${interface}
+          [ipv4]
+          address1=${ip}/${prefix},${gateway}
+          dhcp-hostname=${hostname}
+          dns=${nameserver};
+          dns-search=
+          may-fail=false
+          method=manual
+    - path: /etc/NetworkManager/system-connections/${interface}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${interface}
+          type=ethernet
+          interface-name=${interface}
+          [ipv4]
+          dns-search=
+          method=disabled
+          [ipv6]
+          addr-gen-mode=eui64
+          dns-search=
+          method=disabled
+----
+
+.Rendered
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/ens2.100.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=ens2.100
+          type=vlan
+          interface-name=ens2.100
+          [vlan]
+          egress-priority-map=
+          flags=1
+          id=100
+          ingress-priority-map=
+          parent=ens2
+          [ipv4]
+          address1=10.10.10.10/24,10.10.10.1
+          dhcp-hostname=myhostname
+          dns=8.8.8.8;
+          dns-search=
+          may-fail=false
+          method=manual
+    - path: /etc/NetworkManager/system-connections/ens2.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=ens2
+          type=ethernet
+          interface-name=ens2
+          [ipv4]
+          dns-search=
+          method=disabled
+          [ipv6]
+          addr-gen-mode=eui64
+          dns-search=
+          method=disabled
+----
+
+=== Configuring a Vlan on a Bond (DHCP)
+
+==== Dracut Kernel Arguments
+
+NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/581[a bug]
+      that causes the expected Vlan on Bond DHCP syntax to not work for the `*ip=*` argument.
+      We'll workaround that bug here by using the `*VLAN_PLUS_VID_NO_PAD*` form of vlan name.
+      So we'll use `*vlan${vlanid}*` instead of `*${bondname}.${vlanid}*`. We'll move back to
+      the `*DEV_PLUS_VID_NO_PAD*` form when the bug is fixed.
+
+NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/509[a bug]
+      that causes the subinterface of the vlan to also try DHCP. We'll workaround by specifying
+      `*ip=${bondname}:off*` here to disable it.
+
+
+.Template
+[source, bash]
+----
+ip=vlan${vlanid}:dhcp
+ip=${bondname}:off
+bond=${bondname}:${subnic1},${subnic2}:mode=active-backup,miimon=100
+vlan=vlan${vlanid}:${bondname}
+----
+
+.Rendered
+[source, bash]
+----
+ip=vlan100:dhcp
+ip=bond0:off
+bond=bond0:ens2,ens3:mode=active-backup,miimon=100
+vlan=vlan100:bond0
+----
+
+==== FCC for Ignition
+
+.Template
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/${bondname}.${vlanid}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${bondname}.${vlanid}
+          type=vlan
+          interface-name=${bondname}.${vlanid}
+          [vlan]
+          egress-priority-map=
+          flags=1
+          id=${vlanid}
+          ingress-priority-map=
+          parent=${bondname}
+          [ipv4]
+          dns-search=
+          may-fail=false
+          method=auto
+    - path: /etc/NetworkManager/system-connections/${bondname}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${bondname}
+          type=bond
+          interface-name=${bondname}
+          [bond]
+          miimon=100
+          mode=active-backup
+          [ipv4]
+          method=disabled
+    - path: /etc/NetworkManager/system-connections/${bondname}-slave-${subnic1}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${bondname}-slave-${subnic1}
+          type=ethernet
+          interface-name=${subnic1}
+          master=${bondname}
+          slave-type=bond
+    - path: /etc/NetworkManager/system-connections/${bondname}-slave-${subnic2}.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=${bondname}-slave-${subnic2}
+          type=ethernet
+          interface-name=${subnic2}
+          master=${bondname}
+          slave-type=bond
+----
+
+.Rendered
+[source, yaml]
+----
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/bond0.100.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=bond0.100
+          type=vlan
+          interface-name=bond0.100
+          [vlan]
+          egress-priority-map=
+          flags=1
+          id=100
+          ingress-priority-map=
+          parent=bond0
+          [ipv4]
+          dns-search=
+          may-fail=false
+          method=auto
+    - path: /etc/NetworkManager/system-connections/bond0.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=bond0
+          type=bond
+          interface-name=bond0
+          [bond]
+          miimon=100
+          mode=active-backup
+          [ipv4]
+          method=disabled
+          [ipv6]
+          method=disabled
+    - path: /etc/NetworkManager/system-connections/bond0-slave-ens2.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=bond0-slave-ens2
+          type=ethernet
+          interface-name=ens2
+          master=bond0
+          slave-type=bond
+    - path: /etc/NetworkManager/system-connections/bond0-slave-ens3.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=bond0-slave-ens3
+          type=ethernet
+          interface-name=ens3
+          master=bond0
+          slave-type=bond
+----
