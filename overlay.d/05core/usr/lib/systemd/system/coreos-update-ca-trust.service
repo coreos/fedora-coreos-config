@@ -6,14 +6,21 @@
 [Unit]
 Description=Run update-ca-trust
 ConditionFirstBoot=true
+# All services which use ConditionFirstBoot=yes should use
+# Before=first-boot-complete.target, which is a target that
+# was introduced in https://github.com/systemd/systemd/issues/4511
+# and hasn't propagated everywhere yet. Once the target propagates
+# everywhere, we can drop the systemd-machine-id-commit.service
+# from the Before= line.
+Before=first-boot-complete.target systemd-machine-id-commit.service
+Wants=first-boot-complete.target
 ConditionDirectoryNotEmpty=/etc/pki/ca-trust/source/anchors/
 # We want to run quite early, in particular before anything
 # that may speak TLS to external services.  In the future,
 # it may make sense to do this in the initramfs too.
 DefaultDependencies=no
-# This ensures we run after important bits like ostree-prepare-root.service
-After=sysinit.target
-Requires=sysinit.target
+After=local-fs.target
+Requires=local-fs.target
 
 [Service]
 ExecStart=/usr/bin/update-ca-trust extract
