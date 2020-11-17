@@ -14,17 +14,17 @@ Before installing FCOS, you must have an Ignition configuration file and host it
 
 To install FCOS onto bare metal using the live ISO, follow these steps:
 
-. Download the ISO image:
+- Download the ISO image:
 [source, bash]
 ----
 podman run --privileged --pull=always --rm -v .:/data -w /data \
     quay.io/coreos/coreos-installer:release download -f iso
 ----
-+
+
 NOTE: You can boot the live ISO in either legacy BIOS or UEFI mode, regardless of what mode the OS will use once installed.
-+
-. Burn the ISO to disk and boot it on the target system. The ISO is capable of bringing up a fully functioning FCOS system purely from memory (i.e. without using any disk storage). Once booted, you will have access to a bash command prompt.
-. You can now run `coreos-installer`:
+
+- Burn the ISO to disk and boot it on the target system. The ISO is capable of bringing up a fully functioning FCOS system purely from memory (i.e. without using any disk storage). Once booted, you will have access to a bash command prompt.
+- You can now run `coreos-installer`:
 [source, bash]
 ----
 sudo coreos-installer install /dev/sda \
@@ -39,17 +39,17 @@ TIP: Check out `coreos-installer install --help` for more options on how to inst
 
 To install from PXE, follow these steps:
 
-. Download an FCOS PXE kernel, initramfs, and rootfs image:
+- Download an FCOS PXE kernel, initramfs, and rootfs image:
 [source, bash]
 ----
 podman run --privileged --pull=always --rm -v .:/data -w /data \
     quay.io/coreos/coreos-installer:release download -f pxe
 ----
-+
+
 NOTE: Booting the live PXE image requires at least 2 GiB of RAM with the `coreos.live.rootfs_url` kernel argument, and 3 GiB otherwise. You can install in either legacy boot (BIOS) mode or in UEFI mode, regardless of what mode the OS will use once installed.
-+
-. Follow this example `pxelinux.cfg` for booting the installer images with PXELINUX:
-+
+
+- Follow this example `pxelinux.cfg` for booting the installer images with PXELINUX:
+
 [source]
 ----
 DEFAULT pxeboot
