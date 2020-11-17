@@ -26,9 +26,9 @@ if [ "${path}" == /sysroot ] && [ -f "${saved_partstate}" ]; then
     # following: if the rootfs partition was moved off of the boot disk or it
     # was resized, then we don't growpart.
     #
-    # To detect this, we compare the output of `lsblk -o PATH,SIZE` before and
-    # after `ignition-disks.service`.
-    partstate=$(lsblk "${src}" --nodeps --json -b -o PATH,SIZE | jq -c .)
+    # To detect this, we compare the output of `lsblk --paths -o NAME,SIZE`
+    # before and after `ignition-disks.service`.
+    partstate=$(lsblk "${src}" --nodeps --paths --json -b -o NAME,SIZE | jq -c .)
     if [ "${partstate}" != "$(cat "${saved_partstate}")" ]; then
         echo "coreos-growpart: detected rootfs partition changes; not auto-growing"
         exit 0

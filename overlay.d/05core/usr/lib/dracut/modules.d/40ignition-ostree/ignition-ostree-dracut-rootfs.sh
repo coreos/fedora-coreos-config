@@ -27,7 +27,7 @@ case "${1:-}" in
         echo "Moving rootfs to RAM..."
         cp -aT /sysroot "${saved_sysroot}"
         # also store the state of the partition
-        lsblk "${rootdisk}" --nodeps --json -b -o PATH,SIZE | jq -c . > "${partstate}"
+        lsblk "${rootdisk}" --nodeps --paths --json -b -o NAME,SIZE | jq -c . > "${partstate}"
         ;;
     restore)
         # This one is in a private mount namespace since we're not "offically" mounting
