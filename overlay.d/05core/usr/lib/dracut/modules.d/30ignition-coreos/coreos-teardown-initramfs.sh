@@ -54,7 +54,7 @@ propagate_initramfs_networking() {
         echo "info: no networking config is defined in the real root"
         if [ -n "$(ls -A /run/NetworkManager/system-connections/)" ]; then
             echo "info: propagating initramfs networking config to the real root"
-            cp /run/NetworkManager/system-connections/* /sysroot/etc/NetworkManager/system-connections/
+            cp -v /run/NetworkManager/system-connections/* /sysroot/etc/NetworkManager/system-connections/
             selinux_relabel /etc/NetworkManager/system-connections/
         else
             echo "info: no initramfs networking information to propagate"
