@@ -22,3 +22,7 @@ enable zincati.service
 enable coreos-liveiso-success.service
 # See bootupd.yaml
 enable bootupd.socket
+# Enable rtas_errd for ppc64le to discover dynamically attached pci devices - https://bugzilla.redhat.com/show_bug.cgi?id=1811537
+# The event for the attached device comes as a diag event.
+# Ideally it should have been added as part of base Fedora - but since it was arch specific, it was not added: https://bugzilla.redhat.com/show_bug.cgi?id=1433859
+enable rtas_errd.service
