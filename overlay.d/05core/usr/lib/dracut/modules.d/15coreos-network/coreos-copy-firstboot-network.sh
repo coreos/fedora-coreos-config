@@ -10,6 +10,7 @@ firstboot_network_dir_basename="coreos-firstboot-network"
 initramfs_firstboot_network_dir="${bootmnt}/${firstboot_network_dir_basename}"
 initramfs_network_dir="/run/NetworkManager/system-connections/"
 realroot_firstboot_network_dir="/boot/${firstboot_network_dir_basename}"
+copy_firstboot_network_stamp="/run/coreos-copy-firstboot-network.stamp"
 
 # Mount /boot. Note that we mount /boot but we don't unmount boot because we
 # are run in a systemd unit with MountFlags=slave so it is unmounted for us.
@@ -28,7 +29,7 @@ if [ -n "$(ls -A ${initramfs_firstboot_network_dir} 2>/dev/null)" ]; then
     cp -v ${initramfs_firstboot_network_dir}/* ${initramfs_network_dir}/
     # Drop stamp file in /run to indicate that there are firstboot networking
     # configuration files in /boot that should be cleaned up after Ignition.
-    touch /run/coreos-copy-firstboot-network.stamp
+    touch ${copy_firstboot_network_stamp}
 else
     echo "info: no files to copy from ${initramfs_firstboot_network_dir}. skipping"
 fi
