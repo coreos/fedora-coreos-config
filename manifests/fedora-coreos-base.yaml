@@ -68,6 +68,12 @@ postprocess:
   - |
     #!/usr/bin/env bash
     systemctl mask dnsmasq.service
+  # Mask systemd-repart. Ignition is responsible for partition setup on first
+  # boot and does not use systemd-repart currently. See also
+  # https://github.com/coreos/fedora-coreos-tracker/issues/570
+  - |
+    #!/usr/bin/env bash
+    systemctl mask systemd-repart.service
 
 packages:
   # Security
