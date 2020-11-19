@@ -1,1 +1,10 @@
-packages: {}
+packages:
+  # test podman 2.2.0 rc
+  podman:
+    evra: 2:2.2.0-0.3.rc1.fc33.x86_64
+  podman-plugins:
+    evra: 2:2.2.0-0.3.rc1.fc33.x86_64
+  containers-common:
+    evra: 1:1.2.0-8.fc33.x86_64
+  skopeo:
+    evra: 1:1.2.0-8.fc33.x86_64
