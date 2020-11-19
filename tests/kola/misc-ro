@@ -135,3 +135,10 @@ if [ $(systemctl is-enabled dnsmasq.service) != 'masked' ]; then
     fatal "dnsmasq.service systemd unit should be masked"
 fi
 ok "dnsmasq.service systemd unit is masked"
+
+# make sure systemd-repart is masked
+# https://github.com/coreos/fedora-coreos-config/pull/744
+if [ $(systemctl is-enabled systemd-repart.service) != 'masked' ]; then
+    fatal "systemd-repart.service systemd unit should be masked"
+fi
+ok "systemd-repart.service systemd unit is masked"
