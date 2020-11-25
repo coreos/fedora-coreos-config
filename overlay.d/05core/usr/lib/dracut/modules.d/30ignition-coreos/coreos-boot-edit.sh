@@ -14,9 +14,4 @@ mount -o rw ${bootdev} ${bootmnt}
 # installed system (most likely by using `coreos-installer install --copy-network`).
 firstboot_network_dir_basename="coreos-firstboot-network"
 initramfs_firstboot_network_dir="${bootmnt}/${firstboot_network_dir_basename}"
-copy_firstboot_network_stamp="/run/coreos-copy-firstboot-network.stamp"
-if [ -f ${copy_firstboot_network_stamp} ]; then
-    rm -vrf ${initramfs_firstboot_network_dir}
-else
-    echo "info: no firstboot networking config files to clean from /boot. skipping"
-fi
+rm -vrf ${initramfs_firstboot_network_dir}
