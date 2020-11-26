@@ -12,7 +12,7 @@ Here's an example FCC file to set up `/var` on a separate partition on the same 
 [source,yaml]
 ----
 variant: fcos
-version: 1.1.0
+version: 1.2.0
 storage:
   disks:
   - # The name of the primary block device. In virtio-based setups, this is
@@ -48,7 +48,7 @@ You can of course mount only a subset of `/var` into a separate partition. For e
 [source,yaml]
 ----
 variant: fcos
-version: 1.1.0
+version: 1.2.0
 storage:
   disks:
   - device: /dev/vda
@@ -72,7 +72,7 @@ Alternatively, you can also mount storage from a separate disk. For example, her
 [source,yaml]
 ----
 variant: fcos
-version: 1.1.0
+version: 1.2.0
 storage:
   disks:
   - device: /dev/vdb
@@ -100,7 +100,7 @@ Here's an example of moving from xfs to ext4, but reusing the same partition on 
 [source,yaml]
 ----
 variant: fcos
-version: 1.1.0
+version: 1.2.0
 storage:
   filesystems:
     - device: /dev/disk/by-partlabel/root
@@ -115,7 +115,7 @@ Similarly to the previous section, you can also move the root filesystem entirel
 [source,yaml]
 ----
 variant: fcos
-version: 1.1.0
+version: 1.2.0
 storage:
   raid:
     - name: myroot

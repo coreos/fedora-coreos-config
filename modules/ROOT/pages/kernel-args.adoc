@@ -9,7 +9,7 @@ Here's an example which drops the default `systemd.unified_cgroup_hierarchy=0` k
 [source,yaml]
 ----
 variant: fcos
-version: 1.1.0
+version: 1.2.0
 passwd:
   users:
     - name: core

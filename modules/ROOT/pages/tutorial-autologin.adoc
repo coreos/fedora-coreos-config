@@ -23,7 +23,7 @@ We can create a config file named `fcct-autologin.yaml` now as:
 [source,yaml]
 ----
 variant: fcos
-version: 1.1.0
+version: 1.2.0
 systemd:
   units:
     - name: serial-getty@ttyS0.service

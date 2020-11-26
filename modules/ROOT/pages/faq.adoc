@@ -253,7 +253,7 @@ masking the `docker.service` systemd unit.
 [source, yaml]
 ----
 variant: fcos
-version: 1.1.0
+version: 1.2.0
 systemd:
   units:
     - name: docker.service
