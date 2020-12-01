@@ -17,7 +17,7 @@ packages-aarch64:
 packages-ppc64le:
   - grub2 ostree-grub2
 packages-s390x:
-  - s390utils-base
+  - s390utils-core
 packages-x86_64:
   - grub2 grub2-efi-x64 efibootmgr shim
   - microcode_ctl
