@@ -3,5 +3,3 @@ enable fedora-coreos-pinger.service
 # Provide information if no ignition is provided
 enable coreos-check-ignition-config.service
 enable coreos-check-ssh-keys.service
-# Enable the migration service to systemd-resolved
-enable coreos-migrate-to-systemd-resolved.service
