@@ -1,0 +1,16 @@
+{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "files": [
+      {
+        "path": "/etc/systemd/system/nm-cloud-setup.service.d/env-azure.conf",
+        "contents": {
+          "source": "data:,%5BService%5D%0AEnvironment%3DNM_CLOUD_SETUP_AZURE%3Dyes%0A"
+        },
+        "mode": 420
+      }
+    ]
+  }
+}
