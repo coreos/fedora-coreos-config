@@ -437,10 +437,6 @@ EOF
     common_args+=' ignition.firstboot' # manually set ignition.firstboot
    #common_args+=' rd.break=pre-mount'
 
-    # Have to add ipv6.disable=1 for Fedora 33+ because of
-    # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/539
-    common_args+=' ipv6.disable=1'
-
     # export these values so we can substitute the values
     # in using the envsubst command
     export ip gateway netmask prefix interface nameserver bondname teamname bridgename subnic1 subnic2 vlanid
@@ -484,7 +480,6 @@ EOF
     export hostname="staticvlan"
     x="${common_args} rd.neednet=1"
     x+=" ip=${ip}::${gateway}:${netmask}:${hostname}:${interface}.${vlanid}:none:${nameserver}"
-    x+=" ip=${interface}:off"
     x+=" vlan=${interface}.${vlanid}:${interface}"
     x+=" ip=${subnic2}:off"
     initramfs_staticvlan=$x
@@ -493,10 +488,9 @@ EOF
 
     export hostname="dhcpvlanbond"
     x="${common_args} rd.neednet=1"
-    x+=" ip=vlan${vlanid}:dhcp"
-    x+=" ip=${bondname}:off"
+    x+=" ip=${bondname}.${vlanid}:dhcp"
     x+=" bond=${bondname}:${subnic1},${subnic2}:mode=active-backup,miimon=100"
-    x+=" vlan=vlan${vlanid}:${bondname}"
+    x+=" vlan=${bondname}.${vlanid}:${bondname}"
     initramfs_dhcpvlanbond=$x
     fcct_initramfs_dhcpvlanbond=$(echo "${fcct_common}${fcct_hostname}" | envsubst)
     fcct_dhcpvlanbond=$(echo "${fcct_common}${fcct_hostname}${fcct_dhcpvlanbond}" | envsubst)
