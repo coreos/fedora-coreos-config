@@ -283,6 +283,8 @@ fcct_dhcpvlanbond='
           mode=active-backup
           [ipv4]
           method=disabled
+          [ipv6]
+          method=disabled
     - path: /etc/NetworkManager/system-connections/${bondname}-slave-${subnic1}.nmconnection
       mode: 0600
       contents:
