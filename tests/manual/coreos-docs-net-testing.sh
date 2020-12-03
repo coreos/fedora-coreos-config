@@ -20,13 +20,15 @@ set -eu -o pipefail
 # I test this way I usually stand up a separate VM on the same bridge
 # and run dnsmasq on a tagged network like:
 #
+#     interface=eth1
 #     cat <<EOF > /etc/dnsmasq.d/vlandhcp
-#     interface=eth1.100
+#     interface=${interface}.100
 #     bind-interfaces
 #     dhcp-range=192.168.200.150,192.168.200.160,12h
-#     ip link add link eth0 name eth0.100 type vlan id 100
-#     ip addr add 192.168.200.1/24 dev eth0.100
-#     ip link set eth0.100 up
+#     EOF
+#     ip link add link $interface name "${interface}.100" type vlan id 100
+#     ip addr add 192.168.200.1/24 dev "${interface}.100"
+#     ip link set "${interface}.100" up
 #     systemctl enable dnsmasq --now
 #
 # - Dusty Mabe - dusty@dustymabe.com
