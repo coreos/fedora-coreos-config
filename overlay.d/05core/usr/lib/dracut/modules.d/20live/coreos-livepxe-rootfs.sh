@@ -34,7 +34,7 @@ elif [[ -n "${rootfs_url}" ]]; then
     # image hash.
     # bsdtar can read cpio archives and we already depend on it for
     # coreos-liveiso-persist-osmet.service, so use it instead of cpio.
-    if ! curl --silent --insecure --location --retry 5 "${rootfs_url}" | \
+    if ! curl --silent --show-error --insecure --location --retry 5 "${rootfs_url}" | \
             rdcore stream-hash /etc/coreos-live-want-rootfs | \
             bsdtar -xf - -C / ; then
         echo "Couldn't fetch, verify, and unpack image specified by coreos.live.rootfs_url=" >&2
