@@ -34,4 +34,4 @@ NOTE: `virt-install` requires both the OS image and Ignition file to be specifie
 
 NOTE: Depending on your version of `virt-install`, you may not be able to use `--os-variant=fedora32` and will get an error. In this case, you should pick an older Fedora variant (`--os-variant=fedora31` or `--os-variant=fedora30` for example). You can find the variants that are supported by you current version of `virt-install` with `osinfo-query os | grep "fedora[2-3][0-9]"`.
 
-TIP: Make sure that your user has access to `/dev/kvm`. On most modern distribution, this means adding yourself to the `kvm` group.
+TIP: Make sure that your user has access to `/dev/kvm`. The default is to allow access for everyone, but on some distributions you may need to add yourself to the `kvm` group.
