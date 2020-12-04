@@ -7,9 +7,11 @@ set -euo pipefail
 ignition_cfg=/run/ignition.json
 root_part=/dev/disk/by-label/root
 boot_part=/dev/disk/by-label/boot
+esp_part=/dev/disk/by-label/EFI-SYSTEM
 saved_data=/run/ignition-ostree-transposefs
 saved_root=${saved_data}/root
 saved_boot=${saved_data}/boot
+saved_esp=${saved_data}/esp
 partstate_root=/run/ignition-ostree-rootfs-partstate.json
 
 # Print jq query string for wiped filesystems with label $1
@@ -22,7 +24,8 @@ case "${1:-}" in
         # Mounts are not in a private namespace so we can mount ${saved_data}
         wipes_root=$(jq "$(query_fslabel root) | length" "${ignition_cfg}")
         wipes_boot=$(jq "$(query_fslabel boot) | length" "${ignition_cfg}")
-        if [ "${wipes_root}${wipes_boot}" = "00" ]; then
+        wipes_esp=$(jq "$(query_fslabel EFI-SYSTEM) | length" "${ignition_cfg}")
+        if [ "${wipes_root}${wipes_boot}${wipes_esp}" = "000" ]; then
             exit 0
         fi
         echo "Detected partition replacement in fetched Ignition config: /run/ignition.json"
@@ -36,6 +39,9 @@ case "${1:-}" in
         fi
         if [ "${wipes_boot}" != "0" ]; then
             mkdir "${saved_boot}"
+        fi
+        if [ "${wipes_esp}" != "0" ]; then
+            mkdir "${saved_esp}"
         fi
         ;;
     save)
@@ -53,6 +59,12 @@ case "${1:-}" in
             echo "Moving bootfs to RAM..."
             cp -aT /sysroot/boot "${saved_boot}"
         fi
+        if [ -d "${saved_esp}" ]; then
+            mkdir -p /sysroot/boot/efi
+            mount "${esp_part}" /sysroot/boot/efi
+            echo "Moving EFI System Partition to RAM..."
+            cp -aT /sysroot/boot/efi "${saved_esp}"
+        fi
         ;;
     restore)
         # Mounts happen in a private mount namespace since we're not "offically" mounting
@@ -67,6 +79,12 @@ case "${1:-}" in
             mount "${boot_part}" /sysroot/boot
             echo "Restoring bootfs from RAM..."
             find "${saved_boot}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot/boot {} \;
+        fi
+        if [ -d "${saved_esp}" ]; then
+            echo "Restoring EFI System Partition from RAM..."
+            mkdir -p /sysroot/boot/efi
+            mount "${esp_part}" /sysroot/boot/efi
+            find "${saved_esp}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot/boot/efi {} \;
         fi
         ;;
     cleanup)
