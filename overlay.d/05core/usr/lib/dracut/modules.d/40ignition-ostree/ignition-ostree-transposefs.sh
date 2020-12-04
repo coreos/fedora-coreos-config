@@ -10,9 +10,14 @@ saved_data=/run/ignition-ostree-transposefs
 saved_root=${saved_data}/root
 partstate_root=/run/ignition-ostree-rootfs-partstate.json
 
+# Print jq query string for wiped filesystems with label $1
+query_fslabel() {
+    echo ".storage?.filesystems? // [] | map(select(.label == \"$1\" and .wipeFilesystem == true))"
+}
+
 case "${1:-}" in
     detect)
-        wipes_root=$(jq '.storage?.filesystems? // [] | map(select(.label == "root" and .wipeFilesystem == true)) | length' "${ignition_cfg}")
+        wipes_root=$(jq "$(query_fslabel root) | length" "${ignition_cfg}")
         if [ "${wipes_root}" = "0" ]; then
             exit 0
         fi
