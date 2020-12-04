@@ -132,7 +132,7 @@ We use `virt-install` to create a new Fedora CoreOS virtual machine with a speci
 chcon --verbose --type svirt_home_t autologin.ign
 
 # Start a Fedora CoreOS virtual machine
-virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
+virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora-coreos-stable \
     --import --network=bridge=virbr0 --graphics=none \
     --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${PWD}/autologin.ign" \
     --disk=size=20,backing_store=${PWD}/fedora-coreos.qcow2
@@ -142,7 +142,7 @@ The `virt-install` command will start an instance named `fcos` from the `fedora-
 
 We use the `backing_store` option to `virt-install --disk` to quickly create a new disk image and avoid writing to the original image we have downloaded. This new disk image can be easily thrown away.
 
-NOTE: Depending on your version of `virt-install`, you may not be able to use `--os-variant=fedora32` and will get an error. In this case, you should pick an older Fedora variant (`--os-variant=fedora31` or `--os-variant=fedora30` for example). You can find the variants that are supported by you current version of `virt-install` with `osinfo-query os | grep "fedora[2-3][0-9]"`.
+NOTE: Depending on your version of `virt-install`, you may not be able to use `--os-variant=fedora-coreos-stable` and will get an error. In this case, you should pick an older Fedora variant (`--os-variant=fedora31` for example). You can find the variants that are supported by you current version of `virt-install` with `osinfo-query os | grep '^\s*fedora'`.
 
 Once the machine is booted up you should see a few prompts and then you should be automatically logged in and presented with a bash shell:
 

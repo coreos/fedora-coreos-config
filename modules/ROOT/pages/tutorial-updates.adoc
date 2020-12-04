@@ -105,7 +105,7 @@ Now let's provision it. Make sure that you are starting from the older Fedora Co
 chcon --verbose --type svirt_home_t updates.ign
 
 # Start a Fedora CoreOS virtual machine
-virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
+virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora-coreos-stable \
     --import --network=bridge=virbr0 --graphics=none \
     --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${PWD}/updates.ign" \
     --disk=size=20,backing_store=${PWD}/fedora-coreos-older.qcow2

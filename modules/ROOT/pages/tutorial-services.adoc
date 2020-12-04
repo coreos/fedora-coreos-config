@@ -126,7 +126,7 @@ Just as before we will use the following to boot the instance:
 chcon --verbose --type svirt_home_t services.ign
 
 # Start a Fedora CoreOS virtual machine
-virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora32 \
+virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora-coreos-stable \
     --import --network=bridge=virbr0 --graphics=none \
     --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${PWD}/services.ign" \
     --disk=size=20,backing_store=${PWD}/fedora-coreos.qcow2

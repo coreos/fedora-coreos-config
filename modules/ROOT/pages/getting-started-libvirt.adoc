@@ -25,13 +25,13 @@ RAM_MB="2048"
 DISK_GB="10"
 
 virt-install --connect="qemu:///system" --name="${VM_NAME}" --vcpus="${VCPUS}" --memory="${RAM_MB}" \
-        --os-variant="fedora32" --import --graphics="none" \
+        --os-variant="fedora-coreos-$STREAM" --import --graphics=none \
         --disk="size=${DISK_GB},backing_store=${IMAGE}" \
         --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${IGNITION_CONFIG}"
 ----
 
 NOTE: `virt-install` requires both the OS image and Ignition file to be specified as absolute paths.
 
-NOTE: Depending on your version of `virt-install`, you may not be able to use `--os-variant=fedora32` and will get an error. In this case, you should pick an older Fedora variant (`--os-variant=fedora31` or `--os-variant=fedora30` for example). You can find the variants that are supported by you current version of `virt-install` with `osinfo-query os | grep "fedora[2-3][0-9]"`.
+NOTE: Depending on your version of `virt-install`, you may not be able to use `--os-variant=fedora-coreos-*` and will get an error. In this case, you should pick an older Fedora variant (`--os-variant=fedora31` for example). You can find the variants that are supported by you current version of `virt-install` with `osinfo-query os | grep '^\s*fedora'`.
 
 TIP: Make sure that your user has access to `/dev/kvm`. The default is to allow access for everyone, but on some distributions you may need to add yourself to the `kvm` group.
