@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+boot_sector_size=440
+bios_typeguid=21686148-6449-6e6f-744e-656564454649
+
 # This is implementation details of Ignition; in the future, we should figure
 # out a way to ask Ignition directly whether there's a filesystem with label
 # "root" being set up.
@@ -8,15 +11,28 @@ ignition_cfg=/run/ignition.json
 root_part=/dev/disk/by-label/root
 boot_part=/dev/disk/by-label/boot
 esp_part=/dev/disk/by-label/EFI-SYSTEM
+bios_part=/dev/disk/by-partlabel/BIOS-BOOT
 saved_data=/run/ignition-ostree-transposefs
 saved_root=${saved_data}/root
 saved_boot=${saved_data}/boot
 saved_esp=${saved_data}/esp
+saved_bios=${saved_data}/bios
 partstate_root=/run/ignition-ostree-rootfs-partstate.json
 
 # Print jq query string for wiped filesystems with label $1
 query_fslabel() {
     echo ".storage?.filesystems? // [] | map(select(.label == \"$1\" and .wipeFilesystem == true))"
+}
+
+# Print jq query string for partitions with type GUID $1
+query_parttype() {
+    echo ".storage?.disks? // [] | map(.partitions?) | flatten | map(select(try .typeGuid catch \"\" | ascii_downcase == \"$1\"))"
+}
+
+# Print partition offset for device node $1
+get_partition_offset() {
+    local devpath=$(udevadm info --query=path "$1")
+    cat "/sys${devpath}/start"
 }
 
 case "${1:-}" in
@@ -25,10 +41,17 @@ case "${1:-}" in
         wipes_root=$(jq "$(query_fslabel root) | length" "${ignition_cfg}")
         wipes_boot=$(jq "$(query_fslabel boot) | length" "${ignition_cfg}")
         wipes_esp=$(jq "$(query_fslabel EFI-SYSTEM) | length" "${ignition_cfg}")
-        if [ "${wipes_root}${wipes_boot}${wipes_esp}" = "000" ]; then
+        creates_bios=$(jq "$(query_parttype ${bios_typeguid}) | length" "${ignition_cfg}")
+        if [ "${wipes_root}${wipes_boot}${wipes_esp}${creates_bios}" = "0000" ]; then
             exit 0
         fi
         echo "Detected partition replacement in fetched Ignition config: /run/ignition.json"
+        # verify all BIOS partitions have non-null unique labels
+        unique_bios=$(jq -r "$(query_parttype ${bios_typeguid}) | [.[].label | values] | unique | length" "${ignition_cfg}")
+        if [ "${creates_bios}" != "${unique_bios}" ]; then
+            echo "Found duplicate or missing BIOS-BOOT labels in config" >&2
+            exit 1
+        fi
         mkdir "${saved_data}"
         # use 80% of RAM: we want to be greedy since the boot breaks anyway, but
         # we still want to leave room for everything else so it hits ENOSPC and
@@ -42,6 +65,9 @@ case "${1:-}" in
         fi
         if [ "${wipes_esp}" != "0" ]; then
             mkdir "${saved_esp}"
+        fi
+        if [ "${creates_bios}" != "0" ]; then
+            mkdir "${saved_bios}"
         fi
         ;;
     save)
@@ -65,6 +91,16 @@ case "${1:-}" in
             echo "Moving EFI System Partition to RAM..."
             cp -aT /sysroot/boot/efi "${saved_esp}"
         fi
+        if [ -d "${saved_bios}" ]; then
+            echo "Moving BIOS Boot partition and boot sector to RAM..."
+            # save partition
+            cat "${bios_part}" > "${saved_bios}/partition"
+            # save boot sector
+            bios_disk=$(lsblk --noheadings --output PKNAME --paths "${bios_part}")
+            dd if="${bios_disk}" of="${saved_bios}/boot-sector" bs="${boot_sector_size}" count=1 status=none
+            # store partition start offset so we can check it later
+            get_partition_offset "${bios_part}" > "${saved_bios}/start"
+        fi
         ;;
     restore)
         # Mounts happen in a private mount namespace since we're not "offically" mounting
@@ -85,6 +121,25 @@ case "${1:-}" in
             mkdir -p /sysroot/boot/efi
             mount "${esp_part}" /sysroot/boot/efi
             find "${saved_esp}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot/boot/efi {} \;
+        fi
+        if [ -d "${saved_bios}" ]; then
+            echo "Restoring BIOS Boot partition and boot sector from RAM..."
+            expected_start=$(cat "${saved_bios}/start")
+            # iterate over each new BIOS Boot partition, by label
+            jq -r "$(query_parttype ${bios_typeguid}) | .[].label" "${ignition_cfg}" | while read label; do
+                cur_part="/dev/disk/by-partlabel/${label}"
+                # boot sector hardcodes the partition start; ensure it matches
+                cur_start=$(get_partition_offset "${cur_part}")
+                if [ "${cur_start}" != "${expected_start}" ]; then
+                    echo "Partition ${cur_part} starts at ${cur_start}; expected ${expected_start}" >&2
+                    exit 1
+                fi
+                # copy partition contents
+                cat "${saved_bios}/partition" > "${cur_part}"
+                # copy boot sector
+                cur_disk=$(lsblk --noheadings --output PKNAME --paths "${cur_part}")
+                cat "${saved_bios}/boot-sector" > "${cur_disk}"
+            done
         fi
         ;;
     cleanup)
