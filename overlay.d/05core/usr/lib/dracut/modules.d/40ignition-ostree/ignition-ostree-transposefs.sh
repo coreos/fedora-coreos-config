@@ -3,6 +3,7 @@ set -euo pipefail
 
 boot_sector_size=440
 bios_typeguid=21686148-6449-6e6f-744e-656564454649
+prep_typeguid=9e1a2d38-c612-4316-aa26-8b49521e5a8b
 
 # This is implementation details of Ignition; in the future, we should figure
 # out a way to ask Ignition directly whether there's a filesystem with label
@@ -12,11 +13,13 @@ root_part=/dev/disk/by-label/root
 boot_part=/dev/disk/by-label/boot
 esp_part=/dev/disk/by-label/EFI-SYSTEM
 bios_part=/dev/disk/by-partlabel/BIOS-BOOT
+prep_part=/dev/disk/by-partlabel/PowerPC-PReP-boot
 saved_data=/run/ignition-ostree-transposefs
 saved_root=${saved_data}/root
 saved_boot=${saved_data}/boot
 saved_esp=${saved_data}/esp
 saved_bios=${saved_data}/bios
+saved_prep=${saved_data}/prep
 partstate_root=/run/ignition-ostree-rootfs-partstate.json
 
 # Print jq query string for wiped filesystems with label $1
@@ -42,14 +45,16 @@ case "${1:-}" in
         wipes_boot=$(jq "$(query_fslabel boot) | length" "${ignition_cfg}")
         wipes_esp=$(jq "$(query_fslabel EFI-SYSTEM) | length" "${ignition_cfg}")
         creates_bios=$(jq "$(query_parttype ${bios_typeguid}) | length" "${ignition_cfg}")
-        if [ "${wipes_root}${wipes_boot}${wipes_esp}${creates_bios}" = "0000" ]; then
+        creates_prep=$(jq "$(query_parttype ${prep_typeguid}) | length" "${ignition_cfg}")
+        if [ "${wipes_root}${wipes_boot}${wipes_esp}${creates_bios}${creates_prep}" = "00000" ]; then
             exit 0
         fi
         echo "Detected partition replacement in fetched Ignition config: /run/ignition.json"
-        # verify all BIOS partitions have non-null unique labels
+        # verify all BIOS and PReP partitions have non-null unique labels
         unique_bios=$(jq -r "$(query_parttype ${bios_typeguid}) | [.[].label | values] | unique | length" "${ignition_cfg}")
-        if [ "${creates_bios}" != "${unique_bios}" ]; then
-            echo "Found duplicate or missing BIOS-BOOT labels in config" >&2
+        unique_prep=$(jq -r "$(query_parttype ${prep_typeguid}) | [.[].label | values] | unique | length" "${ignition_cfg}")
+        if [ "${creates_bios}" != "${unique_bios}" -o "${creates_prep}" != "${unique_prep}" ]; then
+            echo "Found duplicate or missing BIOS-BOOT or PReP labels in config" >&2
             exit 1
         fi
         mkdir "${saved_data}"
@@ -68,6 +73,9 @@ case "${1:-}" in
         fi
         if [ "${creates_bios}" != "0" ]; then
             mkdir "${saved_bios}"
+        fi
+        if [ "${creates_prep}" != "0" ]; then
+            mkdir "${saved_prep}"
         fi
         ;;
     save)
@@ -100,6 +108,10 @@ case "${1:-}" in
             dd if="${bios_disk}" of="${saved_bios}/boot-sector" bs="${boot_sector_size}" count=1 status=none
             # store partition start offset so we can check it later
             get_partition_offset "${bios_part}" > "${saved_bios}/start"
+        fi
+        if [ -d "${saved_prep}" ]; then
+            echo "Moving PReP partition to RAM..."
+            cat "${prep_part}" > "${saved_prep}/partition"
         fi
         ;;
     restore)
@@ -139,6 +151,13 @@ case "${1:-}" in
                 # copy boot sector
                 cur_disk=$(lsblk --noheadings --output PKNAME --paths "${cur_part}")
                 cat "${saved_bios}/boot-sector" > "${cur_disk}"
+            done
+        fi
+        if [ -d "${saved_prep}" ]; then
+            echo "Restoring PReP partition from RAM..."
+            # iterate over each new PReP partition, by label
+            jq -r "$(query_parttype ${prep_typeguid}) | .[].label" "${ignition_cfg}" | while read label; do
+                cat "${saved_prep}/partition" > "/dev/disk/by-partlabel/${label}"
             done
         fi
         ;;
