@@ -6,8 +6,10 @@ set -euo pipefail
 # "root" being set up.
 ignition_cfg=/run/ignition.json
 root_part=/dev/disk/by-label/root
+boot_part=/dev/disk/by-label/boot
 saved_data=/run/ignition-ostree-transposefs
 saved_root=${saved_data}/root
+saved_boot=${saved_data}/boot
 partstate_root=/run/ignition-ostree-rootfs-partstate.json
 
 # Print jq query string for wiped filesystems with label $1
@@ -17,32 +19,58 @@ query_fslabel() {
 
 case "${1:-}" in
     detect)
+        # Mounts are not in a private namespace so we can mount ${saved_data}
         wipes_root=$(jq "$(query_fslabel root) | length" "${ignition_cfg}")
-        if [ "${wipes_root}" = "0" ]; then
+        wipes_boot=$(jq "$(query_fslabel boot) | length" "${ignition_cfg}")
+        if [ "${wipes_root}${wipes_boot}" = "00" ]; then
             exit 0
         fi
-        echo "Detected rootfs replacement in fetched Ignition config: /run/ignition.json"
+        echo "Detected partition replacement in fetched Ignition config: /run/ignition.json"
         mkdir "${saved_data}"
         # use 80% of RAM: we want to be greedy since the boot breaks anyway, but
         # we still want to leave room for everything else so it hits ENOSPC and
         # doesn't invoke the OOM killer
         mount -t tmpfs tmpfs "${saved_data}" -o size=80%
+        if [ "${wipes_root}" != "0" ]; then
+            mkdir "${saved_root}"
+        fi
+        if [ "${wipes_boot}" != "0" ]; then
+            mkdir "${saved_boot}"
+        fi
         ;;
     save)
-        mount "${root_part}" /sysroot
-        echo "Moving rootfs to RAM..."
-        cp -a /sysroot "${saved_root}"
-        # also store the state of the partition
-        lsblk "${root_part}" --nodeps --paths --json -b -o NAME,SIZE | jq -c . > "${partstate_root}"
+        # Mounts happen in a private mount namespace since we're not "offically" mounting
+        if [ -d "${saved_root}" ]; then
+            mount "${root_part}" /sysroot
+            echo "Moving rootfs to RAM..."
+            cp -aT /sysroot "${saved_root}"
+            # also store the state of the partition
+            lsblk "${root_part}" --nodeps --paths --json -b -o NAME,SIZE | jq -c . > "${partstate_root}"
+        fi
+        if [ -d "${saved_boot}" ]; then
+            mkdir -p /sysroot/boot
+            mount "${boot_part}" /sysroot/boot
+            echo "Moving bootfs to RAM..."
+            cp -aT /sysroot/boot "${saved_boot}"
+        fi
         ;;
     restore)
-        # This one is in a private mount namespace since we're not "offically" mounting
-        mount "${root_part}" /sysroot
-        echo "Restoring rootfs from RAM..."
-        find "${saved_root}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot {} \;
-        chattr +i $(ls -d /sysroot/ostree/deploy/*/deploy/*/)
+        # Mounts happen in a private mount namespace since we're not "offically" mounting
+        if [ -d "${saved_root}" ]; then
+            mount "${root_part}" /sysroot
+            echo "Restoring rootfs from RAM..."
+            find "${saved_root}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot {} \;
+            chattr +i $(ls -d /sysroot/ostree/deploy/*/deploy/*/)
+        fi
+        if [ -d "${saved_boot}" ]; then
+            mkdir -p /sysroot/boot
+            mount "${boot_part}" /sysroot/boot
+            echo "Restoring bootfs from RAM..."
+            find "${saved_boot}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot/boot {} \;
+        fi
         ;;
     cleanup)
+        # Mounts are not in a private namespace so we can unmount ${saved_data}
         if [ -d "${saved_data}" ]; then
             umount "${saved_data}"
             rm -rf "${saved_data}" "${partstate_root}"
