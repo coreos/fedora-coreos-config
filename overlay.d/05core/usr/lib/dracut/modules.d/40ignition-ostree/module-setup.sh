@@ -67,9 +67,9 @@ install() {
         /usr/lib/udev/rules.d/90-coreos-device-mapper.rules
 
     inst_multiple jq chattr
-    inst_script "$moddir/ignition-ostree-dracut-rootfs.sh" "/usr/libexec/ignition-ostree-dracut-rootfs"
+    inst_script "$moddir/ignition-ostree-transposefs.sh" "/usr/libexec/ignition-ostree-transposefs"
     for x in detect save restore; do
-        install_ignition_unit ignition-ostree-rootfs-${x}.service
+        install_ignition_unit ignition-ostree-transposefs-${x}.service
     done
 
     # Disk support
