@@ -2,7 +2,7 @@
 
 This guide introduces the in-depth configuration specification for human-friendly FCOS Configuration (FCC) YAML files.
 
-TIP: Rather than read these detailed instructions, advanced users may want to reference the https://github.com/coreos/fcct/blob/master/docs/configuration-v1_0.md[configuration specification] for an abbreviated list of options.
+TIP: Rather than read these detailed instructions, advanced users may want to reference the https://coreos.github.io/fcct/specs/[configuration specification] for an abbreviated list of options.
 
 == Ignition overview
 Ignition is a provisioning utility that reads a configuration file (in JSON format) and provisions an FCOS system based on that configuration. Configurable components include storage and filesystems, systemd units, and users.
