@@ -1,0 +1,27 @@
+= Debugging kernel crashes using kdump
+
+. Memory must be reserved for the crash kernel during booting of the first kernel. Kernel arguments can be provided like this:
++
+[source, bash]
+----
+sudo rpm-ostree kargs --append='crashkernel=256M'
+----
+xref:kernel-args.adoc[More information] on how to modify kargs via `rpm-ostree`.
+
+. By default, the path in which the vmcore will be saved is `/var/crash`. It is also possible to write the dump over the network or to some other location on the local system by editing `/etc/kdump.conf`. For additional information, see https://linux.die.net/man/8/mkdumprd[`mkdumprd(8)`] and the comments in `/etc/kdump.conf`.
+
+. Enable the kdump systemd service. 
++
+[source, bash]
+----
+sudo systemctl enable kdump.service
+----
+
+. Reboot your system.
++
+[source, bash]
+----
+sudo systemctl reboot
+----
+
+TIP: For additional information on how to test that kdump is properly armed and how to analyze the dump, refer to the https://fedoraproject.org/wiki/How_to_use_kdump_to_debug_kernel_crashes[kdump documentation for Fedora] and https://www.kernel.org/doc/html/latest/admin-guide/kdump/kdump.html[the Linux kernel documentation on kdump].
