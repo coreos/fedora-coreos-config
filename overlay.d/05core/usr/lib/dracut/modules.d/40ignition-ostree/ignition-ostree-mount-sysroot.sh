@@ -14,4 +14,5 @@ if ! [ -b "${rootpath}" ]; then
   exit 1
 fi
 
+echo "Mounting ${rootpath} ($(realpath "${rootpath}")) to /sysroot"
 mount -o "$(coreos-rootflags)" "${rootpath}" /sysroot

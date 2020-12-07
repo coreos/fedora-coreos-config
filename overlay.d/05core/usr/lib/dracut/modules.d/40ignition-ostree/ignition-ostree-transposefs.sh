@@ -32,6 +32,15 @@ query_parttype() {
     echo ".storage?.disks? // [] | map(.partitions?) | flatten | map(select(try .typeGuid catch \"\" | ascii_downcase == \"$1\"))"
 }
 
+
+# Mounts device to directory, with extra logging of the src device
+mount_verbose() {
+    local srcdev=$1; shift
+    local destdir=$1; shift
+    echo "Mounting ${srcdev} ($(realpath "$srcdev")) to $destdir"
+    mount "${srcdev}" "${destdir}"
+}
+
 # Print partition offset for device node $1
 get_partition_offset() {
     local devpath=$(udevadm info --query=path "$1")
@@ -81,22 +90,22 @@ case "${1:-}" in
     save)
         # Mounts happen in a private mount namespace since we're not "offically" mounting
         if [ -d "${saved_root}" ]; then
-            mount "${root_part}" /sysroot
             echo "Moving rootfs to RAM..."
+            mount_verbose "${root_part}" /sysroot
             cp -aT /sysroot "${saved_root}"
             # also store the state of the partition
             lsblk "${root_part}" --nodeps --paths --json -b -o NAME,SIZE | jq -c . > "${partstate_root}"
         fi
         if [ -d "${saved_boot}" ]; then
-            mkdir -p /sysroot/boot
-            mount "${boot_part}" /sysroot/boot
             echo "Moving bootfs to RAM..."
+            mkdir -p /sysroot/boot
+            mount_verbose "${boot_part}" /sysroot/boot
             cp -aT /sysroot/boot "${saved_boot}"
         fi
         if [ -d "${saved_esp}" ]; then
-            mkdir -p /sysroot/boot/efi
-            mount "${esp_part}" /sysroot/boot/efi
             echo "Moving EFI System Partition to RAM..."
+            mkdir -p /sysroot/boot/efi
+            mount_verbose "${esp_part}" /sysroot/boot/efi
             cp -aT /sysroot/boot/efi "${saved_esp}"
         fi
         if [ -d "${saved_bios}" ]; then
@@ -117,21 +126,21 @@ case "${1:-}" in
     restore)
         # Mounts happen in a private mount namespace since we're not "offically" mounting
         if [ -d "${saved_root}" ]; then
-            mount "${root_part}" /sysroot
             echo "Restoring rootfs from RAM..."
+            mount_verbose "${root_part}" /sysroot
             find "${saved_root}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot {} \;
             chattr +i $(ls -d /sysroot/ostree/deploy/*/deploy/*/)
         fi
         if [ -d "${saved_boot}" ]; then
-            mkdir -p /sysroot/boot
-            mount "${boot_part}" /sysroot/boot
             echo "Restoring bootfs from RAM..."
+            mkdir -p /sysroot/boot
+            mount_verbose "${boot_part}" /sysroot/boot
             find "${saved_boot}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot/boot {} \;
         fi
         if [ -d "${saved_esp}" ]; then
             echo "Restoring EFI System Partition from RAM..."
             mkdir -p /sysroot/boot/efi
-            mount "${esp_part}" /sysroot/boot/efi
+            mount_verbose "${esp_part}" /sysroot/boot/efi
             find "${saved_esp}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot/boot/efi {} \;
         fi
         if [ -d "${saved_bios}" ]; then
