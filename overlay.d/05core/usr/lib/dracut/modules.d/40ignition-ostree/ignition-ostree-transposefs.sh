@@ -124,6 +124,8 @@ case "${1:-}" in
         fi
         ;;
     restore)
+        # Ensure that if there's an updated /dev/disk/by-partlabel/root, we see the symlink.
+        udevadm settle
         # Mounts happen in a private mount namespace since we're not "offically" mounting
         if [ -d "${saved_root}" ]; then
             echo "Restoring rootfs from RAM..."

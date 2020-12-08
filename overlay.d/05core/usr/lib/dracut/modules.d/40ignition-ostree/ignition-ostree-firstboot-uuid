@@ -10,6 +10,8 @@ set -euo pipefail
 
 label=$1
 
+udevadm settle
+
 # Keep this in sync with https://github.com/coreos/coreos-assembler/blob/e3905fd2e138de04184c1cd86b99b0fd83cbe5cf/src/create_disk.sh#L17
 bootfs_uuid="96d15588-3596-4b3c-adca-a2ff7279ea63"
 rootfs_uuid="910678ff-f77e-4a7d-8d53-86f2ac47a823"
