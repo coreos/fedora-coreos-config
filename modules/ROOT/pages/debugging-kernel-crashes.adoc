@@ -8,9 +8,9 @@ sudo rpm-ostree kargs --append='crashkernel=256M'
 ----
 xref:kernel-args.adoc[More information] on how to modify kargs via `rpm-ostree`.
 
-. By default, the path in which the vmcore will be saved is `/var/crash`. It is also possible to write the dump over the network or to some other location on the local system by editing `/etc/kdump.conf`. For additional information, see https://linux.die.net/man/8/mkdumprd[`mkdumprd(8)`] and the comments in `/etc/kdump.conf`.
+. By default, the path in which the vmcore will be saved is `/var/crash`. It is also possible to write the dump over the network or to some other location on the local system by editing `/etc/kdump.conf`. For additional information, see https://www.mankier.com/5/kdump.conf[`kdump.conf(5)`] and the comments in `/etc/kdump.conf` and `/etc/sysconfig/kdump`.
 
-. Enable the kdump systemd service. 
+. Enable the kdump systemd service.
 +
 [source, bash]
 ----
