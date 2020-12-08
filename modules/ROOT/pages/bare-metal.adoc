@@ -23,7 +23,8 @@ podman run --privileged --pull=always --rm -v .:/data -w /data \
 
 NOTE: You can boot the live ISO in either legacy BIOS or UEFI mode, regardless of what mode the OS will use once installed.
 
-- Burn the ISO to disk and boot it on the target system. The ISO is capable of bringing up a fully functioning FCOS system purely from memory (i.e. without using any disk storage). Once booted, you will have access to a bash command prompt.
+- Burn the ISO to disk. On Linux and macOS, you can use `dd`. On Windows, you can use https://rufus.ie/[Rufus] in "DD Image" mode.
+- Boot it on the target system. The ISO is capable of bringing up a fully functioning FCOS system purely from memory (i.e. without using any disk storage). Once booted, you will have access to a bash command prompt.
 - You can now run `coreos-installer`:
 [source, bash]
 ----
