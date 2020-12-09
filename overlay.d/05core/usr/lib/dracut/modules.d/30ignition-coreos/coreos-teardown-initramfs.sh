@@ -33,6 +33,39 @@ selinux_relabel() {
     fi
 }
 
+# Determine if the generated NM connection profiles match the default
+# that would be given to us if the user had provided no additional
+# configuration. i.e. did the user give us any network configuration
+# other than the default? We determine this by comparing the generated
+# output of nm-initrd-generator with a new run of nm-initrd-generator.
+# If it matches then it was the default, if not then the user provided
+# something extra.
+are_default_NM_configs() {
+    # Make two dirs for storing files to use in the comparison
+    mkdir -p /run/coreos-teardown-initramfs/connections-compare-{1,2}
+    # Make another that's just a throwaway for the initrd-data-dir
+    mkdir -p /run/coreos-teardown-initramfs/initrd-data-dir
+    # Copy over the previously generated connection(s) profiles
+    cp  /run/NetworkManager/system-connections/* \
+        /run/coreos-teardown-initramfs/connections-compare-1/
+    # Do a new run with the default input
+    /usr/libexec/nm-initrd-generator \
+        -c /run/coreos-teardown-initramfs/connections-compare-2 \
+        -i /run/coreos-teardown-initramfs/initrd-data-dir -- ip=dhcp,dhcp6
+    # remove unique identifiers from the files (so our diff can work)
+    sed -i '/^uuid=/d' /run/coreos-teardown-initramfs/connections-compare-{1,2}/*
+    # currently the output will differ based on whether rd.neednet=1
+    # was part of the kargs. Let's ignore the single difference (wait-device-timeout)
+    sed -i '/^wait-device-timeout=/d' /run/coreos-teardown-initramfs/connections-compare-{1,2}/*
+    if diff -r -q /run/coreos-teardown-initramfs/connections-compare-{1,2}/; then
+        rc=0 # They are the default configs
+    else
+        rc=1 # They are not the defaults, user must have added configuration
+    fi
+    rm -rf /run/coreos-teardown-initramfs
+    return $rc
+}
+
 # Propagate initramfs networking if desired. The policy here is:
 #
 #    - If a networking configuration was provided before this point
@@ -40,7 +73,11 @@ selinux_relabel() {
 #      we do nothing and don't propagate any initramfs networking.
 #    - If a user did not provide any networking configuration
 #      then we'll propagate the initramfs networking configuration
-#      into the real root.
+#      into the real root, but only if it's different than the NM
+#      defaults (trying dhcp/dhcp6 on everything). If it's just the
+#      defaults then we want to avoid a slight behavior diff between
+#      propagating configs and just booting with no configuration. See
+#      https://github.com/coreos/fedora-coreos-tracker/issues/696
 #
 # See https://github.com/coreos/fedora-coreos-tracker/issues/394#issuecomment-599721173
 propagate_initramfs_networking() {
@@ -53,9 +90,13 @@ propagate_initramfs_networking() {
     else
         echo "info: no networking config is defined in the real root"
         if [ -n "$(ls -A /run/NetworkManager/system-connections/)" ]; then
-            echo "info: propagating initramfs networking config to the real root"
-            cp -v /run/NetworkManager/system-connections/* /sysroot/etc/NetworkManager/system-connections/
-            selinux_relabel /etc/NetworkManager/system-connections/
+            if are_default_NM_configs; then
+                echo "info: skipping propagation of default networking configs"
+            else
+                echo "info: propagating initramfs networking config to the real root"
+                cp -v /run/NetworkManager/system-connections/* /sysroot/etc/NetworkManager/system-connections/
+                selinux_relabel /etc/NetworkManager/system-connections/
+            fi
         else
             echo "info: no initramfs networking information to propagate"
         fi

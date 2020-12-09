@@ -18,7 +18,9 @@ install_ignition_unit() {
 install() {
     inst_multiple \
         basename \
+        diff \
         lsblk \
+        sed \
         sgdisk
 
     inst_simple "$moddir/coreos-diskful-generator" \
