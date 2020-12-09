@@ -46,19 +46,21 @@ VULTR_API_KEY='<token>'
 vultr-cli snapshot create-url -u "${IMAGE_URL}"
 ----
 
+NOTE: You'll need to wait for the snapshot to finish processing before using it. Monitor with `*vultr-cli snapshot list*`.
+
 === Launching an instance from a snapshot
 
 You can now create a FCOS Vultr instance using the snapshot ID above.
 
-This example creates a 1 vCPU, 1GB RAM instance in NYC. Use `vultr-cli regions list` and `vultr plans list` for other options.
+This example creates a 1 vCPU, 1GB RAM instance named `instance1` in the New Jersey region. Use `vultr-cli regions list` and `vultr-cli plans list` for other options.
 
 [source, bash]
 ----
+NAME='instance1'
 SNAPSHOT_ID='...'
-REGION='1'
-PLAN='201'
-vultr-cli server create --snapshot "${SNAPSHOT_ID}" --region "${REGION}" --plan "${PLAN}" --userdata "$(cat example.ign)"
+REGION='ewr'
+PLAN='2-1c-1gb'
+vultr-cli instance create --region "${REGION}" --plan "${PLAN}" --snapshot "${SNAPSHOT_ID}" --label "${NAME}"  --host "${NAME}" --userdata "$(cat example.ign)"
 ----
 
 NOTE: Vultr default firewall does not allow incoming SSH connections. Rules must be adjusted if you wish to reach the instance over SSH.
-
