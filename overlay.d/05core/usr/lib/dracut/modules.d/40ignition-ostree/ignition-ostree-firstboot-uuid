@@ -5,8 +5,6 @@ set -euo pipefail
 # or booted directly in the cloud.
 # Generate new UUID on firstboot; this is general best practice, but in the future
 # we may use this for mounting by e.g. adding a boot=<uuid> and root=<uuid> kernel args.
-# Note this code should be changed when we land https://github.com/coreos/fedora-coreos-tracker/issues/94
-# so that we only generate a new UUID if we're using the default one.
 
 label=$1
 
