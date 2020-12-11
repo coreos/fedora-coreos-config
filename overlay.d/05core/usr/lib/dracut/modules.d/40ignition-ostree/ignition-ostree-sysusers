@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Run systemd-sysusers for the target OSTree sysroot.
+
+set -euo pipefail
+
+main() {
+    coreos-sysroot-bwrap systemd-sysusers
+    coreos-relabel \
+        /etc/group \
+        /etc/group- \
+        /etc/gshadow \
+        /etc/gshadow- \
+        /etc/passwd \
+        /etc/passwd- \
+        /etc/shadow \
+        /etc/shadow-
+}
+
+main "$@"
