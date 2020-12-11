@@ -17,7 +17,9 @@ packages-aarch64:
 packages-ppc64le:
   - grub2 ostree-grub2
 packages-s390x:
-  - s390utils-core
+  # On Fedora, this is provided by s390utils-core. on RHEL, this is for now
+  # provided by s390utils-base, but soon will be -core too.
+  - /usr/sbin/zipl
 packages-x86_64:
   - grub2 grub2-efi-x64 efibootmgr shim
   - microcode_ctl
