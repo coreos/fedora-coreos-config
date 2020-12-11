@@ -15,7 +15,9 @@ install_ignition_unit() {
 
 install() {
     inst_multiple \
+        bwrap \
         realpath \
+        rmdir \
         setfiles \
         systemd-sysusers \
         systemd-tmpfiles \
@@ -87,4 +89,5 @@ install() {
     inst_script "$moddir/coreos-growpart" /usr/libexec/coreos-growpart
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
+    inst_script "$moddir/coreos-sysroot-bwrap" /usr/bin/coreos-sysroot-bwrap
 }
