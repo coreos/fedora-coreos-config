@@ -3,3 +3,19 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2020-709b77dfb2
   ignition:
     evra: 2.8.0-1.gitdb4d30d.fc33.aarch64
+  # Fast-track systemd update that reverts fallback hostname change
+  # https://github.com/coreos/fedora-coreos-tracker/issues/649#issuecomment-739956843
+  # This is a one-off build, please don't remove it without talking
+  # to dustymabe or jlebon.
+  systemd:
+    evra: 246.7-1.fc33.aarch64
+  systemd-container:
+    evra: 246.7-1.fc33.aarch64
+  systemd-libs:
+    evra: 246.7-1.fc33.aarch64
+  systemd-pam:
+    evra: 246.7-1.fc33.aarch64
+  systemd-rpm-macros:
+    evra: 246.7-1.fc33.noarch
+  systemd-udev:
+    evra: 246.7-1.fc33.aarch64
