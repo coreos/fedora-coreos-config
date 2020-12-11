@@ -22,7 +22,9 @@ installkernel() {
 
 install() {
     inst_multiple \
+        bwrap \
         realpath \
+        rmdir \
         setfiles \
         chcon \
         systemd-sysusers \
@@ -107,4 +109,5 @@ install() {
         /usr/libexec/ignition-ostree-mount-state-overlays
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
+    inst_script "$moddir/coreos-sysroot-bwrap" /usr/bin/coreos-sysroot-bwrap
 }
