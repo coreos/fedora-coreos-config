@@ -69,6 +69,22 @@ postprocess:
     #!/usr/bin/env bash
     systemctl mask dnsmasq.service
 
+  # Neuter systemd-resolved for now.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/649#issuecomment-743219353
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    # Get us back to Fedora 32's nsswitch.conf settings
+    sed -i 's/^hosts:.*/hosts:      files dns myhostname/' /etc/nsswitch.conf
+    mkdir /usr/lib/systemd/resolved.conf.d/
+    cat > /usr/lib/systemd/resolved.conf.d/fedora-coreos-stub-listener.conf <<'EOF'
+    # Fedora CoreOS is electing to not use systemd-resolved's internal
+    # logic for now because of issues with setting hostnames via reverse DNS.
+    # https://github.com/coreos/fedora-coreos-tracker/issues/649#issuecomment-736104003
+    [Resolve]
+    DNSStubListener=no
+    EOF
+
 packages:
   # Security
   - selinux-policy-targeted
