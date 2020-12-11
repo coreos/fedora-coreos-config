@@ -75,6 +75,10 @@ install() {
         sgdisk    \
         find
 
+    inst_script "$moddir/ignition-ostree-sysusers" \
+        "/usr/sbin/ignition-ostree-sysusers"
+    install_ignition_unit ignition-ostree-sysusers.service
+
     for x in mount populate; do
         install_ignition_unit ignition-ostree-${x}-var.service
         inst_script "$moddir/ignition-ostree-${x}-var.sh" "/usr/sbin/ignition-ostree-${x}-var"
