@@ -5,3 +5,6 @@ enable coreos-check-ignition-config.service
 enable coreos-check-ssh-keys.service
 # Monitor the stub-resolv.conf SELinux context
 enable coreos-reset-stub-resolv-selinux-context.path
+# Run once on startup to prevent some race conditions with
+# NetworkManager and systemd-resolved starting up.
+enable coreos-reset-stub-resolv-selinux-context.service
