@@ -10,9 +10,7 @@ install_ignition_unit() {
     local unit=$1; shift
     local target=${1:-complete}
     inst_simple "$moddir/$unit" "$systemdsystemunitdir/$unit"
-    local targetpath="$systemdsystemunitdir/ignition-${target}.target.requires/"
-    mkdir -p "${initdir}/${targetpath}"
-    ln_r "../$unit" "${targetpath}/${unit}"
+    systemctl -q --root="$initdir" add-requires "ignition-${target}.target" "$unit"
 }
 
 install() {
