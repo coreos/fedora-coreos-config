@@ -21,3 +21,10 @@ packages:
     evra: 4.6.0-2.fc33.ppc64le
   afterburn-dracut:
     evra: 4.6.0-2.fc33.ppc64le
+  # Fast-track SELinux policy for
+  # https://github.com/coreos/fedora-coreos-tracker/issues/679
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-f33aa1146d
+  selinux-policy:
+    evra: 3.14.6-33.fc33.noarch
+  selinux-policy-targeted:
+    evra: 3.14.6-33.fc33.noarch
