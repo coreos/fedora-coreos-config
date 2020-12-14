@@ -2,9 +2,17 @@
 Description=Fixup SELinux context on /run/systemd/resolve/stub-resolv.conf
 Documentation=https://github.com/systemd/systemd/pull/17976
 ConditionPathExists=/run/systemd/resolve/stub-resolv.conf
+# Run once on startup in addition to the path unit invocations
+# so that we can order ourselves before NetworkManager to prevent
+# at least a few race condition denials.
+After=systemd-resolved.service
+Before=NetworkManager.service
 
 [Service]
 Type=oneshot
 # This service can be started more than once. If the file changes.
 RemainAfterExit=no
 ExecStart=restorecon -v /run/systemd/resolve/stub-resolv.conf
+
+[Install]
+WantedBy=multi-user.target
