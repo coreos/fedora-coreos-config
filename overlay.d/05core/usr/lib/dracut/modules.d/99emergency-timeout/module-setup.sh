@@ -7,8 +7,7 @@ install_unit_wants() {
     local target="$1"; shift
     local instantiated="${1:-$unit}"; shift
     inst_simple "$moddir/$unit" "$systemdsystemunitdir/$unit"
-    mkdir -p "$initdir/$systemdsystemunitdir/$target.wants"
-    ln_r "../$unit" "$systemdsystemunitdir/$target.wants/$instantiated"
+    systemctl -q --root="$initdir" add-wants "$target" "$instantiated"
 }
 
 install() {
