@@ -10,6 +10,9 @@ This guide provides instructions to install Fedora CoreOS to bare metal. Three o
 
 Before installing FCOS, you must have an Ignition configuration file and host it somewhere (e.g. using `python3 -m http.server`). If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
+Note if you have servers with different types and/or number of hard drives, you must create a separate customized Ignition config for each machine (or machine class).
+A good model is to have the common parts of the configuration factored out into a separate Ignition configuration which can be merged into (via HTTP or inline) the per-machine custom config.
+
 == Installing from live ISO
 
 To install FCOS onto bare metal using the live ISO, follow these steps:
