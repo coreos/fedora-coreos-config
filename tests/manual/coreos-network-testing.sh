@@ -476,19 +476,26 @@ main() {
     ssh-keygen -N '' -C '' -f $sshkeyfile &>/dev/null
     sshpubkey=$(cat $sshpubkeyfile)
 
+    # Find out which partition is the boot partition
+    partition=$(guestfish --ro -a $qcow <<EOF
+    run
+    findfs-label boot
+    exit
+EOF
+    )
 
     # Grab kernel/initramfs from the disk
-    files=$(virt-ls -a $qcow -m /dev/sda1 -R /ostree/)
+    files=$(virt-ls -a $qcow -m $partition -R /ostree/)
     for f in $files; do
         if [[ "${f}" =~ hmac$ ]]; then
             # ignore .vmlinuz-5.5.9-200.fc31.x86_64.hmac
             true
         elif [[ "${f}" =~ img$ ]]; then
             # grab initramfs in the form initramfs-5.5.9-200.fc31.x86_64.img
-            virt-cat -a $qcow -m /dev/sda1 "/ostree/${f}" > $initramfs
+            virt-cat -a $qcow -m $partition "/ostree/${f}" > $initramfs
         elif [[ "${f}" =~ '/vmlinuz' ]]; then
             # grab kernel in the form vmlinuz-5.5.9-200.fc31.x86_64
-            virt-cat -a $qcow -m /dev/sda1 "/ostree/${f}" > $kernel
+            virt-cat -a $qcow -m $partition "/ostree/${f}" > $kernel
         fi
     done
 
@@ -518,7 +525,7 @@ main() {
     # Grab kernel arguments from the disk and use them
     # - strip `options ` from the front of the line
     # - strip `$ignition_firstboot`
-    common_args=$(virt-cat -a $qcow -m /dev/sda1 "/loader.1/entries/${bls_file}" | \
+    common_args=$(virt-cat -a $qcow -m $partition "/loader.1/entries/${bls_file}" | \
                   grep -P '^options' | \
                   sed -e 's/options //' | \
                   sed -e 's/$ignition_firstboot//')

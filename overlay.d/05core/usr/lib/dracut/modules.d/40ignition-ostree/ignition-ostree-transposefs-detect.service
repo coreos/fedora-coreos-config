@@ -1,5 +1,5 @@
 [Unit]
-Description=Ignition OSTree: detect rootfs replacement
+Description=Ignition OSTree: Detect Partition Transposition
 DefaultDependencies=false
 After=ignition-fetch.service
 Before=ignition-disks.service
@@ -14,5 +14,5 @@ After=systemd-udevd.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/libexec/ignition-ostree-dracut-rootfs detect
-ExecStop=/usr/libexec/ignition-ostree-dracut-rootfs cleanup
+ExecStart=/usr/libexec/ignition-ostree-transposefs detect
+ExecStop=/usr/libexec/ignition-ostree-transposefs cleanup

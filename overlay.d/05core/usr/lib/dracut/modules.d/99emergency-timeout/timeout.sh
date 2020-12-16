@@ -29,7 +29,7 @@ _prompt_for_timeout() {
     if [[ -e /.emergency-shell-confirmed ]]; then
         return
     fi
-    failed=$(systemctl --failed --no-legend | cut -f 1 -d ' ')
+    failed=$(systemctl --failed --no-legend --plain | cut -f 1 -d ' ')
     if [ -n "${failed}" ]; then
         # Something failed, suppress kernel logs so that it's more likely
         # the useful bits from the journal are available.
