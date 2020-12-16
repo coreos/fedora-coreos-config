@@ -20,6 +20,7 @@ saved_boot=${saved_data}/boot
 saved_esp=${saved_data}/esp
 saved_bios=${saved_data}/bios
 saved_prep=${saved_data}/prep
+zram_dev=${saved_data}/zram_dev
 partstate_root=/run/ignition-ostree-rootfs-partstate.json
 
 # Print jq query string for wiped filesystems with label $1
@@ -66,11 +67,20 @@ case "${1:-}" in
             echo "Found duplicate or missing BIOS-BOOT or PReP labels in config" >&2
             exit 1
         fi
+        modprobe zram
+        read dev < /sys/class/zram-control/hot_add
+        # disksize is set arbitrarily large, as zram is capped by mem_limit
+        echo 10G > /sys/block/zram"${dev}"/disksize
+        # Limit zram to 90% of available RAM: we want to be greedy since the
+        # boot breaks anyway, but we still want to leave room for everything
+        # else so it hits ENOSPC and doesn't invoke the OOM killer
+        echo $(( $(grep MemAvailable /proc/meminfo | awk '{print $2}') * 90 / 100 ))K > /sys/block/zram"${dev}"/mem_limit
+        mkfs.xfs /dev/zram"${dev}"
         mkdir "${saved_data}"
-        # use 80% of RAM: we want to be greedy since the boot breaks anyway, but
-        # we still want to leave room for everything else so it hits ENOSPC and
-        # doesn't invoke the OOM killer
-        mount -t tmpfs tmpfs "${saved_data}" -o size=80%
+        mount /dev/zram"${dev}" "${saved_data}"
+        # save the zram device number created for when called to cleanup
+        echo "${dev}" > "${zram_dev}"
+
         if [ "${wipes_root}" != "0" ]; then
             mkdir "${saved_root}"
         fi
@@ -122,6 +132,9 @@ case "${1:-}" in
             echo "Moving PReP partition to RAM..."
             cat "${prep_part}" > "${saved_prep}/partition"
         fi
+        echo "zram usage:"
+        read dev < "${zram_dev}"
+        cat /sys/block/zram"${dev}"/mm_stat
         ;;
     restore)
         # Mounts happen in a private mount namespace since we're not "offically" mounting
@@ -173,8 +186,10 @@ case "${1:-}" in
     cleanup)
         # Mounts are not in a private namespace so we can unmount ${saved_data}
         if [ -d "${saved_data}" ]; then
+            read dev < "${zram_dev}"
             umount "${saved_data}"
             rm -rf "${saved_data}" "${partstate_root}"
+            echo "${dev}" > /sys/class/zram-control/hot_remove
         fi
         ;;
     *)
