@@ -1,5 +1,30 @@
 packages:
-  # Fast-track new Ignition release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-709b77dfb2
-  ignition:
-    evra: 2.8.0-1.gitdb4d30d.fc33.ppc64le
+  # Fast-track systemd update that reverts fallback hostname change
+  # https://github.com/coreos/fedora-coreos-tracker/issues/649#issuecomment-739956843
+  # This is a one-off build, please don't remove it without talking
+  # to dustymabe or jlebon.
+  systemd:
+    evra: 246.7-1.fc33.ppc64le
+  systemd-container:
+    evra: 246.7-1.fc33.ppc64le
+  systemd-libs:
+    evra: 246.7-1.fc33.ppc64le
+  systemd-pam:
+    evra: 246.7-1.fc33.ppc64le
+  systemd-rpm-macros:
+    evra: 246.7-1.fc33.noarch
+  systemd-udev:
+    evra: 246.7-1.fc33.ppc64le
+  # Fast-track Afterburn release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-94fd991213
+  afterburn:
+    evra: 4.6.0-2.fc33.ppc64le
+  afterburn-dracut:
+    evra: 4.6.0-2.fc33.ppc64le
+  # Fast-track SELinux policy for
+  # https://github.com/coreos/fedora-coreos-tracker/issues/679
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-f33aa1146d
+  selinux-policy:
+    evra: 3.14.6-33.fc33.noarch
+  selinux-policy-targeted:
+    evra: 3.14.6-33.fc33.noarch

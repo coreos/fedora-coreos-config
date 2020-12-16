@@ -1,16 +1,18 @@
 [Unit]
-Description=Ignition OSTree: restore rootfs
+Description=Ignition OSTree: Restore Partitions
 DefaultDependencies=false
 After=ignition-disks.service
+# Avoid racing with UUID regeneration
+After=ignition-ostree-uuid-root.service
 Before=ignition-ostree-growfs.service
 Before=ignition-ostree-mount-firstboot-sysroot.service
 
 ConditionKernelCommandLine=ostree
-ConditionPathIsDirectory=/run/ignition-ostree-rootfs
+ConditionPathIsDirectory=/run/ignition-ostree-transposefs
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
 # So we can transiently mount sysroot
 MountFlags=slave
-ExecStart=/usr/libexec/ignition-ostree-dracut-rootfs restore
+ExecStart=/usr/libexec/ignition-ostree-transposefs restore

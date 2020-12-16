@@ -5,7 +5,7 @@ rootpath=/dev/disk/by-label/root
 
 # If the rootfs was reprovisioned, then the user is free to define their own
 # rootflags.
-if [ -d /run/ignition-ostree-rootfs ]; then
+if [ -d /run/ignition-ostree-transposefs/root ]; then
     exit 0
 fi
 
