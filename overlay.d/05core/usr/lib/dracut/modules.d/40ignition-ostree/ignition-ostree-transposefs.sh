@@ -94,7 +94,7 @@ case "${1:-}" in
             echo "Found duplicate or missing BIOS-BOOT or PReP labels in config" >&2
             exit 1
         fi
-        modprobe zram
+        modprobe zram num_devices=0
         read dev < /sys/class/zram-control/hot_add
         # disksize is set arbitrarily large, as zram is capped by mem_limit
         echo 10G > /sys/block/zram"${dev}"/disksize
