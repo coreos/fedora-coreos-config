@@ -168,11 +168,13 @@ case "${1:-}" in
         if [ -d "${saved_root}" ]; then
             echo "Restoring rootfs from RAM..."
             mount_and_restore_filesystem root /sysroot "${saved_root}"
+            chcon -v --reference "${saved_root}" /sysroot  # the root of the fs itself
             chattr +i $(ls -d /sysroot/ostree/deploy/*/deploy/*/)
         fi
         if [ -d "${saved_boot}" ]; then
             echo "Restoring bootfs from RAM..."
             mount_and_restore_filesystem boot /sysroot/boot "${saved_boot}"
+            chcon -v --reference "${saved_boot}" /sysroot/boot  # the root of the fs itself
         fi
         if [ -d "${saved_esp}" ]; then
             echo "Restoring EFI System Partition from RAM..."
