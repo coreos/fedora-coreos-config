@@ -30,17 +30,6 @@ such as `azure`, `aws`, `gcp`. The chrony config for these NTP servers
 should override other chrony configuration (e.g. DHCP-provided)
 configuration.
 
-21dhcp-chrony
--------------
-
-Handle DHCP-provided NTP servers and configure chrony to use them,
-without overwriting platform-specific configuration. Can be removed
-once changes in upstream chrony with support for per-platform
-defaults (https://bugzilla.redhat.com/show_bug.cgi?id=1828434),
-and handling in 20-chrony and chrony-helper using the defaults
-lands in downstream packages. See upstream thread:
-https://listengine.tuxfamily.org/chrony.tuxfamily.org/chrony-dev/2020/05/msg00022.html
-
 15fcos
 ------
 
