@@ -63,6 +63,18 @@ get_partition_offset() {
     cat "/sys${devpath}/start"
 }
 
+mount_and_restore_filesystem() {
+    local label=$1; shift
+    local mountpoint=$1; shift
+    local saved_fs=$1; shift
+    local new_dev
+    new_dev=$(jq -r "$(query_fslabel "${label}") | .[0].device" "${ignition_cfg}")
+    udev_trigger_on_label_mismatch "${label}" "${new_dev}"
+    mkdir -p "${mountpoint}"
+    mount_verbose "/dev/disk/by-label/${label}" "${mountpoint}"
+    find "${saved_fs}" -mindepth 1 -maxdepth 1 -exec mv -t "${mountpoint}" {} \;
+}
+
 case "${1:-}" in
     detect)
         # Mounts are not in a private namespace so we can mount ${saved_data}
@@ -155,27 +167,16 @@ case "${1:-}" in
         # Mounts happen in a private mount namespace since we're not "offically" mounting
         if [ -d "${saved_root}" ]; then
             echo "Restoring rootfs from RAM..."
-            new_root_dev=$(jq -r "$(query_fslabel root) | .[0].device" "${ignition_cfg}")
-            udev_trigger_on_label_mismatch root "${new_root_dev}"
-            mount_verbose "${root_part}" /sysroot
-            find "${saved_root}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot {} \;
+            mount_and_restore_filesystem root /sysroot "${saved_root}"
             chattr +i $(ls -d /sysroot/ostree/deploy/*/deploy/*/)
         fi
         if [ -d "${saved_boot}" ]; then
             echo "Restoring bootfs from RAM..."
-            new_boot_dev=$(jq -r "$(query_fslabel boot) | .[0].device" "${ignition_cfg}")
-            udev_trigger_on_label_mismatch boot "${new_boot_dev}"
-            mkdir -p /sysroot/boot
-            mount_verbose "${boot_part}" /sysroot/boot
-            find "${saved_boot}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot/boot {} \;
+            mount_and_restore_filesystem boot /sysroot/boot "${saved_boot}"
         fi
         if [ -d "${saved_esp}" ]; then
             echo "Restoring EFI System Partition from RAM..."
-            new_efi_dev=$(jq -r "$(query_fslabel EFI-SYSTEM) | .[0].device" "${ignition_cfg}")
-            udev_trigger_on_label_mismatch EFI-SYSTEM "${new_efi_dev}"
-            mkdir -p /sysroot/boot/efi
-            mount_verbose "${esp_part}" /sysroot/boot/efi
-            find "${saved_esp}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot/boot/efi {} \;
+            mount_and_restore_filesystem EFI-SYSTEM /sysroot/boot/efi "${saved_esp}"
         fi
         if [ -d "${saved_bios}" ]; then
             echo "Restoring BIOS Boot partition and boot sector from RAM..."
