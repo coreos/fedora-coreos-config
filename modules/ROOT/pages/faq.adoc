@@ -377,3 +377,74 @@ storage:
         inline: |
           PubkeyAcceptedKeyTypes=+ssh-rsa
 ----
+
+== Why do I get SELinux denials after updates if I have local policy modifications?
+
+Currently the OSTree and SELinux tooling conflict a bit. If you have
+permanently applied local policy modifications then policy updates
+delivered by the OS will no longer apply; your policy stays frozen.
+This means any policy "fixes" needed to enable new functionality will
+not get applied. See
+https://github.com/coreos/fedora-coreos-tracker/issues/701[coreos/fedora-coreos-tracker#701]
+for more details.
+
+This means you may see denials like the following, which can take down critical parts
+of a system like in
+https://github.com/coreos/fedora-coreos-tracker/issues/700[coreos/fedora-coreos-tracker#700]:
+
+.Example SELinux denial
+[source, text]
+----
+systemd-resolved[755]: Failed to symlink /run/systemd/resolve/stub-resolv.conf: Permission denied
+audit[755]: AVC avc:  denied  { create } for  pid=755 comm="systemd-resolve" name=".#stub-resolv.confc418434d59d7d93a" scontext=system_u:system_r:systemd_resolved_t:s0 tcontext=system_u:object_r:systemd_resolved_var_run_t:s0 tclass=lnk_file permissive=0
+----
+
+To see if your system currently has local policy modifications you can
+run `ostree admin config-diff`. The following system has a modified
+policy:
+
+.Example system with a modified SELinux policy
+[source, text]
+----
+$ sudo ostree admin config-diff | grep selinux/targeted/policy
+M    selinux/targeted/policy/policy.32
+----
+
+To work around this incompatibility, please attempt to apply policy
+modifications dynamically. For example, for an SELinux boolean you can use the
+following systemd unit that executes on every boot:
+
+.Example fcct config for dynamically applying SELinux boolean
+[source, yaml]
+----
+variant: fcos
+version: 1.1.0
+systemd:
+  units:
+    - name: setsebool.service
+      enabled: true
+      contents: |
+        [Service]
+        Type=oneshot
+        ExecStart=setsebool container_manage_cgroup true
+        RemainAfterExit=yes
+        [Install]
+        WantedBy=multi-user.target
+----
+
+If your system's basic functionality has stopped working because of
+SELinux denials check to see if your system currently has local policy
+modifications. You can check with `ostree admin config-diff`:
+
+.Example system with a modified SELinux policy
+[source, text]
+----
+$ sudo ostree admin config-diff | grep selinux/targeted/policy
+M    selinux/targeted/policy/policy.32
+----
+
+If your system is in this state you have two options:
+
+* Re-deploy starting with the latest image artifacts.
+** This means you start with the latest policy.
+* Follow the workaround in https://github.com/coreos/fedora-coreos-tracker/issues/701[coreos/fedora-coreos-tracker#701] to restore the base policy.
