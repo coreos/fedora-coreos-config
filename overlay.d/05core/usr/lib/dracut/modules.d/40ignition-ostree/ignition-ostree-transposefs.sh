@@ -171,6 +171,8 @@ case "${1:-}" in
         fi
         if [ -d "${saved_esp}" ]; then
             echo "Restoring EFI System Partition from RAM..."
+            new_efi_dev=$(jq -r "$(query_fslabel EFI-SYSTEM) | .[0].device" "${ignition_cfg}")
+            udev_trigger_on_label_mismatch EFI-SYSTEM "${new_efi_dev}"
             mkdir -p /sysroot/boot/efi
             mount_verbose "${esp_part}" /sysroot/boot/efi
             find "${saved_esp}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot/boot/efi {} \;
