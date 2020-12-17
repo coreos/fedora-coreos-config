@@ -348,7 +348,7 @@ and disabling the use of the `ssh-rsa` public key signature algorithm.
 You may hit issues if you use RSA keys and:
 
 * use an old version of the `SSH` client
-* use tooling/software libraries that don't support using RSA SHA2 host key signatures
+* use tooling/software libraries that don't support using RSA SHA2 public key signatures
 
 For example, Go has an https://github.com/golang/go/issues/37278[open issue]
 to solve this problem in its SSH implementation, but has yet to resolve it.
