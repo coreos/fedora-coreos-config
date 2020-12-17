@@ -42,6 +42,21 @@ mount_verbose() {
     mount "${srcdev}" "${destdir}"
 }
 
+# Sometimes, for some reason the by-label symlinks aren't updated. Detect these
+# cases, and explicitly `udevadm trigger`.
+# See: https://bugzilla.redhat.com/show_bug.cgi?id=1908780
+udev_trigger_on_label_mismatch() {
+    local label=$1; shift
+    local expected_dev=$1; shift
+    local actual_dev
+    expected_dev=$(realpath "${expected_dev}")
+    actual_dev=$(realpath "/dev/disk/by-label/$label")
+    if [ "$actual_dev" != "$expected_dev" ]; then
+        echo "Expected /dev/disk/by-label/$label to point to $expected_dev, but points to $actual_dev; triggering udev"
+        udevadm trigger --settle "$expected_dev"
+    fi
+}
+
 # Print partition offset for device node $1
 get_partition_offset() {
     local devpath=$(udevadm info --query=path "$1")
@@ -140,12 +155,16 @@ case "${1:-}" in
         # Mounts happen in a private mount namespace since we're not "offically" mounting
         if [ -d "${saved_root}" ]; then
             echo "Restoring rootfs from RAM..."
+            new_root_dev=$(jq -r "$(query_fslabel root) | .[0].device" "${ignition_cfg}")
+            udev_trigger_on_label_mismatch root "${new_root_dev}"
             mount_verbose "${root_part}" /sysroot
             find "${saved_root}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot {} \;
             chattr +i $(ls -d /sysroot/ostree/deploy/*/deploy/*/)
         fi
         if [ -d "${saved_boot}" ]; then
             echo "Restoring bootfs from RAM..."
+            new_boot_dev=$(jq -r "$(query_fslabel boot) | .[0].device" "${ignition_cfg}")
+            udev_trigger_on_label_mismatch boot "${new_boot_dev}"
             mkdir -p /sysroot/boot
             mount_verbose "${boot_part}" /sysroot/boot
             find "${saved_boot}" -mindepth 1 -maxdepth 1 -exec mv -t /sysroot/boot {} \;
