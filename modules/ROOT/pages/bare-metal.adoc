@@ -16,11 +16,11 @@ NOTE: If you have servers with different types and/or number of hard drives, you
 
 To install FCOS onto bare metal using the live ISO, follow these steps:
 
-- Download the ISO image:
+- Download the latest ISO image from the https://getfedora.org/coreos/download?tab=metal_virtualized&stream=stable[download page] or with podman (see https://coreos.github.io/coreos-installer/cmd/download/[documentation] for options):
 [source, bash]
 ----
 podman run --privileged --pull=always --rm -v .:/data -w /data \
-    quay.io/coreos/coreos-installer:release download -f iso
+    quay.io/coreos/coreos-installer:release download -s stable -p metal -f iso
 ----
 
 NOTE: You can boot the live ISO in either legacy BIOS or UEFI mode, regardless of what mode the OS will use once installed.
