@@ -1,28 +1,18 @@
-ref: fedora/${basearch}/coreos/testing-devel
+ref: fedora/${basearch}/coreos/rawhide
 include: manifests/fedora-coreos.yaml
 
-releasever: "33"
+releasever: "34"
 
 rojig:
   license: MIT
   name: fedora-coreos
-  summary: Fedora CoreOS testing-devel
+  summary: Fedora CoreOS rawhide
 
 repos:
-  # these repos are there to make it easier to add new packages to the OS and to
-  # use `cosa fetch --update-lockfile`; but note that all package versions are
-  # still pinned
-  - fedora
-  - fedora-updates
-
-# All Fedora CoreOS streams share the same pool for locked files.
-# This will be in fedora-coreos.yaml in the future so it can be more easily be
-# shared between all the streams
-lockfile-repos:
-  - fedora-coreos-pool
+  - fedora-rawhide
 
 add-commit-metadata:
-  fedora-coreos.stream: testing-devel
+  fedora-coreos.stream: rawhide
 
 postprocess:
   # Disable Zincati and fedora-coreos-pinger on non-production streams
