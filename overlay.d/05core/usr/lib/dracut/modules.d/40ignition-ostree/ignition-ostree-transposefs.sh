@@ -63,7 +63,7 @@ get_partition_offset() {
     cat "/sys${devpath}/start"
 }
 
-mount_and_restore_filesystem() {
+mount_and_restore_filesystem_by_label() {
     local label=$1; shift
     local mountpoint=$1; shift
     local saved_fs=$1; shift
@@ -167,23 +167,23 @@ case "${1:-}" in
         # Mounts happen in a private mount namespace since we're not "offically" mounting
         if [ -d "${saved_root}" ]; then
             echo "Restoring rootfs from RAM..."
-            mount_and_restore_filesystem root /sysroot "${saved_root}"
+            mount_and_restore_filesystem_by_label root /sysroot "${saved_root}"
             chcon -v --reference "${saved_root}" /sysroot  # the root of the fs itself
             chattr +i $(ls -d /sysroot/ostree/deploy/*/deploy/*/)
         fi
         if [ -d "${saved_boot}" ]; then
             echo "Restoring bootfs from RAM..."
-            mount_and_restore_filesystem boot /sysroot/boot "${saved_boot}"
+            mount_and_restore_filesystem_by_label boot /sysroot/boot "${saved_boot}"
             chcon -v --reference "${saved_boot}" /sysroot/boot  # the root of the fs itself
         fi
         if [ -d "${saved_esp}" ]; then
             echo "Restoring EFI System Partition from RAM..."
-            mount_and_restore_filesystem EFI-SYSTEM /sysroot/boot/efi "${saved_esp}"
+            mount_and_restore_filesystem_by_label EFI-SYSTEM /sysroot/boot/efi "${saved_esp}"
         fi
         if [ -d "${saved_bios}" ]; then
             echo "Restoring BIOS Boot partition and boot sector from RAM..."
             expected_start=$(cat "${saved_bios}/start")
-            # iterate over each new BIOS Boot partition, by label
+            # iterate over each new BIOS Boot partition, by partlabel
             jq -r "$(query_parttype ${bios_typeguid}) | .[].label" "${ignition_cfg}" | while read label; do
                 cur_part="/dev/disk/by-partlabel/${label}"
                 # boot sector hardcodes the partition start; ensure it matches
@@ -201,7 +201,7 @@ case "${1:-}" in
         fi
         if [ -d "${saved_prep}" ]; then
             echo "Restoring PReP partition from RAM..."
-            # iterate over each new PReP partition, by label
+            # iterate over each new PReP partition, by partlabel
             jq -r "$(query_parttype ${prep_typeguid}) | .[].label" "${ignition_cfg}" | while read label; do
                 cat "${saved_prep}/partition" > "/dev/disk/by-partlabel/${label}"
             done
