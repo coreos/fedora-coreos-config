@@ -102,7 +102,7 @@ case "${1:-}" in
         # boot breaks anyway, but we still want to leave room for everything
         # else so it hits ENOSPC and doesn't invoke the OOM killer
         echo $(( $(grep MemAvailable /proc/meminfo | awk '{print $2}') * 90 / 100 ))K > /sys/block/zram"${dev}"/mem_limit
-        mkfs.xfs /dev/zram"${dev}"
+        mkfs.xfs -q /dev/zram"${dev}"
         mkdir "${saved_data}"
         mount /dev/zram"${dev}" "${saved_data}"
         # save the zram device number created for when called to cleanup
