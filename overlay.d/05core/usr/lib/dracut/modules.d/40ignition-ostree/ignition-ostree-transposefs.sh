@@ -39,6 +39,7 @@ mount_verbose() {
     local srcdev=$1; shift
     local destdir=$1; shift
     echo "Mounting ${srcdev} ($(realpath "$srcdev")) to $destdir"
+    mkdir -p "${destdir}"
     mount "${srcdev}" "${destdir}"
 }
 
@@ -70,7 +71,6 @@ mount_and_restore_filesystem_by_label() {
     local new_dev
     new_dev=$(jq -r "$(query_fslabel "${label}") | .[0].device" "${ignition_cfg}")
     udev_trigger_on_label_mismatch "${label}" "${new_dev}"
-    mkdir -p "${mountpoint}"
     mount_verbose "/dev/disk/by-label/${label}" "${mountpoint}"
     find "${saved_fs}" -mindepth 1 -maxdepth 1 -exec mv -t "${mountpoint}" {} \;
 }
@@ -135,13 +135,11 @@ case "${1:-}" in
         fi
         if [ -d "${saved_boot}" ]; then
             echo "Moving bootfs to RAM..."
-            mkdir -p /sysroot/boot
             mount_verbose "${boot_part}" /sysroot/boot
             cp -aT /sysroot/boot "${saved_boot}"
         fi
         if [ -d "${saved_esp}" ]; then
             echo "Moving EFI System Partition to RAM..."
-            mkdir -p /sysroot/boot/efi
             mount_verbose "${esp_part}" /sysroot/boot/efi
             cp -aT /sysroot/boot/efi "${saved_esp}"
         fi
