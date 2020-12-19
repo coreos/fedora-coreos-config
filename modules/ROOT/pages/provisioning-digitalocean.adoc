@@ -43,7 +43,7 @@ When creating a FCOS DigitalOcean droplet, you must specify an SSH key for the d
 ----
 image_id=$(doctl compute image list-user | grep my-fcos-image | cut -f1 -d\ )
 key_id=$(doctl compute ssh-key list | grep my-key | cut -f1 -d\ )
-doctl compute droplet create my-fcos-droplet --image "${image_id}" --region sfo2 --size 2gb --user-data-file <ignition-config-path> --ssh-keys "${key_id}" --wait
+doctl compute droplet create my-fcos-droplet --image "${image_id}" --region sfo2 --size s-2vcpu-2gb --user-data-file <ignition-config-path> --ssh-keys "${key_id}" --wait
 ----
 +
 While the DigitalOcean documentation mentions cloud-init and scripts, FCOS does not support cloud-init or the ability to run scripts from user-data. It accepts only Ignition configuration files.
