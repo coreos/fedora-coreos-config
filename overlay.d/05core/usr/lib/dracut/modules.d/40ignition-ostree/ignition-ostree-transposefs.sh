@@ -2,6 +2,7 @@
 set -euo pipefail
 
 boot_sector_size=440
+esp_typeguid=c12a7328-f81f-11d2-ba4b-00a0c93ec93b
 bios_typeguid=21686148-6449-6e6f-744e-656564454649
 prep_typeguid=9e1a2d38-c612-4316-aa26-8b49521e5a8b
 
@@ -84,18 +85,19 @@ case "${1:-}" in
         # Mounts are not in a private namespace so we can mount ${saved_data}
         wipes_root=$(jq "$(query_fslabel root) | length" "${ignition_cfg}")
         wipes_boot=$(jq "$(query_fslabel boot) | length" "${ignition_cfg}")
-        wipes_esp=$(jq "$(query_fslabel EFI-SYSTEM) | length" "${ignition_cfg}")
+        creates_esp=$(jq "$(query_parttype ${esp_typeguid}) | length" "${ignition_cfg}")
         creates_bios=$(jq "$(query_parttype ${bios_typeguid}) | length" "${ignition_cfg}")
         creates_prep=$(jq "$(query_parttype ${prep_typeguid}) | length" "${ignition_cfg}")
-        if [ "${wipes_root}${wipes_boot}${wipes_esp}${creates_bios}${creates_prep}" = "00000" ]; then
+        if [ "${wipes_root}${wipes_boot}${creates_esp}${creates_bios}${creates_prep}" = "00000" ]; then
             exit 0
         fi
         echo "Detected partition replacement in fetched Ignition config: /run/ignition.json"
-        # verify all BIOS and PReP partitions have non-null unique labels
+        # verify all ESP, BIOS, and PReP partitions have non-null unique labels
+        unique_esp=$(jq -r "$(query_parttype ${esp_typeguid}) | [.[].label | values] | unique | length" "${ignition_cfg}")
         unique_bios=$(jq -r "$(query_parttype ${bios_typeguid}) | [.[].label | values] | unique | length" "${ignition_cfg}")
         unique_prep=$(jq -r "$(query_parttype ${prep_typeguid}) | [.[].label | values] | unique | length" "${ignition_cfg}")
-        if [ "${creates_bios}" != "${unique_bios}" -o "${creates_prep}" != "${unique_prep}" ]; then
-            echo "Found duplicate or missing BIOS-BOOT or PReP labels in config" >&2
+        if [ "${creates_esp}" != "${unique_esp}" -o "${creates_bios}" != "${unique_bios}" -o "${creates_prep}" != "${unique_prep}" ]; then
+            echo "Found duplicate or missing ESP, BIOS-BOOT, or PReP labels in config" >&2
             exit 1
         fi
         modprobe zram num_devices=0
@@ -118,7 +120,7 @@ case "${1:-}" in
         if [ "${wipes_boot}" != "0" ]; then
             mkdir "${saved_boot}"
         fi
-        if [ "${wipes_esp}" != "0" ]; then
+        if [ "${creates_esp}" != "0" ]; then
             mkdir "${saved_esp}"
         fi
         if [ "${creates_bios}" != "0" ]; then
@@ -180,7 +182,17 @@ case "${1:-}" in
         fi
         if [ -d "${saved_esp}" ]; then
             echo "Restoring EFI System Partition from RAM..."
-            mount_and_restore_filesystem_by_label EFI-SYSTEM /sysroot/boot/efi "${saved_esp}"
+            get_partlabels_for_parttype "${esp_typeguid}" | while read label; do
+                # Don't use mount_and_restore_filesystem_by_label because:
+                # 1. We're mounting by partlabel, not FS label
+                # 2. We need to copy the contents to each partition, not move
+                #    them once
+                # 3. We don't need the by-label symlink to be correct and
+                #    nothing later in boot will be mounting the filesystem
+                mountpoint="/mnt/esp-${label}"
+                mount_verbose "/dev/disk/by-partlabel/${label}" "${mountpoint}"
+                find "${saved_esp}" -mindepth 1 -maxdepth 1 -exec cp -a {} "${mountpoint}" \;
+            done
         fi
         if [ -d "${saved_bios}" ]; then
             echo "Restoring BIOS Boot partition and boot sector from RAM..."
