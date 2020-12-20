@@ -31,7 +31,7 @@
       "evra": "2.4.48-10.fc33.x86_64"
     },
     "audit-libs": {
-      "evra": "3.0-0.21.20191104git1c2f876.fc33.x86_64"
+      "evra": "3.0-1.fc33.x86_64"
     },
     "avahi-libs": {
       "evra": "0.8-7.fc33.x86_64"
@@ -130,10 +130,10 @@
       "evra": "1.4.3-1.fc33.x86_64"
     },
     "containernetworking-plugins": {
-      "evra": "0.8.7-1.fc33.x86_64"
+      "evra": "0.9.0-1.fc33.x86_64"
     },
     "containers-common": {
-      "evra": "1:1.2.0-10.fc33.x86_64"
+      "evra": "1:1.2.0-13.fc33.x86_64"
     },
     "coreos-installer": {
       "evra": "0.7.2-1.fc33.x86_64"
@@ -265,13 +265,13 @@
       "evra": "33-1.noarch"
     },
     "fedora-release-common": {
-      "evra": "33-2.noarch"
+      "evra": "33-3.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "33-2.noarch"
+      "evra": "33-3.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "33-2.noarch"
+      "evra": "33-3.noarch"
     },
     "fedora-repos": {
       "evra": "33-1.noarch"
@@ -328,7 +328,7 @@
       "evra": "3.9.4-1.fc33.x86_64"
     },
     "fwupd": {
-      "evra": "1.5.3-1.fc33.x86_64"
+      "evra": "1.5.4-1.fc33.x86_64"
     },
     "gawk": {
       "evra": "5.1.0-2.fc33.x86_64"
@@ -646,7 +646,7 @@
       "evra": "1.0.1-18.fc33.x86_64"
     },
     "libnfsidmap": {
-      "evra": "1:2.5.2-1.rc1.fc33.x86_64"
+      "evra": "1:2.5.2-1.rc3.fc33.x86_64"
     },
     "libnftnl": {
       "evra": "1.1.7-3.fc33.x86_64"
@@ -712,7 +712,7 @@
       "evra": "2.36-3.fc33.x86_64"
     },
     "libsmbclient": {
-      "evra": "2:4.13.2-2.fc33.x86_64"
+      "evra": "2:4.13.3-0.fc33.x86_64"
     },
     "libsmbios": {
       "evra": "2.4.2-10.fc33.x86_64"
@@ -787,7 +787,7 @@
       "evra": "0.3.0-10.fc33.x86_64"
     },
     "libwbclient": {
-      "evra": "2:4.13.2-2.fc33.x86_64"
+      "evra": "2:4.13.3-0.fc33.x86_64"
     },
     "libxcrypt": {
       "evra": "4.4.17-1.fc33.x86_64"
@@ -853,7 +853,7 @@
       "evra": "2:0.4.0-2.fc33.x86_64"
     },
     "mozjs78": {
-      "evra": "78.5.0-1.fc33.x86_64"
+      "evra": "78.6.0-1.fc33.x86_64"
     },
     "mpfr": {
       "evra": "4.1.0-2.fc33.x86_64"
@@ -877,7 +877,7 @@
       "evra": "0.52.21-8.fc33.x86_64"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.5.2-1.rc1.fc33.x86_64"
+      "evra": "1:2.5.2-1.rc3.fc33.x86_64"
     },
     "nftables": {
       "evra": "1:0.9.3-6.fc33.x86_64"
@@ -949,10 +949,10 @@
       "evra": "8.44-2.fc33.x86_64"
     },
     "pcre2": {
-      "evra": "10.35-8.fc33.x86_64"
+      "evra": "10.36-1.fc33.x86_64"
     },
     "pcre2-syntax": {
-      "evra": "10.35-8.fc33.noarch"
+      "evra": "10.36-1.fc33.noarch"
     },
     "pigz": {
       "evra": "2.4-7.fc33.x86_64"
@@ -1033,16 +1033,16 @@
       "evra": "2:1.0.0-279.dev.gitdedadbf.fc33.x86_64"
     },
     "samba-client-libs": {
-      "evra": "2:4.13.2-2.fc33.x86_64"
+      "evra": "2:4.13.3-0.fc33.x86_64"
     },
     "samba-common": {
-      "evra": "2:4.13.2-2.fc33.noarch"
+      "evra": "2:4.13.3-0.fc33.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.13.2-2.fc33.x86_64"
+      "evra": "2:4.13.3-0.fc33.x86_64"
     },
     "samba-libs": {
-      "evra": "2:4.13.2-2.fc33.x86_64"
+      "evra": "2:4.13.3-0.fc33.x86_64"
     },
     "sed": {
       "evra": "4.8-5.fc33.x86_64"
@@ -1072,7 +1072,7 @@
       "evra": "15-8.x86_64"
     },
     "skopeo": {
-      "evra": "1:1.2.0-10.fc33.x86_64"
+      "evra": "1:1.2.0-13.fc33.x86_64"
     },
     "slang": {
       "evra": "2.3.2-8.fc33.x86_64"
@@ -1202,16 +1202,16 @@
     }
   },
   "metadata": {
-    "generated": "2020-12-17T21:07:34Z",
+    "generated": "2020-12-20T03:43:12Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-10-19T23:27:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2020-12-16T21:54:56Z"
+        "generated": "2020-12-19T22:00:30Z"
       },
       "fedora-updates": {
-        "generated": "2020-12-17T00:56:01Z"
+        "generated": "2020-12-20T00:52:56Z"
       }
     }
   }
