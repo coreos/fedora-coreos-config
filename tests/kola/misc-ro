@@ -114,12 +114,12 @@ if [ -n "${unlabeled}" ]; then
 fi
 ok no files with unlabeled_t SELinux label
 
-# make sure we stick with bdb until we're ready to move to sqlite
+# make sure we're using the sqlite rpmdb backend
 # https://github.com/coreos/fedora-coreos-tracker/issues/623
-if [ ! -f /usr/share/rpm/Packages ]; then
-    fatal "Didn't find bdb file /usr/share/rpm/Packages"
+if [ ! -f /usr/share/rpm/rpmdb.sqlite ]; then
+    fatal "Didn't find file /usr/share/rpm/rpmdb.sqlite"
 fi
-ok rpmdb is bdb
+ok rpmdb is sqlite
 
 # make sure we don't default to having swap on zram
 # https://github.com/coreos/fedora-coreos-tracker/issues/509
