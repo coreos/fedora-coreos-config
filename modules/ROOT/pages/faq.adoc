@@ -448,3 +448,18 @@ If your system is in this state you have two options:
 * Re-deploy starting with the latest image artifacts.
 ** This means you start with the latest policy.
 * Follow the workaround in https://github.com/coreos/fedora-coreos-tracker/issues/701[coreos/fedora-coreos-tracker#701] to restore the base policy.
+
+== Why is the systemd-repart.service systemd unit masked?
+
+https://www.freedesktop.org/software/systemd/man/systemd-repart.html[system-repart]
+is a tool to grow and add partitions to a partition table. On Fedora CoreOS, we
+only support using Ignition to create partitions, filesystems and mount points,
+thus systemd-repart is masked by default.
+
+Ignition runs on first boot in the initramfs and is aware of Fedora CoreOS
+specific disk layout. It is also capable of reconfiguring the root filesystem
+(from xfs to ext4 for example), setting up LUKS, etc... See the
+xref:storage.adoc[Configuring Storage] page for examples.
+
+See the xref:faq.adoc#_why_is_the_dnsmasq_service_systemd_unit_masked[Why is the dnsmasq.service systemd unit masked]
+entry for an example config to unmask this unit.
