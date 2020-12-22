@@ -33,6 +33,10 @@ query_parttype() {
     echo ".storage?.disks? // [] | map(.partitions?) | flatten | map(select(try .typeGuid catch \"\" | ascii_downcase == \"$1\"))"
 }
 
+# Print partition labels for partitions with type GUID $1
+get_partlabels_for_parttype() {
+    jq -r "$(query_parttype $1) | .[].label" "${ignition_cfg}"
+}
 
 # Mounts device to directory, with extra logging of the src device
 mount_verbose() {
@@ -181,8 +185,7 @@ case "${1:-}" in
         if [ -d "${saved_bios}" ]; then
             echo "Restoring BIOS Boot partition and boot sector from RAM..."
             expected_start=$(cat "${saved_bios}/start")
-            # iterate over each new BIOS Boot partition, by partlabel
-            jq -r "$(query_parttype ${bios_typeguid}) | .[].label" "${ignition_cfg}" | while read label; do
+            get_partlabels_for_parttype "${bios_typeguid}" | while read label; do
                 cur_part="/dev/disk/by-partlabel/${label}"
                 # boot sector hardcodes the partition start; ensure it matches
                 cur_start=$(get_partition_offset "${cur_part}")
@@ -199,8 +202,7 @@ case "${1:-}" in
         fi
         if [ -d "${saved_prep}" ]; then
             echo "Restoring PReP partition from RAM..."
-            # iterate over each new PReP partition, by partlabel
-            jq -r "$(query_parttype ${prep_typeguid}) | .[].label" "${ignition_cfg}" | while read label; do
+            get_partlabels_for_parttype "${prep_typeguid}" | while read label; do
                 cat "${saved_prep}/partition" > "/dev/disk/by-partlabel/${label}"
             done
         fi
