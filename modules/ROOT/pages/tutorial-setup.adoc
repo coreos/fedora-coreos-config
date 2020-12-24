@@ -31,7 +31,7 @@ podman pull quay.io/coreos/fcct:release
 podman pull quay.io/coreos/ignition-validate:release
 ----
 
-To make it simpler to type, you should setup the following aliases:
+To make it simpler to type, you may add the following aliases to your shell configuration:
 
 [source,bash]
 ----
@@ -70,8 +70,6 @@ You are now ready to proceed with the xref:tutorial-autologin.adoc[first tutoria
 
 === Installing via Fedora packages
 
-NOTE: Although this should work, we recommended that you run the tools from containers (as described in the previous section) to make sure that you always use the latest versions. If you use the packaged version, make sure that your system is fully updated to the latest Fedora stable release.
-
 All three tools (`coreos-installer`, `fcct` and `ignition-validate`) are available as Fedora packages:
 
 [source,bash]
@@ -93,8 +91,6 @@ mv fedora-coreos-32.20200715.3.0-qemu.x86_64.qcow2 fedora-coreos.qcow2
 You are now ready to proceed with the xref:tutorial-autologin.adoc[first tutorial].
 
 === Manual download
-
-NOTE: Although this should work, we recommended that you run the tools from containers (as described in the first section) to make sure that you always use the latest versions.
 
 If none of the previous solutions work for you, you can still manually download Fedora CoreOS from https://getfedora.org/en/coreos/download?tab=metal_virtualized&stream=stable[getfedora.org] with:
 
