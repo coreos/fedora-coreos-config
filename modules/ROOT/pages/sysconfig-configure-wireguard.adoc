@@ -1,0 +1,261 @@
+:experimental:
+= Configuring FCOS to use WireGuard
+
+== Introduction
+
+https://www.wireguard.com/[WireGuard] is a novel VPN that runs inside the Linux Kernel and uses state-of-the-art cryptography. It aims to be faster, simpler, leaner, and more useful than IPSec, while avoiding the massive headache. It intends to be considerably more performant than OpenVPN. WireGuard is designed as a general purpose VPN for running on embedded interfaces and super computers alike, fit for many different circumstances. It runs over UDP.
+
+- https://www.wireguard.com/[Conceptual Overview]
+- https://www.wireguard.com/quickstart/[Quickstart]
+- https://www.wireguard.com/papers/wireguard.pdf[Whitepaper]
+
+FCOS has full support for WireGuard out of the box. This guide is going to demonstrate how to setup a single connection between a FCOS server and one client computer. It goes over the basic client configuration, but it does not cover installing WireGuard on your clients.
+
+== Generate Keys
+
+You will need to generate some keys to configure WireGuard. For this guide, the keys should be pre-generated on your workstation. First, let's create the FCOS WireGuard keys:
+
+.Generate FCOS WireGuard keys
+[source,bash]
+----
+$ umask 077
+$ wg genkey | tee privatekey | wg pubkey > publickey
+----
+
+These keys will be referenced as `fcos_public_key` and `fcos_private_key` from here on out in this guide.
+
+Now let's generate the client keys:
+
+.Generate Client One WireGuard keys
+[source,bash]
+----
+$ umask 077
+$ wg genkey | tee privatekey | wg pubkey > publickey
+----
+
+These keys will be referenced as `client_one_public_key` and `client_one_private_key` from here on out in this guide.
+
+Now create a PresharedKey:
+
+.Generate a Preshared key per peer pair
+[source,bash]
+----
+$ wg genpsk > fcos_client_one_psk
+----
+
+The PresharedKey will be referenced as `fcos_client_one_psk` from here on out in this guide.
+
+NOTE: The `wg genpsk` command generates a PresharedKey that can only be used once per peer pair. Every peer you add to the FCOS server will need to generate a unique PresharedKey.
+
+== Configure WireGuard on FCOS
+
+You can now configure your Ignition config to create the `wg0` configuration file:
+
+.Example FCOS WireGuard configuration
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+storage:
+  files:
+    - path: /etc/wireguard/wg0.conf
+      mode: 0600
+      contents:
+        inline: |
+          [Interface]
+          Address = 192.168.71.1/24,fdc9:3c6b:21c7:e6bd::1/64
+          PrivateKey = <fcos_private_key>
+          ListenPort = 51820
+
+          [Peer]
+          PublicKey = <client_one_public_key>
+          PresharedKey = <fcos_client_one_psk>
+          AllowedIPs = 192.168.71.0/24,fdc9:3c6b:21c7:e6bd::/64
+systemd:
+  units:
+    - name: wg-quick@wg0.service
+      enabled: true
+----
+
+Boot FCOS and log in. When you run `sudo wg show` you should see this:
+
+.Check WireGuard configuration on FCOS
+[source,bash]
+----
+[core@wireguard-demo ~]$ sudo wg show
+interface: wg0
+  public key: <fcos_public_key>
+  private key: (hidden)
+  listening port: 51820
+
+peer: <client_one_public_key>
+  preshared key: (hidden)
+  endpoint: <Client IP Address>:51821
+  allowed ips: 192.168.71.0/24, fdc9:3c6b:21c7:e6bd::/64
+
+[root@wireguard-demo ~]# ip a s wg0
+12: wg0: <POINTOPOINT,NOARP,UP,LOWER_UP> mtu 1420 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/none
+    inet 192.168.71.1/24 scope global wg0
+       valid_lft forever preferred_lft forever
+    inet6 fdc9:3c6b:21c7:e6bd::1/64 scope global
+       valid_lft forever preferred_lft forever
+----
+
+NOTE: <Client IP address> above is the IP or FQDN of the Client computer.
+
+== Configure WireGuard on a client
+
+You will now want to configure WireGuard on your client computer with the following configuration:
+
+.Client WireGuard configuration
+[source,ini]
+----
+[Interface]
+Address = 192.168.71.2/24,fdc9:3c6b:21c7:e6bd::2/64
+PrivateKey = <client_one_private_key>
+ListenPort = 51821
+
+[Peer]
+PublicKey = <fcos_public_key>
+PresharedKey = <fcos_client_one_psk>
+Endpoint = <FCOS IP address>:51820
+AllowedIPs = 192.168.71.0/24,fdc9:3c6b:21c7:e6bd::/64
+----
+
+NOTE: <FCOS IP address> is the IP or FQDN of the FCOS server.
+
+Write the above config to `/etc/wireguard/wg0.conf` and `chmod 0600 /etc/wireguard/wg0.conf` on your client. Run `sudo systemctl start wg-quick@wg0.service` and then check your configuration:
+
+.Check WireGuard configuration on a client
+[source,bash]
+----
+[root@wireguard-client ~]# wg show
+interface: wg0
+  public key: <client_one_public_key>
+  private key: (hidden)
+  listening port: 51821
+
+peer: <fcos_public_key>
+  preshared key: (hidden)
+  endpoint: <FCOS IP address>:51820
+  allowed ips: 192.168.71.0/24, fdc9:3c6b:21c7:e6bd::/64
+[root@wireguard-client ~]# ip a s wg0
+21: wg0: <POINTOPOINT,NOARP,UP,LOWER_UP> mtu 1420 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/none
+    inet 192.168.71.2/24 scope global wg0
+       valid_lft forever preferred_lft forever
+    inet6 fdc9:3c6b:21c7:e6bd::2/64 scope global
+       valid_lft forever preferred_lft forever
+----
+
+== Test the WireGuard connection
+
+You can now ping the FCOS server's WireGuard IP address:
+
+.Ping the FCOS server over WireGuard from client
+[source,bash]
+----
+[root@wireguard-client ~]# ping 192.168.71.1
+PING 192.168.71.1 (192.168.71.1) 56(84) bytes of data.
+64 bytes from 192.168.71.1: icmp_seq=1 ttl=64 time=0.439 ms
+64 bytes from 192.168.71.1: icmp_seq=2 ttl=64 time=0.422 ms
+64 bytes from 192.168.71.1: icmp_seq=3 ttl=64 time=0.383 ms
+^C
+--- 192.168.71.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2027ms
+rtt min/avg/max/mdev = 0.383/0.414/0.439/0.023 ms
+
+[root@wireguard-client ~]# ping6 fdc9:3c6b:21c7:e6bd::1
+PING fdc9:3c6b:21c7:e6bd::1(fdc9:3c6b:21c7:e6bd::1) 56 data bytes
+64 bytes from fdc9:3c6b:21c7:e6bd::1: icmp_seq=1 ttl=64 time=1.55 ms
+64 bytes from fdc9:3c6b:21c7:e6bd::1: icmp_seq=2 ttl=64 time=0.454 ms
+64 bytes from fdc9:3c6b:21c7:e6bd::1: icmp_seq=3 ttl=64 time=0.424 ms
+64 bytes from fdc9:3c6b:21c7:e6bd::1: icmp_seq=4 ttl=64 time=0.424 ms
+^C
+--- fdc9:3c6b:21c7:e6bd::1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3054ms
+rtt min/avg/max/mdev = 0.424/0.712/1.546/0.481 ms
+----
+
+When you run `sudo wg show` on your client you should see a recent handshake and a transfer sections with sent and received:
+
+.Verify handshake and transfer metrics
+[source,bash]
+----
+[root@wireguard-client ~]# wg show
+interface: wg0
+  public key: <client_one_public_key>
+  private key: (hidden)
+  listening port: 51821
+
+peer: <fcos_public_key>
+  preshared key: (hidden)
+  endpoint: <Client IP address>:51820
+  allowed ips: 192.168.71.0/24, fdc9:3c6b:21c7:e6bd::/64
+  latest handshake: 9 seconds ago
+  transfer: 22.02 KiB received, 22.28 KiB sent
+----
+
+== Route all traffic over WireGuard
+
+If you plan on forwarding all of your client's traffic through the FCOS instance you will need to enable IP Forwarding and you need to set and set some PostUp and PostDown directives:
+
+.Example FCOS WireGuard configuration with IP forwarding
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+storage:
+  files:
+    - path: /etc/sysctl.d/90-ipv4-ip-forward.conf
+      mode: 0644
+      contents:
+        inline: |
+          net.ipv4.ip_forward = 1
+
+    - path: /etc/sysctl.d/90-ipv6-ip-forwarding.conf
+      mode: 0644
+      contents:
+        inline: |
+          net.ipv6.conf.all.forwarding = 1
+
+    - path: /etc/wireguard/wg0.conf
+      mode: 0600
+      contents:
+        inline: |
+          [Interface]
+          Address = 192.168.71.1/24,fdc9:3c6b:21c7:e6bd::1/64
+          PrivateKey = <fcos_private_key>
+          ListenPort = 51820
+
+          PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o enp1s0 -j MASQUERADE; ip6tables -A FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o enp1s0 -j MASQUERADE
+          PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o enp1s0 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o enp1s0 -j MASQUERADE
+
+          [Peer]
+          PublicKey = <client_one_public_key>
+          PresharedKey = <fcos_client_one_psk>
+          AllowedIPs = 192.168.71.0/24,fdc9:3c6b:21c7:e6bd::/64
+systemd:
+  units:
+    - name: wg-quick@wg0.service
+      enabled: true
+----
+
+NOTE: FCOS uses https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/[predictable interface names] by https://lists.fedoraproject.org/archives/list/coreos-status@lists.fedoraproject.org/thread/6IPTZL57Z5NLBMPYMXNVSYAGLRFZBLIP/[default]. Please take care to use the correct interface name for your hardware in the above PostUp and PostDown commands!
+
+and set `AllowedIPs = 0.0.0.0/0,::/0` in `/etc/wireguard/wg0.conf` on the client configuration to route all IPv4 and IPv6 the traffic on the client computer over the WireGuard interface:
+
+.A configuration for routing all traffic on the client over WireGuard:
+----
+[Interface]
+Address = 192.168.71.1/24,fdc9:3c6b:21c7:e6bd::2/64
+PrivateKey = <client_one_private_key>
+ListenPort = 51821
+
+[Peer]
+PublicKey = <fcos_public_key>
+PresharedKey = <fcos_client_one_psk>
+Endpoint = <FCOS IP Address>:51820
+AllowedIPs = 0.0.0.0/0,::/0
+----
