@@ -1,0 +1,16 @@
+# Note we use baseurl= here because using auto-selected mirrors conflicts with
+# change detection: https://github.com/coreos/fedora-coreos-pipeline/issues/85.
+
+[fedora-rawhide]
+name=Fedora - Rawhide - Developmental packages for the next Fedora release
+baseurl=http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/$basearch/os/
+        https://dl.fedoraproject.org/pub/fedora-secondary/development/rawhide/Everything/$basearch/os/
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=rawhide&arch=$basearch
+enabled=1
+countme=1
+metadata_expire=6h
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
+skip_if_unavailable=False
