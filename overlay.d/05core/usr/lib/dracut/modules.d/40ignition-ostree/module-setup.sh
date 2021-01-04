@@ -17,6 +17,7 @@ install() {
     inst_multiple \
         realpath \
         setfiles \
+        chcon \
         systemd-sysusers \
         systemd-tmpfiles \
         sort \
