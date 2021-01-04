@@ -175,6 +175,37 @@ storage:
 
 NOTE: You don't need the `path` or `with_mount_unit` keys; FCOS knows that the root partition is special and will figure out how to find it and mount it.
 
+== Sizing the root partition
+
+If you use Ignition to reconfigure or move the root partition, that partition is not automatically grown on first boot (see related discussions in https://github.com/coreos/fedora-coreos-tracker/issues/570[this issue]). In the case of moving the root partition to a new disk (or multiple disks), you should set the desired partition size using the `size_mib` field. If reconfiguring the root filesystem in place, as in the LUKS example above, you can resize the existing partition using the `resize` field:
+
+.Resizing the root partition to its maximum size
+[source.yaml]
+----
+variant: fcos
+version: 1.2.0
+storage:
+  disks:
+    - device: /dev/vda
+      partitions:
+        - label: root
+          number: 4
+          # 0 means to use all available space
+          size_mib: 0
+          resize: true
+  luks:
+    - name: root
+      device: /dev/disk/by-partlabel/root
+      clevis:
+        tpm2: true
+      wipe_volume: true
+  filesystems:
+    - device: /dev/mapper/root
+      format: xfs
+      wipe_filesystem: true
+      label: root
+----
+
 == Disk Layout
 
 All Fedora CoreOS systems start with the same disk image which varies slightly between architectures based on what is needed for bootloading. On first boot the root filesystem is expanded to fill the rest of the disk. The disk image can be customized using Fedora CoreOS configs to repartition the disk and create/reformat filesystems. Bare metal installations are not different; the installer only copies the raw image to the target disk and injects the specified config into `/boot` for use on first boot.
