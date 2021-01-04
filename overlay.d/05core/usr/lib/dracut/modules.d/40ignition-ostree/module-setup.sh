@@ -10,9 +10,7 @@ install_ignition_unit() {
     local unit=$1; shift
     local target=${1:-complete}
     inst_simple "$moddir/$unit" "$systemdsystemunitdir/$unit"
-    local targetpath="$systemdsystemunitdir/ignition-${target}.target.requires/"
-    mkdir -p "${initdir}/${targetpath}"
-    ln_r "../$unit" "${targetpath}/${unit}"
+    systemctl -q --root="$initdir" add-requires "ignition-${target}.target" "$unit"
 }
 
 install() {
@@ -67,9 +65,9 @@ install() {
         /usr/lib/udev/rules.d/90-coreos-device-mapper.rules
 
     inst_multiple jq chattr
-    inst_script "$moddir/ignition-ostree-dracut-rootfs.sh" "/usr/libexec/ignition-ostree-dracut-rootfs"
+    inst_script "$moddir/ignition-ostree-transposefs.sh" "/usr/libexec/ignition-ostree-transposefs"
     for x in detect save restore; do
-        install_ignition_unit ignition-ostree-rootfs-${x}.service
+        install_ignition_unit ignition-ostree-transposefs-${x}.service
     done
 
     # Disk support

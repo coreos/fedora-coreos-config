@@ -2,8 +2,7 @@ install_and_enable_unit() {
     unit="$1"; shift
     target="$1"; shift
     inst_simple "$moddir/$unit" "$systemdsystemunitdir/$unit"
-    mkdir -p "$initdir/$systemdsystemunitdir/$target.requires"
-    ln_r "../$unit" "$systemdsystemunitdir/$target.requires/$unit"
+    systemctl -q --root="$initdir" add-requires "$target" "$unit"
 }
 
 install() {
