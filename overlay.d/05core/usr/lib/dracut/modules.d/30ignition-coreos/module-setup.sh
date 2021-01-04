@@ -11,14 +11,15 @@ install_ignition_unit() {
     local target="${1:-ignition-complete.target}"; shift
     local instantiated="${1:-$unit}"; shift
     inst_simple "$moddir/$unit" "$systemdsystemunitdir/$unit"
-    mkdir -p "$initdir/$systemdsystemunitdir/$target.requires"
-    ln_r "../$unit" "$systemdsystemunitdir/$target.requires/$instantiated"
+    systemctl -q --root="$initdir" add-requires "$target" "$instantiated"
 }
 
 install() {
     inst_multiple \
         basename \
+        diff \
         lsblk \
+        sed \
         sgdisk
 
     inst_simple "$moddir/coreos-diskful-generator" \
