@@ -90,7 +90,7 @@ storage:
 
 == Reconfiguring the root filesystem
 
-It is possible to reconfigure the root filesystem itself. You can use the path `/dev/disk/by-label/root` to refer to the original root partition. You must ensure that the new filesystem also has a label of `/root`.
+It is possible to reconfigure the root filesystem itself. You can use the path `/dev/disk/by-label/root` to refer to the original root partition. You must ensure that the new filesystem also has a label of `root`.
 
 NOTE: You must have at least 4G of RAM for root reprovisioning to work.
 
