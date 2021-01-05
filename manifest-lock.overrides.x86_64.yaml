@@ -15,9 +15,3 @@ packages:
     evra: 246.7-1.fc33.noarch
   systemd-udev:
     evra: 246.7-1.fc33.x86_64
-  # Fast-track Afterburn release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-94fd991213
-  afterburn:
-    evra: 4.6.0-2.fc33.x86_64
-  afterburn-dracut:
-    evra: 4.6.0-2.fc33.x86_64
