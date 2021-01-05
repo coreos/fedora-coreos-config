@@ -83,12 +83,14 @@ For this reason, on first-boot FCOS instances try to perform network autoconfigu
 If your VMware setup employs static network configuration instead, you can override this automatic DHCP setup with your own custom configuration.
 Custom networking command-line `ip=` parameter can be configured via guestinfo properties as shown below, before booting a VM for the first time.
 
-The provisioning flow follows the usual steps, plus an additional `guestinfo.afterburn.initrd.network-kargs` entry.
+The provisioning flow follows the usual steps, plus an additional `guestinfo.afterburn.initrd.network-kargs` entry. 
+
+NOTE: if you are using a provisioning method other than `govc`, make sure that the guestinfo attribute is provisioned in the VM's Advanced Configuration Parameters (also known as `ExtraConfig`). Some management tools may default to a vApp Property instead, which does not work in this scenario.
 
 [source, bash]
 ----
 VM_NAME='fcos-node02'
-IFACE='ens9'
+IFACE='ens192'
 IPCFG="ip=192.0.2.42::192.0.2.1:255.255.255.0:${VM_NAME}:${IFACE}:off"
 
 govc library.deploy "${LIBRARY}/${TEMPLATE_NAME}" "${VM_NAME}"
