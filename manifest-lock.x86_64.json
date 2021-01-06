@@ -12,6 +12,9 @@
     "NetworkManager-tui": {
       "evra": "1:1.26.4-1.fc33.x86_64"
     },
+    "WALinuxAgent-udev": {
+      "evra": "2.2.52-1.fc33.noarch"
+    },
     "acl": {
       "evra": "2.2.53-9.fc33.x86_64"
     },
@@ -1214,16 +1217,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-01-05T21:07:11Z",
+    "generated": "2021-01-06T17:28:38Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-10-19T23:27:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-01-03T21:44:56Z"
+        "generated": "2021-01-06T14:20:20Z"
       },
       "fedora-updates": {
-        "generated": "2021-01-05T00:56:35Z"
+        "generated": "2021-01-06T01:13:33Z"
       }
     }
   }
