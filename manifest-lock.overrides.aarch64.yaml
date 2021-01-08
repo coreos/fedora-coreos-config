@@ -1,4 +1,6 @@
 packages:
+  rpm-ostree:
+    evra: 2020.10-1.fc33.aarch64
   # Fast-track systemd update that reverts fallback hostname change
   # https://github.com/coreos/fedora-coreos-tracker/issues/649#issuecomment-739956843
   # This is a one-off build, please don't remove it without talking
