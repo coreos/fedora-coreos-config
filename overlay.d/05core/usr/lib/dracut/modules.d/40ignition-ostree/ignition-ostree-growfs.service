@@ -2,9 +2,6 @@
 Description=Ignition OSTree: Grow root filesystem
 DefaultDependencies=false
 ConditionKernelCommandLine=ostree
-# Similar to the other mount rules, suppress invocation if we detect
-# we are running from a legacy setup created by Anaconda.
-ConditionKernelCommandLine=!root
 ConditionPathExists=!/run/ostree-live
 Before=initrd-root-fs.target
 After=ignition-ostree-mount-firstboot-sysroot.service
