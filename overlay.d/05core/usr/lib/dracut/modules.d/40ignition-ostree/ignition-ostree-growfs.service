@@ -4,8 +4,7 @@ DefaultDependencies=false
 ConditionKernelCommandLine=ostree
 ConditionPathExists=!/run/ostree-live
 Before=initrd-root-fs.target
-After=ignition-ostree-mount-firstboot-sysroot.service
-Requires=ignition-ostree-mount-firstboot-sysroot.service
+After=sysroot.mount ignition-ostree-mount-firstboot-sysroot.service
 # This shouldn't be strictly necessary, but it's cleaner to not have OSTree muck
 # around with moving mounts while we're still resizing the filesystem.
 Before=ostree-prepare-root.service
