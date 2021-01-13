@@ -45,6 +45,18 @@ case "${TYPE:-}" in
     *) echo "error: Unsupported filesystem for ${path}: '${TYPE:-}'" 1>&2; exit 1 ;;
 esac
 
+# Small wrapper around calling kpartx multiple times because it sometimes fails
+# with EINVAL when running right after sfdisk:
+# https://bugzilla.redhat.com/show_bug.cgi?id=1915965
+call_kpartx() {
+    local dev=$1; shift
+    for i in {1..5}; do
+        kpartx -fu "${dev}" && return 0
+        sleep 1
+    done
+    return 1
+}
+
 if [[ "${src}" =~ "/dev/mapper" ]]; then
     eval $(udevadm info --query property --export "${src}")
     # get the partition, if any, and the name for the device mapper
@@ -58,7 +70,7 @@ if [[ "${src}" =~ "/dev/mapper" ]]; then
         # growpart does not understand device mapper, instead of having sfdisk inform the kernel,
         # use kpartx to inform the kernel and the device mapper linear maps.
         echo ", +" | sfdisk --no-reread --no-tell-kernel --force -N "${ID_PART_ENTRY_NUMBER}" "/dev/mapper/${dm_name}"
-        kpartx -fu /dev/mapper/${dm_name}
+        call_kpartx "/dev/mapper/${dm_name}"
     else
         echo "coreos-growpart: unsupported device-mapper target: ${dm_name}"
         exit 0
