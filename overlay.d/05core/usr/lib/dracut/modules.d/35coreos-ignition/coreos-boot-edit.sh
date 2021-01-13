@@ -18,7 +18,12 @@ karg() {
 # are run in a systemd unit with MountFlags=slave so it is unmounted for us.
 bootmnt=/mnt/boot_partition
 mkdir -p ${bootmnt}
-bootdev=/dev/disk/by-label/boot
+
+bootdev=/dev/disk/by-label/dm-mpath-boot
+if [ ! -b "${bootdev}" ]; then
+    bootdev=/dev/disk/by-label/boot
+fi
+
 mount -o rw ${bootdev} ${bootmnt}
 
 # Clean up firstboot networking config files if the user copied them into the
