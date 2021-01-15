@@ -49,16 +49,16 @@
       "evra": "1:2.8-9.fc33.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.11.25-2.fc33.x86_64"
+      "evra": "32:9.11.26-2.fc33.x86_64"
     },
     "bind-libs-lite": {
-      "evra": "32:9.11.25-2.fc33.x86_64"
+      "evra": "32:9.11.26-2.fc33.x86_64"
     },
     "bind-license": {
-      "evra": "32:9.11.25-2.fc33.noarch"
+      "evra": "32:9.11.26-2.fc33.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.11.25-2.fc33.x86_64"
+      "evra": "32:9.11.26-2.fc33.x86_64"
     },
     "bootupd": {
       "evra": "0.2.4-2.fc33.x86_64"
@@ -469,13 +469,13 @@
       "evra": "2.3.0-2.fc33.noarch"
     },
     "kernel": {
-      "evra": "5.9.16-200.fc33.x86_64"
+      "evra": "5.10.6-200.fc33.x86_64"
     },
     "kernel-core": {
-      "evra": "5.9.16-200.fc33.x86_64"
+      "evra": "5.10.6-200.fc33.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.9.16-200.fc33.x86_64"
+      "evra": "5.10.6-200.fc33.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.20-21.fc33.x86_64"
@@ -613,7 +613,7 @@
       "evra": "2.4.0-4.fc33.x86_64"
     },
     "libjcat": {
-      "evra": "0.1.4-1.fc33.x86_64"
+      "evra": "0.1.5-1.fc33.x86_64"
     },
     "libjose": {
       "evra": "10-8.fc33.x86_64"
@@ -643,7 +643,7 @@
       "evra": "1.0.4-12.fc33.x86_64"
     },
     "libmodulemd": {
-      "evra": "2.11.1-1.fc33.x86_64"
+      "evra": "2.11.2-2.fc33.x86_64"
     },
     "libmount": {
       "evra": "2.36.1-1.fc33.x86_64"
@@ -1027,10 +1027,10 @@
       "evra": "1.2.5-5.rc1.fc33.3.x86_64"
     },
     "rpm": {
-      "evra": "4.16.0-5.fc33.x86_64"
+      "evra": "4.16.1.2-1.fc33.x86_64"
     },
     "rpm-libs": {
-      "evra": "4.16.0-5.fc33.x86_64"
+      "evra": "4.16.1.2-1.fc33.x86_64"
     },
     "rpm-ostree": {
       "evra": "2020.10-1.fc33.x86_64"
@@ -1039,7 +1039,7 @@
       "evra": "2020.10-1.fc33.x86_64"
     },
     "rpm-plugin-selinux": {
-      "evra": "4.16.0-5.fc33.x86_64"
+      "evra": "4.16.1.2-1.fc33.x86_64"
     },
     "rsync": {
       "evra": "3.2.3-3.fc33.x86_64"
@@ -1217,16 +1217,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-01-13T21:07:38Z",
+    "generated": "2021-01-15T21:08:31Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-10-19T23:27:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-01-12T14:15:24Z"
+        "generated": "2021-01-13T21:50:59Z"
       },
       "fedora-updates": {
-        "generated": "2021-01-13T01:06:15Z"
+        "generated": "2021-01-15T01:18:02Z"
       }
     }
   }
