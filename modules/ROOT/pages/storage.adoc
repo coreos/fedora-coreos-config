@@ -222,12 +222,14 @@ Using partition numbers to refer to specific partitions is discouraged and label
 
 The x86_64 disk image is GPT formatted with a protective MBR. It supports booting via both BIOS and UEFI (including Secure Boot).
 
+The partition table layout has changed over time. The current layout is:
+
 .Partition Table for x86_64
 |============================================================================================
 | Number | Label      | Description                                          | Partition Type
-| 1      | boot       | Contains GRUB configuration, kernel/initramfs images | ext4
+| 1      | BIOS-BOOT  | Contains BIOS GRUB image                             | raw data
 | 2      | EFI-SYSTEM | Contains EFI GRUB image and Secure Boot shim         | FAT32
-| 3      | BIOS-BOOT  | Contains BIOS GRUB image                             | raw data
+| 3      | boot       | Contains GRUB configuration, kernel/initramfs images | ext4
 | 4      | root       | Contains the root filesystem                         | xfs
 |============================================================================================
 
@@ -249,15 +251,16 @@ TARGET        SOURCE                                                   FSTYPE  O
 |-/etc        /dev/vda4[/ostree/deploy/fedora-coreos/deploy/$hash/etc] xfs     rw
 |-/usr        /dev/vda4[/ostree/deploy/fedora-coreos/deploy/$hash/usr] xfs     ro
 |-/var        /dev/vda4[/ostree/deploy/fedora-coreos/deploy/var]       xfs     rw
-`-/boot       /dev/vda1                                                ext4    rw
-  `-/boot/efi /dev/vda2                                                vfat    rw
+`-/boot       /dev/vda3                                                ext4    rw
 ----
+
+The EFI System Partition was formerly mounted on `/boot/efi`, but this is no longer the case.
 
 === Immutable `/`, read only `/usr`
 
 As OSTree is used to manage all files belonging to the operating system, the `/` and `/usr` mountpoints are not writable. Any changes to the operating system should be applied via https://coreos.github.io/rpm-ostree/administrator-handbook/[`rpm-ostree`].
 
-Similarly, the `/boot` and `/boot/efi` mountpoints are managed by `rpm-ostree` and changes must not be directly performed by an administrator in those directories. They are not yet mounted as read only but this is expected to change in the future.
+Similarly, the `/boot` mountpoint and EFI System Partition are managed by `rpm-ostree` and `bootupd`, and changes must not be directly performed by an administrator in those filesystems. `/boot` is not yet mounted as read only but this is expected to change in the future.
 
 Adding top level directories (i.e. `/foo`) is currently unsupported and disallowed by the immutable attribute.
 
