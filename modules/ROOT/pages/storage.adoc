@@ -109,9 +109,9 @@ storage:
       label: root
 ----
 
-Similarly to the previous section, you can also move the root filesystem entirely. Here, we're moving root to a RAID1 device:
+Similarly to the previous section, you can also move the root filesystem entirely. Here, we're moving root to a RAID0 device:
 
-.Moving the root filesystem to RAID1
+.Moving the root filesystem to RAID0
 [source,yaml]
 ----
 variant: fcos
@@ -119,7 +119,7 @@ version: 1.2.0
 storage:
   raid:
     - name: myroot
-      level: raid1
+      level: raid0
       devices:
         - /dev/disk/by-id/virtio-disk1
         - /dev/disk/by-id/virtio-disk2
@@ -131,6 +131,20 @@ storage:
 ----
 
 NOTE: You don't need the `path` or `with_mount_unit` keys; FCOS knows that the root partition is special and will figure out how to find it and mount it.
+
+If you want to replicate the boot disk across multiple drives for resiliency to drive failure, you need to mirror all of the default partitions (root, boot, EFI System Partition, and bootloader code).  There is special FCC syntax for this:
+
+.Mirroring the boot disk onto two drives
+[source,yaml]
+----
+variant: fcos
+version: 1.3.0
+boot_device:
+  mirror:
+    devices:
+      - /dev/sda
+      - /dev/sdb
+----
 
 == Encrypted storage (LUKS)
 
@@ -219,17 +233,67 @@ storage:
       label: root
 ----
 
+== Advanced examples
+
+This example configures a mirrored boot disk with a TPM2-encrypted root filesystem, overrides the sizes of the automatically-generated root partition replicas, and adds an encrypted mirrored `/var` partition which consumes the remainder of the disks.
+
+.Encrypted mirrored boot disk with separate /var
+[source.yaml]
+----
+variant: fcos
+version: 1.3.0
+boot_device:
+  luks:
+    tpm2: true
+  mirror:
+    devices:
+      - /dev/sda
+      - /dev/sdb
+storage:
+  disks:
+    - device: /dev/sda
+      partitions:
+        # Override size of root partition on first disk, via the label
+        # generated for boot_device.mirror
+        - label: root-1
+          size_mib: 8192
+        # Add a new partition filling the remainder of the disk
+        - label: var-1
+    - device: /dev/sdb
+      partitions:
+        # Similarly for second disk
+        - label: root-2
+          size_mib: 8192
+        - label: var-2
+  raid:
+    - name: md-var
+      level: raid1
+      devices:
+        - /dev/disk/by-partlabel/var-1
+        - /dev/disk/by-partlabel/var-2
+  luks:
+    - name: var
+      device: /dev/md/md-var
+      # No key material is specified, so a random key will be generated
+      # and stored in the root filesystem
+  filesystems:
+    - device: /dev/mapper/var
+      path: /var
+      label: var
+      format: xfs
+      wipe_filesystem: true
+      with_mount_unit: true
+----
+
 == Disk Layout
 
 All Fedora CoreOS systems start with the same disk image which varies slightly between architectures based on what is needed for bootloading. On first boot the root filesystem is expanded to fill the rest of the disk. The disk image can be customized using Fedora CoreOS Configs to repartition the disk and create/reformat filesystems. Bare metal installations are not different; the installer only copies the raw image to the target disk and injects the specified config into `/boot` for use on first boot.
-
-NOTE: The boot partition cannot be reformatted, deleted, or moved.
 
 NOTE: See xref:#_reconfiguring_the_root_filesystem[Reconfiguring the root filesystem] for examples regarding the supported changes to the root partition.
 
 === Partition Tables
 
-Using partition numbers to refer to specific partitions is discouraged and labels or UUIDs should be used instead. Fedora CoreOS reserves the `boot`, `root`, `BIOS-BOOT` and `EFI-SYSTEM` labels. Creating partitions or filesystems with those labels is not supported.
+Using partition numbers to refer to specific partitions is discouraged and labels or UUIDs should be used instead. Fedora CoreOS reserves the `boot`, `boot-<number>`, `root`, `root-<number>`, `BIOS-BOOT`, `bios-<number>`, `EFI-SYSTEM`, and `esp-<number>` labels, and the `md-boot` and `md-root` RAID device names. Creating partitions, filesystems, or RAID devices with those labels is not supported.
 
 === x86_64 Partition Table
 
@@ -267,7 +331,7 @@ TARGET        SOURCE                                                   FSTYPE  O
 `-/boot       /dev/vda3                                                ext4    rw
 ----
 
-The EFI System Partition was formerly mounted on `/boot/efi`, but this is no longer the case.
+The EFI System Partition was formerly mounted on `/boot/efi`, but this is no longer the case. On systems configured with boot device mirroring, there are independent EFI partitions on each constituent disk.
 
 === Immutable `/`, read only `/usr`
 
