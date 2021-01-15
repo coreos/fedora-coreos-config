@@ -328,7 +328,7 @@ TARGET        SOURCE                                                   FSTYPE  O
 |-/etc        /dev/vda4[/ostree/deploy/fedora-coreos/deploy/$hash/etc] xfs     rw
 |-/usr        /dev/vda4[/ostree/deploy/fedora-coreos/deploy/$hash/usr] xfs     ro
 |-/var        /dev/vda4[/ostree/deploy/fedora-coreos/deploy/var]       xfs     rw
-`-/boot       /dev/vda3                                                ext4    rw
+`-/boot       /dev/vda3                                                ext4    ro
 ----
 
 The EFI System Partition was formerly mounted on `/boot/efi`, but this is no longer the case. On systems configured with boot device mirroring, there are independent EFI partitions on each constituent disk.
@@ -337,7 +337,7 @@ The EFI System Partition was formerly mounted on `/boot/efi`, but this is no lon
 
 As OSTree is used to manage all files belonging to the operating system, the `/` and `/usr` mountpoints are not writable. Any changes to the operating system should be applied via https://coreos.github.io/rpm-ostree/administrator-handbook/[`rpm-ostree`].
 
-Similarly, the `/boot` mountpoint and EFI System Partition are managed by `rpm-ostree` and `bootupd`, and changes must not be directly performed by an administrator in those filesystems. `/boot` is not yet mounted as read only but this is expected to change in the future.
+Similarly, the `/boot` mountpoint is not writable, and the EFI System Partition is not mounted by default. These filesystems are managed by `rpm-ostree` and `bootupd`, and must not be directly modified by an administrator.
 
 Adding top level directories (i.e. `/foo`) is currently unsupported and disallowed by the immutable attribute.
 
