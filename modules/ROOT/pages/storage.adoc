@@ -208,7 +208,7 @@ storage:
 
 == Disk Layout
 
-All Fedora CoreOS systems start with the same disk image which varies slightly between architectures based on what is needed for bootloading. On first boot the root filesystem is expanded to fill the rest of the disk. The disk image can be customized using Fedora CoreOS configs to repartition the disk and create/reformat filesystems. Bare metal installations are not different; the installer only copies the raw image to the target disk and injects the specified config into `/boot` for use on first boot.
+All Fedora CoreOS systems start with the same disk image which varies slightly between architectures based on what is needed for bootloading. On first boot the root filesystem is expanded to fill the rest of the disk. The disk image can be customized using Fedora CoreOS Configs to repartition the disk and create/reformat filesystems. Bare metal installations are not different; the installer only copies the raw image to the target disk and injects the specified config into `/boot` for use on first boot.
 
 NOTE: The boot partition cannot be reformatted, deleted, or moved.
 
@@ -231,12 +231,11 @@ The x86_64 disk image is GPT formatted with a protective MBR. It supports bootin
 | 4      | root       | Contains the root filesystem                         | xfs
 |============================================================================================
 
-The EFI-SYSTEM partition can be deleted or reformatted when BIOS booting. Similarly, the BIOS-BOOT partition can be deleted or reformatted when
-EFI booting.
+The EFI-SYSTEM partition can be deleted or reformatted when BIOS booting. Similarly, the BIOS-BOOT partition can be deleted or reformatted when EFI booting.
 
 == Mounted Filesystems
 
-Fedora CoreOS uses OSTree, which is a system for managing multiple bootable operating system trees that share storage. This is distinct from e.g. Container Linux which used a dual partition system. In Fedora CoreOS each operating system version will be part of the `/` filesystem.  All deployments share the same `/var` which can be on the same filesystem, or mounted separately.
+Fedora CoreOS uses OSTree, which is a system for managing multiple bootable operating system trees that share storage. This is distinct from e.g. Container Linux which used a dual partition system. In Fedora CoreOS each operating system version is part of the `/` filesystem.  All deployments share the same `/var` which can be on the same filesystem, or mounted separately.
 
 This shows the default mountpoints for a Fedora CoreOS system installed on a `/dev/vda` disk:
 
