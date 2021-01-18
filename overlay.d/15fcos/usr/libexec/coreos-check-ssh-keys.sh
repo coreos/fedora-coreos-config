@@ -36,11 +36,15 @@ main() {
     fi
 
     if [ -n "$output" ]; then
-        echo "$output" > /run/console-login-helper-messages/issue.d/30_ssh_authorized_keys.issue
+        echo "$output" > /etc/issue.d/30_ssh_authorized_keys.issue
     else
         echo -e "${warn}No ssh authorized keys provided by Ignition or Afterburn${nc}" \
-             > /run/console-login-helper-messages/issue.d/30_ssh_authorized_keys.issue
+            > /etc/issue.d/30_ssh_authorized_keys.issue
     fi
+
+    # Ask all running agetty instances to reload and update their
+    # displayed prompts in case this script was run before agetty.
+    /usr/sbin/agetty --reload
 }
 
 main

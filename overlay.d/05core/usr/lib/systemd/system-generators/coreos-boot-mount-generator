@@ -72,18 +72,4 @@ EOF
 # the dependency on the underlying device unit.
 if [ ! -f /run/ostree-live ]; then
     mk_mount /boot boot
-
-    # Only mount the EFI System Partition on machines where it exists,
-    # which are 1) machines actually booted through EFI, and 2) x86_64
-    # when booted through BIOS.
-    if [ "$(uname -m)" = "x86_64" -o -d /sys/firmware/efi ]; then
-        mk_mount /boot/efi EFI-SYSTEM
-        # In the general case the ESP might have per-machine or private
-        # data on it.  Let's not make it world readable on general
-        # principle.
-        # https://github.com/coreos/fedora-coreos-tracker/issues/640
-        cat >>${UNIT_DIR}/boot-efi.mount << EOF
-Options=umask=0077
-EOF
-    fi
 fi
