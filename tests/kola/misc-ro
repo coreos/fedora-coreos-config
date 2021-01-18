@@ -51,10 +51,15 @@ if ip link | grep -o -e " eth[0-9]:"; then
 fi
 ok nic naming
 
-if test -w /sysroot; then
-    fatal "found writable /sysroot"
-fi
-ok sysroot ro
+for part in /sysroot /boot; do
+    if ! findmnt -n -o options ${part} | grep -q "ro,"; then
+        fatal "${part} is missing ro option"
+    fi
+    if test -w "${part}" || touch "${part}/somefile" 2>/dev/null; then
+        fatal "${part} is writable"
+    fi
+done
+ok read-only partitions
 
 if ! lsattr -d / | grep -qe '--i--'; then
     fatal "missing immutable bit on /"
@@ -111,12 +116,12 @@ if [ -n "${unlabeled}" ]; then
 fi
 ok no files with unlabeled_t SELinux label
 
-# make sure we stick with bdb until we're ready to move to sqlite
+# make sure we're using the sqlite rpmdb backend
 # https://github.com/coreos/fedora-coreos-tracker/issues/623
-if [ ! -f /usr/share/rpm/Packages ]; then
-    fatal "Didn't find bdb file /usr/share/rpm/Packages"
+if [ ! -f /usr/share/rpm/rpmdb.sqlite ]; then
+    fatal "Didn't find file /usr/share/rpm/rpmdb.sqlite"
 fi
-ok rpmdb is bdb
+ok rpmdb is sqlite
 
 # make sure we don't default to having swap on zram
 # https://github.com/coreos/fedora-coreos-tracker/issues/509

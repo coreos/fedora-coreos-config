@@ -15,9 +15,7 @@ packages:
     evra: 246.7-1.fc33.noarch
   systemd-udev:
     evra: 246.7-1.fc33.s390x
-  # Fast-track Afterburn release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2020-94fd991213
-  afterburn:
-    evra: 4.6.0-2.fc33.s390x
-  afterburn-dracut:
-    evra: 4.6.0-2.fc33.s390x
+  # Fast-track new Ignition release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-2c1659799a
+  ignition:
+    evra: 2.9.0-2.git1d56dc8.fc33.s390x
