@@ -19,3 +19,7 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2021-2c1659799a
   ignition:
     evra: 2.9.0-2.git1d56dc8.fc33.x86_64
+  podman:
+    evra: 2:3.0.0-0.1.rc1.fc33.x86_64
+  podman-plugins:
+    evra: 2:3.0.0-0.1.rc1.fc33.x86_64
