@@ -35,8 +35,9 @@ fi
 mk_mount() {
     local mount_pt="${1}"; shift
     local label="${1}"; shift
-    local path="/dev/disk/by-label/${label}"
+    local options="${1}"; shift
 
+    local path="/dev/disk/by-label/${label}"
     local unit_name=$(systemd-escape -p ${mount_pt} --suffix=mount)
 
     eval $(udevadm info --query property --export "${path}")
@@ -61,15 +62,20 @@ After=systemd-fsck@${device}.service
 [Mount]
 What=${path}
 Where=${mount_pt}
+Options=${options}
 EOF
 
     add_wants "${unit_name}"
 }
 
-
-# Don't create mount units for /boot or /boot/efi on live systems.
+# Don't create mount units for /boot on live systems.
 # ConditionPathExists won't work here because conditions don't affect
 # the dependency on the underlying device unit.
 if [ ! -f /run/ostree-live ]; then
-    mk_mount /boot boot
+    # We mount read-only by default mostly to protect
+    # against accidental damage.  Only a few things
+    # owned by CoreOS should be touching /boot or the ESP.
+    # Use nodev,nosuid because some hardening guides want
+    # that even though it's of minimal value.
+    mk_mount /boot boot ro,nodev,nosuid
 fi
