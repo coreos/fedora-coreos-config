@@ -223,7 +223,7 @@
       "evra": "3.7-7.fc33.x86_64"
     },
     "dnsmasq": {
-      "evra": "2.82-3.fc33.x86_64"
+      "evra": "2.83-1.fc33.x86_64"
     },
     "dosfstools": {
       "evra": "4.1-12.fc33.x86_64"
@@ -343,7 +343,7 @@
       "evra": "5.1.0-2.fc33.x86_64"
     },
     "gdisk": {
-      "evra": "1.0.5-2.fc33.x86_64"
+      "evra": "1.0.6-1.fc33.x86_64"
     },
     "gettext": {
       "evra": "0.21-3.fc33.x86_64"
@@ -404,9 +404,6 @@
     },
     "hostname": {
       "evra": "3.23-3.fc33.x86_64"
-    },
-    "hwdata": {
-      "evra": "0.343-1.fc33.noarch"
     },
     "ignition": {
       "evra": "2.9.0-2.git1d56dc8.fc33.x86_64"
@@ -598,7 +595,7 @@
       "evra": "0.3.5-1.fc33.x86_64"
     },
     "libibverbs": {
-      "evra": "32.0-1.fc33.x86_64"
+      "evra": "33.0-1.fc33.x86_64"
     },
     "libicu": {
       "evra": "67.1-4.fc33.x86_64"
@@ -730,7 +727,7 @@
       "evra": "2:4.13.3-0.fc33.x86_64"
     },
     "libsmbios": {
-      "evra": "2.4.2-10.fc33.x86_64"
+      "evra": "2.4.3-1.fc33.x86_64"
     },
     "libsolv": {
       "evra": "0.7.15-1.fc33.x86_64"
@@ -954,12 +951,6 @@
     "passwd": {
       "evra": "0.80-9.fc33.x86_64"
     },
-    "pciutils": {
-      "evra": "3.6.4-2.fc33.x86_64"
-    },
-    "pciutils-libs": {
-      "evra": "3.6.4-2.fc33.x86_64"
-    },
     "pcre": {
       "evra": "8.44-2.fc33.x86_64"
     },
@@ -1016,9 +1007,6 @@
     },
     "qrencode-libs": {
       "evra": "4.0.2-6.fc33.x86_64"
-    },
-    "rdma-core": {
-      "evra": "32.0-1.fc33.x86_64"
     },
     "readline": {
       "evra": "8.0-5.fc33.x86_64"
@@ -1217,16 +1205,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-01-20T21:09:39Z",
+    "generated": "2021-01-21T21:07:40Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-10-19T23:27:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-01-18T21:49:34Z"
+        "generated": "2021-01-20T21:52:20Z"
       },
       "fedora-updates": {
-        "generated": "2021-01-20T01:19:08Z"
+        "generated": "2021-01-21T01:23:03Z"
       }
     }
   }
