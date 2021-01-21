@@ -6,6 +6,8 @@ After=ignition-disks.service
 After=ignition-ostree-uuid-root.service
 Before=ignition-ostree-growfs.service
 Before=ignition-ostree-mount-firstboot-sysroot.service
+OnFailure=emergency.target
+OnFailureJobMode=isolate
 
 ConditionKernelCommandLine=ostree
 ConditionPathIsDirectory=/run/ignition-ostree-transposefs
