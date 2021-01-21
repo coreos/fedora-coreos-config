@@ -1,0 +1,49 @@
+There are times when it's helpful to launch a user-level https://www.freedesktop.org/software/systemd/man/systemd.unit.html[systemd unit] without having to log in. For example, you may wish to launch a container that provides a network service or run an HPC job. Below is an example .fcc file that can be converted to ignition for the purpose of launching a systemd service for the user "sleeper". 
+
+[source,yaml]
+----
+variant: fcos
+version: 1.2.0
+passwd:
+  users:
+    - name: sleeper
+      ssh_authorized_keys:
+        - ssh-rsa ... 
+    - name: core
+      ssh_authorized_keys:
+        - ssh-rsa ... 
+ 
+storage:
+  directories:
+    - path: /home/sleeper/.config/systemd/user/default.target.wants
+      mode: 0744
+      user:
+        name: sleeper
+      group:
+        name: sleeper
+  files:
+    - path: /var/lib/systemd/linger/sleeper
+      mode: 0644
+    - path: /home/sleeper/.config/systemd/user/linger-example.service
+      mode: 0744
+      contents:
+        inline: |
+          [Unit]
+          Description=A systemd user unit demo
+          After=network-online.target
+          Wants=network-online.target
+          [Service]
+          ExecStart=/usr/bin/sleep infinity
+      user:
+        name: sleeper
+      group:
+        name: sleeper
+  links:
+    - path: /home/sleeper/.config/systemd/user/default.target.wants/linger-example.service
+      user:
+        name: sleeper
+      group:
+        name: sleeper
+      target: /home/sleeper/.config/systemd/user/linger-example.service
+      hard: false
+----
