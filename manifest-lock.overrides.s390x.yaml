@@ -23,3 +23,7 @@ packages:
     evra: 5.10.12-200.fc33.s390x
   kernel-modules:
     evra: 5.10.12-200.fc33.s390x
+  # CVE-2021-3156
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-2cb63d912a
+  sudo:
+    evra: 1.9.5p2-1.fc33.s390x
