@@ -22,17 +22,6 @@ dracut_func() {
     return $rc
 }
 
-selinux_relabel() {
-    # If we have access to coreos-relabel then let's use that because
-    # it allows us to set labels on things before switching root
-    # If not, fallback to tmpfiles.
-    if command -v coreos-relabel; then
-        coreos-relabel $1
-    else
-        echo "Z $1 - - -" >> "/run/tmpfiles.d/$(basename $0)-relabel.conf"
-    fi
-}
-
 # Determine if the generated NM connection profiles match the default
 # that would be given to us if the user had provided no additional
 # configuration. i.e. did the user give us any network configuration
@@ -95,7 +84,7 @@ propagate_initramfs_networking() {
             else
                 echo "info: propagating initramfs networking config to the real root"
                 cp -v /run/NetworkManager/system-connections/* /sysroot/etc/NetworkManager/system-connections/
-                selinux_relabel /etc/NetworkManager/system-connections/
+                coreos-relabel /etc/NetworkManager/system-connections/
             fi
         else
             echo "info: no initramfs networking information to propagate"
@@ -147,7 +136,7 @@ propagate_initramfs_hostname() {
         if [ -n "$hostname" ]; then
             echo "info: propagating initramfs hostname (${hostname}) to the real root"
             echo $hostname > /sysroot/etc/hostname
-            selinux_relabel /etc/hostname
+            coreos-relabel /etc/hostname
         else
             echo "info: no initramfs hostname information to propagate"
         fi
@@ -161,7 +150,7 @@ propagate_initramfs_hostname() {
         hostname=$(</run/NetworkManager/initrd/hostname)
         echo "info: propagating initramfs hostname (${hostname}) to the real root"
         echo $hostname > /sysroot/etc/hostname
-        selinux_relabel /etc/hostname
+        coreos-relabel /etc/hostname
     else
         echo "info: no initramfs hostname information to propagate"
     fi
@@ -176,8 +165,8 @@ propagate_initramfs_multipath() {
         echo "info: propagating automatic multipath configuration"
         cp -v /etc/multipath.conf /sysroot/etc/
         mkdir -p /sysroot/etc/multipath/multipath.conf.d
-        selinux_relabel /etc/multipath.conf
-        selinux_relabel /etc/multipath/multipath.conf.d
+        coreos-relabel /etc/multipath.conf
+        coreos-relabel /etc/multipath/multipath.conf.d
     else
         echo "info: no initramfs automatic multipath configuration to propagate"
     fi
