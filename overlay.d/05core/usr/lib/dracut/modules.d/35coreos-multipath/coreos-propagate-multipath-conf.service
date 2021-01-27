@@ -1,0 +1,11 @@
+[Unit]
+Description=CoreOS Propagate Multipath Configuration
+After=ostree-prepare-root.service
+Before=initrd.target
+
+ConditionKernelCommandLine=rd.multipath=default
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/coreos-propagate-multipath-conf
+RemainAfterExit=yes
