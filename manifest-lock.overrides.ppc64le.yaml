@@ -19,3 +19,7 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2021-2c1659799a
   ignition:
     evra: 2.9.0-2.git1d56dc8.fc33.ppc64le
+  # CVE-2021-3156
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-2cb63d912a
+  sudo:
+    evra: 1.9.5p2-1.fc33.ppc64le
