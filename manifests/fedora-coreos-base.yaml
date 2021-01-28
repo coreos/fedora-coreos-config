@@ -43,6 +43,9 @@ default-target: multi-user.target
 # we can drop this when it's the rpm-ostree default
 rpmdb: sqlite
 
+# See the treefile docs
+cliwrap: true
+
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos.yaml
 postprocess:
