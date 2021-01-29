@@ -402,6 +402,9 @@
     "hostname": {
       "evra": "3.23-3.fc33.x86_64"
     },
+    "hwdata": {
+      "evra": "0.343-1.fc33.noarch"
+    },
     "ignition": {
       "evra": "2.9.0-2.git1d56dc8.fc33.x86_64"
     },
@@ -592,7 +595,7 @@
       "evra": "0.3.5-1.fc33.x86_64"
     },
     "libibverbs": {
-      "evra": "33.0-1.fc33.x86_64"
+      "evra": "33.0-2.fc33.x86_64"
     },
     "libicu": {
       "evra": "67.1-4.fc33.x86_64"
@@ -862,7 +865,7 @@
       "evra": "2:0.4.0-2.fc33.x86_64"
     },
     "mozjs78": {
-      "evra": "78.6.0-1.fc33.x86_64"
+      "evra": "78.7.0-1.fc33.x86_64"
     },
     "mpfr": {
       "evra": "4.1.0-2.fc33.x86_64"
@@ -948,6 +951,12 @@
     "passwd": {
       "evra": "0.80-9.fc33.x86_64"
     },
+    "pciutils": {
+      "evra": "3.6.4-2.fc33.x86_64"
+    },
+    "pciutils-libs": {
+      "evra": "3.6.4-2.fc33.x86_64"
+    },
     "pcre": {
       "evra": "8.44-2.fc33.x86_64"
     },
@@ -1004,6 +1013,9 @@
     },
     "qrencode-libs": {
       "evra": "4.0.2-6.fc33.x86_64"
+    },
+    "rdma-core": {
+      "evra": "33.0-2.fc33.x86_64"
     },
     "readline": {
       "evra": "8.0-5.fc33.x86_64"
@@ -1199,16 +1211,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-01-28T21:14:10Z",
+    "generated": "2021-01-29T21:07:44Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-10-19T23:27:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-01-27T18:49:12Z"
+        "generated": "2021-01-28T21:58:20Z"
       },
       "fedora-updates": {
-        "generated": "2021-01-28T01:02:42Z"
+        "generated": "2021-01-29T01:38:17Z"
       }
     }
   }
