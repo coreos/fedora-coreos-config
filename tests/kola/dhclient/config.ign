@@ -1,0 +1,10 @@
+{
+  "ignition": { "version": "3.0.0" },
+  "storage": {
+    "files": [{
+      "path": "/etc/NetworkManager/conf.d/dhcp-client.conf",
+      "mode": 420,
+      "contents": { "source": "data:text/plain;base64,W21haW5dCmRoY3A9ZGhjbGllbnQ=" }
+    }]
+  }
+}
