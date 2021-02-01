@@ -51,15 +51,10 @@ if ip link | grep -o -e " eth[0-9]:"; then
 fi
 ok nic naming
 
-for part in /sysroot /boot; do
-    if ! findmnt -n -o options ${part} | grep -q "ro,"; then
-        fatal "${part} is missing ro option"
-    fi
-    if test -w "${part}" || touch "${part}/somefile" 2>/dev/null; then
-        fatal "${part} is writable"
-    fi
-done
-ok read-only partitions
+if test -w /sysroot; then
+    fatal "found writable /sysroot"
+fi
+ok sysroot ro
 
 if ! lsattr -d / | grep -qe '--i--'; then
     fatal "missing immutable bit on /"
