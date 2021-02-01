@@ -27,7 +27,8 @@ packages:
 
 remove-from-packages:
   # We don't want systemd-firstboot.service. It conceptually conflicts with
-  # Ignition.
+  # Ignition.  We also inject runtime bits to disable it in systemd-firstboot.service.d/fcos-disable.conf
+  # to make it easier to use systemd builds from git.
   - [systemd, /usr/bin/systemd-firstboot,
               /usr/lib/systemd/system/systemd-firstboot.service,
               /usr/lib/systemd/system/sysinit.target.wants/systemd-firstboot.service]
