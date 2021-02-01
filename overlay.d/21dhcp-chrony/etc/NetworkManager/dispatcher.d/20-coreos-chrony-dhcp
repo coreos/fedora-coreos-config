@@ -20,9 +20,13 @@ export LC_ALL=C
     exit 0
 
 # If a dhclient installation is present, avoid a redundant operation
-# with dhclient which handles NTP server config through its own
-# NetworkManager dispatcher script 11-dhclient.
-[ -e /usr/sbin/dhclient ] && exit 0
+# in case dhclient handles NTP server config through its own chrony config script,
+# exec'ed by NetworkManager's 11-dhclient dispatcher script.
+# In RHCOS, 11-dhclient is excluded and not shipped with base image.
+[ -e /usr/sbin/dhclient ] && \
+    [ -e /etc/dhcp/dhclient.d/chrony.sh ] && \
+    [ -e /etc/NetworkManager/dispatcher.d/11-dhclient -o -e /usr/lib/NetworkManager/dispatcher.d/11-dhclient ] && \
+    exit 0
 
 interface=$1
 action=$2
