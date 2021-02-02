@@ -15,11 +15,11 @@ packages:
     evra: 246.7-1.fc33.noarch
   systemd-udev:
     evra: 246.7-1.fc33.x86_64
-  # Fast-track new Ignition release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-2c1659799a
-  ignition:
-    evra: 2.9.0-2.git1d56dc8.fc33.x86_64
-  # CVE-2021-3156
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-2cb63d912a
-  sudo:
-    evra: 1.9.5p2-1.fc33.x86_64
+  # Fast-track kernel fix for CVE-2021-3347
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-6e805a5051
+  kernel:
+    evra: 5.10.12-200.fc33.x86_64
+  kernel-core:
+    evra: 5.10.12-200.fc33.x86_64
+  kernel-modules:
+    evra: 5.10.12-200.fc33.x86_64
