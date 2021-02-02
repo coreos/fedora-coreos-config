@@ -37,8 +37,9 @@ def handle_error(e):
     raise e
 
 ret = 0
-for dirpath, _, filenames in os.walk('.', onerror=handle_error):
-    for filename in filenames:
+for dirpath, dirnames, filenames in os.walk('.', onerror=handle_error):
+    dirnames.sort()  # walk in sorted order
+    for filename in sorted(filenames):
         filepath = os.path.join(dirpath, filename)
         if not filename.endswith('.adoc'):
             continue
