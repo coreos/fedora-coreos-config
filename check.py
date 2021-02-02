@@ -20,6 +20,10 @@ import subprocess
 import sys
 import textwrap
 
+ERR = '\x1b[1;31m'
+WARN = '\x1b[1;33m'
+RESET = '\x1b[0m'
+
 container = os.getenv('FCCT_CONTAINER', 'quay.io/coreos/fcct:release')
 matcher = re.compile(r'^\[source,\s*yaml\]\n----\n(.+?\n)----$',
         re.MULTILINE | re.DOTALL)
@@ -45,7 +49,7 @@ for dirpath, _, filenames in os.walk('.', onerror=handle_error):
             fcc = match.group(1)
             fccline = filedata.count('\n', 0, match.start(1)) + 1
             if not fcc.startswith('variant:'):
-                print(f'Ignoring non-FCC at {filepath}:{fccline}')
+                print(f'{WARN}Ignoring non-FCC at {filepath}:{fccline}{RESET}')
                 continue
             if args.verbose:
                 print(f'Checking FCC at {filepath}:{fccline}')
@@ -57,6 +61,9 @@ for dirpath, _, filenames in os.walk('.', onerror=handle_error):
                     stderr=subprocess.PIPE)
             if result.returncode != 0:
                 formatted = textwrap.indent(result.stderr.strip(), '  ')
-                print(f'Invalid FCC at {filepath}:{fccline}:\n{formatted}')
+                # Not necessary for ANSI terminals, but required by GitHub's
+                # log renderer
+                formatted = ERR + formatted.replace('\n', '\n' + ERR)
+                print(f'{ERR}Invalid FCC at {filepath}:{fccline}:\n{formatted}{RESET}')
                 ret = 1
 sys.exit(ret)
