@@ -27,6 +27,8 @@ This can be manually translated into a xref:ign-passwd.adoc[`passwd`] node withi
 .Example of users:
 [source, yaml]
 ----
+variant: fcos
+version: 1.3.0
 passwd:
   users:
     - name: core

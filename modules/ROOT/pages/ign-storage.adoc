@@ -231,7 +231,7 @@ storage:
         verification:
           # The hash is sha512- followed by the 128 hex characters given by
           # the sha512sum command.
-          hash: sha512-5c84785eb10c9efdea1f...
+          hash: sha512-00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
       # Makes the tool file readable and executable by all.
       mode: 0555
   links:

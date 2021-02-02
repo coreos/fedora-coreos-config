@@ -35,7 +35,9 @@ You can also add a password hash to this user, specify the user's groups, and ad
 .Example for modifying and adding users:
 [source, yaml]
 ----
-  passwd:
+variant: fcos
+version: 1.3.0
+passwd:
   users:
     - name: core
       ssh_authorized_keys:

@@ -150,7 +150,7 @@ boot_device:
 
 Here is an example to configure a LUKS device at `/var/lib/data`.
 
-[source.yaml]
+[source,yaml]
 ----
 variant: fcos
 version: 1.2.0
@@ -169,7 +169,7 @@ storage:
 The root filesystem can also be moved to LUKS. In the case of the root filesystem the LUKS device must be backed by https://github.com/coreos/ignition/blob/master/docs/operator-notes.md#clevis-based-devices[clevis]. There is simplified FCC syntax for encrypting the root filesystem; for example:
 
 .Moving the root filesystem to LUKS
-[source.yaml]
+[source,yaml]
 ----
 variant: fcos
 version: 1.3.0
@@ -181,7 +181,7 @@ boot_device:
 This is equivalent to the following expanded config:
 
 .Moving the root filesystem to LUKS without using boot_device
-[source.yaml]
+[source,yaml]
 ----
 variant: fcos
 version: 1.3.0
@@ -207,7 +207,7 @@ The expanded config doesn't include the `path` or `with_mount_unit` keys; FCOS k
 If you use Ignition to reconfigure or move the root partition, that partition is not automatically grown on first boot (see related discussions in https://github.com/coreos/fedora-coreos-tracker/issues/570[this issue]). In the case of moving the root partition to a new disk (or multiple disks), you should set the desired partition size using the `size_mib` field. If reconfiguring the root filesystem in place, as in the LUKS example above, you can resize the existing partition using the `resize` field:
 
 .Resizing the root partition to its maximum size
-[source.yaml]
+[source,yaml]
 ----
 variant: fcos
 version: 1.2.0
@@ -238,7 +238,7 @@ storage:
 This example configures a mirrored boot disk with a TPM2-encrypted root filesystem, overrides the sizes of the automatically-generated root partition replicas, and adds an encrypted mirrored `/var` partition which consumes the remainder of the disks.
 
 .Encrypted mirrored boot disk with separate /var
-[source.yaml]
+[source,yaml]
 ----
 variant: fcos
 version: 1.3.0

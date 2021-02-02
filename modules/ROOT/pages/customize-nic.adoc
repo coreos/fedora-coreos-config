@@ -8,6 +8,8 @@ For example, to name NIC with the MAC address `12:34:56:78:9a:bc` to "infra", pl
 .Example: Customize NIC via systemd Link File
 [source,yaml]
 ----
+variant: fcos
+version: 1.3.0
 storage:
   files:
     - path: /etc/systemd/network/25-infra.link
@@ -26,6 +28,8 @@ Similarly, also through Ignition configs, to name NIC with the MAC address `12:3
 .Example: Customize NIC via Udev Rules
 [source,yaml]
 ----
+variant: fcos
+version: 1.3.0
 storage:
   files:
     - path: /etc/udev/rules.d/80-ifname.rules
