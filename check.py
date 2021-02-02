@@ -39,7 +39,7 @@ for dirpath, _, filenames in os.walk('.', onerror=handle_error):
             fcc = match.group(1)
             fccline = filedata.count('\n', 0, match.start(1)) + 1
             if not fcc.startswith('variant:'):
-                print(f'Ignoring non-FCC at {filepath} line {fccline}')
+                print(f'Ignoring non-FCC at {filepath}:{fccline}')
                 continue
             result = subprocess.run(
                     ['podman', 'run', '--rm', '-i', container, '--strict'],
@@ -49,6 +49,6 @@ for dirpath, _, filenames in os.walk('.', onerror=handle_error):
                     stderr=subprocess.PIPE)
             if result.returncode != 0:
                 formatted = textwrap.indent(result.stderr.strip(), '  ')
-                print(f'Invalid FCC at {filepath} line {fccline}:\n{formatted}')
+                print(f'Invalid FCC at {filepath}:{fccline}:\n{formatted}')
                 ret = 1
 sys.exit(ret)
