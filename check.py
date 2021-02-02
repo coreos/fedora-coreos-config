@@ -20,7 +20,8 @@ import sys
 import textwrap
 
 container = os.getenv('FCCT_CONTAINER', 'quay.io/coreos/fcct:release')
-matcher = re.compile(r'^\[source,\s*yaml\]\n----\n(.+?\n)----$', re.MULTILINE | re.DOTALL)
+matcher = re.compile(r'^\[source,\s*yaml\]\n----\n(.+?\n)----$',
+        re.MULTILINE | re.DOTALL)
 
 def handle_error(e):
     raise e
