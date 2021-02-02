@@ -13,6 +13,7 @@
 # If variant: is missing, we print a warning but continue, since there
 # might be non-FCC [source,yaml] documents.
 
+import argparse
 import os
 import re
 import subprocess
@@ -22,6 +23,11 @@ import textwrap
 container = os.getenv('FCCT_CONTAINER', 'quay.io/coreos/fcct:release')
 matcher = re.compile(r'^\[source,\s*yaml\]\n----\n(.+?\n)----$',
         re.MULTILINE | re.DOTALL)
+
+parser = argparse.ArgumentParser(description='Run validations on docs.')
+parser.add_argument('-v', '--verbose', action='store_true',
+                    help='log all detected FCCs')
+args = parser.parse_args()
 
 def handle_error(e):
     raise e
@@ -41,6 +47,8 @@ for dirpath, _, filenames in os.walk('.', onerror=handle_error):
             if not fcc.startswith('variant:'):
                 print(f'Ignoring non-FCC at {filepath}:{fccline}')
                 continue
+            if args.verbose:
+                print(f'Checking FCC at {filepath}:{fccline}')
             result = subprocess.run(
                     ['podman', 'run', '--rm', '-i', container, '--strict'],
                     universal_newlines=True, # can be spelled "text" on >= 3.7
