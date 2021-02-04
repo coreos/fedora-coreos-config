@@ -124,8 +124,8 @@ write and modify files.
 The directory `/etc` may be changed by deployments, but will not override user
 made changes. The content under `/var` is left untouched by rpm-ostree when
 applying upgrades or rollbacks. For more information, refer to the
-https://rpm-ostree.readthedocs.io/en/latest/manual/administrator-handbook/#filesystem-layout[filesystem
-layout].
+https://docs.fedoraproject.org/en-US/fedora-coreos/storage/#_mounted_filesystems[Mounted Filesystems]
+section.
 
 == How do I migrate from Container Linux to Fedora CoreOS?
 
