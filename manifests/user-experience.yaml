@@ -24,7 +24,10 @@ packages:
   - console-login-helper-messages-profile
   # kdump support
   # https://github.com/coreos/fedora-coreos-tracker/issues/622
+  ## dracut-squash - weak dependency of kexec-tools
+  ## https://github.com/coreos/fedora-coreos-tracker/issues/798
   - kexec-tools
+  - dracut-squash
   # Remote Access
   - openssh-clients openssh-server
   # Container tooling
