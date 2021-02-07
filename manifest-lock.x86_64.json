@@ -175,7 +175,7 @@
       "evra": "2.3.4-1.fc33.x86_64"
     },
     "cups-libs": {
-      "evra": "1:2.3.3op1-1.fc33.x86_64"
+      "evra": "1:2.3.3op2-1.fc33.x86_64"
     },
     "curl": {
       "evra": "7.71.1-8.fc33.x86_64"
@@ -268,7 +268,7 @@
       "evra": "0.0.4-7.fc33.x86_64"
     },
     "fedora-gpg-keys": {
-      "evra": "33-1.noarch"
+      "evra": "33-2.noarch"
     },
     "fedora-release-common": {
       "evra": "33-3.noarch"
@@ -280,16 +280,16 @@
       "evra": "33-3.noarch"
     },
     "fedora-repos": {
-      "evra": "33-1.noarch"
+      "evra": "33-2.noarch"
     },
     "fedora-repos-archive": {
-      "evra": "33-1.noarch"
+      "evra": "33-2.noarch"
     },
     "fedora-repos-modular": {
-      "evra": "33-1.noarch"
+      "evra": "33-2.noarch"
     },
     "fedora-repos-ostree": {
-      "evra": "33-1.noarch"
+      "evra": "33-2.noarch"
     },
     "file": {
       "evra": "5.39-3.fc33.x86_64"
@@ -1177,7 +1177,10 @@
       "evra": "2.36.1-1.fc33.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.2146-2.fc33.x86_64"
+      "evra": "2:8.2.2465-1.fc33.x86_64"
+    },
+    "vim-wrappers": {
+      "evra": "2:8.2.2465-1.fc33.noarch"
     },
     "which": {
       "evra": "2.21-20.fc33.x86_64"
@@ -1211,16 +1214,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-02-06T21:07:30Z",
+    "generated": "2021-02-07T21:07:18Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-10-19T23:27:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-02-05T21:48:39Z"
+        "generated": "2021-02-06T21:48:06Z"
       },
       "fedora-updates": {
-        "generated": "2021-02-06T00:53:34Z"
+        "generated": "2021-02-07T00:59:12Z"
       }
     }
   }
