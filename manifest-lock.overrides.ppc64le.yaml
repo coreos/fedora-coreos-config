@@ -23,3 +23,7 @@ packages:
     evra: 5.10.12-200.fc33.ppc64le
   kernel-modules:
     evra: 5.10.12-200.fc33.ppc64le
+  # Fast-track Ignition cleanups and IMDSv2 fix
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-9e7c4ba680
+  ignition:
+    evra: 2.9.0-4.fc33.ppc64le
