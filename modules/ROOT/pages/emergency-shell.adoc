@@ -1,14 +1,52 @@
-= Access the emergency shell
+= Emergency console access
 
+Sometimes you may want to access the node console to perform troubleshooting steps or emergency maintenance.
+For instance, you may want to access the emergency shell on the console, in order to debug first boot provisioning issues.
 
-Sometimes you may want to access the emergency shell. For instance, to debug first boot provisioning errors.
+== Default console setup
 
-To access the emergency shell intercept the GRUB menu, edit the entry and drop all `console` parameters from the kernel line except for the one you need and press Ctrl+X to resume booting.
+All Fedora CoreOS (FCOS) images come with a default configuration for the console which is meant to accommodate most virtualized and bare-metal setups.
+
+However, it may not always match your specific hardware configuration. In that case, your can tweak console setup by adjusting kernel parameters.
 
 [NOTE]
-====
+----
 By default these console parameters are provided:
 
  - `console=ttyS0,115200n8` for serial consoles.
  - `console=tty0` for VGA.
-====
+----
+
+You can remove either console entries in order to match your machine setup, or even remove both and rely on kernel auto-detection (which however may not work for all cases).
+
+== Temporarily tweaking console setup
+
+In order to temporarily change console configuration, it is enough to change kernel arguments in the bootloader for a single boot.
+
+When the GRUB menu shows up initially, press 'e' to edit the current boot entry. Adjust the `console` parameters from the kernel line as described above, then press 'Ctrl-x' to resume booting.
+
+== Configuring console during installation
+
+If you are installing FCOS via `coreos-installer` on a machine which requires custom console configuration, you can permanently configure that directly at install time.
+
+[source, bash]
+----
+sudo podman run --pull=always --privileged --rm \
+    -v /dev:/dev -v /run/udev:/run/udev -v .:/data -w /data \
+    quay.io/coreos/coreos-installer:release \
+    install /dev/vdb -i config.ign \
+    --delete-karg 'console=ttyS0,115200n8'
+----
+
+In the example above, the trailing `--delete-karg 'console=ttyS0,115200n8'` will remove the serial console entry from the boot parameters of the installed system.
+
+== Configuring console after installation
+
+If you have an existing FCOS node with a mismatched console configuration, you can permanently adjust that via `rpm-ostree`.
+
+[source, bash]
+----
+sudo rpm-ostree kargs --delete 'console=ttyS0,115200n8' --reboot
+----
+
+In the example above, `rpm-ostree` will create a new deployment without the serial console entry, and the machine will reboot into it.
