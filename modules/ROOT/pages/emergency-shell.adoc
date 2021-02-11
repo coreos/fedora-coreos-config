@@ -9,12 +9,16 @@ All Fedora CoreOS (FCOS) images come with a default configuration for the consol
 
 However, it may not always match your specific hardware configuration. In that case, your can tweak console setup by adjusting kernel parameters.
 
+You can specify multiple `console=` options on the kernel command line. Kernel messages will appear on all of them, however only the last-specified device will be used as the foreground interactive console (i.e. `/dev/console`) for the machine.
+
 [NOTE]
 ----
-By default these console parameters are provided:
+By default these console parameters are provided, in order:
 
- - `console=ttyS0,115200n8` for serial consoles.
  - `console=tty0` for VGA.
+ - `console=ttyS0,115200n8` for serial console
+
+The last entry (serial console) is thus used as the interactive console for the machine.
 ----
 
 You can remove either console entries in order to match your machine setup, or even remove both and rely on kernel auto-detection (which however may not work for all cases).
