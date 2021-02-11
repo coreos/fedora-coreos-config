@@ -4,6 +4,13 @@ Fedora CoreOS ships with a simple default storage layout: the root partition is 
 
 Below, we provide examples of various ways you can customize this.
 
+[NOTE]
+====
+*Fedora CoreOS requires the root filesystem to be at least 8 GiB.* For practical reasons, disk images for some platforms ship with a smaller root filesystem, which by default automatically expands to fill all available disk space. If you add additional partitions after the root filesystem, you must make sure to explicitly resize the root partition as shown below so that it is at least 8 GiB.
+
+Currently, if the root filesystem is smaller than 8 GiB, a warning is emitted on login. Starting from June 2021, if the root filesystem is smaller than 8 GiB and is followed by another partition, Fedora CoreOS will refuse to boot. For more details, see https://github.com/coreos/fedora-coreos-tracker/issues/586[this bug].
+====
+
 == Setting up separate /var mounts
 
 Here's an example FCC file to set up `/var` on a separate partition on the same primary disk:
@@ -22,10 +29,12 @@ storage:
     # device.
     wipe_table: false
     partitions:
+    - number: 4
+      label: root
+      # Allocate at least 8 GiB to the rootfs. See NOTE above about this.
+      size_mib: 8192
+      resize: true
     - size_mib: 0
-      # Start at 5G so that we leave enough space for the root partition.
-      # See the important NOTE below about this.
-      start_mib: 5000
       # We assign a descriptive label to the partition. This is important
       # for referring to it in a device-agnostic way in other parts of the
       # configuration.
@@ -40,8 +49,6 @@ storage:
       with_mount_unit: true
 ----
 
-NOTE: The `start_mib` field is very important. In the future, we will make more clear how much space should be reserved for the root filesystem (see https://github.com/coreos/fedora-coreos-tracker/issues/586). For now, make sure to leave at least 5G.
-
 You can of course mount only a subset of `/var` into a separate partition. For example, to mount `/var/lib/containers`:
 
 .Adding a /var/lib/containers partition to the primary disk
@@ -54,10 +61,12 @@ storage:
   - device: /dev/vda
     wipe_table: false
     partitions:
+    - number: 4
+      label: root
+      # Allocate at least 8 GiB to the rootfs. See NOTE above about this.
+      size_mib: 8192
+      resize: true
     - size_mib: 0
-      # Start at 5G so that we leave enough space for the root partition.
-      # See the important NOTE above about this.
-      start_mib: 5000
       label: containers
   filesystems:
     - path: /var/lib/containers
