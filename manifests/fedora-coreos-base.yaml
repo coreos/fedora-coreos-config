@@ -159,7 +159,9 @@ packages:
   # https://github.com/coreos/fedora-coreos-tracker/issues/445
   - libsss_sudo
   # Extra runtime
-  - sssd shadow-utils
+  - shadow-utils
+  # SSSD; we only ship a subset of the backends
+  - sssd-client sssd-ad sssd-ipa sssd-krb5 sssd-ldap
   # There are things that write outside of the journal still (such as the classic wtmp, etc.)
   # (auditd also writes outside the journal but it has its own log rotation.)
   # Anything package layered will also tend to expect files dropped in
