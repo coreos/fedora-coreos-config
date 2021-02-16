@@ -1,4 +1,4 @@
-ref: fedora/${basearch}/coreos/rawhide
+ref: fedora/${basearch}/coreos/branched
 include: manifests/fedora-coreos.yaml
 
 releasever: "34"
@@ -6,13 +6,14 @@ releasever: "34"
 rojig:
   license: MIT
   name: fedora-coreos
-  summary: Fedora CoreOS rawhide
+  summary: Fedora CoreOS branched
 
 repos:
-  - fedora-rawhide
+  - fedora-next
+  - fedora-next-updates
 
 add-commit-metadata:
-  fedora-coreos.stream: rawhide
+  fedora-coreos.stream: branched
 
 postprocess:
   # Disable Zincati and fedora-coreos-pinger on non-production streams
