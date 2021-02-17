@@ -96,6 +96,20 @@ postprocess:
     DNSStubListener=no
     EOF
 
+  # Edit `login.defs` to configure `login(1)` to read from `/run/motd.d` for
+  # displaying the MOTD. This is required for newer versions of
+  # `console-login-helper-messages` to function properly.
+  # This will be dropped once Fedora util-linux adds `/run/motd.d` as a default
+  # in Fedora 34.
+  # https://src.fedoraproject.org/rpms/util-linux/pull-request/8
+  # https://github.com/coreos/fedora-coreos-tracker/issues/704#issuecomment-772862174
+  - |
+    #!/usr/bin/env bash
+    source /etc/os-release
+    if [ ${VERSION_ID} -lt 34 ]; then
+      echo 'MOTD_FILE=/usr/share/misc/motd:/run/motd:/run/motd.d:/etc/motd:/etc/motd.d' >> /etc/login.defs
+    fi
+
 packages:
   # Security
   - selinux-policy-targeted
@@ -145,7 +159,9 @@ packages:
   # https://github.com/coreos/fedora-coreos-tracker/issues/445
   - libsss_sudo
   # Extra runtime
-  - sssd shadow-utils
+  - shadow-utils
+  # SSSD; we only ship a subset of the backends
+  - sssd-client sssd-ad sssd-ipa sssd-krb5 sssd-ldap
   # There are things that write outside of the journal still (such as the classic wtmp, etc.)
   # (auditd also writes outside the journal but it has its own log rotation.)
   # Anything package layered will also tend to expect files dropped in
