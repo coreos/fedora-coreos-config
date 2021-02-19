@@ -710,7 +710,7 @@ storage:
 
 NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/509[a bug]
       that causes the subinterface of the vlan to also try DHCP. We'll workaround by specifying
-      `*ip=${interface}:off*` here to disable it.
+      `*ip=$\{interface}:off*` here to disable it.
 
 .Template
 [source, bash]
@@ -827,12 +827,12 @@ storage:
 NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/581[a bug]
       that causes the expected Vlan on Bond DHCP syntax to not work for the `*ip=*` argument.
       We'll workaround that bug here by using the `*VLAN_PLUS_VID_NO_PAD*` form of vlan name.
-      So we'll use `*vlan${vlanid}*` instead of `*${bondname}.${vlanid}*`. We'll move back to
+      So we'll use `*vlan$\{vlanid}*` instead of `*$\{bondname}.$\{vlanid}*`. We'll move back to
       the `*DEV_PLUS_VID_NO_PAD*` form when the bug is fixed.
 
 NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/509[a bug]
       that causes the subinterface of the vlan to also try DHCP. We'll workaround by specifying
-      `*ip=${bondname}:off*` here to disable it.
+      `*ip=$\{bondname}:off*` here to disable it.
 
 
 .Template
