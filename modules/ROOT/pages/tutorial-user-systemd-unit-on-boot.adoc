@@ -1,18 +1,91 @@
-There are times when it's helpful to launch a user-level https://www.freedesktop.org/software/systemd/man/systemd.unit.html[systemd unit] without having to log in. For example, you may wish to launch a container that provides a network service or run an HPC job. Below is an example .fcc file that can be converted to ignition for the purpose of launching a systemd service for the user "sleeper". 
+= Launching a user-level systemd unit on boot
+
+NOTE: Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
+
+In this tutorial, we will setup a user level systemd unit for an unprivileged user. There are times when it's helpful to launch a user-level https://www.freedesktop.org/software/systemd/man/systemd.unit.html[systemd unit] without having to log in. For example, you may wish to launch a container that provides a network service or run an HPC job. For this setup, we will add the following to a Fedora CoreOS config:
+
+* A user level systemd unit: `/home/sleeper/.config/systemd/user/linger-example.service`.
+* Enable it as a user level systemd service.
+
+== Setting up the systemd unit
+
+In this example, we will launch a systemd service for the user `sleeper`. First, let's create a user:
+
+[source,yaml]
+----
+passwd:
+  users:
+    - name: sleeper
+----
+
+This will also create the home directory for the `sleeper` user. Then we can add the systemd unit:
+
+[source,yaml]
+----
+storage:
+  files:
+    - path: /home/sleeper/.config/systemd/user/linger-example.service
+      mode: 0744
+      contents:
+        inline: |
+          [Unit]
+          Description=A systemd user unit demo
+          After=network-online.target
+          Wants=network-online.target
+          [Service]
+          ExecStart=/usr/bin/sleep infinity
+      user:
+        name: sleeper
+      group:
+        name: sleeper
+----
+
+System services can be directly enabled in FCC but user level services have to be manually enabled for now:
+
+[source,yaml]
+----
+storage:
+  directories:
+    - path: /home/sleeper/.config/systemd/user/default.target.wants
+      mode: 0755
+      user:
+        name: sleeper
+      group:
+        name: sleeper
+  links:
+    - path: /home/sleeper/.config/systemd/user/default.target.wants/linger-example.service
+      user:
+        name: sleeper
+      group:
+        name: sleeper
+      target: /home/sleeper/.config/systemd/user/linger-example.service
+      hard: false
+----
+
+And finally we setup lingering for the systemd user level instance so that it gets started directly on boot and stays running:
+
+[source,yaml]
+----
+storage:
+  files:
+    - path: /var/lib/systemd/linger/sleeper
+      mode: 0644
+----
+
+== Writing the Fedora CoreOS config and converting to Ignition
+
+The final Fedora CoreOS config, stored in `fcct-user.yaml`, will be:
 
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 passwd:
   users:
-    - name: sleeper
-      ssh_authorized_keys:
-        - ssh-rsa ... 
     - name: core
       ssh_authorized_keys:
-        - ssh-rsa ... 
- 
+        - ssh-rsa ...
+    - name: sleeper
 storage:
   directories:
     - path: /home/sleeper/.config/systemd/user/default.target.wants
@@ -25,7 +98,7 @@ storage:
     - path: /var/lib/systemd/linger/sleeper
       mode: 0644
     - path: /home/sleeper/.config/systemd/user/linger-example.service
-      mode: 0744
+      mode: 0755
       contents:
         inline: |
           [Unit]
@@ -46,4 +119,65 @@ storage:
         name: sleeper
       target: /home/sleeper/.config/systemd/user/linger-example.service
       hard: false
+----
+
+This config can be converted to Ignition:
+
+[source,bash]
+----
+fcct --pretty --strict fcct-user.yaml --output user.ign
+----
+
+== Testing
+
+Just as before we will use the following to boot the instance:
+
+[source,bash]
+----
+# Setup the correct SELinux label to allow access to the config
+chcon --verbose --type svirt_home_t user.ign
+
+# Start a Fedora CoreOS virtual machine
+virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora-coreos-stable \
+    --import --network=bridge=virbr0 --graphics=none \
+    --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${PWD}/user.ign" \
+    --disk=size=20,backing_store=${PWD}/fedora-coreos.qcow2
+----
+
+We can then verify that the unit has been started under the sleeper systemd user instannce:
+
+[source,bash]
+----
+$ ssh core@192.168.x.y
+[core@localhost ~]$ sudo machinectl shell sleeper@
+[sleeper@localhost ~]$ systemctl --user status
+● localhost
+    State: running
+     Jobs: 0 queued
+   Failed: 0 units
+    Since: Sat 2021-02-20 11:11:53 UTC; 57s ago
+   CGroup: /user.slice/user-1001.slice/user@1001.service
+           ├─init.scope
+           │ ├─2110 /usr/lib/systemd/systemd --user
+           │ └─2112 (sd-pam)
+           └─linger-example.service
+             └─2119 /usr/bin/sleep infinity
+[sleeper@localhost ~]$ systemctl --user status linger-example.service
+● linger-example.service - A systemd user unit demo
+     Loaded: loaded (/var/home/sleeper/.config/systemd/user/linger-example.service; enabled; vendor preset: disabled)
+     Active: active (running) since Sat 2021-02-20 11:11:53 UTC; 1min 5s ago
+   Main PID: 2119 (sleep)
+     CGroup: /user.slice/user-1001.slice/user@1001.service/linger-example.service
+             └─2119 /usr/bin/sleep infinity
+
+Feb 20 11:11:53 localhost systemd[2110]: Started A systemd user unit demo.
+----
+
+== Cleanup
+
+You can then take down the instance. First, disconnect from the serial console by pressing `CTRL` + `]` and then destroy the machine:
+
+----
+virsh destroy fcos
+virsh undefine --remove-all-storage fcos
 ----
