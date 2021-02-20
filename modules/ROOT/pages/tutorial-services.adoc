@@ -47,7 +47,7 @@ We will call this unit `issuegen-public-ipv4.service` and we will embed it into 
 
 == Writing the Fedora CoreOS config and converting to Ignition
 
-We can you create a Fedora CoreOS config by including the script and the systemd unit directly as inline content into the systemd/units and storage/files sections. The final Fedora CoreOS config, stored in `fcct-services.yaml`, will be:
+We can now create a Fedora CoreOS config by including the script and the systemd unit directly as inline content into the systemd/units and storage/files sections. The final Fedora CoreOS config, stored in `fcct-services.yaml`, will be:
 
 [source,yaml]
 ----
