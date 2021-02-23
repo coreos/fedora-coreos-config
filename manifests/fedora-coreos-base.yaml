@@ -5,6 +5,7 @@
 include:
   - ignition-and-ostree.yaml
   - file-transfer.yaml
+  - networking-tools.yaml
 
 initramfs-args:
   - --no-hostonly
@@ -131,17 +132,13 @@ packages:
   - podman-plugins dnsmasq
   # Remote IPC for podman
   - libvarlink-util
-  # Networking
+  # Minimal NFS client
   - nfs-utils-coreos
-  - NetworkManager hostname
-  - iproute-tc
+  # Active Directory support
   - adcli
-  ## Teaming https://github.com/coreos/fedora-coreos-config/pull/289 and http://bugzilla.redhat.com/1758162
-  - NetworkManager-team teamd
-  # Static firewalling
-  - iptables nftables iptables-nft iptables-services
-  # Interactive Networking configuration during coreos-install
-  - NetworkManager-tui
+  # Additional firewall support; we aren't including these in RHCOS or they
+  # don't exist in RHEL
+  - iptables-nft iptables-services
   # WireGuard https://github.com/coreos/fedora-coreos-tracker/issues/362
   - wireguard-tools
   # Storage
@@ -170,7 +167,6 @@ packages:
   - logrotate
   # Used by admins interactively
   - sudo coreutils attr less tar xz gzip bzip2
-  - socat net-tools bind-utils
   - bash-completion
   - openssl
   - vim-minimal

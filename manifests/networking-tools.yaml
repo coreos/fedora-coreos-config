@@ -1,0 +1,18 @@
+# This defines a set of tools that are useful for configuring, debugging,
+# or manipulating the network of a system.  It is desired to keep this list
+# generic enough to be shared downstream with RHCOS.
+
+packages:
+  # Standard tools for configuring network/hostname
+  - NetworkManager hostname
+  # Interactive Networking configuration during coreos-install
+  - NetworkManager-tui
+  # Teaming https://github.com/coreos/fedora-coreos-config/pull/289 
+  # and http://bugzilla.redhat.com/1758162
+  - NetworkManager-team teamd
+  # Route manipulation and QoS
+  - iproute iproute-tc
+  # Firewall manipulation
+  - iptables nftables
+  # Interactive network tools for admins
+  - socat net-tools bind-utils
