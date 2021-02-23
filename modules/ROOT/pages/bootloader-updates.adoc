@@ -37,7 +37,7 @@ Updated: grub2-efi-x64-1:2.04-31.fc33.x86_64,shim-x64-15-8.x86_64
 [source,yaml]
 ----
 variant: fcos
-version: 1.1.0
+version: 1.3.0
 systemd:
   units:
     - name: custom-bootupd-auto.service

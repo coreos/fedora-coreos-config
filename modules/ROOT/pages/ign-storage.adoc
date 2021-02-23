@@ -34,7 +34,7 @@ Every entry under the `disks` node must correspond to a unique device. For each 
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 storage:
   disks:
     -
@@ -87,7 +87,7 @@ Entries under the `filesystems` node list the file systems to be created and mou
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 storage:
   disks:
   # This defines two partitions, each on its own disk. The disks are
@@ -197,7 +197,7 @@ The contents of `links` is as follows. Unless specified as optional, all nodes a
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 storage:
   # This creates a directory. Its mode is set to 0755 by default, that
   # is, readable and executable by all, and writable by the owner.

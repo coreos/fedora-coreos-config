@@ -10,7 +10,7 @@ The following FCOS Configuration (FCC) snippet configures the systemd hello.serv
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 systemd:
   units:
     - name: hello.service
@@ -40,7 +40,7 @@ etcd is not shipped as part of Fedora CoreOS. To use it, run it as a container, 
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 systemd:
   units:
     - name: etcd-member.service

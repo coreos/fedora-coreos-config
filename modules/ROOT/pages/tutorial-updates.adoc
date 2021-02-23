@@ -51,7 +51,7 @@ Let's write this Fedora CoreOS config to a file called `fcct-updates.yaml`:
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 passwd:
   users:
     - name: core

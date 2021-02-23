@@ -11,7 +11,7 @@ To create a new user (or users), add it to the `users` list of your Fedora CoreO
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 passwd:
   users:
     - name: jlebon
@@ -27,7 +27,7 @@ To configure an SSH key for a local user, you can use a Fedora CoreOS Config:
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 passwd:
   users:
     - name: core
@@ -60,7 +60,7 @@ Fedora CoreOS ships with no default passwords. You can use a Fedora CoreOS Confi
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 passwd:
   users:
     - name: core
@@ -98,7 +98,7 @@ When configuring users via Fedora CoreOS Configs, we can specify groups that the
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 passwd:
   users:
     - name: core
@@ -124,7 +124,7 @@ If a group does not exist, users should create them as part of the Fedora CoreOS
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 passwd:
   groups:
     - name: engineering
@@ -158,7 +158,7 @@ The easiest way for users to be granted administrative privileges is to have the
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 passwd:
   groups:
     - name: engineering
@@ -194,7 +194,7 @@ To enable password authentication via SSH, add the following to your Fedora Core
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 storage:
   files:
     - path: /etc/ssh/sshd_config.d/20-enable-passwords.conf

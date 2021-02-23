@@ -31,7 +31,7 @@ The SSH public key will be provisioned to the FCOS machine (via Ignition). The S
 [source,yaml]
 ----
 variant: fcos
-version: 1.2.0
+version: 1.3.0
 passwd:
   users:
     - name: core
