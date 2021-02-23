@@ -1,0 +1,4 @@
+# This file contains overrides for systemd services that are
+# enabled by default, but conflict with things we ship
+# We don't have swap by default, and systemd-oomd hard requires it.
+disable systemd-oomd.service
