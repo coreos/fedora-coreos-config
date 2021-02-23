@@ -15,3 +15,13 @@ packages:
     evra: 246.7-1.fc33.noarch
   systemd-udev:
     evra: 246.7-1.fc33.s390x
+  # Pin to previous version until we have
+  # https://github.com/latchset/clevis/pull/295
+  clevis:
+    evra: 15-2.fc33.s390x
+  clevis-dracut:
+    evra: 15-2.fc33.s390x
+  clevis-luks:
+    evra: 15-2.fc33.s390x
+  clevis-systemd:
+    evra: 15-2.fc33.s390x
