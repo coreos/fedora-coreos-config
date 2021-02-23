@@ -22,5 +22,3 @@ enable bootupd.socket
 # The event for the attached device comes as a diag event.
 # Ideally it should have been added as part of base Fedora - but since it was arch specific, it was not added: https://bugzilla.redhat.com/show_bug.cgi?id=1433859
 enable rtas_errd.service
-# We don't have swap by default, and systemd-oomd hard requires it.
-disable systemd-oomd.service
