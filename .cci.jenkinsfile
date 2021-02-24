@@ -1,39 +1,5 @@
 // Documentation: https://github.com/coreos/coreos-ci/blob/master/README-upstream-ci.md
 
-cosaPod {
-    checkoutToDir(scm, 'config')
-
-    shwrap("cd config && ci/validate")
-
-    shwrap("""
-        mkdir -p /srv/fcos && cd /srv/fcos
-        cosa init ${env.WORKSPACE}/config
-        curl -LO https://raw.githubusercontent.com/coreos/fedora-coreos-releng-automation/master/scripts/download-overrides.py
-        python3 download-overrides.py
-        # prep from the latest builds so that we generate a diff on PRs that add packages
-        cosa buildprep https://builds.coreos.fedoraproject.org/prod/streams/${env.CHANGE_TARGET}/builds
-    """)
-
-    fcosBuild(skipInit: true, extraFetchArgs: '--with-cosa-overrides')
-
-    parallel metal: {
-        shwrap("cd /srv/fcos && cosa buildextend-metal")
-    }, metal4k: {
-        shwrap("cd /srv/fcos && cosa buildextend-metal4k")
-    }
-
-    stage("Test ISO") {
-        shwrap("cd /srv/fcos && cosa buildextend-live")
-        try {
-            shwrap("cd /srv/fcos && kola testiso -S --scenarios pxe-install,pxe-offline-install,iso-install,iso-offline-install --output-dir tmp/kola-testiso-metal")
-        } finally {
-            shwrap("cd /srv/fcos && tar -cf - tmp/kola-testiso-metal/ | xz -c9 > ${env.WORKSPACE}/kola-testiso-metal.tar.xz")
-            archiveArtifacts allowEmptyArchive: true, artifacts: 'kola-testiso-metal.tar.xz'
-        }
-    }
-
-    // also print the pkgdiff as a separate stage to make it more visible
-    stage("RPM Diff") {
-        shwrap("jq .pkgdiff /srv/fcos/builds/latest/x86_64/meta.json")
-    }
+node {
+    shwrap("echo hello world")
 }
