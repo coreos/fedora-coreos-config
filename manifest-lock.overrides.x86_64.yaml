@@ -1,8 +1,7 @@
 packages:
-  # Fast-track systemd update that reverts fallback hostname change
-  # https://github.com/coreos/fedora-coreos-tracker/issues/649#issuecomment-739956843
-  # This is a one-off build, please don't remove it without talking
-  # to dustymabe or jlebon.
+  # Keep this until we move to Fedora 34.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/649
+  # https://bugzilla.redhat.com/show_bug.cgi?id=1892235#c25
   systemd:
     evra: 246.7-1.fc33.x86_64
   systemd-container:
