@@ -133,10 +133,10 @@
       "evra": "1.4.3-1.fc33.x86_64"
     },
     "containernetworking-plugins": {
-      "evra": "0.9.0-1.fc33.x86_64"
+      "evra": "0.9.1-2.fc33.x86_64"
     },
     "containers-common": {
-      "evra": "1:1.2.0-13.fc33.x86_64"
+      "evra": "4:1-4.fc33.noarch"
     },
     "coreos-installer": {
       "evra": "0.7.2-1.fc33.x86_64"
@@ -979,10 +979,10 @@
       "evra": "1.7.3-5.fc33.x86_64"
     },
     "podman": {
-      "evra": "2:2.2.1-1.fc33.x86_64"
+      "evra": "2:3.0.1-1.fc33.x86_64"
     },
     "podman-plugins": {
-      "evra": "2:2.2.1-1.fc33.x86_64"
+      "evra": "2:3.0.1-1.fc33.x86_64"
     },
     "policycoreutils": {
       "evra": "3.1-4.fc33.x86_64"
@@ -1030,10 +1030,10 @@
       "evra": "4.16.1.2-1.fc33.x86_64"
     },
     "rpm-ostree": {
-      "evra": "2021.1-4.fc33.x86_64"
+      "evra": "2021.2-2.fc33.x86_64"
     },
     "rpm-ostree-libs": {
-      "evra": "2021.1-4.fc33.x86_64"
+      "evra": "2021.2-2.fc33.x86_64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.16.1.2-1.fc33.x86_64"
@@ -1084,7 +1084,7 @@
       "evra": "15-8.x86_64"
     },
     "skopeo": {
-      "evra": "1:1.2.0-13.fc33.x86_64"
+      "evra": "1:1.2.2-1.fc33.x86_64"
     },
     "slang": {
       "evra": "2.3.2-8.fc33.x86_64"
@@ -1129,7 +1129,7 @@
       "evra": "2.4.2-2.fc33.x86_64"
     },
     "stalld": {
-      "evra": "1.8-1.fc33.x86_64"
+      "evra": "1.9-1.fc33.x86_64"
     },
     "sudo": {
       "evra": "1.9.5p2-1.fc33.x86_64"
@@ -1177,7 +1177,7 @@
       "evra": "2.36.1-1.fc33.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.2529-1.fc33.x86_64"
+      "evra": "2:8.2.2541-1.fc33.x86_64"
     },
     "which": {
       "evra": "2.21-20.fc33.x86_64"
@@ -1211,16 +1211,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-02-24T21:10:04Z",
+    "generated": "2021-02-26T21:07:47Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-10-19T23:27:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-02-24T20:21:50Z"
+        "generated": "2021-02-24T21:51:44Z"
       },
       "fedora-updates": {
-        "generated": "2021-02-24T20:16:37Z"
+        "generated": "2021-02-26T00:31:13Z"
       }
     }
   }
