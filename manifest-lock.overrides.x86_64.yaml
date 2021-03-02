@@ -23,3 +23,10 @@ packages:
     evra: 5.10.12-200.fc33.x86_64
   kernel-modules:
     evra: 5.10.12-200.fc33.x86_64
+  # https://bugzilla.redhat.com/show_bug.cgi?id=1925717
+  libsolv:
+    evra: 0.7.15-1.fc33.x86_64
+  # Fast-track Ignition cleanups and IMDSv2 fix
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-9e7c4ba680
+  ignition:
+    evra: 2.9.0-4.fc33.x86_64
