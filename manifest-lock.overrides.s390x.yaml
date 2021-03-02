@@ -1,8 +1,7 @@
 packages:
-  # Fast-track systemd update that reverts fallback hostname change
-  # https://github.com/coreos/fedora-coreos-tracker/issues/649#issuecomment-739956843
-  # This is a one-off build, please don't remove it without talking
-  # to dustymabe or jlebon.
+  # Keep this until we move to Fedora 34.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/649
+  # https://bugzilla.redhat.com/show_bug.cgi?id=1892235#c25
   systemd:
     evra: 246.7-1.fc33.s390x
   systemd-container:
@@ -15,18 +14,13 @@ packages:
     evra: 246.7-1.fc33.noarch
   systemd-udev:
     evra: 246.7-1.fc33.s390x
-  # Fast-track kernel fix for CVE-2021-3347
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-6e805a5051
-  kernel:
-    evra: 5.10.12-200.fc33.s390x
-  kernel-core:
-    evra: 5.10.12-200.fc33.s390x
-  kernel-modules:
-    evra: 5.10.12-200.fc33.s390x
-  # https://bugzilla.redhat.com/show_bug.cgi?id=1925717
-  libsolv:
-    evra: 0.7.15-1.fc33.s390x
-  # Fast-track Ignition cleanups and IMDSv2 fix
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-9e7c4ba680
-  ignition:
-    evra: 2.9.0-4.fc33.s390x
+  # Pin to previous version until we have
+  # https://github.com/latchset/clevis/pull/295
+  clevis:
+    evra: 15-2.fc33.s390x
+  clevis-dracut:
+    evra: 15-2.fc33.s390x
+  clevis-luks:
+    evra: 15-2.fc33.s390x
+  clevis-systemd:
+    evra: 15-2.fc33.s390x
