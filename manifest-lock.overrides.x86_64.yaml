@@ -15,15 +15,13 @@ packages:
     evra: 246.7-1.fc33.noarch
   systemd-udev:
     evra: 246.7-1.fc33.x86_64
-  # Fast-track kernel fix for CVE-2021-3347
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-6e805a5051
-  kernel:
-    evra: 5.10.12-200.fc33.x86_64
-  kernel-core:
-    evra: 5.10.12-200.fc33.x86_64
-  kernel-modules:
-    evra: 5.10.12-200.fc33.x86_64
-  # Fast-track Ignition cleanups and IMDSv2 fix
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-9e7c4ba680
-  ignition:
-    evra: 2.9.0-4.fc33.x86_64
+  # Pin to previous version until we have
+  # https://github.com/latchset/clevis/pull/295
+  clevis:
+    evra: 15-2.fc33.x86_64
+  clevis-dracut:
+    evra: 15-2.fc33.x86_64
+  clevis-luks:
+    evra: 15-2.fc33.x86_64
+  clevis-systemd:
+    evra: 15-2.fc33.x86_64

@@ -5,6 +5,7 @@
 include:
   - ignition-and-ostree.yaml
   - file-transfer.yaml
+  - networking-tools.yaml
 
 initramfs-args:
   - --no-hostonly
@@ -96,6 +97,18 @@ postprocess:
     DNSStubListener=no
     EOF
 
+  # Set the fallback hostname to `localhost`. This piggybacks on the
+  # postprocess script above which neuters systemd-resolved, because
+  # currently, a fallback hostname of `localhost` + systemd-resolved breaks
+  # rDNS. Eventually, we should be able to drop this at the same time as we drop
+  # the above. See: https://bugzilla.redhat.com/show_bug.cgi?id=1892235#c25
+  - |
+    #!/usr/bin/env bash
+    source /etc/os-release
+    if [ ${VERSION_ID} -ge 34 ] && [ -z "${DEFAULT_HOSTNAME:-}" ]; then
+      echo 'DEFAULT_HOSTNAME=localhost' >> /usr/lib/os-release
+    fi
+
   # Edit `login.defs` to configure `login(1)` to read from `/run/motd.d` for
   # displaying the MOTD. This is required for newer versions of
   # `console-login-helper-messages` to function properly.
@@ -131,17 +144,13 @@ packages:
   - podman-plugins dnsmasq
   # Remote IPC for podman
   - libvarlink-util
-  # Networking
+  # Minimal NFS client
   - nfs-utils-coreos
-  - NetworkManager hostname
-  - iproute-tc
+  # Active Directory support
   - adcli
-  ## Teaming https://github.com/coreos/fedora-coreos-config/pull/289 and http://bugzilla.redhat.com/1758162
-  - NetworkManager-team teamd
-  # Static firewalling
-  - iptables nftables iptables-nft iptables-services
-  # Interactive Networking configuration during coreos-install
-  - NetworkManager-tui
+  # Additional firewall support; we aren't including these in RHCOS or they
+  # don't exist in RHEL
+  - iptables-nft iptables-services
   # WireGuard https://github.com/coreos/fedora-coreos-tracker/issues/362
   - wireguard-tools
   # Storage
@@ -170,7 +179,6 @@ packages:
   - logrotate
   # Used by admins interactively
   - sudo coreutils attr less tar xz gzip bzip2
-  - socat net-tools bind-utils
   - bash-completion
   - openssl
   - vim-minimal
@@ -198,6 +206,8 @@ packages:
   - zram-generator
   # kdump (https://github.com/coreos/fedora-coreos-tracker/issues/622)
   - kexec-tools
+  # Similar to irqbalance: https://github.com/coreos/fedora-coreos-tracker/issues/753
+  - stalld
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;
