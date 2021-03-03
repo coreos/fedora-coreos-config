@@ -1,0 +1,16 @@
+# This file contains overrides for systemd services that are
+# enabled by default, but conflict with things we ship.
+
+# We don't have swap by default, and systemd-oomd hard requires it.
+disable systemd-oomd.service
+
+# Disable systemd-firstboot because it conflicts with Ignition.
+# In most cases this is handled via the remove-from-packages
+# bits in the manifest (ignition-and-ostree.yaml), but
+# we want to support overlaying builds of systemd from git.
+disable systemd-firstboot.service
+
+# This hasn't been tested with ostree/rpm-ostree and heavily overlaps
+# with the latter.  Preemptively disable the service; it will hopefully
+# be subpackaged though for Fedora.
+disable systemd-sysext.service
