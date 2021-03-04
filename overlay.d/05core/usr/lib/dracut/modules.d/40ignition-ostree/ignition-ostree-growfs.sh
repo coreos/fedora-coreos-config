@@ -40,12 +40,13 @@ fi
 # from the previous contents of the disk (notably ZFS), causing blkid to
 # refuse to return any filesystem type at all.
 eval $(blkid -o export "${src}")
-case "${TYPE:-}" in
+ROOTFS_TYPE=${TYPE:-}
+case "${ROOTFS_TYPE}" in
     xfs|ext4|btrfs) ;;
-    *) echo "error: Unsupported filesystem for ${path}: '${TYPE:-}'" 1>&2; exit 1 ;;
+    *) echo "error: Unsupported filesystem for ${path}: '${ROOTFS_TYPE}'" 1>&2; exit 1 ;;
 esac
 
-if test "${TYPE:-}" = "btrfs"; then
+if test "${ROOTFS_TYPE}" = "btrfs"; then
     # Theoretically btrfs can have multiple devices, but when
     # we start we will always have exactly one.
     devpath=$(btrfs device usage /sysroot | grep /dev | cut -f 1 -d ,)
@@ -65,11 +66,11 @@ growpart "${parent_device}" "${partition}" || true
 
 # Wipe any filesystem signatures from the extended partition that don't
 # correspond to the FS type we detected earlier.
-wipefs -af -t "no${TYPE}" "${src}"
+wipefs -af -t "no${ROOTFS_TYPE}" "${src}"
 
 # TODO: Add XFS to https://github.com/systemd/systemd/blob/master/src/partition/growfs.c
 # and use it instead.
-case "${TYPE}" in
+case "${ROOTFS_TYPE}" in
     xfs) xfs_growfs "${path}" ;;
     ext4) resize2fs "${src}" ;;
     btrfs) btrfs filesystem resize max ${path} ;;
