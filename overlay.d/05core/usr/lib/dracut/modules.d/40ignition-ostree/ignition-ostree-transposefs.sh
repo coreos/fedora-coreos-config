@@ -100,6 +100,16 @@ case "${1:-}" in
             echo "Found duplicate or missing ESP, BIOS-BOOT, or PReP labels in config" >&2
             exit 1
         fi
+        mem_available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
+        # Just error out early if we don't even have 1G to work with. This
+        # commonly happens if you `cosa run` but forget to add `--memory`. That
+        # way you get a nicer error instead of the spew of EIO errors from `cp`.
+        # The amount we need is really dependent on a bunch of factors, but just
+        # ballpark it at 3G.
+        if [ "${mem_available}" -lt $((1*1024*1024)) ] && [ "${wipes_root}" != 0 ]; then
+            echo "Root reprovisioning requires at least 3G of RAM" >&2
+            exit 1
+        fi
         modprobe zram num_devices=0
         read dev < /sys/class/zram-control/hot_add
         # disksize is set arbitrarily large, as zram is capped by mem_limit
@@ -107,7 +117,7 @@ case "${1:-}" in
         # Limit zram to 90% of available RAM: we want to be greedy since the
         # boot breaks anyway, but we still want to leave room for everything
         # else so it hits ENOSPC and doesn't invoke the OOM killer
-        echo $(( $(grep MemAvailable /proc/meminfo | awk '{print $2}') * 90 / 100 ))K > /sys/block/zram"${dev}"/mem_limit
+        echo $(( mem_available * 90 / 100 ))K > /sys/block/zram"${dev}"/mem_limit
         mkfs.xfs -q /dev/zram"${dev}"
         mkdir "${saved_data}"
         mount /dev/zram"${dev}" "${saved_data}"
