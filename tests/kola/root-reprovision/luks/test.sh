@@ -13,9 +13,9 @@ fstype=$(findmnt -nvr / -o FSTYPE)
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
-      # check that growpart didn't run
-      if [ -e /run/coreos-growpart.stamp ]; then
-          echo "coreos-growpart ran"
+      # check that ignition-ostree-growfs ran
+      if [ -e /run/ignition-ostree-growfs.stamp ]; then
+          echo "ignition-ostree-growfs ran"
           exit 1
       fi
 
