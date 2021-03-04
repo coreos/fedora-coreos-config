@@ -14,8 +14,8 @@ fstype=$(findmnt -nvr / -o FSTYPE)
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
       # check that ignition-ostree-growfs ran
-      if [ -e /run/ignition-ostree-growfs.stamp ]; then
-          echo "ignition-ostree-growfs ran"
+      if [ ! -e /run/ignition-ostree-growfs.stamp ]; then
+          echo "ignition-ostree-growfs did not run"
           exit 1
       fi
 
