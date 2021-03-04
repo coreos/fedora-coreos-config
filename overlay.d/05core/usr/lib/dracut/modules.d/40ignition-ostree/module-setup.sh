@@ -25,7 +25,7 @@ install() {
         sort \
         uniq
 
-    # coreos-growpart deps
+    # ignition-ostree-growfs deps
     inst_multiple  \
         basename   \
         blkid      \
@@ -87,7 +87,8 @@ install() {
         "/usr/sbin/coreos-rootflags"
 
     install_ignition_unit ignition-ostree-growfs.service
-    inst_script "$moddir/coreos-growpart" /usr/libexec/coreos-growpart
+    inst_script "$moddir/ignition-ostree-growfs.sh" \
+        /usr/sbin/ignition-ostree-growfs
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
 }
