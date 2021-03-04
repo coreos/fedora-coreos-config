@@ -22,7 +22,7 @@ saved_esp=${saved_data}/esp
 saved_bios=${saved_data}/bios
 saved_prep=${saved_data}/prep
 zram_dev=${saved_data}/zram_dev
-partstate_root=/run/ignition-ostree-rootfs-partstate.json
+partstate_root=/run/ignition-ostree-rootfs-partstate.sh
 
 # Print jq query string for wiped filesystems with label $1
 query_fslabel() {
@@ -137,7 +137,7 @@ case "${1:-}" in
             mount_verbose "${root_part}" /sysroot
             cp -aT /sysroot "${saved_root}"
             # also store the state of the partition
-            lsblk "${root_part}" --nodeps --paths --json -b -o NAME,SIZE | jq -c . > "${partstate_root}"
+            lsblk "${root_part}" --nodeps --pairs -b --paths -o NAME,TYPE,SIZE > "${partstate_root}"
         fi
         if [ -d "${saved_boot}" ]; then
             echo "Moving bootfs to RAM..."
