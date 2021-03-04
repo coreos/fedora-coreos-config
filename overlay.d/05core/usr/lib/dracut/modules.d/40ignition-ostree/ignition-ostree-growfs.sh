@@ -1,23 +1,23 @@
 #!/bin/bash
 set -euo pipefail
 
-# See also ignition-ostree-growfs.service.
+# This script is run by ignition-ostree-growfs.service. It grows the root
+# partition, unless it determines that either the rootfs was moved or the
+# partition was already resized (e.g. via Ignition).
 
-# https://github.com/coreos/fedora-coreos-tracker/issues/18
-# See also image.ks.
-# Growpart /, until we can fix Ignition for separate /var
-# (And eventually we want ignition-disks)
-
+# If root reprovisioning was triggered, this file contains state of the root
+# partition *before* ignition-disks.
 saved_partstate=/run/ignition-ostree-rootfs-partstate.json
 
-path=$1
-shift
+# We run after the rootfs is mounted at /sysroot, but before ostree-prepare-root
+# moves it to /sysroot/sysroot.
+path=/sysroot
 
 # The use of tail is to avoid errors from duplicate mounts;
 # this shouldn't happen for us but we're being conservative.
 src=$(findmnt -nvr -o SOURCE "$path" | tail -n1)
 
-if [ "${path}" == /sysroot ] && [ -f "${saved_partstate}" ]; then
+if [ -f "${saved_partstate}" ]; then
     # We're still ironing out our rootfs automatic growpart story, see e.g.:
     # https://github.com/coreos/fedora-coreos-tracker/issues/570
     # https://github.com/coreos/fedora-coreos-tracker/issues/586
@@ -76,4 +76,4 @@ case "${TYPE}" in
 esac
 
 # this is useful for tests
-touch /run/coreos-growpart.stamp
+touch /run/ignition-ostree-growfs.stamp
