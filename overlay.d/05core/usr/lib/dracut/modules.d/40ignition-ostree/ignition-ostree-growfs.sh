@@ -22,7 +22,7 @@ if [ ! -f "${saved_partstate}" ]; then
 else
     # The rootfs was reprovisioned. Our rule in this case is: we only grow if
     # the partition backing the rootfs is the same and its size didn't change
-    # (IOW, it was an in-place reprovisioning; e.g. xfs -> btrfs).
+    # (IOW, it was an in-place reprovisioning; e.g. LUKS or xfs -> btrfs).
     source "${saved_partstate}"
     if [ "${TYPE}" != "part" ]; then
         # this really should never happen; but play nice
@@ -43,7 +43,7 @@ fi
 # Go through each blockdev in the hierarchy and verify we know how to grow them
 lsblk -no TYPE "${partition}" | while read dev; do
     case "${dev}" in
-        part) ;;
+        part|crypt) ;;
         *) echo "error: Unsupported blockdev type ${dev}" 1>&2; exit 1 ;;
     esac
 done
@@ -68,6 +68,13 @@ lsblk --paths --pairs -o NAME,TYPE,PKNAME "${partition}" | while read line; do
             partnum=$(cat "/sys/dev/block/${majmin}/partition")
             # XXX: ideally this'd be idempotent and we wouldn't `|| :`
             growpart "${PKNAME}" "${partnum}" || :
+            ;;
+        crypt)
+            # XXX: yuck... we need to expose this sanely in clevis
+            (. /usr/bin/clevis-luks-common-functions
+             eval $(udevadm info --query=property --export "${NAME}")
+             clevis_luks_unlock_device "${PKNAME}" | cryptsetup resize -d- "${DM_NAME}"
+            )
             ;;
         # already checked
         *) echo "unreachable" 1>&2; exit 1 ;;
