@@ -42,7 +42,7 @@ To derive from this repository, the recommendation is to add it
 as a git submodule.  Then create your own `manifest.yaml` which does
 `include: fedora-coreos-config/ignition-and-ostree.yaml` for example.
 You will also want to create an `overlay.d` and symlink in components
-in this repository's `overlay.d.
+in this repository's `overlay.d`.
 
 ## Overriding packages
 
@@ -150,15 +150,9 @@ done
 #   - koji untag-build coreos-pool $untaglist
 ```
 
-## Interacting with CI jobs on PRs
+## CoreOS CI
 
-Pull requests submitted to this repo will run through a CI job that builds
-and tests Fedora CoreOS with your change.  The CI jobs are run via Jenkins
-in the [CentOS CI cluster](https://jenkins-coreos-ci.apps.ocp.ci.centos.org/) and
-can be retried in case of a failure.
-
-In order to retry the failed job, click through to the details of the failed job
-and use the retry "loopy icon" at the top right of the job page.  You will need
-to be logged into the CentOS CI cluster for this ability.  See the instructions
-on the [fedora-coreos-pipeline](https://github.com/coreos/fedora-coreos-pipeline)
-repo on how to request access to the CentOS CI cluster.
+Pull requests submitted to this repo are tested by
+[CoreOS CI](https://github.com/coreos/coreos-ci). You can see the pipeline
+executed in `.cci.jenkinsfile`. For more information, including interacting with
+CI, see the [CoreOS CI documentation](https://github.com/coreos/coreos-ci/blob/master/README-upstream-ci.md).
