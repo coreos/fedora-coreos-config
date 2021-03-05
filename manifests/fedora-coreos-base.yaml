@@ -6,6 +6,8 @@ include:
   - ignition-and-ostree.yaml
   - file-transfer.yaml
   - networking-tools.yaml
+  - system-configuration.yaml
+  - user-experience.yaml
 
 initramfs-args:
   - --no-hostonly
@@ -125,23 +127,17 @@ postprocess:
 
 packages:
   # Security
-  - selinux-policy-targeted
   - polkit
   # System setup
-  - afterburn
   - afterburn-dracut
-  - passwd
-  # Dependency of 35coreos-live dracut module
-  - bsdtar
   # SSH
-  - openssh-server openssh-clients
   - ssh-key-dir
   # Containers
-  - podman skopeo runc systemd-container catatonit
+  - systemd-container catatonit
   - fuse-overlayfs slirp4netns
   # name resolution for podman containers
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
-  - podman-plugins dnsmasq
+  - podman-plugins
   # Remote IPC for podman
   - libvarlink-util
   # Minimal NFS client
@@ -154,34 +150,17 @@ packages:
   # WireGuard https://github.com/coreos/fedora-coreos-tracker/issues/362
   - wireguard-tools
   # Storage
-  - cloud-utils-growpart
-  - lvm2 iscsi-initiator-utils sg3_utils
-  - device-mapper-multipath
-  - xfsprogs e2fsprogs btrfs-progs mdadm
-  - cryptsetup
-  - cifs-utils
+  - btrfs-progs
   - WALinuxAgent-udev
-  # Time sync
-  - chrony
   # Allow communication between sudo and SSSD
   # for caching sudo rules by SSSD.
   # https://github.com/coreos/fedora-coreos-tracker/issues/445
   - libsss_sudo
-  # Extra runtime
-  - shadow-utils
   # SSSD; we only ship a subset of the backends
   - sssd-client sssd-ad sssd-ipa sssd-krb5 sssd-ldap
-  # There are things that write outside of the journal still (such as the classic wtmp, etc.)
-  # (auditd also writes outside the journal but it has its own log rotation.)
-  # Anything package layered will also tend to expect files dropped in
-  # /etc/logrotate.d to work.  Really, this is a legacy thing, but if we don't
-  # have it then people's disks will slowly fill up with logs.
-  - logrotate
   # Used by admins interactively
-  - sudo coreutils attr less tar xz gzip bzip2
-  - bash-completion
+  - attr
   - openssl
-  - vim-minimal
   - lsof
   # Provides terminal tools like clear, reset, tput, and tset
   - ncurses
@@ -189,25 +168,14 @@ packages:
   # so we can't put it in file-transfer.yaml
   - fuse-sshfs
   # User experience
-  - console-login-helper-messages-issuegen
   - console-login-helper-messages-motdgen
-  - console-login-helper-messages-profile
-  - toolbox
-  # CoreOS Installer
-  - coreos-installer coreos-installer-bootinfra
   # i18n
   - kbd
-  # Parsing/Interacting with JSON data
-  - jq
   # nvme-cli for managing nvme disks
   - nvme-cli
   # zram-generator (but not zram-generator-defaults) for F33 change
   # https://github.com/coreos/fedora-coreos-tracker/issues/509
   - zram-generator
-  # kdump (https://github.com/coreos/fedora-coreos-tracker/issues/622)
-  - kexec-tools
-  # Similar to irqbalance: https://github.com/coreos/fedora-coreos-tracker/issues/753
-  - stalld
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;

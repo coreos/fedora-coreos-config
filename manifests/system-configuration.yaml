@@ -1,0 +1,37 @@
+# These are packages that are related to configuring parts of the system.
+# It is intended to be kept generic so that it may be shared downstream with
+# RHCOS.
+
+packages:
+  # Configuring SSH keys, cloud provider check-in, etc
+  - afterburn
+  # NTP support
+  - chrony
+  # Installing CoreOS itself
+  - coreos-installer coreos-installer-bootinfra
+  # Storage configuration/management
+  - cifs-utils
+  - cloud-utils-growpart
+  - cryptsetup 
+  - device-mapper-multipath
+  - e2fsprogs
+  - iscsi-initiator-utils
+  - lvm2
+  - mdadm
+  - sg3_utils
+  - xfsprogs
+  # User configuration
+  - passwd
+  - shadow-utils
+  # SELinux policy
+  - selinux-policy-targeted
+  # There are things that write outside of the journal still (such as the 
+  # classic wtmp, etc.)
+  #(auditd also writes outside the journal but it has its own log rotation.)
+  # Anything package layered will also tend to expect files dropped in
+  # /etc/logrotate.d to work.  Really, this is a legacy thing, but if we don't
+  # have it then people's disks will slowly fill up with logs.
+  - logrotate
+  # Boost starving threads
+  # https://github.com/coreos/fedora-coreos-tracker/issues/753
+  - stalld
