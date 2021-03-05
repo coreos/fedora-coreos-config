@@ -89,5 +89,9 @@ install() {
     install_ignition_unit ignition-ostree-growfs.service
     inst_script "$moddir/coreos-growpart" /usr/libexec/coreos-growpart
 
+    install_ignition_unit ignition-ostree-check-rootfs-size.service
+    inst_script "$moddir/coreos-check-rootfs-size" \
+        /usr/libexec/coreos-check-rootfs-size
+
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
 }
