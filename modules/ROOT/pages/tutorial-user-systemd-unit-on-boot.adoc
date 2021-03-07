@@ -144,7 +144,7 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora-coreos-stable 
     --disk=size=20,backing_store=${PWD}/fedora-coreos.qcow2
 ----
 
-We can then verify that the unit has been started under the sleeper systemd user instannce:
+We can then verify that the unit has been started under the sleeper systemd user instance:
 
 [source,bash]
 ----

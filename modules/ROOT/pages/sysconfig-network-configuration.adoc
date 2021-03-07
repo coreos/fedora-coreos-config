@@ -131,7 +131,7 @@ either configured by the user or by the platform, during the initramfs.
 Currently this is only utilized on VMWare. The implementation there allows
 for users to specify networking configuration in the form of dracut networking
 arguments without having to stop the boot of the machine and manually
-inject those arguemnts themselves.
+inject those arguments themselves.
 
 See 
 https://github.com/coreos/afterburn/blob/master/docs/usage/initrd-network-cmdline.md[the Afterburn documentation]
