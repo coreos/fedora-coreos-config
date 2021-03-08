@@ -4,31 +4,15 @@
 
 === Background
 
-By default, Fedora CoreOS (FCOS) will attempt DHCP on every interface
-with a cable plugged in. However, if you need to use static addressing or more
-complex networking (vlans, bonds, bridges, teams, etc..), you can do
-so in a number of ways which are summarized below. Regardless of the
-way you choose to configure networking it all ends up as configuration
-for NetworkManager, which takes the form of NetworkManager keyfiles.
-More information on the keyfile format can be found
-https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[here].
-More information on the subsection options for keyfiles can be found
-https://developer.gnome.org/NetworkManager/stable/ref-settings.html[here].
+By default, Fedora CoreOS (FCOS) will attempt DHCP on every interface with a cable plugged in. However, if you need to use static addressing or more complex networking (vlans, bonds, bridges, teams, etc..), you can do so in a number of ways which are summarized below. Regardless of the way you choose to configure networking it all ends up as configuration for NetworkManager, which takes the form of NetworkManager keyfiles. More information on the keyfile format can be found https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[here]. More information on the subsection options for keyfiles can be found https://developer.gnome.org/NetworkManager/stable/ref-settings.html[here].
 
 === Configuration Options
 
-FCOS machines are primarily configured via Ignition, which runs from the initramfs
-on the machine's first boot. Depending on the platform the machine may need
-network access to retrieve remote resources; either the Ignition config itself,
-or remote resources specified inside the Ignition config.
+FCOS machines are primarily configured via Ignition, which runs from the initramfs on the machine's first boot. Depending on the platform the machine may need network access to retrieve remote resources; either the Ignition config itself, or remote resources specified inside the Ignition config.
 
-NOTE: Networking will only be started in the initramfs if determined
-      to be required, or if explicitly requested by the user with
-      `*rd.neednet=1*`.
+NOTE: Networking will only be started in the initramfs if determined to be required, or if explicitly requested by the user with `*rd.neednet=1*`.
 
-Whether or not a machine needs networking in the initramfs can dictate how a
-user will configure networking for the machine. The options for
-configuring networking for a machine are:
+Whether or not a machine needs networking in the initramfs can dictate how a user will configure networking for the machine. The options for configuring networking for a machine are:
 
 * via kernel arguments
 ** these get processed by dracut modules in the initramfs on first boot
@@ -39,52 +23,31 @@ configuring networking for a machine are:
 * via Ignition
 ** by laying down files that NetworkManager then uses on startup
 
-NOTE: If you need networking connectivity to pull your Ignition
-      configuration, or if your Ignition has remote references, you
-      won't be able to provide your networking configuration via
-      Ignition.
+NOTE: If you need networking connectivity to pull your Ignition configuration, or if your Ignition has remote references, you won't be able to provide your networking configuration via Ignition.
 
-NOTE: If you provide networking configuration in multiple ways (i.e.
-      via kernel arguments and via Ignition) then the configuration
-      supplied via Ignition will win and be what is applied to the
-      real root of the machine. It is not supported to provide half
-      configuration via kernel arguments and half via Ignition.
+NOTE: If you provide networking configuration in multiple ways (i.e. via kernel arguments and via Ignition) then the configuration supplied via Ignition will win and be what is applied to the real root of the machine. It is not supported to provide half configuration via kernel arguments and half via Ignition.
 
 We'll cover each one of these options now.
 
 
 ==== via Kernel Arguments
 
-On the first boot of a machine a user can provide kernel arguments
-that define networking configuration. These kernel arguments are
-mostly defined in the
-https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html[dracut.cmdline man page].
-There are a few different ways to apply these kernel arguments on
-first boot.
+On the first boot of a machine a user can provide kernel arguments that define networking configuration. These kernel arguments are mostly defined in the https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html[dracut.cmdline man page]. There are a few different ways to apply these kernel arguments on first boot.
 
-1. In the most generic form, you can stop an instance at the GRUB
-   prompt on the first boot (Ignition boot) and add them to the existing
-   set of kernel arguments. 
+1. In the most generic form, you can stop an instance at the GRUB prompt on the first boot (Ignition boot) and add them to the existing set of kernel arguments. 
 
-2. For a bare metal install where you automate the install via kernel
-   arguments added, (i.e., `coreos.inst.install_dev=`), you can also
-   append networking arguments there and they will apply to the install boot and
-   also the first boot (Ignition boot) of the installed machine.
+2. For a bare metal install where you automate the install via kernel arguments added, (i.e., `coreos.inst.install_dev=`), you can also append networking arguments there and they will apply to the install boot and also the first boot (Ignition boot) of the installed machine.
 
-3. For a PXE boot you can add networking kernel arguments to your
-   existing set of kernel arguments in your PXE configuration.
+3. For a PXE boot you can add networking kernel arguments to your existing set of kernel arguments in your PXE configuration.
 
-An example set of kernel arguments for statically configuring an IP
-address for `ens2` looks like like:
+An example set of kernel arguments for statically configuring an IP address for `ens2` looks like like:
 
 [source, bash]
 ----
 ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:ens2:none:8.8.8.8
 ----
 
-The syntax is a bit hard to work with. An easy way to work with
-it is to write a small script that will fill in the items for you.
-For the example above, something like this should work:
+The syntax is a bit hard to work with. An easy way to work with it is to write a small script that will fill in the items for you. For the example above, something like this should work:
 
 [source, bash]
 ----
@@ -100,65 +63,38 @@ echo "ip=${ip}::${gateway}:${netmask}:${hostname}:${interface}:none:${nameserver
 
 ==== via `coreos-installer --copy-network`
 
-For manual bare metal install workflows it may not be preferable to use
-dracut kernel arguments for configuring network:
+For manual bare metal install workflows it may not be preferable to use dracut kernel arguments for configuring network:
 
 - the syntax is not very user friendly
 - manipulating kernel arguments by grabbing the GRUB prompt can be challenging
 
-The `--copy-network` option to the `coreos-installer` will copy the
-files from `/etc/NetworkManager/system-connections/` directory into
-the installed system. For an interactive install this allows the user
-to populate networking configuration in a variety of ways before doing
-the install:
+The `--copy-network` option to the `coreos-installer` will copy the files from `/etc/NetworkManager/system-connections/` directory into the installed system. For an interactive install this allows the user to populate networking configuration in a variety of ways before doing the install:
 
 - using the `nmcli` command
 - using the `nmtui` TUI interface
 - writing files directly
 - using another tool of choice
 
-It also allows the user to do hardware discovery on the node (i.e.
-"what are my interface names?"). For an example of this workflow
-see https://dustymabe.com/2020/11/18/coreos-install-via-live-iso-copy-network/[this demo]
-which shows it in detail.
+It also allows the user to do hardware discovery on the node (i.e. "what are my interface names?"). For an example of this workflow see https://dustymabe.com/2020/11/18/coreos-install-via-live-iso-copy-network/[this demo] which shows it in detail.
 
 
 ==== via Afterburn
 
-On certain platforms Afterburn will inject networking configuration,
-either configured by the user or by the platform, during the initramfs.
+On certain platforms Afterburn will inject networking configuration, either configured by the user or by the platform, during the initramfs.
 
-Currently this is only utilized on VMWare. The implementation there allows
-for users to specify networking configuration in the form of dracut networking
-arguments without having to stop the boot of the machine and manually
-inject those arguments themselves.
+Currently this is only utilized on VMWare. The implementation there allows for users to specify networking configuration in the form of dracut networking arguments without having to stop the boot of the machine and manually inject those arguments themselves.
 
-See 
-https://github.com/coreos/afterburn/blob/master/docs/usage/initrd-network-cmdline.md[the Afterburn documentation]
-for more information.
+See https://github.com/coreos/afterburn/blob/master/docs/usage/initrd-network-cmdline.md[the Afterburn documentation] for more information.
 
 ==== via Ignition
 
-WARNING: If you need networking to grab your Ignition conifg and your environment
-         requires more complex networking than the default of DHCP to grab the
-         Ignition config, then you'll need to use another method other than
-         Ignition to configure the network.
+WARNING: If you need networking to grab your Ignition config and your environment requires more complex networking than the default of DHCP to grab the Ignition config, then you'll need to use another method other than Ignition to configure the network.
 
-Networking configuration can be performed by writing out files
-described in an Ignition config. These are 
-https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[NetworkManager keyfiles]
-that are written to `/etc/NetworkManager/system-connections/` that
-tell NetworkManager what to do.
+Networking configuration can be performed by writing out files described in an Ignition config. These are https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[NetworkManager keyfiles] that are written to `/etc/NetworkManager/system-connections/` that tell NetworkManager what to do.
 
-Any configuration provided via Ignition will be considered at a higher
-priority than any other method of configuring the Network for a Fedora CoreOS
-instance. If you specify Networking configuration via Ignition, try
-not to use other mechanisms to configure the network.
+Any configuration provided via Ignition will be considered at a higher priority than any other method of configuring the Network for a Fedora CoreOS instance. If you specify Networking configuration via Ignition, try not to use other mechanisms to configure the network.
 
-An example
-https://docs.fedoraproject.org/en-US/fedora-coreos/producing-ign/[FCC]
-configuration for the same static networking example
-that we showed above is:
+An example https://docs.fedoraproject.org/en-US/fedora-coreos/producing-ign/[FCC] configuration for the same static networking example that we showed above is:
 
 [source, yaml]
 ----
@@ -185,12 +121,9 @@ storage:
 
 == Host Network Configuration Examples
 
-In this section we'll go through common examples of setting up
-different types of networking devices using both dracut kernel
-arguments as well as NetworkManager keyfiles via Ignition/FCCT.
+In this section we'll go through common examples of setting up different types of networking devices using both dracut kernel arguments as well as NetworkManager keyfiles via Ignition/FCCT.
 
-Examples in this section that use a static IP will assume these
-values unless otherwise stated:
+Examples in this section that use a static IP will assume these values unless otherwise stated:
 
 [source, bash]
 ----
@@ -209,21 +142,13 @@ subnic2='ens3'
 vlanid='100'
 ----
 
-NOTE: FCOS uses https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/[predictable interface names]
-      by https://lists.fedoraproject.org/archives/list/coreos-status@lists.fedoraproject.org/thread/6IPTZL57Z5NLBMPYMXNVSYAGLRFZBLIP/[default].
-      Please take care to use the correct interface name for your hardware.
+NOTE: FCOS uses https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/[predictable interface names] by https://lists.fedoraproject.org/archives/list/coreos-status@lists.fedoraproject.org/thread/6IPTZL57Z5NLBMPYMXNVSYAGLRFZBLIP/[default]. Please take care to use the correct interface name for your hardware.
 
 === Generating NetworkManager Keyfiles using `nm-initrd-generator`
 
-NetworkManager ships a tool,
-https://developer.gnome.org/NetworkManager/stable/nm-initrd-generator.html[nm-initrd-generator],
-that can generate keyfiles from dracut kernel argument syntax. This
-might be a good way to either convert from kernel arguments to keyfiles
-or to just quickly generate some keyfiles giving a small amount of input
-and then tweak some more detailed settings.
+NetworkManager ships a tool, https://developer.gnome.org/NetworkManager/stable/nm-initrd-generator.html[nm-initrd-generator], that can generate keyfiles from dracut kernel argument syntax. This might be a good way to either convert from kernel arguments to keyfiles or to just quickly generate some keyfiles giving a small amount of input and then tweak some more detailed settings.
 
-Here's an example of generating keyfiles for a bond via
-`nm-initrd-generator`:
+Here's an example of generating keyfiles for a bond via `nm-initrd-generator`:
 
 [source, bash]
 ----
@@ -291,10 +216,7 @@ slave-type=bond
 mac-address-blacklist=
 ----
 
-This run generates three keyfiles. One for `bond0`, one for `ens3`,
-and one for `ens2`. You can take the generated output, add more
-settings or tweak existing settings, and then deliver the files via
-Ignition.
+This run generates three keyfiles. One for `bond0`, one for `ens3`, and one for `ens2`. You can take the generated output, add more settings or tweak existing settings, and then deliver the files via Ignition.
 
 
 === Configuring a Static IP
@@ -708,9 +630,7 @@ storage:
 
 ==== Dracut Kernel Arguments
 
-NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/509[a bug]
-      that causes the subinterface of the vlan to also try DHCP. We'll workaround by specifying
-      `*ip=$\{interface}:off*` here to disable it.
+NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/509[a bug] that causes the subinterface of the vlan to also try DHCP. We'll workaround by specifying `*ip=$\{interface}:off*` here to disable it.
 
 .Template
 [source, bash]
@@ -824,15 +744,9 @@ storage:
 
 ==== Dracut Kernel Arguments
 
-NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/581[a bug]
-      that causes the expected Vlan on Bond DHCP syntax to not work for the `*ip=*` argument.
-      We'll workaround that bug here by using the `*VLAN_PLUS_VID_NO_PAD*` form of vlan name.
-      So we'll use `*vlan$\{vlanid}*` instead of `*$\{bondname}.$\{vlanid}*`. We'll move back to
-      the `*DEV_PLUS_VID_NO_PAD*` form when the bug is fixed.
+NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/581[a bug] that causes the expected Vlan on Bond DHCP syntax to not work for the `*ip=*` argument. We'll workaround that bug here by using the `*VLAN_PLUS_VID_NO_PAD*` form of vlan name. So we'll use `*vlan$\{vlanid}*` instead of `*$\{bondname}.$\{vlanid}*`. We'll move back to the `*DEV_PLUS_VID_NO_PAD*` form when the bug is fixed.
 
-NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/509[a bug]
-      that causes the subinterface of the vlan to also try DHCP. We'll workaround by specifying
-      `*ip=$\{bondname}:off*` here to disable it.
+NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/509[a bug] that causes the subinterface of the vlan to also try DHCP. We'll workaround by specifying `*ip=$\{bondname}:off*` here to disable it.
 
 
 .Template
