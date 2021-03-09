@@ -1,23 +1,23 @@
 #!/bin/bash
 set -euo pipefail
 
-# See also ignition-ostree-growfs.service.
+# This script is run by ignition-ostree-growfs.service. It grows the root
+# partition, unless it determines that either the rootfs was moved or the
+# partition was already resized (e.g. via Ignition).
 
-# https://github.com/coreos/fedora-coreos-tracker/issues/18
-# See also image.ks.
-# Growpart /, until we can fix Ignition for separate /var
-# (And eventually we want ignition-disks)
-
+# If root reprovisioning was triggered, this file contains state of the root
+# partition *before* ignition-disks.
 saved_partstate=/run/ignition-ostree-rootfs-partstate.json
 
-path=$1
-shift
+# We run after the rootfs is mounted at /sysroot, but before ostree-prepare-root
+# moves it to /sysroot/sysroot.
+path=/sysroot
 
 # The use of tail is to avoid errors from duplicate mounts;
 # this shouldn't happen for us but we're being conservative.
 src=$(findmnt -nvr -o SOURCE "$path" | tail -n1)
 
-if [ "${path}" == /sysroot ] && [ -f "${saved_partstate}" ]; then
+if [ -f "${saved_partstate}" ]; then
     # We're still ironing out our rootfs automatic growpart story, see e.g.:
     # https://github.com/coreos/fedora-coreos-tracker/issues/570
     # https://github.com/coreos/fedora-coreos-tracker/issues/586
@@ -40,12 +40,13 @@ fi
 # from the previous contents of the disk (notably ZFS), causing blkid to
 # refuse to return any filesystem type at all.
 eval $(blkid -o export "${src}")
-case "${TYPE:-}" in
+ROOTFS_TYPE=${TYPE:-}
+case "${ROOTFS_TYPE}" in
     xfs|ext4|btrfs) ;;
-    *) echo "error: Unsupported filesystem for ${path}: '${TYPE:-}'" 1>&2; exit 1 ;;
+    *) echo "error: Unsupported filesystem for ${path}: '${ROOTFS_TYPE}'" 1>&2; exit 1 ;;
 esac
 
-if test "${TYPE:-}" = "btrfs"; then
+if test "${ROOTFS_TYPE}" = "btrfs"; then
     # Theoretically btrfs can have multiple devices, but when
     # we start we will always have exactly one.
     devpath=$(btrfs device usage /sysroot | grep /dev | cut -f 1 -d ,)
@@ -65,15 +66,15 @@ growpart "${parent_device}" "${partition}" || true
 
 # Wipe any filesystem signatures from the extended partition that don't
 # correspond to the FS type we detected earlier.
-wipefs -af -t "no${TYPE}" "${src}"
+wipefs -af -t "no${ROOTFS_TYPE}" "${src}"
 
 # TODO: Add XFS to https://github.com/systemd/systemd/blob/master/src/partition/growfs.c
 # and use it instead.
-case "${TYPE}" in
+case "${ROOTFS_TYPE}" in
     xfs) xfs_growfs "${path}" ;;
     ext4) resize2fs "${src}" ;;
     btrfs) btrfs filesystem resize max ${path} ;;
 esac
 
 # this is useful for tests
-touch /run/coreos-growpart.stamp
+touch /run/ignition-ostree-growfs.stamp
