@@ -7,7 +7,7 @@ This guide shows how to provision new Fedora CoreOS (FCOS) nodes on the VMware h
 Before provisioning a FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
 You also need to have access to a working VMware infrastructure, supporting VMs with at least hardware version 13.
-The examples below use the https://github.com/vmware/govmomi/blob/v0.22.2/govc/README.md[govc] command-line tool.
+The examples below use the https://github.com/vmware/govmomi/blob/v0.22.2/govc/README.md[govc] command-line tool for remote vSphere provisioning and the https://code.vmware.com/web/tool/4.4.0/ovf[ovftool] for local Workstation or Fusion provisoning.
 
 === Downloading the OVA
 
@@ -36,6 +36,30 @@ For maximum compatibility, it is recommended to use `base64` encoding and to pre
 ----
 CONFIG_B64=`cat example.ign | base64 -w0 -`
 ----
+
+== Booting a new VM on Workstation or Fusion
+
+This section shows how to use Workstation and Fusion facilities to configure and run VMs from the command-line. Some steps can potentially be performed via the graphical UI too.
+
+=== Importing the OVA
+
+The downloaded OVA has to be imported into the Workstation or Fusion library locally. At the same time the Ignition has to be provided for it to be applied to the VM.
+
+[source, bash]
+----
+VM_NAME='fcos-node01'
+FCOS_OVA='./ova-templates/fedora-coreos-31.20200210.3.0-vmware.x86_64.ova'
+LIBRARY="$HOME/Virtual Machines.localized"
+ovftool \
+  --powerOffTarget \
+  --name="${VM_NAME}" \
+  --allowExtraConfig \
+  --extraConfig:guestinfo.ignition.config.data.encoding="base64" \
+  --extraConfig:guestinfo.ignition.config.data="${CONFIG_B64}" \
+  "${FCOS_OVA}" "${LIBRARY}"
+----
+
+Afterwards you can refresh the list of VMs in the Workstation or Fusion UI and the new `fcos-node01` VM should appear ready for booting. Its hardware configuration can be further customized at this point, and then powered-up.
 
 == Booting a new VM on vSphere
 
