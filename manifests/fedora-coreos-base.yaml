@@ -137,7 +137,7 @@ packages:
   - fuse-overlayfs slirp4netns
   # name resolution for podman containers
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
-  - podman-plugins
+  - podman-plugins dnsmasq
   # Remote IPC for podman
   - libvarlink-util
   # Minimal NFS client
@@ -176,6 +176,9 @@ packages:
   # zram-generator (but not zram-generator-defaults) for F33 change
   # https://github.com/coreos/fedora-coreos-tracker/issues/509
   - zram-generator
+  # Boost starving threads
+  # https://github.com/coreos/fedora-coreos-tracker/issues/753
+  - stalld
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;
