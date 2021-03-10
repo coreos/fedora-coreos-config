@@ -5,3 +5,8 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: podman.workflow
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
+- pattern: ext.config.podman.rootless-systemd
+  tracker: https://github.com/containers/buildah/issues/3071
+  streams:
+    - branched
+    - rawhide
