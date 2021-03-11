@@ -14,3 +14,11 @@ packages:
     evra: 246.7-1.fc33.noarch
   systemd-udev:
     evra: 246.7-1.fc33.aarch64
+  # There's a regression in 5.10.20+ which breaks rootless podman
+  # https://github.com/containers/buildah/issues/3071
+  kernel:
+    evra: 5.10.19-200.fc33.aarch64
+  kernel-core:
+    evra: 5.10.19-200.fc33.aarch64
+  kernel-modules:
+    evra: 5.10.19-200.fc33.aarch64
