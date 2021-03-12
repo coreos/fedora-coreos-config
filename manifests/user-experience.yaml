@@ -1,0 +1,36 @@
+# These packages are either widely used utilities/services or 
+# are targeted for improving the general CoreOS user experience.
+# It is intended to be kept generic so that it may be shared downstream with
+# RHCOS.
+
+packages:
+  # Basic user tools
+  ## jq - parsing/interacting with JSON data
+  - bash-completion
+  - coreutils
+  - jq
+  - less
+  - sudo
+  - vim-minimal
+  # File compression/decompression
+  ## (bsdtar - dependency of 35coreos-live dracut module)
+  - bsdtar
+  - bzip2
+  - gzip
+  - tar
+  - xz
+  # Improved MOTD experience
+  - console-login-helper-messages-issuegen
+  - console-login-helper-messages-profile
+  # DNS/DHCP server
+  - dnsmasq
+  # kdump support
+  # https://github.com/coreos/fedora-coreos-tracker/issues/622
+  - kexec-tools
+  # Remote Access
+  - openssh-clients openssh-server
+  # Container tooling
+  - podman
+  - runc
+  - skopeo
+  - toolbox

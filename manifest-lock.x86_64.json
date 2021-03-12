@@ -49,16 +49,16 @@
       "evra": "1:2.8-9.fc33.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.11.27-1.fc33.x86_64"
+      "evra": "32:9.11.28-1.fc33.x86_64"
     },
     "bind-libs-lite": {
-      "evra": "32:9.11.27-1.fc33.x86_64"
+      "evra": "32:9.11.28-1.fc33.x86_64"
     },
     "bind-license": {
-      "evra": "32:9.11.27-1.fc33.noarch"
+      "evra": "32:9.11.28-1.fc33.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.11.27-1.fc33.x86_64"
+      "evra": "32:9.11.28-1.fc33.x86_64"
     },
     "bootupd": {
       "evra": "0.2.4-2.fc33.x86_64"
@@ -694,7 +694,7 @@
       "evra": "0.1.5-46.fc33.x86_64"
     },
     "librepo": {
-      "evra": "1.12.1-1.fc33.x86_64"
+      "evra": "1.13.0-1.fc33.x86_64"
     },
     "libreport-filesystem": {
       "evra": "2.14.0-15.fc33.noarch"
@@ -814,7 +814,7 @@
       "evra": "0.2.5-3.fc33.x86_64"
     },
     "libzstd": {
-      "evra": "1.4.7-1.fc33.x86_64"
+      "evra": "1.4.9-1.fc33.x86_64"
     },
     "linux-atm-libs": {
       "evra": "2.5.1-27.fc33.x86_64"
@@ -925,10 +925,10 @@
       "evra": "8.4p1-5.fc33.x86_64"
     },
     "openssl": {
-      "evra": "1:1.1.1i-3.fc33.x86_64"
+      "evra": "1:1.1.1j-1.fc33.x86_64"
     },
     "openssl-libs": {
-      "evra": "1:1.1.1i-3.fc33.x86_64"
+      "evra": "1:1.1.1j-1.fc33.x86_64"
     },
     "os-prober": {
       "evra": "1.77-6.fc33.x86_64"
@@ -1060,10 +1060,10 @@
       "evra": "4.8-5.fc33.x86_64"
     },
     "selinux-policy": {
-      "evra": "3.14.6-34.fc33.noarch"
+      "evra": "3.14.6-35.fc33.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "3.14.6-34.fc33.noarch"
+      "evra": "3.14.6-35.fc33.noarch"
     },
     "setup": {
       "evra": "2.13.7-2.fc33.noarch"
@@ -1159,7 +1159,7 @@
       "evra": "1.31-2.fc33.x86_64"
     },
     "toolbox": {
-      "evra": "0.0.99-1.fc33.x86_64"
+      "evra": "0.0.99.1-1.fc33.x86_64"
     },
     "tpm2-tools": {
       "evra": "4.3.0-1.fc33.x86_64"
@@ -1183,7 +1183,7 @@
       "evra": "2.21-20.fc33.x86_64"
     },
     "wireguard-tools": {
-      "evra": "1.0.20200827-2.fc33.x86_64"
+      "evra": "1.0.20210223-1.fc33.x86_64"
     },
     "xfsprogs": {
       "evra": "5.7.0-1.fc33.x86_64"
@@ -1201,7 +1201,7 @@
       "evra": "1.1.9-1.fc33.x86_64"
     },
     "zincati": {
-      "evra": "0.0.17-1.fc33.x86_64"
+      "evra": "0.0.18-1.fc33.x86_64"
     },
     "zlib": {
       "evra": "1.2.11-23.fc33.x86_64"
@@ -1211,16 +1211,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-03-02T21:46:39Z",
+    "generated": "2021-03-07T21:14:48Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-10-19T23:27:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-03-01T22:32:54Z"
+        "generated": "2021-03-06T21:51:24Z"
       },
       "fedora-updates": {
-        "generated": "2021-03-02T15:25:06Z"
+        "generated": "2021-03-07T16:28:23Z"
       }
     }
   }
