@@ -50,6 +50,10 @@ cosaPod {
                 cd /srv/fcos
                 new_commit=\$(jq -r '.["ostree-commit"]' builds/latest/x86_64/meta.json)
                 rpm-ostree db diff --repo tmp/repo ${parent_commit} \${new_commit} | tee tmp/diff.txt
+                if grep -q Downgraded tmp/diff.txt; then
+                    echo "Downgrade detected. This is likely unintentional. If not, you may safely ignore this error."
+                    exit 1
+                fi
             """)
         }
     }
