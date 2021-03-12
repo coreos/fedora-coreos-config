@@ -1,5 +1,6 @@
 # Note we use baseurl= here because using auto-selected mirrors conflicts with
 # change detection: https://github.com/coreos/fedora-coreos-pipeline/issues/85.
+#
 
 [fedora]
 name=Fedora $releasever - $basearch
