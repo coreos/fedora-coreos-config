@@ -44,7 +44,13 @@ cosaPod {
     }
 
     // also print the pkgdiff as a separate stage to make it more visible
-    stage("RPM Diff") {
-        shwrap("jq .pkgdiff /srv/fcos/builds/latest/x86_64/meta.json")
+    if (parent_arg != "") {
+        stage("RPM Diff") {
+            shwrap("""
+                cd /srv/fcos
+                new_commit=\$(jq -r '.["ostree-commit"]' builds/latest/x86_64/meta.json)
+                rpm-ostree db diff --repo tmp/repo ${parent_commit} \${new_commit} | tee tmp/diff.txt
+            """)
+        }
     }
 }
