@@ -4,7 +4,7 @@
 
 === Update Streams
 
-There are three Fedora CoreOS (FCOS) update streams available: `stable`, `testing`, and `next`. In general, you will want to use `stable`, but it is recommended to run some machines on `testing` and `next` as well.
+Metadata about Fedora CoreOS is available in a custom JSON format, called "stream metadata".  For maintaining automation, it is expected that you will interact with this stream metadata.  There are three Fedora CoreOS (FCOS) update streams available: `stable`, `testing`, and `next`. In general, you will want to use `stable`, but it is recommended to run some machines on `testing` and `next` as well and provide feedback.
 
 Each stream has a canonical URL representing its current state in JSON format.  For example, the URL for the stable stream is: https://builds.coreos.fedoraproject.org/streams/stable.json
 
