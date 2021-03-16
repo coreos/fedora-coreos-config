@@ -42,7 +42,7 @@ To derive from this repository, the recommendation is to add it
 as a git submodule.  Then create your own `manifest.yaml` which does
 `include: fedora-coreos-config/ignition-and-ostree.yaml` for example.
 You will also want to create an `overlay.d` and symlink in components
-in this repository's `overlay.d.
+in this repository's `overlay.d`.
 
 ## Overriding packages
 
@@ -149,3 +149,10 @@ done
 # After verifying the list looks good:
 #   - koji untag-build coreos-pool $untaglist
 ```
+
+## CoreOS CI
+
+Pull requests submitted to this repo are tested by
+[CoreOS CI](https://github.com/coreos/coreos-ci). You can see the pipeline
+executed in `.cci.jenkinsfile`. For more information, including interacting with
+CI, see the [CoreOS CI documentation](https://github.com/coreos/coreos-ci/blob/master/README-upstream-ci.md).
