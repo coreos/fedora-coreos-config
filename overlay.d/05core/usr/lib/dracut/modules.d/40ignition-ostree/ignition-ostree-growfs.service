@@ -15,5 +15,5 @@ Before=ostree-prepare-root.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/libexec/coreos-growpart /sysroot
+ExecStart=/usr/sbin/ignition-ostree-growfs
 RemainAfterExit=yes
