@@ -90,7 +90,7 @@ postprocess:
     set -xeuo pipefail
     # Get us back to Fedora 32's nsswitch.conf settings
     sed -i 's/^hosts:.*/hosts:      files dns myhostname/' /etc/nsswitch.conf
-    mkdir /usr/lib/systemd/resolved.conf.d/
+    mkdir -p /usr/lib/systemd/resolved.conf.d/
     cat > /usr/lib/systemd/resolved.conf.d/fedora-coreos-stub-listener.conf <<'EOF'
     # Fedora CoreOS is electing to not use systemd-resolved's internal
     # logic for now because of issues with setting hostnames via reverse DNS.
