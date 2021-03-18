@@ -1,7 +1,7 @@
 ref: fedora/${basearch}/coreos/next-devel
 include: manifests/fedora-coreos.yaml
 
-releasever: "33"
+releasever: "34"
 
 rojig:
   license: MIT
@@ -12,8 +12,8 @@ repos:
   # these repos are there to make it easier to add new packages to the OS and to
   # use `cosa fetch --update-lockfile`; but note that all package versions are
   # still pinned
-  - fedora
-  - fedora-updates
+  - fedora-next
+  - fedora-next-updates
 
 # All Fedora CoreOS streams share the same pool for locked files.
 # This will be in fedora-coreos.yaml in the future so it can be more easily be
