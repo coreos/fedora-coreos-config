@@ -14,7 +14,18 @@ cosaPod {
         cosa buildprep https://builds.coreos.fedoraproject.org/prod/streams/${env.CHANGE_TARGET}/builds
     """)
 
-    fcosBuild(skipInit: true, extraFetchArgs: '--with-cosa-overrides')
+    // use a --parent-build arg so we can diff later and it matches prod
+    def parent_arg = ""
+    def parent_commit = ""
+    if (shwrapRc("test -e /srv/fcos/builds/latest/x86_64/meta.json") == 0) {
+        shwrap("cp /srv/fcos/builds/latest/x86_64/meta.json .") // readJSON wants it in the WORKSPACE
+        def meta = readJSON file: "meta.json"
+        def version = meta["buildid"]
+        parent_arg = "--parent-build ${version}"
+        parent_commit = meta["ostree-commit"]
+    }
+
+    fcosBuild(skipInit: true, extraFetchArgs: '--with-cosa-overrides', extraArgs: parent_arg)
 
     parallel metal: {
         shwrap("cd /srv/fcos && cosa buildextend-metal")
