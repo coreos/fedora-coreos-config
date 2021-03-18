@@ -40,6 +40,7 @@ install() {
         touch      \
         xfs_admin  \
         xfs_growfs \
+        wc         \
         wipefs
 
     # growpart deps
