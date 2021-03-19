@@ -139,3 +139,9 @@ if [ $(systemctl is-enabled systemd-repart.service) != 'masked' ]; then
     fatal "systemd-repart.service systemd unit should be masked"
 fi
 ok "systemd-repart.service systemd unit is masked"
+
+rootflags=$(findmnt /sysroot -no OPTIONS)
+if ! grep prjquota <<< "${rootflags}"; then
+    fatal "missing prjquota in root mount flags: ${rootflags}"
+fi
+ok "root mounted with prjquota"
