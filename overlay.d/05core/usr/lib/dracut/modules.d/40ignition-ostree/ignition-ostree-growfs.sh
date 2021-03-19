@@ -59,13 +59,16 @@ case "${ROOTFS_TYPE}" in
     *) echo "error: Unsupported filesystem for ${path}: '${ROOTFS_TYPE}'" 1>&2; exit 1 ;;
 esac
 
-# Now, go through the hierarchy, growing everything
-lsblk --paths --pairs -o NAME,TYPE,PKNAME "${partition}" | while read line; do
-    eval "${line}"
+# Now, go through the hierarchy, growing everything. Note we go one device at a
+# time using --nodeps, because ordering is buggy in el8:
+# https://bugzilla.redhat.com/show_bug.cgi?id=1940607
+current_blkdev=${partition}
+while true; do
+    eval "$(lsblk --paths --nodeps --pairs -o NAME,TYPE,PKNAME "${current_blkdev}")"
+    MAJMIN=$(echo $(lsblk -dno MAJ:MIN "${NAME}"))
     case "${TYPE}" in
         part)
-            majmin=$(echo $(lsblk -dno MAJ:MIN "${NAME}"))
-            partnum=$(cat "/sys/dev/block/${majmin}/partition")
+            partnum=$(cat "/sys/dev/block/${MAJMIN}/partition")
             # XXX: ideally this'd be idempotent and we wouldn't `|| :`
             growpart "${PKNAME}" "${partnum}" || :
             ;;
@@ -73,12 +76,25 @@ lsblk --paths --pairs -o NAME,TYPE,PKNAME "${partition}" | while read line; do
             # XXX: yuck... we need to expose this sanely in clevis
             (. /usr/bin/clevis-luks-common-functions
              eval $(udevadm info --query=property --export "${NAME}")
+             # lsblk doesn't print PKNAME of crypt devices with --nodeps
+             PKNAME=/dev/$(ls "/sys/dev/block/${MAJMIN}/slaves")
              clevis_luks_unlock_device "${PKNAME}" | cryptsetup resize -d- "${DM_NAME}"
             )
             ;;
         # already checked
         *) echo "unreachable" 1>&2; exit 1 ;;
     esac
+    holders="/sys/dev/block/${MAJMIN}/holders"
+    [ -d "${holders}" ] || break
+    nholders="$(ls "${holders}" | wc -l)"
+    if [ "${nholders}" -eq 0 ]; then
+        break
+    elif [ "${nholders}" -gt 1 ]; then
+        # this shouldn't happen since we've checked the partition types already
+        echo "error: Unsupported block device with multiple children: ${NAME}" 1>&2
+        exit 1
+    fi
+    current_blkdev=/dev/$(ls "${holders}")
 done
 
 # Wipe any filesystem signatures from the extended partition that don't
