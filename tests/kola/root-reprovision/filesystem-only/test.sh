@@ -15,6 +15,12 @@ fstype=$(findmnt -nvr / -o FSTYPE)
 [[ $fstype == ext4 ]]
 ok "source is ext4"
 
+rootflags=$(findmnt /sysroot -no OPTIONS)
+if ! grep debug <<< "${rootflags}"; then
+    fatal "missing debug in root mount flags: ${rootflags}"
+fi
+ok "root mounted with debug"
+
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
       # check that the partition was grown
