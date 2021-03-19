@@ -21,6 +21,12 @@ fstype=$(findmnt -nvr / -o FSTYPE)
 [[ ${fstype} == xfs ]]
 ok "source is XFS on LUKS device"
 
+rootflags=$(findmnt /sysroot -no OPTIONS)
+if ! grep prjquota <<< "${rootflags}"; then
+    fatal "missing prjquota in root mount flags: ${rootflags}"
+fi
+ok "root mounted with prjquota"
+
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
       # check that ignition-ostree-growfs ran
