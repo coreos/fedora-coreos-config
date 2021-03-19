@@ -3,14 +3,7 @@ set -euo pipefail
 
 rootpath=/dev/disk/by-label/root
 
-# If the rootfs was reprovisioned, then the user is free to define their own
-# rootflags.
-if [ -d /run/ignition-ostree-transposefs/root ]; then
-    exit 0
-fi
-
 eval $(blkid -o export ${rootpath})
-# this really should always be true, but let's be conservative
 if [ "${TYPE}" == "xfs" ]; then
     # We use prjquota on XFS by default to aid multi-tenant Kubernetes (and
     # other container) clusters.  See
