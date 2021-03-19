@@ -2,6 +2,15 @@
 # kola: {"platforms": "qemu", "minMemory": 4096, "architectures": "!s390x"}
 set -xeuo pipefail
 
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
 srcdev=$(findmnt -nvr / -o SOURCE)
 [[ ${srcdev} == /dev/mapper/myluksdev ]]
 
@@ -10,13 +19,13 @@ blktype=$(lsblk -o TYPE "${srcdev}" --noheadings)
 
 fstype=$(findmnt -nvr / -o FSTYPE)
 [[ ${fstype} == xfs ]]
+ok "source is XFS on LUKS device"
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
       # check that ignition-ostree-growfs ran
       if [ ! -e /run/ignition-ostree-growfs.stamp ]; then
-          echo "ignition-ostree-growfs did not run"
-          exit 1
+          fatal "ignition-ostree-growfs did not run"
       fi
 
       # reboot once to sanity-check we can find root on second boot
@@ -26,6 +35,7 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   rebooted)
       grep root=UUID= /proc/cmdline
       grep rd.luks.name= /proc/cmdline
+      ok "found root kargs"
       ;;
-  *) echo "unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}"; exit 1;;
+  *) fatal "unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}";;
 esac
