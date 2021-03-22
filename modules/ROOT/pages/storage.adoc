@@ -19,7 +19,7 @@ You will need to look for relevant documentation for your infrastructure around 
 
 In many cases, the simplest thing is to boot a single machine with an Ignition configuration that just gives you SSH access, and inspect the block devices via e.g. the `lsblk` command.
 
-For physical hardware, a good best practice is to reference devices via the `/dev/disk/by-id/` or `/dev/disk/by-id/path` links.
+For physical hardware, a good best practice is to reference devices via the `/dev/disk/by-id/` or `/dev/disk/by-path` links.
 
 == Setting up separate /var mounts
 
