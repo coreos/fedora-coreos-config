@@ -11,6 +11,16 @@ Below, we provide examples of various ways you can customize this.
 Currently, if the root filesystem is smaller than 8 GiB, a warning is emitted on login. Starting from June 2021, if the root filesystem is smaller than 8 GiB and is followed by another partition, Fedora CoreOS will refuse to boot. For more details, see https://github.com/coreos/fedora-coreos-tracker/issues/586[this bug].
 ====
 
+== Referencing block devices from Ignition
+
+Many of the examples below will reference a block device, such as `/dev/vda`.  The name of the available block devices depends on the underlying infrastructure (bare metal vs cloud), and often the specific instance type.  For example in AWS, some instance types have NVMe drives (`/dev/nvme*`), others use `/dev/xvda*`.
+
+You will need to look for relevant documentation for your infrastructure around this.
+
+In many cases, the simplest thing is to boot a single machine with an Ignition configuration that just gives you SSH access, and inspect the block devices via e.g. the `lsblk` command.
+
+For physical hardware, a good best practice is to reference devices via the `/dev/disk/by-id/` or `/dev/disk/by-id/path` links.
+
 == Setting up separate /var mounts
 
 Here's an example FCC file to set up `/var` on a separate partition on the same primary disk:
