@@ -131,6 +131,8 @@ postprocess:
 packages:
   # Security
   - polkit
+  # Integrity Measurement Architecture: https://sourceforge.net/p/linux-ima/wiki/Home/
+  - ima-evm-utils
   # System setup
   - afterburn-dracut
   # SSH
