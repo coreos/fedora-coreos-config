@@ -107,6 +107,39 @@ storage:
       with_mount_unit: true
 ----
 
+
+.Defining a disk with multiple partitions
+In this example, we wipe the disk and create two new partitions. 
+
+[source,yaml]
+----
+variant: fcos
+version: 1.3.0
+storage:
+  disks:
+    -
+      # Mandatory. We use the World-Wide Number ID of the drive to ensure
+      # uniqueness.
+      device: /dev/disk/by-id/wwn-0x50014e2eb507fcdf
+      # This ensures that the partition table is re-created, along with all
+      # the partitions.
+      wipe_table: true
+      partitions:
+        # The first partition (slot number 1) is 32 GiB and starts at the
+        # beginning of the device. Its type_guid identifies it as a Linux
+        # swap partition.
+        - label: part1
+          number: 1
+          size_mib: 32768
+          start_mib: 0
+          type_guid: 0657fd6d-a4ab-43c4-84e5-0933c84b4f4f
+        # The second partition (implicit slot number 2) will be placed after
+        # partition 1 and will occupy the rest of the available space.
+        # Since type_guid is not specified, it will be a Linux native
+        # partition.
+        - label: part2
+----
+
 == Reconfiguring the root filesystem
 
 It is possible to reconfigure the root filesystem itself. You can use the path `/dev/disk/by-label/root` to refer to the original root partition. You must ensure that the new filesystem also has a label of `root`.
@@ -163,6 +196,52 @@ boot_device:
     devices:
       - /dev/sda
       - /dev/sdb
+----
+
+== Defining a filessystem
+
+This example demonstrates the process of creating the filesystem by defining and labeling the partitions, combining them into a RAID array, and formatting that array as ext4.
+
+.Defining a filesystem on a RAID storage device
+[source,yaml]
+----
+variant: fcos
+version: 1.3.0
+storage:
+  disks:
+  # This defines two partitions, each on its own disk. The disks are
+  # identified by their WWN.
+  - device: /dev/disk/by-id/wwn-0x50014ee261e524e4
+    wipe_table: true
+    partitions:
+    -
+      # Each partition gets a human-readable label.
+      label: "raid.1.1"
+      # Each partition is placed at the beginning of the disk and is 64 GiB
+      # long.
+      number: 1
+      size_mib: 65536
+      start_mib: 0
+  - device: /dev/disk/by-id/wwn-0x50014ee0b8442cd3
+    wipe_table: true
+    partitions:
+    - label: "raid.1.2"
+      number: 1
+      size_mib: 65536
+      start_mib: 0
+  # We use the previously defined partitions as devices in a RAID1 md array.
+  raid:
+    - name: publicdata
+      level: raid1
+      devices:
+      - /dev/disk/by-partlabel/raid.1.1
+      - /dev/disk/by-partlabel/raid.1.2
+  # The resulting md array is used to create an EXT4 filesystem.
+  filesystems:
+    - path: /var/publicdata
+      device: /dev/md/publicdata
+      format: ext4
+      label: PUB
 ----
 
 == Encrypted storage (LUKS)

@@ -1,0 +1,52 @@
+= Managing Files
+
+.Example for defining files, directories and links
+[source,yaml]
+----
+variant: fcos
+version: 1.3.0
+storage:
+  # This creates a directory. Its mode is set to 0755 by default, that
+  # is, readable and executable by all, and writable by the owner.
+  directories:
+  - path: /opt/tools
+    overwrite: true
+  files:
+    -
+      # Creates a file /var/helloworld containing a string defined in-line.
+      path: /var/helloworld
+      overwrite: true
+      contents:
+        inline: Hello, world!
+      # Sets the file mode to 0644 (readable by all, writable by the owner).
+      mode: 0644
+      # Sets owernship to dnsmasq:dnsmasq.
+      user:
+        name: dnsmasq
+      group:
+        name: dnsmasq
+    -
+      # We need the nifty (and alas imaginary) transmogrifier tool.
+      path: /opt/tools/transmogrifier
+      overwrite: true
+      # Deploys this tool by copying an executable from an https link. The
+      # file is compressed with gzip.
+      contents:
+        source: https://mytools.example.com/path/to/archive.gz
+        compression: gzip
+        verification:
+          # The hash is sha512- followed by the 128 hex characters given by
+          # the sha512sum command.
+          hash: sha512-00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+      # Makes the tool file readable and executable by all.
+      mode: 0555
+  links:
+    -
+      # Creates a symlink to the tool location from /usr/local/bin. This is
+      # useful to let local processes invoke this tool without altering
+      # their PATH environment variable.
+      path: /usr/local/bin/transmogrifier
+      overwrite: true
+      target: /opt/tools/transmogrifier
+      hard: false
+----
