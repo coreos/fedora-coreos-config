@@ -1,28 +1,112 @@
-= Producing an Ignition File
+= Producing an Ignition Config
 
-This guide provides step-by-step instructions on how to produce a basic Ignition file.
+== Ignition overview
 
-Fedora CoreOS (FCOS) Ignition files specify the configuration for provisioning FCOS instances. The process begins with a YAML configuration file. The FCOS Configuration Transpiler (FCCT) converts the human-friendly YAML file into machine-friendly JSON, which is the final configuration file for Ignition.
+Ignition is a provisioning utility that reads a configuration file (in JSON format) and provisions a Fedora CoreOS system based on that configuration. Configurable components include storage and filesystems, systemd units, and users.
 
-FCOS ingests the Ignition file only on first boot, applying the whole configuration or failing to boot in case of errors. After that, instance configuration is meant to be immutable.
+Ignition runs only once during the first boot of the system (while in the initramfs). Because Ignition runs so early in the boot process, it can re-partition disks, format filesystems, create users, and write files before the userspace begins to boot. As a result, systemd services are already written to disk when systemd starts, speeding the time to boot.
 
-TIP: Before provisioning an FCOS instance, plan your configuration with the full set of customization details. If you forgot something, simply fix the configuration and re-deploy the instance from a fresh image.
+== Configuration process
+
+Ignition configurations are formatted as JSON, which is quick and easy for a machine to read. However, these files are not easy for humans to read or write. The solution is a two-step configuration process that is friendly for both humans and machines:
+
+. Produce a YAML-formatted Fedora CoreOS Configuration (FCC) file.
+. Run the Fedora CoreOS Configuration Transpiler (`fcct`) to convert the YAML file into a JSON Ignition file.
+
+During the transpilation process, `fcct` verifies the syntax of the YAML file, which can catch errors before you use it to launch the FCOS system.
+
+Once you have an Ignition (`.ign`) file, you can use it to boot an FCOS system in a VM or install it on bare metal.
+
+TIP: Try to plan your configuration with the full set of customization details before provisioning a Fedora CoreOS instance. But don't worry if you forgot something as you can simply fix the configuration and re-deploy the instance from a fresh image.
+
+== Getting FCCT
+
+You can run `fcct` as a container with docker or podman or download it as a standalone binary.
+
+NOTE: Unless otherwise noted, new releases of `fcct` are backwards compatible with old releases.
+
+=== Via a container with `podman` or `docker`
+
+You can get `fccŧ` from a container hosted on https://quay.io/[quay.io]:
+
+[source,bash]
+----
+podman pull quay.io/coreos/fcct:release
+----
+
+NOTE: The `release` tag tracks the most recent release, and the `latest` tag tracks the Git development branch.
+
+Run `fcct` either by using standard in and standard out or by using files:
+
+.Example running `fcct` using standard in and standard out:
+[source,bash]
+----
+podman run --interactive --rm quay.io/coreos/fcct:release \
+       --pretty --strict < your_config.fcc > transpiled_config.ign
+----
+
+.Example running `fcct` using a file as input and standard out:
+[source,bash]
+----
+podman run --interactive --rm --security-opt label=disable \
+       --volume ${PWD}:/pwd --workdir /pwd quay.io/coreos/fcct:release \
+       --pretty --strict your_config.fcc > transpiled_config.ign
+----
+
+To make it simpler to type, you may also add the following alias to your shell configuration:
+
+[source,bash]
+----
+alias fcct='podman run --rm --tty --interactive \
+            --security-opt label=disable        \
+            --volume ${PWD}:/pwd --workdir /pwd \
+            quay.io/coreos/fcct:release'
+----
+
+NOTE: Those examples use podman, but you can use docker in a similar manner.
+
+=== Installing via Fedora packages
+
+`fcct` is available as Fedora a package:
+
+[source,bash]
+----
+sudo dnf install -y fcct
+----
+
+=== Standalone binary
+
+To use the `fcct` binary on Linux, follow these steps:
+
+. If you have not already done so, download the https://getfedora.org/security/[Fedora signing keys] and import them:
++
+[source,bash]
+----
+curl https://getfedora.org/static/fedora.gpg | gpg --import
+----
+. Download the latest version of `fcct` and the detached signature from the https://github.com/coreos/fcct/releases[releases page].
+. Verify it with gpg:
++
+[source,bash]
+----
+gpg --verify fcct-x86_64-unknown-linux-gnu.asc
+----
 
 == A simple example
 
-Create a basic Ignition file that modifies the default FCOS user `core` to allow this user login with an SSH key.
+Create a basic Ignition file that modifies the default Fedora CoreOS user `core` to allow this user login with an SSH key.
 
 The overall steps are as follows:
 
 . Write the Fedora CoreOS Configuration (FCC) file in the YAML format.
-. Use the `quay.io/coreos/fcct:release` container image to convert the FCC file into an Ignition (JSON) file.
-. Boot a fresh FCOS image with the resulting Ignition configuration.
+. Use the `fcct` to convert the FCC file into an Ignition (JSON) file.
+. Boot a fresh Fedora CoreOS image with the resulting Ignition configuration.
 
 === Prerequisite
 
 This example uses a pair of SSH public and private keys. If you don't already have it, you can https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index#sec-SSH[generate an SSH key pair].
 
-The SSH public key will be provisioned to the FCOS machine (via Ignition). The SSH private key needs to be available to your user on the local workstation, in order to remotely authenticate yourself over SSH.
+The SSH public key will be provisioned to the Fedora CoreOS machine (via Ignition). The SSH private key needs to be available to your user on the local workstation, in order to remotely authenticate yourself over SSH.
 
 === Writing the FCC file
 
@@ -43,23 +127,15 @@ passwd:
 +
 . Save the file with the name `example.fcc`.
 
-TIP: YAML files must have consistent indentation. Although `fcct` checks for syntax errors, ensure that the indentation matches the above example. Overall, the FCC files must conform to ``fcct``'s xref:fcct-config.adoc[schema].
+TIP: YAML files must have consistent indentation. Although `fcct` checks for syntax errors, ensure that the indentation matches the above example. Overall, the FCC files must conform to ``fcct``'s https://coreos.github.io/fcct/specs/[configuration specification] format.
 
 === Using FCCT
-`fcct`, the Fedora CoreOS Config Transpiler, is a tool that produces a JSON Ignition file from the YAML FCC file. Using the FCC file, an FCOS machine can be told to create users, create filesystems, set up the network, install systemd units, and more.
 
-An easy way to use `fcct` is to run it in a container with `podman`:
-
-. Pull the container for `fcct`:
-+
-`podman pull quay.io/coreos/fcct:release`
-+
 . Run fcct on the FCC file:
 +
-`podman run -i --rm quay.io/coreos/fcct:release --pretty --strict < example.fcc > example.ign`
+[source,bash]
+----
+fcct --pretty --strict < example.fcc > example.ign
+----
 +
-. Use the `example.ign` file to xref:getting-started.adoc[boot FCOS].
-
-== FCC configuration details
-
-Refer to xref:fcct-config.adoc[Provisioning and Configuration] for the full configuration specification.
+. Use the `example.ign` file to xref:getting-started.adoc[boot Fedora CoreOS].
