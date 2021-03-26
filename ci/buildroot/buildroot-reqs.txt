@@ -31,7 +31,8 @@ rustfmt
 # A super common tool
 jq
 
-# Used by ostree/rpm-ostree CI
+# Used by ostree/rpm-ostree CI (TODO: add to something like TestBuildRequires in spec files)
+attr
 parallel gjs
 
 # Also, add clang since it's useful at least in CI for C/C++ projects
