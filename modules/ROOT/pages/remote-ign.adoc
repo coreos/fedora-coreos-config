@@ -1,0 +1,37 @@
+= Using a remote Ignition config
+
+With Ignition, you are not limited to the configuration provided locally to a system and you can retrieve other Ignition configs from a remote source. Those configs will then either replace or be merged into the existing config.
+
+The following examples show how to retrieve an Ignition file from a remote source. They are both set to replace the current configuration with a remote Ignition file.
+
+.Retrieving a remote Ignition file via HTTP
+[source,yaml]
+----
+variant: fcos
+version: 1.3.0
+ignition:
+  config:
+    replace:
+      source: http://example.com/sample.ign
+      verification:
+        hash: sha512-e2bb19fdbc3604f511b13d66f4c675f011a63dd967b97e2fe4f5d50bf6cb224e902182221ba0f9dd87c0bb4abcbd2ab428eb7965aa7f177eb5630e7a1793e2e6
+----
+
+.Retrieving a remote Ignition file via HTTPS with a custom certificate authority
+[source,yaml]
+----
+variant: fcos
+version: 1.3.0
+ignition:
+  config:
+    replace:
+      source: https://example.com/sample.ign
+  security:
+    tls:
+      certificate_authorities:
+        - source: https://example.com/source1
+          verification:
+            hash: sha512-e2bb19fdbc3604f511b13d66f4c675f011a63dd967b97e2fe4f5d50bf6cb224e902182221ba0f9dd87c0bb4abcbd2ab428eb7965aa7f177eb5630e7a1793e2e6
+----
+
+NOTE: The certificate authorities listed here are not automatically added to the host filesystem. They are solely used by Ignition itself when fetching over `https`. If you'd like to also install them on the host filesystem, include them as usual under the `storage.files` array.
