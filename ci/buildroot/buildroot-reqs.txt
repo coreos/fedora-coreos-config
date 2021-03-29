@@ -41,3 +41,6 @@ clang lld
 libubsan libasan libtsan
 # And all C/C++ projects should use clang-analyzer
 clang-analyzer
+
+# We don't want zombies in our pods
+dumb-init
