@@ -33,6 +33,7 @@ jq
 
 # Used by ostree/rpm-ostree CI (TODO: add to something like TestBuildRequires in spec files)
 attr
+python3-pyyaml
 parallel gjs
 
 # Also, add clang since it's useful at least in CI for C/C++ projects
