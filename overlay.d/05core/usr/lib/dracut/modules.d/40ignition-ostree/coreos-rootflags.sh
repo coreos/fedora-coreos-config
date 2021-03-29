@@ -1,16 +1,27 @@
 #!/bin/bash
 set -euo pipefail
 
+# see related comment block in transposefs.sh re. inspecting the config directly
+ignition_cfg=/run/ignition.json
 rootpath=/dev/disk/by-label/root
 
-# If the rootfs was reprovisioned, then the user is free to define their own
-# rootflags.
+query_rootfs() {
+    local filter=$1
+    jq -re ".storage?.filesystems? // [] |
+                map(select(.label == \"root\" and .wipeFilesystem == true)) |
+                .[0] | $filter" "${ignition_cfg}"
+}
+
+# If the rootfs was reprovisioned, then the mountOptions from the Ignition
+# config has priority.
 if [ -d /run/ignition-ostree-transposefs/root ]; then
-    exit 0
+    if query_rootfs 'has("mountOptions")' >/dev/null; then
+        query_rootfs '.mountOptions | join(",")'
+        exit 0
+    fi
 fi
 
 eval $(blkid -o export ${rootpath})
-# this really should always be true, but let's be conservative
 if [ "${TYPE}" == "xfs" ]; then
     # We use prjquota on XFS by default to aid multi-tenant Kubernetes (and
     # other container) clusters.  See
