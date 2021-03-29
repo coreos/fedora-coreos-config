@@ -49,16 +49,16 @@
       "evra": "1:2.8-9.fc33.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.11.27-1.fc33.x86_64"
+      "evra": "32:9.11.28-1.fc33.x86_64"
     },
     "bind-libs-lite": {
-      "evra": "32:9.11.27-1.fc33.x86_64"
+      "evra": "32:9.11.28-1.fc33.x86_64"
     },
     "bind-license": {
-      "evra": "32:9.11.27-1.fc33.noarch"
+      "evra": "32:9.11.28-1.fc33.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.11.27-1.fc33.x86_64"
+      "evra": "32:9.11.28-1.fc33.x86_64"
     },
     "bootupd": {
       "evra": "0.2.4-2.fc33.x86_64"
@@ -94,16 +94,16 @@
       "evra": "6.11-2.fc33.x86_64"
     },
     "clevis": {
-      "evra": "15-2.fc33.x86_64"
+      "evra": "16-1.fc33.x86_64"
     },
     "clevis-dracut": {
-      "evra": "15-2.fc33.x86_64"
+      "evra": "16-1.fc33.x86_64"
     },
     "clevis-luks": {
-      "evra": "15-2.fc33.x86_64"
+      "evra": "16-1.fc33.x86_64"
     },
     "clevis-systemd": {
-      "evra": "15-2.fc33.x86_64"
+      "evra": "16-1.fc33.x86_64"
     },
     "cloud-utils-growpart": {
       "evra": "0.31-7.fc33.noarch"
@@ -127,7 +127,7 @@
       "evra": "0.21.1-2.fc33.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.151.0-1.fc33.noarch"
+      "evra": "2:2.158.0-1.fc33.noarch"
     },
     "containerd": {
       "evra": "1.4.3-1.fc33.x86_64"
@@ -223,7 +223,7 @@
       "evra": "3.7-7.fc33.x86_64"
     },
     "dnsmasq": {
-      "evra": "2.83-1.fc33.x86_64"
+      "evra": "2.84-1.fc33.x86_64"
     },
     "dosfstools": {
       "evra": "4.1-12.fc33.x86_64"
@@ -340,7 +340,7 @@
       "evra": "5.1.0-2.fc33.x86_64"
     },
     "gdisk": {
-      "evra": "1.0.6-1.fc33.x86_64"
+      "evra": "1.0.7-1.fc33.x86_64"
     },
     "gettext": {
       "evra": "0.21-3.fc33.x86_64"
@@ -349,7 +349,7 @@
       "evra": "0.21-3.fc33.x86_64"
     },
     "git-core": {
-      "evra": "2.29.2-3.fc33.x86_64"
+      "evra": "2.30.2-1.fc33.x86_64"
     },
     "glib2": {
       "evra": "2.66.7-1.fc33.x86_64"
@@ -403,7 +403,7 @@
       "evra": "3.23-3.fc33.x86_64"
     },
     "hwdata": {
-      "evra": "0.344-1.fc33.noarch"
+      "evra": "0.345-1.fc33.noarch"
     },
     "ignition": {
       "evra": "2.9.0-4.fc33.x86_64"
@@ -694,7 +694,7 @@
       "evra": "0.1.5-46.fc33.x86_64"
     },
     "librepo": {
-      "evra": "1.12.1-1.fc33.x86_64"
+      "evra": "1.13.0-1.fc33.x86_64"
     },
     "libreport-filesystem": {
       "evra": "2.14.0-15.fc33.noarch"
@@ -814,16 +814,16 @@
       "evra": "0.2.5-3.fc33.x86_64"
     },
     "libzstd": {
-      "evra": "1.4.7-1.fc33.x86_64"
+      "evra": "1.4.9-1.fc33.x86_64"
     },
     "linux-atm-libs": {
       "evra": "2.5.1-27.fc33.x86_64"
     },
     "linux-firmware": {
-      "evra": "20210208-117.fc33.noarch"
+      "evra": "20210208-118.fc33.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20210208-117.fc33.noarch"
+      "evra": "20210208-118.fc33.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.28-1.fc33.x86_64"
@@ -894,9 +894,6 @@
     "nftables": {
       "evra": "1:0.9.3-8.fc33.x86_64"
     },
-    "nmap-ncat": {
-      "evra": "2:7.80-5.fc33.x86_64"
-    },
     "npth": {
       "evra": "1.6-5.fc33.x86_64"
     },
@@ -925,10 +922,10 @@
       "evra": "8.4p1-5.fc33.x86_64"
     },
     "openssl": {
-      "evra": "1:1.1.1i-3.fc33.x86_64"
+      "evra": "1:1.1.1j-1.fc33.x86_64"
     },
     "openssl-libs": {
-      "evra": "1:1.1.1i-3.fc33.x86_64"
+      "evra": "1:1.1.1j-1.fc33.x86_64"
     },
     "os-prober": {
       "evra": "1.77-6.fc33.x86_64"
@@ -1060,10 +1057,10 @@
       "evra": "4.8-5.fc33.x86_64"
     },
     "selinux-policy": {
-      "evra": "3.14.6-34.fc33.noarch"
+      "evra": "3.14.6-35.fc33.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "3.14.6-34.fc33.noarch"
+      "evra": "3.14.6-35.fc33.noarch"
     },
     "setup": {
       "evra": "2.13.7-2.fc33.noarch"
@@ -1090,7 +1087,7 @@
       "evra": "2.3.2-8.fc33.x86_64"
     },
     "slirp4netns": {
-      "evra": "1.1.8-1.fc33.x86_64"
+      "evra": "1.1.9-1.fc33.x86_64"
     },
     "snappy": {
       "evra": "1.1.8-4.fc33.x86_64"
@@ -1159,7 +1156,7 @@
       "evra": "1.31-2.fc33.x86_64"
     },
     "toolbox": {
-      "evra": "0.0.99-1.fc33.x86_64"
+      "evra": "0.0.99.1-1.fc33.x86_64"
     },
     "tpm2-tools": {
       "evra": "4.3.0-1.fc33.x86_64"
@@ -1177,13 +1174,13 @@
       "evra": "2.36.1-1.fc33.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.2541-1.fc33.x86_64"
+      "evra": "2:8.2.2576-1.fc33.x86_64"
     },
     "which": {
       "evra": "2.21-20.fc33.x86_64"
     },
     "wireguard-tools": {
-      "evra": "1.0.20200827-2.fc33.x86_64"
+      "evra": "1.0.20210223-1.fc33.x86_64"
     },
     "xfsprogs": {
       "evra": "5.7.0-1.fc33.x86_64"
@@ -1201,7 +1198,7 @@
       "evra": "1.1.9-1.fc33.x86_64"
     },
     "zincati": {
-      "evra": "0.0.17-1.fc33.x86_64"
+      "evra": "0.0.18-1.fc33.x86_64"
     },
     "zlib": {
       "evra": "1.2.11-23.fc33.x86_64"
@@ -1211,16 +1208,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-03-01T21:44:06Z",
+    "generated": "2021-03-14T21:07:43Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-10-19T23:27:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-02-28T21:46:23Z"
+        "generated": "2021-03-07T21:58:31Z"
       },
       "fedora-updates": {
-        "generated": "2021-03-01T16:45:38Z"
+        "generated": "2021-03-13T21:29:53Z"
       }
     }
   }

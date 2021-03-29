@@ -25,7 +25,7 @@ install() {
         sort \
         uniq
 
-    # coreos-growpart deps
+    # ignition-ostree-growfs deps
     inst_multiple  \
         basename   \
         blkid      \
@@ -59,6 +59,9 @@ install() {
         sgdisk    \
         find
 
+    # TODO f34: check if we can drop this temporary workaround for https://github.com/latchset/clevis/pull/295
+    inst_multiple seq
+
     for x in mount populate; do
         install_ignition_unit ignition-ostree-${x}-var.service
         inst_script "$moddir/ignition-ostree-${x}-var.sh" "/usr/sbin/ignition-ostree-${x}-var"
@@ -87,7 +90,12 @@ install() {
         "/usr/sbin/coreos-rootflags"
 
     install_ignition_unit ignition-ostree-growfs.service
-    inst_script "$moddir/coreos-growpart" /usr/libexec/coreos-growpart
+    inst_script "$moddir/ignition-ostree-growfs.sh" \
+        /usr/sbin/ignition-ostree-growfs
+
+    install_ignition_unit ignition-ostree-check-rootfs-size.service
+    inst_script "$moddir/coreos-check-rootfs-size" \
+        /usr/libexec/coreos-check-rootfs-size
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
 }

@@ -8,8 +8,8 @@ fstype=$(findmnt -nvr / -o FSTYPE)
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
       # check that the partition was grown
-      if [ ! -e /run/coreos-growpart.stamp ]; then
-          echo "coreos-growpart did not run"
+      if [ ! -e /run/ignition-ostree-growfs.stamp ]; then
+          echo "ignition-ostree-growfs did not run"
           exit 1
       fi
 
