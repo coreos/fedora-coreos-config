@@ -1,6 +1,6 @@
 {
     "ignition": {
-        "version": "3.0.0"
+        "version": "3.2.0"
     },
     "storage": {
         "filesystems": [
@@ -8,7 +8,8 @@
                 "device": "/dev/disk/by-label/root",
                 "wipeFilesystem": true,
                 "format": "ext4",
-                "label": "root"
+                "label": "root",
+                "mountOptions": ["debug"]
             }
         ]
     }

@@ -95,7 +95,8 @@ Updating this repo:
 1. bump `releasever` in `manifest.yaml`
 2. update the repos in `manifest.yaml` if needed
 3. run `cosa fetch --update-lockfile`
-4. PR the result
+4. bump the base Fedora version in `ci/buildroot/Dockerfile`
+5. PR the result
 
 Update server changes:
 
