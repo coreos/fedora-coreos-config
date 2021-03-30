@@ -1,1 +1,15 @@
-packages: {}
+packages:
+  # Fast-track console-login-helper-messages release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-99a286473a
+  # New updates in console-login-helper-messages v0.21.2 fixes
+  # the console prompt being left solid white after displaying
+  # the OS release MOTD.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/750
+  console-login-helper-messages:
+    evra: 0.21.2-1.fc34.noarch
+  console-login-helper-messages-issuegen:
+    evra: 0.21.2-1.fc34.noarch
+  console-login-helper-messages-motdgen:
+    evra: 0.21.2-1.fc34.noarch
+  console-login-helper-messages-profile:
+    evra: 0.21.2-1.fc34.noarch
