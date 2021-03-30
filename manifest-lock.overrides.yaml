@@ -22,9 +22,4 @@ packages:
     evr: 5.10.19-200.fc33
   kernel-modules:
     evr: 5.10.19-200.fc33
-  # Fast-track coreos-installer release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-7a0ce6189e
-  coreos-installer:
-    evr: 0.8.0-1.fc33
-  coreos-installer-bootinfra:
-    evr: 0.8.0-1.fc33
+
