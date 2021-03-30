@@ -33,6 +33,7 @@ jq
 
 # Used by ostree/rpm-ostree CI (TODO: add to something like TestBuildRequires in spec files)
 attr
+rsync
 python3-pyyaml
 parallel gjs
 
