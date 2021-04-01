@@ -10,9 +10,9 @@ As usual we will setup console autologin, a hostname, systemd pager configuratio
 * Add a systemd service (`failure.service`) that fails on boot.
 * Add a systemd service that will use a container to bring up a hosted service.
 
-== Writing the Fedora CoreOS config and converting to Ignition
+== Writing the Butane config and converting to Ignition
 
-Similarly to what we did in the second provisioning scenario, we will write the following Fedora CoreOS config in a file called `fcct-containers.yaml`:
+Similarly to what we did in the second provisioning scenario, we will write the following Butane config in a file called `containers.bu`:
 
 [source,yaml]
 ----
@@ -95,11 +95,11 @@ storage:
 
 TIP: Optionally you can replace the SSH pubkey in the yaml file with your own public key so you can log in to the booted instance. If you choose not to do this you'll still be auto logged in to the serial console.
 
-Run `fcct` to convert that to an Ignition config:
+Run Butane to convert that to an Ignition config:
 
 [source,bash]
 ----
-fcct --pretty --strict fcct-containers.yaml --output containers.ign
+butane --pretty --strict containers.bu --output containers.ign
 ----
 
 Now let's provision it:

@@ -6,11 +6,11 @@ NOTE: Make sure that you have completed the steps described in the xref:tutorial
 
 Fedora CoreOS does not have a separate install disk. Instead, every instance starts from a generic disk image which is customized on first boot via https://github.com/coreos/ignition[Ignition].
 
-Ignition config files are written in JSON but are typically not user friendly. Configurations are thus written in a simpler format, Fedora CoreOS Config, that is then converted into an Ignition config. The tool responsible for converting Fedora CoreOS Configs into Ignition configs is called the Fedora CoreOS Config Transpiler (or FCCT).
+Ignition config files are written in JSON but are typically not user friendly. Configurations are thus written in a simpler format, the Butane config, that is then converted into an Ignition config. The tool responsible for converting Butane configs into Ignition configs is naturally called Butane.
 
-== First Ignition config via FCCT
+== First Ignition config via Butane
 
-Let's create a very simple Fedora CoreOS config that will perform the following actions:
+Let's create a very simple Butane config that will perform the following actions:
 
 - Add a systemd dropin to override the default `serial-getty@ttyS0.service`.
     - The override will make the service automatically log the `core` user in to the serial console of the booted machine.
@@ -18,7 +18,7 @@ Let's create a very simple Fedora CoreOS config that will perform the following 
 - Add a bash profile that tells systemd to not use a pager for output.
 - Raise kernel console logging level to hide audit messages from the console.
 
-We can create a config file named `fcct-autologin.yaml` now as:
+We can create a config file named `autologin.bu` now as:
 
 [source,yaml]
 ----
@@ -57,14 +57,14 @@ storage:
           kernel.printk=4
 ----
 
-This configuration can then be converted into an Ignition config with `fcct`:
+This configuration can then be converted into an Ignition config with Butane:
 
 [source,bash]
 ----
-$ fcct --pretty --strict fcct-autologin.yaml --output autologin.ign
+$ butane --pretty --strict autologin.bu --output autologin.ign
 ----
 
-The resulting Ignition configuration produced by `fcct` as `autologin.ign` has the following content:
+The resulting Ignition configuration produced by Butane as `autologin.ign` has the following content:
 
 [source,json]
 ----
@@ -113,7 +113,7 @@ The resulting Ignition configuration produced by `fcct` as `autologin.ign` has t
 }
 ----
 
-Luckily `fcct` outputs valid Ignition configs. However, if you are tweaking the config after `fcct`, or manually creating Ignition configs, you will have to verify that the config format is valid with `ignition-validate`:
+Butane outputs valid Ignition configs. However, if you are tweaking the config after Butane, or manually creating Ignition configs, you will have to verify that the config format is valid with `ignition-validate`:
 
 [source,bash]
 ----

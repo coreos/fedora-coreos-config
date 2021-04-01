@@ -2,7 +2,7 @@
 
 NOTE: Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
 
-In this tutorial, we will run a script on the first boot via a systemd service. We will add the following to the Fedora CoreOS config from the previous scenario:
+In this tutorial, we will run a script on the first boot via a systemd service. We will add the following to the Butane config from the previous scenario:
 
 * Add a script at `/usr/local/bin/public-ipv4.sh`.
 * Configure a systemd service to run the script on first boot.
@@ -43,11 +43,11 @@ RemainAfterExit=yes
 WantedBy=console-login-helper-messages-issuegen.service
 ----
 
-We will call this unit `issuegen-public-ipv4.service` and we will embed it into the Fedora CoreOS config in the next section.
+We will call this unit `issuegen-public-ipv4.service` and we will embed it into the Butane config in the next section.
 
-== Writing the Fedora CoreOS config and converting to Ignition
+== Writing the Butane config and converting to Ignition
 
-We can now create a Fedora CoreOS config by including the script and the systemd unit directly as inline content into the systemd/units and storage/files sections. The final Fedora CoreOS config, stored in `fcct-services.yaml`, will be:
+We can now create a Butane config by including the script and the systemd unit directly as inline content into the systemd/units and storage/files sections. The final Butane config, stored in `services.bu`, will be:
 
 [source,yaml]
 ----
@@ -113,7 +113,7 @@ And then convert to Ignition:
 
 [source,bash]
 ----
-fcct --pretty --strict fcct-services.yaml --output services.ign
+butane --pretty --strict services.bu --output services.ign
 ----
 
 == Testing

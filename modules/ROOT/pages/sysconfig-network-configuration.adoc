@@ -94,7 +94,7 @@ Networking configuration can be performed by writing out files described in an I
 
 Any configuration provided via Ignition will be considered at a higher priority than any other method of configuring the Network for a Fedora CoreOS instance. If you specify Networking configuration via Ignition, try not to use other mechanisms to configure the network.
 
-An example https://docs.fedoraproject.org/en-US/fedora-coreos/producing-ign/[FCC] configuration for the same static networking example that we showed above is:
+An example https://docs.fedoraproject.org/en-US/fedora-coreos/producing-ign/[Butane] config for the same static networking example that we showed above is:
 
 [source, yaml]
 ----
@@ -121,7 +121,7 @@ storage:
 
 == Host Network Configuration Examples
 
-In this section we'll go through common examples of setting up different types of networking devices using both dracut kernel arguments as well as NetworkManager keyfiles via Ignition/FCCT.
+In this section we'll go through common examples of setting up different types of networking devices using both dracut kernel arguments as well as NetworkManager keyfiles via Ignition/Butane.
 
 Examples in this section that use a static IP will assume these values unless otherwise stated:
 
@@ -235,7 +235,7 @@ ip=${ip}::${gateway}:${netmask}:${hostname}:${interface}:none:${nameserver}
 ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:ens2:none:8.8.8.8
 ----
 
-==== FCC for Ignition
+==== Butane config
 
 .Template
 [source, yaml]
@@ -305,7 +305,7 @@ ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:bond0:none:8.8.8.8
 bond=bond0:ens2,ens3:mode=active-backup,miimon=100
 ----
 
-==== FCC for Ignition
+==== Butane config
 
 .Template
 [source, yaml]
@@ -420,7 +420,7 @@ ip=br0:dhcp
 bridge=br0:ens2,ens3
 ----
 
-==== FCC for Ignition
+==== Butane config
 
 .Template
 [source, yaml]
@@ -529,7 +529,7 @@ ip=team0:dhcp
 team=team0:ens2,ens3
 ----
 
-==== FCC for Ignition
+==== Butane config
 
 .Template
 [source, yaml]
@@ -648,7 +648,7 @@ ip=ens2:off
 vlan=ens2.100:ens2
 ----
 
-==== FCC for Ignition
+==== Butane config
 
 .Template
 [source, yaml]
@@ -767,7 +767,7 @@ bond=bond0:ens2,ens3:mode=active-backup,miimon=100
 vlan=vlan100:bond0
 ----
 
-==== FCC for Ignition
+==== Butane config
 
 .Template
 [source, yaml]

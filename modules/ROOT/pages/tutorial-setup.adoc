@@ -28,8 +28,8 @@ For instructions to setup `libvirt` and `KVM` you may refer to the https://docs.
 
 For the tutorials, we will need the following tools:
 
+  * Butane: To generate Ignition configuration from Butane config files.
   * `coreos-installer`: To download the latest Fedora CoreOS QCOW2 image.
-  * `fcct`: To generate Ignition configuration from Fedora CoreOS Config files.
   * `ignition-validate`: To validate Ignition configuration files.
 
 To keep all configurations files and Fedora CoreOS images in the same place, we will create a new directory to work from:
@@ -46,8 +46,8 @@ All of the tools required to work with Fedora CoreOS are available from containe
 
 [source,bash]
 ----
+podman pull quay.io/coreos/butane:release
 podman pull quay.io/coreos/coreos-installer:release
-podman pull quay.io/coreos/fcct:release
 podman pull quay.io/coreos/ignition-validate:release
 ----
 
@@ -55,6 +55,11 @@ To make it simpler to type, you may add the following aliases to your shell conf
 
 [source,bash]
 ----
+alias butane='podman run --rm --tty --interactive \
+              --security-opt label=disable        \
+              --volume ${PWD}:/pwd --workdir /pwd \
+              quay.io/coreos/butane:release'
+
 alias coreos-installer='podman run --pull=always            \
                         --rm --tty --interactive            \
                         --security-opt label=disable        \
@@ -65,11 +70,6 @@ alias ignition-validate='podman run --rm --tty --interactive \
                          --security-opt label=disable        \
                          --volume ${PWD}:/pwd --workdir /pwd \
                          quay.io/coreos/ignition-validate:release'
-
-alias fcct='podman run --rm --tty --interactive \
-            --security-opt label=disable        \
-            --volume ${PWD}:/pwd --workdir /pwd \
-            quay.io/coreos/fcct:release'
 ----
 
 You can then use `coreos-installer` to download the latest stable image with:
@@ -90,12 +90,12 @@ You are now ready to proceed with the xref:tutorial-autologin.adoc[first tutoria
 
 === Installing via Fedora packages
 
-All three tools (`coreos-installer`, `fcct` and `ignition-validate`) are available as Fedora packages:
+All three tools (Butane, `coreos-installer`, and `ignition-validate`) are available as Fedora packages:
 
 [source,bash]
 ----
 # Installing the tools
-sudo dnf install -y coreos-installer fcct ignition-validate
+sudo dnf install -y butane coreos-installer ignition-validate
 
 # Downloading the latest Fedora CoreOS stable QCOW2 image
 coreos-installer download -p qemu -f qcow2.xz --decompress
@@ -143,16 +143,16 @@ To make the tutorial simpler, you should rename the image that we have just down
 mv fedora-coreos-32.20200715.3.0-qemu.x86_64.qcow2 fedora-coreos.qcow2
 ----
 
-You should then download the latest https://github.com/coreos/fcct/releases[fcct] and https://github.com/coreos/ignition/releases[ignition-validate] releases from GitHub:
+You should then download the latest https://github.com/coreos/butane/releases[Butane] and https://github.com/coreos/ignition/releases[ignition-validate] releases from GitHub:
 
 [source,bash]
 ----
-# fcct
-curl -OL https://github.com/coreos/fcct/releases/download/v0.6.0/fcct-x86_64-unknown-linux-gnu
-curl -OL https://github.com/coreos/fcct/releases/download/v0.6.0/fcct-x86_64-unknown-linux-gnu.asc
-gpg --verify fcct-x86_64-unknown-linux-gnu.asc
-mv fcct-x86_64-unknown-linux-gnu fcct
-chmod a+x fcct
+# Butane
+curl -OL https://github.com/coreos/butane/releases/download/v0.11.0/butane-x86_64-unknown-linux-gnu
+curl -OL https://github.com/coreos/butane/releases/download/v0.11.0/butane-x86_64-unknown-linux-gnu.asc
+gpg --verify butane-x86_64-unknown-linux-gnu.asc
+mv butane-x86_64-unknown-linux-gnu butane
+chmod a+x butane
 
 # ignition-validate
 curl -OL https://github.com/coreos/ignition/releases/download/v2.5.0/ignition-validate-x86_64-linux
@@ -162,11 +162,11 @@ mv ignition-validate-x86_64-linux ignition-validate
 chmod a+x ignition-validate
 ----
 
-You may then setup aliases for `fcct` and `ignition-validate`:
+You may then setup aliases for `butane` and `ignition-validate`:
 
 [source,bash]
 ----
-alias fcct="${PWD}/fcct"
+alias butane="${PWD}/butane"
 alias ignition-validate="${PWD}/ignition-validate"
 ----
 
@@ -174,9 +174,9 @@ Or move those commands to a folder in your `$PATH`, for example:
 
 [source,bash]
 ----
-mv fcct ignition-validate "${HOME}/.local/bin/"
+mv butane ignition-validate "${HOME}/.local/bin/"
 # Or
-mv fcct ignition-validate "${HOME}/bin"
+mv butane ignition-validate "${HOME}/bin"
 ----
 
 You are now ready to proceed with the xref:tutorial-autologin.adoc[first tutorial].

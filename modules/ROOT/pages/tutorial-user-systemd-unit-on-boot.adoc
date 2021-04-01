@@ -2,7 +2,7 @@
 
 NOTE: Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
 
-In this tutorial, we will setup a user level systemd unit for an unprivileged user. There are times when it's helpful to launch a user-level https://www.freedesktop.org/software/systemd/man/systemd.unit.html[systemd unit] without having to log in. For example, you may wish to launch a container that provides a network service or run an HPC job. For this setup, we will add the following to a Fedora CoreOS config:
+In this tutorial, we will setup a user level systemd unit for an unprivileged user. There are times when it's helpful to launch a user-level https://www.freedesktop.org/software/systemd/man/systemd.unit.html[systemd unit] without having to log in. For example, you may wish to launch a container that provides a network service or run an HPC job. For this setup, we will add the following to a Butane config:
 
 * A user level systemd unit: `/home/sleeper/.config/systemd/user/linger-example.service`.
 * Enable it as a user level systemd service.
@@ -44,7 +44,7 @@ storage:
         name: sleeper
 ----
 
-System services can be directly enabled in FCC but user level services have to be manually enabled for now:
+System services can be directly enabled in Butane configs but user level services have to be manually enabled for now:
 
 [source,yaml]
 ----
@@ -80,9 +80,9 @@ storage:
       mode: 0644
 ----
 
-== Writing the Fedora CoreOS config and converting to Ignition
+== Writing the Butane config and converting to Ignition
 
-The final Fedora CoreOS config, stored in `fcct-user.yaml`, will be:
+The final Butane config, stored in `user.bu`, will be:
 
 [source,yaml]
 ----
@@ -133,7 +133,7 @@ This config can be converted to Ignition:
 
 [source,bash]
 ----
-fcct --pretty --strict fcct-user.yaml --output user.ign
+butane --pretty --strict user.bu --output user.ign
 ----
 
 == Testing

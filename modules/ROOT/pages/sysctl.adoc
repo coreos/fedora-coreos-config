@@ -5,7 +5,7 @@ The Linux kernel offers a plethora of knobs under `/proc/sys` to control the ava
 Values under `/proc/sys` can be changed directly at runtime, but such changes will not be persisted across reboots.
 Persistent settings should be written under `/etc/sysctl.d/` during provisioning, in order to be applied on each boot.
 
-As an example, the https://coreos.github.io/fcct/[FCCT] snippet below shows how to disable _SysRq_ keys:
+As an example, the xref:producing-ign.adoc[Butane] snippet below shows how to disable _SysRq_ keys:
 
 .Example: configuring kernel tunable to disable SysRq keys
 [source,yaml]

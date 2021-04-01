@@ -14,7 +14,7 @@ A custom "rollout wariness" value (see https://github.com/coreos/zincati/blob/ma
 
 The `rollout_wariness` parameter can be set to a floating point value between `0.0` (most eager) and `1.0` (most conservative).
 In order to receive updates very early in the phased rollout cycle, a node can be configured with a low value (e.g. `0.001`).
-This can be done during provisioning by using the xref:producing-ign.adoc[FCCT] configuration snippet shown below:
+This can be done during provisioning by using the xref:producing-ign.adoc[Butane] config snippet shown below:
 
 .Example: configuring Zincati rollout wariness
 [source,yaml]
@@ -43,7 +43,7 @@ The following finalization strategies are available:
 
 A specific finalization strategy can be configured on each node.
 
-The xref:producing-ign.adoc[FCCT] snippet below shows how to define two maintenance windows during weekend days, starting at 22:30 UTC and lasting one hour each:
+The xref:producing-ign.adoc[Butane] snippet below shows how to define two maintenance windows during weekend days, starting at 22:30 UTC and lasting one hour each:
 
 .Example: configuring Zincati updates strategy
 [source,yaml]

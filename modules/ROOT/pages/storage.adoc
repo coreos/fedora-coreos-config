@@ -23,7 +23,7 @@ For physical hardware, a good best practice is to reference devices via the `/de
 
 == Setting up separate /var mounts
 
-Here's an example FCC file to set up `/var` on a separate partition on the same primary disk:
+Here's an example Butane config to set up `/var` on a separate partition on the same primary disk:
 
 .Adding a /var partition to the primary disk
 [source,yaml]
@@ -54,8 +54,8 @@ storage:
       device: /dev/disk/by-partlabel/var
       # We can select the filesystem we'd like.
       format: ext4
-      # Ask FCCT to generate a mount unit for us so that this filesystem gets
-      # mounted in the real root.
+      # Ask Butane to generate a mount unit for us so that this filesystem
+      # gets mounted in the real root.
       with_mount_unit: true
 ----
 
@@ -184,7 +184,7 @@ storage:
 
 NOTE: You don't need the `path` or `with_mount_unit` keys; FCOS knows that the root partition is special and will figure out how to find it and mount it.
 
-If you want to replicate the boot disk across multiple drives for resiliency to drive failure, you need to mirror all of the default partitions (root, boot, EFI System Partition, and bootloader code).  There is special FCC syntax for this:
+If you want to replicate the boot disk across multiple drives for resiliency to drive failure, you need to mirror all of the default partitions (root, boot, EFI System Partition, and bootloader code).  There is special Butane config syntax for this:
 
 .Mirroring the boot disk onto two drives
 [source,yaml]
@@ -264,7 +264,7 @@ storage:
       with_mount_unit: true
 ----
 
-The root filesystem can also be moved to LUKS. In the case of the root filesystem the LUKS device must be backed by https://github.com/coreos/ignition/blob/master/docs/operator-notes.md#clevis-based-devices[clevis]. There is simplified FCC syntax for encrypting the root filesystem; for example:
+The root filesystem can also be moved to LUKS. In the case of the root filesystem the LUKS device must be backed by https://github.com/coreos/ignition/blob/master/docs/operator-notes.md#clevis-based-devices[clevis]. There is simplified Butane config syntax for encrypting the root filesystem; for example:
 
 .Moving the root filesystem to LUKS
 [source,yaml]
@@ -335,7 +335,7 @@ storage:
 
 This example creates a swap partition spanning all of the `sdb` device, creates a swap area on it, and creates a systemd swap unit so the swap area is enabled on boot.
 
-NOTE: Using `with_mount_unit: true` with `format: swap` requires FCC spec version `1.4.0-experimental`.  After spec 1.4.0 is stabilized, version `1.4.0-experimental` will no longer be accepted by FCCT and configs that use it will need to be updated.
+NOTE: Using `with_mount_unit: true` with `format: swap` requires Butane spec version `1.4.0-experimental`.  After spec 1.4.0 is stabilized, version `1.4.0-experimental` will no longer be accepted by Butane and configs that use it will need to be updated.
 
 .Configuring a swap partition on a second disk
 [source,yaml]
@@ -410,7 +410,7 @@ storage:
 
 == Disk Layout
 
-All Fedora CoreOS systems start with the same disk image which varies slightly between architectures based on what is needed for bootloading. On first boot the root filesystem is expanded to fill the rest of the disk. The disk image can be customized using Fedora CoreOS Configs to repartition the disk and create/reformat filesystems. Bare metal installations are not different; the installer only copies the raw image to the target disk and injects the specified config into `/boot` for use on first boot.
+All Fedora CoreOS systems start with the same disk image which varies slightly between architectures based on what is needed for bootloading. On first boot the root filesystem is expanded to fill the rest of the disk. The disk image can be customized using Butane configs to repartition the disk and create/reformat filesystems. Bare metal installations are not different; the installer only copies the raw image to the target disk and injects the specified config into `/boot` for use on first boot.
 
 NOTE: See xref:#_reconfiguring_the_root_filesystem[Reconfiguring the root filesystem] for examples regarding the supported changes to the root partition.
 

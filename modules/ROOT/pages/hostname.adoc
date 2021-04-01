@@ -1,6 +1,6 @@
 = Setting a Hostname
 
-To set a custom hostname for your system, use the following FCC to write to `/etc/hostname`:
+To set a custom hostname for your system, use the following Butane config to write to `/etc/hostname`:
 
 [source,yaml]
 ----

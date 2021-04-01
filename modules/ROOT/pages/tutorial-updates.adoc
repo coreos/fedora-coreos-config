@@ -38,15 +38,15 @@ To make the tutorial simpler, you should rename this image to a shorter name:
 mv fedora-coreos-$RELEASE-qemu.x86_64.qcow2 fedora-coreos-older.qcow2
 ----
 
-== Writing the Fedora CoreOS config and converting to Ignition
+== Writing the Butane config and converting to Ignition
 
-We will create a Fedora CoreOS config that:
+We will create a Butane config that:
 
 * Sets up console autologin.
 * Raise kernel console logging level to hide audit messages from the console.
 * Add an SSH Key for the `core` user.
 
-Let's write this Fedora CoreOS config to a file called `fcct-updates.yaml`:
+Let's write this Butane config to a file called `updates.bu`:
 
 [source,yaml]
 ----
@@ -88,11 +88,11 @@ storage:
 
 TIP: Optionally you can replace the SSH pubkey in the yaml file with your own public key so you can log in to the booted instance. If you choose not to do this you'll still be auto logged in to the serial console.
 
-Run `fcct` to convert that to an Ignition config:
+Run Butane to convert that to an Ignition config:
 
 [source,bash]
 ----
-fcct --pretty --strict fcct-updates.yaml --output updates.ign
+butane --pretty --strict updates.bu --output updates.ign
 ----
 
 == Startup and initial update

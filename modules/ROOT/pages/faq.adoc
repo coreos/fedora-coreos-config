@@ -249,7 +249,7 @@ interaction of both container runtimes with the firewall on the system.
 To prevent making this mistake you can disable `docker` completely by
 masking the `docker.service` systemd unit.
 
-.Example fcct config for disabling docker.service
+.Example Butane config for disabling docker.service
 [source, yaml]
 ----
 variant: fcos
@@ -266,22 +266,22 @@ The x86_64 images we provide can be used for either BIOS (legacy) boot or UEFI b
 
 https://discussion.fedoraproject.org/t/are-fedora-coreos-disk-images-hybrid-bios-uefi-bootable/21911[Discuss on discussion.fedoraproject.org]
 
-== What's the difference between Ignition and FCCT configurations?
+== What's the difference between Ignition and Butane configurations?
 
 Ignition configuration is a low-level interface used to define the whole set of customizations for an instance.
-It is primarily meant as a machine-friendly interface, with content encoded as JSON and a fixed structure defined via JSON-Schema.
+It is primarily meant as a machine-friendly interface, with content encoded as JSON and a fixed structure defined via JSON Schema.
 This JSON configuration is processed by each FCOS instance upon first boot.
 
 Many high-level tools exist that can produce an Ignition configuration starting from their own specific input formats,
-such as `terraform`, `matchbox`, `openshift-installer`, and `fcct`.
+such as `terraform`, `matchbox`, `openshift-installer`, and Butane.
 
-Fedora CoreOS Configuration Transpiler (`fcct`) is one of such high-level tools.
+Butane is one such high-level tool.
 It is primarily meant as a human-friendly interface, thus defining its own richer configuration entries and using YAML documents as input.
 This YAML configuration is never directly processed by FCOS instances (only the resulting Ignition configuration is).
 
-Although similar, Ignition configurations and FCCT ones do not have the same structure; thus, converting between them is not just a direct YAML-to-JSON translation, but it involves additional logic.
-FCCT exposes several customization helpers (e.g. distribution specific entries and common abstractions) that are not present in Ignition and make the formats not interchangeable.
-Additionally, the different formats (YAML for FCCT, JSON for Ignition) help to avoid mixing up inputs by mistake.
+Although similar, Ignition configurations and Butane ones do not have the same structure; thus, converting between them is not just a direct YAML-to-JSON translation, but it involves additional logic.
+Butane exposes several customization helpers (e.g. distribution specific entries and common abstractions) that are not present in Ignition and make the formats not interchangeable.
+Additionally, the different formats (YAML for Butane, JSON for Ignition) help to avoid mixing up inputs by mistake.
 
 == What is the format of the version number?
 
@@ -322,7 +322,7 @@ _"But, I really want to use it!"_
 We don't recommend it, but if you really want to use it you can just
 unmask and enable it:
 
-.Example fcct config for unmasking dnsmasq.service
+.Example Butane config for unmasking dnsmasq.service
 [source, yaml]
 ----
 variant: fcos
@@ -364,7 +364,7 @@ have a few options:
 - Switch to a newer non-RSA key type.
 - Provide a configuration to your machine that re-enables the insecure key signatures:
 
-.Example fcct config for re-enabling SSH RSA SHA1 key signatures
+.Example Butane config for re-enabling SSH RSA SHA1 key signatures
 [source, yaml]
 ----
 variant: fcos
@@ -414,7 +414,7 @@ To work around this incompatibility, please attempt to apply policy
 modifications dynamically. For example, for an SELinux boolean you can use the
 following systemd unit that executes on every boot:
 
-.Example fcct config for dynamically applying SELinux boolean
+.Example Butane config for dynamically applying SELinux boolean
 [source, yaml]
 ----
 variant: fcos

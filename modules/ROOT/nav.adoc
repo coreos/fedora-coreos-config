@@ -17,7 +17,7 @@
 ** xref:provisioning-vultr.adoc[Booting on Vultr]
 * System Configuration
 ** xref:producing-ign.adoc[Producing an Ignition File]
-** link:https://coreos.github.io/fcct/specs/[FCCT Specification]
+** link:https://coreos.github.io/butane/specs/[Butane Specification]
 ** xref:remote-ign.adoc[Using a remote Ignition config]
 ** xref:storage.adoc[Configuring Storage]
 ** xref:managing-files.adoc[Managing Files]
@@ -57,9 +57,9 @@
 ** xref:update-barrier-signing-keys.adoc[Signing keys and updates]
 * Projects documentation
 ** https://coreos.github.io/afterburn/[Afterburn]
+** https://coreos.github.io/butane/[Butane (Config Transpiler)]
 ** https://coreos.github.io/coreos-assembler/[CoreOS Assembler]
 ** https://coreos.github.io/coreos-installer/[CoreOS Installer]
-** https://coreos.github.io/fcct/[FCCT (Config Transpiler)]
 ** https://coreos.github.io/ignition/[Ignition]
 ** https://coreos.github.io/rpm-ostree/[rpm-ostree]
 ** https://coreos.github.io/zincati/[Zincati]

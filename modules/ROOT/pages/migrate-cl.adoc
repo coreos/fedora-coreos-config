@@ -6,7 +6,7 @@ Fedora CoreOS is the official successor of CoreOS Container Linux, which https:/
 
 == Introduction
 
-To migrate from CL to FCOS, you must convert your old Container Linux Configs, Ignition configs, or `cloud-config` files to a xref:producing-ign.adoc[Fedora CoreOS Config (FCC)] and adapt the contents for FCOS. Since many of the configuration details have changed, you should reference this page and the https://github.com/coreos/fedora-coreos-tracker/issues/159[CL migration issue] on GitHub.
+To migrate from CL to FCOS, you must convert your old Container Linux Configs, Ignition configs, or `cloud-config` files to a xref:producing-ign.adoc[Butane config] and adapt the contents for FCOS. Since many of the configuration details have changed, you should reference this page and the https://github.com/coreos/fedora-coreos-tracker/issues/159[CL migration issue] on GitHub.
 
 == Installation changes
 
@@ -30,7 +30,7 @@ The following changes have been made to the installation process:
 
 == Configuration changes
 
-When writing FCC files, note the following changes:
+When writing Butane configs, note the following changes:
 
 * `coreos-metadata` is now https://github.com/coreos/afterburn/blob/master/README.md[Afterburn]. The prefix of the metadata variable names has changed from `COREOS_` to `AFTERBURN_`, and the following platform names have changed:
 ** `EC2` is now `AWS`
@@ -40,8 +40,8 @@ For more info, see the https://github.com/coreos/afterburn/blob/master/docs/usag
 
 * By default, FCOS does not allow password logins via SSH. We recommend xref:authentication.adoc#using-an-ssh-key[configuring SSH keys] instead. If needed, you can xref:authentication.adoc#enabling-ssh-password-authentication[enable SSH password authentication].
 * Because `usermod` is not yet fully-functional on FCOS, there is a `docker` group in the `/etc/group` file. This is a stop-gap measure to facilitate a smooth transition to FCOS. The team is working on a more functional `usermod`, at which time the `docker` group will no longer be included by default. See the https://github.com/coreos/fedora-coreos-tracker/issues/2[docker group issue].
-* There is no way to create directories below the `/` directory. Changes are restricted to `/etc` and `/var`. Refer to the documentation for the `storage` node of the FCC configuration for details about writing directories and files to FCOS.
-* FCCs no longer have a separate section for network configuration. Use the FCC `files` section to write a https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[NetworkManager key file] instead.
+* There is no way to create directories below the `/` directory. Changes are restricted to `/etc` and `/var`. Refer to the documentation for the `storage` node of the Butane config for details about writing directories and files to FCOS.
+* Butane configs no longer have a separate section for network configuration. Use the Butane `files` section to write a https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[NetworkManager key file] instead.
 
 == Operator notes
 

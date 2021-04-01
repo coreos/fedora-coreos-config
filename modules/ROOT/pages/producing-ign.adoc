@@ -10,73 +10,73 @@ Ignition runs only once during the first boot of the system (while in the initra
 
 Ignition configurations are formatted as JSON, which is quick and easy for a machine to read. However, these files are not easy for humans to read or write. The solution is a two-step configuration process that is friendly for both humans and machines:
 
-. Produce a YAML-formatted Fedora CoreOS Configuration (FCC) file.
-. Run the Fedora CoreOS Configuration Transpiler (`fcct`) to convert the YAML file into a JSON Ignition file.
+. Produce a YAML-formatted Butane config.
+. Run Butane to convert the YAML file into a JSON Ignition config.
 
-During the transpilation process, `fcct` verifies the syntax of the YAML file, which can catch errors before you use it to launch the FCOS system.
+During the transpilation process, Butane verifies the syntax of the YAML file, which can catch errors before you use it to launch the FCOS system.
 
 Once you have an Ignition (`.ign`) file, you can use it to boot an FCOS system in a VM or install it on bare metal.
 
 TIP: Try to plan your configuration with the full set of customization details before provisioning a Fedora CoreOS instance. But don't worry if you forgot something as you can simply fix the configuration and re-deploy the instance from a fresh image.
 
-== Getting FCCT
+== Getting Butane
 
-You can run `fcct` as a container with docker or podman or download it as a standalone binary.
+You can run Butane as a container with docker or podman or download it as a standalone binary.
 
-NOTE: Unless otherwise noted, new releases of `fcct` are backwards compatible with old releases.
+NOTE: Unless otherwise noted, new releases of Butane are backwards compatible with old releases.
 
 === Via a container with `podman` or `docker`
 
-You can get `fccŧ` from a container hosted on https://quay.io/[quay.io]:
+You can get Butane from a container hosted on https://quay.io/[quay.io]:
 
 [source,bash]
 ----
-podman pull quay.io/coreos/fcct:release
+podman pull quay.io/coreos/butane:release
 ----
 
 NOTE: The `release` tag tracks the most recent release, and the `latest` tag tracks the Git development branch.
 
-Run `fcct` either by using standard in and standard out or by using files:
+Run Butane either by using standard input and standard output or by using files:
 
-.Example running `fcct` using standard in and standard out:
+.Example running Butane using standard input and standard output
 [source,bash]
 ----
-podman run --interactive --rm quay.io/coreos/fcct:release \
-       --pretty --strict < your_config.fcc > transpiled_config.ign
+podman run --interactive --rm quay.io/coreos/butane:release \
+       --pretty --strict < your_config.bu > transpiled_config.ign
 ----
 
-.Example running `fcct` using a file as input and standard out:
+.Example running Butane using a file as input and standard output
 [source,bash]
 ----
 podman run --interactive --rm --security-opt label=disable \
-       --volume ${PWD}:/pwd --workdir /pwd quay.io/coreos/fcct:release \
-       --pretty --strict your_config.fcc > transpiled_config.ign
+       --volume ${PWD}:/pwd --workdir /pwd quay.io/coreos/butane:release \
+       --pretty --strict your_config.bu > transpiled_config.ign
 ----
 
 To make it simpler to type, you may also add the following alias to your shell configuration:
 
 [source,bash]
 ----
-alias fcct='podman run --rm --tty --interactive \
-            --security-opt label=disable        \
-            --volume ${PWD}:/pwd --workdir /pwd \
-            quay.io/coreos/fcct:release'
+alias butane='podman run --rm --tty --interactive \
+              --security-opt label=disable        \
+              --volume ${PWD}:/pwd --workdir /pwd \
+              quay.io/coreos/butane:release'
 ----
 
 NOTE: Those examples use podman, but you can use docker in a similar manner.
 
 === Installing via Fedora packages
 
-`fcct` is available as Fedora a package:
+Butane is available as a Fedora package:
 
 [source,bash]
 ----
-sudo dnf install -y fcct
+sudo dnf install -y butane
 ----
 
 === Standalone binary
 
-To use the `fcct` binary on Linux, follow these steps:
+To use the Butane binary on Linux, follow these steps:
 
 . If you have not already done so, download the https://getfedora.org/security/[Fedora signing keys] and import them:
 +
@@ -84,22 +84,22 @@ To use the `fcct` binary on Linux, follow these steps:
 ----
 curl https://getfedora.org/static/fedora.gpg | gpg --import
 ----
-. Download the latest version of `fcct` and the detached signature from the https://github.com/coreos/fcct/releases[releases page].
+. Download the latest version of Butane and the detached signature from the https://github.com/coreos/butane/releases[releases page].
 . Verify it with gpg:
 +
 [source,bash]
 ----
-gpg --verify fcct-x86_64-unknown-linux-gnu.asc
+gpg --verify butane-x86_64-unknown-linux-gnu.asc
 ----
 
 == A simple example
 
-Create a basic Ignition file that modifies the default Fedora CoreOS user `core` to allow this user login with an SSH key.
+Create a basic Ignition config that modifies the default Fedora CoreOS user `core` to allow this user to log in with an SSH key.
 
 The overall steps are as follows:
 
-. Write the Fedora CoreOS Configuration (FCC) file in the YAML format.
-. Use the `fcct` to convert the FCC file into an Ignition (JSON) file.
+. Write the Butane config in the YAML format.
+. Use Butane to convert the Butane config into an Ignition (JSON) config.
 . Boot a fresh Fedora CoreOS image with the resulting Ignition configuration.
 
 === Prerequisite
@@ -108,7 +108,7 @@ This example uses a pair of SSH public and private keys. If you don't already ha
 
 The SSH public key will be provisioned to the Fedora CoreOS machine (via Ignition). The SSH private key needs to be available to your user on the local workstation, in order to remotely authenticate yourself over SSH.
 
-=== Writing the FCC file
+=== Writing the Butane config
 
 . Copy the following example into a text editor:
 +
@@ -125,17 +125,17 @@ passwd:
 +
 . Replace the above line starting with `ssh-rsa` with the contents of your SSH public key file.
 +
-. Save the file with the name `example.fcc`.
+. Save the file with the name `example.bu`.
 
-TIP: YAML files must have consistent indentation. Although `fcct` checks for syntax errors, ensure that the indentation matches the above example. Overall, the FCC files must conform to ``fcct``'s https://coreos.github.io/fcct/specs/[configuration specification] format.
+TIP: YAML files must have consistent indentation. Although Butane checks for syntax errors, ensure that the indentation matches the above example. Overall, the Butane configs must conform to Butane's https://coreos.github.io/butane/specs/[configuration specification] format.
 
-=== Using FCCT
+=== Using Butane
 
-. Run fcct on the FCC file:
+. Run Butane on the Butane config:
 +
 [source,bash]
 ----
-fcct --pretty --strict < example.fcc > example.ign
+butane --pretty --strict < example.bu > example.ign
 ----
 +
 . Use the `example.ign` file to xref:getting-started.adoc[boot Fedora CoreOS].
