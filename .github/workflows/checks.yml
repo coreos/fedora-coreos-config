@@ -8,8 +8,8 @@ on:
     branches: [master]
 
 jobs:
-  fcc:
-    name: Validate FCCs
+  butane:
+    name: Validate Butane configs
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
