@@ -22,7 +22,7 @@ ssh_authorized_keys:
   - ssh-rsa ...
 ----
 
-This can be manually translated into a xref:ign-passwd.adoc[`passwd`] node within the FCC file:
+This can be manually translated into a `passwd` node within the FCC file:
 
 .Example of users:
 [source, yaml]
@@ -42,4 +42,4 @@ NOTE: Fedora CoreOS disables password login over SSH by default. It is strongly 
 
 == Converting storage definitions
 
-With FAH, you could configure additional storage for the system with either `cloud-init` or  `docker-storage-setup` via the `/etc/sysconfig/docker-storage-setup` file. With FCOS, you should configure additional storage at provisioning time via Ignition in the xref:ign-storage.adoc[`storage`] node of the FCC file.
+With FAH, you could configure additional storage for the system with either `cloud-init` or  `docker-storage-setup` via the `/etc/sysconfig/docker-storage-setup` file. With FCOS, you should configure additional storage at provisioning time via Ignition in the `storage` node of the FCC file.
