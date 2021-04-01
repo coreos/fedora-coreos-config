@@ -6,7 +6,7 @@ Fedora CoreOS is the official successor of CoreOS Container Linux, which https:/
 
 == Introduction
 
-To migrate from CL to FCOS, you must convert your old Container Linux Configs, Ignition configs, or `cloud-config` files to a xref:fcct-config.adoc[Fedora CoreOS Config (FCC)] and adapt the contents for FCOS. Since many of the configuration details have changed, you should reference this page and the https://github.com/coreos/fedora-coreos-tracker/issues/159[CL migration issue] on GitHub.
+To migrate from CL to FCOS, you must convert your old Container Linux Configs, Ignition configs, or `cloud-config` files to a xref:producing-ign.adoc[Fedora CoreOS Config (FCC)] and adapt the contents for FCOS. Since many of the configuration details have changed, you should reference this page and the https://github.com/coreos/fedora-coreos-tracker/issues/159[CL migration issue] on GitHub.
 
 == Installation changes
 

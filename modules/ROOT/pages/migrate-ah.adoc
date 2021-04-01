@@ -5,7 +5,7 @@
 
 https://www.projectatomic.io/[Fedora Atomic Host] was a system to deploy applications in containers. Existing FAH users are encouraged to migrate to FCOS, as the project has reached its end-of-life.
 
-FAH used `cloud-init` for provisioning, which required users to provide a `cloud-config` file as userdata for configuration of the instance. Since FCOS Ignition and `cloud-init` are different and have overlapping feature sets, it is not trivial to convert `cloud-init` files to Ignition. Currently, there is no tool for this conversion, so you must manually convert `cloud-init` configs to Fedora CoreOS configs. Refer to xref:fcct-config.adoc[FCCT Specification] for an explanation of the available configuration options.
+FAH used `cloud-init` for provisioning, which required users to provide a `cloud-config` file as userdata for configuration of the instance. Since FCOS Ignition and `cloud-init` are different and have overlapping feature sets, it is not trivial to convert `cloud-init` files to Ignition. Currently, there is no tool for this conversion, so you must manually convert `cloud-init` configs to Fedora CoreOS configs. Refer to link:https://coreos.github.io/fcct/specs/[FCCT Specification] for an explanation of the available configuration options.
 
 == Converting `cloud-init` and `cloud-config` userdata
 
