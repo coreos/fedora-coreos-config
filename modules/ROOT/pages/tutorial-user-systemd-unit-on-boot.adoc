@@ -13,6 +13,8 @@ In this example, we will launch a systemd service for the user `sleeper`. First,
 
 [source,yaml]
 ----
+variant: fcos
+version: 1.3.0
 passwd:
   users:
     - name: sleeper
@@ -22,6 +24,8 @@ This will also create the home directory for the `sleeper` user. Then we can add
 
 [source,yaml]
 ----
+variant: fcos
+version: 1.3.0
 storage:
   files:
     - path: /home/sleeper/.config/systemd/user/linger-example.service
@@ -44,6 +48,8 @@ System services can be directly enabled in FCC but user level services have to b
 
 [source,yaml]
 ----
+variant: fcos
+version: 1.3.0
 storage:
   directories:
     - path: /home/sleeper/.config/systemd/user/default.target.wants
@@ -66,6 +72,8 @@ And finally we setup lingering for the systemd user level instance so that it ge
 
 [source,yaml]
 ----
+variant: fcos
+version: 1.3.0
 storage:
   files:
     - path: /var/lib/systemd/linger/sleeper
