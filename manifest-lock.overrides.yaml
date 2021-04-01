@@ -28,3 +28,13 @@ packages:
     evr: 0.8.0-1.fc33
   coreos-installer-bootinfra:
     evr: 0.8.0-1.fc33
+  # Fast-track new podman release to fix podman cp:
+  # https://github.com/coreos/fedora-coreos-tracker/issues/771
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-e70b450680
+  # Also new podman needs newer crun, so bump that too.
+  podman:
+    evr: 2:3.1.0-2.fc33
+  podman-plugins:
+    evr: 2:3.1.0-2.fc33
+  crun:
+    evr: 0.18-5.fc33
