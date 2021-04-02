@@ -1,10 +1,88 @@
 = Modifying Kernel Arguments
 
-Currently to change kernel arguments, you must script a systemd service which runs `rpm-ostree kargs --reboot`. The command supports appending kernel arguments (via `--append KEY[=VAL]`), deleting them (via `--delete KEY[=VAL]`), and replacing them (via `--replace KEY[=VALUE]`).
+Kernel arguments changes are managed by `rpm-ostree` via the https://www.mankier.com/1/rpm-ostree[`rpm-ostree kargs`] sub command. Changes are applied to a new deployment and a reboot is necessary for those to take effect.
 
-NOTE: In the future, we will have a more Ignition-friendly method of doing this with stronger guarantees. See https://github.com/coreos/ignition/issues/1051[this upstream issue] for more information.
+== Adding kernel arguments
 
-Here's an example which drops the default `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine uses cgroups v2:
+You can append kernel arguments. This is useful with e.g. `console=` that can be used multiple times. An empty value for an argument is allowed:
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --append=KEY=VALUE
+----
+
+.Example: Add reserved memory for Kdump support
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --append='crashkernel=256M'
+----
+
+See also xref:debugging-kernel-crashes.adoc[Debugging kernel crashes using kdump].
+
+== Removing existing kernel arguments
+
+You can delete a specific kernel argument key/value pair or an entire argument with a single key/value pair:
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --delete=KEY=VALUE
+----
+
+.Example: Remove console parameters to enable kernel auto-detection
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --delete 'console=ttyS0,115200n8'
+----
+
+See also xref:emergency-shell.adoc[Emergency console access].
+
+.Example: Update an existing system from cgroupsv1 to cgroupsv2 and immediately reboot
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --delete=systemd.unified_cgroup_hierarchy --reboot
+----
+
+== Replacing existing kernel arguments
+
+You can replace an existing kernel argument with a new value. You can directly use `KEY=VALUE` if only one value exists for that argument. Otherwise, you can specify the new value using the following format:
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --replace=KEY=VALUE=NEWVALUE
+----
+
+.Example: Disable all CPU vulnerability mitigations
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --replace=mitigations=auto,nosmt=off
+----
+
+This switches `mitigations=auto,nosmt` to `mitigations=off` to disable all CPU vulnerability mitigations.
+
+== Interactive editing
+
+To use an editor to modify the kernel arguments:
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --editor
+----
+
+== Modifying Kernel Arguments via Ignition
+
+Currently to change kernel arguments via Ignition, you must script a systemd service which runs `rpm-ostree kargs` and then trigger a reboot.
+
+NOTE: In the future, we will have a more Ignition-friendly method of doing this with stronger guarantees. See upstream issues https://github.com/coreos/ignition/issues/1051[ignition#1051], https://github.com/coreos/fedora-coreos-tracker/issues/318[fedora-coreos-tracker#318] and https://github.com/coreos/fedora-coreos-tracker/issues/752[fedora-coreos-tracker#752] for more information.
+
+NOTE:  The `After=systemd-machine-id-commit.service` directive is important in the following examples to avoid some subtle issues. Similarly, any `ConditionFirstBoot=true` services should use `Before=first-boot-complete.target systemd-machine-id-commit.service`. See https://github.com/systemd/systemd/blob/3045c416e1cbbd8ab40577790522217fd1b9cb3b/man/systemd.unit.xml#L1315[the systemd documentation] for more details.
+
+=== Example: Moving to cgroups v2
+
+Cgroups v1 is currently the default on Fedora CoreOS on the `stable` and `testing` stream. Here's an example which removes the `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine switches cgroups v2:
 
 [source,yaml]
 ----
@@ -39,4 +117,76 @@ systemd:
         WantedBy=multi-user.target
 ----
 
-NOTE:  The `After=systemd-machine-id-commit.service` directive is important to avoid some subtle issues. Similarly, any `ConditionFirstBoot=true` services should use `Before=first-boot-complete.target systemd-machine-id-commit.service`. See https://github.com/systemd/systemd/blob/3045c416e1cbbd8ab40577790522217fd1b9cb3b/man/systemd.unit.xml#L1315[the systemd documentation] for more details.
+=== Example: Staying on cgroups v1
+
+Cgroups v2 is now the default on Fedora CoreOS on the `next` stream. Here's an example which adds the `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine keeps using cgroups v1:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.3.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - $pubkey
+systemd:
+  units:
+    - name: cgroups-v1-karg.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Switch to cgroups v1
+        # We run after `systemd-machine-id-commit.service` to ensure that
+        # `ConditionFirstBoot=true` services won't rerun on the next boot.
+        After=systemd-machine-id-commit.service
+        ConditionKernelCommandLine=!systemd.unified_cgroup_hierarchy
+        ConditionPathExists=!/var/lib/cgroups-v1-karg.stamp
+
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/bin/rpm-ostree kargs --append=systemd.unified_cgroup_hierarchy=0
+        ExecStart=/bin/touch /var/lib/cgroups-v1-karg.stamp
+        ExecStart=/bin/systemctl --no-block reboot
+
+        [Install]
+        WantedBy=multi-user.target
+----
+
+=== Example: Disabling all CPU vulnerability mitigations
+
+Here's an example which switches `mitigations=auto,nosmt` to `mitigations=off` to disable all CPU vulnerability mitigations:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.3.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - $pubkey
+systemd:
+  units:
+    - name: cpu-mitigations-karg.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Disable all CPU vulnerability mitigations
+        # We run after `systemd-machine-id-commit.service` to ensure that
+        # `ConditionFirstBoot=true` services won't rerun on the next boot.
+        After=systemd-machine-id-commit.service
+        ConditionKernelCommandLine=!mitigations=off
+        ConditionPathExists=!/var/lib/cpu-mitigations-karg.stamp
+
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/bin/rpm-ostree kargs --replace=mitigations=auto,nosmt=off
+        ExecStart=/bin/touch /var/lib/cpu-mitigations-karg.stamp
+        ExecStart=/bin/systemctl --no-block reboot
+
+        [Install]
+        WantedBy=multi-user.target
+----
