@@ -546,10 +546,8 @@ EOF
     x="${common_args} rd.neednet=1 ip=${nic0}:dhcp ip=${nic1}:dhcp"
     initramfs_dhcp_nic0nic1=$x
 
-    # Have to add ipv6.disable=1 for Fedora 33+ because of
-    # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/539
     devname=$nic0
-    x="${common_args} rd.neednet=1 ip=${nic1}:off ipv6.disable=1"
+    x="${common_args} rd.neednet=1 ip=${nic1}:off"
     x+=" ip=${ip}::${gateway}:${netmask}:${initramfshostname}:${devname}:none:${nameserverstatic}"
     initramfs_static_nic0=$x
 
