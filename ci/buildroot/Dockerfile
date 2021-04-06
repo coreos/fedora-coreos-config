@@ -9,7 +9,7 @@ FROM registry.fedoraproject.org/fedora:33
 USER root
 WORKDIR /root/containerbuild
 COPY . tmp
-RUN ./tmp/install-buildroot.sh && yum clean all && rm tmp -rf
+RUN ./tmp/install-buildroot.sh && yum clean all && rm tmp -rf # nocache 20210406
 # match cosa's unprivileged default
 RUN useradd builder --uid 1000 -G wheel && \
         echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/wheel-nopasswd && \
