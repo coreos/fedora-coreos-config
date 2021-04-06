@@ -13,3 +13,10 @@ packages:
     evra: 0.21.2-1.fc34.noarch
   console-login-helper-messages-profile:
     evra: 0.21.2-1.fc34.noarch
+  # Freeze dracut for now while we figure out the change in
+  # networking causing the CI test failure.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/782
+  dracut:
+    evr: 051-1.fc34.1
+  dracut-network:
+    evr: 051-1.fc34.1
