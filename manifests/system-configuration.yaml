@@ -33,3 +33,6 @@ packages:
   # /etc/logrotate.d to work. Really, this is a legacy thing, but if we don't
   # have it then people's disks will slowly fill up with logs.
   - logrotate
+  # Boost starving threads
+  # https://github.com/coreos/fedora-coreos-tracker/issues/753
+  - stalld
