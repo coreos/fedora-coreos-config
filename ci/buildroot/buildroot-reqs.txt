@@ -28,6 +28,9 @@ xz
 # For rust projects like rpm-ostree
 rustfmt
 
+# For unit tests at least.
+ostree
+
 # A super common tool
 jq
 
@@ -36,6 +39,7 @@ attr
 rsync
 python3-pyyaml
 parallel gjs
+createrepo_c
 
 # Also, add clang since it's useful at least in CI for C/C++ projects
 clang lld
