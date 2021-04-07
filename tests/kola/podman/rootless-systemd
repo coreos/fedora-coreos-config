@@ -53,10 +53,8 @@ main() {
     chmod +x /tmp/runascoreuserscript
     runascoreuser /tmp/runascoreuserscript
 
-    # Let it come up
-    sleep 5
-
-    if ! curl http://localhost:8080 1>/dev/null; then
+    # Try to grab the web page. Retry as it might not be up fully yet.
+    if ! curl --silent --show-error --retry 4 --retry-all-errors http://localhost:8080 >/dev/null; then
         echo TEST FAILED 1>&2
         runascoreuser podman logs httpd
         return 1
