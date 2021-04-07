@@ -119,7 +119,7 @@ systemd:
 
 === Example: Staying on cgroups v1
 
-Cgroups v2 is now the default on Fedora CoreOS on the `next` stream. Here's an example which adds the `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine keeps using cgroups v1:
+Starting from April 13 2021, Cgroups v2 is the default on Fedora CoreOS on the `next` stream. Here's an example which adds the `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine keeps using cgroups v1:
 
 [source,yaml]
 ----
