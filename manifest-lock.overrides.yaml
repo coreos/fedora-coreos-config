@@ -19,3 +19,8 @@ packages:
     evr: 1:1.1.1k-1.fc34
   openssl-libs:
     evr: 1:1.1.1k-1.fc34
+  # Fast-track runc for cgroups v2 support
+  # https://github.com/coreos/fedora-coreos-tracker/issues/292#issuecomment-813511879
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-b4560c953f
+  runc:
+    evr: 2:1.0.0-375.dev.git12644e6.fc34
