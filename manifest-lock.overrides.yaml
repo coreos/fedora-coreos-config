@@ -13,3 +13,9 @@ packages:
     evra: 4:1-13.fc34.noarch
   skopeo:
     evr: 1:1.2.2-24.fc34
+  # Fast-track openssl for recent CVE-2021-3449, CVE-2021-3450
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-cbf14ab8f9
+  openssl:
+    evr: 1:1.1.1k-1.fc34
+  openssl-libs:
+    evr: 1:1.1.1k-1.fc34
