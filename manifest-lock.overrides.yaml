@@ -1,1 +1,15 @@
-packages: {}
+packages:
+  # Fast-track new podman release to fix podman cp:
+  # https://github.com/coreos/fedora-coreos-tracker/issues/771
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-96ee965d88
+  # Also new podman needs newer crun, skopeo, containers-common.
+  podman:
+    evr: 2:3.1.0-1.fc34
+  podman-plugins:
+    evr: 2:3.1.0-1.fc34
+  crun:
+    evr: 0.18-5.fc34
+  containers-common:
+    evra: 4:1-13.fc34.noarch
+  skopeo:
+    evr: 1:1.2.2-24.fc34
