@@ -38,3 +38,9 @@ packages:
     evr: 2:3.1.0-2.fc33
   crun:
     evr: 0.18-5.fc33
+  # Fast-track openssl for recent CVE-2021-3449, CVE-2021-3450
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-d049f32a82
+  openssl:
+    evr: 1:1.1.1k-1.fc33
+  openssl-libs:
+    evr: 1:1.1.1k-1.fc33
