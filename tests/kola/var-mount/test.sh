@@ -13,11 +13,24 @@ fatal() {
     exit 1
 }
 
+# /var
+
 src=$(findmnt -nvr /var -o SOURCE)
 [[ $(realpath "$src") == $(realpath /dev/disk/by-partlabel/var) ]]
 
 fstype=$(findmnt -nvr /var -o FSTYPE)
 [[ $fstype == xfs ]]
+
+# /var/log
+
+src=$(findmnt -nvr /var/log -o SOURCE)
+[[ $(realpath "$src") == $(realpath /dev/mapper/varlog) ]]
+
+blktype=$(lsblk -o TYPE "${src}" --noheadings)
+[[ ${blktype} == crypt ]]
+
+fstype=$(findmnt -nvr /var/log -o FSTYPE)
+[[ $fstype == ext4 ]]
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
