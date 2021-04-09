@@ -43,3 +43,9 @@ packages:
     evr: 2:3.1.0-2.fc33
   podman-plugins:
     evr: 2:3.1.0-2.fc33
+  # Fast-track new coreos-installer release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-c67cfeca62
+  coreos-installer:
+    evr: 0.9.0-2.fc33
+  coreos-installer-bootinfra:
+    evr: 0.9.0-2.fc33
