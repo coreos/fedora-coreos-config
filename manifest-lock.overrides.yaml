@@ -18,3 +18,9 @@ packages:
     evr: 0.9.0-2.fc34
   coreos-installer-bootinfra:
     evr: 0.9.0-2.fc34
+  # Fast-track new afterburn release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-663f695267
+  afterburn:
+    evr: 5.0.0-1.fc34
+  afterburn-dracut:
+    evr: 5.0.0-1.fc34
