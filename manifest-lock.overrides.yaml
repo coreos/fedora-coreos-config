@@ -6,3 +6,9 @@ packages:
     evr: 051-1.fc34.1
   dracut-network:
     evr: 051-1.fc34.1
+  # Bump rpm-ostree for the countme timer
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-971f672259
+  rpm-ostree:
+    evr: 2021.3-2.fc34
+  rpm-ostree-libs:
+    evr: 2021.3-2.fc34
