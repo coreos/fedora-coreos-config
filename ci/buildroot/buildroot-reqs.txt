@@ -28,12 +28,18 @@ xz
 # For rust projects like rpm-ostree
 rustfmt
 
+# For unit tests at least.
+ostree
+
 # A super common tool
 jq
 
 # Used by ostree/rpm-ostree CI (TODO: add to something like TestBuildRequires in spec files)
 attr
+rsync
+python3-pyyaml
 parallel gjs
+createrepo_c
 
 # Also, add clang since it's useful at least in CI for C/C++ projects
 clang lld
@@ -41,3 +47,6 @@ clang lld
 libubsan libasan libtsan
 # And all C/C++ projects should use clang-analyzer
 clang-analyzer
+
+# We don't want zombies in our pods
+dumb-init
