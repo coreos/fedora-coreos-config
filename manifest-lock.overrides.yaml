@@ -44,3 +44,9 @@ packages:
     evr: 1:1.1.1k-1.fc33
   openssl-libs:
     evr: 1:1.1.1k-1.fc33
+  # Fast-track rpm-ostree for CVE-2021-3445
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-eadfc56b95
+  rpm-ostree:
+    evr: 2021.4-1.fc33
+  rpm-ostree-libs:
+    evr: 2021.4-1.fc33
