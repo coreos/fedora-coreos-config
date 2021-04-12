@@ -12,3 +12,9 @@ packages:
     evr: 2021.3-2.fc34
   rpm-ostree-libs:
     evr: 2021.3-2.fc34
+  # Fast-track new coreos-installer release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-683fffd5bc
+  coreos-installer:
+    evr: 0.9.0-2.fc34
+  coreos-installer-bootinfra:
+    evr: 0.9.0-2.fc34
