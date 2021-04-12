@@ -20,13 +20,15 @@ set -eu -o pipefail
 # I test this way I usually stand up a separate VM on the same bridge
 # and run dnsmasq on a tagged network like:
 #
+#     interface=eth1
 #     cat <<EOF > /etc/dnsmasq.d/vlandhcp
-#     interface=eth1.100
+#     interface=${interface}.100
 #     bind-interfaces
 #     dhcp-range=192.168.200.150,192.168.200.160,12h
-#     ip link add link eth0 name eth0.100 type vlan id 100
-#     ip addr add 192.168.200.1/24 dev eth0.100
-#     ip link set eth0.100 up
+#     EOF
+#     ip link add link $interface name "${interface}.100" type vlan id 100
+#     ip addr add 192.168.200.1/24 dev "${interface}.100"
+#     ip link set "${interface}.100" up
 #     systemctl enable dnsmasq --now
 #
 # - Dusty Mabe - dusty@dustymabe.com
@@ -281,6 +283,8 @@ fcct_dhcpvlanbond='
           mode=active-backup
           [ipv4]
           method=disabled
+          [ipv6]
+          method=disabled
     - path: /etc/NetworkManager/system-connections/${bondname}-slave-${subnic1}.nmconnection
       mode: 0600
       contents:
@@ -433,10 +437,6 @@ EOF
     common_args+=' ignition.firstboot' # manually set ignition.firstboot
    #common_args+=' rd.break=pre-mount'
 
-    # Have to add ipv6.disable=1 for Fedora 33+ because of
-    # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/539
-    common_args+=' ipv6.disable=1'
-
     # export these values so we can substitute the values
     # in using the envsubst command
     export ip gateway netmask prefix interface nameserver bondname teamname bridgename subnic1 subnic2 vlanid
@@ -480,7 +480,6 @@ EOF
     export hostname="staticvlan"
     x="${common_args} rd.neednet=1"
     x+=" ip=${ip}::${gateway}:${netmask}:${hostname}:${interface}.${vlanid}:none:${nameserver}"
-    x+=" ip=${interface}:off"
     x+=" vlan=${interface}.${vlanid}:${interface}"
     x+=" ip=${subnic2}:off"
     initramfs_staticvlan=$x
@@ -489,10 +488,9 @@ EOF
 
     export hostname="dhcpvlanbond"
     x="${common_args} rd.neednet=1"
-    x+=" ip=vlan${vlanid}:dhcp"
-    x+=" ip=${bondname}:off"
+    x+=" ip=${bondname}.${vlanid}:dhcp"
     x+=" bond=${bondname}:${subnic1},${subnic2}:mode=active-backup,miimon=100"
-    x+=" vlan=vlan${vlanid}:${bondname}"
+    x+=" vlan=${bondname}.${vlanid}:${bondname}"
     initramfs_dhcpvlanbond=$x
     fcct_initramfs_dhcpvlanbond=$(echo "${fcct_common}${fcct_hostname}" | envsubst)
     fcct_dhcpvlanbond=$(echo "${fcct_common}${fcct_hostname}${fcct_dhcpvlanbond}" | envsubst)

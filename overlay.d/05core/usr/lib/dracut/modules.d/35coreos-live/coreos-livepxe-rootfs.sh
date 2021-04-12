@@ -30,11 +30,24 @@ elif [[ -n "${rootfs_url}" ]]; then
         echo "Please fix your PXE configuration." >&2
         exit 1
     fi
+
+    # First, reach out to the server to verify connectivity before
+    # trying to download and pipe content through other programs.
+    # Doing this allows us to retry all errors (including transient
+    # "no route to host" errors during startup), without using the
+    # --retry-all-errors, which is problematic (see curl man page)
+    # when piping the output.
+    curl_common_args="--silent --show-error --insecure --location --retry 5"
+    if ! curl --head --retry-all-errors $curl_common_args "${rootfs_url}" >/dev/null; then
+        echo "Couldn't establish connectivity with the server specified by coreos.live.rootfs_url=" >&2
+        echo "Check that the URL is correct and can be reached." >&2
+        exit 1
+    fi
     # We don't need to verify TLS certificates because we're checking the
     # image hash.
     # bsdtar can read cpio archives and we already depend on it for
     # coreos-liveiso-persist-osmet.service, so use it instead of cpio.
-    if ! curl --silent --show-error --insecure --location --retry 5 "${rootfs_url}" | \
+    if ! curl $curl_common_args "${rootfs_url}" | \
             rdcore stream-hash /etc/coreos-live-want-rootfs | \
             bsdtar -xf - -C / ; then
         echo "Couldn't fetch, verify, and unpack image specified by coreos.live.rootfs_url=" >&2

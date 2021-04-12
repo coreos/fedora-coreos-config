@@ -125,6 +125,9 @@ postprocess:
       echo 'MOTD_FILE=/usr/share/misc/motd:/run/motd:/run/motd.d:/etc/motd:/etc/motd.d' >> /etc/login.defs
     fi
 
+# Packages listed here should be specific to Fedore CoreOS (as in not yet
+# available in RHCOS or not desired in RHCOS). All other packages should go
+# into one of the sub-manifests listed at the top.
 packages:
   # Security
   - polkit
@@ -137,7 +140,7 @@ packages:
   - fuse-overlayfs slirp4netns
   # name resolution for podman containers
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
-  - podman-plugins
+  - podman-plugins dnsmasq
   # Remote IPC for podman
   - libvarlink-util
   # Minimal NFS client
@@ -167,7 +170,7 @@ packages:
   # file-transfer: note fuse-sshfs is not in RHEL
   # so we can't put it in file-transfer.yaml
   - fuse-sshfs
-  # User experience
+  # Improved MOTD experience
   - console-login-helper-messages-motdgen
   # i18n
   - kbd
