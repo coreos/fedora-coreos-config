@@ -6,12 +6,6 @@ packages:
     evr: 051-1.fc34.1
   dracut-network:
     evr: 051-1.fc34.1
-  # Bump rpm-ostree for the countme timer
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-971f672259
-  rpm-ostree:
-    evr: 2021.3-2.fc34
-  rpm-ostree-libs:
-    evr: 2021.3-2.fc34
   # Fast-track new coreos-installer release
   # https://bodhi.fedoraproject.org/updates/FEDORA-2021-683fffd5bc
   coreos-installer:
@@ -24,3 +18,9 @@ packages:
     evr: 5.0.0-1.fc34
   afterburn-dracut:
     evr: 5.0.0-1.fc34
+  # Fast-track rpm-ostree for CVE-2021-3445
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-c6802f0b69
+  rpm-ostree:
+    evr: 2021.4-1.fc34
+  rpm-ostree-libs:
+    evr: 2021.4-1.fc34
