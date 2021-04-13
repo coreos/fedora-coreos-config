@@ -29,7 +29,8 @@ if [[ $(systemctl show -p ActiveState rpm-ostree-countme.service) != "ActiveStat
 fi
 
 # Check rpm-ostree count me output
-if [[ $(journalctl --output=json --boot --unit=rpm-ostree-countme.service --grep "Successful requests:" | jq --raw-output '.MESSAGE') != "Successful requests: 2/2" ]]; then
+output="$(journalctl --output=json --boot --unit=rpm-ostree-countme.service --grep "Successful requests:" | jq --raw-output '.MESSAGE')"
+if [[ "${output}" != "Successful requests: 2/2" ]] && [[ "${output}" != "Successful requests: 3/3" ]]; then
 	fatal "rpm-ostree-countme service ouput does not match expected sucess output"
 fi
 

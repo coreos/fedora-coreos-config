@@ -142,10 +142,10 @@
       "evra": "4:1-9.fc33.noarch"
     },
     "coreos-installer": {
-      "evra": "0.8.0-1.fc33.x86_64"
+      "evra": "0.9.0-2.fc33.x86_64"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.8.0-1.fc33.x86_64"
+      "evra": "0.9.0-2.fc33.x86_64"
     },
     "coreutils": {
       "evra": "8.32-18.fc33.x86_64"
@@ -271,7 +271,7 @@
       "evra": "0.0.4-7.fc33.x86_64"
     },
     "fedora-gpg-keys": {
-      "evra": "33-3.noarch"
+      "evra": "33-4.noarch"
     },
     "fedora-release-common": {
       "evra": "33-3.noarch"
@@ -283,16 +283,16 @@
       "evra": "33-3.noarch"
     },
     "fedora-repos": {
-      "evra": "33-3.noarch"
+      "evra": "33-4.noarch"
     },
     "fedora-repos-archive": {
-      "evra": "33-3.noarch"
+      "evra": "33-4.noarch"
     },
     "fedora-repos-modular": {
-      "evra": "33-3.noarch"
+      "evra": "33-4.noarch"
     },
     "fedora-repos-ostree": {
-      "evra": "33-3.noarch"
+      "evra": "33-4.noarch"
     },
     "file": {
       "evra": "5.39-3.fc33.x86_64"
@@ -382,22 +382,22 @@
       "evra": "3.4-5.fc33.x86_64"
     },
     "grub2-common": {
-      "evra": "1:2.04-33.fc33.noarch"
+      "evra": "1:2.06~rc1-1.fc33.noarch"
     },
     "grub2-efi-x64": {
-      "evra": "1:2.04-33.fc33.x86_64"
+      "evra": "1:2.06~rc1-1.fc33.x86_64"
     },
     "grub2-pc": {
-      "evra": "1:2.04-33.fc33.x86_64"
+      "evra": "1:2.06~rc1-1.fc33.x86_64"
     },
     "grub2-pc-modules": {
-      "evra": "1:2.04-33.fc33.noarch"
+      "evra": "1:2.06~rc1-1.fc33.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.04-33.fc33.x86_64"
+      "evra": "1:2.06~rc1-1.fc33.x86_64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.04-33.fc33.x86_64"
+      "evra": "1:2.06~rc1-1.fc33.x86_64"
     },
     "gzip": {
       "evra": "1.10-3.fc33.x86_64"
@@ -1177,7 +1177,7 @@
       "evra": "2.36.1-1.fc33.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.2637-1.fc33.x86_64"
+      "evra": "2:8.2.2735-1.fc33.x86_64"
     },
     "which": {
       "evra": "2.21-20.fc33.x86_64"
@@ -1211,16 +1211,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-04-08T21:12:06Z",
+    "generated": "2021-04-12T13:15:09Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-10-19T23:27:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-04-07T00:50:58Z"
+        "generated": "2021-04-09T13:35:48Z"
       },
       "fedora-updates": {
-        "generated": "2021-04-08T20:32:21Z"
+        "generated": "2021-04-11T14:37:20Z"
       }
     }
   }
