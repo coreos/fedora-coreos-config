@@ -7,7 +7,8 @@ ConditionKernelCommandLine=!coreos.liveiso
 
 After=basic.target
 # Network is enabled here
-After=dracut-initqueue.service
+After=nm-run.service
+After=dracut-initqueue.service # compat: remove when everyone is on dracut 053+
 
 # If we fail, the boot will fail.  Be explicit about it.
 OnFailure=emergency.target
