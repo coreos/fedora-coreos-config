@@ -1,26 +1,26 @@
 packages:
-  # Fast-track new podman release to fix podman cp:
-  # https://github.com/coreos/fedora-coreos-tracker/issues/771
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-96ee965d88
-  # Also new podman needs newer crun, skopeo, containers-common.
-  podman:
-    evr: 2:3.1.0-1.fc34
-  podman-plugins:
-    evr: 2:3.1.0-1.fc34
-  crun:
-    evr: 0.18-5.fc34
-  containers-common:
-    evra: 4:1-13.fc34.noarch
-  skopeo:
-    evr: 1:1.2.2-24.fc34
-  # Fast-track openssl for recent CVE-2021-3449, CVE-2021-3450
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-cbf14ab8f9
-  openssl:
-    evr: 1:1.1.1k-1.fc34
-  openssl-libs:
-    evr: 1:1.1.1k-1.fc34
-  # Fast-track runc for cgroups v2 support
-  # https://github.com/coreos/fedora-coreos-tracker/issues/292#issuecomment-813511879
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-b4560c953f
-  runc:
-    evr: 2:1.0.0-375.dev.git12644e6.fc34
+  # Freeze dracut for now while we figure out the change in
+  # networking causing the CI test failure.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/782
+  dracut:
+    evr: 051-1.fc34.1
+  dracut-network:
+    evr: 051-1.fc34.1
+  # Fast-track new coreos-installer release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-683fffd5bc
+  coreos-installer:
+    evr: 0.9.0-2.fc34
+  coreos-installer-bootinfra:
+    evr: 0.9.0-2.fc34
+  # Fast-track new afterburn release
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-663f695267
+  afterburn:
+    evr: 5.0.0-1.fc34
+  afterburn-dracut:
+    evr: 5.0.0-1.fc34
+  # Fast-track rpm-ostree for CVE-2021-3445
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-c6802f0b69
+  rpm-ostree:
+    evr: 2021.4-1.fc34
+  rpm-ostree-libs:
+    evr: 2021.4-1.fc34

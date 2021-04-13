@@ -1,3 +1,6 @@
+# This file is shared by all streams. For a stream-specific change, use
+# image.yaml instead.
+
 # Target disk size in GB.
 # Make it at least 10G because we want the rootfs to be at least 8G:
 # https://github.com/coreos/fedora-coreos-tracker/issues/586
@@ -6,9 +9,6 @@ size: 10
 extra-kargs:
     # Disable SMT on systems vulnerable to MDS or any similar future issue.
     - mitigations=auto,nosmt
-    # https://github.com/coreos/fedora-coreos-tracker/issues/292
-    # https://fedoraproject.org/wiki/Changes/CGroupsV2
-    - systemd.unified_cgroup_hierarchy=0
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
 # defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.
