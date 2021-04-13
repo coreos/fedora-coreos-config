@@ -25,7 +25,16 @@ fatal() {
     exit 1
 }
 
-machinectl shell core@ /bin/toolbox create --assumeyes 1>/dev/null
+# Try five times to create the toolbox to avoid Fedora registry infra flakes
+for i in $(seq 1 5); do
+	machinectl shell core@ /bin/toolbox create --assumeyes 1>/dev/null
+	if [[ $(machinectl shell core@ /bin/toolbox list --containers | grep --count fedora-toolbox-) -ne 1 ]]; then
+		echo "Could not create toolbox on try: $i"
+		sleep 10
+	else
+		break
+	fi
+done
 if [[ $(machinectl shell core@ /bin/toolbox list --containers | grep --count fedora-toolbox-) -ne 1 ]]; then
 	fatal "Could not create toolbox"
 fi
