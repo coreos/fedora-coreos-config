@@ -8,6 +8,7 @@ include:
   - networking-tools.yaml
   - system-configuration.yaml
   - user-experience.yaml
+  - kubernetes-master.yaml
 
 initramfs-args:
   - --no-hostonly
