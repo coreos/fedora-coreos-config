@@ -56,7 +56,12 @@ sudo systemctl stop zincati.service
 # Perform the rebase to a different stream
 # Available streams: "stable", "testing", and "next"
 STREAM="testing"
-sudo rpm-ostree rebase "fedora/x86_64/coreos/${STREAM}"
+sudo rpm-ostree rebase --bypass-driver "fedora/x86_64/coreos/${STREAM}"
 ----
+
+[NOTE]
+====
+Fedora CoreOS system upgrades are usually controlled by Zincati. Passing `--bypass-driver` tells RPM-OSTree to bypass Zincati for this operation.
+====
 
 After inspecting the package difference the user can reboot. After boot the system will be loaded into the latest release on the new stream and will follow that stream for future updates.
