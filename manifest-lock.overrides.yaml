@@ -1,11 +1,4 @@
 packages:
-  # Freeze dracut for now while we figure out the change in
-  # networking causing the CI test failure.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/782
-  dracut:
-    evr: 051-1.fc34.1
-  dracut-network:
-    evr: 051-1.fc34.1
   # Fast-track new coreos-installer release
   # https://bodhi.fedoraproject.org/updates/FEDORA-2021-683fffd5bc
   coreos-installer:
