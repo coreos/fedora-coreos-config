@@ -630,13 +630,10 @@ storage:
 
 ==== Dracut Kernel Arguments
 
-NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/509[a bug] that causes the subinterface of the vlan to also try DHCP. We'll workaround by specifying `*ip=$\{interface}:off*` here to disable it.
-
 .Template
 [source, bash]
 ----
 ip=${ip}::${gateway}:${netmask}:${hostname}:${interface}.${vlanid}:none:${nameserver}
-ip=${interface}:off
 vlan=${interface}.${vlanid}:${interface}
 ----
 
@@ -644,7 +641,6 @@ vlan=${interface}.${vlanid}:${interface}
 [source, bash]
 ----
 ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:ens2.100:none:8.8.8.8
-ip=ens2:off
 vlan=ens2.100:ens2
 ----
 
@@ -744,27 +740,20 @@ storage:
 
 ==== Dracut Kernel Arguments
 
-NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/581[a bug] that causes the expected Vlan on Bond DHCP syntax to not work for the `*ip=*` argument. We'll workaround that bug here by using the `*VLAN_PLUS_VID_NO_PAD*` form of vlan name. So we'll use `*vlan$\{vlanid}*` instead of `*$\{bondname}.$\{vlanid}*`. We'll move back to the `*DEV_PLUS_VID_NO_PAD*` form when the bug is fixed.
-
-NOTE: There is https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/509[a bug] that causes the subinterface of the vlan to also try DHCP. We'll workaround by specifying `*ip=$\{bondname}:off*` here to disable it.
-
-
 .Template
 [source, bash]
 ----
-ip=vlan${vlanid}:dhcp
-ip=${bondname}:off
+ip=${bondname}.${vlanid}:dhcp
 bond=${bondname}:${subnic1},${subnic2}:mode=active-backup,miimon=100
-vlan=vlan${vlanid}:${bondname}
+vlan=${bondname}.${vlanid}:${bondname}
 ----
 
 .Rendered
 [source, bash]
 ----
-ip=vlan100:dhcp
-ip=bond0:off
+ip=bond0.100:dhcp
 bond=bond0:ens2,ens3:mode=active-backup,miimon=100
-vlan=vlan100:bond0
+vlan=bond0.100:bond0
 ----
 
 ==== Butane config
