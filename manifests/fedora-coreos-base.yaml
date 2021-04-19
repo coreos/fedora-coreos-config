@@ -123,20 +123,6 @@ postprocess:
       echo 'DEFAULT_HOSTNAME=localhost' >> /usr/lib/os-release
     fi
 
-  # Edit `login.defs` to configure `login(1)` to read from `/run/motd.d` for
-  # displaying the MOTD. This is required for newer versions of
-  # `console-login-helper-messages` to function properly.
-  # This will be dropped once Fedora util-linux adds `/run/motd.d` as a default
-  # in Fedora 34.
-  # https://src.fedoraproject.org/rpms/util-linux/pull-request/8
-  # https://github.com/coreos/fedora-coreos-tracker/issues/704#issuecomment-772862174
-  - |
-    #!/usr/bin/env bash
-    source /etc/os-release
-    if [ ${VERSION_ID} -lt 34 ]; then
-      echo 'MOTD_FILE=/usr/share/misc/motd:/run/motd:/run/motd.d:/etc/motd:/etc/motd.d' >> /etc/login.defs
-    fi
-
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go
 # into one of the sub-manifests listed at the top.
@@ -182,8 +168,6 @@ packages:
   # file-transfer: note fuse-sshfs is not in RHEL
   # so we can't put it in file-transfer.yaml
   - fuse-sshfs
-  # Improved MOTD experience
-  - console-login-helper-messages-motdgen
   # i18n
   - kbd
   # nvme-cli for managing nvme disks

@@ -3,6 +3,23 @@
 # It is intended to be kept generic so that it may be shared downstream with
 # RHCOS.
 
+# ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
+# See also the version of this in fedora-coreos.yaml
+postprocess:
+  # Edit `login.defs` to configure `login(1)` to read from `/run/motd.d` for
+  # displaying the MOTD. This is required for newer versions of
+  # `console-login-helper-messages` to function properly.
+  # This will be dropped once Fedora util-linux adds `/run/motd.d` as a default
+  # in Fedora 34.
+  # https://src.fedoraproject.org/rpms/util-linux/pull-request/8
+  # https://github.com/coreos/fedora-coreos-tracker/issues/704#issuecomment-772862174
+  - |
+    #!/usr/bin/env bash
+    source /etc/os-release
+    if [ ${VERSION_ID} -lt 34 ]; then
+      echo 'MOTD_FILE=/usr/share/misc/motd:/run/motd:/run/motd.d:/etc/motd:/etc/motd.d' >> /etc/login.defs
+    fi
+
 packages:
   # Basic user tools
   ## jq - parsing/interacting with JSON data
@@ -19,7 +36,8 @@ packages:
   - gzip
   - tar
   - xz
-  # Improved MOTD experience
+  # Improved login messages experience
+  - console-login-helper-messages-motdgen
   - console-login-helper-messages-issuegen
   - console-login-helper-messages-profile
   # kdump support
