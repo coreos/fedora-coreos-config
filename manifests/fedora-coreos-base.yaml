@@ -55,6 +55,7 @@ postprocess:
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
+    shopt -s nullglob
     for x in /etc/yum.repos.d/*modular.repo; do
       sed -i -e 's,enabled=[01],enabled=0,' ${x}
     done
