@@ -1,10 +1,10 @@
 = Debugging kernel crashes using kdump
 
-. Memory must be reserved for the crash kernel during booting of the first kernel. Kernel arguments can be provided like this:
+. Memory must be reserved for the crash kernel during booting of the first kernel. `crashkernel=auto` is likely insufficient memory on Fedora CoreOS. It is recommended to start testing with 300M. Kernel arguments can be provided like this:
 +
 [source, bash]
 ----
-sudo rpm-ostree kargs --append='crashkernel=256M'
+sudo rpm-ostree kargs --append='crashkernel=300M'
 ----
 xref:kernel-args.adoc[More information] on how to modify kargs via `rpm-ostree`.
 
@@ -24,4 +24,4 @@ sudo systemctl enable kdump.service
 sudo systemctl reboot
 ----
 
-TIP: For additional information on how to test that kdump is properly armed and how to analyze the dump, refer to the https://fedoraproject.org/wiki/How_to_use_kdump_to_debug_kernel_crashes[kdump documentation for Fedora] and https://www.kernel.org/doc/html/latest/admin-guide/kdump/kdump.html[the Linux kernel documentation on kdump].
+NOTE: It is highly recommended to test the configuration after setting up the `kdump` service, with extra attention to the amount of memory reserved for the crash kernel. For information on how to test that kdump is properly armed and how to analyze the dump, refer to the https://fedoraproject.org/wiki/How_to_use_kdump_to_debug_kernel_crashes[kdump documentation for Fedora] and https://www.kernel.org/doc/html/latest/admin-guide/kdump/kdump.html[the Linux kernel documentation on kdump].
