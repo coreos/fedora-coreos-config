@@ -15,4 +15,4 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Run validator
-        run: ./check.py -v
+        run: sudo ./check.py -v
