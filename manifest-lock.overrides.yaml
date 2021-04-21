@@ -17,6 +17,14 @@ packages:
     evr: 2021.4-1.fc34
   rpm-ostree-libs:
     evr: 2021.4-1.fc34
+  # Fast-track moby-engine/containerd to fix RPC errors
+  # https://github.com/coreos/fedora-coreos-tracker/issues/793
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-1bedfcaf33
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-b0fd322536
+  moby-engine:
+      evr: 20.10.6-1.fc34
+  containerd:
+      evr: 1.5.0~rc.1-1.fc34
 
   #############################################
   # updates to prevent downgrades from f33->f34
