@@ -198,7 +198,7 @@ boot_device:
       - /dev/sdb
 ----
 
-== Defining a filessystem
+== Defining a filesystem
 
 This example demonstrates the process of creating the filesystem by defining and labeling the partitions, combining them into a RAID array, and formatting that array as ext4.
 
