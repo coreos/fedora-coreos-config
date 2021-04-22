@@ -91,23 +91,6 @@ elif [[ $nm_ts -gt $switchroot_ts ]] && on_platform aws; then
 fi
 ok conditional initrd networking
 
-# In F34 network-manager in dracut started executing NM in
-# oneshot mode via a systemd unit. That needed some fixups.
-# https://github.com/dracutdevs/dracut/pull/1347
-# We're waiting on those changes to flow downstream.
-# When we get them we'll need to adjust some things so let's
-# complain when we detect they've come in.
-source /etc/os-release
-if [ "$VERSION_ID" -gt "33" ]; then
-    if [ ! -f /usr/lib/dracut/modules.d/35network-manager/nm-run.service ]; then
-        fatal "Did not find expected nm-run.service in dracut"
-    fi
-    if grep -q neednet /usr/lib/dracut/modules.d/35network-manager/nm-run.service; then
-        fatal "Upstream dracut fix landed. Please adjust the workaround."
-    fi
-fi
-ok dracut-networkmanager
-
 if ! test -f /usr/share/licenses/fedora-coreos-config/LICENSE; then
     fatal missing LICENSE
 fi
