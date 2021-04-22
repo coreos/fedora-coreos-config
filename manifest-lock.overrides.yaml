@@ -25,6 +25,14 @@ packages:
       evr: 20.10.6-1.fc34
   containerd:
       evr: 1.5.0~rc.1-1.fc34
+  # Fast-track dracut to pick up upstream fixes that have landed
+  # https://src.fedoraproject.org/rpms/dracut/pull-request/13
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-e716aa3f08
+  dracut:
+   evr: 053-4.fc34
+  dracut-network:
+   evr: 053-4.fc34
+  
 
   #############################################
   # updates to prevent downgrades from f33->f34
