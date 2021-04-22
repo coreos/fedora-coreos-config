@@ -25,8 +25,4 @@ install() {
     inst_simple "$moddir/50-afterburn-network-kargs-default.conf" \
         "/usr/lib/systemd/system/afterburn-network-kargs.service.d/50-afterburn-network-kargs-default.conf"
 
-    # Workaround for https://github.com/dracutdevs/dracut/pull/1347 until it lands.
-    # Dropin to make NetworkManager systemd service only start if network is needed.
-    inst_simple "$moddir/50-nm-run-only-if-neednet.conf" \
-        "/usr/lib/systemd/system/nm-run.service.d/50-nm-run-only-if-neednet.conf"
 }
