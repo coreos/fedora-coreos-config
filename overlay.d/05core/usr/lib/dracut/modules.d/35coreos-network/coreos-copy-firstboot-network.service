@@ -31,7 +31,8 @@ ConditionPathExists=/usr/lib/initrd-release
 DefaultDependencies=false
 Before=ignition-diskful.target
 Before=nm-run.service
-Before=dracut-initqueue.service # compat: remove when everyone is on dracut 053+
+# compat: remove when everyone is on dracut 053+
+Before=dracut-initqueue.service
 After=dracut-cmdline.service
 # Any services looking at mounts need to order after this
 # because it causes device re-probing.
