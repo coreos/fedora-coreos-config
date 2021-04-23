@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.26.6-1.fc33.x86_64"
+      "evra": "1:1.26.8-1.fc33.x86_64"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.26.6-1.fc33.x86_64"
+      "evra": "1:1.26.8-1.fc33.x86_64"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.26.6-1.fc33.x86_64"
+      "evra": "1:1.26.8-1.fc33.x86_64"
     },
     "NetworkManager-team": {
-      "evra": "1:1.26.6-1.fc33.x86_64"
+      "evra": "1:1.26.8-1.fc33.x86_64"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.26.6-1.fc33.x86_64"
+      "evra": "1:1.26.8-1.fc33.x86_64"
     },
     "WALinuxAgent-udev": {
       "evra": "2.2.52-1.fc33.noarch"
@@ -274,13 +274,13 @@
       "evra": "33-4.noarch"
     },
     "fedora-release-common": {
-      "evra": "33-3.noarch"
+      "evra": "33-4.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "33-3.noarch"
+      "evra": "33-4.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "33-3.noarch"
+      "evra": "33-4.noarch"
     },
     "fedora-repos": {
       "evra": "33-4.noarch"
@@ -337,7 +337,7 @@
       "evra": "3.9.4-1.fc33.x86_64"
     },
     "fwupd": {
-      "evra": "1.5.8-1.fc33.x86_64"
+      "evra": "1.5.9-1.fc33.x86_64"
     },
     "gawk": {
       "evra": "5.1.0-2.fc33.x86_64"
@@ -469,13 +469,13 @@
       "evra": "2.3.0-2.fc33.noarch"
     },
     "kernel": {
-      "evra": "5.11.14-200.fc33.x86_64"
+      "evra": "5.11.15-200.fc33.x86_64"
     },
     "kernel-core": {
-      "evra": "5.11.14-200.fc33.x86_64"
+      "evra": "5.11.15-200.fc33.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.11.14-200.fc33.x86_64"
+      "evra": "5.11.15-200.fc33.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.21-4.fc33.x86_64"
@@ -1177,7 +1177,7 @@
       "evra": "2.36.1-1.fc33.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.2735-1.fc33.x86_64"
+      "evra": "2:8.2.2787-1.fc33.x86_64"
     },
     "which": {
       "evra": "2.21-20.fc33.x86_64"
@@ -1211,16 +1211,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-04-19T21:08:32Z",
+    "generated": "2021-04-23T02:10:19Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2020-10-19T23:27:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-04-18T21:45:40Z"
+        "generated": "2021-04-21T12:15:27Z"
       },
       "fedora-updates": {
-        "generated": "2021-04-19T17:35:22Z"
+        "generated": "2021-04-21T21:28:49Z"
       }
     }
   }
