@@ -14,21 +14,3 @@ packages:
     evra: 246.7-1.fc33.noarch
   systemd-udev:
     evr: 246.7-1.fc33
-  # Fast-track new coreos-installer release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-c67cfeca62
-  coreos-installer:
-    evr: 0.9.0-2.fc33
-  coreos-installer-bootinfra:
-    evr: 0.9.0-2.fc33
-  # Fast-track new afterburn release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-fb2a204001
-  afterburn:
-    evr: 5.0.0-1.fc33
-  afterburn-dracut:
-    evr: 5.0.0-1.fc33
-  # Fast-track rpm-ostree for CVE-2021-3445
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-eadfc56b95
-  rpm-ostree:
-    evr: 2021.4-1.fc33
-  rpm-ostree-libs:
-    evr: 2021.4-1.fc33
