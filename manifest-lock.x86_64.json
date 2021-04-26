@@ -130,7 +130,7 @@
       "evra": "0.21.2-1.fc34.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.160.0-1.fc34.noarch"
+      "evra": "2:2.160.0-2.fc34.noarch"
     },
     "containerd": {
       "evra": "1.5.0~rc.1-1.fc34.x86_64"
@@ -166,7 +166,7 @@
       "evra": "3.15-3.fc34.x86_64"
     },
     "crun": {
-      "evra": "0.19-2.fc34.x86_64"
+      "evra": "0.19-1.fc34.x86_64"
     },
     "crypto-policies": {
       "evra": "20210213-1.git5c710c0.fc34.noarch"
@@ -232,10 +232,10 @@
       "evra": "4.2-1.fc34.x86_64"
     },
     "dracut": {
-      "evra": "053-4.fc34.x86_64"
+      "evra": "053-5.fc34.x86_64"
     },
     "dracut-network": {
-      "evra": "053-4.fc34.x86_64"
+      "evra": "053-5.fc34.x86_64"
     },
     "e2fsprogs": {
       "evra": "1.45.6-5.fc34.x86_64"
@@ -463,13 +463,13 @@
       "evra": "2.4.0-2.fc34.noarch"
     },
     "kernel": {
-      "evra": "5.11.14-300.fc34.x86_64"
+      "evra": "5.11.15-300.fc34.x86_64"
     },
     "kernel-core": {
-      "evra": "5.11.14-300.fc34.x86_64"
+      "evra": "5.11.15-300.fc34.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.11.14-300.fc34.x86_64"
+      "evra": "5.11.15-300.fc34.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.21-5.fc34.x86_64"
@@ -952,10 +952,10 @@
       "evra": "1.7.3-6.fc34.x86_64"
     },
     "podman": {
-      "evra": "2:3.1.1-2.fc34.x86_64"
+      "evra": "2:3.1.2-1.fc34.x86_64"
     },
     "podman-plugins": {
-      "evra": "2:3.1.1-2.fc34.x86_64"
+      "evra": "2:3.1.2-1.fc34.x86_64"
     },
     "policycoreutils": {
       "evra": "3.2-1.fc34.x86_64"
@@ -1009,7 +1009,7 @@
       "evra": "3.2.3-5.fc34.x86_64"
     },
     "runc": {
-      "evra": "2:1.0.0-376.dev.git12644e6.fc34.x86_64"
+      "evra": "2:1.0.0-377.rc93.fc34.x86_64"
     },
     "samba-client-libs": {
       "evra": "2:4.14.3-0.fc34.x86_64"
@@ -1138,7 +1138,7 @@
       "evra": "2.36.2-1.fc34.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.2735-1.fc34.x86_64"
+      "evra": "2:8.2.2787-1.fc34.x86_64"
     },
     "which": {
       "evra": "2.21-24.fc34.x86_64"
@@ -1172,10 +1172,10 @@
     }
   },
   "metadata": {
-    "generated": "2021-04-26T16:22:43Z",
+    "generated": "2021-04-26T20:54:39Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2021-04-24T21:45:29Z"
+        "generated": "2021-04-26T17:45:02Z"
       },
       "fedora-next": {
         "generated": "2021-04-24T09:52:40Z"
