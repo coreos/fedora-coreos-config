@@ -1,69 +1,13 @@
 packages:
-  # Fast-track new coreos-installer release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-683fffd5bc
-  coreos-installer:
-    evr: 0.9.0-2.fc34
-  coreos-installer-bootinfra:
-    evr: 0.9.0-2.fc34
-  # Fast-track new afterburn release
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-663f695267
-  afterburn:
-    evr: 5.0.0-1.fc34
-  afterburn-dracut:
-    evr: 5.0.0-1.fc34
-  # Fast-track rpm-ostree for CVE-2021-3445
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-c6802f0b69
-  rpm-ostree:
-    evr: 2021.4-1.fc34
-  rpm-ostree-libs:
-    evr: 2021.4-1.fc34
-  # Fast-track moby-engine/containerd to fix RPC errors
+  # Fast-track moby-engine to fix RPC errors
   # https://github.com/coreos/fedora-coreos-tracker/issues/793
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-1bedfcaf33
   # https://bodhi.fedoraproject.org/updates/FEDORA-2021-b0fd322536
   moby-engine:
       evr: 20.10.6-1.fc34
-  containerd:
-      evr: 1.5.0~rc.1-1.fc34
 
   #############################################
   # updates to prevent downgrades from f33->f34
   #############################################
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-ac9daea36e
-  container-selinux:
-    evra: 2:2.160.0-1.fc34.noarch
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-d56567bdab
-  kernel:
-    evr: 5.11.14-300.fc34
-  kernel-core:
-    evr: 5.11.14-300.fc34
-  kernel-modules:
-    evr: 5.11.14-300.fc34
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-83d3313ac6
-  zincati:
-    evr: 0.0.19-1.fc34
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-259ced3016
-  cups-libs:
-    evr: 1:2.3.3op2-4.fc34
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-4a3796dd99
-  libxcrypt:
-    evr: 4.4.19-1.fc34
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-e1ba164651
-  vim-minimal:
-    evr: 2:8.2.2735-1.fc34
   # https://bodhi.fedoraproject.org/updates/FEDORA-2021-39df52b880
   fstrm:
     evr: 0.6.1-2.fc34
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-83b3740389
-  containers-common:
-    evra: 4:1-15.fc34.noarch
-  crun:
-    evr: 0.19-2.fc34
-  conmon:
-    evr: 2:2.0.27-2.fc34
-  podman:
-    evr: 2:3.1.1-2.fc34
-  podman-plugins:
-    evr: 2:3.1.1-2.fc34
-  runc:
-    evr: 2:1.0.0-376.dev.git12644e6.fc34
