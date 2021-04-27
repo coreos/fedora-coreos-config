@@ -10,6 +10,8 @@ packages:
  - kernel kernel-core kernel-modules systemd
  # rpm-ostree
  - rpm-ostree nss-altfiles
+ # firmware updates
+ - fwupd
 
 # bootloader
 packages-aarch64:
