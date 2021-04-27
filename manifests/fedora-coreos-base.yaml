@@ -99,6 +99,18 @@ postprocess:
     DNSStubListener=no
     EOF
 
+  # Disable and delete the coreos-reset-stub-resolv-selinux-context.{path,service}.
+  # Not needed in Fedora 34 since https://github.com/systemd/systemd/pull/17976 has landed.
+  # Can remove this and the files in the overlay once we've migrated everything to F34.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    source /etc/os-release
+    if [ ${VERSION_ID} -ge 34 ]; then
+    rm -fv /etc/systemd/system/multi-user.target.wants/coreos-reset-stub-resolv-selinux-context.{path,service} \
+           /usr/lib/systemd/system/coreos-reset-stub-resolv-selinux-context.{path,service}
+    fi
+
   # Set the fallback hostname to `localhost`. This piggybacks on the
   # postprocess script above which neuters systemd-resolved, because
   # currently, a fallback hostname of `localhost` + systemd-resolved breaks
@@ -125,6 +137,9 @@ postprocess:
       echo 'MOTD_FILE=/usr/share/misc/motd:/run/motd:/run/motd.d:/etc/motd:/etc/motd.d' >> /etc/login.defs
     fi
 
+# Packages listed here should be specific to Fedore CoreOS (as in not yet
+# available in RHCOS or not desired in RHCOS). All other packages should go
+# into one of the sub-manifests listed at the top.
 packages:
   # Security
   - polkit
@@ -137,7 +152,7 @@ packages:
   - fuse-overlayfs slirp4netns
   # name resolution for podman containers
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
-  - podman-plugins
+  - podman-plugins dnsmasq
   # Remote IPC for podman
   - libvarlink-util
   # Minimal NFS client
@@ -167,7 +182,7 @@ packages:
   # file-transfer: note fuse-sshfs is not in RHEL
   # so we can't put it in file-transfer.yaml
   - fuse-sshfs
-  # User experience
+  # Improved MOTD experience
   - console-login-helper-messages-motdgen
   # i18n
   - kbd

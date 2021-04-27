@@ -7,10 +7,11 @@ After=basic.target
 # Triggering conditions for cases where we need network:
 #  * when Ignition signals that it is required for provisioning.
 #  * on live systems fetching the remote rootfs in initramfs.
-#  * on Azure, for hostname fetching (metadata endpoint) and boot check-in (wireserver).
+#  * on Azure and Azure Stack Hub, for hostname fetching (metadata endpoint) and boot check-in (wireserver).
 ConditionPathExists=|/run/ignition/neednet
 ConditionKernelCommandLine=|coreos.live.rootfs_url
 ConditionKernelCommandLine=|ignition.platform.id=azure
+ConditionKernelCommandLine=|ignition.platform.id=azurestack
 
 # Creates /run/ignition/neednet
 After=ignition-fetch-offline.service
