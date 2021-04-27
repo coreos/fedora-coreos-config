@@ -3,6 +3,8 @@
 cosaPod {
     checkoutToDir(scm, 'config')
 
+    def basearch = shwrapCapture("cosa basearch")
+
     shwrap("cd config && ci/validate")
 
     shwrap("""
@@ -14,7 +16,18 @@ cosaPod {
         cosa buildprep https://builds.coreos.fedoraproject.org/prod/streams/${env.CHANGE_TARGET}/builds
     """)
 
-    fcosBuild(skipInit: true, extraFetchArgs: '--with-cosa-overrides')
+    // use a --parent-build arg so we can diff later and it matches prod
+    def parent_arg = ""
+    def parent_commit = ""
+    if (shwrapRc("test -e /srv/fcos/builds/latest/${basearch}/meta.json") == 0) {
+        shwrap("cp /srv/fcos/builds/latest/${basearch}/meta.json .") // readJSON wants it in the WORKSPACE
+        def meta = readJSON file: "meta.json"
+        def version = meta["buildid"]
+        parent_arg = "--parent-build ${version}"
+        parent_commit = meta["ostree-commit"]
+    }
+
+    fcosBuild(skipInit: true, extraFetchArgs: '--with-cosa-overrides', extraArgs: parent_arg)
 
     parallel metal: {
         shwrap("cd /srv/fcos && cosa buildextend-metal")
@@ -33,7 +46,17 @@ cosaPod {
     }
 
     // also print the pkgdiff as a separate stage to make it more visible
-    stage("RPM Diff") {
-        shwrap("jq .pkgdiff /srv/fcos/builds/latest/x86_64/meta.json")
+    if (parent_arg != "") {
+        stage("RPM Diff") {
+            shwrap("""
+                cd /srv/fcos
+                new_commit=\$(jq -r '.["ostree-commit"]' builds/latest/${basearch}/meta.json)
+                rpm-ostree db diff --repo tmp/repo ${parent_commit} \${new_commit} | tee tmp/diff.txt
+                if grep -q Downgraded tmp/diff.txt; then
+                    echo "Downgrade detected. This is likely unintentional. If not, you may safely ignore this error."
+                    exit 1
+                fi
+            """)
+        }
     }
 }

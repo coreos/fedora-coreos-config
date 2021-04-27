@@ -13,7 +13,7 @@ packages:
   - sudo
   - vim-minimal
   # File compression/decompression
-  ## (bsdtar - dependency of 35coreos-live dracut module)
+  ## bsdtar - dependency of 35coreos-live dracut module
   - bsdtar
   - bzip2
   - gzip
@@ -22,8 +22,6 @@ packages:
   # Improved MOTD experience
   - console-login-helper-messages-issuegen
   - console-login-helper-messages-profile
-  # DNS/DHCP server
-  - dnsmasq
   # kdump support
   # https://github.com/coreos/fedora-coreos-tracker/issues/622
   - kexec-tools
