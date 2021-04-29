@@ -90,66 +90,7 @@ one easy way to do this is for now:
 
 ## Moving to a new major version (N) of Fedora
 
-Updating this repo:
-
-1. bump `releasever` in `manifest.yaml`
-2. update the repos in `manifest.yaml` if needed
-3. run `cosa fetch --update-lockfile`
-4. bump the base Fedora version in `ci/buildroot/Dockerfile`
-5. PR the result
-
-Update server changes:
-
-1. Set a new update barrier for N-2 on all streams.
-   In the barrier entry set a link to [the docs](https://docs.fedoraproject.org/en-US/fedora-coreos/update-barrier-signing-keys/).
-   See [discussion](https://github.com/coreos/fedora-coreos-tracker/issues/480#issuecomment-631724629).
-
-CoreOS Installer changes:
-
-1. Update CoreOS Installer to know about the signing key used for the
-   future new major version of Fedora (N+1). Note that the signing
-   keys for N+1 won't get created until releng branches and rawhide
-   becomes N+1.
-
-Release engineering changes:
-
-1. Verify that a few tags have been created. These should have been created
-   by releng scripts on branching: 
-
-- `f${releasever}-coreos-signing-pending`
-- `f${releasever}-coreos-continuous`
-
-2. The tag info for the coreos-pool tag has the new release (N) and
-   next release (N+1) signing keys (just to stay ahead of the curve)
-   and removes the old release (N-2) signing key. The following commands
-   view the current settings and then update the list to 32/33/34 keys.
-   You'll most likely have to get someone from releng to run the second
-   command (`edit-tag`).
-
-- `koji taginfo coreos-pool`
-- `koji edit-tag coreos-pool -x tag2distrepo.keys="12c944d0 9570ff31 45719a39"`
-
-
-3. `koji untag` N-2 packages from the pool (at some point we'll have GC
-   in place to do this for us, but for now we must remember to do this
-   manually or otherwise distRepo will fail once the signed packages are
-   GC'ed). For example the following snippet finds all RPMs signed by the
-   Fedora 31 key and untags them.
-
-```
-f31key=3c3359c4
-key=$f31key
-untaglist=''
-for build in $(koji list-tagged --quiet coreos-pool | cut -f1 -d' '); do
-    if koji buildinfo $build | grep $key 1>/dev/null; then
-        untaglist+="${build} "
-        echo "Adding $build to untag list"
-    fi
-done
-
-# After verifying the list looks good:
-#   - koji untag-build coreos-pool $untaglist
-```
+[Create a rebase checklist](https://github.com/coreos/fedora-coreos-tracker/issues/new?labels=kind/enhancement&template=rebase.md&title=Rebase+onto+Fedora+N) in fedora-coreos-tracker.
 
 ## CoreOS CI
 
