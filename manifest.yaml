@@ -23,13 +23,3 @@ postprocess:
     mkdir -p /etc/fedora-coreos-pinger/config.d /etc/zincati/config.d
     echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/90-disable-on-non-production-stream.toml
     echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nupdates.enabled = false' > /etc/zincati/config.d/90-disable-on-non-production-stream.toml
-
-  # Temporary hack to work around agetty SELinux denials. It lives here because
-  # it's specific to rawhide.
-  # https://github.com/coreos/fedora-coreos-config/pull/859#issuecomment-783713383
-  # https://bugzilla.redhat.com/show_bug.cgi?id=1932053
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    echo '# https://bugzilla.redhat.com/show_bug.cgi?id=1932053' >> /usr/lib/dracut/modules.d/35coreos-ignition/coreos-teardown-initramfs.sh
-    echo 'touch /run/agetty.reload' >> /usr/lib/dracut/modules.d/35coreos-ignition/coreos-teardown-initramfs.sh
