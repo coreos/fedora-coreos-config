@@ -16,6 +16,6 @@ install() {
     inst_multiple \
         touch
 
-    # TODO f34: check if we can drop this whole module
+    # TODO f35: check if we can drop this whole module
     install_unit coreos-touch-run-agetty.service
 }
