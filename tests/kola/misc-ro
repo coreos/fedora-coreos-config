@@ -31,17 +31,10 @@ done
 if ! systemctl show -p ActiveState kdump.service | grep -q ActiveState=inactive; then
     fatal "Unit kdump.service shouldn't be active"
 fi
-# systemd-resolved should be disabled on f32 but
-# enabled on f33+.
+# systemd-resolved should be enabled
 source /etc/os-release
-if systemctl is-enabled systemd-resolved 1>/dev/null; then
-    if [ "$VERSION_ID" == "32" ]; then
-        fatal "Unit systemd-resolved should not be enabled"
-    fi
-else
-    if [ "$VERSION_ID" != "32" ]; then
-        fatal "Unit systemd-resolved should be enabled"
-    fi
+if ! systemctl is-enabled systemd-resolved 1>/dev/null; then
+    fatal "Unit systemd-resolved should be enabled"
 fi
 ok services
 
