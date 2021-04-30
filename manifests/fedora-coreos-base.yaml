@@ -99,18 +99,6 @@ postprocess:
     DNSStubListener=no
     EOF
 
-  # Disable and delete the coreos-reset-stub-resolv-selinux-context.{path,service}.
-  # Not needed in Fedora 34 since https://github.com/systemd/systemd/pull/17976 has landed.
-  # Can remove this and the files in the overlay once we've migrated everything to F34.
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    source /etc/os-release
-    if [ ${VERSION_ID} -ge 34 ]; then
-    rm -fv /etc/systemd/system/multi-user.target.wants/coreos-reset-stub-resolv-selinux-context.{path,service} \
-           /usr/lib/systemd/system/coreos-reset-stub-resolv-selinux-context.{path,service}
-    fi
-
   # Set the fallback hostname to `localhost`. This piggybacks on the
   # postprocess script above which neuters systemd-resolved, because
   # currently, a fallback hostname of `localhost` + systemd-resolved breaks
@@ -119,22 +107,8 @@ postprocess:
   - |
     #!/usr/bin/env bash
     source /etc/os-release
-    if [ ${VERSION_ID} -ge 34 ] && [ -z "${DEFAULT_HOSTNAME:-}" ]; then
+    if [ -z "${DEFAULT_HOSTNAME:-}" ]; then
       echo 'DEFAULT_HOSTNAME=localhost' >> /usr/lib/os-release
-    fi
-
-  # Edit `login.defs` to configure `login(1)` to read from `/run/motd.d` for
-  # displaying the MOTD. This is required for newer versions of
-  # `console-login-helper-messages` to function properly.
-  # This will be dropped once Fedora util-linux adds `/run/motd.d` as a default
-  # in Fedora 34.
-  # https://src.fedoraproject.org/rpms/util-linux/pull-request/8
-  # https://github.com/coreos/fedora-coreos-tracker/issues/704#issuecomment-772862174
-  - |
-    #!/usr/bin/env bash
-    source /etc/os-release
-    if [ ${VERSION_ID} -lt 34 ]; then
-      echo 'MOTD_FILE=/usr/share/misc/motd:/run/motd:/run/motd.d:/etc/motd:/etc/motd.d' >> /etc/login.defs
     fi
 
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
