@@ -107,7 +107,7 @@ postprocess:
   - |
     #!/usr/bin/env bash
     source /etc/os-release
-    if [ ${VERSION_ID} -ge 34 ] && [ -z "${DEFAULT_HOSTNAME:-}" ]; then
+    if [ -z "${DEFAULT_HOSTNAME:-}" ]; then
       echo 'DEFAULT_HOSTNAME=localhost' >> /usr/lib/os-release
     fi
 
