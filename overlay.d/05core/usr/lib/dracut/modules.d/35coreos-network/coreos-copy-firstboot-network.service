@@ -8,29 +8,30 @@
 #     - i.e. after /dev/disk/by-label/boot is available
 #     - and after the ignition-dracut GPT generator (see below)
 # - Need to run before networking is brought up.
-#     - This is done in nm-run.sh [1] that runs as part of dracut-initqueue [2]
-#     - i.e. Before=dracut-initqueue.service
+#     - This is done in nm-run.service [1]
+#     - i.e. Before=nm-run.service
 # - Need to make sure karg networking configuration isn't applied
 #     - There are two ways to do this.
-#         - One is to run *before* the nm-config.sh [3] that runs as part of
-#           dracut-cmdline [4] and `ln -sf /bin/true /usr/libexec/nm-initrd-generator`.
+#         - One is to run *before* the nm-config.sh [2] that runs as part of
+#           dracut-cmdline [3] and `ln -sf /bin/true /usr/libexec/nm-initrd-generator`.
 #             - i.e. Before=dracut-cmdline.service
-#         - Another is to run *after* nm-config.sh [3] in dracut-cmdline [4]
+#         - Another is to run *after* nm-config.sh [2] in dracut-cmdline [3]
 #           and just delete all the files created by nm-initrd-generator.
-#             - i.e. After=dracut-cmdline.service, but Before=dracut-initqueue.service
+#             - i.e. After=dracut-cmdline.service, but Before=nm-run.service
 #     - We'll go with the second option here because the need for the /boot
 #       device (mentioned above) means we can't start before dracut-cmdline.service
 #
-# [1] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/nm-run.sh
-# [2] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/module-setup.sh#L37
-# [3] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/nm-config.sh
-# [4] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/module-setup.sh#L36
+# [1] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/nm-run.service
+# [2] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/nm-config.sh
+# [3] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/module-setup.sh#L34
 #
 [Unit]
 Description=Copy CoreOS Firstboot Networking Config
 ConditionPathExists=/usr/lib/initrd-release
 DefaultDependencies=false
 Before=ignition-diskful.target
+Before=nm-run.service
+# compat: remove when everyone is on dracut 053+
 Before=dracut-initqueue.service
 After=dracut-cmdline.service
 # Any services looking at mounts need to order after this
