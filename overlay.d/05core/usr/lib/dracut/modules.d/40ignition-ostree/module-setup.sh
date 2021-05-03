@@ -60,9 +60,6 @@ install() {
         sgdisk    \
         find
 
-    # TODO f34: check if we can drop this temporary workaround for https://github.com/latchset/clevis/pull/295
-    inst_multiple seq
-
     for x in mount populate; do
         install_ignition_unit ignition-ostree-${x}-var.service
         inst_script "$moddir/ignition-ostree-${x}-var.sh" "/usr/sbin/ignition-ostree-${x}-var"
