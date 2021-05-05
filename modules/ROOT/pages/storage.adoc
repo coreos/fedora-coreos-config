@@ -264,7 +264,7 @@ storage:
       with_mount_unit: true
 ----
 
-The root filesystem can also be moved to LUKS. In the case of the root filesystem the LUKS device must be backed by https://github.com/coreos/ignition/blob/master/docs/operator-notes.md#clevis-based-devices[clevis]. There is simplified Butane config syntax for encrypting the root filesystem; for example:
+The root filesystem can also be moved to LUKS. In the case of the root filesystem the LUKS device must be backed by https://coreos.github.io/ignition/operator-notes/#clevis-based-devices[clevis]. There is simplified Butane config syntax for encrypting the root filesystem; for example:
 
 .Moving the root filesystem to LUKS
 [source,yaml]

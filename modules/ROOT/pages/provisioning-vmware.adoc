@@ -127,4 +127,4 @@ govc vm.power -on "${VM_NAME}"
 
 The full syntax of the `ip=` parameter is documented in https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html[Dracut manpages].
 
-For further information on first-boot networking, see https://github.com/coreos/afterburn/blob/master/docs/usage/initrd-network-cmdline.md[Afterburn documentation].
+For further information on first-boot networking, see https://coreos.github.io/afterburn/usage/initrd-network-cmdline/[Afterburn documentation].

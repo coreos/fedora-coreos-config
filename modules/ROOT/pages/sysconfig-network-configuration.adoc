@@ -84,7 +84,7 @@ On certain platforms Afterburn will inject networking configuration, either conf
 
 Currently this is only utilized on VMWare. The implementation there allows for users to specify networking configuration in the form of dracut networking arguments without having to stop the boot of the machine and manually inject those arguments themselves.
 
-See https://github.com/coreos/afterburn/blob/master/docs/usage/initrd-network-cmdline.md[the Afterburn documentation] for more information.
+See https://coreos.github.io/afterburn/usage/initrd-network-cmdline/[the Afterburn documentation] for more information.
 
 ==== via Ignition
 

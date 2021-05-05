@@ -24,19 +24,19 @@ The following changes have been made to the installation process:
 * FCOS does not have a recommended mechanism to select the version of `docker`.
 * Network configuration is now handled by NetworkManager instead of `systemd-networkd`.
 * For time synchronization, use https://docs.fedoraproject.org/en-US/fedora/rawhide/system-administrators-guide/servers/Configuring_NTP_Using_the_chrony_Suite/[`chronyd`] rather than `ntpd` or `systemd-timesyncd`.
-* Automatic updates are now coordinated by Zincati, as described in the https://github.com/coreos/zincati/blob/master/docs/usage/auto-updates.md[Zincati documentation]. The rollback mechanism (via grub) is now provided by https://github.com/coreos/rpm-ostree/blob/master/README.md[`rpm-ostree`].
-* The functionality of the reboot manager (`locksmith`) is rolled into https://github.com/coreos/zincati/blob/master/README.md[Zincati].
+* Automatic updates are now coordinated by Zincati, as described in the https://coreos.github.io/zincati/usage/auto-updates/[Zincati documentation]. The rollback mechanism (via grub) is now provided by https://coreos.github.io/rpm-ostree/[`rpm-ostree`].
+* The functionality of the reboot manager (`locksmith`) is rolled into https://coreos.github.io/zincati/[Zincati].
 * The `update-ssh-keys` tool is not provided on FCOS. sshd uses a xref:authentication.adoc#ssh-key-locations[helper program] to read key files directly out of `~/.ssh/authorized_keys.d`.
 
 == Configuration changes
 
 When writing Butane configs, note the following changes:
 
-* `coreos-metadata` is now https://github.com/coreos/afterburn/blob/master/README.md[Afterburn]. The prefix of the metadata variable names has changed from `COREOS_` to `AFTERBURN_`, and the following platform names have changed:
+* `coreos-metadata` is now https://coreos.github.io/afterburn/[Afterburn]. The prefix of the metadata variable names has changed from `COREOS_` to `AFTERBURN_`, and the following platform names have changed:
 ** `EC2` is now `AWS`
 ** `GCE` is now `GCP`
 +
-For more info, see the https://github.com/coreos/afterburn/blob/master/docs/usage/attributes.md[Afterburn documentation].
+For more info, see the https://coreos.github.io/afterburn/usage/attributes/[Afterburn documentation].
 
 * By default, FCOS does not allow password logins via SSH. We recommend xref:authentication.adoc#using-an-ssh-key[configuring SSH keys] instead. If needed, you can xref:authentication.adoc#enabling-ssh-password-authentication[enable SSH password authentication].
 * Because `usermod` is not yet fully-functional on FCOS, there is a `docker` group in the `/etc/group` file. This is a stop-gap measure to facilitate a smooth transition to FCOS. The team is working on a more functional `usermod`, at which time the `docker` group will no longer be included by default. See the https://github.com/coreos/fedora-coreos-tracker/issues/2[docker group issue].
