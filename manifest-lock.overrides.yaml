@@ -1,13 +1,1 @@
-packages:
-  # Fast-track moby-engine to fix RPC errors
-  # https://github.com/coreos/fedora-coreos-tracker/issues/793
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-b0fd322536
-  moby-engine:
-      evr: 20.10.6-1.fc34
-
-  #############################################
-  # updates to prevent downgrades from f33->f34
-  #############################################
-  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-39df52b880
-  fstrm:
-    evr: 0.6.1-2.fc34
+packages: {}
