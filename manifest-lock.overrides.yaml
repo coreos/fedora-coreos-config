@@ -1,1 +1,8 @@
-packages: {}
+packages:
+    # Freeze due to regression in 3.2.0 rc
+    # https://github.com/containers/podman/issues/10274
+    # https://github.com/containers/podman/pull/10288
+    podman:
+        evr: 2:3.1.2-1.fc34
+    podman-plugins:
+        evr: 2:3.1.2-1.fc34
