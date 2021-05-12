@@ -11,3 +11,11 @@ packages:
   # https://bodhi.fedoraproject.org/updates/FEDORA-2021-39df52b880
   fstrm:
     evr: 0.6.1-2.fc34
+
+  # Fast-track 3.1.2-3. Fixes podman selinux labelling regression.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/818
+  # https://bodhi.fedoraproject.org/updates/FEDORA-2021-aab271bbc8
+  podman:
+      evr: 3:3.1.2-3.fc34
+  podman-plugins:
+      evr: 3:3.1.2-3.fc34
