@@ -1,0 +1,27 @@
+= Node counting
+
+Starting with the first releases in August, Fedora CoreOS nodes will be counted by the Fedora infrastructure via the Count Me feature. This system is explicitly designed to make sure that no personally identifiable information is sent from counted systems. It also insures that the Fedora infrastructure does not collect any personal data. The nickname for this counting mechanism is "Count Me", from the option name. Implementation details of this feature are available in https://fedoraproject.org/wiki/Changes/DNF_Better_Counting[DNF Better Counting change request for Fedora 32]. In short, the Count Me mechanism works by telling Fedora servers how old your system is (with a very large approximation).
+
+On Fedora CoreOS nodes, this functionnality is implemented in https://coreos.github.io/rpm-ostree/countme/[rpm-ostree as a stand-alone method]. The new implementation has the same privacy preserving properties as the original DNF implementation.
+
+== Opting out of counting
+
+You can use the following command to disable counting on existing nodes:
+
+[source,bash]
+----
+$ sudo systemctl mask --now rpm-ostree-countme.timer
+----
+
+You can use the following Butane config to disable counting during provisionning on first boot:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.3.0
+systemd:
+  units:
+    - name: rpm-ostree-countme.timer
+      enabled: false
+      mask: true
+----
