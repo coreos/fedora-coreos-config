@@ -1,8 +1,8 @@
 packages:
-    # Freeze due to regression in 3.2.0 rc
-    # https://github.com/containers/podman/issues/10274
-    # https://github.com/containers/podman/pull/10288
+    # Fast-track 3.1.2-3. Fixes podman selinux labelling regression.
+    # https://github.com/coreos/fedora-coreos-tracker/issues/818
+    # https://bodhi.fedoraproject.org/updates/FEDORA-2021-aab271bbc8
     podman:
-        evr: 2:3.1.2-1.fc34
+        evr: 3:3.1.2-3.fc34
     podman-plugins:
-        evr: 2:3.1.2-1.fc34
+        evr: 3:3.1.2-3.fc34
