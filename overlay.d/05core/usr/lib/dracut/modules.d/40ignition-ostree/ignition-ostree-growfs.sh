@@ -68,9 +68,16 @@ while true; do
     MAJMIN=$(echo $(lsblk -dno MAJ:MIN "${NAME}"))
     case "${TYPE}" in
         part)
-            partnum=$(cat "/sys/dev/block/${MAJMIN}/partition")
-            # XXX: ideally this'd be idempotent and we wouldn't `|| :`
-            growpart "${PKNAME}" "${partnum}" || :
+            eval $(udevadm info --query property --export "${current_blkdev}" | grep ^DM_ || :)
+            if [ -n "${DM_MPATH:-}" ]; then
+                # Since growpart does not understand device mapper, we have to use sfdisk.
+                echo ", +" | sfdisk --no-reread --no-tell-kernel --force -N "${DM_PART}" "/dev/mapper/${DM_MPATH}"
+                udevadm settle # Wait for udev-triggered kpartx to update mappings
+            else
+                partnum=$(cat "/sys/dev/block/${MAJMIN}/partition")
+                # XXX: ideally this'd be idempotent and we wouldn't `|| :`
+                growpart "${PKNAME}" "${partnum}" || :
+            fi
             ;;
         crypt)
             # XXX: yuck... we need to expose this sanely in clevis
