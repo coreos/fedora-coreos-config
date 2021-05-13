@@ -6,3 +6,7 @@ packages:
         evr: 3:3.1.2-3.fc34
     podman-plugins:
         evr: 3:3.1.2-3.fc34
+    # Fast-track 2.10.1-1.
+    # https://bodhi.fedoraproject.org/updates/FEDORA-2021-056a59dc93
+    ignition:
+        evr: 2.10.1-1.fc34
