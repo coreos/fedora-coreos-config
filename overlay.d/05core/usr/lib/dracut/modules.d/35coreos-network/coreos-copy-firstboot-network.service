@@ -40,6 +40,9 @@ After=coreos-gpt-setup.service
 # Since we are mounting /boot/, require the device first
 Requires=dev-disk-by\x2dlabel-boot.device
 After=dev-disk-by\x2dlabel-boot.device
+# And since the boot device may be on multipath; optionally wait for it to
+# appear via the dynamic target.
+After=coreos-multipath-wait.target
 # Need to run after coreos-enable-network since it may re-run the NM cmdline
 # hook which will generate NM configs from the network kargs, but we want to
 # have precedence.
