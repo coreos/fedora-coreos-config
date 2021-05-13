@@ -1,5 +1,5 @@
 [Unit]
-Description=Ignition OSTree: Regenerate filesystem UUID (root)
+Description=Ignition OSTree: Regenerate Filesystem UUID (root)
 # These conditions match mount-firstboot-sysroot.service
 DefaultDependencies=false
 ConditionKernelCommandLine=!root
