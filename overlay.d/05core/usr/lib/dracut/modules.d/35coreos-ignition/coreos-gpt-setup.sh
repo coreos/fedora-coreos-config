@@ -6,17 +6,25 @@ set -euo pipefail
 
 UNINITIALIZED_GUID='00000000-0000-4000-a000-000000000001'
 
-# On RHEL 8 the version of lsblk doesn't have PTUUID. Let's detect
-# if lsblk supports it. In the future we can remove the 'if' and
-# just use the 'else'.
-if ! lsblk --help | grep -q PTUUID; then
-    # Get the PKNAME
-    eval $(lsblk --output PKNAME --pairs --paths --nodeps "$1")
-    # Get the PTUUID
-    eval $(blkid -o export $PKNAME)
+# If it's on multipath, get the parent device from udev properties.
+DM_MPATH=$(eval $(udevadm info --query property --export "$1") && echo "${DM_MPATH:-}")
+
+if [ -n "${DM_MPATH:-}" ]; then
+    PKNAME=/dev/mapper/$DM_MPATH
+    PTUUID=$(eval $(udevadm info --query property --export "$PKNAME") && echo "${ID_PART_TABLE_UUID:-}")
 else
-    # PTUUID is the disk guid, PKNAME is the parent kernel name
-    eval $(lsblk --output PTUUID,PKNAME --pairs --paths --nodeps "$1")
+    # On RHEL 8 the version of lsblk doesn't have PTUUID. Let's detect
+    # if lsblk supports it. In the future we can remove the 'if' and
+    # just use the 'else'.
+    if ! lsblk --help | grep -q PTUUID; then
+        # Get the PKNAME
+        eval $(lsblk --output PKNAME --pairs --paths --nodeps "$1")
+        # Get the PTUUID
+        eval $(blkid -o export $PKNAME)
+    else
+        # PTUUID is the disk guid, PKNAME is the parent kernel name
+        eval $(lsblk --output PTUUID,PKNAME --pairs --paths --nodeps "$1")
+    fi
 fi
 
 # Skip in the following two cases:
