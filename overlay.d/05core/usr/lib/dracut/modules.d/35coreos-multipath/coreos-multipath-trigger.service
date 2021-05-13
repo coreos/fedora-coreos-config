@@ -1,0 +1,19 @@
+# This unit is needed in the LUKS-on-multipath case on subsequent boots. When
+# multipathd takes ownership of the individual paths, the by-uuid/ symlink
+# which systemd-cryptsetup@.service binds to gets lost. So we retrigger udev
+# here to make sure it's re-added.
+#
+# This is tracked at:
+# https://bugzilla.redhat.com/show_bug.cgi?id=1963242
+
+[Unit]
+Description=CoreOS Trigger Multipath
+DefaultDependencies=false
+Requires=coreos-multipath-wait.target
+After=coreos-multipath-wait.target
+Before=cryptsetup-pre.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/udevadm trigger --settle --subsystem-match block
+RemainAfterExit=yes
