@@ -2,7 +2,6 @@
 Description=Ignition OSTree: Regenerate Filesystem UUID (root)
 # These conditions match mount-firstboot-sysroot.service
 DefaultDependencies=false
-ConditionKernelCommandLine=!root
 ConditionKernelCommandLine=ostree
 ConditionPathExists=!/run/ostree-live
 Before=initrd-root-fs.target
