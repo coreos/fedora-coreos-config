@@ -1,0 +1,59 @@
+= Configuring time zone
+
+By default, Fedora CoreOS machines keep time in the Coordinated Universal Time (UTC) zone and synchronize their clocks with the Network Time Protocol (NTP). This page contains information about customizing the time zone.
+
+== Viewing and changing time zone
+
+The `timedatectl` command displays and sets the date, time, and time zone.
+
+[source,bash]
+----
+$ timedatectl status
+               Local time: Mon 2021-05-17 20:10:20 UTC
+           Universal time: Mon 2021-05-17 20:10:20 UTC
+                 RTC time: Mon 2021-05-17 20:10:20    
+                Time zone: UTC (UTC, +0000)           
+System clock synchronized: yes                        
+              NTP service: active                     
+          RTC in local TZ: no
+----
+
+You can use the `list-timezones` subcommand to list the available time zones. Available time zones are represented by https://man7.org/linux/man-pages/man5/tzfile.5.html[`tzfile`] entries in the system's time zone database under `/usr/share/zoneinfo`.
+
+[source,bash]
+----
+$ timedatectl list-timezones
+Africa/Abidjan
+Africa/Accra
+Africa/Addis_Ababa
+…
+----
+
+See the https://www.freedesktop.org/software/systemd/man/timedatectl.html[manual page] for more information about how `timedatectl` can be used; however, we do not recommend changing the time zone per-machine imperatively via SSH.
+
+=== Recommended time zone: Coordinated Universal Time (UTC)
+
+We recommend that all machines in Fedora CoreOS clusters use the default UTC time zone. It is strongly discouraged to set a non-UTC time zone for reasons including, but not limited to, time zone confusions, complexities of adjusting clocks for daylight savings time depending on regional customs, difficulty in correlating log files across systems, possibility of a stale time zone database, and unpredictability, as local time zones are subject to arbitrary local policies and laws.
+
+If your applications require a different time zone, in most cases, it is possible to set a different time zone than the system one for individual applications by setting the `TZ` environment variable.
+
+=== Setting the time zone via Ignition
+
+If you are aware of the downsides to setting a system time zone that is different from the default UTC time zone, you can set a different system time zone by setting the local time zone configuration file, https://www.freedesktop.org/software/systemd/man/localtime.html[`/etc/localtime`], to be an absolute or relative symlink to a `tzfile` entry under `/usr/share/zoneinfo/`.
+It is recommended that you set the same time zone across all your machines in the cluster.
+
+For example, you can set the time zone to `America/New_York` by using a Butane config like the following:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.3.0
+storage:
+  links:
+    - path: /etc/localtime
+      target: ../usr/share/zoneinfo/America/New_York
+----
+
+== Time synchronization
+
+Fedora CoreOS uses the https://chrony.tuxfamily.org/[`chrony`] implementation of NTP, with some additional custom logic for specific clouds. For details, see the https://github.com/coreos/fedora-coreos-tracker/blob/main/internals/README-internals.md#time-synchronization[Fedora CoreOS internals documentation].
