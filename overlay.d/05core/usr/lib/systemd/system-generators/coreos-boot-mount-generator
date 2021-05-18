@@ -41,20 +41,11 @@ add_wants() {
 # is backed by a device-mapper target the dev-mapper.*.device is used.
 mk_mount() {
     local mount_pt="${1}"; shift
-    local label="${1}"; shift
+    local path="${1}"; shift
     local options="${1}"; shift
 
-    local path="/dev/disk/by-label/${label}"
+    local devservice=$(systemd-escape -p ${path} --suffix=service)
     local unit_name=$(systemd-escape -p ${mount_pt} --suffix=mount)
-
-    eval $(udevadm info --query property --export "${path}")
-    device="$(systemd-escape ${path})"
-    if [ "${DM_NAME:-x}" != "x" ]; then
-        path="/dev/mapper/${DM_NAME}"
-        device="$(systemd-escape dev/mapper/${DM_NAME})"
-    fi
-    device="${device//-dev/dev}"
-    echo "coreos-boot-mount-generator: using ${device} for ${label} mount to ${mount_pt}"
 
     cat > "${UNIT_DIR}/${unit_name}" <<EOF
 # Automatically created by coreos-boot-mount-generator
@@ -63,21 +54,31 @@ Description=CoreOS Dynamic Mount for ${mount_pt}
 Documentation=https://github.com/coreos/fedora-coreos-config
 
 Before=local-fs.target
-Requires=systemd-fsck@${device}.service
-After=systemd-fsck@${device}.service
+Requires=systemd-fsck@${devservice}
+After=systemd-fsck@${devservice}
 
 [Mount]
 What=${path}
 Where=${mount_pt}
 Options=${options}
 EOF
-
     add_wants "${unit_name}"
 }
+
+# If the root device is multipath, hook up /boot to use that too,
+# based on our custom udev rules in 90-coreos-device-mapper.rules
+# that creates "label found on mpath" links.
+# Otherwise, use the usual by-label symlink.
+# See discussion in https://github.com/coreos/fedora-coreos-config/pull/1022
+bootdev=/dev/disk/by-label/boot
+# Yes this isn't a real karg parser but we're trapped in this shell script
+if grep -q rd.multipath /proc/cmdline; then
+    bootdev=/dev/disk/by-label/dm-mpath-boot
+fi
 
 # We mount read-only by default mostly to protect
 # against accidental damage.  Only a few things
 # owned by CoreOS should be touching /boot or the ESP.
 # Use nodev,nosuid because some hardening guides want
 # that even though it's of minimal value.
-mk_mount /boot boot ro,nodev,nosuid
+mk_mount /boot "${bootdev}" ro,nodev,nosuid
