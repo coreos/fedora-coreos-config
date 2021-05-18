@@ -1,24 +1,27 @@
+# CoreOS-specific symlinks for dm-multipath filesystem labels,
+# used for `label=boot` and `label=root`.
+
 ACTION=="remove", GOTO="dm_label_end"
 SUBSYSTEM!="block", GOTO="dm_label_end"
 KERNEL!="dm-*", GOTO="dm_label_end"
 
 # Ensure that the device mapper target is active
-# And the required attributes exist.
 ENV{DM_ACTIVATION}!="1", GOTO="dm_label_end"
-ENV{ID_FS_LABEL_ENC}!="?*", GOTO="dm_label_end"
-ENV{ID_FS_UUID_ENC}!="?*", GOTO="dm_label_end"
+ENV{DM_SUSPENDED}=="1", GOTO="dm_label_end"
 
 # Only act on filesystems. This should prevent layered devices
 # such as Raid on Multipath devices from appearing.
 ENV{ID_FS_USAGE}!="filesystem", GOTO="dm_label_end"
+
+# And if the filesystem doesn't have a label+uuid, we're done.
+ENV{ID_FS_LABEL_ENC}!="?*", GOTO="dm_label_end"
+ENV{ID_FS_UUID_ENC}!="?*", GOTO="dm_label_end"
 
 # Setup up Multipath labels and UUID's. Match on DM_UUID which
 # is stable regardless of whether friendly names are used or not.
 # 66-kpartx.rules use DM_UUID to match for linear mappings on multipath
 # targets.
 ENV{DM_UUID}=="*mpath*" \
-  , ENV{DM_SUSPENDED}=="Active" \
-  , ENV{DM_TABLES_LOADED}=="Live" \
   , SYMLINK+="disk/by-label/dm-mpath-$env{ID_FS_LABEL_ENC}" \
   , SYMLINK+="disk/by-uuid/dm-mpath-$env{ID_FS_UUID_ENC}"
 
