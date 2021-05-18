@@ -14,19 +14,26 @@ UNIT_DIR="${1:-/tmp}"
     exit 0
 }
 
-add_wants() {
-    local name="$1"; shift
-    local wants_dir="${UNIT_DIR}/local-fs.target.wants"
-    mkdir -p "${wants_dir}"
-    ln -sf "../${name}" "${wants_dir}/${name}"
-}
-
 # If there's already an /etc/fstab entries for /boot, then this is is a non-FCOS
 # system, likely RHCOS pre-4.3 (which still used Anaconda).  In that case, we
 # don't want to overwrite what the systemd-fstab-generator will do.
 if findmnt --fstab /boot &>/dev/null; then
     exit 0
 fi
+
+# Don't create mount units for /boot on live systems.
+# ConditionPathExists won't work here because conditions don't affect
+# the dependency on the underlying device unit.
+if [ -f /run/ostree-live ]; then
+    exit 0
+fi
+
+add_wants() {
+    local name="$1"; shift
+    local wants_dir="${UNIT_DIR}/local-fs.target.wants"
+    mkdir -p "${wants_dir}"
+    ln -sf "../${name}" "${wants_dir}/${name}"
+}
 
 # Generate mount units that work with device mapper. The traditional
 # device unit (dev-disk-by\x2dlabel...) does not work since it is not the
@@ -68,14 +75,9 @@ EOF
     add_wants "${unit_name}"
 }
 
-# Don't create mount units for /boot on live systems.
-# ConditionPathExists won't work here because conditions don't affect
-# the dependency on the underlying device unit.
-if [ ! -f /run/ostree-live ]; then
-    # We mount read-only by default mostly to protect
-    # against accidental damage.  Only a few things
-    # owned by CoreOS should be touching /boot or the ESP.
-    # Use nodev,nosuid because some hardening guides want
-    # that even though it's of minimal value.
-    mk_mount /boot boot ro,nodev,nosuid
-fi
+# We mount read-only by default mostly to protect
+# against accidental damage.  Only a few things
+# owned by CoreOS should be touching /boot or the ESP.
+# Use nodev,nosuid because some hardening guides want
+# that even though it's of minimal value.
+mk_mount /boot boot ro,nodev,nosuid
