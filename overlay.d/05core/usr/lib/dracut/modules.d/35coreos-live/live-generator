@@ -90,7 +90,7 @@ EOF
 DefaultDependencies=false
 # HACK for https://github.com/coreos/fedora-coreos-config/issues/437
 Wants=systemd-udev-settle.service
-# Note that `man bootup` implies that initrd-root-device is After=basic.target
+# Note that bootup(7) implies that initrd-root-device is After=basic.target
 # but that appears to not be the case.  We explicitly order after sysinit.target
 After=sysinit.target
 After=initrd-root-device.target
