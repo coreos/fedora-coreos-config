@@ -24,7 +24,11 @@ fi
 #  - The PTUUID is empty. This happens on s390x where DASD disks don't
 #    have PTUUID or any of the other traditional partition table
 #    attributes of GPT disks.
-[ "${PTUUID:-}" != "$UNINITIALIZED_GUID" ] && exit 0
+if [ "${PTUUID:-}" != "$UNINITIALIZED_GUID" ]; then
+    echo "Not randomizing disk GUID; found ${PTUUID:-none}"
+    exit 0
+fi
 
+echo "Randomizing disk GUID"
 sgdisk --disk-guid=R --move-second-header "$PKNAME"
 udevadm settle
