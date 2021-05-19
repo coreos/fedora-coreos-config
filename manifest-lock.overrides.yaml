@@ -9,3 +9,7 @@ packages:
         evr: 0.9.1-1.fc34
     coreos-installer-bootinfra:
         evr: 0.9.1-1.fc34
+    # For CVE-2021-30465 (symlink exchange attack)
+    # https://bodhi.fedoraproject.org/updates/FEDORA-2021-0440f235a0
+    runc:
+        evr: 2:1.0.0-378.rc95.fc34
