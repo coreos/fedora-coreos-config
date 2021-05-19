@@ -1,5 +1,5 @@
 [Unit]
-Description=Ignition OSTree: Regenerate filesystem UUID (boot)
+Description=Ignition OSTree: Regenerate Filesystem UUID (boot)
 DefaultDependencies=false
 ConditionPathExists=/usr/lib/initrd-release
 ConditionKernelCommandLine=ostree

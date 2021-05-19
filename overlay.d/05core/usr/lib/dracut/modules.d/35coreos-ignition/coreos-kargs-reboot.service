@@ -1,0 +1,21 @@
+[Unit]
+Description=CoreOS Kernel Arguments Reboot
+ConditionPathExists=/etc/initrd-release
+ConditionPathExists=/run/ignition-modified-kargs
+DefaultDependencies=false
+Before=ignition-complete.target
+ 
+# This runs after ignition-kargs & before ignition-disks so that it can optionally reboot
+# if kargs were modified via Ignition. This is done in a two-stage fashion so that other
+# mechanisms which may want to reboot (e.x. FIPS) can also hook in here and only reboot
+# once from the initrd.
+After=ignition-kargs.service
+Before=ignition-disks.service
+ 
+OnFailure=emergency.target
+OnFailureJobMode=isolate
+ 
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/systemctl reboot
