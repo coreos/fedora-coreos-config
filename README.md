@@ -14,13 +14,13 @@ https://github.com/coreos/fedora-coreos-tracker.
 There is one branch for each stream. The default branch is
 [`testing-devel`](https://github.com/coreos/fedora-coreos-config/commits/testing-devel),
 on which all development happens. See
-[the design](https://github.com/coreos/fedora-coreos-tracker/blob/master/Design.md#release-streams)
-and [tooling](https://github.com/coreos/fedora-coreos-tracker/blob/master/stream-tooling.md)
+[the design](https://github.com/coreos/fedora-coreos-tracker/blob/main//Design.md#release-streams)
+and [tooling](https://github.com/coreos/fedora-coreos-tracker/blob/main//stream-tooling.md)
 docs for more information about streams.
 
 All file changes in `testing-devel` are propagated to other
 branches (to `bodhi-updates` through
-[config-bot](https://github.com/coreos/fedora-coreos-releng-automation/tree/master/config-bot),
+[config-bot](https://github.com/coreos/fedora-coreos-releng-automation/tree/main/config-bot),
 and to `testing` through usual promotion), with the
 following exceptions:
 - `manifest.yaml`: contains the stream "identity", such as
@@ -65,7 +65,7 @@ update to Bodhi so that we don't have to carry the override
 forever.
 
 Once an override PR is merged,
-[`coreos-koji-tagger`](https://github.com/coreos/fedora-coreos-releng-automation/tree/master/coreos-koji-tagger)
+[`coreos-koji-tagger`](https://github.com/coreos/fedora-coreos-releng-automation/tree/main/coreos-koji-tagger)
 will automatically tag overridden packages into the pool.
 
 ## Adding packages to the OS
@@ -97,4 +97,4 @@ one easy way to do this is for now:
 Pull requests submitted to this repo are tested by
 [CoreOS CI](https://github.com/coreos/coreos-ci). You can see the pipeline
 executed in `.cci.jenkinsfile`. For more information, including interacting with
-CI, see the [CoreOS CI documentation](https://github.com/coreos/coreos-ci/blob/master/README-upstream-ci.md).
+CI, see the [CoreOS CI documentation](https://github.com/coreos/coreos-ci/blob/main/README-upstream-ci.md).

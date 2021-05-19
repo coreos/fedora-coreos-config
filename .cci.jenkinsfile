@@ -1,4 +1,4 @@
-// Documentation: https://github.com/coreos/coreos-ci/blob/master/README-upstream-ci.md
+// Documentation: https://github.com/coreos/coreos-ci/blob/main/README-upstream-ci.md
 
 cosaPod {
     checkoutToDir(scm, 'config')
@@ -10,7 +10,7 @@ cosaPod {
     shwrap("""
         mkdir -p /srv/fcos && cd /srv/fcos
         cosa init ${env.WORKSPACE}/config
-        curl -LO https://raw.githubusercontent.com/coreos/fedora-coreos-releng-automation/master/scripts/download-overrides.py
+        curl -LO https://raw.githubusercontent.com/coreos/fedora-coreos-releng-automation/main/scripts/download-overrides.py
         python3 download-overrides.py
         # prep from the latest builds so that we generate a diff on PRs that add packages
         cosa buildprep https://builds.coreos.fedoraproject.org/prod/streams/${env.CHANGE_TARGET}/builds
