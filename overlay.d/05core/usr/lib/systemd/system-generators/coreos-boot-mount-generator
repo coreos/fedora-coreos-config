@@ -2,11 +2,7 @@
 export PATH="/usr/bin:/usr/sbin:${PATH}"
 set -euo pipefail
 
-# Generators don't have logging right now
-# https://github.com/systemd/systemd/issues/15638
-exec 1>/dev/kmsg; exec 2>&1
-
-UNIT_DIR="${1:-/tmp}"
+. /usr/lib/coreos/generator-lib.sh
 
 # Turn out if you boot with "root=..." $UNIT_DIR is not writable.
 [ -w "${UNIT_DIR}" ] || {
@@ -71,8 +67,8 @@ EOF
 # Otherwise, use the usual by-label symlink.
 # See discussion in https://github.com/coreos/fedora-coreos-config/pull/1022
 bootdev=/dev/disk/by-label/boot
-# Yes this isn't a real karg parser but we're trapped in this shell script
-if grep -q rd.multipath /proc/cmdline; then
+# TODO add equivalent of getargbool() so we handle rd.multipath=0
+if have_karg rd.multipath; then
     bootdev=/dev/disk/by-label/dm-mpath-boot
 fi
 
