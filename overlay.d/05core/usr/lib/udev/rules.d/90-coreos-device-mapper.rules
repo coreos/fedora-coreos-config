@@ -6,7 +6,6 @@ SUBSYSTEM!="block", GOTO="dm_label_end"
 KERNEL!="dm-*", GOTO="dm_label_end"
 
 # Ensure that the device mapper target is active
-ENV{DM_ACTIVATION}!="1", GOTO="dm_label_end"
 ENV{DM_SUSPENDED}=="1", GOTO="dm_label_end"
 
 # Only act on filesystems. This should prevent layered devices
