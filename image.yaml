@@ -7,3 +7,5 @@ extra-kargs:
     # https://github.com/coreos/fedora-coreos-tracker/issues/292
     # https://fedoraproject.org/wiki/Changes/CGroupsV2
     - systemd.unified_cgroup_hierarchy=0
+    # See https://sourceforge.net/p/linux-ima/wiki/Home/#enabling-ima-measurement
+    - ima_template=ima-sig

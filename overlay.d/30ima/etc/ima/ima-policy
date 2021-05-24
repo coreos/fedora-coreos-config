@@ -1,0 +1,100 @@
+dont_measure fsmagic=0x9fa0
+dont_measure fsmagic=0x62656572
+dont_measure fsmagic=0x64626720
+dont_measure fsmagic=0x1021994
+dont_measure fsmagic=0x1cd1
+dont_measure fsmagic=0x42494e4d
+dont_measure fsmagic=0x73636673
+dont_measure fsmagic=0xf97cff8c
+dont_measure fsmagic=0x43415d53
+dont_measure fsmagic=0x27e0eb
+dont_measure fsmagic=0x63677270
+dont_measure fsmagic=0x6e736673
+dont_measure fsmagic=0xde5e81e4
+dont_measure obj_type=var_log_t
+dont_measure obj_type=sssd_public_t
+dont_measure obj_type=NetworkManager_var_lib_t
+dont_measure obj_type=abrt_var_cache_t
+measure func=MMAP_CHECK mask=MAY_EXEC
+measure func=BPRM_CHECK mask=MAY_EXEC
+measure func=FILE_CHECK mask=^MAY_READ euid=0
+measure func=FILE_CHECK mask=^MAY_READ uid=0
+measure func=MODULE_CHECK
+measure func=FIRMWARE_CHECK
+measure func=POLICY_CHECK
+measure func=KEXEC_KERNEL_CHECK
+measure func=KEXEC_INITRAMFS_CHECK
+appraise func=BPRM_CHECK fowner=0 obj_type=ping_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=NetworkManager_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=admin_passwd_exec_t appraise_type=imasig
+## appraise func=BPRM_CHECK fowner=0 obj_type=bin_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=bootloader_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=chkpwd_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=chronyc_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=chronyd_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=container_runtime_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=crack_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=dbusd_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=dmesg_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=dnsmasq_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=fsadm_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=fusermount_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=getty_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=gpg_agent_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=gpg_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=groupadd_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=gssd_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=hostname_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=hwclock_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=ifconfig_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=install_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=iptables_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=irqbalance_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=iscsid_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=journalctl_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=kdump_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=kdumpctl_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=kmod_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=ldconfig_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=load_policy_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=loadkeys_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=login_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=logrotate_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=lvm_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=mdadm_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=mount_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=oddjob_mkhomedir_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=pam_console_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=pam_timestamp_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=passwd_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=ping_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=policykit_auth_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=rdisc_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=rpcbind_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=rpcd_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=rpm_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=rpmdb_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=rsync_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=semanage_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=setfiles_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=setsebool_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=shell_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=showmount_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=ssh_agent_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=ssh_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=ssh_keygen_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=sshd_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=sssd_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=su_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=sudo_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=sulogin_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=systemd_hwdb_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=systemd_notify_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=systemd_passwd_agent_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=systemd_systemctl_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=systemd_tmpfiles_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=traceroute_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=udev_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=updpwd_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=useradd_exec_t appraise_type=imasig
+#appraise func=BPRM_CHECK fowner=0 obj_type=vlock_exec_t appraise_type=imasig
