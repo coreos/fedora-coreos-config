@@ -1,12 +1,10 @@
-= Layering packages on the host system
+= Adding OS extensions to the host system
 
-To make other software accessible on the host system installation you can use https://coreos.github.io/rpm-ostree/[`rpm-ostree install`] to layer rpm packages. By default, packages are downloaded from the https://docs.fedoraproject.org/en-US/quick-docs/repositories/[Fedora repositories].
+Fedora CoreOS keeps the base image as simple and small as possible for security and maintainability reasons. That is why you should in general prefer the usage of `podman` containers over layering software.
 
-[NOTE]
-====
-It is recommended to use layering only if there is no other possible containerisation option.
-The intention of Fedora CoreOS is to keep the base image as simple and small as possible for security and maintainability reasons. That is why you should in general prefer the usage of `podman` containers over layering software.
-====
+However, in some cases it is necessary to add software to the base OS itself. For example, drivers or VPN software are potential candidates because they are harder to containerize.
+
+To do this, you can use https://coreos.github.io/rpm-ostree/[`rpm-ostree install`]. Consider these packages as "extensions": they extend the functionality of the base OS rather than e.g. providing runtimes for user applications. That said, there are no restrictions on which packages one can actually install. By default, packages are downloaded from the https://docs.fedoraproject.org/en-US/quick-docs/repositories/[Fedora repositories].
 
 To start the layering of a package, you need to write a systemd unit that executes the `rpm-ostree` command to install the wanted package(s). 
 Changes are applied to a new deployment and a reboot is necessary for those to take effect.
