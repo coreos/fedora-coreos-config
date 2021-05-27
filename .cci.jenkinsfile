@@ -38,9 +38,10 @@ cosaPod {
     stage("Test ISO") {
         shwrap("cd /srv/fcos && cosa buildextend-live")
         try {
-            shwrap("cd /srv/fcos && kola testiso -S --scenarios pxe-install,pxe-offline-install,iso-install,iso-offline-install --output-dir tmp/kola-testiso")
+            shwrap("cd /srv/fcos && kola testiso -S --scenarios pxe-install,pxe-offline-install,iso-install --output-dir tmp/kola-testiso")
+            shwrap("cd /srv/fcos && kola testiso -S --scenarios iso-offline-install --qemu-multipath --output-dir tmp/kola-testiso-mpath")
         } finally {
-            shwrap("cd /srv/fcos && tar -cf - tmp/kola-testiso/ | xz -c9 > ${env.WORKSPACE}/kola-testiso.tar.xz")
+            shwrap("cd /srv/fcos && tar -cf - tmp/kola-testiso/ tmp/kola-testiso-mpath/ | xz -c9 > ${env.WORKSPACE}/kola-testiso.tar.xz")
             archiveArtifacts allowEmptyArchive: true, artifacts: 'kola-testiso.tar.xz'
         }
     }
