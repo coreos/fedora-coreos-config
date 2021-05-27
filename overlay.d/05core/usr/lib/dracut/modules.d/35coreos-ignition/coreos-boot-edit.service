@@ -14,6 +14,8 @@ Requires=dev-disk-by\x2dlabel-boot.device
 After=dev-disk-by\x2dlabel-boot.device
 # Start after Ignition has finished
 After=ignition-files.service
+# As above, this isn't strictly necessary, but on principle.
+After=coreos-multipath-wait.target
 
 [Service]
 Type=oneshot
