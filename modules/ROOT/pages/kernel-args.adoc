@@ -88,11 +88,6 @@ Cgroups v1 is currently the default on Fedora CoreOS on the `stable` and `testin
 ----
 variant: fcos
 version: 1.3.0
-passwd:
-  users:
-    - name: core
-      ssh_authorized_keys:
-        - $pubkey
 systemd:
   units:
     - name: cgroups-v2-karg.service
@@ -125,11 +120,6 @@ Starting from April 13 2021, Cgroups v2 is the default on Fedora CoreOS on the `
 ----
 variant: fcos
 version: 1.3.0
-passwd:
-  users:
-    - name: core
-      ssh_authorized_keys:
-        - $pubkey
 systemd:
   units:
     - name: cgroups-v1-karg.service
@@ -162,11 +152,6 @@ Here's an example which switches `mitigations=auto,nosmt` to `mitigations=off` t
 ----
 variant: fcos
 version: 1.3.0
-passwd:
-  users:
-    - name: core
-      ssh_authorized_keys:
-        - $pubkey
 systemd:
   units:
     - name: cpu-mitigations-karg.service
