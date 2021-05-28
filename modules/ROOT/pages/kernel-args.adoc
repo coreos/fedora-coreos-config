@@ -74,15 +74,26 @@ $ sudo rpm-ostree kargs --editor
 
 == Modifying Kernel Arguments via Ignition
 
-Currently to change kernel arguments via Ignition, you must script a systemd service which runs `rpm-ostree kargs` and then trigger a reboot.
+There are two ways to modify kernel arguments via Ignition. The current Ignition experimental config spec supports specifying kernel arguments via the `kernelArguments` section. It is also possible to use Ignition to script a systemd service which runs `rpm-ostree kargs` and then triggers a reboot.
 
-NOTE: In the future, we will have a more Ignition-friendly method of doing this with stronger guarantees. See upstream issues https://github.com/coreos/ignition/issues/1051[ignition#1051], https://github.com/coreos/fedora-coreos-tracker/issues/318[fedora-coreos-tracker#318] and https://github.com/coreos/fedora-coreos-tracker/issues/752[fedora-coreos-tracker#752] for more information.
+NOTE: The Ignition `kernelArguments` section requires Butane spec version `1.4.0-experimental`.  After spec 1.4.0 is stabilized, version `1.4.0-experimental` will no longer be accepted by Butane, so Butane configs will need to be updated to replace `1.4.0-experimental` with `1.4.0`.  In addition, the corresponding Ignition config version will no longer be accepted by Ignition, so Ignition configs will need to be regenerated with a new version of Butane.
 
-NOTE:  The `After=systemd-machine-id-commit.service` directive is important in the following examples to avoid some subtle issues. Similarly, any `ConditionFirstBoot=true` services should use `Before=first-boot-complete.target systemd-machine-id-commit.service`. See https://github.com/systemd/systemd/blob/3045c416e1cbbd8ab40577790522217fd1b9cb3b/man/systemd.unit.xml#L1315[the systemd documentation] for more details.
+NOTE:  The `After=systemd-machine-id-commit.service` directive is important in the following systemd service examples to avoid some subtle issues. Similarly, any `ConditionFirstBoot=true` services should use `Before=first-boot-complete.target systemd-machine-id-commit.service`. See https://github.com/systemd/systemd/blob/3045c416e1cbbd8ab40577790522217fd1b9cb3b/man/systemd.unit.xml#L1315[the systemd documentation] for more details.
 
 === Example: Moving to cgroups v2
 
-cgroups v1 will be the default in the Fedora CoreOS `stable` stream until June 15, 2021. Here's an example which removes the `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine switches to cgroups v2:
+cgroups v1 will be the default in the Fedora CoreOS `stable` stream until June 15, 2021. Here's an example `kernelArguments` section which removes the `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine switches to cgroups v2:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0-experimental
+kernel_arguments:
+  should_not_exist:
+    - systemd.unified_cgroup_hierarchy=0
+----
+
+Alternatively, here's an example systemd unit that does the same:
 
 [source,yaml]
 ----
@@ -114,7 +125,18 @@ systemd:
 
 === Example: Staying on cgroups v1
 
-Starting from June 1, 2021, cgroups v2 is the default on Fedora CoreOS on the `next` and `testing` streams. Here's an example which adds the `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine keeps using cgroups v1:
+Starting from June 1, 2021, cgroups v2 is the default on Fedora CoreOS on the `next` and `testing` streams. Here's an example `kernelArguments` section which adds the `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine keeps using cgroups v1:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0-experimental
+kernel_arguments:
+  should_exist:
+    - systemd.unified_cgroup_hierarchy=0
+----
+
+Alternatively, here's an example systemd unit that does the same:
 
 [source,yaml]
 ----
@@ -146,7 +168,20 @@ systemd:
 
 === Example: Disabling all CPU vulnerability mitigations
 
-Here's an example which switches `mitigations=auto,nosmt` to `mitigations=off` to disable all CPU vulnerability mitigations:
+Here's an example `kernelArguments` section which switches `mitigations=auto,nosmt` to `mitigations=off` to disable all CPU vulnerability mitigations:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0-experimental
+kernel_arguments:
+  should_exist:
+    - mitigations=off
+  should_not_exist:
+    - mitigations=auto,nosmt
+----
+
+Alternatively, here's an example systemd unit that does the same:
 
 [source,yaml]
 ----
