@@ -82,7 +82,7 @@ NOTE:  The `After=systemd-machine-id-commit.service` directive is important in t
 
 === Example: Moving to cgroups v2
 
-Cgroups v1 is currently the default on Fedora CoreOS on the `stable` and `testing` stream. Here's an example which removes the `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine switches cgroups v2:
+cgroups v1 will be the default in the Fedora CoreOS `stable` stream until June 15, 2021. Here's an example which removes the `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine switches to cgroups v2:
 
 [source,yaml]
 ----
@@ -114,7 +114,7 @@ systemd:
 
 === Example: Staying on cgroups v1
 
-Starting from April 13 2021, Cgroups v2 is the default on Fedora CoreOS on the `next` stream. Here's an example which adds the `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine keeps using cgroups v1:
+Starting from June 1, 2021, cgroups v2 is the default on Fedora CoreOS on the `next` and `testing` streams. Here's an example which adds the `systemd.unified_cgroup_hierarchy=0` kernel argument so that the machine keeps using cgroups v1:
 
 [source,yaml]
 ----
