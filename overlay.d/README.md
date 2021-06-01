@@ -15,7 +15,8 @@ https://bugzilla.redhat.com/show_bug.cgi?id=1700056
 09misc
 ------
 
-Warning about `/etc/sysconfig`.
+* Warning about `/etc/sysconfig`.
+* Temporary systemd-tpmfiles.d config to fix ownership and permissions in /etc
 
 14NetworkManager-plugins
 ------------------------
