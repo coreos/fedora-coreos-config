@@ -2,8 +2,3 @@
 # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
 # streams.
 include: image-base.yaml
-
-extra-kargs:
-    # https://github.com/coreos/fedora-coreos-tracker/issues/292
-    # https://fedoraproject.org/wiki/Changes/CGroupsV2
-    - systemd.unified_cgroup_hierarchy=0

@@ -16,4 +16,13 @@ install() {
         "/usr/sbin/coreos-propagate-multipath-conf"
 
     install_ignition_unit coreos-propagate-multipath-conf.service subsequent
+
+    inst_simple "$moddir/coreos-multipath-generator" \
+        "$systemdutildir/system-generators/coreos-multipath-generator"
+
+    # we don't enable these; they're enabled dynamically via the generator
+    inst_simple "$moddir/coreos-multipath-wait.target" \
+        "$systemdsystemunitdir/coreos-multipath-wait.target"
+    inst_simple "$moddir/coreos-multipath-trigger.service" \
+        "$systemdsystemunitdir/coreos-multipath-trigger.service"
 }
