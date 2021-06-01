@@ -30,7 +30,10 @@ fi
 
 # Check rpm-ostree count me output
 output="$(journalctl --output=json --boot --unit=rpm-ostree-countme.service --grep "Successful requests:" | jq --raw-output '.MESSAGE')"
-if [[ "${output}" != "Successful requests: 2/2" ]] && [[ "${output}" != "Successful requests: 3/3" ]]; then
+# depending on the stream, we expect different numbers of countme-enabled repos
+if [[ "${output}" != "Successful requests: 1/1" ]] && \
+   [[ "${output}" != "Successful requests: 2/2" ]] && \
+   [[ "${output}" != "Successful requests: 3/3" ]]; then
 	fatal "rpm-ostree-countme service ouput does not match expected sucess output"
 fi
 
