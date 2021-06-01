@@ -1,0 +1,11 @@
+# This service is used for printing a message if
+# cgroups v1 is still being used
+[Unit]
+Description=Check if cgroupsv1 is still being used
+ConditionControlGroupController=v1
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-check-cgroups.sh
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
