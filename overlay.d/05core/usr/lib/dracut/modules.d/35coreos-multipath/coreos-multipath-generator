@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Generators don't have logging right now
+# https://github.com/systemd/systemd/issues/15638
+exec 1>/dev/kmsg; exec 2>&1
+
+command -v getargbool >/dev/null || . /usr/lib/dracut-lib.sh
+
+set -e
+
+if is-live-image; then
+    exit 0
+fi
+
+UNIT_DIR="${1:-/tmp}"
+
+add_requires() {
+    local name="$1"; shift
+    local target="$1"; shift
+    local requires_dir="${UNIT_DIR}/${target}.requires"
+    mkdir -p "${requires_dir}"
+    ln -sf "../${name}" "${requires_dir}/${name}"
+}
+
+if getargbool 0 rd.multipath; then
+    add_requires coreos-multipath-wait.target initrd.target
+    if ! getargbool 0 ignition.firstboot; then
+        add_requires coreos-multipath-trigger.service initrd.target
+    fi
+fi

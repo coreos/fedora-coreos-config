@@ -115,6 +115,8 @@ postprocess:
 # available in RHCOS or not desired in RHCOS). All other packages should go
 # into one of the sub-manifests listed at the top.
 packages:
+  # Container tooling
+  - crun
   # Security
   - polkit
   # System setup
