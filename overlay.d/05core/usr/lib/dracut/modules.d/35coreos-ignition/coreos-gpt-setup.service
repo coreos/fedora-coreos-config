@@ -1,5 +1,5 @@
 [Unit]
-Description=Generate new UUID for boot disk GPT
+Description=Generate New UUID For Boot Disk GPT
 ConditionPathExists=/etc/initrd-release
 DefaultDependencies=no
 Before=local-fs-pre.target systemd-fsck-root.service
