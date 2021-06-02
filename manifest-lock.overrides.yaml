@@ -5,20 +5,6 @@ packages:
         evr: 053-5.fc34
     dracut-network:
         evr: 053-5.fc34
-    # Fast-track crun-0.19.1-3.fc34 It was erroneously downgraded in Fedora.
-    # https://bodhi.fedoraproject.org/updates/FEDORA-2021-316efff8f2
-    crun:
-        evr: 0.19.1-3.fc34
-    # Fast-track new coreos-installer release
-    # https://bodhi.fedoraproject.org/updates/FEDORA-2021-46c72bed26
-    coreos-installer:
-        evr: 0.9.1-1.fc34
-    coreos-installer-bootinfra:
-        evr: 0.9.1-1.fc34
-    # For CVE-2021-30465 (symlink exchange attack)
-    # https://bodhi.fedoraproject.org/updates/FEDORA-2021-0440f235a0
-    runc:
-        evr: 2:1.0.0-378.rc95.fc34
     # For firstboot multipath
     # https://bodhi.fedoraproject.org/updates/FEDORA-2021-123bd6e0dc
     ignition:
