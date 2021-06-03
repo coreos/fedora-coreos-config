@@ -29,6 +29,7 @@ We need to call the script from the previous section by using a systemd unit. He
 [source,service]
 ----
 [Unit]
+Before=systemd-user-sessions.service
 After=network-online.target
 ConditionPathExists=!/var/lib/issuegen-public-ipv4
 
@@ -67,6 +68,7 @@ systemd:
       enabled: true
       contents: |
         [Unit]
+        Before=systemd-user-sessions.service
         After=network-online.target
         ConditionPathExists=!/var/lib/issuegen-public-ipv4
 
