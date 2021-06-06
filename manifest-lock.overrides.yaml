@@ -5,6 +5,12 @@ packages:
         evr: 053-5.fc34
     dracut-network:
         evr: 053-5.fc34
+    # Freeze selinux-policy so we can unblock bumping lockfiles
+    # https://github.com/coreos/fedora-coreos-tracker/issues/850
+    selinux-policy:
+        evra: 34.8-1.fc34.noarch
+    selinux-policy-targeted:
+        evra: 34.8-1.fc34.noarch
     # For firstboot multipath
     # https://bodhi.fedoraproject.org/updates/FEDORA-2021-123bd6e0dc
     ignition:
