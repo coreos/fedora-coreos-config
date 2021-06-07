@@ -106,43 +106,6 @@ propagate_initramfs_hostname() {
         return 0
     fi
 
-    # COMPAT: keep two code paths, one for older NetworkManager and
-    #         one for newer NetworkManager that supports writing to
-    #         /run/NetworkManager/initrd/hostname. We can delete this
-    #         block once RHCOS and FCOS minimum NM version is >= 1.26.0
-    #         See https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/commit/ff70adf
-    barrierversion='1.26.0'
-    nmversion=$(/usr/sbin/NetworkManager --version)
-    sorted=$((echo $barrierversion; echo $nmversion) | sort -V | tail -n 1)
-    if [ $sorted == $barrierversion ]; then
-        # The version of NM on the system is older than we need
-        # execute compat code in this block.
-        echo "info: NM version is older than $barrierversion. Executing compat code path."
-
-        # Detect if any hostname was provided via static ip= kargs
-        # run in a subshell so we don't pollute our environment
-        hostnamefile=$(mktemp)
-        (
-            last_nonempty_hostname=''
-            # Inspired from ifup.sh from the 40network dracut module. Note that
-            # $hostname from ip_to_var will only be nonempty for static networking.
-            for iparg in $(dracut_func getargs ip=); do
-                dracut_func ip_to_var $iparg
-                [ -n "${hostname:-}" ] && last_nonempty_hostname="$hostname"
-            done
-            echo -n "$last_nonempty_hostname" > $hostnamefile
-        )
-        hostname=$(<$hostnamefile); rm $hostnamefile
-        if [ -n "$hostname" ]; then
-            echo "info: propagating initramfs hostname (${hostname}) to the real root"
-            echo $hostname > /sysroot/etc/hostname
-            coreos-relabel /etc/hostname
-        else
-            echo "info: no initramfs hostname information to propagate"
-        fi
-        return 0
-    fi
-
     # If any hostname was provided NetworkManager will write it out to
     # /run/NetworkManager/initrd/hostname. See
     # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/merge_requests/481
