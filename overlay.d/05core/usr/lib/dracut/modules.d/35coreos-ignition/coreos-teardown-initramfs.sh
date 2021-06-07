@@ -70,14 +70,33 @@ are_default_NM_configs() {
 #
 # See https://github.com/coreos/fedora-coreos-tracker/issues/394#issuecomment-599721173
 propagate_initramfs_networking() {
-    # Check the two locations where a user could have provided network configuration
-    # On FCOS we only support keyfiles, but on RHCOS we support keyfiles and ifcfg
+    # Check for any real root config in the two locations where a user could have
+    # provided network configuration. On FCOS we only support keyfiles, but on RHCOS
+    # we support keyfiles and ifcfg
     if [ -n "$(ls -A /sysroot/etc/NetworkManager/system-connections/)" -o \
          -n "$(ls -A /sysroot/etc/sysconfig/network-scripts/)" ]; then
         echo "info: networking config is defined in the real root"
-        echo "info: will not attempt to propagate initramfs networking"
+        realrootconfig=1
     else
         echo "info: no networking config is defined in the real root"
+        realrootconfig=0
+    fi
+
+    # Did the user tell us to force initramfs networking config
+    # propagation even if real root networking config exists?
+    # Hopefully we only need this in rare circumstances.
+    # https://github.com/coreos/fedora-coreos-tracker/issues/853
+    forcepropagate=0
+    if dracut_func getargbool 0 'coreos.force_persist_ip'; then
+        forcepropagate=1
+        echo "info: coreos.force_persist_ip detected: will force network config propagation"
+    fi
+
+    if [ $realrootconfig == 1 -a $forcepropagate == 0 ]; then
+        echo "info: will not attempt to propagate initramfs networking"
+    fi
+
+    if [ $realrootconfig == 0 -o $forcepropagate == 1 ]; then
         if [ -n "$(ls -A /run/NetworkManager/system-connections/)" ]; then
             if are_default_NM_configs; then
                 echo "info: skipping propagation of default networking configs"
