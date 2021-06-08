@@ -89,6 +89,10 @@ if ! test -f /usr/share/licenses/fedora-coreos-config/LICENSE; then
 fi
 ok LICENSE
 
+# Defined in https://github.com/coreos/fedora-coreos-tracker/blob/master/internals/README-internals.md#aleph-version
+jq < /sysroot/.coreos-aleph-version.json >/dev/null
+ok aleph
+
 case "$(arch)" in
     x86_64|aarch64)
         # This is just a basic sanity check; at some point we
