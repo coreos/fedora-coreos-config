@@ -354,6 +354,69 @@ storage:
       with_mount_unit: true
 ----
 
+== Adding network storage
+
+Fedora CoreOS systems can be configured to mount network filesystems such as NFS and CIFS. This is best achieved by using Ignition to create systemd units. Filesystems can be mounted on boot by creating a standard mount unit. Alternately, a filesystem can be mounted when users access the mountpoint by creating an additional automount unit. Below are examples of each for an NFS filesystem.
+
+=== Configuring NFS mounts
+
+.Creating a systemd unit to mount an NFS filesystem on boot.
+NOTE: The `.mount` file must be named based on the path (e.g. `/var/mnt/data` = `var-mnt-data.mount`)
+[source,yaml]
+----
+variant: fcos
+version: 1.3.0
+systemd: 
+  units:
+    - name: var-mnt-data.mount
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Mount data directory
+
+        [Mount]
+        What=example.org:/data
+        Where=/var/mnt/data
+        Type=nfs4
+
+        [Install]
+        WantedBy=multi-user.target
+----
+
+.Creating a systemd unit to mount an NFS file system when users access the mount point (automount) 
+[source,yaml]
+----
+variant: fcos
+version: 1.3.0
+systemd: 
+  units:
+    - name: var-mnt-data.mount
+      contents: |
+        [Unit]
+        Description=Mount data directory
+
+        [Mount]
+        What=example.org:/data
+        Where=/var/mnt/data
+        Type=nfs4
+
+        [Install]
+        WantedBy=multi-user.target
+
+    - name: var-mnt-data.automount
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Automount data directory
+
+        [Automount]
+        TimeoutIdleSec=20min
+        Where=/var/mnt/data
+
+        [Install]
+        WantedBy=multi-user.target
+----
+
 == Advanced examples
 
 This example configures a mirrored boot disk with a TPM2-encrypted root filesystem, overrides the sizes of the automatically-generated root partition replicas, and adds an encrypted mirrored `/var` partition which consumes the remainder of the disks.
