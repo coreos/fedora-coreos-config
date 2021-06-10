@@ -10,8 +10,8 @@ packages:
     ignition:
         evr: 2.10.1-3.fc34
     # Fast-track for https://github.com/coreos/fedora-coreos-tracker/issues/850
-    # https://bodhi.fedoraproject.org/updates/FEDORA-2021-f014ca8326
+    # https://bodhi.fedoraproject.org/updates/FEDORA-2021-d8e34dbd6e
     selinux-policy:
-        evra: 34.10-1.fc34.noarch
+        evra: 34.11-1.fc34.noarch
     selinux-policy-targeted:
-        evra: 34.10-1.fc34.noarch
+        evra: 34.11-1.fc34.noarch
