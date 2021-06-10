@@ -5,6 +5,10 @@ set -xeuo pipefail
 # https://github.com/coreos/ignition/issues/586
 # https://github.com/systemd/systemd/pull/9901
 
+# We don't need to test this on every platform. If it passes in
+# one place it will pass everywhere.
+# kola: { "platforms": "qemu-unpriv" }
+
 ok() {
     echo "ok" "$@"
 }
