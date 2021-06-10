@@ -15,20 +15,13 @@ https://bugzilla.redhat.com/show_bug.cgi?id=1700056
 09misc
 ------
 
-Warning about `/etc/sysconfig`.
+* Warning about `/etc/sysconfig`.
+* Temporary systemd-tpmfiles.d config to fix ownership and permissions in /etc
 
 14NetworkManager-plugins
 ------------------------
 
 Disables the Red Hat Linux legacy `ifcfg` format.
-
-20platform-chrony
------------------
-
-Add static chrony configuration for NTP servers provided on platforms
-such as `azure`, `aws`, `gcp`. The chrony config for these NTP servers
-should override other chrony configuration (e.g. DHCP-provided)
-configuration.
 
 15fcos
 ------
@@ -45,4 +38,7 @@ Things that are more closely "Fedora CoreOS":
 20platform-chrony
 -----------------
 
-Platform aware timeserver setup for chrony daemon.
+Add static chrony configuration for NTP servers provided on platforms
+such as `azure`, `aws`, `gcp`. The chrony config for these NTP servers
+should override other chrony configuration (e.g. DHCP-provided)
+configuration.
