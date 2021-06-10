@@ -15,3 +15,13 @@ packages:
         evra: 34.10-1.fc34.noarch
     selinux-policy-targeted:
         evra: 34.10-1.fc34.noarch
+    containernetworking-plugins:
+      evr: 1.0.0-0.2.rc1.fc34
+    containers-common:
+      evra: 4:1-19.fc34.noarch
+    crun:
+      evr: 0.20.1-1.fc34
+    podman:
+      evr: 3:3.2.0-5.fc34
+    podman-plugins:
+      evr: 3:3.2.0-5.fc34
