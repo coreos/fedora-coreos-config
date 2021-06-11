@@ -27,10 +27,7 @@ esac
 
 if [ "${TYPE}" == "${orig_type}" ] && [ "${UUID}" == "${orig_uuid}" ]; then
   case "${TYPE}" in
-    # For now we need to fsck first, see https://github.com/coreos/coreos-assembler/pull/1452
-    # Basically we're not passing `metadata_csum_seed` as a mkfs.ext4 option
-    # because grub2 barfs on it.
-    ext4) e2fsck -fy "${target}" && tune2fs -U random "${target}" ;;
+    ext4) tune2fs -O metadata_csum_seed -U random "${target}" ;;
     xfs) xfs_admin -U generate "${target}" ;;
     *) echo "unexpected filesystem type ${TYPE}" 1>&2; exit 1 ;;
   esac
