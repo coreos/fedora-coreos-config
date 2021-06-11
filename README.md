@@ -50,19 +50,63 @@ By default, all packages for FCOS come from the stable
 Fedora repos. However, it is sometimes necessary to either
 hold back some packages, or pull in fixes ahead of Bodhi. To
 add such overrides, one needs to add the packages to
-`manifest-lock.overrides.$basearch.yaml`. E.g.:
+`manifest-lock.overrides.yaml` (there are also arch-specific
+variants of these files for the rare occasions the override
+should only apply to a specific arch).
+
+Note that comments are not preserved in these files. The
+lockfile supports arbitrary keys under the `metadata` key to
+carry information. Some keys are semantically meaningful to
+humans or other tools.
+
+### Fast-tracking
+
+Example:
 
 ```yaml
 packages:
-  # document reason here and link to any Bodhi update
-  foobar:
-    evra: 1.2.3-1.fc31.x86_64
+  selinux-policy:
+    evra: 34.10-1.fc34.noarch
+    metadata:
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-f014ca8326
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/850
+  selinux-policy-targeted:
+    evra: 34.10-1.fc34.noarch
+    metadata:
+      type: fast-track
+      # you don't have to repeat the other keys for related packages
 ```
 
-Whenever possible, in the case of pulling in a newer
-package, it is important that the package be submitted as an
-update to Bodhi so that we don't have to carry the override
-forever.
+Whenever possible, it is important that the package be
+submitted as an update to Bodhi so that we don't have to
+carry the override for a long time.
+
+Fast-tracked packages will automatically be removed by the
+`remove-graduated-overrides` GitHub Action in this repo once
+they reach the stable Fedora repos (or newer versions). They
+are detected by the `type: fast-track` key.
+
+### Pinning
+
+Example:
+
+```
+packages:
+  dracut:
+      evr: 053-5.fc34
+      metadata:
+        type: pin
+        reason: https://github.com/coreos/fedora-coreos-tracker/issues/842
+  dracut-network:
+      evr: 053-5.fc34
+      metadata:
+        type: pin
+        reason: https://github.com/coreos/fedora-coreos-tracker/issues/842
+```
+
+All pinned packages *must* have a `reason` key containing
+more information about why the pin is necessary.
 
 Once an override PR is merged,
 [`coreos-koji-tagger`](https://github.com/coreos/fedora-coreos-releng-automation/tree/main/coreos-koji-tagger)
