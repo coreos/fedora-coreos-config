@@ -9,9 +9,10 @@ rojig:
   summary: Fedora CoreOS testing-devel
 
 repos:
-  # these repos are there to make it easier to add new packages to the OS and to
+  # These repos are there to make it easier to add new packages to the OS and to
   # use `cosa fetch --update-lockfile`; but note that all package versions are
-  # still pinned
+  # still pinned. These repos are also used by the remove-graduated-overrides
+  # GitHub Action.
   - fedora
   - fedora-updates
 

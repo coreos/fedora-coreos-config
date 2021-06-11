@@ -1,17 +1,38 @@
+# This lockfile should be used to pin to a package version (`type: pin`) or to
+# fast-track packages ahead of Bodhi (`type: fast-track`). Fast-tracked
+# packages will automatically be removed once they are in the stable repos.
+#
+# IMPORTANT: YAML comments *will not* be preserved. All `pin` overrides *must*
+# include a URL in the `metadata.reason` key. Overrides of type `fast-track`
+# *should* include a URL in the `metadata.reason` key, though it's acceptable to
+# omit one for FCOS-specific packages (e.g. ignition, afterburn, etc...).
+
 packages:
-    # Freeze dracut on 053. We need to investigate NetworkManager systemd changes.
-    # https://github.com/coreos/fedora-coreos-tracker/issues/842
-    dracut:
-        evr: 053-5.fc34
-    dracut-network:
-        evr: 053-5.fc34
-    # Fast-track for firstboot multipath
-    # https://bodhi.fedoraproject.org/updates/FEDORA-2021-123bd6e0dc
-    ignition:
-        evr: 2.10.1-3.fc34
-    # Fast-track for https://github.com/coreos/fedora-coreos-tracker/issues/850
-    # https://bodhi.fedoraproject.org/updates/FEDORA-2021-d8e34dbd6e
-    selinux-policy:
-        evra: 34.11-1.fc34.noarch
-    selinux-policy-targeted:
-        evra: 34.11-1.fc34.noarch
+  dracut:
+    evr: 053-5.fc34
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/842
+  dracut-network:
+    evr: 053-5.fc34
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/842
+  ignition:
+    evr: 2.10.1-3.fc34
+    metadata:
+      type: fast-track
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1011
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-123bd6e0dc
+  selinux-policy:
+    evra: 34.11-1.fc34.noarch
+    metadata:
+      type: fast-track
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/850
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-d8e34dbd6e
+  selinux-policy-targeted:
+    evra: 34.11-1.fc34.noarch
+    metadata:
+      type: fast-track
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/850
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-d8e34dbd6e
