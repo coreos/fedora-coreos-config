@@ -9,11 +9,12 @@ rojig:
   summary: Fedora CoreOS next-devel
 
 repos:
-  # these repos are there to make it easier to add new packages to the OS and to
+  # These repos are there to make it easier to add new packages to the OS and to
   # use `cosa fetch --update-lockfile`; but note that all package versions are
-  # still pinned
-  - fedora-next
-  - fedora-next-updates
+  # still pinned. These repos are also used by the remove-graduated-overrides
+  # GitHub Action.
+  - fedora
+  - fedora-updates
 
 # All Fedora CoreOS streams share the same pool for locked files.
 # This will be in fedora-coreos.yaml in the future so it can be more easily be
