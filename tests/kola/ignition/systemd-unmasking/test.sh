@@ -5,6 +5,10 @@ set -xeuo pipefail
 # It just so happens we have masked dnsmasq in FCOS so we can
 # test this by unmasking it.
 
+# We don't need to test this on every platform. If it passes in
+# one place it will pass everywhere.
+# kola: { "platforms": "qemu-unpriv" }
+
 ok() {
     echo "ok" "$@"
 }
