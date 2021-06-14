@@ -89,6 +89,10 @@ if ! test -f /usr/share/licenses/fedora-coreos-config/LICENSE; then
 fi
 ok LICENSE
 
+# Defined in https://github.com/coreos/fedora-coreos-tracker/blob/master/internals/README-internals.md#aleph-version
+jq < /sysroot/.coreos-aleph-version.json >/dev/null
+ok aleph
+
 case "$(arch)" in
     x86_64|aarch64)
         # This is just a basic sanity check; at some point we
@@ -155,3 +159,18 @@ fi
 if [[ $sys_fs_cgroup_source != cgroup2 ]]; then
     fatal "/sys/fs/cgroup is not cgroup2"
 fi
+
+for perms in 'o+w' 'g+w'; do
+	list="$(find /etc -type f -perm /${perms})"
+	if [[ -n "${list}" ]]; then
+		fatal "found files with ${perms}:\n${list}"
+	fi
+done
+ok "no files with o+w or g+w found in /etc"
+
+for f in '/etc/passwd' '/etc/group'; do
+	if [[ $(stat --format="%a %u %g" "${f}") != "644 0 0" ]]; then
+		fatal "found incorrect permissions for ${f}"
+	fi
+done
+ok "correct ownership and mode on /etc/passwd & /etc/group"
