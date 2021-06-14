@@ -16,6 +16,7 @@ jobs:
         branch:
           - testing-devel
           - next-devel
+      fail-fast: false
     steps:
       - run: dnf install -y rpm-ostree # see related TODO above
       - name: Checkout
