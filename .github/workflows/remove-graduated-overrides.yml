@@ -1,0 +1,45 @@
+name: remove-graduated-overrides
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  remove-graduated-overrides:
+    name: Remove graduated overrides
+    runs-on: ubuntu-latest
+    # TODO: use cosa directly here
+    # https://github.com/coreos/coreos-assembler/issues/2223
+    container: quay.io/coreos-assembler/fcos-buildroot:testing-devel
+    strategy:
+      matrix:
+        branch:
+          - testing-devel
+          - next-devel
+    steps:
+      - run: dnf install -y rpm-ostree # see related TODO above
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ matrix.branch }}
+      - name: Remove graduated overrides
+        run: |
+          git config user.name 'CoreOS Bot'
+          git config user.email coreosbot@fedoraproject.org
+          ci/remove-graduated-overrides.py
+      - name: Open pull request
+        run: |
+          if ! git diff --quiet --exit-code; then
+              git commit -am "lockfiles: drop graduated overrides 🎓" \
+                -m "Triggered by remove-graduated-overrides GitHub Action."
+          fi
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v3.8.2
+        with:
+          token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
+          branch: ${{ matrix.branch }}-graduation
+          push-to-fork: coreosbot-releng/fedora-coreos-config
+          title: "lockfiles: drop graduated overrides 🎓"
+          body: "Triggered by remove-graduated-overrides GitHub Action."
+          committer: "CoreOS Bot <coreosbot@fedoraproject.org>"
+          author: "CoreOS Bot <coreosbot@fedoraproject.org>"
