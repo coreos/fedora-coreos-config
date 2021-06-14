@@ -1,0 +1,14 @@
+variant: fcos
+version: 1.3.0
+systemd:
+  units:
+    - name: echo@.service
+      contents: |
+        [Service]
+        Type=oneshot
+        ExecStart=/bin/echo %i
+        RemainAfterExit=yes
+        [Install]
+        WantedBy=multi-user.target
+    - name: echo@foo.service
+      enabled: true

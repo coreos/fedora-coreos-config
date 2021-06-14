@@ -70,14 +70,33 @@ are_default_NM_configs() {
 #
 # See https://github.com/coreos/fedora-coreos-tracker/issues/394#issuecomment-599721173
 propagate_initramfs_networking() {
-    # Check the two locations where a user could have provided network configuration
-    # On FCOS we only support keyfiles, but on RHCOS we support keyfiles and ifcfg
+    # Check for any real root config in the two locations where a user could have
+    # provided network configuration. On FCOS we only support keyfiles, but on RHCOS
+    # we support keyfiles and ifcfg
     if [ -n "$(ls -A /sysroot/etc/NetworkManager/system-connections/)" -o \
          -n "$(ls -A /sysroot/etc/sysconfig/network-scripts/)" ]; then
         echo "info: networking config is defined in the real root"
-        echo "info: will not attempt to propagate initramfs networking"
+        realrootconfig=1
     else
         echo "info: no networking config is defined in the real root"
+        realrootconfig=0
+    fi
+
+    # Did the user tell us to force initramfs networking config
+    # propagation even if real root networking config exists?
+    # Hopefully we only need this in rare circumstances.
+    # https://github.com/coreos/fedora-coreos-tracker/issues/853
+    forcepropagate=0
+    if dracut_func getargbool 0 'coreos.force_persist_ip'; then
+        forcepropagate=1
+        echo "info: coreos.force_persist_ip detected: will force network config propagation"
+    fi
+
+    if [ $realrootconfig == 1 -a $forcepropagate == 0 ]; then
+        echo "info: will not attempt to propagate initramfs networking"
+    fi
+
+    if [ $realrootconfig == 0 -o $forcepropagate == 1 ]; then
         if [ -n "$(ls -A /run/NetworkManager/system-connections/)" ]; then
             if are_default_NM_configs; then
                 echo "info: skipping propagation of default networking configs"
@@ -103,43 +122,6 @@ propagate_initramfs_hostname() {
     if [ -e '/sysroot/etc/hostname' ]; then
         echo "info: hostname is defined in the real root"
         echo "info: will not attempt to propagate initramfs hostname"
-        return 0
-    fi
-
-    # COMPAT: keep two code paths, one for older NetworkManager and
-    #         one for newer NetworkManager that supports writing to
-    #         /run/NetworkManager/initrd/hostname. We can delete this
-    #         block once RHCOS and FCOS minimum NM version is >= 1.26.0
-    #         See https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/commit/ff70adf
-    barrierversion='1.26.0'
-    nmversion=$(/usr/sbin/NetworkManager --version)
-    sorted=$((echo $barrierversion; echo $nmversion) | sort -V | tail -n 1)
-    if [ $sorted == $barrierversion ]; then
-        # The version of NM on the system is older than we need
-        # execute compat code in this block.
-        echo "info: NM version is older than $barrierversion. Executing compat code path."
-
-        # Detect if any hostname was provided via static ip= kargs
-        # run in a subshell so we don't pollute our environment
-        hostnamefile=$(mktemp)
-        (
-            last_nonempty_hostname=''
-            # Inspired from ifup.sh from the 40network dracut module. Note that
-            # $hostname from ip_to_var will only be nonempty for static networking.
-            for iparg in $(dracut_func getargs ip=); do
-                dracut_func ip_to_var $iparg
-                [ -n "${hostname:-}" ] && last_nonempty_hostname="$hostname"
-            done
-            echo -n "$last_nonempty_hostname" > $hostnamefile
-        )
-        hostname=$(<$hostnamefile); rm $hostnamefile
-        if [ -n "$hostname" ]; then
-            echo "info: propagating initramfs hostname (${hostname}) to the real root"
-            echo $hostname > /sysroot/etc/hostname
-            coreos-relabel /etc/hostname
-        else
-            echo "info: no initramfs hostname information to propagate"
-        fi
         return 0
     fi
 
