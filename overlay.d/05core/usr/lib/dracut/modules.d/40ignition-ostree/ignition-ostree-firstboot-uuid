@@ -27,10 +27,37 @@ esac
 
 if [ "${TYPE}" == "${orig_type}" ] && [ "${UUID}" == "${orig_uuid}" ]; then
   case "${TYPE}" in
-    # For now we need to fsck first, see https://github.com/coreos/coreos-assembler/pull/1452
-    # Basically we're not passing `metadata_csum_seed` as a mkfs.ext4 option
-    # because grub2 barfs on it.
-    ext4) e2fsck -fy "${target}" && tune2fs -U random "${target}" ;;
+    ext4)
+          # If the filesystem supports metadata_csum_seed then the UUID is stored
+          # in the superblock and there is no need to worry with an fsck. For the
+          # boot filesystem this FS feature wasn't supported by GRUB until recently.
+          # https://lists.gnu.org/archive/html/grub-devel/2021-06/msg00031.html
+          # Once grub is updated in all systems we care about we can standardize
+          # on the metadata_csum_seed and delete the `else` code block.
+          if tune2fs -l ${target} | grep 'metadata_csum_seed'; then
+              tune2fs -U random "${target}"
+          else
+              # Run an fsck since tune2fs -U requires the FS to be clean
+              e2fsck -fy "${target}"
+              # We just ran an fsck, but there is a bug where tune2fs -U will still
+              # complain. It will still error if the last checked timestamp (just
+              # set by the e2fsck above) is older than the last mount timestamp (happens
+              # on systems with out of date or non-functioning hardware clocks).
+              # See https://github.com/coreos/fedora-coreos-tracker/issues/735#issuecomment-859605953
+              # Potentially fixed in future by: https://www.spinics.net/lists/linux-ext4/msg78012.html
+              tune2fsinfo="$(tune2fs -l ${target})"
+              lastmount=$(echo "$tune2fsinfo" | grep '^Last mount time:' | cut -d ':' -f 2,3,4)
+              lastfsck=$(echo "$tune2fsinfo" | grep '^Last checked:' | cut -d ':' -f 2,3,4)
+              lastmountsse=$(date --date="$lastmount" +%s)
+              lastfscksse=$(date --date="$lastfsck" +%s)
+              if (( lastfscksse < lastmountsse )); then
+                  echo "Detected timestamp of last fsck is older than timestamp of last mount."
+                  echo "Setting "${target}" timestamp of last fsck to same time as last mount."
+                  tune2fs -T $(date --date="$lastmount" +%Y%m%d%H%M%S) "${target}"
+              fi
+              # Finally, we can randomize the UUID
+              tune2fs -U random "${target}"
+          fi ;;
     xfs) xfs_admin -U generate "${target}" ;;
     *) echo "unexpected filesystem type ${TYPE}" 1>&2; exit 1 ;;
   esac
