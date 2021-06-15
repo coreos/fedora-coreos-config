@@ -21,6 +21,15 @@ ostree-remote: fedora
 # https://github.com/ostreedev/ostree/issues/1265
 sysroot-readonly: true
 
+# opt in to using the `metadata_csum_seed` feature of the ext4 filesystem
+# for the /boot filesystem. Support for this was only recently added to grub
+# and isn't available everywhere yet so we'll gate it behind this image.yaml
+# knob. It should be easy to know when RHEL/RHCOS supports this by just flipping
+# this to `true` and doing a build. It should error when building the disk
+# images if grub doesn't support it.
+# https://lists.gnu.org/archive/html/grub-devel/2021-06/msg00031.html
+bootfs_metadata_csum_seed: true
+
 # After this, we plan to add support for the Ignition
 # storage/filesystems sections.  (Although one can do
 # that on boot as well)
