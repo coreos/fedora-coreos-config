@@ -1,6 +1,12 @@
 variant: fcos
-version: 1.1.0
+version: 1.2.0
 storage:
+  directories:
+    # This is for verifying that `kubernetes_file_t` labeled files can be
+    # watched by systemd
+    # See: https://github.com/coreos/fedora-coreos-tracker/issues/861
+    # See: https://github.com/containers/container-selinux/issues/135
+    - path: /etc/kubernetes
   files:
     - path: /etc/systemd/zram-generator.conf
       mode: 0644
@@ -33,3 +39,28 @@ storage:
           AKbyaAqbChEy9CvDgyv6qxTYU+eeBImLKS3PH2uW5etc/69V/sDojqpH3hEffsOt
           9g==
           -----END CERTIFICATE-----
+systemd:
+  units:
+    - name: kube-watch.service
+      # This is for verifying that `kubernetes_file_t` labeled files can be
+      # watched by systemd
+      # See: https://github.com/coreos/fedora-coreos-tracker/issues/861
+      # See: https://github.com/containers/container-selinux/issues/135
+      contents: |
+        [Service]
+        ExecStart=/usr/bin/echo "Found it"
+        RemainAfterExit=yes
+        Type=oneshot
+        [Install]
+        WantedBy=multi-user.target
+    - name: kube-watch.path
+      # This is for verifying that `kubernetes_file_t` labeled files can be
+      # watched by systemd
+      # See: https://github.com/coreos/fedora-coreos-tracker/issues/861
+      # See: https://github.com/containers/container-selinux/issues/135
+      enabled: true
+      contents: |
+        [Path]
+        PathExists=/etc/kubernetes/kubeconfig
+        [Install]
+        WantedBy=multi-user.target
