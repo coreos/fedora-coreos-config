@@ -37,6 +37,21 @@ if [ "$context" != "system_u:object_r:net_conf_t:s0" ]; then
 fi
 ok "SELinux context on stub-resolv.conf is correct"
 
+# In order to verify that `kubernetes_file_t` labeled files can be read by
+# systemd, we check to see if the `kube-env` service started successfully
+# and that the service wrote to the journal successfully.
+# See: https://bugzilla.redhat.com/show_bug.cgi?id=1973418
+if [ "$(systemctl is-failed kube-env.service)" != "active" ]; then
+    fatal "kube-env.service failed unexpectedly"
+fi
+ok "kube-env.service successfully started"
+
+# Verify that 'FCOS' was wrtitten to the journal
+if [ "$(journalctl -o cat -u kube-env.service | sed -n 2p)" != "FCOS" ]; then
+    fatal "kube-env.service did not write 'FCOS' to journal"
+fi
+ok "kube-env.service ran and wrote 'FCOS' to the journal"
+
 # This is for verifying that `kubernetes_file_t` labeled files can be
 # watched by systemd
 # See: https://github.com/coreos/fedora-coreos-tracker/issues/861
