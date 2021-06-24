@@ -8,16 +8,6 @@
 # omit one for FCOS-specific packages (e.g. ignition, afterburn, etc...).
 
 packages:
-  dracut:
-    evr: 053-5.fc34
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/842
-      type: pin
-  dracut-network:
-    evr: 053-5.fc34
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/842
-      type: pin
   fedora-coreos-pinger:
     evr: 0.0.4-11.fc34
     metadata:
