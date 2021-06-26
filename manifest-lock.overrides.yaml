@@ -18,3 +18,7 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/842
       type: pin
+  ignition:
+    evr: 2.11.0-1.fc34
+    metadata:
+      type: fast-track
