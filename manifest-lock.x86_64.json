@@ -52,13 +52,13 @@
       "evra": "1:2.11-2.fc34.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.16.15-1.fc34.x86_64"
+      "evra": "32:9.16.16-1.fc34.x86_64"
     },
     "bind-license": {
-      "evra": "32:9.16.15-1.fc34.noarch"
+      "evra": "32:9.16.16-1.fc34.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.16.15-1.fc34.x86_64"
+      "evra": "32:9.16.16-1.fc34.x86_64"
     },
     "bootupd": {
       "evra": "0.2.5-3.fc34.x86_64"
@@ -127,16 +127,16 @@
       "evra": "0.21.2-1.fc34.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.162.1-3.fc34.noarch"
+      "evra": "2:2.162.2-1.fc34.noarch"
     },
     "containerd": {
       "evra": "1.5.0~rc.1-1.fc34.x86_64"
     },
     "containernetworking-plugins": {
-      "evra": "1.0.0-0.1.rc1.fc34.x86_64"
+      "evra": "1.0.0-0.2.rc1.fc34.x86_64"
     },
     "containers-common": {
-      "evra": "4:1-16.fc34.noarch"
+      "evra": "4:1-19.fc34.noarch"
     },
     "coreos-installer": {
       "evra": "0.9.1-1.fc34.x86_64"
@@ -145,10 +145,10 @@
       "evra": "0.9.1-1.fc34.x86_64"
     },
     "coreutils": {
-      "evra": "8.32-26.fc34.x86_64"
+      "evra": "8.32-27.fc34.x86_64"
     },
     "coreutils-common": {
-      "evra": "8.32-26.fc34.x86_64"
+      "evra": "8.32-27.fc34.x86_64"
     },
     "cpio": {
       "evra": "2.13-10.fc34.x86_64"
@@ -163,22 +163,22 @@
       "evra": "3.15-3.fc34.x86_64"
     },
     "crun": {
-      "evra": "0.19.1-3.fc34.x86_64"
+      "evra": "0.20.1-1.fc34.x86_64"
     },
     "crypto-policies": {
       "evra": "20210213-1.git5c710c0.fc34.noarch"
     },
     "cryptsetup": {
-      "evra": "2.3.5-2.fc34.x86_64"
+      "evra": "2.3.6-1.fc34.x86_64"
     },
     "cryptsetup-libs": {
-      "evra": "2.3.5-2.fc34.x86_64"
+      "evra": "2.3.6-1.fc34.x86_64"
     },
     "cups-libs": {
       "evra": "1:2.3.3op2-7.fc34.x86_64"
     },
     "curl": {
-      "evra": "7.76.1-3.fc34.x86_64"
+      "evra": "7.76.1-4.fc34.x86_64"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.27-8.fc34.x86_64"
@@ -250,13 +250,13 @@
       "evra": "37-15.fc34.x86_64"
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.183-1.fc34.noarch"
+      "evra": "0.185-2.fc34.noarch"
     },
     "elfutils-libelf": {
-      "evra": "0.183-1.fc34.x86_64"
+      "evra": "0.185-2.fc34.x86_64"
     },
     "elfutils-libs": {
-      "evra": "0.183-1.fc34.x86_64"
+      "evra": "0.185-2.fc34.x86_64"
     },
     "ethtool": {
       "evra": "2:5.12-1.fc34.x86_64"
@@ -304,7 +304,7 @@
       "evra": "1:4.8.0-2.fc34.x86_64"
     },
     "firewalld-filesystem": {
-      "evra": "0.9.3-2.fc34.noarch"
+      "evra": "0.9.3-3.fc34.noarch"
     },
     "flatpak-session-helper": {
       "evra": "1.10.2-3.fc34.x86_64"
@@ -355,13 +355,13 @@
       "evra": "2.68.2-1.fc34.x86_64"
     },
     "glibc": {
-      "evra": "2.33-8.fc34.x86_64"
+      "evra": "2.33-15.fc34.x86_64"
     },
     "glibc-common": {
-      "evra": "2.33-8.fc34.x86_64"
+      "evra": "2.33-15.fc34.x86_64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.33-8.fc34.x86_64"
+      "evra": "2.33-15.fc34.x86_64"
     },
     "gmp": {
       "evra": "1:6.2.0-6.fc34.x86_64"
@@ -370,7 +370,7 @@
       "evra": "2.2.27-4.fc34.x86_64"
     },
     "gnutls": {
-      "evra": "3.7.1-2.fc34.x86_64"
+      "evra": "3.7.2-1.fc34.x86_64"
     },
     "gpgme": {
       "evra": "1.15.1-2.fc34.x86_64"
@@ -463,13 +463,13 @@
       "evra": "2.4.0-2.fc34.noarch"
     },
     "kernel": {
-      "evra": "5.12.7-300.fc34.x86_64"
+      "evra": "5.12.9-300.fc34.x86_64"
     },
     "kernel-core": {
-      "evra": "5.12.7-300.fc34.x86_64"
+      "evra": "5.12.9-300.fc34.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.12.7-300.fc34.x86_64"
+      "evra": "5.12.9-300.fc34.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.21-5.fc34.x86_64"
@@ -541,7 +541,7 @@
       "evra": "1.45.6-5.fc34.x86_64"
     },
     "libcurl": {
-      "evra": "7.76.1-3.fc34.x86_64"
+      "evra": "7.76.1-4.fc34.x86_64"
     },
     "libdaemon": {
       "evra": "0.14-21.fc34.x86_64"
@@ -574,13 +574,13 @@
       "evra": "1.4-4.fc34.x86_64"
     },
     "libgcc": {
-      "evra": "11.1.1-1.fc34.x86_64"
+      "evra": "11.1.1-3.fc34.x86_64"
     },
     "libgcrypt": {
       "evra": "1.9.3-2.fc34.x86_64"
     },
     "libgomp": {
-      "evra": "11.1.1-1.fc34.x86_64"
+      "evra": "11.1.1-3.fc34.x86_64"
     },
     "libgpg-error": {
       "evra": "1.42-1.fc34.x86_64"
@@ -694,7 +694,7 @@
       "evra": "1.14.0-1.fc34.x86_64"
     },
     "libreport-filesystem": {
-      "evra": "2.15.1-1.fc34.noarch"
+      "evra": "2.15.2-2.fc34.noarch"
     },
     "libseccomp": {
       "evra": "2.5.0-4.fc34.x86_64"
@@ -721,7 +721,7 @@
       "evra": "2.36.2-1.fc34.x86_64"
     },
     "libsmbclient": {
-      "evra": "2:4.14.4-0.fc34.x86_64"
+      "evra": "2:4.14.5-0.fc34.x86_64"
     },
     "libsmbios": {
       "evra": "2.4.3-2.fc34.x86_64"
@@ -751,7 +751,7 @@
       "evra": "2.5.0-2.fc34.x86_64"
     },
     "libstdc++": {
-      "evra": "11.1.1-1.fc34.x86_64"
+      "evra": "11.1.1-3.fc34.x86_64"
     },
     "libtalloc": {
       "evra": "2.3.2-2.fc34.x86_64"
@@ -799,13 +799,13 @@
       "evra": "0.3.2-1.fc34.x86_64"
     },
     "libwbclient": {
-      "evra": "2:4.14.4-0.fc34.x86_64"
+      "evra": "2:4.14.5-0.fc34.x86_64"
     },
     "libxcrypt": {
       "evra": "4.4.20-2.fc34.x86_64"
     },
     "libxml2": {
-      "evra": "2.9.12-2.fc34.x86_64"
+      "evra": "2.9.12-4.fc34.x86_64"
     },
     "libxmlb": {
       "evra": "0.3.2-1.fc34.x86_64"
@@ -856,7 +856,7 @@
       "evra": "4.1-7.fc34.x86_64"
     },
     "microcode_ctl": {
-      "evra": "2:2.1-45.fc34.x86_64"
+      "evra": "2:2.1-46.fc34.x86_64"
     },
     "moby-engine": {
       "evra": "20.10.6-1.fc34.x86_64"
@@ -865,7 +865,7 @@
       "evra": "2:0.4.0-4.fc34.x86_64"
     },
     "mozjs78": {
-      "evra": "78.10.0-1.fc34.x86_64"
+      "evra": "78.11.0-1.fc34.x86_64"
     },
     "mpfr": {
       "evra": "4.1.0-7.fc34.x86_64"
@@ -913,13 +913,13 @@
       "evra": "2.4.57-3.fc34.x86_64"
     },
     "openssh": {
-      "evra": "8.5p1-2.fc34.x86_64"
+      "evra": "8.6p1-3.fc34.x86_64"
     },
     "openssh-clients": {
-      "evra": "8.5p1-2.fc34.x86_64"
+      "evra": "8.6p1-3.fc34.x86_64"
     },
     "openssh-server": {
-      "evra": "8.5p1-2.fc34.x86_64"
+      "evra": "8.6p1-3.fc34.x86_64"
     },
     "openssl": {
       "evra": "1:1.1.1k-1.fc34.x86_64"
@@ -970,19 +970,19 @@
       "evra": "1.7.3-6.fc34.x86_64"
     },
     "podman": {
-      "evra": "3:3.1.2-3.fc34.x86_64"
+      "evra": "3:3.2.0-5.fc34.x86_64"
     },
     "podman-plugins": {
-      "evra": "3:3.1.2-3.fc34.x86_64"
+      "evra": "3:3.2.0-5.fc34.x86_64"
     },
     "policycoreutils": {
       "evra": "3.2-1.fc34.x86_64"
     },
     "polkit": {
-      "evra": "0.117-3.fc34.x86_64"
+      "evra": "0.117-3.fc34.1.x86_64"
     },
     "polkit-libs": {
-      "evra": "0.117-3.fc34.x86_64"
+      "evra": "0.117-3.fc34.1.x86_64"
     },
     "polkit-pkla-compat": {
       "evra": "0.1-19.fc34.x86_64"
@@ -1030,22 +1030,22 @@
       "evra": "2:1.0.0-378.rc95.fc34.x86_64"
     },
     "samba-client-libs": {
-      "evra": "2:4.14.4-0.fc34.x86_64"
+      "evra": "2:4.14.5-0.fc34.x86_64"
     },
     "samba-common": {
-      "evra": "2:4.14.4-0.fc34.noarch"
+      "evra": "2:4.14.5-0.fc34.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.14.4-0.fc34.x86_64"
+      "evra": "2:4.14.5-0.fc34.x86_64"
     },
     "sed": {
       "evra": "4.8-7.fc34.x86_64"
     },
     "selinux-policy": {
-      "evra": "34.8-1.fc34.noarch"
+      "evra": "34.11-1.fc34.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "34.8-1.fc34.noarch"
+      "evra": "34.11-1.fc34.noarch"
     },
     "setup": {
       "evra": "2.13.7-3.fc34.noarch"
@@ -1066,7 +1066,7 @@
       "evra": "15.4-4.x86_64"
     },
     "skopeo": {
-      "evra": "1:1.2.3-1.fc34.x86_64"
+      "evra": "1:1.3.0-1.fc34.x86_64"
     },
     "slang": {
       "evra": "2.3.2-9.fc34.x86_64"
@@ -1144,7 +1144,7 @@
       "evra": "0.0.99.1-1.fc34.x86_64"
     },
     "tpm2-tools": {
-      "evra": "5.0-2.fc34.x86_64"
+      "evra": "5.1-1.fc34.x86_64"
     },
     "tpm2-tss": {
       "evra": "3.1.0-1.fc34.x86_64"
@@ -1159,7 +1159,7 @@
       "evra": "2.36.2-1.fc34.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.2879-1.fc34.x86_64"
+      "evra": "2:8.2.2956-1.fc34.x86_64"
     },
     "which": {
       "evra": "2.21-26.fc34.x86_64"
@@ -1180,7 +1180,7 @@
       "evra": "2.1.0-16.fc34.x86_64"
     },
     "zchunk-libs": {
-      "evra": "1.1.14-1.fc34.x86_64"
+      "evra": "1.1.15-1.fc34.x86_64"
     },
     "zincati": {
       "evra": "0.0.21-1.fc34.x86_64"
@@ -1193,16 +1193,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-05-29T20:53:20Z",
+    "generated": "2021-06-11T20:52:36Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2021-04-23T10:47:57Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-05-28T21:27:46Z"
+        "generated": "2021-06-10T18:40:56Z"
       },
       "fedora-updates": {
-        "generated": "2021-05-29T00:50:08Z"
+        "generated": "2021-06-11T00:54:44Z"
       }
     }
   }
