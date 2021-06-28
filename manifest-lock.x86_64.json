@@ -16,7 +16,7 @@
       "evra": "1:1.30.4-1.fc34.x86_64"
     },
     "WALinuxAgent-udev": {
-      "evra": "2.2.52-5.fc34.noarch"
+      "evra": "2.3.0.2-1.fc34.noarch"
     },
     "acl": {
       "evra": "2.3.1-1.fc34.x86_64"
@@ -37,7 +37,7 @@
       "evra": "2.5.1-1.fc34.x86_64"
     },
     "audit-libs": {
-      "evra": "3.0.1-2.fc34.x86_64"
+      "evra": "3.0.2-1.fc34.x86_64"
     },
     "avahi-libs": {
       "evra": "0.8-9.fc34.x86_64"
@@ -82,7 +82,7 @@
       "evra": "1.17.1-2.fc34.x86_64"
     },
     "ca-certificates": {
-      "evra": "2020.2.41-7.fc34.noarch"
+      "evra": "2021.2.50-1.0.fc34.noarch"
     },
     "catatonit": {
       "evra": "0.1.5-4.fc34.x86_64"
@@ -127,7 +127,7 @@
       "evra": "0.21.2-1.fc34.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.162.2-1.fc34.noarch"
+      "evra": "2:2.163.0-1.fc34.noarch"
     },
     "containerd": {
       "evra": "1.5.0~rc.1-1.fc34.x86_64"
@@ -190,7 +190,7 @@
       "evra": "1:1.12.20-3.fc34.x86_64"
     },
     "dbus-broker": {
-      "evra": "28-3.fc34.x86_64"
+      "evra": "29-1.fc34.x86_64"
     },
     "dbus-common": {
       "evra": "1:1.12.20-3.fc34.noarch"
@@ -262,7 +262,7 @@
       "evra": "2:5.12-1.fc34.x86_64"
     },
     "expat": {
-      "evra": "2.2.10-2.fc34.x86_64"
+      "evra": "2.4.1-1.fc34.x86_64"
     },
     "fedora-coreos-pinger": {
       "evra": "0.0.4-9.fc34.x86_64"
@@ -292,10 +292,10 @@
       "evra": "34-2.noarch"
     },
     "file": {
-      "evra": "5.39-5.fc34.x86_64"
+      "evra": "5.39-6.fc34.x86_64"
     },
     "file-libs": {
-      "evra": "5.39-5.fc34.x86_64"
+      "evra": "5.39-6.fc34.x86_64"
     },
     "filesystem": {
       "evra": "3.14-5.fc34.x86_64"
@@ -316,7 +316,7 @@
       "evra": "2.9.9-11.fc34.x86_64"
     },
     "fuse-common": {
-      "evra": "3.10.3-1.fc34.x86_64"
+      "evra": "3.10.4-1.fc34.x86_64"
     },
     "fuse-libs": {
       "evra": "2.9.9-11.fc34.x86_64"
@@ -325,16 +325,16 @@
       "evra": "1.5.0-1.fc34.x86_64"
     },
     "fuse-sshfs": {
-      "evra": "3.7.1-2.fc34.x86_64"
+      "evra": "3.7.2-1.fc34.x86_64"
     },
     "fuse3": {
-      "evra": "3.10.3-1.fc34.x86_64"
+      "evra": "3.10.4-1.fc34.x86_64"
     },
     "fuse3-libs": {
-      "evra": "3.10.3-1.fc34.x86_64"
+      "evra": "3.10.4-1.fc34.x86_64"
     },
     "fwupd": {
-      "evra": "1.5.9-2.fc34.x86_64"
+      "evra": "1.5.10-1.fc34.x86_64"
     },
     "gawk": {
       "evra": "5.1.0-3.fc34.x86_64"
@@ -355,13 +355,13 @@
       "evra": "2.68.2-1.fc34.x86_64"
     },
     "glibc": {
-      "evra": "2.33-15.fc34.x86_64"
+      "evra": "2.33-18.fc34.x86_64"
     },
     "glibc-common": {
-      "evra": "2.33-15.fc34.x86_64"
+      "evra": "2.33-18.fc34.x86_64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.33-15.fc34.x86_64"
+      "evra": "2.33-18.fc34.x86_64"
     },
     "gmp": {
       "evra": "1:6.2.0-6.fc34.x86_64"
@@ -379,22 +379,22 @@
       "evra": "3.6-2.fc34.x86_64"
     },
     "grub2-common": {
-      "evra": "1:2.06~rc1-4.fc34.noarch"
+      "evra": "1:2.06-2.fc34.noarch"
     },
     "grub2-efi-x64": {
-      "evra": "1:2.06~rc1-4.fc34.x86_64"
+      "evra": "1:2.06-2.fc34.x86_64"
     },
     "grub2-pc": {
-      "evra": "1:2.06~rc1-4.fc34.x86_64"
+      "evra": "1:2.06-2.fc34.x86_64"
     },
     "grub2-pc-modules": {
-      "evra": "1:2.06~rc1-4.fc34.noarch"
+      "evra": "1:2.06-2.fc34.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.06~rc1-4.fc34.x86_64"
+      "evra": "1:2.06-2.fc34.x86_64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06~rc1-4.fc34.x86_64"
+      "evra": "1:2.06-2.fc34.x86_64"
     },
     "gzip": {
       "evra": "1.10-4.fc34.x86_64"
@@ -463,13 +463,13 @@
       "evra": "2.4.0-2.fc34.noarch"
     },
     "kernel": {
-      "evra": "5.12.9-300.fc34.x86_64"
+      "evra": "5.12.12-300.fc34.x86_64"
     },
     "kernel-core": {
-      "evra": "5.12.9-300.fc34.x86_64"
+      "evra": "5.12.12-300.fc34.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.12.9-300.fc34.x86_64"
+      "evra": "5.12.12-300.fc34.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.21-5.fc34.x86_64"
@@ -604,7 +604,7 @@
       "evra": "1.3.1-47.fc34.x86_64"
     },
     "libipa_hbac": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "libjcat": {
       "evra": "0.1.6-1.fc34.x86_64"
@@ -676,7 +676,7 @@
       "evra": "0.2.1-47.fc34.x86_64"
     },
     "libpcap": {
-      "evra": "14:1.10.0-1.fc34.x86_64"
+      "evra": "14:1.10.1-1.fc34.x86_64"
     },
     "libpkgconf": {
       "evra": "1.7.3-6.fc34.x86_64"
@@ -691,7 +691,7 @@
       "evra": "0.1.5-47.fc34.x86_64"
     },
     "librepo": {
-      "evra": "1.14.0-1.fc34.x86_64"
+      "evra": "1.14.1-1.fc34.x86_64"
     },
     "libreport-filesystem": {
       "evra": "2.15.2-2.fc34.noarch"
@@ -739,16 +739,16 @@
       "evra": "0.9.5-2.fc34.noarch"
     },
     "libsss_certmap": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "libsss_idmap": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "libsss_nss_idmap": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "libsss_sudo": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "libstdc++": {
       "evra": "11.1.1-3.fc34.x86_64"
@@ -802,7 +802,7 @@
       "evra": "2:4.14.5-0.fc34.x86_64"
     },
     "libxcrypt": {
-      "evra": "4.4.20-2.fc34.x86_64"
+      "evra": "4.4.22-2.fc34.x86_64"
     },
     "libxml2": {
       "evra": "2.9.12-4.fc34.x86_64"
@@ -883,7 +883,7 @@
       "evra": "2.0-0.59.20160912git.fc34.x86_64"
     },
     "nettle": {
-      "evra": "3.7.2-1.fc34.x86_64"
+      "evra": "3.7.3-1.fc34.x86_64"
     },
     "newt": {
       "evra": "0.52.21-9.fc34.x86_64"
@@ -910,7 +910,7 @@
       "evra": "6.9.7.1-1.fc34.x86_64"
     },
     "openldap": {
-      "evra": "2.4.57-3.fc34.x86_64"
+      "evra": "2.4.57-4.fc34.x86_64"
     },
     "openssh": {
       "evra": "8.6p1-3.fc34.x86_64"
@@ -943,7 +943,7 @@
       "evra": "0.23.22-3.fc34.x86_64"
     },
     "pam": {
-      "evra": "1.5.1-5.fc34.x86_64"
+      "evra": "1.5.1-6.fc34.x86_64"
     },
     "passwd": {
       "evra": "0.80-10.fc34.x86_64"
@@ -970,10 +970,10 @@
       "evra": "1.7.3-6.fc34.x86_64"
     },
     "podman": {
-      "evra": "3:3.2.0-5.fc34.x86_64"
+      "evra": "3:3.2.1-1.fc34.x86_64"
     },
     "podman-plugins": {
-      "evra": "3:3.2.0-5.fc34.x86_64"
+      "evra": "3:3.2.1-1.fc34.x86_64"
     },
     "policycoreutils": {
       "evra": "3.2-1.fc34.x86_64"
@@ -1087,28 +1087,28 @@
       "evra": "0.1.2-7.fc34.x86_64"
     },
     "sssd-ad": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "sssd-client": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "sssd-common": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "sssd-common-pac": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "sssd-ipa": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "sssd-krb5": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "sssd-krb5-common": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "sssd-ldap": {
-      "evra": "2.5.0-2.fc34.x86_64"
+      "evra": "2.5.1-1.fc34.x86_64"
     },
     "stalld": {
       "evra": "1.10-1.fc34.x86_64"
@@ -1159,7 +1159,7 @@
       "evra": "2.36.2-1.fc34.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.2956-1.fc34.x86_64"
+      "evra": "2:8.2.2956-2.fc34.x86_64"
     },
     "which": {
       "evra": "2.21-26.fc34.x86_64"
@@ -1193,16 +1193,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-06-11T20:52:36Z",
+    "generated": "2021-06-26T01:16:31Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2021-04-23T10:47:57Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-06-10T18:40:56Z"
+        "generated": "2021-06-24T21:24:51Z"
       },
       "fedora-updates": {
-        "generated": "2021-06-11T00:54:44Z"
+        "generated": "2021-06-26T00:53:13Z"
       }
     }
   }
