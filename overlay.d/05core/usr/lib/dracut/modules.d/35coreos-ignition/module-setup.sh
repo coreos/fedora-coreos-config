@@ -43,7 +43,7 @@ install() {
     # dracut inst_script doesn't allow overwrites and we are replacing
     # the default script placed by Ignition
     binpath="/usr/sbin/ignition-kargs-helper"
-    mv "$moddir/coreos-kargs.sh" "$initdir$binpath"
+    cp "$moddir/coreos-kargs.sh" "$initdir$binpath"
     install_ignition_unit coreos-kargs-reboot.service
 
     inst_script "$moddir/coreos-boot-edit.sh" \
