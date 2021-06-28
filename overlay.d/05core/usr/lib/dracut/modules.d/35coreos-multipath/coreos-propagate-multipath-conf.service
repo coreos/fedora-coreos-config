@@ -5,6 +5,9 @@ Before=initrd.target
 
 ConditionKernelCommandLine=rd.multipath=default
 
+OnFailure=emergency.target
+OnFailureJobMode=isolate
+
 [Service]
 Type=oneshot
 ExecStart=/usr/sbin/coreos-propagate-multipath-conf
