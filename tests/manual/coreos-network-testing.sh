@@ -607,6 +607,17 @@ EOF
     check_vm 'dhcp' 2 0 $ip $nic0 'n/a' $nameserverdhcp $sshkeyfile
     destroy_vm
 
+    # Do a `coreos.force_persist_ip` check. In this case we won't pass any networking
+    # configuration via Ignition either, so we'll just end up with DHCP and a
+    # static hostname that is unset (`n/a`).
+    echo -e "\n###### Testing coreos.force_persist_ip forces initramfs propagation\n"
+    create_ignition_file "$fcct_static_nic0" $ignitionfile
+    start_vm $qcow $ignitionfile $kernel $initramfs "${initramfs_static_bond0} coreos.force_persist_ip"
+    check_vm 'none' 1 3 $ip bond0 $ignitionhostname $nameserverstatic $sshkeyfile
+    reboot_vm
+    check_vm 'none' 1 3 $ip bond0 $ignitionhostname $nameserverstatic $sshkeyfile
+    destroy_vm
+
     # Do a check for the `nameserver=` initramfs arg. Need to test along with
     # the $initramfs_dhcp_nic0nic1 because that brings up more than one
     # interface and is one that doesn't specify the nameserver as part of the
