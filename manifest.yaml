@@ -23,3 +23,7 @@ postprocess:
     mkdir -p /etc/fedora-coreos-pinger/config.d /etc/zincati/config.d
     echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/90-disable-on-non-production-stream.toml
     echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nupdates.enabled = false' > /etc/zincati/config.d/90-disable-on-non-production-stream.toml
+
+packages:
+  # resolved was broken out to its own package in rawhide/f35
+  - systemd-resolved
