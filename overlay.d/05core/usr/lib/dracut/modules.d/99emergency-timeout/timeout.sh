@@ -56,7 +56,10 @@ EOF
         echo "Displaying logs from failed units: ${failed}"
         for unit in ${failed}; do
             # 10 lines should be enough for everyone
-            journalctl -b --no-pager --no-hostname -u ${unit} -n 10
+            # For color suppression, see https://github.com/coreos/fedora-coreos-config/pull/1079
+            # and 10-coreos-nocolor.conf.  Our console logs often end up saved into
+            # files and the ANSI codes just look like corruption (and are invalid UTF-8).
+            SYSTEMD_COLORS=0 journalctl -b --no-pager --no-hostname -u ${unit} -n 10
         done
     fi
 
