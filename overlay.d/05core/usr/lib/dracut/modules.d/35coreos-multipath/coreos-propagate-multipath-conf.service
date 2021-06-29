@@ -1,9 +1,14 @@
 [Unit]
 Description=CoreOS Propagate Multipath Configuration
-After=ostree-prepare-root.service
 Before=initrd.target
 
+# we write to the rootfs, so run after it's ready
+After=initrd-root-fs.target
+
 ConditionKernelCommandLine=rd.multipath=default
+
+OnFailure=emergency.target
+OnFailureJobMode=isolate
 
 [Service]
 Type=oneshot
