@@ -463,13 +463,13 @@
       "evra": "2.4.0-2.fc34.noarch"
     },
     "kernel": {
-      "evra": "5.12.12-300.fc34.x86_64"
+      "evra": "5.12.13-300.fc34.x86_64"
     },
     "kernel-core": {
-      "evra": "5.12.12-300.fc34.x86_64"
+      "evra": "5.12.13-300.fc34.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.12.12-300.fc34.x86_64"
+      "evra": "5.12.13-300.fc34.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.21-5.fc34.x86_64"
@@ -910,7 +910,7 @@
       "evra": "6.9.7.1-1.fc34.x86_64"
     },
     "openldap": {
-      "evra": "2.4.57-4.fc34.x86_64"
+      "evra": "2.4.57-5.fc34.x86_64"
     },
     "openssh": {
       "evra": "8.6p1-3.fc34.x86_64"
@@ -1042,10 +1042,10 @@
       "evra": "4.8-7.fc34.x86_64"
     },
     "selinux-policy": {
-      "evra": "34.11-1.fc34.noarch"
+      "evra": "34.12-1.fc34.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "34.11-1.fc34.noarch"
+      "evra": "34.12-1.fc34.noarch"
     },
     "setup": {
       "evra": "2.13.7-3.fc34.noarch"
@@ -1144,7 +1144,7 @@
       "evra": "0.0.99.1-1.fc34.x86_64"
     },
     "tpm2-tools": {
-      "evra": "5.1-1.fc34.x86_64"
+      "evra": "5.1.1-1.fc34.x86_64"
     },
     "tpm2-tss": {
       "evra": "3.1.0-1.fc34.x86_64"
@@ -1159,7 +1159,7 @@
       "evra": "2.36.2-1.fc34.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.3046-1.fc34.x86_64"
+      "evra": "2:8.2.3070-1.fc34.x86_64"
     },
     "which": {
       "evra": "2.21-26.fc34.x86_64"
@@ -1193,16 +1193,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-06-28T20:53:49Z",
+    "generated": "2021-06-30T20:04:21Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2021-04-23T10:47:57Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-06-27T21:38:00Z"
+        "generated": "2021-06-28T21:32:38Z"
       },
       "fedora-updates": {
-        "generated": "2021-06-28T01:23:25Z"
+        "generated": "2021-06-30T00:54:00Z"
       }
     }
   }
