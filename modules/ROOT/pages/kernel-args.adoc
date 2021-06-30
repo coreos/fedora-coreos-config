@@ -74,9 +74,7 @@ $ sudo rpm-ostree kargs --editor
 
 == Modifying Kernel Arguments via Ignition
 
-There are two ways to modify kernel arguments via Ignition. The current Ignition config spec supports specifying kernel arguments via the `kernelArguments` section. It is also possible to use Ignition to script a systemd service which runs `rpm-ostree kargs` and then triggers a reboot.
-
-NOTE:  The `After=systemd-machine-id-commit.service` directive is important in the following systemd service examples to avoid some subtle issues. Similarly, any `ConditionFirstBoot=true` services should use `Before=first-boot-complete.target systemd-machine-id-commit.service`. See https://github.com/systemd/systemd/blob/3045c416e1cbbd8ab40577790522217fd1b9cb3b/man/systemd.unit.xml#L1315[the systemd documentation] for more details.
+You can specify kernel arguments in a Butane config using the `kernel_arguments` section.
 
 === Example: Staying on cgroups v1
 
@@ -89,36 +87,6 @@ version: 1.4.0
 kernel_arguments:
   should_exist:
     - systemd.unified_cgroup_hierarchy=0
-----
-
-Alternatively, here's an example systemd unit that does the same:
-
-[source,yaml]
-----
-variant: fcos
-version: 1.3.0
-systemd:
-  units:
-    - name: cgroups-v1-karg.service
-      enabled: true
-      contents: |
-        [Unit]
-        Description=Switch to cgroups v1
-        # We run after `systemd-machine-id-commit.service` to ensure that
-        # `ConditionFirstBoot=true` services won't rerun on the next boot.
-        After=systemd-machine-id-commit.service
-        ConditionKernelCommandLine=!systemd.unified_cgroup_hierarchy
-        ConditionPathExists=!/var/lib/cgroups-v1-karg.stamp
-
-        [Service]
-        Type=oneshot
-        RemainAfterExit=yes
-        ExecStart=/bin/rpm-ostree kargs --append=systemd.unified_cgroup_hierarchy=0
-        ExecStart=/bin/touch /var/lib/cgroups-v1-karg.stamp
-        ExecStart=/bin/systemctl --no-block reboot
-
-        [Install]
-        WantedBy=multi-user.target
 ----
 
 === Example: Disabling all CPU vulnerability mitigations
@@ -134,34 +102,4 @@ kernel_arguments:
     - mitigations=off
   should_not_exist:
     - mitigations=auto,nosmt
-----
-
-Alternatively, here's an example systemd unit that does the same:
-
-[source,yaml]
-----
-variant: fcos
-version: 1.3.0
-systemd:
-  units:
-    - name: cpu-mitigations-karg.service
-      enabled: true
-      contents: |
-        [Unit]
-        Description=Disable all CPU vulnerability mitigations
-        # We run after `systemd-machine-id-commit.service` to ensure that
-        # `ConditionFirstBoot=true` services won't rerun on the next boot.
-        After=systemd-machine-id-commit.service
-        ConditionKernelCommandLine=!mitigations=off
-        ConditionPathExists=!/var/lib/cpu-mitigations-karg.stamp
-
-        [Service]
-        Type=oneshot
-        RemainAfterExit=yes
-        ExecStart=/bin/rpm-ostree kargs --replace=mitigations=auto,nosmt=off
-        ExecStart=/bin/touch /var/lib/cpu-mitigations-karg.stamp
-        ExecStart=/bin/systemctl --no-block reboot
-
-        [Install]
-        WantedBy=multi-user.target
 ----
