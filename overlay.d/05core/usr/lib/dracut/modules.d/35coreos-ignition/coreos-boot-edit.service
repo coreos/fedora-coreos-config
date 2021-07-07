@@ -12,8 +12,8 @@ OnFailureJobMode=isolate
 # necessary since we run late, but on principle let's make clear the dependency.
 Requires=dev-disk-by\x2dlabel-boot.device
 After=dev-disk-by\x2dlabel-boot.device
-# Start after Ignition has finished
-After=ignition-files.service
+# Start after Ignition has finished and cleaned up /boot
+After=ignition-files.service ignition-cleanup-boot.service
 # As above, this isn't strictly necessary, but on principle.
 After=coreos-multipath-wait.target
 
