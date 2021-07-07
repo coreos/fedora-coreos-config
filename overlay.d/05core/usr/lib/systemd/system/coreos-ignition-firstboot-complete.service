@@ -14,7 +14,7 @@ RemainAfterExit=yes
 # everything else, /boot stays readonly. We only have a transient writable mount
 # for the lifetime of the unit.
 MountFlags=slave
-ExecStart=/usr/libexec/coreos-ignition-firstboot-complete.sh
+ExecStart=/usr/libexec/coreos-ignition-firstboot-complete
 
 [Install]
 # Part of basic.target so this happens early on in firstboot
