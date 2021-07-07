@@ -34,6 +34,9 @@ ostree
 # A super common tool
 jq
 
+# For golang projects like mantle and gangplank
+golang
+
 # Used by ostree/rpm-ostree CI (TODO: add to something like TestBuildRequires in spec files)
 attr
 rsync
