@@ -145,3 +145,11 @@ if ! grep prjquota <<< "${rootflags}"; then
     fatal "missing prjquota in root mount flags: ${rootflags}"
 fi
 ok "root mounted with prjquota"
+
+# We shouldn't pull this into the transaction by default. See
+# https://github.com/coreos/fedora-coreos-config/pull/1088
+# https://www.freedesktop.org/wiki/Software/systemd/NetworkTarget/
+if ! systemctl show -p ActiveState network-online.target | grep -q ActiveState=inactive; then
+    fatal "Unit network-online.target shouldn't be active"
+fi
+ok "unit network-online.target inactive"
