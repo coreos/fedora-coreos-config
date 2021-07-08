@@ -7,7 +7,7 @@ ConditionPathExists=!/run/ostree-live
 # We run pretty early
 Before=coreos-copy-firstboot-network.service
 Before=coreos-ignition-setup-user.service
-Before=ignition-fetch.service
+Before=ignition-fetch-offline.service
 # Any services looking at mounts need to order after this
 # because it causes device re-probing.
 After=coreos-gpt-setup.service
