@@ -45,7 +45,7 @@ if ! $(cmdline_bool 'ignition.firstboot' 0); then
     exit 0
 fi
 
-if ! command -v is-live-image >/dev/null || ! is-live-image; then
+if ! is-live-image; then
     # ignition-setup-user.service should depend on the boot device node
     # only on diskful boots
     mkdir -p "${UNIT_DIR}/ignition-setup-user.service.d"

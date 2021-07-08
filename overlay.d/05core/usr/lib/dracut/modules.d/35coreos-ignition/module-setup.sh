@@ -3,7 +3,7 @@
 # ex: ts=8 sw=4 sts=4 et filetype=sh
 
 depends() {
-    echo systemd network ignition
+    echo systemd network ignition coreos-live
 }
 
 install_ignition_unit() {
