@@ -14,7 +14,7 @@ copy_file_if_exists() {
 destination=/usr/lib/ignition
 mkdir -p $destination
 
-if command -v is-live-image >/dev/null && is-live-image; then
+if is-live-image; then
     # Live image. If the user has supplied a config.ign via an appended
     # initrd, put it in the right place.
     copy_file_if_exists "/config.ign" "${destination}/user.ign"
