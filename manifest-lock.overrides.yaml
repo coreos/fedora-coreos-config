@@ -18,3 +18,9 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/842
       type: pin
+  fedora-coreos-pinger:
+    evr: 0.0.4-11.fc34
+    metadata:
+      type: fast-track
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1088
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-9d4c3ddc8a
