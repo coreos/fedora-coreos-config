@@ -34,6 +34,9 @@ systemd:
         # `ConditionFirstBoot=true` services won't rerun on the next boot.
         After=systemd-machine-id-commit.service
         After=network-online.target
+        # We run before `zincati.service` to avoid conflicting rpm-ostree
+        # transactions.
+        Before=zincati.service
         ConditionPathExists=!/var/lib/rpm-ostree-install-nano.stamp
 
         [Service]
