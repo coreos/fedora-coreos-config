@@ -8,6 +8,18 @@
 # omit one for FCOS-specific packages (e.g. ignition, afterburn, etc...).
 
 packages:
+  dracut:
+    evr: 055-3.fc34
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/842#issuecomment-867900969
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-9d1b72b267
+  dracut-network:
+    evr: 055-3.fc34
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/842#issuecomment-867900969
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-9d1b72b267
   fedora-coreos-pinger:
     evr: 0.0.4-11.fc34
     metadata:
