@@ -47,6 +47,10 @@ After=coreos-multipath-wait.target
 # hook which will generate NM configs from the network kargs, but we want to
 # have precedence.
 After=coreos-enable-network.service
+# We've seen races with ignition-kargs.service, which accesses /boot rw.
+# Let's introduce some ordering here. Need to use `Before` because otherwise
+# we get a systemd ordering cycle. https://github.com/coreos/fedora-coreos-tracker/issues/883
+Before=ignition-kargs.service
 
 [Service]
 Type=oneshot
