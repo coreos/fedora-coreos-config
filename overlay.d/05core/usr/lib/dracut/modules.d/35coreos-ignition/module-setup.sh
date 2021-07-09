@@ -3,7 +3,7 @@
 # ex: ts=8 sw=4 sts=4 et filetype=sh
 
 depends() {
-    echo systemd network ignition
+    echo systemd network ignition coreos-live
 }
 
 install_ignition_unit() {
@@ -30,6 +30,9 @@ install() {
     inst_script "$moddir/coreos-gpt-setup.sh" \
         "/usr/sbin/coreos-gpt-setup"
 
+    inst_script "$moddir/coreos-ignition-setup-user.sh" \
+        "/usr/sbin/coreos-ignition-setup-user"
+
     # For consistency tear down the network and persist multipath between the initramfs and
     # real root. See https://github.com/coreos/fedora-coreos-tracker/issues/394#issuecomment-599721763
     inst_script "$moddir/coreos-teardown-initramfs.sh" \
@@ -52,4 +55,5 @@ install() {
     install_ignition_unit "coreos-boot-edit.service" \
         "ignition-diskful.target"
 
+    install_ignition_unit coreos-ignition-setup-user.service
 }
