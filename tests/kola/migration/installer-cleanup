@@ -4,6 +4,10 @@
 # cleaned up.
 # https://github.com/coreos/fedora-coreos-tracker/issues/889
 
+# Just run on QEMU.  coreos-installer doesn't run in clouds, and rebooting
+# doesn't seem to work there currently.
+# kola: { "platforms": "qemu-unpriv" }
+
 set -xeuo pipefail
 
 ok() {
