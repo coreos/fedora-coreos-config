@@ -18,8 +18,9 @@ OVERRIDES_HEADER = """
 #
 # IMPORTANT: YAML comments *will not* be preserved. All `pin` overrides *must*
 # include a URL in the `metadata.reason` key. Overrides of type `fast-track`
-# *should* include a URL in the `metadata.reason` key, though it's acceptable to
-# omit one for FCOS-specific packages (e.g. ignition, afterburn, etc...).
+# *should* include a Bodhi update URL in the `metadata.bodhi` key and a URL
+# in the `metadata.reason` key, though it's acceptable to omit a `reason`
+# for FCOS-specific packages (ignition, afterburn, etc.).
 """
 
 
