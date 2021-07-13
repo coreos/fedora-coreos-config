@@ -31,8 +31,6 @@ add_requires sysroot.mount     initrd-root-fs.target
 add_requires sysroot-etc.mount initrd-root-fs.target
 add_requires sysroot-var.mount initrd-root-fs.target
 
-add_requires coreos-liveiso-reconfigure-nm-wait-online.service initrd.target
-
 mkdir -p "${UNIT_DIR}/ostree-prepare-root.service.d"
 cat > "${UNIT_DIR}/ostree-prepare-root.service.d/10-live.conf" <<EOF
 # With live PXE there's no ostree= argument on the kernel command line, so

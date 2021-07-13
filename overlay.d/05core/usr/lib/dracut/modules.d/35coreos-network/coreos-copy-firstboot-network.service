@@ -8,8 +8,8 @@
 #     - i.e. after /dev/disk/by-label/boot is available
 #     - and after the ignition-dracut GPT generator (see below)
 # - Need to run before networking is brought up.
-#     - This is done in nm-run.service [1]
-#     - i.e. Before=nm-run.service
+#     - This is done in nm-initrd.service [1]
+#     - i.e. Before=nm-initrd.service
 # - Need to make sure karg networking configuration isn't applied
 #     - There are two ways to do this.
 #         - One is to run *before* the nm-config.sh [2] that runs as part of
@@ -17,11 +17,11 @@
 #             - i.e. Before=dracut-cmdline.service
 #         - Another is to run *after* nm-config.sh [2] in dracut-cmdline [3]
 #           and just delete all the files created by nm-initrd-generator.
-#             - i.e. After=dracut-cmdline.service, but Before=nm-run.service
+#             - i.e. After=dracut-cmdline.service, but Before=nm-initrd.service
 #     - We'll go with the second option here because the need for the /boot
 #       device (mentioned above) means we can't start before dracut-cmdline.service
 #
-# [1] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/nm-run.service
+# [1] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/nm-initrd.service
 # [2] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/nm-config.sh
 # [3] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/module-setup.sh#L34
 #
@@ -30,8 +30,8 @@ Description=Copy CoreOS Firstboot Networking Config
 ConditionPathExists=/usr/lib/initrd-release
 DefaultDependencies=false
 Before=ignition-diskful.target
-Before=nm-run.service
-# compat: remove when everyone is on dracut 053+
+Before=nm-initrd.service
+# compat: remove when everyone is on dracut 054+
 Before=dracut-initqueue.service
 After=dracut-cmdline.service
 # Any services looking at mounts need to order after this
@@ -47,6 +47,10 @@ After=coreos-multipath-wait.target
 # hook which will generate NM configs from the network kargs, but we want to
 # have precedence.
 After=coreos-enable-network.service
+# We've seen races with ignition-kargs.service, which accesses /boot rw.
+# Let's introduce some ordering here. Need to use `Before` because otherwise
+# we get a systemd ordering cycle. https://github.com/coreos/fedora-coreos-tracker/issues/883
+Before=ignition-kargs.service
 
 [Service]
 Type=oneshot

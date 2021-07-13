@@ -16,7 +16,7 @@ ConditionKernelCommandLine=ignition.firstboot
 [Service]
 Type=oneshot
 ProtectHome=read-only
-ExecStart=/usr/libexec/coreos-check-ssh-keys.sh
+ExecStart=/usr/libexec/coreos-check-ssh-keys
 RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target

@@ -20,8 +20,8 @@ Before=ignition-fetch.service
 
 # See hack in coreos-enable-network, as well as coreos-copy-firstboot-network.service.
 After=dracut-cmdline.service
-Before=nm-run.service
-# compat: remove when everyone is on dracut 053+
+Before=nm-initrd.service
+# compat: remove when everyone is on dracut 054+
 Before=dracut-initqueue.service
 
 [Service]

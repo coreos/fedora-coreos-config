@@ -1,0 +1,20 @@
+[Unit]
+Description=Clean Up Injected Ignition Config in /boot
+Documentation=https://github.com/coreos/fedora-coreos-tracker/issues/889
+# Newer Ignition will handle this on first boot; we only want to clean up
+# leftover configs on upgrade.  Disambiguate those two code paths for tests.
+ConditionKernelCommandLine=!ignition.firstboot
+RequiresMountsFor=/boot
+ConditionPathExists=/boot/ignition
+# We ship a kdump.service dropin that remounts /boot rw; avoid conflicts
+Before=kdump.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-cleanup-ignition-config
+RemainAfterExit=yes
+# MountFlags=slave ensures the rw mount of /boot is private to the unit
+MountFlags=slave
+
+[Install]
+WantedBy=multi-user.target

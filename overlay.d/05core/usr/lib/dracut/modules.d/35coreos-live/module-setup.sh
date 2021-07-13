@@ -47,7 +47,4 @@ install() {
 
     install_and_enable_unit "coreos-livepxe-persist-osmet.service" \
         "default.target"
-
-    inst_simple "$moddir/coreos-liveiso-reconfigure-nm-wait-online.service" \
-        "$systemdsystemunitdir/coreos-liveiso-reconfigure-nm-wait-online.service"
 }

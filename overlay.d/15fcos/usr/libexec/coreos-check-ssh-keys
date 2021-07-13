@@ -38,7 +38,7 @@ main() {
     if [ -n "$output" ]; then
         echo "$output" > /etc/issue.d/30_ssh_authorized_keys.issue
     else
-        echo -e "${warn}No ssh authorized keys provided by Ignition or Afterburn${nc}" \
+        echo -e "${warn}No SSH authorized keys provided by Ignition or Afterburn${nc}" \
             > /etc/issue.d/30_ssh_authorized_keys.issue
     fi
 
