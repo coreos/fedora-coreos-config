@@ -18,3 +18,15 @@ packages:
     evr: 2.11.0-2.fc34
     metadata:
       type: fast-track
+  coreos-installer:
+    evr: 0.9.1-2.fc34
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-0efb7aefc9
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/889
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.9.1-2.fc34
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-0efb7aefc9
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/889
+      type: fast-track
