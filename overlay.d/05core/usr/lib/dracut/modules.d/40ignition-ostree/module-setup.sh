@@ -15,6 +15,11 @@ install_ignition_unit() {
     systemctl -q --root="$initdir" add-requires "ignition-${target}.target" "$unit" || exit 1
 }
 
+installkernel() {
+    # Used by ignition-ostree-transposefs
+    instmods -c zram
+}
+
 install() {
     inst_multiple \
         realpath \
