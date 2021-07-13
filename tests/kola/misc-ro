@@ -174,3 +174,11 @@ for f in '/etc/passwd' '/etc/group'; do
 	fi
 done
 ok "correct ownership and mode on /etc/passwd & /etc/group"
+
+# We shouldn't pull this into the transaction by default. See
+# https://github.com/coreos/fedora-coreos-config/pull/1088
+# https://www.freedesktop.org/wiki/Software/systemd/NetworkTarget/
+if ! systemctl show -p ActiveState network-online.target | grep -q ActiveState=inactive; then
+    fatal "Unit network-online.target shouldn't be active"
+fi
+ok "unit network-online.target inactive"

@@ -16,7 +16,7 @@ nc='\033[0m'
 output=$(journalctl -o json-pretty MESSAGE_ID=57124006b5c94805b77ce473e92a8aeb | jq -s '.[] | select(.IGNITION_CONFIG_TYPE == "user")'| wc -l)
 
 if [[ $output -gt  0 ]];then
-    echo "Ignition: user provided config was applied" > /etc/issue.d/30_ignition_config_info.issue
+    echo "Ignition: user-provided config was applied" > /etc/issue.d/30_ignition_config_info.issue
 else
     echo -e "${warn}Ignition: no config provided by user${nc}" > /etc/issue.d/30_ignition_config_info.issue
 fi
