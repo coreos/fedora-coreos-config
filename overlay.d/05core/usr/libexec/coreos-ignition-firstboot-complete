@@ -1,0 +1,18 @@
+#!/bin/bash
+set -euo pipefail
+
+mount -o remount,rw /boot
+
+if [[ $(uname -m) = s390x ]]; then
+    zipl
+fi
+
+# We're done provisioning. Remove the whole /boot/ignition directory if present,
+# which may include a baked Ignition config. See
+# https://github.com/coreos/fedora-coreos-tracker/issues/889.
+rm -rf /boot/ignition
+
+# Regarding the lack of `-f` for rm ; we should have only run if GRUB detected
+# this file. Fail if we are unable to remove it, rather than risking rerunning
+# Ignition at next boot.
+rm /boot/ignition.firstboot
