@@ -12,6 +12,11 @@ install_and_enable_unit() {
     systemctl -q --root="$initdir" add-requires "$target" "$unit" || exit 1
 }
 
+installkernel() {
+    # we do loopmounts
+    instmods -c loop
+}
+
 install() {
     inst_multiple \
         bsdtar \
