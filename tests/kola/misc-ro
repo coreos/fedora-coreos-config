@@ -64,6 +64,14 @@ if test -d /usr/share/info; then
     fatal "found /usr/share/info"
 fi
 
+# Security scanners complain about world-readable files in /etc/sudoers.d.
+# Check that there aren't any.
+# https://bugzilla.redhat.com/show_bug.cgi?id=1981979
+sudoers_files="$(find /etc/sudoers.d -type f ! -perm 600 2>&1)"
+if [ -n "$sudoers_files" ]; then
+    fatal "Found files in /etc/sudoers.d with unexpected permissions: $sudoers_files"
+fi
+
 # See https://github.com/coreos/coreos-assembler/pull/1786
 path=/usr/lib/systemd/system-generators/coreos-platform-chrony
 mode=$(stat -c '%a' ${path})
