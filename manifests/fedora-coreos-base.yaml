@@ -83,8 +83,6 @@ postprocess:
 
   # Neuter systemd-resolved for now.
   # https://github.com/coreos/fedora-coreos-tracker/issues/649#issuecomment-743219353
-  # Note: When removing this, we likely also want to remove
-  # coreos-reset-stub-resolv-selinux-context.{path,service} and their presets.
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
