@@ -56,7 +56,12 @@ systemd:
           ExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM
           TTYVTDisallocate=no
 storage:
-  files:'
+  files:
+    - path: /etc/sysctl.d/20-silence-audit.conf
+      contents:
+        inline: |
+          # Raise console message logging level from DEBUG (7) to WARNING (4)
+          kernel.printk=4'
 
 fcct_hostname='
     - path: /etc/hostname

@@ -45,7 +45,12 @@ storage:
       contents:
         source: https://raw.githubusercontent.com/coreos/fedora-coreos-config/8b08bd030ef3968d00d4fea9a0fa3ca3fbabf852/COPYING
         verification:
-          hash: sha512-d904690e4fc5defb804c2151e397cbe2aeeea821639995610aa377bb2446214c3433616a8708163776941df585b657648f20955e50d4b011ea2a96e7d8e08c66'
+          hash: sha512-d904690e4fc5defb804c2151e397cbe2aeeea821639995610aa377bb2446214c3433616a8708163776941df585b657648f20955e50d4b011ea2a96e7d8e08c66
+    - path: /etc/sysctl.d/20-silence-audit.conf
+      contents:
+        inline: |
+          # Raise console message logging level from DEBUG (7) to WARNING (4)
+          kernel.printk=4'
 
 ignitionhostname='ignitionhost'
 fcct_hostname='
