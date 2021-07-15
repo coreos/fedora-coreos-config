@@ -1,0 +1,6 @@
+# Config file for overriding permission bits on overlay files/dirs
+# Format: =<file mode in decimal> <absolute path to a file or directory>
+
+# Some security scanners complain if /etc/sudoers.d files have 0044 mode bits
+# https://bugzilla.redhat.com/show_bug.cgi?id=1981979
+=384 /etc/sudoers.d/coreos-sudo-group
