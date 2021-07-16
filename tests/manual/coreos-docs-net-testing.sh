@@ -35,7 +35,7 @@ set -eu -o pipefail
 
 vmname="coreos-docs-nettest"
 
-fcct_common=\
+butane_common=\
 'variant: fcos
 version: 1.0.0
 passwd:
@@ -56,16 +56,21 @@ systemd:
           ExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM
           TTYVTDisallocate=no
 storage:
-  files:'
+  files:
+    - path: /etc/sysctl.d/20-silence-audit.conf
+      contents:
+        inline: |
+          # Raise console message logging level from DEBUG (7) to WARNING (4)
+          kernel.printk=4'
 
-fcct_hostname='
+butane_hostname='
     - path: /etc/hostname
       mode: 0644
       contents:
         inline: |
           ${hostname}'
 
-fcct_disable_subnic2='
+butane_disable_subnic2='
     - path: /etc/NetworkManager/system-connections/${subnic2}.nmconnection
       mode: 0600
       contents:
@@ -79,7 +84,7 @@ fcct_disable_subnic2='
           [ipv6]
           method=disabled'
 
-fcct_staticip='
+butane_staticip='
     - path: /etc/NetworkManager/system-connections/${interface}.nmconnection
       mode: 0600
       contents:
@@ -96,7 +101,7 @@ fcct_staticip='
           may-fail=false
           method=manual'
 
-fcct_staticbond='
+butane_staticbond='
     - path: /etc/NetworkManager/system-connections/${bondname}.nmconnection
       mode: 0600
       contents:
@@ -136,7 +141,7 @@ fcct_staticbond='
           master=${bondname}
           slave-type=bond'
 
-fcct_dhcpbridge='
+butane_dhcpbridge='
     - path: /etc/NetworkManager/system-connections/${bridgename}.nmconnection
       mode: 0600
       contents:
@@ -173,7 +178,7 @@ fcct_dhcpbridge='
           slave-type=bridge
           [bridge-port]'
 
-fcct_dhcpteam='
+butane_dhcpteam='
     - path: /etc/NetworkManager/system-connections/${teamname}.nmconnection
       mode: 0600
       contents:
@@ -213,7 +218,7 @@ fcct_dhcpteam='
           [team-port]
           config={"prio": 100}'
 
-fcct_staticvlan='
+butane_staticvlan='
     - path: /etc/NetworkManager/system-connections/${interface}.${vlanid}.nmconnection
       mode: 0600
       contents:
@@ -251,7 +256,7 @@ fcct_staticvlan='
           dns-search=
           method=disabled'
 
-fcct_dhcpvlanbond='
+butane_dhcpvlanbond='
     - path: /etc/NetworkManager/system-connections/${bondname}.${vlanid}.nmconnection
       mode: 0600
       contents:
@@ -318,7 +323,7 @@ check_requirements() {
     reqs=(
         chcon
         envsubst
-        fcct
+        butane
         jq
         ssh
         ssh-keygen
@@ -356,11 +361,11 @@ destroy_vm() {
 }
 
 create_ignition_file() {
-    local fcctconfig=$1
+    local butaneconfig=$1
     local ignitionfile=$2
     # uncomment and use ign-converter instead if on rhcos less than 4.6
-    #echo "$fcctconfig" | fcct --strict | ign-converter -downtranslate -output $ignitionfile
-    echo "$fcctconfig" | fcct --strict --output $ignitionfile
+    #echo "$butaneconfig" | butane --strict | ign-converter -downtranslate -output $ignitionfile
+    echo "$butaneconfig" | butane --strict --output $ignitionfile
     chcon --verbose unconfined_u:object_r:svirt_home_t:s0 $ignitionfile &>/dev/null
 }
 
@@ -386,7 +391,7 @@ main() {
     local sshpubkeyfile="${PWD}/coreos-nettest-sshkey.pub"
     local ignitionfile="${PWD}/coreos-nettest-config.ign"
     local sshpubkey
-    local fcct
+    local butane
      
     check_requirements
 
@@ -441,23 +446,23 @@ EOF
     # in using the envsubst command
     export ip gateway netmask prefix interface nameserver bondname teamname bridgename subnic1 subnic2 vlanid
 
-    fcct_none=$(echo "${fcct_common}" | envsubst)
+    butane_none=$(echo "${butane_common}" | envsubst)
 
     export hostname="staticip"
     x="${common_args} rd.neednet=1"
     x+=" ip=${ip}::${gateway}:${netmask}:${hostname}:${interface}:none:${nameserver}"
     x+=" ip=${subnic2}:off"
     initramfs_staticip=$x
-    fcct_initramfs_staticip="${fcct_none}"
-    fcct_staticip=$(echo "${fcct_common}${fcct_hostname}${fcct_staticip}${fcct_disable_subnic2}" | envsubst)
+    butane_initramfs_staticip="${butane_none}"
+    butane_staticip=$(echo "${butane_common}${butane_hostname}${butane_staticip}${butane_disable_subnic2}" | envsubst)
 
     export hostname="staticbond"
     x="${common_args} rd.neednet=1"
     x+=" ip=${ip}::${gateway}:${netmask}:${hostname}:${bondname}:none:${nameserver}"
     x+=" bond=${bondname}:${subnic1},${subnic2}:mode=active-backup,miimon=100"
     initramfs_staticbond=$x
-    fcct_initramfs_staticbond="${fcct_none}"
-    fcct_staticbond=$(echo "${fcct_common}${fcct_hostname}${fcct_staticbond}" | envsubst)
+    butane_initramfs_staticbond="${butane_none}"
+    butane_staticbond=$(echo "${butane_common}${butane_hostname}${butane_staticbond}" | envsubst)
 
     export hostname="dhcpbridge"
     x="${common_args} rd.neednet=1"
@@ -465,8 +470,8 @@ EOF
     x+=" bridge=${bridgename}:${subnic1},${subnic2}"
     x+=" nameserver=${nameserver}"
     initramfs_dhcpbridge=$x
-    fcct_initramfs_dhcpbridge=$(echo "${fcct_common}${fcct_hostname}" | envsubst)
-    fcct_dhcpbridge=$(echo "${fcct_common}${fcct_hostname}${fcct_dhcpbridge}" | envsubst)
+    butane_initramfs_dhcpbridge=$(echo "${butane_common}${butane_hostname}" | envsubst)
+    butane_dhcpbridge=$(echo "${butane_common}${butane_hostname}${butane_dhcpbridge}" | envsubst)
 
     export hostname="dhcpteam"
     x="${common_args} rd.neednet=1"
@@ -474,8 +479,8 @@ EOF
     x+=" team=${teamname}:${subnic1},${subnic2}"
     x+=" nameserver=${nameserver}"
     initramfs_dhcpteam=$x
-    fcct_initramfs_dhcpteam=$(echo "${fcct_common}${fcct_hostname}" | envsubst)
-    fcct_dhcpteam=$(echo "${fcct_common}${fcct_hostname}${fcct_dhcpteam}" | envsubst)
+    butane_initramfs_dhcpteam=$(echo "${butane_common}${butane_hostname}" | envsubst)
+    butane_dhcpteam=$(echo "${butane_common}${butane_hostname}${butane_dhcpteam}" | envsubst)
 
     export hostname="staticvlan"
     x="${common_args} rd.neednet=1"
@@ -483,8 +488,8 @@ EOF
     x+=" vlan=${interface}.${vlanid}:${interface}"
     x+=" ip=${subnic2}:off"
     initramfs_staticvlan=$x
-    fcct_initramfs_staticvlan="${fcct_none}"
-    fcct_staticvlan=$(echo "${fcct_common}${fcct_hostname}${fcct_staticvlan}${fcct_disable_subnic2}" | envsubst)
+    butane_initramfs_staticvlan="${butane_none}"
+    butane_staticvlan=$(echo "${butane_common}${butane_hostname}${butane_staticvlan}${butane_disable_subnic2}" | envsubst)
 
     export hostname="dhcpvlanbond"
     x="${common_args} rd.neednet=1"
@@ -492,8 +497,8 @@ EOF
     x+=" bond=${bondname}:${subnic1},${subnic2}:mode=active-backup,miimon=100"
     x+=" vlan=${bondname}.${vlanid}:${bondname}"
     initramfs_dhcpvlanbond=$x
-    fcct_initramfs_dhcpvlanbond=$(echo "${fcct_common}${fcct_hostname}" | envsubst)
-    fcct_dhcpvlanbond=$(echo "${fcct_common}${fcct_hostname}${fcct_dhcpvlanbond}" | envsubst)
+    butane_initramfs_dhcpvlanbond=$(echo "${butane_common}${butane_hostname}" | envsubst)
+    butane_dhcpvlanbond=$(echo "${butane_common}${butane_hostname}${butane_dhcpvlanbond}" | envsubst)
 
     destroy_vm || true
 
@@ -506,22 +511,22 @@ EOF
        #dhcpvlanbond  # Requires special setup, see top of file comment
     )
 
-    create_ignition_file "$fcct_none" $ignitionfile
+    create_ignition_file "$butane_none" $ignitionfile
     for net in ${loopitems[@]}; do
         var="initramfs_${net}"
         kernel_args=${!var}
-        var="fcct_initramfs_${net}"
-        fcctconfig=${!var}
-        create_ignition_file "$fcctconfig" $ignitionfile
+        var="butane_initramfs_${net}"
+        butaneconfig=${!var}
+        create_ignition_file "$butaneconfig" $ignitionfile
         start_vm $qcow $ignitionfile $kernel $initramfs "${kernel_args}"
         destroy_vm
     done
 
     for net in ${loopitems[@]}; do
-        var="fcct_${net}"
-        fcctconfig=${!var}
+        var="butane_${net}"
+        butaneconfig=${!var}
         kernel_args=${common_args}
-        create_ignition_file "$fcctconfig" $ignitionfile
+        create_ignition_file "$butaneconfig" $ignitionfile
         start_vm $qcow $ignitionfile $kernel $initramfs "${kernel_args}"
         destroy_vm
     done
