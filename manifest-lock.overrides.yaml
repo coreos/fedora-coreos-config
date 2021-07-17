@@ -4,20 +4,11 @@
 #
 # IMPORTANT: YAML comments *will not* be preserved. All `pin` overrides *must*
 # include a URL in the `metadata.reason` key. Overrides of type `fast-track`
-# *should* include a URL in the `metadata.reason` key, though it's acceptable to
-# omit one for FCOS-specific packages (e.g. ignition, afterburn, etc...).
+# *should* include a Bodhi update URL in the `metadata.bodhi` key and a URL
+# in the `metadata.reason` key, though it's acceptable to omit a `reason`
+# for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  fedora-coreos-pinger:
-    evr: 0.0.4-11.fc34
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-9d4c3ddc8a
-      reason: https://github.com/coreos/fedora-coreos-config/pull/1088
-      type: fast-track
-  ignition:
-    evr: 2.11.0-2.fc34
-    metadata:
-      type: fast-track
   coreos-installer:
     evr: 0.9.1-2.fc34
     metadata:
@@ -30,17 +21,9 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-0efb7aefc9
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/889
       type: fast-track
-  selinux-policy:
-    evra: 34.14-1.fc34.noarch
+  ignition:
+    evr: 2.11.0-2.fc34
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-119c2c9b63
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/861
-      type: fast-track
-  selinux-policy-targeted:
-    evra: 34.14-1.fc34.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-119c2c9b63
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/861
       type: fast-track
   ostree:
     evr: 2021.3-1.fc34
@@ -53,4 +36,16 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-f5ae883a27
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/746
+      type: fast-track
+  selinux-policy:
+    evra: 34.14-1.fc34.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-119c2c9b63
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/861
+      type: fast-track
+  selinux-policy-targeted:
+    evra: 34.14-1.fc34.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-119c2c9b63
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/861
       type: fast-track
