@@ -21,10 +21,6 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-0efb7aefc9
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/889
       type: fast-track
-  ignition:
-    evr: 2.11.0-2.fc34
-    metadata:
-      type: fast-track
   ostree:
     evr: 2021.3-1.fc34
     metadata:
@@ -36,16 +32,4 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-f5ae883a27
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/746
-      type: fast-track
-  selinux-policy:
-    evra: 34.14-1.fc34.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-119c2c9b63
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/861
-      type: fast-track
-  selinux-policy-targeted:
-    evra: 34.14-1.fc34.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-119c2c9b63
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/861
       type: fast-track
