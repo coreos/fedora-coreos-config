@@ -1,6 +1,14 @@
 #!/bin/bash
 set -euo pipefail
 
+# We put this in /run and it's then moved by
+# coreos-check-ignition-config.service into /var/lib/coreos. The reason is that
+# I don't want to use RequiresMountsFor=/var/lib on this service to keep it less
+# fallible. Once we move this service to the initramfs, then we can directly
+# write there since /var mounts are in place and we can safely trigger
+# emergency.target if we fail.
+IGNITION_INFO=/run/ignition.info.json
+
 mount -o remount,rw /boot
 
 if [[ $(uname -m) = s390x ]]; then
@@ -16,3 +24,25 @@ rm -rf /boot/ignition
 # this file. Fail if we are unable to remove it, rather than risking rerunning
 # Ignition at next boot.
 rm /boot/ignition.firstboot
+
+# See https://github.com/coreos/ignition/pull/958 for the MESSAGE_ID source.
+nusercfgs=$(journalctl -o json-pretty MESSAGE_ID=57124006b5c94805b77ce473e92a8aeb \
+                | jq -s '.[] | select(.IGNITION_CONFIG_TYPE == "user")'| wc -l)
+if [ "${nusercfgs}" -gt 0 ]; then
+    usercfg=true
+else
+    usercfg=false
+fi
+
+mkdir -p "$(dirname "${IGNITION_INFO}")"
+
+# This is hardly sooper seekret stuff, but let's be conservative in light of
+# https://github.com/coreos/fedora-coreos-tracker/issues/889.
+touch "${IGNITION_INFO}"
+chmod 600 "${IGNITION_INFO}"
+cat >> "${IGNITION_INFO}" <<EOF
+{
+    "date": $(date +%s),
+    "usercfg": ${usercfg}
+}
+EOF
