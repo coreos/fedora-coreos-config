@@ -8,6 +8,7 @@ Description=Check if Ignition config is provided
 # get misleading messages. Also handles the case where the journal
 # gets rotated and no longer has the structured log messages.
 ConditionKernelCommandLine=ignition.firstboot
+Before=systemd-user-sessions.service
 [Service]
 Type=oneshot
 ExecStart=/usr/libexec/coreos-check-ignition-config

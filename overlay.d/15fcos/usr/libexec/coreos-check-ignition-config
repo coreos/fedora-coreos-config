@@ -21,6 +21,3 @@ else
     echo -e "${warn}Ignition: no config provided by user${nc}" > /etc/issue.d/30_ignition_config_info.issue
 fi
 
-# Ask all running agetty instances to reload and update their
-# displayed prompts in case this script was run before agetty.
-/usr/sbin/agetty --reload
