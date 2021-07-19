@@ -32,9 +32,15 @@ if ! systemctl show -p ActiveState kdump.service | grep -q ActiveState=inactive;
     fatal "Unit kdump.service shouldn't be active"
 fi
 # systemd-resolved should be enabled
-source /etc/os-release
 if ! systemctl is-enabled systemd-resolved 1>/dev/null; then
     fatal "Unit systemd-resolved should be enabled"
+fi
+# systemd-resolved should be fully functional on f35+
+source /etc/os-release
+if [ "$VERSION_ID" -ge "35" ]; then
+    if ! grep 'nameserver 127.0.0.53' /etc/resolv.conf; then
+        fatal "systemd-resolved stub listener isn't enabled"
+    fi
 fi
 ok services
 
