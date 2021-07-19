@@ -1,23 +1,42 @@
 #!/usr/bin/bash
-# The logic for the message_id is handled in 
-# https://github.com/coreos/ignition/pull/958
-# In this script, we need to capture the journald 
-# log with the particular message_id and query using 
-#`jq` utility to check if a user config is provided.
+set -euo pipefail
 
-# Change the output color to yellow
-warn='\033[0;33m'
-# No color
-nc='\033[0m'
+IGNITION_INFO=/var/lib/coreos/ignition.info.json
+IGNITION_FIRSTBOOT_INFO=/run/ignition.info.json
 
-# See https://github.com/coreos/ignition/pull/958 for the MESSAGE_ID source.
-# It will track the journal messages related to an Ignition config provided 
-# by the user.
-output=$(journalctl -o json-pretty MESSAGE_ID=57124006b5c94805b77ce473e92a8aeb | jq -s '.[] | select(.IGNITION_CONFIG_TYPE == "user")'| wc -l)
+WARN='\033[0;33m' # yellow
+RESET='\033[0m' # reset
 
-if [[ $output -gt  0 ]];then
-    echo "Ignition: user-provided config was applied" > /etc/issue.d/30_ignition_config_info.issue
-else
-    echo -e "${warn}Ignition: no config provided by user${nc}" > /etc/issue.d/30_ignition_config_info.issue
+# See coreos-ignition-firstboot-complete
+is_firstboot=0
+if [ -e "${IGNITION_FIRSTBOOT_INFO}" ]; then
+    is_firstboot=1
+    mkdir -p "$(dirname "${IGNITION_INFO}")"
+    mv "${IGNITION_FIRSTBOOT_INFO}" "${IGNITION_INFO}"
 fi
 
+mkdir -p /run/issue.d
+touch /run/issue.d/30_coreos_ignition_provisioning.issue
+
+d=$(date --date "@$(jq .date "${IGNITION_INFO}")" +"%Y/%m/%d %H:%M:%S %Z")
+if [ "${is_firstboot}" == 1 ]; then
+    echo "Ignition: ran on ${d} (this boot)" \
+        > /run/issue.d/30_coreos_ignition_provisioning.issue
+else
+    nreboots=$(($(journalctl --list-boots | wc -l) - 1))
+    [ "${nreboots}" -eq 1 ] && boot="boot" || boot="boots"
+    echo "Ignition: ran on ${d} (at least $nreboots $boot ago)" \
+        > /run/issue.d/30_coreos_ignition_provisioning.issue
+fi
+
+if jq -e .usercfg "${IGNITION_INFO}" &>/dev/null; then
+    echo "Ignition: user-provided config was applied" \
+        >> /run/issue.d/30_coreos_ignition_provisioning.issue
+else
+    echo -e "${WARN}Ignition: no config provided by user${RESET}" \
+        >> /run/issue.d/30_coreos_ignition_provisioning.issue
+fi
+
+# Our makeshift way of getting /run/issue.d semantics. See:
+# https://github.com/coreos/console-login-helper-messages/blob/e06fc88ae8fbcc3a422bc8c686f70c15aebb9d9a/usr/lib/console-login-helper-messages/issue.defs#L8-L17
+ln -sf /run/issue.d/30_coreos_ignition_provisioning.issue /etc/issue.d/
