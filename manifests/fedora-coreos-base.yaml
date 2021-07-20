@@ -164,8 +164,6 @@ packages:
   # file-transfer: note fuse-sshfs is not in RHEL
   # so we can't put it in file-transfer.yaml
   - fuse-sshfs
-  # Improved MOTD experience
-  - console-login-helper-messages-motdgen
   # i18n
   - kbd
   # nvme-cli for managing nvme disks
