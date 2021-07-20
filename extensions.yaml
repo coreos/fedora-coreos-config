@@ -1,0 +1,32 @@
+# RPMs as operating system extensions, distinct from the base ostree commit/image
+# https://github.com/openshift/enhancements/blob/master/enhancements/rhcos/extensions.md
+# and https://github.com/coreos/fedora-coreos-tracker/issues/401
+
+# No additional repositories for Fedora
+repos: []
+
+extensions:
+  # https://github.com/coreos/fedora-coreos-tracker/issues/326
+  usbguard:
+    packages:
+      - usbguard
+  # These are already in the base, so they're not OS extensions, but they're
+  # useful to have in RPM form to install in kmod build containers.
+  kernel:
+    kind: development
+    packages:
+      - kernel
+      - kernel-core
+      - kernel-modules
+      - kernel-modules-extra
+    match-base-evr: kernel
+  # https://github.com/openshift/machine-config-operator/pull/2456
+  # https://github.com/openshift/enhancements/blob/master/enhancements/sandboxed-containers/sandboxed-containers-tech-preview.md
+  # GRPA-3123
+  # - kata-containers (RHAOS)
+  #   - qemu-kiwi (advanced-virt)
+  sandboxed-containers:
+    architectures:
+      - x86_64
+    packages:
+      - kata-containers
