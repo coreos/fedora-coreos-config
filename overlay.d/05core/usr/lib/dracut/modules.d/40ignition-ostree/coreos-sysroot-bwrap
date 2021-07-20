@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+#
+# Needed to work around the initrd `rootfs` / filesystem not being a valid
+# mount to pivot out of. For reference, see:
+#  - https://github.com/torvalds/linux/blob/26bc672134241a080a83b2ab9aa8abede8d30e1c/fs/namespace.c#L3605
+#  - https://gist.github.com/jlebon/fb6e7c6dcc3ce17d3e2a86f5938ec033
+set -euo pipefail
+
+TMP_CHROOT_DIR=""
+
+main() {
+    setup_chroot_tmpdir
+    run_chrooted_bwrap "$@"
+}
+
+setup_chroot_tmpdir() {
+    TMP_CHROOT_DIR=$(mktemp --directory --tmpdir=/mnt '.coreos-sysroot-bwrap.tmp.XXXXXXXXXX')
+    mount --bind / "${TMP_CHROOT_DIR}"
+    mount --make-private "${TMP_CHROOT_DIR}"
+    mount --bind "${TMP_CHROOT_DIR}" "${TMP_CHROOT_DIR}"
+    for mnt in proc sys dev; do
+      mount --bind /$mnt "${TMP_CHROOT_DIR}"/$mnt
+    done
+    touch "${TMP_CHROOT_DIR}"/run/ostree-booted
+    mount --bind /sysroot "${TMP_CHROOT_DIR}"/sysroot
+}
+
+run_chrooted_bwrap() {
+    chroot "${TMP_CHROOT_DIR}" \
+        /usr/bin/env --chdir /sysroot \
+            bwrap \
+            --unshare-pid --unshare-uts --unshare-ipc --unshare-net \
+            --unshare-cgroup-try --dev /dev --proc /proc --chdir / \
+            --ro-bind usr /usr --bind etc /etc --dir /tmp --tmpfs /var/tmp \
+            --tmpfs /run --ro-bind /run/ostree-booted /run/ostree-booted \
+            --symlink usr/lib /lib \
+            --symlink usr/lib64 /lib64 \
+            --symlink usr/bin /bin \
+            --symlink usr/sbin /sbin -- "$@"
+}
+
+cleanup() {
+  if test -z "${TMP_CHROOT_DIR}"; then
+    return
+  fi
+
+  umount --lazy --recursive "${TMP_CHROOT_DIR}"
+  umount --recursive "${TMP_CHROOT_DIR}"
+  rmdir "${TMP_CHROOT_DIR}"
+}
+
+trap cleanup EXIT
+main "$@"
