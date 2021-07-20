@@ -101,4 +101,6 @@ install() {
         /usr/libexec/coreos-check-rootfs-size
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
+
+    install_ignition_unit ignition-ostree-delete-etc-services.service
 }

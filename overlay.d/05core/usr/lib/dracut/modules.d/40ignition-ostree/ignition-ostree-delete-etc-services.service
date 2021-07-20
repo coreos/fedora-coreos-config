@@ -1,0 +1,20 @@
+[Unit]
+Description=Delete /etc Service Enablements
+DefaultDependencies=false
+ConditionKernelCommandLine=|ostree
+ConditionPathExists=|/run/ostree-live
+
+# Really, we don't really expect mount points for /etc, so we could just order
+# after initrd-root-fs.target, but meh... doesn't hurt to pretend we support
+# that.
+After=ignition-mount.service
+
+# But *before* any user-specified enablement
+Before=ignition-files.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# use glob instead of nuking /etc/systemd/system itself so that we don't end up
+# recreating it from the initrd as unlabeled for RHCOS
+ExecStart=/usr/bin/sh -c "rm -rf /sysroot/etc/systemd/system/*"
