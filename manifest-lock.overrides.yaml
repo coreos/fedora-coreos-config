@@ -37,3 +37,39 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
       type: fast-track
+  systemd:
+    evr: 248.5-1.fc34
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-2a6ba64260
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
+      type: fast-track
+  systemd-container:
+    evr: 248.5-1.fc34
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-2a6ba64260
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
+      type: fast-track
+  systemd-libs:
+    evr: 248.5-1.fc34
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-2a6ba64260
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
+      type: fast-track
+  systemd-pam:
+    evr: 248.5-1.fc34
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-2a6ba64260
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
+      type: fast-track
+  systemd-udev:
+    evr: 248.5-1.fc34
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-2a6ba64260
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
+      type: fast-track
+  systemd-rpm-macros:
+    evra: 248.5-1.fc34.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-2a6ba64260
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
+      type: fast-track
