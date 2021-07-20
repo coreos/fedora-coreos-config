@@ -7,19 +7,4 @@
 # *should* include a URL in the `metadata.reason` key, though it's acceptable to
 # omit one for FCOS-specific packages (e.g. ignition, afterburn, etc...).
 
-packages:
-  kernel:
-    evr: 5.14.0-0.rc0.20210701gitdbe69e433722.6.fc35
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/898
-      type: pin
-  kernel-core:
-    evr: 5.14.0-0.rc0.20210701gitdbe69e433722.6.fc35
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/898
-      type: pin
-  kernel-modules:
-    evr: 5.14.0-0.rc0.20210701gitdbe69e433722.6.fc35
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/898
-      type: pin
+packages: {}
