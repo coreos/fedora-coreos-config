@@ -1,25 +1,17 @@
 #!/usr/bin/bash
 set -euo pipefail
 
-IGNITION_INFO=/var/lib/coreos/ignition.info.json
-IGNITION_FIRSTBOOT_INFO=/run/ignition.info.json
+IGNITION_RESULT=/var/lib/ignition/result.json
 
 WARN='\033[0;33m' # yellow
 RESET='\033[0m' # reset
 
-# See coreos-ignition-firstboot-complete
-is_firstboot=0
-if [ -e "${IGNITION_FIRSTBOOT_INFO}" ]; then
-    is_firstboot=1
-    mkdir -p "$(dirname "${IGNITION_INFO}")"
-    mv "${IGNITION_FIRSTBOOT_INFO}" "${IGNITION_INFO}"
-fi
-
 mkdir -p /run/issue.d
 touch /run/issue.d/30_coreos_ignition_provisioning.issue
 
-d=$(date --date "@$(jq .date "${IGNITION_INFO}")" +"%Y/%m/%d %H:%M:%S %Z")
-if [ "${is_firstboot}" == 1 ]; then
+d=$(date --date "$(jq -r .provisioningDate "${IGNITION_RESULT}")" +"%Y/%m/%d %H:%M:%S %Z")
+ignitionBoot=$(jq -r .provisioningBootID "${IGNITION_RESULT}")
+if [ $(cat /proc/sys/kernel/random/boot_id) = "${ignitionBoot}" ]; then
     echo "Ignition: ran on ${d} (this boot)" \
         > /run/issue.d/30_coreos_ignition_provisioning.issue
 else
@@ -29,7 +21,7 @@ else
         > /run/issue.d/30_coreos_ignition_provisioning.issue
 fi
 
-if jq -e .usercfg "${IGNITION_INFO}" &>/dev/null; then
+if jq -e .userConfigProvided "${IGNITION_RESULT}" &>/dev/null; then
     echo "Ignition: user-provided config was applied" \
         >> /run/issue.d/30_coreos_ignition_provisioning.issue
 else
