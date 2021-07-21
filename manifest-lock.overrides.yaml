@@ -22,3 +22,18 @@ packages:
     evr: 2.11.0-1.fc34
     metadata:
       type: fast-track
+  kernel:
+    evr: 5.12.19-300.fc34
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
+      type: fast-track
+  kernel-core:
+    evr: 5.12.19-300.fc34
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
+      type: fast-track
+  kernel-modules:
+    evr: 5.12.19-300.fc34
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
+      type: fast-track
