@@ -1,6 +1,6 @@
 // Documentation: https://github.com/coreos/coreos-ci/blob/main/README-upstream-ci.md
 
-cosaPod {
+cosaPod(image: 'quay.io/coreos-assembler/coreos-assembler:fcos-34.20210626.3.1') {
     checkoutToDir(scm, 'config')
 
     def basearch = shwrapCapture("cosa basearch")
