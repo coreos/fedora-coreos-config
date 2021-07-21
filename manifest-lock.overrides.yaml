@@ -27,6 +27,21 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-0efb7aefc9
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/889
       type: fast-track
+  kernel:
+    evr: 5.13.4-200.fc34
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
+      type: fast-track
+  kernel-core:
+    evr: 5.13.4-200.fc34
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
+      type: fast-track
+  kernel-modules:
+    evr: 5.13.4-200.fc34
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
+      type: fast-track
   ostree:
     evr: 2021.3-1.fc34
     metadata:
