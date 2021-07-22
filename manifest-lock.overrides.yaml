@@ -15,36 +15,6 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-463a2721ec
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/881
       type: fast-track
-  coreos-installer:
-    evr: 0.9.1-2.fc34
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-0efb7aefc9
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/889
-      type: fast-track
-  coreos-installer-bootinfra:
-    evr: 0.9.1-2.fc34
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-0efb7aefc9
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/889
-      type: fast-track
-  kernel:
-    evr: 5.13.4-200.fc34
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-07dc0b3eb1
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
-      type: fast-track
-  kernel-core:
-    evr: 5.13.4-200.fc34
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-07dc0b3eb1
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
-      type: fast-track
-  kernel-modules:
-    evr: 5.13.4-200.fc34
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-07dc0b3eb1
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
-      type: fast-track
   ostree:
     evr: 2021.3-1.fc34
     metadata:
@@ -71,24 +41,6 @@ packages:
       type: fast-track
   systemd-libs:
     evr: 248.5-1.fc34
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-2a6ba64260
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
-      type: fast-track
-  systemd-pam:
-    evr: 248.5-1.fc34
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-2a6ba64260
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
-      type: fast-track
-  systemd-udev:
-    evr: 248.5-1.fc34
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-2a6ba64260
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
-      type: fast-track
-  systemd-rpm-macros:
-    evra: 248.5-1.fc34.noarch
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-2a6ba64260
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/904
