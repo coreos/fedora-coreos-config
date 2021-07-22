@@ -109,7 +109,8 @@ def update_lockfile(base, fn):
 
 def sack_has_nevra_greater_or_equal(base, nevra):
     nevra = hawkey.split_nevra(nevra)
-    pkgs = base.sack.query().filterm(name=nevra.name).latest().run()
+    pkgs = base.sack.query().filterm(name=nevra.name,
+                                     arch=nevra.arch).latest().run()
 
     if len(pkgs) == 0:
         # Odd... the only way I can imagine this happen is if we fast-track a
