@@ -18,4 +18,6 @@ OnFailureJobMode=isolate
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/bin/systemctl reboot
+# --force causes a rapid reboot.  Without it, systemd continues running
+# Ignition stages in parallel with shutting down.
+ExecStart=/usr/bin/systemctl reboot --force
