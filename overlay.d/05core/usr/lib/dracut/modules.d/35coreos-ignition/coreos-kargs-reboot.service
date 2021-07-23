@@ -1,7 +1,8 @@
 [Unit]
 Description=CoreOS Kernel Arguments Reboot
 ConditionPathExists=/etc/initrd-release
-ConditionPathExists=/run/ignition-modified-kargs
+# Other Dracut modules may add additional triggers via drop-ins
+ConditionPathExists=|/run/ignition-modified-kargs
 DefaultDependencies=false
 Before=ignition-complete.target
  
