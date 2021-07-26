@@ -2,6 +2,3 @@
 # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
 # streams.
 include: image-base.yaml
-
-# https://github.com/coreos/coreos-assembler/pull/2216
-ostree-format: "oci"
