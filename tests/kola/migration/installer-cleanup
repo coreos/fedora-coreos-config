@@ -1,0 +1,36 @@
+#!/bin/bash
+# Old instances might have a leftover Ignition config in /boot/ignition on
+# upgrade.  Manually create one, reboot, and ensure that it's correctly
+# cleaned up.
+# https://github.com/coreos/fedora-coreos-tracker/issues/889
+
+# Just run on QEMU.  coreos-installer doesn't run in clouds, and rebooting
+# doesn't seem to work there currently.
+# kola: { "platforms": "qemu-unpriv" }
+
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+case "${AUTOPKGTEST_REBOOT_MARK:-}" in
+"")
+    sudo mount -o remount,rw /boot
+    sudo mkdir -p /boot/ignition
+    sudo touch /boot/ignition/config.ign
+    /tmp/autopkgtest-reboot rebooted
+    ;;
+rebooted)
+    [[ ! -e /boot/ignition ]]
+    ok "/boot/ignition was removed"
+    ;;
+*)
+    fatal "unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}"
+    ;;
+esac

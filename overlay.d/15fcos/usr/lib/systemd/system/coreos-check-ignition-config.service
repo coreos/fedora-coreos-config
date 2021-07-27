@@ -10,7 +10,7 @@ Description=Check if Ignition config is provided
 ConditionKernelCommandLine=ignition.firstboot
 [Service]
 Type=oneshot
-ExecStart=/usr/libexec/coreos-check-ignition-config.sh
+ExecStart=/usr/libexec/coreos-check-ignition-config
 RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
