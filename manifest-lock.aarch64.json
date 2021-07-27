@@ -1,0 +1,1194 @@
+{
+  "packages": {
+    "NetworkManager": {
+      "evra": "1:1.30.6-1.fc34.aarch64"
+    },
+    "NetworkManager-cloud-setup": {
+      "evra": "1:1.30.6-1.fc34.aarch64"
+    },
+    "NetworkManager-libnm": {
+      "evra": "1:1.30.6-1.fc34.aarch64"
+    },
+    "NetworkManager-team": {
+      "evra": "1:1.30.6-1.fc34.aarch64"
+    },
+    "NetworkManager-tui": {
+      "evra": "1:1.30.6-1.fc34.aarch64"
+    },
+    "WALinuxAgent-udev": {
+      "evra": "2.3.0.2-1.fc34.noarch"
+    },
+    "acl": {
+      "evra": "2.3.1-1.fc34.aarch64"
+    },
+    "adcli": {
+      "evra": "0.9.1-3.fc34.aarch64"
+    },
+    "afterburn": {
+      "evra": "5.0.0-1.fc34.aarch64"
+    },
+    "afterburn-dracut": {
+      "evra": "5.0.0-1.fc34.aarch64"
+    },
+    "alternatives": {
+      "evra": "1.15-2.fc34.aarch64"
+    },
+    "attr": {
+      "evra": "2.5.1-1.fc34.aarch64"
+    },
+    "audit-libs": {
+      "evra": "3.0.3-1.fc34.aarch64"
+    },
+    "avahi-libs": {
+      "evra": "0.8-9.fc34.aarch64"
+    },
+    "basesystem": {
+      "evra": "11-11.fc34.noarch"
+    },
+    "bash": {
+      "evra": "5.1.0-2.fc34.aarch64"
+    },
+    "bash-completion": {
+      "evra": "1:2.11-2.fc34.noarch"
+    },
+    "bind-libs": {
+      "evra": "32:9.16.19-1.fc34.aarch64"
+    },
+    "bind-license": {
+      "evra": "32:9.16.19-1.fc34.noarch"
+    },
+    "bind-utils": {
+      "evra": "32:9.16.19-1.fc34.aarch64"
+    },
+    "bootupd": {
+      "evra": "0.2.5-3.fc34.aarch64"
+    },
+    "bsdtar": {
+      "evra": "3.5.1-2.fc34.aarch64"
+    },
+    "btrfs-progs": {
+      "evra": "5.13-1.fc34.aarch64"
+    },
+    "bubblewrap": {
+      "evra": "0.4.1-3.fc34.aarch64"
+    },
+    "bzip2": {
+      "evra": "1.0.8-6.fc34.aarch64"
+    },
+    "bzip2-libs": {
+      "evra": "1.0.8-6.fc34.aarch64"
+    },
+    "c-ares": {
+      "evra": "1.17.1-2.fc34.aarch64"
+    },
+    "ca-certificates": {
+      "evra": "2021.2.50-1.0.fc34.noarch"
+    },
+    "catatonit": {
+      "evra": "0.1.5-4.fc34.aarch64"
+    },
+    "chrony": {
+      "evra": "4.1-1.fc34.aarch64"
+    },
+    "cifs-utils": {
+      "evra": "6.11-3.fc34.aarch64"
+    },
+    "clevis": {
+      "evra": "18-1.fc34.aarch64"
+    },
+    "clevis-dracut": {
+      "evra": "18-1.fc34.aarch64"
+    },
+    "clevis-luks": {
+      "evra": "18-1.fc34.aarch64"
+    },
+    "clevis-systemd": {
+      "evra": "18-1.fc34.aarch64"
+    },
+    "cloud-utils-growpart": {
+      "evra": "0.31-8.fc34.noarch"
+    },
+    "compat-readline5": {
+      "evra": "5.2-39.fc34.aarch64"
+    },
+    "conmon": {
+      "evra": "2:2.0.29-2.fc34.aarch64"
+    },
+    "console-login-helper-messages": {
+      "evra": "0.21.2-1.fc34.noarch"
+    },
+    "console-login-helper-messages-issuegen": {
+      "evra": "0.21.2-1.fc34.noarch"
+    },
+    "console-login-helper-messages-motdgen": {
+      "evra": "0.21.2-1.fc34.noarch"
+    },
+    "console-login-helper-messages-profile": {
+      "evra": "0.21.2-1.fc34.noarch"
+    },
+    "container-selinux": {
+      "evra": "2:2.164.1-1.git563ba3f.fc34.noarch"
+    },
+    "containerd": {
+      "evra": "1.5.3-1.fc34.aarch64"
+    },
+    "containernetworking-plugins": {
+      "evra": "1.0.0-0.2.rc1.fc34.aarch64"
+    },
+    "containers-common": {
+      "evra": "4:1-21.fc34.noarch"
+    },
+    "coreos-installer": {
+      "evra": "0.9.1-2.fc34.aarch64"
+    },
+    "coreos-installer-bootinfra": {
+      "evra": "0.9.1-2.fc34.aarch64"
+    },
+    "coreutils": {
+      "evra": "8.32-30.fc34.aarch64"
+    },
+    "coreutils-common": {
+      "evra": "8.32-30.fc34.aarch64"
+    },
+    "cpio": {
+      "evra": "2.13-10.fc34.aarch64"
+    },
+    "cracklib": {
+      "evra": "2.9.6-25.fc34.aarch64"
+    },
+    "criu": {
+      "evra": "3.15-3.fc34.aarch64"
+    },
+    "criu-libs": {
+      "evra": "3.15-3.fc34.aarch64"
+    },
+    "crun": {
+      "evra": "0.20.1-1.fc34.aarch64"
+    },
+    "crypto-policies": {
+      "evra": "20210213-1.git5c710c0.fc34.noarch"
+    },
+    "cryptsetup": {
+      "evra": "2.3.6-1.fc34.aarch64"
+    },
+    "cryptsetup-libs": {
+      "evra": "2.3.6-1.fc34.aarch64"
+    },
+    "cups-libs": {
+      "evra": "1:2.3.3op2-7.fc34.aarch64"
+    },
+    "curl": {
+      "evra": "7.76.1-7.fc34.aarch64"
+    },
+    "cyrus-sasl-gssapi": {
+      "evra": "2.1.27-8.fc34.aarch64"
+    },
+    "cyrus-sasl-lib": {
+      "evra": "2.1.27-8.fc34.aarch64"
+    },
+    "dbus": {
+      "evra": "1:1.12.20-3.fc34.aarch64"
+    },
+    "dbus-broker": {
+      "evra": "29-1.fc34.aarch64"
+    },
+    "dbus-common": {
+      "evra": "1:1.12.20-3.fc34.noarch"
+    },
+    "dbus-libs": {
+      "evra": "1:1.12.20-3.fc34.aarch64"
+    },
+    "device-mapper": {
+      "evra": "1.02.175-1.fc34.aarch64"
+    },
+    "device-mapper-event": {
+      "evra": "1.02.175-1.fc34.aarch64"
+    },
+    "device-mapper-event-libs": {
+      "evra": "1.02.175-1.fc34.aarch64"
+    },
+    "device-mapper-libs": {
+      "evra": "1.02.175-1.fc34.aarch64"
+    },
+    "device-mapper-multipath": {
+      "evra": "0.8.5-4.fc34.aarch64"
+    },
+    "device-mapper-multipath-libs": {
+      "evra": "0.8.5-4.fc34.aarch64"
+    },
+    "device-mapper-persistent-data": {
+      "evra": "0.9.0-3.fc34.aarch64"
+    },
+    "diffutils": {
+      "evra": "3.7-8.fc34.aarch64"
+    },
+    "dnsmasq": {
+      "evra": "2.85-1.fc34.aarch64"
+    },
+    "dosfstools": {
+      "evra": "4.2-1.fc34.aarch64"
+    },
+    "dracut": {
+      "evra": "055-3.fc34.aarch64"
+    },
+    "dracut-network": {
+      "evra": "055-3.fc34.aarch64"
+    },
+    "e2fsprogs": {
+      "evra": "1.45.6-5.fc34.aarch64"
+    },
+    "e2fsprogs-libs": {
+      "evra": "1.45.6-5.fc34.aarch64"
+    },
+    "efi-filesystem": {
+      "evra": "5-2.fc34.noarch"
+    },
+    "efibootmgr": {
+      "evra": "16-10.fc34.aarch64"
+    },
+    "efivar-libs": {
+      "evra": "37-15.fc34.aarch64"
+    },
+    "elfutils-default-yama-scope": {
+      "evra": "0.185-2.fc34.noarch"
+    },
+    "elfutils-libelf": {
+      "evra": "0.185-2.fc34.aarch64"
+    },
+    "elfutils-libs": {
+      "evra": "0.185-2.fc34.aarch64"
+    },
+    "ethtool": {
+      "evra": "2:5.13-1.fc34.aarch64"
+    },
+    "expat": {
+      "evra": "2.4.1-1.fc34.aarch64"
+    },
+    "fedora-coreos-pinger": {
+      "evra": "0.0.4-11.fc34.aarch64"
+    },
+    "fedora-gpg-keys": {
+      "evra": "34-2.noarch"
+    },
+    "fedora-release-common": {
+      "evra": "34-1.noarch"
+    },
+    "fedora-release-coreos": {
+      "evra": "34-1.noarch"
+    },
+    "fedora-release-identity-coreos": {
+      "evra": "34-1.noarch"
+    },
+    "fedora-repos": {
+      "evra": "34-2.noarch"
+    },
+    "fedora-repos-archive": {
+      "evra": "34-2.noarch"
+    },
+    "fedora-repos-modular": {
+      "evra": "34-2.noarch"
+    },
+    "fedora-repos-ostree": {
+      "evra": "34-2.noarch"
+    },
+    "file": {
+      "evra": "5.39-6.fc34.aarch64"
+    },
+    "file-libs": {
+      "evra": "5.39-6.fc34.aarch64"
+    },
+    "filesystem": {
+      "evra": "3.14-5.fc34.aarch64"
+    },
+    "findutils": {
+      "evra": "1:4.8.0-2.fc34.aarch64"
+    },
+    "firewalld-filesystem": {
+      "evra": "0.9.4-1.fc34.noarch"
+    },
+    "flatpak-session-helper": {
+      "evra": "1.10.2-4.fc34.aarch64"
+    },
+    "fstrm": {
+      "evra": "0.6.1-2.fc34.aarch64"
+    },
+    "fuse": {
+      "evra": "2.9.9-11.fc34.aarch64"
+    },
+    "fuse-common": {
+      "evra": "3.10.4-1.fc34.aarch64"
+    },
+    "fuse-libs": {
+      "evra": "2.9.9-11.fc34.aarch64"
+    },
+    "fuse-overlayfs": {
+      "evra": "1.5.0-1.fc34.aarch64"
+    },
+    "fuse-sshfs": {
+      "evra": "3.7.2-1.fc34.aarch64"
+    },
+    "fuse3": {
+      "evra": "3.10.4-1.fc34.aarch64"
+    },
+    "fuse3-libs": {
+      "evra": "3.10.4-1.fc34.aarch64"
+    },
+    "fwupd": {
+      "evra": "1.5.10-1.fc34.aarch64"
+    },
+    "gawk": {
+      "evra": "5.1.0-3.fc34.aarch64"
+    },
+    "gdisk": {
+      "evra": "1.0.8-1.fc34.aarch64"
+    },
+    "gettext": {
+      "evra": "0.21-4.fc34.aarch64"
+    },
+    "gettext-libs": {
+      "evra": "0.21-4.fc34.aarch64"
+    },
+    "git-core": {
+      "evra": "2.31.1-3.fc34.aarch64"
+    },
+    "glib2": {
+      "evra": "2.68.2-1.fc34.aarch64"
+    },
+    "glibc": {
+      "evra": "2.33-20.fc34.aarch64"
+    },
+    "glibc-common": {
+      "evra": "2.33-20.fc34.aarch64"
+    },
+    "glibc-minimal-langpack": {
+      "evra": "2.33-20.fc34.aarch64"
+    },
+    "gmp": {
+      "evra": "1:6.2.0-6.fc34.aarch64"
+    },
+    "gnupg2": {
+      "evra": "2.2.27-4.fc34.aarch64"
+    },
+    "gnutls": {
+      "evra": "3.7.2-1.fc34.aarch64"
+    },
+    "gpgme": {
+      "evra": "1.15.1-2.fc34.aarch64"
+    },
+    "grep": {
+      "evra": "3.6-2.fc34.aarch64"
+    },
+    "grub2-common": {
+      "evra": "1:2.06-2.fc34.noarch"
+    },
+    "grub2-efi-aa64": {
+      "evra": "1:2.06-2.fc34.aarch64"
+    },
+    "grub2-tools": {
+      "evra": "1:2.06-2.fc34.aarch64"
+    },
+    "grub2-tools-minimal": {
+      "evra": "1:2.06-2.fc34.aarch64"
+    },
+    "gzip": {
+      "evra": "1.10-4.fc34.aarch64"
+    },
+    "hostname": {
+      "evra": "3.23-4.fc34.aarch64"
+    },
+    "ignition": {
+      "evra": "2.11.0-2.fc34.aarch64"
+    },
+    "inih": {
+      "evra": "49-3.fc34.aarch64"
+    },
+    "iproute": {
+      "evra": "5.10.0-2.fc34.aarch64"
+    },
+    "iproute-tc": {
+      "evra": "5.10.0-2.fc34.aarch64"
+    },
+    "iptables": {
+      "evra": "1.8.7-3.fc34.aarch64"
+    },
+    "iptables-libs": {
+      "evra": "1.8.7-3.fc34.aarch64"
+    },
+    "iptables-nft": {
+      "evra": "1.8.7-3.fc34.aarch64"
+    },
+    "iptables-services": {
+      "evra": "1.8.7-8.fc34.aarch64"
+    },
+    "iputils": {
+      "evra": "20210202-2.fc34.aarch64"
+    },
+    "irqbalance": {
+      "evra": "2:1.7.0-5.fc34.aarch64"
+    },
+    "iscsi-initiator-utils": {
+      "evra": "6.2.1.2-5.gita8fcb37.fc34.aarch64"
+    },
+    "iscsi-initiator-utils-iscsiuio": {
+      "evra": "6.2.1.2-5.gita8fcb37.fc34.aarch64"
+    },
+    "isns-utils-libs": {
+      "evra": "0.100-1.fc34.aarch64"
+    },
+    "jansson": {
+      "evra": "2.13.1-2.fc34.aarch64"
+    },
+    "jose": {
+      "evra": "11-1.fc34.aarch64"
+    },
+    "jq": {
+      "evra": "1.6-7.fc34.aarch64"
+    },
+    "json-c": {
+      "evra": "0.14-8.fc34.aarch64"
+    },
+    "json-glib": {
+      "evra": "1.6.2-1.fc34.aarch64"
+    },
+    "kbd": {
+      "evra": "2.4.0-2.fc34.aarch64"
+    },
+    "kbd-misc": {
+      "evra": "2.4.0-2.fc34.noarch"
+    },
+    "kernel": {
+      "evra": "5.13.4-200.fc34.aarch64"
+    },
+    "kernel-core": {
+      "evra": "5.13.4-200.fc34.aarch64"
+    },
+    "kernel-modules": {
+      "evra": "5.13.4-200.fc34.aarch64"
+    },
+    "kexec-tools": {
+      "evra": "2.0.21-5.fc34.aarch64"
+    },
+    "keyutils": {
+      "evra": "1.6.1-2.fc34.aarch64"
+    },
+    "keyutils-libs": {
+      "evra": "1.6.1-2.fc34.aarch64"
+    },
+    "kmod": {
+      "evra": "29-2.fc34.aarch64"
+    },
+    "kmod-libs": {
+      "evra": "29-2.fc34.aarch64"
+    },
+    "kpartx": {
+      "evra": "0.8.5-4.fc34.aarch64"
+    },
+    "krb5-libs": {
+      "evra": "1.19.1-14.fc34.aarch64"
+    },
+    "less": {
+      "evra": "581.2-1.fc34.aarch64"
+    },
+    "libacl": {
+      "evra": "2.3.1-1.fc34.aarch64"
+    },
+    "libaio": {
+      "evra": "0.3.111-11.fc34.aarch64"
+    },
+    "libarchive": {
+      "evra": "3.5.1-2.fc34.aarch64"
+    },
+    "libargon2": {
+      "evra": "20171227-6.fc34.aarch64"
+    },
+    "libassuan": {
+      "evra": "2.5.5-1.fc34.aarch64"
+    },
+    "libattr": {
+      "evra": "2.5.1-1.fc34.aarch64"
+    },
+    "libbasicobjects": {
+      "evra": "0.1.1-47.fc34.aarch64"
+    },
+    "libblkid": {
+      "evra": "2.36.2-1.fc34.aarch64"
+    },
+    "libbrotli": {
+      "evra": "1.0.9-4.fc34.aarch64"
+    },
+    "libbsd": {
+      "evra": "0.10.0-7.fc34.aarch64"
+    },
+    "libcap": {
+      "evra": "2.48-2.fc34.aarch64"
+    },
+    "libcap-ng": {
+      "evra": "0.8.2-4.fc34.aarch64"
+    },
+    "libcbor": {
+      "evra": "0.7.0-3.fc34.aarch64"
+    },
+    "libcollection": {
+      "evra": "0.7.0-47.fc34.aarch64"
+    },
+    "libcom_err": {
+      "evra": "1.45.6-5.fc34.aarch64"
+    },
+    "libcurl": {
+      "evra": "7.76.1-7.fc34.aarch64"
+    },
+    "libdaemon": {
+      "evra": "0.14-21.fc34.aarch64"
+    },
+    "libdb": {
+      "evra": "5.3.28-46.fc34.aarch64"
+    },
+    "libdhash": {
+      "evra": "0.5.0-47.fc34.aarch64"
+    },
+    "libeconf": {
+      "evra": "0.4.0-1.fc34.aarch64"
+    },
+    "libedit": {
+      "evra": "3.1-38.20210714cvs.fc34.aarch64"
+    },
+    "libevent": {
+      "evra": "2.1.12-3.fc34.aarch64"
+    },
+    "libfdisk": {
+      "evra": "2.36.2-1.fc34.aarch64"
+    },
+    "libffi": {
+      "evra": "3.1-28.fc34.aarch64"
+    },
+    "libfido2": {
+      "evra": "1.6.0-2.fc34.aarch64"
+    },
+    "libgcab1": {
+      "evra": "1.4-4.fc34.aarch64"
+    },
+    "libgcc": {
+      "evra": "11.1.1-3.fc34.aarch64"
+    },
+    "libgcrypt": {
+      "evra": "1.9.3-3.fc34.aarch64"
+    },
+    "libgomp": {
+      "evra": "11.1.1-3.fc34.aarch64"
+    },
+    "libgpg-error": {
+      "evra": "1.42-1.fc34.aarch64"
+    },
+    "libgudev": {
+      "evra": "236-1.fc34.aarch64"
+    },
+    "libgusb": {
+      "evra": "0.3.7-1.fc34.aarch64"
+    },
+    "libibverbs": {
+      "evra": "35.0-1.fc34.aarch64"
+    },
+    "libicu": {
+      "evra": "67.1-6.fc34.aarch64"
+    },
+    "libidn2": {
+      "evra": "2.3.2-1.fc34.aarch64"
+    },
+    "libini_config": {
+      "evra": "1.3.1-47.fc34.aarch64"
+    },
+    "libipa_hbac": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "libjcat": {
+      "evra": "0.1.6-1.fc34.aarch64"
+    },
+    "libjose": {
+      "evra": "11-1.fc34.aarch64"
+    },
+    "libkcapi": {
+      "evra": "1.2.1-1.fc34.aarch64"
+    },
+    "libkcapi-hmaccalc": {
+      "evra": "1.2.1-1.fc34.aarch64"
+    },
+    "libksba": {
+      "evra": "1.5.0-2.fc34.aarch64"
+    },
+    "libldb": {
+      "evra": "2.3.0-2.fc34.aarch64"
+    },
+    "libluksmeta": {
+      "evra": "9-10.fc34.aarch64"
+    },
+    "libmaxminddb": {
+      "evra": "1.5.2-1.fc34.aarch64"
+    },
+    "libmnl": {
+      "evra": "1.0.4-13.fc34.aarch64"
+    },
+    "libmodulemd": {
+      "evra": "2.13.0-1.fc34.aarch64"
+    },
+    "libmount": {
+      "evra": "2.36.2-1.fc34.aarch64"
+    },
+    "libndp": {
+      "evra": "1.7-7.fc34.aarch64"
+    },
+    "libnet": {
+      "evra": "1.2-2.fc34.aarch64"
+    },
+    "libnetfilter_conntrack": {
+      "evra": "1.0.8-2.fc34.aarch64"
+    },
+    "libnfnetlink": {
+      "evra": "1.0.1-19.fc34.aarch64"
+    },
+    "libnfsidmap": {
+      "evra": "1:2.5.4-0.fc34.aarch64"
+    },
+    "libnftnl": {
+      "evra": "1.1.9-2.fc34.aarch64"
+    },
+    "libnghttp2": {
+      "evra": "1.43.0-2.fc34.aarch64"
+    },
+    "libnl3": {
+      "evra": "3.5.0-6.fc34.aarch64"
+    },
+    "libnl3-cli": {
+      "evra": "3.5.0-6.fc34.aarch64"
+    },
+    "libnsl2": {
+      "evra": "1.3.0-2.fc34.aarch64"
+    },
+    "libpath_utils": {
+      "evra": "0.2.1-47.fc34.aarch64"
+    },
+    "libpcap": {
+      "evra": "14:1.10.1-1.fc34.aarch64"
+    },
+    "libpkgconf": {
+      "evra": "1.7.3-6.fc34.aarch64"
+    },
+    "libpsl": {
+      "evra": "0.21.1-3.fc34.aarch64"
+    },
+    "libpwquality": {
+      "evra": "1.4.4-2.fc34.aarch64"
+    },
+    "libref_array": {
+      "evra": "0.1.5-47.fc34.aarch64"
+    },
+    "librepo": {
+      "evra": "1.14.1-1.fc34.aarch64"
+    },
+    "libreport-filesystem": {
+      "evra": "2.15.2-2.fc34.noarch"
+    },
+    "libseccomp": {
+      "evra": "2.5.0-4.fc34.aarch64"
+    },
+    "libselinux": {
+      "evra": "3.2-1.fc34.aarch64"
+    },
+    "libselinux-utils": {
+      "evra": "3.2-1.fc34.aarch64"
+    },
+    "libsemanage": {
+      "evra": "3.2-1.fc34.aarch64"
+    },
+    "libsepol": {
+      "evra": "3.2-1.fc34.aarch64"
+    },
+    "libsigsegv": {
+      "evra": "2.13-2.fc34.aarch64"
+    },
+    "libslirp": {
+      "evra": "4.4.0-4.fc34.aarch64"
+    },
+    "libsmartcols": {
+      "evra": "2.36.2-1.fc34.aarch64"
+    },
+    "libsmbclient": {
+      "evra": "2:4.14.6-0.fc34.aarch64"
+    },
+    "libsolv": {
+      "evra": "0.7.17-3.fc34.aarch64"
+    },
+    "libss": {
+      "evra": "1.45.6-5.fc34.aarch64"
+    },
+    "libssh": {
+      "evra": "0.9.5-2.fc34.aarch64"
+    },
+    "libssh-config": {
+      "evra": "0.9.5-2.fc34.noarch"
+    },
+    "libsss_certmap": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "libsss_idmap": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "libsss_nss_idmap": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "libsss_sudo": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "libstdc++": {
+      "evra": "11.1.1-3.fc34.aarch64"
+    },
+    "libtalloc": {
+      "evra": "2.3.2-2.fc34.aarch64"
+    },
+    "libtasn1": {
+      "evra": "4.16.0-4.fc34.aarch64"
+    },
+    "libtdb": {
+      "evra": "1.4.3-6.fc34.aarch64"
+    },
+    "libteam": {
+      "evra": "1.31-3.fc34.aarch64"
+    },
+    "libtevent": {
+      "evra": "0.11.0-0.fc34.aarch64"
+    },
+    "libtextstyle": {
+      "evra": "0.21-4.fc34.aarch64"
+    },
+    "libtirpc": {
+      "evra": "1.3.2-0.fc34.aarch64"
+    },
+    "libunistring": {
+      "evra": "0.9.10-10.fc34.aarch64"
+    },
+    "libusbx": {
+      "evra": "1.0.24-2.fc34.aarch64"
+    },
+    "libuser": {
+      "evra": "0.63-4.fc34.aarch64"
+    },
+    "libutempter": {
+      "evra": "1.2.1-4.fc34.aarch64"
+    },
+    "libuuid": {
+      "evra": "2.36.2-1.fc34.aarch64"
+    },
+    "libuv": {
+      "evra": "1:1.41.0-1.fc34.aarch64"
+    },
+    "libvarlink-util": {
+      "evra": "22-2.fc34.aarch64"
+    },
+    "libverto": {
+      "evra": "0.3.2-1.fc34.aarch64"
+    },
+    "libwbclient": {
+      "evra": "2:4.14.6-0.fc34.aarch64"
+    },
+    "libxcrypt": {
+      "evra": "4.4.23-1.fc34.aarch64"
+    },
+    "libxml2": {
+      "evra": "2.9.12-4.fc34.aarch64"
+    },
+    "libxmlb": {
+      "evra": "0.3.2-1.fc34.aarch64"
+    },
+    "libyaml": {
+      "evra": "0.2.5-5.fc34.aarch64"
+    },
+    "libzstd": {
+      "evra": "1.5.0-1.fc34.aarch64"
+    },
+    "linux-atm-libs": {
+      "evra": "2.5.1-28.fc34.aarch64"
+    },
+    "linux-firmware": {
+      "evra": "20210716-121.fc34.noarch"
+    },
+    "linux-firmware-whence": {
+      "evra": "20210716-121.fc34.noarch"
+    },
+    "lmdb-libs": {
+      "evra": "0.9.29-1.fc34.aarch64"
+    },
+    "logrotate": {
+      "evra": "3.18.0-3.fc34.aarch64"
+    },
+    "lsof": {
+      "evra": "4.94.0-1.fc34.aarch64"
+    },
+    "lua-libs": {
+      "evra": "5.4.3-1.fc34.aarch64"
+    },
+    "luksmeta": {
+      "evra": "9-10.fc34.aarch64"
+    },
+    "lvm2": {
+      "evra": "2.03.11-1.fc34.aarch64"
+    },
+    "lvm2-libs": {
+      "evra": "2.03.11-1.fc34.aarch64"
+    },
+    "lz4-libs": {
+      "evra": "1.9.3-2.fc34.aarch64"
+    },
+    "lzo": {
+      "evra": "2.10-4.fc34.aarch64"
+    },
+    "mdadm": {
+      "evra": "4.1-7.fc34.aarch64"
+    },
+    "moby-engine": {
+      "evra": "20.10.7-1.fc34.aarch64"
+    },
+    "mokutil": {
+      "evra": "2:0.4.0-4.fc34.aarch64"
+    },
+    "mozjs78": {
+      "evra": "78.12.0-1.fc34.aarch64"
+    },
+    "mpfr": {
+      "evra": "4.1.0-7.fc34.aarch64"
+    },
+    "ncurses": {
+      "evra": "6.2-4.20200222.fc34.aarch64"
+    },
+    "ncurses-base": {
+      "evra": "6.2-4.20200222.fc34.noarch"
+    },
+    "ncurses-libs": {
+      "evra": "6.2-4.20200222.fc34.aarch64"
+    },
+    "net-tools": {
+      "evra": "2.0-0.59.20160912git.fc34.aarch64"
+    },
+    "nettle": {
+      "evra": "3.7.3-1.fc34.aarch64"
+    },
+    "newt": {
+      "evra": "0.52.21-9.fc34.aarch64"
+    },
+    "nfs-utils-coreos": {
+      "evra": "1:2.5.4-0.fc34.aarch64"
+    },
+    "nftables": {
+      "evra": "1:0.9.8-2.fc34.aarch64"
+    },
+    "npth": {
+      "evra": "1.6-6.fc34.aarch64"
+    },
+    "nss-altfiles": {
+      "evra": "2.18.1-18.fc34.aarch64"
+    },
+    "numactl-libs": {
+      "evra": "2.0.14-3.fc34.aarch64"
+    },
+    "nvme-cli": {
+      "evra": "1.11.1-3.fc34.aarch64"
+    },
+    "oniguruma": {
+      "evra": "6.9.7.1-1.fc34.aarch64"
+    },
+    "openldap": {
+      "evra": "2.4.57-5.fc34.aarch64"
+    },
+    "openssh": {
+      "evra": "8.6p1-3.fc34.aarch64"
+    },
+    "openssh-clients": {
+      "evra": "8.6p1-3.fc34.aarch64"
+    },
+    "openssh-server": {
+      "evra": "8.6p1-3.fc34.aarch64"
+    },
+    "openssl": {
+      "evra": "1:1.1.1k-1.fc34.aarch64"
+    },
+    "openssl-libs": {
+      "evra": "1:1.1.1k-1.fc34.aarch64"
+    },
+    "os-prober": {
+      "evra": "1.77-7.fc34.aarch64"
+    },
+    "ostree": {
+      "evra": "2021.3-1.fc34.aarch64"
+    },
+    "ostree-libs": {
+      "evra": "2021.3-1.fc34.aarch64"
+    },
+    "p11-kit": {
+      "evra": "0.23.22-3.fc34.aarch64"
+    },
+    "p11-kit-trust": {
+      "evra": "0.23.22-3.fc34.aarch64"
+    },
+    "pam": {
+      "evra": "1.5.1-6.fc34.aarch64"
+    },
+    "passwd": {
+      "evra": "0.80-10.fc34.aarch64"
+    },
+    "pcre": {
+      "evra": "8.44-3.fc34.1.aarch64"
+    },
+    "pcre2": {
+      "evra": "10.36-4.fc34.aarch64"
+    },
+    "pcre2-syntax": {
+      "evra": "10.36-4.fc34.noarch"
+    },
+    "pigz": {
+      "evra": "2.5-1.fc34.aarch64"
+    },
+    "pkgconf": {
+      "evra": "1.7.3-6.fc34.aarch64"
+    },
+    "pkgconf-m4": {
+      "evra": "1.7.3-6.fc34.noarch"
+    },
+    "pkgconf-pkg-config": {
+      "evra": "1.7.3-6.fc34.aarch64"
+    },
+    "podman": {
+      "evra": "3:3.2.3-1.fc34.aarch64"
+    },
+    "podman-plugins": {
+      "evra": "3:3.2.3-1.fc34.aarch64"
+    },
+    "policycoreutils": {
+      "evra": "3.2-1.fc34.aarch64"
+    },
+    "polkit": {
+      "evra": "0.117-3.fc34.1.aarch64"
+    },
+    "polkit-libs": {
+      "evra": "0.117-3.fc34.1.aarch64"
+    },
+    "polkit-pkla-compat": {
+      "evra": "0.1-19.fc34.aarch64"
+    },
+    "popt": {
+      "evra": "1.18-4.fc34.aarch64"
+    },
+    "procps-ng": {
+      "evra": "3.3.17-1.fc34.1.aarch64"
+    },
+    "protobuf-c": {
+      "evra": "1.3.3-7.fc34.aarch64"
+    },
+    "psmisc": {
+      "evra": "23.4-1.fc34.aarch64"
+    },
+    "publicsuffix-list-dafsa": {
+      "evra": "20190417-5.fc34.noarch"
+    },
+    "readline": {
+      "evra": "8.1-2.fc34.aarch64"
+    },
+    "rpcbind": {
+      "evra": "1.2.6-0.fc34.aarch64"
+    },
+    "rpm": {
+      "evra": "4.16.1.3-1.fc34.aarch64"
+    },
+    "rpm-libs": {
+      "evra": "4.16.1.3-1.fc34.aarch64"
+    },
+    "rpm-ostree": {
+      "evra": "2021.6-2.fc34.aarch64"
+    },
+    "rpm-ostree-libs": {
+      "evra": "2021.6-2.fc34.aarch64"
+    },
+    "rpm-plugin-selinux": {
+      "evra": "4.16.1.3-1.fc34.aarch64"
+    },
+    "rsync": {
+      "evra": "3.2.3-5.fc34.aarch64"
+    },
+    "runc": {
+      "evra": "2:1.0.0-378.rc95.fc34.aarch64"
+    },
+    "samba-client-libs": {
+      "evra": "2:4.14.6-0.fc34.aarch64"
+    },
+    "samba-common": {
+      "evra": "2:4.14.6-0.fc34.noarch"
+    },
+    "samba-common-libs": {
+      "evra": "2:4.14.6-0.fc34.aarch64"
+    },
+    "sed": {
+      "evra": "4.8-7.fc34.aarch64"
+    },
+    "selinux-policy": {
+      "evra": "34.14-1.fc34.noarch"
+    },
+    "selinux-policy-targeted": {
+      "evra": "34.14-1.fc34.noarch"
+    },
+    "setup": {
+      "evra": "2.13.7-3.fc34.noarch"
+    },
+    "sg3_utils": {
+      "evra": "1.45-4.fc34.aarch64"
+    },
+    "sg3_utils-libs": {
+      "evra": "1.45-4.fc34.aarch64"
+    },
+    "shadow-utils": {
+      "evra": "2:4.8.1-8.fc34.aarch64"
+    },
+    "shared-mime-info": {
+      "evra": "2.1-2.fc34.aarch64"
+    },
+    "shim-aa64": {
+      "evra": "15.4-4.aarch64"
+    },
+    "skopeo": {
+      "evra": "1:1.3.1-1.fc34.aarch64"
+    },
+    "slang": {
+      "evra": "2.3.2-9.fc34.aarch64"
+    },
+    "slirp4netns": {
+      "evra": "1.1.9-1.fc34.aarch64"
+    },
+    "snappy": {
+      "evra": "1.1.8-5.fc34.aarch64"
+    },
+    "socat": {
+      "evra": "1.7.4.1-2.fc34.aarch64"
+    },
+    "sqlite-libs": {
+      "evra": "3.34.1-2.fc34.aarch64"
+    },
+    "ssh-key-dir": {
+      "evra": "0.1.2-7.fc34.aarch64"
+    },
+    "sssd-ad": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "sssd-client": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "sssd-common": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "sssd-common-pac": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "sssd-ipa": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "sssd-krb5": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "sssd-krb5-common": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "sssd-ldap": {
+      "evra": "2.5.2-1.fc34.aarch64"
+    },
+    "stalld": {
+      "evra": "1.10-1.fc34.aarch64"
+    },
+    "sudo": {
+      "evra": "1.9.5p2-1.fc34.aarch64"
+    },
+    "systemd": {
+      "evra": "248.6-1.fc34.aarch64"
+    },
+    "systemd-container": {
+      "evra": "248.6-1.fc34.aarch64"
+    },
+    "systemd-libs": {
+      "evra": "248.6-1.fc34.aarch64"
+    },
+    "systemd-pam": {
+      "evra": "248.6-1.fc34.aarch64"
+    },
+    "systemd-rpm-macros": {
+      "evra": "248.6-1.fc34.noarch"
+    },
+    "systemd-udev": {
+      "evra": "248.6-1.fc34.aarch64"
+    },
+    "tar": {
+      "evra": "2:1.34-1.fc34.aarch64"
+    },
+    "teamd": {
+      "evra": "1.31-3.fc34.aarch64"
+    },
+    "toolbox": {
+      "evra": "0.0.99.2-1.fc34.aarch64"
+    },
+    "tpm2-tools": {
+      "evra": "5.1.1-1.fc34.aarch64"
+    },
+    "tpm2-tss": {
+      "evra": "3.1.0-1.fc34.aarch64"
+    },
+    "tzdata": {
+      "evra": "2021a-1.fc34.noarch"
+    },
+    "userspace-rcu": {
+      "evra": "0.12.1-3.fc34.aarch64"
+    },
+    "util-linux": {
+      "evra": "2.36.2-1.fc34.aarch64"
+    },
+    "vim-minimal": {
+      "evra": "2:8.2.3182-1.fc34.aarch64"
+    },
+    "which": {
+      "evra": "2.21-26.fc34.aarch64"
+    },
+    "wireguard-tools": {
+      "evra": "1.0.20210424-1.fc34.aarch64"
+    },
+    "xfsprogs": {
+      "evra": "5.10.0-2.fc34.aarch64"
+    },
+    "xz": {
+      "evra": "5.2.5-5.fc34.aarch64"
+    },
+    "xz-libs": {
+      "evra": "5.2.5-5.fc34.aarch64"
+    },
+    "yajl": {
+      "evra": "2.1.0-16.fc34.aarch64"
+    },
+    "zchunk-libs": {
+      "evra": "1.1.15-1.fc34.aarch64"
+    },
+    "zincati": {
+      "evra": "0.0.22-1.fc34.aarch64"
+    },
+    "zlib": {
+      "evra": "1.2.11-26.fc34.aarch64"
+    },
+    "zram-generator": {
+      "evra": "0.3.2-4.fc34.aarch64"
+    }
+  },
+  "metadata": {
+    "generated": "2021-07-26T18:06:13Z",
+    "rpmmd_repos": {
+      "fedora": {
+        "generated": "2021-04-23T10:47:46Z"
+      },
+      "fedora-coreos-pool": {
+        "generated": "2021-07-25T21:27:48Z"
+      },
+      "fedora-updates": {
+        "generated": "2021-07-26T00:33:18Z"
+      }
+    }
+  }
+}
