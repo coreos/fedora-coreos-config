@@ -5,3 +5,6 @@ enable coreos-check-ignition-config.service
 enable coreos-check-ssh-keys.service
 # Check if cgroupsv1 is still being used
 enable coreos-check-cgroups.service
+# Clean up injected Ignition config in /boot on upgrade
+# https://github.com/coreos/fedora-coreos-tracker/issues/889
+enable coreos-cleanup-ignition-config.service
