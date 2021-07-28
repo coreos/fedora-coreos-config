@@ -41,10 +41,6 @@ main() {
         echo -e "${warn}No SSH authorized keys provided by Ignition or Afterburn${nc}" \
             > /etc/issue.d/30_ssh_authorized_keys.issue
     fi
-
-    # Ask all running agetty instances to reload and update their
-    # displayed prompts in case this script was run before agetty.
-    /usr/sbin/agetty --reload
 }
 
 main
