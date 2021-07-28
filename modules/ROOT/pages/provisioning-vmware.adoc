@@ -91,6 +91,8 @@ govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data.encoding=base
 govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data=${CONFIG_B64}"
 ----
 
+WARNING: When submitting the Ignition Config as Base 64 encoded string via `govc` _inline_ the maximum length for shell arguments called `ARG_MAX` comes into play. Depending on the platform you are on, it may be impossible to submit your config inline. Call `getconf ARG_MAX` in your shell to see the local limit.
+
 A new `fcos-node01` VM is now available for booting. Its hardware configuration can be further customized at this point, and then powered-up:
 
 [source, bash]
@@ -107,7 +109,7 @@ For this reason, on first-boot FCOS instances try to perform network autoconfigu
 If your VMware setup employs static network configuration instead, you can override this automatic DHCP setup with your own custom configuration.
 Custom networking command-line `ip=` parameter can be configured via guestinfo properties as shown below, before booting a VM for the first time.
 
-The provisioning flow follows the usual steps, plus an additional `guestinfo.afterburn.initrd.network-kargs` entry. 
+The provisioning flow follows the usual steps, plus an additional `guestinfo.afterburn.initrd.network-kargs` entry.
 
 NOTE: if you are using a provisioning method other than `govc`, make sure that the guestinfo attribute is provisioned in the VM's Advanced Configuration Parameters (also known as `ExtraConfig`). Some management tools may default to a vApp Property instead, which does not work in this scenario.
 
@@ -128,3 +130,19 @@ govc vm.power -on "${VM_NAME}"
 The full syntax of the `ip=` parameter is documented in https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html[Dracut manpages].
 
 For further information on first-boot networking, see https://coreos.github.io/afterburn/usage/initrd-network-cmdline/[Afterburn documentation].
+
+== Troubleshooting First-boot Problems
+
+You may encounter problems with your Ignition configuration that require access to the system log which appears during first-boot. To make a copy of the sytem log you can attach a serial device to the VM before booting. vSphere as well as Workstation and Fusion allow this and will save the output to a file of your choice.
+
+To attach a serial device simply modify the hardware settings of the powered off VM and add a `Serial Port`. Select the destination and name of the file to be created. Afterwards power on the VM. When encountering an error, check the file you initially specified – it should contain a copy of the system log.
+
+The serial device can also be added to the VM via `govc` as described in the https://github.com/vmware/govmomi/blob/master/govc/USAGE.md#deviceserialconnect[official usage documentation]:
+
+[source, bash]
+----
+VM_NAME='fcos-node01'
+
+govc device.serial.add -vm "${VM_NAME}"
+govc device.serial.connect -vm "${VM_NAME}" "[datastore] ${VM_NAME}/console.log"
+----
