@@ -8,10 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  container-selinux:
-    evra: 2:2.164.1-1.git563ba3f.fc34.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-463a2721ec
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/881
-      type: fast-track
+packages: {}
