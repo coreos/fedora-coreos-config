@@ -190,7 +190,7 @@ TIP: YAML files must have consistent indentation. Although Butane checks for syn
 +
 [source,bash]
 ----
-butane --pretty --strict < example.bu > example.ign
+butane --pretty --strict example.bu > example.ign
 ----
 +
 . Use the `example.ign` file to xref:getting-started.adoc[boot Fedora CoreOS].

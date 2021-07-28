@@ -6,6 +6,8 @@ This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Alibaba Clou
 
 Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
+If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support] and provide an SSH key via the cloud provider and continue from there.
+
 You also need to have access to an Alibaba Cloud account and https://www.alibabacloud.com/help/doc-detail/31884.htm?spm=a2c63.p38356.879954.10.3d1264baRYHfmB#task-njz-hf4-tdb[activated Object Storage Service (OSS)].
 The examples below use the https://www.alibabacloud.com/help/product/29991.htm[Alibaba Cloud CLI] and https://stedolan.github.io/jq/[jq] as a command-line JSON processor.
 

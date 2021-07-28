@@ -1,7 +1,7 @@
 
 = Stream metadata
 
-Metadata about Fedora CoreOS is available in a custom JSON format, called "stream metadata".  For maintaining automation, it is expected that you will interact with this stream metadata. 
+Metadata about Fedora CoreOS is available in a custom JSON format, called "stream metadata". For maintaining automation, it is expected that you will interact with this stream metadata.
 
 The format is stable, and intended to be relatively self-documenting.  There is not yet a JSON schema.
 However, in most web browsers, navigating to the URL will render the JSON in an easy-to-read form.
@@ -9,7 +9,7 @@ However, in most web browsers, navigating to the URL will render the JSON in an 
 == Canonical URL
 
 The URL for the `stable` stream is: https://builds.coreos.fedoraproject.org/streams/stable.json
-You can similarly replace `stable` here with other available xref:available-update-streams.adoc[Update Streams].
+You can similarly replace `stable` here with other available xref:update-streams.adoc[Update Streams].
 
 == Using coreos-installer to download
 
@@ -23,8 +23,8 @@ coreos-installer download --decompress -s $STREAM -p openstack -f qcow2.xz
 
 == Using coreos/stream-metadata-go
 
-There is an official [coreos/stream-metadata-go](https://github.com/coreos/stream-metadata-go) library for
-software written in the Go programming language.  The README.md file in that repository contains a link to example code.
+There is an official https://github.com/coreos/stream-metadata-go[coreos/stream-metadata-go] library for
+software written in the Go programming language. The `README.md` file in that repository contains a link to example code.
 
 == Example: Script ec2 CLI
 
@@ -37,4 +37,3 @@ $ echo $AMI
 ami-021238084bf8c95ff
 $ aws ec2 run-instances --region us-west-1 --image-id "${AMI}" ...
 ----
-

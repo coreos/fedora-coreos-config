@@ -4,7 +4,7 @@ This guide shows how to provision new Fedora CoreOS (FCOS) nodes on the VMware h
 
 == Prerequisites
 
-Before provisioning a FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
 You also need to have access to a working VMware infrastructure, supporting VMs with at least hardware version 13.
 The examples below use the https://github.com/vmware/govmomi/blob/v0.22.2/govc/README.md[govc] command-line tool for remote vSphere provisioning and the https://code.vmware.com/web/tool/4.4.0/ovf[ovftool] for local Workstation or Fusion provisoning.

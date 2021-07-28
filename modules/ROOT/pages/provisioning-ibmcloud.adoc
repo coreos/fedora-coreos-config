@@ -4,10 +4,11 @@ This guide shows how to provision new Fedora CoreOS (FCOS) instances in IBM Clou
 
 == Prerequisites
 
-Before provisioning a FCOS instance, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-You also need to have access to an https://cloud.ibm.com/login[IBM Cloud account]. The examples below use the https://cloud.ibm.com/docs/cli?topic=cli-getting-started[`ibmcloud`] command-line tool, which must be separately installed and configured beforehand. There are also several pieces that need to be in place first, like a VPC, SSH keys, networks, permissions, etc. Unfortunately, this guide is not a comprehensive IBM Cloud guide. If you are new to IBM Cloud please familiarize yourself using https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started[the documentation for VPC Gen2] first.
+If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support] and provide an SSH key via the cloud provider and continue from there.
 
+You also need to have access to an https://cloud.ibm.com/login[IBM Cloud account]. The examples below use the https://cloud.ibm.com/docs/cli?topic=cli-getting-started[`ibmcloud`] command-line tool, which must be separately installed and configured beforehand.
 Regarding the `ibmcloud` CLI, it is worth noting that it is supported to run the CLI https://cloud.ibm.com/docs/cli?topic=cli-using-idt-from-docker[via a container]. You'll need both the `cloud-object-storage` and `infrastructure-service` plugins installed. This can be done with:
 
  * `ibmcloud plugin install cloud-object-storage`
@@ -21,6 +22,8 @@ After you've logged in using `ibmcloud login` you can set a target region:
 REGION='us-east' # run `ibmcloud regions` to view options
 ibmcloud target -r $REGION
 ----
+
+There are also several other pieces that need to be in place, like a VPC, SSH keys, networks, permissions, etc. Unfortunately, this guide is not a comprehensive IBM Cloud guide. If you are new to IBM Cloud please familiarize yourself using https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started[the documentation for VPC Gen2] first.
 
 === Creating an Image
 
@@ -41,7 +44,7 @@ BUCKET='my-unique-bucket'
 ibmcloud resource service-instance-create "${BUCKET}-service-instance" cloud-object-storage standard global
 
 SERVICE_INSTANCE_ID='25df0db0-89a4-4cb8-900f-ed8b44259f80' # from just created service account
-ibmcloud iam authorization-policy-create is --source-resource-type image cloud-object-storage Reader --target-service-instance-id $SERVICE_INSTANCE_ID 
+ibmcloud iam authorization-policy-create is --source-resource-type image cloud-object-storage Reader --target-service-instance-id $SERVICE_INSTANCE_ID
 ----
 
 .Upload the fetched image file to IBM Cloud Object Storage.

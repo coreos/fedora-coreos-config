@@ -4,7 +4,9 @@ This guide shows how to provision new Fedora CoreOS (FCOS) instances on https://
 
 == Prerequisites
 
-Before provisioning a FCOS instance, you may want to have at hand an Ignition configuration file containing your customizations. If you need one, see xref:producing-ign.adoc[Producing an Ignition File].
+Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support] and provide an SSH key via the cloud provider and continue from there.
 
 You also need to have access to an Exoscale account. https://portal.exoscale.com/register[Register] if you don't have one.
 

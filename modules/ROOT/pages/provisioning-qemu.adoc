@@ -4,7 +4,7 @@ This guide shows how to provision new Fedora CoreOS (FCOS) instances on a bare h
 
 == Prerequisites
 
-Before provisioning a FCOS instance, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
 You also need to have access to an host machine with https://www.linux-kvm.org/page/Main_Page[KVM] support. The examples below use the `qemu-kvm` command-line tool, which must be separately installed beforehand.
 

@@ -4,7 +4,11 @@ This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Vultr. FCOS 
 
 == Prerequisites
 
-Before provisioning a FCOS machine, you must have an Ignition configuration file that sets SSH authorized keys for the core user. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File]. While the Vultr documentation mentions cloud-init and scripts, FCOS does not support cloud-init or the ability to run scripts from user-data. It accepts only Ignition configuration files.
+Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support] and provide an SSH key via the cloud provider and continue from there.
+
+While the Vultr documentation mentions `cloud-init` and scripts, FCOS does not support `cloud-init` or the ability to run scripts from user-data. It accepts only Ignition configuration files.
 
 You also need to have access to a Vultr account. The examples below use the https://github.com/vultr/vultr-cli[vultr-cli] and https://s3tools.org/s3cmd[s3cmd] command-line tools.
 

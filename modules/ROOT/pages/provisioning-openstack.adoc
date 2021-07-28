@@ -7,9 +7,9 @@ The steps below were tested against the OpenStack Victoria release.
 
 == Prerequisites
 
-Before provisioning an FCOS machine, you must have an Ignition configuration file
-containing your customizations. If you do not have one, see
-xref:producing-ign.adoc[Producing an Ignition File].
+Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support] and provide an SSH key via the cloud provider and continue from there.
 
 You also need to have access to an OpenStack environment and a functioning
 https://docs.openstack.org/python-designateclient/latest/user/shell-v2.html[`openstack` CLI].

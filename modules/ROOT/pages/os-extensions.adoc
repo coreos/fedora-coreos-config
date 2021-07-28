@@ -6,7 +6,7 @@ However, in some cases it is necessary to add software to the base OS itself. Fo
 
 To do this, you can use https://coreos.github.io/rpm-ostree/[`rpm-ostree install`]. Consider these packages as "extensions": they extend the functionality of the base OS rather than e.g. providing runtimes for user applications. That said, there are no restrictions on which packages one can actually install. By default, packages are downloaded from the https://docs.fedoraproject.org/en-US/quick-docs/repositories/[Fedora repositories].
 
-To start the layering of a package, you need to write a systemd unit that executes the `rpm-ostree` command to install the wanted package(s). 
+To start the layering of a package, you need to write a systemd unit that executes the `rpm-ostree` command to install the wanted package(s).
 Changes are applied to a new deployment and a reboot is necessary for those to take effect.
 
 == Example: Layering nano and setting it as the default editor
@@ -37,13 +37,13 @@ systemd:
         # We run before `zincati.service` to avoid conflicting rpm-ostree
         # transactions.
         Before=zincati.service
-        ConditionPathExists=!/var/lib/rpm-ostree-install-nano.stamp
+        ConditionPathExists=!/var/lib/%N.stamp
 
         [Service]
         Type=oneshot
         RemainAfterExit=yes
         ExecStart=/usr/bin/rpm-ostree install --allow-inactive nano
-        ExecStart=/bin/touch /var/lib/rpm-ostree-install-nano.stamp
+        ExecStart=/bin/touch /var/lib/%N.stamp
         ExecStart=/bin/systemctl --no-block reboot
 
         [Install]
