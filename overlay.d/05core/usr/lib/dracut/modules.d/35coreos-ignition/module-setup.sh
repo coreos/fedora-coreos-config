@@ -24,6 +24,12 @@ install() {
         sed \
         sgdisk
 
+    # ignition can update kargs
+    if [[ "$_arch" == "s390x" ]]; then
+        inst_multiple zipl
+        inst /lib/s390-tools/stage3.bin
+    fi
+
     inst_simple "$moddir/coreos-diskful-generator" \
         "$systemdutildir/system-generators/coreos-diskful-generator"
 
