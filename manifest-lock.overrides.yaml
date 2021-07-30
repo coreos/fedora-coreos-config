@@ -7,4 +7,9 @@
 # *should* include a URL in the `metadata.reason` key, though it's acceptable to
 # omit one for FCOS-specific packages (e.g. ignition, afterburn, etc...).
 
-packages: {}
+packages:
+  kexec-tools:
+    evr: 2.0.22-3.fc35
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/913
+      type: pin
