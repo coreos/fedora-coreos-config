@@ -94,6 +94,16 @@ Butane is available as a https://www.macports.org/[MacPorts] package:
 sudo port install butane
 ----
 
+==== Installing via Scoop
+
+Butane is available as a https://scoop.sh[Scoop] package via the https://github.com/lukesampson/scoop-extras[extras]:
+
+[source,powershell]
+----
+scoop bucket add extras
+scoop install butane
+----
+
 === Standalone binary
 
 ==== Linux
