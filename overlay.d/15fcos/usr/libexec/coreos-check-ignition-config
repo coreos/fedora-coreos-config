@@ -14,6 +14,19 @@ ignitionBoot=$(jq -r .provisioningBootID "${IGNITION_RESULT}")
 if [ $(cat /proc/sys/kernel/random/boot_id) = "${ignitionBoot}" ]; then
     echo "Ignition: ran on ${d} (this boot)" \
         > /run/issue.d/30_coreos_ignition_provisioning.issue
+
+    # checking for /run/ostree-live as the live system with persistent storage can run Ignition more than once
+    if ! test -f /run/ostree-live && jq -e .previousReport.provisioningDate "${IGNITION_RESULT}" &>/dev/null; then
+        prevdate=$(date --date "$(jq -r .previousReport.provisioningDate "${IGNITION_RESULT}")" +"%Y/%m/%d %H:%M:%S %Z")
+        cat << EOF > /etc/issue.d/30_coreos_ignition_run_more_than_once.issue
+${WARN}
+############################################################################
+WARNING: Ignition previously ran on ${prevdate}. Unexpected 
+behavior may occur. Ignition is not designed to run more than once per system.
+############################################################################
+${RESET}
+EOF
+    fi
 else
     nreboots=$(($(journalctl --list-boots | wc -l) - 1))
     [ "${nreboots}" -eq 1 ] && boot="boot" || boot="boots"
