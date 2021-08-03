@@ -198,4 +198,4 @@ aliyun ecs DescribeInstanceStatus --InstanceId.1="$INSTANCE_ID" --region="${REGI
 ssh core@"${PUBLIC_IP}"
 ----
 
-You can start a customized instance with your Ignition file by adding the parameter `--UserData=$(cat <Path to your ignition file> | base64)` to the above command that creates a new instance.
+You can start a customized instance with your Ignition file by adding the parameter `--UserData=$(cat <Path to your Ignition config> | base64 -w0)` to the `aliyun ecs CreateInstance` command that creates a new instance.
