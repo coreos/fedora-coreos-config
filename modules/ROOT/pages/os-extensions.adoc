@@ -21,7 +21,7 @@ NOTE: The `After=systemd-machine-id-commit.service` directive is important in th
 [source,yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 systemd:
   units:
     # installing nano as a layered package with rpm-ostree

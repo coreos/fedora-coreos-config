@@ -28,7 +28,7 @@ This can be manually translated into a `passwd` node within the Butane config:
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 passwd:
   users:
     - name: core

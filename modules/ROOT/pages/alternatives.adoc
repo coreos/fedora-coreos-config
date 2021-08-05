@@ -7,7 +7,7 @@ Instead, until this issue is resolved, you can set the symlinks directly in `/et
 [source,yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   links:
     - path: /etc/alternatives/iptables

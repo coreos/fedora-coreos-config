@@ -47,7 +47,7 @@ For example, you can set the time zone to `America/New_York` by using a Butane c
 [source,yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   links:
     - path: /etc/localtime

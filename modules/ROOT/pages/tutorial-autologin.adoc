@@ -23,7 +23,7 @@ We can create a config file named `autologin.bu` now as:
 [source,yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 systemd:
   units:
     - name: serial-getty@ttyS0.service

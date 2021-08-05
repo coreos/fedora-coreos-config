@@ -11,7 +11,7 @@ As an example, the xref:producing-ign.adoc[Butane] snippet below shows how to di
 [source,yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/sysctl.d/90-sysrq.conf

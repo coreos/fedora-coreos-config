@@ -8,7 +8,7 @@ The following examples show how to retrieve an Ignition file from a remote sourc
 [source,yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 ignition:
   config:
     replace:
@@ -21,7 +21,7 @@ ignition:
 [source,yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 ignition:
   config:
     replace:

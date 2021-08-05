@@ -99,7 +99,7 @@ An example https://docs.fedoraproject.org/en-US/fedora-coreos/producing-ign/[But
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/ens2.nmconnection
@@ -241,7 +241,7 @@ ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:ens2:none:8.8.8.8
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/${interface}.nmconnection
@@ -265,7 +265,7 @@ storage:
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/ens2.nmconnection
@@ -311,7 +311,7 @@ bond=bond0:ens2,ens3:mode=active-backup,miimon=100
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/${bondname}.nmconnection
@@ -358,7 +358,7 @@ storage:
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/bond0.nmconnection
@@ -426,7 +426,7 @@ bridge=br0:ens2,ens3
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/${bridgename}.nmconnection
@@ -470,7 +470,7 @@ storage:
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/br0.nmconnection
@@ -535,7 +535,7 @@ team=team0:ens2,ens3
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/${teamname}.nmconnection
@@ -582,7 +582,7 @@ storage:
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/team0.nmconnection
@@ -650,7 +650,7 @@ vlan=ens2.100:ens2
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/${interface}.${vlanid}.nmconnection
@@ -695,7 +695,7 @@ storage:
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/ens2.100.nmconnection
@@ -762,7 +762,7 @@ vlan=bond0.100:bond0
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/${bondname}.${vlanid}.nmconnection
@@ -824,7 +824,7 @@ storage:
 [source, yaml]
 ----
 variant: fcos
-version: 1.3.0
+version: 1.4.0
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/bond0.100.nmconnection
