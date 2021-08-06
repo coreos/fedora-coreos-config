@@ -2,12 +2,9 @@
 # no Ignition config is provided.
 [Unit]
 Description=Check if Ignition config is provided
-After=coreos-ignition-firstboot-complete.service
 Before=systemd-user-sessions.service
-RequiresMountsFor=/var/lib/coreos
-ConditionPathExists=|/var/lib/coreos/ignition.info.json
-# See coreos-ignition-firstboot-complete
-ConditionPathExists=|/run/ignition.info.json
+RequiresMountsFor=/var/lib/ignition
+ConditionPathExists=/var/lib/ignition/result.json
 
 [Service]
 Type=oneshot
