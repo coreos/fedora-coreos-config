@@ -85,9 +85,7 @@ fi
 # If the user supplied an Ignition config, they have the ability to enable
 # autologin themselves.  Don't automatically render them insecure, since
 # they might be running in production and booting via e.g. IPMI.
-# See https://github.com/coreos/ignition/pull/958 for the MESSAGE_ID source.
-ign_usercfg_msg=$(journalctl -q MESSAGE_ID=57124006b5c94805b77ce473e92a8aeb IGNITION_CONFIG_TYPE=user)
-if [ -n "${ign_usercfg_msg}" ]; then
+if jq -e .userConfigProvided /var/lib/ignition/result.json &>/dev/null; then
     exit 0
 fi
 
