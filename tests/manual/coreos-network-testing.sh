@@ -13,7 +13,7 @@ set -eu -o pipefail
 
 vmname="coreos-nettest"
 
-fcct_common=\
+butane_common=\
 'variant: fcos
 version: 1.0.0
 passwd:
@@ -45,17 +45,22 @@ storage:
       contents:
         source: https://raw.githubusercontent.com/coreos/fedora-coreos-config/8b08bd030ef3968d00d4fea9a0fa3ca3fbabf852/COPYING
         verification:
-          hash: sha512-d904690e4fc5defb804c2151e397cbe2aeeea821639995610aa377bb2446214c3433616a8708163776941df585b657648f20955e50d4b011ea2a96e7d8e08c66'
+          hash: sha512-d904690e4fc5defb804c2151e397cbe2aeeea821639995610aa377bb2446214c3433616a8708163776941df585b657648f20955e50d4b011ea2a96e7d8e08c66
+    - path: /etc/sysctl.d/20-silence-audit.conf
+      contents:
+        inline: |
+          # Raise console message logging level from DEBUG (7) to WARNING (4)
+          kernel.printk=4'
 
 ignitionhostname='ignitionhost'
-fcct_hostname='
+butane_hostname='
     - path: /etc/hostname
       mode: 0644
       contents:
         inline: |
           ${ignitionhostname}'
 
-fcct_static_nic0_ifcfg='
+butane_static_nic0_ifcfg='
     - path: /etc/sysconfig/network-scripts/ifcfg-${nic0}
       mode: 0600
       contents:
@@ -81,7 +86,7 @@ fcct_static_nic0_ifcfg='
           DEVICE=${nic1}
           ONBOOT=no'
 
-fcct_static_nic0='
+butane_static_nic0='
     - path: /etc/NetworkManager/system-connections/${nic0}.nmconnection
       mode: 0600
       contents:
@@ -111,7 +116,7 @@ fcct_static_nic0='
           [ipv6]
           method=disabled'
 
-fcct_static_team0='
+butane_static_team0='
     - path: /etc/NetworkManager/system-connections/team0.nmconnection
       mode: 0600
       contents:
@@ -153,7 +158,7 @@ fcct_static_team0='
           [team-port]
           config={"prio": 100}'
 
-fcct_static_bond0='
+butane_static_bond0='
     - path: /etc/NetworkManager/system-connections/bond0.nmconnection
       mode: 0600
       contents:
@@ -192,7 +197,7 @@ fcct_static_bond0='
           master=bond0
           slave-type=bond'
 
-fcct_static_br0='
+butane_static_br0='
     - path: /etc/NetworkManager/system-connections/br0.nmconnection
       mode: 0600
       contents:
@@ -243,7 +248,7 @@ check_requirements() {
     reqs=(
         chcon
         envsubst
-        fcct
+        butane
         jq
         ssh
         ssh-keygen
@@ -443,11 +448,11 @@ destroy_vm() {
 }
 
 create_ignition_file() {
-    local fcctconfig=$1
+    local butaneconfig=$1
     local ignitionfile=$2
     # uncomment and use ign-converter instead if on rhcos less than 4.6
-    #echo "$fcctconfig" | fcct --strict | ign-converter -downtranslate -output $ignitionfile
-    echo "$fcctconfig" | fcct --strict --output $ignitionfile
+    #echo "$butaneconfig" | butane --strict | ign-converter -downtranslate -output $ignitionfile
+    echo "$butaneconfig" | butane --strict --output $ignitionfile
     chcon --verbose unconfined_u:object_r:svirt_home_t:s0 $ignitionfile &>/dev/null
 }
 
@@ -467,7 +472,7 @@ main() {
     local sshpubkeyfile="${PWD}/coreos-nettest-sshkey.pub"
     local ignitionfile="${PWD}/coreos-nettest-config.ign"
     local sshpubkey
-    local fcct
+    local butane
      
     check_requirements
 
@@ -573,12 +578,12 @@ EOF
     # in using the envsubst command
     export ip prefix nameserverstatic gateway sshpubkey ignitionhostname nic0 nic1
 
-    fcct_none=$(echo "${fcct_common}" | envsubst)
-    fcct_static_nic0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_nic0}" | envsubst)
-    fcct_static_bond0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_bond0}" | envsubst)
-    fcct_static_team0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_team0}" | envsubst)
-    fcct_static_br0=$(echo "${fcct_common}${fcct_hostname}${fcct_static_br0}" | envsubst)
-    fcct_static_nic0_ifcfg=$(echo "${fcct_common}${fcct_hostname}${fcct_static_nic0_ifcfg}" | envsubst)
+    butane_none=$(echo "${butane_common}" | envsubst)
+    butane_static_nic0=$(echo "${butane_common}${butane_hostname}${butane_static_nic0}" | envsubst)
+    butane_static_bond0=$(echo "${butane_common}${butane_hostname}${butane_static_bond0}" | envsubst)
+    butane_static_team0=$(echo "${butane_common}${butane_hostname}${butane_static_team0}" | envsubst)
+    butane_static_br0=$(echo "${butane_common}${butane_hostname}${butane_static_br0}" | envsubst)
+    butane_static_nic0_ifcfg=$(echo "${butane_common}${butane_hostname}${butane_static_nic0_ifcfg}" | envsubst)
 
     # If the VM is still around for whatever reason, destroy it
     destroy_vm || true
@@ -588,7 +593,7 @@ EOF
     # networking. Do a ifcfg check to make sure.
     if [ "$rhcos" == 1 ]; then
         echo -e "\n###### Testing ifcfg file via Ignition disables initramfs propagation\n"
-        create_ignition_file "$fcct_static_nic0_ifcfg" $ignitionfile
+        create_ignition_file "$butane_static_nic0_ifcfg" $ignitionfile
         start_vm $qcow $ignitionfile $kernel $initramfs "$initramfs_static_bond0"
         check_vm 'none' 1 0 $ip $nic0 $ignitionhostname $nameserverstatic $sshkeyfile
         reboot_vm
@@ -600,7 +605,7 @@ EOF
     # configuration via Ignition either, so we'll just end up with DHCP and a
     # static hostname that is unset (`n/a`).
     echo -e "\n###### Testing coreos.no_persist_ip disables initramfs propagation\n"
-    create_ignition_file "$fcct_none" $ignitionfile
+    create_ignition_file "$butane_none" $ignitionfile
     start_vm $qcow $ignitionfile $kernel $initramfs "${initramfs_static_nic0} coreos.no_persist_ip"
     check_vm 'dhcp' 2 0 $ip $nic0 'n/a' $nameserverdhcp $sshkeyfile
     reboot_vm
@@ -611,7 +616,7 @@ EOF
     # configuration via Ignition either, so we'll just end up with DHCP and a
     # static hostname that is unset (`n/a`).
     echo -e "\n###### Testing coreos.force_persist_ip forces initramfs propagation\n"
-    create_ignition_file "$fcct_static_nic0" $ignitionfile
+    create_ignition_file "$butane_static_nic0" $ignitionfile
     start_vm $qcow $ignitionfile $kernel $initramfs "${initramfs_static_bond0} coreos.force_persist_ip"
     check_vm 'none' 1 3 $ip bond0 $ignitionhostname $nameserverstatic $sshkeyfile
     reboot_vm
@@ -637,7 +642,7 @@ EOF
     # 
     # [1] https://gitlab.freedesktop.org/NetworkManager/NetworkManager/issues/391
     echo -e "\n###### Testing initramfs nameserver= option\n"
-    create_ignition_file "$fcct_none" $ignitionfile
+    create_ignition_file "$butane_none" $ignitionfile
     start_vm $qcow $ignitionfile $kernel $initramfs "nameserver=${nameserverstatic} ${initramfs_dhcp_nic0nic1}"
     check_vm 'dhcp' 2 2 $ip $nic0 'n/a' $nameserverstatic $sshkeyfile
     reboot_vm
@@ -647,7 +652,7 @@ EOF
     # Do a `net.ifnames=0` check and make sure eth0 is the interface name.
     # We don't pass any hostname information so it will just be (`n/a`).
     echo -e "\n###### Testing net.ifnames=0 gives us legacy NIC naming\n"
-    create_ignition_file "$fcct_none" $ignitionfile
+    create_ignition_file "$butane_none" $ignitionfile
     start_vm $qcow $ignitionfile $kernel $initramfs "${initramfs_dhcp_eth0} net.ifnames=0"
     check_vm 'dhcp' 2 1 $ip 'eth0' 'n/a' $nameserverdhcp $sshkeyfile
     # Don't reboot and do another check because we didn't persist the net.ifnames=0 karg
@@ -662,7 +667,7 @@ EOF
         static_br0
     )
 
-    fcctloop=(
+    butaneloop=(
         none
         static_nic0
         static_bond0
@@ -671,11 +676,11 @@ EOF
     )
         
     for initramfsnet in ${initramfsloop[@]}; do
-        for fcctnet in ${fcctloop[@]}; do
+        for butanenet in ${butaneloop[@]}; do
             method='none'; interfaces=1;
             nameserver=${nameserverstatic}
             numkeyfiles=3
-            if [ "${fcctnet}" == 'none' ]; then
+            if [ "${butanenet}" == 'none' ]; then
                 # because we propagate initramfs networking if no real root networking 
                 devname=${initramfsnet##*_}
                 hostname=${initramfshostname}
@@ -695,24 +700,24 @@ EOF
                     numkeyfiles=2
                 fi
             else
-                devname=${fcctnet##*_}
+                devname=${butanenet##*_}
                 hostname=${ignitionhostname}
                 # If we're not using a virtual NIC (bond, bridge, team, etc)
                 # then only two keyfiles will be created.
-                if [ "${fcctnet}" == 'static_nic0' ]; then
+                if [ "${butanenet}" == 'static_nic0' ]; then
                     numkeyfiles=2
                 fi
             fi
             # If devname=nic0 then replace with ${nic0} variable
             [ $devname == "nic0" ] && devname=${nic0}
-            fcctvar="fcct_${fcctnet}"
-            fcctconfig=${!fcctvar}
+            butanevar="butane_${butanenet}"
+            butaneconfig=${!butanevar}
             initramfsvar="initramfs_${initramfsnet}"
             kernel_args=${!initramfsvar}
 
-            echo -e "\n###### Testing initramfs: ${initramfsnet} + ignition/fcct: ${fcctnet}\n"
+            echo -e "\n###### Testing initramfs: ${initramfsnet} + ignition/butane: ${butanenet}\n"
 
-            create_ignition_file "$fcctconfig" $ignitionfile
+            create_ignition_file "$butaneconfig" $ignitionfile
             start_vm $qcow $ignitionfile $kernel $initramfs "${kernel_args}"
             check_vm $method $interfaces $numkeyfiles $ip $devname $hostname $nameserver $sshkeyfile
             reboot_vm
