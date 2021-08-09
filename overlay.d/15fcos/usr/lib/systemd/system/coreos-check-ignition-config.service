@@ -2,15 +2,17 @@
 # no Ignition config is provided.
 [Unit]
 Description=Check if Ignition config is provided
-# Only perform checks on the first (Ignition) boot as they are
-# mostly useful only on that boot. This ensures systems started
-# before Ignition/Afterburn started logging structured data don't
-# get misleading messages. Also handles the case where the journal
-# gets rotated and no longer has the structured log messages.
-ConditionKernelCommandLine=ignition.firstboot
+After=coreos-ignition-firstboot-complete.service
+Before=systemd-user-sessions.service
+RequiresMountsFor=/var/lib/coreos
+ConditionPathExists=|/var/lib/coreos/ignition.info.json
+# See coreos-ignition-firstboot-complete
+ConditionPathExists=|/run/ignition.info.json
+
 [Service]
 Type=oneshot
 ExecStart=/usr/libexec/coreos-check-ignition-config
 RemainAfterExit=yes
+
 [Install]
 WantedBy=multi-user.target

@@ -83,11 +83,16 @@ postprocess:
 
   # Neuter systemd-resolved for now.
   # https://github.com/coreos/fedora-coreos-tracker/issues/649#issuecomment-743219353
-  # Note: When removing this, we likely also want to remove
-  # coreos-reset-stub-resolv-selinux-context.{path,service} and their presets.
+  # Remove when on F35+ as NM now handles rdns + resolved better
+  # https://github.com/coreos/fedora-coreos-tracker/issues/834
+  # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/601
+  # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/merge_requests/877
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
+    # Only operate on F34 since F35+ has been fixed
+    source /etc/os-release
+    [ ${VERSION_ID} -eq 34 ] || exit 0
     # Get us back to Fedora 32's nsswitch.conf settings
     sed -i 's/^hosts:.*/hosts:      files dns myhostname/' /etc/nsswitch.conf
     mkdir -p /usr/lib/systemd/resolved.conf.d/
@@ -99,11 +104,12 @@ postprocess:
     DNSStubListener=no
     EOF
 
-  # Set the fallback hostname to `localhost`. This piggybacks on the
-  # postprocess script above which neuters systemd-resolved, because
-  # currently, a fallback hostname of `localhost` + systemd-resolved breaks
-  # rDNS. Eventually, we should be able to drop this at the same time as we drop
-  # the above. See: https://bugzilla.redhat.com/show_bug.cgi?id=1892235#c25
+  # Set the fallback hostname to `localhost`. This was needed in F33/F34
+  # because a fallback hostname of `fedora` + systemd-resolved broke
+  # rDNS. It's now fixed in F35+ NetworkManager to handle the corner cases
+  # around synthetized hostnames and systemd-resolved, but the question
+  # remains on what is a more appropriate default hostname for a server like
+  # host. https://github.com/coreos/fedora-coreos-tracker/issues/902
   - |
     #!/usr/bin/env bash
     source /etc/os-release
