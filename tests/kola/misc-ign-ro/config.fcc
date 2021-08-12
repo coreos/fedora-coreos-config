@@ -44,11 +44,14 @@ systemd:
     - name: kube-watch.service
       # This is for verifying that `kubernetes_file_t` labeled files can be
       # watched by systemd
+      # NOTE: we've observed a race where the journal message shows up as
+      # coming from `echo` rather than `kube-watch`, so we're embedding
+      # a UUID in the message to make it easier to find.
       # See: https://github.com/coreos/fedora-coreos-tracker/issues/861
       # See: https://github.com/containers/container-selinux/issues/135
       contents: |
         [Service]
-        ExecStart=/usr/bin/echo "Found it"
+        ExecStart=/usr/bin/echo "This is the kube-watch unique id: 27a259a8-7f2d-4144-8b8f-23dd201b630c"
         RemainAfterExit=yes
         Type=oneshot
         [Install]
