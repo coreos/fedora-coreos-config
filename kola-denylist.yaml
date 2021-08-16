@@ -13,3 +13,7 @@
 - pattern: ext.config.yum-repos
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/925
   snooze: 2021-09-01
+- pattern: ext.config.toolbox
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/926
+  stream: rawhide
+  snooze: 2021-09-01
