@@ -10,3 +10,6 @@
   snooze: 2021-09-01
   platforms:
     - openstack
+- pattern: ext.config.yum-repos
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/925
+  snooze: 2021-09-01

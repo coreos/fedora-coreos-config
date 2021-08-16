@@ -117,6 +117,17 @@ postprocess:
       echo 'DEFAULT_HOSTNAME=localhost' >> /usr/lib/os-release
     fi
 
+
+  # Workaround issue in rawhide parsing the F37 GPG key
+  # by removing it from the list of gpgkeys to load.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/925
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    source /etc/os-release
+    [ ${VERSION_ID} -eq 36 ] || exit 0
+    sed -i 's|gpgkey=.*$|gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch|' /etc/yum.repos.d/fedora-rawhide.repo
+
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go
 # into one of the sub-manifests listed at the top.
