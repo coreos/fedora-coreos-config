@@ -49,6 +49,12 @@ ok "kube-watch.path successfully activated"
 touch /etc/kubernetes/kubeconfig
 ok "successfully created /etc/kubernetes/kubeconfig"
 
+# If we check the status too soon it could still be activating..
+# Sleep in a loop until it's done "activating"
+while [ "$(systemctl is-active kube-watch.service)" == "activating" ]; do
+    echo "kube-watch is activating. sleeping for 1 second"
+    sleep 1
+done
 if [ "$(systemctl is-active kube-watch.service)" != "active" ]; then
     fatal "kube-watch.service did not successfully activate"
 fi
