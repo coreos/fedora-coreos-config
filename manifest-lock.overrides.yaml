@@ -48,3 +48,13 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
       type: fast-track
+  coreos-installer:
+    evr: 0.10.0-2.fc36
+    metadata:
+      reason: https://github.com/coreos/coreos-installer/pull/599
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.10.0-2.fc36
+    metadata:
+      reason: https://github.com/coreos/coreos-installer/pull/599
+      type: fast-track
