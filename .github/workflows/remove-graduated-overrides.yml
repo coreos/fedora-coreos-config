@@ -19,6 +19,8 @@ jobs:
         branch:
           - testing-devel
           - next-devel
+          - branched
+          - rawhide
       fail-fast: false
     steps:
       - run: dnf install -y rpm-ostree # see related TODO above
