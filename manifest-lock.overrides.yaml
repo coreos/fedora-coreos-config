@@ -13,3 +13,38 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/913
       type: pin
+  fedora-gpg-keys:
+    evra: 36-0.3.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
+      type: fast-track
+  fedora-repos:
+    evra: 36-0.3.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
+      type: fast-track
+  fedora-repos-archive:
+    evra: 36-0.3.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
+      type: fast-track
+  fedora-repos-modular:
+    evra: 36-0.3.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
+      type: fast-track
+  fedora-repos-ostree:
+    evra: 36-0.3.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
+      type: fast-track
+  fedora-repos-rawhide:
+    evra: 36-0.3.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
+      type: fast-track
+  fedora-repos-rawhide-modular:
+    evra: 36-0.3.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
+      type: fast-track
