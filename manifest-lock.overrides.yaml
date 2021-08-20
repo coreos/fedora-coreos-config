@@ -4,8 +4,9 @@
 #
 # IMPORTANT: YAML comments *will not* be preserved. All `pin` overrides *must*
 # include a URL in the `metadata.reason` key. Overrides of type `fast-track`
-# *should* include a URL in the `metadata.reason` key, though it's acceptable to
-# omit one for FCOS-specific packages (e.g. ignition, afterburn, etc...).
+# *should* include a Bodhi update URL in the `metadata.bodhi` key and a URL
+# in the `metadata.reason` key, though it's acceptable to omit a `reason`
+# for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
   kexec-tools:
@@ -13,48 +14,3 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/913
       type: pin
-  fedora-gpg-keys:
-    evra: 36-0.3.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
-      type: fast-track
-  fedora-repos:
-    evra: 36-0.3.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
-      type: fast-track
-  fedora-repos-archive:
-    evra: 36-0.3.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
-      type: fast-track
-  fedora-repos-modular:
-    evra: 36-0.3.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
-      type: fast-track
-  fedora-repos-ostree:
-    evra: 36-0.3.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
-      type: fast-track
-  fedora-repos-rawhide:
-    evra: 36-0.3.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
-      type: fast-track
-  fedora-repos-rawhide-modular:
-    evra: 36-0.3.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/925
-      type: fast-track
-  coreos-installer:
-    evr: 0.10.0-2.fc36
-    metadata:
-      reason: https://github.com/coreos/coreos-installer/pull/599
-      type: fast-track
-  coreos-installer-bootinfra:
-    evr: 0.10.0-2.fc36
-    metadata:
-      reason: https://github.com/coreos/coreos-installer/pull/599
-      type: fast-track
