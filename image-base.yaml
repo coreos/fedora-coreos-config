@@ -17,10 +17,6 @@ ignition-network-kcmdline: []
 # Optional remote by which to prefix the deployed OSTree ref
 ostree-remote: fedora
 
-# We want read-only /sysroot to protect from unintentional damage.
-# https://github.com/ostreedev/ostree/issues/1265
-sysroot-readonly: true
-
 # opt in to using the `metadata_csum_seed` feature of the ext4 filesystem
 # for the /boot filesystem. Support for this was only recently added to grub
 # and isn't available everywhere yet so we'll gate it behind this image.yaml

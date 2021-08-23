@@ -5,3 +5,8 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: podman.workflow
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
+- pattern: podman.network-single
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/901
+  snooze: 2021-09-01
+  platforms:
+    - openstack
