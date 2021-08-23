@@ -1,0 +1,8 @@
+# This file configures the pipeline, which is currently
+# https://github.com/coreos/fedora-coreos-pipeline
+
+# S3 bucket used for builds
+s3_bucket: fcos-builds
+
+# Location of the oscontainer (temporary value)
+oscontainer: quay.io/cgwalters/fcos
