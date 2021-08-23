@@ -9,9 +9,19 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  container-selinux:
-    evra: 2:2.164.1-1.git563ba3f.fc34.noarch
+  coreos-installer:
+    evr: 0.10.0-1.fc34
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-463a2721ec
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/881
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-23c125b007
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.10.0-1.fc34
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-23c125b007
+      type: fast-track
+  ignition:
+    evr: 2.12.0-1.fc34
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-429119296e
+      reason: https://github.com/coreos/ignition/issues/1255
       type: fast-track
