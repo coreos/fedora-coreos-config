@@ -8,10 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  kexec-tools:
-    evr: 2.0.22-6.fc36
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/913
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-06f2aaa5bb
-      type: fast-track
+packages: {}
