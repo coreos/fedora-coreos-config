@@ -1,0 +1,89 @@
+# This file specifies image customizations that are specific to particular
+# architecture/platform pairs.  It is applied (indirectly, via
+# /boot/coreos/platforms.json) by create_disk.sh and gf-set-platform at
+# build time and coreos-installer at install time (if --platform is
+# specified).
+#
+# Currently this is used to configure the default console.  For any
+# arch/platform pairs not specified, GRUB and the kernel will apply their
+# own defaults.
+#
+# s390x doesn't use GRUB and requires running zipl after updating kargs,
+# so it can't be added to this file without additional development work.
+#
+# All architectures, platforms, and fields are optional.
+aarch64:
+  aws:
+    # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-to-serial-console.html#sc-considerations
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial
+      - terminal_output serial
+    kernel_arguments:
+      - console=ttyS0,115200n8
+  packet:
+    # https://metal.equinix.com/developers/docs/resilience-recovery/serial-over-ssh/#limitations
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial
+      - terminal_output serial
+    kernel_arguments:
+      - console=ttyAMA0,115200
+  qemu:
+    # The kernel successfully autodetects a serial console, but we still
+    # want GRUB to use one
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+ppc64le:
+  qemu:
+    # petitboot doesn't understand GRUB console commands, but we need to
+    # pass console kargs
+    # https://github.com/coreos/coreos-assembler/pull/2400#discussion_r701412417
+    kernel_arguments:
+      - console=hvc0
+      - console=tty0
+x86_64:
+  aws:
+    # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-to-serial-console.html#sc-considerations
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial
+      - terminal_output serial
+    kernel_arguments:
+      - console=ttyS0,115200n8
+  azure:
+    # https://docs.microsoft.com/en-us/troubleshoot/azure/virtual-machines/serial-console-linux
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial
+      - terminal_output serial
+    kernel_arguments:
+      - console=ttyS0,115200n8
+  gcp:
+    # Four serial ports are available; we use the first one
+    # https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-using-serial-console
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial
+      - terminal_output serial
+    kernel_arguments:
+      - console=ttyS0,115200n8
+  packet:
+    # https://metal.equinix.com/developers/docs/resilience-recovery/serial-over-ssh/#limitations
+    grub_commands:
+      - serial --unit=1 --speed=115200
+      - terminal_input serial
+      - terminal_output serial
+    kernel_arguments:
+      - console=ttyS1,115200n8
+  qemu:
+    # https://github.com/coreos/fedora-coreos-tracker/issues/954
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=tty0
+      - console=ttyS0,115200n8
