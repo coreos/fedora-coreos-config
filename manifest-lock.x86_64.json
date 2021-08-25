@@ -130,10 +130,10 @@
       "evra": "2:2.164.2-1.fc34.noarch"
     },
     "containerd": {
-      "evra": "1.5.3-1.fc34.x86_64"
+      "evra": "1.5.5-1.fc34.x86_64"
     },
     "containernetworking-plugins": {
-      "evra": "1.0.0-0.3.rc1.fc34.x86_64"
+      "evra": "1.0.0-1.fc34.x86_64"
     },
     "containers-common": {
       "evra": "4:1-21.fc34.noarch"
@@ -306,9 +306,6 @@
     "findutils": {
       "evra": "1:4.8.0-2.fc34.x86_64"
     },
-    "firewalld-filesystem": {
-      "evra": "0.9.4-1.fc34.noarch"
-    },
     "flatpak-session-helper": {
       "evra": "1.10.2-4.fc34.x86_64"
     },
@@ -457,7 +454,7 @@
       "evra": "0.14-8.fc34.x86_64"
     },
     "json-glib": {
-      "evra": "1.6.2-1.fc34.x86_64"
+      "evra": "1.6.4-1.fc34.x86_64"
     },
     "kbd": {
       "evra": "2.4.0-2.fc34.x86_64"
@@ -859,7 +856,7 @@
       "evra": "2:2.1-46.fc34.x86_64"
     },
     "moby-engine": {
-      "evra": "20.10.7-1.fc34.x86_64"
+      "evra": "20.10.8-1.fc34.x86_64"
     },
     "mokutil": {
       "evra": "2:0.4.0-4.fc34.x86_64"
@@ -1072,7 +1069,7 @@
       "evra": "2.3.2-9.fc34.x86_64"
     },
     "slirp4netns": {
-      "evra": "1.1.9-1.fc34.x86_64"
+      "evra": "1.1.12-2.fc34.x86_64"
     },
     "snappy": {
       "evra": "1.1.8-5.fc34.x86_64"
@@ -1159,7 +1156,7 @@
       "evra": "2.36.2-1.fc34.x86_64"
     },
     "vim-minimal": {
-      "evra": "2:8.2.3354-1.fc34.x86_64"
+      "evra": "2:8.2.3367-1.fc34.x86_64"
     },
     "which": {
       "evra": "2.21-26.fc34.x86_64"
@@ -1193,16 +1190,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-08-24T20:54:11Z",
+    "generated": "2021-08-25T20:56:09Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2021-04-23T10:47:57Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-08-23T21:45:32Z"
+        "generated": "2021-08-24T22:01:40Z"
       },
       "fedora-updates": {
-        "generated": "2021-08-24T03:24:40Z"
+        "generated": "2021-08-25T19:37:45Z"
       }
     }
   }
