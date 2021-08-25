@@ -4,13 +4,8 @@
 #
 # IMPORTANT: YAML comments *will not* be preserved. All `pin` overrides *must*
 # include a URL in the `metadata.reason` key. Overrides of type `fast-track`
-# *should* include a URL in the `metadata.reason` key, though it's acceptable to
-# omit one for FCOS-specific packages (e.g. ignition, afterburn, etc...).
+# *should* include a Bodhi update URL in the `metadata.bodhi` key and a URL
+# in the `metadata.reason` key, though it's acceptable to omit a `reason`
+# for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  kexec-tools:
-    evr: 2.0.22-6.fc35
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/913
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-bb17734a90
-      type: fast-track
+packages: {}
