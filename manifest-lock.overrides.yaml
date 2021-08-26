@@ -24,3 +24,15 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/937
       type: pin
+  rpm-ostree:
+    evr: 2021.10-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-cf95715f80
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/767
+      type: fast-track
+  rpm-ostree-libs:
+    evr: 2021.10-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-cf95715f80
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/767
+      type: fast-track
