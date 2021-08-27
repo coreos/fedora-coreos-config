@@ -1,0 +1,7 @@
+variant: fcos
+version: 1.4.0
+passwd:
+  users:
+    - name: tester 
+      # encrypted version of 'foobar'. generated with `mkpasswd --method=yescrypt`
+      password_hash: $y$j9T$0HA8ReLTqRTccLKT0gzVY.$/e.OCrjePrh2tOm8CAoLqCMlZWS9q/WSAPBaZuopRs4
