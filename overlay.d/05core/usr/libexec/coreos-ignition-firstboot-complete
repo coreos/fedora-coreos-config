@@ -4,6 +4,9 @@ set -euo pipefail
 mount -o remount,rw /boot
 
 if [[ $(uname -m) = s390x ]]; then
+    if [[ -f /etc/luks/root && -f /etc/crypttab ]]; then
+        rpm-ostree initramfs --enable --arg="-I" --arg="/etc/crypttab /etc/luks/root"
+    fi
     zipl
 fi
 
