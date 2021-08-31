@@ -10,17 +10,20 @@
 
 packages:
   kernel:
-    evr: 5.14.0-0.rc6.20210820gitd992fe5318d8.50.fc36
+    evr: 5.14.0-61.fc36
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/937
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-4c48d77085
+      type: fast-track
   kernel-core:
-    evr: 5.14.0-0.rc6.20210820gitd992fe5318d8.50.fc36
+    evr: 5.14.0-61.fc36
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/937
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-4c48d77085
+      type: fast-track
   kernel-modules:
-    evr: 5.14.0-0.rc6.20210820gitd992fe5318d8.50.fc36
+    evr: 5.14.0-61.fc36
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/937
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-4c48d77085
+      type: fast-track
