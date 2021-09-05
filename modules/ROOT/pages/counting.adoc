@@ -13,7 +13,7 @@ You can use the following command to disable counting on existing nodes:
 $ sudo systemctl mask --now rpm-ostree-countme.timer
 ----
 
-You can use the following Butane config to disable counting during provisionning on first boot:
+You can use the following Butane config to disable counting during provisioning on first boot:
 
 [source,yaml]
 ----

@@ -133,7 +133,7 @@ For further information on first-boot networking, see https://coreos.github.io/a
 
 == Troubleshooting First-boot Problems
 
-You may encounter problems with your Ignition configuration that require access to the system log which appears during first-boot. To make a copy of the sytem log you can attach a serial device to the VM before booting. vSphere as well as Workstation and Fusion allow this and will save the output to a file of your choice.
+You may encounter problems with your Ignition configuration that require access to the system log which appears during first-boot. To make a copy of the system log you can attach a serial device to the VM before booting. vSphere as well as Workstation and Fusion allow this and will save the output to a file of your choice.
 
 To attach a serial device simply modify the hardware settings of the powered off VM and add a `Serial Port`. Select the destination and name of the file to be created. Afterwards power on the VM. When encountering an error, check the file you initially specified – it should contain a copy of the system log.
 
