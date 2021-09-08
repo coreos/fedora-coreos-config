@@ -38,5 +38,5 @@ if [ "${PTUUID:-}" != "$UNINITIALIZED_GUID" ]; then
 fi
 
 echo "Randomizing disk GUID"
-sgdisk --disk-guid=R --move-second-header "$PKNAME"
+sgdisk --randomize-guids --move-second-header "$PKNAME"
 udevadm settle || :
