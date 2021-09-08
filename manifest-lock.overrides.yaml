@@ -1,7 +1,23 @@
+# This lockfile should be used to pin to a package version (`type: pin`) or to
+# fast-track packages ahead of Bodhi (`type: fast-track`). Fast-tracked
+# packages will automatically be removed once they are in the stable repos.
+#
+# IMPORTANT: YAML comments *will not* be preserved. All `pin` overrides *must*
+# include a URL in the `metadata.reason` key. Overrides of type `fast-track`
+# *should* include a Bodhi update URL in the `metadata.bodhi` key and a URL
+# in the `metadata.reason` key, though it's acceptable to omit a `reason`
+# for FCOS-specific packages (ignition, afterburn, etc.).
+
 packages:
-    # Freeze dracut on 053. We need to investigate NetworkManager systemd changes.
-    # https://github.com/coreos/fedora-coreos-tracker/issues/842
-    dracut:
-        evr: 053-5.fc34
-    dracut-network:
-        evr: 053-5.fc34
+  rpm-ostree:
+    evr: 2021.10-2.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-cf95715f80
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/767
+      type: fast-track
+  rpm-ostree-libs:
+    evr: 2021.10-2.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-cf95715f80
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/767
+      type: fast-track
