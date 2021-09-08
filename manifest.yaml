@@ -1,7 +1,7 @@
 ref: fedora/${basearch}/coreos/next-devel
 include: manifests/fedora-coreos.yaml
 
-releasever: "34"
+releasever: "35"
 
 rojig:
   license: MIT
@@ -13,8 +13,8 @@ repos:
   # use `cosa fetch --update-lockfile`; but note that all package versions are
   # still pinned. These repos are also used by the remove-graduated-overrides
   # GitHub Action.
-  - fedora
-  - fedora-updates
+  - fedora-next
+  - fedora-next-updates
 
 # All Fedora CoreOS streams share the same pool for locked files.
 # This will be in fedora-coreos.yaml in the future so it can be more easily be
@@ -34,3 +34,13 @@ postprocess:
     mkdir -p /etc/fedora-coreos-pinger/config.d /etc/zincati/config.d
     echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/90-disable-on-non-production-stream.toml
     echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nupdates.enabled = false' > /etc/zincati/config.d/90-disable-on-non-production-stream.toml
+
+packages:
+  # resolved was broken out to its own package in rawhide/f35
+  - systemd-resolved
+
+remove-from-packages:
+  # Hopefully short-term hack -- see https://github.com/coreos/fedora-coreos-config/pull/1206#discussion_r705425869.
+  # This keeps the size down and ensures nothing tries to use it, preventing us
+  # from shedding the dep eventually.
+  - [cracklib-dicts, .*]
