@@ -15,15 +15,12 @@ ConditionPathExists=/dev/virtio-ports/coreos.liveiso-success
 
 [Service]
 Type=simple
-# https://stackoverflow.com/questions/44358723/systemd-unit-file-problems-with-tr
-IgnoreSIGPIPE=false
-# See https://cgit.freedesktop.org/systemd/systemd/plain/src/systemd/sd-messages.h for the MESSAGE_ID source.
-# The logic here is that we're doing a streaming journalctl query (-f to follow)
-# and the `| head` bit will cause the pipeline to wait until at least one line is
-# emitted, which will happen when a user login starts.  We then just write a static
-# message to the virtio channel, which https://github.com/coreos/coreos-assembler/pull/1330
-# knows how to read.
-ExecStart=/bin/sh -c 'journalctl -b -q -f --no-tail -o cat -u systemd-logind.service MESSAGE_ID=8d45620c1a4348dbb17410da57c60c66 | head -1; echo coreos-liveiso-success > /dev/virtio-ports/coreos.liveiso-success'
+# Wait for a user session to start, then write a static message to the
+# virtio channel, which https://github.com/coreos/coreos-assembler/pull/1330
+# knows how to read.  We previously did "journalctl -f ... | head -1" here,
+# but RHEL 8 has systemd 239, which has
+# https://github.com/systemd/systemd/issues/9374.
+ExecStart=/bin/sh -c 'while [ -z "$(loginctl list-sessions --no-legend)" ]; do sleep 1; done; echo coreos-liveiso-success > /dev/virtio-ports/coreos.liveiso-success'
 
 [Install]
 WantedBy=multi-user.target
