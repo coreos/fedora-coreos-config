@@ -35,8 +35,7 @@ cosaPod {
     if (env.CHANGE_TARGET in mechanical_streams) {
         no_strict_build = true
     }
-    fcosBuild(skipInit: true, skipKola: true, noStrict: no_strict_build, extraFetchArgs: '--with-cosa-overrides', extraArgs: parent_arg)
-    fcosKola(basicScenarios: true)
+    fcosBuild(skipInit: true, noStrict: no_strict_build, extraFetchArgs: '--with-cosa-overrides', extraArgs: parent_arg)
 
     parallel metal: {
         shwrap("cd /srv/fcos && cosa buildextend-metal")
