@@ -53,12 +53,17 @@ for i in $(seq 1 5); do
 
 	# Check rpm-ostree count me output
 	output="$(journal_after_cursor)"
-	# Depending on the stream, we expect different numbers of countme-enabled repos
-	if [[ "${output}" != "Successful requests: 1/1" ]] && \
-	   [[ "${output}" != "Successful requests: 2/2" ]] && \
-	   [[ "${output}" != "Successful requests: 3/3" ]] && \
-	   [[ "${output}" != "Successful requests: 4/4" ]]; then
-		echo "rpm-ostree-countme service ouput does not match expected sucess output (try: $i):"
+	trimmed=${output##Successful requests: }
+	if [[ ! $trimmed =~ ^[0-9]+/[0-9]+$ ]]; then
+		echo "rpm-ostree-countme service output does not match expected success output (try: $i):"
+		echo "${output}"
+		sleep 10
+		continue
+	fi
+	tries=${trimmed%%/*}
+	total=${trimmed##*/}
+	if [ "${tries}" != "${total}" ]; then
+		echo "rpm-ostree-countme service output shows failed requests (try: $i):"
 		echo "${output}"
 		sleep 10
 		continue
