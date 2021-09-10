@@ -198,6 +198,3 @@ if find ${tmpd}/usr/{bin,sbin,libexec} ! -perm -0111 | grep -v clevis-luks-commo
 fi
 rm -r ${tmpd}
 ok "All initrd scripts are executable"
-
-rpm-ostree ex module install cri-o:1.20/default --dry-run
-ok "basic modularity support"
