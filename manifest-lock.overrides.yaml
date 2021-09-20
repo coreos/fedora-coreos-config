@@ -24,3 +24,8 @@ packages:
     metadata:
       reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/967'
       type: pin
+  tpm2-tss:
+    evr: 3.1.0-3.fc35
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/968'
+      type: pin
