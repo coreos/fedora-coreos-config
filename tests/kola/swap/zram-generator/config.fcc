@@ -1,0 +1,10 @@
+variant: fcos
+version: 1.2.0
+storage:
+  files:
+    - path: /etc/systemd/zram-generator.conf
+      mode: 0644
+      contents:
+        inline: |
+          # This config file enables a /dev/zram0 device with the default settings
+          [zram0]

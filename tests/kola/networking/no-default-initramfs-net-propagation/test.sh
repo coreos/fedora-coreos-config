@@ -1,4 +1,5 @@
 #!/bin/bash
+# kola: { "exclusive": false }
 set -xeuo pipefail
 
 # With pure network defaults no networking should have been propagated

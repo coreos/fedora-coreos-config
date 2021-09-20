@@ -1,4 +1,5 @@
 #!/bin/bash
+# kola: { "exclusive": false }
 # This is a place to put random quick read-only tests.
 set -xeuo pipefail
 
@@ -133,14 +134,6 @@ if [ ! -f /usr/share/rpm/rpmdb.sqlite ]; then
     fatal "Didn't find file /usr/share/rpm/rpmdb.sqlite"
 fi
 ok rpmdb is sqlite
-
-# make sure we don't default to having swap on zram
-# https://github.com/coreos/fedora-coreos-tracker/issues/509
-# https://github.com/coreos/fedora-coreos-config/pull/687
-if [ -e /dev/zram0 ]; then
-    fatal "zram0 swap device set up on default install"
-fi
-ok no zram swap by default
 
 # make sure dnsmasq is masked
 # https://github.com/coreos/fedora-coreos-tracker/issues/519#issuecomment-705140528

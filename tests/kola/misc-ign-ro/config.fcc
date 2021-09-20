@@ -8,12 +8,6 @@ storage:
     # See: https://github.com/containers/container-selinux/issues/135
     - path: /etc/kubernetes
   files:
-    - path: /etc/systemd/zram-generator.conf
-      mode: 0644
-      contents:
-        inline: |
-          # This config file enables a /dev/zram0 device with the default settings
-          [zram0]
     - path: /etc/pki/ca-trust/source/anchors/coreos.crt
       mode: 0644
       contents:
