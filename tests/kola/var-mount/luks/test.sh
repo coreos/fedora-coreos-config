@@ -2,7 +2,7 @@
 set -xeuo pipefail
 
 # restrict to qemu for now because the primary disk path is platform-dependent
-# kola: {"platforms": "qemu"}
+# kola: {"platforms": "qemu", "architectures": "!s390x"}
 
 ok() {
     echo "ok" "$@"
