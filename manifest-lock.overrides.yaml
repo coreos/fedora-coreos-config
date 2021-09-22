@@ -9,21 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  kernel:
-    evr: 5.15.0-0.rc1.12.fc36
-    metadata:
-      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/967'
-      type: pin
-  kernel-core:
-    evr: 5.15.0-0.rc1.12.fc36
-    metadata:
-      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/967'
-      type: pin
-  kernel-modules:
-    evr: 5.15.0-0.rc1.12.fc36
-    metadata:
-      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/967'
-      type: pin
   tpm2-tss:
     evr: 3.1.0-3.fc35
     metadata:
