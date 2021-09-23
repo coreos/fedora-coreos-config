@@ -7,7 +7,7 @@ set -xeuo pipefail
 
 # This case needs to access remote.ign on github
 # qemu-unpriv machines cannot communicate to network
-# kola: { "platforms": "! qemu-unpriv", "tags": "needs-internet" }
+# kola: { "tags": "needs-internet" }
 
 ok() {
     echo "ok" "$@"
