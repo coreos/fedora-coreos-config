@@ -4,6 +4,9 @@ set -xeuo pipefail
 # To test https://bugzilla.redhat.com/show_bug.cgi?id=1980679
 # remote.ign on github: inject kernelArguments and write something to /etc/testfile
 # config.ign to include remote kargsfile.ign
+
+# This case need to access remote.ign on github
+# qemu-unpriv machines cannot communicate to network
 # kola: { "platforms": "! qemu-unpriv", "tags": "needs-internet" }
 
 ok() {
