@@ -12,6 +12,11 @@ install_ignition_unit() {
 }
 
 install() {
+    # Temporary workaround for https://github.com/dracutdevs/dracut/pull/1606.
+    mkdir -p "$systemdsystemunitdir/multipathd.service.d"
+    inst_simple "$moddir/90-multipathd-remove-execstop.conf" \
+        "$systemdsystemunitdir/multipathd.service.d/90-multipathd-remove-execstop.conf"
+
     inst_script "$moddir/coreos-propagate-multipath-conf.sh" \
         "/usr/sbin/coreos-propagate-multipath-conf"
 
