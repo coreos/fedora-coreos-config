@@ -1,0 +1,8 @@
+variant: fcos
+version: 1.4.0
+ignition:
+  config:
+    merge:
+      - source: https://raw.githubusercontent.com/coreos/fedora-coreos-config/testing-devel/tests/kola/ignition/remote/remote.ign
+        verification:
+          hash: sha512-1c840823419a2eae431356b58d0c498f4ec84ef3d2b9a4fa42f75749a89fe1f413a848d9082d5dc6c243324b57fa7a76b4ef6dde5d023f9bba549b7755836170
