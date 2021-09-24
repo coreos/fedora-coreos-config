@@ -198,3 +198,16 @@ if find ${tmpd}/usr/{bin,sbin,libexec} ! -perm -0111 | grep -v clevis-luks-commo
 fi
 rm -r ${tmpd}
 ok "All initrd scripts are executable"
+
+# We need either a fixed dracut or temporary workaround, no need for both.
+# See https://github.com/coreos/fedora-coreos-tracker/issues/803.
+has_fixed_dracut=$(grep -q 'ExecStop=/sbin/multipathd shutdown' /usr/lib/dracut/modules.d/90multipath/multipathd.service; echo $?)
+has_overlay_quickfix=$(test ! -f /usr/lib/dracut/modules.d/35coreos-multipath/90-multipathd-remove-execstop.conf; echo $?)
+if test "${has_fixed_dracut}" -eq "${has_overlay_quickfix}"; then
+    if test "${has_fixed_dracut}" -eq 1; then
+        fatal "Found fixed dracut multipath module but quickfix is present too"
+    else
+        fatal "Found buggy dracut multipath module but quickfix is missing too"
+    fi
+fi
+ok "either dracut multipath module fixed or quickfix present"
