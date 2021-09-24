@@ -1,7 +1,7 @@
 ref: fedora/${basearch}/coreos/next
 include: manifests/fedora-coreos.yaml
 
-releasever: "34"
+releasever: "35"
 
 rojig:
   license: MIT
@@ -10,3 +10,13 @@ rojig:
 
 add-commit-metadata:
   fedora-coreos.stream: next
+
+packages:
+  # resolved was broken out to its own package in rawhide/f35
+  - systemd-resolved
+
+remove-from-packages:
+  # Hopefully short-term hack -- see https://github.com/coreos/fedora-coreos-config/pull/1206#discussion_r705425869.
+  # This keeps the size down and ensures nothing tries to use it, preventing us
+  # from shedding the dep eventually.
+  - [cracklib-dicts, .*]
