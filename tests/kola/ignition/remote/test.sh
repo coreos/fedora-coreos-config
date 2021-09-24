@@ -5,7 +5,6 @@ set -xeuo pipefail
 # remote.ign on github: inject kernelArguments and write something to /etc/testfile
 # config.ign to include remote kargsfile.ign
 
-# failed in China, as raw.githubusercontent.com is not accessible to China
 # kola: { "tags": "needs-internet" }
 
 ok() {
