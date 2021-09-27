@@ -1,0 +1,20 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# Make sure we're still on legacy iptables for now
+# https://github.com/coreos/fedora-coreos-tracker/issues/676#issuecomment-928028451
+if ! iptables --version | grep legacy; then
+    iptables --version # output for logs
+    fatal "iptables version is not legacy"
+fi
+ok "iptables still in legacy mode"
