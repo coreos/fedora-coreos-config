@@ -34,7 +34,16 @@ For maximum compatibility, it is recommended to use `base64` encoding and to pre
 
 [source, bash]
 ----
-CONFIG_B64=`cat example.ign | base64 -w0 -`
+CONFIG_ENCODING='base64'
+CONFIG_ENCODED=$(cat example.ign | base64 -w0 -)
+----
+
+An alternative to plain `base64` encoding is `gzip+base64` as described in the https://coreos.github.io/ignition/supported-platforms/[Ignition support platforms]. This is especially useful when submitting the Ignition Config via `govc` as _inline_ parameter. In that case the maximum length for shell arguments called `ARG_MAX` comes into play. Depending on the platform you are on, it may be impossible to submit your config inline unless it was compressed with `gzip`. Call `getconf ARG_MAX` in your shell to see the local limit.
+
+[source, bash]
+----
+CONFIG_ENCODING='gzip+base64'
+CONFIG_ENCODED=$(cat example.ign | gzip | base64 -w0 -)
 ----
 
 == Booting a new VM on Workstation or Fusion
@@ -54,8 +63,8 @@ ovftool \
   --powerOffTarget \
   --name="${VM_NAME}" \
   --allowExtraConfig \
-  --extraConfig:guestinfo.ignition.config.data.encoding="base64" \
-  --extraConfig:guestinfo.ignition.config.data="${CONFIG_B64}" \
+  --extraConfig:guestinfo.ignition.config.data.encoding="${CONFIG_ENCODING}" \
+  --extraConfig:guestinfo.ignition.config.data="${CONFIG_ENCODED}" \
   "${FCOS_OVA}" "${LIBRARY}"
 ----
 
@@ -87,11 +96,9 @@ You can now deploy a new VM, starting from the template in the library and the e
 ----
 VM_NAME='fcos-node01'
 govc library.deploy "${LIBRARY}/${TEMPLATE_NAME}" "${VM_NAME}"
-govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data.encoding=base64"
-govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data=${CONFIG_B64}"
+govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data.encoding=${CONFIG_ENCODING}"
+govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data=${CONFIG_ENCODED}"
 ----
-
-WARNING: When submitting the Ignition Config as Base 64 encoded string via `govc` _inline_ the maximum length for shell arguments called `ARG_MAX` comes into play. Depending on the platform you are on, it may be impossible to submit your config inline. Call `getconf ARG_MAX` in your shell to see the local limit.
 
 A new `fcos-node01` VM is now available for booting. Its hardware configuration can be further customized at this point, and then powered-up:
 
@@ -120,8 +127,8 @@ IFACE='ens192'
 IPCFG="ip=192.0.2.42::192.0.2.1:255.255.255.0:${VM_NAME}:${IFACE}:off"
 
 govc library.deploy "${LIBRARY}/${TEMPLATE_NAME}" "${VM_NAME}"
-govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data.encoding=base64"
-govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data=${CONFIG_B64}"
+govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data.encoding=${CONFIG_ENCODING}"
+govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data=${CONFIG_ENCODED}"
 govc vm.change -vm "${VM_NAME}" -e "guestinfo.afterburn.initrd.network-kargs=${IPCFG}"
 govc vm.info -e "${VM_NAME}"
 govc vm.power -on "${VM_NAME}"
