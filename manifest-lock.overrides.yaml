@@ -14,3 +14,18 @@ packages:
     metadata:
       reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/968'
       type: pin
+  kernel:
+    evr: 5.15.0-0.rc2.18.fc36
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/978'
+      type: pin
+  kernel-core:
+    evr: 5.15.0-0.rc2.18.fc36
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/978'
+      type: pin
+  kernel-modules:
+    evr: 5.15.0-0.rc2.18.fc36
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/978'
+      type: pin
