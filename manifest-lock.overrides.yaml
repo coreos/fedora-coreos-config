@@ -29,3 +29,8 @@ packages:
     metadata:
       reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/978'
       type: pin
+  containers-common:
+    evra: 4:1-28.fc36.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/981
+      type: pin
