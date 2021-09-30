@@ -1,0 +1,22 @@
+[Unit]
+Description=Check System Has 1 Boot Partition
+ConditionPathExists=/etc/initrd-release
+DefaultDependencies=no
+Before=local-fs-pre.target systemd-fsck-root.service initrd.target
+Wants=systemd-udevd.service
+After=systemd-udevd.service
+
+Requires=dev-disk-by\x2dlabel-boot.device
+After=dev-disk-by\x2dlabel-boot.device
+# And since the boot device may be on multipath; optionally wait for it to
+# appear via the dynamic target.
+After=coreos-multipath-wait.target
+
+OnFailure=emergency.target
+OnFailureJobMode=isolate
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/coreos-ensure-single-partition boot
+

@@ -22,6 +22,8 @@ install() {
         diff \
         lsblk \
         sed \
+        sort \
+        grep \
         sgdisk
 
     inst_simple "$moddir/coreos-diskful-generator" \
@@ -29,6 +31,9 @@ install() {
 
     inst_script "$moddir/coreos-gpt-setup.sh" \
         "/usr/sbin/coreos-gpt-setup"
+
+    inst_script "$moddir/coreos-ensure-single-partition.sh" \
+        "/usr/sbin/coreos-ensure-single-partition"
 
     inst_script "$moddir/coreos-ignition-setup-user.sh" \
         "/usr/sbin/coreos-ignition-setup-user"
@@ -56,4 +61,7 @@ install() {
         "ignition-diskful.target"
 
     install_ignition_unit coreos-ignition-setup-user.service
+
+    install_ignition_unit "coreos-ensure-single-boot-partition.service" \
+        "initrd.target"
 }
