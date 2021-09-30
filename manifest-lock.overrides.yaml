@@ -8,4 +8,14 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  rpm-ostree:
+    evr: 2021.11-2.fc34
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-03a5539124
+      type: fast-track
+  rpm-ostree-libs:
+    evr: 2021.11-2.fc34
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-03a5539124
+      type: fast-track
