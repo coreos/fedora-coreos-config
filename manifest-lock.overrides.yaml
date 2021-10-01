@@ -20,10 +20,8 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-03a5539124
       type: fast-track
   podman:
-    evr: 3:3.4.0-1.fc35
+    evr: 3:3.4.0-1.fc34
   podman-plugins:
-    evr: 3:3.4.0-1.fc35
+    evr: 3:3.4.0-1.fc34
   conmon:
-    evr: 2:2.0.30-2.fc35
-  containers-common:
-    evra: 4:1-30.fc35.noarch
+    evr: 2:2.0.30-2.fc34
