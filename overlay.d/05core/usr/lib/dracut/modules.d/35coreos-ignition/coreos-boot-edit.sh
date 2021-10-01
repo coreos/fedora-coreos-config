@@ -45,4 +45,7 @@ if [ -z "${boot}" ]; then
         exit 1
     fi
     rdcore kargs --boot-mount ${bootmnt} --append boot=UUID=${UUID}
+    # but also put it in /run for the first boot real root mount
+    mkdir -p /run/coreos
+    echo "${UUID}" > /run/coreos/bootfs_uuid
 fi
