@@ -31,5 +31,5 @@ rm -vrf ${initramfs_firstboot_network_dir}
 # append rootmap kargs to the BLS configs.
 root=$(karg root)
 if [ -z "${root}" ]; then
-    /usr/bin/rdcore rootmap /sysroot --boot-mount ${bootmnt}
+    rdcore rootmap /sysroot --boot-mount ${bootmnt}
 fi
