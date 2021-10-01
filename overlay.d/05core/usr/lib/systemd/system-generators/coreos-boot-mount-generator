@@ -102,6 +102,9 @@ elif [ -n "${bootkarg}" ]; then
         /dev/*) bootdev=$bootkarg;;
         *) echo "Unknown boot karg '${bootkarg}'; falling back to ${bootdev}";;
     esac
+# This is used for the first boot only
+elif [ -f /run/coreos/bootfs_uuid ]; then
+    bootdev=/dev/disk/by-uuid/$(cat /run/coreos/bootfs_uuid)
 fi
 
 # We mount read-only by default mostly to protect

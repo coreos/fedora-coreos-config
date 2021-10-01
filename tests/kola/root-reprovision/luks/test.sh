@@ -27,6 +27,13 @@ if ! grep prjquota <<< "${rootflags}"; then
 fi
 ok "root mounted with prjquota"
 
+# while we're here, sanity-check that boot is mounted by UUID
+if ! systemctl cat boot.mount | grep -q What=/dev/disk/by-uuid; then
+  systemctl cat boot.mount
+  fatal "boot mounted not by UUID"
+fi
+ok "boot mounted by UUID"
+
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
       # check that ignition-ostree-growfs ran
