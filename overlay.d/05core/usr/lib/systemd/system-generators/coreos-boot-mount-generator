@@ -67,8 +67,8 @@ EOF
 # Otherwise, use the usual by-label symlink.
 # See discussion in https://github.com/coreos/fedora-coreos-config/pull/1022
 bootdev=/dev/disk/by-label/boot
-# TODO add equivalent of getargbool() so we handle rd.multipath=0
-if have_karg rd.multipath; then
+mpath=$(karg rd.multipath)
+if [ -n "${mpath}" ] && [ "${mpath}" != 0 ]; then
     bootdev=/dev/disk/by-label/dm-mpath-boot
 fi
 
