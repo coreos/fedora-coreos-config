@@ -33,3 +33,16 @@ root=$(karg root)
 if [ -z "${root}" ]; then
     rdcore rootmap /sysroot --boot-mount ${bootmnt}
 fi
+
+# And similarly, only inject boot= if it's not already present.
+boot=$(karg boot)
+if [ -z "${boot}" ]; then
+    # XXX: `rdcore rootmap --inject-boot-karg` or maybe `rdcore bootmap`
+    eval $(blkid -o export "${bootdev}")
+    if [ -z "${UUID}" ]; then
+        # This should never happen
+        echo "Boot filesystem ${bootdev} has no UUID" >&2
+        exit 1
+    fi
+    rdcore kargs --boot-mount ${bootmnt} --append boot=UUID=${UUID}
+fi
