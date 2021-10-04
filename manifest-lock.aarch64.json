@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.32.10-2.fc35.aarch64"
+      "evra": "1:1.32.12-1.fc35.aarch64"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.32.10-2.fc35.aarch64"
+      "evra": "1:1.32.12-1.fc35.aarch64"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.32.10-2.fc35.aarch64"
+      "evra": "1:1.32.12-1.fc35.aarch64"
     },
     "NetworkManager-team": {
-      "evra": "1:1.32.10-2.fc35.aarch64"
+      "evra": "1:1.32.12-1.fc35.aarch64"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.32.10-2.fc35.aarch64"
+      "evra": "1:1.32.12-1.fc35.aarch64"
     },
     "WALinuxAgent-udev": {
       "evra": "2.3.1.1-2.fc35.noarch"
@@ -37,7 +37,7 @@
       "evra": "2.5.1-3.fc35.aarch64"
     },
     "audit-libs": {
-      "evra": "3.0.5-1.fc35.aarch64"
+      "evra": "3.0.6-1.fc35.aarch64"
     },
     "avahi-libs": {
       "evra": "0.8-14.fc35.aarch64"
@@ -61,7 +61,7 @@
       "evra": "32:9.16.21-1.fc35.aarch64"
     },
     "bootupd": {
-      "evra": "0.2.5-4.fc35.aarch64"
+      "evra": "0.2.6-1.fc35.aarch64"
     },
     "bsdtar": {
       "evra": "3.5.2-2.fc35.aarch64"
@@ -70,7 +70,7 @@
       "evra": "5.14.1-1.fc35.aarch64"
     },
     "bubblewrap": {
-      "evra": "0.4.1-5.fc35.aarch64"
+      "evra": "0.5.0-1.fc35.aarch64"
     },
     "bzip2": {
       "evra": "1.0.8-9.fc35.aarch64"
@@ -85,13 +85,13 @@
       "evra": "2021.2.50-3.fc35.noarch"
     },
     "catatonit": {
-      "evra": "0.1.5-6.fc35.aarch64"
+      "evra": "0.1.6-1.fc35.aarch64"
     },
     "chrony": {
       "evra": "4.1-3.fc35.aarch64"
     },
     "cifs-utils": {
-      "evra": "6.11-4.fc35.aarch64"
+      "evra": "6.13-3.fc35.aarch64"
     },
     "clevis": {
       "evra": "18-3.fc35.aarch64"
@@ -130,7 +130,7 @@
       "evra": "1.5.5-1.fc35.aarch64"
     },
     "containernetworking-plugins": {
-      "evra": "1.0.0-21.fc35.aarch64"
+      "evra": "1.0.1-1.fc35.aarch64"
     },
     "containers-common": {
       "evra": "4:1-24.fc35.noarch"
@@ -157,10 +157,10 @@
       "evra": "2.9.6-27.fc35.aarch64"
     },
     "criu": {
-      "evra": "3.15-6.fc35.aarch64"
+      "evra": "3.16-2.fc35.aarch64"
     },
     "criu-libs": {
-      "evra": "3.15-6.fc35.aarch64"
+      "evra": "3.16-2.fc35.aarch64"
     },
     "crun": {
       "evra": "1.0-1.fc35.aarch64"
@@ -169,10 +169,10 @@
       "evra": "20210819-1.gitd0fdcfb.fc35.noarch"
     },
     "cryptsetup": {
-      "evra": "2.4.0-1.fc35.aarch64"
+      "evra": "2.4.1-1.fc35.aarch64"
     },
     "cryptsetup-libs": {
-      "evra": "2.4.0-1.fc35.aarch64"
+      "evra": "2.4.1-1.fc35.aarch64"
     },
     "cups-libs": {
       "evra": "1:2.3.3op2-8.fc35.aarch64"
@@ -181,22 +181,22 @@
       "evra": "7.78.0-3.fc35.aarch64"
     },
     "cyrus-sasl-gssapi": {
-      "evra": "2.1.27-12.fc35.aarch64"
+      "evra": "2.1.27-13.fc35.aarch64"
     },
     "cyrus-sasl-lib": {
-      "evra": "2.1.27-12.fc35.aarch64"
+      "evra": "2.1.27-13.fc35.aarch64"
     },
     "dbus": {
-      "evra": "1:1.12.20-4.fc35.aarch64"
+      "evra": "1:1.12.20-5.fc35.aarch64"
     },
     "dbus-broker": {
-      "evra": "29-3.fc35.aarch64"
+      "evra": "29-4.fc35.aarch64"
     },
     "dbus-common": {
-      "evra": "1:1.12.20-4.fc35.noarch"
+      "evra": "1:1.12.20-5.fc35.noarch"
     },
     "dbus-libs": {
-      "evra": "1:1.12.20-4.fc35.aarch64"
+      "evra": "1:1.12.20-5.fc35.aarch64"
     },
     "device-mapper": {
       "evra": "1.02.175-6.fc35.aarch64"
@@ -274,13 +274,13 @@
       "evra": "35-0.6.noarch"
     },
     "fedora-release-common": {
-      "evra": "35-0.29.noarch"
+      "evra": "35-0.32.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "35-0.29.noarch"
+      "evra": "35-0.32.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "35-0.29.noarch"
+      "evra": "35-0.32.noarch"
     },
     "fedora-repos": {
       "evra": "35-0.6.noarch"
@@ -307,7 +307,7 @@
       "evra": "1:4.8.0-4.fc35.aarch64"
     },
     "flatpak-session-helper": {
-      "evra": "1.11.2-2.fc35.aarch64"
+      "evra": "1.11.3-1.fc35.aarch64"
     },
     "fstrm": {
       "evra": "0.6.1-3.fc35.aarch64"
@@ -316,7 +316,7 @@
       "evra": "2.9.9-13.fc35.aarch64"
     },
     "fuse-common": {
-      "evra": "3.10.4-2.fc35.aarch64"
+      "evra": "3.10.5-1.fc35.aarch64"
     },
     "fuse-libs": {
       "evra": "2.9.9-13.fc35.aarch64"
@@ -328,13 +328,13 @@
       "evra": "3.7.2-2.fc35.aarch64"
     },
     "fuse3": {
-      "evra": "3.10.4-2.fc35.aarch64"
+      "evra": "3.10.5-1.fc35.aarch64"
     },
     "fuse3-libs": {
-      "evra": "3.10.4-2.fc35.aarch64"
+      "evra": "3.10.5-1.fc35.aarch64"
     },
     "fwupd": {
-      "evra": "1.6.3-1.fc35.aarch64"
+      "evra": "1.6.4-1.fc35.aarch64"
     },
     "gawk": {
       "evra": "5.1.0-4.fc35.aarch64"
@@ -355,22 +355,22 @@
       "evra": "2.32.0-1.fc35.1.aarch64"
     },
     "glib2": {
-      "evra": "2.70.0-2.fc35.aarch64"
+      "evra": "2.70.0-3.fc35.aarch64"
     },
     "glibc": {
-      "evra": "2.34-1.fc35.aarch64"
+      "evra": "2.34-7.fc35.aarch64"
     },
     "glibc-common": {
-      "evra": "2.34-1.fc35.aarch64"
+      "evra": "2.34-7.fc35.aarch64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.34-1.fc35.aarch64"
+      "evra": "2.34-7.fc35.aarch64"
     },
     "gmp": {
       "evra": "1:6.2.0-7.fc35.aarch64"
     },
     "gnupg2": {
-      "evra": "2.3.1-2.fc35.aarch64"
+      "evra": "2.3.2-2.fc35.aarch64"
     },
     "gnutls": {
       "evra": "3.7.2-2.fc35.aarch64"
@@ -382,16 +382,16 @@
       "evra": "3.6-4.fc35.aarch64"
     },
     "grub2-common": {
-      "evra": "1:2.06-5.fc35.noarch"
+      "evra": "1:2.06-6.fc35.noarch"
     },
     "grub2-efi-aa64": {
-      "evra": "1:2.06-5.fc35.aarch64"
+      "evra": "1:2.06-6.fc35.aarch64"
     },
     "grub2-tools": {
-      "evra": "1:2.06-5.fc35.aarch64"
+      "evra": "1:2.06-6.fc35.aarch64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-5.fc35.aarch64"
+      "evra": "1:2.06-6.fc35.aarch64"
     },
     "gzip": {
       "evra": "1.10-5.fc35.aarch64"
@@ -463,13 +463,13 @@
       "evra": "2.4.0-6.fc35.noarch"
     },
     "kernel": {
-      "evra": "5.14.0-60.fc35.aarch64"
+      "evra": "5.14.9-300.fc35.aarch64"
     },
     "kernel-core": {
-      "evra": "5.14.0-60.fc35.aarch64"
+      "evra": "5.14.9-300.fc35.aarch64"
     },
     "kernel-modules": {
-      "evra": "5.14.0-60.fc35.aarch64"
+      "evra": "5.14.9-300.fc35.aarch64"
     },
     "kexec-tools": {
       "evra": "2.0.22-7.fc35.aarch64"
@@ -547,7 +547,7 @@
       "evra": "0.14-22.fc35.aarch64"
     },
     "libdb": {
-      "evra": "5.3.28-47.fc35.aarch64"
+      "evra": "5.3.28-50.fc35.aarch64"
     },
     "libdhash": {
       "evra": "0.5.0-48.fc35.aarch64"
@@ -556,7 +556,7 @@
       "evra": "0.4.0-2.fc35.aarch64"
     },
     "libedit": {
-      "evra": "3.1-39.20210714cvs.fc35.aarch64"
+      "evra": "3.1-40.20210910cvs.fc35.aarch64"
     },
     "libevent": {
       "evra": "2.1.12-4.fc35.aarch64"
@@ -592,13 +592,13 @@
       "evra": "0.3.7-2.fc35.aarch64"
     },
     "libibverbs": {
-      "evra": "36.0-2.fc35.aarch64"
+      "evra": "37.0-1.fc35.aarch64"
     },
     "libicu": {
       "evra": "69.1-2.fc35.aarch64"
     },
     "libidn2": {
-      "evra": "2.3.2-2.fc35.aarch64"
+      "evra": "2.3.2-3.fc35.aarch64"
     },
     "libini_config": {
       "evra": "1.3.1-48.fc35.aarch64"
@@ -634,7 +634,7 @@
       "evra": "1.0.4-14.fc35.aarch64"
     },
     "libmodulemd": {
-      "evra": "2.13.0-2.fc35.aarch64"
+      "evra": "2.13.0-3.fc35.aarch64"
     },
     "libmount": {
       "evra": "2.37.2-1.fc35.aarch64"
@@ -652,13 +652,13 @@
       "evra": "1.0.1-20.fc35.aarch64"
     },
     "libnfsidmap": {
-      "evra": "1:2.5.4-2.rc1.fc35.aarch64"
+      "evra": "1:2.5.4-2.rc3.fc35.aarch64"
     },
     "libnftnl": {
       "evra": "1.2.0-2.fc35.aarch64"
     },
     "libnghttp2": {
-      "evra": "1.44.0-2.fc35.aarch64"
+      "evra": "1.45.1-1.fc35.aarch64"
     },
     "libnl3": {
       "evra": "3.5.0-8.fc35.aarch64"
@@ -688,7 +688,7 @@
       "evra": "0.1.5-48.fc35.aarch64"
     },
     "librepo": {
-      "evra": "1.14.1-2.fc35.aarch64"
+      "evra": "1.14.2-1.fc35.aarch64"
     },
     "libreport-filesystem": {
       "evra": "2.15.2-6.fc35.noarch"
@@ -718,7 +718,7 @@
       "evra": "2.37.2-1.fc35.aarch64"
     },
     "libsmbclient": {
-      "evra": "2:4.15.0-0.5.rc2.fc35.aarch64"
+      "evra": "2:4.15.0-13.fc35.aarch64"
     },
     "libsolv": {
       "evra": "0.7.19-3.fc35.aarch64"
@@ -727,10 +727,10 @@
       "evra": "1.46.3-1.fc35.aarch64"
     },
     "libssh": {
-      "evra": "0.9.5-3.fc35.aarch64"
+      "evra": "0.9.6-1.fc35.aarch64"
     },
     "libssh-config": {
-      "evra": "0.9.5-3.fc35.noarch"
+      "evra": "0.9.6-1.fc35.noarch"
     },
     "libsss_certmap": {
       "evra": "2.5.2-5.fc35.aarch64"
@@ -790,10 +790,10 @@
       "evra": "0.3.2-2.fc35.aarch64"
     },
     "libwbclient": {
-      "evra": "2:4.15.0-0.5.rc2.fc35.aarch64"
+      "evra": "2:4.15.0-13.fc35.aarch64"
     },
     "libxcrypt": {
-      "evra": "4.4.25-2.fc35.aarch64"
+      "evra": "4.4.26-4.fc35.aarch64"
     },
     "libxml2": {
       "evra": "2.9.12-6.fc35.aarch64"
@@ -853,7 +853,7 @@
       "evra": "2:0.4.0-6.fc35.aarch64"
     },
     "mozjs78": {
-      "evra": "78.13.0-1.fc35.aarch64"
+      "evra": "78.14.0-1.fc35.aarch64"
     },
     "mpfr": {
       "evra": "4.1.0-8.fc35.aarch64"
@@ -877,10 +877,10 @@
       "evra": "0.52.21-11.fc35.aarch64"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.5.4-2.rc1.fc35.aarch64"
+      "evra": "1:2.5.4-2.rc3.fc35.aarch64"
     },
     "nftables": {
-      "evra": "1:0.9.9-3.fc35.aarch64"
+      "evra": "1:1.0.0-1.fc35.aarch64"
     },
     "npth": {
       "evra": "1.6-7.fc35.aarch64"
@@ -901,13 +901,13 @@
       "evra": "2.4.59-2.fc35.aarch64"
     },
     "openssh": {
-      "evra": "8.6p1-5.fc35.1.aarch64"
+      "evra": "8.7p1-2.fc35.aarch64"
     },
     "openssh-clients": {
-      "evra": "8.6p1-5.fc35.1.aarch64"
+      "evra": "8.7p1-2.fc35.aarch64"
     },
     "openssh-server": {
-      "evra": "8.6p1-5.fc35.1.aarch64"
+      "evra": "8.7p1-2.fc35.aarch64"
     },
     "openssl": {
       "evra": "1:1.1.1l-2.fc35.aarch64"
@@ -931,7 +931,7 @@
       "evra": "0.23.22-4.fc35.aarch64"
     },
     "pam": {
-      "evra": "1.5.1-9.fc35.aarch64"
+      "evra": "1.5.2-5.fc35.aarch64"
     },
     "passwd": {
       "evra": "0.80-11.fc35.aarch64"
@@ -997,43 +997,43 @@
       "evra": "1.2.6-1.fc35.aarch64"
     },
     "rpm": {
-      "evra": "4.17.0-0.rc1.0.fc35.aarch64"
+      "evra": "4.17.0-1.fc35.aarch64"
     },
     "rpm-libs": {
-      "evra": "4.17.0-0.rc1.0.fc35.aarch64"
+      "evra": "4.17.0-1.fc35.aarch64"
     },
     "rpm-ostree": {
-      "evra": "2021.10-2.fc35.aarch64"
+      "evra": "2021.11-2.fc35.aarch64"
     },
     "rpm-ostree-libs": {
-      "evra": "2021.10-2.fc35.aarch64"
+      "evra": "2021.11-2.fc35.aarch64"
     },
     "rpm-plugin-selinux": {
-      "evra": "4.17.0-0.rc1.0.fc35.aarch64"
+      "evra": "4.17.0-1.fc35.aarch64"
     },
     "rsync": {
       "evra": "3.2.3-8.fc35.aarch64"
     },
     "runc": {
-      "evra": "2:1.0.1-1.fc35.aarch64"
+      "evra": "2:1.0.2-2.fc35.aarch64"
     },
     "samba-client-libs": {
-      "evra": "2:4.15.0-0.5.rc2.fc35.aarch64"
+      "evra": "2:4.15.0-13.fc35.aarch64"
     },
     "samba-common": {
-      "evra": "2:4.15.0-0.5.rc2.fc35.noarch"
+      "evra": "2:4.15.0-13.fc35.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.15.0-0.5.rc2.fc35.aarch64"
+      "evra": "2:4.15.0-13.fc35.aarch64"
     },
     "sed": {
       "evra": "4.8-8.fc35.aarch64"
     },
     "selinux-policy": {
-      "evra": "34.20-1.fc35.noarch"
+      "evra": "34.21-1.fc35.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "34.20-1.fc35.noarch"
+      "evra": "34.21-1.fc35.noarch"
     },
     "setup": {
       "evra": "2.13.9.1-2.fc35.noarch"
@@ -1072,7 +1072,7 @@
       "evra": "3.36.0-3.fc35.aarch64"
     },
     "squashfs-tools": {
-      "evra": "4.5-2.fc35.aarch64"
+      "evra": "4.5-3.20210913gite048580.fc35.aarch64"
     },
     "ssh-key-dir": {
       "evra": "0.1.2-8.fc35.aarch64"
@@ -1132,7 +1132,7 @@
       "evra": "1.31-4.fc35.aarch64"
     },
     "toolbox": {
-      "evra": "0.0.99.2^3.git075b9a8d2779-1.fc35.aarch64"
+      "evra": "0.0.99.2^3.git075b9a8d2779-2.fc35.aarch64"
     },
     "tpm2-tools": {
       "evra": "5.1.1-2.fc35.aarch64"
@@ -1141,7 +1141,7 @@
       "evra": "3.1.0-3.fc35.aarch64"
     },
     "tzdata": {
-      "evra": "2021a-2.fc35.noarch"
+      "evra": "2021b-1.fc35.noarch"
     },
     "userspace-rcu": {
       "evra": "0.13.0-3.fc35.aarch64"
@@ -1159,7 +1159,7 @@
       "evra": "2.21-27.fc35.aarch64"
     },
     "wireguard-tools": {
-      "evra": "1.0.20210424-2.fc35.aarch64"
+      "evra": "1.0.20210914-1.fc35.aarch64"
     },
     "xfsprogs": {
       "evra": "5.12.0-2.fc35.aarch64"
@@ -1187,13 +1187,13 @@
     }
   },
   "metadata": {
-    "generated": "2021-09-24T20:55:19Z",
+    "generated": "2021-10-03T20:53:04Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2021-09-24T18:50:21Z"
+        "generated": "2021-10-01T21:33:42Z"
       },
       "fedora-next": {
-        "generated": "2021-09-24T10:38:08Z"
+        "generated": "2021-10-03T10:44:27Z"
       },
       "fedora-next-updates": {
         "generated": "2018-02-20T19:13:29Z"
