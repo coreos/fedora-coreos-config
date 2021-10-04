@@ -39,4 +39,4 @@ fi
 
 echo "Randomizing disk GUID"
 sgdisk --disk-guid=R --move-second-header "$PKNAME"
-udevadm settle
+udevadm settle || :

@@ -72,7 +72,7 @@ while true; do
             if [ -n "${DM_MPATH:-}" ]; then
                 # Since growpart does not understand device mapper, we have to use sfdisk.
                 echo ", +" | sfdisk --no-reread --no-tell-kernel --force -N "${DM_PART}" "/dev/mapper/${DM_MPATH}"
-                udevadm settle # Wait for udev-triggered kpartx to update mappings
+                udevadm settle || : # Wait for udev-triggered kpartx to update mappings
             else
                 partnum=$(cat "/sys/dev/block/${MAJMIN}/partition")
                 # XXX: ideally this'd be idempotent and we wouldn't `|| :`
