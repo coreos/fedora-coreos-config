@@ -141,7 +141,7 @@ version: 1.1.0
 storage:
   files:
     - path: /etc/target.ign
-      contents: 
+      contents:
         inline: |
           Replace this bit with a real butane directive that
           fetches the target Ignition however you like e.g.:

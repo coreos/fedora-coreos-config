@@ -17,7 +17,7 @@ Whether or not a machine needs networking in the initramfs can dictate how a use
 * via kernel arguments
 ** these get processed by dracut modules in the initramfs on first boot
 * via `coreos-installer --copy-network`
-** by propagating the ISO/PXE install environment networking configuration 
+** by propagating the ISO/PXE install environment networking configuration
 * via Afterburn
 ** by applying network configuration injected by various platforms
 * via Ignition
@@ -34,7 +34,7 @@ We'll cover each one of these options now.
 
 On the first boot of a machine a user can provide kernel arguments that define networking configuration. These kernel arguments are mostly defined in the https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html[dracut.cmdline man page]. There are a few different ways to apply these kernel arguments on first boot.
 
-1. In the most generic form, you can stop an instance at the GRUB prompt on the first boot (Ignition boot) and add them to the existing set of kernel arguments. 
+1. In the most generic form, you can stop an instance at the GRUB prompt on the first boot (Ignition boot) and add them to the existing set of kernel arguments.
 
 2. For a bare metal install where you automate the install via kernel arguments added, (i.e., `coreos.inst.install_dev=`), you can also append networking arguments there and they will apply to the install boot and also the first boot (Ignition boot) of the installed machine.
 

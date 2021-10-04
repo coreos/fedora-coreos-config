@@ -15,7 +15,7 @@ The primary reason for such update barrier is to make sure that older (and possi
 Taking the Fedora 32 release cycle as an example, in the beginning FCOS images only know about signing keys for 32 and 33 majors:
 
 ----
-$ grep OSTREE /etc/os-release 
+$ grep OSTREE /etc/os-release
 OSTREE_VERSION='32.20200615.3.0'
 
 $ ls -v /usr/etc/pki/rpm-gpg/*primary | tail -3
@@ -27,7 +27,7 @@ $ ls -v /usr/etc/pki/rpm-gpg/*primary | tail -3
 Later in that release cycle, the signing key is generated for future Fedora 34 releases and added to FCOS. A barrier is put in place in FCOS update graph, for example on release `32.20200907.3.0`. Inspecting that image shows the following:
 
 ----
-$ grep OSTREE /etc/os-release 
+$ grep OSTREE /etc/os-release
 OSTREE_VERSION='32.20200907.3.0'
 
 $ ls -v /usr/etc/pki/rpm-gpg/*primary | tail -3

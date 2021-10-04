@@ -109,7 +109,7 @@ storage:
 
 
 .Defining a disk with multiple partitions
-In this example, we wipe the disk and create two new partitions. 
+In this example, we wipe the disk and create two new partitions.
 
 [source,yaml]
 ----
@@ -366,7 +366,7 @@ NOTE: The `.mount` file must be named based on the path (e.g. `/var/mnt/data` = 
 ----
 variant: fcos
 version: 1.3.0
-systemd: 
+systemd:
   units:
     - name: var-mnt-data.mount
       enabled: true
@@ -383,12 +383,12 @@ systemd:
         WantedBy=multi-user.target
 ----
 
-.Creating a systemd unit to mount an NFS file system when users access the mount point (automount) 
+.Creating a systemd unit to mount an NFS filesystem when users access the mount point (automount)
 [source,yaml]
 ----
 variant: fcos
 version: 1.3.0
-systemd: 
+systemd:
   units:
     - name: var-mnt-data.mount
       contents: |
