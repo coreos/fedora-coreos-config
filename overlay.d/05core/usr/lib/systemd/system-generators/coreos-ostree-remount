@@ -1,0 +1,31 @@
+#!/bin/bash
+export PATH="/usr/bin:/usr/sbin:${PATH}"
+set -euo pipefail
+
+. /usr/lib/coreos/generator-lib.sh
+
+/usr/lib/ostree/ostree-remount
+echo "done: ostree-remount"
+
+touch /run/ostree-sysroot-ro.stamp
+echo "done: /run/ostree-sysroot-ro.stamp"
+
+if test -f /run/ostree-live; then
+  echo "skip: /var on live loopback"
+  exit 0
+fi
+
+# NOTE(lucab): native libostree knows how to locate the booted stateroot.
+STATEROOT="fedora-coreos"
+# NOTE(lucab): native libostree knows how to locate the booted deployment.
+VARMOUNT=$(realpath /ostree/deploy/${STATEROOT}/deploy/*/etc/systemd/system/var.mount || echo /etc/systemd/system/var.mount)
+
+if test -s "${VARMOUNT}"; then
+  echo "skip: external var.mount"
+  exit 0
+fi
+
+mkdir -p /var
+mount --bind /ostree/deploy/${STATEROOT}/var /var
+mount -o remount,rw /var
+echo "done: bind + rw /var"
