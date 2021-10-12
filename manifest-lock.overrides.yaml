@@ -9,15 +9,27 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  conmon:
-    evr: 2:2.0.30-1.fc35
+  coreos-installer:
+    evr: 0.10.1-1.fc35
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-87e84e3404
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-23fed0cab4
+      reason: https://github.com/coreos/coreos-installer/security/advisories/GHSA-3r3g-g73x-g593
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.10.1-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-23fed0cab4
+      reason: https://github.com/coreos/coreos-installer/security/advisories/GHSA-3r3g-g73x-g593
+      type: fast-track
+  btrfs-progs:
+    evr: 5.14.2-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-736f2133b3
       reason: https://github.com/coreos/fedora-coreos-streams/issues/377#issuecomment-926302173
       type: fast-track
-  dnsmasq:
-    evr: 2.86-2.fc35
+  crun:
+    evr: 1.2-1.fc35
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-5945df5d64
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-d8eeb30c1f
       reason: https://github.com/coreos/fedora-coreos-streams/issues/377#issuecomment-926302173
       type: fast-track
