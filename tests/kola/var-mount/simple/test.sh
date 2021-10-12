@@ -16,7 +16,7 @@ fatal() {
 # /var
 
 src=$(findmnt -nvr /var -o SOURCE)
-[[ $(realpath "$src") == $(realpath /dev/disk/by-partlabel/var) ]]
+[[ $(realpath "$src") == $(realpath /dev/disk/by-partuuid/63194b49-e4b7-43f9-9a8b-df0fd8279bb7) ]]
 
 fstype=$(findmnt -nvr /var -o FSTYPE)
 [[ $fstype == xfs ]]
@@ -24,7 +24,7 @@ fstype=$(findmnt -nvr /var -o FSTYPE)
 # /var/log
 
 src=$(findmnt -nvr /var/log -o SOURCE)
-[[ $(realpath "$src") == $(realpath /dev/disk/by-partlabel/varlog) ]]
+[[ $(realpath "$src") == $(realpath /dev/disk/by-partuuid/6385b84e-2c7b-4488-a870-667c565e01a8) ]]
 
 fstype=$(findmnt -nvr /var/log -o FSTYPE)
 [[ $fstype == ext4 ]]
