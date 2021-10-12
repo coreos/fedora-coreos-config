@@ -1,0 +1,20 @@
+#!/bin/bash
+# kola: { "exclusive": false, "architectures": "x86_64 aarch64" }
+# Check that the ESP is a FAT32 filesystem.
+# https://github.com/coreos/fedora-coreos-tracker/issues/993
+
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+if ! file -sL /dev/disk/by-label/EFI-SYSTEM | grep "FAT (32 bit)"; then
+    fatal "EFI System Partition is not FAT32"
+fi
+ok "EFI System Partition is FAT32"
