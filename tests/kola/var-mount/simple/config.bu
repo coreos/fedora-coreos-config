@@ -5,16 +5,18 @@ storage:
     - device: /dev/vda
       partitions:
         - label: var
+          guid: 63194b49-e4b7-43f9-9a8b-df0fd8279bb7
           size_mib: 1000
           start_mib: 5000
         - label: varlog
+          guid: 6385b84e-2c7b-4488-a870-667c565e01a8
       wipe_table: false
   filesystems:
-    - device: /dev/disk/by-partlabel/var
+    - device: /dev/disk/by-partuuid/63194b49-e4b7-43f9-9a8b-df0fd8279bb7
       format: xfs
       path: /var
       with_mount_unit: true
-    - device: /dev/disk/by-partlabel/varlog
+    - device: /dev/disk/by-partuuid/6385b84e-2c7b-4488-a870-667c565e01a8
       format: ext4
       path: /var/log
       with_mount_unit: true

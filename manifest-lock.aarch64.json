@@ -109,7 +109,7 @@
       "evra": "0.31-9.fc35.noarch"
     },
     "conmon": {
-      "evra": "2:2.0.30-1.fc35.aarch64"
+      "evra": "2:2.0.30-2.fc35.aarch64"
     },
     "console-login-helper-messages": {
       "evra": "0.21.2-2.fc35.noarch"
@@ -124,7 +124,7 @@
       "evra": "0.21.2-2.fc35.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.168.0-1.fc35.noarch"
+      "evra": "2:2.169.0-1.fc35.noarch"
     },
     "containerd": {
       "evra": "1.5.5-1.fc35.aarch64"
@@ -133,7 +133,7 @@
       "evra": "1.0.1-1.fc35.aarch64"
     },
     "containers-common": {
-      "evra": "4:1-24.fc35.noarch"
+      "evra": "4:1-30.fc35.noarch"
     },
     "coreos-installer": {
       "evra": "0.10.0-2.fc35.aarch64"
@@ -163,7 +163,7 @@
       "evra": "3.16-2.fc35.aarch64"
     },
     "crun": {
-      "evra": "1.0-1.fc35.aarch64"
+      "evra": "1.1-1.fc35.aarch64"
     },
     "crypto-policies": {
       "evra": "20210819-1.gitd0fdcfb.fc35.noarch"
@@ -229,13 +229,13 @@
       "evra": "4.2-2.fc35.aarch64"
     },
     "dracut": {
-      "evra": "055-3.fc35.1.aarch64"
+      "evra": "055-4.fc35.aarch64"
     },
     "dracut-network": {
-      "evra": "055-3.fc35.1.aarch64"
+      "evra": "055-4.fc35.aarch64"
     },
     "dracut-squash": {
-      "evra": "055-3.fc35.1.aarch64"
+      "evra": "055-4.fc35.aarch64"
     },
     "e2fsprogs": {
       "evra": "1.46.3-1.fc35.aarch64"
@@ -355,7 +355,7 @@
       "evra": "2.32.0-1.fc35.1.aarch64"
     },
     "glib2": {
-      "evra": "2.70.0-3.fc35.aarch64"
+      "evra": "2.70.0-4.fc35.aarch64"
     },
     "glibc": {
       "evra": "2.34-7.fc35.aarch64"
@@ -463,13 +463,13 @@
       "evra": "2.4.0-6.fc35.noarch"
     },
     "kernel": {
-      "evra": "5.14.9-300.fc35.aarch64"
+      "evra": "5.14.10-300.fc35.aarch64"
     },
     "kernel-core": {
-      "evra": "5.14.9-300.fc35.aarch64"
+      "evra": "5.14.10-300.fc35.aarch64"
     },
     "kernel-modules": {
-      "evra": "5.14.9-300.fc35.aarch64"
+      "evra": "5.14.10-300.fc35.aarch64"
     },
     "kexec-tools": {
       "evra": "2.0.22-7.fc35.aarch64"
@@ -811,10 +811,10 @@
       "evra": "2.5.1-28.fc34.aarch64"
     },
     "linux-firmware": {
-      "evra": "20210818-122.fc35.noarch"
+      "evra": "20210919-125.fc35.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20210818-122.fc35.noarch"
+      "evra": "20210919-125.fc35.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.29-2.fc35.aarch64"
@@ -853,7 +853,7 @@
       "evra": "2:0.4.0-6.fc35.aarch64"
     },
     "mozjs78": {
-      "evra": "78.14.0-1.fc35.aarch64"
+      "evra": "78.15.0-1.fc35.aarch64"
     },
     "mpfr": {
       "evra": "4.1.0-8.fc35.aarch64"
@@ -898,7 +898,7 @@
       "evra": "6.9.7.1-1.fc35.1.aarch64"
     },
     "openldap": {
-      "evra": "2.4.59-2.fc35.aarch64"
+      "evra": "2.4.59-3.fc35.aarch64"
     },
     "openssh": {
       "evra": "8.7p1-2.fc35.aarch64"
@@ -958,10 +958,10 @@
       "evra": "1.8.0-1.fc35.aarch64"
     },
     "podman": {
-      "evra": "3:3.3.1-1.fc35.aarch64"
+      "evra": "3:3.4.0-1.fc35.aarch64"
     },
     "podman-plugins": {
-      "evra": "3:3.3.1-1.fc35.aarch64"
+      "evra": "3:3.4.0-1.fc35.aarch64"
     },
     "policycoreutils": {
       "evra": "3.2-6.fc35.aarch64"
@@ -1003,10 +1003,10 @@
       "evra": "4.17.0-1.fc35.aarch64"
     },
     "rpm-ostree": {
-      "evra": "2021.11-2.fc35.aarch64"
+      "evra": "2021.11-3.fc35.aarch64"
     },
     "rpm-ostree-libs": {
-      "evra": "2021.11-2.fc35.aarch64"
+      "evra": "2021.11-3.fc35.aarch64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.17.0-1.fc35.aarch64"
@@ -1030,10 +1030,10 @@
       "evra": "4.8-8.fc35.aarch64"
     },
     "selinux-policy": {
-      "evra": "34.21-1.fc35.noarch"
+      "evra": "35.1-1.fc35.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "34.21-1.fc35.noarch"
+      "evra": "35.1-1.fc35.noarch"
     },
     "setup": {
       "evra": "2.13.9.1-2.fc35.noarch"
@@ -1045,6 +1045,9 @@
       "evra": "1.46-2.fc35.aarch64"
     },
     "shadow-utils": {
+      "evra": "2:4.9-3.fc35.aarch64"
+    },
+    "shadow-utils-subid": {
       "evra": "2:4.9-3.fc35.aarch64"
     },
     "shared-mime-info": {
@@ -1187,13 +1190,13 @@
     }
   },
   "metadata": {
-    "generated": "2021-10-03T20:53:04Z",
+    "generated": "2021-10-10T20:53:06Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2021-10-01T21:33:42Z"
+        "generated": "2021-10-09T21:54:15Z"
       },
       "fedora-next": {
-        "generated": "2021-10-03T10:44:27Z"
+        "generated": "2021-10-10T10:43:31Z"
       },
       "fedora-next-updates": {
         "generated": "2018-02-20T19:13:29Z"
