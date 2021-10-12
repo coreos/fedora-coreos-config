@@ -40,13 +40,26 @@ do_mount() {
         fatal "${stateroot_var_path} is not a directory"
     fi
 
-    echo "Mounting $stateroot_var_path"
-    mount --bind "$stateroot_var_path" /sysroot/var
+    rm -f /tmp/ignition-ostree-mount-var-mounted
+    findmnt_exitcode="0"
+    findmnt /sysroot/var || findmnt_exitcode="1"
+    if [ "${findmnt_exitcode}" -eq 0 ]; then
+        echo "/sysroot/var already mounted"
+    else
+        echo "Mounting $stateroot_var_path"
+        mount --bind "$stateroot_var_path" /sysroot/var
+        touch /tmp/ignition-ostree-mount-var-mounted
+    fi
+
 }
 
 do_umount() {
-    echo "Unmounting /sysroot/var"
-    umount /sysroot/var
+     if [ -f /tmp/ignition-ostree-mount-var-mounted ]; then
+         echo "Unmounting /sysroot/var"
+         umount /sysroot/var
+     else
+         echo "Leaving /sysroot/var intact"
+     fi
 }
 
 "do_$1"
