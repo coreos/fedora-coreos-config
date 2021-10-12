@@ -127,6 +127,35 @@ postprocess:
     ConditionVirtualization=!container
     EOF
 
+  # Put in the fix for multipathd.service in dracut on releases that haven't
+  # been fixed yet.
+  # https://github.com/dracutdevs/dracut/pull/1606
+  # https://github.com/coreos/fedora-coreos-config/pull/1233
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    # This fix hasn't landed in rawhide (F36) yet, but hopefully will soon.
+    source /etc/os-release
+    [ ${VERSION_ID} -le 36 ] || exit 0
+    mkdir /usr/lib/dracut/modules.d/36coreos-multipath-fix
+    cat > /usr/lib/dracut/modules.d/36coreos-multipath-fix/90-multipathd-remove-execstop.conf <<'EOF'
+    # Temporary workaround for https://github.com/dracutdevs/dracut/pull/1606.
+    [Service]
+    ExecStop=
+    EOF
+    cat > /usr/lib/dracut/modules.d/36coreos-multipath-fix/module-setup.sh <<'EOF'
+    #!/bin/bash
+    # -*- mode: shell-script; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
+    # ex: ts=8 sw=4 sts=4 et filetype=sh
+    install() {
+        # Temporary workaround for https://github.com/dracutdevs/dracut/pull/1606.
+        mkdir -p "$systemdsystemunitdir/multipathd.service.d"
+        inst_simple "$moddir/90-multipathd-remove-execstop.conf" \
+        "$systemdsystemunitdir/multipathd.service.d/90-multipathd-remove-execstop.conf"
+    }
+    EOF
+    chmod +x /usr/lib/dracut/modules.d/36coreos-multipath-fix/module-setup.sh
+
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go
 # into one of the sub-manifests listed at the top.
