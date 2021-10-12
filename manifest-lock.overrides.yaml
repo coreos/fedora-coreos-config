@@ -21,3 +21,15 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-23fed0cab4
       reason: https://github.com/coreos/coreos-installer/security/advisories/GHSA-3r3g-g73x-g593
       type: fast-track
+  btrfs-progs:
+    evr: 5.14.2-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-736f2133b3
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/377#issuecomment-926302173
+      type: fast-track
+  crun:
+    evr: 1.2-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-d8eeb30c1f
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/377#issuecomment-926302173
+      type: fast-track
