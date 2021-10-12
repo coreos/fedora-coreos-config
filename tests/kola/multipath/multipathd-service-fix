@@ -1,0 +1,28 @@
+#!/bin/bash
+# Just run on qemu since the answer is the same everywhere
+# kola: { "exclusive": false, "platforms": "qemu-unpriv" }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# We need either a fixed dracut or temporary workaround, no need for both.
+# See https://github.com/coreos/fedora-coreos-tracker/issues/803.
+has_fixed_dracut_multipathd_service=0
+grep -q 'ExecStop=/sbin/multipathd shutdown' /usr/lib/dracut/modules.d/90multipath/multipathd.service || has_fixed_dracut_multipathd_service=1
+has_overlay_multipathd_service_quickfix=1
+test -f /usr/lib/dracut/modules.d/36coreos-multipath-fix/90-multipathd-remove-execstop.conf || has_overlay_multipathd_service_quickfix=0
+if test "${has_fixed_dracut_multipathd_service}" -eq "${has_overlay_multipathd_service_quickfix}"; then
+    if test "${has_fixed_dracut_multipathd_service}" -eq 1; then
+        fatal "Found fixed dracut multipath module but quickfix is present too"
+    else
+        fatal "Found buggy dracut multipath module but quickfix is missing too"
+    fi
+fi
+ok "either dracut multipath module fixed or quickfix present"
