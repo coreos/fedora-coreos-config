@@ -33,3 +33,9 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-d8eeb30c1f
       reason: https://github.com/coreos/fedora-coreos-streams/issues/377#issuecomment-926302173
       type: fast-track
+  ignition:
+    evr: 2.12.0-3.fc35
+    metadata:
+      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-4283d06e7b
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/977
+      type: fast-track
