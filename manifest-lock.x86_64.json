@@ -127,7 +127,7 @@
       "evra": "0.21.2-1.fc34.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.168.0-1.fc34.noarch"
+      "evra": "2:2.170.0-1.fc34.noarch"
     },
     "containerd": {
       "evra": "1.5.5-1.fc34.x86_64"
@@ -237,6 +237,9 @@
     "dracut-network": {
       "evra": "055-3.fc34.x86_64"
     },
+    "dracut-squash": {
+      "evra": "055-3.fc34.x86_64"
+    },
     "e2fsprogs": {
       "evra": "1.45.6-5.fc34.x86_64"
     },
@@ -307,7 +310,7 @@
       "evra": "1:4.8.0-2.fc34.x86_64"
     },
     "flatpak-session-helper": {
-      "evra": "1.10.3-1.fc34.x86_64"
+      "evra": "1.10.5-1.fc34.x86_64"
     },
     "fstrm": {
       "evra": "0.6.1-2.fc34.x86_64"
@@ -463,16 +466,16 @@
       "evra": "2.4.0-2.fc34.noarch"
     },
     "kernel": {
-      "evra": "5.14.10-200.fc34.x86_64"
+      "evra": "5.14.11-200.fc34.x86_64"
     },
     "kernel-core": {
-      "evra": "5.14.10-200.fc34.x86_64"
+      "evra": "5.14.11-200.fc34.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.14.10-200.fc34.x86_64"
+      "evra": "5.14.11-200.fc34.x86_64"
     },
     "kexec-tools": {
-      "evra": "2.0.21-5.fc34.x86_64"
+      "evra": "2.0.22-4.fc34.x86_64"
     },
     "keyutils": {
       "evra": "1.6.1-2.fc34.x86_64"
@@ -592,7 +595,7 @@
       "evra": "0.3.7-1.fc34.x86_64"
     },
     "libibverbs": {
-      "evra": "36.0-1.fc34.x86_64"
+      "evra": "37.0-1.fc34.x86_64"
     },
     "libicu": {
       "evra": "67.1-7.fc34.x86_64"
@@ -718,7 +721,7 @@
       "evra": "2.36.2-1.fc34.x86_64"
     },
     "libsmbclient": {
-      "evra": "2:4.14.7-0.fc34.x86_64"
+      "evra": "2:4.14.8-0.fc34.x86_64"
     },
     "libsmbios": {
       "evra": "2.4.3-2.fc34.x86_64"
@@ -796,7 +799,7 @@
       "evra": "0.3.2-1.fc34.x86_64"
     },
     "libwbclient": {
-      "evra": "2:4.14.7-0.fc34.x86_64"
+      "evra": "2:4.14.8-0.fc34.x86_64"
     },
     "libxcrypt": {
       "evra": "4.4.26-2.fc34.x86_64"
@@ -1027,13 +1030,13 @@
       "evra": "2:1.0.2-2.fc34.x86_64"
     },
     "samba-client-libs": {
-      "evra": "2:4.14.7-0.fc34.x86_64"
+      "evra": "2:4.14.8-0.fc34.x86_64"
     },
     "samba-common": {
-      "evra": "2:4.14.7-0.fc34.noarch"
+      "evra": "2:4.14.8-0.fc34.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.14.7-0.fc34.x86_64"
+      "evra": "2:4.14.8-0.fc34.x86_64"
     },
     "sed": {
       "evra": "4.8-7.fc34.x86_64"
@@ -1079,6 +1082,9 @@
     },
     "sqlite-libs": {
       "evra": "3.34.1-2.fc34.x86_64"
+    },
+    "squashfs-tools": {
+      "evra": "4.5-3.20210913gite048580.fc34.x86_64"
     },
     "ssh-key-dir": {
       "evra": "0.1.2-7.fc34.x86_64"
@@ -1190,16 +1196,16 @@
     }
   },
   "metadata": {
-    "generated": "2021-10-12T20:53:42Z",
+    "generated": "2021-10-13T20:53:34Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2021-04-23T10:47:57Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2021-10-12T20:21:52Z"
+        "generated": "2021-10-12T22:36:05Z"
       },
       "fedora-updates": {
-        "generated": "2021-10-11T21:20:26Z"
+        "generated": "2021-10-13T20:17:30Z"
       }
     }
   }
