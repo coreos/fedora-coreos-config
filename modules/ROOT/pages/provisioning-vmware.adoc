@@ -38,7 +38,7 @@ CONFIG_ENCODING='base64'
 CONFIG_ENCODED=$(cat example.ign | base64 -w0 -)
 ----
 
-An alternative to plain `base64` encoding is `gzip+base64` as described in the https://coreos.github.io/ignition/supported-platforms/[Ignition support platforms]. This is especially useful when submitting the Ignition Config via `govc` as _inline_ parameter. In that case the maximum length for shell arguments called `ARG_MAX` comes into play. Depending on the platform you are on, it may be impossible to submit your config inline unless it was compressed with `gzip`. Call `getconf ARG_MAX` in your shell to see the local limit.
+An alternative to plain `base64` encoding is `gzip+base64` as described in the https://coreos.github.io/ignition/supported-platforms/[Ignition supported platforms]. This is especially useful when submitting the Ignition config via `govc` as an _inline_ parameter. In that case the encoded config is limited to slightly under 128 KiB on Linux, 256 KiB on macOS, and 32 KiB on Windows (8 KiB if using `cmd.exe` or PowerShell). If your config is larger than that limit, you may be able to submit it inline after compressing it with `gzip`.
 
 [source, bash]
 ----
