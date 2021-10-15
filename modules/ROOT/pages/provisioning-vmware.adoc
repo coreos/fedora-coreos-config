@@ -43,7 +43,7 @@ An alternative to plain `base64` encoding is `gzip+base64` as described in the h
 [source, bash]
 ----
 CONFIG_ENCODING='gzip+base64'
-CONFIG_ENCODED=$(cat example.ign | gzip | base64 -w0 -)
+CONFIG_ENCODED=$(cat example.ign | gzip -9 | base64 -w0 -)
 ----
 
 == Booting a new VM on Workstation or Fusion
