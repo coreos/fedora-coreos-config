@@ -34,7 +34,7 @@ doctl compute image create my-fcos-image --region sfo2 --image-url <download-url
 doctl compute ssh-key create my-key --public-key "$(cat ~/.ssh/id_rsa.pub)"
 ----
 
-. Launch a droplet. Your Ignition configuration can be passed to the VM as its https://www.digitalocean.com/docs/droplets/resources/metadata/[user data], or you can skip passing user data if you just want SSH access. This provides an easy way to test out FCOS without first creating an Ignition config.
+. Launch a droplet. Your Ignition configuration can be passed to the VM as its https://docs.digitalocean.com/products/droplets/how-to/provide-user-data/#about-user-data[user data], or you can skip passing user data if you just want SSH access. This provides an easy way to test out FCOS without first creating an Ignition config.
 +
 When creating a FCOS DigitalOcean droplet, you must specify an SSH key for the droplet, even if you plan to inject SSH keys via Ignition.
 +
