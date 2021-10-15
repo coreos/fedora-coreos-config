@@ -17,3 +17,10 @@
   streams:
     - rawhide
     - next-devel
+- pattern: ostree.hotfix
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/942
+  snooze: 2021-10-25
+  streams:
+    - rawhide
+  arches:
+    - aarch64
