@@ -33,6 +33,7 @@ systemd:
         # We run after `systemd-machine-id-commit.service` to ensure that
         # `ConditionFirstBoot=true` services won't rerun on the next boot.
         After=systemd-machine-id-commit.service
+        Wants=network-online.target
         After=network-online.target
         # We run before `zincati.service` to avoid conflicting rpm-ostree
         # transactions.
