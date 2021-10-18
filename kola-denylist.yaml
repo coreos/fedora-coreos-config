@@ -5,12 +5,6 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: podman.workflow
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
-- pattern: podman.base
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/966
-  snooze: 2021-10-20
-  platforms:
-    - aws
-    - gce
 - pattern: ostree.hotfix
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/942
   snooze: 2021-10-25
