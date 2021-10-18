@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 set -euo pipefail
 
-IGNITION_RESULT=/var/lib/ignition/result.json
+IGNITION_RESULT=/etc/.ignition-result.json
 
 WARN='\033[0;33m' # yellow
 RESET='\033[0m' # reset
