@@ -198,33 +198,3 @@ if find ${tmpd}/usr/{bin,sbin,libexec} ! -perm -0111 | grep -v clevis-luks-commo
 fi
 rm -r ${tmpd}
 ok "All initrd scripts are executable"
-
-# We need either a fixed dracut or temporary workaround, no need for both.
-# See https://github.com/coreos/fedora-coreos-tracker/issues/803.
-has_fixed_dracut_multipathd_service=0
-grep -q 'ExecStop=/sbin/multipathd shutdown' /usr/lib/dracut/modules.d/90multipath/multipathd.service || has_fixed_dracut_multipathd_service=1
-has_overlay_multipathd_service_quickfix=1
-test -f /usr/lib/dracut/modules.d/35coreos-multipath/90-multipathd-remove-execstop.conf || has_overlay_multipathd_service_quickfix=0
-if test "${has_fixed_dracut_multipathd_service}" -eq "${has_overlay_multipathd_service_quickfix}"; then
-    if test "${has_fixed_dracut_multipathd_service}" -eq 1; then
-        fatal "Found fixed dracut multipath module but quickfix is present too"
-    else
-        fatal "Found buggy dracut multipath module but quickfix is missing too"
-    fi
-fi
-ok "either dracut multipath module fixed or quickfix present"
-
-# We need either a fixed multipathd.socket or temporary workaround, no need for both.
-# See https://bugzilla.redhat.com/show_bug.cgi?id=2008098.
-has_fixed_multipathd_socket=1
-grep -q 'ConditionPathExists=/etc/multipath.conf' /usr/lib/systemd/system/multipathd.socket || has_fixed_multipathd_socket=0
-has_overlay_multipathd_socket_quickfix=1
-test -f /usr/lib/dracut/modules.d/35coreos-multipath/90-multipathd-remove-execstop.conf || has_overlay_multipathd_socket_quickfix=0
-if test "${has_fixed_multipathd_socket}" -eq "${has_overlay_multipathd_socket_quickfix}"; then
-    if test "${has_fixed_multipathd_socket}" -eq 1; then
-        fatal "Found fixed multipathd.socket but quickfix is present too"
-    else
-        fatal "Found buggy multipathd.socket but quickfix is missing too"
-    fi
-fi
-ok "either multipathd.socket fixed or quickfix present"

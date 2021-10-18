@@ -3,8 +3,7 @@
 [Unit]
 Description=Check if Ignition config is provided
 Before=systemd-user-sessions.service
-RequiresMountsFor=/var/lib/ignition
-ConditionPathExists=/var/lib/ignition/result.json
+ConditionPathExists=/etc/.ignition-result.json
 
 [Service]
 Type=oneshot
