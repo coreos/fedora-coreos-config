@@ -61,7 +61,7 @@ if [ "${TYPE}" == "${orig_type}" ] && [ "${UUID}" == "${orig_uuid}" ]; then
     xfs) xfs_admin -U generate "${target}" ;;
     *) echo "unexpected filesystem type ${TYPE}" 1>&2; exit 1 ;;
   esac
-  udevadm settle
+  udevadm settle || :
   echo "Regenerated UUID for ${target}"
 else
   echo "No changes required for ${target} TYPE=${TYPE} UUID=${UUID}"
