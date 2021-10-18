@@ -67,7 +67,7 @@
       "evra": "3.5.2-2.fc35.aarch64"
     },
     "btrfs-progs": {
-      "evra": "5.14.1-1.fc35.aarch64"
+      "evra": "5.14.2-1.fc35.aarch64"
     },
     "bubblewrap": {
       "evra": "0.5.0-1.fc35.aarch64"
@@ -136,10 +136,10 @@
       "evra": "4:1-30.fc35.noarch"
     },
     "coreos-installer": {
-      "evra": "0.10.0-2.fc35.aarch64"
+      "evra": "0.10.1-1.fc35.aarch64"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.10.0-2.fc35.aarch64"
+      "evra": "0.10.1-1.fc35.aarch64"
     },
     "coreutils": {
       "evra": "8.32-31.fc35.aarch64"
@@ -163,7 +163,7 @@
       "evra": "3.16-2.fc35.aarch64"
     },
     "crun": {
-      "evra": "1.1-1.fc35.aarch64"
+      "evra": "1.2-1.fc35.aarch64"
     },
     "crypto-policies": {
       "evra": "20210819-1.gitd0fdcfb.fc35.noarch"
@@ -271,28 +271,28 @@
       "evra": "0.0.4-12.fc35.aarch64"
     },
     "fedora-gpg-keys": {
-      "evra": "35-0.6.noarch"
+      "evra": "35-1.noarch"
     },
     "fedora-release-common": {
-      "evra": "35-0.32.noarch"
+      "evra": "35-33.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "35-0.32.noarch"
+      "evra": "35-33.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "35-0.32.noarch"
+      "evra": "35-33.noarch"
     },
     "fedora-repos": {
-      "evra": "35-0.6.noarch"
+      "evra": "35-1.noarch"
     },
     "fedora-repos-archive": {
-      "evra": "35-0.6.noarch"
+      "evra": "35-1.noarch"
     },
     "fedora-repos-modular": {
-      "evra": "35-0.6.noarch"
+      "evra": "35-1.noarch"
     },
     "fedora-repos-ostree": {
-      "evra": "35-0.6.noarch"
+      "evra": "35-1.noarch"
     },
     "file": {
       "evra": "5.40-9.fc35.aarch64"
@@ -307,7 +307,7 @@
       "evra": "1:4.8.0-4.fc35.aarch64"
     },
     "flatpak-session-helper": {
-      "evra": "1.11.3-1.fc35.aarch64"
+      "evra": "1.12.1-1.fc35.aarch64"
     },
     "fstrm": {
       "evra": "0.6.1-3.fc35.aarch64"
@@ -355,7 +355,7 @@
       "evra": "2.32.0-1.fc35.1.aarch64"
     },
     "glib2": {
-      "evra": "2.70.0-4.fc35.aarch64"
+      "evra": "2.70.0-5.fc35.aarch64"
     },
     "glibc": {
       "evra": "2.34-7.fc35.aarch64"
@@ -400,7 +400,7 @@
       "evra": "3.23-5.fc35.aarch64"
     },
     "ignition": {
-      "evra": "2.12.0-1.fc35.aarch64"
+      "evra": "2.12.0-3.fc35.aarch64"
     },
     "inih": {
       "evra": "49-4.fc35.aarch64"
@@ -448,7 +448,7 @@
       "evra": "11-3.fc35.aarch64"
     },
     "jq": {
-      "evra": "1.6-9.fc35.aarch64"
+      "evra": "1.6-10.fc35.aarch64"
     },
     "json-c": {
       "evra": "0.15-2.fc35.aarch64"
@@ -457,10 +457,10 @@
       "evra": "1.6.6-1.fc35.aarch64"
     },
     "kbd": {
-      "evra": "2.4.0-6.fc35.aarch64"
+      "evra": "2.4.0-7.fc35.aarch64"
     },
     "kbd-misc": {
-      "evra": "2.4.0-6.fc35.noarch"
+      "evra": "2.4.0-7.fc35.noarch"
     },
     "kernel": {
       "evra": "5.14.10-300.fc35.aarch64"
@@ -1111,22 +1111,22 @@
       "evra": "1.9.7p2-2.fc35.aarch64"
     },
     "systemd": {
-      "evra": "249.4-1.fc35.aarch64"
+      "evra": "249.4-2.fc35.aarch64"
     },
     "systemd-container": {
-      "evra": "249.4-1.fc35.aarch64"
+      "evra": "249.4-2.fc35.aarch64"
     },
     "systemd-libs": {
-      "evra": "249.4-1.fc35.aarch64"
+      "evra": "249.4-2.fc35.aarch64"
     },
     "systemd-pam": {
-      "evra": "249.4-1.fc35.aarch64"
+      "evra": "249.4-2.fc35.aarch64"
     },
     "systemd-resolved": {
-      "evra": "249.4-1.fc35.aarch64"
+      "evra": "249.4-2.fc35.aarch64"
     },
     "systemd-udev": {
-      "evra": "249.4-1.fc35.aarch64"
+      "evra": "249.4-2.fc35.aarch64"
     },
     "tar": {
       "evra": "2:1.34-2.fc35.aarch64"
@@ -1190,13 +1190,13 @@
     }
   },
   "metadata": {
-    "generated": "2021-10-10T20:53:06Z",
+    "generated": "2021-10-17T20:53:07Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2021-10-09T21:54:15Z"
+        "generated": "2021-10-16T21:31:33Z"
       },
       "fedora-next": {
-        "generated": "2021-10-10T10:43:31Z"
+        "generated": "2021-10-17T10:43:15Z"
       },
       "fedora-next-updates": {
         "generated": "2018-02-20T19:13:29Z"
