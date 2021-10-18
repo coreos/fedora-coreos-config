@@ -6,8 +6,6 @@ Documentation=https://github.com/coreos/fedora-coreos-tracker/issues/889
 ConditionKernelCommandLine=!ignition.firstboot
 RequiresMountsFor=/boot
 ConditionPathExists=/boot/ignition
-# We ship a kdump.service dropin that remounts /boot rw; avoid conflicts
-Before=kdump.service
 
 [Service]
 Type=oneshot
