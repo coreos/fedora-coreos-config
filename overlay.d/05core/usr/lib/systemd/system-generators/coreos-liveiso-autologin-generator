@@ -85,7 +85,7 @@ fi
 # If the user supplied an Ignition config, they have the ability to enable
 # autologin themselves.  Don't automatically render them insecure, since
 # they might be running in production and booting via e.g. IPMI.
-if jq -e .userConfigProvided /var/lib/ignition/result.json &>/dev/null; then
+if jq -e .userConfigProvided /etc/.ignition-result.json &>/dev/null; then
     exit 0
 fi
 
