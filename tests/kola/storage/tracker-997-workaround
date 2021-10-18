@@ -1,0 +1,18 @@
+#!/bin/bash
+# kola: { "exclusive": false, "architectures": "x86_64" }
+
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+if grep -q blk_mq_alloc_disk /usr/lib/dracut/modules.d/90kernel-modules/module-setup.sh; then
+    fatal "BZ 2010058 fixed; revert coreos/fedora-coreos-config#1289"
+fi
+ok "BZ 2010058 unfixed"
