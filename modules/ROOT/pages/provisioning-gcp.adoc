@@ -37,6 +37,8 @@ New GCP instances can be directly created and booted from public FCOS images.
 
 If you just want SSH access and no further customization, you don't need to pass any custom instance metadata. Depending on your GCP project configuration, relevant SSH public keys will be automatically added to the VM. This provides an easy way to test out FCOS without first creating an Ignition config.
 
+NOTE: Currently we don't support logging in using ssh through the GCP web console, using the `gcloud beta compute ssh` cli method or OS Login. See [fedora-coreos-tracker#648](https://github.com/coreos/fedora-coreos-tracker/issues/648) for more information.
+
 .Launching a new instance
 [source, bash]
 ----
@@ -44,6 +46,8 @@ STREAM='stable'
 VM_NAME='fcos-node01'
 gcloud compute instances create --image-project "fedora-coreos-cloud" --image-family "fedora-coreos-${STREAM}" "${VM_NAME}"
 ----
+
+Once the VM finished booting, you should be able to SSH into the instance using the IP address associated with the instance. If you didn’t change the defaults, the username is `core` and `ssh core@IP` should work.
 
 In order to launch a customized FCOS instance, a valid Ignition configuration must be passed as user-data at creation time:
 
