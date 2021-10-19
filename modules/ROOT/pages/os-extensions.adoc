@@ -7,7 +7,7 @@ However, in some cases it is necessary to add software to the base OS itself. Fo
 To do this, you can use https://coreos.github.io/rpm-ostree/[`rpm-ostree install`]. Consider these packages as "extensions": they extend the functionality of the base OS rather than e.g. providing runtimes for user applications. That said, there are no restrictions on which packages one can actually install. By default, packages are downloaded from the https://docs.fedoraproject.org/en-US/quick-docs/repositories/[Fedora repositories].
 
 To start the layering of a package, you need to write a systemd unit that executes the `rpm-ostree` command to install the wanted package(s).
-Changes are applied to a new deployment and a reboot is necessary for those to take effect.
+By default with `rpm-ostree install`, changes are queued for the next boot.  The `-A/--apply-live` option can be used to apply changes live *and* have them persist.
 
 == Example: Layering nano and setting it as the default editor
 
@@ -15,8 +15,6 @@ This example shows on how to install the text editor `nano` and add a script to 
 The parameter `--allow-inactive` is useful if the package is added to the root image in a future Fedora CoreOS release. In such a case, the parameter prevents that the service would fail.
 
 NOTE: In the future, we will have a more Ignition-friendly method of doing this with stronger guarantees. See upstream issues https://github.com/coreos/butane/issues/81[butane#81] and https://github.com/coreos/fedora-coreos-tracker/issues/681[fedora-coreos-tracker#681] for more information.
-
-NOTE: The `After=systemd-machine-id-commit.service` directive is important in the following examples to avoid some subtle issues. Similarly, any `ConditionFirstBoot=true` services should use `Before=first-boot-complete.target systemd-machine-id-commit.service`. See https://github.com/systemd/systemd/blob/3045c416e1cbbd8ab40577790522217fd1b9cb3b/man/systemd.unit.xml#L1315[the systemd documentation] for more details.
 
 [source,yaml]
 ----
@@ -30,9 +28,6 @@ systemd:
       contents: |
         [Unit]
         Description=Layer nano with rpm-ostree
-        # We run after `systemd-machine-id-commit.service` to ensure that
-        # `ConditionFirstBoot=true` services won't rerun on the next boot.
-        After=systemd-machine-id-commit.service
         Wants=network-online.target
         After=network-online.target
         # We run before `zincati.service` to avoid conflicting rpm-ostree
@@ -43,9 +38,8 @@ systemd:
         [Service]
         Type=oneshot
         RemainAfterExit=yes
-        ExecStart=/usr/bin/rpm-ostree install --allow-inactive nano
+        ExecStart=/usr/bin/rpm-ostree install --apply-live --allow-inactive nano
         ExecStart=/bin/touch /var/lib/%N.stamp
-        ExecStart=/bin/systemctl --no-block reboot
 
         [Install]
         WantedBy=multi-user.target
