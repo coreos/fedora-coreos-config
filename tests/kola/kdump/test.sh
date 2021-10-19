@@ -1,9 +1,9 @@
 #!/bin/bash
 set -xeuo pipefail
 # https://docs.fedoraproject.org/en-US/fedora-coreos/debugging-kernel-crashes/
-# Only run on QEMU and x86_64 & aarch64 for now:
+# Only run on QEMU x86_64 for now:
 # https://github.com/coreos/fedora-coreos-tracker/issues/860
-# kola: {"platforms": "qemu-unpriv", "minMemory": 4096, "tags": "skip-base-checks", "architectures": "x86_64 aarch64"}
+# kola: {"platforms": "qemu-unpriv", "minMemory": 4096, "tags": "skip-base-checks", "architectures": "x86_64"}
 
 fatal() {
     echo "$@" >&2
