@@ -39,3 +39,39 @@ packages:
       bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-4283d06e7b
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/977
       type: fast-track
+  container-selinux:
+    evra: 2:2.170.0-1.fc35.noarch
+    metadata:
+      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-e5915bb674
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/383#issuecomment-946115687
+      type: fast-track
+  kernel:
+    evr: 5.14.11-300.fc35
+    metadata:
+      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-f377355e41
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/383#issuecomment-946115687
+      type: pin
+  kernel-core:
+    evr: 5.14.11-300.fc35
+    metadata:
+      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-f377355e41
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/383#issuecomment-946115687
+      type: pin
+  kernel-modules:
+    evr: 5.14.11-300.fc35
+    metadata:
+      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-f377355e41
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/383#issuecomment-946115687
+      type: pin
+  skopeo:
+    evr: 1:1.5.0-2.fc35
+    metadata:
+      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-982b9a5061
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/383#issuecomment-946115687
+      type: fast-track
+  vim-minimal:
+    evr: 2:8.2.3512-1.fc35
+    metadata:
+      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-6988830606
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/383#issuecomment-946115687
+      type: fast-track
