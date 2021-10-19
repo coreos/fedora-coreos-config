@@ -30,6 +30,7 @@ We need to call the script from the previous section by using a systemd unit. He
 ----
 [Unit]
 Before=systemd-user-sessions.service
+Wants=network-online.target
 After=network-online.target
 ConditionPathExists=!/var/lib/issuegen-public-ipv4
 
@@ -69,6 +70,7 @@ systemd:
       contents: |
         [Unit]
         Before=systemd-user-sessions.service
+        Wants=network-online.target
         After=network-online.target
         ConditionPathExists=!/var/lib/issuegen-public-ipv4
 
