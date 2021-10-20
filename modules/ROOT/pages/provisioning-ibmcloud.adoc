@@ -61,10 +61,10 @@ ibmcloud cos upload --bucket=$BUCKET --key=$FILE --file=$FILE
 ----
 IMAGE=${FILE:0:-6}     # pull off .qcow2
 IMAGE=${IMAGE//[._]/-} # replace . and _ with -
-ibmcloud is image-create $IMAGE --file "cos://${REGION}/${BUCKET}/${FILE}" --os-name centos-7-amd64
+ibmcloud is image-create $IMAGE --file "cos://${REGION}/${BUCKET}/${FILE}" --os-name centos-8-amd64
 ----
 
-NOTE: Specifying `--os-name centos-7-amd64` is required for now until IBM expands the list of OS types.
+NOTE: Specifying `--os-name centos-8-amd64` is required for now until IBM expands the list of OS types.
 
 You'll have to wait for the image creation process to finish and go from `pending` to `available` before you can use the image. Monitor with the following command:
 
