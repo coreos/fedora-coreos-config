@@ -12,17 +12,6 @@ fatal() {
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
-      rhelver=$(. /etc/os-release && echo ${RHEL_VERSION:-})
-      if test -n "${rhelver}"; then
-        rhelminor=$(echo "${rhelver}" | cut -f 2 -d '.')
-        if test '!' -w /boot && test "${rhelminor}" -lt "5"; then
-          mkdir -p /etc/systemd/system/kdump.service.d
-          cat > /etc/systemd/system/kdump.service.d/rw.conf << 'EOF'
-[Service]
-ExecStartPre=mount -o remount,rw /boot
-EOF
-        fi
-      fi
       rpm-ostree kargs --append='crashkernel=300M'
       systemctl enable kdump.service
       /tmp/autopkgtest-reboot setcrashkernel
