@@ -12,7 +12,7 @@ fatal() {
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
-      rpm-ostree kargs --append='crashkernel=300M'
+      rpm-ostree kargs --append='crashkernel=256M'
       systemctl enable kdump.service
       /tmp/autopkgtest-reboot setcrashkernel
       ;;
