@@ -103,7 +103,7 @@ Next, if you'd like to SSH into the instance from outside IBM Cloud, you can ass
 ibmcloud is floating-ip-reserve floating-ip-1 --zone=$ZONE
 FIP='72251a2e-d6c5-42b4-97b0-b5f8e8d1f479'
 NIC='0777-dd174c80-dbd9-41b1-b221-39bbcef8a481' # find from `ibmcloud is instance` output
-ibmcloud is floating-ip-update $FIP --nic-id $NIC
+ibmcloud is floating-ip-update $FIP --nic $NIC
 ----
 
 And you now should be able to SSH into the instance using the IP address associated with the floating IP.
