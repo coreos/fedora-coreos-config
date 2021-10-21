@@ -14,7 +14,7 @@ cosaPod {
         curl -LO https://raw.githubusercontent.com/coreos/fedora-coreos-releng-automation/main/scripts/download-overrides.py
         python3 download-overrides.py
         # prep from the latest builds so that we generate a diff on PRs that add packages
-        cosa buildprep https://builds.coreos.fedoraproject.org/prod/streams/${env.CHANGE_TARGET}/builds
+        cosa buildfetch --stream=${env.CHANGE_TARGET}
     """)
 
     // use a --parent-build arg so we can diff later and it matches prod
