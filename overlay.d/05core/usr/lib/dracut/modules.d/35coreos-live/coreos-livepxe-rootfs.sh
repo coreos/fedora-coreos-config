@@ -26,8 +26,9 @@ elif [[ -n "${rootfs_url}" ]]; then
     if [[ ${rootfs_url} != http:* && ${rootfs_url} != https:* ]]; then
         # Don't commit to supporting protocols we might not want to expose in
         # the long term.
-        echo "coreos.live.rootfs_url= supports HTTP and HTTPS only." >&2
-        echo "Please fix your PXE configuration." >&2
+        echo "Unsupported scheme for image specified by:" >&2
+        echo "coreos.live.rootfs_url=${rootfs_url}" >&2
+        echo "Only HTTP and HTTPS are supported. Please fix your PXE configuration." >&2
         exit 1
     fi
 
@@ -39,7 +40,8 @@ elif [[ -n "${rootfs_url}" ]]; then
     # We retry forever, matching Ignition's semantics.
     curl_common_args="--silent --show-error --insecure --location"
     while ! curl --head $curl_common_args "${rootfs_url}" >/dev/null; do
-        echo "Couldn't establish connectivity with the server specified by coreos.live.rootfs_url=" >&2
+        echo "Couldn't establish connectivity with the server specified by:" >&2
+        echo "coreos.live.rootfs_url=${rootfs_url}" >&2
         echo "Retrying in 5s..." >&2
         sleep 5
     done
@@ -54,14 +56,15 @@ elif [[ -n "${rootfs_url}" ]]; then
     if ! curl $curl_common_args --retry 5 "${rootfs_url}" | \
             rdcore stream-hash /etc/coreos-live-want-rootfs | \
             bsdtar -xf - -C / ; then
-        echo "Couldn't fetch, verify, and unpack image specified by coreos.live.rootfs_url=" >&2
+        echo "Couldn't fetch, verify, and unpack image specified by:" >&2
+        echo "coreos.live.rootfs_url=${rootfs_url}" >&2
         echo "Check that the URL is correct and that the rootfs version matches the initramfs." >&2
         exit 1
     fi
 else
     # Nothing.  Fail.
     echo "No rootfs image found.  Modify your PXE configuration to add the rootfs" >&2
-    echo "image as a second initrd, or use the coreos.live.rootfs_url= kernel parameter" >&2
+    echo "image as a second initrd, or use the coreos.live.rootfs_url kernel parameter" >&2
     echo "to specify an HTTP or HTTPS URL to the rootfs." >&2
     exit 1
 fi
