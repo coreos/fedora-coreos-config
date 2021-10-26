@@ -12,3 +12,9 @@
     - rawhide
   arches:
     - aarch64
+- pattern: ext.config.storage.tracker-997-workaround
+  tracker: https://github.com/coreos/fedora-coreos-config/pull/1289#issuecomment-947052725
+  streams:
+    - rawhide
+    - next-devel
+    - next
