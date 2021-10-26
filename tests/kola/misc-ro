@@ -198,10 +198,3 @@ if find ${tmpd}/usr/{bin,sbin,libexec} ! -perm -0111 | grep -v clevis-luks-commo
 fi
 rm -r ${tmpd}
 ok "All initrd scripts are executable"
-
-# Sanity-check that boot is mounted by UUID
-if ! systemctl cat boot.mount | grep -q What=/dev/disk/by-uuid; then
-  systemctl cat boot.mount
-  fatal "boot mounted not by UUID"
-fi
-ok "boot mounted by UUID"
