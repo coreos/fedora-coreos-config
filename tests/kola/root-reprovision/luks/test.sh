@@ -27,6 +27,13 @@ if ! grep prjquota <<< "${rootflags}"; then
 fi
 ok "root mounted with prjquota"
 
+# while we're here, sanity-check that boot is mounted by UUID
+if ! systemctl cat boot.mount | grep -q What=/dev/disk/by-uuid; then
+  systemctl cat boot.mount
+  fatal "boot mounted not by UUID"
+fi
+ok "boot mounted by UUID"
+
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
       # check that ignition-ostree-growfs ran
@@ -42,6 +49,10 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
       grep root=UUID= /proc/cmdline
       grep rd.luks.name= /proc/cmdline
       ok "found root kargs"
+
+      # while we're here, sanity-check that we have a boot=UUID karg too
+      grep boot=UUID= /proc/cmdline
+      ok "found boot karg"
       ;;
   *) fatal "unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}";;
 esac
