@@ -21,10 +21,6 @@ initramfs-args:
   # Omit these since we don't use them
   - --omit=lvm
   - --omit=iscsi
-  # Dracut currently fails to add xen-blkfront driver on 5.14 kernels
-  # https://github.com/coreos/fedora-coreos-tracker/issues/997
-  # https://bugzilla.redhat.com/show_bug.cgi?id=2010058
-  - --add-drivers=xen-blkfront
 
 # Be minimal
 recommends: false
