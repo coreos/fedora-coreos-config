@@ -27,6 +27,15 @@ if ! systemctl cat boot.mount | grep -q What=/dev/disk/by-uuid; then
 fi
 ok "boot mounted by UUID"
 
+# check that we took ownership of the bootfs
+[ -f /boot/.root_uuid ]
+
+# check for the UUID dropins
+[ -f /boot/grub2/bootuuid.cfg ]
+mount -o ro /dev/disk/by-label/EFI-SYSTEM /boot/efi
+[ -f /boot/efi/EFI/*/bootuuid.cfg ]
+umount /boot/efi
+
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
       ok "first boot"
@@ -35,10 +44,12 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
 
   rebooted)
       # check for expected default kargs
-      grep root=UUID= /proc/cmdline
+      grep root=UUID=$(cat /boot/.root_uuid) /proc/cmdline
       ok "found root karg"
 
-      grep boot=UUID= /proc/cmdline
+      bootsrc=$(findmnt -nvr /boot -o SOURCE)
+      eval $(blkid -o export "${bootsrc}")
+      grep boot=UUID=${UUID} /proc/cmdline
       ok "found boot karg"
 
       ok "second boot"
