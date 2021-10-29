@@ -31,5 +31,21 @@ rm -vrf ${initramfs_firstboot_network_dir}
 # append rootmap kargs to the BLS configs.
 root=$(karg root)
 if [ -z "${root}" ]; then
-    /usr/bin/rdcore rootmap /sysroot --boot-mount ${bootmnt}
+    rdcore rootmap /sysroot --boot-mount ${bootmnt}
+fi
+
+# And similarly, only inject boot= if it's not already present.
+boot=$(karg boot)
+if [ -z "${boot}" ]; then
+    # XXX: `rdcore rootmap --inject-boot-karg` or maybe `rdcore bootmap`
+    eval $(blkid -o export "${bootdev}")
+    if [ -z "${UUID}" ]; then
+        # This should never happen
+        echo "Boot filesystem ${bootdev} has no UUID" >&2
+        exit 1
+    fi
+    rdcore kargs --boot-mount ${bootmnt} --append boot=UUID=${UUID}
+    # but also put it in /run for the first boot real root mount
+    mkdir -p /run/coreos
+    echo "${UUID}" > /run/coreos/bootfs_uuid
 fi
