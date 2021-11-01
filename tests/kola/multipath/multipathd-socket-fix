@@ -1,0 +1,28 @@
+#!/bin/bash
+# Just run on qemu since the answer is the same everywhere
+# kola: { "exclusive": false, "platforms": "qemu-unpriv" }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# We need either a fixed multipathd.socket or temporary workaround, no need for both.
+# See https://bugzilla.redhat.com/show_bug.cgi?id=2008098.
+has_fixed_multipathd_socket=1
+grep -q 'ConditionPathExists=/etc/multipath.conf' /usr/lib/systemd/system/multipathd.socket || has_fixed_multipathd_socket=0
+has_overlay_multipathd_socket_quickfix=1
+test -f /usr/lib/systemd/system/multipathd.socket.d/50-start-conditions.conf || has_overlay_multipathd_socket_quickfix=0
+if test "${has_fixed_multipathd_socket}" -eq "${has_overlay_multipathd_socket_quickfix}"; then
+    if test "${has_fixed_multipathd_socket}" -eq 1; then
+        fatal "Found fixed multipathd.socket but quickfix is present too"
+    else
+        fatal "Found buggy multipathd.socket but quickfix is missing too"
+    fi
+fi
+ok "either multipathd.socket fixed or quickfix present"
