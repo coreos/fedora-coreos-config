@@ -9,21 +9,21 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  coreos-installer:
-    evr: 0.10.1-1.fc34
+  dracut:
+    evr: 055-6.fc34
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-3d52eb54ca
-      reason: https://github.com/coreos/coreos-installer/security/advisories/GHSA-3r3g-g73x-g593
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-854826abc1
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/943
       type: fast-track
-  coreos-installer-bootinfra:
-    evr: 0.10.1-1.fc34
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-3d52eb54ca
-      reason: https://github.com/coreos/coreos-installer/security/advisories/GHSA-3r3g-g73x-g593
+  dracut-network:                                                                       
+    evr: 055-6.fc34                                                             
+    metadata:                                                                   
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-854826abc1     
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/943        
       type: fast-track
-  ignition:
-    evr: 2.12.0-3.fc34
-    metadata:
-      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-fb8c91b157
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/977
+  dracut-squash:
+    evr: 055-6.fc34                                                             
+    metadata:                                                                   
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-854826abc1     
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/943        
       type: fast-track

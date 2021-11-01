@@ -61,15 +61,50 @@ EOF
     add_wants "${unit_name}"
 }
 
+# Copied from
+# https://github.com/dracutdevs/dracut/blob/9491e599282d0d6bb12063eddbd192c0d2ce8acf/modules.d/99base/dracut-lib.sh#L586
+# rather than sourcing it.
+label_uuid_to_dev() {
+    local _dev
+    _dev="${1#block:}"
+    case "$_dev" in
+        LABEL=*)
+            echo "/dev/disk/by-label/$(echo "${_dev#LABEL=}" | sed 's,/,\\x2f,g;s, ,\\x20,g')"
+            ;;
+        PARTLABEL=*)
+            echo "/dev/disk/by-partlabel/$(echo "${_dev#PARTLABEL=}" | sed 's,/,\\x2f,g;s, ,\\x20,g')"
+            ;;
+        UUID=*)
+            echo "/dev/disk/by-uuid/$(echo "${_dev#UUID=}" | tr "[:upper:]" "[:lower:]")"
+            ;;
+        PARTUUID=*)
+            echo "/dev/disk/by-partuuid/$(echo "${_dev#PARTUUID=}" | tr "[:upper:]" "[:lower:]")"
+            ;;
+    esac
+}
+
 # If the root device is multipath, hook up /boot to use that too,
 # based on our custom udev rules in 90-coreos-device-mapper.rules
 # that creates "label found on mpath" links.
 # Otherwise, use the usual by-label symlink.
 # See discussion in https://github.com/coreos/fedora-coreos-config/pull/1022
 bootdev=/dev/disk/by-label/boot
-# TODO add equivalent of getargbool() so we handle rd.multipath=0
-if have_karg rd.multipath; then
+bootkarg=$(karg boot)
+mpath=$(karg rd.multipath)
+if [ -n "${mpath}" ] && [ "${mpath}" != 0 ]; then
     bootdev=/dev/disk/by-label/dm-mpath-boot
+# Newer nodes inject boot=UUID=..., but we support a larger subset of the dracut/fips API
+elif [ -n "${bootkarg}" ]; then
+    # Adapted from https://github.com/dracutdevs/dracut/blob/9491e599282d0d6bb12063eddbd192c0d2ce8acf/modules.d/01fips/fips.sh#L17
+    case "$bootkarg" in
+        LABEL=* | UUID=* | PARTUUID=* | PARTLABEL=*)
+            bootdev="$(label_uuid_to_dev "$bootkarg")";;
+        /dev/*) bootdev=$bootkarg;;
+        *) echo "Unknown boot karg '${bootkarg}'; falling back to ${bootdev}";;
+    esac
+# This is used for the first boot only
+elif [ -f /run/coreos/bootfs_uuid ]; then
+    bootdev=/dev/disk/by-uuid/$(cat /run/coreos/bootfs_uuid)
 fi
 
 # We mount read-only by default mostly to protect
