@@ -2,7 +2,8 @@
 set -xeuo pipefail
 
 # No need to run on any other platform than QEMU.
-# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv" }
+# This test only runs on FCOS because countme support is not available in RHCOS
+# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv" }
 
 ok() {
     echo "ok" "$@"
