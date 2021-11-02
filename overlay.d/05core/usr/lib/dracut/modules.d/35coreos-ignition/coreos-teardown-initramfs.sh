@@ -40,7 +40,7 @@ are_default_NM_configs() {
     # Do a new run with the default input
     /usr/libexec/nm-initrd-generator \
         -c /run/coreos-teardown-initramfs/connections-compare-2 \
-        -i /run/coreos-teardown-initramfs/initrd-data-dir -- ip=dhcp,dhcp6
+        -i /run/coreos-teardown-initramfs/initrd-data-dir -- ip=auto
     # remove unique identifiers from the files (so our diff can work)
     sed -i '/^uuid=/d' /run/coreos-teardown-initramfs/connections-compare-{1,2}/*
     # currently the output will differ based on whether rd.neednet=1
