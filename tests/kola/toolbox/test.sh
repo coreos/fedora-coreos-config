@@ -13,7 +13,11 @@
 
 # Only run on QEMU to reduce CI costs as nothing is platform specific here.
 # Toolbox container is currently available only for x86_64 and aarch64 in Fedora
-# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv", "architectures": "x86_64 aarch64" }
+# This test only runs on FCOS because RHCOS is missing the `machinectl` command.
+# Additionally, there are some distro specific choices made for this test that
+# should/could be adpated for RHCOS.
+# TODO-RHCOS: adapt test for RHCOS specifics or create separate RHCOS toolbox test
+# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv", "architectures": "x86_64 aarch64" }
 
 set -xeuo pipefail
 

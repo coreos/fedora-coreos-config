@@ -1,5 +1,9 @@
 #!/bin/bash
-# kola: {"platforms": "qemu", "minMemory": 4096, "architectures": "!s390x"}
+# This test is only running on FCOS because it is checking that /boot is
+# mounted by UUID and RHCOS is not doing that yet.
+# TODO-RHCOS: drop 'fcos' tag when RHCOS is mounting /boot by UUID
+#             See: https://github.com/openshift/os/issues/675
+# kola: { "distros": "fcos", "platforms": "qemu", "minMemory": 4096, "architectures": "!s390x" }
 set -xeuo pipefail
 
 ok() {
