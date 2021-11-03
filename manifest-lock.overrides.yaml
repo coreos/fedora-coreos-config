@@ -9,24 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  dracut:
-    evr: 055-6.fc35
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-9bf09dfc2c
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/943
-      type: fast-track
-  dracut-network:
-    evr: 055-6.fc35
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-9bf09dfc2c
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/943
-      type: fast-track
-  dracut-squash:
-    evr: 055-6.fc35
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-9bf09dfc2c
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/943
-      type: fast-track
   kernel:
     evr: 5.14.13-300.fc35
     metadata:
