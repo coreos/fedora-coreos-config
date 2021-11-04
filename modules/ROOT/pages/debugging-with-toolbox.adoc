@@ -1,14 +1,14 @@
-= Debugging with Toolbox
+= Debugging with Toolbx
 
 The FCOS image is kept minimal by design to reduce the image size and the
 attack surface. This means that it does not include every troubleshooting tools
 that a normal OS may include. Instead, the recommended approach is to leverage
-containers with the https://github.com/containers/toolbox/[toolbox] utility
+containers with the https://containertoolbx.org/[toolbox] utility
 included in the image.
 
-== What is toolbox
+== What is Toolbx?
 
-Toolbox is a utility that allows you to create privileged containers meant to
+Toolbx is a utility that allows you to create privileged containers meant to
 debug and troubleshoot your instance. It is a wrapper around podman which
 starts long running containers with default mounts and namespaces to facilitate
 debugging the host system.
@@ -16,7 +16,7 @@ debugging the host system.
 These containers can then be used to install tools that you may need for
 troubleshooting.
 
-== Using toolbox
+== Using Toolbx
 
 You can create a new toolbox by running the command below. On the first run,
 this will ask you if you want to use the image
@@ -36,7 +36,7 @@ show you your newly created toolbox. In this case, it is named
 toolbox list
 ----
 
-As pointed out by the output of the toolbox create command, you can enter the
+As pointed out by the output of the `toolbox create` command, you can enter the
 following command to enter your toolbox.
 
 [source,sh]
@@ -63,6 +63,6 @@ from the host with the following command.
 toolbox rm --force fedora-toolbox-32
 ----
 
-NOTE: The toolbox utility allows you to create toolboxes with your custom
+NOTE: Toolbx allows you to create toolboxes with your custom
 images. You can find more details in the
 https://github.com/containers/toolbox/tree/main/doc[toolbox manpages].
