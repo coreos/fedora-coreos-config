@@ -1,0 +1,18 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# Make sure that kdump didn't start (it's either disabled, or enabled but
+# conditional on crashkernel= karg, which we don't bake).
+if ! systemctl show -p ActiveState kdump.service | grep -q ActiveState=inactive; then
+    fatal "Unit kdump.service shouldn't be active"
+fi
