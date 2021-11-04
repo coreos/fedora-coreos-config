@@ -20,7 +20,7 @@ troubleshooting.
 
 You can create a new toolbox by running the command below. On the first run,
 this will ask you if you want to use the image
-`registry.fedoraproject.org/f32/fedora-toolbox:32`.
+`registry.fedoraproject.org/fedora-toolbox:34`.
 
 [source,sh]
 ----
@@ -29,7 +29,7 @@ toolbox create
 
 You can then list all the running toolboxes running on the host. This should
 show you your newly created toolbox. In this case, it is named
-`fedora-toolbox-32`.
+`fedora-toolbox-34`.
 
 [source,sh]
 ----
@@ -60,7 +60,7 @@ from the host with the following command.
 
 [source,sh]
 ----
-toolbox rm --force fedora-toolbox-32
+toolbox rm --force fedora-toolbox-34
 ----
 
 NOTE: Toolbx allows you to create toolboxes with your custom
