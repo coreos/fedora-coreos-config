@@ -13,8 +13,8 @@ repos:
   # use `cosa fetch --update-lockfile`; but note that all package versions are
   # still pinned. These repos are also used by the remove-graduated-overrides
   # GitHub Action.
-  - fedora-next
-  - fedora-next-updates
+  - fedora
+  - fedora-updates
 
 add-commit-metadata:
   fedora-coreos.stream: next-devel
