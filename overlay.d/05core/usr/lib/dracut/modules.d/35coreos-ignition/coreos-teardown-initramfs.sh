@@ -30,6 +30,9 @@ dracut_func() {
 # If it matches then it was the default, if not then the user provided
 # something extra.
 are_default_NM_configs() {
+    # pick up our CoreOS default networking kargs from the afterburn dropin
+    DEFAULT_KARGS_FILE=/usr/lib/systemd/system/afterburn-network-kargs.service.d/50-afterburn-network-kargs-default.conf
+    source <(grep -o 'AFTERBURN_NETWORK_KARGS_DEFAULT=.*' $DEFAULT_KARGS_FILE)
     # Make two dirs for storing files to use in the comparison
     mkdir -p /run/coreos-teardown-initramfs/connections-compare-{1,2}
     # Make another that's just a throwaway for the initrd-data-dir
@@ -40,7 +43,7 @@ are_default_NM_configs() {
     # Do a new run with the default input
     /usr/libexec/nm-initrd-generator \
         -c /run/coreos-teardown-initramfs/connections-compare-2 \
-        -i /run/coreos-teardown-initramfs/initrd-data-dir -- ip=auto
+        -i /run/coreos-teardown-initramfs/initrd-data-dir -- $AFTERBURN_NETWORK_KARGS_DEFAULT
     # remove unique identifiers from the files (so our diff can work)
     sed -i '/^uuid=/d' /run/coreos-teardown-initramfs/connections-compare-{1,2}/*
     # currently the output will differ based on whether rd.neednet=1
