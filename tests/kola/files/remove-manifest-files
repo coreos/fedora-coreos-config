@@ -1,0 +1,17 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# See remove-files in the manifest
+if test -d /usr/share/info; then
+    fatal "found /usr/share/info"
+fi
