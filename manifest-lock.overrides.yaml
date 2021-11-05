@@ -8,4 +8,10 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  skopeo:
+    evr: 1.5.1-1.fc35
+    metadata:
+      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-b8fee395ca
+      reason: https://github.com/coreos/enhancements/pull/7
+      type: fast-track
