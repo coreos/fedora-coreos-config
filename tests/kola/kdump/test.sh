@@ -1,9 +1,9 @@
 #!/bin/bash
 set -xeuo pipefail
 # https://docs.fedoraproject.org/en-US/fedora-coreos/debugging-kernel-crashes/
-# Only run on QEMU and x86_64 & aarch64 for now:
+# Only run on QEMU x86_64 for now:
 # https://github.com/coreos/fedora-coreos-tracker/issues/860
-# kola: {"platforms": "qemu-unpriv", "minMemory": 4096, "tags": "skip-base-checks", "architectures": "x86_64 aarch64"}
+# kola: {"platforms": "qemu-unpriv", "minMemory": 4096, "tags": "skip-base-checks", "architectures": "x86_64"}
 
 fatal() {
     echo "$@" >&2
@@ -12,18 +12,7 @@ fatal() {
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
-      rhelver=$(. /etc/os-release && echo ${RHEL_VERSION:-})
-      if test -n "${rhelver}"; then
-        rhelminor=$(echo "${rhelver}" | cut -f 2 -d '.')
-        if test '!' -w /boot && test "${rhelminor}" -lt "5"; then
-          mkdir -p /etc/systemd/system/kdump.service.d
-          cat > /etc/systemd/system/kdump.service.d/rw.conf << 'EOF'
-[Service]
-ExecStartPre=mount -o remount,rw /boot
-EOF
-        fi
-      fi
-      rpm-ostree kargs --append='crashkernel=300M'
+      rpm-ostree kargs --append='crashkernel=256M'
       systemctl enable kdump.service
       /tmp/autopkgtest-reboot setcrashkernel
       ;;
