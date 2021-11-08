@@ -17,3 +17,14 @@ have_karg() {
     done
     return 1
 }
+
+karg() {
+    local name="$1" value="${2:-}"
+    local cmdline=( $(</proc/cmdline) )
+    for arg in "${cmdline[@]}"; do
+        if [[ "${arg%%=*}" == "${name}" ]]; then
+            value="${arg#*=}"
+        fi
+    done
+    echo "${value}"
+}
