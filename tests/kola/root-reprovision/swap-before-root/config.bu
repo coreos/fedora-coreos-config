@@ -1,0 +1,23 @@
+variant: fcos
+version: 1.4.0
+
+storage:
+  disks:
+    - device: /dev/vda
+      partitions:
+        - number: 4
+          label: swap
+          size_mib: 512
+          wipe_partition_entry: true
+        - number: 5
+          label: root
+  filesystems:
+    - device: /dev/disk/by-partlabel/swap
+      label: swap
+      format: swap
+      wipe_filesystem: true
+      with_mount_unit: true
+    - device: /dev/disk/by-partlabel/root
+      label: root
+      format: xfs
+      wipe_filesystem: true

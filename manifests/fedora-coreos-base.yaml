@@ -164,6 +164,12 @@ packages:
   # zram-generator (but not zram-generator-defaults) for F33 change
   # https://github.com/coreos/fedora-coreos-tracker/issues/509
   - zram-generator
+  # resolved was broken out to its own package in rawhide/f35
+  - systemd-resolved
+  # In F35+ need `iptables-legacy` package
+  # See https://github.com/coreos/fedora-coreos-tracker/issues/676#issuecomment-928028451
+  - iptables-legacy
+
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;
@@ -185,3 +191,9 @@ packages-aarch64:
 arch-include:
   x86_64: bootupd.yaml
   aarch64: bootupd.yaml
+
+remove-from-packages:
+  # Hopefully short-term hack -- see https://github.com/coreos/fedora-coreos-config/pull/1206#discussion_r705425869.
+  # This keeps the size down and ensures nothing tries to use it, preventing us
+  # from shedding the dep eventually.
+  - [cracklib-dicts, .*]
