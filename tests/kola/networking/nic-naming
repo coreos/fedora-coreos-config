@@ -1,0 +1,19 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# https://github.com/coreos/fedora-coreos-config/commit/2a5c2abc796ac645d705700bf445b50d4cda8f5f
+if ip link | grep -o -e " eth[0-9]:"; then
+    fatal "detected eth* NIC naming on node"
+fi
+ok nic naming
+

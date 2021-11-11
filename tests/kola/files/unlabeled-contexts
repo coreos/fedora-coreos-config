@@ -1,0 +1,21 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# check that no files are unlabeled
+unlabeled=$(find /var /etc -context '*:unlabeled_t:*')
+if [ -n "${unlabeled}" ]; then
+    echo "Found unlabeled files:"
+    echo "${unlabeled}"
+    exit 1
+fi
+ok no files with unlabeled_t SELinux label

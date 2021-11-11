@@ -1,0 +1,20 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# Security scanners complain about world-readable files in /etc/sudoers.d.
+# Check that there aren't any.
+# https://bugzilla.redhat.com/show_bug.cgi?id=1981979
+sudoers_files="$(find /etc/sudoers.d -type f ! -perm 600 2>&1)"
+if [ -n "$sudoers_files" ]; then
+    fatal "Found files in /etc/sudoers.d with unexpected permissions: $sudoers_files"
+fi
