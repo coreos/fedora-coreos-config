@@ -1,0 +1,17 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+if ! lsattr -d / | grep -qe '--i--'; then
+    fatal "missing immutable bit on /"
+fi
+ok immutable bit

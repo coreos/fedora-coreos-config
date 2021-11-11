@@ -1,0 +1,20 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# make sure dnsmasq is masked
+# https://github.com/coreos/fedora-coreos-tracker/issues/519#issuecomment-705140528
+if [ $(systemctl is-enabled dnsmasq.service) != 'masked' ]; then
+    fatal "dnsmasq.service systemd unit should be masked"
+fi
+ok "dnsmasq.service systemd unit is masked"
+
