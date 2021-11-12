@@ -12,5 +12,5 @@ fatal() {
 }
 
 # Defined in https://github.com/coreos/fedora-coreos-tracker/blob/master/internals/README-internals.md#aleph-version
-jq < /sysroot/.coreos-aleph-version.json >/dev/null
+jq . < /sysroot/.coreos-aleph-version.json >/dev/null
 ok aleph
