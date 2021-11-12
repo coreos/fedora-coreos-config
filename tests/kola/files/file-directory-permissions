@@ -11,9 +11,9 @@ fatal() {
     exit 1
 }
 
-list="$(find /etc -type f,d -perm /022)"
+list="$(find /etc -type f -type d -perm /022)"
 if [[ -n "${list}" ]]; then
-    find /etc -type f,d -perm /022 -print0 | xargs -0 ls -al
+    find /etc -type f -type d -perm /022 -print0 | xargs -0 ls -al
     fatal "found files or directories with 'g+w' or 'o+w' permission"
 fi
 ok "no files with 'g+w' or 'o+w' permission found in /etc"
