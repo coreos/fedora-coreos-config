@@ -16,4 +16,3 @@ if ip link | grep -o -e " eth[0-9]:"; then
     fatal "detected eth* NIC naming on node"
 fi
 ok nic naming
-
