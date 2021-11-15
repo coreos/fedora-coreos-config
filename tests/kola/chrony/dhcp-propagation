@@ -29,7 +29,7 @@ test_setup() {
     ip netns exec container ip link set veth-container up
 
     # run podman commands to set up dnsmasq server
-    pushd $(mktemp -d)
+    pushd "$(mktemp -d)"
     NTPHOSTIP=$(getent hosts time-c-g.nist.gov | cut -d ' ' -f 1)
     cat <<EOF >Dockerfile
 FROM registry.fedoraproject.org/fedora:35
