@@ -3,31 +3,13 @@
 set -xeuo pipefail
 
 ok() {
-        echo "ok" "$@"
-    }
+    echo "ok" "$@"
+}
 
 fatal() {
-        echo "$@" >&2
-            exit 1
-        }
-
-# Make sure that coreos-update-ca-trust kicked in and observe the result.
-if ! systemctl show coreos-update-ca-trust.service -p ActiveState | grep ActiveState=active; then
-    fatal "coreos-update-ca-trust.service not active"
-fi
-if ! grep '^# coreos.com$' /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt; then
-    fatal "expected coreos.com in ca-bundle"
-fi
-ok "coreos-update-ca-trust.service"
-
-# Make sure that the stub-resolv.conf file has the correct selinux context.
-# https://github.com/fedora-selinux/selinux-policy/pull/509#issuecomment-744540382
-# https://github.com/systemd/systemd/pull/17976
-context=$(stat --format "%C" /run/systemd/resolve/stub-resolv.conf)
-if [ "$context" != "system_u:object_r:net_conf_t:s0" ]; then
-    fatal "SELinux context on stub-resolv.conf is wrong"
-fi
-ok "SELinux context on stub-resolv.conf is correct"
+    echo "$@" >&2
+    exit 1
+}
 
 # This is for verifying that `kubernetes_file_t` labeled files can be
 # watched by systemd
