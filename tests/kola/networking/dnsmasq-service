@@ -13,8 +13,7 @@ fatal() {
 
 # make sure dnsmasq is masked
 # https://github.com/coreos/fedora-coreos-tracker/issues/519#issuecomment-705140528
-if [ $(systemctl is-enabled dnsmasq.service) != 'masked' ]; then
+if [ "$(systemctl is-enabled dnsmasq.service)" != 'masked' ]; then
     fatal "dnsmasq.service systemd unit should be masked"
 fi
 ok "dnsmasq.service systemd unit is masked"
-

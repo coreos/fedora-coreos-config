@@ -19,7 +19,7 @@ fatal() {
 }
 
 # make sure the systemd unit (dnsmasq) is unmasked and enabled
-if [ $(systemctl is-enabled dnsmasq.service) != 'enabled' ]; then
+if [ "$(systemctl is-enabled dnsmasq.service)" != 'enabled' ]; then
     fatal "dnsmasq.service systemd unit should be unmasked and enabled"
 fi
 ok "dnsmasq.service systemd unit is unmasked and enabled"
