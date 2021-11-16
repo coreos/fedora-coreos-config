@@ -122,7 +122,7 @@ if [ "$ID" == "fedora" ]; then
 elif [ "$ID" == "rhcos" ]; then
     # For the version comparison use string substitution to remove the
     # '.` from the version so we can use integer comparison
-    RHCOS_MINIMUM_VERSION="4.9"
+    RHCOS_MINIMUM_VERSION="4.7"
     if [ "${VERSION_ID/\./}" -ge "${RHCOS_MINIMUM_VERSION/\./}" ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG2
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
