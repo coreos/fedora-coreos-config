@@ -64,6 +64,7 @@ mac-address-blacklist=
 dhcp-timeout=90
 dns-search=
 method=auto
+required-timeout=20000
 
 [ipv6]
 addr-gen-mode=eui64
