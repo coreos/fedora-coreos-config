@@ -107,7 +107,7 @@ normalize_connection_file() {
     sed -e s/^uuid=.*$/uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/ \
         -e s/^timestamp=.*$/timestamp=xxxxxxxxxx/                 \
         -e s/^interface-name=.*$/interface-name=xxxx/             \
-        $1
+        "${1}"
 }
 
 source /etc/os-release

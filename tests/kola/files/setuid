@@ -1,0 +1,51 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# List of known files and directories with SetUID bit set
+list_setuid_files=(
+    '/usr/bin/chage'
+    '/usr/bin/fusermount'
+    '/usr/bin/fusermount3'
+    '/usr/bin/gpasswd'
+    '/usr/bin/mount'
+    '/usr/bin/newgrp'
+    '/usr/bin/passwd'
+    '/usr/bin/pkexec'
+    '/usr/bin/su'
+    '/usr/bin/sudo'
+    '/usr/bin/umount'
+    '/usr/lib/polkit-1/polkit-agent-helper-1'
+    '/usr/sbin/grub2-set-bootflag'
+    '/usr/sbin/mount.nfs'
+    '/usr/sbin/pam_timestamp_check'
+    '/usr/sbin/unix_chkpwd'
+)
+unknown_setuid_files=""
+while IFS= read -r -d '' e; do
+    found="false"
+    for k in "${list_setuid_files[@]}"; do
+        if [[ "${k}" == "${e}" ]]; then
+            found="true"
+            break
+        fi
+    done
+    if [[ "${found}" == "false" ]]; then
+        unknown_setuid_files+=" ${e}"
+    fi
+done< <(find /usr /etc -type f,d -perm /4000 -print0)
+
+if [[ -n "${unknown_setuid_files}" ]]; then
+    echo "SetUID:${unknown_setuid_files}"
+    fatal "found files/directories with SetUID/GID bit set"
+fi
+ok "no unknown file/directory with SetUID/GID bit set"
