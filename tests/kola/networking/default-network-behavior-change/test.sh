@@ -49,7 +49,6 @@ method=auto
 org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 # EXPECTED_INITRD_NETWORK_CFG2
 #   - used on all RHCOS releases
-#   - used on FCOS F34
 EXPECTED_INITRD_NETWORK_CFG2="[connection]
 id=Wired Connection
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -113,10 +112,7 @@ normalize_connection_file() {
 source /etc/os-release
 # All current FCOS releases use the same config
 if [ "$ID" == "fedora" ]; then
-    if [ "$VERSION_ID" -eq "34" ]; then
-        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG2
-        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
-    elif [ "$VERSION_ID" -ge "35" ]; then
+    if [ "$VERSION_ID" -ge "35" ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG1
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
     else
