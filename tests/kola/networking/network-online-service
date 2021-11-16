@@ -18,4 +18,3 @@ if ! systemctl show -p ActiveState network-online.target | grep -q ActiveState=i
     fatal "Unit network-online.target shouldn't be active"
 fi
 ok "unit network-online.target inactive"
-

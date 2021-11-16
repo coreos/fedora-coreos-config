@@ -13,9 +13,9 @@ fatal() {
 
 # It's easy for dracut modules to accidentally ship scripts without +x set
 tmpd=$(mktemp -d)
-( cd ${tmpd} && lsinitrd --unpack /boot/ostree/*/init* )
-if find ${tmpd}/usr/{bin,sbin,libexec} ! -perm -0111 | grep -v clevis-luks-common-functions; then
+( cd "${tmpd}" && lsinitrd --unpack /boot/ostree/*/init* )
+if find "${tmpd}/usr/"{bin,sbin,libexec} ! -perm -0111 | grep -v clevis-luks-common-functions; then
     fatal "Found non-executable scripts in initrd"
 fi
-rm -r ${tmpd}
+rm -r "${tmpd}"
 ok "All initrd scripts are executable"

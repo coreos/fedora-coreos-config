@@ -15,8 +15,6 @@ fatal() {
 has_cgroup_karg=1
 grep -q systemd.unified_cgroup_hierarchy /proc/cmdline || has_cgroup_karg=0
 sys_fs_cgroup_source=$(findmnt -no SOURCE /sys/fs/cgroup)
-stream=$(rpm-ostree status -b --json | jq -r '.deployments[0]["base-commit-meta"]["fedora-coreos.stream"
-]')
 if [ $has_cgroup_karg == 1 ]; then
     fatal "found systemd.unified_cgroup_hierarchy=0"
 fi

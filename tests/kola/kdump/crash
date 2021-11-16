@@ -32,7 +32,7 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
       if test -z "${kcore}"; then
         fatal "No kcore found in /var/crash"
       fi
-      info=$(file ${kcore})
+      info=$(file "${kcore}")
       if ! [[ "${info}" =~ 'vmcore: Kdump'.*'system Linux' ]]; then
         fatal "vmcore does not appear to be a Kdump?"
       fi
