@@ -1,5 +1,7 @@
 #!/bin/bash
-# kola: {"platforms": "qemu", "minMemory": 4096}
+# This test only runs on FCOS due to a problem enabling a swap partition on
+# RHCOS.  See: https://github.com/openshift/os/issues/665
+# kola: {"distros": "fcos", "platforms": "qemu", "minMemory": 4096}
 set -xeuo pipefail
 
 ok() {
