@@ -9,21 +9,195 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  dracut:
-    evr: 055-6.fc34
+  NetworkManager:
+    evr: 1:1.32.12-2.fc35
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-854826abc1
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-4b4c3ddc92
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1005
+      type: fast-track
+  NetworkManager-cloud-setup:
+    evr: 1:1.32.12-2.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-4b4c3ddc92
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1005
+      type: fast-track
+  NetworkManager-libnm:
+    evr: 1:1.32.12-2.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-4b4c3ddc92
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1005
+      type: fast-track
+  NetworkManager-team:
+    evr: 1:1.32.12-2.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-4b4c3ddc92
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1005
+      type: fast-track
+  NetworkManager-tui:
+    evr: 1:1.32.12-2.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-4b4c3ddc92
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1005
+      type: fast-track
+  coreos-installer:
+    evr: 0.10.1-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-23fed0cab4
+      reason: https://github.com/coreos/coreos-installer/security/advisories/GHSA-3r3g-g73x-g593
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.10.1-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-23fed0cab4
+      reason: https://github.com/coreos/coreos-installer/security/advisories/GHSA-3r3g-g73x-g593
+      type: fast-track
+  containerd:
+     evr: 1.5.7-1.fc35
+     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-b5a9a481a2
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track 
+  btrfs-progs:
+    evr: 5.14.2-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-736f2133b3
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/377#issuecomment-926302173
+      type: fast-track
+  criu:
+    evr: 3.16.1-2.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-7a364d3533
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/377#issuecomment-926302173
+      type: fast-track
+  criu-libs:
+    evr: 3.16.1-2.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-7a364d3533
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/377#issuecomment-926302173
+      type: fast-track
+  crun:
+    evr: 1.2-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-d8eeb30c1f
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/377#issuecomment-926302173
+      type: fast-track
+  dracut:
+    evr: 055-6.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-9bf09dfc2c
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/943
       type: fast-track
   dracut-network:                                                                       
-    evr: 055-6.fc34                                                             
+    evr: 055-6.fc35                                                             
     metadata:                                                                   
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-854826abc1     
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-9bf09dfc2c     
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/943        
       type: fast-track
-  dracut-squash:
-    evr: 055-6.fc34                                                             
+  dracut-squash:                                                               
+    evr: 055-6.fc35                                                             
     metadata:                                                                   
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-854826abc1     
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-9bf09dfc2c     
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/943        
+      type: fast-track
+  ignition:
+    evr: 2.12.0-3.fc35
+    metadata:
+      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-4283d06e7b
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/977
+      type: fast-track
+  container-selinux:
+    evra: 2:2.170.0-2.fc35.noarch
+    metadata:
+      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-cab6e98202
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/383#issuecomment-946115687
+      type: fast-track
+  kernel:
+    evr: 5.14.14-300.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-a98532af5e
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track
+  kernel-core:
+    evr: 5.14.14-300.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-a98532af5e
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track
+  kernel-modules:
+    evr: 5.14.14-300.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-a98532af5e
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track
+  libgusb:
+    evr: 0.3.8-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-c5c3af79b4
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track
+  libxmlb:
+    evr: 0.3.3-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-77f558f643
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track
+  moby-engine: 
+    evr: 20.10.9-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-b5a9a481a2
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track
+  ostree:
+    evr: 2021.5-2.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-6422cca078
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track
+  ostree-libs:                                                                       
+    evr: 2021.5-2.fc35                                                          
+    metadata:                                                                   
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-6422cca078     
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track 
+  podman:
+    evr: 3:3.4.1-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-1dcddd7d74
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track
+  podman-plugins:
+    evr: 3:3.4.1-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-1dcddd7d74
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track
+  rpm-ostree:
+    evr: 2021.12-2.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-fbed2d77f7
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track
+  rpm-ostree-libs:                                                                   
+    evr: 2021.12-2.fc35                                                         
+    metadata:                                                                   
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-fbed2d77f7     
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424
+      type: fast-track   
+  skopeo:
+    evr: 1:1.5.0-2.fc35
+    metadata:
+      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-982b9a5061
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/383#issuecomment-946115687
+      type: fast-track
+  tzdata:                                                                   
+    evra: 2021c-1.fc35.noarch                                                         
+    metadata:                                                                   
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-a0f79c8463     
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1305#issuecomment-951242424     
+      type: fast-track
+  vim-minimal:
+    evr: 2:8.2.3512-1.fc35
+    metadata:
+      bodhi:  https://bodhi.fedoraproject.org/updates/FEDORA-2021-6988830606
+      reason: https://github.com/coreos/fedora-coreos-streams/issues/383#issuecomment-946115687
       type: fast-track
