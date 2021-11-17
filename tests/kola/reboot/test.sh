@@ -1,6 +1,9 @@
 #!/bin/bash
 set -xeuo pipefail
-# kola: {"platforms": "qemu"}
+# This test is only run on FCOS because we are not mounting /boot by UUID on
+# RHCOS, yet.
+# TODO-RHCOS: drop 'fcos' tag when RHCOS starts mounting /boot by UUID
+# kola: {"distros": "fcos", "platforms": "qemu"}
 
 # These are read-only not-necessarily-related checks that verify default system
 # configuration both on first and subsequent boots.

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# kola: { "exclusive": false }
+# This test only runs on FCOS because `systemd-resolved` is not installed on
+# RHCOS
+# kola: { "distros": "fcos", "exclusive": false }
 set -xeuo pipefail
 
 ok() {
