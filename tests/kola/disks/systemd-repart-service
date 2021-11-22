@@ -1,0 +1,23 @@
+#!/bin/bash
+# This test only runs on FCOS because the version of `systemd-udev` in RHCOS does
+# not include `systemd-repart`
+# TODO-RHCOS: consider dropping the "fcos" tag if/when `systemd-udev` in RHEL
+#             starts to include `systemd-repart`
+# kola: { "distros": "fcos", "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# make sure systemd-repart is masked
+# https://github.com/coreos/fedora-coreos-config/pull/744
+if [ "$(systemctl is-enabled systemd-repart.service)" != 'masked' ]; then
+    fatal "systemd-repart.service systemd unit should be masked"
+fi
+ok "systemd-repart.service systemd unit is masked"
