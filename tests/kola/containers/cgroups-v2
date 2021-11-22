@@ -1,0 +1,26 @@
+#!/bin/bash
+# This test only runs on FCOS because RHCOS does not currently support cgroupsv2
+# by default.
+# TODO-RHCOS: drop "fcos" tag when cgroupsv2 lands in RHCOS
+# kola: { "distros": "fcos", "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# make sure the system is on cgroups v2
+has_cgroup_karg=1
+grep -q systemd.unified_cgroup_hierarchy /proc/cmdline || has_cgroup_karg=0
+sys_fs_cgroup_source=$(findmnt -no SOURCE /sys/fs/cgroup)
+if [ $has_cgroup_karg == 1 ]; then
+    fatal "found systemd.unified_cgroup_hierarchy=0"
+fi
+if [[ $sys_fs_cgroup_source != cgroup2 ]]; then
+    fatal "/sys/fs/cgroup is not cgroup2"
+fi
