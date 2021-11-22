@@ -1,0 +1,38 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# List of known files and directories with SetGID bit set
+list_setgid_files=(
+    '/usr/bin/write'
+    '/usr/libexec/openssh/ssh-keysign'
+    '/usr/libexec/utempter/utempter'
+)
+unknown_setgid_files=""
+while IFS= read -r -d '' e; do
+    found="false"
+    for k in "${list_setgid_files[@]}"; do
+        if [[ "${k}" == "${e}" ]]; then
+            found="true"
+            break
+        fi
+    done
+    if [[ "${found}" == "false" ]]; then
+        unknown_setgid_files+=" ${e}"
+    fi
+done< <(find /usr /etc -type f,d -perm /2000 -print0)
+
+if [[ -n "${unknown_setgid_files}" ]]; then
+    echo "SetGID:${unknown_setgid_files}"
+    fatal "found files/directories with SetUID/GID bit set"
+fi
+ok "no unknown file/directory with SetUID/GID bit set"

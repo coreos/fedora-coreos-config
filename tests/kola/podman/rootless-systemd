@@ -11,7 +11,11 @@ set -euxo pipefail
 
 # Just run on QEMU for now. If this test works in one place it should
 # work everywhere.
-# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv" }
+# The test is scoped to only FCOS because the `--retry-all-errors` flag passed
+# to `curl` is not avaiable on the version in RHCOS.
+# TODO-RHCOS: adapt test to conditionally use the `-retry-all-errors` flag on
+# only FCOS
+# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv" }
 
 # Script to be executed as the `core` user to build and
 # run a rootless podman container that uses systemd inside.
@@ -25,7 +29,7 @@ set -euxo pipefail
 #       https://github.com/coreos/coreos-assembler/issues/1645
 cd $(mktemp -d)
 cat <<EOF > Containerfile
-FROM registry.fedoraproject.org/fedora:34
+FROM registry.fedoraproject.org/fedora:35
 RUN dnf -y update \
 && dnf -y install systemd httpd \
 && dnf clean all \

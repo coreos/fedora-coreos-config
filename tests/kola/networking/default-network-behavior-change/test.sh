@@ -49,7 +49,6 @@ method=auto
 org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 # EXPECTED_INITRD_NETWORK_CFG2
 #   - used on all RHCOS releases
-#   - used on FCOS F34
 EXPECTED_INITRD_NETWORK_CFG2="[connection]
 id=Wired Connection
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -65,6 +64,7 @@ mac-address-blacklist=
 dhcp-timeout=90
 dns-search=
 method=auto
+required-timeout=20000
 
 [ipv6]
 addr-gen-mode=eui64
@@ -107,16 +107,13 @@ normalize_connection_file() {
     sed -e s/^uuid=.*$/uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/ \
         -e s/^timestamp=.*$/timestamp=xxxxxxxxxx/                 \
         -e s/^interface-name=.*$/interface-name=xxxx/             \
-        $1
+        "${1}"
 }
 
 source /etc/os-release
 # All current FCOS releases use the same config
 if [ "$ID" == "fedora" ]; then
-    if [ "$VERSION_ID" -eq "34" ]; then
-        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG2
-        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
-    elif [ "$VERSION_ID" -ge "35" ]; then
+    if [ "$VERSION_ID" -ge "35" ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG1
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
     else
@@ -125,7 +122,7 @@ if [ "$ID" == "fedora" ]; then
 elif [ "$ID" == "rhcos" ]; then
     # For the version comparison use string substitution to remove the
     # '.` from the version so we can use integer comparison
-    RHCOS_MINIMUM_VERSION="4.9"
+    RHCOS_MINIMUM_VERSION="4.7"
     if [ "${VERSION_ID/\./}" -ge "${RHCOS_MINIMUM_VERSION/\./}" ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG2
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
@@ -139,7 +136,7 @@ fi
 
 # Execute nm-initrd-generator against our default kargs (defined by
 # afterburn drop in) to get the generated initrd network config.
-DEFAULT_KARGS_FILE=/usr/lib/dracut/modules.d/35coreos-network/50-afterburn-network-kargs-default.conf 
+DEFAULT_KARGS_FILE=/usr/lib/dracut/modules.d/35coreos-network/50-afterburn-network-kargs-default.conf
 source <(grep -o 'AFTERBURN_NETWORK_KARGS_DEFAULT=.*' $DEFAULT_KARGS_FILE)
 tmpdir=$(mktemp -d)
 /usr/libexec/nm-initrd-generator \

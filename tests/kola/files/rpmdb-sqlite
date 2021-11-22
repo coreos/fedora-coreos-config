@@ -1,0 +1,21 @@
+#!/bin/bash
+# This test only runs on FCOS as the RHCOS rpmdb has not migrated to sqlite yet.
+# TODO-RHCOS: drop the "fcos" tag when RHCOS migrates to using sqlite
+# kola: { "distros": "fcos", "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# make sure we're using the sqlite rpmdb backend
+# https://github.com/coreos/fedora-coreos-tracker/issues/623
+if [ ! -f /usr/share/rpm/rpmdb.sqlite ]; then
+    fatal "Didn't find file /usr/share/rpm/rpmdb.sqlite"
+fi
+ok rpmdb is sqlite

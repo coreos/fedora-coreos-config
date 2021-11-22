@@ -1,4 +1,8 @@
 #!/bin/bash
+# This test only runs on FCOS because RHCOS does not support `yescrypt`
+# TODO-RHCOS: adapt to use different `crypt` scheme for RHCOS
+# kola: { "distros": "fcos", "exclusive": false }
+
 set -xeuo pipefail
 
 ok() {
@@ -19,7 +23,7 @@ fi
 # yescrypt was changed to the default in Fedora 35
 # https://fedoraproject.org/wiki/Changes/yescrypt_as_default_hashing_method_for_shadow
 # Testing that passwd command creates a yescrypt password hash(starting with '$y$')
-source /etc/os-release 
+source /etc/os-release
 if [ "$VERSION_ID" -ge "35" ]; then
     sudo useradd tester2
     echo "42abcdef" | sudo passwd tester2 --stdin

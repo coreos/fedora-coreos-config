@@ -7,7 +7,10 @@ set -xeuo pipefail
 
 # We don't need to test this on every platform. If it passes in
 # one place it will pass everywhere.
-# kola: { "platforms": "qemu-unpriv" }
+# This test is currently scoped to FCOS because `dnsmasq` is not masked
+# on RHCOS.
+# TODO-RHCOS: determine if any services on RHCOS are masked and adapt test
+# kola: { "distros": "fcos", "platforms": "qemu-unpriv" }
 
 ok() {
     echo "ok" "$@"
@@ -19,7 +22,7 @@ fatal() {
 }
 
 # make sure the systemd unit (dnsmasq) is unmasked and enabled
-if [ $(systemctl is-enabled dnsmasq.service) != 'enabled' ]; then
+if [ "$(systemctl is-enabled dnsmasq.service)" != 'enabled' ]; then
     fatal "dnsmasq.service systemd unit should be unmasked and enabled"
 fi
 ok "dnsmasq.service systemd unit is unmasked and enabled"

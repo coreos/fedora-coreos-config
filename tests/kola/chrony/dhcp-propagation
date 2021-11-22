@@ -29,13 +29,10 @@ test_setup() {
     ip netns exec container ip link set veth-container up
 
     # run podman commands to set up dnsmasq server
-    pushd $(mktemp -d)
-    # XXX: hardcode IP for now until can resolve in CentOS CI again
-    #      https://pagure.io/centos-infra/issue/356
-    #NTPHOSTIP=$(getent hosts time-c-g.nist.gov | cut -d ' ' -f 1)
-    NTPHOSTIP='129.6.15.30'
+    pushd "$(mktemp -d)"
+    NTPHOSTIP=$(getent hosts time-c-g.nist.gov | cut -d ' ' -f 1)
     cat <<EOF >Dockerfile
-FROM registry.fedoraproject.org/fedora:34
+FROM registry.fedoraproject.org/fedora:35
 RUN dnf -y install systemd dnsmasq iproute iputils \
 && dnf clean all \
 && systemctl enable dnsmasq
