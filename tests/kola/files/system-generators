@@ -1,0 +1,20 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# Make sure files in /usr/lib/systemd/system-generators have exec mode
+find /usr/lib/systemd/system-generators -type f | while read f; do
+    if ! test -x $f; then
+        fatal "Error: generator is not executable: $f"
+    fi
+done
+ok "system-generators are executable"
