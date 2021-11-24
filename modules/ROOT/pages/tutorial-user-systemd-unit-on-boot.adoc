@@ -189,3 +189,5 @@ You can then take down the instance. First, disconnect from the serial console b
 virsh destroy fcos
 virsh undefine --remove-all-storage fcos
 ----
+
+You may now proceed with the xref:tutorial-updates.adoc[next tutorial].
