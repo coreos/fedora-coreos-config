@@ -1,0 +1,21 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# check that we are not including the kernel headers on the host
+# See:
+# - https://bugzilla.redhat.com/show_bug.cgi?id=1814719
+# - https://gitlab.cee.redhat.com/coreos/redhat-coreos/-/merge_requests/1116
+if test -d /usr/include/linux; then
+   fatal "Error: should not have kernel headers on host"
+fi
+ok "kernel headers not on host"
