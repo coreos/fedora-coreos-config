@@ -2,10 +2,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -16,4 +12,3 @@ if [[ -n "${list}" ]]; then
     find /etc -type f -type d -perm /022 -print0 | xargs -0 ls -al
     fatal "found files or directories with 'g+w' or 'o+w' permission"
 fi
-ok "no files with 'g+w' or 'o+w' permission found in /etc"

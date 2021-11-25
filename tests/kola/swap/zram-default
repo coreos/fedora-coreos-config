@@ -4,10 +4,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -19,4 +15,3 @@ fatal() {
 if [ -e /dev/zram0 ]; then
     fatal "zram0 swap device set up on default install"
 fi
-ok no zram swap by default

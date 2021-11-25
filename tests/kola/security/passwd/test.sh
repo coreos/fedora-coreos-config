@@ -5,10 +5,6 @@
 
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -32,4 +28,3 @@ if [ "$VERSION_ID" -ge "35" ]; then
         fatal "passwd did not create a yescrypt password hash"
     fi
 fi
-ok "User-password provisioned and passwd command successfully tested"

@@ -12,10 +12,6 @@ set -xeuo pipefail
 # TODO-RHCOS: determine if any services on RHCOS are masked and adapt test
 # kola: { "distros": "fcos", "platforms": "qemu-unpriv" }
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -25,4 +21,3 @@ fatal() {
 if [ "$(systemctl is-enabled dnsmasq.service)" != 'enabled' ]; then
     fatal "dnsmasq.service systemd unit should be unmasked and enabled"
 fi
-ok "dnsmasq.service systemd unit is unmasked and enabled"

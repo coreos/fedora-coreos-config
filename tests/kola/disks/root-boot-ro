@@ -2,10 +2,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -19,4 +15,3 @@ for part in /sysroot /boot; do
         fatal "${part} is writable"
     fi
 done
-ok read-only partitions

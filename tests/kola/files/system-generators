@@ -2,10 +2,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -18,4 +14,3 @@ find /usr/lib/systemd/system-generators -type f | while read -r f; do
         fatal "Error: generator is not executable: ${f}. Expected mode 555, found ${mode}"
     fi
 done
-ok "system-generators are executable"

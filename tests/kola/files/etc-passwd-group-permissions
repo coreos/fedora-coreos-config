@@ -2,10 +2,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -17,5 +13,3 @@ for f in '/etc/passwd' '/etc/group'; do
         fatal "found incorrect permissions for ${f}"
     fi
 done
-ok "correct ownership and mode on /etc/passwd & /etc/group"
-

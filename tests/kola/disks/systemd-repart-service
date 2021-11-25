@@ -6,10 +6,6 @@
 # kola: { "distros": "fcos", "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -20,4 +16,3 @@ fatal() {
 if [ "$(systemctl is-enabled systemd-repart.service)" != 'masked' ]; then
     fatal "systemd-repart.service systemd unit should be masked"
 fi
-ok "systemd-repart.service systemd unit is masked"

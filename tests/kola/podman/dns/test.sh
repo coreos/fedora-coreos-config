@@ -5,10 +5,6 @@ set -xeuo pipefail
 # https://github.com/coreos/fedora-coreos-tracker/issues/923
 # kola: { "tags": "needs-internet", "platforms": "qemu-unpriv", "exclusive": false}
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -32,10 +28,8 @@ runascoreuser() {
 main() {
     echo "$runascoreuserscript" > /tmp/runascoreuserscript
     chmod +x /tmp/runascoreuserscript
-    if ! runascoreuser /tmp/runascoreuserscript ; then 
-        fatal "DNS in rootless podman testnetwork failed. Test Fails" 
-    else 
-        ok "DNS in rootless podman testnetwork Suceeded. Test Passes" 
+    if ! runascoreuser /tmp/runascoreuserscript ; then
+        fatal "DNS in rootless podman testnetwork failed. Test Fails"
     fi
 }
 

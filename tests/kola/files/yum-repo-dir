@@ -2,10 +2,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -14,4 +10,3 @@ fatal() {
 if ! test -d /etc/yum.repos.d; then
     fatal "Error: not find /etc/yum.repos.d"
 fi
-ok "have /etc/yum.repos.d"

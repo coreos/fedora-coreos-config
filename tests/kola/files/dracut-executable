@@ -2,10 +2,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -18,4 +14,3 @@ if find "${tmpd}/usr/"{bin,sbin,libexec} ! -perm -0111 | grep -v clevis-luks-com
     fatal "Found non-executable scripts in initrd"
 fi
 rm -r "${tmpd}"
-ok "All initrd scripts are executable"

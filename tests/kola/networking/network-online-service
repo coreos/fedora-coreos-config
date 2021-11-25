@@ -2,10 +2,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -17,4 +13,3 @@ fatal() {
 if ! systemctl show -p ActiveState network-online.target | grep -q ActiveState=inactive; then
     fatal "Unit network-online.target shouldn't be active"
 fi
-ok "unit network-online.target inactive"

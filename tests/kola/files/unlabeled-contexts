@@ -2,10 +2,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -18,4 +14,3 @@ if [ -n "${unlabeled}" ]; then
     echo "${unlabeled}"
     exit 1
 fi
-ok no files with unlabeled_t SELinux label

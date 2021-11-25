@@ -4,10 +4,6 @@
 # kola: { "distros": "fcos", "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -20,4 +16,3 @@ context=$(stat --format "%C" /run/systemd/resolve/stub-resolv.conf)
 if [ "$context" != "system_u:object_r:net_conf_t:s0" ]; then
     fatal "SELinux context on stub-resolv.conf is wrong"
 fi
-ok "SELinux context on stub-resolv.conf is correct"

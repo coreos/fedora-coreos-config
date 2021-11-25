@@ -2,10 +2,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -31,4 +27,3 @@ if [[ $nm_ts -lt $switchroot_ts ]] && on_platform qemu; then
 elif [[ $nm_ts -gt $switchroot_ts ]] && on_platform aws; then
     fatal "NetworkManager not started in initramfs!"
 fi
-ok conditional initrd networking

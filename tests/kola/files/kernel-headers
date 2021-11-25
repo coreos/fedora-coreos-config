@@ -2,10 +2,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -18,4 +14,3 @@ fatal() {
 if test -d /usr/include/linux; then
    fatal "Error: should not have kernel headers on host"
 fi
-ok "kernel headers not on host"

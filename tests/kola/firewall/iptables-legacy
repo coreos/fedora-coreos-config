@@ -6,10 +6,6 @@
 # kola: { "distros": "fcos", "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -21,4 +17,3 @@ if ! iptables --version | grep legacy; then
     iptables --version # output for logs
     fatal "iptables version is not legacy"
 fi
-ok "iptables still in legacy mode"

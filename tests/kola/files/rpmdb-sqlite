@@ -4,10 +4,6 @@
 # kola: { "distros": "fcos", "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -18,4 +14,3 @@ fatal() {
 if [ ! -f /usr/share/rpm/rpmdb.sqlite ]; then
     fatal "Didn't find file /usr/share/rpm/rpmdb.sqlite"
 fi
-ok rpmdb is sqlite

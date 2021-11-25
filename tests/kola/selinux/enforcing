@@ -2,10 +2,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -16,4 +12,3 @@ enforce=$(getenforce)
 if [ "${enforce}" != "Enforcing" ]; then
     fatal "Error: Expected SELinux Enforcing, found ${enforce}"
 fi
-ok "selinux is Enforcing"

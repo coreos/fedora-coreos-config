@@ -2,10 +2,6 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
 fatal() {
     echo "$@" >&2
     exit 1
@@ -18,4 +14,3 @@ if [ "$VERSION_ID" -ge "35" ]; then
         fatal "systemd-resolved stub listener isn't enabled"
     fi
 fi
-ok services
