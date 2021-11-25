@@ -2,6 +2,9 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
+# Ensure that /usr/sbin and /var/usrlocal/sbin have the same SELinux security
+# context
+
 fatal() {
     echo "$@" >&2
     exit 1

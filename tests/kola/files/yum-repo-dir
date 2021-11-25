@@ -8,5 +8,5 @@ fatal() {
 }
 
 if ! test -d /etc/yum.repos.d; then
-    fatal "Error: not find /etc/yum.repos.d"
+    fatal "Error: Could not find /etc/yum.repos.d"
 fi
