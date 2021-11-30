@@ -10,7 +10,7 @@ One of the defining feature of Fedora CoreOS is automatic updates. To see them i
 
 [source,bash]
 ----
-RELEASE="32.20200629.3.0"
+RELEASE="34.20210919.3.0"
 curl -O https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$RELEASE/x86_64/fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz
 curl -O https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$RELEASE/x86_64/fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz.sig
 ----
@@ -111,76 +111,101 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora-coreos-stable 
     --disk=size=20,backing_store=${PWD}/fedora-coreos-older.qcow2
 ----
 
-As the system is not up to date, Zincati will notice this and will immediately start updating the system. If you are fast enough, you should see the update process happening right away:
+As the system is not up to date, Zincati will notice this and will start updating the system. You should see the update process happening right away:
+
+NOTE: All necessary network services may not be up and running during the initial check. In such case Zincati will check for updates again in about 5 minutes.
 
 ----
 [core@localhost ~]$ systemctl status --full zincati.service
 ● zincati.service - Zincati Update Agent
      Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
-     Active: active (running) since Fri 2020-08-07 17:42:14 UTC; 24s ago
+     Active: active (running) since Tue 2021-11-30 13:56:05 UTC; 5min ago
        Docs: https://github.com/coreos/zincati
-   Main PID: 889 (zincati)
-      Tasks: 6 (limit: 2290)
-     Memory: 17.9M
+   Main PID: 1026 (zincati)
+     Status: "found update on remote: 35.20211029.3.0"
+      Tasks: 11 (limit: 2262)
+     Memory: 20.0M
+        CPU: 192ms
      CGroup: /system.slice/zincati.service
-             ├─ 889 /usr/libexec/zincati agent -v
-             └─1889 rpm-ostree deploy --lock-finalization revision=a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869 --disallow-downgrade
+             ├─1026 /usr/libexec/zincati agent -v
+             └─2308 rpm-ostree deploy --lock-finalization revision=ccdac241ed4b83b55e4d72e864923679c00a15804fbea7d1e638e67c2a08dd5c --disallow-downgrade
 
-Aug 07 17:42:14 localhost systemd[1]: Started Zincati Update Agent.
-Aug 07 17:42:14 localhost zincati[889]: [INFO ] starting update agent (zincati 0.0.11)
-Aug 07 17:42:17 localhost zincati[889]: [INFO ] Cincinnati service: https://updates.coreos.fedoraproject.org
-Aug 07 17:42:17 localhost zincati[889]: [INFO ] agent running on node '2ce419a50b0a4a4f8b10e5e9cf487b68', in update group 'default'
-Aug 07 17:42:17 localhost zincati[889]: [INFO ] initialization complete, auto-updates logic enabled
-Aug 07 17:42:18 localhost zincati[889]: [INFO ] target release '32.20200715.3.0' selected, proceeding to stage it
+Nov 30 13:56:04 localhost zincati[1026]: [INFO  zincati::cincinnati] Cincinnati service: https://updates.coreos.fedoraproject.org
+Nov 30 13:56:04 localhost zincati[1026]: [INFO  zincati::cli::agent] agent running on node '0d817dcff294404895a7a33727980fe8', in update group 'default'
+Nov 30 13:56:04 localhost zincati[1026]: [INFO  zincati::update_agent::actor] registering as the update driver for rpm-ostree
+Nov 30 13:56:05 localhost zincati[1026]: [INFO  zincati::update_agent::actor] initialization complete, auto-updates logic enabled
+Nov 30 13:56:05 localhost zincati[1026]: [INFO  zincati::strategy] update strategy: immediate
+Nov 30 13:56:05 localhost zincati[1026]: [INFO  zincati::update_agent::actor] reached steady state, periodically polling for updates
+Nov 30 13:56:05 localhost systemd[1]: Started Zincati Update Agent.
+Nov 30 13:56:05 localhost zincati[1026]: [ERROR zincati::cincinnati] failed to check Cincinnati for updates: client-side error: error sending request for url (https://updates.coreos.fedoraproject.org/v1/graph?os_checksum=6334e11901fba7403600522286d817b520eeb15b66b341b392e0c08ed2576b74&stream=stable&os_version=34.20210919.3.0&basearch=x86_64&group=default&node_uuid=0d817dcff294404895a7a33727980fe8&platform=qemu): error trying to connect: dns error: failed to lookup address information: Name or service not known
+Nov 30 14:01:12 localhost zincati[1026]: [INFO  zincati::cincinnati] current release detected as not a dead-end
+Nov 30 14:01:13 localhost zincati[1026]: [INFO  zincati::update_agent::actor] target release '35.20211029.3.0' selected, proceeding to stage it
 
 [core@localhost ~]$ rpm-ostree status
 State: busy
-Transaction: deploy --lock-finalization revision=a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869 --disallow-downgrade
-  Initiator: caller :1.18
+AutomaticUpdatesDriver: Zincati
+  DriverState: active; found update on remote: 35.20211029.3.0
+Transaction: deploy --lock-finalization revision=ccdac241ed4b83b55e4d72e864923679c00a15804fbea7d1e638e67c2a08dd5c --disallow-downgrade
+  Initiator: caller :1.28
 Deployments:
-● ostree://fedora:fedora/x86_64/coreos/stable
-                   Version: 32.20200629.3.0 (2020-07-10T17:58:03Z)
-                    Commit: 6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890
-              GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
+● fedora:fedora/x86_64/coreos/stable
+                   Version: 34.20210919.3.0 (2021-10-04T17:11:11Z)
+                    Commit: 6334e11901fba7403600522286d817b520eeb15b66b341b392e0c08ed2576b74
+              GPGSignature: Valid signature by 8C5BA6990BDB26E19F2A1A801161AE6945719A39
 
 [core@localhost ~]$ systemctl status --full zincati.service
 ● zincati.service - Zincati Update Agent
      Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
-     Active: active (running) since Fri 2020-08-07 17:42:14 UTC; 51s ago
+     Active: active (running) since Tue 2021-11-30 13:56:05 UTC; 7min ago
        Docs: https://github.com/coreos/zincati
-   Main PID: 889 (zincati)
-      Tasks: 5 (limit: 2290)
-     Memory: 17.8M
+   Main PID: 1026 (zincati)
+     Status: "update staged: 35.20211029.3.0; reboot delayed due to active user sessions"
+      Tasks: 5 (limit: 2262)
+     Memory: 16.6M
+        CPU: 229ms
      CGroup: /system.slice/zincati.service
-             ├─ 889 /usr/libexec/zincati agent -v
-             └─4463 rpm-ostree finalize-deployment a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869
+             └─1026 /usr/libexec/zincati agent -v
 
-Aug 07 17:42:14 localhost systemd[1]: Started Zincati Update Agent.
-Aug 07 17:42:14 localhost zincati[889]: [INFO ] starting update agent (zincati 0.0.11)
-Aug 07 17:42:17 localhost zincati[889]: [INFO ] Cincinnati service: https://updates.coreos.fedoraproject.org
-Aug 07 17:42:17 localhost zincati[889]: [INFO ] agent running on node '2ce419a50b0a4a4f8b10e5e9cf487b68', in update group 'default'
-Aug 07 17:42:17 localhost zincati[889]: [INFO ] initialization complete, auto-updates logic enabled
-Aug 07 17:42:18 localhost zincati[889]: [INFO ] target release '32.20200715.3.0' selected, proceeding to stage it
-Aug 07 17:43:05 localhost zincati[889]: [INFO ] staged deployment '32.20200715.3.0' available, proceeding to finalize it
+Nov 30 13:56:04 localhost zincati[1026]: [INFO  zincati::cli::agent] agent running on node '0d817dcff294404895a7a33727980fe8', in update group 'default'
+Nov 30 13:56:04 localhost zincati[1026]: [INFO  zincati::update_agent::actor] registering as the update driver for rpm-ostree
+Nov 30 13:56:05 localhost zincati[1026]: [INFO  zincati::update_agent::actor] initialization complete, auto-updates logic enabled
+Nov 30 13:56:05 localhost zincati[1026]: [INFO  zincati::strategy] update strategy: immediate
+Nov 30 13:56:05 localhost zincati[1026]: [INFO  zincati::update_agent::actor] reached steady state, periodically polling for updates
+Nov 30 13:56:05 localhost systemd[1]: Started Zincati Update Agent.
+Nov 30 13:56:05 localhost zincati[1026]: [ERROR zincati::cincinnati] failed to check Cincinnati for updates: client-side error: error sending request for url (https://updates.coreos.fedoraproject.org/v1/graph?os_checksum=6334e11901fba7403600522286d817b520eeb15b66b341b392e0c08ed2576b74&stream=stable&os_version=34.20210919.3.0&basearch=x86_64&group=default&node_uuid=0d817dcff294404895a7a33727980fe8&platform=qemu): error trying to connect: dns error: failed to lookup address information: Name or service not known
+Nov 30 14:01:12 localhost zincati[1026]: [INFO  zincati::cincinnati] current release detected as not a dead-end
+Nov 30 14:01:13 localhost zincati[1026]: [INFO  zincati::update_agent::actor] target release '35.20211029.3.0' selected, proceeding to stage it
+Nov 30 14:02:55 localhost zincati[1026]: [INFO  zincati::update_agent::actor] update staged: 35.20211029.3.0
 ----
 
-Shortly after the update has been staged, the system should reboot to apply the latest update.
+Shortly after the update has been staged, the system should reboot to apply the latest update. You may need to stop the autologin service to initiate the reboot.
 
-When we log back in we can view the current version of Fedora CoreOS is now `32.20200715.3.0`. The `rpm-ostree status` output will also show the older version, which still exists in case we need to rollback:
+----
+Broadcast message from Zincati at Tue 2021-11-30 14:02:55 UTC:
+New update 35.20211029.3.0 is available and has been deployed.
+If permitted by the update strategy, Zincati will reboot into this update when all
+interactive users have logged out, or in 10 minutes, whichever comes earlier.
+Please log out of all active sessions in order to let the auto-update process continue.
+[core@localhost ~]$ sudo systemctl stop serial-getty@ttyS0.service
+----
+
+When we log back in we can view the current version of Fedora CoreOS is now `35.20211029.3.0`. The `rpm-ostree status` output will also show the older version, which still exists in case we need to rollback:
 
 ----
 [core@localhost ~]$ rpm-ostree status
 State: idle
+AutomaticUpdatesDriver: Zincati
+  DriverState: active; periodically polling for updates (last checked Tue 2021-11-30 14:22:41 UTC)
 Deployments:
-● ostree://fedora:fedora/x86_64/coreos/stable
-                   Version: 32.20200715.3.0 (2020-07-27T11:36:29Z)
-                    Commit: a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869
-              GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
+● fedora:fedora/x86_64/coreos/stable
+                   Version: 35.20211029.3.0 (2021-11-17T23:45:08Z)
+                    Commit: ccdac241ed4b83b55e4d72e864923679c00a15804fbea7d1e638e67c2a08dd5c
+              GPGSignature: Valid signature by 787EA6AE1147EEE56C40B30CDB4639719867C58F
 
-  ostree://fedora:fedora/x86_64/coreos/stable
-                   Version: 32.20200629.3.0 (2020-07-10T17:58:03Z)
-                    Commit: 6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890
-              GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
+  fedora:fedora/x86_64/coreos/stable
+                   Version: 34.20210919.3.0 (2021-10-04T17:11:11Z)
+                    Commit: 6334e11901fba7403600522286d817b520eeb15b66b341b392e0c08ed2576b74
+              GPGSignature: Valid signature by 8C5BA6990BDB26E19F2A1A801161AE6945719A39
 ----
 
 NOTE: The currently booted deployment is denoted by the `●` character.
@@ -189,19 +214,15 @@ You can view the differences between the two versions by running an `rpm-ostree 
 
 ----
 [core@localhost ~]$ rpm-ostree db diff
-ostree diff commit from: rollback deployment (6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890)
-ostree diff commit to:   booted deployment (a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869)
+ostree diff commit from: rollback deployment (6334e11901fba7403600522286d817b520eeb15b66b341b392e0c08ed2576b74)
+ostree diff commit to:   booted deployment (ccdac241ed4b83b55e4d72e864923679c00a15804fbea7d1e638e67c2a08dd5c)
 Upgraded:
-  btrfs-progs 5.6.1-1.fc32 -> 5.7-1.fc32
-  console-login-helper-messages 0.18.1-1.fc32 -> 0.18.2-1.fc32
-  console-login-helper-messages-issuegen 0.18.1-1.fc32 -> 0.18.2-1.fc32
-  console-login-helper-messages-motdgen 0.18.1-1.fc32 -> 0.18.2-1.fc32
-  console-login-helper-messages-profile 0.18.1-1.fc32 -> 0.18.2-1.fc32
-  crun 0.13-2.fc32 -> 0.14.1-1.fc32
-  crypto-policies 20200610-1.git7f9d474.fc32 -> 20200619-1.git781bbd4.fc32
-  dbus 1:1.12.18-1.fc32 -> 1:1.12.20-1.fc32
-  dbus-common 1:1.12.18-1.fc32 -> 1:1.12.20-1.fc32
-  dbus-libs 1:1.12.18-1.fc32 -> 1:1.12.20-1.fc32
+  NetworkManager 1:1.30.6-1.fc34 -> 1:1.32.12-2.fc35
+  NetworkManager-cloud-setup 1:1.30.6-1.fc34 -> 1:1.32.12-2.fc35
+  NetworkManager-libnm 1:1.30.6-1.fc34 -> 1:1.32.12-2.fc35
+  NetworkManager-team 1:1.30.6-1.fc34 -> 1:1.32.12-2.fc35
+  NetworkManager-tui 1:1.30.6-1.fc34 -> 1:1.32.12-2.fc35
+  WALinuxAgent-udev 2.3.1.1-1.fc34 -> 2.3.1.1-2.fc35
   ...
 ----
 
@@ -214,21 +235,23 @@ If the system is not functioning fully for whatever reason we can go back to the
 [core@localhost ~]$ sudo rpm-ostree rollback --reboot
 ----
 
-After logging back in after reboot we can see we are now booted back into the old `32.20200629.3.0` deployment from before the upgrade occurred:
+After logging back in after reboot we can see we are now booted back into the old `34.20211031.3.0` deployment from before the upgrade occurred:
 
 ----
 [core@localhost ~]$ rpm-ostree status
 State: idle
+AutomaticUpdatesDriver: Zincati
+  DriverState: active; periodically polling for updates (last checked Tue 2021-11-30 15:17:47 UTC)
 Deployments:
-● ostree://fedora:fedora/x86_64/coreos/stable
-                   Version: 32.20200629.3.0 (2020-07-10T17:58:03Z)
-                    Commit: 6df95bdb2fe2d36e091d4d18e3844fa84ce4b80ea3bd0947db5d7a286ff41890
-              GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
+● fedora:fedora/x86_64/coreos/stable
+                   Version: 34.20211031.3.0 (2021-11-08T23:55:31Z)
+                    Commit: 056a1508fad0eecb740cf10a949d2292e11084195f1defbf455f418a5991daa2
+              GPGSignature: Valid signature by 8C5BA6990BDB26E19F2A1A801161AE6945719A39
 
-  ostree://fedora:fedora/x86_64/coreos/stable
-                   Version: 32.20200715.3.0 (2020-07-27T11:36:29Z)
-                    Commit: a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869
-              GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
+  fedora:fedora/x86_64/coreos/stable
+                   Version: 35.20211029.3.0 (2021-11-17T23:45:08Z)
+                    Commit: ccdac241ed4b83b55e4d72e864923679c00a15804fbea7d1e638e67c2a08dd5c
+              GPGSignature: Valid signature by 787EA6AE1147EEE56C40B30CDB4639719867C58F
 ----
 
 And you can also verify that Zincati will not try to update to the new version we just rollbacked from:
@@ -237,19 +260,22 @@ And you can also verify that Zincati will not try to update to the new version w
 [core@localhost ~]$ systemctl status --full zincati.service
 ● zincati.service - Zincati Update Agent
      Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
-     Active: active (running) since Sat 2020-08-08 15:55:15 UTC; 2min 19s ago
+     Active: active (running) since Tue 2021-11-30 15:36:04 UTC; 19s ago
        Docs: https://github.com/coreos/zincati
-   Main PID: 674 (zincati)
-      Tasks: 2 (limit: 2290)
-     Memory: 17.8M
+   Main PID: 802 (zincati)
+     Status: "found update on remote: 34.20211031.3.0"
+      Tasks: 10 (limit: 2262)
+     Memory: 23.4M
+        CPU: 169ms
      CGroup: /system.slice/zincati.service
-             └─674 /usr/libexec/zincati agent -v
+             ├─ 802 /usr/libexec/zincati agent -v
+             └─2814 rpm-ostree deploy --lock-finalization revision=056a1508fad0eecb740cf10a949d2292e11084195f1defbf455f418a5991daa2 --disallow-downgrade
 
-Aug 08 15:55:15 localhost systemd[1]: Started Zincati Update Agent.
-Aug 08 15:55:15 localhost zincati[674]: [INFO ] starting update agent (zincati 0.0.11)
-Aug 08 15:55:19 localhost zincati[674]: [INFO ] Cincinnati service: https://updates.coreos.fedoraproject.org
-Aug 08 15:55:19 localhost zincati[674]: [INFO ] agent running on node '817ccb9a75ec4f2b845e74fdb81e8850', in update group 'default'
-Aug 08 15:55:19 localhost zincati[674]: [INFO ] initialization complete, auto-updates logic enabled
+Nov 30 15:36:03 localhost zincati[802]: [INFO  zincati::cli::agent] agent running on node '8d67840e25884927aaeb72f64e100046', in update group 'default'
+Nov 30 15:36:03 localhost zincati[802]: [INFO  zincati::update_agent::actor] registering as the update driver for rpm-ostree
+Nov 30 15:36:04 localhost zincati[802]: [INFO  zincati::update_agent::actor] found 1 other finalized deployment
+Nov 30 15:36:04 localhost zincati[802]: [INFO  zincati::update_agent::actor] deployment 35.20211029.3.0 (ccdac241ed4b83b55e4d72e864923679c00a15804fbea7d1e638e67c2a08dd5c) will be excluded from being a future update target
+Nov 30 15:36:04 localhost zincati[802]: [INFO  zincati::update_agent::actor] initialization complete, auto-updates logic enabled
 ----
 
 == Cleanup
