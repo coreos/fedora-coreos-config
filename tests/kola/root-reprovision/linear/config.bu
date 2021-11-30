@@ -1,0 +1,14 @@
+variant: fcos
+version: 1.4.0
+storage:
+  raid:
+    - name: foobar
+      level: linear
+      devices:
+      - /dev/disk/by-id/virtio-disk1
+      - /dev/disk/by-id/virtio-disk2
+  filesystems:
+    - device: /dev/md/foobar
+      format: xfs
+      wipe_filesystem: true
+      label: root
