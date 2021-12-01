@@ -1,10 +1,10 @@
 [Unit]
 Description=Ignition OSTree: Regenerate Filesystem UUID (root)
-# These conditions match mount-firstboot-sysroot.service
+# These conditions match ignition-ostree-mount-firstboot-sysroot.service
 DefaultDependencies=false
 ConditionKernelCommandLine=ostree
 ConditionPathExists=!/run/ostree-live
-Before=initrd-root-fs.target
+Before=sysroot.mount initrd-root-fs.target
 After=ignition-disks.service
 # If we've reprovisioned the rootfs, then there's no need to restamp
 ConditionPathExists=!/run/ignition-ostree-transposefs
@@ -12,6 +12,7 @@ ConditionPathExists=!/run/ignition-ostree-transposefs
 After=dev-disk-by\x2dlabel-root.device
 # Avoid racing with fsck
 Before=systemd-fsck@dev-disk-by\x2dlabel-root.service
+Before=systemd-fsck@dev-disk-by\x2dlabel-dm-mpath-root.service
 
 # Note we don't have a Requires: /dev/disk/by-label/root here like
 # the -subsequent service does because ignition-disks may have
