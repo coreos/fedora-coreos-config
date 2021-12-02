@@ -10,7 +10,8 @@ One of the defining feature of Fedora CoreOS is automatic updates. To see them i
 
 [source,bash]
 ----
-RELEASE="34.20210919.3.0"
+# replace "XX.XXXXXXXX.X.X" with one of older release IDs from the release page above (e.g. "34.20210919.3.0")
+RELEASE="XX.XXXXXXXX.X.X"
 curl -O https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$RELEASE/x86_64/fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz
 curl -O https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$RELEASE/x86_64/fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz.sig
 ----
@@ -189,7 +190,7 @@ Please log out of all active sessions in order to let the auto-update process co
 [core@localhost ~]$ sudo systemctl stop serial-getty@ttyS0.service
 ----
 
-When we log back in we can view the current version of Fedora CoreOS is now `35.20211029.3.0`. The `rpm-ostree status` output will also show the older version, which still exists in case we need to rollback:
+When we log back in we can view the current version of Fedora CoreOS is now the latest one. The `rpm-ostree status` output will also show the older version, which still exists in case we need to rollback:
 
 ----
 [core@localhost ~]$ rpm-ostree status
@@ -235,7 +236,7 @@ If the system is not functioning fully for whatever reason we can go back to the
 [core@localhost ~]$ sudo rpm-ostree rollback --reboot
 ----
 
-After logging back in after reboot we can see we are now booted back into the old `34.20211031.3.0` deployment from before the upgrade occurred:
+After logging back in after reboot we can see we are now booted back into the old deployment from before the upgrade occurred:
 
 ----
 [core@localhost ~]$ rpm-ostree status
