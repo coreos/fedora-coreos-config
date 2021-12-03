@@ -3,7 +3,7 @@
 Fedora CoreOS produces 64-bit ARM (`aarch64`) artifacts. These images can be used as the Operating System for the Raspberry Pi 4 device. Before trying to get FCOS up and running on your Raspberry Pi 4 you'll want to xref:#_updating_eeprom_on_raspberry_pi_4[Update the EEPROM] to the latest version and choose how you want to boot the Raspberry Pi 4. There are two options:
 
 - xref:#_installing_fcos_and_booting_via_u_boot[Installing FCOS and Booting via U-Boot]
-- xref:#_installing_fcos_and_booting_via_uefi[Installing FCOS and Booting via EDK2]
+- xref:#_installing_fcos_and_booting_via_edk2[Installing FCOS and Booting via EDK2]
 
 U-Boot is the way the Raspberry Pi 4 has traditionally been booted. The https://rpi4-uefi.dev/about/[EDK2 Firmware] is an effort to provide a layer that will make RPi4 SystemReady ES (SBBR compliant) similar to most larger 64-bit ARM servers.
 
@@ -86,7 +86,7 @@ You can write the firmware to a disk (USB or SD card) and then boot/install FCOS
 - Separate Firmware Disk (aka "separate disk mode")
 - Combined Fedora CoreOS + EDK2 Firmware Disk (aka "combined disk mode")
 
-These options are covered in the following sections. Regardless of which option you choose you'll want to consider if you need to either xref:#_uefi_firmware_changing_the_3g_limit[Change the 3G RAM limit] or xref:#_uefi_firmware_gpio_via_devicetree[Enable DeviceTree Boot].
+These options are covered in the following sections. Regardless of which option you choose you'll want to consider if you need to either xref:#_edk2_firmware_changing_the_3g_limit[Change the 3G RAM limit] or xref:#_edk2_firmware_gpio_via_devicetree[Enable DeviceTree Boot].
 
 
 ### EDK2: Separate Firmware Disk Mode
