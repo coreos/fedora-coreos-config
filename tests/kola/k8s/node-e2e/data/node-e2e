@@ -1,0 +1,39 @@
+#!/bin/bash
+set -xeuo pipefail
+
+SELF=$(realpath "$0")
+IMAGE=quay.io/projectquay/golang:1.17
+
+branch=$1; shift
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+if [ -z "${container:-}" ]; then
+    mkdir -m 0600 ~/.ssh
+    ssh-keygen -N "" -t ed25519 -f /srv/kube
+    cat /srv/kube.pub >> ~/.ssh/authorized_keys
+    chmod 0600 ~/.ssh/*
+    exec podman run --net=host --rm -v /srv/kube:/srv/kube:z \
+        -v "${KOLA_EXT_DATA}:/srv/kola_ext_data:z" \
+        -v "${SELF}:/srv/self:z" "${IMAGE}" /srv/self "${branch}"
+    fatal "unreachable"
+fi
+
+# in container now
+dnf install -y rsync diffutils hostname
+git clone -b "${branch}" --depth 1 https://github.com/kubernetes/kubernetes
+make -C kubernetes test-e2e-node REMOTE=true REMOTE_MODE=ssh SSH_USER=root \
+    RUNTIME=remote CONTAINER_RUNTIME_ENDPOINT="unix:///var/run/crio/crio.sock" \
+    SSH_KEY=/srv/kube HOSTS=localhost FOCUS="\[NodeConformance\]" \
+    SSH_OPTIONS='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' \
+    TEST_ARGS='--kubelet-flags="--cgroup-driver=systemd --cgroups-per-qos=true
+                                --cgroup-root=/ --non-masquerade-cidr=0.0.0.0/0
+                                --runtime-cgroups=/system.slice/crio.service
+                                --kubelet-cgroups=/system.slice/kubelet.service"'
