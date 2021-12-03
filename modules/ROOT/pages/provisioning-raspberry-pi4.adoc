@@ -202,4 +202,4 @@ After boot you should see entries under `/proc/device-tree/` and also see `/dev/
 /dev/gpiochip0  /dev/gpiochip1
 ----
 
-You can interface with GPIO from userspace using libgpiod and assoicated bindings or tools.
+TIP: You can interface with GPIO from userspace using `libgpiod` and assoicated bindings or tools.
