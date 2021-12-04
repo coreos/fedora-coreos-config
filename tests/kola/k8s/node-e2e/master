@@ -1,0 +1,7 @@
+#!/bin/bash
+set -xeuo pipefail
+# Just run on x86_64 for now. We'd need multi-arch images with go 1.17. We
+# could run on any platform, though need to replace `additionalDisks` by e.g.
+# `minDiskSpace` or something similar.
+# kola: {"minMemory": 4096, "timeoutMin": 45, "additionalDisks": ["15G"], "platforms": "qemu", "architectures": "x86_64", "requiredTag": "k8s", "tags": "needs-internet"}
+exec "${KOLA_EXT_DATA}/node-e2e" "${KOLA_TEST_EXE}"
