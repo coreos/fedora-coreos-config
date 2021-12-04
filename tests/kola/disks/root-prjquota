@@ -1,0 +1,18 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+rootflags=$(findmnt /sysroot -no OPTIONS)
+if ! grep prjquota <<< "${rootflags}"; then
+    fatal "missing prjquota in root mount flags: ${rootflags}"
+fi
+ok "root mounted with prjquota"
