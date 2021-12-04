@@ -1,0 +1,19 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+# Ensure we have tmpfs on /tmp
+tmpfs=$(findmnt -n -o FSTYPE /tmp)
+if [ "${tmpfs}" != "tmpfs" ]; then
+    fatal "Error: Expected tmpfs on /tmp, found: ${tmpfs}"
+fi
+ok "tmpfs on /tmp"

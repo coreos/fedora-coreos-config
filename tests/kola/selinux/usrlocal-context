@@ -1,0 +1,19 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+set -xeuo pipefail
+
+ok() {
+    echo "ok" "$@"
+}
+
+fatal() {
+    echo "$@" >&2
+    exit 1
+}
+
+bin_ctx=$(stat -c %C /usr/sbin)
+usrlocal_sbin_ctx=$(stat -c %C /var/usrlocal/sbin)
+if test "${bin_ctx}" != "${usrlocal_sbin_ctx}"; then
+    fatal "Error: /usr/sbin is ${bin_ctx} but /var/usrlocal/sbin is ${usrlocal_sbin_ctx}"
+fi
+ok "/usr/sbin /var/usrlocal/sbin have the same SELinux security context"
