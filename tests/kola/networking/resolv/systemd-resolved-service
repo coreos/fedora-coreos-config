@@ -4,14 +4,7 @@
 # kola: { "distros": "fcos", "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # systemd-resolved should be enabled
 if ! systemctl is-enabled systemd-resolved 1>/dev/null; then

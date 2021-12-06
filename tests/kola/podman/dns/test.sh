@@ -5,14 +5,7 @@ set -xeuo pipefail
 # https://github.com/coreos/fedora-coreos-tracker/issues/923
 # kola: { "tags": "needs-internet", "platforms": "qemu-unpriv", "exclusive": false}
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 runascoreuserscript='
 #!/bin/bash

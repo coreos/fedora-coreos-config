@@ -2,14 +2,7 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # Make sure that coreos-update-ca-trust kicked in and observe the result.
 if ! systemctl show coreos-update-ca-trust.service -p ActiveState | grep ActiveState=active; then

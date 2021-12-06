@@ -5,14 +5,7 @@ set -xeuo pipefail
 # These are read-only not-necessarily-related checks that verify default system
 # configuration both on first and subsequent boots.
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # /var
 varsrc=$(findmnt -nvr /var -o SOURCE)
