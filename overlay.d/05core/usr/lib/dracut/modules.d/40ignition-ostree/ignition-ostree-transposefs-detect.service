@@ -5,7 +5,8 @@ After=ignition-fetch.service
 Before=ignition-disks.service
 Before=initrd-root-fs.target
 Before=sysroot.mount
-ConditionKernelCommandLine=ostree
+# This will failed anyway, cause ignition-ostree-transposefs-detect.service failed
+# ConditionKernelCommandLine=ostree
 OnFailure=emergency.target
 OnFailureJobMode=isolate
 
