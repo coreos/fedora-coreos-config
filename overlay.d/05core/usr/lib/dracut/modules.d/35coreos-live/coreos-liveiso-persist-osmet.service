@@ -4,6 +4,7 @@ DefaultDependencies=false
 ConditionPathExists=/run/ostree-live
 ConditionKernelCommandLine=coreos.liveiso
 RequiresMountsFor=/run/media/iso
+After=sysroot.mount
 Before=initrd-switch-root.target
 
 [Service]
