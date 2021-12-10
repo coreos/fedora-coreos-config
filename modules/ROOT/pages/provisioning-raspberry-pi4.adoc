@@ -69,7 +69,7 @@ FCOSEFIPARTITION=$(lsblk $FCOSDISK -J -oLABEL,PATH  | jq -r '.blockdevices[] | s
 mkdir /tmp/FCOSEFIpart
 sudo mount $FCOSEFIPARTITION /tmp/FCOSEFIpart
 sudo rsync -avh --ignore-existing /tmp/RPi4boot/boot/efi/ /tmp/FCOSEFIpart/
-sudo umount ${FCOSDISK}2
+sudo umount $FCOSEFIPARTITION
 ----
 
 Now take the USB/SD card and attach it to the RPi4 and boot.
