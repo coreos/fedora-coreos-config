@@ -13,14 +13,14 @@ The Raspberry Pi 4 uses an EEPROM to boot the system. The EEPROM/Firmware in the
 
 NOTE: Ignore the October 8th 2021 release as it was just a repackaging of a previous release.
 
-The https://www.raspberrypi.org/documentation/computers/raspberry-pi.html#updating-the-bootloader[Raspberry Pi Documentation] recommends using the Raspberry Pi Imager for creating a boot disk that can be used to update the EEPROM. If you're on a flavor of Fedora Linux the Raspberry Pi Imager is packaged up and available in the repositories. You can install it with: 
+The https://www.raspberrypi.org/documentation/computers/raspberry-pi.html#updating-the-bootloader[Raspberry Pi Documentation] recommends using the Raspberry Pi Imager for creating a boot disk that can be used to update the EEPROM. If you're on a flavor of Fedora Linux the Raspberry Pi Imager is packaged up and available in the repositories. You can install it with:
 
 [source, bash]
 ----
 dnf install rpi-imager
 ----
 
-NOTE: This also works inside a Toolbx container.
+NOTE: You can successfully use `rpi-imager` from inside a https://containertoolbx.org/[Toolbx container].
 
 If not on Fedora Linux you'll need to follow the documentation for obtaining the imager.
 
@@ -44,6 +44,8 @@ sudo dnf install -y --downloadonly --release=$RELEASE --forcearch=aarch64 --dest
 ----
 
 Now extract the contents of the RPMs and copy the proper `u-boot.bin` for the RPi4 into place:
+
+WARNING: The following commands to extract the contents of the RPMs, the use of `coreos-installer`, and copying of the files to the ESP partition should be done from outside of a Toolbx container. The `root` user in the container maps to a different user ID (UID) than the `root` (`UID=0`) user on the host. Attempting to run some of these commands in the container and some of these commands on the host can result in permission errors or ownership errors and may impact your ability to successfully install Fedora CoreOS.
 
 [source, bash]
 ----
@@ -114,6 +116,7 @@ Attaching this disk to your Pi4 you can now install FCOS as you would on any bar
 
 NOTE: The separate firmware disk will need to stay attached permanently for future boots to work.
 
+
 ### EDK2: Combined Fedora CoreOS + EDK2 Firmware Disk
 
 In combined disk mode the EDK2 firmware will live inside the EFI partition of Fedora CoreOS, allowing for a single disk to be used for the EDK2 firmware and FCOS.
@@ -178,7 +181,7 @@ TIP: It can take some time to boot, especially if the disk is slow. Be patient. 
 
 ### EDK2 Firmware: Changing the 3G limit
 
-If you have a Pi4 with more than 3G of memory you'll most likely want to disable the 3G memory limitation. In the EDK2 firmware menu go to 
+If you have a Pi4 with more than 3G of memory you'll most likely want to disable the 3G memory limitation. In the EDK2 firmware menu go to
 
 - `Device Manager` -> `Raspberry Pi Configuration` -> `Advanced Configuration` -> `Limit RAM to 3GB` -> `Disabled`
 - `F10` to save -> `Y` to confirm
@@ -198,7 +201,7 @@ After boot you should see entries under `/proc/device-tree/` and also see `/dev/
 ----
 [core@localhost ~]$ ls /proc/device-tree/ | wc -l
 35
-[core@localhost ~]$ ls /dev/gpiochip* 
+[core@localhost ~]$ ls /dev/gpiochip*
 /dev/gpiochip0  /dev/gpiochip1
 ----
 
