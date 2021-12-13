@@ -29,7 +29,7 @@
 Description=Copy CoreOS Firstboot Networking Config
 ConditionPathExists=/usr/lib/initrd-release
 DefaultDependencies=false
-Before=ignition-diskful.target
+Before=ignition-complete.target
 Before=nm-initrd.service
 # compat: remove when everyone is on dracut 054+
 Before=dracut-initqueue.service
