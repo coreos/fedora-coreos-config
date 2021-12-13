@@ -9,13 +9,6 @@ firstboot_network_dir_basename="coreos-firstboot-network"
 boot_firstboot_network_dir="${bootmnt}/${firstboot_network_dir_basename}"
 initramfs_network_dir="/run/NetworkManager/system-connections/"
 
-# Mount /boot. Note that we mount /boot but we don't unmount boot because we
-# are run in a systemd unit with MountFlags=slave so it is unmounted for us.
-# Mount as read-only since we don't strictly need write access and we may be
-# running alongside other code that also has it mounted ro
-mkdir -p ${bootmnt}
-mount -o ro ${bootdev} ${bootmnt}
-
 copy_firstboot_network() {
     local src=$1; shift
 
@@ -29,10 +22,19 @@ copy_firstboot_network() {
     cp -v ${src}/* ${initramfs_network_dir}/
 }
 
-if [ -n "$(ls -A ${boot_firstboot_network_dir} 2>/dev/null)" ]; then
-    # Likely placed there by coreos-installer, see:
-    # https://github.com/coreos/coreos-installer/pull/212
-    copy_firstboot_network "${boot_firstboot_network_dir}"
-else
-    echo "info: no files to copy from ${boot_firstboot_network_dir}. skipping"
+if ! is-live-image; then
+    # Mount /boot. Note that we mount /boot but we don't unmount boot because we
+    # are run in a systemd unit with MountFlags=slave so it is unmounted for us.
+    # Mount as read-only since we don't strictly need write access and we may be
+    # running alongside other code that also has it mounted ro
+    mkdir -p ${bootmnt}
+    mount -o ro ${bootdev} ${bootmnt}
+
+    if [ -n "$(ls -A ${boot_firstboot_network_dir} 2>/dev/null)" ]; then
+        # Likely placed there by coreos-installer, see:
+        # https://github.com/coreos/coreos-installer/pull/212
+        copy_firstboot_network "${boot_firstboot_network_dir}"
+    else
+        echo "info: no files to copy from ${boot_firstboot_network_dir}. skipping"
+    fi
 fi
