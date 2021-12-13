@@ -4,7 +4,6 @@ set -euo pipefail
 # For a description of how this is used see coreos-copy-firstboot-network.service
 
 bootmnt=/mnt/boot_partition
-mkdir -p ${bootmnt}
 bootdev=/dev/disk/by-label/boot
 firstboot_network_dir_basename="coreos-firstboot-network"
 boot_firstboot_network_dir="${bootmnt}/${firstboot_network_dir_basename}"
@@ -14,6 +13,7 @@ initramfs_network_dir="/run/NetworkManager/system-connections/"
 # are run in a systemd unit with MountFlags=slave so it is unmounted for us.
 # Mount as read-only since we don't strictly need write access and we may be
 # running alongside other code that also has it mounted ro
+mkdir -p ${bootmnt}
 mount -o ro ${bootdev} ${bootmnt}
 
 copy_firstboot_network() {
