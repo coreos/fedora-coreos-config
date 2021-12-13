@@ -16,15 +16,23 @@ initramfs_network_dir="/run/NetworkManager/system-connections/"
 # running alongside other code that also has it mounted ro
 mount -o ro ${bootdev} ${bootmnt}
 
-if [ -n "$(ls -A ${boot_firstboot_network_dir} 2>/dev/null)" ]; then
+copy_firstboot_network() {
+    local src=$1; shift
+
     # Clear out any files that may have already been generated from
     # kargs by nm-initrd-generator
     rm -f ${initramfs_network_dir}/*
-    # Copy files that were placed into boot (most likely by coreos-installer)
+    # Copy files that were placed into the source
     # to the appropriate location for NetworkManager to use the configuration.
-    echo "info: copying files from ${boot_firstboot_network_dir} to ${initramfs_network_dir}"
+    echo "info: copying files from ${src} to ${initramfs_network_dir}"
     mkdir -p ${initramfs_network_dir}
-    cp -v ${boot_firstboot_network_dir}/* ${initramfs_network_dir}/
+    cp -v ${src}/* ${initramfs_network_dir}/
+}
+
+if [ -n "$(ls -A ${boot_firstboot_network_dir} 2>/dev/null)" ]; then
+    # Likely placed there by coreos-installer, see:
+    # https://github.com/coreos/coreos-installer/pull/212
+    copy_firstboot_network "${boot_firstboot_network_dir}"
 else
     echo "info: no files to copy from ${boot_firstboot_network_dir}. skipping"
 fi
