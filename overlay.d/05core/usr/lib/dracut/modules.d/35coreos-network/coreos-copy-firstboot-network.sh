@@ -7,6 +7,7 @@ bootmnt=/mnt/boot_partition
 bootdev=/dev/disk/by-label/boot
 firstboot_network_dir_basename="coreos-firstboot-network"
 boot_firstboot_network_dir="${bootmnt}/${firstboot_network_dir_basename}"
+etc_firstboot_network_dir="/etc/${firstboot_network_dir_basename}"
 initramfs_network_dir="/run/NetworkManager/system-connections/"
 
 copy_firstboot_network() {
@@ -35,6 +36,14 @@ if ! is-live-image; then
         # https://github.com/coreos/coreos-installer/pull/212
         copy_firstboot_network "${boot_firstboot_network_dir}"
     else
-        echo "info: no files to copy from ${boot_firstboot_network_dir}. skipping"
+        echo "info: no files to copy from ${boot_firstboot_network_dir}; skipping"
+    fi
+else
+    if [ -n "$(ls -A ${etc_firstboot_network_dir} 2>/dev/null)" ]; then
+        # Also placed there by coreos-installer but in a different flow, see:
+        # https://github.com/coreos/coreos-installer/pull/713
+        copy_firstboot_network "${etc_firstboot_network_dir}"
+    else
+        echo "info: no files to copy from ${etc_firstboot_network_dir}; skipping"
     fi
 fi

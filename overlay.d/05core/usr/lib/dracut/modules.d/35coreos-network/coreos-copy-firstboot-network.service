@@ -1,12 +1,17 @@
-# This unit will run early in boot and detect if the user copied
-# in firstboot networking config files into the installed system
-# (most likely by using `coreos-installer install --copy-network`).
+# This unit will run early in boot and detect if:
+# - In the diskful case, the user copied in firstboot networking config files
+#   into `/boot` (most likely by using `coreos-installer install
+#   --copy-network`).
+# - In the live case, the user provided firstboot networking config files in
+#   `/etc` (most likely by using `coreos-installer iso network embed`).
+#
 # Since this unit is modifying network configuration there are some
 # dependencies that we have:
 #
-# - Need to look for networking configuration on the /boot partition
+# - In the diskful case, we need to look for networking configuration on the
+#   /boot partition
 #     - i.e. after /dev/disk/by-label/boot is available
-#     - and after the ignition-dracut GPT generator (see below)
+#     - which is implied by running after coreos-gpt-setup (see below)
 # - Need to run before networking is brought up.
 #     - This is done in nm-initrd.service [1]
 #     - i.e. Before=nm-initrd.service
@@ -29,6 +34,8 @@
 Description=Copy CoreOS Firstboot Networking Config
 ConditionPathExists=/usr/lib/initrd-release
 DefaultDependencies=false
+# We're pulled in by ignition-complete.target; as good practice, add a matching
+# Before to be explicit about it gating on this unit passing.
 Before=ignition-complete.target
 Before=nm-initrd.service
 # compat: remove when everyone is on dracut 054+
