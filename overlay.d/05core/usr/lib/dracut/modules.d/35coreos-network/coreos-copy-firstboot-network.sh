@@ -9,7 +9,6 @@ bootdev=/dev/disk/by-label/boot
 firstboot_network_dir_basename="coreos-firstboot-network"
 initramfs_firstboot_network_dir="${bootmnt}/${firstboot_network_dir_basename}"
 initramfs_network_dir="/run/NetworkManager/system-connections/"
-realroot_firstboot_network_dir="/boot/${firstboot_network_dir_basename}"
 
 # Mount /boot. Note that we mount /boot but we don't unmount boot because we
 # are run in a systemd unit with MountFlags=slave so it is unmounted for us.
