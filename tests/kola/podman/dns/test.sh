@@ -26,7 +26,7 @@ podman network rm testnetwork
 runascoreuser() {
     # NOTE: If we don't use `| cat` the output won't get copied
     # and won't show up in the output of the ext test.
-    sudo -u core "$@" 2>&1 | cat
+    sudo -u core "$@" | cat
 }
 
 main() {
