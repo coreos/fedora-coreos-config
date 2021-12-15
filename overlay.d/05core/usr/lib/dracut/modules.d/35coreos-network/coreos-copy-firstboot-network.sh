@@ -21,6 +21,9 @@ copy_firstboot_network() {
     echo "info: copying files from ${src} to ${initramfs_network_dir}"
     mkdir -p ${initramfs_network_dir}
     cp -v ${src}/* ${initramfs_network_dir}/
+
+    mkdir -p /run/coreos
+    echo "${src}" > /run/coreos/firstboot-network-src
 }
 
 if ! is-live-image; then
