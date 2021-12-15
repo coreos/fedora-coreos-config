@@ -107,6 +107,9 @@ propagate_initramfs_networking() {
                 echo "info: propagating initramfs networking config to the real root"
                 cp -v /run/NetworkManager/system-connections/* /sysroot/etc/NetworkManager/system-connections/
                 coreos-relabel /etc/NetworkManager/system-connections/
+
+                mkdir -p /run/coreos
+                touch /run/coreos/network-propagated
             fi
         else
             echo "info: no initramfs networking information to propagate"
