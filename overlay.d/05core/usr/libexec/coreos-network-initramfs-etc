@@ -1,0 +1,21 @@
+#!/bin/bash
+set -euo pipefail
+
+# Would've been really nice to be able to use
+# `ConditionKernelCommandLine=rd.neednet=1` for this, but that doesn't work
+# because the current boot doesn't have it; the *next* boot will.
+
+karg() {
+    local name="$1" value="${2:-}"
+    local cmdline=( $(rpm-ostree kargs) )
+    for arg in "${cmdline[@]}"; do
+        if [[ "${arg%%=*}" == "${name}" ]]; then
+            value="${arg#*=}"
+        fi
+    done
+    echo "${value}"
+}
+
+if [[ $(karg rd.neednet) == 1 ]]; then
+    rpm-ostree ex initramfs-etc --track /etc/NetworkManager/system-connections
+fi

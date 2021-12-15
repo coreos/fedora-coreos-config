@@ -1,0 +1,26 @@
+[Unit]
+Description=CoreOS Enable Network Initramfs-Etc
+# All services which use ConditionFirstBoot=yes should use
+# Before=first-boot-complete.target, which is a target that
+# was introduced in https://github.com/systemd/systemd/issues/4511
+# and hasn't propagated everywhere yet. Once the target propagates
+# everywhere, we can drop the systemd-machine-id-commit.service
+# from the Before= line.
+Before=first-boot-complete.target systemd-machine-id-commit.service
+Wants=first-boot-complete.target
+# If there are custom NM connection files,
+ConditionDirectoryNotEmpty=/etc/NetworkManager/system-connections/
+# and they come from `--copy-network` or `iso network embed`,
+ConditionPathExists=/run/coreos/firstboot-network-src
+ConditionPathExists=/run/coreos/network-propagated
+# and it's the first boot,
+ConditionFirstBoot=true
+
+# then automatically turn on initramfs-etc tracking of the NM configs.
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-network-initramfs-etc
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

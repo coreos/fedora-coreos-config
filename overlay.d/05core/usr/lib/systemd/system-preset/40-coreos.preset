@@ -25,3 +25,5 @@ enable rtas_errd.service
 enable clevis-luks-askpass.path
 # Provide information if no ignition is provided
 enable coreos-check-ignition-config.service
+# Automatically enables `initramfs-etc` tracking of NM keyfiles
+enable coreos-network-initramfs-etc.service
