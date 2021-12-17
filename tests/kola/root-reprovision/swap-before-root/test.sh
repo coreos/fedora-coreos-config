@@ -4,14 +4,7 @@
 # kola: {"distros": "fcos", "platforms": "qemu", "minMemory": 4096}
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 swapstatus=$(systemctl is-active dev-disk-by\\x2dpartlabel-swap.swap)
 [[ ${swapstatus} == active ]]

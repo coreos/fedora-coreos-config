@@ -5,14 +5,7 @@
 
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 #Testing that a user password provisioned by ignition works
 OUTPUT=$(echo 'foobar' | setsid su - tester -c id)

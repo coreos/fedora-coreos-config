@@ -2,14 +2,7 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # Make sure that kdump didn't start (it's either disabled, or enabled but
 # conditional on crashkernel= karg, which we don't bake).
