@@ -2,14 +2,7 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 for part in /sysroot /boot; do
     if ! findmnt -n -o options ${part} | grep -q "ro,"; then

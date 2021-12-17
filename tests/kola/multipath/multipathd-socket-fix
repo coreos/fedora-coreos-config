@@ -3,14 +3,7 @@
 # kola: { "exclusive": false, "platforms": "qemu-unpriv" }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # We need either a fixed multipathd.socket or temporary workaround, no need for both.
 # See https://bugzilla.redhat.com/show_bug.cgi?id=2008098.

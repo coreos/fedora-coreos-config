@@ -2,14 +2,7 @@
 # kola: {"platforms": "qemu", "minMemory": 4096}
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 fstype=$(findmnt -nvr / -o FSTYPE)
 [[ $fstype == ext4 ]]
