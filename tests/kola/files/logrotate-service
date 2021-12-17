@@ -2,14 +2,7 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # Test some services are enabled or disabled appropriately
 for unit in logrotate logrotate.timer; do

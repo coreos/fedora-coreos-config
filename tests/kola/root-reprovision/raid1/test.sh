@@ -2,14 +2,7 @@
 # kola: {"platforms": "qemu", "minMemory": 4096, "additionalDisks": ["5G", "5G"]}
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 srcdev=$(findmnt -nvr / -o SOURCE)
 [[ ${srcdev} == $(realpath /dev/md/foobar) ]]

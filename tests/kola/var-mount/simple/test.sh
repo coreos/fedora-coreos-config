@@ -4,14 +4,7 @@ set -xeuo pipefail
 # restrict to qemu for now because the primary disk path is platform-dependent
 # kola: {"platforms": "qemu"}
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # /var
 

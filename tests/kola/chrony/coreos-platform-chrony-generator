@@ -2,12 +2,12 @@
 set -euo pipefail
 # Test the coreos-platform-chrony generator.
 
-# kola: { "exclusive": false, "platforms": "aws,azure,gcp" }
+# kola: { "exclusive": false, "platforms": "aws azure gcp" }
 
 platform="$(grep -Eo ' ignition.platform.id=[a-z]+' /proc/cmdline | cut -f 2 -d =)"
 case "${platform}" in
     aws) chronyc sources |grep '169.254.169.123'; echo "ok chrony aws" ;;
-    azure) chronyc sources |grep 'PHC0'; echo "ok chrony azure" ;;
+    azure) chronyc sources |grep 'PHC'; echo "ok chrony azure" ;;
     gcp) chronyc sources | grep metadata.google.internal; echo "ok chrony gcp" ;;
     *) echo "unhandled platform ${platform} ?"; exit 1 ;;
 esac
