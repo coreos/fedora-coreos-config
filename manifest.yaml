@@ -10,16 +10,3 @@ rojig:
 
 add-commit-metadata:
   fedora-coreos.stream: stable
-
-packages:
-  # resolved was broken out to its own package in rawhide/f35
-  - systemd-resolved
-  # In F35+ need `iptables-legacy` package
-  # See https://github.com/coreos/fedora-coreos-tracker/issues/676#issuecomment-928028451
-  - iptables-legacy
-
-remove-from-packages:
-  # Hopefully short-term hack -- see https://github.com/coreos/fedora-coreos-config/pull/1206#discussion_r705425869.
-  # This keeps the size down and ensures nothing tries to use it, preventing us
-  # from shedding the dep eventually.
-  - [cracklib-dicts, .*]
