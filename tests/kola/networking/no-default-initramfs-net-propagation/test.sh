@@ -6,14 +6,7 @@ set -xeuo pipefail
 # from the initramfs. This test tries to verify that is the case.
 # https://github.com/coreos/fedora-coreos-tracker/issues/696
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 if ! journalctl -t coreos-teardown-initramfs | \
        grep 'info: skipping propagation of default networking configs'; then

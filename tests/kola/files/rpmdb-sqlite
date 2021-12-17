@@ -4,14 +4,7 @@
 # kola: { "distros": "fcos", "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # make sure we're using the sqlite rpmdb backend
 # https://github.com/coreos/fedora-coreos-tracker/issues/623
