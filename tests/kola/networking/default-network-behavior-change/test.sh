@@ -9,14 +9,7 @@ set -xeuo pipefail
 # (if needed) instead of finding out later that problems were introduced.
 # some context in: https://github.com/coreos/fedora-coreos-tracker/issues/1000
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # EXPECTED_INITRD_NETWORK_CFG1
 #   - used on FCOS 35+ releases

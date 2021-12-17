@@ -4,14 +4,7 @@
 # kola: { "distros": "fcos", "exclusive": true}
 set -xeuo pipefail
 
-ok() {
-        echo "ok" "$@"
-    }
-
-fatal() {
-        echo "$@" >&2
-            exit 1
-        }
+. $KOLA_EXT_DATA/commonlib.sh
 
 # This test makes sure that swap on zram devices can be set up
 # using the zram-generator as defined in the docs at
