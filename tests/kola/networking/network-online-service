@@ -2,14 +2,7 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # We shouldn't pull this into the transaction by default. See
 # https://github.com/coreos/fedora-coreos-config/pull/1088

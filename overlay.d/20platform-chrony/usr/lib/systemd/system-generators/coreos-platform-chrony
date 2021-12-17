@@ -66,8 +66,10 @@ EOF
 ) > "${confpath}"
 case "${platform}" in
     azure)
+        # the /dev/ptp_hyperv symlink is created by:
+        # https://github.com/systemd/systemd/blob/e67a5c14f0345f5ac456cfa109324dd9e70114d3/rules.d/50-udev-default.rules.in#L106
         (echo '# See also https://docs.microsoft.com/en-us/azure/virtual-machines/linux/time-sync'
-         echo 'refclock PHC /dev/ptp0 poll 3 dpoll -2 offset 0'
+         echo 'refclock PHC /dev/ptp_hyperv poll 3 dpoll -2 offset 0'
          echo 'leapsectz right/UTC'
         ) >> "${confpath}" ;;
     aws)

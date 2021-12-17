@@ -5,14 +5,7 @@ set -xeuo pipefail
 # This test only runs on FCOS because countme support is not available in RHCOS
 # kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv" }
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 journal_cursor() {
     journalctl --output json --lines 1 \
