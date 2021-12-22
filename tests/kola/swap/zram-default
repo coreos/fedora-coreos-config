@@ -1,7 +1,8 @@
 #!/bin/bash
+# kola: { "exclusive": false }
 # We can run this on both FCOS and RHCOS as neither should have a zram device
 # enabled by default. (In RHCOS, there is no zram support at all)
-# kola: { "exclusive": false }
+
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh

@@ -1,5 +1,6 @@
 #!/bin/bash
 # kola: { "exclusive": false }
+
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
@@ -11,4 +12,3 @@ for f in '/etc/passwd' '/etc/group'; do
     fi
 done
 ok "correct ownership and mode on /etc/passwd & /etc/group"
-

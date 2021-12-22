@@ -1,9 +1,10 @@
 #!/bin/bash
+# kola: { "distros": "fcos", "exclusive": false }
 # This test is currently scoped to only FCOS because the RHCOS version of `iptables`
 # is using the `nf_tables` backend.
 # TODO: modify this test to check for `nf_tables` backend when FCOS switches.
 #       See https://github.com/coreos/fedora-coreos-config/pull/1324
-# kola: { "distros": "fcos", "exclusive": false }
+
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
