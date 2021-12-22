@@ -1,7 +1,8 @@
 #!/bin/bash
+# kola: { "distros": "fcos", "exclusive": true}
 # This test conflicts with swap/zram-default so we cannot set this to non-exclusive
 # This test only runs on FCOS because RHCOS does not have zram support.
-# kola: { "distros": "fcos", "exclusive": true}
+
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh

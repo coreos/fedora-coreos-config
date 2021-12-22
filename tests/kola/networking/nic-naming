@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# kola: { "exclusive": false, "platforms": "!azure" }
 # Disable on azure because of a limitation of the hv_netvsc driver
 # there. According to [1] and [2] the driver does not provide sufficient
 # information to systemd-udev for systemd's naming to work. It falls
@@ -8,7 +8,6 @@
 # [1] https://access.redhat.com/solutions/3204751
 # [2] https://github.com/Azure/WALinuxAgent/issues/1877
 
-# kola: { "exclusive": false, "platforms": "!azure" }
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh

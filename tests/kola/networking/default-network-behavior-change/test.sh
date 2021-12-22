@@ -1,6 +1,7 @@
 #!/bin/bash
-# No need to run on any other platform than QEMU.
 # kola: { "exclusive": false, "platforms": "qemu-unpriv" }
+# No need to run on any other platform than QEMU.
+
 set -xeuo pipefail
 
 # Since we depend so much on the default networking configurations let's
@@ -152,5 +153,4 @@ GENERATED_REALROOT_NETWORK_CFG=$(normalize_connection_file \
 if ! diff -u <(echo "$EXPECTED_REALROOT_NETWORK_CFG") <(echo "$GENERATED_REALROOT_NETWORK_CFG"); then
     fatal "fail: the expected realroot network config is not given by the kargs"
 fi
-
 ok "success: expected network configs were generated"
