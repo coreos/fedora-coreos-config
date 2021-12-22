@@ -22,7 +22,7 @@ confpath=/run/coreos-platform-chrony.conf
 # we don't have one shared across shell services at the moment.
 platform="$(grep -Eo ' ignition.platform.id=[a-z]+' /proc/cmdline | cut -f 2 -d =)"
 case "${platform}" in
-    azure|aws|gcp) ;;  # OK, this is a platform we know how to support
+    azure|azurestack|aws|gcp) ;;  # OK, this is a platform we know how to support
     *) exit 0 ;;
 esac
 
@@ -65,7 +65,7 @@ makestep 1.0 -1
 EOF
 ) > "${confpath}"
 case "${platform}" in
-    azure)
+    azure | azurestack)
         # the /dev/ptp_hyperv symlink is created by:
         # https://github.com/systemd/systemd/blob/e67a5c14f0345f5ac456cfa109324dd9e70114d3/rules.d/50-udev-default.rules.in#L106
         (echo '# See also https://docs.microsoft.com/en-us/azure/virtual-machines/linux/time-sync'
