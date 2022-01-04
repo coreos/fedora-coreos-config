@@ -24,3 +24,13 @@
   snooze: 2022-01-10
   streams:
     - rawhide
+- pattern: ext.config.networking.prefer-ignition-networking
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1059
+  snooze: 2022-01-25
+  streams:
+    - rawhide
+- pattern: ext.config.networking.force-persist-ip
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1059
+  snooze: 2022-01-25
+  streams:
+    - rawhide
