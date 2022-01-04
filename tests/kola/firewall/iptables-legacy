@@ -6,14 +6,7 @@
 # kola: { "distros": "fcos", "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # Make sure we're still on legacy iptables for now
 # https://github.com/coreos/fedora-coreos-tracker/issues/676#issuecomment-928028451
