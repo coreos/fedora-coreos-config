@@ -1,0 +1,16 @@
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/ens5.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=ens5
+          type=ethernet
+          interface-name=ens5
+          [ipv4]
+          dns-search=
+          may-fail=false
+          method=auto
