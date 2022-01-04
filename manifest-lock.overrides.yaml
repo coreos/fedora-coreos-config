@@ -14,3 +14,13 @@ packages:
     metadata:
       reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/968'
       type: pin
+  authselect:
+    evr: 1.3.0-3.fc36
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1057'
+      type: pin
+  authselect-libs:
+    evr: 1.3.0-3.fc36
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1057'
+      type: pin
