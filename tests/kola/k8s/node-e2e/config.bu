@@ -6,9 +6,3 @@ ignition:
       # XXX: what this config does should probably be folded into the test
       # directly instead so that the release-specific cri-o is used
       - source: https://raw.githubusercontent.com/kubernetes/test-infra/master/jobs/e2e_node/crio/crio_cgrpv2.ign
-storage:
-  filesystems:
-    - device: /dev/disk/by-id/virtio-disk1
-      format: xfs
-      path: /var
-      with_mount_unit: true

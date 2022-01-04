@@ -2,14 +2,7 @@
 # kola: { "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 get_journal_msg_timestamp() {
     journalctl -o json -b 0 --grep "$1" \

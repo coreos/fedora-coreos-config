@@ -9,9 +9,15 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  ignition:
-    evr: 2.13.0-1.fc35 
+  coreos-installer:
+    evr: 0.12.0-1.fc35
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-6ff46bd8ea
-      reason: https://github.com/coreos/ignition/issues/1287
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-a9ed18c2c3
+      reason: https://github.com/coreos/coreos-installer/releases/tag/v0.12.0
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.12.0-1.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-a9ed18c2c3
+      reason: https://github.com/coreos/coreos-installer/releases/tag/v0.12.0
       type: fast-track

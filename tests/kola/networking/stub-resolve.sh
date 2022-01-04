@@ -4,14 +4,7 @@
 # kola: { "distros": "fcos", "exclusive": false }
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # Make sure that the stub-resolv.conf file has the correct selinux context.
 # https://github.com/fedora-selinux/selinux-policy/pull/509#issuecomment-744540382
