@@ -14,8 +14,8 @@ https://github.com/coreos/fedora-coreos-tracker.
 There is one branch for each stream. The default branch is
 [`testing-devel`](https://github.com/coreos/fedora-coreos-config/commits/testing-devel),
 on which all development happens. See
-[the design](https://github.com/coreos/fedora-coreos-tracker/blob/main//Design.md#release-streams)
-and [tooling](https://github.com/coreos/fedora-coreos-tracker/blob/main//stream-tooling.md)
+[the design](https://github.com/coreos/fedora-coreos-tracker/blob/main/Design.md#release-streams)
+and [tooling](https://github.com/coreos/fedora-coreos-tracker/blob/main/stream-tooling.md)
 docs for more information about streams.
 
 All file changes in `testing-devel` are propagated to other
