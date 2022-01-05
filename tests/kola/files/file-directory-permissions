@@ -5,9 +5,11 @@ set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-list="$(find /etc -type f -type d -perm /022)"
+list="$(find /usr /etc -type f -perm /022 -o -type d -perm /022)"
+
 if [[ -n "${list}" ]]; then
-    find /etc -type f -type d -perm /022 -print0 | xargs -0 ls -al
+    find /usr /etc -type f -perm /022 -print0 -o -type d -perm /022 -print0 | xargs -0 ls -al
+    find /usr /etc -type f -perm /022 -print0 -o -type d -perm /022 -print0 | xargs -0 rpm -qf
     fatal "found files or directories with 'g+w' or 'o+w' permission"
 fi
 ok "no files with 'g+w' or 'o+w' permission found in /etc"
