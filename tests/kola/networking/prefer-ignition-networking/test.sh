@@ -9,7 +9,9 @@ set -xeuo pipefail
 #   configuration wins, verify that ens5 gets ip via dhcp
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1958930#c29
-# kola: { "platforms": "qemu", "additionalNics": 1, "appendKernelArgs": "ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:ens5:none:8.8.8.8"}
+# These tests fail on aarch64. Limit to x86_64 for now:
+# 	- https://github.com/coreos/fedora-coreos-tracker/issues/1060
+# kola: { "platforms": "qemu", "additionalNics": 1, "appendKernelArgs": "ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:ens5:none:8.8.8.8", "architectures": "x86_64"}
 
 . $KOLA_EXT_DATA/commonlib.sh
 
