@@ -10,6 +10,7 @@ list_setgid_files=(
     '/usr/libexec/openssh/ssh-keysign'
     '/usr/libexec/utempter/utempter'
 )
+
 unknown_setgid_files=""
 while IFS= read -r -d '' e; do
     found="false"
@@ -22,7 +23,7 @@ while IFS= read -r -d '' e; do
     if [[ "${found}" == "false" ]]; then
         unknown_setgid_files+=" ${e}"
     fi
-done< <(find /usr /etc -type f,d -perm /2000 -print0)
+done< <(find /usr /etc -type f -perm /2000 -print0 -o -type d -perm /2000 -print0)
 
 if [[ -n "${unknown_setgid_files}" ]]; then
     echo "SetGID:${unknown_setgid_files}"
