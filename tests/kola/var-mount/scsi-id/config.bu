@@ -1,0 +1,16 @@
+variant: fcos
+version: 1.4.0
+storage:
+  disks:
+    - device: /dev/disk/by-id/scsi-0NVME_VirtualMultipath_disk1
+      wipe_table: true
+      partitions:
+        - number: 1
+          label: var
+  filesystems:
+    - path: /var
+      device: /dev/disk/by-partlabel/var
+      format: xfs
+      wipe_filesystem: true
+      label: var
+      with_mount_unit: true
