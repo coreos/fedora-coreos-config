@@ -9,10 +9,11 @@ To do this, you can use https://coreos.github.io/rpm-ostree/[`rpm-ostree install
 To start the layering of a package, you need to write a systemd unit that executes the `rpm-ostree` command to install the wanted package(s).
 By default with `rpm-ostree install`, changes are queued for the next boot.  The `-A/--apply-live` option can be used to apply changes live *and* have them persist.
 
-== Example: Layering nano and setting it as the default editor
+== Example: Layering vim and setting it as the default editor
 
-This example shows on how to install the text editor `nano` and add a script to `/etc/profile.d` so that it is set as the default editor for all users.
-The parameter `--allow-inactive` is useful if the package is added to the root image in a future Fedora CoreOS release. In such a case, the parameter prevents that the service would fail.
+Fedora CoreOS includes both `nano` and `vi` as text editors, with the former set as default (see the corresponding https://fedoraproject.org/wiki/Changes/UseNanoByDefault[Fedora change]).
+
+This example shows how to install the fully fledged `vim` text editor and how to set it up as default for all users by setting up the required configuration in `/etc/profile.d/`.
 
 NOTE: In the future, we will have a more Ignition-friendly method of doing this with stronger guarantees. See upstream issues https://github.com/coreos/butane/issues/81[butane#81] and https://github.com/coreos/fedora-coreos-tracker/issues/681[fedora-coreos-tracker#681] for more information.
 
@@ -22,12 +23,12 @@ variant: fcos
 version: 1.4.0
 systemd:
   units:
-    # installing nano as a layered package with rpm-ostree
-    - name: rpm-ostree-install-nano.service
+    # Installing vim as a layered package with rpm-ostree
+    - name: rpm-ostree-install-vim.service
       enabled: true
       contents: |
         [Unit]
-        Description=Layer nano with rpm-ostree
+        Description=Layer vim with rpm-ostree
         Wants=network-online.target
         After=network-online.target
         # We run before `zincati.service` to avoid conflicting rpm-ostree
@@ -38,18 +39,24 @@ systemd:
         [Service]
         Type=oneshot
         RemainAfterExit=yes
-        ExecStart=/usr/bin/rpm-ostree install --apply-live --allow-inactive nano
+        # `--allow-inactive` ensures that rpm-ostree does not return an error
+        # if the package is already installed. This is useful if the package is
+        # added to the root image in a future Fedora CoreOS release as it will
+        # prevent the service from failing.
+        ExecStart=/usr/bin/rpm-ostree install --apply-live --allow-inactive vim
         ExecStart=/bin/touch /var/lib/%N.stamp
 
         [Install]
         WantedBy=multi-user.target
 storage:
   files:
-    # use nano as default editor
-    - path: /etc/profile.d/nano.sh
+    # Set vim as default editor
+    # We use `zz-` as prefix to make sure this is processed last in order to
+    # override any previously set defaults.
+    - path: /etc/profile.d/zz-default-editor.sh
       overwrite: true
       contents:
         inline: |
           #/bin/sh
-          export EDITOR=nano
+          export EDITOR=vim
 ----
