@@ -1,12 +1,40 @@
-= Platforms
+= Supported Platforms
 
 Fedora CoreOS is provisioned via prebuilt disk images, and configured on first-boot via https://github.com/coreos/ignition[Ignition]. Each platform may require specific logic and components, thus dedicated images are provided for each supported environment. Additionally, a unique platform ID is available in the host environment for runtime introspection.
 
-== Runtime introspection
+The currently supported platforms and their identifiers are listed below.
 
-Each Fedora CoreOS image boots with a platform-specific identifier, available on the kernel command-line. The name of the parameter is `ignition.platform.id` and the list of supported platform is documented here.
+=== x86_64
 
-Platform ID can be introspected at runtime, as follows:
+* Aliyun/Alibaba Cloud (`aliyun`): Cloud platform. See xref:provisioning-aliyun.adoc[Booting on Alibaba Cloud].
+* Amazon Web Services (`aws`): Cloud platform. See xref:provisioning-aws.adoc[Booting on AWS].
+* Microsoft Azure (`azure`): Cloud platform. See xref:provisioning-azure.adoc[Booting on Azure].
+* Microsoft Azure Stack (`azurestack`): Cloud platform.
+* DigitalOcean (`digitalocean`): Cloud platform. See xref:provisioning-digitalocean.adoc[Booting on DigitalOcean].
+* Exoscale (`exoscale`): Cloud platform. See xref:provisioning-exoscale.adoc[Booting on Exoscale].
+* Google Cloud Platform (`gcp`): Cloud platform. See xref:provisioning-gcp.adoc[Booting on GCP].
+* IBM Cloud, VPC Generation 2 (`ibmcloud`): Cloud platform. See xref:provisioning-ibmcloud.adoc[Booting on IBM Cloud].
+* Bare metal (`metal`): With BIOS, UEFI or network boot, with standard or 4k Native disks. See xref:bare-metal.adoc[Installing on Bare Metal] or xref:live-booting-ipxe.adoc[Live-booting via iPXE].
+* Nutanix (`nutanix`): Hypervisor.
+* OpenStack (cloud platform): `openstack`): Cloud platform. See xref:provisioning-openstack.adoc[Booting on OpenStack].
+* QEMU (`qemu`): Hypervisor. See xref:provisioning-libvirt.adoc[Booting on libvirt]
+* VMware ESXi (`vmware`): Hypervisor. See xref:provisioning-vmware.adoc[Booting on VMware]. Note that only https://kb.vmware.com/s/article/1003746[hardware version] 13 or later, vSphere ESXi hosts version 6.5 or later and vCenter host version 6.5 or later are supported.
+* Vultr (`vultr`): Cloud platform. See xref:provisioning-vultr.adoc[Booting on Vultr].
+
+=== AArch64
+
+* Amazon Web Services (`aws`): Cloud platform. See xref:provisioning-aws.adoc[Booting on AWS].
+* Bare metal (`metal`): With UEFI or network boot, with standard or 4k Native disks. See xref:bare-metal.adoc[Installing on Bare Metal] or xref:live-booting-ipxe.adoc[Live-booting via iPXE] and xref:provisioning-raspberry-pi4.adoc[Booting on the Raspberry Pi 4].
+* QEMU (`qemu`): Hypervisor. See xref:provisioning-libvirt.adoc[Booting on libvirt]
+* OpenStack (cloud platform): `openstack`): Cloud platform. See xref:provisioning-openstack.adoc[Booting on OpenStack].
+
+== Runtime introspection of platform IDs
+
+Each Fedora CoreOS image boots with a platform-specific identifier, available on the kernel command-line. The name of the parameter is `ignition.platform.id`. The platform ID is consumed by OS components such as https://github.com/coreos/ignition[Ignition] and https://github.com/coreos/afterburn[Afterburn]. Additionally, it can be used in systemd units via https://www.freedesktop.org/software/systemd/man/systemd.unit.html#ConditionKernelCommandLine=[`ConditionKernelCommandLine=`].
+
+See https://coreos.github.io/ignition/supported-platforms/[Ignition's Supported Platforms] and https://coreos.github.io/afterburn/platforms/[Afterburn's Supported Platforms] documentation pages for more details about which features are supported for each platforms. Note that some platforms are currently supported by Ignition and Afterburn but are not yet supported by Fedora CoreOS.
+
+The Platform ID can be introspected at runtime, as follows:
 
 .CLI example of platform introspection
 [source, bash]
@@ -15,22 +43,3 @@ $ grep -o ignition.platform.id='[[:alnum:]]*' /proc/cmdline
 
 ignition.platform.id=aws
 ----
-
-Platform ID is consumed by OS components such as https://github.com/coreos/ignition[Ignition] and https://github.com/coreos/afterburn[Afterburn]. Additionally, it can be used in systemd units via https://www.freedesktop.org/software/systemd/man/systemd.unit.html#ConditionKernelCommandLine=[`ConditionKernelCommandLine=`].
-
-== Well-known IDs
-
-Here is a list of all supported platforms and their identifier:
-
- * `aliyun`: Aliyun/Alibaba Cloud (cloud platform)
- * `aws`: Amazon Web Services (cloud platform)
- * `azure`: Microsoft Azure (cloud platform)
- * `digitalocean`: DigitalOcean (cloud platform) - only as a https://www.digitalocean.com/docs/images/custom-images/[Custom Image]
- * `exoscale`: Exoscale (cloud platform)
- * `gcp`: Google Cloud Platform (cloud platform)
- * `ibmcloud`: IBM Cloud, VPC Generation 2 (cloud platform)
- * `metal`: bare metal with BIOS or UEFI boot
- * `openstack`: OpenStack (cloud platform)
- * `qemu`: QEMU (hypervisor)
- * `vmware`: VMware ESXi (hypervisor) - only on https://kb.vmware.com/s/article/1003746[hardware version] 13 or later
- * `vultr`: Vultr (cloud platform)

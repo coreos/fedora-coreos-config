@@ -2,6 +2,8 @@
 
 This guide shows how to provision new Fedora CoreOS (FCOS) nodes on the VMware hypervisor.
 
+NOTE: Only https://kb.vmware.com/s/article/1003746[hardware version] 13 or later, vSphere ESXi hosts version 6.5 or later and vCenter host version 6.5 or later are supported.
+
 == Prerequisites
 
 Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
