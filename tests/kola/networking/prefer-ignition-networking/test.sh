@@ -17,8 +17,7 @@ set -xeuo pipefail
 
 # Verify ens5 get ip address via dhcp
 nic_name="ens5"
-nic_ip=""
-get_ip_for_nic ${nic_name}
+nic_ip=$(get_ipv4_for_nic ${nic_name})
 if [ ${nic_ip} != "10.0.2.31" ]; then
     fatal "Error: get ${nic_name} ip = ${nic_ip}, expected is 10.0.2.31"
 fi
