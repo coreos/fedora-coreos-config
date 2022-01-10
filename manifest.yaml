@@ -19,6 +19,13 @@ repos:
 add-commit-metadata:
   fedora-coreos.stream: next-devel
 
+# These packages are needed for installing packages thru microdnf
+# Currently, this is planned for use on the layering enhancement
+# enhancement: https://github.com/coreos/enhancements/pull/7
+# package request: https://github.com/coreos/fedora-coreos-tracker/issues/1050
+packages:
+ - microdnf
+
 postprocess:
   # Disable Zincati and fedora-coreos-pinger on non-production streams
   # https://github.com/coreos/fedora-coreos-tracker/issues/163
@@ -28,3 +35,10 @@ postprocess:
     mkdir -p /etc/fedora-coreos-pinger/config.d /etc/zincati/config.d
     echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/90-disable-on-non-production-stream.toml
     echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nupdates.enabled = false' > /etc/zincati/config.d/90-disable-on-non-production-stream.toml
+  # Move microdnf so it is clear that it should not be used on host systems,
+  # it is intended just for containers. This was proposed here: 
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1050#issuecomment-996174981
+  - |
+    #!/usr/bin/env bash
+    mkdir -p /usr/lib/rpm-ostree/
+    mv /usr/bin/microdnf /usr/lib/rpm-ostree/
