@@ -1,7 +1,7 @@
 #!/bin/bash
+# kola: { "distros": "fcos", "exclusive": false }
 # This test only runs on FCOS because RHCOS does not support `yescrypt`
 # TODO-RHCOS: adapt to use different `crypt` scheme for RHCOS
-# kola: { "distros": "fcos", "exclusive": false }
 
 set -xeuo pipefail
 
