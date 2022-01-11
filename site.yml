@@ -1,6 +1,6 @@
 site:
   title: Local Preview
-  start_page: fedora-coreos::index
+  start_page: fedora-coreos::index.adoc
 content:
   sources:
    - url: .
@@ -16,5 +16,5 @@ output:
   destinations:
   - provider: archive
 runtime:
-  pull: true
+  fetch: true
   cache_dir: ./cache
