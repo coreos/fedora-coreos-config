@@ -1,5 +1,6 @@
 #!/bin/bash
 # kola: {"platforms": "qemu", "minMemory": 4096, "additionalDisks": ["5G", "5G"]}
+
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh

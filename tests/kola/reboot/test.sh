@@ -1,9 +1,9 @@
 #!/bin/bash
-set -xeuo pipefail
 # kola: {"platforms": "qemu"}
-
 # These are read-only not-necessarily-related checks that verify default system
 # configuration both on first and subsequent boots.
+
+set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
