@@ -1,7 +1,9 @@
 ---
 name: next-devel
 on:
-  pull_request:
+  # This is a privileged event!  It runs with a r/w token, even in PRs from
+  # forks.
+  pull_request_target:
     branches: [next-devel]
     types: [opened, edited, reopened, ready_for_review]
 
