@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-image="docker.io/antora/antora:2.3.4"
+image="docker.io/antora/antora"
 cmd="--html-url-extension-style=indexify site.yml"
 
 if [ "$(uname)" == "Darwin" ]; then
