@@ -4,6 +4,9 @@
 
 include: fedora-coreos-base.yaml
 
+ostree-layers:
+  - overlay/15fcos
+
 automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
 mutate-os-release: "${releasever}"
 
