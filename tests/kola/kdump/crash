@@ -1,8 +1,6 @@
 #!/bin/bash
-# kola: {"platforms": "qemu-unpriv", "minMemory": 4096, "tags": "skip-base-checks", "architectures": "x86_64"}
+# kola: {"minMemory": 4096, "tags": "skip-base-checks"}
 # https://docs.fedoraproject.org/en-US/fedora-coreos/debugging-kernel-crashes/
-# Only run on QEMU x86_64 for now:
-# https://github.com/coreos/fedora-coreos-tracker/issues/860
 
 set -xeuo pipefail
 
