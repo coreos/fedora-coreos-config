@@ -34,3 +34,8 @@
   snooze: 2022-01-25
   streams:
     - rawhide
+- pattern: ext.config.networking.mtu-on-bond
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1059
+  snooze: 2022-01-25
+  streams:
+    - rawhide
