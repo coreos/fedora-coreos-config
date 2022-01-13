@@ -149,6 +149,7 @@ CI, see the [CoreOS CI documentation](https://github.com/coreos/coreos-ci/blob/m
 ## Tests layout
 Tests should follow the following format:
 
+```bash
 #!/bin/bash
 # kola: { "exclusive": false }    <-- kola option comment. See all options in <https://coreos.github.io/coreos-assembler/kola/external-tests/#kolajson>
 # Short summary of what the test does, why we need it, etc.
@@ -162,3 +163,4 @@ set -euxo pipefail
 foo_bar()    <-- Other function definitions
 
 if ...    <-- Actual test code. Errors must be raised with `fatal()`. Does not need to end with a call to `ok()`
+```
