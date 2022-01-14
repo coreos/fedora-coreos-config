@@ -11,7 +11,7 @@ cd "${tmpd}"
 case "$(arch)" in
     x86_64)
         dmesg | grep ' random:' > random.txt
-        if ! grep -qe 'crng done.*trust.*CPU' <random.txt; then
+        if ! grep -qe 'crng.*done.*trust.*CPU' <random.txt; then
             sed -e 's/^/# /' < random.txt
             fatal "Error: Failed to find crng trusting CPU"
         fi
