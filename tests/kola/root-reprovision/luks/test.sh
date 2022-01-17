@@ -1,5 +1,6 @@
 #!/bin/bash
 # kola: { "platforms": "qemu", "minMemory": 4096, "architectures": "!s390x" }
+
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
