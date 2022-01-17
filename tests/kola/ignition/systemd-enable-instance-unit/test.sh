@@ -1,5 +1,5 @@
 #!/bin/bash
-set -xeuo pipefail
+# kola: { "platforms": "qemu-unpriv" }
 
 # This test makes sure that ignition is able to enable instance units.
 # https://github.com/coreos/ignition/issues/586
@@ -7,7 +7,8 @@ set -xeuo pipefail
 
 # We don't need to test this on every platform. If it passes in
 # one place it will pass everywhere.
-# kola: { "platforms": "qemu-unpriv" }
+
+set -xeuo pipefail
 
 ok() {
     echo "ok" "$@"
