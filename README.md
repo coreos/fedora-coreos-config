@@ -132,8 +132,11 @@ the corresponding entries in the lockfiles:
 There will be better tooling to come to enable this, though
 one easy way to do this is for now:
 - add packages to the correct YAML manifest
-- run `cosa fetch --update-lockfile`
-- commit only the new package entries
+- run `cosa fetch --update-lockfile` (this will only update the lockfile for
+  the current architecture, most likely `x86_64`)
+- copy the new lines to the lockfiles for other architectures (i.e. `aarch64`)
+- commit only the new package entries (skip the timestamped changes to avoid
+  merge conflicts with the lockfile updates made by the bot)
 
 ## Moving to a new major version (N) of Fedora
 
