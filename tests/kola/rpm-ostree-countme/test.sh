@@ -1,9 +1,9 @@
 #!/bin/bash
-set -xeuo pipefail
-
+# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv" }
 # No need to run on any other platform than QEMU.
 # This test only runs on FCOS because countme support is not available in RHCOS
-# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv" }
+
+set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 

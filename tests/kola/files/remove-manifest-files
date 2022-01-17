@@ -1,8 +1,9 @@
 #!/bin/bash
+# kola: { "distros": "fcos", "exclusive": false }
 # This test only runs on FCOS bceause RHCOS does ship `info` which is a
 # Requires on a number of RHCOS packages.
 # TODO-RHCOS: modify test to check for RHCOS-specific `remove-files` entry
-# kola: { "distros": "fcos", "exclusive": false }
+
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh

@@ -31,4 +31,4 @@ done
 if [[ -n "${failed}" ]]; then
   fatal "could not install: ${failed}"
 fi
-ok "successfully installed os extensions"
+ok "successfully installed os rpm package extensions"

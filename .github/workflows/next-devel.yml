@@ -1,0 +1,34 @@
+---
+name: next-devel
+on:
+  # This is a privileged event!  It runs with a r/w token, even in PRs from
+  # forks.
+  pull_request_target:
+    branches: [next-devel]
+    types: [opened, edited, reopened, ready_for_review]
+
+permissions:
+  pull-requests: write
+
+# Privileged job to comment on next-devel PRs indicating whether next-devel
+# is currently open.  This job must not trust the contents of the PR.
+
+jobs:
+  branch-status:
+    name: "Check branch status"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post PR comment
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const url = 'https://raw.githubusercontent.com/coreos/fedora-coreos-pipeline/main/next-devel/status.json'
+            const resp = await github.request(url)
+            if (!JSON.parse(resp.data).enabled) {
+              await github.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: ':no_entry: The `next-devel` branch is currently closed.  PRs should target only `testing-devel`.',
+              })
+            }
