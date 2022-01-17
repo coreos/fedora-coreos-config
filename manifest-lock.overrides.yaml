@@ -54,3 +54,13 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1059
       type: pin
+  afterburn:
+    evr: 5.2.0-1.fc35
+    metadata:
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-87a938a18c
+  afterburn-dracut:
+    evr: 5.2.0-1.fc35
+    metadata:
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-87a938a18c
