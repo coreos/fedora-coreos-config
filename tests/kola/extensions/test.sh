@@ -1,0 +1,34 @@
+#!/bin/bash
+set -xeuo pipefail
+
+# This test only runs on FCOS as OS extensions are implemented differently on RHCOS.
+# kola: { "distros": "fcos", "tags": "needs-internet" }
+#
+# This test ensures that we can install some common tools as OS extensions.
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+commands=(
+  'gdb'
+  'htop'
+  'strace'
+  'tcpdump'
+  'tree'
+  'vim'
+)
+
+rpm-ostree install --apply-live "${commands[@]}"
+
+failed=""
+
+for c in "${commands[@]}"; do
+  if [[ -z "$(command -v "${c}")" ]]; then
+    echo "Could not find: ${c}"
+    failed+=" ${1}"
+  fi
+done
+
+if [[ -n "${failed}" ]]; then
+  fatal "could not install: ${failed}"
+fi
+ok "successfully installed os extensions"

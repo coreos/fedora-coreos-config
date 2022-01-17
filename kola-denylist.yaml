@@ -7,10 +7,20 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: ostree.hotfix
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/942
-  snooze: 2021-10-25
+  snooze: 2022-01-10
   streams:
     - rawhide
   arches:
     - aarch64
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/860
+- pattern: ext.config.podman.dns
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1046
+  snooze: 2022-01-20
+  streams:
+    - rawhide
+- pattern: podman.base
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1049
+  snooze: 2022-01-10
+  streams:
+    - rawhide
