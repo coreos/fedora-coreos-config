@@ -1,8 +1,8 @@
 #!/bin/bash
-set -euo pipefail
+# kola: { "exclusive": false, "platforms": "aws azure gcp" }
 # Test the coreos-platform-chrony generator.
 
-# kola: { "exclusive": false, "platforms": "aws azure gcp" }
+set -xeuo pipefail
 
 platform="$(grep -Eo ' ignition.platform.id=[a-z]+' /proc/cmdline | cut -f 2 -d =)"
 case "${platform}" in

@@ -1,13 +1,15 @@
 #!/bin/bash
 # kola: { "exclusive": false }
+
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
 # Make sure files in /usr/lib/systemd/system-generators have exec mode
-find /usr/lib/systemd/system-generators -type f | while read f; do
-    if ! test -x $f; then
-        fatal "Error: generator is not executable: $f"
+find /usr/lib/systemd/system-generators -type f | while read -r f; do
+    mode=$(stat -c '%a' "${f}")
+    if [[ "${mode}" != 555 ]] && [[ "${mode}" != 755 ]]; then
+        fatal "Error: generator is not executable: ${f}. Expected mode 555 or 755, found ${mode}"
     fi
 done
 ok "system-generators are executable"

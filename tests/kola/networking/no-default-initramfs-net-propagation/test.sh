@@ -1,10 +1,10 @@
 #!/bin/bash
 # kola: { "exclusive": false }
-set -xeuo pipefail
-
 # With pure network defaults no networking should have been propagated
 # from the initramfs. This test tries to verify that is the case.
 # https://github.com/coreos/fedora-coreos-tracker/issues/696
+
+set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
