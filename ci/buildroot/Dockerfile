@@ -7,4 +7,4 @@
 # Ignition, rpm-ostree, ostree, coreos-installer, etc...
 FROM registry.fedoraproject.org/fedora:35
 COPY . /src
-RUN ./src/install-buildroot.sh && yum clean all && rm /src -rf  # nocache 20211108
+RUN ./src/install-buildroot.sh && yum clean all && rm /src -rf  # nocache 20220119
