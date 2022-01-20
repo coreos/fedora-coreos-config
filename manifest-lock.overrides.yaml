@@ -24,3 +24,18 @@ packages:
     metadata:
       reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1057'
       type: pin
+  libgcc:
+    evr: 11.2.1-7.fc36
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1071'
+      type: pin
+  libgomp:
+    evr: 11.2.1-7.fc36
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1071'
+      type: pin
+  libstdc++:
+    evr: 11.2.1-7.fc36
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1071'
+      type: pin
