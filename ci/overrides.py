@@ -45,7 +45,7 @@ def do_graduate(_args):
     setup_repos(base, treefile)
 
     for fn in get_lockfiles():
-        update_lockfile(base, fn)
+        graduate_lockfile(base, fn)
 
 
 def get_treefile():
@@ -84,7 +84,7 @@ def get_lockfiles():
     return lockfiles
 
 
-def update_lockfile(base, fn):
+def graduate_lockfile(base, fn):
     if not os.path.exists(fn):
         return
 
