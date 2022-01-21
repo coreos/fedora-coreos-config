@@ -92,7 +92,7 @@ def graduate_lockfile(base, fn):
         return
 
     with open(fn) as f:
-        lockfile = yaml.load(f)
+        lockfile = yaml.safe_load(f)
     if 'packages' not in lockfile:
         return
 
