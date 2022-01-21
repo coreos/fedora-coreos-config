@@ -114,10 +114,7 @@ def graduate_lockfile(base, fn):
 
     if lockfile['packages'] != new_packages:
         lockfile['packages'] = new_packages
-        with open(fn, 'w') as f:
-            f.write(OVERRIDES_HEADER.strip())
-            f.write('\n\n')
-            yaml.dump(lockfile, f)
+        write_lockfile(fn, lockfile)
     else:
         print(f"{fn}: no packages graduated")
 
@@ -136,6 +133,13 @@ def sack_has_nevra_greater_or_equal(base, nevra):
 
     nevra_latest = hawkey.split_nevra(str(pkgs[0]))
     return nevra_latest >= nevra
+
+
+def write_lockfile(fn, contents):
+    with open(fn, 'w') as f:
+        f.write(OVERRIDES_HEADER.strip())
+        f.write('\n\n')
+        yaml.dump(contents, f)
 
 
 if __name__ == "__main__":
