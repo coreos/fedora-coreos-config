@@ -33,7 +33,7 @@ jobs:
           git config user.name 'CoreOS Bot'
           git config user.email coreosbot@fedoraproject.org
           ci/remove-graduated-overrides.py
-      - name: Open pull request
+      - name: Create commit
         run: |
           if ! git diff --quiet --exit-code; then
               git commit -am "lockfiles: drop graduated overrides 🎓" \
