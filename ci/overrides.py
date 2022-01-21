@@ -1,15 +1,20 @@
 #!/usr/bin/python3
 
 import argparse
+import functools
 import os
 import sys
 import json
+from urllib.parse import urlparse
 import yaml
 import subprocess
 
+import bodhi.client
 import dnf
 import hawkey
+import koji
 
+KOJI_URL = 'https://koji.fedoraproject.org/kojihub'
 ARCHES = ['s390x', 'x86_64', 'ppc64le', 'aarch64']
 
 OVERRIDES_HEADER = """
@@ -33,12 +38,62 @@ def main():
     subcommands = parser.add_subparsers(title='subcommands', required=True,
             dest='command')
 
+    fast_track = subcommands.add_parser('fast-track',
+            description='Fast-track Bodhi updates.')
+    fast_track.add_argument('update', nargs='+',
+            help='ID or URL of Bodhi update to fast-track')
+    fast_track.add_argument('-r', '--reason',
+            help='URL explaining the reason for the fast-track')
+    fast_track.set_defaults(func=do_fast_track)
+
+    pin = subcommands.add_parser('pin', description='Pin source RPMs.')
+    pin.add_argument('nvr', nargs='+',
+            help='NVR of SRPM to pin')
+    pin.add_argument('-r', '--reason', required=True,
+            help='URL explaining the reason for the pin')
+    pin.set_defaults(func=do_pin)
+
     graduate = subcommands.add_parser('graduate',
             description='Remove graduated overrides.')
     graduate.set_defaults(func=do_graduate)
 
     args = parser.parse_args()
     args.func(args)
+
+
+def do_fast_track(args):
+    overrides = {}
+    if args.reason:
+        check_url(args.reason)
+    for update in args.update:
+        update = get_bodhi_update(update)
+        for n, evr in get_binary_packages(get_source_nvrs(update)).items():
+            overrides[n] = dict(
+                evr=evr,
+                metadata=dict(
+                    type='fast-track',
+                    bodhi=update['url'],
+                )
+            )
+            if args.reason:
+                overrides[n]['metadata']['reason'] = args.reason
+    for lockfile_path in get_lockfiles():
+        merge_overrides(lockfile_path, overrides)
+
+
+def do_pin(args):
+    overrides = {}
+    check_url(args.reason)
+    for n, evr in get_binary_packages(args.nvr).items():
+        overrides[n] = dict(
+            evr=evr,
+            metadata=dict(
+                type='pin',
+                reason=args.reason,
+            )
+        )
+    for lockfile_path in get_lockfiles():
+        merge_overrides(lockfile_path, overrides)
 
 
 def do_graduate(_args):
@@ -63,6 +118,65 @@ def get_dnf_base(treefile):
     base.conf.releasever = treefile['releasever']
     base.read_all_repos()
     return base
+
+
+@functools.cache
+def get_manifest_packages(arch):
+    '''Return manifest lock package map for the specified arch.'''
+    try:
+        with open(os.path.join(basedir, f'manifest-lock.{arch}.json')) as f:
+            manifest = json.load(f)
+        return manifest['packages']
+    except FileNotFoundError:
+        return {}
+
+
+def get_bodhi_update(id_or_url):
+    '''Query Bodhi for the specified update ID or URL and return an info
+    dict.'''
+    # discard rest of URL if any
+    id = id_or_url.split('/')[-1]
+    client = bodhi.client.bindings.BodhiClient()
+    result = client.query(updateid=id)
+    if not result.updates:
+        raise Exception(f'Update {id} not found')
+    return result.updates[0]
+
+
+def get_source_nvrs(update):
+    '''Return list of source NVRs from the update info dict.'''
+    return [b['nvr'] for b in update.builds]
+
+
+def get_binary_packages(source_nvrs):
+    '''Return name => EVR dict for the specified source NVRs.  A binary
+    package is included if it is in the manifest lockfiles.'''
+    binpkgs = {}
+    accepted_in_arch = {}
+    client = koji.ClientSession(KOJI_URL)
+
+    def arches_with_package(name, arch):
+        '''For a given package and arch, return the arches that list the
+        package in their lockfiles.  There may be more than one, since we
+        check noarch packages against every candidate architecture.'''
+        candidates = ARCHES if arch == 'noarch' else [arch]
+        return [a for a in candidates if name in get_manifest_packages(a)]
+
+    for source_nvr in source_nvrs:
+        for binpkg in client.listBuildRPMs(source_nvr):
+            name = binpkg['name']
+            evr = f'{binpkg["version"]}-{binpkg["release"]}'
+            if binpkg['epoch'] is not None:
+                evr = f'{binpkg["epoch"]}:{evr}'
+            for arch in arches_with_package(name, binpkg['arch']):
+                binpkgs[name] = evr
+                accepted_in_arch.setdefault(arch, set()).add(name)
+
+    # Check that every arch has the same package set
+    if list(accepted_in_arch.values())[:-1] != list(accepted_in_arch.values())[1:]:
+        raise Exception(f'This tool cannot handle arch-specific overrides: {accepted_in_arch}')
+
+    return binpkgs
 
 
 def setup_repos(base, treefile):
@@ -138,11 +252,25 @@ def sack_has_nevra_greater_or_equal(base, nevra):
     return nevra_latest >= nevra
 
 
+def merge_overrides(fn, overrides):
+    '''Modify the file fn by applying the specified package overrides.'''
+    with open(fn) as f:
+        lockfile = yaml.safe_load(f)
+    lockfile.setdefault('packages', {}).update(overrides)
+    write_lockfile(fn, lockfile)
+
+
 def write_lockfile(fn, contents):
     with open(fn, 'w') as f:
         f.write(OVERRIDES_HEADER.strip())
         f.write('\n\n')
         yaml.dump(contents, f)
+
+
+def check_url(u):
+    p = urlparse(u)
+    if p.scheme not in ('http', 'https'):
+        raise Exception(f'Invalid URL: {u}')
 
 
 if __name__ == "__main__":
