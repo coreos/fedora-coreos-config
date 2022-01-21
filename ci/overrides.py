@@ -44,6 +44,8 @@ def main():
             help='ID or URL of Bodhi update to fast-track')
     fast_track.add_argument('-r', '--reason',
             help='URL explaining the reason for the fast-track')
+    fast_track.add_argument('--ignore-dist-mismatch', action='store_true',
+            help='ignore mismatched Fedora major version')
     fast_track.set_defaults(func=do_fast_track)
 
     pin = subcommands.add_parser('pin', description='Pin source RPMs.')
@@ -51,6 +53,8 @@ def main():
             help='NVR of SRPM to pin')
     pin.add_argument('-r', '--reason', required=True,
             help='URL explaining the reason for the pin')
+    pin.add_argument('--ignore-dist-mismatch', action='store_true',
+            help='ignore mismatched Fedora major version')
     pin.set_defaults(func=do_pin)
 
     graduate = subcommands.add_parser('graduate',
@@ -63,11 +67,14 @@ def main():
 
 def do_fast_track(args):
     overrides = {}
+    dist = get_expected_dist_tag()
     if args.reason:
         check_url(args.reason)
     for update in args.update:
         update = get_bodhi_update(update)
         for n, evr in get_binary_packages(get_source_nvrs(update)).items():
+            if not args.ignore_dist_mismatch:
+                check_dist_tag(n, evr, dist)
             overrides[n] = dict(
                 evr=evr,
                 metadata=dict(
@@ -83,8 +90,11 @@ def do_fast_track(args):
 
 def do_pin(args):
     overrides = {}
+    dist = get_expected_dist_tag()
     check_url(args.reason)
     for n, evr in get_binary_packages(args.nvr).items():
+        if not args.ignore_dist_mismatch:
+            check_dist_tag(n, evr, dist)
         overrides[n] = dict(
             evr=evr,
             metadata=dict(
@@ -271,6 +281,17 @@ def check_url(u):
     p = urlparse(u)
     if p.scheme not in ('http', 'https'):
         raise Exception(f'Invalid URL: {u}')
+
+
+def get_expected_dist_tag():
+    with open(os.path.join(basedir, 'manifest.yaml')) as f:
+        releasever = yaml.safe_load(f)['releasever']
+    return f'.fc{releasever}'
+
+
+def check_dist_tag(name, evr, dist):
+    if not evr.endswith(dist):
+        raise Exception(f"Package {name}-{evr} doesn't match expected dist tag {dist}")
 
 
 if __name__ == "__main__":
