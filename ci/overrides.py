@@ -24,6 +24,8 @@ OVERRIDES_HEADER = """
 # for FCOS-specific packages (ignition, afterburn, etc.).
 """
 
+basedir = os.path.normpath(os.path.join(os.path.dirname(sys.argv[0]), '..'))
+
 
 def main():
     parser = argparse.ArgumentParser(description='Manage overrides.')
@@ -50,13 +52,14 @@ def do_graduate(_args):
 
 def get_treefile():
     treefile = subprocess.check_output(['rpm-ostree', 'compose', 'tree',
-                                        '--print-only', 'manifest.yaml'])
+                                        '--print-only',
+                                        os.path.join(basedir, 'manifest.yaml')])
     return json.loads(treefile)
 
 
 def get_dnf_base(treefile):
     base = dnf.Base()
-    base.conf.reposdir = "."
+    base.conf.reposdir = basedir
     base.conf.releasever = treefile['releasever']
     base.read_all_repos()
     return base
@@ -81,7 +84,7 @@ def get_lockfiles():
     # arch-specific lockfiles will require making dnf fetch metadata not just
     # for the basearch on which we're running
     # lockfiles += [f'manifest-lock.overrides.{arch}.yaml' for arch in ARCHES]
-    return lockfiles
+    return [os.path.join(basedir, f) for f in lockfiles]
 
 
 def graduate_lockfile(base, fn):
