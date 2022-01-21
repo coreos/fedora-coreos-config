@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import argparse
 import os
 import sys
 import json
@@ -25,6 +26,20 @@ OVERRIDES_HEADER = """
 
 
 def main():
+    parser = argparse.ArgumentParser(description='Manage overrides.')
+    # "dest" to work around https://bugs.python.org/issue29298
+    subcommands = parser.add_subparsers(title='subcommands', required=True,
+            dest='command')
+
+    graduate = subcommands.add_parser('graduate',
+            description='Remove graduated overrides.')
+    graduate.set_defaults(func=do_graduate)
+
+    args = parser.parse_args()
+    args.func(args)
+
+
+def do_graduate(_args):
     treefile = get_treefile()
     base = get_dnf_base(treefile)
     setup_repos(base, treefile)
