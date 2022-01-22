@@ -55,7 +55,10 @@ hold back some packages, or pull in fixes ahead of Bodhi. To
 add such overrides, one needs to add the packages to
 `manifest-lock.overrides.yaml` (there are also arch-specific
 variants of these files for the rare occasions the override
-should only apply to a specific arch).
+should only apply to a specific arch). There is a
+[tool](ci/overrides.py) to help with this, and for simple
+cases, an [automated workflow](https://github.com/coreos/fedora-coreos-config/actions/workflows/add-override.yml)
+that runs the tool and submits a PR.
 
 Note that comments are not preserved in these files. The
 lockfile supports arbitrary keys under the `metadata` key to
