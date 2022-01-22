@@ -70,6 +70,11 @@ def main():
             help='ignore mismatched Fedora major version')
     pin.set_defaults(func=do_pin)
 
+    srpms = subcommands.add_parser('srpms',
+            description='Name the source RPMs for a Bodhi update.')
+    srpms.add_argument('update', help='ID or URL of Bodhi update')
+    srpms.set_defaults(func=do_srpms)
+
     graduate = subcommands.add_parser('graduate',
             description='Remove graduated overrides.')
     graduate.set_defaults(func=do_graduate)
@@ -122,6 +127,11 @@ def do_pin(args):
         )
     for lockfile_path in get_lockfiles():
         merge_overrides(lockfile_path, overrides)
+
+
+def do_srpms(args):
+    for nvr in get_source_nvrs(get_bodhi_update(args.update)):
+        print(nvr)
 
 
 def do_graduate(_args):
