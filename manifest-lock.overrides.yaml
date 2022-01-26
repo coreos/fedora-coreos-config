@@ -70,3 +70,15 @@ packages:
       type: fast-track
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-b238d6fbbf
       reason: https://github.com/coreos/ignition/issues/1305
+  polkit:
+    evr: 0.120-1.fc35.1
+    metadata:
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-da040e6b94
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1078
+  polkit-libs:
+    evr: 0.120-1.fc35.1
+    metadata:
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-da040e6b94
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1078
