@@ -26,7 +26,7 @@ fi
 ok "kube-env.service successfully started"
 
 # Verify that 'FCOS' was wrtitten to the journal
-if [ "$(journalctl -o cat -u kube-env.service | sed -n 2p)" != "FCOS" ]; then
+if ! journalctl -o cat -u kube-env.service | grep FCOS; then
     fatal "kube-env.service did not write 'FCOS' to journal"
 fi
 ok "kube-env.service ran and wrote 'FCOS' to the journal"
