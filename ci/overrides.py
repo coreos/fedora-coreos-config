@@ -16,6 +16,19 @@ import koji
 
 KOJI_URL = 'https://koji.fedoraproject.org/kojihub'
 ARCHES = ['s390x', 'x86_64', 'ppc64le', 'aarch64']
+TRIVIAL_FAST_TRACKS = [
+    # Packages that don't need a reason URL when fast-tracking
+    'console-login-helper-messages',
+    'ignition',
+    'ostree',
+    'rpm-ostree',
+    'rust-afterburn',
+    'rust-bootupd',
+    'rust-coreos-installer',
+    'rust-fedora-coreos-pinger',
+    'rust-ignition-config',
+    'rust-zincati',
+]
 
 OVERRIDES_HEADER = """
 # This lockfile should be used to pin to a package version (`type: pin`) or to
@@ -72,7 +85,12 @@ def do_fast_track(args):
         check_url(args.reason)
     for update in args.update:
         update = get_bodhi_update(update)
-        for n, evr in get_binary_packages(get_source_nvrs(update)).items():
+        source_nvrs = get_source_nvrs(update)
+        for source_nvr in source_nvrs:
+            source_name = '-'.join(source_nvr.split('-')[:-2])
+            if not args.reason and source_name not in TRIVIAL_FAST_TRACKS:
+                raise Exception(f'No reason URL specified and source package {source_name} not in {TRIVIAL_FAST_TRACKS}')
+        for n, evr in get_binary_packages(source_nvrs).items():
             if not args.ignore_dist_mismatch:
                 check_dist_tag(n, evr, dist)
             overrides[n] = dict(
