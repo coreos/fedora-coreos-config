@@ -9,6 +9,12 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  ignition:
+    evr: 2.13.0-3.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-b238d6fbbf
+      reason: https://github.com/coreos/ignition/issues/1305
+      type: fast-track
   kernel:
     evr: 5.15.10-200.fc35
     metadata:
@@ -54,31 +60,3 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1059
       type: pin
-  afterburn:
-    evr: 5.2.0-1.fc35
-    metadata:
-      type: fast-track
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-87a938a18c
-  afterburn-dracut:
-    evr: 5.2.0-1.fc35
-    metadata:
-      type: fast-track
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-87a938a18c
-  ignition:
-    evr: 2.13.0-3.fc35
-    metadata:
-      type: fast-track
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-b238d6fbbf
-      reason: https://github.com/coreos/ignition/issues/1305
-  polkit:
-    evr: 0.120-1.fc35.1
-    metadata:
-      type: fast-track
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-da040e6b94
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1078
-  polkit-libs:
-    evr: 0.120-1.fc35.1
-    metadata:
-      type: fast-track
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-da040e6b94
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1078
