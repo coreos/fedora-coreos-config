@@ -25,6 +25,20 @@ list_setuid_files=(
     '/usr/sbin/unix_chkpwd'
 )
 
+# List of known files and directories with SetUID bit set (RHCOS only)
+list_setuid_files_rhcos=(
+    '/usr/libexec/dbus-1/dbus-daemon-launch-helper'
+    '/usr/libexec/sssd/krb5_child'
+    '/usr/libexec/sssd/ldap_child'
+    '/usr/libexec/sssd/proxy_child'
+    '/usr/libexec/sssd/selinux_child'
+)
+
+is_fcos="false"
+if [[ "$(source /etc/os-release && echo "${ID}")" == "fedora" ]]; then
+    is_fcos="true"
+fi
+
 unknown_setuid_files=""
 while IFS= read -r -d '' e; do
     found="false"
@@ -34,6 +48,14 @@ while IFS= read -r -d '' e; do
             break
         fi
     done
+    if [[ "${is_fcos}" == "false" ]]; then
+        for k in "${list_setuid_files_rhcos[@]}"; do
+            if [[ "${k}" == "${e}" ]]; then
+                found="true"
+                break
+            fi
+        done
+    fi
     if [[ "${found}" == "false" ]]; then
         unknown_setuid_files+=" ${e}"
     fi
