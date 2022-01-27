@@ -12,6 +12,10 @@
     - rawhide
   arches:
     - aarch64
+- pattern: ext.config.kdump.crash
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1075
+  arches:
+    - aarch64
 - pattern: ext.config.podman.dns
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1046
   snooze: 2022-01-31
