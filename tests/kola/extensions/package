@@ -14,8 +14,14 @@ commands=(
   'strace'
   'tcpdump'
   'tree'
-  'vim'
 )
+
+# Also try some OS extensions which have host bindings. But these we can only do
+# on !rawhide because the archive repo isn't active there.
+case "$(get_fcos_stream)" in
+    "rawhide") ;;
+    *) commands+=('vim') ;;
+esac
 
 rpm-ostree install --apply-live "${commands[@]}"
 
