@@ -25,10 +25,10 @@
       "evra": "0.9.1-9.fc35.x86_64"
     },
     "afterburn": {
-      "evra": "5.2.0-1.fc35.x86_64"
+      "evra": "5.2.0-3.fc35.x86_64"
     },
     "afterburn-dracut": {
-      "evra": "5.2.0-1.fc35.x86_64"
+      "evra": "5.2.0-3.fc35.x86_64"
     },
     "alternatives": {
       "evra": "1.19-1.fc35.x86_64"
@@ -124,7 +124,7 @@
       "evra": "0.21.2-3.fc35.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.170.0-2.fc35.noarch"
+      "evra": "2:2.173.1-1.fc35.noarch"
     },
     "containerd": {
       "evra": "1.5.8-1.fc35.x86_64"
@@ -358,7 +358,7 @@
       "evra": "2.34.1-1.fc35.x86_64"
     },
     "glib2": {
-      "evra": "2.70.2-1.fc35.x86_64"
+      "evra": "2.70.3-1.fc35.x86_64"
     },
     "glibc": {
       "evra": "2.34-21.fc35.x86_64"
@@ -619,7 +619,7 @@
       "evra": "1.3.1-48.fc35.x86_64"
     },
     "libipa_hbac": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "libjcat": {
       "evra": "0.1.9-1.fc35.x86_64"
@@ -754,16 +754,16 @@
       "evra": "0.9.6-1.fc35.noarch"
     },
     "libsss_certmap": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "libsss_idmap": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "libsss_nss_idmap": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "libsss_sudo": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "libstdc++": {
       "evra": "11.2.1-7.fc35.x86_64"
@@ -847,7 +847,7 @@
       "evra": "4.94.0-2.fc35.x86_64"
     },
     "lua-libs": {
-      "evra": "5.4.3-2.fc35.x86_64"
+      "evra": "5.4.3-4.fc35.x86_64"
     },
     "luksmeta": {
       "evra": "9-12.fc35.x86_64"
@@ -1114,28 +1114,31 @@
       "evra": "0.1.2-8.fc35.x86_64"
     },
     "sssd-ad": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "sssd-client": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "sssd-common": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "sssd-common-pac": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "sssd-ipa": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "sssd-krb5": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "sssd-krb5-common": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "sssd-ldap": {
-      "evra": "2.6.1-1.fc35.x86_64"
+      "evra": "2.6.3-1.fc35.x86_64"
+    },
+    "sssd-nfs-idmap": {
+      "evra": "2.6.3-1.fc35.x86_64"
     },
     "stalld": {
       "evra": "1.14.1-1.fc35.x86_64"
@@ -1226,7 +1229,7 @@
     }
   },
   "metadata": {
-    "generated": "2022-01-28T20:52:54Z",
+    "generated": "2022-01-29T20:52:08Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2021-10-26T05:31:27Z"
@@ -1235,7 +1238,7 @@
         "generated": "2022-01-27T20:32:11Z"
       },
       "fedora-updates": {
-        "generated": "2022-01-28T01:04:30Z"
+        "generated": "2022-01-29T06:26:29Z"
       }
     }
   }
