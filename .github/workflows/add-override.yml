@@ -1,0 +1,90 @@
+---
+name: Add package override
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Target branch
+        default: testing-devel
+      what:
+        description: "Bodhi update (fast-track) or SRPM NVR (pin)"
+      pin:
+        description: "Pin (don't remove when stable)"
+        type: boolean
+      reason:
+        description: "Reason URL (optional for routine fast-tracks)"
+
+permissions:
+  # none at all
+  contents: none
+
+# This workflow could almost use the default GITHUB_TOKEN, if we were to
+# push the branch into this repo.  However, GitHub Actions has recursion
+# avoidance that would prevent CI from running on the PR:
+#
+# https://github.com/peter-evans/create-pull-request/blob/28fa4848947e/docs/concepts-guidelines.md#workarounds-to-trigger-further-workflow-runs
+#
+# So we create the PR using a separate Personal Access Token in
+# COREOSBOT_RELENG_TOKEN, belonging to a machine account.  That allows CI to
+# run when the PR is first created.  However, it's also possible to rerun
+# the workflow and have it force-push the branch, reusing the same PR.  In
+# that case the push also cannot come from GITHUB_TOKEN, or CI will not
+# rerun.  Thus we also do the push using COREOSBOT_RELENG_TOKEN.  Since we
+# don't want to give the machine account privileges to this repo, we push
+# to a forked repo owned by the machine account.
+
+jobs:
+  add-override:
+    name: Add package override
+    runs-on: ubuntu-latest
+    container: registry.fedoraproject.org/fedora:latest
+    steps:
+      - name: Install dependencies
+        run: dnf install -y git jq python3-bodhi-client python3-pyyaml
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.target }}
+          # We need an unbroken commit chain when pushing to the fork.  Don't
+          # make assumptions about which commits are already available there.
+          fetch-depth: 0
+      - name: Update metadata
+        env:
+          TARGET: ${{ github.event.inputs.target }}
+          WHAT: ${{ github.event.inputs.what }}
+          PIN: ${{ github.event.inputs.pin }}
+          REASON: ${{ github.event.inputs.reason }}
+        run: |
+          set -euxo pipefail
+
+          if [ "${PIN}" = true ]; then
+              ci/overrides.py pin "${WHAT}" -r "${REASON}"
+              title="overrides: pin ${WHAT}"
+          else
+              ci/overrides.py fast-track "${WHAT}" ${REASON:+-r "${REASON}"}
+              srpms=$(ci/overrides.py srpms "${WHAT}" | paste -sd,)
+              title="overrides: fast-track ${srpms//,/, }"
+          fi
+
+          if [ "${TARGET}" = testing-devel ]; then
+              pr_title="${title}"
+          else
+              pr_title="[${TARGET}] ${title}"
+          fi
+          branch_name=override-$(echo "${TARGET}:${title}" | sha256sum | cut -c1-8)
+
+          echo "BRANCH_NAME=${branch_name}" >> ${GITHUB_ENV}
+          echo "COMMIT_TITLE=${title}" >> ${GITHUB_ENV}
+          echo "PR_TITLE=${pr_title}" >> ${GITHUB_ENV}
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v3.8.2
+        with:
+          token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
+          branch: ${{ env.BRANCH_NAME }}
+          commit-message: ${{ env.COMMIT_TITLE }}
+          push-to-fork: coreosbot-releng/fedora-coreos-config
+          title: ${{ env.PR_TITLE }}
+          body: "Requested by @${{ github.actor }} via [GitHub workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/add-override.yml) ([source](${{ github.server_url }}/${{ github.repository }}/blob/testing-devel/.github/workflows/add-override.yml))."
+          committer: "CoreOS Bot <coreosbot@fedoraproject.org>"
+          author: "CoreOS Bot <coreosbot@fedoraproject.org>"
+          delete-branch: true
