@@ -3,6 +3,7 @@ name: Remove graduated overrides
 on:
   schedule:
     - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: read
