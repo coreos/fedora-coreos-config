@@ -48,6 +48,6 @@ jobs:
           branch: ${{ matrix.branch }}-graduation
           push-to-fork: coreosbot-releng/fedora-coreos-config
           title: "[${{ matrix.branch }}] lockfiles: drop graduated overrides 🎓"
-          body: "Triggered by remove-graduated-overrides GitHub Action."
+          body: "Created by remove-graduated-overrides [GitHub workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/remove-graduated-overrides.yml) ([source](${{ github.server_url }}/${{ github.repository }}/blob/testing-devel/.github/workflows/remove-graduated-overrides.yml))."
           committer: "CoreOS Bot <coreosbot@fedoraproject.org>"
           author: "CoreOS Bot <coreosbot@fedoraproject.org>"
