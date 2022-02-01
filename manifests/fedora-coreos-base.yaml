@@ -10,6 +10,13 @@ include:
   - user-experience.yaml
   - shared-workarounds.yaml
 
+ostree-layers:
+  - overlay/05core
+  - overlay/08nouveau
+  - overlay/09misc
+  - overlay/14NetworkManager-plugins
+  - overlay/20platform-chrony
+
 initramfs-args:
   - --no-hostonly
   # We don't support root on NFS, so we don't need it in the initramfs. It also
@@ -132,8 +139,6 @@ packages:
   - console-login-helper-messages-motdgen
   # i18n
   - kbd
-  # nvme-cli for managing nvme disks
-  - nvme-cli
   # zram-generator (but not zram-generator-defaults) for F33 change
   # https://github.com/coreos/fedora-coreos-tracker/issues/509
   - zram-generator
