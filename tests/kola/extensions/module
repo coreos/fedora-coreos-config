@@ -2,9 +2,12 @@
 set -xeuo pipefail
 
 # This test only runs on FCOS as OS extensions are implemented differently on RHCOS.
-# kola: { "distros": "fcos", "tags": "needs-internet" }
+# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu"}
 #
 # This test ensures that we can install some common tools as OS extensions.
+#
+# - platforms: qemu
+#   - This test should pass everywhere if it passes anywhere.
 
 . $KOLA_EXT_DATA/commonlib.sh
 

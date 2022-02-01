@@ -1,3 +1,8 @@
+These overlay directories are automatically committed to the build OSTree repo
+by coreos-assembler. They are then explicitly included in our various manifest
+files via `ostree-layers` (this used to be done automatically, but that's no
+longer the case).
+
 05core
 -----
 
