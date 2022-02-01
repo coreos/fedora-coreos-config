@@ -19,6 +19,11 @@ repos:
 add-commit-metadata:
   fedora-coreos.stream: next-devel
 
+# Scripts for opting into staying on iptables-legacy after migration. Remove
+# after the next barrier release.
+ostree-layers:
+  - overlay/35coreos-iptables
+
 postprocess:
   # Disable Zincati and fedora-coreos-pinger on non-production streams
   # https://github.com/coreos/fedora-coreos-tracker/issues/163
