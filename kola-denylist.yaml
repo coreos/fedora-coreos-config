@@ -7,7 +7,7 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: ostree.hotfix
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/942
-  snooze: 2022-01-10
+  snooze: 2022-02-07
   streams:
     - rawhide
   arches:
@@ -18,26 +18,26 @@
     - aarch64
 - pattern: ext.config.podman.dns
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1046
-  snooze: 2022-01-31
+  snooze: 2022-02-07
   streams:
     - rawhide
 - pattern: podman.base
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1049
-  snooze: 2022-01-31
+  snooze: 2022-02-07
   streams:
     - rawhide
 - pattern: ext.config.networking.prefer-ignition-networking
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1059
-  snooze: 2022-01-31
+  snooze: 2022-02-07
   streams:
     - rawhide
 - pattern: ext.config.networking.force-persist-ip
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1059
-  snooze: 2022-01-31
+  snooze: 2022-02-07
   streams:
     - rawhide
 - pattern: ext.config.networking.mtu-on-bond-kargs
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1059
-  snooze: 2022-01-31
+  snooze: 2022-02-07
   streams:
     - rawhide
