@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv" }
 # This script runs a rootless podman container with systemd inside
 # that brings up httpd. Tests that rootless+systemd works. See issue:
 # https://github.com/containers/podman/issues/7441
@@ -7,18 +7,18 @@
 # If it gets easy to change the kargs in the future we should try this
 # both on cgroups v1 and cgroups v2.
 
-set -euxo pipefail
-
 # Just run on QEMU for now. If this test works in one place it should
 # work everywhere.
 # The test is scoped to only FCOS because the `--retry-all-errors` flag passed
 # to `curl` is not avaiable on the version in RHCOS.
 # TODO-RHCOS: adapt test to conditionally use the `-retry-all-errors` flag on
 # only FCOS
-# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv" }
 
 # Script to be executed as the `core` user to build and
 # run a rootless podman container that uses systemd inside.
+
+set -xeuo pipefail
+
 runascoreuserscript='
 #!/bin/bash
 set -euxo pipefail

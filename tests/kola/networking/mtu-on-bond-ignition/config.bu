@@ -1,0 +1,60 @@
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/bond0.100.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=bond0.100
+          type=vlan
+          interface-name=bond0.100
+          [ethernet]
+          mtu=9000
+          [vlan]
+          flags=1
+          id=100
+          parent=bond0
+          [ipv4]
+          address1=10.10.10.10/24,10.10.10.1
+          dhcp-hostname=staticvlanbond
+          may-fail=false
+          method=manual
+    - path: /etc/NetworkManager/system-connections/bond0.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=bond0
+          type=bond
+          interface-name=bond0
+          [ethernet]
+          mtu=9000
+          [bond]
+          miimon=100
+          mode=active-backup
+          [ipv4]
+          method=disabled
+          [ipv6]
+          method=disabled
+    - path: /etc/NetworkManager/system-connections/eth1.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=eth1
+          type=ethernet
+          interface-name=eth1
+          master=bond0
+          slave-type=bond
+    - path: /etc/NetworkManager/system-connections/eth2.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=eth2
+          type=ethernet
+          interface-name=eth2
+          master=bond0
+          slave-type=bond

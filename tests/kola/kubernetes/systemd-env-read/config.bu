@@ -1,0 +1,27 @@
+variant: fcos
+version: 1.2.0
+storage:
+  files:
+    - path: /etc/kubernetes/envfile
+      # This is for verifying that `kubernetes_file_t` labeled files can be
+      # read by systemd
+      # See: https://bugzilla.redhat.com/show_bug.cgi?id=1973418
+      mode: 0644
+      contents:
+        inline: |
+          KUBE="FCOS"
+systemd:
+  units:
+    - name: kube-env.service
+      # This is for verifying that `kubernetes_file_t` labeled files can be
+      # read by systemd
+      # See: https://bugzilla.redhat.com/show_bug.cgi?id=1973418
+      enabled: true
+      contents: |
+        [Service]
+        EnvironmentFile=/etc/kubernetes/envfile
+        ExecStart=/usr/bin/echo ${KUBE}
+        RemainAfterExit=yes
+        Type=oneshot
+        [Install]
+        WantedBy=multi-user.target
