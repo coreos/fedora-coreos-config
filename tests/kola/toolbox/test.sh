@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv", "architectures": "x86_64 aarch64" }
 # Make sure that basic toolbox functionnality is working:
 # - Creating a toolbox
 # - Running a command in a toolbox
@@ -17,7 +17,6 @@
 # Additionally, there are some distro specific choices made for this test that
 # should/could be adpated for RHCOS.
 # TODO-RHCOS: adapt test for RHCOS specifics or create separate RHCOS toolbox test
-# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv", "architectures": "x86_64 aarch64" }
 
 set -xeuo pipefail
 

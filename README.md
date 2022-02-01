@@ -1,4 +1,7 @@
 # Fedora CoreOS Config
+
+[![next-devel status](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/coreos/fedora-coreos-pipeline/main/next-devel/badge.json)](https://github.com/coreos/fedora-coreos-pipeline/blob/main/next-devel/README.md)
+
 Base manifest configuration for
 [Fedora CoreOS](https://coreos.fedoraproject.org/).
 
@@ -14,8 +17,8 @@ https://github.com/coreos/fedora-coreos-tracker.
 There is one branch for each stream. The default branch is
 [`testing-devel`](https://github.com/coreos/fedora-coreos-config/commits/testing-devel),
 on which all development happens. See
-[the design](https://github.com/coreos/fedora-coreos-tracker/blob/main//Design.md#release-streams)
-and [tooling](https://github.com/coreos/fedora-coreos-tracker/blob/main//stream-tooling.md)
+[the design](https://github.com/coreos/fedora-coreos-tracker/blob/main/Design.md#release-streams)
+and [tooling](https://github.com/coreos/fedora-coreos-tracker/blob/main/stream-tooling.md)
 docs for more information about streams.
 
 All file changes in `testing-devel` are propagated to other
@@ -142,3 +145,22 @@ Pull requests submitted to this repo are tested by
 [CoreOS CI](https://github.com/coreos/coreos-ci). You can see the pipeline
 executed in `.cci.jenkinsfile`. For more information, including interacting with
 CI, see the [CoreOS CI documentation](https://github.com/coreos/coreos-ci/blob/main/README-upstream-ci.md).
+
+## Tests layout
+Tests should follow the following format:
+
+```bash
+#!/bin/bash
+# kola: { "exclusive": false }    <-- kola option comment. See all options in <https://coreos.github.io/coreos-assembler/kola/external-tests/#kolajson>
+# Short summary of what the test does, why we need it, etc.
+# Should also explain the reasons behind the non-obvious options selected above.
+# Optional: Link to corresponding issue or PR
+
+set -euxo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+foo_bar()    <-- Other function definitions
+
+if ...    <-- Actual test code. Errors must be raised with `fatal()`. Does not need to end with a call to `ok()`
+```

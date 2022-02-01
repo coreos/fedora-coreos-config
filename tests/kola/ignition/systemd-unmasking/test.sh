@@ -1,6 +1,5 @@
 #!/bin/bash
-set -xeuo pipefail
-
+# kola: { "distros": "fcos", "platforms": "qemu-unpriv" }
 # This test makes sure that ignition is able to unmask units
 # It just so happens we have masked dnsmasq in FCOS so we can
 # test this by unmasking it.
@@ -10,7 +9,8 @@ set -xeuo pipefail
 # This test is currently scoped to FCOS because `dnsmasq` is not masked
 # on RHCOS.
 # TODO-RHCOS: determine if any services on RHCOS are masked and adapt test
-# kola: { "distros": "fcos", "platforms": "qemu-unpriv" }
+
+set -xeuo pipefail
 
 ok() {
     echo "ok" "$@"
