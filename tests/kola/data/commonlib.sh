@@ -21,3 +21,7 @@ get_ipv4_for_nic() {
     fi
     echo $ip
 }
+
+get_fcos_stream() {
+    rpm-ostree status -b --json | jq -r '.deployments[0]["base-commit-meta"]["fedora-coreos.stream"]'
+}
