@@ -2,6 +2,7 @@
 # TODO: Doc
 
 set -xeuo pipefail
+# This test runs on all platforms and verifies Ignition kernel argument setting.
 
 . $KOLA_EXT_DATA/commonlib.sh
 
