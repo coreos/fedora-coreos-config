@@ -1,5 +1,5 @@
 #!/bin/bash
-# kola: {"platforms": "qemu", "minMemory": 4096}
+# kola: { "platforms": "qemu", "minMemory": 4096, "tags": "reprovision" }
 set -xeuo pipefail
 
 ok() {
