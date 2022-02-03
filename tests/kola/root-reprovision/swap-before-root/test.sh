@@ -1,7 +1,17 @@
 #!/bin/bash
-# This test only runs on FCOS due to a problem enabling a swap partition on
-# RHCOS.  See: https://github.com/openshift/os/issues/665
-# kola: {"distros": "fcos", "platforms": "qemu", "minMemory": 4096}
+# kola: { "distros": "fcos", "platforms": "qemu", "minMemory": 4096, "timeoutMin": 15 }
+#
+# - distros: fcos
+#   - This test only runs on FCOS due to a problem enabling a swap partition on
+#     RHCOS. See: https://github.com/openshift/os/issues/665
+# - platforms: qemu
+#   - This test should pass everywhere if it passes anywhere.
+# - minMemory: 4096
+#   - Root reprovisioning requires at least 4GiB of memory.
+# - timeoutMin: 15
+#   - This test includes a lot of disk I/O and needs a higher
+#     timeout value than the default.
+
 set -xeuo pipefail
 
 ok() {
