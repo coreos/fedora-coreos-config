@@ -107,6 +107,8 @@ def do_fast_track(args):
             )
             if args.reason:
                 overrides[n]['metadata']['reason'] = args.reason
+    if not overrides:
+        raise Exception('specified updates contain no binary packages listed in lockfiles')
     for lockfile_path in get_lockfiles():
         merge_overrides(lockfile_path, overrides)
 
@@ -125,6 +127,8 @@ def do_pin(args):
                 reason=args.reason,
             )
         )
+    if not overrides:
+        raise Exception('specified source packages produce no binary packages listed in lockfiles')
     for lockfile_path in get_lockfiles():
         merge_overrides(lockfile_path, overrides)
 
