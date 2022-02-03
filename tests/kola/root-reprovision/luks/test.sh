@@ -1,5 +1,16 @@
 #!/bin/bash
-# kola: { "platforms": "qemu", "minMemory": 4096, "architectures": "!s390x" }
+# kola: { "platforms": "qemu", "minMemory": 4096, "architectures": "!s390x", "timeoutMin": 15 }
+#
+# - platforms: qemu
+#   - This test should pass everywhere if it passes anywhere.
+# - minMemory: 4096
+#   - Root reprovisioning requires at least 4GiB of memory.
+# - architectures: !s390x
+#   - A TPM backend device is not available on s390x to suport TPM.
+# - timeoutMin: 15
+#   - This test includes a lot of disk I/O and needs a higher
+#     timeout value than the default.
+
 set -xeuo pipefail
 
 ok() {
