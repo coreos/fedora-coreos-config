@@ -19,6 +19,11 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1057
       type: pin
+  container-selinux:
+    evra: 2:2.173.2-1.fc36.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1089
+      type: pin
   rpm:
     evr: 4.17.0-6.fc36
     metadata:
