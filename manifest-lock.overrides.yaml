@@ -19,6 +19,21 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1057
       type: pin
+  rpm:
+    evr: 4.17.0-6.fc36
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1087
+      type: pin
+  rpm-libs:
+    evr: 4.17.0-6.fc36
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1087
+      type: pin
+  rpm-plugin-selinux:
+    evr: 4.17.0-6.fc36
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1087
+      type: pin
   tpm2-tss:
     evr: 3.1.0-3.fc35
     metadata:
