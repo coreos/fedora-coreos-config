@@ -1,5 +1,5 @@
 #!/bin/bash
-# kola: {"platforms": "qemu", "minMemory": 4096, "architectures": "!s390x"}
+# kola: { "platforms": "qemu", "minMemory": 4096, "architectures": "!s390x", "tags": "reprovision" }
 set -xeuo pipefail
 
 ok() {
