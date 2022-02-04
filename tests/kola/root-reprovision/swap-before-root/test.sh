@@ -1,5 +1,5 @@
 #!/bin/bash
-# kola: { "distros": "fcos", "platforms": "qemu", "minMemory": 4096, "timeoutMin": 15 }
+# kola: { "distros": "fcos", "platforms": "qemu", "minMemory": 4096, "timeoutMin": 15, "allowConfigWarnings": true }
 #
 # - distros: fcos
 #   - This test only runs on FCOS due to a problem enabling a swap partition on
@@ -11,6 +11,9 @@
 # - timeoutMin: 15
 #   - This test includes a lot of disk I/O and needs a higher
 #     timeout value than the default.
+# - allowConfigWarnings: true
+#   - We intentionally put the root filesystem on partition 5.  This is
+#     legal but usually not intended, so Butane warns about it.
 
 set -xeuo pipefail
 
