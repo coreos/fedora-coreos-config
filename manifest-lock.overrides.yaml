@@ -40,6 +40,16 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1087
       type: pin
+  selinux-policy:
+    evra: 35.13-1.fc36.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1090
+      type: pin
+  selinux-policy-targeted:
+    evra: 35.13-1.fc36.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1090
+      type: pin
   tpm2-tss:
     evr: 3.1.0-3.fc35
     metadata:
