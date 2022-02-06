@@ -19,6 +19,21 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-1b76e3a192
       type: fast-track
+  kernel:
+    evr: 5.15.18-200.fc35
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1066
+      type: pin
+  kernel-core:
+    evr: 5.15.18-200.fc35
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1066
+      type: pin
+  kernel-modules:
+    evr: 5.15.18-200.fc35
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1066
+      type: pin
   systemd:
     evr: 249.7-2.fc35
     metadata:
