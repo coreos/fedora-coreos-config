@@ -187,8 +187,9 @@ def get_source_nvrs(update):
 
 
 def get_binary_packages(source_nvrs):
-    '''Return name => info dict for the specified source NVRs.  A binary
-    package is included if it is in the manifest lockfiles.'''
+    '''Return name => info dict for the specified source NVRs.  The info
+    dict contains "evr" for archful packages and "evra" for noarch ones.
+    A binary package is included if it is in the manifest lockfiles.'''
     binpkgs = {}
     accepted_in_arch = {}
     client = koji.ClientSession(KOJI_URL)
@@ -209,7 +210,10 @@ def get_binary_packages(source_nvrs):
             if binpkg['epoch'] is not None:
                 evr = f'{binpkg["epoch"]}:{evr}'
             for arch in arches_with_package(name, binpkg['arch']):
-                binpkgs[name] = {'evr': evr}
+                if archful(binpkg['arch']):
+                    binpkgs[name] = {'evr': evr}
+                else:
+                    binpkgs[name] = {'evra': evr + '.noarch'}
                 accepted_in_arch.setdefault(arch, set()).add(name)
 
     # Check that every arch has the same package set
@@ -320,8 +324,10 @@ def get_expected_dist_tag():
 
 
 def check_dist_tag(name, info, dist):
-    if not info['evr'].endswith(dist):
+    if 'evr' in info and not info['evr'].endswith(dist):
         raise Exception(f"Package {name}-{info['evr']} doesn't match expected dist tag {dist}")
+    if 'evra' in info and not info['evra'].endswith(dist + '.noarch'):
+        raise Exception(f"Package {name}-{info['evra']} doesn't match expected dist tag {dist}")
 
 
 if __name__ == "__main__":
