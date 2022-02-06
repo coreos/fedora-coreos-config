@@ -7,7 +7,7 @@ For instance, you may want to access the emergency shell on the console, in orde
 
 All Fedora CoreOS (FCOS) images come with a default configuration for the console which is meant to accommodate most virtualized and bare-metal setups.
 
-However, it may not always match your specific hardware configuration. In that case, your can tweak console setup by adjusting kernel parameters.
+However, it may not always match your specific hardware configuration. In that case, you can tweak the console setup by adjusting kernel parameters.
 
 You can specify multiple `console=` options on the kernel command line. Kernel messages will appear on all of them, however only the last-specified device will be used as the foreground interactive console (i.e. `/dev/console`) for the machine.
 

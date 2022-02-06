@@ -2,7 +2,7 @@
 
 == Default User
 
-By default, a privileged user named `core` is created on the Fedora CoreOS system, but it is not configured with a default password or SSH key. If you wish to use the `core` user, you must provide an Ignition config which includes a password and/or SSH key(s) for the `core` user. Alternately you may create additional, new users via Ignition configs.
+By default, a privileged user named `core` is created on the Fedora CoreOS system, but it is not configured with a default password or SSH key. If you wish to use the `core` user, you must provide an Ignition config which includes a password and/or SSH key(s) for the `core` user. Alternatively you may create additional, new users via Ignition configs.
 
 == Creating a New User
 

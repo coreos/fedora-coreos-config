@@ -356,7 +356,7 @@ storage:
 
 == Adding network storage
 
-Fedora CoreOS systems can be configured to mount network filesystems such as NFS and CIFS. This is best achieved by using Ignition to create systemd units. Filesystems can be mounted on boot by creating a standard mount unit. Alternately, a filesystem can be mounted when users access the mountpoint by creating an additional automount unit. Below are examples of each for an NFS filesystem.
+Fedora CoreOS systems can be configured to mount network filesystems such as NFS and CIFS. This is best achieved by using Ignition to create systemd units. Filesystems can be mounted on boot by creating a standard mount unit. Alternatively, a filesystem can be mounted when users access the mountpoint by creating an additional automount unit. Below are examples of each for an NFS filesystem.
 
 === Configuring NFS mounts
 
@@ -533,4 +533,4 @@ The only supported writable locations are `/etc` and `/var`. `/etc` should conta
 
 === Version selection and bootup
 
-A GRUB menu entry is created for each version of Fedora CoreOS currently available on a system. This menu entry references an `ostree` deployment which consist of a Linux kernel, an initramfs and a hash linking to an `ostree` commit (passed via the `ostree=` kernel argument). During bootup, `ostree` will read this kernel argument to determine which deployment to use as the root filesystem. Each update or change to the system (package installation, addition of kernel arguments) creates a new deployment. This enables rolling back to a previous deployment if the update causes problems.
+A GRUB menu entry is created for each version of Fedora CoreOS currently available on a system. This menu entry references an `ostree` deployment which consists of a Linux kernel, an initramfs and a hash linking to an `ostree` commit (passed via the `ostree=` kernel argument). During bootup, `ostree` will read this kernel argument to determine which deployment to use as the root filesystem. Each update or change to the system (package installation, addition of kernel arguments) creates a new deployment. This enables rolling back to a previous deployment if the update causes problems.
