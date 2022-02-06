@@ -197,11 +197,13 @@ def get_binary_packages(source_nvrs):
     accepted_in_arch = {}
     client = koji.ClientSession(KOJI_URL)
 
+    archful = lambda arch: arch != 'noarch'
+
     def arches_with_package(name, arch):
         '''For a given package and arch, return the arches that list the
         package in their lockfiles.  There may be more than one, since we
         check noarch packages against every candidate architecture.'''
-        candidates = ARCHES if arch == 'noarch' else [arch]
+        candidates = [arch] if archful(arch) else ARCHES
         return [a for a in candidates if name in get_manifest_packages(a)]
 
     for source_nvr in source_nvrs:
