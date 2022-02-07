@@ -95,18 +95,16 @@ def do_fast_track(args):
             source_name = '-'.join(source_nvr.split('-')[:-2])
             if not args.reason and source_name not in TRIVIAL_FAST_TRACKS:
                 raise Exception(f'No reason URL specified and source package {source_name} not in {TRIVIAL_FAST_TRACKS}')
-        for n, evr in get_binary_packages(source_nvrs).items():
+        for n, info in get_binary_packages(source_nvrs).items():
             if not args.ignore_dist_mismatch:
-                check_dist_tag(n, evr, dist)
-            overrides[n] = dict(
-                evr=evr,
-                metadata=dict(
-                    type='fast-track',
-                    bodhi=update['url'],
-                )
+                check_dist_tag(n, info, dist)
+            info['metadata'] = dict(
+                type='fast-track',
+                bodhi=update['url'],
             )
             if args.reason:
-                overrides[n]['metadata']['reason'] = args.reason
+                info['metadata']['reason'] = args.reason
+            overrides[n] = info
     if not overrides:
         raise Exception('specified updates contain no binary packages listed in lockfiles')
     for lockfile_path in get_lockfiles():
@@ -117,16 +115,14 @@ def do_pin(args):
     overrides = {}
     dist = get_expected_dist_tag()
     check_url(args.reason)
-    for n, evr in get_binary_packages(args.nvr).items():
+    for n, info in get_binary_packages(args.nvr).items():
         if not args.ignore_dist_mismatch:
-            check_dist_tag(n, evr, dist)
-        overrides[n] = dict(
-            evr=evr,
-            metadata=dict(
-                type='pin',
-                reason=args.reason,
-            )
+            check_dist_tag(n, info, dist)
+        info['metadata'] = dict(
+            type='pin',
+            reason=args.reason,
         )
+        overrides[n] = info
     if not overrides:
         raise Exception('specified source packages produce no binary packages listed in lockfiles')
     for lockfile_path in get_lockfiles():
@@ -191,17 +187,20 @@ def get_source_nvrs(update):
 
 
 def get_binary_packages(source_nvrs):
-    '''Return name => EVR dict for the specified source NVRs.  A binary
-    package is included if it is in the manifest lockfiles.'''
+    '''Return name => info dict for the specified source NVRs.  The info
+    dict contains "evr" for archful packages and "evra" for noarch ones.
+    A binary package is included if it is in the manifest lockfiles.'''
     binpkgs = {}
     accepted_in_arch = {}
     client = koji.ClientSession(KOJI_URL)
+
+    archful = lambda arch: arch != 'noarch'
 
     def arches_with_package(name, arch):
         '''For a given package and arch, return the arches that list the
         package in their lockfiles.  There may be more than one, since we
         check noarch packages against every candidate architecture.'''
-        candidates = ARCHES if arch == 'noarch' else [arch]
+        candidates = [arch] if archful(arch) else ARCHES
         return [a for a in candidates if name in get_manifest_packages(a)]
 
     for source_nvr in source_nvrs:
@@ -211,7 +210,10 @@ def get_binary_packages(source_nvrs):
             if binpkg['epoch'] is not None:
                 evr = f'{binpkg["epoch"]}:{evr}'
             for arch in arches_with_package(name, binpkg['arch']):
-                binpkgs[name] = evr
+                if archful(binpkg['arch']):
+                    binpkgs[name] = {'evr': evr}
+                else:
+                    binpkgs[name] = {'evra': evr + '.noarch'}
                 accepted_in_arch.setdefault(arch, set()).add(name)
 
     # Check that every arch has the same package set
@@ -321,9 +323,11 @@ def get_expected_dist_tag():
     return f'.fc{releasever}'
 
 
-def check_dist_tag(name, evr, dist):
-    if not evr.endswith(dist):
-        raise Exception(f"Package {name}-{evr} doesn't match expected dist tag {dist}")
+def check_dist_tag(name, info, dist):
+    if 'evr' in info and not info['evr'].endswith(dist):
+        raise Exception(f"Package {name}-{info['evr']} doesn't match expected dist tag {dist}")
+    if 'evra' in info and not info['evra'].endswith(dist + '.noarch'):
+        raise Exception(f"Package {name}-{info['evra']} doesn't match expected dist tag {dist}")
 
 
 if __name__ == "__main__":
