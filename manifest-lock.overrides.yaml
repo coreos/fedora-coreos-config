@@ -21,21 +21,6 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-e7fb55da7d
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1057
       type: fast-track
-  rpm:
-    evr: 4.17.0-6.fc36
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1087
-      type: pin
-  rpm-libs:
-    evr: 4.17.0-6.fc36
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1087
-      type: pin
-  rpm-plugin-selinux:
-    evr: 4.17.0-6.fc36
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1087
-      type: pin
   selinux-policy:
     evra: 35.13-1.fc36.noarch
     metadata:
