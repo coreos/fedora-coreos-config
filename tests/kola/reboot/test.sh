@@ -23,11 +23,14 @@ ok "boot mounted by UUID"
 # check that we took ownership of the bootfs
 [ -f /boot/.root_uuid ]
 
-# check for the UUID dropins
-[ -f /boot/grub2/bootuuid.cfg ]
-mount -o ro /dev/disk/by-label/EFI-SYSTEM /boot/efi
-[ -f /boot/efi/EFI/*/bootuuid.cfg ]
-umount /boot/efi
+# s390x does not have grub, skip this part
+if [ "$(arch)" != "s390x" ]; then
+  # check for the UUID dropins
+  [ -f /boot/grub2/bootuuid.cfg ]
+  mount -o ro /dev/disk/by-label/EFI-SYSTEM /boot/efi
+  [ -f /boot/efi/EFI/*/bootuuid.cfg ]
+  umount /boot/efi
+fi
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
