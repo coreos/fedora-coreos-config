@@ -5,14 +5,17 @@ set -xeuo pipefail
 # - kargs provide static network config for eth1 and also coreos.force_persist_ip
 # - ignition provides dhcp network config for eth1
 # Expected result:
-# - with coreos.force_persist_ip ip=kargs win, verify that 
+# - with coreos.force_persist_ip ip=kargs win, verify that
 #   eth1 has the static IP address via kargs
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1958930#c29
 # - We use net.ifnames=0 to disable consistent network naming here because on
 #   different firmwares (BIOS vs UEFI) the NIC names are different.
 #   See https://github.com/coreos/fedora-coreos-tracker/issues/1060
-# kola: { "platforms": "qemu", "additionalNics": 1, "appendKernelArgs": "ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:eth1:none:8.8.8.8 net.ifnames=0 coreos.force_persist_ip" }
+
+# https://github.com/coreos/fedora-coreos-config/issues/1499
+# - Disable the test on s390x
+# kola: { "platforms": "qemu", "additionalNics": 1, "appendKernelArgs": "ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:eth1:none:8.8.8.8 net.ifnames=0 coreos.force_persist_ip", "architectures": "!s390x" }
 
 . $KOLA_EXT_DATA/commonlib.sh
 
