@@ -5,6 +5,7 @@ import functools
 import os
 import sys
 import json
+import requests
 from urllib.parse import urlparse
 import yaml
 import subprocess
@@ -29,6 +30,8 @@ TRIVIAL_FAST_TRACKS = [
     'rust-ignition-config',
     'rust-zincati',
 ]
+BUILDS_JSON_URL_TEMPLATE = 'https://builds.coreos.fedoraproject.org/prod/streams/{stream}/builds/builds.json'
+GENERATED_LOCKFILE_URL_TEMPLATE = 'https://builds.coreos.fedoraproject.org/prod/streams/{stream}/builds/{version}/{arch}/manifest-lock.generated.{arch}.json'
 
 OVERRIDES_HEADER = """
 # This lockfile should be used to pin to a package version (`type: pin`) or to
@@ -159,14 +162,51 @@ def get_dnf_base(treefile):
 
 
 @functools.cache
+def get_stream():
+    '''Get the current stream name.'''
+    with open(os.path.join(basedir, 'manifest.yaml')) as fh:
+        manifest = yaml.safe_load(fh)
+    return manifest['add-commit-metadata']['fedora-coreos.stream']
+
+
+@functools.cache
+def get_build_list():
+    '''Return list of official builds fetched from builds.json for the current
+    stream.'''
+    stream_url = BUILDS_JSON_URL_TEMPLATE.format(stream=get_stream())
+    resp = requests.get(stream_url)
+    resp.raise_for_status()
+    return resp.json()['builds']
+
+
+@functools.cache
 def get_manifest_packages(arch):
     '''Return manifest lock package map for the specified arch.'''
-    try:
-        with open(os.path.join(basedir, f'manifest-lock.{arch}.json')) as f:
-            manifest = json.load(f)
-        return manifest['packages']
-    except FileNotFoundError:
+
+    # If this branch has any lockfiles in it, return the lockfile for the
+    # specified arch, or an empty dict if missing.
+    lockfile_path = lambda arch: os.path.join(basedir, f'manifest-lock.{arch}.json')
+    if any(os.path.exists(lockfile_path(a)) for a in ARCHES):
+        try:
+            with open(lockfile_path(arch)) as f:
+                manifest = json.load(f)
+            return manifest['packages']
+        except FileNotFoundError:
+            return {}
+
+    # Otherwise we're on a mechanical branch.  Pull the generated lockfile
+    # from the most recent successful CI build, or return an empty dict if
+    # we've never built for this arch.  Thus, different arches may return
+    # lockfiles from different builds if a recent build failed on some arches.
+    versions = [b['id'] for b in get_build_list() if arch in b['arches']]
+    if not versions:
         return {}
+    print(f'Reading generated lockfile from build {versions[0]} on {arch}')
+    lockfile_url = GENERATED_LOCKFILE_URL_TEMPLATE.format(stream=get_stream(),
+            version=versions[0], arch=arch)
+    resp = requests.get(lockfile_url)
+    resp.raise_for_status()
+    return resp.json()['packages']
 
 
 def get_bodhi_update(id_or_url):
