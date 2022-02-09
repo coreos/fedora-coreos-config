@@ -1,6 +1,8 @@
 #!/bin/bash
-# kola: {"minMemory": 4096, "tags": "skip-base-checks"}
+# kola: {"minMemory": 4096, "tags": "skip-base-checks", "architectures": "!s390x"}
 # https://docs.fedoraproject.org/en-US/fedora-coreos/debugging-kernel-crashes/
+# https://github.com/coreos/fedora-coreos-config/issues/1500
+# - kdump.service is failling on s390x
 
 set -xeuo pipefail
 
