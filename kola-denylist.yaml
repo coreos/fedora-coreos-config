@@ -47,12 +47,6 @@
   streams:
     - rawhide
     - branched
-- pattern: coreos.boot-mirror.luks
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1092
-  snooze: 2022-02-14
-  streams:
-    - rawhide
-    - branched
 - pattern: ext.config.chrony.dhcp-propagation
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1097
   snooze: 2022-02-21
