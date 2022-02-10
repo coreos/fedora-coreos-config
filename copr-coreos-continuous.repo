@@ -1,0 +1,8 @@
+[copr-coreos-continuous]
+name=@CoreOS/continuous COPR
+baseurl=https://download.copr.fedorainfracloud.org/results/@CoreOS/continuous/fedora-$releasever-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/@CoreOS/continuous/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
