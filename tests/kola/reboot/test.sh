@@ -24,7 +24,10 @@ ok "boot mounted by UUID"
 [ -f /boot/.root_uuid ]
 
 # s390x does not have grub, skip this part
-if [ "$(arch)" != "s390x" ]; then
+
+if [ "$(arch)" == "ppc64le" ] || [ "$(arch)" == "s390x" ]; then
+  echo "skipping EFI verification on arch $(arch)"
+else
   # check for the UUID dropins
   [ -f /boot/grub2/bootuuid.cfg ]
   mount -o ro /dev/disk/by-label/EFI-SYSTEM /boot/efi
