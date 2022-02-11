@@ -42,7 +42,11 @@ For more advanced ISO installs, including automation, see below.
 
 TIP: Check out `coreos-installer install --help` for more options on how to install Fedora CoreOS.
 
-== Installing from PXE
+== Installing from the network
+
+NOTE: Booting the live PXE image requires at least 2 GiB of RAM with the `coreos.live.rootfs_url` kernel argument, and 4 GiB otherwise. You can install in either legacy boot (BIOS) mode or in UEFI mode, regardless of what mode the OS will use once installed.
+
+=== Installing from PXE
 
 To install from PXE, follow these steps:
 
@@ -52,8 +56,6 @@ To install from PXE, follow these steps:
 podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
     quay.io/coreos/coreos-installer:release download -f pxe
 ----
-
-NOTE: Booting the live PXE image requires at least 2 GiB of RAM with the `coreos.live.rootfs_url` kernel argument, and 4 GiB otherwise. You can install in either legacy boot (BIOS) mode or in UEFI mode, regardless of what mode the OS will use once installed.
 
 - Follow this example `pxelinux.cfg` for booting the installer images with PXELINUX:
 
@@ -69,6 +71,29 @@ IPAPPEND 2
 ----
 
 For more details on how to use this information, see this https://dustymabe.com/2019/01/04/easy-pxe-boot-testing-with-only-http-using-ipxe-and-libvirt/[blog post] for testing a PXE installation via a local VM and `libvirt`.
+
+=== Installing from iPXE
+
+An iPXE-capable machine needs to be provided with a relevant Boot Script to fetch and load FCOS artifacts.
+
+The example below shows how to load those directly from Fedora infrastructure. For performance and reliability reasons it is recommended to mirror them on the local infrastructure, and then tweak the `BASEURL` as needed.
+
+[source,subs="attributes"]
+----
+#!ipxe
+
+set STREAM stable
+set VERSION {stable-version}
+set INSTALLDEV /dev/sda
+set CONFIGURL https://example.com/config.ign
+
+set BASEURL https://builds.coreos.fedoraproject.org/prod/streams/$\{STREAM}/builds/$\{VERSION}/x86_64
+
+kernel $\{BASEURL}/fedora-coreos-$\{VERSION}-live-kernel-x86_64 initrd=main coreos.live.rootfs_url=$\{BASEURL}/fedora-coreos-$\{VERSION}-live-rootfs.x86_64.img coreos.inst.install_dev=$\{INSTALLDEV} coreos.inst.ignition_url=$\{CONFIGURL}
+initrd --name main $\{BASEURL}/fedora-coreos-$\{VERSION}-live-initramfs.x86_64.img
+
+boot
+----
 
 == Installing from the container
 
