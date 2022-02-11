@@ -110,7 +110,7 @@ TIMEOUT 20
 PROMPT 0
 LABEL pxeboot
     KERNEL fedora-coreos-{stable-version}-live-kernel-x86_64
-    APPEND initrd=fedora-coreos-{stable-version}-live-initramfs.x86_64.img,fedora-coreos-{stable-version}-live-rootfs.x86_64.img ignition.firstboot ignition.platform.id=metal ignition.config.url=http://192.168.1.101/config.ign systemd.unified_cgroup_hierarchy=0
+    APPEND initrd=fedora-coreos-{stable-version}-live-initramfs.x86_64.img,fedora-coreos-{stable-version}-live-rootfs.x86_64.img ignition.firstboot ignition.platform.id=metal ignition.config.url=http://192.168.1.101/config.ign
 IPAPPEND 2
 ----
 
