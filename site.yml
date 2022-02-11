@@ -1,10 +1,12 @@
+# Automatically modified by update-versions.py; comments will not be preserved
+
 site:
   title: Local Preview
   start_page: fedora-coreos::index.adoc
 content:
   sources:
-   - url: .
-     branches: HEAD
+  - url: .
+    branches: HEAD
 ui:
   bundle:
     url: https://asamalik.fedorapeople.org/ui-bundle.zip

@@ -1,0 +1,30 @@
+name: Update software versions
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-versions:
+    name: Update versions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Update versions
+        run: |
+          git config user.name 'CoreOS Bot'
+          git config user.email coreosbot@fedoraproject.org
+          ci/update-versions.py
+      - name: Commit and push
+        run: |
+          if ! git diff --quiet --exit-code; then
+              git commit -am "site: update software versions ✨" \
+                  -m "Triggered by update-versions GitHub Action."
+              # this bypasses CI due to GitHub recursion prevention
+              git push
+          fi
