@@ -62,12 +62,13 @@ Currently, if the root filesystem is smaller than 8 GiB, a warning is emitted on
 ====
 
 - Attach a DVD drive and the live ISO to the VM:
-[source, bash]
-----
-FCOS_DISK=$(realpath ~/Downloads/fedora-coreos-34.20210711.3.0-live.x86_64.iso)
 
-vboxmanage storagectl "${VM_NAME}" --name IDE --add ide --controller PIIX4 --hostiocache on --portcount 2 --bootable on
-vboxmanage storageattach "${VM_NAME}" --storagectl IDE --type dvddrive --port 1 --device 0 --medium "${FCOS_DISK}"
+[source,bash,subs="attributes"]
+----
+FCOS_DISK=$(realpath ~/Downloads/fedora-coreos-{stable-version}-live.x86_64.iso)
+
+vboxmanage storagectl "$\{VM_NAME}" --name IDE --add ide --controller PIIX4 --hostiocache on --portcount 2 --bootable on
+vboxmanage storageattach "$\{VM_NAME}" --storagectl IDE --type dvddrive --port 1 --device 0 --medium "$\{FCOS_DISK}"
 ----
 
 You can now boot the target system you have configured. The ISO is capable of bringing up a fully functioning FCOS system purely from memory (i.e. without using any disk storage). Once booted, you will have access to a bash command prompt.
@@ -105,13 +106,13 @@ podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
 ----
 
 Before the installation can begin you have to convert the raw disk image to a VirtualBox compatible one:
-[source, bash]
+[source,bash,subs="attributes"]
 ----
-FCOS_DISK=$(realpath ~/Downloads/fedora-coreos-34.20210808.3.0-metal.x86_64.raw.xz)
-UNPACKED_DISK=$(realpath ~/Downloads/fedora-coreos-34.20210808.3.0-metal.x86_64.raw)
+FCOS_DISK=$(realpath ~/Downloads/fedora-coreos-{stable-version}-metal.x86_64.raw.xz)
+UNPACKED_DISK=$(realpath ~/Downloads/fedora-coreos-{stable-version}-metal.x86_64.raw)
 
 # Unpack the raw disk image
-unxz "${FCOS_DISK}"
+unxz "$\{FCOS_DISK}"
 ----
 
 [NOTE]

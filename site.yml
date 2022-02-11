@@ -18,3 +18,9 @@ output:
 runtime:
   fetch: true
   cache_dir: ./cache
+asciidoc:
+  attributes:
+    stable-version: 35.20220116.3.0
+    ignition-version: 2.13.0
+    butane-version: 0.14.0
+    coreos-installer-version: 0.12.0

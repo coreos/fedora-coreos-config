@@ -81,9 +81,9 @@ coreos-installer download -p qemu -f qcow2.xz --decompress
 
 To make the tutorial simpler, you should rename the image that we have just downloaded to a shorter name:
 
-[source,bash]
+[source,bash,subs="attributes"]
 ----
-mv fedora-coreos-32.20200715.3.0-qemu.x86_64.qcow2 fedora-coreos.qcow2
+mv fedora-coreos-{stable-version}-qemu.x86_64.qcow2 fedora-coreos.qcow2
 ----
 
 You are now ready to proceed with the xref:tutorial-autologin.adoc[first tutorial].
@@ -103,9 +103,9 @@ coreos-installer download -p qemu -f qcow2.xz --decompress
 
 To make the tutorial simpler, you should rename the image that we have just downloaded to a shorter name:
 
-[source,bash]
+[source,bash,subs="attributes"]
 ----
-mv fedora-coreos-32.20200715.3.0-qemu.x86_64.qcow2 fedora-coreos.qcow2
+mv fedora-coreos-{stable-version}-qemu.x86_64.qcow2 fedora-coreos.qcow2
 ----
 
 You are now ready to proceed with the xref:tutorial-autologin.adoc[first tutorial].
@@ -114,9 +114,9 @@ You are now ready to proceed with the xref:tutorial-autologin.adoc[first tutoria
 
 If none of the previous solutions work for you, you can still manually download Fedora CoreOS from https://getfedora.org/en/coreos/download?tab=metal_virtualized&stream=stable[getfedora.org] with:
 
-[source,bash]
+[source,bash,subs="attributes"]
 ----
-RELEASE="32.20200715.3.0" # Update this with the latest release from https://getfedora.org/en/coreos
+RELEASE="{stable-version}"
 curl -O https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$RELEASE/x86_64/fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz
 curl -O https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$RELEASE/x86_64/fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz.sig
 ----
@@ -138,25 +138,25 @@ unxz fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz
 
 To make the tutorial simpler, you should rename the image that we have just downloaded to a shorter name:
 
-[source,bash]
+[source,bash,subs="attributes"]
 ----
-mv fedora-coreos-32.20200715.3.0-qemu.x86_64.qcow2 fedora-coreos.qcow2
+mv fedora-coreos-{stable-version}-qemu.x86_64.qcow2 fedora-coreos.qcow2
 ----
 
 You should then download the latest https://github.com/coreos/butane/releases[Butane] and https://github.com/coreos/ignition/releases[ignition-validate] releases from GitHub:
 
-[source,bash]
+[source,bash,subs="attributes"]
 ----
 # Butane
-curl -OL https://github.com/coreos/butane/releases/download/v0.11.0/butane-x86_64-unknown-linux-gnu
-curl -OL https://github.com/coreos/butane/releases/download/v0.11.0/butane-x86_64-unknown-linux-gnu.asc
+curl -OL https://github.com/coreos/butane/releases/download/v{butane-version}/butane-x86_64-unknown-linux-gnu
+curl -OL https://github.com/coreos/butane/releases/download/v{butane-version}/butane-x86_64-unknown-linux-gnu.asc
 gpg --verify butane-x86_64-unknown-linux-gnu.asc
 mv butane-x86_64-unknown-linux-gnu butane
 chmod a+x butane
 
 # ignition-validate
-curl -OL https://github.com/coreos/ignition/releases/download/v2.5.0/ignition-validate-x86_64-linux
-curl -OL https://github.com/coreos/ignition/releases/download/v2.5.0/ignition-validate-x86_64-linux.asc
+curl -OL https://github.com/coreos/ignition/releases/download/v{ignition-version}/ignition-validate-x86_64-linux
+curl -OL https://github.com/coreos/ignition/releases/download/v{ignition-version}/ignition-validate-x86_64-linux.asc
 gpg --verify ignition-validate-x86_64-linux.asc
 mv ignition-validate-x86_64-linux ignition-validate
 chmod a+x ignition-validate

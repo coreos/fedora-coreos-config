@@ -18,18 +18,18 @@ An iPXE-capable machine needs to be provided with a relevant Boot Script to fetc
 
 The example below shows how to load those directly from Fedora infrastructure. For performance and reliability reasons it is recommended to mirror them on the local infrastructure, and then tweak the `BASEURL` as needed.
 
-[source]
+[source,subs="attributes"]
 ----
 #!ipxe
 
 set STREAM stable
-set VERSION 33.20210328.3.0
+set VERSION {stable-version}
 set CONFIGURL https://example.com/config.ign
 
-set BASEURL https://builds.coreos.fedoraproject.org/prod/streams/${STREAM}/builds/${VERSION}/x86_64
+set BASEURL https://builds.coreos.fedoraproject.org/prod/streams/$\{STREAM}/builds/$\{VERSION}/x86_64
 
-kernel ${BASEURL}/fedora-coreos-${VERSION}-live-kernel-x86_64 initrd=main coreos.live.rootfs_url=${BASEURL}/fedora-coreos-${VERSION}-live-rootfs.x86_64.img ignition.firstboot ignition.platform.id=metal ignition.config.url=${CONFIGURL} systemd.unified_cgroup_hierarchy=0
-initrd --name main ${BASEURL}/fedora-coreos-${VERSION}-live-initramfs.x86_64.img
+kernel $\{BASEURL}/fedora-coreos-$\{VERSION}-live-kernel-x86_64 initrd=main coreos.live.rootfs_url=$\{BASEURL}/fedora-coreos-$\{VERSION}-live-rootfs.x86_64.img ignition.firstboot ignition.platform.id=metal ignition.config.url=$\{CONFIGURL} systemd.unified_cgroup_hierarchy=0
+initrd --name main $\{BASEURL}/fedora-coreos-$\{VERSION}-live-initramfs.x86_64.img
 
 boot
 ----
