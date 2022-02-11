@@ -16,7 +16,8 @@ packages:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1090
       type: fast-track
   tpm2-tss:
-    evr: 3.1.0-3.fc35
+    evr: 3.2.0-0.3.rc0.fc37
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-5204b0e8fb
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/968
-      type: pin
+      type: fast-track
