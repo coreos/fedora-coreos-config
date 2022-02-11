@@ -9,3 +9,34 @@ There are multiple ways to pass the `rootfs` to a machine:
 - Specify only the `initramfs` file as the initrd in your PXE configuration, and pass an HTTP(S) URL for the `rootfs` using the `coreos.live.rootfs_url=` kernel argument. This method requires 2 GiB of RAM and an HTTP(S) server. This is the recommended option unless you have special requirements.
 - Specify both `initramfs` and `rootfs` files as initrds in your PXE configuration. This can be done via multiple `initrd` directives, or using additional `initrd=` parameters as kernel arguments. This method does not require an HTTP(S) server, since the `rootfs` can be served via TFTP, but is slower and requires 4 GiB of RAM.
 - Concatenate the `initramfs` and `rootfs` files together, and specify the combined file as the initrd. This method is slower and requires 4 GiB of RAM.
+
+== Extracting PXE artifacts from a live ISO image
+
+If you want the Fedora CoreOS PXE artifacts and already have an ISO image, you can extract the PXE artifacts from it:
+
+[source,bash,subs="attributes"]
+----
+podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
+    quay.io/coreos/coreos-installer:release iso extract pxe \
+    fedora-coreos-{stable-version}-live.x86_64.iso
+----
+
+The command will print the paths to the artifacts it extracted.
+
+== Using the minimal ISO image
+
+In some cases, you may want to boot the Fedora CoreOS ISO image on a machine equipped with Lights-Out Management (LOM) hardware. You can upload the ISO to the LOM controller as a virtual CD image, but the ISO may be larger than the LOM controller supports.
+
+To avoid this problem, you can convert the ISO image to a smaller _minimal ISO image_ without the `rootfs`. Similar to the PXE image, the minimal ISO must fetch the `rootfs` from the network during boot.
+
+Suppose you plan to host the `rootfs` image at `https://example.com/fedora-coreos-{stable-version}-live-rootfs.x86_64.img`. This command will extract a minimal ISO image and a `rootfs` from an ISO image, embedding a `coreos.live.rootfs_url` kernel argument with the correct URL:
+
+[source,bash,subs="attributes"]
+----
+podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
+    quay.io/coreos/coreos-installer:release iso extract minimal-iso \
+    --output-rootfs fedora-coreos-{stable-version}-live-rootfs.x86_64.img \
+    --rootfs-url https://example.com/fedora-coreos-{stable-version}-live-rootfs.x86_64.img \
+    fedora-coreos-{stable-version}-live.x86_64.iso \
+    fedora-coreos-{stable-version}-live-minimal.x86_64.iso
+----
