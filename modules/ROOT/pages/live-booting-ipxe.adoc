@@ -34,6 +34,38 @@ initrd --name main $\{BASEURL}/fedora-coreos-$\{VERSION}-live-initramfs.x86_64.i
 boot
 ----
 
+== Using persistent state
+
+By default, the Fedora CoreOS live environment does not store any state on disk, and is reprovisioned from scratch on every boot. However, you may choose to store some persistent state (such as container images) in a filesystem that persists across reboots. For example, here's a Butane config that configures a persistent `/var`:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.1.0
+storage:
+  disks:
+    - device: /dev/sda
+      wipe_table: true
+      partitions:
+        - label: var
+  filesystems:
+    - device: /dev/disk/by-partlabel/var
+      label: var
+      format: xfs
+      wipe_filesystem: false
+      path: /var
+      with_mount_unit: true
+----
+
+When booting a live environment, the Ignition config runs on every boot, so it should avoid wiping LUKS volumes and filesystems that you want to reuse. Instead, configure such structures so that they're created on the first boot and preserved on subsequent boots.
+
+In particular, note the following guidelines:
+
+- Avoid setting `wipe_filesystem` or `wipe_volume` for https://coreos.github.io/ignition/operator-notes/#filesystem-reuse-semantics[filesystems] or LUKS volumes that you intend to reuse. (You can safely set `wipe_table` or `wipe_partition_entry` when reusing a disk, since those don't modify the contents of a https://coreos.github.io/ignition/operator-notes/#partition-reuse-semantics[partition].)
+- When reusing LUKS volumes, you must configure a `key_file`. Ignition cannot reuse Clevis-backed LUKS volumes.
+- Avoid writing persistent data to RAID volumes, since Ignition cannot reuse those.
+- When writing files in persistent storage, set `overwrite` to `true` to avoid Ignition failures when reusing a filesystem that already has the file. Avoid using the `append` directive for persistent files, since the append will occur on every boot.
+
 == Update process
 
 Since the traditional FCOS upgrade process requires a disk, live-PXE systems are not able to auto-update in place. For this reason, Zincati is not running there.
