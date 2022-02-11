@@ -1,11 +1,9 @@
 :page-partial:
 
-NOTE: Before August 2020, the Fedora CoreOS PXE image included two components: a `kernel` image and an `initramfs` image. Beginning in August, a third `rootfs` image was added. As of October 6, the `rootfs` image is mandatory and the live PXE system will not boot without it.
+The Fedora CoreOS PXE image includes three components: a `kernel`, an `initramfs`, and a `rootfs`. All three are mandatory and the live PXE environment will not boot without them.
 
-To boot with the `rootfs` artifact, make one of the following changes to your PXE config:
+There are multiple ways to pass the `rootfs` to a machine:
 
-- Specify only the `initramfs` file as the initrd, and pass an HTTP(S) URL for the `rootfs` using the `coreos.live.rootfs_url=` kernel argument.
-- Specify both `initramfs` and `rootfs` files as initrds in your PXE configuration. This can be done via multiple `initrd` directives, or using additional `initrd=` parameters as kernel arguments.
-- Concatenate the `initramfs` and `rootfs` files together, and specify the combined file as the initrd.
-
-For more information on this change, see the https://github.com/coreos/fedora-coreos-tracker/issues/390[tracker issue].
+- Specify only the `initramfs` file as the initrd in your PXE configuration, and pass an HTTP(S) URL for the `rootfs` using the `coreos.live.rootfs_url=` kernel argument. This method requires 2 GiB of RAM and an HTTP(S) server. This is the recommended option unless you have special requirements.
+- Specify both `initramfs` and `rootfs` files as initrds in your PXE configuration. This can be done via multiple `initrd` directives, or using additional `initrd=` parameters as kernel arguments. This method does not require an HTTP(S) server, since the `rootfs` can be served via TFTP, but is slower and requires 4 GiB of RAM.
+- Concatenate the `initramfs` and `rootfs` files together, and specify the combined file as the initrd. This method is slower and requires 4 GiB of RAM.
