@@ -1,6 +1,6 @@
-= Booting live Fedora CoreOS via iPXE
+= Booting live Fedora CoreOS via PXE or iPXE
 
-This guide shows how to boot a transient Fedora CoreOS (FCOS) system via iPXE. By default this will run FCOS in a stateless way, completely out of RAM. Separately, FCOS can also be installed to disk.
+This guide shows how to boot a transient Fedora CoreOS (FCOS) system via PXE or iPXE. By default this will run FCOS in a stateless way, directly from RAM. Separately, FCOS can also be xref:bare-metal.adoc[installed to disk].
 
 == Prerequisite
 
@@ -12,7 +12,31 @@ NOTE: Booting the live PXE image requires at least 2 GiB of RAM with the `coreos
 
 include::pxe-artifacts.adoc[]
 
-== Setting up the Boot Script
+== Booting via PXE
+
+To boot from PXE, follow these steps:
+
+- Download an FCOS PXE kernel, initramfs, and rootfs image:
+[source, bash]
+----
+podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
+    quay.io/coreos/coreos-installer:release download -f pxe
+----
+
+- Follow this example `pxelinux.cfg` for booting the installer images with PXELINUX and running Ignition:
+
+[source,subs="attributes"]
+----
+DEFAULT pxeboot
+TIMEOUT 20
+PROMPT 0
+LABEL pxeboot
+    KERNEL fedora-coreos-{stable-version}-live-kernel-x86_64
+    APPEND initrd=fedora-coreos-{stable-version}-live-initramfs.x86_64.img,fedora-coreos-{stable-version}-live-rootfs.x86_64.img ignition.firstboot ignition.platform.id=metal ignition.config.url=http://192.168.1.101/config.ign
+IPAPPEND 2
+----
+
+== Booting via iPXE
 
 An iPXE-capable machine needs to be provided with a relevant Boot Script to fetch and load FCOS artifacts.
 

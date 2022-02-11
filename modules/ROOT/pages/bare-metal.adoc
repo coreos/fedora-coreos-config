@@ -98,22 +98,6 @@ NOTE: The metal image uses a hybrid partition layout which supports both BIOS an
 
 When you're finally ready to install FCOS, you can point it at your downloaded image using `coreos-installer install --image-url <LOCAL_MIRROR>` or `coreos-install --image-file <PATH>`.
 
-== Live PXE
-
-In this model, rather than performing a "persistent" installation to disk, you can run directly from RAM. This is useful in e.g. "diskless" scenarios.
-The steps are similar to the above, just omit the `coreos.inst` arguments, and instead have the system itself run Ignition:
-
-[source,subs="attributes"]
-----
-DEFAULT pxeboot
-TIMEOUT 20
-PROMPT 0
-LABEL pxeboot
-    KERNEL fedora-coreos-{stable-version}-live-kernel-x86_64
-    APPEND initrd=fedora-coreos-{stable-version}-live-initramfs.x86_64.img,fedora-coreos-{stable-version}-live-rootfs.x86_64.img ignition.firstboot ignition.platform.id=metal ignition.config.url=http://192.168.1.101/config.ign
-IPAPPEND 2
-----
-
 == PXE images
 
 include::pxe-artifacts.adoc[]
