@@ -38,7 +38,7 @@ sudo coreos-installer install /dev/sda \
 
 Once the installation is complete, you can simply `sudo reboot`. After rebooting, the first boot process begins. It is at this time that Ignition ingests the configuration file and provisions the system as specified.
 
-For more advanced ISO installs, including automation, see below.
+For more advanced ISO installs, including automation, see below. For more about the live ISO image, see the xref:live-reference.adoc[live image reference].
 
 TIP: Check out `coreos-installer install --help` for more options on how to install Fedora CoreOS.
 
@@ -70,7 +70,7 @@ LABEL pxeboot
 IPAPPEND 2
 ----
 
-For more details on how to use this information, see this https://dustymabe.com/2019/01/04/easy-pxe-boot-testing-with-only-http-using-ipxe-and-libvirt/[blog post] for testing a PXE installation via a local VM and `libvirt`.
+For more details on how to use this information, see this https://dustymabe.com/2019/01/04/easy-pxe-boot-testing-with-only-http-using-ipxe-and-libvirt/[blog post] for testing a PXE installation via a local VM and `libvirt`. For more about the live PXE image, see the xref:live-reference.adoc[live image reference].
 
 === Installing from iPXE
 
@@ -94,6 +94,8 @@ initrd --name main $\{BASEURL}/fedora-coreos-$\{VERSION}-live-initramfs.x86_64.i
 
 boot
 ----
+
+For more about the live PXE image, see the xref:live-reference.adoc[live image reference].
 
 == Installing from the container
 
@@ -122,10 +124,6 @@ To download the 4kn native metal image with `coreos-installer download`, use the
 NOTE: The metal image uses a hybrid partition layout which supports both BIOS and UEFI booting.
 
 When you're finally ready to install FCOS, you can point it at your downloaded image using `coreos-installer install --image-url <LOCAL_MIRROR>` or `coreos-install --image-file <PATH>`.
-
-== PXE images
-
-include::pxe-artifacts.adoc[]
 
 == Automated ISO/PXE installs with Ignition embedding
 
