@@ -19,7 +19,7 @@ To install FCOS onto bare metal using the live ISO interactively, follow these s
 - Download the latest ISO image from the https://getfedora.org/coreos/download?tab=metal_virtualized&stream=stable[download page] or with podman (see https://coreos.github.io/coreos-installer/cmd/download/[documentation] for options):
 [source, bash]
 ----
-podman run --privileged --pull=always --rm -v .:/data -w /data \
+podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
     quay.io/coreos/coreos-installer:release download -s stable -p metal -f iso
 ----
 
@@ -49,7 +49,7 @@ To install from PXE, follow these steps:
 - Download an FCOS PXE kernel, initramfs, and rootfs image:
 [source, bash]
 ----
-podman run --privileged --pull=always --rm -v .:/data -w /data \
+podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
     quay.io/coreos/coreos-installer:release download -f pxe
 ----
 
