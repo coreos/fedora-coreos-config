@@ -10,6 +10,38 @@ There are multiple ways to pass the `rootfs` to a machine:
 - Specify both `initramfs` and `rootfs` files as initrds in your PXE configuration. This can be done via multiple `initrd` directives, or using additional `initrd=` parameters as kernel arguments. This method does not require an HTTP(S) server, since the `rootfs` can be served via TFTP, but is slower and requires 4 GiB of RAM.
 - Concatenate the `initramfs` and `rootfs` files together, and specify the combined file as the initrd. This method is slower and requires 4 GiB of RAM.
 
+== Passing an Ignition config to a live PXE system
+
+When booting Fedora CoreOS via live PXE, the kernel command line must include the arguments `ignition.firstboot ignition.platform.id=metal` to run Ignition. If running in a virtual machine, replace `metal` with the https://coreos.github.io/ignition/supported-platforms/[platform ID] for your platform, such as `qemu` or `vmware`.
+
+There are several ways to pass an Ignition config when booting Fedora CoreOS via PXE:
+
+- Add `ignition.config.url=<config-url>` to the kernel command line. Supported URL schemes include `http`, `https`, `tftp`, `s3`, and `gs`.
+
+- If running virtualized, pass the Ignition config via the hypervisor, exactly as you would when booting from a disk image. Ensure the `ignition.platform.id` kernel argument is set to the https://coreos.github.io/ignition/supported-platforms/[platform ID] for your platform.
+
+- Generate a customized version of the `initramfs` containing your Ignition config using `coreos-installer pxe customize`. For example, run:
++
+[source,bash,subs="attributes"]
+----
+coreos-installer pxe customize --live-ignition config.ign -o custom-initramfs.img \
+    fedora-coreos-{stable-version}-live-initramfs.x86_64.img
+----
+
+- If you prefer to keep the Ignition config separate from the Fedora CoreOS `initramfs` image, generate a separate initrd with the low-level `coreos-installer pxe ignition wrap` command and pass it as an additional initrd. For example, run:
++
+[source,bash]
+----
+coreos-installer pxe ignition wrap -i config.ign -o ignition.img
+----
++
+and then use a PXELINUX `APPEND` line similar to:
++
+[source,subs="attributes"]
+----
+APPEND initrd=fedora-coreos-{stable-version}-live-initramfs.x86_64.img,fedora-coreos-{stable-version}-live-rootfs.x86_64.img,ignition.img ignition.firstboot ignition.platform.id=metal
+----
+
 == Passing network configuration to a live ISO or PXE system
 
 On Fedora CoreOS, networking is typically configured via https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[NetworkManager keyfiles]. If your network requires special configuration such as static IP addresses, and your Ignition config fetches resources from the network, you cannot simply include those keyfiles in your Ignition config, since that would create a circular dependency.
