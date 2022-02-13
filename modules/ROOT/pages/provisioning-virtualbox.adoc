@@ -129,7 +129,7 @@ fdisk -l "${UNPACKED_DISK}"
 sudo mount -o loop,offset="${OFFSET}" "${UNPACKED_DISK}" "${TMP_FCOS_BOOT_VOLUME}"
 ----
 
-On macOS you have to replace `fdisk -l "${UNPACKED_DISK}"` with `hdiutil imageinfo -imagekey diskimage-class=CRawDiskImage "${UNPACKED_DISK}"`. Mounting the partition requires https://osxfuse.github.io[macFUSE] with an https://github.com/osxfuse/osxfuse/wiki/Ext[ext filesystem extension].
+On macOS you have to replace `fdisk -l "$\{UNPACKED_DISK}"` with `hdiutil imageinfo -imagekey diskimage-class=CRawDiskImage "$\{UNPACKED_DISK}"`. Mounting the partition requires https://osxfuse.github.io[macFUSE] with an https://github.com/osxfuse/osxfuse/wiki/Ext[ext filesystem extension].
 
 The boot config you are looking for is located in `/loader/entries/ostree-1-fedora-coreos.conf` on the boot partition you just mounted. The file contains a line containing the string `ignition.platform.id=metal $ignition_firstboot` – add `ignition.config.url=http://10.0.2.2:8000/example.ign` after the first boot parameter, save your changes and unmount the disk.
 [source, bash]
