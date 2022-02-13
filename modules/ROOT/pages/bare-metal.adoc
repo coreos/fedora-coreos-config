@@ -70,7 +70,7 @@ LABEL pxeboot
 IPAPPEND 2
 ----
 
-For more details on how to use this information, see this https://dustymabe.com/2019/01/04/easy-pxe-boot-testing-with-only-http-using-ipxe-and-libvirt/[blog post] for testing a PXE installation via a local VM and `libvirt`. For more about the live PXE image, see the xref:live-reference.adoc[live image reference].
+For more details on how to use this information, see this https://dustymabe.com/2019/01/04/easy-pxe-boot-testing-with-only-http-using-ipxe-and-libvirt/[blog post] for testing a PXE installation via a local VM and `libvirt`. For other supported kernel command-line options, see the https://coreos.github.io/coreos-installer/getting-started/#kernel-command-line-options-for-coreos-installer-running-as-a-service[coreos-installer docs], but note that `coreos-installer pxe customize` (see below) is more flexible. For more about the live PXE image, see the xref:live-reference.adoc[live image reference].
 
 === Installing from iPXE
 
@@ -95,7 +95,7 @@ initrd --name main $\{BASEURL}/fedora-coreos-$\{VERSION}-live-initramfs.x86_64.i
 boot
 ----
 
-For more about the live PXE image, see the xref:live-reference.adoc[live image reference].
+For other supported kernel command-line options, see the https://coreos.github.io/coreos-installer/getting-started/#kernel-command-line-options-for-coreos-installer-running-as-a-service[coreos-installer docs], but note that `coreos-installer pxe customize` (see below) is more flexible. For more about the live PXE image, see the xref:live-reference.adoc[live image reference].
 
 == Installing from the container
 
@@ -125,69 +125,43 @@ NOTE: The metal image uses a hybrid partition layout which supports both BIOS an
 
 When you're finally ready to install FCOS, you can point it at your downloaded image using `coreos-installer install --image-url <LOCAL_MIRROR>` or `coreos-install --image-file <PATH>`.
 
-== Automated ISO/PXE installs with Ignition embedding
+== Customizing installation
 
-Many system administrators will want to perform fully unattended persistent installations with the live ISO. Some documentation on this is on the upstream installer site: https://coreos.github.io/coreos-installer/customizing-install/[customizing install].
+The `coreos-installer iso customize` and `coreos-installer pxe customize` commands can be used to create customized ISO and PXE images with site-specific configuration, including the ability to perform unattended installations of Fedora CoreOS.
 
-To emphasize, there are *two* Ignition configurations here; the first config ("ISO Ignition") will commonly embed a second rendered configuration that runs on the "target" installation.
+For example:
 
-First, generate `target.ign` (the file can be named anything) - the configuration that will be passed to `coreos-installer`.  Then, using e.g. `butane`, embed it as a file in your ISO ignition, and use a custom systemd unit to pass it to `coreos-installer`:
-
-[source,yaml]
+[source,bash,subs="attributes"]
 ----
-variant: fcos
-version: 1.1.0
-storage:
-  files:
-    - path: /etc/target.ign
-      contents:
-        inline: |
-          Replace this bit with a real butane directive that
-          fetches the target Ignition however you like e.g.:
-          local: target.ign
-      mode: 0644
-systemd:
-  units:
-    - name: my-coreos-installer.service
-      enabled: true
-      contents: |
-        [Unit]
-        Description=Run CoreOS Installer
-        Requires=coreos-installer-pre.target
-        After=coreos-installer-pre.target
-        OnFailure=emergency.target
-        OnFailureJobMode=replace-irreversibly
-
-        # Can be removed if install doesn't reference remote resources with
-        # --stream, --image-url, or --ignition-url
-        After=network-online.target
-        Wants=network-online.target
-
-        [Service]
-        Type=oneshot
-        ExecStart=/usr/bin/coreos-installer install -i /etc/target.ign /dev/sda
-        ExecStart=/usr/bin/systemctl --no-block reboot
-        StandardOutput=kmsg+console
-        StandardError=kmsg+console
-
-        [Install]
-        RequiredBy=default.target
-
+# Create customized.iso which:
+# - Automatically installs to /dev/sda
+# - Provisions the installed system with config.ign
+# - Uses network configuration from static-ip.nmconnection
+# - Trusts HTTPS certificates signed by ca.pem
+# - Runs post.sh after installing
+coreos-installer iso customize \
+    --dest-device /dev/sda \
+    --dest-ignition config.ign \
+    --network-keyfile static-ip.nmconnection \
+    --ignition-ca ca.pem \
+    --post-install post.sh \
+    -o custom.iso fedora-coreos-{stable-version}-live.x86_64.iso
+# Same, but create a customized PXE initramfs image
+coreos-installer pxe customize \
+    --dest-device /dev/sda \
+    --dest-ignition config.ign \
+    --network-keyfile static-ip.nmconnection \
+    --ignition-ca ca.pem \
+    --post-install post.sh \
+    -o custom-initramfs.img fedora-coreos-{stable-version}-live-initramfs.x86_64.img
 ----
 
-Note that this configuration is completely independent of the config passed for the ISO/PXE boot, in the sense that e.g. no systemd units and files written from the live Ignition will be preserved when booted into the final installed system, unless you take explicit action to preserve it.
-
-There is however explicit support for https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-network-configuration/#_via_coreos_installer_copy_network[copying network configuration] with `coreos-installer`.
-
-A generally useful technique is to add more systemd units that run before or after the systemd unit that invokes `coreos-installer`.  For example, you can run a systemd unit which pulls a container and does hardware validation.
-
-An example post-install action: Some provisioning systems may require a callback to the PXE server to be switched to "boot from local disk" via a HTTP request; this can similarly be done via a systemd unit that is scheduled `After=my-coreos-installer.service` that uses
-`ExecStart=/usr/bin/curl` or pulling a container which makes the HTTP request.
+For details on available customizations, see the https://coreos.github.io/coreos-installer/customizing-install/#customize-options[coreos-installer documentation].
 
 === ISO installation on diverse hardware
 
 Commonly bare metal systems will have a diversity of hardware - some systems may have NVMe drives `/dev/nvme*`, whereas others have `/dev/sd*` for example.  You will almost certainly have to template the value of `/dev/sda` above.
 
-A useful approach is to script generating a per-machine `.iso`.  If you have a hardware database (whether a text file in git or relational database) then it will work to generate a per-machine `target-dell.ign` and `target-hp.ign` for example, embed that with the generic `iso.ign` to generate `fedora-coreos-install-dell.iso` and `fedora-coreos-install-hp.iso`.
+A useful approach is to script generating a per-machine `.iso`.  If you have a hardware database (whether a text file in git or relational database) then it will work to generate a per-machine `target-dell.ign` and `target-hp.ign` for example, and specify that to `--dest-ignition` alongside the appropriate `--dest-device` to generate `fedora-coreos-install-dell.iso` and `fedora-coreos-install-hp.iso`.
 
-Alternatively, instead of generating per-machine ISOs, you can have the ISO Ignition pull a privileged container which inspects the target system, and dynamically invokes `coreos-installer`.
+Alternatively, instead of generating per-machine ISOs, you can have a `--pre-install` script run a privileged container which inspects the target system and writes an appropriate https://coreos.github.io/coreos-installer/customizing-install/#config-file-format[installer config] to `/etc/coreos/installer.d`.
