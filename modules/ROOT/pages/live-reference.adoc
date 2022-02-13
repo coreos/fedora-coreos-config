@@ -1,5 +1,7 @@
 = Live ISO and PXE image reference
 
+For an introduction to running Fedora CoreOS directly from RAM, see the xref:live-booting.adoc[provisioning guide].
+
 == Passing the PXE rootfs to a machine
 
 The Fedora CoreOS PXE image includes three components: a `kernel`, an `initramfs`, and a `rootfs`. All three are mandatory and the live PXE environment will not boot without them.

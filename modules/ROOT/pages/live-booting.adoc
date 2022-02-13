@@ -1,12 +1,41 @@
-= Booting live Fedora CoreOS via PXE or iPXE
+= Running Fedora CoreOS directly from RAM
+:page-aliases: live-booting-ipxe.adoc
 
-This guide shows how to boot a transient Fedora CoreOS (FCOS) system via PXE or iPXE. By default this will run FCOS in a stateless way, directly from RAM. Separately, FCOS can also be xref:bare-metal.adoc[installed to disk]. For more about the live PXE image, see the xref:live-reference.adoc[live image reference].
+The Fedora CoreOS live environment is a fully functional copy of Fedora CoreOS. It can provision itself via Ignition, execute containers, and so on. The live environment can be used to xref:bare-metal.adoc[install Fedora CoreOS to disk], and can also be used to run Fedora CoreOS directly from RAM.
 
-== Prerequisite
+This guide shows how to boot a transient Fedora CoreOS (FCOS) system via ISO, PXE, or iPXE. For more about the live ISO and PXE images, see the xref:live-reference.adoc[live image reference].
 
-Before booting FCOS, you must have an Ignition configuration file and host it somewhere (e.g. on a reachable web server). If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+== Prerequisites
 
-NOTE: Booting the live PXE image requires at least 2 GiB of RAM with the `coreos.live.rootfs_url` kernel argument, and 4 GiB otherwise.
+Before booting FCOS, you must have an Ignition configuration file. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+If you're booting from PXE or iPXE, you must host the Ignition config on a reachable HTTP(S) or TFTP server. Booting the live PXE image requires at least 2 GiB of RAM with the `coreos.live.rootfs_url` kernel argument, and 4 GiB otherwise.
+
+== Booting via ISO
+
+The live ISO image can be booted from a physical DVD disc, from a USB stick, or from a virtual CD drive via lights-out management (LOM) firmware.
+
+To boot from the ISO image, follow these steps:
+
+- Download the ISO image:
++
+[source,bash]
+----
+podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
+    quay.io/coreos/coreos-installer:release download -f iso
+----
+
+- Use `coreos-installer iso customize` to embed your Ignition config into the ISO image. For example, for an Ignition config called `config.ign`:
++
+[source,bash,subs="attributes"]
+----
+podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
+    quay.io/coreos/coreos-installer:release iso customize --live-ignition config.ign \
+    -o customized.iso fedora-coreos-{stable-version}-live.x86_64.iso
+----
+
+- Burn the ISO to disk. On Linux and macOS, you can use `dd`. On Windows, you can use https://rufus.ie/[Rufus] in "DD Image" mode.
+- Boot it on the target system.
 
 == Booting via PXE
 
@@ -88,6 +117,8 @@ In particular, note the following guidelines:
 
 == Update process
 
-Since the traditional FCOS upgrade process requires a disk, live-PXE systems are not able to auto-update in place. For this reason, Zincati is not running there.
+Since the traditional FCOS upgrade process requires a disk, the live environment is not able to auto-update in place. For this reason, Zincati is not running there.
 
-Instead, it is recommended that images references in the PXE configuration are regularly refreshed. Once infrastructure and configurations are updated, the live-PXE instance simply needs to be rebooted in order to start running the new FCOS version.
+For PXE-booted systems, it is recommended that images referenced in the PXE configuration are regularly refreshed. Once infrastructure and configurations are updated, the live PXE instance simply needs to be rebooted in order to start running the new FCOS version.
+
+For ISO-booted systems, the ISO image used to boot the live environment should be periodically refreshed, and the instance rebooted to update the running OS.

@@ -127,15 +127,7 @@ When you're finally ready to install FCOS, you can point it at your downloaded i
 
 == Automated ISO/PXE installs with Ignition embedding
 
-The Fedora CoreOS live environment is also CoreOS in the sense that it can boot via Ignition, execute containers, etc.  It includes all of the same content.
-
-As noted above for live PXE, the ISO live environment does not have to actually perform a persistent installation.  You can boot it from a read-only medium such as a physical CD-ROM/DVD, and do everything you do on any other Fedora CoreOS environment.  It also works to boot from a USB stick.  Each boot will re-run the Ignition config, and changes will not persist by default.
-
-For the ISO, the mechanism to do this is `coreos-installer ignition iso embed`, which will create a new `.iso` file that combines your configuration with the ISO.  Similarly, there is `coreos-installer pxe ignition wrap` for the PXE case.
-
-However, many system administrators will want to perform fully unattended persistent installations instead of running stateless.
-
-Some documentation on this is on the upstream installer site: https://coreos.github.io/coreos-installer/customizing-install/[customizing install].
+Many system administrators will want to perform fully unattended persistent installations with the live ISO. Some documentation on this is on the upstream installer site: https://coreos.github.io/coreos-installer/customizing-install/[customizing install].
 
 To emphasize, there are *two* Ignition configurations here; the first config ("ISO Ignition") will commonly embed a second rendered configuration that runs on the "target" installation.
 
