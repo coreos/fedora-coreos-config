@@ -9,16 +9,31 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  afterburn:
-    evr: 5.2.0-4.fc35
+  coreos-installer:
+    evr: 0.13.1-1.fc35
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-1b76e3a192
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-be486d7fdc
       type: fast-track
-  afterburn-dracut:
-    evr: 5.2.0-4.fc35
+  coreos-installer-bootinfra:
+    evr: 0.13.1-1.fc35
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-1b76e3a192
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-be486d7fdc
       type: fast-track
+  kernel:
+    evr: 5.15.18-200.fc35
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1066
+      type: pin
+  kernel-core:
+    evr: 5.15.18-200.fc35
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1066
+      type: pin
+  kernel-modules:
+    evr: 5.15.18-200.fc35
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1066
+      type: pin
   systemd:
     evr: 249.7-2.fc35
     metadata:

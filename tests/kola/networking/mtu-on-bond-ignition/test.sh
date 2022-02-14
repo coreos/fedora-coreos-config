@@ -1,5 +1,5 @@
 #!/bin/bash
-# kola: { "platforms": "qemu", "additionalNics": 2, "appendKernelArgs": "net.ifnames=0"}
+# kola: { "platforms": "qemu", "additionalNics": 2, "appendKernelArgs": "net.ifnames=0", "architectures": "!s390x"}
 # - We use net.ifnames=0 to disable consistent network naming here because on
 #   different firmwares (BIOS vs UEFI) the NIC names are different.
 #   See https://github.com/coreos/fedora-coreos-tracker/issues/1060
@@ -16,8 +16,11 @@
 #        vlan=bond0.100:bond0"
 # $/usr/libexec/nm-initrd-generator -s -- $kargs
 
-# Using kernel args to `configure MTU on a VLAN subinterface for the bond` refer to 
+# Using kernel args to `configure MTU on a VLAN subinterface for the bond` refer to
 # https://github.com/coreos/fedora-coreos-config/pull/1401
+
+# https://github.com/coreos/fedora-coreos-config/issues/1499
+# - Disable the test on s390x
 
 set -xeuo pipefail
 
