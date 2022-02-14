@@ -53,3 +53,13 @@
   streams:
     - rawhide
     - branched
+- pattern: ext.config.extensions.module
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1104
+  snooze: 2022-02-21
+  streams:
+    - rawhide
+- pattern: ext.config.toolbox
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1103
+  snooze: 2022-03-15
+  streams:
+    - rawhide
