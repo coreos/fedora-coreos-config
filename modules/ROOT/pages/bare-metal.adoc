@@ -165,3 +165,15 @@ Commonly bare metal systems will have a diversity of hardware - some systems may
 A useful approach is to script generating a per-machine `.iso`.  If you have a hardware database (whether a text file in git or relational database) then it will work to generate a per-machine `target-dell.ign` and `target-hp.ign` for example, and specify that to `--dest-ignition` alongside the appropriate `--dest-device` to generate `fedora-coreos-install-dell.iso` and `fedora-coreos-install-hp.iso`.
 
 Alternatively, instead of generating per-machine ISOs, you can have a `--pre-install` script run a privileged container which inspects the target system and writes an appropriate https://coreos.github.io/coreos-installer/customizing-install/#config-file-format[installer config] to `/etc/coreos/installer.d`.
+
+== Reinstalling Fedora CoreOS
+
+You can use any of the methods described above to reinstall Fedora CoreOS on the same machine via the live environment.
+
+=== Data persistence
+
+The installer does not completely scrub the target disk. Thanks to Ignition's https://coreos.github.io/ignition/operator-notes#filesystem-reuse-semantics[filesystem-reuse semantics], if you apply a config with the exact same partition and filesystem settings as the first install, all previously stored data in additional partitions will still be available. This can be useful for persisting e.g. `/var/lib/containers` or `/var/home` between reinstalls. There are some restrictions however. See the xref:live-booting.adoc#_using_persistent_state[Using persistent state] section for more information. You will also want to ensure the root filesystem is a fixed number at least 8 GiB as described in xref:storage.adoc[Configuring Storage] so that data partitions are not accidentally overwritten.
+
+=== Destination drive
+
+Fedora CoreOS requires that only a single filesystem labeled `boot` exists. If multiple such filesystems are found on the first boot, provisioning will error out as a fail-safe. If reinstalling Fedora CoreOS on a different disk than the previous installation, make sure to wipe the previous disk using e.g. `wipefs`. For example, if reinstalling to `/dev/sdb`, but `/dev/sda` still contains the previous installation of FCOS, use `wipefs -a /dev/sda` in the installation environment.
