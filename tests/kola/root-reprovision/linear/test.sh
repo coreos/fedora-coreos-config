@@ -1,5 +1,17 @@
 #!/bin/bash
-# kola: {"platforms": "qemu", "minMemory": 4096, "additionalDisks": ["5G", "5G"]}
+# kola: { "platforms": "qemu", "minMemory": 4096, "additionalDisks": ["5G", "5G"], "timeoutMin": 15 }
+#
+# - platforms: qemu
+#   - This test should pass everywhere if it passes anywhere.
+#   - additionalDisks is only supported on qemu.
+# - minMemory: 4096
+#   - Root reprovisioning requires at least 4GiB of memory.
+# - additionalDisks: ["5G", "5G"]
+#   - Linear RAID is setup on these disks.
+# - timeoutMin: 15
+#   - This test includes a lot of disk I/O and needs a higher
+#     timeout value than the default.
+
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh

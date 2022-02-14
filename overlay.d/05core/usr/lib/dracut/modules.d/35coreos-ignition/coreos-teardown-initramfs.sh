@@ -211,6 +211,8 @@ main() {
     # clean it up so that no information from outside of the
     # real root is passed on to NetworkManager in the real root
     rm -rf /run/NetworkManager/
+
+    rm -rf /dev/disk/by-id/coreos-boot-disk
 }
 
 main

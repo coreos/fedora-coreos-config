@@ -22,6 +22,7 @@ install() {
         diff \
         lsblk \
         sed \
+        grep \
         sgdisk
 
     inst_simple "$moddir/coreos-diskful-generator" \
@@ -29,6 +30,11 @@ install() {
 
     inst_script "$moddir/coreos-gpt-setup.sh" \
         "/usr/sbin/coreos-gpt-setup"
+
+    inst_simple "/usr/lib/udev/rules.d/80-coreos-boot-disk.rules"
+
+    inst_script "$moddir/coreos-disk-contains-fs.sh" \
+        "/usr/lib/udev/coreos-disk-contains-fs"
 
     inst_script "$moddir/coreos-ignition-setup-user.sh" \
         "/usr/sbin/coreos-ignition-setup-user"
