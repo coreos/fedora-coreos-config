@@ -14,10 +14,6 @@ repos:
 add-commit-metadata:
   fedora-coreos.stream: rawhide
 
-packages:
-  # for nsswitch.conf
-  - authselect
-
 postprocess:
   # Disable Zincati and fedora-coreos-pinger on non-production streams
   # https://github.com/coreos/fedora-coreos-tracker/issues/163
