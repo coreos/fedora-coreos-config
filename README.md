@@ -55,7 +55,10 @@ hold back some packages, or pull in fixes ahead of Bodhi. To
 add such overrides, one needs to add the packages to
 `manifest-lock.overrides.yaml` (there are also arch-specific
 variants of these files for the rare occasions the override
-should only apply to a specific arch).
+should only apply to a specific arch). There is a
+[tool](ci/overrides.py) to help with this, and for simple
+cases, an [automated workflow](https://github.com/coreos/fedora-coreos-config/actions/workflows/add-override.yml)
+that runs the tool and submits a PR.
 
 Note that comments are not preserved in these files. The
 lockfile supports arbitrary keys under the `metadata` key to
@@ -132,8 +135,11 @@ the corresponding entries in the lockfiles:
 There will be better tooling to come to enable this, though
 one easy way to do this is for now:
 - add packages to the correct YAML manifest
-- run `cosa fetch --update-lockfile`
-- commit only the new package entries
+- run `cosa fetch --update-lockfile` (this will only update the lockfile for
+  the current architecture, most likely `x86_64`)
+- copy the new lines to the lockfiles for other architectures (i.e. `aarch64`)
+- commit only the new package entries (skip the timestamped changes to avoid
+  merge conflicts with the lockfile updates made by the bot)
 
 ## Moving to a new major version (N) of Fedora
 

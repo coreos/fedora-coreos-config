@@ -23,7 +23,8 @@ jobs:
           - rawhide
       fail-fast: false
     steps:
-      - run: dnf install -y rpm-ostree # see related TODO above
+      - name: Install dependencies
+        run: dnf install -y python3-bodhi-client rpm-ostree # see related TODO above
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -32,8 +33,8 @@ jobs:
         run: |
           git config user.name 'CoreOS Bot'
           git config user.email coreosbot@fedoraproject.org
-          ci/remove-graduated-overrides.py
-      - name: Open pull request
+          ci/overrides.py graduate
+      - name: Create commit
         run: |
           if ! git diff --quiet --exit-code; then
               git commit -am "lockfiles: drop graduated overrides 🎓" \
