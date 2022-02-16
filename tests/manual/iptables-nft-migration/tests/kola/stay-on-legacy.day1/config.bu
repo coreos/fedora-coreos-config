@@ -1,0 +1,6 @@
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/coreos/iptables-legacy.stamp
+      mode: 0644

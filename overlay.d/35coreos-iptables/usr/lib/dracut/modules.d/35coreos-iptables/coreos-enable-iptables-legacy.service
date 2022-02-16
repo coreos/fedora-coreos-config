@@ -1,0 +1,18 @@
+[Unit]
+Description=CoreOS Enable iptables-legacy
+ConditionPathExists=/etc/initrd-release
+DefaultDependencies=false
+ConditionPathExists=/sysroot/etc/coreos/iptables-legacy.stamp
+
+# On first boot, allow Ignition config to install stamp file.
+After=ignition-files.service
+
+# On subsequent boots, just make sure the deployment is accessible.
+After=ostree-prepare-root.service
+
+Before=initrd.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/coreos-enable-iptables-legacy
