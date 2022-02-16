@@ -15,9 +15,9 @@ Currently, if the root filesystem is smaller than 8 GiB, a warning is emitted on
 
 Many of the examples below will reference a block device, such as `/dev/vda`.  The name of the available block devices depends on the underlying infrastructure (bare metal vs cloud), and often the specific instance type.  For example in AWS, some instance types have NVMe drives (`/dev/nvme*`), others use `/dev/xvda*`.
 
-You will need to look for relevant documentation for your infrastructure around this.
+If your disk configuration is simple and uses the same disk the OS was booted from then the `/dev/disk/by-id/coreos-boot-disk` link can be used to conveniently refer to that device. This link is only available during provisioning for the purpose of making it easy to refer to the same disk the OS was booted from.
 
-In many cases, the simplest thing is to boot a single machine with an Ignition configuration that just gives you SSH access, and inspect the block devices via e.g. the `lsblk` command.
+In cases where you need to access other disks, the simplest thing to do is to boot a single machine with an Ignition configuration that just gives you SSH access, and inspect the block devices via e.g. the `lsblk` command.
 
 For physical hardware, a good best practice is to reference devices via the `/dev/disk/by-id/` or `/dev/disk/by-path` links.
 
@@ -32,9 +32,8 @@ variant: fcos
 version: 1.4.0
 storage:
   disks:
-  - # The name of the primary block device. In virtio-based setups, this is
-    # likely `/dev/vda`. Elsewhere, it's likely `/dev/sda`.
-    device: /dev/vda
+  - # The link to the block device the OS was booted from.
+    device: /dev/disk/by-id/coreos-boot-disk
     # We do not want to wipe the partition table since this is the primary
     # device.
     wipe_table: false
@@ -68,7 +67,7 @@ variant: fcos
 version: 1.4.0
 storage:
   disks:
-  - device: /dev/vda
+  - device: /dev/disk/by-id/coreos-boot-disk
     wipe_table: false
     partitions:
     - number: 4
