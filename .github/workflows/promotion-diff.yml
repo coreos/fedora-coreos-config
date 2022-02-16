@@ -1,0 +1,44 @@
+---
+name: Check promotion diffs
+on:
+  pull_request:
+    branches: [next, testing, stable]
+permissions:
+  contents: read
+
+jobs:
+  promotion-diff:
+    name: Check promotion diffs
+    runs-on: ubuntu-latest
+    # Only run if this looks like a promotion PR
+    if: "startsWith(github.event.pull_request.title, 'tree: promote changes from')"
+    steps:
+      - name: Get base commit hash
+        env:
+          COMMIT_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          echo "ORIGIN_COMMIT=$(echo ${COMMIT_TITLE} | awk '{print $NF}')" >> $GITHUB_ENV
+      - name: Check out origin commit
+        uses: actions/checkout@v2
+        with:
+          path: origin
+          ref: ${{ env.ORIGIN_COMMIT }}
+      - name: Check out base branch
+        uses: actions/checkout@v2
+        with:
+          path: base
+          ref: ${{ github.base_ref }}
+      - name: Check out PR
+        uses: actions/checkout@v2
+        with:
+          path: new
+      - name: Ignore manifest files
+        run: |
+          # manifest.yaml is per-branch, so we care about changes vs. the
+          # one in the base, not the one from the origin
+          cp base/manifest.yaml origin/
+      - name: Compare trees
+        uses: coreos/check-diff@main
+        with:
+          basedir: origin
+          patchdir: new
