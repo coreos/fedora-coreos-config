@@ -1,14 +1,9 @@
 #!/bin/bash
+# TODO: Doc
+
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 if ! grep foobar /proc/cmdline; then
     fatal "missing foobar in kernel cmdline"
