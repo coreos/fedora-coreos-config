@@ -5,9 +5,44 @@ set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-list="$(find /etc -type f -type d -perm /022)"
-if [[ -n "${list}" ]]; then
-    find /etc -type f -type d -perm /022 -print0 | xargs -0 ls -al
+# List of known files and directories with group write permission
+list_known=()
+
+# List of known files and directories with group write permission (RHCOS only)
+list_known_rhcos=(
+    '/usr/share/licenses/publicsuffix-list-dafsa/COPYING'
+)
+
+is_fcos="false"
+if [[ "$(source /etc/os-release && echo "${ID}")" == "fedora" ]]; then
+    is_fcos="true"
+fi
+
+unknown=""
+while IFS= read -r -d '' e; do
+    found="false"
+    for k in "${list_known[@]}"; do
+        if [[ "${k}" == "${e}" ]]; then
+            found="true"
+            break
+        fi
+    done
+    if [[ "${is_fcos}" == "false" ]]; then
+        for k in "${list_known_rhcos[@]}"; do
+            if [[ "${k}" == "${e}" ]]; then
+                found="true"
+                break
+            fi
+        done
+    fi
+    if [[ "${found}" == "false" ]]; then
+        unknown+=" ${e}"
+    fi
+done< <(find /usr /etc -type f -perm /022 -print0 -o -type d -perm /022 -print0)
+
+if [[ -n "${unknown}" ]]; then
+    find /usr /etc -type f -perm /022 -print0 -o -type d -perm /022 -print0 | xargs -0 ls -al
+    find /usr /etc -type f -perm /022 -print0 -o -type d -perm /022 -print0 | xargs -0 rpm -qf
     fatal "found files or directories with 'g+w' or 'o+w' permission"
 fi
 ok "no files with 'g+w' or 'o+w' permission found in /etc"
