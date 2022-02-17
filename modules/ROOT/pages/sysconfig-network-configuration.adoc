@@ -16,6 +16,8 @@ Whether or not a machine needs networking in the initramfs can dictate how a use
 
 * via kernel arguments
 ** these get processed by dracut modules in the initramfs on first boot
+* via live image customization
+** by embedding network configuration in the live ISO or PXE image
 * via `coreos-installer install --copy-network`
 ** by propagating the install environment networking configuration
 * via Afterburn
@@ -59,6 +61,13 @@ interface='ens2'
 nameserver='8.8.8.8'
 echo "ip=${ip}::${gateway}:${netmask}:${hostname}:${interface}:none:${nameserver}"
 ----
+
+
+==== via live image customization
+
+coreos-installer allows you to embed NetworkManager keyfiles directly in a live ISO or PXE image by using the `--network-keyfile` option to `coreos-installer iso customize` or `coreos-installer pxe customize`. The configuration is applied in the initramfs before Ignition runs. If you also use the `--installer-config` option or any of the `--dest-*` options to configure automatic installation, or the `--copy-network` option when installing manually, the network configuration will be forwarded to the installed system.
+
+For more details on embedding network configuration in a live image, see the xref:live-reference.adoc#_passing_network_configuration_to_a_live_iso_or_pxe_system[live ISO/PXE image reference].
 
 
 ==== via `coreos-installer install --copy-network`
