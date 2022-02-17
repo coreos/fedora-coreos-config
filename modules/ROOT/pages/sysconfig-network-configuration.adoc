@@ -16,8 +16,8 @@ Whether or not a machine needs networking in the initramfs can dictate how a use
 
 * via kernel arguments
 ** these get processed by dracut modules in the initramfs on first boot
-* via `coreos-installer --copy-network`
-** by propagating the ISO/PXE install environment networking configuration
+* via `coreos-installer install --copy-network`
+** by propagating the install environment networking configuration
 * via Afterburn
 ** by applying network configuration injected by various platforms
 * via Ignition
@@ -61,14 +61,14 @@ echo "ip=${ip}::${gateway}:${netmask}:${hostname}:${interface}:none:${nameserver
 ----
 
 
-==== via `coreos-installer --copy-network`
+==== via `coreos-installer install --copy-network`
 
 For manual bare metal install workflows it may not be preferable to use dracut kernel arguments for configuring network:
 
 - the syntax is not very user friendly
 - manipulating kernel arguments by grabbing the GRUB prompt can be challenging
 
-The `--copy-network` option to the `coreos-installer` will copy the files from `/etc/NetworkManager/system-connections/` directory into the installed system. For an interactive install this allows the user to populate networking configuration in a variety of ways before doing the install:
+The `--copy-network` option to `coreos-installer install` will copy the files from `/etc/NetworkManager/system-connections/` directory into the installed system. For an interactive install this allows the user to populate networking configuration in a variety of ways before doing the install:
 
 - using the `nmcli` command
 - using the `nmtui` TUI interface
