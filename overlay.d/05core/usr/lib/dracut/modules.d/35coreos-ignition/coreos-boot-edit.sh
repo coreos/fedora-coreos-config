@@ -14,7 +14,24 @@ karg() {
     echo "${value}"
 }
 
-rdcore verify-unique-fs-label --rereadpt boot
+verify_unique_boot() {
+    # UUIDs were changed, so there could be a divergence between kernel's
+    # and userspace's data. Try checking (with rereading partition table)
+    # up to 3 times before giving up
+    for i in 1 2; do
+        echo "Verifying filesystem labeled 'boot' is unique, try $i"
+        rdcore verify-unique-fs-label --rereadpt boot && status=$? || status=$?
+        if [[ $status -eq 0 ]]; then
+            return 0
+        fi
+        sleep 1
+    done
+    echo "Verifying filesystem labeled 'boot' is unique, last try"
+    rdcore verify-unique-fs-label --rereadpt boot
+}
+
+# Verify that after provision we still have unique boot partition
+verify_unique_boot
 
 # Mount /boot. Note that we mount /boot but we don't unmount it because we
 # are run in a systemd unit with MountFlags=slave so it is unmounted for us.

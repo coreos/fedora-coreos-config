@@ -36,3 +36,4 @@ packages:
   # Boost starving threads
   # https://github.com/coreos/fedora-coreos-tracker/issues/753
   - stalld
+  - /usr/sbin/partprobe

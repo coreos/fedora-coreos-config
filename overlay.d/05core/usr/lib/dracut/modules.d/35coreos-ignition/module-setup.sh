@@ -23,7 +23,8 @@ install() {
         lsblk \
         sed \
         grep \
-        sgdisk
+        sgdisk \
+        partprobe
 
     inst_simple "$moddir/coreos-diskful-generator" \
         "$systemdutildir/system-generators/coreos-diskful-generator"
