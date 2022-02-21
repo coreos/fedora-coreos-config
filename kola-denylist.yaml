@@ -23,12 +23,6 @@
   streams:
     - rawhide
     - branched
-- pattern: podman.base
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1049
-  snooze: 2022-02-21
-  streams:
-    - rawhide
-    - branched
 - pattern: ext.config.networking.prefer-ignition-networking
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1059
   snooze: 2022-02-21
