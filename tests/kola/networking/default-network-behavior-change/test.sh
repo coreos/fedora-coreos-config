@@ -13,7 +13,7 @@ set -xeuo pipefail
 . $KOLA_EXT_DATA/commonlib.sh
 
 # EXPECTED_INITRD_NETWORK_CFG1
-#   - used on Fedora 35+ and RHEL 8.5+ releases
+#   - used on Fedora 35 and RHEL 8.5+ releases
 EXPECTED_INITRD_NETWORK_CFG1="[connection]
 id=Wired Connection
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -67,9 +67,34 @@ dns-search=
 method=auto
 
 [proxy]"
+# EXPECTED_INITRD_NETWORK_CFG3
+#   - used on Fedora 36+
+EXPECTED_INITRD_NETWORK_CFG3="[connection]
+id=Wired Connection
+uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+type=ethernet
+autoconnect-retries=1
+multi-connect=3
+
+[ethernet]
+
+[ipv4]
+dhcp-timeout=90
+method=auto
+required-timeout=20000
+
+[ipv6]
+addr-gen-mode=eui64
+dhcp-timeout=90
+method=auto
+
+[proxy]
+
+[user]
+org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 
 # EXPECTED_REALROOT_NETWORK_CFG1:
-#   - used on all FCOS/RHCOS releases
+#   - used on F35 and all RHCOS releases
 EXPECTED_REALROOT_NETWORK_CFG1="[connection]
 id=Wired connection 1
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -95,6 +120,29 @@ method=auto
 
 [.nmmeta]
 nm-generated=true"
+# EXPECTED_REALROOT_NETWORK_CFG2:
+#   - used on all Fedora 36+
+EXPECTED_REALROOT_NETWORK_CFG2="[connection]
+id=Wired connection 1
+uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+type=ethernet
+autoconnect-priority=-999
+interface-name=xxxx
+timestamp=xxxxxxxxxx
+
+[ethernet]
+
+[ipv4]
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+method=auto
+
+[proxy]
+
+[.nmmeta]
+nm-generated=true"
 
 # Function that will remove unique (per-run) data from a connection file
 normalize_connection_file() {
@@ -106,11 +154,13 @@ normalize_connection_file() {
 
 source /etc/os-release
 # All current FCOS releases use the same config
-EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG1
-EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
 if [ "$ID" == "fedora" ]; then
-    if [ "$VERSION_ID" -ge "35" ]; then
-        echo "Using defaults"
+    if [ "$VERSION_ID" -ge "36" ]; then
+        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG3
+        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG2
+    elif [ "$VERSION_ID" -eq "35" ]; then
+        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG1
+        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
     else
         fatal "fail: not operating on expected OS version"
     fi
@@ -121,7 +171,8 @@ elif [ "$ID" == "rhcos" ]; then
     # FIXME test RHEL_VERSION instead, but we need to fix the release package for that
     RHCOS_RHEL_85_OCP_VERSION="4.11"
     if [ "${VERSION_ID/\./}" -ge "${RHCOS_RHEL_85_OCP_VERSION/\./}" ]; then
-        echo "Using defaults"
+        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG1
+        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
     elif [ "${VERSION_ID/\./}" -ge "${RHCOS_MINIMUM_VERSION/\./}" ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG2
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
