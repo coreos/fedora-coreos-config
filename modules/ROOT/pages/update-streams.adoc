@@ -54,9 +54,11 @@ Switching between streams may introduce regressions or bugs due to skipping upda
 sudo systemctl stop zincati.service
 
 # Perform the rebase to a different stream
+# Supported architectures: aarch64, x86_64
 # Available streams: "stable", "testing", and "next"
+ARCH="$(arch)"
 STREAM="testing"
-sudo rpm-ostree rebase "fedora/x86_64/coreos/${STREAM}"
+sudo rpm-ostree rebase "fedora/${ARCH}/coreos/${STREAM}"
 ----
 
 After inspecting the package difference the user can reboot. After boot the system will be loaded into the latest release on the new stream and will follow that stream for future updates.
