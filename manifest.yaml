@@ -28,15 +28,3 @@ postprocess:
     mkdir -p /etc/fedora-coreos-pinger/config.d /etc/zincati/config.d
     echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/90-disable-on-non-production-stream.toml
     echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nupdates.enabled = false' > /etc/zincati/config.d/90-disable-on-non-production-stream.toml
-  # Default to iptables-nft. Otherwise, legacy wins. This needs to be lowered in
-  # a shared manifest once we're ready to migrate `testing`. We can drop this
-  # once/if we remove iptables-legacy.
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    ln -sf /usr/sbin/ip6tables-nft         /etc/alternatives/ip6tables
-    ln -sf /usr/sbin/ip6tables-nft-restore /etc/alternatives/ip6tables-restore
-    ln -sf /usr/sbin/ip6tables-nft-save    /etc/alternatives/ip6tables-save
-    ln -sf /usr/sbin/iptables-nft          /etc/alternatives/iptables
-    ln -sf /usr/sbin/iptables-nft-restore  /etc/alternatives/iptables-restore
-    ln -sf /usr/sbin/iptables-nft-save     /etc/alternatives/iptables-save
