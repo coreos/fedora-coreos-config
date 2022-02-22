@@ -241,6 +241,7 @@ storage:
       device: /dev/md/publicdata
       format: ext4
       label: PUB
+      with_mount_unit: true
 ----
 
 == Encrypted storage (LUKS)
