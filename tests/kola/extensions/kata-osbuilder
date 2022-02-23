@@ -1,0 +1,27 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+# check that `kata-osbuilder-generate.service` as part of the default presets
+# - fcos: defined in /usr/lib/systemd/system-preset/90-default.preset
+# - rhcos: defined in /usr/lib/systemd/system-preset/45-rhcos-extensions.preset
+# See:
+# - https://bugzilla.redhat.com/show_bug.cgi?id=1941342
+# - https://github.com/openshift/os/pull/524
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+source /etc/os-release
+libdir="/usr/lib/systemd/system-preset"
+config=""
+if [ "$ID" == "fedora" ]; then
+    config="${libdir}/90-default.preset"
+elif [ "$ID" == "rhcos" ]; then
+    config="${libdir}/45-rhcos-extensions.preset"
+fi
+
+service="enable kata-osbuilder-generate.service"
+if ! grep -q "${service}" ${config}; then
+   fatal "Error: missing '${service}' in ${config}"
+fi
+ok "verify '${service}' in ${config}"
