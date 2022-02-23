@@ -17,6 +17,11 @@ ostree-layers:
   - overlay/14NetworkManager-plugins
   - overlay/20platform-chrony
 
+conditional-include:
+  # https://github.com/coreos/fedora-coreos-tracker/issues/676
+  - if: releasever >= 36
+    include: iptables-nft.yaml
+
 initramfs-args:
   - --no-hostonly
   # We don't support root on NFS, so we don't need it in the initramfs. It also
