@@ -166,7 +166,7 @@ def get_stream():
     '''Get the current stream name.'''
     with open(os.path.join(basedir, 'manifest.yaml')) as fh:
         manifest = yaml.safe_load(fh)
-    return manifest['add-commit-metadata']['fedora-coreos.stream']
+    return manifest['variables']['stream']
 
 
 @functools.cache
