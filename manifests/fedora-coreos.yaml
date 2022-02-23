@@ -3,6 +3,10 @@
 # or are very "opinionated" like disabling SSH passwords by default.
 
 include: fedora-coreos-base.yaml
+conditional-include:
+  - if: prod == false
+    # long-term, would be good to support specifying a nested TreeComposeConfig
+    include: disable-zincati-and-pinger.yaml
 
 ostree-layers:
   - overlay/15fcos
