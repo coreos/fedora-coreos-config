@@ -1,15 +1,8 @@
-ref: fedora/${basearch}/coreos/testing-devel
-include: manifests/fedora-coreos.yaml
-
 variables:
+  stream: testing-devel
   prod: false
 
 releasever: 35
-
-rojig:
-  license: MIT
-  name: fedora-coreos
-  summary: Fedora CoreOS testing-devel
 
 repos:
   # These repos are there to make it easier to add new packages to the OS and to
@@ -19,5 +12,4 @@ repos:
   - fedora
   - fedora-updates
 
-add-commit-metadata:
-  fedora-coreos.stream: testing-devel
+include: manifests/fedora-coreos.yaml

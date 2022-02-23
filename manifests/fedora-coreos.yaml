@@ -2,6 +2,15 @@
 # into "official" builds of Fedora CoreOS (such as including `fedora-release-coreos`)
 # or are very "opinionated" like disabling SSH passwords by default.
 
+ref: fedora/${basearch}/coreos/${stream}
+rojig:
+  license: MIT
+  name: fedora-coreos
+  summary: Fedora CoreOS ${stream}
+
+add-commit-metadata:
+  fedora-coreos.stream: ${stream}
+
 include: fedora-coreos-base.yaml
 conditional-include:
   - if: prod == false
