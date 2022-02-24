@@ -23,12 +23,12 @@ elif [[ -n "${rootfs_url}" ]]; then
     # rootfs URL was provided as karg.  Fetch image, check its hash, and
     # unpack it.
     echo "Fetching rootfs image from ${rootfs_url}..."
-    if [[ ${rootfs_url} != http:* && ${rootfs_url} != https:* ]]; then
+    if [[ ${rootfs_url} != http:* && ${rootfs_url} != https:* && ${rootfs_url} != tftp:* ]]; then
         # Don't commit to supporting protocols we might not want to expose in
         # the long term.
         echo "Unsupported scheme for image specified by:" >&2
         echo "coreos.live.rootfs_url=${rootfs_url}" >&2
-        echo "Only HTTP and HTTPS are supported. Please fix your PXE configuration." >&2
+        echo "Only HTTP, HTTPS, and TFTP are supported. Please fix your PXE configuration." >&2
         exit 1
     fi
 
