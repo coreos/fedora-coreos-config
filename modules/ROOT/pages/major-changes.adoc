@@ -1,0 +1,152 @@
+= Major Changes in Fedora CoreOS
+:toc:
+
+This is a list of major changes that were introduced in Fedora CoreOS with the
+notes associated with them.
+Those changes are also announced on the https://lists.fedoraproject.org/archives/list/coreos-status@lists.fedoraproject.org/[coreos-status mailing list].
+Note that this is not an exhaustive list of changes in Fedora CoreOS and only includes major changes that may require manual actions.
+This list is in reverse chronological order to keep recent changes at the top.
+
+// To add a new change here, see the template at the end of the file.
+
+== Podman v4.0
+
+The Podman container runtime will be upgraded from v3 to v4. This is a https://podman.io/releases/2022/02/22/podman-release-v4.0.0.html[major release] that introduces backward incompatible changes to configuration files and APIs.
+
+See also the https://fedoraproject.org/wiki/Changes/Podman4.0[Fedora Change] and the https://github.com/coreos/fedora-coreos-tracker/issues/1106[tracking issue].
+
+=== Planning
+
+This change will be rolled out together with the rebase to Fedora 36.
+
+|===
+|Update Stream |Targeted release date
+
+|`next` | 2022-03-15
+|`testing`| 2022-04-19
+|`stable`| Will follow `testing` as usual
+|===
+
+=== Notes
+
+The full release notes for Podman v4 are available https://github.com/containers/podman/releases/tag/v4.0.0[on GitHub]. Here is a summary of how this will impact Fedora CoreOS nodes:
+
+- Existing containers will be preserved without any change required.
+
+- Compatibility for the Docker API is fully preserved.
+
+- Users of the Podman remote API will need matching server/client versions: The Podman remote APIs for Manifest List and Network operations have been completely rewritten to address issues and inconsistencies in the previous APIs. Incompatible APIs should warn if they are used with an older Podman client. Clients and servers must thus use the same API version. This means that if you are currently using the v3 API from a client, you will need to upgrade it to v4 at the same time. If you are not using the remote API, no change is required.
+
+- Rollbacks to a version with Podman v3.x will require manual action: Podman v4.0 will perform several schema migrations in the Podman database when it is first run. These schema migrations will cause Podman v3.x and earlier to be unable to read certain network configuration information from the database. This means that it will not be possible to roll back to a release with Podman v3.x without losing some functionality in existing containers.
+
+- Only new installations will use the new network stack by default: Existing systems will keep using the CNI network stack with Podman v4.0. To benefit from the new network stack, you will have to remove all existing containers, images and network with the `podman system reset` command. It is recommend to reboot to apply the change.
+
+To validate this change in advance in your deployment, you can use the following instructions to try Podman v4.0 on a node for testing purposes:
+
+[source, bash]
+----
+$ cat /etc/yum.repos.d/podman4.repo
+[copr:copr.fedorainfracloud.org:rhcontainerbot:podman4]
+name=Copr repo for podman4 owned by rhcontainerbot
+baseurl=https://download.copr.fedorainfracloud.org/results/rhcontainerbot/podman4/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/rhcontainerbot/podman4/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+$ sudo rpm-ostree override replace --experimental podman containers-common catatonit --freeze --from repo=copr:copr.fedorainfracloud.org:rhcontainerbot:podman4 --install aardvark-dns --install netavark
+$ sudo systemctl reboot
+----
+
+== Moving to iptables-nft
+
+All new and upgrading Fedora CoreOS nodes will migrate to the nft backend of iptables. This will be done by updating the relevant symbolic links in `/etc/alternatives`. The legacy backend is considered deprecated.
+
+See also the https://github.com/coreos/fedora-coreos-tracker/issues/676[tracking issue].
+
+=== Planning
+
+This change will be rolled out together with the rebase to Fedora 36.
+
+|===
+|Update Stream |Targeted release date
+
+|`next` | 2022-03-15
+|`testing`| 2022-04-19
+|`stable`| Will follow `testing` as usual
+|===
+
+=== Notes
+
+If you need to stay on the legacy backend, create an empty file at `/etc/coreos/iptables-legacy.stamp`. For existing nodes, you can manually create the file now:
+
+[source, bash]
+----
+$ sudo mkdir -m 755 /etc/coreos/
+$ sudo touch /etc/coreos/iptables-legacy.stamp
+----
+
+For new nodes that get deployed between now and when the migration happens, you can create the `/etc/coreos/iptables-legacy.stamp` file using Ignition to ensure they don't get migrated. After the migration, you can bring up new nodes on the legacy backend by manually setting the symbolic links via Ignition. Below is a Butane config that does both of these:
+
+[source, yaml]
+----
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/coreos/iptables-legacy.stamp
+      mode: 0644
+  links:
+    - path: /etc/alternatives/iptables
+      target: /usr/sbin/iptables-legacy
+      overwrite: true
+      hard: false
+    - path: /etc/alternatives/iptables-restore
+      target: /usr/sbin/iptables-legacy-restore
+      overwrite: true
+      hard: false
+    - path: /etc/alternatives/iptables-save
+      target: /usr/sbin/iptables-legacy-save
+      overwrite: true
+      hard: false
+    - path: /etc/alternatives/ip6tables
+      target: /usr/sbin/ip6tables-legacy
+      overwrite: true
+      hard: false
+    - path: /etc/alternatives/ip6tables-restore
+      target: /usr/sbin/ip6tables-legacy-restore
+      overwrite: true
+      hard: false
+    - path: /etc/alternatives/ip6tables-save
+      target: /usr/sbin/ip6tables-legacy-save
+      overwrite: true
+      hard: false
+----
+
+This will ensure that all new nodes will use the legacy backend whether before or after the migration. After all streams are based on Fedora 36, we recommend removing the stamp file from your Butane config.
+
+////
+// Template for major changes:
+
+== Name
+
+Short one line summary with links to tracking issues.
+
+=== Planning
+
+This change will be rolled out ...
+
+|===
+|Update Stream |Targeted release date
+
+|`next` | <date>
+|`testing`| <date>
+|`stable`| Will follow `testing` as usual
+|===
+
+=== Notes
+
+Detailed description of the change, the impacts, how to test, what manual actions are neeed, etc.
+////
