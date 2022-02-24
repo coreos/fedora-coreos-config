@@ -6,21 +6,19 @@ set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-# we're currently rolling out to next first
-case "$(get_fcos_stream)" in
-    "next-devel" | "next")
-        if ! iptables --version | grep nf_tables; then
-            iptables --version # output for logs
-            fatal "iptables version is not nft"
-        fi
-        ok "iptables in nft mode"
-        ;;
-    *)
-        # Make sure we're on legacy iptables
-        if ! iptables --version | grep legacy; then
-            iptables --version # output for logs
-            fatal "iptables version is not legacy"
-        fi
-        ok "iptables in legacy mode"
-        ;;
-esac
+# rollout is tied to f36+ on FCOS
+# RHCOS is already in nft
+# once all of FCOS is on f36, we can drop this branching
+if is_rhcos || [ "$(get_fedora_ver)" -ge 36 ]; then
+    if ! iptables --version | grep nf_tables; then
+        iptables --version # output for logs
+        fatal "iptables version is not nft"
+    fi
+    ok "iptables in nft mode"
+else
+    if ! iptables --version | grep legacy; then
+        iptables --version # output for logs
+        fatal "iptables version is not legacy"
+    fi
+    ok "iptables in legacy mode"
+fi
