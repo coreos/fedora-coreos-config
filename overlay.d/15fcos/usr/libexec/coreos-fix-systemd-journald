@@ -1,0 +1,20 @@
+#!/usr/bin/bash
+# This is a workaround for cases where systemd-journald can fail to
+# process SIGTERM and get left over from the initramfs into the real
+# root. https://github.com/coreos/fedora-coreos-tracker/issues/1108
+set -eux -o pipefail
+
+# We find the PID of the systemd-journald process and then determine
+# if it's the one from the initramfs by checking the SELinux context.
+# If the context is `kernel_t` then we know it's been leaked from the
+# initramfs and it must be taken out. We must use SIGKILL because the
+# reason we're here in the first place is because it's not responding
+# to SIGTERM.
+jrnlpid=$(systemctl show --property=MainPID --value systemd-journald.service)
+context=$(ps --no-headers --format label $jrnlpid)
+if [ "${context}" == "system_u:system_r:kernel_t:s0" ]; then
+    kill -s KILL $jrnlpid
+    # Leave behind evidence that we had to fix things
+    mkdir -p /run/coreos
+    touch /run/coreos/coreos-fix-systemd-journald
+fi
