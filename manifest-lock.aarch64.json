@@ -127,7 +127,7 @@
       "evra": "2:2.177.0-1.fc35.noarch"
     },
     "containerd": {
-      "evra": "1.6.0~rc.2-2.fc35.aarch64"
+      "evra": "1.6.0-1.fc35.aarch64"
     },
     "containernetworking-plugins": {
       "evra": "1.0.1-4.fc35.aarch64"
@@ -765,6 +765,9 @@
     "libtirpc": {
       "evra": "1.3.2-1.fc35.aarch64"
     },
+    "libtool-ltdl": {
+      "evra": "2.4.6-42.fc35.aarch64"
+    },
     "libunistring": {
       "evra": "0.9.10-14.fc35.aarch64"
     },
@@ -1202,16 +1205,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-02-25T20:54:14Z",
+    "generated": "2022-02-27T20:52:51Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2021-10-26T05:31:21Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-02-22T22:08:38Z"
+        "generated": "2022-02-25T22:10:35Z"
       },
       "fedora-updates": {
-        "generated": "2022-02-25T16:39:00Z"
+        "generated": "2022-02-27T03:39:41Z"
       }
     }
   }
