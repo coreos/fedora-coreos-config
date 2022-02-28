@@ -1,15 +1,9 @@
 #!/bin/bash
 # kola: { "exclusive": false }
+
 set -xeuo pipefail
 
-ok() {
-    echo "ok" "$@"
-}
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # In order to verify that `kubernetes_file_t` labeled files can be read by
 # systemd, we check to see if the `kube-env` service started successfully
