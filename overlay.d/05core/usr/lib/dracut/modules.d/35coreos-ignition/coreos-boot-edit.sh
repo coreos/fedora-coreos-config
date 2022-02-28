@@ -14,6 +14,8 @@ karg() {
     echo "${value}"
 }
 
+rdcore verify-unique-fs-label --rereadpt boot
+
 # Mount /boot. Note that we mount /boot but we don't unmount it because we
 # are run in a systemd unit with MountFlags=slave so it is unmounted for us.
 bootmnt=/mnt/boot_partition

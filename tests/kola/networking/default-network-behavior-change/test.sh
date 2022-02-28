@@ -13,7 +13,7 @@ set -xeuo pipefail
 . $KOLA_EXT_DATA/commonlib.sh
 
 # EXPECTED_INITRD_NETWORK_CFG1
-#   - used on FCOS 35+ releases
+#   - used on Fedora 35+ and RHEL 8.5+ releases
 EXPECTED_INITRD_NETWORK_CFG1="[connection]
 id=Wired Connection
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -42,7 +42,7 @@ method=auto
 [user]
 org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 # EXPECTED_INITRD_NETWORK_CFG2
-#   - used on all RHCOS releases
+#   - used on older RHCOS <= 4.10 releases
 EXPECTED_INITRD_NETWORK_CFG2="[connection]
 id=Wired Connection
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -106,10 +106,11 @@ normalize_connection_file() {
 
 source /etc/os-release
 # All current FCOS releases use the same config
+EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG1
+EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
 if [ "$ID" == "fedora" ]; then
     if [ "$VERSION_ID" -ge "35" ]; then
-        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG1
-        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
+        echo "Using defaults"
     else
         fatal "fail: not operating on expected OS version"
     fi
@@ -117,7 +118,11 @@ elif [ "$ID" == "rhcos" ]; then
     # For the version comparison use string substitution to remove the
     # '.` from the version so we can use integer comparison
     RHCOS_MINIMUM_VERSION="4.7"
-    if [ "${VERSION_ID/\./}" -ge "${RHCOS_MINIMUM_VERSION/\./}" ]; then
+    # FIXME test RHEL_VERSION instead, but we need to fix the release package for that
+    RHCOS_RHEL_85_OCP_VERSION="4.11"
+    if [ "${VERSION_ID/\./}" -ge "${RHCOS_RHEL_85_OCP_VERSION/\./}" ]; then
+        echo "Using defaults"
+    elif [ "${VERSION_ID/\./}" -ge "${RHCOS_MINIMUM_VERSION/\./}" ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG2
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
     else

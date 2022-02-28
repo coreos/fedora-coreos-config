@@ -8,6 +8,10 @@ packages:
  # Kernel + systemd.  Note we explicitly specify kernel-{core,modules}
  # because otherwise depsolving could bring in kernel-debug.
  - kernel kernel-core kernel-modules systemd
+ # linux-firmware now a recommends so let's explicitly include it
+ # https://gitlab.com/cki-project/kernel-ark/-/commit/32271d0cd9bd52d386eb35497c4876a8f041f70b
+ # https://src.fedoraproject.org/rpms/kernel/c/f55c3e9ed8605ff28cb9a922efbab1055947e213?branch=rawhide
+ - linux-firmware
  # rpm-ostree
  - rpm-ostree nss-altfiles
  # firmware updates
