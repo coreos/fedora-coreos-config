@@ -41,12 +41,6 @@
   streams:
     - rawhide
     - branched
-- pattern: ext.config.chrony.dhcp-propagation
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1097
-  snooze: 2022-02-28
-  streams:
-    - rawhide
-    - branched
 - pattern: ext.config.extensions.module
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1104
   snooze: 2022-02-28
