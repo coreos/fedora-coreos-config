@@ -1,0 +1,21 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+# This test identifies when the workaround for [1] gets used. We still
+# want to know how when it happens until it gets fixed. We can
+# denylist/snooze this test if we decide we don't want to see it for
+# a while.
+# [1] https://github.com/coreos/fedora-coreos-tracker/issues/1108
+# 
+# - exclusive: false
+#   - This problem really only happens for non-exclusive tests that 
+#     we've seen so far.
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+if [ -f /run/coreos/coreos-fix-systemd-journald ]; then
+    echo "Workaround for https://github.com/coreos/fedora-coreos-tracker/issues/1108 used"
+    fatal "Error: The systemd-journald workaround was needed"
+fi
+ok "No systemd-journald workaround used"
