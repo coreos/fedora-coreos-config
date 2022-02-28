@@ -1,0 +1,23 @@
+#!/bin/bash
+set -xeuo pipefail
+
+# kola: { "tags": "needs-internet" }
+
+. $KOLA_EXT_DATA/common.sh
+
+case "${AUTOPKGTEST_REBOOT_MARK:-}" in
+  "")
+      assert_iptables_legacy
+      assert_iptables_matches_default
+      mkdir -m 755 /etc/coreos/
+      touch /etc/coreos/iptables-legacy.stamp
+      upgrade
+      /tmp/autopkgtest-reboot rebooted
+      ;;
+
+  rebooted)
+      assert_iptables_legacy
+      assert_iptables_differs_from_default
+      ;;
+  *) fatal "unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}";;
+esac
