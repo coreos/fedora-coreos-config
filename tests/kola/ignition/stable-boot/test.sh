@@ -1,16 +1,12 @@
 #!/bin/bash
+# kola: { "platforms": "qemu-unpriv" }
+# This test makes sure that ignition is able to use `coreos-boot-disk` symlink.
+# We don't need to test this on every platform. If it passes in one place it
+# will pass everywhere.
+
 set -xeuo pipefail
 
-# This test makes sure that ignition is able to use `coreos-boot-disk` symlink
-
-# We don't need to test this on every platform. If it passes in
-# one place it will pass everywhere.
-# kola: { "platforms": "qemu-unpriv" }
-
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 # symlink shouldn't be propogated to real-root
 link="/dev/disk/by-id/coreos-boot-disk"

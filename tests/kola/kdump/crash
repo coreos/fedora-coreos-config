@@ -6,10 +6,7 @@
 
 set -xeuo pipefail
 
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. $KOLA_EXT_DATA/commonlib.sh
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
