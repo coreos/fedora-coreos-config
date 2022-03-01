@@ -14,9 +14,12 @@ postprocess:
         # FCOS: Only operate on releases before F36. The fix has landed
         # in F36+ and there is no need for a workaround.
         [ ${VERSION_ID} -le 35 ] || exit 0
-    else 
-        # RHCOS: The fix hasn't landed in any version of RHEL yet
-        true
+    elif [[ "${ID}" == "rhcos" ]]; then
+        # RHCOS: Only operate on releases before RHEL8.5. The fix has 
+        # landed in RHEL8.6+ and there is no need for a workaround.
+        # https://bugzilla.redhat.com/show_bug.cgi?id=2008101
+        # Fixed RPM version: device-mapper-multipath-0.8.4-18.el8
+        [ ${RHEL_VERSION//.} -le 85 ] || exit 0
     fi
     mkdir /usr/lib/systemd/system/multipathd.socket.d
     cat > /usr/lib/systemd/system/multipathd.socket.d/50-start-conditions.conf <<'EOF'
