@@ -21,3 +21,13 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-6e5b30e2f3
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1046#issuecomment-1054585092
       type: fast-track
+  rpm-ostree:
+    evr: 2022.4-1.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-28b9d9582c
+      type: fast-track
+  rpm-ostree-libs:
+    evr: 2022.4-1.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-28b9d9582c
+      type: fast-track
