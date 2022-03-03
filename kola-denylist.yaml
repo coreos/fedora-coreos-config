@@ -17,6 +17,7 @@
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1075
   arches:
     - aarch64
+    - ppc64le
 - pattern: ext.config.podman.dns
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1046
   snooze: 2022-03-07
@@ -66,3 +67,11 @@
   streams:
     - rawhide
     - branched
+- pattern: coreos.boot-mirror.luks/detach-primary
+  tracker: https://github.com/coreos/coreos-assembler/issues/2725
+  arches:
+  - ppc64le
+- pattern: coreos.boot-mirror/detach-primary
+  tracker: https://github.com/coreos/coreos-assembler/issues/2725
+  arches:
+  - ppc64le
