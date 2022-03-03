@@ -32,7 +32,7 @@ get_bootif_kargs() {
     fi
     rdbootif_karg=$(dracut_func getarg rd.bootif)
     if [ ! -z "$rdbootif_karg" ]; then
-        bootif_kargs+="rd.bootif=${rdbootif_karg}"
+        bootif_kargs+=" rd.bootif=${rdbootif_karg}"
     fi
     echo $bootif_kargs
 }
