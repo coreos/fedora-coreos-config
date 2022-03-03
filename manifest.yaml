@@ -1,18 +1,11 @@
-ref: fedora/${basearch}/coreos/rawhide
-include: manifests/fedora-coreos.yaml
+variables:
+  stream: rawhide
+  prod: false
 
-releasever: "37"
-
-rojig:
-  license: MIT
-  name: fedora-coreos
-  summary: Fedora CoreOS rawhide
+releasever: 37
 
 repos:
   - fedora-rawhide
-
-add-commit-metadata:
-  fedora-coreos.stream: rawhide
 
 packages:
   # For podman v4 netavark gets pulled in but it only recommends
@@ -22,12 +15,4 @@ packages:
   # See https://github.com/containers/netavark/pull/217
   - aardvark-dns
 
-postprocess:
-  # Disable Zincati and fedora-coreos-pinger on non-production streams
-  # https://github.com/coreos/fedora-coreos-tracker/issues/163
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    mkdir -p /etc/fedora-coreos-pinger/config.d /etc/zincati/config.d
-    echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/90-disable-on-non-production-stream.toml
-    echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/163\nupdates.enabled = false' > /etc/zincati/config.d/90-disable-on-non-production-stream.toml
+include: manifests/fedora-coreos.yaml
