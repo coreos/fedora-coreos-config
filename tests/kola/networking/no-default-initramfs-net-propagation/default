@@ -8,16 +8,8 @@ set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-if ! journalctl -t coreos-teardown-initramfs | \
-       grep 'info: skipping propagation of default networking configs'; then
-    echo "no log message claiming to skip initramfs network propagation" >&2
-    fail=1
-fi
-
-if [ -n "$(ls -A /etc/NetworkManager/system-connections/)" ]; then
-    echo "configs exist in /etc/NetworkManager/system-connections/, but shouldn't" >&2
-    fail=1
-fi
+# Run the test bits (sets the $fail var)
+. $KOLA_EXT_DATA/test-net-propagation.sh
 
 if [ -z "${fail:-}" ]; then
     ok "success: no initramfs network propagation for default configuration"
