@@ -25,14 +25,14 @@ packages:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1066
       type: pin
   rpm-ostree:
-    evr: 2022.4-1.fc35
+    evr: 2022.5-1.fc35
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-53811a0195
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d39d0555a0
       type: fast-track
   rpm-ostree-libs:
-    evr: 2022.4-1.fc35
+    evr: 2022.5-1.fc35
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-53811a0195
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d39d0555a0
       type: fast-track
   systemd:
     evr: 249.7-2.fc35
