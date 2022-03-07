@@ -21,6 +21,9 @@ conditional-include:
   # https://github.com/coreos/fedora-coreos-tracker/issues/676
   - if: releasever >= 36
     include: iptables-nft.yaml
+  # https://github.com/coreos/fedora-coreos-config/pull/1519
+  - if: releasever >= 36
+    include: podman-v4.yaml
 
 initramfs-args:
   - --no-hostonly
