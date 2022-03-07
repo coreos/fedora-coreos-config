@@ -10,12 +10,6 @@
   arches:
     - aarch64
     - ppc64le
-- pattern: ext.config.podman.dns
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1046
-  snooze: 2022-03-07
-  streams:
-    - rawhide
-    - branched
 - pattern: ext.config.networking.prefer-ignition-networking
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1059
   snooze: 2022-03-07
