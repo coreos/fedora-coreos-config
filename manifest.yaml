@@ -7,12 +7,4 @@ releasever: 37
 repos:
   - fedora-rawhide
 
-packages:
-  # For podman v4 netavark gets pulled in but it only recommends
-  # aardvark-dns (which provides name resolution based on container
-  # names). This functionality was previously provided by dnsname from
-  # podman-plugins in the podman v3 stack.
-  # See https://github.com/containers/netavark/pull/217
-  - aardvark-dns
-
 include: manifests/fedora-coreos.yaml
