@@ -10,15 +10,15 @@
 
 packages:
   podman:
-    evr: 3:4.0.1-2.fc36
+    evr: 3:4.0.2-1.fc36
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-6e5b30e2f3
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-958c9fd48f
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1046#issuecomment-1054585092
       type: fast-track
   podman-plugins:
-    evr: 3:4.0.1-2.fc36
+    evr: 3:4.0.2-1.fc36
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-6e5b30e2f3
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-958c9fd48f
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1046#issuecomment-1054585092
       type: fast-track
   rpm-ostree:
