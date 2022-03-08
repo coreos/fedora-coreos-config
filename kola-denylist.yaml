@@ -55,3 +55,12 @@
   tracker: https://github.com/coreos/coreos-assembler/issues/2725
   arches:
   - ppc64le
+- pattern: ext.config.systemd.sytemd-journald-fix
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1108#issuecomment-1061988853
+  snooze: 2022-03-18
+  streams:
+    - stable
+    - testing
+    - testing-devel
+    - next
+    - next-devel
