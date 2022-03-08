@@ -1,8 +1,15 @@
+# This file is included in RHEL CoreOS, see
+# https://github.com/openshift/os/blob/71c974b1e456292033e3ef3fe7bcfe17d1855ebc/manifest.yaml#L12
+# Only apply changes here that should apply to both FCOS and RHCOS.
+
+# Default to `bash` in our container, the same as other containers we ship.
+container-cmd:
+  - /usr/bin/bash
+
 # These packages are either widely used utilities/services or 
 # are targeted for improving the general CoreOS user experience.
 # It is intended to be kept generic so that it may be shared downstream with
 # RHCOS.
-
 packages:
   # Basic user tools
   ## jq - parsing/interacting with JSON data
