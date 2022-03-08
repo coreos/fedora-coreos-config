@@ -143,8 +143,6 @@ packages:
   # file-transfer: note fuse-sshfs is not in RHEL
   # so we can't put it in file-transfer.yaml
   - fuse-sshfs
-  # Improved MOTD experience
-  - console-login-helper-messages-motdgen
   # i18n
   - kbd
   # zram-generator (but not zram-generator-defaults) for F33 change
