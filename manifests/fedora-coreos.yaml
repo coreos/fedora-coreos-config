@@ -11,8 +11,6 @@ rojig:
 add-commit-metadata:
   fedora-coreos.stream: ${stream}
 
-container-cmd:
-  - /usr/bin/bash
 
 include: fedora-coreos-base.yaml
 conditional-include:
