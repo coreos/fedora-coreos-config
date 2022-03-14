@@ -12,3 +12,5 @@ systemd:
         WantedBy=multi-user.target
     - name: echo@foo.service
       enabled: true
+    - name: podman.socket
+      enabled: true
