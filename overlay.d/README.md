@@ -46,3 +46,16 @@ Add static chrony configuration for NTP servers provided on platforms
 such as `azure`, `aws`, `gcp`. The chrony config for these NTP servers
 should override other chrony configuration (e.g. DHCP-provided)
 configuration.
+
+35coreos-iptables
+-----------------
+
+Contains systemd service and script for remaining on iptables-nft after
+the migration to nft.
+
+Split out because (1) it will roll out to next first, and (2) it can
+more easily be deleted after the barrier release.
+
+For more details, see:
+https://github.com/coreos/fedora-coreos-tracker/issues/676
+https://github.com/coreos/fedora-coreos-config/pull/1324

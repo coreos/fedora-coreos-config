@@ -1,0 +1,28 @@
+variant: fcos
+version: 1.4.0
+storage:
+  links:
+    - path: /etc/alternatives/iptables
+      target: /usr/sbin/iptables-legacy
+      overwrite: true
+      hard: false
+    - path: /etc/alternatives/iptables-restore
+      target: /usr/sbin/iptables-legacy-restore
+      overwrite: true
+      hard: false
+    - path: /etc/alternatives/iptables-save
+      target: /usr/sbin/iptables-legacy-save
+      overwrite: true
+      hard: false
+    - path: /etc/alternatives/ip6tables
+      target: /usr/sbin/ip6tables-legacy
+      overwrite: true
+      hard: false
+    - path: /etc/alternatives/ip6tables-restore
+      target: /usr/sbin/ip6tables-legacy-restore
+      overwrite: true
+      hard: false
+    - path: /etc/alternatives/ip6tables-save
+      target: /usr/sbin/ip6tables-legacy-save
+      overwrite: true
+      hard: false

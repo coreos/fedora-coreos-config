@@ -1,0 +1,13 @@
+[Unit]
+Description=Fix systemd-journald after switch root on Fedora CoreOS
+Documentation=https://github.com/coreos/fedora-coreos-tracker/issues/1108
+DefaultDependencies=no
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-fix-systemd-journald
+RemainAfterExit=yes
+# can't send output to the journal because we might kill it
+StandardOutput=file:/run/coreos-fix-systemd-journald-stdout
+StandardError=file:/run/coreos-fix-systemd-journald-stderr
+[Install]
+WantedBy=multi-user.target
