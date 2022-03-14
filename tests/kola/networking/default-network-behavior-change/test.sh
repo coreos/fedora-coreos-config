@@ -13,7 +13,7 @@ set -xeuo pipefail
 . $KOLA_EXT_DATA/commonlib.sh
 
 # EXPECTED_INITRD_NETWORK_CFG1
-#   - used on Fedora 35 and RHEL 8.5+ releases
+#   - used on Fedora 35 and RHEL 8.5 release
 EXPECTED_INITRD_NETWORK_CFG1="[connection]
 id=Wired Connection
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -42,7 +42,7 @@ method=auto
 [user]
 org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 # EXPECTED_INITRD_NETWORK_CFG2
-#   - used on older RHCOS <= 4.10 releases
+#   - used on older RHEL 8.4 release
 EXPECTED_INITRD_NETWORK_CFG2="[connection]
 id=Wired Connection
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -68,7 +68,7 @@ method=auto
 
 [proxy]"
 # EXPECTED_INITRD_NETWORK_CFG3
-#   - used on Fedora 36+
+#   - used on Fedora 36+ and RHEL8.6+
 EXPECTED_INITRD_NETWORK_CFG3="[connection]
 id=Wired Connection
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -94,7 +94,7 @@ method=auto
 org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 
 # EXPECTED_REALROOT_NETWORK_CFG1:
-#   - used on F35 and all RHCOS releases
+#   - used on F35 and RHEL <= 8.5
 EXPECTED_REALROOT_NETWORK_CFG1="[connection]
 id=Wired connection 1
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -121,7 +121,7 @@ method=auto
 [.nmmeta]
 nm-generated=true"
 # EXPECTED_REALROOT_NETWORK_CFG2:
-#   - used on all Fedora 36+
+#   - used on all Fedora 36+ and RHEL8.6+
 EXPECTED_REALROOT_NETWORK_CFG2="[connection]
 id=Wired connection 1
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -154,6 +154,7 @@ normalize_connection_file() {
 
 source /etc/os-release
 # All current FCOS releases use the same config
+# https://github.com/coreos/fedora-coreos-config/pull/1533
 if [ "$ID" == "fedora" ]; then
     if [ "$VERSION_ID" -ge "36" ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG3
@@ -167,13 +168,15 @@ if [ "$ID" == "fedora" ]; then
 elif [ "$ID" == "rhcos" ]; then
     # For the version comparison use string substitution to remove the
     # '.` from the version so we can use integer comparison
-    RHCOS_MINIMUM_VERSION="4.7"
-    # FIXME test RHEL_VERSION instead, but we need to fix the release package for that
-    RHCOS_RHEL_85_OCP_VERSION="4.11"
-    if [ "${VERSION_ID/\./}" -ge "${RHCOS_RHEL_85_OCP_VERSION/\./}" ]; then
+    # RHEL8.6 includes NetworkManager-1.36.0-1.el8.x86_64, update scripts
+    # according to F36
+    if [ "${RHEL_VERSION/\./}" -ge 86 ]; then
+        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG3
+        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG2
+    elif [ "${RHEL_VERSION/\./}" -eq 85 ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG1
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
-    elif [ "${VERSION_ID/\./}" -ge "${RHCOS_MINIMUM_VERSION/\./}" ]; then
+    elif [ "${RHEL_VERSION/\./}" -eq 84 ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG2
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
     else
