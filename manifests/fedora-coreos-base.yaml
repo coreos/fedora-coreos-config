@@ -118,9 +118,11 @@ packages:
   # Containers
   - systemd-container catatonit
   - fuse-overlayfs slirp4netns
-  # name resolution for podman containers
+  # support for old style CNI networks and name resolution for
+  # podman containers with CNI networks
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
-  - podman-plugins dnsmasq
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071338097
+  - containernetworking-plugins podman-plugins dnsmasq
   # Remote IPC for podman
   - libvarlink-util
   # Minimal NFS client
