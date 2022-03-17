@@ -22,11 +22,18 @@ commands=(
   'tree'
 )
 
-# Also try some OS extensions which have host bindings. But these we can only do
-# on !rawhide because the archive repo isn't active there.
+# Also try some OS extensions which have host bindings. These can only
+# work on streams that are sure to have the archive repo available
+# (mostly streams based on Fedora stable releases). Since `next`
+# rebases early to the next major Fedora and the other streams operate
+# continuously on non-stable Fedora we'll just limit this to
+# `stable`/`testing`/`testing-devel`. It's possible that this test will
+# fail on one of those streams if we fast track VIM and it's not
+# availabe in any repo, but we can just snooze the entire test in that
+# case.
 case "$(get_fcos_stream)" in
-    "rawhide") ;;
-    *) commands+=('vim') ;;
+    "stable"|"testing"|"testing-devel") commands+=('vim') ;;
+    *) ;;
 esac
 
 rpm-ostree install --apply-live "${commands[@]}"
