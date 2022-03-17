@@ -8,4 +8,22 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  kernel:
+    evr: 5.16.15-201.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-de4474b89d
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1121
+      type: fast-track
+  kernel-core:
+    evr: 5.16.15-201.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-de4474b89d
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1121
+      type: fast-track
+  kernel-modules:
+    evr: 5.16.15-201.fc35
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-de4474b89d
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1121
+      type: fast-track
