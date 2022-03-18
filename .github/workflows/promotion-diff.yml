@@ -38,7 +38,7 @@ jobs:
           # one in the base, not the one from the origin
           cp base/manifest.yaml origin/
       - name: Compare trees
-        uses: coreos/check-diff@main
+        uses: coreos/actions-lib/check-diff@main
         with:
           basedir: origin
           patchdir: new
