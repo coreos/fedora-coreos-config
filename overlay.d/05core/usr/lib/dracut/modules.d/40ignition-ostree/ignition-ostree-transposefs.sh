@@ -56,7 +56,10 @@ udev_trigger_on_label_mismatch() {
     local expected_dev=$1; shift
     local actual_dev
     expected_dev=$(realpath "${expected_dev}")
-    actual_dev=$(realpath "/dev/disk/by-label/$label")
+    # We `|| :` here because sometimes /dev/disk/by-label/$label is missing.
+    # We've seen this on Fedora kernels with debug enabled (common in `rawhide`).
+    # See https://github.com/coreos/fedora-coreos-tracker/issues/1092
+    actual_dev=$(realpath "/dev/disk/by-label/$label" || :)
     if [ "$actual_dev" != "$expected_dev" ]; then
         echo "Expected /dev/disk/by-label/$label to point to $expected_dev, but points to $actual_dev; triggering udev"
         udevadm trigger --settle "$expected_dev"
