@@ -52,13 +52,13 @@
       "evra": "1:2.11-3.fc35.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.16.24-1.fc35.aarch64"
+      "evra": "32:9.16.27-1.fc35.aarch64"
     },
     "bind-license": {
-      "evra": "32:9.16.24-1.fc35.noarch"
+      "evra": "32:9.16.27-1.fc35.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.16.24-1.fc35.aarch64"
+      "evra": "32:9.16.27-1.fc35.aarch64"
     },
     "bootupd": {
       "evra": "0.2.6-1.fc35.aarch64"
@@ -127,7 +127,7 @@
       "evra": "2:2.180.0-1.fc35.noarch"
     },
     "containerd": {
-      "evra": "1.6.0-1.fc35.aarch64"
+      "evra": "1.6.1-1.fc35.aarch64"
     },
     "containernetworking-plugins": {
       "evra": "1.1.0-1.fc35.aarch64"
@@ -265,7 +265,7 @@
       "evra": "2:5.16-1.fc35.aarch64"
     },
     "expat": {
-      "evra": "2.4.4-1.fc35.aarch64"
+      "evra": "2.4.7-1.fc35.aarch64"
     },
     "fedora-coreos-pinger": {
       "evra": "0.0.4-12.fc35.aarch64"
@@ -307,7 +307,7 @@
       "evra": "1:4.8.0-4.fc35.aarch64"
     },
     "flatpak-session-helper": {
-      "evra": "1.12.6-1.fc35.aarch64"
+      "evra": "1.12.7-1.fc35.aarch64"
     },
     "fstrm": {
       "evra": "0.6.1-3.fc35.aarch64"
@@ -463,13 +463,13 @@
       "evra": "2.4.0-8.fc35.noarch"
     },
     "kernel": {
-      "evra": "5.16.15-201.fc35.aarch64"
+      "evra": "5.16.16-200.fc35.aarch64"
     },
     "kernel-core": {
-      "evra": "5.16.15-201.fc35.aarch64"
+      "evra": "5.16.16-200.fc35.aarch64"
     },
     "kernel-modules": {
-      "evra": "5.16.15-201.fc35.aarch64"
+      "evra": "5.16.16-200.fc35.aarch64"
     },
     "kexec-tools": {
       "evra": "2.0.22-7.fc35.aarch64"
@@ -622,7 +622,7 @@
       "evra": "1.6.0-2.fc35.aarch64"
     },
     "libldb": {
-      "evra": "2.4.1-1.fc35.aarch64"
+      "evra": "2.4.2-1.fc35.aarch64"
     },
     "libluksmeta": {
       "evra": "9-12.fc35.aarch64"
@@ -718,7 +718,7 @@
       "evra": "2.37.4-1.fc35.aarch64"
     },
     "libsmbclient": {
-      "evra": "2:4.15.5-1.fc35.aarch64"
+      "evra": "2:4.15.6-0.fc35.aarch64"
     },
     "libsolv": {
       "evra": "0.7.21-1.fc35.aarch64"
@@ -772,7 +772,7 @@
       "evra": "0.9.10-14.fc35.aarch64"
     },
     "libusb1": {
-      "evra": "1.0.24-4.fc35.aarch64"
+      "evra": "1.0.25-8.fc35.aarch64"
     },
     "libuser": {
       "evra": "0.63-7.fc35.aarch64"
@@ -793,7 +793,7 @@
       "evra": "0.3.2-2.fc35.aarch64"
     },
     "libwbclient": {
-      "evra": "2:4.15.5-1.fc35.aarch64"
+      "evra": "2:4.15.6-0.fc35.aarch64"
     },
     "libxcrypt": {
       "evra": "4.4.28-1.fc35.aarch64"
@@ -919,10 +919,10 @@
       "evra": "8.7p1-3.fc35.aarch64"
     },
     "openssl": {
-      "evra": "1:1.1.1l-2.fc35.aarch64"
+      "evra": "1:1.1.1n-1.fc35.aarch64"
     },
     "openssl-libs": {
-      "evra": "1:1.1.1l-2.fc35.aarch64"
+      "evra": "1:1.1.1n-1.fc35.aarch64"
     },
     "os-prober": {
       "evra": "1.77-8.fc35.aarch64"
@@ -1027,13 +1027,13 @@
       "evra": "2:1.1.0-1.fc35.aarch64"
     },
     "samba-client-libs": {
-      "evra": "2:4.15.5-1.fc35.aarch64"
+      "evra": "2:4.15.6-0.fc35.aarch64"
     },
     "samba-common": {
-      "evra": "2:4.15.5-1.fc35.noarch"
+      "evra": "2:4.15.6-0.fc35.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.15.5-1.fc35.aarch64"
+      "evra": "2:4.15.6-0.fc35.aarch64"
     },
     "sed": {
       "evra": "4.8-8.fc35.aarch64"
@@ -1205,16 +1205,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-03-20T20:52:59Z",
+    "generated": "2022-03-22T20:53:12Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2021-10-26T05:31:21Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-03-18T22:12:55Z"
+        "generated": "2022-03-20T22:09:08Z"
       },
       "fedora-updates": {
-        "generated": "2022-03-19T23:15:58Z"
+        "generated": "2022-03-22T14:18:38Z"
       }
     }
   }
