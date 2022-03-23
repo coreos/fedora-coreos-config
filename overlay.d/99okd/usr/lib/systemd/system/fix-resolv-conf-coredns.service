@@ -1,0 +1,13 @@
+[Unit]
+Description=Fix NM resolv.conf issues with coreDNS
+DefaultDependencies=no
+Requires=systemd-resolved.service
+After=systemd-resolved.service fix-resolv-conf-dot.service network-online.target
+Before=crio.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/cp /run/systemd/resolve/resolv.conf /var/run/NetworkManager/resolv.conf
+
+[Install]
+WantedBy=multi-user.target

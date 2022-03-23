@@ -1,0 +1,37 @@
+FROM registry.ci.openshift.org/origin/4.12:artifacts as artifacts
+FROM registry.ci.openshift.org/origin/4.12:machine-config-operator as mco
+FROM quay.io/coreos-assembler/fcos:testing-devel
+
+WORKDIR /tmp/rpms
+
+COPY --from=artifacts /srv/repo/*.rpm /tmp/rpms/
+COPY --from=mco /usr/bin/machine-config-daemon /usr/libexec/machine-config-daemon
+
+COPY overlay.d/06gcp-routes /tmp/overlay/
+COPY overlay.d/99okd /tmp/overlay/
+COPY overlay.d/99okd-bootstrap /tmp/overlay/
+
+WORKDIR /tmp
+
+RUN cp -irvf /tmp/overlay/* / && \
+    rm -rf /statoverride && \
+    rpm-ostree install \
+      NetworkManager-ovs \
+      open-vm-tools \
+      qemu-guest-agent \
+      glusterfs \
+      glusterfs-fuse && \
+# https://github.com/coreos/rpm-ostree/issues/3736
+    rpm-ostree ex module enable cri-o:1.24 && \
+    rpm-ostree ex module install cri-o:1.24/default && \
+# pending release with fix for https://github.com/coreos/rpm-ostree/issues/3560
+    rpm-ostree install /tmp/rpms/* && \
+    rpm-ostree cleanup -m && \
+    rm -rf /var/cache && \
+    ostree container commit
+
+LABEL io.openshift.release.operator=true \
+      io.openshift.build.version-display-names="machine-os=Fedora CoreOS (OKD)" \
+      io.openshift.build.versions="machine-os=412.36.0"
+
+ENTRYPOINT ["/noentry"]

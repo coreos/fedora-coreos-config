@@ -1,0 +1,10 @@
+# Fetch GCP hostnames via afterburn
+enable gcp-hostnames.service
+# Remove "search ." from /run/systemd/resolve/resolv.conf if it exists
+enable fix-resolv-conf-dot.service
+# Fix resolve.conf issue with coreDNS 
+enable fix-resolv-conf-coredns.service
+# Skip cgroups warning
+disable coreos-check-cgroups.service
+# Enable ovirt service
+enable qemu-guest-agent.service

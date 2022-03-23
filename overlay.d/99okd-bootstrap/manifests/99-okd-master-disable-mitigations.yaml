@@ -1,0 +1,18 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  annotations:
+    include.release.openshift.io/ibm-cloud-managed: "true"
+    include.release.openshift.io/self-managed-high-availability: "true"
+    include.release.openshift.io/single-node-developer: "true"
+    release.openshift.io/create-only: "true"
+  labels:
+    machineconfiguration.openshift.io/role: master
+  name: 99-okd-master-disable-mitigations
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+  kernelArguments:
+    - mitigations=off
+    - intel_pstate=disable
