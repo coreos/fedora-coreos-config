@@ -31,7 +31,8 @@ install() {
     inst_script "$moddir/coreos-gpt-setup.sh" \
         "/usr/sbin/coreos-gpt-setup"
 
-    inst_simple "/usr/lib/udev/rules.d/80-coreos-boot-disk.rules"
+    inst_simple "$moddir/80-coreos-boot-disk.rules" \
+        "/usr/lib/udev/rules.d/80-coreos-boot-disk.rules"
 
     inst_script "$moddir/coreos-disk-contains-fs.sh" \
         "/usr/lib/udev/coreos-disk-contains-fs"
