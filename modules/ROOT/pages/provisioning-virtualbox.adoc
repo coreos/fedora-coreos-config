@@ -4,193 +4,144 @@ This guide shows how to provision new Fedora CoreOS (FCOS) nodes on the VirtualB
 
 == Prerequisites
 
-Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations and host it somewhere (e.g. using `python3 -m http.server`, we will assume this option is used in the following examples). If you do not already have an Ignition file, see xref:producing-ign.adoc[Producing an Ignition File].
+Before importing an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-== Setting up a new VM
+=== Downloading the OVA
 
-You can set up a VirtualBox virtual machine through the GUI or via the https://www.virtualbox.org/manual/UserManual.html#vboxmanage[`vboxmanage` CLI]. Below is a shell script that does most of what the graphical wizard will do. Note that it is tailored to the installation from live ISO or raw disk image as outlined in the following sections.
-
-NOTE: Please be aware that for now there is no dedicated Fedora CoreOS image available for VirtualBox and the installation instructions provided are essentially xref:bare-metal.adoc[bare metal instructions]. A dedicated image may be provided at a later time. Please check the GitHub issues https://github.com/coreos/fedora-coreos-tracker/issues/73[#73] and https://github.com/coreos/fedora-coreos-tracker/issues/144[#144] for more details.
-
-We will rely on the VirtualBox-provided NAT gateway to access the hosts' loopback interface on `10.0.2.2`. Check the https://www.virtualbox.org/manual/UserManual.html#network_nat[VirtualBox User Manual] for more details.
+Fedora CoreOS is designed to be updated automatically, with different schedules per stream.
+Once you have picked the relevant stream, you can download the latest OVA:
 
 [source, bash]
 ----
-VM_NAME='fcos-node01'
-VM_DISK=$(realpath ~/VirtualBox\ VMs/${VM_NAME})/${VM_NAME}.vdi
-
-vboxmanage createvm --name "${VM_NAME}" --ostype Fedora_64 --register
-# Set hardware settings for the VM, including recommended graphics controller
-vboxmanage modifyvm "${VM_NAME}" --memory 4096 --cpus 2 --vram 20 --graphicscontroller vmsvga --rtcuseutc on
-# Add a storage controller for hard disks
-vboxmanage storagectl "${VM_NAME}" --name SATA --add sata --controller IntelAhci --portcount 30 --bootable on
+STREAM="stable"
+mkdir ova-templates
+coreos-installer download -s "${STREAM}" -p virtualbox -f ova -C ./ova-templates/
 ----
 
-WARNING: VirtualBox and by extension `vboxmanage` always expect absolute file paths when specifying locations.
+Alternatively, OVA images can be manually downloaded from the https://getfedora.org/coreos/download?tab=metal_virtualized[download page].
 
-Make sure to create a port forwarding rule that allows access to the guest's SSH Port with the https://www.virtualbox.org/manual/UserManual.html#networkingmodes[default NAT setting] using e.g. `localhost:2222` as target address:
-[source, bash]
+== Booting a new VM on VirtualBox
+
+You can set up a VirtualBox virtual machine through the GUI or via the https://www.virtualbox.org/manual/UserManual.html#vboxmanage[`VBoxManage` CLI]. This guide will use the CLI for setting up the VM.
+
+=== Importing the OVA
+
+To import the OVA, use `VBoxManage import`:
+
+[source, bash, subs="attributes"]
 ----
-vboxmanage modifyvm "${VM_NAME}" --natpf1 "guestssh,tcp,,2222,,22"
-----
-
-The virtual machine is now ready and FCOS can be installed.
-
-== Installing from live ISO
-
-To install FCOS into a VirtualBox virtual machine using the live ISO, follow these steps:
-
-- Download the latest ISO image from the https://getfedora.org/coreos/download?tab=metal_virtualized&stream=stable[download page] or with podman (see https://coreos.github.io/coreos-installer/cmd/download/[documentation] for options):
-[source, bash]
-----
-podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
-    quay.io/coreos/coreos-installer:release download -f iso
+VM_NAME=my-instance
+VBoxManage import --vsys 0 --vmname "$VM_NAME" fedora-coreos-{stable-version}-virtualbox.x86_64.ova
 ----
 
-- Create a sufficiently large disk and attach it to the previously created VM:
-[source, bash]
-----
-vboxmanage createmedium --filename "${VM_DISK}" --size 10240 --format VDI
-vboxmanage storageattach "${VM_NAME}" --storagectl SATA --type hdd --port 0 --device 0 --medium "${VM_DISK}"
-----
+=== Setting the Ignition config
 
-[NOTE]
-====
-*Fedora CoreOS requires the root filesystem to be at least 8 GiB.* For practical reasons, disk images for some platforms ship with a smaller root filesystem, which by default automatically expands to fill all available disk space. If you add additional partitions after the root filesystem, you must make sure to explicitly resize the root partition as shown so that it is at least 8 GiB.
-
-Currently, if the root filesystem is smaller than 8 GiB, a warning is emitted on login. Starting from June 2021, if the root filesystem is smaller than 8 GiB and is followed by another partition, Fedora CoreOS will refuse to boot. For more details, see https://github.com/coreos/fedora-coreos-tracker/issues/586[this bug].
-====
-
-- Attach a DVD drive and the live ISO to the VM:
-
-[source,bash,subs="attributes"]
-----
-FCOS_DISK=$(realpath ~/Downloads/fedora-coreos-{stable-version}-live.x86_64.iso)
-
-vboxmanage storagectl "$\{VM_NAME}" --name IDE --add ide --controller PIIX4 --hostiocache on --portcount 2 --bootable on
-vboxmanage storageattach "$\{VM_NAME}" --storagectl IDE --type dvddrive --port 1 --device 0 --medium "$\{FCOS_DISK}"
-----
-
-You can now boot the target system you have configured. The ISO is capable of bringing up a fully functioning FCOS system purely from memory (i.e. without using any disk storage). Once booted, you will have access to a bash command prompt.
-
-You can now run `coreos-installer` inside the VM:
-[source, bash]
-----
-sudo coreos-installer install /dev/sda \
-    --insecure-ignition --ignition-url http://10.0.2.2:8000/example.ign
-----
-
-TIP: Check out `coreos-installer install --help` for more options on how to install Fedora CoreOS.
-
-Once the installation is complete, you have to remove the live ISO after shutting down (`sudo shutdown -h now`) the VM. Once the ISO is removed, you can start the VM anew. The actual first boot process begins now. It is at this time that Ignition ingests the configuration file and provisions the system as specified.
+Ignition reads its configuration from the `/Ignition/Config` https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/guestadd-guestprops.html[guest property] of the virtual machine. At present, guest properties can only be set from the host command line, and not via the GUI. To set the Ignition config for a VM:
 
 [source, bash]
 ----
-vboxmanage storageattach "${VM_NAME}" --storagectl IDE --type dvddrive --port 1 --device 0 --medium emptydrive
-vboxmanage startvm "${VM_NAME}" --type headless
-# Once the VM is available, you can log in:
-ssh core@localhost -p 2222
+IGN_PATH="/path/to/config.ign"
+VM_NAME=my-instance
+VBoxManage guestproperty set "$VM_NAME" /Ignition/Config "$(cat $IGN_PATH)"
 ----
 
-== Installing from raw bare metal image
+==== Ignition config size limitations
 
-WARNING: The steps below are provided for advanced users, may unexpectedly break in various places with newer Fedora CoreOS images, and require a Unix environment to work. If you encounter issues consider using the xref:_installing_from_live_iso[live ISO instructions] instead.
+The length of the `/Ignition/Config` guestinfo property is constrained by the maximum length of a command line on your host operating system. The OS-specific limits are approximately:
 
-To install FCOS into a VirtualBox virtual machine using the raw disk image, follow these steps:
+[cols="1,1"]
+|===
+|OS
+|Limit
 
-- Download the latest raw image from the https://getfedora.org/coreos/download?tab=metal_virtualized&stream=stable[download page] or with podman (see https://coreos.github.io/coreos-installer/cmd/download/[documentation] for options):
+|Linux
+|128 KiB
+|macOS
+|256 KiB
+|Windows shells
+|8 KiB
+|===
+
+If your Ignition config is larger than this limit, you can host the config on an HTTPS server and refer to it from a small _pointer config_, as follows:
+
+. Upload your Ignition config to an HTTPS server.
+. xref:remote-ign.adoc[Create a Butane pointer config] that specifies the URL of your full Ignition config:
++
+[source, yaml]
+----
+variant: fcos
+version: 1.4.0
+ignition:
+  config:
+    replace:
+      source: https://example.com/config.ign
+----
+. Use xref:producing-ign.adoc[Butane] to convert the Butane config to an Ignition config.
+. Set the `/Ignition/Config` guest property to the contents of the pointer Ignition config, following the instructions in <<_setting_the_ignition_config>>.
+
+=== Configuring networking
+
+By default the VM will use https://www.virtualbox.org/manual/UserManual.html#networkingmodes[NAT networking]. This will share the IP address of your host. Alternatively, if you want the VM to use a different IP address than your host, you can set the VM's network adapter to Bridged.
+
+==== NAT networking
+
+By default, NAT networking does not allow inbound connections to the VM. To allow inbound SSH connections, you can forward connections to e.g. port 2222 on the host to the SSH server in the VM:
+
 [source, bash]
 ----
-podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
-    quay.io/coreos/coreos-installer:release download -f raw
+VM_NAME=my-instance
+VBoxManage modifyvm "$VM_NAME" --natpf1 "guestssh,tcp,,2222,,22"
 ----
 
-Before the installation can begin you have to convert the raw disk image to a VirtualBox compatible one:
-[source,bash,subs="attributes"]
-----
-FCOS_DISK=$(realpath ~/Downloads/fedora-coreos-{stable-version}-metal.x86_64.raw.xz)
-UNPACKED_DISK=$(realpath ~/Downloads/fedora-coreos-{stable-version}-metal.x86_64.raw)
+After booting the VM, you can SSH to the VM from your host:
 
-# Unpack the raw disk image
-unxz "$\{FCOS_DISK}"
-----
-
-[NOTE]
-====
-If you want to supply the Ignition configuration file URL statically, you can modify the raw disk before converting it to a VirtualBox disk image.
-
-To correctly mount the boot partition you have to find out the start point of it and the disk's sector size. Multiply the two values to calculate the mount `offset`.
-[source, bash]
-----
-TMP_FCOS_BOOT_VOLUME=$(realpath /tmp/fcos_boot_volume)
-mkdir "${TMP_FCOS_BOOT_VOLUME}"
-
-fdisk -l "${UNPACKED_DISK}"
-sudo mount -o loop,offset="${OFFSET}" "${UNPACKED_DISK}" "${TMP_FCOS_BOOT_VOLUME}"
-----
-
-On macOS you have to replace `fdisk -l "$\{UNPACKED_DISK}"` with `hdiutil imageinfo -imagekey diskimage-class=CRawDiskImage "$\{UNPACKED_DISK}"`. Mounting the partition requires https://osxfuse.github.io[macFUSE] with an https://github.com/osxfuse/osxfuse/wiki/Ext[ext filesystem extension].
-
-The boot config you are looking for is located in `/loader/entries/ostree-1-fedora-coreos.conf` on the boot partition you just mounted. The file contains a line containing the string `ignition.platform.id=metal $ignition_firstboot` – add `ignition.config.url=http://10.0.2.2:8000/example.ign` after the first boot parameter, save your changes and unmount the disk.
-[source, bash]
-----
-sudo vi "${TMP_FCOS_BOOT_VOLUME}/loader/entries/ostree-1-fedora-coreos.conf"
-# ...
-sudo umount "${TMP_FCOS_BOOT_VOLUME}"
-----
-====
-
-Continue with converting the raw disk image into a VirtualBox disk image:
-[source, bash]
-----
-vboxmanage convertfromraw "${UNPACKED_DISK}" "${VM_DISK}" --format VDI --variant Standard
-# Resize the disk to match FCOS requirements
-vboxmanage modifymedium disk "${VM_DISK}" --resize 10240
-# Add the converted disk to the VM
-vboxmanage storageattach "${VM_NAME}" --storagectl SATA --type hdd --port 0 --device 0 --medium "${VM_DISK}"
-----
-
-TIP: You can use https://www.virtualbox.org/manual/UserManual.html#vboxmanage-snapshot[snapshots] and https://www.virtualbox.org/manual/UserManual.html#vboxmanage-clonevm[cloning] in case you want to reuse the VM as an empty baseline before applying an Ignition configuration to it.
-
-[NOTE]
-====
-*Fedora CoreOS requires the root filesystem to be at least 8 GiB.* For practical reasons, disk images for some platforms ship with a smaller root filesystem, which by default automatically expands to fill all available disk space. If you add additional partitions after the root filesystem, you must make sure to explicitly resize the root partition as shown so that it is at least 8 GiB.
-
-Currently, if the root filesystem is smaller than 8 GiB, a warning is emitted on login. Starting from June 2021, if the root filesystem is smaller than 8 GiB and is followed by another partition, Fedora CoreOS will refuse to boot. For more details, see https://github.com/coreos/fedora-coreos-tracker/issues/586[this bug].
-====
-
-You can now boot the target system you previously configured.
-
-If you decided to supply the Ignition configuration URL dynamically or want to override your static URL, press `e` when the GRUB menu shows up. This allows you to edit the current boot entry and specify the remote Ignition configuration URL to use:
-[source, bash]
-----
-load_video
-#...
-linux ($root)/ostree/fedora-coros- #...
- ignition.firstboot ignition.config.url=http://10.0.2.2:8000/example.ign
-initrd ($root)/ostree/fedora-coreos- #...
-----
-
-The actual first boot process begins now. It is at this time that Ignition ingests the configuration file and provisions the system as specified.
-
-Once the VM finished booting, you can log in from your host:
 [source, bash]
 ----
 ssh core@localhost -p 2222
 ----
 
-== Troubleshooting First-boot Problems
+==== Bridged networking
 
-You may encounter problems with your Ignition configuration that require access to the system log which appears during the first boot. To make a copy of the system log you can attach a serial device to the VM before booting.
+If you want the VM to use a different IP address than your host, you can set the VM's network adapter to Bridged.
 
-To attach a serial device simply modify the hardware settings of the powered off VM and add a `Serial Port`. Select the destination and name of the file to be created. Afterwards power on the VM. When encountering an error, check the file you initially specified – it should contain a copy of the system log.
+. Determine the network adapter that should be bridged to the VM. To get the name of your host's default network adapter, you can run:
++
+[source, bash]
+----
+ip route ls default | grep -Po '(?<= dev )(\S+)'
+----
 
-The serial device can also be added to the VM via `vboxmanage` as described in the https://www.virtualbox.org/manual/UserManual.html#serialports[official usage documentation]:
+. Modify the VM's network adapter settings:
++
+[source, bash]
+----
+VM_NAME=my-instance
+ADAPTER=adapter-name
+VBoxManage modifyvm "$VM_NAME" --nic1 bridged --bridgeadapter1 "$ADAPTER"
+----
+
+=== Starting the VM
+
+You can now boot the VM you have configured:
 
 [source, bash]
 ----
-VM_LOG=$(realpath .)/${VM_NAME}.log
-
-vboxmanage modifyvm "${VM_NAME}" --uart1 '0x3F8' '4'
-vboxmanage modifyvm "${VM_NAME}" --uartmode1 file "${VM_LOG}"
+VM_NAME=my-instance
+VBoxManage startvm "$VM_NAME"
 ----
+
+== Troubleshooting first-boot problems
+
+You may encounter problems with your Ignition config that require access to the console log messages which appear during the first boot. To obtain a copy of the console log you can attach a https://www.virtualbox.org/manual/UserManual.html#serialports[serial device] to the VM before booting.
+
+To attach a serial device to a powered-off VM:
+
+[source, bash]
+----
+VM_NAME=my-instance
+VM_LOG=$(realpath .)/$VM_NAME.log
+VBoxManage modifyvm "$VM_NAME" --uart1 0x3F8 4
+VBoxManage modifyvm "$VM_NAME" --uartmode1 file "$VM_LOG"
+----
+
+When you power on the VM, console output will be logged to the file you specified.
