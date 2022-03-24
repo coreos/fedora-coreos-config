@@ -21,3 +21,13 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-a48e2d1845
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1116
       type: fast-track
+  iproute:
+    evr: 5.15.0-1.fc36
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1142 
+      type: pin
+  iproute-tc:
+    evr: 5.15.0-1.fc36
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1142 
+      type: pin
