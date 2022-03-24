@@ -14,6 +14,26 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-11e524ac6b
       type: fast-track
+  bind-libs:
+    evr: 32:9.16.27-1.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-14e36aac0c
+      type: fast-track
+  bind-license:
+    evra: 32:9.16.27-1.fc36.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-14e36aac0c
+      type: fast-track
+  bind-utils:
+    evr: 32:9.16.27-1.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-14e36aac0c
+      type: fast-track
+  containerd:
+    evr: 1.6.1-1.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d9c9bf56f6
+      type: fast-track
   container-selinux:
     evra: 2:2.180.0-1.fc36.noarch
     metadata:
@@ -41,10 +61,15 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d752f16f57
       type: fast-track
-  flatpak-session-helper:
-    evr: 1.12.6-1.fc36
+  expat:
+    evr: 2.4.7-1.fc36
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-a0c7327002
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-eeccd928a8
+      type: fast-track
+  flatpak-session-helper:
+    evr: 1.12.7-1.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-ed21aecd23
       type: fast-track
   fwupd:
     evr: 1.7.6-1.fc36
@@ -121,6 +146,11 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-7502260dab
       type: fast-track
+  skopeo:
+    evr: 1:1.6.0-1.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-bb9c00e112
+      type: fast-track
   vim-data:
     evra: 2:8.2.4579-1.fc36.noarch
     metadata:
@@ -130,4 +160,9 @@ packages:
     evr: 2:8.2.4579-1.fc36
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d5b08afacc
+      type: fast-track
+  zchunk-libs:
+    evr: 1.2.1-1.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-058d720e9b
       type: fast-track
