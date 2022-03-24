@@ -2,7 +2,8 @@
 
 This guide shows how to provision new Fedora CoreOS (FCOS) nodes on the VMware hypervisor.
 
-NOTE: Only https://kb.vmware.com/s/article/1003746[hardware version] 13 or later, vSphere ESXi hosts version 6.5 or later and vCenter host version 6.5 or later are supported.
+NOTE: Fedora CoreOS supports VMware ESXi &ge; 6.5, VMware Workstation &ge; 16, and VMware Fusion &ge; 12. It may be possible to
+xref:provisioning-vmware.adoc#_modifying_ovf_metadata[modify the metadata of the OVF] to run in older VMware products, but compatibility and supportability cannot be guaranteed.
 
 == Prerequisites
 
@@ -144,7 +145,7 @@ For further information on first-boot networking, see https://coreos.github.io/a
 
 You may encounter problems with your Ignition configuration that require access to the system log which appears during first-boot. To make a copy of the system log you can attach a serial device to the VM before booting. vSphere as well as Workstation and Fusion allow this and will save the output to a file of your choice.
 
-To attach a serial device simply modify the hardware settings of the powered off VM and add a `Serial Port`. Select the destination and name of the file to be created. Afterwards power on the VM. When encountering an error, check the file you initially specified – it should contain a copy of the system log.
+To attach a serial device simply modify the hardware settings of the powered off VM and add a `Serial Port`. Select the destination and name of the file to be created. Afterwards power on the VM. When encountering an error, check the file you initially specified - it should contain a copy of the system log.
 
 The serial device can also be added to the VM via `govc` as described in the https://github.com/vmware/govmomi/blob/master/govc/USAGE.md#deviceserialconnect[official usage documentation]:
 
@@ -154,4 +155,33 @@ VM_NAME='fcos-node01'
 
 govc device.serial.add -vm "${VM_NAME}"
 govc device.serial.connect -vm "${VM_NAME}" "[datastore] ${VM_NAME}/console.log"
+----
+
+== Modifying OVF metadata
+
+NOTE: While we provide these instructions for modifying the OVF metadata, we cannot
+guarantee that any modifications to the OVF metadata will result in a usable
+guest VM.
+
+Fedora CoreOS is intended to run on
+https://lifecycle.vmware.com/[generally supported] releases of VMware ESXi,
+VMware Workstation, and VMware Fusion. Accordingly, the Fedora CoreOS VMware
+OVA image specifies a
+https://kb.vmware.com/s/article/1003746[virtual hardware version]
+that may not be compatible with older, unsupported VMware products.
+However, you can modify the image's OVF metadata to specify an older
+virtual hardware version.
+
+The VMware OVA is simply a tarball that contains the files `disk.vmdk` and
+`coreos.ovf`. In order to edit the metadata used by FCOS as a guest VM, you
+should untar the OVA artifact, edit the OVF file, then create a new OVA file.
+
+The example commands below change the OVF hardware version from the preconfigured
+value to hardware version `13`. (Note: the defaults in the OVF are subject to change.)
+
+[source,bash,subs="attributes"]
+----
+tar -xvf fedora-coreos-{stable-version}-vmware.x86_64.ova
+sed -iE 's/vmx-[0-9]*/vmx-13/' coreos.ovf
+tar -H posix -cvf fedora-coreos-{stable-version}-vmware-vmx-13.x86_64.ova coreos.ovf disk.vmdk
 ----
