@@ -1,0 +1,39 @@
+#!/bin/bash
+# kola: { "platforms": "qemu", "appendFirstbootKernelArgs": "rd.net.timeout.dhcp=30 rd.net.dhcp.retry=8", "architectures": "!s390x"}
+#
+# Veirfy rd.net.timeout.dhcp and rd.net.dhcp.retry are supported
+# by NetworkManager. Append them to kernel parameter when boot,
+# get total timeout is `timeout * retry`, 30*8(240) seconds
+# in this test scenario
+# See:
+# - https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/559
+# - https://bugzilla.redhat.com/show_bug.cgi?id=1879094#c10
+# - https://bugzilla.redhat.com/show_bug.cgi?id=1877740
+#
+# - platforms: qemu
+#   - This test should pass everywhere if it passes anywhere.
+# - appendFirstbootKernelArgs: "rd.net.timeout.dhcp=30 rd.net.dhcp.retry=8"
+#   - The functionality we're testing here.
+# - architectures: !s390x
+#   - appendFirstbootKernelArgs doesn't work on s390x
+#   - https://github.com/coreos/coreos-assembler/issues/2776
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+# check kernel parameter
+cmdline="/proc/cmdline"
+for rd in rd.net.timeout.dhcp rd.net.dhcp.retry;
+do
+    if ! grep -q $rd $cmdline; then
+        fatal "Error: can not find $rd in kernel parameter"
+    fi
+done
+
+log=$(journalctl -b -u NetworkManager | grep "beginning transaction")
+timeout=$(echo $log | awk -F'[( )]' '{print $(NF-2)}')
+if [ $timeout -ne 240 ]; then
+    fatal "Error: actual dhcp timeout is $timeout, expected 240"
+fi
+ok "Total dhcp timeout matches expected value"
