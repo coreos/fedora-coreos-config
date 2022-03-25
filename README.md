@@ -22,16 +22,19 @@ and [tooling](https://github.com/coreos/fedora-coreos-tracker/blob/main/stream-t
 docs for more information about streams.
 
 All file changes in `testing-devel` are propagated to other
-branches (to `bodhi-updates` through
+branches (to `next-devel`, `branched`, and `rawhide` through
 [config-bot](https://github.com/coreos/fedora-coreos-releng-automation/tree/main/config-bot),
-and to `testing` through usual promotion), with the
-following exceptions:
-- `manifest.yaml`: contains the stream "identity", such as
-  the ref, additional commit metadata, and yum input repos.
-- lockfiles (`manifest-lock.*` files): lockfiles are
-  imported from `bodhi-updates` to `testing-devel`.
-  Overrides (`manifest-lock.overrides.*`) are manually
-  curated.
+and to `testing` and eventually `stable` through usual
+promotion), with the following exceptions:
+- `manifest.yaml`: contains the stream's name, yum repos
+  used during composes, and the `releasever`.
+- lockfiles (`manifest-lock.*` files): on `testing-devel`
+  and `next-devel`, lockfiles are pushed by
+  [the `bump-lockfile` job](https://github.com/coreos/fedora-coreos-pipeline/blob/main/jobs/bump-lockfile.Jenkinsfile).
+  Production streams receive them as part of usual
+  promotion. Overrides (`manifest-lock.overrides.*`) are
+  managed independently with the help of some GitHub Actions
+  (see sections below).
 
 ## Layout
 
