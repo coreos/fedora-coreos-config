@@ -2,6 +2,6 @@ variables:
   stream: next
   prod: true
 
-releasever: 35
+releasever: 36
 
 include: manifests/fedora-coreos.yaml
