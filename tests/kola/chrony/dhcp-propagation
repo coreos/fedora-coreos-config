@@ -1,10 +1,21 @@
 #!/bin/bash
-# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv" }
+# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv", "timeoutMin": 15 }
 # This script creates two veth interfaces i.e. one for the host machine 
 # and other for the container(dnsmasq server). This setup will be helpful
 # to verify the DHCP propagation of NTP servers. This will also avoid any 
 # regression that might cause in RHCOS or FCOS when the upstream changes 
 # come down and obsolete the temporary work (https://github.com/coreos/fedora-coreos-config/pull/412)
+#
+# - tags: needs-internet
+#   - This test builds a container from remote sources.
+#   - This test uses a remote NTP server.
+# - platforms: qemu-unpriv
+#   - Limit it to qemu because some cloud providers have their own
+#     special sauce for NTP/chrony and we don't want to interfere with
+#     that.
+# - timeoutMin: 15
+#   - Pulling and building the container can take a long time if a
+#     slow mirror gets chosen.
 
 set -xeuo pipefail
 
