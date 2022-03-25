@@ -11,7 +11,7 @@ jobs:
     name: Check promotion diffs
     runs-on: ubuntu-latest
     # Only run if this looks like a promotion PR
-    if: "startsWith(github.event.pull_request.title, 'tree: promote changes from')"
+    if: "contains(github.event.pull_request.title, 'tree: promote changes from')"
     steps:
       - name: Get base commit hash
         env:
