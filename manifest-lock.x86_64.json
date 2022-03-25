@@ -61,13 +61,13 @@
       "evra": "1:2.11-6.fc36.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.16.25-2.fc36.x86_64"
+      "evra": "32:9.16.27-1.fc36.x86_64"
     },
     "bind-license": {
-      "evra": "32:9.16.25-2.fc36.noarch"
+      "evra": "32:9.16.27-1.fc36.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.16.25-2.fc36.x86_64"
+      "evra": "32:9.16.27-1.fc36.x86_64"
     },
     "bootupd": {
       "evra": "0.2.6-2.fc36.x86_64"
@@ -136,7 +136,7 @@
       "evra": "2:2.180.0-1.fc36.noarch"
     },
     "containerd": {
-      "evra": "1.6.0-1.fc36.x86_64"
+      "evra": "1.6.1-1.fc36.x86_64"
     },
     "containernetworking-plugins": {
       "evra": "1.1.0-1.fc36.x86_64"
@@ -145,10 +145,10 @@
       "evra": "4:1-53.fc36.noarch"
     },
     "coreos-installer": {
-      "evra": "0.13.1-1.fc36.x86_64"
+      "evra": "0.13.1-3.fc36.x86_64"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.13.1-1.fc36.x86_64"
+      "evra": "0.13.1-3.fc36.x86_64"
     },
     "coreutils": {
       "evra": "9.0-3.fc36.x86_64"
@@ -271,7 +271,7 @@
       "evra": "2:5.16-2.fc36.x86_64"
     },
     "expat": {
-      "evra": "2.4.6-1.fc36.x86_64"
+      "evra": "2.4.7-1.fc36.x86_64"
     },
     "fedora-coreos-pinger": {
       "evra": "0.0.4-13.fc36.x86_64"
@@ -313,7 +313,7 @@
       "evra": "1:4.9.0-1.fc36.x86_64"
     },
     "flatpak-session-helper": {
-      "evra": "1.12.6-1.fc36.x86_64"
+      "evra": "1.12.7-1.fc36.x86_64"
     },
     "fstrm": {
       "evra": "0.6.1-4.fc36.x86_64"
@@ -475,13 +475,13 @@
       "evra": "2.4.0-9.fc36.noarch"
     },
     "kernel": {
-      "evra": "5.17.0-0.rc7.116.fc36.x86_64"
+      "evra": "5.17.0-300.fc36.x86_64"
     },
     "kernel-core": {
-      "evra": "5.17.0-0.rc7.116.fc36.x86_64"
+      "evra": "5.17.0-300.fc36.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.17.0-0.rc7.116.fc36.x86_64"
+      "evra": "5.17.0-300.fc36.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.23-5.fc36.x86_64"
@@ -946,10 +946,10 @@
       "evra": "8.8p1-1.fc36.1.x86_64"
     },
     "openssl": {
-      "evra": "1:3.0.0-1.fc36.x86_64"
+      "evra": "1:3.0.2-1.fc36.x86_64"
     },
     "openssl-libs": {
-      "evra": "1:3.0.0-1.fc36.x86_64"
+      "evra": "1:3.0.2-1.fc36.x86_64"
     },
     "os-prober": {
       "evra": "1.77-9.fc36.x86_64"
@@ -1096,7 +1096,7 @@
       "evra": "15.4-5.x86_64"
     },
     "skopeo": {
-      "evra": "1:1.5.2-2.fc36.x86_64"
+      "evra": "1:1.6.0-1.fc36.x86_64"
     },
     "slang": {
       "evra": "2.3.2-11.fc36.x86_64"
@@ -1153,22 +1153,22 @@
       "evra": "1.9.8-5.p2.fc36.x86_64"
     },
     "systemd": {
-      "evra": "250.3-4.fc36.x86_64"
+      "evra": "250.3-8.fc36.x86_64"
     },
     "systemd-container": {
-      "evra": "250.3-4.fc36.x86_64"
+      "evra": "250.3-8.fc36.x86_64"
     },
     "systemd-libs": {
-      "evra": "250.3-4.fc36.x86_64"
+      "evra": "250.3-8.fc36.x86_64"
     },
     "systemd-pam": {
-      "evra": "250.3-4.fc36.x86_64"
+      "evra": "250.3-8.fc36.x86_64"
     },
     "systemd-resolved": {
-      "evra": "250.3-4.fc36.x86_64"
+      "evra": "250.3-8.fc36.x86_64"
     },
     "systemd-udev": {
-      "evra": "250.3-4.fc36.x86_64"
+      "evra": "250.3-8.fc36.x86_64"
     },
     "tar": {
       "evra": "2:1.34-3.fc36.x86_64"
@@ -1225,7 +1225,7 @@
       "evra": "2.1.0-18.fc36.x86_64"
     },
     "zchunk-libs": {
-      "evra": "1.2.0-1.fc36.x86_64"
+      "evra": "1.2.1-1.fc36.x86_64"
     },
     "zincati": {
       "evra": "0.0.24-3.fc36.x86_64"
@@ -1238,13 +1238,13 @@
     }
   },
   "metadata": {
-    "generated": "2022-03-22T20:53:15Z",
+    "generated": "2022-03-25T00:17:34Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2022-03-20T22:09:51Z"
+        "generated": "2022-03-24T22:14:40Z"
       },
       "fedora-next": {
-        "generated": "2022-03-22T10:31:23Z"
+        "generated": "2022-03-24T10:30:41Z"
       },
       "fedora-next-updates": {
         "generated": "2022-02-08T18:40:57Z"
