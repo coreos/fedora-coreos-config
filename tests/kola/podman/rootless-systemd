@@ -1,21 +1,26 @@
 #!/bin/bash
-# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv" }
-# This script runs a rootless podman container with systemd inside
-# that brings up httpd. Tests that rootless+systemd works. See issue:
+# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv", "timeoutMin": 15 }
+# This script runs a rootless podman container (rootless because it's
+# run as the `core` user) with systemd inside that brings up httpd.
+# It tests that rootless+systemd works. See issue:
 # https://github.com/containers/podman/issues/7441
 #
 # If it gets easy to change the kargs in the future we should try this
 # both on cgroups v1 and cgroups v2.
-
-# Just run on QEMU for now. If this test works in one place it should
-# work everywhere.
-# The test is scoped to only FCOS because the `--retry-all-errors` flag passed
-# to `curl` is not avaiable on the version in RHCOS.
-# TODO-RHCOS: adapt test to conditionally use the `-retry-all-errors` flag on
-# only FCOS
-
-# Script to be executed as the `core` user to build and
-# run a rootless podman container that uses systemd inside.
+#
+# - distros: fcos
+#   - The test is scoped to only FCOS because the `--retry-all-errors`
+#     flag passed to `curl` is not avaiable on RHEL8.
+#     TODO-RHCOS: adapt test to conditionally use the `-retry-all-errors`
+#     flag on only FCOS
+# - tags: needs-internet
+#   - This test builds a container from remote sources.
+#   - This test uses a remote NTP server.
+# - platforms: qemu-unpriv
+#   - If the test works anywhere it should work everywhere.
+# - timeoutMin: 15
+#   - Pulling and building the container can take a long time if a
+#     slow mirror gets chosen.
 
 set -xeuo pipefail
 
