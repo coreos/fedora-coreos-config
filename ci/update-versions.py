@@ -17,7 +17,7 @@ FCOS_STREAMS = {
 
 basedir = os.path.normpath(os.path.join(os.path.dirname(sys.argv[0]), '..'))
 
-with open(os.path.join(basedir, 'site.yml'), 'r+') as fh:
+with open(os.path.join(basedir, 'antora.yml'), 'r+') as fh:
     config = yaml.safe_load(fh)
     attrs = config.setdefault('asciidoc', {}).setdefault('attributes', {})
     orig_attrs = attrs.copy()
