@@ -21,9 +21,3 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-0813365f58
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1116
       type: fast-track
-  ignition:
-    evr: 2.13.0-5.fc35
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-cfe402447e
-      reason: https://github.com/coreos/ignition/issues/1092
-      type: fast-track
