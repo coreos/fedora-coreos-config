@@ -8,26 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  podman:
-    evr: 3:4.0.2-1.fc36
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-958c9fd48f
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1046#issuecomment-1054585092
-      type: fast-track
-  podman-plugins:
-    evr: 3:4.0.2-1.fc36
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-958c9fd48f
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1046#issuecomment-1054585092
-      type: fast-track
-  rpm-ostree:
-    evr: 2022.5-1.fc36
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-7502260dab
-      type: fast-track
-  rpm-ostree-libs:
-    evr: 2022.5-1.fc36
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-7502260dab
-      type: fast-track
+packages: {}
