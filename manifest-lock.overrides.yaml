@@ -32,12 +32,14 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-bb9c00e112
       type: fast-track
   vim-data:
-    evra: 2:8.2.4579-1.fc36.noarch
+    evra: 2:8.2.4621-1.fc36.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d5b08afacc
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-b718ebbfce
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1605/files#r836425150
       type: fast-track
   vim-minimal:
-    evr: 2:8.2.4579-1.fc36
+    evr: 2:8.2.4621-1.fc36
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d5b08afacc
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-b718ebbfce
+      reason: https://github.com/coreos/fedora-coreos-config/pull/1605/files#r836425150
       type: fast-track
