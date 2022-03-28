@@ -14,9 +14,15 @@ postprocess:
         # FCOS: Only operate on releases before F36. The fix has landed
         # in F36+ and there is no need for a workaround.
         [ ${VERSION_ID} -le 35 ] || exit 0
-    else 
-        # RHCOS: The fix hasn't landed in any version of RHEL yet
-        true
+    elif [[ "${ID}" == "rhel" ]]; then
+        # RHCOS: Only operate on releases before RHEL8.5. The fix has 
+        # landed in RHEL8.6+ and there is no need for a workaround.
+        # https://bugzilla.redhat.com/show_bug.cgi?id=2008101
+        # Fixed RPM version: device-mapper-multipath-0.8.4-18.el8
+        # Using generic redhat-release package according to 
+        # https://github.com/openshift/os/pull/713, should check RHEL version
+        # with VERSION_ID
+        [ ${VERSION_ID//.} -le 85 ] || exit 0
     fi
     mkdir /usr/lib/systemd/system/multipathd.socket.d
     cat > /usr/lib/systemd/system/multipathd.socket.d/50-start-conditions.conf <<'EOF'
@@ -37,9 +43,8 @@ postprocess:
     set -xeuo pipefail
     source /etc/os-release
     if [[ ${NAME} =~ "Fedora" ]]; then
-        # FCOS: This fix hasn't landed in rawhide (F37) yet,
-        # but hopefully will soon.
-        [ ${VERSION_ID} -le 37 ] || exit 0
+        # FCOS: This fix has landed in F37+
+        [ ${VERSION_ID} -le 36 ] || exit 0
     else 
         # RHCOS: The fix hasn't landed in any version of RHEL yet
         true

@@ -1,9 +1,21 @@
 #!/bin/bash
 set -xeuo pipefail
 
+# kola: { "platforms": "qemu", "tags": "needs-internet", "exclusive": false, "timeoutMin": 3 }
 # Tests that rootless podman containers can DNS resolve external domains.
 # https://github.com/coreos/fedora-coreos-tracker/issues/923
-# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv", "exclusive": false}
+#
+# - platforms: qemu
+#   - This test should pass everywhere if it passes anywhere.
+# - tags: needs-internet
+#   - This test pulls a container from a registry.
+# - exclusive: false
+#   - This test doesn't make meaningful changes to the system and
+#     should be able to be combined with other tests.
+#   - Root reprovisioning requires at least 4GiB of memory.
+# - timeoutMin: 3
+#   - This test reaches out to the internet and it could take more
+#     time to pull down the container.
 
 . $KOLA_EXT_DATA/commonlib.sh
 
