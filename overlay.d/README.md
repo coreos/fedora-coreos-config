@@ -39,6 +39,12 @@ Things that are more closely "Fedora CoreOS":
 * display warnings on the console if no ignition config was provided or no ssh
   key found.
 
+16disable-zincati-and-pinger
+------------------------
+
+Disable Zincati and fedora-coreos-pinger on non-production streams:
+https://github.com/coreos/fedora-coreos-tracker/issues/163
+
 20platform-chrony
 -----------------
 
