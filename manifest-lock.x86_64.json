@@ -52,13 +52,13 @@
       "evra": "1:2.11-3.fc35.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.16.24-1.fc35.x86_64"
+      "evra": "32:9.16.27-1.fc35.x86_64"
     },
     "bind-license": {
-      "evra": "32:9.16.24-1.fc35.noarch"
+      "evra": "32:9.16.27-1.fc35.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.16.24-1.fc35.x86_64"
+      "evra": "32:9.16.27-1.fc35.x86_64"
     },
     "bootupd": {
       "evra": "0.2.6-1.fc35.x86_64"
@@ -124,28 +124,28 @@
       "evra": "0.21.2-3.fc35.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.177.0-1.fc35.noarch"
+      "evra": "2:2.180.0-1.fc35.noarch"
     },
     "containerd": {
-      "evra": "1.6.0-1.fc35.x86_64"
+      "evra": "1.6.1-1.fc35.x86_64"
     },
     "containernetworking-plugins": {
-      "evra": "1.0.1-4.fc35.x86_64"
+      "evra": "1.1.0-1.fc35.x86_64"
     },
     "containers-common": {
       "evra": "4:1-45.fc35.noarch"
     },
     "coreos-installer": {
-      "evra": "0.13.1-1.fc35.x86_64"
+      "evra": "0.13.1-3.fc35.x86_64"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.13.1-1.fc35.x86_64"
+      "evra": "0.13.1-3.fc35.x86_64"
     },
     "coreutils": {
-      "evra": "8.32-32.fc35.x86_64"
+      "evra": "8.32-33.fc35.x86_64"
     },
     "coreutils-common": {
-      "evra": "8.32-32.fc35.x86_64"
+      "evra": "8.32-33.fc35.x86_64"
     },
     "cpio": {
       "evra": "2.13-11.fc35.x86_64"
@@ -175,7 +175,7 @@
       "evra": "2.4.3-1.fc35.x86_64"
     },
     "cups-libs": {
-      "evra": "1:2.3.3op2-15.fc35.x86_64"
+      "evra": "1:2.3.3op2-16.fc35.x86_64"
     },
     "curl": {
       "evra": "7.79.1-1.fc35.x86_64"
@@ -265,7 +265,7 @@
       "evra": "2:5.16-1.fc35.x86_64"
     },
     "expat": {
-      "evra": "2.4.4-1.fc35.x86_64"
+      "evra": "2.4.7-1.fc35.x86_64"
     },
     "fedora-coreos-pinger": {
       "evra": "0.0.4-12.fc35.x86_64"
@@ -307,7 +307,7 @@
       "evra": "1:4.8.0-4.fc35.x86_64"
     },
     "flatpak-session-helper": {
-      "evra": "1.12.6-1.fc35.x86_64"
+      "evra": "1.12.7-1.fc35.x86_64"
     },
     "fstrm": {
       "evra": "0.6.1-3.fc35.x86_64"
@@ -355,16 +355,16 @@
       "evra": "2.35.1-1.fc35.x86_64"
     },
     "glib2": {
-      "evra": "2.70.4-1.fc35.x86_64"
+      "evra": "2.70.5-1.fc35.x86_64"
     },
     "glibc": {
-      "evra": "2.34-28.fc35.x86_64"
+      "evra": "2.34-29.fc35.x86_64"
     },
     "glibc-common": {
-      "evra": "2.34-28.fc35.x86_64"
+      "evra": "2.34-29.fc35.x86_64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.34-28.fc35.x86_64"
+      "evra": "2.34-29.fc35.x86_64"
     },
     "gmp": {
       "evra": "1:6.2.0-7.fc35.x86_64"
@@ -406,7 +406,7 @@
       "evra": "3.23-5.fc35.x86_64"
     },
     "ignition": {
-      "evra": "2.13.0-3.fc35.x86_64"
+      "evra": "2.13.0-5.fc35.x86_64"
     },
     "inih": {
       "evra": "49-4.fc35.x86_64"
@@ -469,13 +469,13 @@
       "evra": "2.4.0-8.fc35.noarch"
     },
     "kernel": {
-      "evra": "5.16.13-200.fc35.x86_64"
+      "evra": "5.16.16-200.fc35.x86_64"
     },
     "kernel-core": {
-      "evra": "5.16.13-200.fc35.x86_64"
+      "evra": "5.16.16-200.fc35.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.16.13-200.fc35.x86_64"
+      "evra": "5.16.16-200.fc35.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.22-7.fc35.x86_64"
@@ -628,7 +628,7 @@
       "evra": "1.6.0-2.fc35.x86_64"
     },
     "libldb": {
-      "evra": "2.4.1-1.fc35.x86_64"
+      "evra": "2.4.2-1.fc35.x86_64"
     },
     "libluksmeta": {
       "evra": "9-12.fc35.x86_64"
@@ -697,7 +697,7 @@
       "evra": "1.14.2-1.fc35.x86_64"
     },
     "libreport-filesystem": {
-      "evra": "2.15.2-7.fc35.noarch"
+      "evra": "2.15.2-8.fc35.noarch"
     },
     "libseccomp": {
       "evra": "2.5.3-1.fc35.x86_64"
@@ -724,7 +724,7 @@
       "evra": "2.37.4-1.fc35.x86_64"
     },
     "libsmbclient": {
-      "evra": "2:4.15.5-1.fc35.x86_64"
+      "evra": "2:4.15.6-0.fc35.x86_64"
     },
     "libsmbios": {
       "evra": "2.4.3-4.fc35.x86_64"
@@ -781,7 +781,7 @@
       "evra": "0.9.10-14.fc35.x86_64"
     },
     "libusb1": {
-      "evra": "1.0.24-4.fc35.x86_64"
+      "evra": "1.0.25-8.fc35.x86_64"
     },
     "libuser": {
       "evra": "0.63-7.fc35.x86_64"
@@ -802,7 +802,7 @@
       "evra": "0.3.2-2.fc35.x86_64"
     },
     "libwbclient": {
-      "evra": "2:4.15.5-1.fc35.x86_64"
+      "evra": "2:4.15.6-0.fc35.x86_64"
     },
     "libxcrypt": {
       "evra": "4.4.28-1.fc35.x86_64"
@@ -931,10 +931,10 @@
       "evra": "8.7p1-3.fc35.x86_64"
     },
     "openssl": {
-      "evra": "1:1.1.1l-2.fc35.x86_64"
+      "evra": "1:1.1.1n-1.fc35.x86_64"
     },
     "openssl-libs": {
-      "evra": "1:1.1.1l-2.fc35.x86_64"
+      "evra": "1:1.1.1n-1.fc35.x86_64"
     },
     "os-prober": {
       "evra": "1.77-8.fc35.x86_64"
@@ -1039,13 +1039,13 @@
       "evra": "2:1.1.0-1.fc35.x86_64"
     },
     "samba-client-libs": {
-      "evra": "2:4.15.5-1.fc35.x86_64"
+      "evra": "2:4.15.6-0.fc35.x86_64"
     },
     "samba-common": {
-      "evra": "2:4.15.5-1.fc35.noarch"
+      "evra": "2:4.15.6-0.fc35.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.15.5-1.fc35.x86_64"
+      "evra": "2:4.15.6-0.fc35.x86_64"
     },
     "sed": {
       "evra": "4.8-8.fc35.x86_64"
@@ -1078,7 +1078,7 @@
       "evra": "15.4-5.x86_64"
     },
     "skopeo": {
-      "evra": "1:1.5.2-1.fc35.x86_64"
+      "evra": "1:1.6.0-1.fc35.x86_64"
     },
     "slang": {
       "evra": "2.3.2-10.fc35.x86_64"
@@ -1135,22 +1135,22 @@
       "evra": "1.9.7p2-2.fc35.x86_64"
     },
     "systemd": {
-      "evra": "249.7-2.fc35.x86_64"
+      "evra": "249.9-1.fc35.x86_64"
     },
     "systemd-container": {
-      "evra": "249.7-2.fc35.x86_64"
+      "evra": "249.9-1.fc35.x86_64"
     },
     "systemd-libs": {
-      "evra": "249.7-2.fc35.x86_64"
+      "evra": "249.9-1.fc35.x86_64"
     },
     "systemd-pam": {
-      "evra": "249.7-2.fc35.x86_64"
+      "evra": "249.9-1.fc35.x86_64"
     },
     "systemd-resolved": {
-      "evra": "249.7-2.fc35.x86_64"
+      "evra": "249.9-1.fc35.x86_64"
     },
     "systemd-udev": {
-      "evra": "249.7-2.fc35.x86_64"
+      "evra": "249.9-1.fc35.x86_64"
     },
     "tar": {
       "evra": "2:1.34-2.fc35.x86_64"
@@ -1180,10 +1180,10 @@
       "evra": "2.37.4-1.fc35.x86_64"
     },
     "vim-data": {
-      "evra": "2:8.2.4529-1.fc35.noarch"
+      "evra": "2:8.2.4579-1.fc35.noarch"
     },
     "vim-minimal": {
-      "evra": "2:8.2.4529-1.fc35.x86_64"
+      "evra": "2:8.2.4579-1.fc35.x86_64"
     },
     "which": {
       "evra": "2.21-27.fc35.x86_64"
@@ -1204,7 +1204,7 @@
       "evra": "2.1.0-17.fc35.x86_64"
     },
     "zchunk-libs": {
-      "evra": "1.2.0-1.fc35.x86_64"
+      "evra": "1.2.1-1.fc35.x86_64"
     },
     "zincati": {
       "evra": "0.0.24-1.fc35.x86_64"
@@ -1217,16 +1217,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-03-13T20:53:11Z",
+    "generated": "2022-03-27T20:53:06Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2021-10-26T05:31:27Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-03-11T22:11:38Z"
+        "generated": "2022-03-25T22:20:16Z"
       },
       "fedora-updates": {
-        "generated": "2022-03-13T17:32:37Z"
+        "generated": "2022-03-27T01:09:28Z"
       }
     }
   }

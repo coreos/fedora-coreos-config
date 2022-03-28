@@ -86,6 +86,13 @@ postprocess:
   - |
     #!/usr/bin/env bash
     systemctl mask systemd-repart.service
+  # Mask systemd-network-generator. We need it for some things in the future
+  # (https://github.com/systemd/systemd/pull/21766/files), but for now it's
+  # just failing on boot because of SELinux:
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1059#issuecomment-1013766710
+  - |
+    #!/usr/bin/env bash
+    systemctl mask systemd-network-generator.service
 
   # Set the fallback hostname to `localhost`. This was needed in F33/F34
   # because a fallback hostname of `fedora` + systemd-resolved broke
@@ -111,9 +118,11 @@ packages:
   # Containers
   - systemd-container catatonit
   - fuse-overlayfs slirp4netns
-  # name resolution for podman containers
+  # support for old style CNI networks and name resolution for
+  # podman containers with CNI networks
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
-  - podman-plugins dnsmasq
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071338097
+  - containernetworking-plugins podman-plugins dnsmasq
   # Remote IPC for podman
   - libvarlink-util
   # Minimal NFS client

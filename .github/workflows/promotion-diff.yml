@@ -11,7 +11,7 @@ jobs:
     name: Check promotion diffs
     runs-on: ubuntu-latest
     # Only run if this looks like a promotion PR
-    if: "startsWith(github.event.pull_request.title, 'tree: promote changes from')"
+    if: "contains(github.event.pull_request.title, 'tree: promote changes from')"
     steps:
       - name: Get base commit hash
         env:
@@ -38,7 +38,7 @@ jobs:
           # one in the base, not the one from the origin
           cp base/manifest.yaml origin/
       - name: Compare trees
-        uses: coreos/check-diff@main
+        uses: coreos/actions-lib/check-diff@main
         with:
           basedir: origin
           patchdir: new

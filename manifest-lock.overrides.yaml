@@ -9,33 +9,15 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  systemd:
-    evr: 249.7-2.fc35
+  coreos-installer:
+    evr: 0.13.1-3.fc35
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1059
-      type: pin
-  systemd-container:
-    evr: 249.7-2.fc35
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-0813365f58
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1116
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.13.1-3.fc35
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1059
-      type: pin
-  systemd-libs:
-    evr: 249.7-2.fc35
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1059
-      type: pin
-  systemd-pam:
-    evr: 249.7-2.fc35
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1059
-      type: pin
-  systemd-resolved:
-    evr: 249.7-2.fc35
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1059
-      type: pin
-  systemd-udev:
-    evr: 249.7-2.fc35
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1059
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-0813365f58
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1116
+      type: fast-track
