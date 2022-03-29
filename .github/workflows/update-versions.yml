@@ -31,7 +31,7 @@ jobs:
           token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
           branch: update-versions
           push-to-fork: coreosbot-releng/fedora-coreos-docs
-          title: "site: update software versions ✨"
+          title: "antora: update software versions ✨"
           body: "Created by update-versions [GitHub workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/update-versions.yml) ([source](${{ github.server_url }}/${{ github.repository }}/blob/main/.github/workflows/update-versions.yml))."
           committer: "CoreOS Bot <coreosbot@fedoraproject.org>"
           author: "CoreOS Bot <coreosbot@fedoraproject.org>"
