@@ -2,3 +2,10 @@
 # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
 # streams.
 include: image-base.yaml
+
+# See https://github.com/coreos/fedora-coreos-tracker/pull/51
+rootfs: "xfs"
+# See https://man7.org/linux/man-pages/man8/xfs_admin.8.html
+# Let's opt-in to supporting bigger timestamps as a forward looking
+# system.
+rootfs-args: "-m bigtime=1"

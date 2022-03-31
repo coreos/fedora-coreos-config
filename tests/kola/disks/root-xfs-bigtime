@@ -1,0 +1,21 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+# Test that we have bigtime=1 for XFS
+# xref https://man7.org/linux/man-pages/man8/xfs_admin.8.html
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+tmpd=$(mktemp -d) && trap 'rm -rf ${tmpd}' EXIT
+cd "${tmpd}"
+
+if stat -f / | grep 'Type: xfs'; then
+    xfs_info / > xfsinfo.txt
+    if ! grep -q bigtime=1 xfsinfo.txt; then
+        fatal "failed to find bigtime=1 for /"
+    fi
+else
+    echo "notice: rootfs was not xfs"
+fi
+ok xfs bigtime

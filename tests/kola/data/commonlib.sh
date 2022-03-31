@@ -12,6 +12,22 @@ fatal() {
     exit 1
 }
 
+_TEST_TEMPDIR=""
+ensure_tmpdir() {
+    local tmpdir
+    tmpdir=$(mktemp -d)
+    cd "${tmpdir}"
+    touch .tmpdir
+}
+
+cleanup_tmpdir() {
+    tmpdir=$(pwd)
+    cd /
+    if test -f "${tmpdir}"/.tmpdir; then
+        rm -rf "${tmpdir}"
+    fi
+}
+
 get_ipv4_for_nic() {
     local nic_name=$1
     local ip=$(ip -j addr show ${nic_name} | jq -r '.[0].addr_info | map(select(.family == "inet")) | .[0].local')
