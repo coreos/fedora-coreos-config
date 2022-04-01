@@ -10,12 +10,14 @@
 
 packages:
   iproute:
-    evr: 5.15.0-1.fc36
+    evr: 5.17.0-2.fc37
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-17b0e2552b
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1142
-      type: pin
+      type: fast-track
   iproute-tc:
-    evr: 5.15.0-1.fc36
+    evr: 5.17.0-2.fc37
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-17b0e2552b
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1142
-      type: pin
+      type: fast-track
