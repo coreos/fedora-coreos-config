@@ -123,8 +123,6 @@ packages:
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
   # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071338097
   - containernetworking-plugins podman-plugins dnsmasq
-  # Remote IPC for podman
-  - libvarlink-util
   # Minimal NFS client
   - nfs-utils-coreos
   # Active Directory support
