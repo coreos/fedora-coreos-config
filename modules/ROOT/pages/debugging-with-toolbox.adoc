@@ -29,7 +29,7 @@ toolbox create
 
 You can then list all the running toolboxes running on the host. This should
 show you your newly created toolbox. In this case, it is named
-`fedora-toolbox-34`.
+`fedora-toolbox-35`.
 
 [source,sh]
 ----
@@ -60,7 +60,7 @@ from the host with the following command.
 
 [source,sh]
 ----
-toolbox rm --force fedora-toolbox-34
+toolbox rm --force fedora-toolbox-35
 ----
 
 NOTE: Toolbx allows you to create toolboxes with your custom
