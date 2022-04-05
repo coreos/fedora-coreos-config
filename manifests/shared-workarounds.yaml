@@ -43,8 +43,8 @@ postprocess:
     set -xeuo pipefail
     source /etc/os-release
     if [[ ${NAME} =~ "Fedora" ]]; then
-        # FCOS: This fix has landed in F37+
-        [ ${VERSION_ID} -le 36 ] || exit 0
+        # FCOS: This fix has landed in F36+
+        [ ${VERSION_ID} -le 35 ] || exit 0
     else 
         # RHCOS: The fix hasn't landed in any version of RHEL yet
         true
