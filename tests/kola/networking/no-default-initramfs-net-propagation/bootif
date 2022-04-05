@@ -1,0 +1,28 @@
+#!/bin/bash
+# kola: { "platforms": "qemu", "appendFirstbootKernelArgs": "BOOTIF=52:54:00:12:34:56" }
+#
+# In addition to the pure network defaults case we should also make
+# sure that when BOOTIF= or rd.bootif= are provided on the kernel
+# command line (typically from PXE servers) that we don't propagate
+# networking configs either. See https://github.com/coreos/fedora-coreos-tracker/issues/1048
+#
+# - platforms: qemu
+#   - This test should pass everywhere if it passes anywhere.
+# - appendFirstbootKernelArgs: "BOOTIF=52:54:00:12:34:56"
+#   - Append BOOTIF kernel argument so we can test how nm-initrd-generator
+#     and the coreos-teardown-initramfs interact. The MAC address is from:
+#     https://github.com/coreos/coreos-assembler/blob/d5f1623aad6d133b2c7c00e784c04ab6828450c1/mantle/platform/metal.go#L468
+
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+# Run the test bits (sets the $fail var)
+. $KOLA_EXT_DATA/test-net-propagation.sh
+
+if [ -z "${fail:-}" ]; then
+    ok "success: no initramfs network propagation for default configuration with BOOTIF"
+else
+    fatal "fail: no initramfs network propagation for default configuration with BOOTIF"
+fi

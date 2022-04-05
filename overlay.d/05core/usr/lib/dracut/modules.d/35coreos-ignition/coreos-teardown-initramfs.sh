@@ -22,6 +22,21 @@ dracut_func() {
     return $rc
 }
 
+# Get the BOOTIF and rd.bootif kernel arguments from
+# the kernel command line.
+get_bootif_kargs() {
+    bootif_kargs=""
+    bootif_karg=$(dracut_func getarg BOOTIF)
+    if [ ! -z "$bootif_karg" ]; then
+        bootif_kargs+="BOOTIF=${bootif_karg}"
+    fi
+    rdbootif_karg=$(dracut_func getarg rd.bootif)
+    if [ ! -z "$rdbootif_karg" ]; then
+        bootif_kargs+=" rd.bootif=${rdbootif_karg}"
+    fi
+    echo $bootif_kargs
+}
+
 # Determine if the generated NM connection profiles match the default
 # that would be given to us if the user had provided no additional
 # configuration. i.e. did the user give us any network configuration
@@ -33,6 +48,9 @@ are_default_NM_configs() {
     # pick up our CoreOS default networking kargs from the afterburn dropin
     DEFAULT_KARGS_FILE=/usr/lib/systemd/system/afterburn-network-kargs.service.d/50-afterburn-network-kargs-default.conf
     source <(grep -o 'AFTERBURN_NETWORK_KARGS_DEFAULT=.*' $DEFAULT_KARGS_FILE)
+    # Also pick up BOOTIF/rd.bootif kargs and apply them here.
+    # See https://github.com/coreos/fedora-coreos-tracker/issues/1048
+    BOOTIF_KARGS=$(get_bootif_kargs)
     # Make two dirs for storing files to use in the comparison
     mkdir -p /run/coreos-teardown-initramfs/connections-compare-{1,2}
     # Make another that's just a throwaway for the initrd-data-dir
@@ -43,7 +61,8 @@ are_default_NM_configs() {
     # Do a new run with the default input
     /usr/libexec/nm-initrd-generator \
         -c /run/coreos-teardown-initramfs/connections-compare-2 \
-        -i /run/coreos-teardown-initramfs/initrd-data-dir -- $AFTERBURN_NETWORK_KARGS_DEFAULT
+        -i /run/coreos-teardown-initramfs/initrd-data-dir \
+        -- $AFTERBURN_NETWORK_KARGS_DEFAULT $BOOTIF_KARGS
     # remove unique identifiers from the files (so our diff can work)
     sed -i '/^uuid=/d' /run/coreos-teardown-initramfs/connections-compare-{1,2}/*
     # currently the output will differ based on whether rd.neednet=1

@@ -1,0 +1,14 @@
+# Extra tweaks needed for podman v4
+packages:
+  # For podman v4 netavark gets pulled in but it only recommends
+  # aardvark-dns (which provides name resolution based on container
+  # names). This functionality was previously provided by dnsname from
+  # podman-plugins in the podman v3 stack.
+  # See https://github.com/containers/netavark/pull/217
+  - aardvark-dns
+  # Since we need `containernetworking-plugins` installed to continue
+  # to support CNI networks we need to also explicitly install
+  # `netavark` so we get both of them installed since both of them
+  # provide `container-network-stack`.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071458717
+  - netavark
