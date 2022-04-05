@@ -24,7 +24,7 @@ mkdir ova-templates
 coreos-installer download -s "${STREAM}" -p vmware -f ova -C ./ova-templates/
 ----
 
-Alternatively, OVA images can be manually downloaded from the https://getfedora.org/coreos/download/[download page].
+Alternatively, OVA images can be manually downloaded from the https://getfedora.org/coreos/download?tab=metal_virtualized[download page].
 
 === Encoding Ignition configuration
 
