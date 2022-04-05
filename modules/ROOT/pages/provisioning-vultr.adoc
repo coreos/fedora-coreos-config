@@ -10,7 +10,7 @@ If you do not want to use Ignition to get started, you can make use of the https
 
 While the Vultr documentation mentions `cloud-init` and scripts, FCOS does not support `cloud-init` or the ability to run scripts from user-data. It accepts only Ignition configuration files.
 
-You also need to have access to a Vultr account. The examples below use the https://github.com/vultr/vultr-cli[vultr-cli] and https://s3tools.org/s3cmd[s3cmd] command-line tools.
+You also need to have access to a Vultr account. The examples below use the https://github.com/vultr/vultr-cli[vultr-cli] and https://s3tools.org/s3cmd[s3cmd] command-line tools. Both of these tools are available in Fedora and can be installed via `sudo dnf install vultr-cli s3cmd`.
 
 == Using a custom snapshot
 
@@ -32,13 +32,13 @@ STREAM='stable'
 coreos-installer download -s "${STREAM}" -p vultr -f raw.xz --decompress
 ----
 
-. https://www.vultr.com/docs/vultr-object-storage#s3cmd__Example_CLI_tool[Use s3cmd to upload] the raw image to your bucket, and note its public URL.
+. https://www.vultr.com/docs/how-to-use-s3cmd-with-vultr-object-storage[Use s3cmd to upload] the raw image to your bucket, and note its public URL.
 +
 [source, bash]
 ----
 BUCKET='my-bucket'
 FCOS_VERSION='...'
-s3cmd put -P "fedora-coreos-${FCOS_VERSION}-vultr.x86_64.raw" "s3://{BUCKET}/"
+s3cmd put --acl-public "fedora-coreos-${FCOS_VERSION}-vultr.x86_64.raw" "s3://${BUCKET}/"
 ----
 
 . Create the snapshot from your object URL, and note its ID.
@@ -56,15 +56,15 @@ NOTE: You'll need to wait for the snapshot to finish processing before using it.
 
 You can now create a FCOS Vultr instance using the snapshot ID above.
 
-This example creates a 1 vCPU, 1GB RAM instance named `instance1` in the New Jersey region. Use `vultr-cli regions list` and `vultr-cli plans list` for other options.
+This example creates a 2 vCPU, 4GB RAM instance named `instance1` in the New Jersey region. Use `vultr-cli regions list` and `vultr-cli plans list` for other options.
 
 [source, bash]
 ----
 NAME='instance1'
 SNAPSHOT_ID='...'
 REGION='ewr'
-PLAN='2-1c-1gb'
+PLAN='vc2-2c-4gb'
 vultr-cli instance create --region "${REGION}" --plan "${PLAN}" --snapshot "${SNAPSHOT_ID}" --label "${NAME}"  --host "${NAME}" --userdata "$(cat example.ign)"
 ----
 
-NOTE: Vultr default firewall does not allow incoming SSH connections. Rules must be adjusted if you wish to reach the instance over SSH.
+You can now get the IP address of the instance by running `vultr-cli instance list`.
