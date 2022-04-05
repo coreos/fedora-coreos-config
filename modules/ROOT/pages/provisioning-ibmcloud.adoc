@@ -61,10 +61,8 @@ ibmcloud cos upload --bucket=$BUCKET --key=$FILE --file=$FILE
 ----
 IMAGE=${FILE:0:-6}     # pull off .qcow2
 IMAGE=${IMAGE//[._]/-} # replace . and _ with -
-ibmcloud is image-create $IMAGE --file "cos://${REGION}/${BUCKET}/${FILE}" --os-name centos-8-amd64
+ibmcloud is image-create $IMAGE --file "cos://${REGION}/${BUCKET}/${FILE}" --os-name fedora-coreos-stable-amd64
 ----
-
-NOTE: Specifying `--os-name centos-8-amd64` is required for now until IBM expands the list of OS types.
 
 You'll have to wait for the image creation process to finish and go from `pending` to `available` before you can use the image. Monitor with the following command:
 
@@ -90,7 +88,7 @@ VPC='r014-c9c65cc4-cfd3-44de-ad54-865aac182ea1'    # `ibmcloud is vpcs`
 IMAGE='r014-1823b4cf-9c63-499e-8a27-b771be714ad8'  # `ibmcloud is images --visibility private`
 SUBNET='0777-bf99cbf4-bc82-4c46-895a-5b7304201182' # `ibmcloud is subnets`
 SSHKEY='r014-b44c37d0-5c21-4c2b-aba2-438a5b0a228d' # `ibmcloud is keys`
-ibmcloud is instance-create $NAME $VPC $ZONE $PROFILE $SUBNET --image-id $IMAGE --key-ids $SSHKEY --user-data @example.ign
+ibmcloud is instance-create $NAME $VPC $ZONE $PROFILE $SUBNET --image $IMAGE --keys $SSHKEY --user-data @example.ign
 ----
 
 TIP: If needed you may have to first create a subnet with a command like `'ibmcloud is subnet-create my-subnet $VPC --ipv4-address-count 256 --zone $ZONE'`.
