@@ -23,5 +23,5 @@ enable bootupd.socket
 # Ideally it should have been added as part of base Fedora - but since it was arch specific, it was not added: https://bugzilla.redhat.com/show_bug.cgi?id=1433859
 enable rtas_errd.service
 enable clevis-luks-askpass.path
-# Provide information if no ignition is provided
-enable coreos-check-ignition-config.service
+# Provide status information about the Ignition run
+enable coreos-ignition-write-issues.service
