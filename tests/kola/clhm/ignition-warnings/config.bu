@@ -1,0 +1,16 @@
+variant: fcos
+version: 1.1.0
+systemd:
+  # This systemd unit doesn't have the Install
+  # section in it, so as part of the validation 
+  # step, Ignition will throw the following warning:
+  # 'warning at $.systemd.units.0.contents: unit "echo@.service" is enabled, but has no install section so enable does nothing'
+  units:
+    - name: echo.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=echo service template
+        [Service]
+        Type=oneshot
+        ExecStart=/bin/echo %i
