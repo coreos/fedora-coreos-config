@@ -30,3 +30,8 @@
     - testing-devel
     - next
     - next-devel
+- pattern: ext.config.files.dracut-executable
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1155
+  snooze: 2022-04-18
+  streams:
+    - rawhide
