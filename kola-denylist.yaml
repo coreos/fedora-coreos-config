@@ -10,44 +10,9 @@
   arches:
     - aarch64
     - ppc64le
-- pattern: ext.config.networking.prefer-ignition-networking
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1059
-  snooze: 2022-03-14
-  streams:
-    - rawhide
-    - branched
-- pattern: ext.config.networking.force-persist-ip
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1059
-  snooze: 2022-03-14
-  streams:
-    - rawhide
-    - branched
-- pattern: ext.config.networking.mtu-on-bond-kargs
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1059
-  snooze: 2022-03-14
-  streams:
-    - rawhide
-    - branched
-- pattern: ext.config.extensions.module
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1104
-  snooze: 2022-03-14
-  streams:
-    - rawhide
-- pattern: ext.config.toolbox
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1103
-  snooze: 2022-03-15
-  streams:
-    - rawhide
 - pattern: multipath.day1
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1105
-  streams:
-    - stable
-- pattern: coreos.boot-mirror.luks
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1092
-  snooze: 2022-03-14
-  streams:
-    - rawhide
-    - branched
+  snooze: 2022-03-21
 - pattern: coreos.boot-mirror.luks
   tracker: https://github.com/coreos/coreos-assembler/issues/2725
   arches:
@@ -58,6 +23,7 @@
   - ppc64le
 - pattern: ext.config.systemd.sytemd-journald-fix
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1108#issuecomment-1061988853
+  snooze: 2022-04-01
   streams:
     - stable
     - testing

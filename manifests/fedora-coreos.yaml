@@ -39,6 +39,8 @@ packages:
   - fedora-repos-archive
   # CL ships this.
   - moby-engine
+  # Already pulled in by moby-engine, but let's be explicit. Typhoon uses it.
+  - containerd
   # User metrics
   - fedora-coreos-pinger
   # Updates
