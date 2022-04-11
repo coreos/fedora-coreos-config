@@ -1,0 +1,5 @@
+# Include libvarlink-util package selectively
+# before we drop it from the remaining streams 
+# https://github.com/coreos/fedora-coreos-tracker/issues/1130
+packages:
+  - libvarlink-util
