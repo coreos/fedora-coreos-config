@@ -18,6 +18,13 @@ ostree-layers:
   - overlay/20platform-chrony
 
 conditional-include:
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1130
+  - if: stream == "testing-devel"
+    include: varlink.yaml
+  - if: stream == "testing"
+    include: varlink.yaml
+  - if: stream == "stable"
+    include: varlink.yaml
   # https://github.com/coreos/fedora-coreos-tracker/issues/676
   - if: releasever >= 36
     include: iptables-nft.yaml
@@ -88,11 +95,14 @@ postprocess:
     systemctl mask systemd-repart.service
   # Mask systemd-network-generator. We need it for some things in the future
   # (https://github.com/systemd/systemd/pull/21766/files), but for now it's
-  # just failing on boot because of SELinux:
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1059#issuecomment-1013766710
+  # just failing for Fedora 35 on boot because of SELinux:
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1059#issuecomment-1090602396
   - |
     #!/usr/bin/env bash
-    systemctl mask systemd-network-generator.service
+    source /etc/os-release
+    if [ "$VERSION_ID" -eq "35" ]; then
+      systemctl mask systemd-network-generator.service
+    fi
 
   # Set the fallback hostname to `localhost`. This was needed in F33/F34
   # because a fallback hostname of `fedora` + systemd-resolved broke
@@ -123,8 +133,6 @@ packages:
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
   # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071338097
   - containernetworking-plugins podman-plugins dnsmasq
-  # Remote IPC for podman
-  - libvarlink-util
   # Minimal NFS client
   - nfs-utils-coreos
   # Active Directory support
