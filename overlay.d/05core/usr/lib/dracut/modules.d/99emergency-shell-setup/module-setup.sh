@@ -18,7 +18,7 @@ install() {
         date \
         dd
 
-    inst_hook emergency 99 "${moddir}/timeout.sh"
+    inst_hook emergency 99 "${moddir}/emergency-shell.sh"
 
     inst_script "$moddir/ignition-virtio-dump-journal.sh" "/usr/bin/ignition-virtio-dump-journal"
     install_unit_wants ignition-virtio-dump-journal.service emergency.target
