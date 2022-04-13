@@ -14,8 +14,7 @@ Once you have picked the relevant stream, you can download the latest OVA:
 [source, bash]
 ----
 STREAM="stable"
-mkdir ova-templates
-coreos-installer download -s "${STREAM}" -p virtualbox -f ova -C ./ova-templates/
+coreos-installer download -s "${STREAM}" -p virtualbox -f ova
 ----
 
 Alternatively, OVA images can be manually downloaded from the https://getfedora.org/coreos/download?tab=metal_virtualized[download page].
