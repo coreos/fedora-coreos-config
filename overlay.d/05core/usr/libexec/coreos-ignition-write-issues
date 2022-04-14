@@ -27,10 +27,29 @@ behavior may occur. Ignition is not designed to run more than once per system.
 ${RESET}
 EOF
     fi
-    # This is for displaying Ignition warnings on the console
-    # TODO: find a way to query journal entries recorded before the system switches to real root
-    journalctl -t ignition -o cat -p warning | while read line; do
-        echo "Ignition: $line" >> /etc/issue.d/30_coreos_ignition_warnings.issue
+    # In Ignition, we've two config validation checks, the one after 
+    # fetching a config and the second after merging configs. Sometimes, 
+    # a warning goes away after merging, however, it's possible that a 
+    # warning appears in case merging creates a contradiction between 
+    # two fields. So this workflow eventually sends duplicate warnings 
+    # in journal entries. Hence, we need to avoid displaying duplicate 
+    # Ignition warnings on the console.
+    # For e.g. In the journal entries, we might see the following logs:
+    #
+    # warning at $.systemd.units.0.contents, line 1 col 997: unit "echo@.service" is enabled, but has no install section so enable does nothing 
+    # warning at $.systemd.units.0.contents: unit "echo@.service" is enabled, but has no install section so enable does nothing
+    # 
+    # In order to normalize these logs, we'd need to get rid of the line 
+    # and column numbers entirely using the sed command, and then use 
+    # `sort -u` to remove duplicate content. After this, we'd see the 
+    # following warning on the console:
+    #
+    # warning at $.systemd.units.0.contents: unit "echo@.service" is enabled, but has no install section so enable does nothing
+    #
+    # TODO: find a way to query journal entries recorded before the 
+    # system switches to real root
+    journalctl -t ignition -o cat -p warning | sed -r 's/, line [0-9]+ col [0-9]+//g' | sort -u | while read line; do
+        echo -e "${WARN}Ignition: $line${RESET}" >> /etc/issue.d/30_coreos_ignition_warnings.issue
     done
 else
     nreboots=$(($(journalctl --list-boots | wc -l) - 1))
