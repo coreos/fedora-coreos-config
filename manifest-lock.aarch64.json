@@ -133,10 +133,10 @@
       "evra": "0.21.2-4.fc36.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.181.0-1.fc36.noarch"
+      "evra": "2:2.181.0-2.fc36.noarch"
     },
     "containerd": {
-      "evra": "1.6.1-1.fc36.aarch64"
+      "evra": "1.6.2-1.fc36.aarch64"
     },
     "containernetworking-plugins": {
       "evra": "1.1.0-1.fc36.aarch64"
@@ -268,7 +268,7 @@
       "evra": "0.186-3.fc36.aarch64"
     },
     "ethtool": {
-      "evra": "2:5.16-2.fc36.aarch64"
+      "evra": "2:5.17-1.fc36.aarch64"
     },
     "expat": {
       "evra": "2.4.7-1.fc36.aarch64"
@@ -313,7 +313,7 @@
       "evra": "1:4.9.0-1.fc36.aarch64"
     },
     "flatpak-session-helper": {
-      "evra": "1.12.7-1.fc36.aarch64"
+      "evra": "1.12.7-2.fc36.aarch64"
     },
     "fstrm": {
       "evra": "0.6.1-4.fc36.aarch64"
@@ -340,7 +340,7 @@
       "evra": "3.10.5-2.fc36.aarch64"
     },
     "fwupd": {
-      "evra": "1.7.6-1.fc36.aarch64"
+      "evra": "1.7.7-1.fc36.aarch64"
     },
     "gawk": {
       "evra": "5.1.1-2.fc36.aarch64"
@@ -469,13 +469,13 @@
       "evra": "2.4.0-9.fc36.noarch"
     },
     "kernel": {
-      "evra": "5.17.1-300.fc36.aarch64"
+      "evra": "5.17.3-300.fc36.aarch64"
     },
     "kernel-core": {
-      "evra": "5.17.1-300.fc36.aarch64"
+      "evra": "5.17.3-300.fc36.aarch64"
     },
     "kernel-modules": {
-      "evra": "5.17.1-300.fc36.aarch64"
+      "evra": "5.17.3-300.fc36.aarch64"
     },
     "kexec-tools": {
       "evra": "2.0.23-5.fc36.aarch64"
@@ -583,13 +583,13 @@
       "evra": "1.4-6.fc36.aarch64"
     },
     "libgcc": {
-      "evra": "12.0.1-0.12.fc36.aarch64"
+      "evra": "12.0.1-0.16.fc36.aarch64"
     },
     "libgcrypt": {
       "evra": "1.10.1-1.fc36.aarch64"
     },
     "libgomp": {
-      "evra": "12.0.1-0.12.fc36.aarch64"
+      "evra": "12.0.1-0.16.fc36.aarch64"
     },
     "libgpg-error": {
       "evra": "1.44-1.fc36.aarch64"
@@ -754,7 +754,7 @@
       "evra": "2.6.3-1.fc36.aarch64"
     },
     "libstdc++": {
-      "evra": "12.0.1-0.12.fc36.aarch64"
+      "evra": "12.0.1-0.16.fc36.aarch64"
     },
     "libtalloc": {
       "evra": "2.3.3-3.fc36.aarch64"
@@ -862,7 +862,7 @@
       "evra": "2:0.5.0-2.fc36.aarch64"
     },
     "mozjs91": {
-      "evra": "91.7.0-1.fc36.aarch64"
+      "evra": "91.8.0-1.fc36.aarch64"
     },
     "mpfr": {
       "evra": "4.1.0-9.fc36.aarch64"
@@ -940,10 +940,10 @@
       "evra": "1.77-9.fc36.aarch64"
     },
     "ostree": {
-      "evra": "2022.1-2.fc36.aarch64"
+      "evra": "2022.2-1.fc36.aarch64"
     },
     "ostree-libs": {
-      "evra": "2022.1-2.fc36.aarch64"
+      "evra": "2022.2-1.fc36.aarch64"
     },
     "p11-kit": {
       "evra": "0.24.1-2.fc36.aarch64"
@@ -1039,7 +1039,7 @@
       "evra": "3.2.3-14.fc36.aarch64"
     },
     "runc": {
-      "evra": "2:1.1.0-2.fc36.aarch64"
+      "evra": "2:1.1.1-1.fc36.aarch64"
     },
     "samba-client-libs": {
       "evra": "2:4.16.0-0.2.rc3.fc36.aarch64"
@@ -1099,7 +1099,7 @@
       "evra": "3.36.0-5.fc36.aarch64"
     },
     "squashfs-tools": {
-      "evra": "4.5-18.20220221gitbc0c097.fc36.aarch64"
+      "evra": "4.5.1-1.fc36.aarch64"
     },
     "ssh-key-dir": {
       "evra": "0.1.3-2.fc36.aarch64"
@@ -1183,10 +1183,10 @@
       "evra": "2.38-0.2.fc36.aarch64"
     },
     "vim-data": {
-      "evra": "2:8.2.4621-1.fc36.noarch"
+      "evra": "2:8.2.4701-1.fc36.noarch"
     },
     "vim-minimal": {
-      "evra": "2:8.2.4621-1.fc36.aarch64"
+      "evra": "2:8.2.4701-1.fc36.aarch64"
     },
     "which": {
       "evra": "2.21-32.fc36.aarch64"
@@ -1223,13 +1223,13 @@
     }
   },
   "metadata": {
-    "generated": "2022-04-10T20:52:53Z",
+    "generated": "2022-04-18T16:50:16Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2022-04-09T04:04:01Z"
+        "generated": "2022-04-18T16:38:45Z"
       },
       "fedora-next": {
-        "generated": "2022-04-10T09:45:20Z"
+        "generated": "2022-04-18T10:09:35Z"
       },
       "fedora-next-updates": {
         "generated": "2022-02-08T18:40:57Z"
