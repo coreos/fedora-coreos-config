@@ -400,7 +400,7 @@
       "evra": "1:2.06-10.fc35.x86_64"
     },
     "gzip": {
-      "evra": "1.10-5.fc35.x86_64"
+      "evra": "1.10-6.fc35.x86_64"
     },
     "hostname": {
       "evra": "3.23-5.fc35.x86_64"
@@ -610,7 +610,7 @@
       "evra": "1.3.1-48.fc35.x86_64"
     },
     "libipa_hbac": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "libjcat": {
       "evra": "0.1.9-1.fc35.x86_64"
@@ -742,16 +742,16 @@
       "evra": "0.9.6-1.fc35.noarch"
     },
     "libsss_certmap": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "libsss_idmap": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "libsss_nss_idmap": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "libsss_sudo": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "libstdc++": {
       "evra": "11.2.1-9.fc35.x86_64"
@@ -1102,31 +1102,34 @@
       "evra": "0.1.2-8.fc35.x86_64"
     },
     "sssd-ad": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "sssd-client": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "sssd-common": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "sssd-common-pac": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
+    },
+    "sssd-idp": {
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "sssd-ipa": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "sssd-krb5": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "sssd-krb5-common": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "sssd-ldap": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "sssd-nfs-idmap": {
-      "evra": "2.6.3-1.fc35.x86_64"
+      "evra": "2.7.0-1.fc35.x86_64"
     },
     "stalld": {
       "evra": "1.14.1-1.fc35.x86_64"
@@ -1217,16 +1220,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-04-18T20:55:58Z",
+    "generated": "2022-04-20T20:53:11Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2021-10-26T05:31:27Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-04-18T18:05:47Z"
+        "generated": "2022-04-20T19:14:17Z"
       },
       "fedora-updates": {
-        "generated": "2022-04-18T16:50:15Z"
+        "generated": "2022-04-20T19:01:36Z"
       }
     }
   }
