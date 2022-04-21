@@ -53,11 +53,29 @@ downloaded from GitHub:
 
 EOF
         fi
-        echo "Displaying logs from failed units: ${failed}"
-        for unit in ${failed}; do
-            # 10 lines should be enough for everyone
-            journalctl -b --no-pager --no-hostname -u ${unit} -n 10
-        done
+
+        # If this is a live boot, check for ENOSPC in initramfs filesystem
+        # Try creating a 64 KiB file, in case a small file was deleted on
+        # service failure
+        # https://github.com/coreos/fedora-coreos-tracker/issues/1055
+        if [ -f /etc/coreos-live-initramfs ] && \
+            ! dd if=/dev/zero of=/tmp/check-space bs=4K count=16 2>/dev/null; then
+            cat <<EOF
+------
+Ran out of memory when unpacking initrd filesystem.  Ensure your system has
+at least 2 GiB RAM if booting with coreos.live.rootfs_url, or 4 GiB otherwise.
+------
+
+EOF
+            # Don't show logs from failed units, since they'll just be
+            # random misleading errors.
+        else
+            echo "Displaying logs from failed units: ${failed}"
+            for unit in ${failed}; do
+                # 10 lines should be enough for everyone
+                journalctl -b --no-pager --no-hostname -u ${unit} -n 10
+            done
+        fi
     fi
 
     # Regularly prompt with time remaining.  This ensures the prompt doesn't
