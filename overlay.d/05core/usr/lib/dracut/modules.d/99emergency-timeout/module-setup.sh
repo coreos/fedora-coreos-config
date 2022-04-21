@@ -15,7 +15,8 @@ install_unit_wants() {
 install() {
     inst_multiple \
         cut \
-        date
+        date \
+        dd
 
     inst_hook emergency 99 "${moddir}/timeout.sh"
 
