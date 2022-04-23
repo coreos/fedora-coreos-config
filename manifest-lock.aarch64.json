@@ -613,7 +613,7 @@
       "evra": "1.3.1-50.fc36.aarch64"
     },
     "libipa_hbac": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "libjcat": {
       "evra": "0.1.10-1.fc36.aarch64"
@@ -730,7 +730,7 @@
       "evra": "2:4.16.0-0.2.rc3.fc36.aarch64"
     },
     "libsolv": {
-      "evra": "0.7.21-1.fc36.aarch64"
+      "evra": "0.7.22-1.fc36.aarch64"
     },
     "libss": {
       "evra": "1.46.5-2.fc36.aarch64"
@@ -742,16 +742,16 @@
       "evra": "0.9.6-4.fc36.noarch"
     },
     "libsss_certmap": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "libsss_idmap": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "libsss_nss_idmap": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "libsss_sudo": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "libstdc++": {
       "evra": "12.0.1-0.16.fc36.aarch64"
@@ -820,10 +820,10 @@
       "evra": "2.5.1-31.fc36.aarch64"
     },
     "linux-firmware": {
-      "evra": "20220310-130.fc36.noarch"
+      "evra": "20220411-131.fc36.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20220310-130.fc36.noarch"
+      "evra": "20220411-131.fc36.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.29-3.fc36.aarch64"
@@ -1027,10 +1027,10 @@
       "evra": "4.17.0-10.fc36.aarch64"
     },
     "rpm-ostree": {
-      "evra": "2022.5.80.gb7f91619-1.fc36.aarch64"
+      "evra": "2022.8-1.fc36.aarch64"
     },
     "rpm-ostree-libs": {
-      "evra": "2022.5.80.gb7f91619-1.fc36.aarch64"
+      "evra": "2022.8-1.fc36.aarch64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.17.0-10.fc36.aarch64"
@@ -1105,31 +1105,34 @@
       "evra": "0.1.3-2.fc36.aarch64"
     },
     "sssd-ad": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "sssd-client": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "sssd-common": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "sssd-common-pac": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
+    },
+    "sssd-idp": {
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "sssd-ipa": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "sssd-krb5": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "sssd-krb5-common": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "sssd-ldap": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "sssd-nfs-idmap": {
-      "evra": "2.6.3-1.fc36.aarch64"
+      "evra": "2.7.0-1.fc36.aarch64"
     },
     "stalld": {
       "evra": "1.15-2.fc36.aarch64"
@@ -1223,13 +1226,13 @@
     }
   },
   "metadata": {
-    "generated": "2022-04-22T13:21:52Z",
+    "generated": "2022-04-23T20:52:56Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2022-04-20T22:10:22Z"
+        "generated": "2022-04-22T21:10:22Z"
       },
       "fedora-next": {
-        "generated": "2022-04-22T10:17:14Z"
+        "generated": "2022-04-23T10:01:01Z"
       },
       "fedora-next-updates": {
         "generated": "2022-02-08T18:40:57Z"
