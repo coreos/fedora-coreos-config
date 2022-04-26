@@ -27,6 +27,11 @@ behavior may occur. Ignition is not designed to run more than once per system.
 ${RESET}
 EOF
     fi
+    # This is for displaying Ignition warnings on the console
+    # TODO: find a way to query journal entries recorded before the system switches to real root
+    journalctl -t ignition -o cat -p warning | while read line; do
+        echo "Ignition: $line" >> /etc/issue.d/30_coreos_ignition_warnings.issue
+    done
 else
     nreboots=$(($(journalctl --list-boots | wc -l) - 1))
     [ "${nreboots}" -eq 1 ] && boot="boot" || boot="boots"

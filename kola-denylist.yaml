@@ -23,10 +23,15 @@
   - ppc64le
 - pattern: ext.config.systemd.sytemd-journald-fix
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1108#issuecomment-1061988853
-  snooze: 2022-04-01
+  snooze: 2022-04-20
   streams:
     - stable
     - testing
     - testing-devel
     - next
     - next-devel
+- pattern: ext.config.files.dracut-executable
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1155
+  snooze: 2022-04-18
+  streams:
+    - rawhide
