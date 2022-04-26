@@ -9,10 +9,12 @@
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1075
   arches:
     - aarch64
+  platforms:
+    - aws
+- pattern: ext.config.kdump.crash
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1075
+  arches:
     - ppc64le
-- pattern: multipath.day1
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1105
-  snooze: 2022-03-21
 - pattern: coreos.boot-mirror.luks
   tracker: https://github.com/coreos/coreos-assembler/issues/2725
   arches:
@@ -22,8 +24,8 @@
   arches:
   - ppc64le
 - pattern: ext.config.systemd.sytemd-journald-fix
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1108#issuecomment-1061988853
-  snooze: 2022-04-20
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1108#issuecomment-1105171521
+  snooze: 2022-05-05
   streams:
     - stable
     - testing
