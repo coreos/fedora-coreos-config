@@ -9,9 +9,6 @@
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1075
   arches:
     - ppc64le
-- pattern: multipath.day1
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1105
-  snooze: 2022-03-21
 - pattern: coreos.boot-mirror.luks
   tracker: https://github.com/coreos/coreos-assembler/issues/2725
   arches:
