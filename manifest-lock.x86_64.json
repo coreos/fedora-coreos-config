@@ -127,7 +127,7 @@
       "evra": "2:2.183.0-1.fc35.noarch"
     },
     "containerd": {
-      "evra": "1.6.2-1.fc35.x86_64"
+      "evra": "1.6.2-2.fc35.x86_64"
     },
     "containernetworking-plugins": {
       "evra": "1.1.0-1.fc35.x86_64"
@@ -136,10 +136,10 @@
       "evra": "4:1-45.fc35.noarch"
     },
     "coreos-installer": {
-      "evra": "0.13.1-3.fc35.x86_64"
+      "evra": "0.14.0-1.fc35.x86_64"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.13.1-3.fc35.x86_64"
+      "evra": "0.14.0-1.fc35.x86_64"
     },
     "coreutils": {
       "evra": "8.32-33.fc35.x86_64"
@@ -580,13 +580,13 @@
       "evra": "1.4-5.fc35.x86_64"
     },
     "libgcc": {
-      "evra": "11.2.1-9.fc35.x86_64"
+      "evra": "11.3.1-2.fc35.x86_64"
     },
     "libgcrypt": {
       "evra": "1.9.4-1.fc35.x86_64"
     },
     "libgomp": {
-      "evra": "11.2.1-9.fc35.x86_64"
+      "evra": "11.3.1-2.fc35.x86_64"
     },
     "libgpg-error": {
       "evra": "1.43-1.fc35.x86_64"
@@ -754,7 +754,7 @@
       "evra": "2.7.0-1.fc35.x86_64"
     },
     "libstdc++": {
-      "evra": "11.2.1-9.fc35.x86_64"
+      "evra": "11.3.1-2.fc35.x86_64"
     },
     "libtalloc": {
       "evra": "2.3.3-2.fc35.x86_64"
@@ -979,10 +979,10 @@
       "evra": "1.8.0-1.fc35.x86_64"
     },
     "podman": {
-      "evra": "3:3.4.4-1.fc35.x86_64"
+      "evra": "3:3.4.7-1.fc35.x86_64"
     },
     "podman-plugins": {
-      "evra": "3:3.4.4-1.fc35.x86_64"
+      "evra": "3:3.4.7-1.fc35.x86_64"
     },
     "policycoreutils": {
       "evra": "3.3-1.fc35.x86_64"
@@ -1024,10 +1024,10 @@
       "evra": "4.17.0-4.fc35.x86_64"
     },
     "rpm-ostree": {
-      "evra": "2022.6-2.fc35.x86_64"
+      "evra": "2022.8-1.fc35.x86_64"
     },
     "rpm-ostree-libs": {
-      "evra": "2022.6-2.fc35.x86_64"
+      "evra": "2022.8-1.fc35.x86_64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.17.0-4.fc35.x86_64"
@@ -1138,22 +1138,22 @@
       "evra": "1.9.7p2-2.fc35.x86_64"
     },
     "systemd": {
-      "evra": "249.11-2.fc35.x86_64"
+      "evra": "249.12-3.fc35.x86_64"
     },
     "systemd-container": {
-      "evra": "249.11-2.fc35.x86_64"
+      "evra": "249.12-3.fc35.x86_64"
     },
     "systemd-libs": {
-      "evra": "249.11-2.fc35.x86_64"
+      "evra": "249.12-3.fc35.x86_64"
     },
     "systemd-pam": {
-      "evra": "249.11-2.fc35.x86_64"
+      "evra": "249.12-3.fc35.x86_64"
     },
     "systemd-resolved": {
-      "evra": "249.11-2.fc35.x86_64"
+      "evra": "249.12-3.fc35.x86_64"
     },
     "systemd-udev": {
-      "evra": "249.11-2.fc35.x86_64"
+      "evra": "249.12-3.fc35.x86_64"
     },
     "tar": {
       "evra": "2:1.34-2.fc35.x86_64"
@@ -1220,16 +1220,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-04-26T20:52:34Z",
+    "generated": "2022-04-29T21:45:35Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2021-10-26T05:31:27Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-04-26T19:17:19Z"
+        "generated": "2022-04-29T19:05:15Z"
       },
       "fedora-updates": {
-        "generated": "2022-04-26T13:50:35Z"
+        "generated": "2022-04-29T06:52:03Z"
       }
     }
   }
