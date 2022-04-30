@@ -3,3 +3,6 @@ packages:
   - git-core
   - gnupg2
   - rsync
+  # Explicit dependency on curl because we use it in coreos-livepxe-rootfs.sh
+  # We need curl and not curl-minimal because we support TFTP.
+  - curl
