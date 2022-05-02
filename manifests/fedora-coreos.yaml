@@ -17,6 +17,9 @@ conditional-include:
   - if: prod == false
     # long-term, would be good to support specifying a nested TreeComposeConfig
     include: disable-zincati-and-pinger.yaml
+  - if: basearch == "aarch64"
+    # Fixup for kdump on aarch64 AWS instances
+    include: kdump-aarch64-aws-workaround.yaml
 
 ostree-layers:
   - overlay/15fcos
@@ -85,6 +88,7 @@ postprocess:
     cat /usr/etc/rpm-ostreed.conf >> /tmp/rpm-ostreed.conf
     cp /tmp/rpm-ostreed.conf /usr/etc/rpm-ostreed.conf
     rm /tmp/rpm-ostreed.conf
+
 
 remove-from-packages:
   # Drop NetworkManager support for ifcfg files, see also corresponding
