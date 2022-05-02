@@ -10,11 +10,6 @@ set -xeuo pipefail
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
-      rpm-ostree kargs --append='crashkernel=256M'
-      systemctl enable kdump.service
-      /tmp/autopkgtest-reboot setcrashkernel
-      ;;
-  setcrashkernel)
       /tmp/autopkgtest-reboot-prepare aftercrash
       echo "Triggering sysrq"
       sync
