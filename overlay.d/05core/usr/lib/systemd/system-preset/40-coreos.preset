@@ -7,6 +7,9 @@ enable console-login-helper-messages-gensnippet-ssh-keys.service
 enable coreos-update-ca-trust.service
 # https://github.com/coreos/ignition/issues/1125
 enable coreos-ignition-firstboot-complete.service
+# Delete Ignition config from provider on platforms where it's possible
+# https://github.com/coreos/ignition/pull/1350
+enable ignition-delete-config.service
 # Boot checkin services for cloud providers.
 enable afterburn-checkin.service
 enable afterburn-firstboot-checkin.service
