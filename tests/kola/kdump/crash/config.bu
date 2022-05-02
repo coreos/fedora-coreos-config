@@ -1,0 +1,9 @@
+variant: fcos
+version: 1.4.0
+kernel_arguments:
+  should_exist:
+    - crashkernel=256M
+systemd:
+  units:
+    - name: kdump.service
+      enabled: true
