@@ -52,6 +52,10 @@ You can then view the template using `exo compute instance-template show --visib
 
 You can provision a FCOS instance using the Exoscale https://portal.exoscale.com/compute/instances/add[Web Portal] or via the https://community.exoscale.com/documentation/tools/exoscale-command-line-interface/[Exoscale CLI].
 
+NOTE: You will need to use at least version https://github.com/exoscale/cli/releases/tag/v1.54.0[v1.54.0] of the Exoscale CLI.
+
+WARNING: Do not use the `--cloud-init-compress` argument to the CLI.  It causes the Ignition config to be passed compressed to the instance and https://github.com/coreos/fedora-coreos-tracker/issues/1160[Ignition doesn't tolerate that].
+
 .Launching a new instance with Exoscale CLI
 [source, bash]
 ----
