@@ -4,22 +4,22 @@ storage:
   files:
     - path: /var/resource/http
       contents:
-        source: "http://rh-kola-fixtures.s3.amazonaws.com/resources/anonymous"
+        source: "http://ignition-test-fixtures.s3.amazonaws.com/resources/anonymous"
     - path: /var/resource/https
       contents:
-        source: "https://rh-kola-fixtures.s3.amazonaws.com/resources/anonymous"
+        source: "https://ignition-test-fixtures.s3.amazonaws.com/resources/anonymous"
     - path: /var/resource/s3-anon
       contents:
-        source: "s3://rh-kola-fixtures/resources/anonymous"
+        source: "s3://ignition-test-fixtures/resources/anonymous"
     - path: /var/resource/s3-versioned-original
       contents:
-        source: "s3://rh-kola-fixtures/resources/versioned?versionId=Ym98GTx0npVaJznSAd0I1eUjFoZMP8Zo"
+        source: "s3://ignition-test-fixtures/resources/versioned?versionId=Y9YqVujoLyHHSHJ4DslyXoaLvcilQJnU"
     - path: /var/resource/s3-versioned-latest
       contents:
-        source: "s3://rh-kola-fixtures/resources/versioned"
+        source: "s3://ignition-test-fixtures/resources/versioned"
     - path: /var/resource/s3-versioned-https-original
       contents:
-        source: "https://rh-kola-fixtures.s3.amazonaws.com/resources/versioned?versionId=Ym98GTx0npVaJznSAd0I1eUjFoZMP8Zo"
+        source: "https://ignition-test-fixtures.s3.amazonaws.com/resources/versioned?versionId=Y9YqVujoLyHHSHJ4DslyXoaLvcilQJnU"
     - path: /var/resource/s3-versioned-https-latest
       contents:
-        source: "https://rh-kola-fixtures.s3.amazonaws.com/resources/versioned"
+        source: "https://ignition-test-fixtures.s3.amazonaws.com/resources/versioned"
