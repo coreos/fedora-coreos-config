@@ -1,0 +1,14 @@
+# Objects accessible by any authenticated S3 user, such as the IAM role
+# associated with the instance
+
+variant: fcos
+version: 1.0.0
+ignition:
+  config:
+    merge:
+      - source: "s3://rh-kola-fixtures/resources/authenticated-var-v3.ign"
+storage:
+  files:
+    - path: /var/resource/s3-auth
+      contents:
+        source: "s3://rh-kola-fixtures/resources/authenticated"
