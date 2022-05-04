@@ -6,9 +6,9 @@ version: 1.0.0
 ignition:
   config:
     merge:
-      - source: "s3://rh-kola-fixtures/resources/authenticated-var-v3.ign"
+      - source: "s3://ignition-test-fixtures/resources/authenticated-var-v3.ign"
 storage:
   files:
     - path: /var/resource/s3-auth
       contents:
-        source: "s3://rh-kola-fixtures/resources/authenticated"
+        source: "s3://ignition-test-fixtures/resources/authenticated"
