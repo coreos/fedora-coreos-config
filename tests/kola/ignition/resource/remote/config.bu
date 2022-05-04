@@ -11,6 +11,12 @@ storage:
     - path: /var/resource/s3-anon
       contents:
         source: "s3://rh-kola-fixtures/resources/anonymous"
+    - path: /var/resource/s3-versioned-original
+      contents:
+        source: "s3://rh-kola-fixtures/resources/versioned?versionId=Ym98GTx0npVaJznSAd0I1eUjFoZMP8Zo"
+    - path: /var/resource/s3-versioned-latest
+      contents:
+        source: "s3://rh-kola-fixtures/resources/versioned"
     - path: /var/resource/s3-versioned-https-original
       contents:
         source: "https://rh-kola-fixtures.s3.amazonaws.com/resources/versioned?versionId=Ym98GTx0npVaJznSAd0I1eUjFoZMP8Zo"
