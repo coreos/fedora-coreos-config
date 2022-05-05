@@ -2,15 +2,15 @@ variant: fcos
 version: 1.3.0
 systemd:
   units:
-    - name: echo@.service
+    - name: touch@.service
       contents: |
         [Service]
         Type=oneshot
-        ExecStart=/bin/echo %i
+        ExecStart=/bin/touch /run/%i
         RemainAfterExit=yes
         [Install]
         WantedBy=multi-user.target
-    - name: echo@foo.service
+    - name: touch@foo.service
       enabled: true
     - name: podman.socket
       enabled: true
