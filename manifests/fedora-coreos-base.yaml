@@ -117,6 +117,20 @@ postprocess:
       echo 'DEFAULT_HOSTNAME=localhost' >> /usr/lib/os-release
     fi
 
+  # Fedora 37 adds the nvmf dracut module to the initrd, causing
+  # ext.config.files.dracut-executable to notice that the module puts a
+  # non-executable file in /usr/sbin.  Dracut has been updated to fix the
+  # missing permission, and hopefully this can be removed for Fedora 38.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1155
+  # https://github.com/dracutdevs/dracut/pull/1777
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    source /etc/os-release
+    if [ ${VERSION_ID} -le 37 ]; then
+        chmod +x /usr/lib/dracut/modules.d/95nvmf/nvmf-autoconnect.sh
+    fi
+
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go
 # into one of the sub-manifests listed at the top.
