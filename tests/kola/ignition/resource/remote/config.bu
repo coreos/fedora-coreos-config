@@ -1,0 +1,25 @@
+variant: fcos
+version: 1.0.0
+storage:
+  files:
+    - path: /var/resource/http
+      contents:
+        source: "http://ignition-test-fixtures.s3.amazonaws.com/resources/anonymous"
+    - path: /var/resource/https
+      contents:
+        source: "https://ignition-test-fixtures.s3.amazonaws.com/resources/anonymous"
+    - path: /var/resource/s3-anon
+      contents:
+        source: "s3://ignition-test-fixtures/resources/anonymous"
+    - path: /var/resource/s3-versioned-original
+      contents:
+        source: "s3://ignition-test-fixtures/resources/versioned?versionId=Y9YqVujoLyHHSHJ4DslyXoaLvcilQJnU"
+    - path: /var/resource/s3-versioned-latest
+      contents:
+        source: "s3://ignition-test-fixtures/resources/versioned"
+    - path: /var/resource/s3-versioned-https-original
+      contents:
+        source: "https://ignition-test-fixtures.s3.amazonaws.com/resources/versioned?versionId=Y9YqVujoLyHHSHJ4DslyXoaLvcilQJnU"
+    - path: /var/resource/s3-versioned-https-latest
+      contents:
+        source: "https://ignition-test-fixtures.s3.amazonaws.com/resources/versioned"
