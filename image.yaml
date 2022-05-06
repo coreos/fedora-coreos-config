@@ -3,5 +3,5 @@
 # streams.
 include: image-base.yaml
 
-# https://github.com/coreos/coreos-assembler/pull/2216
-ostree-format: "oci"
+# Plan to move this to all streams soon
+ostree-format: "oci-chunked"
