@@ -33,3 +33,17 @@ storage:
     - path: /var/resource/arn-ap-versioned-latest
       contents:
         source: "arn:aws:s3:us-east-1:460538899914:accesspoint/ignition-test-fixtures-ap/object/resources/versioned"
+    # Publicly-readable object, fetched via an access point.  Access points
+    # don't allow anonymous access.
+    - path: /var/resource/arn-mrap-anon
+      contents:
+        source: "arn:aws:s3:us-east-1:460538899914:accesspoint/myhsd4oog7zwk.mrap/object/resources/anonymous"
+    - path: /var/resource/arn-mrap-auth
+      contents:
+        source: "arn:aws:s3:us-east-1:460538899914:accesspoint/myhsd4oog7zwk.mrap/object/resources/authenticated"
+    - path: /var/resource/arn-mrap-versioned-original
+      contents:
+        source: "arn:aws:s3:us-east-1:460538899914:accesspoint/myhsd4oog7zwk.mrap/object/resources/versioned?versionId=Y9YqVujoLyHHSHJ4DslyXoaLvcilQJnU"
+    - path: /var/resource/arn-mrap-versioned-latest
+      contents:
+        source: "arn:aws:s3:us-east-1:460538899914:accesspoint/myhsd4oog7zwk.mrap/object/resources/versioned"
