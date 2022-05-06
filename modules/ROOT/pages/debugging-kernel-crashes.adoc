@@ -1,14 +1,35 @@
 = Debugging kernel crashes using kdump
 
-. Memory must be reserved for the crash kernel during booting of the first kernel. `crashkernel=auto` is likely insufficient memory on Fedora CoreOS. It is recommended to start testing with 300M. Kernel arguments can be provided like this:
+== Introduction
+kdump is a service that creates crash dumps when there is a kernel crash. It uses kexec to boot into a secondary kernel (known as a capture kernel), then exports the contents of the kernel's memory (known as a crash dump or vmcore) to the filesystem. The contents of vmcore can then be analyzed to root cause the kernel crash.
+
+Configuring kdump requires setting the `crashkernel` kernel argument and enabling the kdump systemd service. Memory must be reserved for the crash kernel during booting of the first kernel. `crashkernel=auto` generally doesn't reserve enough memory on Fedora CoreOS, so it is recommended to specify `crashkernel=300M`. 
+
+By default, the vmcore will be saved in `/var/crash`. It is also possible to write the dump to some other location on the local system or to send it over the network by editing `/etc/kdump.conf`. For additional information, see https://www.mankier.com/5/kdump.conf[`kdump.conf(5)`] and the comments in `/etc/kdump.conf` and `/etc/sysconfig/kdump`.
+
+== Configuring kdump via Ignition
+.Example kdump configuration
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+kernel_arguments:
+  should_exist:
+  - 'crashkernel=300M'
+systemd:
+  units:
+  - name: kdump.service
+    enabled: true
+----
+
+== Configuring kdump after initial provision
+. Set the crashkernel kernel argument
 +
 [source, bash]
 ----
 sudo rpm-ostree kargs --append='crashkernel=300M'
 ----
 xref:kernel-args.adoc[More information] on how to modify kargs via `rpm-ostree`.
-
-. By default, the path in which the vmcore will be saved is `/var/crash`. It is also possible to write the dump over the network or to some other location on the local system by editing `/etc/kdump.conf`. For additional information, see https://www.mankier.com/5/kdump.conf[`kdump.conf(5)`] and the comments in `/etc/kdump.conf` and `/etc/sysconfig/kdump`.
 
 . Enable the kdump systemd service.
 +
