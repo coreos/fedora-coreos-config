@@ -17,6 +17,12 @@ conditional-include:
   - if: prod == false
     # long-term, would be good to support specifying a nested TreeComposeConfig
     include: disable-zincati-and-pinger.yaml
+  - if: basearch == "aarch64"
+    # Fixup for kdump on aarch64 AWS instances
+    include: kdump-aarch64-aws-workaround.yaml
+  - if: basearch != "s390x"
+    # And remove some cruft from grub2
+    include: grub2-removals.yaml
 
 ostree-layers:
   - overlay/15fcos
@@ -86,6 +92,7 @@ postprocess:
     cp /tmp/rpm-ostreed.conf /usr/etc/rpm-ostreed.conf
     rm /tmp/rpm-ostreed.conf
 
+
 remove-from-packages:
   # Drop NetworkManager support for ifcfg files, see also corresponding
   # overlay.d/14NetworkManager-plugins
@@ -118,9 +125,3 @@ exclude-packages:
   # For (datacenter/cloud oriented) servers, we want to see the details by default.
   # https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/HSMISZ3ETWQ4ETVLWZQJ55ARZT27AAV3/
   - plymouth
-
-# And remove some cruft from grub2
-arch-include:
-  x86_64: grub2-removals.yaml
-  aarch64: grub2-removals.yaml
-  ppc64le: grub2-removals.yaml
