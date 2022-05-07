@@ -16,7 +16,7 @@ else
 fi
 
 # verify that the objects are inaccessible anonymously
-for obj in authenticated authenticated.ign; do
+for obj in authenticated authenticated-var-v3.ign; do
     if curl -sf "https://ignition-test-fixtures.s3.amazonaws.com/resources/$obj"; then
         fatal "anonymously fetching authenticated resource should have failed, but did not"
     fi
