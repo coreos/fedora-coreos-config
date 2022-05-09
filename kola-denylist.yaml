@@ -17,3 +17,8 @@
   tracker: https://github.com/coreos/coreos-assembler/issues/2725
   arches:
   - ppc64le
+- pattern: non-exclusive-test-bucket-0
+  # Already fixed in https://github.com/coreos/fedora-coreos-config/pull/1729
+  snooze: 2022-05-11
+  streams:
+    - next
