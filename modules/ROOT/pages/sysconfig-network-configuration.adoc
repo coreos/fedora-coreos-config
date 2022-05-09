@@ -4,7 +4,7 @@
 
 === Background
 
-By default, Fedora CoreOS (FCOS) will attempt DHCP on every interface with a cable plugged in. However, if you need to use static addressing or more complex networking (vlans, bonds, bridges, teams, etc..), you can do so in a number of ways which are summarized below. Regardless of the way you choose to configure networking it all ends up as configuration for NetworkManager, which takes the form of NetworkManager keyfiles. More information on the keyfile format can be found https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[here]. More information on the subsection options for keyfiles can be found https://developer.gnome.org/NetworkManager/stable/ref-settings.html[here].
+Unless xref:#_disabling_automatic_configuration_of_ethernet_devices[otherwise configured], Fedora CoreOS (FCOS) will attempt DHCP on every interface with a cable plugged in. However, if you need to use static addressing or more complex networking (vlans, bonds, bridges, teams, etc..), you can do so in a number of ways which are summarized below. Regardless of the way you choose to configure networking it all ends up as configuration for NetworkManager, which takes the form of NetworkManager keyfiles. More information on the keyfile format can be found https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[here]. More information on the subsection options for keyfiles can be found https://developer.gnome.org/NetworkManager/stable/ref-settings.html[here].
 
 === Configuration Options
 
@@ -890,3 +890,27 @@ storage:
           master=bond0
           slave-type=bond
 ----
+
+=== Disabling Automatic Configuration of Ethernet Devices
+
+By default, FCOS will attempt to autoconfigure (DHCP/SLAAC) on every interface with a cable plugged in. In some network environments this may not be desirable. It's possible to change this behavior of NetworkManager with a configuration file dropin:
+
+
+.Disable NetworkManager autoconfiguration of ethernet devices
+[source, yaml]
+----
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/NetworkManager/conf.d/noauto.conf
+      mode: 0644
+      contents:
+        inline: |
+          [main]
+          # Do not do automatic (DHCP/SLAAC) configuration on ethernet devices
+          # with no other matching connections.
+          no-auto-default=*
+----
+
+WARNING: If NetworkManager autoconfiguration of ethernet devices is disabled and no other network configuration is provided the system will boot without network access.
