@@ -13,7 +13,7 @@ set -xeuo pipefail
 . $KOLA_EXT_DATA/commonlib.sh
 
 # EXPECTED_INITRD_NETWORK_CFG1
-#   - used on Fedora 35 and RHEL 8.5 release
+#   - used on RHEL 8.5 release
 EXPECTED_INITRD_NETWORK_CFG1="[connection]
 id=Wired Connection
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -94,7 +94,7 @@ method=auto
 org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 
 # EXPECTED_REALROOT_NETWORK_CFG1:
-#   - used on F35 and RHEL <= 8.5
+#   - used on RHEL <= 8.5
 EXPECTED_REALROOT_NETWORK_CFG1="[connection]
 id=Wired connection 1
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -159,9 +159,6 @@ if [ "$ID" == "fedora" ]; then
     if [ "$VERSION_ID" -ge "36" ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG3
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG2
-    elif [ "$VERSION_ID" -eq "35" ]; then
-        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG1
-        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
     else
         fatal "fail: not operating on expected OS version"
     fi
