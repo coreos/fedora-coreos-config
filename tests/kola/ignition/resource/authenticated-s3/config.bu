@@ -9,6 +9,10 @@ ignition:
       - source: "s3://ignition-test-fixtures/resources/authenticated-var-v3.ign"
 storage:
   files:
+    # Check that anonymous access works with credentials
+    - path: /var/resource/s3-anon
+      contents:
+        source: "s3://ignition-test-fixtures/resources/anonymous"
     - path: /var/resource/s3-auth
       contents:
         source: "s3://ignition-test-fixtures/resources/authenticated"
