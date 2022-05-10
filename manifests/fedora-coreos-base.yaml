@@ -78,16 +78,6 @@ postprocess:
   - |
     #!/usr/bin/env bash
     systemctl mask systemd-repart.service
-  # Mask systemd-network-generator. We need it for some things in the future
-  # (https://github.com/systemd/systemd/pull/21766/files), but for now it's
-  # just failing for Fedora 35 on boot because of SELinux:
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1059#issuecomment-1090602396
-  - |
-    #!/usr/bin/env bash
-    source /etc/os-release
-    if [ "$VERSION_ID" -eq "35" ]; then
-      systemctl mask systemd-network-generator.service
-    fi
 
   # Set the fallback hostname to `localhost`. This was needed in F33/F34
   # because a fallback hostname of `fedora` + systemd-resolved broke
