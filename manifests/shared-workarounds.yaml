@@ -10,12 +10,9 @@ postprocess:
     #!/usr/bin/env bash
     set -xeuo pipefail
     source /etc/os-release
-    if [[ ${NAME} =~ "Fedora" ]]; then
-        # FCOS: This fix has landed in F36+
-        [ ${VERSION_ID} -le 35 ] || exit 0
-    else
-        # RHCOS: The fix hasn't landed in any version of RHEL yet
-        true
+    # This has landed in Fedora but not in any version of RHEL yet
+    if [[ ${ID} != "rhel" ]]; then
+        exit 0
     fi
     mkdir /usr/lib/dracut/modules.d/36coreos-multipath-fix
     cat > /usr/lib/dracut/modules.d/36coreos-multipath-fix/90-multipathd-remove-execstop.conf <<'EOF'
