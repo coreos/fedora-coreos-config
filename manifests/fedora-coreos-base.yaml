@@ -21,9 +21,6 @@ conditional-include:
   # https://github.com/coreos/fedora-coreos-tracker/issues/676
   - if: releasever >= 36
     include: iptables-nft.yaml
-  # https://github.com/coreos/fedora-coreos-config/pull/1519
-  - if: releasever >= 36
-    include: podman-v4.yaml
 
 initramfs-args:
   - --no-hostonly
@@ -140,6 +137,18 @@ packages:
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
   # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071338097
   - containernetworking-plugins podman-plugins dnsmasq
+  # For podman v4 netavark gets pulled in but it only recommends
+  # aardvark-dns (which provides name resolution based on container
+  # names). This functionality was previously provided by dnsname from
+  # podman-plugins in the podman v3 stack.
+  # See https://github.com/containers/netavark/pull/217
+  - aardvark-dns
+  # Since we need `containernetworking-plugins` installed to continue
+  # to support CNI networks we need to also explicitly install
+  # `netavark` so we get both of them installed since both of them
+  # provide `container-network-stack`.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071458717
+  - netavark
   # Minimal NFS client
   - nfs-utils-coreos
   # Active Directory support
