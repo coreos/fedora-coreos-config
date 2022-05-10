@@ -2,33 +2,6 @@
 # and downstreams (i.e. Red Hat CoreOS).
 
 postprocess:
-  # Put in the fix for multipathd.socket on releases that haven't been fixed yet.
-  # https://bugzilla.redhat.com/show_bug.cgi?id=2008098
-  # https://github.com/coreos/fedora-coreos-config/pull/1246
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    # Operate on RHCOS and FCOS.
-    source /etc/os-release
-    if [[ ${NAME} =~ "Fedora" ]]; then
-        # FCOS: Only operate on releases before F36. The fix has landed
-        # in F36+ and there is no need for a workaround.
-        [ ${VERSION_ID} -le 35 ] || exit 0
-    elif [[ "${ID}" == "rhel" ]]; then
-        # RHCOS: The fix has landed in RHEL 8.6, 8.5.z, 8.4.z EUS, so we should
-        # be able to just exit out safely.
-        exit 0
-    fi
-    mkdir /usr/lib/systemd/system/multipathd.socket.d
-    cat > /usr/lib/systemd/system/multipathd.socket.d/50-start-conditions.conf <<'EOF'
-    # Temporary workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2008098
-    [Unit]
-    ConditionKernelCommandLine=!multipath=off
-    ConditionKernelCommandLine=!nompath
-    ConditionPathExists=/etc/multipath.conf
-    ConditionVirtualization=!container
-    EOF
-
   # Put in the fix for multipathd.service in dracut on releases that haven't
   # been fixed yet.
   # https://github.com/dracutdevs/dracut/pull/1606
