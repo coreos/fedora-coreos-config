@@ -10,3 +10,9 @@ set -xeuo pipefail
 if ! systemctl is-enabled systemd-resolved 1>/dev/null; then
     fatal "Unit systemd-resolved should be enabled"
 fi
+
+# systemd-resolved should be fully functional on f35+
+if ! grep 'nameserver 127.0.0.53' /etc/resolv.conf; then
+    fatal "systemd-resolved stub listener isn't enabled"
+fi
+ok "systemd-resolved is enabled and the stub listener is enabled"
