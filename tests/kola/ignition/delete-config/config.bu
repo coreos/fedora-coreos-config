@@ -1,0 +1,36 @@
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/fake-ignition-rmcfg
+      mode: 0755
+      contents:
+        inline: |
+          #!/bin/bash
+          # Mocked replacement for ignition-rmcfg that just records that
+          # we ran it, and fails if we run it twice.  We can't run
+          # ignition-rmcfg directly because it doesn't succeed on any
+          # platform we test on.
+          if [ -e /run/ignition-rmcfg-ran ]; then
+              echo "ignition-rmcfg ran twice"
+              exit 1
+          fi
+          touch /run/ignition-rmcfg-ran
+systemd:
+  units:
+    - name: ignition-delete-config.service
+      dropins:
+        - name: 50-kola.conf
+          contents: |
+            [Unit]
+            ConditionKernelCommandLine=|ignition.platform.id=qemu
+            [Service]
+            ExecStartPre=mount --bind /etc/fake-ignition-rmcfg /usr/libexec/ignition-rmcfg
+    - name: coreos-ignition-delete-config.service
+      dropins:
+        - name: 50-kola.conf
+          contents: |
+            [Unit]
+            ConditionKernelCommandLine=|ignition.platform.id=qemu
+            [Service]
+            ExecStartPre=mount --bind /etc/fake-ignition-rmcfg /usr/libexec/ignition-rmcfg
