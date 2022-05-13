@@ -9,6 +9,12 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  containerd:
+    evr: 1.6.4-1.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-aa2f62aabd
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1138
+      type: fast-track
   ostree:
     evr: 2022.3-2.fc36
     metadata:
