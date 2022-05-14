@@ -74,7 +74,7 @@ def main():
     pin.set_defaults(func=do_pin)
 
     srpms = subcommands.add_parser('srpms',
-            description='Name the source RPMs for a Bodhi update.')
+            description='Name the relevant source RPMs for a Bodhi update.')
     srpms.add_argument('update', help='ID or URL of Bodhi update')
     srpms.set_defaults(func=do_srpms)
 
@@ -133,8 +133,13 @@ def do_pin(args):
 
 
 def do_srpms(args):
+    printed = False
     for nvr in get_source_nvrs(get_bodhi_update(args.update)):
-        print(nvr)
+        if get_binary_packages([nvr]):
+            print(nvr)
+            printed = True
+    if not printed:
+        raise Exception('specified update contains no binary packages listed in lockfiles')
 
 
 def do_graduate(_args):
