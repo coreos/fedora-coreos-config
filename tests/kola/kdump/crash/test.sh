@@ -20,6 +20,10 @@ set -xeuo pipefail
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
       /tmp/autopkgtest-reboot-prepare aftercrash
+      # Add in a sleep to workaround race condition where XFS/kernel errors happen
+      # during crash kernel boot.
+      # https://github.com/coreos/fedora-coreos-tracker/issues/1195
+      sleep 5
       echo "Triggering sysrq"
       sync
       echo 1 > /proc/sys/kernel/sysrq
