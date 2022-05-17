@@ -34,7 +34,10 @@ NOTE: `virt-install` requires both the OS image and Ignition file to be specifie
 
 NOTE: Depending on your version of `virt-install`, you may not be able to use `--os-variant=fedora-coreos-*` and will get an error. In this case, you should pick an older Fedora variant (`--os-variant=fedora31` for example). You can find the variants that are supported by you current version of `virt-install` with `osinfo-query os | grep '^\s*fedora'`.
 
-NOTE: `virt-install` on Fedora 36 required additional steps:  Give proper selinux permission to ign-file: `chcon -t svirt_home_t /path/to/example.ign` and add `--network bridge=virbr0`
+NOTE: `virt-install` on Fedora 36 required additional steps:  
+# Setup the correct SELinux label to allow access to the config
+`chcon --verbose --type svirt_home_t /path/to/example.ign`
+and (in case of no default network found) add `--network bridge=virbr0`
 
 TIP: Make sure that your user has access to `/dev/kvm`. The default is to allow access for everyone, but on some distributions you may need to add yourself to the `kvm` group.
 
