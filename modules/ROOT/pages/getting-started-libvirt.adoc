@@ -17,27 +17,27 @@ podman run --pull=always --rm -v $HOME/.local/share/libvirt/images/:/data -w /da
 +
 [source, bash]
 ----
+# Setup the correct SELinux label to allow access to the config
+chcon --verbose --type svirt_home_t /path/to/example.ign
+
 IGNITION_CONFIG="/path/to/example.ign"
 IMAGE="/path/to/image.qcow2"
 VM_NAME="fcos-test-01"
 VCPUS="2"
 RAM_MB="2048"
+STREAM="stable"
 DISK_GB="10"
 
 virt-install --connect="qemu:///system" --name="${VM_NAME}" --vcpus="${VCPUS}" --memory="${RAM_MB}" \
         --os-variant="fedora-coreos-$STREAM" --import --graphics=none \
         --disk="size=${DISK_GB},backing_store=${IMAGE}" \
+        --network bridge=virbr0 \
         --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=${IGNITION_CONFIG}"
 ----
 
 NOTE: `virt-install` requires both the OS image and Ignition file to be specified as absolute paths.
 
 NOTE: Depending on your version of `virt-install`, you may not be able to use `--os-variant=fedora-coreos-*` and will get an error. In this case, you should pick an older Fedora variant (`--os-variant=fedora31` for example). You can find the variants that are supported by you current version of `virt-install` with `osinfo-query os | grep '^\s*fedora'`.
-
-NOTE: `virt-install` on Fedora 36 required additional steps:  
-# Setup the correct SELinux label to allow access to the config
-`chcon --verbose --type svirt_home_t /path/to/example.ign`
-and (in case of no default network found) add `--network bridge=virbr0`
 
 TIP: Make sure that your user has access to `/dev/kvm`. The default is to allow access for everyone, but on some distributions you may need to add yourself to the `kvm` group.
 
