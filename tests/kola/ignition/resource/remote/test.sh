@@ -1,7 +1,7 @@
 #!/bin/bash
 # kola: { "tags": "needs-internet" }
 # - tags: needs-internet
-#   - We fetch resources from S3.
+#   - We fetch resources from S3 and GCS.
 
 set -xeuo pipefail
 
