@@ -8,4 +8,34 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  systemd:
+    evr: 251~rc2-2.fc37
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1200
+      type: pin
+  systemd-container:
+    evr: 251~rc2-2.fc37
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1200
+      type: pin
+  systemd-libs:
+    evr: 251~rc2-2.fc37
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1200
+      type: pin
+  systemd-pam:
+    evr: 251~rc2-2.fc37
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1200
+      type: pin
+  systemd-resolved:
+    evr: 251~rc2-2.fc37
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1200
+      type: pin
+  systemd-udev:
+    evr: 251~rc2-2.fc37
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1200
+      type: pin
