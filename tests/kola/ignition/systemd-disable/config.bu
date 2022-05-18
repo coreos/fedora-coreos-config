@@ -1,0 +1,6 @@
+variant: fcos
+version: 1.4.0
+systemd:
+  units:
+    - name: zincati.service
+      enabled: false
