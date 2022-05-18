@@ -1,0 +1,28 @@
+# Can be removed from FCOS in Fedora 37 or after the next barrier release,
+# whichever comes first.  Can be removed from RHCOS in the first release
+# after every node is guaranteed to have booted at least once with 4.11 or
+# higher.
+
+[Unit]
+Description=CoreOS Delete Ignition Config From Hypervisor
+Documentation=https://coreos.github.io/ignition/
+
+ConditionKernelCommandLine=|ignition.platform.id=virtualbox
+ConditionKernelCommandLine=|ignition.platform.id=vmware
+ConditionPathExists=!/var/lib/coreos-ignition-delete-config.stamp
+# Hack: if the user masked ignition-delete-config.service, we shouldn't run
+# either.
+ConditionPathIsSymbolicLink=!/etc/systemd/system/ignition-delete-config.service
+
+# We check a stamp file written by ignition-delete-config.service.  That
+# service runs Before=sysinit.target, on which we have a default dependency,
+# so this is really just documentation.
+After=ignition-delete-config.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-ignition-delete-config
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

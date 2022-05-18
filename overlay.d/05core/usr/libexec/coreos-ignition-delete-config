@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -euo pipefail
+
+cmdline=( $(</proc/cmdline) )
+cmdline_arg() {
+    local name="$1" value
+    for arg in "${cmdline[@]}"; do
+        if [[ "${arg%%=*}" == "${name}" ]]; then
+            value="${arg#*=}"
+        fi
+    done
+    echo "${value}"
+}
+
+# Avoid running again if ignition-delete-config.service has run, but still
+# create our own stamp file now that /var is mounted.
+if [ ! -e /run/coreos-ignition-delete-config.stamp ]; then
+    PLATFORM_ID=$(cmdline_arg ignition.platform.id)
+    /usr/libexec/ignition-rmcfg --platform=${PLATFORM_ID}
+fi
+
+touch /var/lib/coreos-ignition-delete-config.stamp
