@@ -1,0 +1,62 @@
+= Provisioning Fedora CoreOS on Nutanix AHV
+
+This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Nutanix AHV. Fedora currently does not publish Fedora CoreOS images within Nutanix, so you need to upload a Nutanix image to your Nutanix Prism Central subscription.
+
+== Prerequisites
+
+Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+You also need to have access to a Nutanix Prism Central subscription. The examples below use the `curl` command to access Nutanix Prism Central APIs.
+
+== Uploading an image to Nutanix AHV
+
+Fedora CoreOS is designed to be updated automatically, with different schedules per stream. Once you have picked the relevant stream, use the Nutanix Prism Central API to upload the latest image to Nutanix:
+
+[source, bash]
+----
+STREAM=stable
+IMAGE_NAME=<name of image to create>
+API_HOST=<Prism Central hostname>
+API_USERNAME=<username>
+API_PASSWORD=<password>
+
+URL=$(curl https://builds.coreos.fedoraproject.org/streams/${STREAM}.json | \
+    jq -r .architectures.x86_64.artifacts.nutanix.formats.qcow2.disk.location)
+ENCODED_CREDS="$(echo -n "${API_USERNAME}:${API_PASSWORD}" | base64)"
+
+curl -X POST --header "Content-Type: application/json" \
+    --header "Accept: application/json" \ 
+    --header "Authorization: Basic ${ENCODED_CREDS}" \
+    "https://${API_HOST}:9440/api/nutanix/v3/images" \
+    -d @- << EOF
+{
+  "spec": {
+    "name": "${IMAGE_NAME}",
+    "resources": {
+      "image_type": "ISO_IMAGE",
+      "source_uri": "${URL}",
+      "architecture": "X86_64",
+      "source_options": {
+        "allow_insecure_connection": false
+      }
+    },
+    "description": "string"
+  },
+  "api_version": "3.1.0",
+  "metadata": {
+    "use_categories_mapping": false,
+    "kind": "image",
+    "spec_version": 0,
+    "categories_mapping": {},
+    "should_force_translate": true,
+    "entity_version": "string",
+    "categories": {},
+    "name": "string"
+  }
+}
+EOF
+----
+
+== Launching a VM instance
+
+You can provision an FCOS instance using the Nutanix Prism Central web portal or via the Prism Central API with `curl`. Ignition configuration can be passed to the VM as a "cloud-init custom script".
