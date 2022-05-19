@@ -20,6 +20,24 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-5df5dc8ec5
       type: fast-track
+  kernel:
+    evr: 5.17.9-300.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d4936254ad
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1167
+      type: fast-track
+  kernel-core:
+    evr: 5.17.9-300.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d4936254ad
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1167
+      type: fast-track
+  kernel-modules:
+    evr: 5.17.9-300.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d4936254ad
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1167
+      type: fast-track
   ostree:
     evr: 2022.3-2.fc36
     metadata:
