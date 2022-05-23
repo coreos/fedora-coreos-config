@@ -48,6 +48,9 @@ jobs:
           # We need an unbroken commit chain when pushing to the fork.  Don't
           # make assumptions about which commits are already available there.
           fetch-depth: 0
+      # https://github.com/actions/checkout/issues/766
+      - name: Mark git checkout as safe
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Update metadata
         env:
           TARGET: ${{ github.event.inputs.target }}

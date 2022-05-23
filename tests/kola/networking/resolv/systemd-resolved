@@ -1,0 +1,18 @@
+#!/bin/bash
+# This test only runs on FCOS because `systemd-resolved` is not installed on
+# RHCOS
+# kola: { "distros": "fcos", "exclusive": false }
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+# systemd-resolved should be enabled
+if ! systemctl is-enabled systemd-resolved 1>/dev/null; then
+    fatal "Unit systemd-resolved should be enabled"
+fi
+
+# systemd-resolved should be fully functional on f35+
+if ! grep 'nameserver 127.0.0.53' /etc/resolv.conf; then
+    fatal "systemd-resolved stub listener isn't enabled"
+fi
+ok "systemd-resolved is enabled and the stub listener is enabled"
