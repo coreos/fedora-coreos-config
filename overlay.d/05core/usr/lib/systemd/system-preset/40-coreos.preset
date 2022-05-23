@@ -10,6 +10,8 @@ enable coreos-ignition-firstboot-complete.service
 # Delete Ignition config from provider on platforms where it's possible
 # https://github.com/coreos/ignition/pull/1350
 enable ignition-delete-config.service
+# Delete Ignition config from provider when upgrading existing nodes
+enable coreos-ignition-delete-config.service
 # Boot checkin services for cloud providers.
 enable afterburn-checkin.service
 enable afterburn-firstboot-checkin.service
