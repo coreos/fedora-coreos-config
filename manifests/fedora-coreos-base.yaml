@@ -17,14 +17,6 @@ ostree-layers:
   - overlay/14NetworkManager-plugins
   - overlay/20platform-chrony
 
-conditional-include:
-  # https://github.com/coreos/fedora-coreos-tracker/issues/676
-  - if: releasever >= 36
-    include: iptables-nft.yaml
-  # https://github.com/coreos/fedora-coreos-config/pull/1519
-  - if: releasever >= 36
-    include: podman-v4.yaml
-
 initramfs-args:
   - --no-hostonly
   # We don't support root on NFS, so we don't need it in the initramfs. It also
@@ -86,16 +78,6 @@ postprocess:
   - |
     #!/usr/bin/env bash
     systemctl mask systemd-repart.service
-  # Mask systemd-network-generator. We need it for some things in the future
-  # (https://github.com/systemd/systemd/pull/21766/files), but for now it's
-  # just failing for Fedora 35 on boot because of SELinux:
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1059#issuecomment-1090602396
-  - |
-    #!/usr/bin/env bash
-    source /etc/os-release
-    if [ "$VERSION_ID" -eq "35" ]; then
-      systemctl mask systemd-network-generator.service
-    fi
 
   # Set the fallback hostname to `localhost`. This was needed in F33/F34
   # because a fallback hostname of `fedora` + systemd-resolved broke
@@ -124,6 +106,20 @@ postprocess:
         chmod +x /usr/lib/dracut/modules.d/95nvmf/nvmf-autoconnect.sh
     fi
 
+  # Default to iptables-nft. Otherwise, legacy wins. We can drop this once/if we
+  # remove iptables-legacy. This is needed because alternatives don't work
+  # https://github.com/coreos/fedora-coreos-tracker/issues/677
+  # https://github.com/coreos/fedora-coreos-tracker/issues/676
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    ln -sf /usr/sbin/ip6tables-nft         /etc/alternatives/ip6tables
+    ln -sf /usr/sbin/ip6tables-nft-restore /etc/alternatives/ip6tables-restore
+    ln -sf /usr/sbin/ip6tables-nft-save    /etc/alternatives/ip6tables-save
+    ln -sf /usr/sbin/iptables-nft          /etc/alternatives/iptables
+    ln -sf /usr/sbin/iptables-nft-restore  /etc/alternatives/iptables-restore
+    ln -sf /usr/sbin/iptables-nft-save     /etc/alternatives/iptables-save
+
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go
 # into one of the sub-manifests listed at the top.
@@ -140,6 +136,18 @@ packages:
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
   # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071338097
   - containernetworking-plugins podman-plugins dnsmasq
+  # For podman v4 netavark gets pulled in but it only recommends
+  # aardvark-dns (which provides name resolution based on container
+  # names). This functionality was previously provided by dnsname from
+  # podman-plugins in the podman v3 stack.
+  # See https://github.com/containers/netavark/pull/217
+  - aardvark-dns
+  # Since we need `containernetworking-plugins` installed to continue
+  # to support CNI networks we need to also explicitly install
+  # `netavark` so we get both of them installed since both of them
+  # provide `container-network-stack`.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071458717
+  - netavark
   # Minimal NFS client
   - nfs-utils-coreos
   # Active Directory support
