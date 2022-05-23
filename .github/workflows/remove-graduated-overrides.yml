@@ -34,6 +34,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ matrix.branch }}
+      # https://github.com/actions/checkout/issues/766
+      - name: Mark git checkout as safe
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Remove graduated overrides
         run: |
           git config user.name 'CoreOS Bot'

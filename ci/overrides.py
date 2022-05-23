@@ -74,7 +74,7 @@ def main():
     pin.set_defaults(func=do_pin)
 
     srpms = subcommands.add_parser('srpms',
-            description='Name the source RPMs for a Bodhi update.')
+            description='Name the relevant source RPMs for a Bodhi update.')
     srpms.add_argument('update', help='ID or URL of Bodhi update')
     srpms.set_defaults(func=do_srpms)
 
@@ -133,8 +133,13 @@ def do_pin(args):
 
 
 def do_srpms(args):
+    printed = False
     for nvr in get_source_nvrs(get_bodhi_update(args.update)):
-        print(nvr)
+        if get_binary_packages([nvr]):
+            print(nvr)
+            printed = True
+    if not printed:
+        raise Exception('specified update contains no binary packages listed in lockfiles')
 
 
 def do_graduate(_args):
@@ -201,7 +206,7 @@ def get_manifest_packages(arch):
     versions = [b['id'] for b in get_build_list() if arch in b['arches']]
     if not versions:
         return {}
-    print(f'Reading generated lockfile from build {versions[0]} on {arch}')
+    eprint(f'Reading generated lockfile from build {versions[0]} on {arch}')
     lockfile_url = GENERATED_LOCKFILE_URL_TEMPLATE.format(stream=get_stream(),
             version=versions[0], arch=arch)
     resp = requests.get(lockfile_url)
@@ -267,12 +272,12 @@ def setup_repos(base, treefile):
     for repo in base.repos.values():
         repo.disable()
 
-    print("Enabled repos:")
+    eprint("Enabled repos:")
     for repo in treefile['repos']:
         base.repos[repo].enable()
-        print(f"- {repo}")
+        eprint(f"- {repo}")
 
-    print("Downloading metadata")
+    eprint("Downloading metadata")
     base.fill_sack(load_system_repo=False)
 
 
@@ -311,13 +316,13 @@ def graduate_lockfile(base, fn):
         if not graduated:
             new_packages[name] = lock
         else:
-            print(f"{fn}: {nevra} has graduated")
+            eprint(f"{fn}: {nevra} has graduated")
 
     if lockfile['packages'] != new_packages:
         lockfile['packages'] = new_packages
         write_lockfile(fn, lockfile)
     else:
-        print(f"{fn}: no packages graduated")
+        eprint(f"{fn}: no packages graduated")
 
 
 def sack_has_nevra_greater_or_equal(base, nevra):
@@ -329,7 +334,7 @@ def sack_has_nevra_greater_or_equal(base, nevra):
         # Odd... the only way I can imagine this happen is if we fast-track a
         # brand new package from Koji which hasn't hit the updates repo yet.
         # Corner-case, but let's be nice.
-        print(f"couldn't find package {nevra.name}; assuming not graduated")
+        eprint(f"couldn't find package {nevra.name}; assuming not graduated")
         return False
 
     nevra_latest = hawkey.split_nevra(str(pkgs[0]))
@@ -368,6 +373,10 @@ def check_dist_tag(name, info, dist):
         raise Exception(f"Package {name}-{info['evr']} doesn't match expected dist tag {dist}")
     if 'evra' in info and not info['evra'].endswith(dist + '.noarch'):
         raise Exception(f"Package {name}-{info['evra']} doesn't match expected dist tag {dist}")
+
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 
 if __name__ == "__main__":

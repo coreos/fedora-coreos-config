@@ -1,0 +1,35 @@
+# Objects accessible by any authenticated S3 user, such as the IAM role
+# associated with the instance
+
+variant: fcos
+version: 1.5.0-experimental
+ignition:
+  config:
+    merge:
+      - source: "s3://ignition-test-fixtures/resources/authenticated-var-v3.ign"
+storage:
+  files:
+    # Check that anonymous access works with credentials
+    - path: /var/resource/s3-anon
+      contents:
+        source: "s3://ignition-test-fixtures/resources/anonymous"
+    - path: /var/resource/s3-auth
+      contents:
+        source: "s3://ignition-test-fixtures/resources/authenticated"
+    - path: /var/resource/arn-auth
+      contents:
+        source: "arn:aws:s3:::ignition-test-fixtures/resources/authenticated"
+    # Publicly-readable object, fetched via an access point.  Access points
+    # don't allow anonymous access.
+    - path: /var/resource/arn-ap-anon
+      contents:
+        source: "arn:aws:s3:us-east-1:460538899914:accesspoint/ignition-test-fixtures-ap/object/resources/anonymous"
+    - path: /var/resource/arn-ap-auth
+      contents:
+        source: "arn:aws:s3:us-east-1:460538899914:accesspoint/ignition-test-fixtures-ap/object/resources/authenticated"
+    - path: /var/resource/arn-ap-versioned-original
+      contents:
+        source: "arn:aws:s3:us-east-1:460538899914:accesspoint/ignition-test-fixtures-ap/object/resources/versioned?versionId=Y9YqVujoLyHHSHJ4DslyXoaLvcilQJnU"
+    - path: /var/resource/arn-ap-versioned-latest
+      contents:
+        source: "arn:aws:s3:us-east-1:460538899914:accesspoint/ignition-test-fixtures-ap/object/resources/versioned"
