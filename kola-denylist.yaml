@@ -17,3 +17,19 @@
   tracker: https://github.com/coreos/coreos-assembler/issues/2725
   arches:
   - ppc64le
+- pattern: rpmostree.install-uninstall
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1204
+  arches:
+  - s390x
+- pattern: rpmostree.upgrade-rollback
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1205
+  arches:
+  - s390x
+- pattern: ostree.hotfix
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1207
+  arches:
+  - s390x
+- pattern: multipath.day2
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1206
+  arches:
+  - s390x
