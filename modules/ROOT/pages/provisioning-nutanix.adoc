@@ -59,4 +59,99 @@ EOF
 
 == Launching a VM instance
 
-You can provision an FCOS instance using the Nutanix Prism Central web portal or via the Prism Central API with `curl`. Ignition configuration can be passed to the VM as a "cloud-init custom script".
+You can provision an FCOS instance using the Nutanix Prism Central web portal or via the Prism Central API with `curl`. Ignition configuration can be passed to the VM as a "cloud-init custom script". For example, to launch a VM using the API:
+
+[source, bash]
+----
+API_HOST=<Prism Central hostname>
+API_USERNAME=<username>
+API_PASSWORD=<password>
+CLUSTER_REFERENCE_NAME=<name of cluster to use>
+CLUSTER_REFERENCE_UUID=<uuid of cluster to use>
+SUBNET_REFERENCE_NAME=<name of subnet to use>
+SUBNET_REFERENCE_UUID=<uuid of subnet to use>
+VM_NAME=<name of VM to create>
+IGNITION_CONFIG=config.ign
+IMAGE_NAME=<name of image>
+
+ENCODED_CONFIG="$(cat ${IGNITION_CONFIG} | base64 -w 0)"
+ENCODED_CREDS="$(echo -n "${API_USERNAME}:${API_PASSWORD}" | base64)"
+IMAGE_ID=$(curl -X POST --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Basic ${ENCODED_CREDS}" \
+    "https://${API_HOST}:9440/api/nutanix/v3/images/list"
+    -d '{ "kind": "image","filter": "", "length": 30, "offset": 0}' | \
+    jq -r '.entities[] | select(.spec.name == "${IMAGE_NAME}") | .metadata.uuid')
+
+
+curl -X POST --header "Content-Type: application/json" \
+    --header "Accept: application/json" \ 
+    --header "Authorization: Basic ${ENCODED_CREDS}" \
+    "https://${API_HOST}:9440/api/nutanix/v3/vms" \
+    -d @- << EOF
+{
+   "spec": {
+      "name": "${VM_NAME}",
+      "resources": {
+         "power_state": "ON",
+         "num_vcpus_per_socket": 1,
+         "num_sockets": 1,
+         "memory_size_mib": 16384,
+         "disk_list": [
+            {
+               "disk_size_mib": 32768,
+               "device_properties": {
+                  "device_type": "DISK",
+                  "disk_address": {
+                     "device_index": 0,
+                     "adapter_type": "SCSI"
+                  }
+               },
+               "data_source_reference": {
+                  "kind": "image",
+                  "uuid": "${IMAGE_ID}"
+               }
+            }
+         ],
+         "nic_list": [
+            {
+               "nic_type": "NORMAL_NIC",
+               "is_connected": true,
+               "ip_endpoint_list": [
+                  {
+                     "ip_type": "DHCP"
+                  }
+               ],
+               "subnet_reference": {
+                  "kind": "subnet",
+                  "name": "${SUBNET_REFERENCE_NAME}",
+                  "uuid": "${SUBNET_REFERENCE_UUID}"
+               }
+            }
+         ],
+         "guest_tools": {
+            "nutanix_guest_tools": {
+               "state": "ENABLED",
+               "iso_mount_state": "MOUNTED"
+            }
+         },
+         "guest_customization": {
+            "cloud_init": {
+               "user_data": "${ENCODED_CONFIG}"
+            },
+            "is_overridable": false
+         }
+      },
+      "cluster_reference": {
+         "kind": "cluster",
+         "name": "${CLUSTER_REFERENCE_NAME}",
+         "uuid": "${CLUSTER_REFERENCE_UUID}"
+      }
+   },
+   "api_version": "3.1.0",
+   "metadata": {
+      "kind": "vm"
+   }
+}
+EOF
+----
