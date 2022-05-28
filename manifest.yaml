@@ -4,4 +4,11 @@ variables:
 
 releasever: 36
 
+packages:
+- hdparm
+- crio
+
+repos:
+- fedora
+
 include: manifests/fedora-coreos.yaml
