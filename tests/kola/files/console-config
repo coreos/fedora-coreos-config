@@ -1,0 +1,87 @@
+#!/bin/bash
+# kola: { "exclusive": false, "architectures": "!s390x" }
+# Verify that the kargs and grub.cfg commands specified in platforms.json
+# have been properly applied to the image.  Also check that cosa correctly
+# translated platforms.yaml to platforms.json, by spot-checking certain
+# expected platforms.json values.
+#
+# - exclusive: false
+#   - We don't need a special Ignition config and we don't modify the VM.
+# - architectures: !s390x
+#   - s390x doesn't have any configuration in platforms.yaml, so
+#     platforms.json is not included in the image.
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+cmdline=( $(</proc/cmdline) )
+cmdline_arg() {
+    local name="$1" value=""
+    for arg in "${cmdline[@]}"; do
+        if [[ "${arg%%=*}" == "${name}" ]]; then
+            value="${arg#*=}"
+        fi
+    done
+    echo "${value}"
+}
+
+platform_json_kargs() {
+    jq -r ".$1.kernel_arguments // [] | join(\" \")" < /boot/coreos/platforms.json
+}
+
+platform_json_grub_cmds() {
+    jq -r ".$1.grub_commands // [] | join(\"\\\\n\")" < /boot/coreos/platforms.json
+}
+
+check_platforms_json() {
+    local platform="$1" expected_kargs="$2" expected_grub_cmds="$3"
+    found_kargs=$(platform_json_kargs "$platform")
+    found_grub_cmds=$(platform_json_grub_cmds "$platform")
+    if [ "$expected_kargs" != "$found_kargs" ]; then
+        fatal "platforms.json incorrect kargs for $platform"
+    fi
+    if [ "$expected_grub_cmds" != "$found_grub_cmds" ]; then
+        fatal "platforms.json incorrect GRUB commands for $platform"
+    fi
+    ok "platforms.json for $platform"
+}
+
+# Check that platforms.json exists
+if [ ! -e /boot/coreos/platforms.json ]; then
+    fatal "Expected platforms.json to exist"
+fi
+ok "Found platforms.json"
+
+# Check that platforms.json matches grub.cfg and kargs
+platform=$(cmdline_arg ignition.platform.id)
+expected_kargs=$(platform_json_kargs "$platform")
+expected_grub_cmds=$(platform_json_grub_cmds "$platform")
+if [ -n "$expected_kargs" ] && ! grep -Eq " ${expected_kargs}( |$)" /proc/cmdline; then
+    fatal "Didn't find $expected_kargs in $(cat /proc/cmdline)"
+fi
+if [ -n "$expected_grub_cmds" ] && ! grep -qzP "\n${expected_grub_cmds}\n" /boot/grub2/grub.cfg; then
+    fatal "Didn't find platform grub commands in /boot/grub2/grub.cfg"
+fi
+ok "platforms.json matches grub.cfg and kargs"
+
+# Check that platforms.json has reasonable contents (i.e. that cosa
+# properly forwarded it from platforms.yaml).
+# Check at least one platform on each architecture.
+case $(uname -m) in
+x86_64)
+    # Matches the legacy defaults
+    check_platforms_json qemu "console=tty0 console=ttyS0,115200n8" "serial --speed=115200\nterminal_input serial console\nterminal_output serial console"
+    # Different from legacy defaults
+    check_platforms_json aws "console=ttyS0,115200n8" "serial --speed=115200\nterminal_input serial\nterminal_output serial"
+    ;;
+aarch64)
+    # GRUB commands but no kargs
+    check_platforms_json qemu "" "serial --speed=115200\nterminal_input serial console\nterminal_output serial console"
+    ;;
+ppc64le)
+    # Kargs but no GRUB commands
+    check_platforms_json qemu "console=hvc0 console=tty0" ""
+    ;;
+esac
+ok "platforms.json has expected contents"
