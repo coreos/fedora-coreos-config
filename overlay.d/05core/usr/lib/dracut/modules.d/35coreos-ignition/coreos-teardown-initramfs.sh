@@ -233,7 +233,8 @@ main() {
     # real root is passed on to NetworkManager in the real root
     rm -rf /run/NetworkManager/
 
-    rm -rf /dev/disk/by-id/coreos-boot-disk
+    rm -f /run/udev/rules.d/80-coreos-boot-disk.rules
+    rm -f /dev/disk/by-id/coreos-boot-disk
 }
 
 main
