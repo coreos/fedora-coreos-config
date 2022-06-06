@@ -22,6 +22,11 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
       if [ $(systemctl show -p Result kdump.service) != "Result=success" ]; then
           fatal "kdump.service failed to start"
       fi
+      # Verify that the crashkernel reserved memory is large enough
+      output=$(kdumpctl estimate)
+      if grep -q "WARNING: Current crashkernel size is lower than recommended size" <<< "$output"; then
+          fatal "The reserved crashkernel size is lower than recommended."
+      fi
       /tmp/autopkgtest-reboot-prepare aftercrash
       # Add in a sleep to workaround race condition where XFS/kernel errors happen
       # during crash kernel boot.
