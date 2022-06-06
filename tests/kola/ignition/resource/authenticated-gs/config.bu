@@ -1,0 +1,18 @@
+# Objects accessible by any authenticated GS user, such as the credentials
+# associated with the GCE instance
+
+variant: fcos
+version: 1.2.0
+ignition:
+  config:
+    merge:
+      - source: "gs://ignition-test-fixtures/resources/authenticated-var.ign"
+storage:
+  files:
+    # Check that anonymous access works with credentials
+    - path: /var/resource/gs-anon
+      contents:
+        source: "gs://ignition-test-fixtures/resources/anonymous"
+    - path: /var/resource/gs-auth
+      contents:
+        source: "gs://ignition-test-fixtures/resources/authenticated"

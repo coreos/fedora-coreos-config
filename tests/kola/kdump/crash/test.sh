@@ -19,6 +19,9 @@ set -xeuo pipefail
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
+      if [ $(systemctl show -p Result kdump.service) != "Result=success" ]; then
+          fatal "kdump.service failed to start"
+      fi
       /tmp/autopkgtest-reboot-prepare aftercrash
       # Add in a sleep to workaround race condition where XFS/kernel errors happen
       # during crash kernel boot.

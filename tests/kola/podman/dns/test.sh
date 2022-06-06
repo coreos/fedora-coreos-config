@@ -24,7 +24,7 @@ runascoreuserscript='
 set -euxo pipefail
 
 podman network create testnetwork
-podman run --rm -t --network=testnetwork registry.fedoraproject.org/fedora:35 getent hosts google.com
+podman run --rm -t --network=testnetwork registry.fedoraproject.org/fedora:36 getent hosts google.com
 podman network rm testnetwork
 '
 
