@@ -94,9 +94,11 @@ are_default_NM_configs() {
 propagate_initramfs_networking() {
     # Check for any real root config in the two locations where a user could have
     # provided network configuration. On FCOS we only support keyfiles, but on RHCOS
-    # we support keyfiles and ifcfg
+    # we support keyfiles and ifcfg. We also need to ignore readme-ifcfg-rh.txt
+    # which is a cosmetic file added in
+    # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/commit/96d7362
     if [ -n "$(ls -A /sysroot/etc/NetworkManager/system-connections/)" -o \
-         -n "$(ls -A /sysroot/etc/sysconfig/network-scripts/)" ]; then
+         -n "$(ls -A -I readme-ifcfg-rh.txt /sysroot/etc/sysconfig/network-scripts/)" ]; then
         echo "info: networking config is defined in the real root"
         realrootconfig=1
     else
@@ -231,7 +233,8 @@ main() {
     # real root is passed on to NetworkManager in the real root
     rm -rf /run/NetworkManager/
 
-    rm -rf /dev/disk/by-id/coreos-boot-disk
+    rm -f /run/udev/rules.d/80-coreos-boot-disk.rules
+    rm -f /dev/disk/by-id/coreos-boot-disk
 }
 
 main
