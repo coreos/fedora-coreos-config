@@ -277,9 +277,6 @@ def setup_repos(base, treefile):
         base.repos[repo].enable()
         eprint(f"- {repo}")
 
-    eprint("Downloading metadata")
-    base.fill_sack(load_system_repo=False)
-
 
 def get_lockfiles():
     lockfiles = ['manifest-lock.overrides.yaml']
@@ -296,8 +293,12 @@ def graduate_lockfile(base, fn):
 
     with open(fn) as f:
         lockfile = yaml.safe_load(f)
-    if 'packages' not in lockfile:
+    if len(lockfile.get('packages', {})) == 0:
         return
+
+    if base.sack is None:
+        eprint("Downloading metadata")
+        base.fill_sack(load_system_repo=False)
 
     new_packages = {}
     for name, lock in lockfile['packages'].items():

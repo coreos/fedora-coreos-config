@@ -61,22 +61,22 @@
       "evra": "1:2.11-6.fc36.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.16.28-1.fc36.x86_64"
+      "evra": "32:9.16.29-1.fc36.x86_64"
     },
     "bind-license": {
-      "evra": "32:9.16.28-1.fc36.noarch"
+      "evra": "32:9.16.29-1.fc36.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.16.28-1.fc36.x86_64"
+      "evra": "32:9.16.29-1.fc36.x86_64"
     },
     "bootupd": {
       "evra": "0.2.6-2.fc36.x86_64"
     },
     "bsdtar": {
-      "evra": "3.5.3-1.fc36.x86_64"
+      "evra": "3.5.3-2.fc36.x86_64"
     },
     "btrfs-progs": {
-      "evra": "5.16.2-1.fc36.x86_64"
+      "evra": "5.18-1.fc36.x86_64"
     },
     "bubblewrap": {
       "evra": "0.5.0-2.fc36.x86_64"
@@ -133,7 +133,7 @@
       "evra": "0.21.2-4.fc36.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.183.0-4.fc36.noarch"
+      "evra": "2:2.187.0-1.fc36.noarch"
     },
     "containerd": {
       "evra": "1.6.4-1.fc36.x86_64"
@@ -166,13 +166,13 @@
       "evra": "2.9.6-28.fc36.x86_64"
     },
     "criu": {
-      "evra": "3.17-1.fc36.x86_64"
+      "evra": "3.17-2.fc36.x86_64"
     },
     "criu-libs": {
-      "evra": "3.17-1.fc36.x86_64"
+      "evra": "3.17-2.fc36.x86_64"
     },
     "crun": {
-      "evra": "1.4.4-1.fc36.x86_64"
+      "evra": "1.4.5-1.fc36.x86_64"
     },
     "crypto-policies": {
       "evra": "20220203-2.git112f859.fc36.noarch"
@@ -340,7 +340,7 @@
       "evra": "3.10.5-2.fc36.x86_64"
     },
     "fwupd": {
-      "evra": "1.7.7-1.fc36.x86_64"
+      "evra": "1.8.1-1.fc36.x86_64"
     },
     "gawk": {
       "evra": "5.1.1-2.fc36.x86_64"
@@ -361,16 +361,16 @@
       "evra": "2.36.1-1.fc36.x86_64"
     },
     "glib2": {
-      "evra": "2.72.1-1.fc36.x86_64"
+      "evra": "2.72.2-1.fc36.x86_64"
     },
     "glibc": {
-      "evra": "2.35-9.fc36.x86_64"
+      "evra": "2.35-11.fc36.x86_64"
     },
     "glibc-common": {
-      "evra": "2.35-9.fc36.x86_64"
+      "evra": "2.35-11.fc36.x86_64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.35-9.fc36.x86_64"
+      "evra": "2.35-11.fc36.x86_64"
     },
     "gmp": {
       "evra": "1:6.2.1-2.fc36.x86_64"
@@ -379,7 +379,7 @@
       "evra": "2.3.6-1.fc36.x86_64"
     },
     "gnutls": {
-      "evra": "3.7.4-1.fc36.x86_64"
+      "evra": "3.7.6-1.fc36.x86_64"
     },
     "gpgme": {
       "evra": "1.15.1-6.fc36.x86_64"
@@ -475,13 +475,13 @@
       "evra": "2.4.0-9.fc36.noarch"
     },
     "kernel": {
-      "evra": "5.17.9-300.fc36.x86_64"
+      "evra": "5.17.12-300.fc36.x86_64"
     },
     "kernel-core": {
-      "evra": "5.17.9-300.fc36.x86_64"
+      "evra": "5.17.12-300.fc36.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.17.9-300.fc36.x86_64"
+      "evra": "5.17.12-300.fc36.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.23-6.fc36.x86_64"
@@ -514,7 +514,7 @@
       "evra": "0.3.111-13.fc36.x86_64"
     },
     "libarchive": {
-      "evra": "3.5.3-1.fc36.x86_64"
+      "evra": "3.5.3-2.fc36.x86_64"
     },
     "libargon2": {
       "evra": "20171227-9.fc36.x86_64"
@@ -529,7 +529,7 @@
       "evra": "0.1.1-50.fc36.x86_64"
     },
     "libblkid": {
-      "evra": "2.38-0.2.fc36.x86_64"
+      "evra": "2.38-1.fc36.x86_64"
     },
     "libbpf": {
       "evra": "2:0.7.0-3.fc36.x86_64"
@@ -544,7 +544,7 @@
       "evra": "2.48-4.fc36.x86_64"
     },
     "libcap-ng": {
-      "evra": "0.8.2-9.fc36.x86_64"
+      "evra": "0.8.3-1.fc36.x86_64"
     },
     "libcbor": {
       "evra": "0.7.0-5.fc36.x86_64"
@@ -577,7 +577,7 @@
       "evra": "2.1.12-6.fc36.x86_64"
     },
     "libfdisk": {
-      "evra": "2.38-0.2.fc36.x86_64"
+      "evra": "2.38-1.fc36.x86_64"
     },
     "libffi": {
       "evra": "3.4.2-8.fc36.x86_64"
@@ -592,7 +592,7 @@
       "evra": "12.1.1-1.fc36.x86_64"
     },
     "libgcrypt": {
-      "evra": "1.10.1-2.fc36.x86_64"
+      "evra": "1.10.1-3.fc36.x86_64"
     },
     "libgomp": {
       "evra": "12.1.1-1.fc36.x86_64"
@@ -652,7 +652,7 @@
       "evra": "2.14.0-2.fc36.x86_64"
     },
     "libmount": {
-      "evra": "2.38-0.2.fc36.x86_64"
+      "evra": "2.38-1.fc36.x86_64"
     },
     "libndp": {
       "evra": "1.8-3.fc36.x86_64"
@@ -667,7 +667,7 @@
       "evra": "1.0.1-21.fc36.x86_64"
     },
     "libnfsidmap": {
-      "evra": "1:2.6.1-2.rc4.fc36.x86_64"
+      "evra": "1:2.6.1-2.rc5.fc36.x86_64"
     },
     "libnftnl": {
       "evra": "1.2.1-2.fc36.x86_64"
@@ -676,10 +676,10 @@
       "evra": "1.46.0-2.fc36.x86_64"
     },
     "libnl3": {
-      "evra": "3.5.0-9.fc36.x86_64"
+      "evra": "3.6.0-3.fc36.x86_64"
     },
     "libnl3-cli": {
-      "evra": "3.5.0-9.fc36.x86_64"
+      "evra": "3.6.0-3.fc36.x86_64"
     },
     "libnsl2": {
       "evra": "2.0.0-3.fc36.x86_64"
@@ -733,7 +733,7 @@
       "evra": "4.6.1-3.fc36.x86_64"
     },
     "libsmartcols": {
-      "evra": "2.38-0.2.fc36.x86_64"
+      "evra": "2.38-1.fc36.x86_64"
     },
     "libsmbclient": {
       "evra": "2:4.16.1-4.fc36.x86_64"
@@ -802,7 +802,7 @@
       "evra": "1.2.1-6.fc36.x86_64"
     },
     "libuuid": {
-      "evra": "2.38-0.2.fc36.x86_64"
+      "evra": "2.38-1.fc36.x86_64"
     },
     "libuv": {
       "evra": "1:1.44.1-1.fc36.x86_64"
@@ -820,13 +820,13 @@
       "evra": "2.9.14-1.fc36.x86_64"
     },
     "libxmlb": {
-      "evra": "0.3.7-1.fc36.x86_64"
+      "evra": "0.3.9-1.fc36.x86_64"
     },
     "libyaml": {
       "evra": "0.2.5-7.fc36.x86_64"
     },
     "libzstd": {
-      "evra": "1.5.2-1.fc36.x86_64"
+      "evra": "1.5.2-2.fc36.x86_64"
     },
     "linux-atm-libs": {
       "evra": "2.5.1-31.fc36.x86_64"
@@ -841,7 +841,7 @@
       "evra": "0.9.29-3.fc36.x86_64"
     },
     "logrotate": {
-      "evra": "3.19.0-2.fc36.x86_64"
+      "evra": "3.20.1-2.fc36.x86_64"
     },
     "lsof": {
       "evra": "4.94.0-3.fc36.x86_64"
@@ -874,7 +874,7 @@
       "evra": "20.10.16-1.fc36.x86_64"
     },
     "mokutil": {
-      "evra": "2:0.6.0-1.fc36.x86_64"
+      "evra": "2:0.6.0-3.fc36.x86_64"
     },
     "mozjs91": {
       "evra": "91.9.0-1.fc36.x86_64"
@@ -910,7 +910,7 @@
       "evra": "0.52.21-12.fc36.x86_64"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.1-2.rc4.fc36.x86_64"
+      "evra": "1:2.6.1-2.rc5.fc36.x86_64"
     },
     "nftables": {
       "evra": "1:1.0.1-3.fc36.x86_64"
@@ -931,10 +931,10 @@
       "evra": "6.9.8-1.fc36.x86_64"
     },
     "openldap": {
-      "evra": "2.6.1-2.fc36.x86_64"
+      "evra": "2.6.2-1.fc36.x86_64"
     },
     "openldap-compat": {
-      "evra": "2.6.1-2.fc36.x86_64"
+      "evra": "2.6.2-1.fc36.x86_64"
     },
     "openssh": {
       "evra": "8.8p1-1.fc36.1.x86_64"
@@ -946,10 +946,10 @@
       "evra": "8.8p1-1.fc36.1.x86_64"
     },
     "openssl": {
-      "evra": "1:3.0.2-5.fc36.x86_64"
+      "evra": "1:3.0.3-1.fc36.x86_64"
     },
     "openssl-libs": {
-      "evra": "1:3.0.2-5.fc36.x86_64"
+      "evra": "1:3.0.3-1.fc36.x86_64"
     },
     "os-prober": {
       "evra": "1.77-9.fc36.x86_64"
@@ -1069,10 +1069,10 @@
       "evra": "4.8-10.fc36.x86_64"
     },
     "selinux-policy": {
-      "evra": "36.8-2.fc36.noarch"
+      "evra": "36.10-1.fc36.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "36.8-2.fc36.noarch"
+      "evra": "36.10-1.fc36.noarch"
     },
     "setup": {
       "evra": "2.13.10-1.fc36.noarch"
@@ -1156,22 +1156,22 @@
       "evra": "1.9.8-5.p2.fc36.x86_64"
     },
     "systemd": {
-      "evra": "250.3-8.fc36.x86_64"
+      "evra": "250.6-1.fc36.x86_64"
     },
     "systemd-container": {
-      "evra": "250.3-8.fc36.x86_64"
+      "evra": "250.6-1.fc36.x86_64"
     },
     "systemd-libs": {
-      "evra": "250.3-8.fc36.x86_64"
+      "evra": "250.6-1.fc36.x86_64"
     },
     "systemd-pam": {
-      "evra": "250.3-8.fc36.x86_64"
+      "evra": "250.6-1.fc36.x86_64"
     },
     "systemd-resolved": {
-      "evra": "250.3-8.fc36.x86_64"
+      "evra": "250.6-1.fc36.x86_64"
     },
     "systemd-udev": {
-      "evra": "250.3-8.fc36.x86_64"
+      "evra": "250.6-1.fc36.x86_64"
     },
     "tar": {
       "evra": "2:1.34-3.fc36.x86_64"
@@ -1195,16 +1195,16 @@
       "evra": "0.13.0-4.fc36.x86_64"
     },
     "util-linux": {
-      "evra": "2.38-0.2.fc36.x86_64"
+      "evra": "2.38-1.fc36.x86_64"
     },
     "util-linux-core": {
-      "evra": "2.38-0.2.fc36.x86_64"
+      "evra": "2.38-1.fc36.x86_64"
     },
     "vim-data": {
-      "evra": "2:8.2.4975-1.fc36.noarch"
+      "evra": "2:8.2.5052-1.fc36.noarch"
     },
     "vim-minimal": {
-      "evra": "2:8.2.4975-1.fc36.x86_64"
+      "evra": "2:8.2.5052-1.fc36.x86_64"
     },
     "which": {
       "evra": "2.21-32.fc36.x86_64"
@@ -1241,16 +1241,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-05-22T20:52:16Z",
+    "generated": "2022-06-05T20:52:24Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:16:11Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-05-20T22:16:07Z"
+        "generated": "2022-06-03T22:18:33Z"
       },
       "fedora-updates": {
-        "generated": "2022-05-22T01:00:09Z"
+        "generated": "2022-06-05T01:04:52Z"
       }
     }
   }
