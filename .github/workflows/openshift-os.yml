@@ -1,0 +1,83 @@
+name: Sync to openshift/os
+on:
+  # We could do push: branches: [testing-devel] but that would restart
+  # downstream CI a lot
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      branch:
+        # Allow overriding branch for syncs that need manual fixups
+        description: PR branch
+        required: true
+        default: fcc-sync
+
+permissions:
+  # none at all
+  contents: none
+
+jobs:
+  update-submodule:
+    name: Update fedora-coreos-config submodule
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          repository: openshift/os
+          # We need an unbroken commit chain when pushing to the fork.  Don't
+          # make assumptions about which commits are already available there.
+          fetch-depth: 0
+
+      - name: Update submodule
+        env:
+          BRANCH_NAME: ${{ github.event.inputs.branch }}
+        run: |
+          set -euxo pipefail
+
+          # Default branch name for on.schedule case
+          echo "BRANCH_NAME=${BRANCH_NAME:-fcc-sync}" >> $GITHUB_ENV
+
+          git submodule init
+          git submodule update
+
+          cd fedora-coreos-config
+          # Omit CoreOS Bot commits from the log message, since they generally
+          # only affect FCOS
+          git shortlog "HEAD..testing-devel" --perl-regexp \
+              --author='^((?!CoreOS Bot <coreosbot@fedoraproject.org>).*)$' \
+              > $RUNNER_TEMP/shortlog
+
+          if [ ! -s $RUNNER_TEMP/shortlog ]; then
+              # Any changes have been made by CoreOS Bot.  Ignore.
+              echo "No non-trivial changes; exiting"
+              exit 0
+          fi
+          git checkout testing-devel
+
+          marker=OPENSHIFT-OS-END-OF-LOG-MARKER-$RANDOM$RANDOM$RANDOM
+          cat >> $GITHUB_ENV <<EOF
+          SHORTLOG<<$marker
+          $(cat $RUNNER_TEMP/shortlog)
+          $marker
+          EOF
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v4.0.4
+        with:
+          token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
+          push-to-fork: coreosbot-releng/os
+          branch: ${{ env.BRANCH_NAME }}
+          commit-message: |
+            Bump fedora-coreos-config
+
+            ${{ env.SHORTLOG }}
+          title: Bump fedora-coreos-config
+          body: |
+            Created by [GitHub workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/openshift-os.yml) ([source](${{ github.server_url }}/${{ github.repository }}/blob/testing-devel/.github/workflows/openshift-os.yml)).
+
+            ```
+            ${{ env.SHORTLOG }}
+            ```
+          committer: "CoreOS Bot <coreosbot@fedoraproject.org>"
+          author: "CoreOS Bot <coreosbot@fedoraproject.org>"
