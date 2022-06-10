@@ -8,4 +8,24 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  ostree:
+    evr: 2022.4-2.fc37
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1204'
+      type: fast-track
+  ostree-devel:
+    evr: 2022.4-2.fc37
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1205'
+      type: fast-track
+  ostree-libs:
+    evr: 2022.4-2.fc37
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1207'
+      type: fast-track
+  ostree-tests:
+    evr: 2022.4-2.fc37
+    metadata:
+      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1207'
+      type: fast-track
