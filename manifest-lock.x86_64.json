@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.38.0-1.fc36.x86_64"
+      "evra": "1:1.38.0-2.fc36.x86_64"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.38.0-1.fc36.x86_64"
+      "evra": "1:1.38.0-2.fc36.x86_64"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.38.0-1.fc36.x86_64"
+      "evra": "1:1.38.0-2.fc36.x86_64"
     },
     "NetworkManager-team": {
-      "evra": "1:1.38.0-1.fc36.x86_64"
+      "evra": "1:1.38.0-2.fc36.x86_64"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.38.0-1.fc36.x86_64"
+      "evra": "1:1.38.0-2.fc36.x86_64"
     },
     "WALinuxAgent-udev": {
       "evra": "2.5.0.2-2.fc36.noarch"
@@ -175,7 +175,7 @@
       "evra": "1.4.5-1.fc36.x86_64"
     },
     "crypto-policies": {
-      "evra": "20220203-2.git112f859.fc36.noarch"
+      "evra": "20220428-1.gitdfb10ea.fc36.noarch"
     },
     "cryptsetup": {
       "evra": "2.4.3-2.fc36.x86_64"
@@ -388,22 +388,22 @@
       "evra": "3.7-2.fc36.x86_64"
     },
     "grub2-common": {
-      "evra": "1:2.06-40.fc36.noarch"
+      "evra": "1:2.06-42.fc36.noarch"
     },
     "grub2-efi-x64": {
-      "evra": "1:2.06-40.fc36.x86_64"
+      "evra": "1:2.06-42.fc36.x86_64"
     },
     "grub2-pc": {
-      "evra": "1:2.06-40.fc36.x86_64"
+      "evra": "1:2.06-42.fc36.x86_64"
     },
     "grub2-pc-modules": {
-      "evra": "1:2.06-40.fc36.noarch"
+      "evra": "1:2.06-42.fc36.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.06-40.fc36.x86_64"
+      "evra": "1:2.06-42.fc36.x86_64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-40.fc36.x86_64"
+      "evra": "1:2.06-42.fc36.x86_64"
     },
     "gzip": {
       "evra": "1.11-3.fc36.x86_64"
@@ -475,13 +475,13 @@
       "evra": "2.4.0-9.fc36.noarch"
     },
     "kernel": {
-      "evra": "5.17.12-300.fc36.x86_64"
+      "evra": "5.17.13-300.fc36.x86_64"
     },
     "kernel-core": {
-      "evra": "5.17.12-300.fc36.x86_64"
+      "evra": "5.17.13-300.fc36.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.17.12-300.fc36.x86_64"
+      "evra": "5.17.13-300.fc36.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.23-6.fc36.x86_64"
@@ -619,7 +619,7 @@
       "evra": "1.3.1-50.fc36.x86_64"
     },
     "libipa_hbac": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "libjcat": {
       "evra": "0.1.10-1.fc36.x86_64"
@@ -667,7 +667,7 @@
       "evra": "1.0.1-21.fc36.x86_64"
     },
     "libnfsidmap": {
-      "evra": "1:2.6.1-2.rc5.fc36.x86_64"
+      "evra": "1:2.6.1-2.rc6.fc36.x86_64"
     },
     "libnftnl": {
       "evra": "1.2.1-2.fc36.x86_64"
@@ -754,16 +754,16 @@
       "evra": "0.9.6-4.fc36.noarch"
     },
     "libsss_certmap": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "libsss_idmap": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "libsss_nss_idmap": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "libsss_sudo": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "libstdc++": {
       "evra": "12.1.1-1.fc36.x86_64"
@@ -910,7 +910,7 @@
       "evra": "0.52.21-12.fc36.x86_64"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.1-2.rc5.fc36.x86_64"
+      "evra": "1:2.6.1-2.rc6.fc36.x86_64"
     },
     "nftables": {
       "evra": "1:1.0.1-3.fc36.x86_64"
@@ -1120,31 +1120,31 @@
       "evra": "0.1.3-2.fc36.x86_64"
     },
     "sssd-ad": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "sssd-client": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "sssd-common": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "sssd-common-pac": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "sssd-ipa": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "sssd-krb5": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "sssd-krb5-common": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "sssd-ldap": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "sssd-nfs-idmap": {
-      "evra": "2.7.1-1.fc36.x86_64"
+      "evra": "2.7.1-2.fc36.x86_64"
     },
     "stalld": {
       "evra": "1.15-2.fc36.x86_64"
@@ -1238,16 +1238,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-06-09T20:52:25Z",
+    "generated": "2022-06-13T12:59:49Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:16:11Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-06-09T14:21:35Z"
+        "generated": "2022-06-10T14:14:13Z"
       },
       "fedora-updates": {
-        "generated": "2022-06-09T00:57:10Z"
+        "generated": "2022-06-13T01:22:32Z"
       }
     }
   }
