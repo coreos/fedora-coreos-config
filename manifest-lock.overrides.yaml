@@ -9,23 +9,33 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  afterburn:
+    evr: 5.3.0-2.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-28295ab6c4
+      type: fast-track
+  afterburn-dracut:
+    evr: 5.3.0-2.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-28295ab6c4
+      type: fast-track
   ostree:
     evr: 2022.4-2.fc36
     metadata:
-      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1204'
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1204
       type: fast-track
   ostree-devel:
     evr: 2022.4-2.fc36
     metadata:
-      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1205'
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1205
       type: fast-track
   ostree-libs:
     evr: 2022.4-2.fc36
     metadata:
-      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1207'
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1207
       type: fast-track
   ostree-tests:
     evr: 2022.4-2.fc36
     metadata:
-      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1207'
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1207
       type: fast-track
