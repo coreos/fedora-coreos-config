@@ -9,6 +9,21 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  kernel:
+    evr: 5.18.4-201.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-4810298c00
+      type: fast-track
+  kernel-core:
+    evr: 5.18.4-201.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-4810298c00
+      type: fast-track
+  kernel-modules:
+    evr: 5.18.4-201.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-4810298c00
+      type: fast-track
   afterburn:
     evr: 5.3.0-2.fc36
     metadata:
