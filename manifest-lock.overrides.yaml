@@ -9,53 +9,33 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  ostree:
-    evr: 2022.4-2.fc37
+  systemd:
+    evr: 251.1-2.fc37
     metadata:
-      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1204'
-      type: fast-track
-  ostree-devel:
-    evr: 2022.4-2.fc37
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1228
+      type: pin
+  systemd-container:
+    evr: 251.1-2.fc37
     metadata:
-      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1205'
-      type: fast-track
-  ostree-libs:
-    evr: 2022.4-2.fc37
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1228
+      type: pin
+  systemd-libs:
+    evr: 251.1-2.fc37
     metadata:
-      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1207'
-      type: fast-track
-  ostree-tests:
-    evr: 2022.4-2.fc37
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1228
+      type: pin
+  systemd-pam:
+    evr: 251.1-2.fc37
     metadata:
-      reason: 'https://github.com/coreos/fedora-coreos-tracker/issues/1207'
-      type: fast-track
-  systemd:                                                                      
-    evr: 251.1-2.fc37                                                           
-    metadata:                                                                   
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1228       
-      type: pin                                                                 
-  systemd-container:                                                            
-    evr: 251.1-2.fc37                                                           
-    metadata:                                                                   
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1228       
-      type: pin                                                                 
-  systemd-libs:                                                                 
-    evr: 251.1-2.fc37                                                           
-    metadata:                                                                   
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1228       
-      type: pin                                                                 
-  systemd-pam:                                                                  
-    evr: 251.1-2.fc37                                                           
-    metadata:                                                                   
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1228       
-      type: pin                                                                 
-  systemd-resolved:                                                             
-    evr: 251.1-2.fc37                                                           
-    metadata:                                                                   
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1228       
-      type: pin                                                                 
-  systemd-udev:                                                                 
-    evr: 251.1-2.fc37                                                           
-    metadata:                                                                   
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1228       
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1228
+      type: pin
+  systemd-resolved:
+    evr: 251.1-2.fc37
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1228
+      type: pin
+  systemd-udev:
+    evr: 251.1-2.fc37
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1228
       type: pin
