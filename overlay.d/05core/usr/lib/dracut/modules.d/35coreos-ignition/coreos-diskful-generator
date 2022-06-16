@@ -12,6 +12,16 @@ set -e
 # https://github.com/systemd/systemd/issues/15638
 exec 1>/dev/kmsg; exec 2>&1
 
+# Generators get re-executed each time a daemon-reload happens.
+# We only need to run once.
+self=$(basename $0)
+if [ -e "/run/coreos-${self}" ]; then
+    echo "$self: generator has already run; skipping"
+    exit 0
+else
+    > "/run/coreos-${self}"
+fi
+
 UNIT_DIR="${1:-/tmp}"
 
 cmdline=( $(</proc/cmdline) )

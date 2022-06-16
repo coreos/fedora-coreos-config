@@ -4,6 +4,16 @@ set -euo pipefail
 
 . /usr/lib/coreos/generator-lib.sh
 
+# Generators get re-executed each time a daemon-reload happens.
+# We only need to run once.
+self=$(basename $0)
+if [ -e "/run/coreos-${self}" ]; then
+    echo "$self: generator has already run; skipping"
+    exit 0
+else
+    > "/run/coreos-${self}"
+fi
+
 write_dropin() {
     local service="$1"; shift
     local args="$1"; shift
