@@ -76,7 +76,7 @@ passwd:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTey7R...
 ----
 
-To generate a secure password hash, use `mkpasswd`:
+To generate a secure password hash, use `mkpasswd` from the `whois` package.  Your Linux distro may ship a different `mkpasswd` implementation; you can ensure you're using the correct one by running it from a container:
 
 [source]
 ----
