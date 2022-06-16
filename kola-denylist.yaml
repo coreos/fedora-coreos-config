@@ -25,6 +25,12 @@
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
   arches:
   - s390x
+  streams:
+  - next
+  - next-devel
+  - testing
+  - testing-devel
+  - stable
 - pattern: rpmostree.install-uninstall
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
   arches:
