@@ -9,7 +9,6 @@ import yaml
 GITHUB_RELEASES = {
     'butane-version': 'coreos/butane',
     'ignition-version': 'coreos/ignition',
-    'coreos-installer-version': 'coreos/coreos-installer',
 }
 FCOS_STREAMS = {
     'stable-version': 'stable',
