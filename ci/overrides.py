@@ -10,7 +10,7 @@ from urllib.parse import urlparse
 import yaml
 import subprocess
 
-import bodhi.client
+import bodhi.client.bindings
 import dnf
 import hawkey
 import koji
