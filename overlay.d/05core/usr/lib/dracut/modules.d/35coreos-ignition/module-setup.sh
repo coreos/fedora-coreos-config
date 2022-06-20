@@ -31,8 +31,10 @@ install() {
     inst_script "$moddir/coreos-gpt-setup.sh" \
         "/usr/sbin/coreos-gpt-setup"
 
+    # This has to work only on diskful systems during firstboot.
+    # coreos-diskful-generator will create a symlink
     inst_simple "$moddir/80-coreos-boot-disk.rules" \
-        "/usr/lib/udev/rules.d/80-coreos-boot-disk.rules"
+        "/usr/lib/coreos/80-coreos-boot-disk.rules"
 
     inst_script "$moddir/coreos-disk-contains-fs.sh" \
         "/usr/lib/udev/coreos-disk-contains-fs"
