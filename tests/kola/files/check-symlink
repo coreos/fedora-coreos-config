@@ -1,0 +1,19 @@
+#!/bin/bash
+# kola: { "exclusive": false }
+# Verify /etc release symlinks are valid
+# See:
+# - https://bugzilla.redhat.com/show_bug.cgi?id=2068148
+# - https://github.com/openshift/os/pull/815
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+for file_name in /etc/system-release-cpe /etc/system-release /etc/redhat-release /etc/os-release
+do
+    real_path=$(readlink -f ${file_name})
+    if ! test -f "${real_path}"; then
+        fatal "Error: ${file_name} symlink to ${real_path} which not exists"
+    fi
+    ok "${file_name} symlink to valid file ${real_path}"
+done
