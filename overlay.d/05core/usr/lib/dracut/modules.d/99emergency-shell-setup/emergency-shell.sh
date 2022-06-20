@@ -64,13 +64,15 @@ EOF
             echo "Displaying logs from failed units: ${failed}"
             for unit in ${failed}; do
                 # 10 lines should be enough for everyone
-                journalctl -b --no-pager --no-hostname -u ${unit} -n 10
+                SYSTEMD_COLORS=true journalctl -b --no-pager --no-hostname -u ${unit} -n 10
             done
         fi
     fi
 }
 
-# If we're invoked from a dracut breakpoint rather than
-# dracut-emergency.service, we won't have a controlling terminal and stdio
-# won't be connected to it. Explicitly read/write /dev/console.
-_display_relevant_errors < /dev/console > /dev/console
+# Print warnings/informational messages to all configured consoles on the
+# machine. Code inspired by https://github.com/dracutdevs/dracut/commit/32f68c1
+MESSAGE="$(_display_relevant_errors)"
+while read -r _tty rest; do
+    echo -e "$MESSAGE" > /dev/"$_tty"
+done < /proc/consoles

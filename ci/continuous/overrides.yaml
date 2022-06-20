@@ -1,0 +1,11 @@
+ex-override-replace:
+  - from:
+      repo: copr:copr.fedorainfracloud.org:group_CoreOS:continuous
+    packages:
+      - ostree
+      - ostree-libs
+      - rpm-ostree
+      - rpm-ostree-libs
+      - ignition
+      - coreos-installer
+      - coreos-installer-bootinfra
