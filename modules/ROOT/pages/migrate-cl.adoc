@@ -49,14 +49,7 @@ For more info, see the https://coreos.github.io/afterburn/usage/attributes/[Afte
 * CL had three release channels: `alpha`, `beta`, and `stable`. The FCOS production https://github.com/coreos/fedora-coreos-tracker/blob/main/Design.md#release-streams[release streams] are `next`, `testing`, and `stable`, with somewhat different semantics.
 * In general, SELinux confinement should work the same as in Fedora.
 * To deploy an Ignition config as part of a PXE image (a "custom OEM" in CL terminology), follow the https://coreos.com/os/docs/latest/booting-with-pxe.html#adding-a-custom-oem[same process] as in CL, but place the `config.ign` file in the root of the archive.
-* In CL, metrics/telemetry data was collected by the update mechanism. In FCOS, the data is collected (without unique identifiers) by https://github.com/coreos/fedora-coreos-pinger[`fedora-coreos-pinger`].
-** To prevent any information from being collected or transmitted by the pinger, you can disable reporting. To do so, drop a config snippet into `/etc/fedora-coreos-pinger/config.d/99-disable-reporting.toml` containing the following:
-+
-[source]
-----
-[reporting]
-enabled = false
-----
+* In CL, metrics/telemetry data was collected by the update mechanism. In FCOS, nodes are counted (without unique identifiers) via the xref:counting.adoc[Count Me] mechanism.
 * Cloud CLI clients are not included in FCOS. There is an initiative to create a "tools" container to run on FCOS.
 * When opening an existing file in a sticky directory, the behavior differs from CL. See https://github.com/systemd/systemd/commit/2732587540035227fe59e4b64b60127352611b35[the relevant systemd commit].
 * CL left Simultaneous Multi-Threading (SMT) enabled but advised users to turn it off if their systems were vulnerable to certain issues such as https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html[L1TF] or https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html[MDS]. By default, FCOS https://github.com/coreos/fedora-coreos-tracker/blob/main/Design.md#automatically-disable-smt-when-needed-to-address-vulnerabilities[automatically disables SMT] for vulnerable systems.
