@@ -1,5 +1,3 @@
-# User metrics client
-enable fedora-coreos-pinger.service
 enable coreos-check-ssh-keys.service
 # Check if cgroupsv1 is still being used
 enable coreos-check-cgroups.service
