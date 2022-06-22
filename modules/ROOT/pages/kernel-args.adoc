@@ -1,77 +1,5 @@
 = Modifying Kernel Arguments
 
-Kernel arguments changes are managed by `rpm-ostree` via the https://www.mankier.com/1/rpm-ostree[`rpm-ostree kargs`] sub command. Changes are applied to a new deployment and a reboot is necessary for those to take effect.
-
-== Adding kernel arguments
-
-You can append kernel arguments. This is useful with e.g. `console=` that can be used multiple times. An empty value for an argument is allowed:
-
-[source,bash]
-----
-$ sudo rpm-ostree kargs --append=KEY=VALUE
-----
-
-.Example: Add reserved memory for Kdump support
-
-[source,bash]
-----
-$ sudo rpm-ostree kargs --append='crashkernel=256M'
-----
-
-See also xref:debugging-kernel-crashes.adoc[Debugging kernel crashes using kdump].
-
-== Removing existing kernel arguments
-
-You can delete a specific kernel argument key/value pair or an entire argument with a single key/value pair:
-
-[source,bash]
-----
-$ sudo rpm-ostree kargs --delete=KEY=VALUE
-----
-
-.Example: Remove console parameters to enable kernel auto-detection
-
-[source,bash]
-----
-$ sudo rpm-ostree kargs --delete 'console=ttyS0,115200n8'
-----
-
-See also xref:emergency-shell.adoc[Emergency console access].
-
-.Example: Update an existing system from cgroupsv1 to cgroupsv2 and immediately reboot
-
-[source,bash]
-----
-$ sudo rpm-ostree kargs --delete=systemd.unified_cgroup_hierarchy --reboot
-----
-
-== Replacing existing kernel arguments
-
-You can replace an existing kernel argument with a new value. You can directly use `KEY=VALUE` if only one value exists for that argument. Otherwise, you can specify the new value using the following format:
-
-[source,bash]
-----
-$ sudo rpm-ostree kargs --replace=KEY=VALUE=NEWVALUE
-----
-
-.Example: Disable all CPU vulnerability mitigations
-
-[source,bash]
-----
-$ sudo rpm-ostree kargs --replace=mitigations=auto,nosmt=off
-----
-
-This switches `mitigations=auto,nosmt` to `mitigations=off` to disable all CPU vulnerability mitigations.
-
-== Interactive editing
-
-To use an editor to modify the kernel arguments:
-
-[source,bash]
-----
-$ sudo rpm-ostree kargs --editor
-----
-
 == Modifying Kernel Arguments via Ignition
 
 You can specify kernel arguments in a Butane config using the `kernel_arguments` section.
@@ -102,4 +30,78 @@ kernel_arguments:
     - mitigations=off
   should_not_exist:
     - mitigations=auto,nosmt
+----
+
+== Modifying Kernel Arguments on Existing Systems
+
+Kernel arguments changes are managed by `rpm-ostree` via the https://www.mankier.com/1/rpm-ostree[`rpm-ostree kargs`] sub command. Changes are applied to a new deployment and a reboot is necessary for those to take effect.
+
+=== Adding kernel arguments
+
+You can append kernel arguments. This is useful with e.g. `console=` that can be used multiple times. An empty value for an argument is allowed:
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --append=KEY=VALUE
+----
+
+.Example: Add reserved memory for Kdump support
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --append='crashkernel=256M'
+----
+
+See also xref:debugging-kernel-crashes.adoc[Debugging kernel crashes using kdump].
+
+=== Removing existing kernel arguments
+
+You can delete a specific kernel argument key/value pair or an entire argument with a single key/value pair:
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --delete=KEY=VALUE
+----
+
+.Example: Remove console parameters to enable kernel auto-detection
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --delete 'console=ttyS0,115200n8'
+----
+
+See also xref:emergency-shell.adoc[Emergency console access].
+
+.Example: Update an existing system from cgroupsv1 to cgroupsv2 and immediately reboot
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --delete=systemd.unified_cgroup_hierarchy --reboot
+----
+
+=== Replacing existing kernel arguments
+
+You can replace an existing kernel argument with a new value. You can directly use `KEY=VALUE` if only one value exists for that argument. Otherwise, you can specify the new value using the following format:
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --replace=KEY=VALUE=NEWVALUE
+----
+
+.Example: Disable all CPU vulnerability mitigations
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --replace=mitigations=auto,nosmt=off
+----
+
+This switches `mitigations=auto,nosmt` to `mitigations=off` to disable all CPU vulnerability mitigations.
+
+=== Interactive editing
+
+To use an editor to modify the kernel arguments:
+
+[source,bash]
+----
+$ sudo rpm-ostree kargs --editor
 ----
