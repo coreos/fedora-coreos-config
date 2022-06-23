@@ -1,0 +1,31 @@
+#!/bin/bash
+# kola: {"platforms": "qemu", "exclusive": false, "tags": "needs-internet", "architectures": "aarch64 s390x"}
+# Test the x86_64 emulator on aarch64 and s390x images for now
+# https://github.com/coreos/fedora-coreos-tracker/issues/1237
+# 
+# - platforms: qemu
+#   - This test should pass everywhere if it passes anywhere.
+# - exclusive: false
+#   - This test doesn't make meaningful changes to the system and
+#     should be able to be combined with other tests.
+# - tags: needs-internet
+#   - This test pulls a container from a registry.
+# - architectures: aarch64 s390x
+#   - We decided to ship x86_64 emulator to only these arches for now.
+#   - Refer to the above referenced issue for more details
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+case "$(arch)" in
+    aarch64|s390x)
+        containerArch=$(podman run --arch=amd64 --rm registry.fedoraproject.org/fedora:36 arch)
+        if [ "$containerArch" != "x86_64" ]; then 
+            fatal "Test failed: x86_64 qemu emulator failed to run" 
+        fi
+        ok "Test passed: x86_64 qemu emulator works on $(arch)" ;;
+    *)
+    # We shouldn't reach this point
+    fatal "No qemu-user-static support for $(arch)" ;;
+esac
