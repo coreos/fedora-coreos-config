@@ -195,6 +195,10 @@ packages:
 # Anyways, it was requested by the Red Hat perf team for RHCOS, so we have it here.
 # https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
 # https://access.redhat.com/solutions/41535
+# 
+# Include the qemu-user-static-x86 package on aarch64 and s390x FCOS images
+# to allow access to the large inventory of containers only built for x86_64.
+# https://github.com/coreos/fedora-coreos-tracker/issues/1237
 packages-x86_64:
   - irqbalance
 packages-ppc64le:
@@ -204,6 +208,9 @@ packages-ppc64le:
   - ppc64-diag-rtas
 packages-aarch64:
   - irqbalance
+  - qemu-user-static-x86
+packages-s390x:
+  - qemu-user-static-x86
 
 # See https://github.com/coreos/bootupd
 arch-include:
