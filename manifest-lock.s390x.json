@@ -352,7 +352,7 @@
       "evra": "2.3.6-1.fc36.s390x"
     },
     "gnutls": {
-      "evra": "3.7.6-1.fc36.s390x"
+      "evra": "3.7.6-3.fc36.s390x"
     },
     "gpgme": {
       "evra": "1.15.1-6.fc36.s390x"
@@ -945,6 +945,9 @@
     "publicsuffix-list-dafsa": {
       "evra": "20210518-4.fc36.noarch"
     },
+    "qemu-user-static-x86": {
+      "evra": "2:6.2.0-12.fc36.s390x"
+    },
     "readline": {
       "evra": "8.1-6.fc36.s390x"
     },
@@ -1151,7 +1154,7 @@
     }
   },
   "metadata": {
-    "generated": "2022-06-23T12:41:32Z",
+    "generated": "2022-06-24T13:34:45Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:15:53Z"
@@ -1160,7 +1163,7 @@
         "generated": "2022-06-22T04:59:21Z"
       },
       "fedora-updates": {
-        "generated": "2022-06-23T00:37:03Z"
+        "generated": "2022-06-24T00:47:29Z"
       }
     }
   }
