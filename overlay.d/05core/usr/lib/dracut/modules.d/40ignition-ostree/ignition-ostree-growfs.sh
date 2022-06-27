@@ -17,8 +17,21 @@ path=/sysroot
 # this shouldn't happen for us but we're being conservative.
 src=$(findmnt -nvr -o SOURCE "$path" | tail -n1)
 
+# IBM SecureExecution
+secure_execution=0
+if [[ $(uname -m) == s390x ]] && [[ -e /sys/firmware/uv/prot_virt_guest ]]; then
+    secure_execution=$(cat /sys/firmware/uv/prot_virt_guest)
+fi
+
 if [ ! -f "${saved_partstate}" ]; then
     partition=$(realpath /dev/disk/by-label/root)
+    # in the Secure Execution case, the rootfs is pre-baked on LUKS, so
+    # `partition` is actually the device mapper device; get its parent
+    if [[ "${secure_execution}" != "0" ]]; then
+        # lsblk doesn't print PKNAME of crypt devices with --nodeps
+        MAJMIN=$(echo $(lsblk -dno MAJ:MIN "${partition}"))
+        partition=/dev/$(ls "/sys/dev/block/${MAJMIN}/slaves")
+    fi
 else
     # The rootfs was reprovisioned. Our rule in this case is: we only grow if
     # the partition backing the rootfs is the same and its size didn't change
@@ -85,7 +98,11 @@ while true; do
              eval $(udevadm info --query=property --export "${NAME}")
              # lsblk doesn't print PKNAME of crypt devices with --nodeps
              PKNAME=/dev/$(ls "/sys/dev/block/${MAJMIN}/slaves")
-             clevis_luks_unlock_device "${PKNAME}" | cryptsetup resize -d- "${DM_NAME}"
+             if [[ "${secure_execution}" != "0" ]]; then
+                 cryptsetup resize --key-file=/etc/luks/root "${DM_NAME}"
+             else
+                 clevis_luks_unlock_device "${PKNAME}" | cryptsetup resize -d- "${DM_NAME}"
+             fi
             )
             ;;
         # already checked
