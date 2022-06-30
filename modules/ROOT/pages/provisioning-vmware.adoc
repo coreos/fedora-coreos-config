@@ -102,6 +102,15 @@ govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data.encoding=${CO
 govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data=${CONFIG_ENCODED}"
 ----
 
+Note: If the vcenter has multiple datacenters and datastores, you must specify them explicitly:
+[source, bash]
+----
+# Get resource pool using `$ govc find / -type ResourcePool`
+RESOURCE_POOL="/Datacenter6.5/host/Cluster6.5/Resources"
+DATASTORE="datastore-129"
+govc library.deploy -pool=${RESOURCE_POOL} -ds=${DATASTORE} "${LIBRARY}/${TEMPLATE_NAME}" "${VM_NAME}"
+----
+
 A new `fcos-node01` VM is now available for booting. Its hardware configuration can be further customized at this point, and then powered-up:
 
 [source, bash]
