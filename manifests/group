@@ -23,8 +23,6 @@ lock:x:54:
 audio:x:63:
 nobody:x:99:
 users:x:100:
-utmp:x:22:
-utempter:x:35:
 ssh_keys:x:999:
 systemd-journal:x:190:
 dbus:x:81:
@@ -34,13 +32,11 @@ dip:x:40:
 cgred:x:996:
 tss:x:59:
 avahi-autoipd:x:170:
-rpc:x:32:
 sssd:x:993:
 dockerroot:x:986:
 rpcuser:x:29:
 nfsnobody:x:65534:
 kube:x:994:
-sshd:x:74:
 chrony:x:992:
 tcpdump:x:72:
 ceph:x:167:
