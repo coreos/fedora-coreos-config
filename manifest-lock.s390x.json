@@ -130,7 +130,7 @@
       "evra": "0.21.2-4.fc36.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.187.0-1.fc36.noarch"
+      "evra": "2:2.188.0-1.fc36.noarch"
     },
     "containerd": {
       "evra": "1.6.6-1.fc36.s390x"
@@ -181,7 +181,7 @@
       "evra": "2.4.3-2.fc36.s390x"
     },
     "curl": {
-      "evra": "7.82.0-5.fc36.s390x"
+      "evra": "7.82.0-6.fc36.s390x"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.27-18.fc36.s390x"
@@ -313,7 +313,7 @@
       "evra": "2.9.9-14.fc36.s390x"
     },
     "fuse-overlayfs": {
-      "evra": "1.8.1-3.fc36.s390x"
+      "evra": "1.9-1.fc36.s390x"
     },
     "fuse-sshfs": {
       "evra": "3.7.3-1.fc36.s390x"
@@ -433,13 +433,13 @@
       "evra": "2.4.0-9.fc36.noarch"
     },
     "kernel": {
-      "evra": "5.18.6-200.fc36.s390x"
+      "evra": "5.18.7-200.fc36.s390x"
     },
     "kernel-core": {
-      "evra": "5.18.6-200.fc36.s390x"
+      "evra": "5.18.7-200.fc36.s390x"
     },
     "kernel-modules": {
-      "evra": "5.18.6-200.fc36.s390x"
+      "evra": "5.18.7-200.fc36.s390x"
     },
     "kexec-tools": {
       "evra": "2.0.23-6.fc36.s390x"
@@ -514,7 +514,7 @@
       "evra": "1.46.5-2.fc36.s390x"
     },
     "libcurl": {
-      "evra": "7.82.0-5.fc36.s390x"
+      "evra": "7.82.0-6.fc36.s390x"
     },
     "libdaemon": {
       "evra": "0.14-23.fc36.s390x"
@@ -610,7 +610,7 @@
       "evra": "1.0.1-21.fc36.s390x"
     },
     "libnfsidmap": {
-      "evra": "1:2.6.1-2.rc7.fc36.s390x"
+      "evra": "1:2.6.1-2.rc8.fc36.s390x"
     },
     "libnftnl": {
       "evra": "1.2.1-2.fc36.s390x"
@@ -838,7 +838,7 @@
       "evra": "0.52.21-12.fc36.s390x"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.1-2.rc7.fc36.s390x"
+      "evra": "1:2.6.1-2.rc8.fc36.s390x"
     },
     "nftables": {
       "evra": "1:1.0.1-3.fc36.s390x"
@@ -856,10 +856,10 @@
       "evra": "6.9.8-1.fc36.s390x"
     },
     "openldap": {
-      "evra": "2.6.2-1.fc36.s390x"
+      "evra": "2.6.2-2.fc36.s390x"
     },
     "openldap-compat": {
-      "evra": "2.6.2-1.fc36.s390x"
+      "evra": "2.6.2-2.fc36.s390x"
     },
     "openssh": {
       "evra": "8.8p1-1.fc36.1.s390x"
@@ -985,7 +985,7 @@
       "evra": "1.02-486.fc36.noarch"
     },
     "perl-Socket": {
-      "evra": "4:2.033-1.fc36.s390x"
+      "evra": "4:2.034-1.fc36.s390x"
     },
     "perl-Storable": {
       "evra": "1:3.25-2.fc36.s390x"
@@ -1258,10 +1258,10 @@
       "evra": "2.38-1.fc36.s390x"
     },
     "vim-data": {
-      "evra": "2:8.2.5085-1.fc36.noarch"
+      "evra": "2:8.2.5172-1.fc36.noarch"
     },
     "vim-minimal": {
-      "evra": "2:8.2.5085-1.fc36.s390x"
+      "evra": "2:8.2.5172-1.fc36.s390x"
     },
     "which": {
       "evra": "2.21-32.fc36.s390x"
@@ -1298,16 +1298,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-06-29T20:52:56Z",
+    "generated": "2022-07-03T20:53:04Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:15:53Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-06-28T13:39:48Z"
+        "generated": "2022-06-29T22:26:54Z"
       },
       "fedora-updates": {
-        "generated": "2022-06-29T01:59:11Z"
+        "generated": "2022-07-03T01:00:28Z"
       }
     }
   }
