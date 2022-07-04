@@ -26,7 +26,6 @@ TRIVIAL_FAST_TRACKS = [
     'rust-afterburn',
     'rust-bootupd',
     'rust-coreos-installer',
-    'rust-fedora-coreos-pinger',
     'rust-ignition-config',
     'rust-zincati',
 ]

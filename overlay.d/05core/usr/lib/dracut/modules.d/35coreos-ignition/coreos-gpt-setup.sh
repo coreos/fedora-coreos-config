@@ -7,11 +7,15 @@ set -euo pipefail
 UNINITIALIZED_GUID='00000000-0000-4000-a000-000000000001'
 
 # If it's on multipath, get the parent device from udev properties.
-DM_MPATH=$(eval $(udevadm info --query property --export "$1") && echo "${DM_MPATH:-}")
+# If it's LUKS2 encrypted, UUID woud start with "CRYPT-LUKS2"
+eval $(udevadm info --query property --export "$1" | grep -e DM_NAME -e DM_UUID -e DM_MAPTH)
 
-if [ -n "${DM_MPATH:-}" ]; then
+if [[ -n "${DM_MPATH:-}" ]]; then
     PKNAME=/dev/mapper/$DM_MPATH
     PTUUID=$(eval $(udevadm info --query property --export "$PKNAME") && echo "${ID_PART_TABLE_UUID:-}")
+elif [[ "${DM_UUID:-}" =~ 'CRYPT-LUKS2' ]] && [[ -n "${DM_NAME:-}" ]]; then
+    eval $(lsblk --output PKNAME --pairs --paths --nodeps /dev/mapper/$DM_NAME)
+    PTUUID=$(eval $(udevadm info --query property --export /dev/mapper/$DM_NAME) && echo "${ID_PART_TABLE_UUID:-}")
 else
     # On RHEL 8 the version of lsblk doesn't have PTUUID. Let's detect
     # if lsblk supports it. In the future we can remove the 'if' and

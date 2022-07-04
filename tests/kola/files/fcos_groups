@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+# kola: { "distros": "fcos", "exclusive": false }
+#
+# This performs a sanity check on system groups that are shipped
+# as part of the base OS. Those groups come in different shapes
+# (with static or dynamic GIDs, from plain files or from scriptlets)
+# and each case is covered by a corresponding check here below.
+
+set -euo pipefail
+
+. "${KOLA_EXT_DATA}/commonlib.sh"
+
+# Check base system groups (from `setup` package).
+declare -A setup_groups=( \
+    ["root"]="0" \
+    ["bin"]="1" \
+    ["daemon"]="2" \
+    ["sys"]="3" \
+    ["adm"]="4" \
+    ["tty"]="5" \
+    ["disk"]="6" \
+    ["lp"]="7" \
+    ["mem"]="8" \
+    ["kmem"]="9" \
+    ["wheel"]="10" \
+    ["cdrom"]="11" \
+    ["mail"]="12" \
+    ["man"]="15" \
+    ["dialout"]="18" \
+    ["floppy"]="19" \
+    ["games"]="20" \
+# CoreOS mismatch: https://github.com/coreos/fedora-coreos-tracker/issues/1201
+#   ["tape"]="33" \
+    ["tape"]="30" \
+    ["video"]="39" \
+    ["ftp"]="50" \
+    ["lock"]="54" \
+    ["audio"]="63" \
+    ["users"]="100" \
+# CoreOS mismatch: https://github.com/coreos/fedora-coreos-tracker/issues/1201
+#   ["nobody"]="65534" \
+    ["nobody"]="99" \
+)
+for groupname in "${!setup_groups[@]}"; do
+    gid="${setup_groups[$groupname]}";
+    if [[ $(getent group "${groupname}") != ${groupname}:x:${gid}:* ]]; then
+        getent group
+        fatal "failure on setup_groups entry ${groupname}"
+    fi
+done
+echo "all expected base groups from 'setup' package are in place"
+
+# Check additional groups with static GIDs.
+declare -A extra_groups_static=( \
+    ["utmp"]="22" \
+    ["rpcuser"]="29" \
+    ["rpc"]="32" \
+    ["utempter"]="35" \
+    ["dip"]="40" \
+    ["tss"]="59" \
+    ["tcpdump"]="72" \
+    ["sshd"]="74" \
+    ["dbus"]="81" \
+    ["ceph"]="167" \
+    ["avahi-autoipd"]="170" \
+    ["systemd-journal"]="190" \
+)
+for groupname in "${!extra_groups_static[@]}"; do
+    gid="${extra_groups_static[$groupname]}";
+    if [[ $(getent group "${groupname}") != ${groupname}:x:${gid}:* ]]; then
+        getent group
+        fatal "failure on extra_group_static entry ${groupname}"
+    fi
+done
+echo "all expected extra static groups are in place"
+
+# Check CoreOS-specific static GIDs.
+declare -A coreos_groups_static=( \
+    ["sudo"]="16" \
+    ["dockerroot"]="986" \
+    ["cockpit-ws"]="987" \
+    ["systemd-bus-proxy"]="988" \
+    ["systemd-resolve"]="989" \
+    ["systemd-network"]="990" \
+    ["systemd-timesync"]="991" \
+    ["chrony"]="992" \
+    ["sssd"]="993" \
+    ["kube"]="994" \
+    ["input"]="995" \
+    ["cgred"]="996" \
+    ["etcd"]="997" \
+    ["polkitd"]="998" \
+    ["ssh_keys"]="999" \
+    ["nfsnobody"]="65534" \
+)
+for groupname in "${!coreos_groups_static[@]}"; do
+    gid="${coreos_groups_static[$groupname]}";
+    if [[ $(getent group "${groupname}") != ${groupname}:x:${gid}:* ]]; then
+        getent group
+        fatal "failure on coreos_group_static entry ${groupname}"
+    fi
+done
+echo "all expected CoreOS static groups are in place"
+
+# Check a dynamic group (from `clevis` package).
+if [[ $(getent group clevis) != clevis:x:* ]]; then
+    getent group
+    fatal "failure on group 'clevis'"
+fi
+echo "group 'clevis' from 'clevis' package is in place"
+
