@@ -61,13 +61,13 @@
       "evra": "1:2.11-6.fc36.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.16.29-1.fc36.aarch64"
+      "evra": "32:9.16.30-1.fc36.aarch64"
     },
     "bind-license": {
-      "evra": "32:9.16.29-1.fc36.noarch"
+      "evra": "32:9.16.30-1.fc36.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.16.29-1.fc36.aarch64"
+      "evra": "32:9.16.30-1.fc36.aarch64"
     },
     "bootupd": {
       "evra": "0.2.6-2.fc36.aarch64"
@@ -133,7 +133,7 @@
       "evra": "0.21.2-4.fc36.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.187.0-1.fc36.noarch"
+      "evra": "2:2.188.0-1.fc36.noarch"
     },
     "containerd": {
       "evra": "1.6.6-1.fc36.aarch64"
@@ -166,10 +166,10 @@
       "evra": "2.9.6-28.fc36.aarch64"
     },
     "criu": {
-      "evra": "3.17-2.fc36.aarch64"
+      "evra": "3.17-4.fc36.aarch64"
     },
     "criu-libs": {
-      "evra": "3.17-2.fc36.aarch64"
+      "evra": "3.17-4.fc36.aarch64"
     },
     "crun": {
       "evra": "1.4.5-1.fc36.aarch64"
@@ -184,7 +184,7 @@
       "evra": "2.4.3-2.fc36.aarch64"
     },
     "curl": {
-      "evra": "7.82.0-5.fc36.aarch64"
+      "evra": "7.82.0-6.fc36.aarch64"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.27-18.fc36.aarch64"
@@ -229,7 +229,7 @@
       "evra": "3.8-2.fc36.aarch64"
     },
     "dnsmasq": {
-      "evra": "2.86-6.fc36.aarch64"
+      "evra": "2.86-9.fc36.aarch64"
     },
     "dosfstools": {
       "evra": "4.2-3.fc36.aarch64"
@@ -268,13 +268,10 @@
       "evra": "0.187-4.fc36.aarch64"
     },
     "ethtool": {
-      "evra": "2:5.17-1.fc36.aarch64"
+      "evra": "2:5.18-1.fc36.aarch64"
     },
     "expat": {
       "evra": "2.4.7-1.fc36.aarch64"
-    },
-    "fedora-coreos-pinger": {
-      "evra": "0.0.4-13.fc36.aarch64"
     },
     "fedora-gpg-keys": {
       "evra": "36-1.noarch"
@@ -313,7 +310,7 @@
       "evra": "1:4.9.0-1.fc36.aarch64"
     },
     "flatpak-session-helper": {
-      "evra": "1.12.7-2.fc36.aarch64"
+      "evra": "1.12.7-3.fc36.aarch64"
     },
     "fstrm": {
       "evra": "0.6.1-4.fc36.aarch64"
@@ -328,7 +325,7 @@
       "evra": "2.9.9-14.fc36.aarch64"
     },
     "fuse-overlayfs": {
-      "evra": "1.8.1-3.fc36.aarch64"
+      "evra": "1.9-1.fc36.aarch64"
     },
     "fuse-sshfs": {
       "evra": "3.7.3-1.fc36.aarch64"
@@ -364,13 +361,13 @@
       "evra": "2.72.2-1.fc36.aarch64"
     },
     "glibc": {
-      "evra": "2.35-11.fc36.aarch64"
+      "evra": "2.35-12.fc36.aarch64"
     },
     "glibc-common": {
-      "evra": "2.35-11.fc36.aarch64"
+      "evra": "2.35-12.fc36.aarch64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.35-11.fc36.aarch64"
+      "evra": "2.35-12.fc36.aarch64"
     },
     "gmp": {
       "evra": "1:6.2.1-2.fc36.aarch64"
@@ -379,7 +376,7 @@
       "evra": "2.3.6-1.fc36.aarch64"
     },
     "gnutls": {
-      "evra": "3.7.6-1.fc36.aarch64"
+      "evra": "3.7.6-3.fc36.aarch64"
     },
     "gpgme": {
       "evra": "1.15.1-6.fc36.aarch64"
@@ -469,13 +466,13 @@
       "evra": "2.4.0-9.fc36.noarch"
     },
     "kernel": {
-      "evra": "5.18.5-200.fc36.aarch64"
+      "evra": "5.18.7-200.fc36.aarch64"
     },
     "kernel-core": {
-      "evra": "5.18.5-200.fc36.aarch64"
+      "evra": "5.18.7-200.fc36.aarch64"
     },
     "kernel-modules": {
-      "evra": "5.18.5-200.fc36.aarch64"
+      "evra": "5.18.7-200.fc36.aarch64"
     },
     "kexec-tools": {
       "evra": "2.0.23-6.fc36.aarch64"
@@ -496,7 +493,7 @@
       "evra": "0.8.7-8.fc36.aarch64"
     },
     "krb5-libs": {
-      "evra": "1.19.2-9.fc36.aarch64"
+      "evra": "1.19.2-11.fc36.aarch64"
     },
     "less": {
       "evra": "590-3.fc36.aarch64"
@@ -550,7 +547,7 @@
       "evra": "1.46.5-2.fc36.aarch64"
     },
     "libcurl": {
-      "evra": "7.82.0-5.fc36.aarch64"
+      "evra": "7.82.0-6.fc36.aarch64"
     },
     "libdaemon": {
       "evra": "0.14-23.fc36.aarch64"
@@ -631,7 +628,7 @@
       "evra": "1.6.0-3.fc36.aarch64"
     },
     "libldb": {
-      "evra": "2.5.0-1.fc36.aarch64"
+      "evra": "2.5.1-1.fc36.aarch64"
     },
     "libluksmeta": {
       "evra": "9-13.fc36.aarch64"
@@ -661,7 +658,7 @@
       "evra": "1.0.1-21.fc36.aarch64"
     },
     "libnfsidmap": {
-      "evra": "1:2.6.1-2.rc6.fc36.aarch64"
+      "evra": "1:2.6.1-2.rc8.fc36.aarch64"
     },
     "libnftnl": {
       "evra": "1.2.1-2.fc36.aarch64"
@@ -730,7 +727,7 @@
       "evra": "2.38-1.fc36.aarch64"
     },
     "libsmbclient": {
-      "evra": "2:4.16.1-4.fc36.aarch64"
+      "evra": "2:4.16.2-0.fc36.aarch64"
     },
     "libsolv": {
       "evra": "0.7.22-1.fc36.aarch64"
@@ -760,19 +757,19 @@
       "evra": "12.1.1-1.fc36.aarch64"
     },
     "libtalloc": {
-      "evra": "2.3.3-3.fc36.aarch64"
+      "evra": "2.3.4-1.fc36.aarch64"
     },
     "libtasn1": {
       "evra": "4.18.0-2.fc36.aarch64"
     },
     "libtdb": {
-      "evra": "1.4.6-1.fc36.aarch64"
+      "evra": "1.4.7-1.fc36.aarch64"
     },
     "libteam": {
       "evra": "1.31-5.fc36.aarch64"
     },
     "libtevent": {
-      "evra": "0.12.0-0.fc36.aarch64"
+      "evra": "0.12.1-1.fc36.aarch64"
     },
     "libtirpc": {
       "evra": "1.3.2-1.rc1.fc36.1.aarch64"
@@ -802,7 +799,7 @@
       "evra": "0.3.2-3.fc36.aarch64"
     },
     "libwbclient": {
-      "evra": "2:4.16.1-4.fc36.aarch64"
+      "evra": "2:4.16.2-0.fc36.aarch64"
     },
     "libxcrypt": {
       "evra": "4.4.28-1.fc36.aarch64"
@@ -865,7 +862,7 @@
       "evra": "2:0.6.0-3.fc36.aarch64"
     },
     "mozjs91": {
-      "evra": "91.10.0-1.fc36.aarch64"
+      "evra": "91.11.0-1.fc36.aarch64"
     },
     "mpfr": {
       "evra": "4.1.0-9.fc36.aarch64"
@@ -892,13 +889,13 @@
       "evra": "1.0.3-3.fc36.aarch64"
     },
     "nettle": {
-      "evra": "3.7.3-3.fc36.aarch64"
+      "evra": "3.8-1.fc36.aarch64"
     },
     "newt": {
       "evra": "0.52.21-12.fc36.aarch64"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.1-2.rc6.fc36.aarch64"
+      "evra": "1:2.6.1-2.rc8.fc36.aarch64"
     },
     "nftables": {
       "evra": "1:1.0.1-3.fc36.aarch64"
@@ -919,10 +916,10 @@
       "evra": "6.9.8-1.fc36.aarch64"
     },
     "openldap": {
-      "evra": "2.6.2-1.fc36.aarch64"
+      "evra": "2.6.2-2.fc36.aarch64"
     },
     "openldap-compat": {
-      "evra": "2.6.2-1.fc36.aarch64"
+      "evra": "2.6.2-2.fc36.aarch64"
     },
     "openssh": {
       "evra": "8.8p1-1.fc36.1.aarch64"
@@ -985,10 +982,10 @@
       "evra": "1.8.0-2.fc36.aarch64"
     },
     "podman": {
-      "evra": "3:4.1.0-8.fc36.aarch64"
+      "evra": "3:4.1.1-1.fc36.aarch64"
     },
     "podman-plugins": {
-      "evra": "3:4.1.0-8.fc36.aarch64"
+      "evra": "3:4.1.1-1.fc36.aarch64"
     },
     "policycoreutils": {
       "evra": "3.3-4.fc36.aarch64"
@@ -1017,6 +1014,9 @@
     "publicsuffix-list-dafsa": {
       "evra": "20210518-4.fc36.noarch"
     },
+    "qemu-user-static-x86": {
+      "evra": "2:6.2.0-12.fc36.aarch64"
+    },
     "readline": {
       "evra": "8.1-6.fc36.aarch64"
     },
@@ -1030,10 +1030,10 @@
       "evra": "4.17.0-10.fc36.aarch64"
     },
     "rpm-ostree": {
-      "evra": "2022.10-2.fc36.aarch64"
+      "evra": "2022.10-3.fc36.aarch64"
     },
     "rpm-ostree-libs": {
-      "evra": "2022.10-2.fc36.aarch64"
+      "evra": "2022.10-3.fc36.aarch64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.17.0-10.fc36.aarch64"
@@ -1045,13 +1045,13 @@
       "evra": "2:1.1.1-1.fc36.aarch64"
     },
     "samba-client-libs": {
-      "evra": "2:4.16.1-4.fc36.aarch64"
+      "evra": "2:4.16.2-0.fc36.aarch64"
     },
     "samba-common": {
-      "evra": "2:4.16.1-4.fc36.noarch"
+      "evra": "2:4.16.2-0.fc36.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.16.1-4.fc36.aarch64"
+      "evra": "2:4.16.2-0.fc36.aarch64"
     },
     "sed": {
       "evra": "4.8-10.fc36.aarch64"
@@ -1186,10 +1186,10 @@
       "evra": "2.38-1.fc36.aarch64"
     },
     "vim-data": {
-      "evra": "2:8.2.5085-1.fc36.noarch"
+      "evra": "2:8.2.5172-1.fc36.noarch"
     },
     "vim-minimal": {
-      "evra": "2:8.2.5085-1.fc36.aarch64"
+      "evra": "2:8.2.5172-1.fc36.aarch64"
     },
     "which": {
       "evra": "2.21-32.fc36.aarch64"
@@ -1226,16 +1226,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-06-18T04:03:44Z",
+    "generated": "2022-07-03T20:53:05Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:15:55Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-06-17T21:24:42Z"
+        "generated": "2022-06-29T22:27:47Z"
       },
       "fedora-updates": {
-        "generated": "2022-06-18T00:29:37Z"
+        "generated": "2022-07-03T01:00:13Z"
       }
     }
   }

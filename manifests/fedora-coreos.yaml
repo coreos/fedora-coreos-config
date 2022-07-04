@@ -16,7 +16,7 @@ include: fedora-coreos-base.yaml
 conditional-include:
   - if: prod == false
     # long-term, would be good to support specifying a nested TreeComposeConfig
-    include: disable-zincati-and-pinger.yaml
+    include: disable-zincati.yaml
   - if: basearch == "aarch64"
     # Fixup for kdump on aarch64 AWS instances
     include: kdump-aarch64-aws-workaround.yaml
@@ -47,8 +47,6 @@ packages:
   - moby-engine
   # Already pulled in by moby-engine, but let's be explicit. Typhoon uses it.
   - containerd
-  # User metrics
-  - fedora-coreos-pinger
   # Updates
   - zincati
   # Include and set the default editor
@@ -64,15 +62,14 @@ etc-group-members:
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos-base.yaml
 postprocess:
-  # Disable Zincati and fedora-coreos-pinger on non-release builds
+  # Disable Zincati on non-release builds
   # https://github.com/coreos/fedora-coreos-tracker/issues/212
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
     source /etc/os-release
     if [[ $OSTREE_VERSION = *.dev* ]]; then
-      mkdir -p /etc/fedora-coreos-pinger/config.d /etc/zincati/config.d
-      echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nreporting.enabled = false' > /etc/fedora-coreos-pinger/config.d/95-disable-on-dev.toml
+      mkdir -p /etc/zincati/config.d
       echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nupdates.enabled = false' > /etc/zincati/config.d/95-disable-on-dev.toml
     fi
   # Users shouldn't be configuring `rpm-ostreed.conf`
