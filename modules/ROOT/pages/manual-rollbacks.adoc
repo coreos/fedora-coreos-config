@@ -8,5 +8,28 @@ To temporarily boot the previous OS deployment, hold down `Shift` during the OS 
 
 == Permanent rollback
 
-To permanently revert to the previous OS deployment, log into the target node, and run `rpm-ostree rollback -r`.
-This operation marks the previous OS deployment as the default, and immediately reboots into it.
+To permanently revert to the previous OS deployment, log into the target node and run the following commands:
+
+[source,bash]
+----
+# Stop the service that performs automatic updates
+sudo systemctl stop zincati.service
+
+# Mark the previous OS deployment as the default, and immediately reboots into it
+sudo rpm-ostree rollback -r
+----
+
+Please note that Zincati will keep looking for updates and upgrade to any new available OS deployment, other than the one you just reverted.
+
+If you prefer, you can temporarily turn off auto-updates. Later on, you can re-enable them in order to let the machine catch up with the usual flow of updates:
+
+[source,bash]
+----
+# Disable Zincati in order to opt-out from future auto-updates
+sudo systemctl disable --now zincati.service
+
+[...]
+
+# At a later point, re-enable it to re-align with the tip of stream
+sudo systemctl enable --now zincati.service
+----
