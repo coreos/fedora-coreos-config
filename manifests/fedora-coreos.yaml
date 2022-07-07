@@ -94,6 +94,9 @@ remove-from-packages:
   # Drop NetworkManager support for ifcfg files, see also corresponding
   # overlay.d/14NetworkManager-plugins
   - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
+  # Drop a buggy configuration fragment which does not match static ID allocation:
+  # https://bugzilla.redhat.com/show_bug.cgi?id=2090397
+  - [dbus-common, /usr/lib/sysusers.d/dbus.conf]
 
 remove-files:
   # We don't ship man(1) or info(1)
