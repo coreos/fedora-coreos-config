@@ -29,9 +29,7 @@ declare -A setup_groups=( \
     ["dialout"]="18" \
     ["floppy"]="19" \
     ["games"]="20" \
-# CoreOS mismatch: https://github.com/coreos/fedora-coreos-tracker/issues/1201
-#   ["tape"]="33" \
-    ["tape"]="30" \
+    ["tape"]="33" \
     ["video"]="39" \
     ["ftp"]="50" \
     ["lock"]="54" \
