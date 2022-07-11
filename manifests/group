@@ -16,7 +16,7 @@ sudo:x:16:
 dialout:x:18:
 floppy:x:19:
 games:x:20:
-tape:x:30:
+tape:x:33:
 video:x:39:
 ftp:x:50:
 lock:x:54:
@@ -29,7 +29,6 @@ polkitd:x:998:
 etcd:x:997:
 dip:x:40:
 cgred:x:996:
-tss:x:59:
 avahi-autoipd:x:170:
 sssd:x:993:
 dockerroot:x:986:
