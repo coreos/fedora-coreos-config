@@ -20,6 +20,4 @@ fi
 
 echo "info: propagating initrd multipath configuration"
 cp -v /etc/multipath.conf /sysroot/etc/
-mkdir -p /sysroot/etc/multipath/multipath.conf.d
 coreos-relabel /etc/multipath.conf
-coreos-relabel /etc/multipath/multipath.conf.d
