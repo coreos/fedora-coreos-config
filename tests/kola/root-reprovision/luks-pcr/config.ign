@@ -1,0 +1,30 @@
+{
+  "ignition": {
+    "version": "3.2.0"
+  },
+  "storage": {
+    "luks": [
+      {
+        "name": "myluksdev",
+        "device": "/dev/disk/by-partlabel/root",
+        "clevis": {
+          "custom": {
+            "config": "{\"pcr_bank\":\"sha1\",\"pcr_ids\":\"0,7\"}",
+            "needsNetwork": false,
+            "pin": "tpm2"
+          }
+        },
+        "label": "root",
+        "wipeVolume": true
+      }
+    ],
+    "filesystems": [
+      {
+        "device": "/dev/mapper/myluksdev",
+        "format": "xfs",
+        "wipeFilesystem": true,
+        "label": "root"
+      }
+    ]
+  }
+}
