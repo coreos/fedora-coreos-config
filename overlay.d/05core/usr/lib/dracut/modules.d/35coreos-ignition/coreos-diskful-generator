@@ -73,6 +73,5 @@ EOF
     if [[ "${secure_execution}" = "1" ]]; then
         mkdir -p /run/coreos/
         touch /run/coreos/secure-execution
-        mv /usr/lib/coreos/01-secex.ign /usr/lib/ignition/base.d/01-secex.ign
     fi
 fi
