@@ -41,10 +41,6 @@
   - testing
   - testing-devel
   - stable
-- pattern: ext.config.extensions.module
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1229
-  streams:
-  - rawhide
 - pattern: ext.config.binfmt.qemu
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1241
   snooze: 2022-07-21
