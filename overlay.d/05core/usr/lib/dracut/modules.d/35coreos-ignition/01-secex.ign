@@ -5,7 +5,7 @@
   "storage": {
     "disks": [
       {
-        "device": "/dev/disk/by-id/coreos-boot-disk",
+        "device": "${BOOTDEV}",
         "partitions": [
           {
             "label": "boot",
@@ -36,7 +36,7 @@
     ],
     "luks": [
       {
-        "device": "/dev/disk/by-partlabel/boot",
+        "device": "${BOOTDEV}3",
         "label": "crypt_bootfs",
         "name": "boot",
         "options": [
@@ -46,7 +46,7 @@
         "wipeVolume": true
       },
       {
-        "device": "/dev/disk/by-partlabel/root",
+        "device": "${BOOTDEV}4",
         "label": "crypt_rootfs",
         "name": "root",
         "options": [
