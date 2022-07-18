@@ -35,14 +35,14 @@ Things that are more closely "Fedora CoreOS":
 * disable password logins by default over SSH
 * enable SSH keys written by Ignition and Afterburn
 * branding (MOTD)
-* enable services by default (fedora-coreos-pinger)
+* enable FCOS-specific services by default
 * display warnings on the console if no ignition config was provided or no ssh
   key found.
 
-16disable-zincati-and-pinger
-------------------------
+16disable-zincati
+-----------------
 
-Disable Zincati and fedora-coreos-pinger on non-production streams:
+Disable Zincati on non-production streams:
 https://github.com/coreos/fedora-coreos-tracker/issues/163
 
 20platform-chrony
