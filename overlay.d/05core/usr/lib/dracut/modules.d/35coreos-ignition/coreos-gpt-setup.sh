@@ -8,7 +8,7 @@ UNINITIALIZED_GUID='00000000-0000-4000-a000-000000000001'
 
 # If it's on multipath, get the parent device from udev properties.
 # If it's LUKS2 encrypted, UUID woud start with "CRYPT-LUKS2"
-eval $(udevadm info --query property --export "$1" | grep -e DM_NAME -e DM_UUID -e DM_MAPTH)
+eval $(udevadm info --query property --export "$1" | grep -e DM_NAME -e DM_UUID -e DM_MPATH)
 
 if [[ -n "${DM_MPATH:-}" ]]; then
     PKNAME=/dev/mapper/$DM_MPATH

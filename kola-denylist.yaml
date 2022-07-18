@@ -41,18 +41,22 @@
   - testing
   - testing-devel
   - stable
-- pattern: ext.config.extensions.module
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1229
-  streams:
-  - rawhide
 - pattern: ext.config.binfmt.qemu
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1241
-  snooze: 2022-07-06
+  snooze: 2022-07-21
   arches:
   - aarch64
   streams:
   - rawhide
-- pattern: ext.config.files.file-directory-permissions
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1243
+- pattern: ext.config.files.setgid
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1253
   arches:
   - s390x
+  streams:
+  - rawhide
+- pattern: fcos.filesystem
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1253
+  arches:
+  - s390x
+  streams:
+  - rawhide

@@ -94,6 +94,11 @@ remove-from-packages:
   # Drop NetworkManager support for ifcfg files, see also corresponding
   # overlay.d/14NetworkManager-plugins
   - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
+  # Drop some buggy sysusers fragments which do not match static IDs allocation:
+  # https://bugzilla.redhat.com/show_bug.cgi?id=2105177
+  - [dbus-common, /usr/lib/sysusers.d/dbus.conf]
+  # https://bugzilla.redhat.com/show_bug.cgi?id=2103683
+  - [tpm2-tss, /usr/lib/sysusers.d/tpm2-tss.conf]
 
 remove-files:
   # We don't ship man(1) or info(1)
@@ -112,6 +117,7 @@ exclude-packages:
   - python3
   - python3-libs
   - perl
+  - perl-interpreter
   - nodejs
   - dnf
   - grubby
