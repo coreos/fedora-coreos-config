@@ -61,13 +61,13 @@
       "evra": "1:2.11-6.fc36.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.16.29-1.fc36.s390x"
+      "evra": "32:9.16.30-1.fc36.s390x"
     },
     "bind-license": {
-      "evra": "32:9.16.29-1.fc36.noarch"
+      "evra": "32:9.16.30-1.fc36.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.16.29-1.fc36.s390x"
+      "evra": "32:9.16.30-1.fc36.s390x"
     },
     "bsdtar": {
       "evra": "3.5.3-2.fc36.s390x"
@@ -130,7 +130,7 @@
       "evra": "0.21.2-4.fc36.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.187.0-1.fc36.noarch"
+      "evra": "2:2.188.0-1.fc36.noarch"
     },
     "containerd": {
       "evra": "1.6.6-1.fc36.s390x"
@@ -163,10 +163,10 @@
       "evra": "2.9.6-28.fc36.s390x"
     },
     "criu": {
-      "evra": "3.17-2.fc36.s390x"
+      "evra": "3.17-4.fc36.s390x"
     },
     "criu-libs": {
-      "evra": "3.17-2.fc36.s390x"
+      "evra": "3.17-4.fc36.s390x"
     },
     "crun": {
       "evra": "1.4.5-1.fc36.s390x"
@@ -181,7 +181,7 @@
       "evra": "2.4.3-2.fc36.s390x"
     },
     "curl": {
-      "evra": "7.82.0-5.fc36.s390x"
+      "evra": "7.82.0-6.fc36.s390x"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.27-18.fc36.s390x"
@@ -226,7 +226,7 @@
       "evra": "3.8-2.fc36.s390x"
     },
     "dnsmasq": {
-      "evra": "2.86-6.fc36.s390x"
+      "evra": "2.86-9.fc36.s390x"
     },
     "dosfstools": {
       "evra": "4.2-3.fc36.s390x"
@@ -256,13 +256,10 @@
       "evra": "0.187-4.fc36.s390x"
     },
     "ethtool": {
-      "evra": "2:5.17-1.fc36.s390x"
+      "evra": "2:5.18-1.fc36.s390x"
     },
     "expat": {
       "evra": "2.4.7-1.fc36.s390x"
-    },
-    "fedora-coreos-pinger": {
-      "evra": "0.0.4-13.fc36.s390x"
     },
     "fedora-gpg-keys": {
       "evra": "36-1.noarch"
@@ -288,6 +285,9 @@
     "fedora-repos-ostree": {
       "evra": "36-1.noarch"
     },
+    "file": {
+      "evra": "5.41-4.fc36.s390x"
+    },
     "file-libs": {
       "evra": "5.41-4.fc36.s390x"
     },
@@ -298,7 +298,7 @@
       "evra": "1:4.9.0-1.fc36.s390x"
     },
     "flatpak-session-helper": {
-      "evra": "1.12.7-2.fc36.s390x"
+      "evra": "1.12.7-3.fc36.s390x"
     },
     "fstrm": {
       "evra": "0.6.1-4.fc36.s390x"
@@ -313,7 +313,7 @@
       "evra": "2.9.9-14.fc36.s390x"
     },
     "fuse-overlayfs": {
-      "evra": "1.8.1-3.fc36.s390x"
+      "evra": "1.9-1.fc36.s390x"
     },
     "fuse-sshfs": {
       "evra": "3.7.3-1.fc36.s390x"
@@ -340,13 +340,13 @@
       "evra": "2.72.2-1.fc36.s390x"
     },
     "glibc": {
-      "evra": "2.35-11.fc36.s390x"
+      "evra": "2.35-12.fc36.s390x"
     },
     "glibc-common": {
-      "evra": "2.35-11.fc36.s390x"
+      "evra": "2.35-12.fc36.s390x"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.35-11.fc36.s390x"
+      "evra": "2.35-12.fc36.s390x"
     },
     "gmp": {
       "evra": "1:6.2.1-2.fc36.s390x"
@@ -355,13 +355,16 @@
       "evra": "2.3.6-1.fc36.s390x"
     },
     "gnutls": {
-      "evra": "3.7.6-1.fc36.s390x"
+      "evra": "3.7.6-3.fc36.s390x"
     },
     "gpgme": {
       "evra": "1.15.1-6.fc36.s390x"
     },
     "grep": {
       "evra": "3.7-2.fc36.s390x"
+    },
+    "groff-base": {
+      "evra": "1.22.4-9.fc36.s390x"
     },
     "gzip": {
       "evra": "1.11-3.fc36.s390x"
@@ -430,13 +433,13 @@
       "evra": "2.4.0-9.fc36.noarch"
     },
     "kernel": {
-      "evra": "5.18.5-200.fc36.s390x"
+      "evra": "5.18.7-200.fc36.s390x"
     },
     "kernel-core": {
-      "evra": "5.18.5-200.fc36.s390x"
+      "evra": "5.18.7-200.fc36.s390x"
     },
     "kernel-modules": {
-      "evra": "5.18.5-200.fc36.s390x"
+      "evra": "5.18.7-200.fc36.s390x"
     },
     "kexec-tools": {
       "evra": "2.0.23-6.fc36.s390x"
@@ -457,7 +460,7 @@
       "evra": "0.8.7-8.fc36.s390x"
     },
     "krb5-libs": {
-      "evra": "1.19.2-9.fc36.s390x"
+      "evra": "1.19.2-11.fc36.s390x"
     },
     "less": {
       "evra": "590-3.fc36.s390x"
@@ -511,7 +514,7 @@
       "evra": "1.46.5-2.fc36.s390x"
     },
     "libcurl": {
-      "evra": "7.82.0-5.fc36.s390x"
+      "evra": "7.82.0-6.fc36.s390x"
     },
     "libdaemon": {
       "evra": "0.14-23.fc36.s390x"
@@ -577,7 +580,7 @@
       "evra": "1.6.0-3.fc36.s390x"
     },
     "libldb": {
-      "evra": "2.5.0-1.fc36.s390x"
+      "evra": "2.5.1-1.fc36.s390x"
     },
     "libluksmeta": {
       "evra": "9-13.fc36.s390x"
@@ -607,7 +610,7 @@
       "evra": "1.0.1-21.fc36.s390x"
     },
     "libnfsidmap": {
-      "evra": "1:2.6.1-2.rc6.fc36.s390x"
+      "evra": "1:2.6.1-2.rc8.fc36.s390x"
     },
     "libnftnl": {
       "evra": "1.2.1-2.fc36.s390x"
@@ -676,7 +679,7 @@
       "evra": "2.38-1.fc36.s390x"
     },
     "libsmbclient": {
-      "evra": "2:4.16.1-4.fc36.s390x"
+      "evra": "2:4.16.2-0.fc36.s390x"
     },
     "libsolv": {
       "evra": "0.7.22-1.fc36.s390x"
@@ -706,19 +709,19 @@
       "evra": "12.1.1-1.fc36.s390x"
     },
     "libtalloc": {
-      "evra": "2.3.3-3.fc36.s390x"
+      "evra": "2.3.4-1.fc36.s390x"
     },
     "libtasn1": {
       "evra": "4.18.0-2.fc36.s390x"
     },
     "libtdb": {
-      "evra": "1.4.6-1.fc36.s390x"
+      "evra": "1.4.7-1.fc36.s390x"
     },
     "libteam": {
       "evra": "1.31-5.fc36.s390x"
     },
     "libtevent": {
-      "evra": "0.12.0-0.fc36.s390x"
+      "evra": "0.12.1-1.fc36.s390x"
     },
     "libtirpc": {
       "evra": "1.3.2-1.rc1.fc36.1.s390x"
@@ -745,7 +748,7 @@
       "evra": "0.3.2-3.fc36.s390x"
     },
     "libwbclient": {
-      "evra": "2:4.16.1-4.fc36.s390x"
+      "evra": "2:4.16.2-0.fc36.s390x"
     },
     "libxcrypt": {
       "evra": "4.4.28-1.fc36.s390x"
@@ -802,7 +805,7 @@
       "evra": "20.10.17-2.fc36.s390x"
     },
     "mozjs91": {
-      "evra": "91.10.0-1.fc36.s390x"
+      "evra": "91.11.0-1.fc36.s390x"
     },
     "mpfr": {
       "evra": "4.1.0-9.fc36.s390x"
@@ -829,13 +832,13 @@
       "evra": "1.0.3-3.fc36.s390x"
     },
     "nettle": {
-      "evra": "3.7.3-3.fc36.s390x"
+      "evra": "3.8-1.fc36.s390x"
     },
     "newt": {
       "evra": "0.52.21-12.fc36.s390x"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.1-2.rc6.fc36.s390x"
+      "evra": "1:2.6.1-2.rc8.fc36.s390x"
     },
     "nftables": {
       "evra": "1:1.0.1-3.fc36.s390x"
@@ -853,10 +856,10 @@
       "evra": "6.9.8-1.fc36.s390x"
     },
     "openldap": {
-      "evra": "2.6.2-1.fc36.s390x"
+      "evra": "2.6.2-2.fc36.s390x"
     },
     "openldap-compat": {
-      "evra": "2.6.2-1.fc36.s390x"
+      "evra": "2.6.2-2.fc36.s390x"
     },
     "openssh": {
       "evra": "8.8p1-1.fc36.1.s390x"
@@ -903,6 +906,141 @@
     "pcre2-syntax": {
       "evra": "10.40-1.fc36.noarch"
     },
+    "perl-Carp": {
+      "evra": "1.52-479.fc36.noarch"
+    },
+    "perl-Class-Struct": {
+      "evra": "0.66-486.fc36.noarch"
+    },
+    "perl-DynaLoader": {
+      "evra": "1.50-486.fc36.s390x"
+    },
+    "perl-Encode": {
+      "evra": "4:3.17-485.fc36.s390x"
+    },
+    "perl-English": {
+      "evra": "1.11-486.fc36.noarch"
+    },
+    "perl-Errno": {
+      "evra": "1.33-486.fc36.s390x"
+    },
+    "perl-Exporter": {
+      "evra": "5.76-480.fc36.noarch"
+    },
+    "perl-Fcntl": {
+      "evra": "1.14-486.fc36.s390x"
+    },
+    "perl-File-Basename": {
+      "evra": "2.85-486.fc36.noarch"
+    },
+    "perl-File-Path": {
+      "evra": "2.18-479.fc36.noarch"
+    },
+    "perl-File-Temp": {
+      "evra": "1:0.231.100-479.fc36.noarch"
+    },
+    "perl-File-stat": {
+      "evra": "1.09-486.fc36.noarch"
+    },
+    "perl-Getopt-Long": {
+      "evra": "1:2.52-479.fc36.noarch"
+    },
+    "perl-Getopt-Std": {
+      "evra": "1.13-486.fc36.noarch"
+    },
+    "perl-HTTP-Tiny": {
+      "evra": "0.080-2.fc36.noarch"
+    },
+    "perl-IO": {
+      "evra": "1.46-486.fc36.s390x"
+    },
+    "perl-IPC-Open3": {
+      "evra": "1.21-486.fc36.noarch"
+    },
+    "perl-MIME-Base64": {
+      "evra": "3.16-479.fc36.s390x"
+    },
+    "perl-POSIX": {
+      "evra": "1.97-486.fc36.s390x"
+    },
+    "perl-PathTools": {
+      "evra": "3.80-479.fc36.s390x"
+    },
+    "perl-Pod-Escapes": {
+      "evra": "1:1.07-479.fc36.noarch"
+    },
+    "perl-Pod-Perldoc": {
+      "evra": "3.28.01-480.fc36.noarch"
+    },
+    "perl-Pod-Simple": {
+      "evra": "1:3.43-3.fc36.noarch"
+    },
+    "perl-Pod-Usage": {
+      "evra": "4:2.01-479.fc36.noarch"
+    },
+    "perl-Scalar-List-Utils": {
+      "evra": "5:1.62-464.fc36.s390x"
+    },
+    "perl-SelectSaver": {
+      "evra": "1.02-486.fc36.noarch"
+    },
+    "perl-Socket": {
+      "evra": "4:2.034-1.fc36.s390x"
+    },
+    "perl-Storable": {
+      "evra": "1:3.25-2.fc36.s390x"
+    },
+    "perl-Symbol": {
+      "evra": "1.09-486.fc36.noarch"
+    },
+    "perl-Term-ANSIColor": {
+      "evra": "5.01-480.fc36.noarch"
+    },
+    "perl-Term-Cap": {
+      "evra": "1.17-479.fc36.noarch"
+    },
+    "perl-Text-ParseWords": {
+      "evra": "3.31-1.fc36.noarch"
+    },
+    "perl-Text-Tabs+Wrap": {
+      "evra": "2021.0814-2.fc36.noarch"
+    },
+    "perl-Time-Local": {
+      "evra": "2:1.300-479.fc36.noarch"
+    },
+    "perl-constant": {
+      "evra": "1.33-480.fc36.noarch"
+    },
+    "perl-if": {
+      "evra": "0.60.900-486.fc36.noarch"
+    },
+    "perl-interpreter": {
+      "evra": "4:5.34.1-486.fc36.s390x"
+    },
+    "perl-libs": {
+      "evra": "4:5.34.1-486.fc36.s390x"
+    },
+    "perl-mro": {
+      "evra": "1.25-486.fc36.s390x"
+    },
+    "perl-overload": {
+      "evra": "1.33-486.fc36.noarch"
+    },
+    "perl-overloading": {
+      "evra": "0.02-486.fc36.noarch"
+    },
+    "perl-parent": {
+      "evra": "1:0.238-479.fc36.noarch"
+    },
+    "perl-podlators": {
+      "evra": "1:4.14-479.fc36.noarch"
+    },
+    "perl-subs": {
+      "evra": "1.04-486.fc36.noarch"
+    },
+    "perl-vars": {
+      "evra": "1.05-486.fc36.noarch"
+    },
     "pigz": {
       "evra": "2.7-1.fc36.s390x"
     },
@@ -916,10 +1054,10 @@
       "evra": "1.8.0-2.fc36.s390x"
     },
     "podman": {
-      "evra": "3:4.1.0-8.fc36.s390x"
+      "evra": "3:4.1.1-1.fc36.s390x"
     },
     "podman-plugins": {
-      "evra": "3:4.1.0-8.fc36.s390x"
+      "evra": "3:4.1.1-1.fc36.s390x"
     },
     "policycoreutils": {
       "evra": "3.3-4.fc36.s390x"
@@ -948,6 +1086,9 @@
     "publicsuffix-list-dafsa": {
       "evra": "20210518-4.fc36.noarch"
     },
+    "qemu-user-static-x86": {
+      "evra": "2:6.2.0-12.fc36.s390x"
+    },
     "readline": {
       "evra": "8.1-6.fc36.s390x"
     },
@@ -961,10 +1102,10 @@
       "evra": "4.17.0-10.fc36.s390x"
     },
     "rpm-ostree": {
-      "evra": "2022.10-2.fc36.s390x"
+      "evra": "2022.10-3.fc36.s390x"
     },
     "rpm-ostree-libs": {
-      "evra": "2022.10-2.fc36.s390x"
+      "evra": "2022.10-3.fc36.s390x"
     },
     "rpm-plugin-selinux": {
       "evra": "4.17.0-10.fc36.s390x"
@@ -975,17 +1116,20 @@
     "runc": {
       "evra": "2:1.1.1-1.fc36.s390x"
     },
+    "s390utils-base": {
+      "evra": "2:2.20.0-1.fc36.s390x"
+    },
     "s390utils-core": {
       "evra": "2:2.20.0-1.fc36.s390x"
     },
     "samba-client-libs": {
-      "evra": "2:4.16.1-4.fc36.s390x"
+      "evra": "2:4.16.2-0.fc36.s390x"
     },
     "samba-common": {
-      "evra": "2:4.16.1-4.fc36.noarch"
+      "evra": "2:4.16.2-0.fc36.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.16.1-4.fc36.s390x"
+      "evra": "2:4.16.2-0.fc36.s390x"
     },
     "sed": {
       "evra": "4.8-10.fc36.s390x"
@@ -1114,10 +1258,10 @@
       "evra": "2.38-1.fc36.s390x"
     },
     "vim-data": {
-      "evra": "2:8.2.5085-1.fc36.noarch"
+      "evra": "2:8.2.5172-1.fc36.noarch"
     },
     "vim-minimal": {
-      "evra": "2:8.2.5085-1.fc36.s390x"
+      "evra": "2:8.2.5172-1.fc36.s390x"
     },
     "which": {
       "evra": "2.21-32.fc36.s390x"
@@ -1154,16 +1298,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-06-18T04:03:55Z",
+    "generated": "2022-07-03T20:53:04Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:15:53Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-06-17T21:24:20Z"
+        "generated": "2022-06-29T22:26:54Z"
       },
       "fedora-updates": {
-        "generated": "2022-06-18T00:29:52Z"
+        "generated": "2022-07-03T01:00:28Z"
       }
     }
   }
