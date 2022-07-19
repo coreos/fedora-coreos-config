@@ -1,0 +1,17 @@
+# This unit will run late in the initrd process after the Ignition files
+# stage has completed successfully so that we may validate ignition changes
+
+[Unit]
+Description=CoreOS Post Ignition Checks
+ConditionPathExists=/usr/lib/initrd-release
+OnFailure=emergency.target
+OnFailureJobMode=isolate
+
+# Start after Ignition has finished creating files and before ignition umount
+After=ignition-files.service
+Before=ignition-complete.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/coreos-post-ignition-checks
+RemainAfterExit=yes
