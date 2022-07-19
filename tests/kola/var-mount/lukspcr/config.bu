@@ -4,10 +4,8 @@ storage:
   disks:
     - device: /dev/vda
       partitions:
-        - label: var
-          size_mib: 1000
-          start_mib: 5000
-        - label: publicdata
+        - start_mib: 6000
+          label: publicdata
       wipe_table: false
   luks:
     - name: data
@@ -18,10 +16,6 @@ storage:
           pin: tpm2
           config: '{"pcr_bank":"sha1","pcr_ids":"0,7"}'
   filesystems:
-    - device: /dev/disk/by-partlabel/var
-      format: xfs
-      path: /var
-      with_mount_unit: true
     - device: /dev/mapper/data
       format: ext4
       path: /var/publicdata

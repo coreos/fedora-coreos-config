@@ -16,7 +16,7 @@ umount /var/publicdata
 cryptsetup close data
 
 # we validate we can still unlock the drive
-clevis luks unlock -d /dev/vda6 -n data
+clevis luks unlock -d /dev/disk/by-partlabel/publicdata -n data
 mount /dev/mapper/data /var/publicdata
 umount /var/publicdata
 cryptsetup close data
@@ -26,7 +26,7 @@ cryptsetup close data
 tpm2_pcrextend 7:sha1=0x1234567890123456789012345678901234567890
 
 # we validate we cannot unbind anymore
-if clevis luks unlock -d /dev/vda6 -n data ; then
+if clevis luks unlock -d /dev/disk/by-partlabel/publicdata -n data ; then
   fatal "could decrypt the device: the pcr pinning was not applied"
 fi
 
