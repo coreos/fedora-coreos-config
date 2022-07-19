@@ -1,0 +1,12 @@
+#!/bin/bash
+# IBM Secure Execution Init script
+
+set -euo pipefail
+
+# load the rootfs and bootfs keys into the kernel keyring
+cat /etc/luks/boot | keyctl padd user secex:boot @us
+cat /etc/luks/root | keyctl padd user secex:root @us
+# delete the keys from the initramfs
+rm /etc/luks/root /etc/luks/boot
+# exec systemd
+exec -a /init /usr/lib/systemd/systemd

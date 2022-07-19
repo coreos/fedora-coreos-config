@@ -1,0 +1,21 @@
+#!/bin/bash
+# -*- mode: shell-script; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
+# ex: ts=8 sw=4 sts=4 et filetype=sh
+
+# IBM Secure Execution
+#
+# This generator is used for:
+# - unlocking '/boot' and '/' with coreos-secex-keyring.service
+# - reencryption of '/boot' and '/' during firstboot with '01-secex.ign' Ignition config
+set -e
+
+secure_execution=0
+
+if [[ $(uname -m) == s390x ]] && [[ -e /sys/firmware/uv/prot_virt_guest ]]; then
+    secure_execution=$(cat /sys/firmware/uv/prot_virt_guest)
+fi
+
+if [[ "${secure_execution}" = "1" ]]; then
+    mkdir -p /run/coreos/
+    touch /run/coreos/secure-execution
+fi

@@ -1,0 +1,18 @@
+[Unit]
+Description=Coreos Secex Keyring
+ConditionArchitecture=s390x
+ConditionPathExists=/etc/initrd-release
+ConditionPathExists=/run/coreos/secure-execution
+DefaultDependencies=no
+
+After=systemd-udev-settle.service
+After=systemd-modules-load.service
+Before=cryptsetup.target
+
+OnFailure=emergency.target
+OnFailureJobMode=isolate
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/coreos-secex-keyring

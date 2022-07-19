@@ -1,0 +1,18 @@
+[Unit]
+Description=CoreOS Secex LUKS Configurator
+ConditionPathExists=/etc/initrd-release
+ConditionPathExists=/run/coreos/secure-execution
+DefaultDependencies=false
+Before=ignition-complete.target
+
+OnFailure=emergency.target
+OnFailureJobMode=isolate
+
+# Run after Ignition wrote /etc/crypttab
+After=ignition-files.service coreos-boot-edit.service
+Before=initrd-parse-etc.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/coreos-secex-config-luks
