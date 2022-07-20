@@ -62,4 +62,16 @@ EOF
     mkdir -p /run/udev/rules.d/
     ln -sf /usr/lib/coreos/80-coreos-boot-disk.rules \
           /run/udev/rules.d/80-coreos-boot-disk.rules
+
+    # IBM Secure Execution case
+    # During firstboot we have to reencrypt '/boot' and '/', to do that an Ignition config
+    # is injected. 'coreos-boot-disk' is required for this
+    secure_execution=0
+    if [[ $(uname -m) == s390x ]] && [[ -e /sys/firmware/uv/prot_virt_guest ]]; then
+        secure_execution=$(cat /sys/firmware/uv/prot_virt_guest)
+    fi
+    if [[ "${secure_execution}" = "1" ]]; then
+        mkdir -p /run/coreos/
+        touch /run/coreos/secure-execution
+    fi
 fi
