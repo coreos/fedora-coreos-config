@@ -1,0 +1,12 @@
+#!/bin/bash
+# kola: { "injectContainer": true }
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+skopeo copy oci-archive:$KOLA_OSTREE_OCIARCHIVE containers-storage:localhost/os
+rm -v $KOLA_OSTREE_OCIARCHIVE
+podman run --rm -ti localhost/os rpm -q systemd
+
+
