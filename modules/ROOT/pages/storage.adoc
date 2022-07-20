@@ -264,9 +264,13 @@ storage:
       with_mount_unit: true
 ----
 
-The root filesystem can also be moved to LUKS. In the case of the root filesystem the LUKS device must be backed by https://coreos.github.io/ignition/operator-notes/#clevis-based-devices[clevis]. There is simplified Butane config syntax for encrypting the root filesystem; for example:
+The root filesystem can also be moved to LUKS. In that case, the LUKS device must be pinned by https://coreos.github.io/ignition/operator-notes/#clevis-based-devices[Clevis]. There are two primary pin types available: TPM2 and Tang (or a combination of those using Shamir Secret Sharing).
 
-.Moving the root filesystem to LUKS
+CAUTION: TPM2 pinning just binds encryption to the physical machine in use. Make sure to understand its threat model before choosing between TPM2 and Tang pinning. For more information, see https://github.com/latchset/clevis/blob/master/src/pins/tpm2/clevis-encrypt-tpm2.1.adoc#threat-model[this section] of the Clevis TPM2 pin documentation.
+
+There is simplified Butane config syntax for configuring root filesystem encryption and pinning. Here is an example of using it to create a TPM2-pinned encrypted root filesystem:
+
+.Encrypting the root filesystem with a TPM2 Clevis pin
 [source,yaml]
 ----
 variant: fcos
@@ -278,7 +282,7 @@ boot_device:
 
 This is equivalent to the following expanded config:
 
-.Moving the root filesystem to LUKS without using boot_device
+.Encrypting the root filesystem with a TPM2 Clevis pin without using boot_device
 [source,yaml]
 ----
 variant: fcos
@@ -299,6 +303,42 @@ storage:
 ----
 
 The expanded config doesn't include the `path` or `with_mount_unit` keys; FCOS knows that the root partition is special and will figure out how to find it and mount it.
+
+Here is an example of the simplified config syntax with Tang:
+
+.Encrypting the root filesystem with a Tang Clevis pin
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+boot_device:
+  luks:
+    tang:
+      - url: http://192.168.122.1:80
+        thumbprint: bV8aajlyN6sYqQ41lGqD4zlhe0E
+----
+
+The system will contact the Tang server on boot.
+
+NOTE: For more information about setting up a Tang server, see https://github.com/latchset/tang[the upstream documentation].
+
+You can configure both Tang and TPM2 pinning (including multiple Tang servers for redundancy). By default, only the TPM2 device or a single Tang server is needed to unlock the root filesystem. This can be changed using the `threshold` key:
+
+.Encrypting the root filesystem with both TPM2 and Tang pins
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+boot_device:
+  luks:
+    tang:
+      - url: http://192.168.122.1:80
+        thumbprint: bV8aajlyN6sYqQ41lGqD4zlhe0E
+    tpm2: true
+    # this will allow rootfs unlocking only if both TPM2 and Tang pins are
+    # accessible and valid
+    threshold: 2
+----
 
 == Sizing the root partition
 
