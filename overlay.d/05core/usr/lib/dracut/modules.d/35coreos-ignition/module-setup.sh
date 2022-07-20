@@ -73,4 +73,7 @@ install() {
     install_ignition_unit coreos-ignition-unique-boot.service ignition-diskful.target
     install_ignition_unit coreos-unique-boot.service ignition-diskful.target
     install_ignition_unit coreos-ignition-setup-user.service
+
+    # IBM Secure Execution. Ignition config for reencryption of / and /boot
+    inst_simple "$moddir/01-secex.ign" /usr/lib/coreos/01-secex.ign
 }
