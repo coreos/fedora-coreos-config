@@ -10,7 +10,7 @@ set -xeuo pipefail
 
 # Just run on QEMU; it should work theoretically on cloud platforms, but many
 # of those have platform-specific sources which take precedence.
-# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv" }
+# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv", "minMemory": 2048 }
 
 test_setup() {
 
