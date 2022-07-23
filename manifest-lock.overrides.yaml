@@ -34,9 +34,3 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1245
       type: pin
-  kexec-tools:
-    evr: 2.0.24-4.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-fcb38f43e0
-      reason: https://github.com/coreos/fedora-coreos-config/issues/1500
-      type: fast-track
