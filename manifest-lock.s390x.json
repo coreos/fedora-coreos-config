@@ -181,7 +181,7 @@
       "evra": "2.4.3-2.fc36.s390x"
     },
     "curl": {
-      "evra": "7.82.0-6.fc36.s390x"
+      "evra": "7.82.0-7.fc36.s390x"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.27-18.fc36.s390x"
@@ -226,7 +226,7 @@
       "evra": "3.8-2.fc36.s390x"
     },
     "dnsmasq": {
-      "evra": "2.86-9.fc36.s390x"
+      "evra": "2.86-10.fc36.s390x"
     },
     "dosfstools": {
       "evra": "4.2-3.fc36.s390x"
@@ -265,13 +265,13 @@
       "evra": "36-1.noarch"
     },
     "fedora-release-common": {
-      "evra": "36-17.noarch"
+      "evra": "36-18.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "36-17.noarch"
+      "evra": "36-18.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "36-17.noarch"
+      "evra": "36-18.noarch"
     },
     "fedora-repos": {
       "evra": "36-1.noarch"
@@ -284,6 +284,9 @@
     },
     "fedora-repos-ostree": {
       "evra": "36-1.noarch"
+    },
+    "file": {
+      "evra": "5.41-4.fc36.s390x"
     },
     "file-libs": {
       "evra": "5.41-4.fc36.s390x"
@@ -331,7 +334,7 @@
       "evra": "1.0.9-2.fc36.s390x"
     },
     "git-core": {
-      "evra": "2.36.1-1.fc36.s390x"
+      "evra": "2.37.1-1.fc36.s390x"
     },
     "glib2": {
       "evra": "2.72.3-1.fc36.s390x"
@@ -427,13 +430,13 @@
       "evra": "2.4.0-9.fc36.noarch"
     },
     "kernel": {
-      "evra": "5.18.11-200.fc36.s390x"
+      "evra": "5.18.13-200.fc36.s390x"
     },
     "kernel-core": {
-      "evra": "5.18.11-200.fc36.s390x"
+      "evra": "5.18.13-200.fc36.s390x"
     },
     "kernel-modules": {
-      "evra": "5.18.11-200.fc36.s390x"
+      "evra": "5.18.13-200.fc36.s390x"
     },
     "kexec-tools": {
       "evra": "2.0.23-6.fc36.s390x"
@@ -508,7 +511,7 @@
       "evra": "1.46.5-2.fc36.s390x"
     },
     "libcurl": {
-      "evra": "7.82.0-6.fc36.s390x"
+      "evra": "7.82.0-7.fc36.s390x"
     },
     "libdaemon": {
       "evra": "0.14-23.fc36.s390x"
@@ -760,10 +763,10 @@
       "evra": "2.5.1-31.fc36.s390x"
     },
     "linux-firmware": {
-      "evra": "20220610-135.fc36.noarch"
+      "evra": "20220708-136.fc36.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20220610-135.fc36.noarch"
+      "evra": "20220708-136.fc36.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.29-3.fc36.s390x"
@@ -1157,16 +1160,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-07-20T01:08:25Z",
+    "generated": "2022-07-23T03:34:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:15:53Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-07-19T19:47:05Z"
+        "generated": "2022-07-22T18:45:56Z"
       },
       "fedora-updates": {
-        "generated": "2022-07-19T01:31:59Z"
+        "generated": "2022-07-23T01:48:19Z"
       }
     }
   }
