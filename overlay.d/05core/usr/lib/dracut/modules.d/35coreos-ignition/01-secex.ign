@@ -1,0 +1,60 @@
+{
+  "ignition": {
+    "version": "3.2.0"
+  },
+  "storage": {
+    "disks": [
+      {
+        "device": "${BOOTDEV}",
+        "partitions": [
+          {
+            "label": "boot",
+            "number": 3
+          },
+          {
+            "label": "root",
+            "number": 4,
+            "resize": true,
+            "sizeMiB": 0
+          }
+        ]
+      }
+    ],
+    "filesystems": [
+      {
+        "device": "/dev/mapper/boot",
+        "format": "ext4",
+        "label": "boot",
+        "wipeFilesystem": true
+      },
+      {
+        "device": "/dev/mapper/root",
+        "format": "xfs",
+        "label": "root",
+        "wipeFilesystem": true
+      }
+    ],
+    "luks": [
+      {
+        "device": "${BOOTDEV}3",
+        "label": "crypt_bootfs",
+        "name": "boot",
+        "options": [
+          "--integrity",
+          "hmac-sha256"
+        ],
+        "wipeVolume": true
+      },
+      {
+        "device": "${BOOTDEV}4",
+        "label": "crypt_rootfs",
+        "name": "root",
+        "options": [
+          "--integrity",
+          "hmac-sha256"
+        ],
+        "wipeVolume": true
+      }
+    ]
+  }
+}

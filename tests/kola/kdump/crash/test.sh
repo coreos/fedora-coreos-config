@@ -1,14 +1,11 @@
 #!/bin/bash
 # https://docs.fedoraproject.org/en-US/fedora-coreos/debugging-kernel-crashes/
-# kola: {"minMemory": 4096, "tags": "skip-base-checks", "timeoutMin": 15, "architectures": "!s390x"}
+# kola: {"minMemory": 4096, "tags": "skip-base-checks", "timeoutMin": 15}
 # - minMemory: 4096
 #   - Testing kdump requires some reserved memory for the crashkernel.
 # - tags: skip-base-checks
 #   - Skip checks for things like kernel crashes in the console logs.
 #     For this test we trigger a kernel crash on purpose.
-# - architectures: !s390x
-#   - kdump.service is failing on s390x. See
-#     https://github.com/coreos/fedora-coreos-config/issues/1500
 # - timeoutMin: 15
 #   - This test includes a few reboots and the generation of a vmcore,
 #     which can take longer than the default 10 minute timeout.
