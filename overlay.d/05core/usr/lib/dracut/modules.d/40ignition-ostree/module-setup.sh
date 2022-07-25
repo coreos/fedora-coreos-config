@@ -101,4 +101,12 @@ install() {
         /usr/libexec/coreos-check-rootfs-size
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
+
+    install_ignition_unit ignition-ostree-close-luks.service
+    install_ignition_unit ignition-ostree-drop-luks.service
+
+    # Workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2075085
+    install_ignition_unit ignition-ostree-secex-config.service
+    inst_script "$moddir/ignition-ostree-secex-config.sh" \
+        /usr/libexec/ignition-ostree-secex-config
 }
