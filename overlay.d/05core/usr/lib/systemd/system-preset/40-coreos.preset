@@ -5,6 +5,8 @@ enable console-login-helper-messages-gensnippet-os-release.service
 enable console-login-helper-messages-gensnippet-ssh-keys.service
 # CA certs (probably to add to base fedora eventually)
 enable coreos-update-ca-trust.service
+# Set kernel console log level
+enable coreos-printk-quiet.service
 # https://github.com/coreos/ignition/issues/1125
 enable coreos-ignition-firstboot-complete.service
 # Delete Ignition config from provider on platforms where it's possible
