@@ -1,0 +1,27 @@
+[Unit]
+Description=CoreOS: Set printk To Level 4 (warn)
+Documentation=https://github.com/coreos/fedora-coreos-tracker/issues/1244
+# We can run right after `/proc` being mounted at least
+DefaultDependencies=no
+# We run as early as possible; the only dependency we have really
+# is the implicit After=systemd-journald.socket injected by the
+# default of our stdout writing to the journal.
+Conflicts=shutdown.target
+Before=sysinit.target shutdown.target
+# We want this service to read what we wrote
+Before=systemd-sysctl.service
+# Relatedly, we don't want to override an explicitly specified kernel argument
+ConditionKernelCommandLine=!debug
+ConditionKernelCommandLine=!quiet
+ConditionKernelCommandLine=!loglevel
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# We need to make /run/sysctl.d if it doesn't exist and also
+# ensure it has a SELinux label that works for systemd-sysctl.service.
+# Then we just generate a sysctl file which is read by systemd-sysctl.service.
+ExecStart=/bin/bash -euo pipefail -c 'mkdir -p /run/sysctl.d && chcon --reference=/etc/sysctl.d /run/sysctl.d && echo "kernel.printk = 4" > /run/sysctl.d/01-coreos-printk.conf'
+
+[Install]
+WantedBy=sysinit.target
