@@ -44,7 +44,6 @@ mv fedora-coreos-$RELEASE-qemu.x86_64.qcow2 fedora-coreos-older.qcow2
 We will create a Butane config that:
 
 * Sets up console autologin.
-* Raise kernel console logging level to hide audit messages from the console.
 * Add an SSH Key for the `core` user.
 
 Let's write this Butane config to a file called `updates.bu`:
@@ -78,13 +77,6 @@ storage:
         inline: |
           # Tell systemd to not use a pager when printing information
           export SYSTEMD_PAGER=cat
-    - path: /etc/sysctl.d/20-silence-audit.conf
-      mode: 0644
-      contents:
-        inline: |
-          # Raise console message logging level from DEBUG (7) to WARNING (4)
-          # to hide audit messages from the interactive console
-          kernel.printk=4
 ----
 
 TIP: Optionally you can replace the SSH pubkey in the yaml file with your own public key so you can log in to the booted instance. If you choose not to do this you'll still be auto logged in to the serial console.

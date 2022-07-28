@@ -16,7 +16,6 @@ Let's create a very simple Butane config that will perform the following actions
     - The override will make the service automatically log the `core` user in to the serial console of the booted machine.
 - Set the system hostname by dropping a file at `/etc/hostname`,
 - Add a bash profile that tells systemd to not use a pager for output.
-- Raise kernel console logging level to hide audit messages from the console.
 
 We can create a config file named `autologin.bu` now as:
 
@@ -48,13 +47,6 @@ storage:
         inline: |
           # Tell systemd to not use a pager when printing information
           export SYSTEMD_PAGER=cat
-    - path: /etc/sysctl.d/20-silence-audit.conf
-      mode: 0644
-      contents:
-        inline: |
-          # Raise console message logging level from DEBUG (7) to WARNING (4)
-          # to hide audit messages from the interactive console
-          kernel.printk=4
 ----
 
 This configuration can then be converted into an Ignition config with Butane:
@@ -85,13 +77,6 @@ The resulting Ignition configuration produced by Butane as `autologin.ign` has t
         "path": "/etc/profile.d/systemd-pager.sh",
         "contents": {
           "source": "data:,%23%20Tell%20systemd%20to%20not%20use%20a%20pager%20when%20printing%20information%0Aexport%20SYSTEMD_PAGER%3Dcat%0A"
-        },
-        "mode": 420
-      },
-      {
-        "path": "/etc/sysctl.d/20-silence-audit.conf",
-        "contents": {
-          "source": "data:,%23%20Raise%20console%20message%20logging%20level%20from%20DEBUG%20(7)%20to%20WARNING%20(4)%0A%23%20to%20hide%20audit%20messages%20from%20the%20interactive%20console%0Akernel.printk%3D4%0A"
         },
         "mode": 420
       }

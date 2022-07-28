@@ -4,7 +4,7 @@ NOTE: Make sure that you have completed the steps described in the xref:tutorial
 
 In this tutorial, we will setup SSH access and start a container at boot. Fedora CoreOS is focused on running applications/services in containers thus we recommend trying to run containers and avoid modifying the host directly. Running containers and keeping a pristine host layer makes automatic updates more reliable and allows for separation of concerns with the Fedora CoreOS team responsible for the OS and end-user operators/sysadmins responsible for the applications.
 
-As usual we will setup console autologin, a hostname, systemd pager configuration, and raise kernel logging level, but we will also:
+As usual we will setup console autologin, a hostname, systemd pager configuration, but we will also:
 
 * Add an SSH Key for the `core` user.
 * Add a systemd service (`failure.service`) that fails on boot.
@@ -84,13 +84,6 @@ storage:
         inline: |
           # Tell systemd to not use a pager when printing information
           export SYSTEMD_PAGER=cat
-    - path: /etc/sysctl.d/20-silence-audit.conf
-      mode: 0644
-      contents:
-        inline: |
-          # Raise console message logging level from DEBUG (7) to WARNING (4)
-          # to hide audit messages from the interactive console
-          kernel.printk=4
 ----
 
 TIP: Optionally you can replace the SSH pubkey in the yaml file with your own public key so you can log in to the booted instance. If you choose not to do this you'll still be auto logged in to the serial console.

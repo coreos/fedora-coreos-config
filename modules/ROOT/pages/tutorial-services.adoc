@@ -95,13 +95,6 @@ storage:
         inline: |
           # Tell systemd to not use a pager when printing information
           export SYSTEMD_PAGER=cat
-    - path: /etc/sysctl.d/20-silence-audit.conf
-      mode: 0644
-      contents:
-        inline: |
-          # Raise console message logging level from DEBUG (7) to WARNING (4)
-          # to hide audit messages from the interactive console
-          kernel.printk=4
     - path: /usr/local/bin/public-ipv4.sh
       mode: 0755
       contents:
