@@ -48,15 +48,3 @@
   - aarch64
   streams:
   - rawhide
-- pattern: ext.config.files.setgid
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1253
-  arches:
-  - s390x
-  streams:
-  - rawhide
-- pattern: fcos.filesystem
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1253
-  arches:
-  - s390x
-  streams:
-  - rawhide
