@@ -32,3 +32,4 @@ enable rtas_errd.service
 enable clevis-luks-askpass.path
 # Provide status information about the Ignition run
 enable coreos-ignition-write-issues.service
+enable coreos-create-toplevel-symlinks.service
