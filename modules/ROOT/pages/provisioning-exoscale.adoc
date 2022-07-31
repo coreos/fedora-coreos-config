@@ -6,7 +6,9 @@ This guide shows how to provision new Fedora CoreOS (FCOS) instances on https://
 
 Before provisioning an FCOS machine, it is recommended to have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support] and provide an SSH key via the cloud provider and continue from there.
+NOTE: Fedora CoreOS has a default `core` user that can be used to explore the OS. If you want to use it, finalize its xref:authentication.adoc[configuration] by providing e.g. an SSH key.
+
+If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support]..
 
 You also need to have access to an Exoscale account. https://portal.exoscale.com/register[Register] if you don't have one.
 
@@ -74,4 +76,12 @@ exo compute instance create $NAME \
 
 NOTE: If just SSH access is desired and no further customization is required, you don't need to pass any Ignition file and you can omit the `--cloud-init` argument.
 
-Now you can find the IP address of the instance via `exo compute instance show $NAME` and SSH into the instance. If you didn’t change the defaults, the username is `core` and `ssh core@$IP` should work.
+TIP: You can find out the instance's assigned IP by running `exo compute instance show $NAME`
+
+You now should be able to SSH into the instance using the associated IP address.
+
+.Example connecting
+[source, bash]
+----
+ssh core@<ip address>
+----

@@ -6,10 +6,56 @@ This guide shows how to provision new Fedora CoreOS (FCOS) instances on the Amaz
 
 Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support] and provide an SSH key via the cloud provider and continue from there.
+NOTE: Fedora CoreOS has a default `core` user that can be used to explore the OS. If you want to use it, finalize its xref:authentication.adoc[configuration] by providing e.g. an SSH key.
+
+If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support].
 
 You also need to have access to an AWS account. The examples below use the https://aws.amazon.com/cli/[aws] command-line tool, which must be separately installed and configured beforehand.
 
 == Launching a VM instance
 
+=== Minimal Example
+
 include::getting-started-aws.adoc[]
+
+=== Customized Example
+
+In order to launch a customized FCOS instance, a valid Ignition configuration must be passed as its https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user data] at creation time. You can use the same command from the xref:#_minimal_example[] but add `--user-data file://path/to/config.ign` argument:
+
+NOTE: The SSH key for the `core` user is supplied via Afterburn in this example as well. 
+
+.Launching and customizing a new instance
+[source,bash]
+----
+NAME='instance1'
+SSHKEY='my-key'     # the name of your SSH key: `aws ec2 describe-key-pairs`
+IMAGE='ami-xxx'     # the AMI ID found on the download page
+DISK='20'           # the size of the hard disk
+REGION='us-east-1'  # the target region
+TYPE='m5.large'     # the instance type
+SUBNET='subnet-xxx' # the subnet: `aws ec2 describe-subnets`
+SECURITY_GROUPS='sg-xx' # the security group `aws ec2 describe-security-groups`
+USERDATA='/path/to/config.ign' # path to your Ignition config
+aws ec2 run-instances                     \
+    --region $REGION                      \
+    --image-id $IMAGE                     \
+    --instance-type $TYPE                 \
+    --key-name $SSHKEY                    \
+    --subnet-id $SUBNET                   \
+    --security-group-ids $SECURITY_GROUPS \
+    --user-data "file://${USERDATA}"      \
+    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${NAME}}]" \
+    --block-device-mappings "VirtualName=/dev/xvda,DeviceName=/dev/xvda,Ebs={VolumeSize=${DISK}}"
+----
+
+NOTE: By design, cloud-init configuration and startup scripts are not supported on FCOS. Instead, it is recommended to encode any startup logic as systemd service units in the Ignition configuration.
+
+TIP: You can find out the instance's assigned IP by running `aws ec2 describe-instances`
+
+You now should be able to SSH into the instance using the associated IP address.
+
+.Example connecting
+[source, bash]
+----
+ssh core@<ip address>
+----

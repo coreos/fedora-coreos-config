@@ -33,30 +33,8 @@ TIP: You can find out the instance's assigned IP by running `aws ec2 describe-in
 
 You now should be able to SSH into the instance using the associated IP address.
 
-In order to launch a customized FCOS instance, a valid Ignition configuration must be passed as its https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user data] at creation time. You can use the same command from above but add `--user-data file://path/to/config.ign` argument:
-
-.Launching and customizing a new instance
+.Example connecting
 [source, bash]
 ----
-NAME='instance1'
-SSHKEY='my-key'     # the name of your SSH key: `aws ec2 describe-key-pairs`
-IMAGE='ami-xxx'     # the AMI ID found on the download page
-DISK='20'           # the size of the hard disk
-REGION='us-east-1'  # the target region
-TYPE='m5.large'     # the instance type
-SUBNET='subnet-xxx' # the subnet: `aws ec2 describe-subnets`
-SECURITY_GROUPS='sg-xx' # the security group `aws ec2 describe-security-groups`
-USERDATA='/path/to/config.ign' # path to your Ignition config
-aws ec2 run-instances                     \
-    --region $REGION                      \
-    --image-id $IMAGE                     \
-    --instance-type $TYPE                 \
-    --key-name $SSHKEY                    \
-    --subnet-id $SUBNET                   \
-    --security-group-ids $SECURITY_GROUPS \
-    --user-data "file://${USERDATA}"      \
-    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${NAME}}]" \
-    --block-device-mappings "VirtualName=/dev/xvda,DeviceName=/dev/xvda,Ebs={VolumeSize=${DISK}}"
+ssh core@<ip address>
 ----
-
-NOTE: By design, cloud-init configuration and startup scripts are not supported on FCOS. Instead, it is recommended to encode any startup logic as systemd service units in the Ignition configuration.

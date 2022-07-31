@@ -42,3 +42,10 @@ NOTE: Depending on your version of `virt-install`, you may not be able to use `-
 TIP: Make sure that your user has access to `/dev/kvm`. The default is to allow access for everyone, but on some distributions you may need to add yourself to the `kvm` group.
 
 TIP: You can escape out of the serial console by pressing `CTRL + ]`.
+
+If you set up an xref:authentication.adoc[SSH key] for the default `core` user, you can SSH into the VM and explore the OS:
+
+[source, bash]
+----
+ssh core@<ip address>
+----

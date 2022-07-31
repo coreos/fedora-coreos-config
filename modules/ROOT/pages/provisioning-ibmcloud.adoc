@@ -6,7 +6,9 @@ This guide shows how to provision new Fedora CoreOS (FCOS) instances in IBM Clou
 
 Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support] and provide an SSH key via the cloud provider and continue from there.
+NOTE: Fedora CoreOS has a default `core` user that can be used to explore the OS. If you want to use it, finalize its xref:authentication.adoc[configuration] by providing e.g. an SSH key.
+
+If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support].
 
 You also need to have access to an https://cloud.ibm.com/login[IBM Cloud account]. The examples below use the https://cloud.ibm.com/docs/cli?topic=cli-getting-started[`ibmcloud`] command-line tool, which must be separately installed and configured beforehand.
 Regarding the `ibmcloud` CLI, it is worth noting that it is supported to run the CLI https://cloud.ibm.com/docs/cli?topic=cli-using-idt-from-docker[via a container]. You'll need both the `cloud-object-storage` and `infrastructure-service` plugins installed. This can be done with:
@@ -105,3 +107,10 @@ ibmcloud is floating-ip-update $FIP --nic $NIC
 ----
 
 And you now should be able to SSH into the instance using the IP address associated with the floating IP.
+
+.Example connecting
+[source, bash]
+----
+ssh core@<ip address>
+----
+

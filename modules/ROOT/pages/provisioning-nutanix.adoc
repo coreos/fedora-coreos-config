@@ -6,6 +6,8 @@ This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Nutanix AHV.
 
 Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
+NOTE: Fedora CoreOS has a default `core` user that can be used to explore the OS. If you want to use it, finalize its xref:authentication.adoc[configuration] by providing e.g. an SSH key.
+
 You also need to have access to a Nutanix Prism Central subscription. The examples below use the `curl` command to access Nutanix Prism Central APIs.
 
 == Uploading an image to Nutanix AHV
@@ -154,4 +156,12 @@ curl -X POST --header "Content-Type: application/json" \
    }
 }
 EOF
+----
+
+You now should be able to SSH into the instance using the associated IP address.
+
+.Example connecting
+[source, bash]
+----
+ssh core@<ip address>
 ----

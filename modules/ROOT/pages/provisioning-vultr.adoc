@@ -6,9 +6,9 @@ This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Vultr. FCOS 
 
 Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support] and provide an SSH key via the cloud provider and continue from there.
+NOTE: Fedora CoreOS has a default `core` user that can be used to explore the OS. If you want to use it, finalize its xref:authentication.adoc[configuration] by providing e.g. an SSH key.
 
-While the Vultr documentation mentions `cloud-init` and scripts, FCOS does not support `cloud-init` or the ability to run scripts from user-data. It accepts only Ignition configuration files.
+If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support].
 
 You also need to have access to a Vultr account. The examples below use the https://github.com/vultr/vultr-cli[vultr-cli] and https://s3tools.org/s3cmd[s3cmd] command-line tools. Both of these tools are available in Fedora and can be installed via `sudo dnf install vultr-cli s3cmd`.
 
@@ -64,7 +64,20 @@ NAME='instance1'
 SNAPSHOT_ID='...'
 REGION='ewr'
 PLAN='vc2-2c-4gb'
-vultr-cli instance create --region "${REGION}" --plan "${PLAN}" --snapshot "${SNAPSHOT_ID}" --label "${NAME}"  --host "${NAME}" --userdata "$(cat example.ign)"
+vultr-cli instance create --region "${REGION}" --plan "${PLAN}" \
+  --snapshot "${SNAPSHOT_ID}" --label "${NAME}" --host "${NAME}" \
+  --userdata "$(cat example.ign)"
 ----
 
-You can now get the IP address of the instance by running `vultr-cli instance list`.
+NOTE: While the Vultr documentation mentions `cloud-init` and scripts, FCOS does not support `cloud-init` or the ability to run scripts from user-data. It accepts only Ignition configuration files.
+
+TIP: You can find out the instance's assigned IP by running `vultr-cli instance list`.
+
+You now should be able to SSH into the instance using the associated IP address.
+
+.Example connecting
+[source, bash]
+----
+ssh core@<ip address>
+----
+

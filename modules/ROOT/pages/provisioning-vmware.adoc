@@ -9,8 +9,10 @@ xref:provisioning-vmware.adoc#_modifying_ovf_metadata[modify the metadata of the
 
 Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
+NOTE: Fedora CoreOS has a default `core` user that can be used to explore the OS. If you want to use it, finalize its xref:authentication.adoc[configuration] by providing e.g. an SSH key.
+
 You also need to have access to a working VMware infrastructure, supporting VMs with at least hardware version 13.
-The examples below use the https://github.com/vmware/govmomi/blob/v0.22.2/govc/README.md[govc] command-line tool for remote vSphere provisioning and the https://code.vmware.com/web/tool/4.4.0/ovf[ovftool] for local Workstation or Fusion provisoning.
+The examples below use the https://github.com/vmware/govmomi/blob/v0.29.0/govc/README.md[govc] command-line tool for remote vSphere provisioning and the https://code.vmware.com/web/tool/4.4.0/ovf[ovftool] for local Workstation or Fusion provisioning.
 
 === Downloading the OVA
 
@@ -72,6 +74,13 @@ ovftool \
 
 Afterwards you can refresh the list of VMs in the Workstation or Fusion UI and the new `fcos-node01` VM should appear ready for booting. Its hardware configuration can be further customized at this point, and then powered-up.
 
+If you set up an xref:authentication.adoc[SSH key] for the default `core` user, you can SSH into the VM and explore the OS:
+
+[source, bash]
+----
+ssh core@<ip address>
+----
+
 == Booting a new VM on vSphere
 
 This section shows how to use vSphere facilities to configure and run VMs from the command-line. Similar steps can be performed via the graphical UI too.
@@ -117,6 +126,13 @@ A new `fcos-node01` VM is now available for booting. Its hardware configuration 
 ----
 govc vm.info -e "${VM_NAME}"
 govc vm.power -on "${VM_NAME}"
+----
+
+If you set up an xref:authentication.adoc[SSH key] for the default `core` user, you can SSH into the VM and explore the OS:
+
+[source, bash]
+----
+ssh core@<ip address>
 ----
 
 === First-boot networking and Ignition

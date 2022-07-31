@@ -63,6 +63,8 @@ sudo coreos-installer install --architecture=aarch64 -i config.ign $FCOSDISK
 
 NOTE: Make sure you provide an xref:producing-ign.adoc[Ignition config] when you run `coreos-installer`.
 
+NOTE: Fedora CoreOS has a default `core` user that can be used to explore the OS. If you want to use it, finalize its xref:authentication.adoc[configuration] by providing e.g. an SSH key.
+
 Now mount the ESP partition and copy the files over:
 
 [source, bash]

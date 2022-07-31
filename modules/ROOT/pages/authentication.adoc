@@ -4,6 +4,8 @@
 
 By default, a privileged user named `core` is created on the Fedora CoreOS system, but it is not configured with a default password or SSH key. If you wish to use the `core` user, you must provide an Ignition config which includes a password and/or SSH key(s) for the `core` user. Alternatively you may create additional, new users via Ignition configs.
 
+If you do not want to use Ignition to manage the default user's SSH key(s), you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support] and provide an SSH key via your cloud provider.
+
 == Creating a New User
 
 To create a new user (or users), add it to the `users` list of your Butane config. In the following example, the config creates two new usernames, but doesn't configure them to be especially useful.

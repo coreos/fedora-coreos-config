@@ -6,6 +6,8 @@ This guide shows how to provision new Fedora CoreOS (FCOS) instances on a https:
 
 Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
+NOTE: Fedora CoreOS has a default `core` user that can be used to explore the OS. If you want to use it, finalize its xref:authentication.adoc[configuration] by providing e.g. an SSH key.
+
 You also need to have access to a host machine with `libvirt`. The examples below use the `virt-install` command-line tool, which must be separately installed beforehand.
 
 TIP: If running on a host with SELinux enabled (use the `sestatus` command to check SELinux status), make sure your OS image and Ignition file are labeled as `svirt_home_t`. You can do this by placing them under `~/.local/share/libvirt/images/` or running `chcon -t svirt_home_t /path/to/file`.

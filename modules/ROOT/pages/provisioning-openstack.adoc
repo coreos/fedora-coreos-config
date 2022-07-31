@@ -9,7 +9,9 @@ The steps below were tested against the OpenStack Victoria release.
 
 Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support] and provide an SSH key via the cloud provider and continue from there.
+NOTE: Fedora CoreOS has a default `core` user that can be used to explore the OS. If you want to use it, finalize its xref:authentication.adoc[configuration] by providing e.g. an SSH key.
+
+If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support].
 
 You also need to have access to an OpenStack environment and a functioning
 https://docs.openstack.org/python-designateclient/latest/user/shell-v2.html[`openstack` CLI].
@@ -97,6 +99,11 @@ FLOATING_IP=1.1.1.1  # from just created floating IP
 openstack server add floating ip $INSTANCE_NAME $FLOATING_IP
 ----
 
-Now you should be able to SSH into the instance using the IP address
-associated with the floating IP. If you didn't change the defaults, the
-username is `core` and `ssh core@$FLOATING_IP` should work.
+You now should be able to SSH into the instance using the floating IP address.
+
+.Example connecting
+[source, bash]
+----
+ssh core@<ip address>
+----
+

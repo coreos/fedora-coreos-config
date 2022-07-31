@@ -6,7 +6,9 @@ This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Azure. Fedor
 
 Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support] and provide an SSH key via the cloud provider and continue from there.
+NOTE: Fedora CoreOS has a default `core` user that can be used to explore the OS. If you want to use it, finalize its xref:authentication.adoc[configuration] by providing e.g. an SSH key.
+
+If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support].
 
 You also need to have access to an Azure subscription. The examples below use the https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest[Azure CLI].
 
@@ -70,4 +72,12 @@ az storage blob delete --connection-string "$cs" -c "${az_container}" -n "${az_i
 az_vm_name="my-fcos-vm"
 ignition_path="./config.ign"
 az vm create -n "${az_vm_name}" -g "${az_resource_group}" --image "${az_image_name}" --admin-username core --custom-data "$(cat ${ignition_path})"
+----
+
+. You now should be able to SSH into the instance using the associated IP address.
++
+.Example connecting
+[source, bash]
+----
+ssh core@<ip address>
 ----
