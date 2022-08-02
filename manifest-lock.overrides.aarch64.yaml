@@ -9,18 +9,23 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  cryptsetup:
-    evr: 2.5.0~rc1-2.fc37
+  grub2-common:
+    evra: 1:2.06-42.fc37.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1268
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1271
       type: pin
-  cryptsetup-libs:
-    evr: 2.5.0~rc1-2.fc37
+  grub2-tools-minimal:
+    evra: 1:2.06-42.fc37.aarch64
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1268
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1271
       type: pin
-  filesystem:
-    evr: 3.16-4.fc37
+  grub2-efi-aa64:
+    evra: 1:2.06-42.fc37.aarch64
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1273
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1271
+      type: pin
+  grub2-tools:
+    evra: 1:2.06-42.fc37.aarch64
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1271
       type: pin
