@@ -8,6 +8,3 @@ repos:
   - fedora-rawhide
 
 include: manifests/fedora-coreos.yaml
-
-# Only enabled on rawhide right now
-cliwrap: true
