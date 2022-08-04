@@ -9,7 +9,6 @@ list_setgid_files=(
     '/usr/bin/write'
     '/usr/libexec/openssh/ssh-keysign'
     '/usr/libexec/utempter/utempter'
-    '/usr/bin/dotlockfile'
 )
 
 unknown_setgid_files=""
