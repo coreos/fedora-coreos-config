@@ -1,9 +1,11 @@
 #!/bin/bash
-# kola: { "platforms": "qemu", "minMemory": 4096, "additionalDisks": ["5G", "5G"], "timeoutMin": 15 }
+# kola: { "platforms": "qemu", "minMemory": 4096, "additionalDisks": ["5G", "5G"], "timeoutMin": 15, "tags": "reprovision" }
 #
 # - platforms: qemu
 #   - This test should pass everywhere if it passes anywhere.
 #   - additionalDisks is only supported on qemu.
+# - tags: reprovision
+#   - This test reprovisions the rootfs.
 # - minMemory: 4096
 #   - Root reprovisioning requires at least 4GiB of memory.
 # - additionalDisks: ["5G", "5G"]
