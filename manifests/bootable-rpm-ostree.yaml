@@ -39,4 +39,5 @@ packages-x86_64:
 # Temporary workaround to remove the SetGID binary from liblockfile that is
 # pulled by the s390utils but not needed for /usr/sbin/zipl.
 remove-from-packages:
-  - ["liblockfile", "/usr/bin/dotlockfile"]
+  - [liblockfile, /usr/bin/dotlockfile]
+  - [util-linux, /usr/bin/write]
