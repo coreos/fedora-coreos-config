@@ -6,9 +6,7 @@ set -xeuo pipefail
 . $KOLA_EXT_DATA/commonlib.sh
 
 # Security scanners complain about world-readable files in /etc/sudoers.d.
-# Check that there aren't any.
+# Check file permissions and syntax of /etc/sudoers and /etc/sudoers.d/*.
 # https://bugzilla.redhat.com/show_bug.cgi?id=1981979
-sudoers_files="$(find /etc/sudoers.d -type f ! -perm 600 2>&1)"
-if [ -n "$sudoers_files" ]; then
-    fatal "Found files in /etc/sudoers.d with unexpected permissions: $sudoers_files"
-fi
+visudo -c
+ok "sudoers files are valid"
