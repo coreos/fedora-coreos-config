@@ -83,6 +83,24 @@ mount_and_restore_filesystem_by_label() {
     find "${saved_fs}" -mindepth 1 -maxdepth 1 -exec mv -t "${mountpoint}" {} \;
 }
 
+# In Secure Execution case user is not allowed to modify partition table
+check_and_set_secex_config() {
+    if [[ -f /run/coreos/secure-execution ]]; then
+        local wr=$(jq "$(query_fslabel root) | length" "${ignition_cfg}")
+        local wb=$(jq "$(query_fslabel boot) | length" "${ignition_cfg}")
+        if [ "${wr}${wb}" != "00" ]; then
+            echo "Modifying bootfs and rootfs is not supported in Secure Execution mode"
+            exit 1
+        fi
+        # Cached config isn't merged, so reset it and recheck again, just to make sure
+        ignition_cfg=/usr/lib/ignition/base.d/01-secex.ign
+    fi
+}
+
+# We could have done this during 'detect' below, but other cases also request
+# info from config, so just check cached one and reset to secex.ign now
+check_and_set_secex_config
+
 case "${1:-}" in
     detect)
         # Mounts are not in a private namespace so we can mount ${saved_data}
