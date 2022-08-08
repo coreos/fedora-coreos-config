@@ -1,8 +1,10 @@
 #!/bin/bash
-# kola: { "platforms": "qemu", "minMemory": 4096, "architectures": "!s390x", "timeoutMin": 15 }
+# kola: { "platforms": "qemu", "minMemory": 4096, "architectures": "!s390x", "timeoutMin": 15, "tags": "reprovision" }
 #
 # - platforms: qemu
 #   - This test should pass everywhere if it passes anywhere.
+# - tags: reprovision
+#   - This test reprovisions the rootfs.
 # - minMemory: 4096
 #   - Root reprovisioning requires at least 4GiB of memory.
 # - architectures: !s390x

@@ -5,6 +5,7 @@
 Description=CoreOS: Touch /run/agetty.reload
 Documentation=https://bugzilla.redhat.com/show_bug.cgi?id=1932053
 DefaultDependencies=false
+Before=initrd.target
 
 [Service]
 Type=oneshot
