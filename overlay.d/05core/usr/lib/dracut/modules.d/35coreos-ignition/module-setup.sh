@@ -23,7 +23,8 @@ install() {
         lsblk \
         sed \
         grep \
-        sgdisk
+        sgdisk \
+        uname
 
     inst_simple "$moddir/coreos-diskful-generator" \
         "$systemdutildir/system-generators/coreos-diskful-generator"
@@ -41,6 +42,11 @@ install() {
 
     inst_script "$moddir/coreos-ignition-setup-user.sh" \
         "/usr/sbin/coreos-ignition-setup-user"
+
+    inst_script "$moddir/coreos-post-ignition-checks.sh" \
+        "/usr/sbin/coreos-post-ignition-checks"
+    
+    install_ignition_unit coreos-post-ignition-checks.service
 
     # For consistency tear down the network and persist multipath between the initramfs and
     # real root. See https://github.com/coreos/fedora-coreos-tracker/issues/394#issuecomment-599721763
@@ -67,4 +73,7 @@ install() {
     install_ignition_unit coreos-ignition-unique-boot.service ignition-diskful.target
     install_ignition_unit coreos-unique-boot.service ignition-diskful.target
     install_ignition_unit coreos-ignition-setup-user.service
+
+    # IBM Secure Execution. Ignition config for reencryption of / and /boot
+    inst_simple "$moddir/01-secex.ign" /usr/lib/coreos/01-secex.ign
 }

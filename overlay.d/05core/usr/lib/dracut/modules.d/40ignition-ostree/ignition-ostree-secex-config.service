@@ -1,0 +1,18 @@
+# RHOCS 4.12.s390x has an old kernel with a known issue: https://bugzilla.redhat.com/show_bug.cgi?id=2075085
+# Once we have kernel >= 4.18.0-387.el8.s390x we should drop this unit and copy config in coreos-diskful-generator
+[Unit]
+Description=Ignition OSTree: Inject Secure Execution Config
+DefaultDependencies=false
+ConditionArchitecture=s390x
+ConditionKernelCommandLine=ostree
+ConditionPathExists=/run/coreos/secure-execution
+OnFailure=emergency.target
+OnFailureJobMode=isolate
+
+After=cryptsetup.target
+Before=ignition-fetch-offline.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/libexec/ignition-ostree-secex-config
