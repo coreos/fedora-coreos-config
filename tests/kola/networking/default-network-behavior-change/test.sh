@@ -92,6 +92,32 @@ method=auto
 
 [user]
 org.freedesktop.NetworkManager.origin=nm-initrd-generator"
+# EXPECTED_INITRD_NETWORK_CFG4
+#   - used on Fedora 37+ and scos
+EXPECTED_INITRD_NETWORK_CFG4="# Created by nm-initrd-generator
+
+[connection]
+id=Wired Connection
+uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+type=ethernet
+autoconnect-retries=1
+multi-connect=3
+
+[ethernet]
+
+[ipv4]
+dhcp-timeout=90
+method=auto
+required-timeout=20000
+
+[ipv6]
+dhcp-timeout=90
+method=auto
+
+[proxy]
+
+[user]
+org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 
 # EXPECTED_REALROOT_NETWORK_CFG1:
 #   - used on RHEL <= 8.5
@@ -143,6 +169,29 @@ method=auto
 
 [.nmmeta]
 nm-generated=true"
+# EXPECTED_REALROOT_NETWORK_CFG3:
+#   - used on all Fedora 37+ and scos
+EXPECTED_REALROOT_NETWORK_CFG3="[connection]
+id=Wired connection 1
+uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+type=ethernet
+autoconnect-priority=-999
+interface-name=xxxx
+timestamp=xxxxxxxxxx
+
+[ethernet]
+
+[ipv4]
+method=auto
+
+[ipv6]
+addr-gen-mode=default
+method=auto
+
+[proxy]
+
+[.nmmeta]
+nm-generated=true"
 
 # Function that will remove unique (per-run) data from a connection file
 normalize_connection_file() {
@@ -156,23 +205,33 @@ source /etc/os-release
 # All current FCOS releases use the same config
 # https://github.com/coreos/fedora-coreos-config/pull/1533
 if [ "$ID" == "fedora" ]; then
-    if [ "$VERSION_ID" -ge "36" ]; then
+    if [ "$VERSION_ID" -ge "37" ]; then
+        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG4
+        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG3
+    elif [ "$VERSION_ID" -eq "36" ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG3
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG2
     else
         fatal "fail: not operating on expected OS version"
     fi
-elif [ "$ID" == "rhcos" ]; then
+elif [[ "${ID_LIKE}" =~ "rhel" ]]; then
     # For the version comparison use string substitution to remove the
     # '.` from the version so we can use integer comparison
+    
+    # scos does not have RHEL_VERSION variable in /etc/os-release
+    if [[ ${RHEL_VERSION:-} == "" ]]; then
+        RHEL_VERSION=$(echo $OSTREE_VERSION | cut -f2 -d.)
+    fi    
+    # scos includes NetworkManager-1.39.10-1.el9.x86_64, update scripts
+    # according to F37
+    if [ "${RHEL_VERSION/\./}" -ge 91 ]; then
+        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG4
+        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG3
     # RHEL8.6 includes NetworkManager-1.36.0-1.el8.x86_64, update scripts
     # according to F36
-    if [ "${RHEL_VERSION/\./}" -ge 86 ]; then
+    elif [ "${RHEL_VERSION/\./}" -ge 86 ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG3
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG2
-    elif [ "${RHEL_VERSION/\./}" -eq 85 ]; then
-        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG1
-        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
     elif [ "${RHEL_VERSION/\./}" -eq 84 ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG2
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
