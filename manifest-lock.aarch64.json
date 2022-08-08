@@ -33,8 +33,14 @@
     "afterburn-dracut": {
       "evra": "5.3.0-2.fc36.aarch64"
     },
+    "alsa-sof-firmware": {
+      "evra": "2.0-3.fc36.aarch64"
+    },
     "alternatives": {
       "evra": "1.19-2.fc36.aarch64"
+    },
+    "atmel-firmware": {
+      "evra": "1.3-26.fc36.aarch64"
     },
     "attr": {
       "evra": "2.5.1-4.fc36.aarch64"
@@ -50,6 +56,12 @@
     },
     "avahi-libs": {
       "evra": "0.8-15.fc36.aarch64"
+    },
+    "b43-fwcutter": {
+      "evra": "019-21.fc36.noarch"
+    },
+    "b43-openfwwf": {
+      "evra": "5.2-28.fc36.noarch"
     },
     "basesystem": {
       "evra": "11-13.fc36.noarch"
@@ -444,6 +456,57 @@
     "isns-utils-libs": {
       "evra": "0.101-4.fc36.aarch64"
     },
+    "iwl100-firmware": {
+      "evra": "39.31.5.1-130.fc36.aarch64"
+    },
+    "iwl1000-firmware": {
+      "evra": "39.31.5.1-130.fc36.aarch64"
+    },
+    "iwl105-firmware": {
+      "evra": "18.168.6.1-130.fc36.aarch64"
+    },
+    "iwl135-firmware": {
+      "evra": "18.168.6.1-130.fc36.aarch64"
+    },
+    "iwl2000-firmware": {
+      "evra": "18.168.6.1-130.fc36.aarch64"
+    },
+    "iwl2030-firmware": {
+      "evra": "18.168.6.1-130.fc36.aarch64"
+    },
+    "iwl3160-firmware": {
+      "evra": "25.30.13.0-130.fc36.aarch64"
+    },
+    "iwl3945-firmware": {
+      "evra": "15.32.2.9-130.fc36.aarch64"
+    },
+    "iwl4965-firmware": {
+      "evra": "228.61.2.24-130.fc36.aarch64"
+    },
+    "iwl5000-firmware": {
+      "evra": "8.83.5.1_1-130.fc36.aarch64"
+    },
+    "iwl5150-firmware": {
+      "evra": "8.24.2.2-130.fc36.aarch64"
+    },
+    "iwl6000-firmware": {
+      "evra": "9.221.4.1-130.fc36.aarch64"
+    },
+    "iwl6000g2a-firmware": {
+      "evra": "18.168.6.1-130.fc36.aarch64"
+    },
+    "iwl6000g2b-firmware": {
+      "evra": "18.168.6.1-130.fc36.aarch64"
+    },
+    "iwl6050-firmware": {
+      "evra": "41.28.5.1-130.fc36.aarch64"
+    },
+    "iwl7260-firmware": {
+      "evra": "25.30.13.0-130.fc36.aarch64"
+    },
+    "iwlax2xx-firmware": {
+      "evra": "20220310-130.fc36.aarch64"
+    },
     "jansson": {
       "evra": "2.13.1-4.fc36.aarch64"
     },
@@ -563,6 +626,9 @@
     },
     "libedit": {
       "evra": "3.1-41.20210910cvs.fc36.aarch64"
+    },
+    "libertas-usb8388-firmware": {
+      "evra": "20220310-130.fc36.aarch64"
     },
     "libevent": {
       "evra": "2.1.12-6.fc36.aarch64"
@@ -1176,6 +1242,9 @@
     "tzdata": {
       "evra": "2022a-2.fc36.noarch"
     },
+    "usb_modeswitch": {
+      "evra": "2.6.1-4.fc36.noarch"
+    },
     "userspace-rcu": {
       "evra": "0.13.0-4.fc36.aarch64"
     },
@@ -1214,6 +1283,9 @@
     },
     "zchunk-libs": {
       "evra": "1.2.2-1.fc36.aarch64"
+    },
+    "zd1211-firmware": {
+      "evra": "1.5-10.fc36.aarch64"
     },
     "zincati": {
       "evra": "0.0.24-3.fc36.aarch64"
