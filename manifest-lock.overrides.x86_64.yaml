@@ -10,32 +10,38 @@
 
 packages:
   grub2-pc-modules:
-    evra: 1:2.06-42.fc36.noarch
+    evra: 1:2.06-47.fc36.noarch
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1271
-      type: pin
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d0c322d15a
   grub2-common:
-    evra: 1:2.06-42.fc36.noarch
+    evra: 1:2.06-47.fc36.noarch
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1271
-      type: pin
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d0c322d15a
   grub2-tools-minimal:
-    evra: 1:2.06-42.fc36.x86_64
+    evra: 1:2.06-47.fc36.x86_64
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1271
-      type: pin
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d0c322d15a
   grub2-efi-x64:
-    evra: 1:2.06-42.fc36.x86_64
+    evra: 1:2.06-47.fc36.x86_64
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1271
-      type: pin
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d0c322d15a
   grub2-pc:
-    evra: 1:2.06-42.fc36.x86_64
+    evra: 1:2.06-47.fc36.x86_64
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1271
-      type: pin
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d0c322d15a
   grub2-tools:
-    evra: 1:2.06-42.fc36.x86_64
+    evra: 1:2.06-47.fc36.x86_64
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1271
-      type: pin
+      type: fast-track
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d0c322d15a
