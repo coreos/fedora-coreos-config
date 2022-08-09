@@ -1,0 +1,6 @@
+# These are packages that are shared between FCOS and
+# RHCOS/SCOS 9+
+
+packages:
+  # SSH
+  - ssh-key-dir
