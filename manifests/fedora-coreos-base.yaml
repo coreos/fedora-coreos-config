@@ -9,6 +9,7 @@ include:
   - system-configuration.yaml
   - user-experience.yaml
   - shared-workarounds.yaml
+  - shared-el9.yaml
 
 ostree-layers:
   - overlay/05core
@@ -114,8 +115,6 @@ postprocess:
 packages:
   # Security
   - polkit
-  # SSH
-  - ssh-key-dir
   # Containers
   - systemd-container catatonit
   - fuse-overlayfs slirp4netns
