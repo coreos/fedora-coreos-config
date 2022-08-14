@@ -1,22 +1,22 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.38.2-1.fc36.x86_64"
+      "evra": "1:1.38.4-1.fc36.x86_64"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.38.2-1.fc36.x86_64"
+      "evra": "1:1.38.4-1.fc36.x86_64"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.38.2-1.fc36.x86_64"
+      "evra": "1:1.38.4-1.fc36.x86_64"
     },
     "NetworkManager-team": {
-      "evra": "1:1.38.2-1.fc36.x86_64"
+      "evra": "1:1.38.4-1.fc36.x86_64"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.38.2-1.fc36.x86_64"
+      "evra": "1:1.38.4-1.fc36.x86_64"
     },
     "WALinuxAgent-udev": {
-      "evra": "2.7.1.0-1.fc36.noarch"
+      "evra": "2.7.3.0-1.fc36.noarch"
     },
     "aardvark-dns": {
       "evra": "1.0.3-1.fc36.x86_64"
@@ -103,16 +103,16 @@
       "evra": "6.15-1.fc36.x86_64"
     },
     "clevis": {
-      "evra": "18-8.fc36.x86_64"
+      "evra": "18-9.fc36.x86_64"
     },
     "clevis-dracut": {
-      "evra": "18-8.fc36.x86_64"
+      "evra": "18-9.fc36.x86_64"
     },
     "clevis-luks": {
-      "evra": "18-8.fc36.x86_64"
+      "evra": "18-9.fc36.x86_64"
     },
     "clevis-systemd": {
-      "evra": "18-8.fc36.x86_64"
+      "evra": "18-9.fc36.x86_64"
     },
     "cloud-utils-growpart": {
       "evra": "0.31-10.fc36.noarch"
@@ -355,7 +355,7 @@
       "evra": "0.21-9.fc36.x86_64"
     },
     "git-core": {
-      "evra": "2.37.1-1.fc36.x86_64"
+      "evra": "2.37.2-1.fc36.x86_64"
     },
     "glib2": {
       "evra": "2.72.3-1.fc36.x86_64"
@@ -472,13 +472,13 @@
       "evra": "2.4.0-9.fc36.noarch"
     },
     "kernel": {
-      "evra": "5.18.16-200.fc36.x86_64"
+      "evra": "5.18.17-200.fc36.x86_64"
     },
     "kernel-core": {
-      "evra": "5.18.16-200.fc36.x86_64"
+      "evra": "5.18.17-200.fc36.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.18.16-200.fc36.x86_64"
+      "evra": "5.18.17-200.fc36.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.24-4.fc36.x86_64"
@@ -1093,7 +1093,7 @@
       "evra": "15.6-2.x86_64"
     },
     "skopeo": {
-      "evra": "1:1.9.0-4.fc36.x86_64"
+      "evra": "1:1.9.2-1.fc36.x86_64"
     },
     "slang": {
       "evra": "2.3.2-11.fc36.x86_64"
@@ -1195,10 +1195,10 @@
       "evra": "2.38-1.fc36.x86_64"
     },
     "vim-data": {
-      "evra": "2:9.0.137-1.fc36.noarch"
+      "evra": "2:9.0.189-1.fc36.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.137-1.fc36.x86_64"
+      "evra": "2:9.0.189-1.fc36.x86_64"
     },
     "which": {
       "evra": "2.21-32.fc36.x86_64"
@@ -1228,7 +1228,7 @@
       "evra": "0.0.24-3.fc36.x86_64"
     },
     "zlib": {
-      "evra": "1.2.11-31.fc36.x86_64"
+      "evra": "1.2.11-32.fc36.x86_64"
     },
     "zram-generator": {
       "evra": "1.1.2-1.fc36.x86_64"
@@ -1238,16 +1238,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-08-12T23:45:13Z",
+    "generated": "2022-08-14T20:57:56Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:16:11Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-08-11T02:04:18Z"
+        "generated": "2022-08-13T00:56:54Z"
       },
       "fedora-updates": {
-        "generated": "2022-08-12T01:01:56Z"
+        "generated": "2022-08-14T02:29:02Z"
       }
     }
   }
