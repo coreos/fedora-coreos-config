@@ -15,7 +15,7 @@ set -xeuo pipefail
 . $KOLA_EXT_DATA/commonlib.sh
 
 # Note: This version must be kept up to date for now, since there currently is no 'latest' (or similar) stream
-CRIO_VERSION=1.22
+CRIO_VERSION=1.24
 
 declare -A commands=(
   ["cri-o:${CRIO_VERSION}/default"]="crio"
