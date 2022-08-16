@@ -4,9 +4,15 @@ files via `ostree-layers` (this used to be done automatically, but that's no
 longer the case).
 
 05core
------
+------
 
 This overlay matches `fedora-coreos-base.yaml`; core Ignition+ostree bits.
+
+06el9
+-----
+
+This overlay includes content shared between FCOS and RHCOS/SCOS 9, but not
+RHCOS 8.
 
 08nouveau
 ---------
