@@ -133,7 +133,7 @@
       "evra": "2:2.188.0-1.fc36.noarch"
     },
     "containerd": {
-      "evra": "1.6.6-5.fc36.s390x"
+      "evra": "1.6.8-2.fc36.s390x"
     },
     "containernetworking-plugins": {
       "evra": "1.1.0-1.fc36.s390x"
@@ -568,10 +568,10 @@
       "evra": "11-5.fc36.s390x"
     },
     "libkcapi": {
-      "evra": "1.3.1-4.fc36.s390x"
+      "evra": "1.4.0-2.fc36.s390x"
     },
     "libkcapi-hmaccalc": {
-      "evra": "1.3.1-4.fc36.s390x"
+      "evra": "1.4.0-2.fc36.s390x"
     },
     "libksba": {
       "evra": "1.6.0-3.fc36.s390x"
@@ -853,10 +853,10 @@
       "evra": "6.9.8-1.fc36.s390x"
     },
     "openldap": {
-      "evra": "2.6.2-2.fc36.s390x"
+      "evra": "2.6.2-3.fc36.s390x"
     },
     "openldap-compat": {
-      "evra": "2.6.2-2.fc36.s390x"
+      "evra": "2.6.2-3.fc36.s390x"
     },
     "openssh": {
       "evra": "8.8p1-1.fc36.1.s390x"
@@ -949,7 +949,7 @@
       "evra": "20210518-4.fc36.noarch"
     },
     "qemu-user-static-x86": {
-      "evra": "2:6.2.0-13.fc36.s390x"
+      "evra": "2:6.2.0-14.fc36.s390x"
     },
     "readline": {
       "evra": "8.1-6.fc36.s390x"
@@ -973,10 +973,10 @@
       "evra": "4.17.1-3.fc36.s390x"
     },
     "rsync": {
-      "evra": "3.2.4-1.fc36.s390x"
+      "evra": "3.2.5-1.fc36.s390x"
     },
     "runc": {
-      "evra": "2:1.1.2-3.fc36.s390x"
+      "evra": "2:1.1.3-1.fc36.s390x"
     },
     "s390utils-core": {
       "evra": "2:2.20.0-1.fc36.s390x"
@@ -1105,7 +1105,7 @@
       "evra": "3.2.0-3.fc36.s390x"
     },
     "tzdata": {
-      "evra": "2022a-2.fc36.noarch"
+      "evra": "2022b-1.fc36.noarch"
     },
     "userspace-rcu": {
       "evra": "0.13.0-4.fc36.s390x"
@@ -1117,10 +1117,10 @@
       "evra": "2.38-1.fc36.s390x"
     },
     "vim-data": {
-      "evra": "2:9.0.189-1.fc36.noarch"
+      "evra": "2:9.0.213-1.fc36.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.189-1.fc36.s390x"
+      "evra": "2:9.0.213-1.fc36.s390x"
     },
     "which": {
       "evra": "2.21-32.fc36.s390x"
@@ -1160,16 +1160,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-08-16T14:47:52Z",
+    "generated": "2022-08-18T14:37:49Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:15:53Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-08-14T22:03:55Z"
+        "generated": "2022-08-16T16:06:52Z"
       },
       "fedora-updates": {
-        "generated": "2022-08-16T01:24:18Z"
+        "generated": "2022-08-18T01:55:16Z"
       }
     }
   }
