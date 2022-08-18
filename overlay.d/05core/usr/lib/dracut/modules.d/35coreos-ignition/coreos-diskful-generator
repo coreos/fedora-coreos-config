@@ -74,5 +74,17 @@ EOF
         mkdir -p /run/coreos/
         touch /run/coreos/secure-execution
         cp /usr/lib/coreos/01-secex.ign /usr/lib/ignition/base.d/01-secex.ign
+        # Add dropins to disable Ignition logging for all stages
+        stages=("fetch-offline" "fetch" "kargs" "disks" "mount" "files")
+        for s in "${stages[@]}"; do
+            dropin="${UNIT_DIR}/ignition-${s}.service.d"
+            mkdir -p "${dropin}"
+            cat > "${dropin}/10-secex.conf" <<EOF
+[Service]
+Environment=IGNITION_ARGS=-log-to-stdout
+StandardOutput=null
+StandardError=null
+EOF
+        done
     fi
 fi
