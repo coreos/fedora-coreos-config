@@ -32,7 +32,7 @@ _display_relevant_errors() {
 
         # Print Ignition logs
         if echo ${failed} | grep -qFe 'ignition-'; then
-        cat <<EOF
+            cat <<EOF
 ------
 Ignition has failed. Please ensure your config is valid. Note that only
 Ignition spec v3.0.0+ configs are accepted.
@@ -69,6 +69,12 @@ EOF
         fi
     fi
 }
+
+# in SE case drop config before entering shell
+if [ -f /run/coreos/secure-execution ]; then
+    rm -f /run/ignition.json
+    rm -f /usr/lib/ignition/user.ign
+fi
 
 # Print warnings/informational messages to all configured consoles on the
 # machine. Code inspired by https://github.com/dracutdevs/dracut/commit/32f68c1

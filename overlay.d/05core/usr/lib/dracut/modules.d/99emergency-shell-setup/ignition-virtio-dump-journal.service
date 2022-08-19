@@ -1,6 +1,7 @@
 [Unit]
 Description=Dump Journal to Virtio Port
 ConditionPathExists=/etc/initrd-release
+ConditionPathExists=!/run/coreos/secure-execution
 DefaultDependencies=false
 ConditionVirtualization=|kvm
 ConditionVirtualization=|qemu
