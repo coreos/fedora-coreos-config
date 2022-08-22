@@ -43,9 +43,10 @@ get_partlabels_for_parttype() {
 mount_verbose() {
     local srcdev=$1; shift
     local destdir=$1; shift
-    echo "Mounting ${srcdev} ($(realpath "$srcdev")) to $destdir"
+    local mode=${1:-ro}
+    echo "Mounting ${srcdev} ${mode} ($(realpath "$srcdev")) to $destdir"
     mkdir -p "${destdir}"
-    mount "${srcdev}" "${destdir}"
+    mount -o "${mode}" "${srcdev}" "${destdir}"
 }
 
 # Sometimes, for some reason the by-label symlinks aren't updated. Detect these
@@ -79,7 +80,7 @@ mount_and_restore_filesystem_by_label() {
     local new_dev
     new_dev=$(jq -r "$(query_fslabel "${label}") | .[0].device" "${ignition_cfg}")
     udev_trigger_on_label_mismatch "${label}" "${new_dev}"
-    mount_verbose "/dev/disk/by-label/${label}" "${mountpoint}"
+    mount_verbose "/dev/disk/by-label/${label}" "${mountpoint}" rw
     find "${saved_fs}" -mindepth 1 -maxdepth 1 -exec mv -t "${mountpoint}" {} \;
 }
 
@@ -221,7 +222,7 @@ case "${1:-}" in
                 # 3. We don't need the by-label symlink to be correct and
                 #    nothing later in boot will be mounting the filesystem
                 mountpoint="/mnt/esp-${label}"
-                mount_verbose "/dev/disk/by-partlabel/${label}" "${mountpoint}"
+                mount_verbose "/dev/disk/by-partlabel/${label}" "${mountpoint}" rw
                 find "${saved_esp}" -mindepth 1 -maxdepth 1 -exec cp -a {} "${mountpoint}" \;
             done
         fi
