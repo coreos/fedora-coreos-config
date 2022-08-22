@@ -84,6 +84,15 @@ mount_and_restore_filesystem_by_label() {
     find "${saved_fs}" -mindepth 1 -maxdepth 1 -exec mv -t "${mountpoint}" {} \;
 }
 
+mount_and_save_filesystem_by_label() {
+    local label=$1; shift
+    local saved_fs=$1; shift
+    local fs=/dev/disk/by-label/${label}
+    mount_verbose "${fs}" /var/tmp/mnt
+    cp -aT /var/tmp/mnt "${saved_fs}"
+    umount /var/tmp/mnt
+}
+
 # In Secure Execution case user is not allowed to modify partition table
 check_and_set_secex_config() {
     if [[ -f /run/coreos/secure-execution ]]; then
@@ -166,15 +175,13 @@ case "${1:-}" in
         # Mounts happen in a private mount namespace since we're not "offically" mounting
         if [ -d "${saved_root}" ]; then
             echo "Moving rootfs to RAM..."
-            mount_verbose "${root_part}" /sysroot
-            cp -aT /sysroot "${saved_root}"
+            mount_and_save_filesystem_by_label root "${saved_root}"
             # also store the state of the partition
             lsblk "${root_part}" --nodeps --pairs -b --paths -o NAME,TYPE,SIZE > "${partstate_root}"
         fi
         if [ -d "${saved_boot}" ]; then
             echo "Moving bootfs to RAM..."
-            mount_verbose "${boot_part}" /sysroot/boot
-            cp -aT /sysroot/boot "${saved_boot}"
+            mount_and_save_filesystem_by_label boot "${saved_boot}"
         fi
         if [ -d "${saved_esp}" ]; then
             echo "Moving EFI System Partition to RAM..."
