@@ -81,7 +81,7 @@ mount_and_restore_filesystem_by_label() {
     new_dev=$(jq -r "$(query_fslabel "${label}") | .[0].device" "${ignition_cfg}")
     udev_trigger_on_label_mismatch "${label}" "${new_dev}"
     mount_verbose "/dev/disk/by-label/${label}" "${mountpoint}" rw
-    find "${saved_fs}" -mindepth 1 -maxdepth 1 -exec mv -t "${mountpoint}" {} \;
+    find "${saved_fs}" -mindepth 1 -maxdepth 1 -exec mv -t "${mountpoint}" {} +
 }
 
 mount_and_save_filesystem_by_label() {
@@ -230,7 +230,7 @@ case "${1:-}" in
                 #    nothing later in boot will be mounting the filesystem
                 mountpoint="/mnt/esp-${label}"
                 mount_verbose "/dev/disk/by-partlabel/${label}" "${mountpoint}" rw
-                find "${saved_esp}" -mindepth 1 -maxdepth 1 -exec cp -a {} "${mountpoint}" \;
+                find "${saved_esp}" -mindepth 1 -maxdepth 1 -exec cp -at "${mountpoint}" {} +
             done
         fi
         if [ -d "${saved_bios}" ]; then
