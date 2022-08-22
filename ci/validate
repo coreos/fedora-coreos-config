@@ -6,12 +6,36 @@ import stat
 import subprocess
 import yaml
 
+INITRD_SERVICES_WITHOUT_BEFORE = {
+    # Depended on by other services
+    'coreos-livepxe-rootfs.service',
+}
+
 validated=0
+
+def openat(dirfd, name, mode='r'):
+    def opener(path, flags):
+        return os.open(path, flags, dir_fd=dirfd)
+    return open(name, mode, opener=opener)
+
+
+def validate_initrd_service(rootfd, name):
+    with openat(rootfd, name) as fh:
+        if ([l for l in fh.readlines() if l.startswith('Before=')] or
+                name in INITRD_SERVICES_WITHOUT_BEFORE):
+            global validated
+            validated += 1
+        else:
+            raise Exception(
+                f'{name} has no Before= and may race with switch-root'
+            )
+
 
 def validate_shell(rootfd, name):
     subprocess.check_call(['bash', '-n', name], preexec_fn=lambda: os.fchdir(rootfd))
     global validated
     validated +=1
+
 
 for root, dirs, files, rootfd in os.fwalk('.'):
     # Skip .git
@@ -26,6 +50,8 @@ for root, dirs, files, rootfd in os.fwalk('.'):
         elif name.endswith('.sh'):
             validate_shell(rootfd, name)
             continue
+        elif 'dracut/modules.d' in root and name.endswith('.service'):
+            validate_initrd_service(rootfd, name)
         stbuf = os.lstat(name, dir_fd=rootfd)
         if not stat.S_ISREG(stbuf.st_mode):
             continue
