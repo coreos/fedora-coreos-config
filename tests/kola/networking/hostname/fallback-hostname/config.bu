@@ -1,0 +1,10 @@
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/NetworkManager/conf.d/90-no-dhcp-dns-hostname.conf
+      mode: 0600
+      contents:
+        inline: |
+          [main]
+          hostname-mode=none
