@@ -36,7 +36,7 @@
     ],
     "luks": [
       {
-        "device": "${BOOTDEV}3",
+        "device": "/dev/disk/by-label/boot",
         "label": "crypt_bootfs",
         "name": "boot",
         "options": [
@@ -46,7 +46,7 @@
         "wipeVolume": true
       },
       {
-        "device": "${BOOTDEV}4",
+        "device": "/dev/disk/by-label/root",
         "label": "crypt_rootfs",
         "name": "root",
         "options": [
