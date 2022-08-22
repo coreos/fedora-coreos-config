@@ -112,42 +112,42 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora-coreos-stable 
 On the serial console you will see:
 
 ----
-[  OK  ] Reached target Login Prompts.
+Fedora CoreOS 36.20220723.3.1
+Kernel 5.18.13-200.fc36.x86_64 on an x86_64 (ttyS0)
 
-Fedora CoreOS 32.20200715.3.0
-Kernel 5.7.8-200.fc32.x86_64 on an x86_64 (ttyS0)
-
-SSH host key: SHA256:rLJvpsONtyYXW4QCTdHD3Vvn56ERq1AbakWxwRImH2g (ECDSA)
-SSH host key: SHA256:/UUqh9nMlFf+2wFSjTMtyLemF6qVEuMHbAh1Td8nJeE (ED25519)
-SSH host key: SHA256:ZoKsIc9NZVRLe8ao9uPvc1vsbHa6StdSVMvF6rGWhAI (RSA)
-ens2: 192.168.122.142 fe80::5054:ff:fec1:a01f
-Ignition: user provided config was applied
+SSH host key: SHA256:X38nTiEGsp/G+tFz6ojBaeGDoI9a9S350xN8HSNa1oc (ECDSA)
+SSH host key: SHA256:gDZoJpgOpLJSCPaLn8OdA1hZQxytI+rdt2XOnLlfPHc (ED25519)
+SSH host key: SHA256:H73stdlwb9eJspcVb69wpEOnBEXoF2iBfGnS6cbtBNE (RSA)
+enp1s0: 192.168.122.171 fe80::d100:b088:5914:115e
+Ignition: ran on 2022/08/21 01:31:56 UTC (this boot)
+Ignition: user-provided config was applied
 Ignition: wrote ssh authorized keys file for user: core
 tutorial login: core (automatic login)
 
+Fedora CoreOS 36.20220723.3.1
 [systemd]
 Failed Units: 1
   failure.service
 [core@tutorial ~]$
 ----
 
-If you would like to connect via SSH, disconnect from the serial console by pressing `CTRL` + `]` and then use the reported IP address for `ens2` from the serial console to log in using the `core` user via SSH:
+If you would like to connect via SSH, disconnect from the serial console by pressing `CTRL` + `]` and then use the reported IP address for the NIC from the serial console to log in using the `core` user via SSH:
 
 ----
-ssh core@192.168.122.142
-The authenticity of host '192.168.122.142 (192.168.122.142)' can't be established.
-ECDSA key fingerprint is SHA256:rLJvpsONtyYXW4QCTdHD3Vvn56ERq1AbakWxwRImH2g.
+$ ssh core@192.168.122.171
+The authenticity of host '192.168.122.171 (192.168.122.171)' can't be established.
+ED25519 key fingerprint is SHA256:gDZoJpgOpLJSCPaLn8OdA1hZQxytI+rdt2XOnLlfPHc.
+This key is not known by any other names
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '192.168.122.142' (ECDSA) to the list of known hosts.
-Fedora CoreOS 32.20200715.3.0
+Warning: Permanently added '192.168.122.171' (ED25519) to the list of known hosts.
+Fedora CoreOS 36.20220723.3.1
 Tracker: https://github.com/coreos/fedora-coreos-tracker
-Discuss: https://discussion.fedoraproject.org/c/server/coreos/
+Discuss: https://discussion.fedoraproject.org/tag/coreos
 
-Last login: Fri Aug  7 10:10:45 2020
+Last login: Sun Aug 21 01:32:09 2022
 [systemd]
 Failed Units: 1
   failure.service
-[core@tutorial ~]$
 ----
 
 The `Failed Units` message is coming from the https://github.com/coreos/console-login-helper-messages[console login helper messages] helpers. This particular helper shows us when `systemd` has services that are in a failed state. In this case we made `failure.service` with `ExecStart=/usr/bin/false`, so we intentionally created a service that will always fail in order to illustrate the helper messages.
@@ -158,36 +158,37 @@ Now that we’re up and we don’t have any real failures we can check out the s
 [core@tutorial ~]$ systemctl status --full etcd-member.service
 ● etcd-member.service - Run a single node etcd
      Loaded: loaded (/etc/systemd/system/etcd-member.service; enabled; vendor preset: enabled)
-     Active: active (running) since Fri 2020-08-07 10:10:45 UTC; 4min 30s ago
-    Process: 1926 ExecStartPre=/usr/bin/mkdir -p /var/lib/etcd (code=exited, status=0/SUCCESS)
-    Process: 1928 ExecStartPre=/bin/podman kill etcd (code=exited, status=125)
-    Process: 2034 ExecStartPre=/bin/podman rm etcd (code=exited, status=1/FAILURE)
-    Process: 2063 ExecStartPre=/bin/podman pull quay.io/coreos/etcd (code=exited, status=0/SUCCESS)
-   Main PID: 2155 (podman)
-      Tasks: 11 (limit: 2288)
-     Memory: 134.2M
+     Active: active (running) since Sun 2022-08-21 01:32:09 UTC; 2min 18s ago
+    Process: 1608 ExecStartPre=mkdir -p /var/lib/etcd (code=exited, status=0/SUCCESS)
+    Process: 1610 ExecStartPre=/bin/podman kill etcd (code=exited, status=125)
+    Process: 1649 ExecStartPre=/bin/podman rm etcd (code=exited, status=1/FAILURE)
+    Process: 1657 ExecStartPre=/bin/podman pull quay.io/coreos/etcd (code=exited, status=0/SUCCESS)
+   Main PID: 1706 (podman)
+      Tasks: 10 (limit: 2254)
+     Memory: 91.5M
+        CPU: 4.978s
      CGroup: /system.slice/etcd-member.service
-             ├─2155 /bin/podman run ...
-             └─2203 /usr/bin/conmon ...
+             ├─ 1706 /bin/podman run ...
+             └─ 1724 /usr/bin/conmon ...
 
-Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.035534 I | raft: b71f75320dc06a6c became candidate at term 2
-Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.035966 I | raft: b71f75320dc06a6c received MsgVoteResp from b71f75320dc06a6c at term 2
-Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.036297 I | raft: b71f75320dc06a6c became leader at term 2
-Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.036774 I | raft: raft.node: b71f75320dc06a6c elected leader b71f75320dc06a6c at term 2
-Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.037468 I | etcdserver: setting up the initial cluster version to 3.3
-Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.050863 N | etcdserver/membership: set the initial cluster version to 3.3
-Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.050955 I | etcdserver/api: enabled capabilities for version 3.3
-Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.050998 I | etcdserver: published {Name:node1 ClientURLs:[http://127.0.0.1:2379]} to cluster 1c45a069f3a1d796
-Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.051115 I | embed: ready to serve client requests
-Aug 07 10:10:47 tutorial podman[2155]: 2020-08-07 10:10:47.052367 N | embed: serving insecure client requests on 127.0.0.1:2379, this is strongly discouraged!
+Aug 21 01:32:10 tutorial etcd[1724]: 2022-08-21 01:32:10.719193 N | etcdserver/membership: set the initial cluster version to 3.3
+Aug 21 01:32:10 tutorial etcd[1724]: 2022-08-21 01:32:10.719548 I | etcdserver/api: enabled capabilities for version 3.3
+Aug 21 01:32:10 tutorial podman[1706]: 2022-08-21 01:32:10.719193 N | etcdserver/membership: set the initial cluster version to 3.3
+Aug 21 01:32:10 tutorial podman[1706]: 2022-08-21 01:32:10.719548 I | etcdserver/api: enabled capabilities for version 3.3
+Aug 21 01:32:10 tutorial podman[1706]: 2022-08-21 01:32:10.719595 I | etcdserver: published {Name:node1 ClientURLs:[http://127.0.0.1:2379]} to cluster 1c45a069f3a1d796
+Aug 21 01:32:10 tutorial podman[1706]: 2022-08-21 01:32:10.719968 I | embed: ready to serve client requests
+Aug 21 01:32:10 tutorial etcd[1724]: 2022-08-21 01:32:10.719595 I | etcdserver: published {Name:node1 ClientURLs:[http://127.0.0.1:2379]} to cluster 1c45a069f3a1d796
+Aug 21 01:32:10 tutorial etcd[1724]: 2022-08-21 01:32:10.719968 I | embed: ready to serve client requests
+Aug 21 01:32:10 tutorial etcd[1724]: 2022-08-21 01:32:10.722332 N | embed: serving insecure client requests on 127.0.0.1:2379, this is strongly discouraged!
+Aug 21 01:32:10 tutorial podman[1706]: 2022-08-21 01:32:10.722332 N | embed: serving insecure client requests on 127.0.0.1:2379, this is strongly discouraged!
 ----
 
 We can also inspect the state of the container that was run by the systemd service:
 
 ----
 [core@tutorial ~]$ sudo podman ps -a
-CONTAINER ID  IMAGE                       COMMAND               CREATED        STATUS            PORTS  NAMES
-618991ee6db1  quay.io/coreos/etcd:latest  /usr/local/bin/et...  5 minutes ago  Up 5 minutes ago         etcd
+CONTAINER ID  IMAGE                       COMMAND               CREATED         STATUS             PORTS       NAMES
+9d854474bba7  quay.io/coreos/etcd:latest  /usr/local/bin/et...  11 minutes ago  Up 11 minutes ago              etcd
 ----
 
 And we can set a key/value pair in etcd. For now let’s set the key `fedora` to the value `fun`:

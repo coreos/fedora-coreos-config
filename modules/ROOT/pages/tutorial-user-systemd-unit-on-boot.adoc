@@ -158,27 +158,32 @@ We can then verify that the unit has been started under the sleeper systemd user
 ----
 $ ssh core@192.168.x.y
 [core@localhost ~]$ sudo machinectl shell sleeper@
+Connected to the local host. Press ^] three times within 1s to exit session.
 [sleeper@localhost ~]$ systemctl --user status
-● localhost
+● localhost.localdomain
     State: running
      Jobs: 0 queued
    Failed: 0 units
-    Since: Sat 2021-02-20 11:11:53 UTC; 57s ago
+    Since: Sun 2022-08-21 02:22:44 UTC; 42s ago
    CGroup: /user.slice/user-1001.slice/user@1001.service
-           ├─init.scope
-           │ ├─2110 /usr/lib/systemd/systemd --user
-           │ └─2112 (sd-pam)
-           └─linger-example.service
-             └─2119 /usr/bin/sleep infinity
+           ├─app.slice
+           │ └─linger-example.service
+           │   └─ 1671 /usr/bin/sleep infinity
+           └─init.scope
+             ├─ 1663 /usr/lib/systemd/systemd --user
+             └─ 1664 "(sd-pam)"
 [sleeper@localhost ~]$ systemctl --user status linger-example.service
 ● linger-example.service - A systemd user unit demo
      Loaded: loaded (/var/home/sleeper/.config/systemd/user/linger-example.service; enabled; vendor preset: disabled)
-     Active: active (running) since Sat 2021-02-20 11:11:53 UTC; 1min 5s ago
-   Main PID: 2119 (sleep)
-     CGroup: /user.slice/user-1001.slice/user@1001.service/linger-example.service
-             └─2119 /usr/bin/sleep infinity
+     Active: active (running) since Sun 2022-08-21 02:22:45 UTC; 55s ago
+   Main PID: 1671 (sleep)
+      Tasks: 1 (limit: 2254)
+     Memory: 228.0K
+        CPU: 4ms
+     CGroup: /user.slice/user-1001.slice/user@1001.service/app.slice/linger-example.service
+             └─ 1671 /usr/bin/sleep infinity
 
-Feb 20 11:11:53 localhost systemd[2110]: Started A systemd user unit demo.
+Aug 21 02:22:45 localhost.localdomain systemd[1663]: Started linger-example.service - A systemd user unit demo.
 ----
 
 == Cleanup

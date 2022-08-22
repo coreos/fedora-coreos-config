@@ -53,7 +53,7 @@ This configuration can then be converted into an Ignition config with Butane:
 
 [source,bash]
 ----
-$ butane --pretty --strict autologin.bu --output autologin.ign
+butane --pretty --strict autologin.bu --output autologin.ign
 ----
 
 The resulting Ignition configuration produced by Butane as `autologin.ign` has the following content:
@@ -62,13 +62,14 @@ The resulting Ignition configuration produced by Butane as `autologin.ign` has t
 ----
 {
   "ignition": {
-    "version": "3.1.0"
+    "version": "3.3.0"
   },
   "storage": {
     "files": [
       {
         "path": "/etc/hostname",
         "contents": {
+          "compression": "",
           "source": "data:,tutorial%0A"
         },
         "mode": 420
@@ -76,6 +77,7 @@ The resulting Ignition configuration produced by Butane as `autologin.ign` has t
       {
         "path": "/etc/profile.d/systemd-pager.sh",
         "contents": {
+          "compression": "",
           "source": "data:,%23%20Tell%20systemd%20to%20not%20use%20a%20pager%20when%20printing%20information%0Aexport%20SYSTEMD_PAGER%3Dcat%0A"
         },
         "mode": 420
@@ -132,19 +134,19 @@ NOTE: Depending on your version of `virt-install`, you may not be able to use `-
 Once the machine is booted up you should see a few prompts and then you should be automatically logged in and presented with a bash shell:
 
 ----
-[  OK  ] Started rpm-ostree System Management Daemon.
+Fedora CoreOS 36.20220723.3.1
+Kernel 5.18.13-200.fc36.x86_64 on an x86_64 (ttyS0)
 
-Fedora CoreOS 32.20200715.3.0
-Kernel 5.7.8-200.fc32.x86_64 on an x86_64 (ttyS0)
-
-SSH host key: SHA256:XlbayjbgDKNoAAHQxsEL5Q7BdwLxxWSw4NXN9SALLmo (ED25519)
-SSH host key: SHA256:3sx5jseteO4BvdOMWIi0J4koQL015mLonnD0UPTtnZk (ECDSA)
-SSH host key: SHA256:K0fn5/TMJOoMs7Fu7RRkE7IBEf2t8OYCfVaVc+GJWGs (RSA)
-ens2: 192.168.122.127 fe80::5054:ff:feb9:3d97
-Ignition: user provided config was applied
-No ssh authorized keys provided by Ignition or Afterburn
+SSH host key: SHA256:BwuX9+1lUMHBbIGTUsT0DNptfSUquHnKBIJc/YhvEcM (ED25519)
+SSH host key: SHA256:XzycQMJkoasQIMziHIA9OFF2l49kqnR4HpXDM6I1bC4 (ECDSA)
+SSH host key: SHA256:DqwF9ukMxO0sVfhiN0PaMGu2gakeHaQoOLSAb2JWTTo (RSA)
+enp1s0: 192.168.122.99 fe80::e42:9a03:ea7a:1e6c
+Ignition: ran on 2022/08/21 01:14:35 UTC (this boot)
+Ignition: user-provided config was applied
+No SSH authorized keys provided by Ignition or Afterburn
 tutorial login: core (automatic login)
 
+Fedora CoreOS 36.20220723.3.1
 [core@tutorial ~]$
 ----
 
@@ -170,16 +172,18 @@ We can also check that the hostname has correctly been set:
 [core@tutorial ~]$ cat /etc/hostname
 tutorial
 [core@tutorial ~]$ hostnamectl
-   Static hostname: tutorial
-         Icon name: computer-vm
-           Chassis: vm
-        Machine ID: d06466128a1c4a6ab255d9581748755c
-           Boot ID: 2a19abb9681e442cb1e10271350bfff3
-    Virtualization: kvm
-  Operating System: Fedora CoreOS 32.20200715.3.0
-       CPE OS Name: cpe:/o:fedoraproject:fedora:32
-            Kernel: Linux 5.7.8-200.fc32.x86_64
-      Architecture: x86-64
+ Static hostname: tutorial
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 0b91fa983c004e9a8b48d2bf0c7a7ced
+         Boot ID: 9cca41f8de404036b228abcd4600cdef
+  Virtualization: kvm
+Operating System: Fedora CoreOS 36.20220723.3.1
+     CPE OS Name: cpe:/o:fedoraproject:fedora:36
+          Kernel: Linux 5.18.13-200.fc36.x86_64
+    Architecture: x86-64
+ Hardware Vendor: QEMU
+  Hardware Model: Standard PC _Q35 + ICH9, 2009_
 ----
 
 == Exploring Fedora CoreOS internals
@@ -188,13 +192,13 @@ Once we have access to the console of the machine we can browse around a bit to 
 
 ----
 [core@tutorial ~]$ rpm -q ignition kernel moby-engine podman systemd rpm-ostree zincati
-ignition-2.4.1-1.git5260a5b.fc32.x86_64
-kernel-5.7.8-200.fc32.x86_64
-moby-engine-19.03.11-1.ce.git42e35e6.fc32.x86_64
-podman-1.9.3-1.fc32.x86_64
-systemd-245.6-2.fc32.x86_64
-rpm-ostree-2020.3-1.fc32.x86_64
-zincati-0.0.12-2.fc32.x86_64
+ignition-2.14.0-2.fc36.x86_64
+kernel-5.18.13-200.fc36.x86_64
+moby-engine-20.10.17-3.fc36.x86_64
+podman-4.1.1-2.fc36.x86_64
+systemd-250.8-1.fc36.x86_64
+rpm-ostree-2022.10-3.fc36.x86_64
+zincati-0.0.24-3.fc36.x86_64
 ----
 
 We can also inspect the current revision of Fedora CoreOS:
@@ -202,11 +206,13 @@ We can also inspect the current revision of Fedora CoreOS:
 ----
 [core@tutorial ~]$ rpm-ostree status
 State: idle
+AutomaticUpdatesDriver: Zincati
+  DriverState: active; periodically polling for updates (last checked Sun 2022-08-21 01:19:57 UTC)
 Deployments:
-* ostree://fedora:fedora/x86_64/coreos/stable
-                   Version: 32.20200715.3.0 (2020-07-27T11:36:29Z)
-                    Commit: a3b08ee51b1d950afd9d0d73f32d5424ad52c7703a6b5830e0dc11c3a682d869
-              GPGSignature: Valid signature by 97A1AE57C3A2372CCA3A4ABA6C13026D12C944D0
+* fedora:fedora/x86_64/coreos/stable
+                   Version: 36.20220723.3.1 (2022-08-08T17:18:13Z)
+                    Commit: e0b2bf7e843d71f2aff103705b491c3c28c1416cedcb093646fd44037b7b6a45
+              GPGSignature: Valid signature by 53DED2CB922D8B8D9E63FD18999F7CBF38AB71F4
 ----
 
 And check on `zincati.service`, which communicates with our update server and tells `rpm-ostree` when to do an update and to what version to update to:
@@ -215,19 +221,21 @@ And check on `zincati.service`, which communicates with our update server and te
 [core@tutorial ~]$ systemctl status --full zincati.service
 ● zincati.service - Zincati Update Agent
      Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
-     Active: active (running) since Thu 2020-08-06 14:50:36 UTC; 1h 41min ago
+     Active: active (running) since Sun 2022-08-21 01:14:42 UTC; 9min ago
        Docs: https://github.com/coreos/zincati
-   Main PID: 889 (zincati)
-      Tasks: 2 (limit: 2288)
-     Memory: 14.2M
+   Main PID: 1365 (zincati)
+     Status: "periodically polling for updates (last checked Sun 2022-08-21 01:19:57 UTC)"
+      Tasks: 5 (limit: 2254)
+     Memory: 17.7M
+        CPU: 212ms
      CGroup: /system.slice/zincati.service
-             └─889 /usr/libexec/zincati agent -v
+             └─ 1365 /usr/libexec/zincati agent -v
 
-Aug 06 14:50:36 tutorial systemd[1]: Started Zincati Update Agent.
-Aug 06 14:50:36 tutorial zincati[889]: [INFO ] starting update agent (zincati 0.0.12)
-Aug 06 14:50:39 tutorial zincati[889]: [INFO ] Cincinnati service: https://updates.coreos.fedoraproject.org
-Aug 06 14:50:39 tutorial zincati[889]: [INFO ] agent running on node 'dbe8968f75c34d9eb3d3c4c226aa8fdf', in update group 'default'
-Aug 06 14:50:39 tutorial zincati[889]: [INFO ] initialization complete, auto-updates logic enabled
+Aug 21 01:14:42 tutorial zincati[1365]: [INFO  zincati::cli::agent] starting update agent (zincati 0.0.24)
+Aug 21 01:14:42 tutorial zincati[1365]: [INFO  zincati::cincinnati] Cincinnati service: https://updates.coreos.fedoraproject.org
+Aug 21 01:14:42 tutorial zincati[1365]: [INFO  zincati::cli::agent] agent running on node '70a6b70b129e4108a417288136bda2fa', in update group 'default'
+Aug 21 01:14:42 tutorial zincati[1365]: [INFO  zincati::update_agent::actor] registering as the update driver for rpm-ostree
+Aug 21 01:14:42 tutorial zincati[1365]: [INFO  zincati::update_agent::actor] initialization complete, auto-updates logic enabled
 ----
 
 One other interesting thing to do is view the logs from Ignition in case there is anything interesting there we may want to investigate:
