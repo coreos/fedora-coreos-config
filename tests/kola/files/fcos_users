@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+# kola: { "distros": "fcos", "exclusive": false }
+#
+# This performs a sanity check on system users that are shipped
+# as part of the base OS. Those users come in different shapes
+# (with static or dynamic IDs, from plain files or from scriptlets)
+# and each case is covered by a corresponding check here below.
+
+set -euo pipefail
+
+. "${KOLA_EXT_DATA}/commonlib.sh"
+
+# Check base system users (from `setup` package).
+declare -A setup_users=( \
+    ["root"]="0:0" \
+    ["bin"]="1:1" \
+    ["daemon"]="2:2" \
+    ["adm"]="3:4" \
+    ["lp"]="4:7" \
+    ["sync"]="5:0" \
+    ["shutdown"]="6:0" \
+    ["halt"]="7:0" \
+    ["mail"]="8:12" \
+    ["operator"]="11:0" \
+    ["games"]="12:100" \
+    ["ftp"]="14:50" \
+# CoreOS mismatch: https://github.com/coreos/fedora-coreos-tracker/issues/1201
+#   ["nobody"]="65534:65534" \
+    ["nobody"]="99:99" \
+)
+for username in "${!setup_users[@]}"; do
+    ids="${setup_users[$username]}";
+    if [[ $(getent passwd "${username}") != ${username}:x:${ids}:* ]]; then
+        getent passwd
+        fatal "failure on setup_users entry ${username}"
+    fi
+done
+echo "all expected base users from 'setup' package are in place"
+
+# Check additional users with static IDs.
+declare -A extra_users_static=( \
+    ["dbus"]="81:81" \
+    ["tcpdump"]="72:72" \
+    ["sshd"]="74:74" \
+    ["ceph"]="167:167"
+    ["tss"]="59:59" \
+    ["avahi-autoipd"]="170:170" \
+    ["rpc"]="32:32" \
+    ["rpcuser"]="29:29" \
+    ["nfsnobody"]="65534:65534" \
+)
+for username in "${!extra_users_static[@]}"; do
+    ids="${extra_users_static[$username]}";
+    if [[ $(getent passwd "${username}") != ${username}:x:${ids}:* ]]; then
+        getent passwd
+        fatal "failure on extra_user_static entry ${username}"
+    fi
+done
+echo "all expected extra static users are in place"
+
+
+# Check CoreOS-specific static UIDs.
+declare -A coreos_users_static=( \
+    ["dockerroot"]="997:986" \
+    ["kube"]="996:994" \
+    ["sssd"]="995:993" \
+    ["polkitd"]="999:998" \
+    ["etcd"]="998:997" \
+    ["chrony"]="994:992" \
+    ["systemd-timesync"]="993:991" \
+    ["systemd-network"]="991:990" \
+    ["systemd-resolve"]="990:989" \
+    ["systemd-bus-proxy"]="989:988" \
+    ["cockpit-ws"]="988:987" \
+)
+for username in "${!coreos_users_static[@]}"; do
+    ids="${coreos_users_static[$username]}";
+    if [[ $(getent passwd "${username}") != ${username}:x:${ids}:* ]]; then
+        getent passwd
+        fatal "failure on coreos_user_static entry ${username}"
+    fi
+done
+echo "all expected CoreOS static users are in place"
+
+# Check a dynamic user (from `clevis` package).
+if [[ $(getent passwd clevis) != clevis:x:* ]]; then
+    getent passwd
+    fatal "failure on user 'clevis'"
+fi
+echo "user 'clevis' from 'clevis' package is in place"
+

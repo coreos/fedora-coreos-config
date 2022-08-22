@@ -35,6 +35,7 @@ declare -A setup_groups=( \
     ["lock"]="54" \
     ["audio"]="63" \
     ["users"]="100" \
+    ["input"]="104" \
 # CoreOS mismatch: https://github.com/coreos/fedora-coreos-tracker/issues/1201
 #   ["nobody"]="65534" \
     ["nobody"]="99" \
@@ -84,7 +85,6 @@ declare -A coreos_groups_static=( \
     ["chrony"]="992" \
     ["sssd"]="993" \
     ["kube"]="994" \
-    ["input"]="995" \
     ["cgred"]="996" \
     ["etcd"]="997" \
     ["polkitd"]="998" \

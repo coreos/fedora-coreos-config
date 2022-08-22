@@ -17,8 +17,8 @@ source /etc/os-release
 ostree_conf=""
 if [ "$ID" == "fedora" ]; then
     ostree_conf="/boot/loader.1/entries/ostree-1-fedora-coreos.conf"
-elif [ "$ID" == "rhcos" ]; then
-    ostree_conf="/boot/loader.1/entries/ostree-1-rhcos.conf"
+elif [[ "${ID_LIKE}" =~ "rhel" ]]; then
+    ostree_conf="/boot/loader.1/entries/ostree-1-${ID}.conf"
 else
     fatal "fail: not operating on expected OS"
 fi
