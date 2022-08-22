@@ -8,4 +8,22 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  fedora-release-common:
+    evra: 38-0.3.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-7efe395d87
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/902
+      type: fast-track
+  fedora-release-coreos:
+    evra: 38-0.3.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-7efe395d87
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/902
+      type: fast-track
+  fedora-release-identity-coreos:
+    evra: 38-0.3.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-7efe395d87
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/902
+      type: fast-track
