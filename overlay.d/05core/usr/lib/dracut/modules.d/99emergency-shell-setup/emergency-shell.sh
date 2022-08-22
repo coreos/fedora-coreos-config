@@ -70,10 +70,11 @@ EOF
     fi
 }
 
-# in SE case drop config before entering shell
+# in SE case drop everything before entering shell
 if [ -f /run/coreos/secure-execution ]; then
     rm -f /run/ignition.json
     rm -f /usr/lib/ignition/user.ign
+    rm -f /usr/lib/coreos/ignition.asc
 fi
 
 # Print warnings/informational messages to all configured consoles on the
