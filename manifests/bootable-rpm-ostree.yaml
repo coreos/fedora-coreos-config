@@ -34,9 +34,13 @@ packages-x86_64:
   # firmware updates
   - fwupd
 
-# See: https://github.com/coreos/fedora-coreos-tracker/issues/1253
-#      https://bugzilla.redhat.com/show_bug.cgi?id=2112857
-# Temporary workaround to remove the SetGID binary from liblockfile that is
-# pulled by the s390utils but not needed for /usr/sbin/zipl.
-remove-from-packages:
-  - ["liblockfile", "/usr/bin/dotlockfile"]
+postprocess:
+  # See: https://github.com/coreos/fedora-coreos-tracker/issues/1253
+  #      https://bugzilla.redhat.com/show_bug.cgi?id=2112857
+  #      https://github.com/coreos/rpm-ostree/issues/3918
+  # Temporary workaround to remove the SetGID binary from liblockfile that is
+  # pulled by the s390utils but not needed for /usr/sbin/zipl.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    rm -f /usr/bin/dotlockfile
