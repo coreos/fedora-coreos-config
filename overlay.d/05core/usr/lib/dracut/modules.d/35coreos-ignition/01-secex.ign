@@ -20,6 +20,28 @@
         ]
       }
     ],
+    "luks": [
+      {
+        "device": "/dev/disk/by-partlabel/boot",
+        "label": "crypt_bootfs",
+        "name": "boot",
+        "options": [
+          "--integrity",
+          "hmac-sha256"
+        ],
+        "wipeVolume": true
+      },
+      {
+        "device": "/dev/disk/by-partlabel/root",
+        "label": "crypt_rootfs",
+        "name": "root",
+        "options": [
+          "--integrity",
+          "hmac-sha256"
+        ],
+        "wipeVolume": true
+      }
+    ],
     "filesystems": [
       {
         "device": "/dev/mapper/boot",
@@ -32,28 +54,6 @@
         "format": "xfs",
         "label": "root",
         "wipeFilesystem": true
-      }
-    ],
-    "luks": [
-      {
-        "device": "/dev/disk/by-label/boot",
-        "label": "crypt_bootfs",
-        "name": "boot",
-        "options": [
-          "--integrity",
-          "hmac-sha256"
-        ],
-        "wipeVolume": true
-      },
-      {
-        "device": "/dev/disk/by-label/root",
-        "label": "crypt_rootfs",
-        "name": "root",
-        "options": [
-          "--integrity",
-          "hmac-sha256"
-        ],
-        "wipeVolume": true
       }
     ]
   }
