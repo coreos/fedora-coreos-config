@@ -8,14 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  cryptsetup:
-    evr: 2.5.0~rc1-2.fc37
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1268
-      type: pin
-  cryptsetup-libs:
-    evr: 2.5.0~rc1-2.fc37
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1268
-      type: pin
+packages: {}
