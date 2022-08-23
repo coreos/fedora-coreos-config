@@ -9,6 +9,18 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  coreos-installer:
+    evr: 0.15.0-5.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-16d040e55b
+      reason: https://src.fedoraproject.org/rpms/rust-coreos-installer/pull-request/42
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.15.0-5.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-16d040e55b
+      reason: https://src.fedoraproject.org/rpms/rust-coreos-installer/pull-request/42
+      type: fast-track
   fedora-release-common:
     evra: 38-0.3.noarch
     metadata:
