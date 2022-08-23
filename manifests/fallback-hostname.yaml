@@ -1,0 +1,11 @@
+postprocess:
+  # Set the fallback hostname to `localhost`. This can be removed
+  # once we are based on Fedora 37+.
+  # See https://github.com/coreos/fedora-coreos-tracker/issues/902
+  - |
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    source /etc/os-release
+    if [ -z "${DEFAULT_HOSTNAME:-}" ]; then
+      echo 'DEFAULT_HOSTNAME=localhost' >> /usr/lib/os-release
+    fi
