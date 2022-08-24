@@ -43,9 +43,10 @@ get_partlabels_for_parttype() {
 mount_verbose() {
     local srcdev=$1; shift
     local destdir=$1; shift
-    echo "Mounting ${srcdev} ($(realpath "$srcdev")) to $destdir"
+    local mode=${1:-ro}
+    echo "Mounting ${srcdev} ${mode} ($(realpath "$srcdev")) to $destdir"
     mkdir -p "${destdir}"
-    mount "${srcdev}" "${destdir}"
+    mount -o "${mode}" "${srcdev}" "${destdir}"
 }
 
 # Sometimes, for some reason the by-label symlinks aren't updated. Detect these
@@ -79,8 +80,17 @@ mount_and_restore_filesystem_by_label() {
     local new_dev
     new_dev=$(jq -r "$(query_fslabel "${label}") | .[0].device" "${ignition_cfg}")
     udev_trigger_on_label_mismatch "${label}" "${new_dev}"
-    mount_verbose "/dev/disk/by-label/${label}" "${mountpoint}"
-    find "${saved_fs}" -mindepth 1 -maxdepth 1 -exec mv -t "${mountpoint}" {} \;
+    mount_verbose "/dev/disk/by-label/${label}" "${mountpoint}" rw
+    find "${saved_fs}" -mindepth 1 -maxdepth 1 -exec mv -t "${mountpoint}" {} +
+}
+
+mount_and_save_filesystem_by_label() {
+    local label=$1; shift
+    local saved_fs=$1; shift
+    local fs=/dev/disk/by-label/${label}
+    mount_verbose "${fs}" /var/tmp/mnt
+    cp -aT /var/tmp/mnt "${saved_fs}"
+    umount /var/tmp/mnt
 }
 
 # In Secure Execution case user is not allowed to modify partition table
@@ -165,15 +175,13 @@ case "${1:-}" in
         # Mounts happen in a private mount namespace since we're not "offically" mounting
         if [ -d "${saved_root}" ]; then
             echo "Moving rootfs to RAM..."
-            mount_verbose "${root_part}" /sysroot
-            cp -aT /sysroot "${saved_root}"
+            mount_and_save_filesystem_by_label root "${saved_root}"
             # also store the state of the partition
             lsblk "${root_part}" --nodeps --pairs -b --paths -o NAME,TYPE,SIZE > "${partstate_root}"
         fi
         if [ -d "${saved_boot}" ]; then
             echo "Moving bootfs to RAM..."
-            mount_verbose "${boot_part}" /sysroot/boot
-            cp -aT /sysroot/boot "${saved_boot}"
+            mount_and_save_filesystem_by_label boot "${saved_boot}"
         fi
         if [ -d "${saved_esp}" ]; then
             echo "Moving EFI System Partition to RAM..."
@@ -221,8 +229,8 @@ case "${1:-}" in
                 # 3. We don't need the by-label symlink to be correct and
                 #    nothing later in boot will be mounting the filesystem
                 mountpoint="/mnt/esp-${label}"
-                mount_verbose "/dev/disk/by-partlabel/${label}" "${mountpoint}"
-                find "${saved_esp}" -mindepth 1 -maxdepth 1 -exec cp -a {} "${mountpoint}" \;
+                mount_verbose "/dev/disk/by-partlabel/${label}" "${mountpoint}" rw
+                find "${saved_esp}" -mindepth 1 -maxdepth 1 -exec cp -at "${mountpoint}" {} +
             done
         fi
         if [ -d "${saved_bios}" ]; then
