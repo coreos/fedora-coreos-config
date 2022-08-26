@@ -6,5 +6,6 @@ releasever: 38
 
 repos:
   - fedora-rawhide
+  - fedora-rawhide-nodebug-kernel
 
 include: manifests/fedora-coreos.yaml
