@@ -6,11 +6,6 @@ To set your system keymap, use the following Butane config to write to `/etc/vco
 ----
 variant: fcos
 version: 1.4.0
-passwd:
-  users:
-    - name: core
-      ssh_authorized_keys:
-        - $pubkey
 storage:
   files:
     - path: /etc/vconsole.conf

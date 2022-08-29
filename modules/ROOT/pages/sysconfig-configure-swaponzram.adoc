@@ -8,11 +8,6 @@ The documentation for the config file format lives in the https://github.com/sys
 ----
 variant: fcos
 version: 1.4.0
-passwd:
-  users:
-    - name: core
-      ssh_authorized_keys:
-        - $pubkey
 storage:
   files:
     - path: /etc/systemd/zram-generator.conf

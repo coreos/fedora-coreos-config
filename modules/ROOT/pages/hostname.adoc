@@ -6,11 +6,6 @@ To set a custom hostname for your system, use the following Butane config to wri
 ----
 variant: fcos
 version: 1.4.0
-passwd:
-  users:
-    - name: core
-      ssh_authorized_keys:
-        - $pubkey
 storage:
   files:
     - path: /etc/hostname
