@@ -66,7 +66,7 @@ postprocess:
   # https://github.com/coreos/fedora-coreos-tracker/issues/212
   - |
     #!/usr/bin/env bash
-    set -xeuo pipefail
+    set -euo pipefail
     source /etc/os-release
     if [[ $OSTREE_VERSION = *.dev* ]]; then
       mkdir -p /etc/zincati/config.d
@@ -101,7 +101,7 @@ postprocess:
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
-  
+
     list_broken_symlinks_folders=(
       '/etc/alternatives/'
       '/usr/lib/.build-id/'
@@ -118,12 +118,14 @@ postprocess:
       '/usr/share/info/'
       '/usr/share/man/'
       )
-    for folder in "${list_broken_symlinks_folders[@]}"
-    do
+    for folder in "${list_broken_symlinks_folders[@]}"; do
         find "${folder}" -type l | while read -r file_name; do
             real_path=$(realpath -m "${file_name}");
+            if [[ -e "${real_path}" ]]; then
+              continue
+            fi
             for element in "${list_known_removed_folders[@]}"; do
-              if [[ ! -e "${real_path}" ]] && [[ "${real_path}" == "${element}"* ]]; then
+              if [[ "${real_path}" == "${element}"* ]]; then
                   rm -r "${file_name}"
               fi
             done
