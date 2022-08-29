@@ -73,6 +73,18 @@ get_partition_offset() {
     cat "/sys${devpath}/start"
 }
 
+# copied from generator-lib.sh
+karg() {
+    local name="$1" value="${2:-}"
+    local cmdline=( $(</proc/cmdline) )
+    for arg in "${cmdline[@]}"; do
+        if [[ "${arg%%=*}" == "${name}" ]]; then
+            value="${arg#*=}"
+        fi
+    done
+    echo "${value}"
+}
+
 mount_and_restore_filesystem_by_label() {
     local label=$1; shift
     local mountpoint=$1; shift
@@ -88,9 +100,23 @@ mount_and_save_filesystem_by_label() {
     local label=$1; shift
     local saved_fs=$1; shift
     local fs=/dev/disk/by-label/${label}
+    if [[ -f /run/coreos/secure-execution ]]; then
+        local roothash_karg=${label}fs.roothash
+        local roothash=$(karg "${roothash_karg}")
+        if [ -z "${roothash}" ]; then
+          echo "Missing kernel argument ${roothash_karg}; aborting"
+          exit 1
+        fi
+        local roothash_part=/dev/disk/by-partlabel/${label}hash
+        veritysetup open "${fs}" "${label}" "${roothash_part}" "${roothash}"
+        fs=/dev/mapper/${label}
+    fi
     mount_verbose "${fs}" /var/tmp/mnt
     cp -aT /var/tmp/mnt "${saved_fs}"
     umount /var/tmp/mnt
+    if [[ -f /run/coreos/secure-execution ]]; then
+        veritysetup close "${label}"
+    fi
 }
 
 # In Secure Execution case user is not allowed to modify partition table
