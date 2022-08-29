@@ -1,0 +1,22 @@
+= Setting Keymap
+
+To set your system keymap, use the following Butane config to write to `/etc/vconsole.conf`:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - $pubkey
+storage:
+  files:
+    - path: /etc/vconsole.conf
+      mode: 0644
+      contents:
+        inline: KEYMAP=de
+----
+
+Once booted, you can also verify that the desired keymap has been set using `localectl`.
