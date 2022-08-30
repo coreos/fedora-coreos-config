@@ -1,13 +1,19 @@
 #!/bin/bash
-# kola: { "exclusive": false }
-# Checking if there are no broken symlinks from from /etc/ and /usr/ .
-# https://github.com/coreos/fedora-coreos-config/issues/1782
+# kola: { "exclusive": false, "distros": "fcos", "platforms": "qemu" }
+#
+# Check if there are broken symlinks in /etc/ and /usr/.
+# See: https://github.com/coreos/fedora-coreos-config/issues/1782
+#
+# - distros: fcos
+#   - Only run on FCOS until we've tested it on RHCOS.
+# - platforms: qemu
+#   - This test should pass everywhere if it passes anywhere.
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-# Here is the list of known broken symlinks that need to be investigated further:
+# List of known broken symlinks that require further investigation:
 list_broken_symlinks_skip=(
     '/etc/mtab'
     '/etc/ssl/'
