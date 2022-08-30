@@ -66,7 +66,7 @@ postprocess:
   # https://github.com/coreos/fedora-coreos-tracker/issues/212
   - |
     #!/usr/bin/env bash
-    set -euo pipefail
+    set -euxo pipefail
     source /etc/os-release
     if [[ $OSTREE_VERSION = *.dev* ]]; then
       mkdir -p /etc/zincati/config.d
@@ -100,7 +100,7 @@ postprocess:
   # - dotlockfile comes from bootable-rpm-ostree.yaml
   - |
     #!/usr/bin/env bash
-    set -xeuo pipefail
+    set -euo pipefail
 
     list_broken_symlinks_folders=(
       '/etc/alternatives/'
