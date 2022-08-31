@@ -26,25 +26,11 @@
   snooze: 2022-09-10
   arches:
   - s390x
-  streams:
-  - branched
-  - next
-  - next-devel
-  - testing
-  - testing-devel
-  - stable
 - pattern: rpmostree.install-uninstall
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
   snooze: 2022-09-10
   arches:
   - s390x
-  streams:
-  - branched
-  - next
-  - next-devel
-  - testing
-  - testing-devel
-  - stable
 - pattern: coreos.boot-mirror*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1282
   snooze: 2022-09-10
