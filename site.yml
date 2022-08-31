@@ -13,8 +13,8 @@ ui:
 output:
   clean: true
   dir: ./public
-  destinations:
-  - provider: archive
 runtime:
   fetch: true
   cache_dir: ./cache
+urls:
+  html_extension_style: indexify
