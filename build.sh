@@ -19,7 +19,7 @@ elif uname | grep -iq linux; then
     # which requires root.
 
     if [ -f /usr/local/bin/antora ]; then
-        /usr/local/bin/antora "${cmd}"
+        /usr/local/bin/antora ${cmd}
     elif uname -m | grep -iwq aarch64; then
         echo "no antora/aarch64 container try just \`npm install -g @antora/cli @antora/site-generator-default\`"
     elif [ -f /usr/bin/podman ]; then
