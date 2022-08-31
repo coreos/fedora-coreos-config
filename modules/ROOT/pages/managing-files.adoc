@@ -50,3 +50,47 @@ storage:
       target: /opt/tools/transmogrifier
       hard: false
 ----
+
+If you need a directory and some of its parents to be owned by a specific user,
+you currently have to explicitly list them in your Butane config. See
+https://github.com/coreos/butane/issues/380[butane#380] for the tracking issue
+in Butane for a future better syntax for this case.
+
+.Example to set permissions and ownership for a file and its parent directories
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /home/builder/.config
+      user:
+        name: builder
+      group:
+        name: builder
+    - path: /home/builder/.config/systemd
+      user:
+        name: builder
+      group:
+        name: builder
+    - path: /home/builder/.config/systemd/user
+      user:
+        name: builder
+      group:
+        name: builder
+    - path: /home/builder/.config/systemd/user/default.target.wants
+      user:
+        name: builder
+      group:
+        name: builder
+    - path: /home/builder/.config/systemd/user/timers.target.wants
+      user:
+        name: builder
+      group:
+        name: builder
+    - path: /home/builder/.config/systemd/user/sockets.target.wants
+      user:
+        name: builder
+      group:
+        name: builder
+----
