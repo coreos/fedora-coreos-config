@@ -1,5 +1,5 @@
 #!/bin/bash
-# kola: { "distros": "fcos", "exclusive": false }
+# kola: { "distros": "fcos" }
 # This test only runs on FCOS because RHCOS does not support `yescrypt`
 # TODO-RHCOS: adapt to use different `crypt` scheme for RHCOS
 
