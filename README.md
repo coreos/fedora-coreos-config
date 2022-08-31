@@ -160,16 +160,28 @@ Tests should follow the following format:
 
 ```bash
 #!/bin/bash
-# kola: { "exclusive": false }    <-- kola option comment. See all options in <https://coreos.github.io/coreos-assembler/kola/external-tests/#kolajson>
+# kola: { "exclusive": false, ... }
+# ^^----- kola option comment
+# ^^----- See all options in <https://coreos.github.io/coreos-assembler/kola/external-tests/#kolajson>
+#
 # Short summary of what the test does, why we need it, etc.
-# Should also explain the reasons behind the non-obvious options selected above.
-# Optional: Link to corresponding issue or PR
+#
+# Recommended: Link to corresponding issue or PR
+#
+# Explain the reasons behind all the kola options:
+# - distros: fcos
+#   - This test only runs on FCOS due to ...
+# - platforms: qemu
+#   - This test should ...
+# - etc.
 
 set -euxo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-foo_bar()    <-- Other function definitions
+foo_bar() <-- Other function definitions
 
-if ...    <-- Actual test code. Errors must be raised with `fatal()`. Does not need to end with a call to `ok()`
+if ...    <-- Actual test code
+          <-- Errors must be raised with `fatal()`
+          <-- Does not need to end with a call to `ok()`
 ```
