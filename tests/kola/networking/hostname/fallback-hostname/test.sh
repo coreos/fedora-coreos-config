@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xeuo pipefail
 
-# kola: { "platforms": "qemu" }
+# kola: { "distros": "fcos", "platforms": "qemu" }
 #
 # Test that the fallback hostname is `localhost`. This test
 # validates that the fallback hostname is set to `localhost`
@@ -10,6 +10,8 @@ set -xeuo pipefail
 # hostname is set from the fallback hostname and is `localhost`.
 # https://github.com/coreos/fedora-coreos-tracker/issues/902
 #
+# - distros: fcos
+#   - The change only landed in fedora
 # - platforms: qemu
 #   - This test should pass everywhere if it passes anywhere.
 
