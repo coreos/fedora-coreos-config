@@ -145,10 +145,10 @@
       "evra": "4:1-59.fc36.noarch"
     },
     "coreos-installer": {
-      "evra": "0.15.0-1.fc36.aarch64"
+      "evra": "0.15.0-2.fc36.aarch64"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.15.0-1.fc36.aarch64"
+      "evra": "0.15.0-2.fc36.aarch64"
     },
     "coreutils": {
       "evra": "9.0-8.fc36.aarch64"
@@ -385,16 +385,16 @@
       "evra": "3.7-2.fc36.aarch64"
     },
     "grub2-common": {
-      "evra": "1:2.06-47.fc36.noarch"
+      "evra": "1:2.06-52.fc36.noarch"
     },
     "grub2-efi-aa64": {
-      "evra": "1:2.06-47.fc36.aarch64"
+      "evra": "1:2.06-52.fc36.aarch64"
     },
     "grub2-tools": {
-      "evra": "1:2.06-47.fc36.aarch64"
+      "evra": "1:2.06-52.fc36.aarch64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-47.fc36.aarch64"
+      "evra": "1:2.06-52.fc36.aarch64"
     },
     "gzip": {
       "evra": "1.11-3.fc36.aarch64"
@@ -466,13 +466,13 @@
       "evra": "2.4.0-9.fc36.noarch"
     },
     "kernel": {
-      "evra": "5.18.19-200.fc36.aarch64"
+      "evra": "5.19.6-200.fc36.aarch64"
     },
     "kernel-core": {
-      "evra": "5.18.19-200.fc36.aarch64"
+      "evra": "5.19.6-200.fc36.aarch64"
     },
     "kernel-modules": {
-      "evra": "5.18.19-200.fc36.aarch64"
+      "evra": "5.19.6-200.fc36.aarch64"
     },
     "kexec-tools": {
       "evra": "2.0.24-4.fc36.aarch64"
@@ -1219,7 +1219,7 @@
       "evra": "0.0.24-3.fc36.aarch64"
     },
     "zlib": {
-      "evra": "1.2.11-32.fc36.aarch64"
+      "evra": "1.2.11-33.fc36.aarch64"
     },
     "zram-generator": {
       "evra": "1.1.2-1.fc36.aarch64"
@@ -1229,16 +1229,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-08-31T11:38:07Z",
+    "generated": "2022-09-02T23:37:20Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:15:55Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-08-29T21:32:41Z"
+        "generated": "2022-09-02T17:45:04Z"
       },
       "fedora-updates": {
-        "generated": "2022-08-31T10:41:19Z"
+        "generated": "2022-09-02T09:42:46Z"
       }
     }
   }
