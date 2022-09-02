@@ -10,17 +10,20 @@
 
 packages:
   kernel:
-    evr: 5.18.19-200.fc36
+    evr: 5.19.6-200.fc36
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-35c14ba5bb
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1282
-      type: pin
+      type: fast-track
   kernel-core:
-    evr: 5.18.19-200.fc36
+    evr: 5.19.6-200.fc36
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-35c14ba5bb
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1282
-      type: pin
+      type: fast-track
   kernel-modules:
-    evr: 5.18.19-200.fc36
+    evr: 5.19.6-200.fc36
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-35c14ba5bb
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1282
-      type: pin
+      type: fast-track
