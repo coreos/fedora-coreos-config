@@ -23,6 +23,8 @@
 
 set -xeuo pipefail
 
+. $KOLA_EXT_DATA/commonlib.sh
+
 # Just run on QEMU; it should work theoretically on cloud platforms, but many
 # of those have platform-specific sources which take precedence.
 
@@ -53,7 +55,15 @@ RUN dnf -y install systemd dnsmasq iproute iputils \
 RUN echo -e 'dhcp-range=172.16.0.10,172.16.0.20,12h\nbind-interfaces\ninterface=veth-container\ndhcp-option=option:ntp-server,$NTPHOSTIP' > /etc/dnsmasq.d/dhcp
 CMD [ "/sbin/init" ]
 EOF
-    podman build -t dnsmasq .
+
+    if is_fcos || is_rhcos8; then
+        podman build -t dnsmasq .
+    else
+        # only workaround for scos and rhel9
+        # https://github.com/openshift/os/issues/964
+        # https://bugzilla.redhat.com/show_bug.cgi?id=2123246 (revert PR when bug is fixed)
+        podman build --security-opt seccomp=/usr/share/containers/seccomp.json -t dnsmasq .
+    fi
     popd
     podman run -d --rm --name dnsmasq --privileged --network ns:/var/run/netns/container dnsmasq
 
