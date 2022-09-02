@@ -48,3 +48,9 @@ get_rhel_maj_ver() {
     source /etc/os-release
     echo "${RHEL_VERSION%%.*}"
 }
+
+# rhcos8
+is_rhcos8() (
+    source /etc/os-release
+    [ "${ID}" == "rhcos" ] && [ "${RHEL_VERSION%%.*}" -eq 8 ]
+)
