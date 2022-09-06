@@ -23,38 +23,17 @@
   - s390x
 - pattern: ext.config.ignition.resource.remote
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
+  snooze: 2022-09-10
   arches:
   - s390x
-  streams:
-  - next
-  - next-devel
-  - testing
-  - testing-devel
-  - stable
 - pattern: rpmostree.install-uninstall
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
+  snooze: 2022-09-10
   arches:
   - s390x
-  streams:
-  - next
-  - next-devel
-  - testing
-  - testing-devel
-  - stable
-- pattern: ext.config.binfmt.qemu
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1241
-  snooze: 2022-09-10
-  arches:
-  - aarch64
-  streams:
-  - rawhide
-- pattern: ext.config.toolbox
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1277
+- pattern: coreos.boot-mirror*
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1282
   snooze: 2022-09-10
   streams:
-  - rawhide
-- pattern: ext.config.extensions.*
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1278
-  snooze: 2022-09-10
-  streams:
+  - branched
   - rawhide

@@ -1,5 +1,5 @@
 #!/bin/bash
-# kola: { "distros": "fcos", "tags": "needs-internet", "platforms": "qemu-unpriv", "timeoutMin": 15, "minMemory": 1536 }
+# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv", "timeoutMin": 15, "minMemory": 1536 }
 # This script runs a rootless podman container (rootless because it's
 # run as the `core` user) with systemd inside that brings up httpd.
 # It tests that rootless+systemd works. See issue:
@@ -8,11 +8,6 @@
 # If it gets easy to change the kargs in the future we should try this
 # both on cgroups v1 and cgroups v2.
 #
-# - distros: fcos
-#   - The test is scoped to only FCOS because the `--retry-all-errors`
-#     flag passed to `curl` is not avaiable on RHEL8.
-#     TODO-RHCOS: adapt test to conditionally use the `-retry-all-errors`
-#     flag on only FCOS
 # - tags: needs-internet
 #   - This test builds a container from remote sources.
 #   - This test uses a remote NTP server.
@@ -27,6 +22,7 @@
 #     https://pagure.io/releng/issue/10935#comment-808601
 
 set -xeuo pipefail
+. $KOLA_EXT_DATA/commonlib.sh
 
 runascoreuserscript='
 #!/bin/bash
@@ -68,13 +64,18 @@ main() {
 
     sleep 5
 
-    # Try to grab the web page. Retry as it might not be up fully yet.
-    if ! curl --silent --show-error --retry 5 --retry-all-errors http://localhost:8080 >/dev/null; then
-        echo TEST FAILED 1>&2
-        runascoreuser podman logs httpd
-        return 1
+    retryflag="--retry-all-errors"
+    # --retry-all-errors flag passed to curl is not available on RHEL8
+    if is_rhcos8; then
+        retryflag="--retry-connrefused"
     fi
+    # Try to grab the web page. Retry as it might not be up fully yet.
+    if ! curl --silent --show-error --retry 5 ${retryflag} http://localhost:8080 >/dev/null; then
+        runascoreuser podman logs httpd
+        fatal "setup http server container failed"
+    fi
+
+    ok "setup http server container successfully"
 }
 
 main
-exit $?
