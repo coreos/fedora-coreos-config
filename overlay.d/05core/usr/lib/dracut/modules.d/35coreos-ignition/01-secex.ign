@@ -16,8 +16,40 @@
             "number": 4,
             "resize": true,
             "sizeMiB": 0
+          },
+          {
+            "number": 5,
+            "shouldExist": false,
+            "wipePartitionEntry": true
+          },
+          {
+            "number": 6,
+            "shouldExist": false,
+            "wipePartitionEntry": true
           }
         ]
+      }
+    ],
+    "luks": [
+      {
+        "device": "/dev/disk/by-partlabel/boot",
+        "label": "crypt_bootfs",
+        "name": "boot",
+        "options": [
+          "--integrity",
+          "hmac-sha256"
+        ],
+        "wipeVolume": true
+      },
+      {
+        "device": "/dev/disk/by-partlabel/root",
+        "label": "crypt_rootfs",
+        "name": "root",
+        "options": [
+          "--integrity",
+          "hmac-sha256"
+        ],
+        "wipeVolume": true
       }
     ],
     "filesystems": [
@@ -32,28 +64,6 @@
         "format": "xfs",
         "label": "root",
         "wipeFilesystem": true
-      }
-    ],
-    "luks": [
-      {
-        "device": "${BOOTDEV}3",
-        "label": "crypt_bootfs",
-        "name": "boot",
-        "options": [
-          "--integrity",
-          "hmac-sha256"
-        ],
-        "wipeVolume": true
-      },
-      {
-        "device": "${BOOTDEV}4",
-        "label": "crypt_rootfs",
-        "name": "root",
-        "options": [
-          "--integrity",
-          "hmac-sha256"
-        ],
-        "wipeVolume": true
       }
     ]
   }
