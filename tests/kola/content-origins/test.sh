@@ -1,5 +1,5 @@
 #!/bin/bash
-# kola: {"platforms": "qemu", "exclusive": false, "distros": "fcos rhcos" }
+# kola: {"platforms": "qemu", "isolation": "dynamicuser", "distros": "fcos rhcos" }
 # Verify the RPM %{vendor} flag for everything installed matches what we expect.
 #
 # - platforms: qemu
