@@ -1,11 +1,11 @@
 #!/bin/bash
-# kola: {"platforms": "qemu", "exclusive": false, "distros": "fcos rhcos" }
 # Verify the RPM %{vendor} flag for everything installed matches what we expect.
-#
-# - platforms: qemu
-#   - This test should pass everywhere if it passes anywhere.
-# - distros: This only handles Fedora and RHEL today.
-
+## kola:
+##   tags: "platform-independent"
+##   # This is a read-only, nondestructive test.
+##   exclusive: false
+##   # May support e.g. centos in the future
+##   distros: "fcos rhcos"
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
