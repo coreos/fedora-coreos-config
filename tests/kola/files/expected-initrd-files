@@ -17,10 +17,13 @@ required_initrd_files=(
 )
 
 tmpd=$(mktemp -d)
-trap "rm -r ${tmpd}" EXIT
+cleanup() {
+    rm -r "${tmpd}"
+}
+trap cleanup EXIT
 ( cd "${tmpd}" && lsinitrd --unpack /boot/ostree/*/init* )
 
-for file in ${required_initrd_files[@]}; do
+for file in "${required_initrd_files[@]}"; do
     if [ ! -e "${tmpd}/${file}" ]; then
         fatal "${file} was not found in initrd"
     fi
