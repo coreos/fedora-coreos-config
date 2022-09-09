@@ -313,7 +313,7 @@ butane_dhcpvlanbond='
 
 check_requirement() {
     req=$1
-    if ! which $req &>/dev/null; then
+    if ! which "$req" &>/dev/null; then
         echo "No $req. Can't continue" 1>&2
         return 1
     fi
@@ -332,8 +332,8 @@ check_requirements() {
         virt-install
         virt-ls
     )
-    for req in ${reqs[@]}; do
-        check_requirement $req
+    for req in "${reqs[@]}"; do
+        check_requirement "$req"
     done
 }
 
@@ -343,11 +343,11 @@ start_vm() {
     local ignitionfile=$1; shift
     local kernel=$1; shift
     local initramfs=$1; shift
-    local kernel_args=$@
+    local kernel_args=$*
     virt-install --name $vmname --ram 3096 --vcpus 2 --graphics=none \
                    --quiet --network bridge=virbr0 --network bridge=virbr0 \
-                   --disk size=20,backing_store=${disk} \
-                   --install kernel=${kernel},initrd=${initramfs},kernel_args_overwrite=yes,kernel_args="${kernel_args}" \
+                   --disk size=20,backing_store="${disk}" \
+                   --install kernel="${kernel}",initrd="${initramfs}",kernel_args_overwrite=yes,kernel_args="${kernel_args}" \
                    --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=$ignitionfile"
 }
 
@@ -365,8 +365,8 @@ create_ignition_file() {
     local ignitionfile=$2
     # uncomment and use ign-converter instead if on rhcos less than 4.6
     #echo "$butaneconfig" | butane --strict | ign-converter -downtranslate -output $ignitionfile
-    echo "$butaneconfig" | butane --strict --output $ignitionfile
-    chcon --verbose unconfined_u:object_r:svirt_home_t:s0 $ignitionfile &>/dev/null
+    echo "$butaneconfig" | butane --strict --output "$ignitionfile"
+    chcon --verbose unconfined_u:object_r:svirt_home_t:s0 "$ignitionfile" &>/dev/null
 }
 
 main() {
@@ -396,7 +396,7 @@ main() {
     check_requirements
 
     # Find out which partition is the boot partition
-    partition=$(guestfish --ro -a $qcow <<EOF
+    partition=$(guestfish --ro -a "$qcow" <<EOF
     run
     findfs-label boot
     exit
@@ -404,17 +404,17 @@ EOF
     )
 
     # Grab kernel/initramfs from the disk
-    files=$(virt-ls -a $qcow -m $partition -R /ostree/)
+    files=$(virt-ls -a "$qcow" -m "$partition" -R /ostree/)
     for f in $files; do
         if [[ "${f}" =~ hmac$ ]]; then
             # ignore .vmlinuz-5.5.9-200.fc31.x86_64.hmac
             true
         elif [[ "${f}" =~ img$ ]]; then
             # grab initramfs in the form initramfs-5.5.9-200.fc31.x86_64.img
-            virt-cat -a $qcow -m $partition "/ostree/${f}" > $initramfs
+            virt-cat -a "$qcow" -m "$partition" "/ostree/${f}" > "$initramfs"
         elif [[ "${f}" =~ '/vmlinuz' ]]; then
             # grab kernel in the form vmlinuz-5.5.9-200.fc31.x86_64
-            virt-cat -a $qcow -m $partition "/ostree/${f}" > $kernel
+            virt-cat -a "$qcow" -m "$partition" "/ostree/${f}" > "$kernel"
         fi
     done
 
@@ -435,7 +435,7 @@ EOF
     # Grab kernel arguments from the disk and use them
     # - strip `options ` from the front of the line
     # - strip `$ignition_firstboot`
-    common_args=$(virt-cat -a $qcow -m $partition "/loader.1/entries/${bls_file}" | \
+    common_args=$(virt-cat -a "$qcow" -m "$partition" "/loader.1/entries/${bls_file}" | \
                   grep -P '^options' | \
                   sed -e 's/options //' | \
                   sed -e 's/$ignition_firstboot//')
@@ -512,7 +512,7 @@ EOF
     )
 
     create_ignition_file "$butane_none" $ignitionfile
-    for net in ${loopitems[@]}; do
+    for net in "${loopitems[@]}"; do
         var="initramfs_${net}"
         kernel_args=${!var}
         var="butane_initramfs_${net}"
@@ -522,7 +522,7 @@ EOF
         destroy_vm
     done
 
-    for net in ${loopitems[@]}; do
+    for net in "${loopitems[@]}"; do
         var="butane_${net}"
         butaneconfig=${!var}
         kernel_args=${common_args}
@@ -539,5 +539,5 @@ EOF
 }
 
 
-main $@
+main "$@"
 
