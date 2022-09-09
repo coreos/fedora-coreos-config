@@ -398,22 +398,22 @@ check_vm() {
     # verify that there are the right number of ipv4 devices "up"
     if [ $(jq length <<< $ipinfo) != "$((interfaces+1))" ]; then
         rc=1
-        echo "ERROR: More interfaces up than expected" 1>&2 
+        echo "ERROR: More interfaces up than expected" 1>&2
     fi
     # verify that the first one in loopback
     if [ $(jq -r .[0].addr_info[0].dev <<< $ipinfo) != 'lo' ]; then
         rc=1
-        echo "ERROR: The first active interface is not 'lo'" 1>&2 
+        echo "ERROR: The first active interface is not 'lo'" 1>&2
     fi
     # verify that the second one is the expected device
     if [ $(jq -r .[1].addr_info[0].dev <<< $ipinfo) != "${dev}" ]; then
         rc=1
-        echo "ERROR: The second active interface is not ${dev}" 1>&2 
+        echo "ERROR: The second active interface is not ${dev}" 1>&2
     fi
     # verify that the second one has the IP we assigned
     if [ $(jq -r .[1].addr_info[0].local <<< $ipinfo) != "${ip}" ]; then
         rc=1
-        echo "ERROR: The second active interface does not have expected ip" 1>&2 
+        echo "ERROR: The second active interface does not have expected ip" 1>&2
     fi
 
     if [ "$rc" != '0' ]; then
@@ -473,7 +473,7 @@ main() {
     local ignitionfile="${PWD}/coreos-nettest-config.ign"
     local sshpubkey
     local butane
-     
+
     check_requirements
 
     # generate an ssh key to use:
@@ -633,13 +633,13 @@ EOF
     # namesever= before ip= kargs doesn't yield an extra default.nm_connection
     # file. The second is to verify that the nameserver entry gets placed into
     # all connections that get created (i.e. ens2.nm_connection and ens3.nm_connection).
-    # 
+    #
     # We'll perform the first check automatically in check_vm by verifying the
     # number of keyfiles is 2, along with checking that the dns server did make
     # it into the resolv.conf or resolvectl (systemd-resolvd). We won't
     # automatically check that each file has the dns entry for now, but anyone
     # can manually run this and grab a console to the VM and verify that.
-    # 
+    #
     # [1] https://gitlab.freedesktop.org/NetworkManager/NetworkManager/issues/391
     echo -e "\n###### Testing initramfs nameserver= option\n"
     create_ignition_file "$butane_none" $ignitionfile
@@ -674,17 +674,17 @@ EOF
         static_team0
         static_br0
     )
-        
+
     for initramfsnet in ${initramfsloop[@]}; do
         for butanenet in ${butaneloop[@]}; do
             method='none'; interfaces=1;
             nameserver=${nameserverstatic}
             numkeyfiles=3
             if [ "${butanenet}" == 'none' ]; then
-                # because we propagate initramfs networking if no real root networking 
+                # because we propagate initramfs networking if no real root networking
                 devname=${initramfsnet##*_}
                 hostname=${initramfshostname}
-                # If we're using dhcp for initramfs and not providing any real root 
+                # If we're using dhcp for initramfs and not providing any real root
                 # networking then we need to tell check_vm we're using DHCP and set
                 # a few other values.
                 if [ "${initramfsnet}" == 'dhcp_nic0' ]; then

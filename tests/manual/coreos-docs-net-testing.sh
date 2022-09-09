@@ -392,7 +392,7 @@ main() {
     local ignitionfile="${PWD}/coreos-nettest-config.ign"
     local sshpubkey
     local butane
-     
+
     check_requirements
 
     # Find out which partition is the boot partition
