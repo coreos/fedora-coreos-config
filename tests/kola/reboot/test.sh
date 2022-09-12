@@ -31,7 +31,15 @@ else
   # check for the UUID dropins
   [ -f /boot/grub2/bootuuid.cfg ]
   mount -o ro /dev/disk/by-label/EFI-SYSTEM /boot/efi
-  [ -f /boot/efi/EFI/*/bootuuid.cfg ]
+  found_bootuuid="false"
+  for f in /boot/efi/EFI/*/bootuuid.cfg; do
+      if [ -f "$f" ]; then
+          found_bootuuid="true"
+      fi
+  done
+  if [[ "${found_bootuuid}" == "false" ]]; then
+      fatal "No /boot/efi/EFI/*/bootuuid.cfg found"
+  fi
   umount /boot/efi
 fi
 
@@ -43,12 +51,12 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
 
   rebooted)
       # check for expected default kargs
-      grep root=UUID=$(cat /boot/.root_uuid) /proc/cmdline
+      grep root=UUID="$(cat /boot/.root_uuid)" /proc/cmdline
       ok "found root karg"
 
       bootsrc=$(findmnt -nvr /boot -o SOURCE)
       eval $(blkid -o export "${bootsrc}")
-      grep boot=UUID=${UUID} /proc/cmdline
+      grep boot=UUID="${UUID}" /proc/cmdline
       ok "found boot karg"
 
       ok "second boot"

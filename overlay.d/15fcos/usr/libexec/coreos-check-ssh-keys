@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-# This script will print a message in the serial console 
+# This script will print a message in the serial console
 # if no ssh keys were added by Ignition/Afterburn.
 main() {
     # Change the output color to yellow
@@ -7,8 +7,8 @@ main() {
     # No color
     nc='\033[0m'
 
-    # See https://github.com/coreos/ignition/pull/964 for the MESSAGE_ID 
-    # source. It will track the authorized-ssh-keys entries in journald 
+    # See https://github.com/coreos/ignition/pull/964 for the MESSAGE_ID
+    # source. It will track the authorized-ssh-keys entries in journald
     # provided via Ignition. Limit journal output to the most recent boot
     # so we don't get output from re-used /var/ partitions.
     ignitionusers=$(
@@ -16,8 +16,8 @@ main() {
             jq -r '.MESSAGE' | \
             xargs -I{} echo "Ignition: {}")
 
-    # See https://github.com/coreos/afterburn/pull/397 for the MESSAGE_ID 
-    # source. It will track the authorized-ssh-keys entries in journald  
+    # See https://github.com/coreos/afterburn/pull/397 for the MESSAGE_ID
+    # source. It will track the authorized-ssh-keys entries in journald
     # provided via Afterburn.Limit journal output to the most recent boot
     # so we don't get output from re-used /var/ partitions.
 

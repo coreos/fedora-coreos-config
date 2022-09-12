@@ -6,7 +6,7 @@
 container-cmd:
   - /usr/bin/bash
 
-# These packages are either widely used utilities/services or 
+# These packages are either widely used utilities/services or
 # are targeted for improving the general CoreOS user experience.
 # It is intended to be kept generic so that it may be shared downstream with
 # RHCOS.
