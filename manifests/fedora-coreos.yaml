@@ -107,7 +107,7 @@ postprocess:
       '/usr/lib/.build-id/'
     )
 
-    # It is not possible to remove files from usr after first boot so that is 
+    # It is not possible to remove files from usr after first boot so that is
     # why we are removing them in the postprocess scripts here.
     # The .build-id links are pointing to binaries that we remove in other parts of the FCOS manifest.
     list_known_removed_folders=(
@@ -140,8 +140,6 @@ remove-from-packages:
   # Drop some buggy sysusers fragments which do not match static IDs allocation:
   # https://bugzilla.redhat.com/show_bug.cgi?id=2105177
   - [dbus-common, /usr/lib/sysusers.d/dbus.conf]
-  # https://bugzilla.redhat.com/show_bug.cgi?id=2103683
-  - [tpm2-tss, /usr/lib/sysusers.d/tpm2-tss.conf]
 
 remove-files:
   # We don't ship man(1) or info(1)

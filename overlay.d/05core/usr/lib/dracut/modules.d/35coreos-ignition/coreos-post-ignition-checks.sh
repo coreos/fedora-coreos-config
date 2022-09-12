@@ -7,7 +7,7 @@ arch=$(uname -p)
 # Butane sugar will tell ignition to mount /boot to /sysroot/boot. We can simply check if
 # the file exists to see whether the check needs to be performed.
 # It is possible that the user creates a config, which will mount /boot at a different path
-# but that case is not officially supported. 
+# but that case is not officially supported.
 if [ -f /sysroot/boot/grub2/user.cfg ]; then
     # s390x does not use GRUB, ppcle64 uses petitboot with a GRUB config parser which does not support passwords
     # So in both these cases, GRUB password is not supported
