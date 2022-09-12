@@ -7,7 +7,7 @@ packages:
   - NetworkManager hostname
   # Interactive Networking configuration during coreos-install
   - NetworkManager-tui
-  # Teaming https://github.com/coreos/fedora-coreos-config/pull/289 
+  # Teaming https://github.com/coreos/fedora-coreos-config/pull/289
   # and http://bugzilla.redhat.com/1758162
   - NetworkManager-team teamd
   # Support for cloud quirks and dynamic config in real rootfs:

@@ -107,7 +107,7 @@ postprocess:
       '/usr/lib/.build-id/'
     )
 
-    # It is not possible to remove files from usr after first boot so that is 
+    # It is not possible to remove files from usr after first boot so that is
     # why we are removing them in the postprocess scripts here.
     # The .build-id links are pointing to binaries that we remove in other parts of the FCOS manifest.
     list_known_removed_folders=(
