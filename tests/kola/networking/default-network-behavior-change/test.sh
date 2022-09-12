@@ -217,7 +217,7 @@ if [ "$ID" == "fedora" ]; then
 elif [[ "${ID_LIKE}" =~ "rhel" ]]; then
     # For the version comparison use string substitution to remove the
     # '.` from the version so we can use integer comparison
-    
+
     # scos includes NetworkManager-1.39.10-1.el9.x86_64, update scripts
     # according to F37
     if is_scos; then
