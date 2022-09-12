@@ -104,6 +104,15 @@ scoop bucket add extras
 scoop install butane
 ----
 
+==== Installing via Windows Package Manager Client (winget)
+
+Butane is available as a https://docs.microsoft.com/en-us/windows/package-manager/[winget] package:
+
+[source,powershell]
+----
+winget install --id Fedora.CoreOS.butane
+----
+
 === Standalone binary
 
 ==== Linux
