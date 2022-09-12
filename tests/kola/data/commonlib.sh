@@ -26,23 +26,23 @@ get_fcos_stream() {
     rpm-ostree status -b --json | jq -r '.deployments[0]["base-commit-meta"]["fedora-coreos.stream"]'
 }
 
-is_fcos() (
+is_fcos() {
     source /etc/os-release
     [ "${ID}" == "fedora" ] && [ "${VARIANT_ID}" == "coreos" ]
-)
+}
 
 # Note when using this, you probably also want to check `get_rhel_maj_ver`.
-is_rhcos() (
+is_rhcos() {
     source /etc/os-release
     [ "${ID}" == "rhcos" ]
-)
+}
 
-get_fedora_ver() (
+get_fedora_ver() {
     source /etc/os-release
     if is_fcos; then
         echo "${VERSION_ID}"
     fi
-)
+}
 
 get_rhel_maj_ver() {
     source /etc/os-release
@@ -50,7 +50,13 @@ get_rhel_maj_ver() {
 }
 
 # rhcos8
-is_rhcos8() (
+is_rhcos8() {
     source /etc/os-release
     [ "${ID}" == "rhcos" ] && [ "${RHEL_VERSION%%.*}" -eq 8 ]
-)
+}
+
+# scos
+is_scos() {
+    source /etc/os-release
+    [ "${ID}" == "scos" ] && [ "${VARIANT_ID}" == "coreos" ]
+}

@@ -38,26 +38,49 @@ set -xeuo pipefail
 #       "ProductUUID" : null
 #   }
 
+# "hostnamectl --json=pretty" is not supported on rhel8 yet, the 
+# expected output like this:
+#    Static hostname: n/a
+# Transient hostname: localhost
+#          Icon name: computer-vm
+#            Chassis: vm
+#         Machine ID: d9d6dbacde8345f2a275e1d6dca81b78
+#            Boot ID: a47ef11ca938496985d5d85a4274c664
+#     Virtualization: kvm
+#   Operating System: Red Hat Enterprise Linux CoreOS 412.86.202209030446-0 (Ootpa)
+#        CPE OS Name: cpe:/o:redhat:enterprise_linux:8::coreos
+#             Kernel: Linux 4.18.0-372.19.1.el8_6.x86_64
+#       Architecture: x86-64
 
-output=$(hostnamectl --json=pretty)
-hostname=$(echo "$output" | jq -r '.Hostname')
-fallback=$(echo "$output" | jq -r '.DefaultHostname')
-static=$(echo "$output" | jq -r '.StaticHostname')
-namesource=$(echo "$output" | jq -r '.HostnameSource')
 
-if [ "$hostname" != 'localhost' ]; then
-    fatal "hostname was not expected"
-fi
-if [ "$fallback" != 'localhost' ]; then
-    fatal "fallback hostname was not expected"
-fi
-if [ "$static" != 'null' ]; then
-    fatal "static hostname not expected to be set"
-fi
-if [ "$namesource" != 'default' ]; then
-    # For this test since we disabled NM setting the hostname we
-    # expect the hostname to have been set via the fallback/default
-    fatal "hostname was set from non-default/fallback source"
+if is_rhcos8; then
+    if [ $(hostnamectl --transient) != 'localhost' ]; then
+        fatal "transient hostname was not expected"
+    fi
+    if [ ! -z $(hostnamectl --static) ]; then
+        fatal "static hostname not expected to be set"
+    fi
+else
+    output=$(hostnamectl --json=pretty)
+    hostname=$(echo "$output" | jq -r '.Hostname')
+    fallback=$(echo "$output" | jq -r '.DefaultHostname')
+    static=$(echo "$output" | jq -r '.StaticHostname')
+    namesource=$(echo "$output" | jq -r '.HostnameSource')
+
+    if [ "$hostname" != 'localhost' ]; then
+        fatal "hostname was not expected"
+    fi
+    if [ "$fallback" != 'localhost' ]; then
+        fatal "fallback hostname was not expected"
+    fi
+    if [ "$static" != 'null' ]; then
+        fatal "static hostname not expected to be set"
+    fi
+    if [ "$namesource" != 'default' ]; then
+        # For this test since we disabled NM setting the hostname we
+        # expect the hostname to have been set via the fallback/default
+        fatal "hostname was set from non-default/fallback source"
+    fi
 fi
 
 ok "fallback hostname wired up correctly"

@@ -19,7 +19,7 @@ _wait_for_journalctl_to_stop() {
     done
 }
 
-_display_relevant_errors() { 
+_display_relevant_errors() {
     failed=$(systemctl --failed --no-legend --plain | cut -f 1 -d ' ')
     if [ -n "${failed}" ]; then
         # Something failed, suppress kernel logs so that it's more likely
