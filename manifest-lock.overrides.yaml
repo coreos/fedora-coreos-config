@@ -9,27 +9,9 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  audit-libs:
-    evr: 3.0.9-1.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-b30e72fb6c
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
-      type: fast-track
   containerd:
     evr: 1.6.8-2.fc37
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-8298607490
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
-      type: fast-track
-  vim-data:
-    evra: 2:9.0.412-1.fc37.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-b9edf60581
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
-      type: fast-track
-  vim-minimal:
-    evr: 2:9.0.412-1.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-b9edf60581
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
       type: fast-track
