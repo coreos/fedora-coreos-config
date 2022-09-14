@@ -36,3 +36,10 @@
   snooze: 2022-09-27
   streams:
   - rawhide
+- pattern: ext.config.clhm.network-device-info
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1153
+  snooze: 2022-10-04
+  streams:
+  - testing-devel
+  - testing
+  - stable
