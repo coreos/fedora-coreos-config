@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.39.90-1.fc37.x86_64"
+      "evra": "1:1.40.0-1.fc37.x86_64"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.39.90-1.fc37.x86_64"
+      "evra": "1:1.40.0-1.fc37.x86_64"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.39.90-1.fc37.x86_64"
+      "evra": "1:1.40.0-1.fc37.x86_64"
     },
     "NetworkManager-team": {
-      "evra": "1:1.39.90-1.fc37.x86_64"
+      "evra": "1:1.40.0-1.fc37.x86_64"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.39.90-1.fc37.x86_64"
+      "evra": "1:1.40.0-1.fc37.x86_64"
     },
     "WALinuxAgent-udev": {
       "evra": "2.7.3.0-1.fc37.noarch"
@@ -61,13 +61,13 @@
       "evra": "1:2.11-8.fc37.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.18.5-2.fc37.x86_64"
+      "evra": "32:9.18.6-1.fc37.x86_64"
     },
     "bind-license": {
-      "evra": "32:9.18.5-2.fc37.noarch"
+      "evra": "32:9.18.6-1.fc37.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.18.5-2.fc37.x86_64"
+      "evra": "32:9.18.6-1.fc37.x86_64"
     },
     "bootupd": {
       "evra": "0.2.7-2.fc37.x86_64"
@@ -97,7 +97,7 @@
       "evra": "0.1.7-7.fc37.x86_64"
     },
     "chrony": {
-      "evra": "4.3-0.1.pre1.fc37.x86_64"
+      "evra": "4.3-1.fc37.x86_64"
     },
     "cifs-utils": {
       "evra": "6.15-2.fc37.x86_64"
@@ -184,7 +184,7 @@
       "evra": "2.5.0-1.fc37.x86_64"
     },
     "curl": {
-      "evra": "7.84.0-2.fc37.x86_64"
+      "evra": "7.84.0-3.fc37.x86_64"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-8.fc37.x86_64"
@@ -259,13 +259,13 @@
       "evra": "38-5.fc37.x86_64"
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.187-6.fc37.noarch"
+      "evra": "0.187-8.fc37.noarch"
     },
     "elfutils-libelf": {
-      "evra": "0.187-6.fc37.x86_64"
+      "evra": "0.187-8.fc37.x86_64"
     },
     "elfutils-libs": {
-      "evra": "0.187-6.fc37.x86_64"
+      "evra": "0.187-8.fc37.x86_64"
     },
     "ethtool": {
       "evra": "2:5.19-1.fc37.x86_64"
@@ -310,7 +310,7 @@
       "evra": "1:4.9.0-2.fc37.x86_64"
     },
     "flatpak-session-helper": {
-      "evra": "1.13.3-6.fc37.x86_64"
+      "evra": "1.14.0-1.fc37.x86_64"
     },
     "fstrm": {
       "evra": "0.6.1-5.fc37.x86_64"
@@ -346,7 +346,7 @@
       "evra": "1:1.23-2.fc37.x86_64"
     },
     "gdisk": {
-      "evra": "1.0.9-3.fc37.x86_64"
+      "evra": "1.0.9-4.fc37.x86_64"
     },
     "gettext": {
       "evra": "0.21-18.fc37.0.20220203.x86_64"
@@ -364,7 +364,7 @@
       "evra": "2.37.3-1.fc37.x86_64"
     },
     "glib2": {
-      "evra": "2.73.2-8.fc37.x86_64"
+      "evra": "2.73.3-3.fc37.x86_64"
     },
     "glibc": {
       "evra": "2.36-1.fc37.x86_64"
@@ -484,13 +484,13 @@
       "evra": "2.5.1-2.fc37.noarch"
     },
     "kernel": {
-      "evra": "5.19.7-300.fc37.x86_64"
+      "evra": "5.19.8-300.fc37.x86_64"
     },
     "kernel-core": {
-      "evra": "5.19.7-300.fc37.x86_64"
+      "evra": "5.19.8-300.fc37.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.19.7-300.fc37.x86_64"
+      "evra": "5.19.8-300.fc37.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.25-1.fc37.x86_64"
@@ -562,7 +562,7 @@
       "evra": "1.46.5-3.fc37.x86_64"
     },
     "libcurl-minimal": {
-      "evra": "7.84.0-2.fc37.x86_64"
+      "evra": "7.84.0-3.fc37.x86_64"
     },
     "libdaemon": {
       "evra": "0.14-24.fc37.x86_64"
@@ -673,13 +673,13 @@
       "evra": "1.0.1-22.fc37.x86_64"
     },
     "libnfsidmap": {
-      "evra": "1:2.6.2-0.fc37.x86_64"
+      "evra": "1:2.6.2-1.fc37.x86_64"
     },
     "libnftnl": {
       "evra": "1.2.2-2.fc37.x86_64"
     },
     "libnghttp2": {
-      "evra": "1.48.0-2.fc37.x86_64"
+      "evra": "1.49.0-1.fc37.x86_64"
     },
     "libnl3": {
       "evra": "3.7.0-2.fc37.x86_64"
@@ -742,7 +742,7 @@
       "evra": "2.38.1-1.fc37.x86_64"
     },
     "libsmbclient": {
-      "evra": "2:4.17.0-0.3.rc2.fc37.x86_64"
+      "evra": "2:4.17.0-0.8.rc3.fc37.x86_64"
     },
     "libsmbios": {
       "evra": "2.4.3-7.fc37.x86_64"
@@ -811,7 +811,7 @@
       "evra": "0.3.2-4.fc37.x86_64"
     },
     "libwbclient": {
-      "evra": "2:4.17.0-0.3.rc2.fc37.x86_64"
+      "evra": "2:4.17.0-0.8.rc3.fc37.x86_64"
     },
     "libxcrypt": {
       "evra": "4.4.28-3.fc37.x86_64"
@@ -910,7 +910,7 @@
       "evra": "0.52.21-14.fc37.x86_64"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.2-0.fc37.x86_64"
+      "evra": "1:2.6.2-1.fc37.x86_64"
     },
     "nftables": {
       "evra": "1:1.0.4-3.fc37.x86_64"
@@ -1012,7 +1012,7 @@
       "evra": "0.1-22.fc37.x86_64"
     },
     "popt": {
-      "evra": "1.19~rc1-3.fc37.x86_64"
+      "evra": "1.19~rc1-4.fc37.x86_64"
     },
     "procps-ng": {
       "evra": "3.3.17-6.fc37.x86_64"
@@ -1033,10 +1033,10 @@
       "evra": "1.2.6-3.fc37.x86_64"
     },
     "rpm": {
-      "evra": "4.18.0-0.beta1.4.fc37.x86_64"
+      "evra": "4.18.0-0.rc1.3.fc37.x86_64"
     },
     "rpm-libs": {
-      "evra": "4.18.0-0.beta1.4.fc37.x86_64"
+      "evra": "4.18.0-0.rc1.3.fc37.x86_64"
     },
     "rpm-ostree": {
       "evra": "2022.13-1.fc37.x86_64"
@@ -1045,7 +1045,7 @@
       "evra": "2022.13-1.fc37.x86_64"
     },
     "rpm-plugin-selinux": {
-      "evra": "4.18.0-0.beta1.4.fc37.x86_64"
+      "evra": "4.18.0-0.rc1.3.fc37.x86_64"
     },
     "rsync": {
       "evra": "3.2.5-1.fc37.x86_64"
@@ -1054,13 +1054,13 @@
       "evra": "2:1.1.3-1.fc37.x86_64"
     },
     "samba-client-libs": {
-      "evra": "2:4.17.0-0.3.rc2.fc37.x86_64"
+      "evra": "2:4.17.0-0.8.rc3.fc37.x86_64"
     },
     "samba-common": {
-      "evra": "2:4.17.0-0.3.rc2.fc37.noarch"
+      "evra": "2:4.17.0-0.8.rc3.fc37.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.17.0-0.3.rc2.fc37.x86_64"
+      "evra": "2:4.17.0-0.8.rc3.fc37.x86_64"
     },
     "sed": {
       "evra": "4.8-11.fc37.x86_64"
@@ -1238,13 +1238,13 @@
     }
   },
   "metadata": {
-    "generated": "2022-09-13T01:30:39Z",
+    "generated": "2022-09-14T02:35:22Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2022-09-12T09:11:51Z"
+        "generated": "2022-09-13T03:34:20Z"
       },
       "fedora-next": {
-        "generated": "2022-09-12T09:57:45Z"
+        "generated": "2022-09-13T10:19:02Z"
       },
       "fedora-next-updates": {
         "generated": "2022-08-09T18:08:15Z"
