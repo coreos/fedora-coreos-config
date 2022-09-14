@@ -60,3 +60,14 @@ is_scos() {
     source /etc/os-release
     [ "${ID}" == "scos" ] && [ "${VARIANT_ID}" == "coreos" ]
 }
+
+cmdline=( $(</proc/cmdline) )
+cmdline_arg() {
+    local name="$1" value=""
+    for arg in "${cmdline[@]}"; do
+        if [[ "${arg%%=*}" == "${name}" ]]; then
+            value="${arg#*=}"
+        fi
+    done
+    echo "${value}"
+}

@@ -4,7 +4,9 @@
 
 set -xeuo pipefail
 
-platform="$(grep -Eo ' ignition.platform.id=[a-z]+' /proc/cmdline | cut -f 2 -d =)"
+. $KOLA_EXT_DATA/commonlib.sh
+
+platform=$(cmdline_arg ignition.platform.id)
 case "${platform}" in
     aws) chronyc sources |grep '169.254.169.123'; echo "ok chrony aws" ;;
     azure) chronyc sources |grep 'PHC'; echo "ok chrony azure" ;;
