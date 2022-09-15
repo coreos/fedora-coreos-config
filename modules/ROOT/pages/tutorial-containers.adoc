@@ -109,7 +109,7 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora-coreos-stable 
     --disk=size=20,backing_store=${PWD}/fedora-coreos.qcow2
 ----
 
-On the serial console you will see:
+On the console you will see:
 
 ----
 Fedora CoreOS 36.20220723.3.1

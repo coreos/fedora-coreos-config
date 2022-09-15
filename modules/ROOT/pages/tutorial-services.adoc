@@ -127,7 +127,7 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora-coreos-stable 
     --disk=size=20,backing_store=${PWD}/fedora-coreos.qcow2
 ----
 
-And view on the serial console that the `Detected Public IPv4` is shown in the serial console output right before you are dropped to a login prompt:
+And view on the console that the `Detected Public IPv4` is shown in the console output right before you are dropped to a login prompt:
 
 ----
 Fedora CoreOS 36.20220723.3.1

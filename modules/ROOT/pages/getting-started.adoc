@@ -35,7 +35,7 @@ include::getting-started-libvirt.adoc[]
 
 === Exploring the OS
 
-Once the VM has finished booting, its IP addresses will appear on the serial console. By design, there are no hard-coded default credentials.
+Once the VM has finished booting, its IP addresses will appear on the console. By design, there are no hard-coded default credentials.
 
 If you set up an xref:authentication.adoc[SSH key] for the default `core` user, you can SSH into the VM and explore the OS:
 
