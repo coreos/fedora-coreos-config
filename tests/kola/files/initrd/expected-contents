@@ -1,9 +1,10 @@
 #!/bin/bash
-# kola: { "exclusive": false }
+## kola:
+##   exclusive: false
 
-# This test runs on both, FCOS&RHCOS. The initrd includes specific files which,
-# if omitted from the image will cause some failures with certain ingnition
-# configurations. This test doesnt assert the functionality of any files, it
+# This test runs on both FCOS & RHCOS. The initrd includes specific files which,
+# if omitted from the image, will cause some failures with certain Ignition
+# configs. This test doesn't assert the functionality of any files, it
 # simply gives a high level check to see if the files are available.
 # See https://github.com/coreos/fedora-coreos-config/issues/1775
 

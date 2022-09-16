@@ -1,0 +1,20 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+#
+# If dracut can't find the configured compressor, it warns and falls back to
+# gzip (!).  Fail if the initrd isn't compressed with zstd.
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+# Check initrd for zstd magic number
+if is_rhcos8; then
+    ok "Skipping initrd zstd compression test on RHCOS 8"
+else
+    if ! LANG=C grep -aUPq "\x28\xb5\x2f\xfd" /boot/ostree/*/init*; then
+        fatal "Didn't find zstd compression in initrd"
+    fi
+    ok "Found zstd compression in initrd"
+fi
