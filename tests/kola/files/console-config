@@ -1,0 +1,99 @@
+#!/bin/bash
+## kola:
+##   # We don't need a special Ignition config and we don't modify the VM
+##   exclusive: false
+##   # s390x doesn't have any configuration in platforms.yaml, so
+##   # platforms.json is not included in the image
+##   architectures: "!s390x"
+#
+# Verify that the kargs and grub.cfg commands specified in platforms.json
+# have been properly applied to the image.  Also check that cosa correctly
+# translated platforms.yaml to platforms.json, by spot-checking certain
+# expected platforms.json values.
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+platform_json_kargs() {
+    jq -r ".$1.kernel_arguments // [] | join(\" \")" < /boot/coreos/platforms.json
+}
+
+platform_json_grub_cmds() {
+    jq -r ".$1.grub_commands // [] | join(\"\\\\n\")" < /boot/coreos/platforms.json
+}
+
+check_platforms_json() {
+    local platform="$1" expected_kargs="$2" expected_grub_cmds="$3"
+    found_kargs=$(platform_json_kargs "$platform")
+    found_grub_cmds=$(platform_json_grub_cmds "$platform")
+    if [ "$expected_kargs" != "$found_kargs" ]; then
+        fatal "platforms.json incorrect kargs for $platform"
+    fi
+    if [ "$expected_grub_cmds" != "$found_grub_cmds" ]; then
+        fatal "platforms.json incorrect GRUB commands for $platform"
+    fi
+    ok "platforms.json for $platform"
+}
+
+# Check whether platforms.json exists
+if is_fcos; then
+    # Schedule based on:
+    # https://lists.fedoraproject.org/archives/list/coreos-status@lists.fedoraproject.org/message/GHLXX4MXNHUEAXQLK6BZN45IQYHRVQB4/
+    case "$(get_fcos_stream)" in
+    next-devel) threshold=20220923 ;;
+    next) threshold=20220930 ;;
+    testing-devel|rawhide|branched) threshold=20221118 ;;
+    testing) threshold=20221125 ;;
+    stable) threshold=20221209 ;;
+    *) fatal "Unknown stream" ;;
+    esac
+    datecode=$(echo "$VERSION" | cut -f2 -d.)
+    expect_config=$([ $datecode -ge $threshold ] && echo 1 || echo 0)
+else
+    threshold=none
+    expect_config=1
+fi
+have_config=$([ -e /boot/coreos/platforms.json ] && echo 1 || echo 0)
+if [ "$have_config" != "$expect_config" ]; then
+    fatal "platforms.json exists=$have_config expected=$expect_config threshold=$threshold"
+fi
+ok "platforms.json exists=$have_config"
+if [ "$have_config" != 1 ]; then
+    # We don't automatically test whether the legacy code injects the
+    # correct parameters
+    exit 0
+fi
+
+# Check that platforms.json matches grub.cfg and kargs
+platform=$(cmdline_arg ignition.platform.id)
+expected_kargs=$(platform_json_kargs "$platform")
+expected_grub_cmds=$(platform_json_grub_cmds "$platform")
+if [ -n "$expected_kargs" ] && ! grep -Eq " ${expected_kargs}( |$)" /proc/cmdline; then
+    fatal "Didn't find $expected_kargs in $(cat /proc/cmdline)"
+fi
+if [ -n "$expected_grub_cmds" ] && ! grep -qzP "\n${expected_grub_cmds}\n" /boot/grub2/grub.cfg; then
+    fatal "Didn't find platform grub commands in /boot/grub2/grub.cfg"
+fi
+ok "platforms.json matches grub.cfg and kargs"
+
+# Check that platforms.json has reasonable contents (i.e. that cosa
+# properly forwarded it from platforms.yaml).
+# Check at least one platform on each architecture.
+case $(uname -m) in
+x86_64)
+    # Matches the legacy defaults
+    check_platforms_json qemu "console=tty0 console=ttyS0,115200n8" "serial --speed=115200\nterminal_input serial console\nterminal_output serial console"
+    # Different from legacy defaults
+    check_platforms_json packet "console=ttyS1,115200n8" "serial --unit=1 --speed=115200\nterminal_input serial\nterminal_output serial"
+    ;;
+aarch64)
+    # GRUB commands but no kargs
+    check_platforms_json qemu "" "serial --speed=115200\nterminal_input serial console\nterminal_output serial console"
+    ;;
+ppc64le)
+    # Kargs but no GRUB commands
+    check_platforms_json qemu "console=hvc0 console=tty0" ""
+    ;;
+esac
+ok "platforms.json has expected contents"
