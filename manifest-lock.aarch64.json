@@ -36,6 +36,9 @@
     "alternatives": {
       "evra": "1.19-2.fc36.aarch64"
     },
+    "amd-gpu-firmware": {
+      "evra": "20220815-139.fc36.noarch"
+    },
     "attr": {
       "evra": "2.5.1-4.fc36.aarch64"
     },
@@ -172,7 +175,7 @@
       "evra": "3.17.1-2.fc36.aarch64"
     },
     "crun": {
-      "evra": "1.5-1.fc36.aarch64"
+      "evra": "1.6-2.fc36.aarch64"
     },
     "crypto-policies": {
       "evra": "20220428-1.gitdfb10ea.fc36.noarch"
@@ -379,7 +382,7 @@
       "evra": "3.7.7-1.fc36.aarch64"
     },
     "gpgme": {
-      "evra": "1.15.1-6.fc36.aarch64"
+      "evra": "1.17.0-4.fc36.aarch64"
     },
     "grep": {
       "evra": "3.7-2.fc36.aarch64"
@@ -407,6 +410,9 @@
     },
     "inih": {
       "evra": "56-1.fc36.aarch64"
+    },
+    "intel-gpu-firmware": {
+      "evra": "20220815-139.fc36.noarch"
     },
     "iproute": {
       "evra": "5.15.0-2.fc36.aarch64"
@@ -613,7 +619,7 @@
       "evra": "2.7.4-1.fc36.aarch64"
     },
     "libjcat": {
-      "evra": "0.1.10-1.fc36.aarch64"
+      "evra": "0.1.12-1.fc36.aarch64"
     },
     "libjose": {
       "evra": "11-5.fc36.aarch64"
@@ -808,7 +814,7 @@
       "evra": "2.9.14-1.fc36.aarch64"
     },
     "libxmlb": {
-      "evra": "0.3.9-1.fc36.aarch64"
+      "evra": "0.3.10-1.fc36.aarch64"
     },
     "libyaml": {
       "evra": "0.2.5-7.fc36.aarch64"
@@ -820,10 +826,10 @@
       "evra": "2.5.1-31.fc36.aarch64"
     },
     "linux-firmware": {
-      "evra": "20220815-138.fc36.noarch"
+      "evra": "20220815-139.fc36.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20220815-138.fc36.noarch"
+      "evra": "20220815-139.fc36.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.29-3.fc36.aarch64"
@@ -856,7 +862,7 @@
       "evra": "4.2-1.fc36.aarch64"
     },
     "moby-engine": {
-      "evra": "20.10.17-5.fc36.aarch64"
+      "evra": "20.10.18-1.fc36.aarch64"
     },
     "mokutil": {
       "evra": "2:0.6.0-3.fc36.aarch64"
@@ -908,6 +914,9 @@
     },
     "numactl-libs": {
       "evra": "2.0.14-5.fc36.aarch64"
+    },
+    "nvidia-gpu-firmware": {
+      "evra": "20220815-139.fc36.noarch"
     },
     "nvme-cli": {
       "evra": "2.0-2.fc36.aarch64"
@@ -1039,7 +1048,7 @@
       "evra": "4.17.1-3.fc36.aarch64"
     },
     "rsync": {
-      "evra": "3.2.5-1.fc36.aarch64"
+      "evra": "3.2.6-1.fc36.aarch64"
     },
     "runc": {
       "evra": "2:1.1.3-1.fc36.aarch64"
@@ -1229,16 +1238,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-09-14T21:29:59Z",
+    "generated": "2022-09-16T02:11:50Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:15:55Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-09-14T03:52:31Z"
+        "generated": "2022-09-15T00:58:52Z"
       },
       "fedora-updates": {
-        "generated": "2022-09-14T01:17:51Z"
+        "generated": "2022-09-16T01:08:09Z"
       }
     }
   }
