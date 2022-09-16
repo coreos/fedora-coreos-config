@@ -15,3 +15,13 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-8298607490
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
       type: fast-track
+  coreos-installer:
+    evr: 0.16.0-1.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-b451e5d5fd
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.16.0-1.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-b451e5d5fd
+      type: fast-track
