@@ -64,13 +64,13 @@
       "evra": "1.07.1-16.fc37.ppc64le"
     },
     "bind-libs": {
-      "evra": "32:9.18.6-1.fc37.ppc64le"
+      "evra": "32:9.18.6-3.fc37.ppc64le"
     },
     "bind-license": {
-      "evra": "32:9.18.6-1.fc37.noarch"
+      "evra": "32:9.18.6-3.fc37.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.18.6-1.fc37.ppc64le"
+      "evra": "32:9.18.6-3.fc37.ppc64le"
     },
     "bsdtar": {
       "evra": "3.6.1-2.fc37.ppc64le"
@@ -133,7 +133,7 @@
       "evra": "0.21.3-2.fc37.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.189.0-2.fc37.noarch"
+      "evra": "2:2.190.0-1.fc37.noarch"
     },
     "containerd": {
       "evra": "1.6.8-2.fc37.ppc64le"
@@ -301,7 +301,7 @@
       "evra": "1:4.9.0-2.fc37.ppc64le"
     },
     "flatpak-session-helper": {
-      "evra": "1.14.0-1.fc37.ppc64le"
+      "evra": "1.14.0-2.fc37.ppc64le"
     },
     "fstrm": {
       "evra": "0.6.1-5.fc37.ppc64le"
@@ -338,9 +338,6 @@
     },
     "gdisk": {
       "evra": "1.0.9-4.fc37.ppc64le"
-    },
-    "gettext": {
-      "evra": "0.21-18.fc37.0.20220203.ppc64le"
     },
     "gettext-envsubst": {
       "evra": "0.21-18.fc37.0.20220203.ppc64le"
@@ -382,19 +379,19 @@
       "evra": "3.7-4.fc37.ppc64le"
     },
     "grub2-common": {
-      "evra": "1:2.06-52.fc37.noarch"
+      "evra": "1:2.06-58.fc37.noarch"
     },
     "grub2-ppc64le": {
-      "evra": "1:2.06-52.fc37.ppc64le"
+      "evra": "1:2.06-58.fc37.ppc64le"
     },
     "grub2-ppc64le-modules": {
-      "evra": "1:2.06-52.fc37.noarch"
+      "evra": "1:2.06-58.fc37.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.06-52.fc37.ppc64le"
+      "evra": "1:2.06-58.fc37.ppc64le"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-52.fc37.ppc64le"
+      "evra": "1:2.06-58.fc37.ppc64le"
     },
     "gzip": {
       "evra": "1.12-2.fc37.ppc64le"
@@ -583,13 +580,10 @@
       "evra": "1.5-1.fc37.ppc64le"
     },
     "libgcc": {
-      "evra": "12.2.1-1.fc37.ppc64le"
+      "evra": "12.2.1-2.fc37.ppc64le"
     },
     "libgcrypt": {
       "evra": "1.10.1-4.fc37.ppc64le"
-    },
-    "libgomp": {
-      "evra": "12.2.1-1.fc37.ppc64le"
     },
     "libgpg-error": {
       "evra": "1.45-2.fc37.ppc64le"
@@ -757,7 +751,7 @@
       "evra": "2.7.4-1.fc37.ppc64le"
     },
     "libstdc++": {
-      "evra": "12.2.1-1.fc37.ppc64le"
+      "evra": "12.2.1-2.fc37.ppc64le"
     },
     "libtalloc": {
       "evra": "2.3.4-3.fc37.ppc64le"
@@ -1232,13 +1226,13 @@
     }
   },
   "metadata": {
-    "generated": "2022-09-17T20:52:47Z",
+    "generated": "2022-09-18T20:52:48Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2022-09-17T13:38:11Z"
+        "generated": "2022-09-17T22:09:27Z"
       },
       "fedora-next": {
-        "generated": "2022-09-17T10:12:00Z"
+        "generated": "2022-09-18T10:10:05Z"
       },
       "fedora-next-updates": {
         "generated": "2022-08-09T18:08:16Z"
