@@ -1,51 +1,79 @@
-= Managing Files
+= Managing Files, Directories and Links
 
-.Example for defining files, directories and links
+You can use Ignition to create, replace or update files, directories or links.
+
+This example creates a directory with the default mode (set to `0755`: readable
+and recurseable by all), and writable only by the owner (by default `root`).
+
+.Example to create a directory with default ownership and permissions
 [source,yaml]
 ----
 variant: fcos
 version: 1.4.0
 storage:
-  # This creates a directory. Its mode is set to 0755 by default, that
-  # is, readable and executable by all, and writable by the owner.
   directories:
   - path: /opt/tools
     overwrite: true
+----
+
+This example creates a file named `/var/helloworld` with some content defined
+in-line. It also sets the file mode to `0644` (readable by all, writable by the
+owner) and sets owernship to `dnsmasq:dnsmasq`.
+
+.Example to create a file with in-line content
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+storage:
   files:
-    -
-      # Creates a file /var/helloworld containing a string defined in-line.
-      path: /var/helloworld
+    - path: /var/helloworld
       overwrite: true
       contents:
         inline: Hello, world!
-      # Sets the file mode to 0644 (readable by all, writable by the owner).
       mode: 0644
-      # Sets owernship to dnsmasq:dnsmasq.
       user:
         name: dnsmasq
       group:
         name: dnsmasq
-    -
-      # We need the nifty (and alas imaginary) transmogrifier tool.
-      path: /opt/tools/transmogrifier
+----
+
+This example creates a file with its content fetched from a remote location. In
+this case, it fetches an HTTPS URL and expects the file to be compressed with
+gzip and will decompress it before writting it on the disk. The decompressed
+content is checked against the hash value specified in the config. The format
+is `sha512-` followed by the 128 hex characters given by the sha512sum command.
+The resulting file is made readable and executable by all.
+
+.Example to create a files from a remote source
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /opt/tools/transmogrifier
       overwrite: true
-      # Deploys this tool by copying an executable from an https link. The
-      # file is compressed with gzip.
       contents:
         source: https://mytools.example.com/path/to/archive.gz
         compression: gzip
         verification:
-          # The hash is sha512- followed by the 128 hex characters given by
-          # the sha512sum command.
           hash: sha512-00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-      # Makes the tool file readable and executable by all.
       mode: 0555
+----
+
+This example creates a symbolic link in `/usr/local/bin` to a path in `/opt`.
+This is useful to let local processes invoke a program without altering their
+PATH environment variable.
+
+.Example to create a symbolic link
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+storage:
   links:
-    -
-      # Creates a symlink to the tool location from /usr/local/bin. This is
-      # useful to let local processes invoke this tool without altering
-      # their PATH environment variable.
-      path: /usr/local/bin/transmogrifier
+    - path: /usr/local/bin/transmogrifier
       overwrite: true
       target: /opt/tools/transmogrifier
       hard: false
