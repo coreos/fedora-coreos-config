@@ -45,7 +45,7 @@ install() {
 
     inst_script "$moddir/coreos-post-ignition-checks.sh" \
         "/usr/sbin/coreos-post-ignition-checks"
-    
+
     install_ignition_unit coreos-post-ignition-checks.service
 
     # For consistency tear down the network and persist multipath between the initramfs and

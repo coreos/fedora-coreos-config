@@ -37,10 +37,10 @@ runascoreuser() {
 main() {
     echo "$runascoreuserscript" > /tmp/runascoreuserscript
     chmod +x /tmp/runascoreuserscript
-    if ! runascoreuser /tmp/runascoreuserscript ; then 
-        fatal "DNS in rootless podman testnetwork failed. Test Fails" 
-    else 
-        ok "DNS in rootless podman testnetwork Suceeded. Test Passes" 
+    if ! runascoreuser /tmp/runascoreuserscript ; then
+        fatal "DNS in rootless podman testnetwork failed. Test Fails"
+    else
+        ok "DNS in rootless podman testnetwork Suceeded. Test Passes"
     fi
 }
 
