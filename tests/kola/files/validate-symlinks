@@ -1,0 +1,45 @@
+#!/bin/bash
+# kola: { "exclusive": false, "distros": "fcos", "platforms": "qemu" }
+#
+# Check if there are broken symlinks in /etc/ and /usr/.
+# See: https://github.com/coreos/fedora-coreos-config/issues/1782
+#
+# - distros: fcos
+#   - Only run on FCOS until we've tested it on RHCOS.
+# - platforms: qemu
+#   - This test should pass everywhere if it passes anywhere.
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+# List of known broken symlinks that require further investigation:
+list_broken_symlinks_skip=(
+    '/etc/mtab'
+    '/etc/ssl/'
+    '/etc/swid/swidtags.d/fedoraproject.org'
+    '/etc/xdg/systemd/user'
+    '/usr/lib/.build-id/'
+    '/usr/lib/firmware/brcm/brcmfmac43455-sdio.AW-CM256SM.txt.xz'
+    '/usr/lib/modules/'
+    '/usr/share/rhel/secrets/etc-pki-entitlement'
+    '/usr/share/rhel/secrets/redhat.repo'
+    '/usr/share/rhel/secrets/rhsm'
+)
+
+find /usr/ /etc/ -type l -not -path "/usr/etc*"| while read -r file_name; do
+    real_path=$(realpath -m "${file_name}");
+    if [[ -e "${real_path}" ]]; then
+        continue
+    fi
+    found="false"
+    for search_element in "${list_broken_symlinks_skip[@]}"; do
+        if [[ "${file_name}" == "${search_element}"* || "${file_name}" == "${search_element}" ]]; then
+            found="true"
+            break
+        fi
+    done
+    if [[ "${found}" == "false" ]];  then
+        fatal "Error: ${file_name} symlink to ${real_path} which does not exist"
+    fi
+done

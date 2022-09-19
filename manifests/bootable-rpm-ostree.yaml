@@ -5,9 +5,8 @@
 # We expect most people though using coreos-assembler to inherit from
 # fedora-coreos-base.yaml.
 packages:
- # Kernel + systemd.  Note we explicitly specify kernel-{core,modules}
- # because otherwise depsolving could bring in kernel-debug.
- - kernel kernel-core kernel-modules systemd
+ # Kernel + systemd.
+ - kernel systemd
  # linux-firmware now a recommends so let's explicitly include it
  # https://gitlab.com/cki-project/kernel-ark/-/commit/32271d0cd9bd52d386eb35497c4876a8f041f70b
  # https://src.fedoraproject.org/rpms/kernel/c/f55c3e9ed8605ff28cb9a922efbab1055947e213?branch=rawhide
@@ -28,6 +27,8 @@ packages-s390x:
   # On Fedora, this is provided by s390utils-core. on RHEL, this is for now
   # provided by s390utils-base, but soon will be -core too.
   - /usr/sbin/zipl
+  # for Secure Execution
+  - veritysetup
 packages-x86_64:
   - grub2 grub2-efi-x64 efibootmgr shim
   - microcode_ctl
@@ -44,3 +45,9 @@ postprocess:
     #!/usr/bin/env bash
     set -xeuo pipefail
     rm -f /usr/bin/dotlockfile
+
+exclude-packages:
+  # Exclude kernel-debug-core to make sure that it doesn't somehow get
+  # chosen as the package to satisfy the `kernel-core` dependency from
+  # the kernel package.
+  - kernel-debug-core

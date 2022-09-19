@@ -30,6 +30,12 @@ install() {
         sort \
         uniq
 
+    if [[ $(uname -m) = s390x ]]; then
+        # for Secure Execution
+        inst_multiple \
+            veritysetup
+    fi
+
     # ignition-ostree-growfs deps
     inst_multiple  \
         basename   \
@@ -101,9 +107,6 @@ install() {
         /usr/libexec/coreos-check-rootfs-size
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
-
-    install_ignition_unit ignition-ostree-close-luks.service
-    install_ignition_unit ignition-ostree-drop-luks.service
 
     # Workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2075085
     install_ignition_unit ignition-ostree-secex-config.service

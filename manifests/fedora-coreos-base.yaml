@@ -11,6 +11,10 @@ include:
   - shared-workarounds.yaml
   - shared-el9.yaml
 
+conditional-include:
+  - if: releasever <= 36
+    include: fallback-hostname.yaml
+
 ostree-layers:
   - overlay/05core
   - overlay/08nouveau
@@ -67,19 +71,6 @@ postprocess:
   - |
     #!/usr/bin/env bash
     systemctl mask systemd-repart.service
-
-  # Set the fallback hostname to `localhost`. This was needed in F33/F34
-  # because a fallback hostname of `fedora` + systemd-resolved broke
-  # rDNS. It's now fixed in F35+ NetworkManager to handle the corner cases
-  # around synthetized hostnames and systemd-resolved, but the question
-  # remains on what is a more appropriate default hostname for a server like
-  # host. https://github.com/coreos/fedora-coreos-tracker/issues/902
-  - |
-    #!/usr/bin/env bash
-    source /etc/os-release
-    if [ -z "${DEFAULT_HOSTNAME:-}" ]; then
-      echo 'DEFAULT_HOSTNAME=localhost' >> /usr/lib/os-release
-    fi
 
   # Fedora 37 adds the nvmf dracut module to the initrd, causing
   # ext.config.files.dracut-executable to notice that the module puts a
