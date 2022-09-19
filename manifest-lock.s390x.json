@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.39.90-1.fc37.s390x"
+      "evra": "1:1.40.0-1.fc37.s390x"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.39.90-1.fc37.s390x"
+      "evra": "1:1.40.0-1.fc37.s390x"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.39.90-1.fc37.s390x"
+      "evra": "1:1.40.0-1.fc37.s390x"
     },
     "NetworkManager-team": {
-      "evra": "1:1.39.90-1.fc37.s390x"
+      "evra": "1:1.40.0-1.fc37.s390x"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.39.90-1.fc37.s390x"
+      "evra": "1:1.40.0-1.fc37.s390x"
     },
     "WALinuxAgent-udev": {
       "evra": "2.7.3.0-1.fc37.noarch"
@@ -40,7 +40,7 @@
       "evra": "2.5.1-5.fc37.s390x"
     },
     "audit-libs": {
-      "evra": "3.0.8-3.fc37.s390x"
+      "evra": "3.0.9-1.fc37.s390x"
     },
     "authselect": {
       "evra": "1.4.0-3.fc37.s390x"
@@ -61,13 +61,13 @@
       "evra": "1:2.11-8.fc37.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.18.5-2.fc37.s390x"
+      "evra": "32:9.18.6-3.fc37.s390x"
     },
     "bind-license": {
-      "evra": "32:9.18.5-2.fc37.noarch"
+      "evra": "32:9.18.6-3.fc37.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.18.5-2.fc37.s390x"
+      "evra": "32:9.18.6-3.fc37.s390x"
     },
     "bsdtar": {
       "evra": "3.6.1-2.fc37.s390x"
@@ -94,7 +94,7 @@
       "evra": "0.1.7-7.fc37.s390x"
     },
     "chrony": {
-      "evra": "4.3-0.1.pre1.fc37.s390x"
+      "evra": "4.3-1.fc37.s390x"
     },
     "cifs-utils": {
       "evra": "6.15-2.fc37.s390x"
@@ -115,7 +115,7 @@
       "evra": "0.31-11.fc37.noarch"
     },
     "conmon": {
-      "evra": "2:2.1.2-3.fc37.s390x"
+      "evra": "2:2.1.3-1.fc37.s390x"
     },
     "console-login-helper-messages": {
       "evra": "0.21.3-2.fc37.noarch"
@@ -130,10 +130,10 @@
       "evra": "0.21.3-2.fc37.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.189.0-2.fc37.noarch"
+      "evra": "2:2.190.0-1.fc37.noarch"
     },
     "containerd": {
-      "evra": "1.6.6-6.fc37.s390x"
+      "evra": "1.6.8-2.fc37.s390x"
     },
     "containernetworking-plugins": {
       "evra": "1.1.1-8.fc37.s390x"
@@ -142,10 +142,10 @@
       "evra": "4:1-66.fc37.noarch"
     },
     "coreos-installer": {
-      "evra": "0.15.0-5.fc37.s390x"
+      "evra": "0.16.0-1.fc37.s390x"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.15.0-5.fc37.s390x"
+      "evra": "0.16.0-1.fc37.s390x"
     },
     "coreutils": {
       "evra": "9.1-6.fc37.s390x"
@@ -157,10 +157,10 @@
       "evra": "2.13-13.fc37.s390x"
     },
     "cracklib": {
-      "evra": "2.9.6-28.fc36.s390x"
+      "evra": "2.9.7-30.fc37.s390x"
     },
     "cracklib-dicts": {
-      "evra": "2.9.6-28.fc36.s390x"
+      "evra": "2.9.7-30.fc37.s390x"
     },
     "criu": {
       "evra": "3.17.1-3.fc37.s390x"
@@ -169,7 +169,7 @@
       "evra": "3.17.1-3.fc37.s390x"
     },
     "crun": {
-      "evra": "1.5-1.fc37.s390x"
+      "evra": "1.6-2.fc37.s390x"
     },
     "crypto-policies": {
       "evra": "20220815-1.gite4ed860.fc37.noarch"
@@ -181,7 +181,7 @@
       "evra": "2.5.0-1.fc37.s390x"
     },
     "curl": {
-      "evra": "7.84.0-2.fc37.s390x"
+      "evra": "7.85.0-1.fc37.s390x"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-8.fc37.s390x"
@@ -247,16 +247,16 @@
       "evra": "1.46.5-3.fc37.s390x"
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.187-6.fc37.noarch"
+      "evra": "0.187-8.fc37.noarch"
     },
     "elfutils-libelf": {
-      "evra": "0.187-6.fc37.s390x"
+      "evra": "0.187-8.fc37.s390x"
     },
     "elfutils-libs": {
-      "evra": "0.187-6.fc37.s390x"
+      "evra": "0.187-8.fc37.s390x"
     },
     "ethtool": {
-      "evra": "2:5.18-2.fc37.s390x"
+      "evra": "2:5.19-1.fc37.s390x"
     },
     "expat": {
       "evra": "2.4.8-2.fc37.s390x"
@@ -298,7 +298,7 @@
       "evra": "1:4.9.0-2.fc37.s390x"
     },
     "flatpak-session-helper": {
-      "evra": "1.13.3-6.fc37.s390x"
+      "evra": "1.14.0-2.fc37.s390x"
     },
     "fstrm": {
       "evra": "0.6.1-5.fc37.s390x"
@@ -331,22 +331,22 @@
       "evra": "1:1.23-2.fc37.s390x"
     },
     "gdisk": {
-      "evra": "1.0.9-3.fc37.s390x"
+      "evra": "1.0.9-4.fc37.s390x"
     },
     "git-core": {
-      "evra": "2.37.2-1.fc37.s390x"
+      "evra": "2.37.3-1.fc37.s390x"
     },
     "glib2": {
-      "evra": "2.73.2-8.fc37.s390x"
+      "evra": "2.73.3-3.fc37.s390x"
     },
     "glibc": {
-      "evra": "2.36-1.fc37.s390x"
+      "evra": "2.36-3.fc37.s390x"
     },
     "glibc-common": {
-      "evra": "2.36-1.fc37.s390x"
+      "evra": "2.36-3.fc37.s390x"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.36-1.fc37.s390x"
+      "evra": "2.36-3.fc37.s390x"
     },
     "gmp": {
       "evra": "1:6.2.1-3.fc37.s390x"
@@ -436,13 +436,13 @@
       "evra": "2.5.1-2.fc37.noarch"
     },
     "kernel": {
-      "evra": "5.19.7-300.fc37.s390x"
+      "evra": "5.19.9-300.fc37.s390x"
     },
     "kernel-core": {
-      "evra": "5.19.7-300.fc37.s390x"
+      "evra": "5.19.9-300.fc37.s390x"
     },
     "kernel-modules": {
-      "evra": "5.19.7-300.fc37.s390x"
+      "evra": "5.19.9-300.fc37.s390x"
     },
     "kexec-tools": {
       "evra": "2.0.25-1.fc37.s390x"
@@ -514,7 +514,7 @@
       "evra": "1.46.5-3.fc37.s390x"
     },
     "libcurl-minimal": {
-      "evra": "7.84.0-2.fc37.s390x"
+      "evra": "7.85.0-1.fc37.s390x"
     },
     "libdaemon": {
       "evra": "0.14-24.fc37.s390x"
@@ -544,7 +544,7 @@
       "evra": "1.11.0-3.fc37.s390x"
     },
     "libgcc": {
-      "evra": "12.2.1-1.fc37.s390x"
+      "evra": "12.2.1-2.fc37.s390x"
     },
     "libgcrypt": {
       "evra": "1.10.1-4.fc37.s390x"
@@ -565,7 +565,7 @@
       "evra": "1.3.1-52.fc37.s390x"
     },
     "libipa_hbac": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "libjose": {
       "evra": "11-6.fc37.s390x"
@@ -613,13 +613,13 @@
       "evra": "1.0.1-22.fc37.s390x"
     },
     "libnfsidmap": {
-      "evra": "1:2.6.2-0.fc37.s390x"
+      "evra": "1:2.6.2-1.fc37.s390x"
     },
     "libnftnl": {
       "evra": "1.2.2-2.fc37.s390x"
     },
     "libnghttp2": {
-      "evra": "1.48.0-2.fc37.s390x"
+      "evra": "1.49.0-1.fc37.s390x"
     },
     "libnl3": {
       "evra": "3.7.0-2.fc37.s390x"
@@ -652,7 +652,7 @@
       "evra": "0.1.5-52.fc37.s390x"
     },
     "librepo": {
-      "evra": "1.14.3-3.fc37.s390x"
+      "evra": "1.14.4-1.fc37.s390x"
     },
     "libreport-filesystem": {
       "evra": "2.17.2-1.fc37.noarch"
@@ -682,7 +682,7 @@
       "evra": "2.38.1-1.fc37.s390x"
     },
     "libsmbclient": {
-      "evra": "2:4.17.0-0.3.rc2.fc37.s390x"
+      "evra": "2:4.17.0-1.fc37.s390x"
     },
     "libsolv": {
       "evra": "0.7.22-3.fc37.s390x"
@@ -691,19 +691,19 @@
       "evra": "1.46.5-3.fc37.s390x"
     },
     "libsss_certmap": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "libsss_idmap": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "libsss_nss_idmap": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "libsss_sudo": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "libstdc++": {
-      "evra": "12.2.1-1.fc37.s390x"
+      "evra": "12.2.1-2.fc37.s390x"
     },
     "libtalloc": {
       "evra": "2.3.4-3.fc37.s390x"
@@ -745,7 +745,7 @@
       "evra": "0.3.2-4.fc37.s390x"
     },
     "libwbclient": {
-      "evra": "2:4.17.0-0.3.rc2.fc37.s390x"
+      "evra": "2:4.17.0-1.fc37.s390x"
     },
     "libxcrypt": {
       "evra": "4.4.28-3.fc37.s390x"
@@ -799,7 +799,7 @@
       "evra": "4.2-2.fc37.s390x"
     },
     "moby-engine": {
-      "evra": "20.10.17-7.fc37.s390x"
+      "evra": "20.10.18-1.fc37.s390x"
     },
     "mozjs102": {
       "evra": "102.2.0-1.fc37.s390x"
@@ -835,7 +835,7 @@
       "evra": "0.52.21-14.fc37.s390x"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.2-0.fc37.s390x"
+      "evra": "1:2.6.2-1.fc37.s390x"
     },
     "nftables": {
       "evra": "1:1.0.4-3.fc37.s390x"
@@ -913,10 +913,10 @@
       "evra": "1.8.0-3.fc37.s390x"
     },
     "podman": {
-      "evra": "4:4.2.0-2.fc37.s390x"
+      "evra": "4:4.2.1-2.fc37.s390x"
     },
     "podman-plugins": {
-      "evra": "4:4.2.0-2.fc37.s390x"
+      "evra": "4:4.2.1-2.fc37.s390x"
     },
     "policycoreutils": {
       "evra": "3.4-6.fc37.s390x"
@@ -931,13 +931,13 @@
       "evra": "0.1-22.fc37.s390x"
     },
     "popt": {
-      "evra": "1.19~rc1-3.fc37.s390x"
+      "evra": "1.19~rc1-4.fc37.s390x"
     },
     "procps-ng": {
       "evra": "3.3.17-6.fc37.s390x"
     },
     "protobuf-c": {
-      "evra": "1.4.0-6.fc37.s390x"
+      "evra": "1.4.1-2.fc37.s390x"
     },
     "psmisc": {
       "evra": "23.4-4.fc37.s390x"
@@ -955,19 +955,19 @@
       "evra": "1.2.6-3.fc37.s390x"
     },
     "rpm": {
-      "evra": "4.18.0-0.beta1.4.fc37.s390x"
+      "evra": "4.18.0-0.rc1.3.fc37.s390x"
     },
     "rpm-libs": {
-      "evra": "4.18.0-0.beta1.4.fc37.s390x"
+      "evra": "4.18.0-0.rc1.3.fc37.s390x"
     },
     "rpm-ostree": {
-      "evra": "2022.12-4.fc37.s390x"
+      "evra": "2022.13-1.fc37.s390x"
     },
     "rpm-ostree-libs": {
-      "evra": "2022.12-4.fc37.s390x"
+      "evra": "2022.13-1.fc37.s390x"
     },
     "rpm-plugin-selinux": {
-      "evra": "4.18.0-0.beta1.4.fc37.s390x"
+      "evra": "4.18.0-0.rc1.3.fc37.s390x"
     },
     "rsync": {
       "evra": "3.2.5-1.fc37.s390x"
@@ -979,13 +979,13 @@
       "evra": "2:2.23.0-1.fc37.s390x"
     },
     "samba-client-libs": {
-      "evra": "2:4.17.0-0.3.rc2.fc37.s390x"
+      "evra": "2:4.17.0-1.fc37.s390x"
     },
     "samba-common": {
-      "evra": "2:4.17.0-0.3.rc2.fc37.noarch"
+      "evra": "2:4.17.0-1.fc37.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.17.0-0.3.rc2.fc37.s390x"
+      "evra": "2:4.17.0-1.fc37.s390x"
     },
     "sed": {
       "evra": "4.8-11.fc37.s390x"
@@ -1006,10 +1006,10 @@
       "evra": "1.46-4.fc37.s390x"
     },
     "shadow-utils": {
-      "evra": "2:4.11.1-4.fc37.s390x"
+      "evra": "2:4.12.3-1.fc37.s390x"
     },
     "shadow-utils-subid": {
-      "evra": "2:4.11.1-4.fc37.s390x"
+      "evra": "2:4.12.3-1.fc37.s390x"
     },
     "skopeo": {
       "evra": "1:1.9.2-1.fc37.s390x"
@@ -1036,31 +1036,31 @@
       "evra": "0.1.3-4.fc37.s390x"
     },
     "sssd-ad": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "sssd-client": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "sssd-common": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "sssd-common-pac": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "sssd-ipa": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "sssd-krb5": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "sssd-krb5-common": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "sssd-ldap": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "sssd-nfs-idmap": {
-      "evra": "2.7.3-3.fc37.s390x"
+      "evra": "2.7.4-1.fc37.s390x"
     },
     "stalld": {
       "evra": "1.16-2.fc37.s390x"
@@ -1117,10 +1117,10 @@
       "evra": "2.5.0-1.fc37.s390x"
     },
     "vim-data": {
-      "evra": "2:9.0.213-1.fc37.noarch"
+      "evra": "2:9.0.412-1.fc37.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.213-1.fc37.s390x"
+      "evra": "2:9.0.412-1.fc37.s390x"
     },
     "which": {
       "evra": "2.21-35.fc37.s390x"
@@ -1150,7 +1150,7 @@
       "evra": "0.0.24-5.fc37.s390x"
     },
     "zlib": {
-      "evra": "1.2.12-4.fc37.s390x"
+      "evra": "1.2.12-5.fc37.s390x"
     },
     "zram-generator": {
       "evra": "1.1.2-2.fc37.s390x"
@@ -1160,13 +1160,13 @@
     }
   },
   "metadata": {
-    "generated": "2022-09-10T01:10:36Z",
+    "generated": "2022-09-18T20:54:20Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2022-09-09T23:32:31Z"
+        "generated": "2022-09-17T22:09:51Z"
       },
       "fedora-next": {
-        "generated": "2022-09-09T09:55:35Z"
+        "generated": "2022-09-18T10:10:04Z"
       },
       "fedora-next-updates": {
         "generated": "2022-08-09T18:08:16Z"

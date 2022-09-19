@@ -1,11 +1,14 @@
 #!/bin/bash
-# kola: { "exclusive": false }
+## kola:
+##   exclusive: false
+#
+# It's easy for dracut modules to accidentally ship scripts without +x set.
+# Check for those.
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-# It's easy for dracut modules to accidentally ship scripts without +x set
 tmpd=$(mktemp -d)
 ( cd "${tmpd}" && lsinitrd --unpack /boot/ostree/*/init* )
 if find "${tmpd}/usr/"{bin,sbin,libexec} ! -perm -0111 | grep -v clevis-luks-common-functions; then
