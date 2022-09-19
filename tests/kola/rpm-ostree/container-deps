@@ -1,0 +1,16 @@
+#!/bin/bash
+# Verify some dependencies of the rpm-ostree container stack.
+# kola: { "exclusive": false }
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+# Verify this command exists since it's a hard dependency of ostree's container bits.
+skopeo experimental-image-proxy --help
+
+# Also this one verifies the linkage between ostree and rpm-ostree via extensions
+h=$(ostree container encapsulate --help)
+[[ "$h" =~ --copymeta ]] || fatal "missing ostree container"
+
+ok skopeo

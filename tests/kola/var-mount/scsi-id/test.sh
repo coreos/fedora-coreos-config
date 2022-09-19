@@ -1,6 +1,6 @@
 #!/bin/bash
 set -xeuo pipefail
-# This is to verify udev rules /dev/disk/by-id/scsi-* 
+# This is to verify udev rules /dev/disk/by-id/scsi-*
 # symlinks present in initramfs
 # https://bugzilla.redhat.com/show_bug.cgi?id=1990506
 

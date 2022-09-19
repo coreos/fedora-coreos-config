@@ -238,7 +238,7 @@ butane_static_br0='
 
 check_requirement() {
     req=$1
-    if ! which $req &>/dev/null; then
+    if ! which "$req" &>/dev/null; then
         echo "No $req. Can't continue" 1>&2
         return 1
     fi
@@ -257,8 +257,8 @@ check_requirements() {
         virt-install
         virt-ls
     )
-    for req in ${reqs[@]}; do
-        check_requirement $req
+    for req in "${reqs[@]}"; do
+        check_requirement "$req"
     done
 }
 
@@ -268,11 +268,11 @@ start_vm() {
     local ignitionfile=$1; shift
     local kernel=$1; shift
     local initramfs=$1; shift
-    local kernel_args=$@
+    local kernel_args=$*
     virt-install --name $vmname --ram 3096 --vcpus 2 --graphics=none --noautoconsole \
                    --quiet --network bridge=virbr0 --network bridge=virbr0 \
-                   --disk size=20,backing_store=${disk} \
-                   --install kernel=${kernel},initrd=${initramfs},kernel_args_overwrite=yes,kernel_args="${kernel_args}" \
+                   --disk size=20,backing_store="${disk}" \
+                   --install kernel="${kernel}",initrd="${initramfs}",kernel_args_overwrite=yes,kernel_args="${kernel_args}" \
                    --qemu-commandline="-fw_cfg name=opt/com.coreos/config,file=$ignitionfile"
 }
 
@@ -290,7 +290,7 @@ check_vm() {
     ssh_config+=' -o StrictHostKeyChecking=no'
     ssh_config+=" -i $sshkeyfile"
 
-    if [ $dhcp == 'dhcp' ]; then
+    if [ "$dhcp" == 'dhcp' ]; then
         macinfo=$(virsh dumpxml $vmname | grep 'mac address' | head -n 1)
         macregex='(..:..:..:..:..:..)'
         if ! [[ $macinfo =~ $macregex ]]; then
@@ -379,7 +379,7 @@ check_vm() {
     # verify that the right number of NetworkManager keyfiles got created
     # use `echo -n | wc -l` so we can properly detect 0. Wasn't working
     # with `wc -l <<< $keyfiles`.
-    if [ ${detectedkeyfiles} != ${numkeyfiles} ]; then
+    if [ "${detectedkeyfiles}" != "${numkeyfiles}" ]; then
         rc=1
         echo "ERROR: Expected ${numkeyfiles} NM keyfiles, found ${detectedkeyfiles}" 1>&2
     fi
@@ -390,38 +390,38 @@ check_vm() {
     else
         nameserverinfo="$resolvedotconf"
     fi
-    if ! grep $nameserver &>/dev/null <<< "$nameserverinfo"; then
+    if ! grep "$nameserver" &>/dev/null <<< "$nameserverinfo"; then
         rc=1
         echo "ERROR: Nameserver information was not what was expected" 1>&2
     fi
 
     # verify that there are the right number of ipv4 devices "up"
-    if [ $(jq length <<< $ipinfo) != "$((interfaces+1))" ]; then
+    if [ "$(jq length <<< "$ipinfo")" != "$((interfaces+1))" ]; then
         rc=1
-        echo "ERROR: More interfaces up than expected" 1>&2 
+        echo "ERROR: More interfaces up than expected" 1>&2
     fi
     # verify that the first one in loopback
-    if [ $(jq -r .[0].addr_info[0].dev <<< $ipinfo) != 'lo' ]; then
+    if [ "$(jq -r .[0].addr_info[0].dev <<< "$ipinfo")" != 'lo' ]; then
         rc=1
-        echo "ERROR: The first active interface is not 'lo'" 1>&2 
+        echo "ERROR: The first active interface is not 'lo'" 1>&2
     fi
     # verify that the second one is the expected device
-    if [ $(jq -r .[1].addr_info[0].dev <<< $ipinfo) != "${dev}" ]; then
+    if [ "$(jq -r .[1].addr_info[0].dev <<< "$ipinfo")" != "${dev}" ]; then
         rc=1
-        echo "ERROR: The second active interface is not ${dev}" 1>&2 
+        echo "ERROR: The second active interface is not ${dev}" 1>&2
     fi
     # verify that the second one has the IP we assigned
-    if [ $(jq -r .[1].addr_info[0].local <<< $ipinfo) != "${ip}" ]; then
+    if [ "$(jq -r .[1].addr_info[0].local <<< "$ipinfo")" != "${ip}" ]; then
         rc=1
-        echo "ERROR: The second active interface does not have expected ip" 1>&2 
+        echo "ERROR: The second active interface does not have expected ip" 1>&2
     fi
 
     if [ "$rc" != '0' ]; then
         echo "$hostnameinfo"
         echo "$nameserverinfo"
         echo "$keyfiles"
-        jq -r .[].addr_info[].dev 1>&2 <<< $ipinfo
-        jq -r .[].addr_info[].local 1>&2 <<< $ipinfo
+        jq -r .[].addr_info[].dev 1>&2 <<< "$ipinfo"
+        jq -r .[].addr_info[].local 1>&2 <<< "$ipinfo"
         true
     else
         echo "Check for ${hostname} + dns:${nameserver} + ${dev}/${ip} passed!"
@@ -452,8 +452,8 @@ create_ignition_file() {
     local ignitionfile=$2
     # uncomment and use ign-converter instead if on rhcos less than 4.6
     #echo "$butaneconfig" | butane --strict | ign-converter -downtranslate -output $ignitionfile
-    echo "$butaneconfig" | butane --strict --output $ignitionfile
-    chcon --verbose unconfined_u:object_r:svirt_home_t:s0 $ignitionfile &>/dev/null
+    echo "$butaneconfig" | butane --strict --output "$ignitionfile"
+    chcon --verbose unconfined_u:object_r:svirt_home_t:s0 "$ignitionfile" &>/dev/null
 }
 
 
@@ -473,16 +473,16 @@ main() {
     local ignitionfile="${PWD}/coreos-nettest-config.ign"
     local sshpubkey
     local butane
-     
+
     check_requirements
 
     # generate an ssh key to use:
-    rm -f $sshkeyfile $sshpubkeyfile
-    ssh-keygen -N '' -C '' -f $sshkeyfile &>/dev/null
-    sshpubkey=$(cat $sshpubkeyfile)
+    rm -f "$sshkeyfile" "$sshpubkeyfile"
+    ssh-keygen -N '' -C '' -f "$sshkeyfile" &>/dev/null
+    sshpubkey="$(cat "$sshpubkeyfile")"
 
     # Find out which partition is the boot partition
-    partition=$(guestfish --ro -a $qcow <<EOF
+    partition=$(guestfish --ro -a "$qcow" <<EOF
     run
     findfs-label boot
     exit
@@ -490,17 +490,17 @@ EOF
     )
 
     # Grab kernel/initramfs from the disk
-    files=$(virt-ls -a $qcow -m $partition -R /ostree/)
+    files=$(virt-ls -a "$qcow" -m "$partition" -R /ostree/)
     for f in $files; do
         if [[ "${f}" =~ hmac$ ]]; then
             # ignore .vmlinuz-5.5.9-200.fc31.x86_64.hmac
             true
         elif [[ "${f}" =~ img$ ]]; then
             # grab initramfs in the form initramfs-5.5.9-200.fc31.x86_64.img
-            virt-cat -a $qcow -m $partition "/ostree/${f}" > $initramfs
+            virt-cat -a "$qcow" -m "$partition" "/ostree/${f}" > "$initramfs"
         elif [[ "${f}" =~ '/vmlinuz' ]]; then
             # grab kernel in the form vmlinuz-5.5.9-200.fc31.x86_64
-            virt-cat -a $qcow -m $partition "/ostree/${f}" > $kernel
+            virt-cat -a "$qcow" -m "$partition" "/ostree/${f}" > "$kernel"
         fi
     done
 
@@ -530,7 +530,7 @@ EOF
     # Grab kernel arguments from the disk and use them
     # - strip `options ` from the front of the line
     # - strip `$ignition_firstboot`
-    common_args=$(virt-cat -a $qcow -m $partition "/loader.1/entries/${bls_file}" | \
+    common_args=$(virt-cat -a "$qcow" -m "$partition" "/loader.1/entries/${bls_file}" | \
                   grep -P '^options' | \
                   sed -e 's/options //' | \
                   sed -e 's/$ignition_firstboot//')
@@ -633,13 +633,13 @@ EOF
     # namesever= before ip= kargs doesn't yield an extra default.nm_connection
     # file. The second is to verify that the nameserver entry gets placed into
     # all connections that get created (i.e. ens2.nm_connection and ens3.nm_connection).
-    # 
+    #
     # We'll perform the first check automatically in check_vm by verifying the
     # number of keyfiles is 2, along with checking that the dns server did make
     # it into the resolv.conf or resolvectl (systemd-resolvd). We won't
     # automatically check that each file has the dns entry for now, but anyone
     # can manually run this and grab a console to the VM and verify that.
-    # 
+    #
     # [1] https://gitlab.freedesktop.org/NetworkManager/NetworkManager/issues/391
     echo -e "\n###### Testing initramfs nameserver= option\n"
     create_ignition_file "$butane_none" $ignitionfile
@@ -674,17 +674,17 @@ EOF
         static_team0
         static_br0
     )
-        
-    for initramfsnet in ${initramfsloop[@]}; do
-        for butanenet in ${butaneloop[@]}; do
+
+    for initramfsnet in "${initramfsloop[@]}"; do
+        for butanenet in "${butaneloop[@]}"; do
             method='none'; interfaces=1;
             nameserver=${nameserverstatic}
             numkeyfiles=3
             if [ "${butanenet}" == 'none' ]; then
-                # because we propagate initramfs networking if no real root networking 
+                # because we propagate initramfs networking if no real root networking
                 devname=${initramfsnet##*_}
                 hostname=${initramfshostname}
-                # If we're using dhcp for initramfs and not providing any real root 
+                # If we're using dhcp for initramfs and not providing any real root
                 # networking then we need to tell check_vm we're using DHCP and set
                 # a few other values.
                 if [ "${initramfsnet}" == 'dhcp_nic0' ]; then
@@ -734,5 +734,5 @@ EOF
 }
 
 
-main $@
+main "$@"
 
