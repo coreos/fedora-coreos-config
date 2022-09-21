@@ -41,7 +41,7 @@ if is_fcos; then
     # Schedule based on:
     # https://lists.fedoraproject.org/archives/list/coreos-status@lists.fedoraproject.org/message/GHLXX4MXNHUEAXQLK6BZN45IQYHRVQB4/
     case "$(get_fcos_stream)" in
-    next-devel) threshold=20220923 ;;
+    next-devel) threshold=20220919 ;;
     next) threshold=20220930 ;;
     testing-devel|rawhide|branched) threshold=20221118 ;;
     testing) threshold=20221125 ;;
