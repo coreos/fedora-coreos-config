@@ -143,7 +143,7 @@ storage:
 
 It is possible to reconfigure the root filesystem itself. You can use the path `/dev/disk/by-label/root` to refer to the original root partition. You must ensure that the new filesystem also has a label of `root`.
 
-NOTE: You must have at least 4G of RAM for root reprovisioning to work.
+NOTE: You must have at least 4 GiB of RAM for root reprovisioning to work.
 
 Here's an example of moving from xfs to ext4, but reusing the same partition on the primary disk:
 
@@ -267,6 +267,8 @@ storage:
 The root filesystem can also be moved to LUKS. In that case, the LUKS device must be pinned by https://coreos.github.io/ignition/operator-notes/#clevis-based-devices[Clevis]. There are two primary pin types available: TPM2 and Tang (or a combination of those using Shamir Secret Sharing).
 
 CAUTION: TPM2 pinning just binds encryption to the physical machine in use. Make sure to understand its threat model before choosing between TPM2 and Tang pinning. For more information, see https://github.com/latchset/clevis/blob/master/src/pins/tpm2/clevis-encrypt-tpm2.1.adoc#threat-model[this section] of the Clevis TPM2 pin documentation.
+
+NOTE: You must have at least 4 GiB of RAM for root reprovisioning to work.
 
 There is simplified Butane config syntax for configuring root filesystem encryption and pinning. Here is an example of using it to create a TPM2-pinned encrypted root filesystem:
 
