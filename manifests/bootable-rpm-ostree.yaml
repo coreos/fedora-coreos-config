@@ -45,6 +45,13 @@ postprocess:
     #!/usr/bin/env bash
     set -xeuo pipefail
     rm -f /usr/bin/dotlockfile
+  # We don't need "protected packages"; rpm-ostree inherently provides
+  # a versioned filesystem and hence you can't actually delete something
+  # that's required.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    rm -rf /etc/dnf/protected.d/*
 
 exclude-packages:
   # Exclude kernel-debug-core to make sure that it doesn't somehow get
