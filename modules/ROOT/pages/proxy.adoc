@@ -1,0 +1,112 @@
+= Proxied Internet Access
+
+If you are deploying to an environment requiring internet access via a proxy, you will want to configure services so that they can access resources as intended.
+
+This is best done by defining a single file with required environment variables in your Butane configuration, and to reference this via systemd drop-in unit files for all such services.
+
+== Defining common proxy environment variables
+
+This common file has to be subsequently referenced explicitly by each service that requires internet access thereby encouraging least privilege best practices.
+
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/example-proxy.env
+      mode: 0644
+      contents:
+        inline: |
+          https_proxy="http://example.com:8080"
+          all_proxy="http://example.com:8080"
+          http_proxy="http://example.com:8080"
+          HTTP_PROXY="http://example.com:8080"
+          HTTPS_PROXY="http://example.com:8080"
+          no_proxy="*.example.com,127.0.0.1,0.0.0.0,localhost"
+----
+
+== Defining drop-in units for core services
+
+https://github.com/coreos/zincati[Zincati] polls for OS updates, and https://github.com/coreos/rpm-ostree[rpm-ostree] is used to apply OS and layered package updates both therefore requiring internet access. The optional anonymized https://docs.fedoraproject.org/en-US/fedora-coreos/counting/[countme] service also requires access if enabled.
+
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+systemd:
+  units:
+    - name: rpm-ostreed.service
+      dropins:
+        - name: 99-proxy.conf
+          contents: |
+            [Service]
+            EnvironmentFile=/etc/example-proxy.env
+    - name: zincati.service
+      dropins:
+        - name: 99-proxy.conf
+          contents: |
+            [Service]
+            EnvironmentFile=/etc/example-proxy.env
+    - name: rpm-ostree-countme.service
+      dropins:
+        - name: 99-proxy.conf
+          contents: |
+            [Service]
+            EnvironmentFile=/etc/example-proxy.env
+----
+
+== Defining drop-in units for container daemons
+
+If using docker then the docker.service drop-in is sufficient. If running Kubernetes with containerd (and no docker) then the containerd.service drop-in may be necessary.
+
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+systemd:
+  units:
+    - name: docker.service
+      enabled: true
+      dropins:
+        - name: 99-proxy.conf
+          contents: |
+            [Service]
+            EnvironmentFile=/etc/example-proxy.env
+    - name: containerd.service
+      enabled: true
+      dropins:
+        - name: 99-proxy.conf
+          contents: |
+            [Service]
+            EnvironmentFile=/etc/example-proxy.env
+----
+
+== Defining proxy use for podman systemd units
+
+Podman has no daemon and so configuration is for each individual service scheduled, and can be done as part of the full systemd unit definition.
+
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+systemd:
+  units:
+    - name: example-svc.service
+      enabled: true
+      contents: |
+        [Unit]
+        After=network-online.target
+        Wants=network-online.target
+
+        [Service]
+        EnvironmentFile=/etc/example-proxy.env
+        ExecStartPre=-/bin/podman kill example-svc
+        ExecStartPre=-/bin/podman rm example-svc
+        ExecStartPre=-/bin/podman pull example-image:latest
+        ExecStart=/bin/podman run --name example-svc example-image:latest
+        ExecStop=/bin/podman stop example-svc
+
+        [Install]
+        WantedBy=multi-user.target
+----
