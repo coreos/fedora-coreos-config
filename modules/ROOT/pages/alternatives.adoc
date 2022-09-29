@@ -2,7 +2,7 @@
 
 Due to an https://github.com/fedora-sysv/chkconfig/issues/9[ongoing issue] in how alternatives configurations are stored on the system, Fedora CoreOS systems can not use the usual `alternatives` commands to configure them.
 
-Instead, until this issue is resolved, you can set the symlinks directly in `/etc/alternatives`. For example, to use the nftables based variants of `iptables` commands:
+Instead, until this issue is resolved, you can set the symlinks directly in `/etc/alternatives`. For example, to use the legacy-based variants of the `iptables` commands:
 
 [source,yaml]
 ----
@@ -11,27 +11,27 @@ version: 1.4.0
 storage:
   links:
     - path: /etc/alternatives/iptables
-      target: /usr/sbin/iptables-nft
+      target: /usr/sbin/iptables-legacy
       overwrite: true
       hard: false
     - path: /etc/alternatives/iptables-restore
-      target: /usr/sbin/iptables-nft-restore
+      target: /usr/sbin/iptables-legacy-restore
       overwrite: true
       hard: false
     - path: /etc/alternatives/iptables-save
-      target: /usr/sbin/iptables-nft-save
+      target: /usr/sbin/iptables-legacy-save
       overwrite: true
       hard: false
     - path: /etc/alternatives/ip6tables
-      target: /usr/sbin/ip6tables-nft
+      target: /usr/sbin/ip6tables-legacy
       overwrite: true
       hard: false
     - path: /etc/alternatives/ip6tables-restore
-      target: /usr/sbin/ip6tables-nft-restore
+      target: /usr/sbin/ip6tables-legacy-restore
       overwrite: true
       hard: false
     - path: /etc/alternatives/ip6tables-save
-      target: /usr/sbin/ip6tables-nft-save
+      target: /usr/sbin/ip6tables-legacy-save
       overwrite: true
       hard: false
 ----
