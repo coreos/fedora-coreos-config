@@ -134,9 +134,6 @@ postprocess:
 
 
 remove-from-packages:
-  # Drop NetworkManager support for ifcfg files, see also corresponding
-  # overlay.d/14NetworkManager-plugins
-  - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
   # Drop some buggy sysusers fragments which do not match static IDs allocation:
   # https://bugzilla.redhat.com/show_bug.cgi?id=2105177
   - [dbus-common, /usr/lib/sysusers.d/dbus.conf]
@@ -169,3 +166,6 @@ exclude-packages:
   # For (datacenter/cloud oriented) servers, we want to see the details by default.
   # https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/HSMISZ3ETWQ4ETVLWZQJ55ARZT27AAV3/
   - plymouth
+  # Do not use legacy ifcfg config format in NetworkManager
+  # See https://github.com/coreos/fedora-coreos-config/pull/1991
+  - NetworkManager-initscripts-ifcfg-rh
