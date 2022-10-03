@@ -1,0 +1,33 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+
+# This test runs on both FCOS & RHCOS. The initrd includes specific files which,
+# if omitted from the image, will cause some failures with certain Ignition
+# configs. This test doesn't assert the functionality of any files, it
+# simply gives a high level check to see if the files are available.
+# See https://github.com/coreos/fedora-coreos-config/issues/1775
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+required_initrd_files=(
+    "/usr/lib/udev/rules.d/66-azure-storage.rules"
+    "/usr/lib/udev/rules.d/99-azure-product-uuid.rules"
+)
+
+tmpd=$(mktemp -d)
+cleanup() {
+    rm -r "${tmpd}"
+}
+trap cleanup EXIT
+( cd "${tmpd}" && lsinitrd --unpack /boot/ostree/*/init* )
+
+for file in "${required_initrd_files[@]}"; do
+    if [ ! -e "${tmpd}/${file}" ]; then
+        fatal "${file} was not found in initrd"
+    fi
+done
+
+ok "Found expected initrd files"
