@@ -1,9 +1,9 @@
 #!/bin/bash
 # kola: { "tags": "needs-internet", "platforms": "qemu-unpriv", "timeoutMin": 15, "minMemory": 1536 }
-# This script creates two veth interfaces i.e. one for the host machine 
+# This script creates two veth interfaces i.e. one for the host machine
 # and other for the container(dnsmasq server). This setup will be helpful
-# to verify the DHCP propagation of NTP servers. This will also avoid any 
-# regression that might cause in RHCOS or FCOS when the upstream changes 
+# to verify the DHCP propagation of NTP servers. This will also avoid any
+# regression that might cause in RHCOS or FCOS when the upstream changes
 # come down and obsolete the temporary work (https://github.com/coreos/fedora-coreos-config/pull/412)
 #
 # - tags: needs-internet

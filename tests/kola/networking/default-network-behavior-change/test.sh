@@ -217,14 +217,10 @@ if [ "$ID" == "fedora" ]; then
 elif [[ "${ID_LIKE}" =~ "rhel" ]]; then
     # For the version comparison use string substitution to remove the
     # '.` from the version so we can use integer comparison
-    
-    # scos does not have RHEL_VERSION variable in /etc/os-release
-    if [[ ${RHEL_VERSION:-} == "" ]]; then
-        RHEL_VERSION=$(echo $OSTREE_VERSION | cut -f2 -d.)
-    fi    
+
     # scos includes NetworkManager-1.39.10-1.el9.x86_64, update scripts
     # according to F37
-    if [ "${RHEL_VERSION/\./}" -ge 91 ]; then
+    if is_scos; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG4
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG3
     # RHEL8.6 includes NetworkManager-1.36.0-1.el8.x86_64, update scripts
