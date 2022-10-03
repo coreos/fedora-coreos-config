@@ -23,12 +23,10 @@
   - s390x
 - pattern: ext.config.ignition.resource.remote
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
-  snooze: 2022-09-27
   arches:
   - s390x
 - pattern: rpmostree.install-uninstall
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
-  snooze: 2022-09-27
   arches:
   - s390x
 - pattern: coreos.boot-mirror*
