@@ -28,11 +28,6 @@ https://bugzilla.redhat.com/show_bug.cgi?id=1700056
 
 Warning about `/etc/sysconfig`.
 
-14NetworkManager-plugins
-------------------------
-
-Disables the Red Hat Linux legacy `ifcfg` format.
-
 15fcos
 ------
 
