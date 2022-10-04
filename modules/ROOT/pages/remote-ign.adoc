@@ -2,9 +2,11 @@
 
 With Ignition, you are not limited to the configuration provided locally to a system and you can retrieve other Ignition configs from a remote source. Those configs will then either replace or be merged into the existing config.
 
+The complete list of supported protocols and related options for remote Ignition files is described in the https://coreos.github.io/ignition/specs/[Ignition specification].
+
 The following examples show how to retrieve an Ignition file from a remote source. They are both set to replace the current configuration with a remote Ignition file.
 
-.Retrieving a remote Ignition file via HTTP
+.Retrieving a remote Ignition file via HTTPS
 [source,yaml]
 ----
 variant: fcos
@@ -12,9 +14,7 @@ version: 1.4.0
 ignition:
   config:
     replace:
-      source: http://example.com/sample.ign
-      verification:
-        hash: sha512-e2bb19fdbc3604f511b13d66f4c675f011a63dd967b97e2fe4f5d50bf6cb224e902182221ba0f9dd87c0bb4abcbd2ab428eb7965aa7f177eb5630e7a1793e2e6
+      source: https://example.com/sample.ign
 ----
 
 .Retrieving a remote Ignition file via HTTPS with a custom certificate authority
@@ -30,15 +30,13 @@ ignition:
     tls:
       certificate_authorities:
         - source: https://example.com/source1
-          verification:
-            hash: sha512-e2bb19fdbc3604f511b13d66f4c675f011a63dd967b97e2fe4f5d50bf6cb224e902182221ba0f9dd87c0bb4abcbd2ab428eb7965aa7f177eb5630e7a1793e2e6
 ----
 
 NOTE: The certificate authorities listed here are not automatically added to the host filesystem. They are solely used by Ignition itself when fetching over `https`. If you'd like to also install them on the host filesystem, include them as usual under the `storage.files` array.
 
 In some cases, if you need to merge a local configuration and one or several remote ones, you can use the `merge` rather than `replace` in a Butane config.
 
-.Retrieving a remote Ignition file via HTTP and merging it with the current config
+.Retrieving a remote Ignition file via HTTPS and merging it with the current config
 [source,yaml]
 ----
 variant: fcos
@@ -46,12 +44,45 @@ version: 1.4.0
 ignition:
   config:
     merge:
-      - source: http://example.com/sample.ign
-        verification:
-          hash: sha512-e2bb19fdbc3604f511b13d66f4c675f011a63dd967b97e2fe4f5d50bf6cb224e902182221ba0f9dd87c0bb4abcbd2ab428eb7965aa7f177eb5630e7a1793e2e6
+      - source: https://example.com/sample.ign
 passwd:
   users:
     - name: core
       ssh_authorized_keys:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHn2eh...
+----
+
+Retrieving remote Ignition files via plain HTTP is also possible as shown below.
+
+WARNING: Retrieving a remote Ignition config via HTTP exposes the contents of the config to anyone monitoring network traffic. When using HTTP, it is advisable to use the verification option to ensure the contents haven't been tampered with.
+
+.Retrieving a remote Ignition file via HTTP
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+ignition:
+  config:
+    replace:
+      source: http://example.com/sample.ign
+      verification:
+        hash: sha512-e2bb19fdbc3604f511b13d66f4c675f011a63dd967b97e2fe4f5d50bf6cb224e902182221ba0f9dd87c0bb4abcbd2ab428eb7965aa7f177eb5630e7a1793e2e6
+----
+
+If you need to retrieve a remote Ignition file but have no direct access to the remote host, you can specify a proxy for plain HTTP and/or HTTPS. You can also specify hosts that should be excluded from proxying.
+
+.Retrieving a remote Ignition file via a proxy
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+ignition:
+  config:
+    merge:
+      - source: https://example.com/sample.ign
+      - source: https://example.org/example.ign
+  proxy:
+    https_proxy: https://example.net
+    no_proxy:
+      - example.org
 ----
