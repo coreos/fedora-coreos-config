@@ -8,14 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  linux-firmware:
-    evra: 20220815-139.fc38.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1310
-      type: pin
-  linux-firmware-whence:
-    evra: 20220815-139.fc38.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1310
-      type: pin
+packages: {}
