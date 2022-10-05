@@ -1,0 +1,50 @@
+#!/bin/bash
+# Test to make sure AWS instances with nvme storage get a device
+# properly created for it. See https://github.com/coreos/fedora-coreos-tracker/issues/1306
+#
+## kola:
+##   # This is a read-only test and can be run with other tests
+##   exclusive: false
+##   # This test is targeted at AWS
+##   platforms: aws
+
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+# We'll check to see if anything is listed in `nvme list-subsys`
+# and then run the test based on that. Example output:
+# 
+# [core@ip-10-0-1-155 ~]$ nvme list-subsys -o json
+# [
+#   {
+#     "HostNQN":"nqn.2014-08.org.nvmexpress:uuid:c2c16640-0d5c-472a-846c-2f981c5914db",
+#     "HostID":"c37c43ca-31a3-4015-8704-1f493081da36",
+#     "Subsystems":[
+#       {
+#         "Name":"nvme-subsys0",
+#         "NQN":"nqn.2014.08.org.nvmexpress:1d0f0000AWS2710D45D72D3C9D4AAmazon EC2 NVMe Instance Storage",
+#         "Paths":[
+#           {
+#             "Name":"nvme0",
+#             "Transport":"pcie",
+#             "Address":"0000:00:1e.0",
+#             "State":"live"
+#           }
+#         ]
+#       }
+#     ]
+#   }
+# ]
+nvme_info=$(nvme list-subsys -o json || true)
+has_nvme=$(jq -r ".[].Subsystems[].Paths[] | select(.Name == \"nvme0\").Name" <<< "$nvme_info")
+if [ -n "${has_nvme}" ]; then
+    if [ ! -e '/dev/nvme0n1' ]; then
+        fatal "instance has nvme device but no nvme0n1 accessible"
+    fi
+else
+    echo "it appears this system has no nvme devices. skipping"
+fi
+
+ok aws nvme device
