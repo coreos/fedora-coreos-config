@@ -10,7 +10,38 @@
 
 packages:
   bash:
-    evr: 5.1.16-4.fc38
+    evr: 5.2.2-2.fc38
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-a4c93461e4
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1313
+      type: fast-track
+  systemd:
+    evr: 251.5-607.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1320
+      type: pin
+  systemd-container:
+    evr: 251.5-607.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1320
+      type: pin
+  systemd-libs:
+    evr: 251.5-607.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1320
+      type: pin
+  systemd-pam:
+    evr: 251.5-607.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1320
+      type: pin
+  systemd-resolved:
+    evr: 251.5-607.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1320
+      type: pin
+  systemd-udev:
+    evr: 251.5-607.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1320
       type: pin
