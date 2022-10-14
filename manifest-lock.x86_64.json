@@ -97,7 +97,7 @@
       "evra": "2022.2.54-1.2.fc36.noarch"
     },
     "catatonit": {
-      "evra": "0.1.7-5.fc36.x86_64"
+      "evra": "0.1.7-10.fc36.x86_64"
     },
     "chrony": {
       "evra": "4.2-5.fc36.x86_64"
@@ -121,7 +121,7 @@
       "evra": "0.31-10.fc36.noarch"
     },
     "conmon": {
-      "evra": "2:2.1.4-2.fc36.x86_64"
+      "evra": "2:2.1.4-3.fc36.x86_64"
     },
     "console-login-helper-messages": {
       "evra": "0.21.3-1.fc36.noarch"
@@ -196,16 +196,16 @@
       "evra": "2.1.27-18.fc36.x86_64"
     },
     "dbus": {
-      "evra": "1:1.14.0-1.fc36.x86_64"
+      "evra": "1:1.14.4-1.fc36.x86_64"
     },
     "dbus-broker": {
       "evra": "32-1.fc36.x86_64"
     },
     "dbus-common": {
-      "evra": "1:1.14.0-1.fc36.noarch"
+      "evra": "1:1.14.4-1.fc36.noarch"
     },
     "dbus-libs": {
-      "evra": "1:1.14.0-1.fc36.x86_64"
+      "evra": "1:1.14.4-1.fc36.x86_64"
     },
     "device-mapper": {
       "evra": "1.02.175-7.fc36.x86_64"
@@ -328,7 +328,7 @@
       "evra": "2.9.9-14.fc36.x86_64"
     },
     "fuse-overlayfs": {
-      "evra": "1.9-1.fc36.x86_64"
+      "evra": "1.9-6.fc36.x86_64"
     },
     "fuse-sshfs": {
       "evra": "3.7.3-1.fc36.x86_64"
@@ -478,13 +478,13 @@
       "evra": "2.4.0-9.fc36.noarch"
     },
     "kernel": {
-      "evra": "5.19.14-200.fc36.x86_64"
+      "evra": "5.19.15-201.fc36.x86_64"
     },
     "kernel-core": {
-      "evra": "5.19.14-200.fc36.x86_64"
+      "evra": "5.19.15-201.fc36.x86_64"
     },
     "kernel-modules": {
-      "evra": "5.19.14-200.fc36.x86_64"
+      "evra": "5.19.15-201.fc36.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.24-4.fc36.x86_64"
@@ -1024,7 +1024,7 @@
       "evra": "1.18-7.fc36.x86_64"
     },
     "procps-ng": {
-      "evra": "3.3.17-4.fc36.x86_64"
+      "evra": "3.3.17-4.fc36.1.x86_64"
     },
     "protobuf-c": {
       "evra": "1.4.1-2.fc36.x86_64"
@@ -1102,7 +1102,7 @@
       "evra": "15.6-2.x86_64"
     },
     "skopeo": {
-      "evra": "1:1.9.2-1.fc36.x86_64"
+      "evra": "1:1.10.0-3.fc36.x86_64"
     },
     "slang": {
       "evra": "2.3.2-11.fc36.x86_64"
@@ -1204,10 +1204,10 @@
       "evra": "2.38-1.fc36.x86_64"
     },
     "vim-data": {
-      "evra": "2:9.0.475-1.fc36.noarch"
+      "evra": "2:9.0.720-1.fc36.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.475-1.fc36.x86_64"
+      "evra": "2:9.0.720-1.fc36.x86_64"
     },
     "which": {
       "evra": "2.21-32.fc36.x86_64"
@@ -1247,16 +1247,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-10-12T20:54:28Z",
+    "generated": "2022-10-14T20:52:59Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:16:11Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-10-10T17:15:44Z"
+        "generated": "2022-10-13T20:47:36Z"
       },
       "fedora-updates": {
-        "generated": "2022-10-12T17:43:21Z"
+        "generated": "2022-10-14T12:46:13Z"
       }
     }
   }

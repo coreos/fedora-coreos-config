@@ -94,7 +94,7 @@
       "evra": "2022.2.54-1.2.fc36.noarch"
     },
     "catatonit": {
-      "evra": "0.1.7-5.fc36.s390x"
+      "evra": "0.1.7-10.fc36.s390x"
     },
     "chrony": {
       "evra": "4.2-5.fc36.s390x"
@@ -118,7 +118,7 @@
       "evra": "0.31-10.fc36.noarch"
     },
     "conmon": {
-      "evra": "2:2.1.4-2.fc36.s390x"
+      "evra": "2:2.1.4-3.fc36.s390x"
     },
     "console-login-helper-messages": {
       "evra": "0.21.3-1.fc36.noarch"
@@ -193,16 +193,16 @@
       "evra": "2.1.27-18.fc36.s390x"
     },
     "dbus": {
-      "evra": "1:1.14.0-1.fc36.s390x"
+      "evra": "1:1.14.4-1.fc36.s390x"
     },
     "dbus-broker": {
       "evra": "32-1.fc36.s390x"
     },
     "dbus-common": {
-      "evra": "1:1.14.0-1.fc36.noarch"
+      "evra": "1:1.14.4-1.fc36.noarch"
     },
     "dbus-libs": {
-      "evra": "1:1.14.0-1.fc36.s390x"
+      "evra": "1:1.14.4-1.fc36.s390x"
     },
     "device-mapper": {
       "evra": "1.02.175-7.fc36.s390x"
@@ -316,7 +316,7 @@
       "evra": "2.9.9-14.fc36.s390x"
     },
     "fuse-overlayfs": {
-      "evra": "1.9-1.fc36.s390x"
+      "evra": "1.9-6.fc36.s390x"
     },
     "fuse-sshfs": {
       "evra": "3.7.3-1.fc36.s390x"
@@ -436,13 +436,13 @@
       "evra": "2.4.0-9.fc36.noarch"
     },
     "kernel": {
-      "evra": "5.19.14-200.fc36.s390x"
+      "evra": "5.19.15-201.fc36.s390x"
     },
     "kernel-core": {
-      "evra": "5.19.14-200.fc36.s390x"
+      "evra": "5.19.15-201.fc36.s390x"
     },
     "kernel-modules": {
-      "evra": "5.19.14-200.fc36.s390x"
+      "evra": "5.19.15-201.fc36.s390x"
     },
     "kexec-tools": {
       "evra": "2.0.24-4.fc36.s390x"
@@ -949,7 +949,7 @@
       "evra": "1.18-7.fc36.s390x"
     },
     "procps-ng": {
-      "evra": "3.3.17-4.fc36.s390x"
+      "evra": "3.3.17-4.fc36.1.s390x"
     },
     "protobuf-c": {
       "evra": "1.4.1-2.fc36.s390x"
@@ -1027,7 +1027,7 @@
       "evra": "2:4.11.1-5.fc36.s390x"
     },
     "skopeo": {
-      "evra": "1:1.9.2-1.fc36.s390x"
+      "evra": "1:1.10.0-3.fc36.s390x"
     },
     "slang": {
       "evra": "2.3.2-11.fc36.s390x"
@@ -1132,10 +1132,10 @@
       "evra": "2.4.3-2.fc36.s390x"
     },
     "vim-data": {
-      "evra": "2:9.0.475-1.fc36.noarch"
+      "evra": "2:9.0.720-1.fc36.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.475-1.fc36.s390x"
+      "evra": "2:9.0.720-1.fc36.s390x"
     },
     "which": {
       "evra": "2.21-32.fc36.s390x"
@@ -1175,16 +1175,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-10-12T20:55:39Z",
+    "generated": "2022-10-14T20:52:55Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-05-04T21:15:53Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-10-10T17:13:25Z"
+        "generated": "2022-10-13T20:46:33Z"
       },
       "fedora-updates": {
-        "generated": "2022-10-12T17:43:12Z"
+        "generated": "2022-10-14T12:46:04Z"
       }
     }
   }
