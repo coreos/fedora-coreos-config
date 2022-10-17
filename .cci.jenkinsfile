@@ -1,16 +1,15 @@
 // Documentation: https://github.com/coreos/coreos-ci/blob/main/README-upstream-ci.md
 
-cosaPod(workingDir: '/srv/coreos') {
+cosaPod {
     checkoutToDir(scm, 'config')
 
     def basearch = shwrapCapture("cosa basearch")
     def mechanical_streams = ['branched', 'rawhide']
 
-    shwrap("cd ${env.WORKSPACE}/config && ci/validate")
+    shwrap("cd config && ci/validate")
 
     shwrap("""
-        pwd
-        ls -la 
+        mkdir -p /srv/coreos && cd /srv/coreos
         cosa init ${env.WORKSPACE}/config
         curl -LO https://raw.githubusercontent.com/coreos/fedora-coreos-releng-automation/main/scripts/download-overrides.py
         python3 download-overrides.py
@@ -39,13 +38,13 @@ cosaPod(workingDir: '/srv/coreos') {
     cosaBuild(skipInit: true, noStrict: no_strict_build, extraFetchArgs: '--with-cosa-overrides', extraArgs: parent_arg)
 
     parallel metal: {
-        shwrap("cosa buildextend-metal")
+        shwrap("cd /srv/coreos && cosa buildextend-metal")
     }, metal4k: {
-        shwrap("cosa buildextend-metal4k")
+        shwrap("cd /srv/coreos && cosa buildextend-metal4k")
     }
 
     stage("Test ISO") {
-        shwrap("&& cosa buildextend-live")
+        shwrap("cd /srv/coreos && cosa buildextend-live")
         kolaTestIso(extraArgs4k: "--no-pxe")
     }
 
@@ -53,6 +52,7 @@ cosaPod(workingDir: '/srv/coreos') {
     if (parent_arg != "") {
         stage("RPM Diff") {
             shwrap("""
+                cd /srv/coreos
                 new_commit=\$(jq -r '.["ostree-commit"]' builds/latest/${basearch}/meta.json)
                 rpm-ostree db diff --repo tmp/repo ${parent_commit} \${new_commit} | tee tmp/diff.txt
                 if grep -q Downgraded tmp/diff.txt; then
