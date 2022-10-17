@@ -31,7 +31,3 @@ vmware-os-type: fedora64Guest
 # We use the newest version allowed by the oldest non-EOL VMware
 # Workstation/Player/Fusion/ESXi release: https://lifecycle.vmware.com/
 vmware-hw-version: 13
-
-# After this, we plan to add support for the Ignition
-# storage/filesystems sections.  (Although one can do
-# that on boot as well)
