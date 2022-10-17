@@ -16,7 +16,7 @@ set -xeuo pipefail
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
-      if [ $(systemctl show -p Result kdump.service) != "Result=success" ]; then
+      if ! is_service_active kdump.service; then
           fatal "kdump.service failed to start"
       fi
       # Verify that the crashkernel reserved memory is large enough
