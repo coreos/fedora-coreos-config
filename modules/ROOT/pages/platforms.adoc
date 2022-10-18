@@ -21,7 +21,7 @@ The currently supported platforms and their identifiers are listed below.
 * OpenStack (cloud platform): `openstack`): Cloud platform. See xref:provisioning-openstack.adoc[Booting on OpenStack].
 * QEMU (`qemu`): Hypervisor. See xref:provisioning-libvirt.adoc[Booting on libvirt]
 * VirtualBox ('virtualbox'): Hypervisor. See xref:provisioning-virtualbox.adoc[Booting on VirtualBox].
-* VMware ESXi (`vmware`): Hypervisor. See xref:provisioning-vmware.adoc[Booting on VMware]. Note that only https://kb.vmware.com/s/article/1003746[hardware version] 13 or later, vSphere ESXi hosts version 6.5 or later and vCenter host version 6.5 or later are supported.
+* VMware ESXi, Fusion, and Workstation (`vmware`): Hypervisor. See xref:provisioning-vmware.adoc[Booting on VMware]. Fedora CoreOS images currently use https://kb.vmware.com/s/article/1003746[hardware version] 17, supporting VMware ESXi 7.0 or later, Fusion 12.0 or later, and Workstation 16.0 or later.
 * Vultr (`vultr`): Cloud platform. See xref:provisioning-vultr.adoc[Booting on Vultr].
 
 === AArch64
