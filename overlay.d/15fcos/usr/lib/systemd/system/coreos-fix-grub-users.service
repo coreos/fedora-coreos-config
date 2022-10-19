@@ -1,0 +1,20 @@
+# Remove after the next update barrier in all streams.
+
+[Unit]
+Description=Fix ostree grub_users Setting
+Documentation=https://github.com/coreos/fedora-coreos-tracker/issues/1333
+ConditionPathExists=!/var/lib/coreos/fix-grub-users.stamp
+# No GRUB on s390x.  ppc64le has petitboot, which ignores these GRUB
+# commands, but do the update there anyway for consistency.
+ConditionArchitecture=!s390x
+RequiresMountsFor=/var/lib/coreos
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-fix-grub-users
+RemainAfterExit=yes
+# We remount /boot read-write
+MountFlags=slave
+
+[Install]
+WantedBy=multi-user.target
