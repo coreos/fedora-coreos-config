@@ -63,24 +63,6 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-d4be764cf4
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
       type: fast-track
-  glibc:
-    evr: 2.36-7.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-12af0b08c8
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1283262264
-      type: fast-track
-  glibc-common:
-    evr: 2.36-7.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-12af0b08c8
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1283262264
-      type: fast-track
-  glibc-minimal-langpack:
-    evr: 2.36-7.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-12af0b08c8
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1283262264
-      type: fast-track
   readline:
     evr: 8.2-2.fc37
     metadata:
