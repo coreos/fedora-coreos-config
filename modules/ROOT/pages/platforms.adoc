@@ -31,6 +31,13 @@ The currently supported platforms and their identifiers are listed below.
 * QEMU (`qemu`): Hypervisor. See xref:provisioning-libvirt.adoc[Booting on libvirt]
 * OpenStack (cloud platform): `openstack`): Cloud platform. See xref:provisioning-openstack.adoc[Booting on OpenStack].
 
+=== s390x
+
+* IBM Cloud, VPC Generation 2 (`ibmcloud`): Cloud platform. See xref:provisioning-ibmcloud.adoc[Booting on IBM Cloud].
+* Bare metal (`metal`): From disk or network boot. See xref:bare-metal.adoc[Installing on Bare Metal] or xref:live-booting-ipxe.adoc[Live-booting via iPXE].
+* QEMU (`qemu`): Hypervisor. See xref:provisioning-libvirt.adoc[Booting on libvirt]
+* OpenStack (cloud platform): `openstack`): Cloud platform. See xref:provisioning-openstack.adoc[Booting on OpenStack].
+
 == Runtime introspection of platform IDs
 
 Each Fedora CoreOS image boots with a platform-specific identifier, available on the kernel command-line. The name of the parameter is `ignition.platform.id`. The platform ID is consumed by OS components such as https://github.com/coreos/ignition[Ignition] and https://github.com/coreos/afterburn[Afterburn]. Additionally, it can be used in systemd units via https://www.freedesktop.org/software/systemd/man/systemd.unit.html#ConditionKernelCommandLine=[`ConditionKernelCommandLine=`].
