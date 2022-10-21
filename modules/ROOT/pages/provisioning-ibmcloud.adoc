@@ -29,8 +29,8 @@ ibmcloud target -r $REGION
 [source, bash]
 ----
 RESOURCE_GROUP='my-resource-group'
-ibmcloud resource group-create ${RESOURCE_GROUP} # Create the resource group if it doesn't exist
-ibmcloud target -g ${RESOURCE_GROUP}
+ibmcloud resource group-create $RESOURCE_GROUP # Create the resource group if it doesn't exist
+ibmcloud target -g $RESOURCE_GROUP
 ----
 
 There are also several other pieces that need to be in place, like a VPC, SSH keys, networks, permissions, etc. Unfortunately, this guide is not a comprehensive IBM Cloud guide. If you are new to IBM Cloud please familiarize yourself using https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started[the documentation for VPC Gen2] first.
@@ -44,7 +44,7 @@ The following sets of commands will show you how to download the most recent ima
 [source, bash]
 ----
 STREAM='stable'
-coreos-installer download -s "${STREAM}" -p ibmcloud -f qcow2.xz --decompress
+coreos-installer download -s $STREAM -p ibmcloud -f qcow2.xz --decompress
 ----
 
 .Create a Service Account for uploading and an Authorization Policy to allow creating images from the uploaded objects.
