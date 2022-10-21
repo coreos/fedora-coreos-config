@@ -1,6 +1,6 @@
 = Provisioning Fedora CoreOS on IBM Cloud
 
-This guide shows how to provision new Fedora CoreOS (FCOS) instances in IBM Cloud VPC Generation 2.
+This guide shows how to provision new Fedora CoreOS (FCOS) instances in IBM Cloud VPC Generation 2 for either the `x86_64` or `s390x` architectures.
 
 == Prerequisites
 
@@ -44,7 +44,8 @@ The following sets of commands will show you how to download the most recent ima
 [source, bash]
 ----
 STREAM='stable'
-coreos-installer download -s $STREAM -p ibmcloud -f qcow2.xz --decompress
+ARCH='x86_64' # or 's390x'
+coreos-installer download -s $STREAM -a $ARCH -p ibmcloud -f qcow2.xz --decompress
 ----
 
 .Create a Service Account for uploading and an Authorization Policy to allow creating images from the uploaded objects.
@@ -61,7 +62,7 @@ ibmcloud iam authorization-policy-create is --source-resource-type image cloud-o
 [source, bash]
 ----
 FCOS_VERSION='...'
-FILE=fedora-coreos-${FCOS_VERSION}-ibmcloud.x86_64.qcow2
+FILE="fedora-coreos-${FCOS_VERSION}-ibmcloud.${ARCH}.qcow2"
 ibmcloud cos create-bucket --bucket $BUCKET --ibm-service-instance-id $SERVICE_INSTANCE_ID
 ibmcloud cos upload --bucket=$BUCKET --key=$FILE --file=$FILE
 ----
@@ -71,8 +72,12 @@ ibmcloud cos upload --bucket=$BUCKET --key=$FILE --file=$FILE
 ----
 IMAGE=${FILE:0:-6}     # pull off .qcow2
 IMAGE=${IMAGE//[._]/-} # replace . and _ with -
-ibmcloud is image-create $IMAGE --file "cos://${REGION}/${BUCKET}/${FILE}" --os-name fedora-coreos-stable-amd64
+[ $ARCH == 'x86_64' ] && OSNAME='fedora-coreos-stable-amd64'
+[ $ARCH == 's390x' ] && OSNAME='red-8-s390x-byol'
+ibmcloud is image-create $IMAGE --file "cos://${REGION}/${BUCKET}/${FILE}" --os-name $OSNAME
 ----
+
+NOTE: For `s390x` we use `--os-name=red-8-s390x-byol` (a RHEL 8 profile) here because there is not currently a `fedora-coreos-stable-s390x` profile to use.
 
 You'll have to wait for the image creation process to finish and go from `pending` to `available` before you can use the image. Monitor with the following command:
 
@@ -102,6 +107,8 @@ ibmcloud is instance-create $NAME $VPC $ZONE $PROFILE $SUBNET --image $IMAGE --k
 ----
 
 TIP: If needed you may have to first create a subnet with a command like `'ibmcloud is subnet-create my-subnet $VPC --ipv4-address-count 256 --zone $ZONE'`.
+
+WARNING: Make sure you choose an appropriate instance type based on your architecture. For example, you may want to use `bz2-2x8` instead of `bx2-2x8` above if you are targetting `s390x`.
 
 Next, if you'd like to SSH into the instance from outside IBM Cloud, you can assign a public IP to the instance:
 
