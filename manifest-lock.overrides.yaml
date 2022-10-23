@@ -81,11 +81,41 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-1c6a1ca835
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1288196776
       type: fast-track
+  libsmbclient:
+    evr: 2:4.17.1-1.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-1b0ba70aca
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1288198630
+      type: fast-track
+  libwbclient:
+    evr: 2:4.17.1-1.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-1b0ba70aca
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1288198630
+      type: fast-track
   readline:
     evr: 8.2-2.fc37
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-bde0600efe
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
+      type: fast-track
+  samba-client-libs:
+    evr: 2:4.17.1-1.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-1b0ba70aca
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1288198630
+      type: fast-track
+  samba-common:
+    evra: 2:4.17.1-1.fc37.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-1b0ba70aca
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1288198630
+      type: fast-track
+  samba-common-libs:
+    evr: 2:4.17.1-1.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-1b0ba70aca
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1288198630
       type: fast-track
   skopeo:
     evr: 1:1.10.0-3.fc37
