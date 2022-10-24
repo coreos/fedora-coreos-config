@@ -1,0 +1,39 @@
+#!/bin/bash
+# kola: { "platforms": "qemu", "appendKernelArgs": "nameserver=8.8.8.8 nameserver=1.1.1.1"}
+
+# Verify multiple nameservers config via kernel arguments work well
+# RHCOS: need to check /etc/resolv.conf and nmconnection
+# FCOS:  using systemd-resolved which needs to run resolvectl to check
+# See https://bugzilla.redhat.com/show_bug.cgi?id=1763341
+
+# - platforms: qemu
+#   - This test should pass everywhere if it passes anywhere.
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+if is_fcos; then
+    # run resolvectl
+    dns=$(resolvectl dns)
+    if ! ([[ "$dns" =~ "8.8.8.8" ]] && [[ "$dns" =~ "1.1.1.1" ]]); then
+        fatal "Error: can not find nameserver via resolvectl"
+    fi
+elif is_rhcos; then
+    # check nameserver in /etc/resolv.conf
+    resolv=/etc/resolv.conf
+    cat ${resolv}
+    if ! (grep -q "nameserver 8.8.8.8" ${resolv} && \
+        grep -q "nameserver 1.1.1.1" ${resolv}); then
+        fatal "Error: can not find nameserver in ${resolv}"
+    fi
+fi 
+
+# check nameserver in config file
+conf=/etc/NetworkManager/system-connections/default_connection.nmconnection
+cat ${conf}
+if ! grep -q "dns=8.8.8.8;1.1.1.1;" ${conf}; then
+    fatal "Error: can not find nameserver in ${conf}"
+fi
+
+ok "multiple nameserver"
