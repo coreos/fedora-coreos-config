@@ -1,7 +1,7 @@
 // Documentation: https://github.com/coreos/coreos-ci/blob/main/README-upstream-ci.md
 
-// We run `kolaTestIso` which requires at least 8Gi. Add 512M for overhead.
-cosaPod(cpus: 4, memory: "8704Mi") {
+// We run `kolaTestIso` which requires at least 8Gi. Add 1Gi for overhead.
+cosaPod(cpus: 4, memory: "9Gi") {
     checkoutToDir(scm, 'config')
 
     def basearch = shwrapCapture("cosa basearch")
