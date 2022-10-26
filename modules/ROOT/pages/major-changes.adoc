@@ -9,6 +9,54 @@ This list is in reverse chronological order to keep recent changes at the top.
 
 // To add a new change here, see the template at the end of the file.
 
+== System console changing to platform-specific defaults
+
+The system console setup will be changed to get a better user experience by default.
+The new defaults will depend on both the CPU architecture and platform.
+
+NOTE: The changes will only affect new Fedora CoreOS installations.
+      Upgraded systems will retain their current console settings.
+
+See also the https://lists.fedoraproject.org/archives/list/coreos-status@lists.fedoraproject.org/thread/GHLXX4MXNHUEAXQLK6BZN45IQYHRVQB4/[coreos-status anouncement].
+
+=== Planning
+
+This change will be rolled out progressively:
+
+|===
+|Update Stream |Targeted release date
+
+|`next` | 2022-10-03 (37.20221003.1.0)
+|`testing`| 2022-11-28
+|`stable`| Will follow `testing` as usual
+|===
+
+=== Notes
+
+The current default depends on the CPU architecture:
+
+- On x86_64, the first serial port `ttyS0` is the primary console and the graphical console is secondary.
+
+- On other architectures, Fedora CoreOS generally does not configure a particular console, leaving the bootloader and kernel to follow their own defaults.
+  This typically means that a graphical console is used if one is available, and a serial console otherwise.
+
+The new defaults will depend on both the CPU architecture and platform.
+The exact configuration is in https://github.com/coreos/fedora-coreos-config/blob/next-devel/platforms.yaml[`platform.yaml` (next-devel branch)].
+In summary:
+
+- On many architecture/platform pairs, Fedora CoreOS will allow GRUB and the kernel to follow their own defaults.
+  On x86_64, this causes the graphical console to be selected, even if no video card is available.
+  In particular, *x86_64 bare metal installs will no longer use a serial console by default*.
+
+- On platforms that expect specific system consoles to be used, such as AWS, Azure, and GCP, Fedora CoreOS will select those consoles by default.
+
+- On OpenStack, VirtualBox, and VMware, Fedora CoreOS will use a primary graphical console but continue providing a serial console for debugging.
+
+- The QEMU image will continue to select `ttyS0` as the primary console and the graphical console as secondary.
+
+If the new defaults aren't appropriate for your environment, you can override them in several ways.
+See the xref:emergency-shell.adoc[Emergency console access] documentation page for details.
+
 == Podman v4.0
 
 The Podman container runtime will be upgraded from v3 to v4. This is a https://podman.io/releases/2022/02/22/podman-release-v4.0.0.html[major release] that introduces backward incompatible changes to configuration files and APIs.
