@@ -32,6 +32,10 @@ kernel_arguments:
     - mitigations=auto,nosmt
 ----
 
+== Modifying Console Configuration During Bare Metal Install
+
+`coreos-installer` has special support for changing the console configuration when performing a bare-metal install. This functionality can be used to add `console` arguments to the kernel command line and equivalent parameters to the GRUB bootloader configuration. For more information, see xref:emergency-shell.adoc[Emergency Console Access]. For more information about bare metal installs, see xref:bare-metal.adoc[Installing CoreOS on Bare Metal].
+
 == Modifying Kernel Arguments on Existing Systems
 
 Kernel arguments changes are managed by `rpm-ostree` via the https://www.mankier.com/1/rpm-ostree[`rpm-ostree kargs`] subcommand. Changes are applied to a new deployment and a reboot is necessary for those to take effect.

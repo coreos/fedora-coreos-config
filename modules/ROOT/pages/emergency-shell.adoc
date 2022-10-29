@@ -3,54 +3,64 @@
 Sometimes you may want to access the node console to perform troubleshooting steps or emergency maintenance.
 For instance, you may want to access the emergency shell on the console, in order to debug first boot provisioning issues.
 
-== Default console setup
+== Default console configuration
 
-All Fedora CoreOS (FCOS) images come with a default configuration for the console which is meant to accommodate most virtualized and bare-metal setups.
+All Fedora CoreOS (FCOS) images come with a default configuration for the console which is meant to accommodate most virtualized and bare-metal setups. Older FCOS releases enabled both serial and graphical consoles by default. Newer releases use different defaults for each cloud and virtualization platform, and use the kernel's defaults (typically a graphical console) on bare metal. New installs of Fedora CoreOS will switch to these new defaults starting with releases on these dates:
 
-However, it may not always match your specific hardware configuration. In that case, you can tweak the console setup by adjusting kernel parameters.
+- `next` stream: October 3, 2022
+- `testing` stream: November 28, 2022
+- `stable` stream: December 12, 2022
 
-You can specify multiple `console=` options on the kernel command line. Kernel messages will appear on all of them, however only the last-specified device will be used as the foreground interactive console (i.e. `/dev/console`) for the machine.
+The default consoles may not always match your specific hardware configuration. In that case, you can tweak the console setup. Fedora CoreOS has special support for doing this during xref:bare-metal.adoc[bare-metal installation], and in other cases you can xref:kernel-args.adoc[adjust kernel parameters]. Both approaches use https://www.kernel.org/doc/html/latest/admin-guide/serial-console.html[kernel argument syntax] for specifying the desired consoles. You can specify multiple consoles; kernel messages will appear on all of them, but only the last-specified device will be used as the foreground interactive console (i.e. `/dev/console`) for the machine.
 
-[NOTE]
-====
-By default these console parameters are provided, in order:
+== Configuring the console during bare-metal installation
 
- - `console=tty0` for VGA.
- - `console=ttyS0,115200n8` for serial console
+If you are installing FCOS via `coreos-installer`, you can configure the console at install time.
 
-The last entry (serial console) is thus used as the interactive console for the machine.
-====
-
-You can remove either console entries in order to match your machine setup, or even remove both and rely on kernel auto-detection (which however may not work for all cases).
-
-== Temporarily tweaking console setup
-
-In order to temporarily change console configuration, it is enough to change kernel arguments in the bootloader for a single boot.
-
-When the GRUB menu shows up initially, press 'e' to edit the current boot entry. Adjust the `console` parameters from the kernel line as described above, then press 'Ctrl-x' to resume booting.
-
-== Configuring console during installation
-
-If you are installing FCOS via `coreos-installer` on a machine which requires custom console configuration, you can permanently configure that directly at install time.
-
+.Example: Enabling primary serial and secondary graphical console
 [source, bash]
 ----
 sudo podman run --pull=always --privileged --rm \
     -v /dev:/dev -v /run/udev:/run/udev -v .:/data -w /data \
     quay.io/coreos/coreos-installer:release \
     install /dev/vdb -i config.ign \
-    --delete-karg 'console=ttyS0,115200n8'
+    --console tty0 --console ttyS0,115200n8
 ----
 
-In the example above, the trailing `--delete-karg 'console=ttyS0,115200n8'` will remove the serial console entry from the boot parameters of the installed system.
+This will configure both the GRUB bootloader and the kernel to use the specified consoles.
 
-== Configuring console after installation
+== Configuring the console with Ignition
 
-If you have an existing FCOS node with a mismatched console configuration, you can permanently adjust that via `rpm-ostree`.
+If you are launching FCOS from an image (in a cloud or a virtual machine), you can use Ignition to configure the console at provisioning time.
 
+.Example: Enabling primary serial and secondary graphical console
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+kernel_arguments:
+  should_exist:
+    # Order is significant, so group both arguments into the same list entry.
+    - console=tty0 console=ttyS0,115200n8
+  should_not_exist:
+    # Remove any existing defaults.  Adjust as needed.
+    - console=hvc0
+    - console=tty0
+    - console=ttyAMA0,115200n8
+    - console=ttyS0,115200n8
+    - console=ttyS1,115200n8
+----
+
+This will configure the kernel to use the specified consoles. The GRUB bootloader will continue to use its previous default. Ignition will configure the console, then reboot into the new configuration and continue provisioning the node.
+
+== Configuring the console after installation
+
+You can adjust the console configuration of an existing FCOS node via `rpm-ostree`.
+
+.Example: Enabling primary serial and secondary graphical console
 [source, bash]
 ----
-sudo rpm-ostree kargs --delete 'console=ttyS0,115200n8' --reboot
+sudo rpm-ostree kargs --append=console=tty0 --append=console=ttyS0,115200n8 --reboot
 ----
 
-In the example above, `rpm-ostree` will create a new deployment without the serial console entry, and the machine will reboot into it.
+`rpm-ostree` will create a new deployment with the specified kernel arguments added and reboot into the new configuration. The GRUB bootloader will continue to use its previous default.

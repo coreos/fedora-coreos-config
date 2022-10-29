@@ -136,12 +136,16 @@ For example:
 # Create customized.iso which:
 # - Automatically installs to /dev/sda
 # - Provisions the installed system with config.ign
+# - Configures the installed GRUB and kernel to use a primary graphical
+#   and secondary serial console
 # - Uses network configuration from static-ip.nmconnection
 # - Trusts HTTPS certificates signed by ca.pem
 # - Runs post.sh after installing
 coreos-installer iso customize \
     --dest-device /dev/sda \
     --dest-ignition config.ign \
+    --dest-console ttyS0,115200n8 \
+    --dest-console tty0 \
     --network-keyfile static-ip.nmconnection \
     --ignition-ca ca.pem \
     --post-install post.sh \
@@ -150,6 +154,8 @@ coreos-installer iso customize \
 coreos-installer pxe customize \
     --dest-device /dev/sda \
     --dest-ignition config.ign \
+    --dest-console ttyS0,115200n8 \
+    --dest-console tty0 \
     --network-keyfile static-ip.nmconnection \
     --ignition-ca ca.pem \
     --post-install post.sh \
