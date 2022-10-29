@@ -38,7 +38,7 @@ Kernel arguments changes are managed by `rpm-ostree` via the https://www.mankier
 
 === Adding kernel arguments
 
-You can append kernel arguments. This is useful with e.g. `console=` that can be used multiple times. An empty value for an argument is allowed:
+You can append kernel arguments. An empty value for an argument is allowed:
 
 [source,bash]
 ----
@@ -63,14 +63,12 @@ You can delete a specific kernel argument key/value pair or an entire argument w
 $ sudo rpm-ostree kargs --delete=KEY=VALUE
 ----
 
-.Example: Remove console parameters to enable kernel auto-detection
+.Example: Re-enable SMT on vulnerable CPUs
 
 [source,bash]
 ----
-$ sudo rpm-ostree kargs --delete 'console=ttyS0,115200n8'
+$ sudo rpm-ostree kargs --delete=mitigations=auto,nosmt
 ----
-
-See also xref:emergency-shell.adoc[Emergency console access].
 
 .Example: Update an existing system from cgroupsv1 to cgroupsv2 and immediately reboot
 
