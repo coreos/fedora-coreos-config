@@ -8,4 +8,40 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  aardvark-dns:
+    evr: 1.2.0-6.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-658b2dbea2
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1327
+      type: fast-track
+  containers-common:
+    evra: 4:1-62.fc36.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-658b2dbea2
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1327
+      type: fast-track
+  containers-common-extra:
+    evra: 4:1-62.fc36.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-658b2dbea2
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1327
+      type: fast-track
+  netavark:
+    evr: 1.2.0-5.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-658b2dbea2
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1327
+      type: fast-track
+  podman:
+    evr: 4:4.3.0-2.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-658b2dbea2
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1327
+      type: fast-track
+  podman-plugins:
+    evr: 4:4.3.0-2.fc36
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-658b2dbea2
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1327
+      type: fast-track
