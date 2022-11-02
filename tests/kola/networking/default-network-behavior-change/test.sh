@@ -12,35 +12,6 @@ set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-# EXPECTED_INITRD_NETWORK_CFG1
-#   - used on RHEL 8.5 release
-EXPECTED_INITRD_NETWORK_CFG1="[connection]
-id=Wired Connection
-uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-type=ethernet
-autoconnect-retries=1
-multi-connect=3
-permissions=
-
-[ethernet]
-mac-address-blacklist=
-
-[ipv4]
-dhcp-timeout=90
-dns-search=
-method=auto
-required-timeout=20000
-
-[ipv6]
-addr-gen-mode=eui64
-dhcp-timeout=90
-dns-search=
-method=auto
-
-[proxy]
-
-[user]
-org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 # EXPECTED_INITRD_NETWORK_CFG2
 #   - used on older RHEL 8.4 release
 EXPECTED_INITRD_NETWORK_CFG2="[connection]
