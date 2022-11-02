@@ -1,0 +1,57 @@
+#!/bin/bash
+#
+# Set ostree sysroot.bls-append-except-default on instances booted from
+# images that incorrectly shipped without it.
+
+set -euo pipefail
+
+STAMP=/var/lib/coreos/fix-grub-users.stamp
+
+aleph_ver=$(jq -r .build < /sysroot/.coreos-aleph-version.json)
+date=$(echo "$aleph_ver" | cut -f2 -d.)
+stream=$(echo "$aleph_ver" | cut -f3 -d.)
+
+if [ "$stream" = "3" ]; then
+    start=20220819
+    end=20221012
+else
+    start=20220901
+    end=20221029
+fi
+
+mkdir -p /var/lib/coreos
+
+if [ "$date" -lt "$start" ]; then
+    echo "Image is too old to be affected; exiting"
+    touch "$STAMP"
+    exit 0
+fi
+
+if [ "$date" -gt "$end" ]; then
+    echo "Image is too new to be affected; exiting"
+    touch "$STAMP"
+    exit 0
+fi
+
+if ostree config get sysroot.bls-append-except-default 2>/dev/null; then
+    # user-set value?
+    echo "sysroot.bls-append-except-default already has a value; exiting"
+    touch "$STAMP"
+    exit 0
+fi
+
+echo "Setting value of sysroot.bls-append-except-default"
+ostree config set sysroot.bls-append-except-default 'grub_users=""'
+
+echo "Fixing existing deployments"
+mount -o remount,rw /boot
+cd /boot/loader/entries
+# Ignore the default deployment, which is last when sorted numerically
+for f in $(ls -v ostree-*.conf | head -n -1); do
+    if ! grep -q "^grub_users " "$f"; then
+        echo "Fixing $f"
+        echo 'grub_users ""' >> "$f"
+    fi
+done
+
+touch "$STAMP"
