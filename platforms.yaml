@@ -32,6 +32,17 @@ aarch64:
     kernel_arguments:
       - console=tty0
       - console=ttyAMA0,115200n8
+  openstack:
+    # Graphical console primary, serial console available for logging
+    # https://docs.openstack.org/diskimage-builder/latest/elements/bootloader/README.html
+    # https://issues.redhat.com/browse/OCPBUGS-2926
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=ttyAMA0,115200n8
+      - console=tty0
   packet:
     # https://metal.equinix.com/developers/docs/resilience-recovery/serial-over-ssh/#limitations
     grub_commands:
@@ -48,6 +59,14 @@ aarch64:
       - terminal_input serial console
       - terminal_output serial console
 ppc64le:
+  openstack:
+    # Graphical console primary, serial console available for logging
+    # petitboot doesn't understand GRUB console commands
+    # https://docs.openstack.org/diskimage-builder/latest/elements/bootloader/README.html
+    # https://issues.redhat.com/browse/OCPBUGS-2926
+    kernel_arguments:
+      - console=hvc0
+      - console=tty0
   qemu:
     # petitboot doesn't understand GRUB console commands, but we need to
     # pass console kargs
@@ -96,6 +115,17 @@ x86_64:
     kernel_arguments:
       - console=tty0
       - console=ttyS0,115200n8
+  openstack:
+    # Graphical console primary, serial console available for logging
+    # https://docs.openstack.org/diskimage-builder/latest/elements/bootloader/README.html
+    # https://issues.redhat.com/browse/OCPBUGS-2926
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=ttyS0,115200n8
+      - console=tty0
   packet:
     # https://metal.equinix.com/developers/docs/resilience-recovery/serial-over-ssh/#limitations
     grub_commands:
@@ -113,3 +143,23 @@ x86_64:
     kernel_arguments:
       - console=tty0
       - console=ttyS0,115200n8
+  virtualbox:
+    # Graphical console primary, serial console available for logging
+    # https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-virtualbox/#_troubleshooting_first_boot_problems
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=ttyS0,115200n8
+      - console=tty0
+  vmware:
+    # Graphical console primary, serial console available for logging
+    # https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-vmware/#_troubleshooting_first_boot_problems
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=ttyS0,115200n8
+      - console=tty0

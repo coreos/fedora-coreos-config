@@ -3,9 +3,11 @@ version: 1.4.0
 kernel_arguments:
   should_exist:
     # We need to make sure we have a large enough crashkernel for FCOS
-    # and RHCOS here. Currently the worst case is aarch64 RHCOS where
-    # the `kdumpctl estimate` says "Recommended crashkernel: 448M"
-    - crashkernel=500M
+    # and RHCOS here. Currently the worst case output of `kdumpctl estimate`
+    # is aarch64 RHCOS where the it says "Recommended crashkernel: 448M".
+    # Though for some reason when we set crashkernel=448M ppc64le complains
+    # and wants 512M so let's set it to 512M here.
+    - crashkernel=512M
 systemd:
   units:
     - name: kdump.service
