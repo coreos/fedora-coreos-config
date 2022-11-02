@@ -4,7 +4,7 @@
 ##  distros: fcos
 ##  # coreos-post-ignition-checks.service forbids GRUB passwords on
 ##  # ppc64le and s390x
-##  architectures: "!ppc64le !s390x"
+##  architectures: "!ppc64le s390x"
 ##  # Running on multiple platforms won't prove anything further
 ##  platforms: qemu
 #
