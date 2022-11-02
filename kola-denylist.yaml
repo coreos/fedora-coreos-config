@@ -39,12 +39,8 @@
   arches:
   - s390x
 - pattern: ext.config.platforms.aws.nvme
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1306
-  snooze: 2022-11-05
-  streams:
-    - testing-devel
-    - testing
-    - stable
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1306#issuecomment-1300781645
+  snooze: 2022-12-05
 - pattern: ext.config.networking.nameserver
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1332
   arches:
