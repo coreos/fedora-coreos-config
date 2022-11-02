@@ -31,3 +31,6 @@
   snooze: 2022-10-27
   arches:
   - s390x
+- pattern: ext.config.platforms.aws.nvme
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1306
+  snooze: 2022-10-21

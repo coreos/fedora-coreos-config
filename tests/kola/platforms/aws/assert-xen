@@ -1,0 +1,25 @@
+#!/bin/bash
+# Test to make sure the booted AWS instance is XEN based
+#
+## kola:
+##   # This is a read-only test and can be run with other tests
+##   exclusive: false
+##   # This test is targeted at AWS
+##   platforms: aws
+##   # Force this test to not run by default unless named specifically
+##   # or `--tag aws-xen-test` is passed to `kola run`. i.e. this test
+##   # should only run on Xen instances and the caller should request
+##   # the test.
+##   requiredTag: aws-xen-test
+#
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+hypervisor=$(curl http://169.254.169.254/2022-09-24/meta-data/system || true)
+if [ "${hypervisor}" != "xen" ]; then
+    fatal "expected xen instance type"
+fi
+
+ok xen instance type
