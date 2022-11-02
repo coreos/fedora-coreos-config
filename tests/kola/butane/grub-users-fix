@@ -6,6 +6,8 @@
 ##  architectures: "!s390x"
 ##  # Running on multiple platforms won't prove anything further
 ##  platforms: qemu
+##  # 10 minutes is not quite enough on ppc64le runners
+##  timeoutMin: 15
 #
 # Test coreos-fix-grub-users.service.
 
