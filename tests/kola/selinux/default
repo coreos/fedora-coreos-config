@@ -1,0 +1,15 @@
+#!/bin/bash
+# Verify that the SELinux policy isn't marked as modified.
+# See: https://github.com/openshift/os/issues/1036.
+## kola:
+##   exclusive: false
+##   tags: "platform-independent"
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+if ostree admin config-diff | grep 'selinux/targeted/policy'; then
+    fatal "SELinux policy is marked as modified"
+fi
+ok "SELinux policy not marked as modified"
