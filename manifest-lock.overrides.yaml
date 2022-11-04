@@ -9,36 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  NetworkManager:
-    evr: 1:1.41.4-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-f56af15452
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1325#issuecomment-1302128665
-      type: fast-track
-  NetworkManager-cloud-setup:
-    evr: 1:1.41.4-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-f56af15452
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1325#issuecomment-1302128665
-      type: fast-track
-  NetworkManager-libnm:
-    evr: 1:1.41.4-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-f56af15452
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1325#issuecomment-1302128665
-      type: fast-track
-  NetworkManager-team:
-    evr: 1:1.41.4-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-f56af15452
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1325#issuecomment-1302128665
-      type: fast-track
-  NetworkManager-tui:
-    evr: 1:1.41.4-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-f56af15452
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1325#issuecomment-1302128665
-      type: fast-track
   systemd:
     evr: 251.5-607.fc38
     metadata:
