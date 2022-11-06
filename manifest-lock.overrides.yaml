@@ -112,16 +112,34 @@ packages:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
       type: fast-track
   glib2:
-    evr: 2.74.1-1.fc37
+    evr: 2.74.1-2.fc37
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-ce3b8fbd4d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1296474889
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1304857839
       type: fast-track
   gnutls:
     evr: 3.7.8-2.fc37
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-bd6c888fd2
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
+      type: fast-track
+  kernel:
+    evr: 6.0.7-301.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-f3e83cad6f
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1304857839
+      type: fast-track
+  kernel-core:
+    evr: 6.0.7-301.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-f3e83cad6f
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1304857839
+      type: fast-track
+  kernel-modules:
+    evr: 6.0.7-301.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-f3e83cad6f
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1304857839
       type: fast-track
   libidn2:
     evr: 2.3.4-1.fc37
