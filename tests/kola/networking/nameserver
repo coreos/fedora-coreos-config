@@ -1,5 +1,5 @@
 #!/bin/bash
-# kola: { "platforms": "qemu", "appendKernelArgs": "nameserver=8.8.8.8 nameserver=1.1.1.1"}
+# kola: { "platforms": "qemu", "appendKernelArgs": "nameserver=8.8.8.8 nameserver=1.1.1.1", "architectures": "!s390x"}
 
 # Verify multiple nameservers config via kernel arguments work well
 # RHCOS: need to check /etc/resolv.conf and nmconnection
@@ -8,6 +8,9 @@
 
 # - platforms: qemu
 #   - This test should pass everywhere if it passes anywhere.
+# - architectures: !s390x
+#   - appendKernelArgs doesn't work on s390x
+#   - https://github.com/coreos/coreos-assembler/issues/2776
 
 set -xeuo pipefail
 
