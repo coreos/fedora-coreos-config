@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# This test verifies that the coreos.no_persist_ip kernel argument will
+# prevent propagating kernel argument based networking configuration into
+# the real root. It does this by providing karg static networking config
+# for eth1 and then verifying that DHCP is used in the real root.
+
+## kola:
+##   # This test should pass everywhere if it passes anywhere.
+##   platforms: qemu
+##   # Add 1 NIC for this test
+##   additionalNics: 1
+##   # The functionality we're testing here and the configuration for the NIC.
+##   # We use net.ifnames=0 to disable consistent network naming here because on
+##   # different firmwares (BIOS vs UEFI) the NIC names are different.
+##   # See https://github.com/coreos/fedora-coreos-tracker/issues/1060
+##   appendKernelArgs: "ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:eth1:none net.ifnames=0 coreos.no_persist_ip"
+##   # appendKernelArgs doesn't work on s390x, see https://github.com/coreos/coreos-assembler/issues/2776
+##   architectures: !s390x
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+# Verify eth1 gets ip address via dhcp
+nic_name="eth1"
+nic_ip=$(get_ipv4_for_nic ${nic_name})
+if [ ${nic_ip} != "10.0.2.31" ]; then
+    fatal "Error: get ${nic_name} ip = ${nic_ip}, expected is 10.0.2.31"
+fi
+ok "get ${nic_name} ip is 10.0.2.31"
+
+if ! journalctl -b -u coreos-teardown-initramfs | grep -q "info: skipping propagating initramfs settings"; then
+    fatal "Error: can not get log: (info: skipping propagating initramfs settings)"
+fi
+ok "test coreos.no_persist_ip disable initramfs network propagation"
