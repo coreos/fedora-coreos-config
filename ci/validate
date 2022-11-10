@@ -2,6 +2,7 @@
 # Validate basic syntax of shell script and yaml.
 
 import os
+import re
 import stat
 import subprocess
 import yaml
@@ -31,8 +32,12 @@ def validate_initrd_service(rootfd, name):
             )
 
 
+BASH_UNBRACKETED_IF = re.compile(r'\sif\s+"?\$')
 def validate_shell(rootfd, name):
     subprocess.check_call(['bash', '-n', name], preexec_fn=lambda: os.fchdir(rootfd))
+    with openat(rootfd, name) as fh:
+        if BASH_UNBRACKETED_IF.search(fh.read()):
+            raise Exception(f'Possible unbracketed conditional in {name}')
     global validated
     validated +=1
 

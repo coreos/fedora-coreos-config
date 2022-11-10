@@ -1,0 +1,147 @@
+#!/bin/bash
+## kola:
+##  # The fixup only exists in FCOS
+##  distros: fcos
+##  # Service doesn't run on s390x because there's no GRUB
+##  architectures: "!s390x"
+##  # Running on multiple platforms won't prove anything further
+##  platforms: qemu
+##  # 10 minutes is not quite enough on ppc64le runners
+##  timeoutMin: 15
+#
+# Test coreos-fix-grub-users.service.
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+STAMP=/var/lib/coreos/fix-grub-users.stamp
+
+fatal_ctx() {
+    fatal "$1 ($AUTOPKGTEST_REBOOT_MARK)"
+}
+
+check() {
+    logline="$1"; shift
+    if ! grep -q "zz-$AUTOPKGTEST_REBOOT_MARK-zz" /proc/cmdline; then
+        fatal_ctx "Did not boot into correct deployment"
+    fi
+    if grep -q "zz-$AUTOPKGTEST_REBOOT_MARK-zz" /boot/loader/entries/ostree-1-*.conf; then
+        fatal_ctx "Previous deployment contains new karg"
+    fi
+    if ! grep -q "zz-$AUTOPKGTEST_REBOOT_MARK-zz" /boot/loader/entries/ostree-2-*.conf; then
+        fatal_ctx "Current deployment does not contain new karg"
+    fi
+    if [ ! -e "$STAMP" ]; then
+        fatal_ctx "Service stamp was not created"
+    fi
+    if touch /boot/z 2>/dev/null; then
+        fatal_ctx "/boot is mounted read-write"
+    fi
+    if touch /sysroot/ostree/repo/z 2>/dev/null; then
+        fatal_ctx "/sysroot is mounted read-write"
+    fi
+    if ! journalctl -b 0 -u coreos-fix-grub-users.service | grep -q "$logline"; then
+        journalctl -b 0 -o cat -u coreos-fix-grub-users.service
+        fatal_ctx "Did not find '$logline' in service output"
+    fi
+}
+
+check_success() {
+    check "Setting value of"
+    if [ "$(ostree config get sysroot.bls-append-except-default)" != 'grub_users=""' ]; then
+        fatal_ctx "Did not find grub_users setting in ostree config"
+    fi
+    if ! grep -q "^grub_users" /boot/loader/entries/ostree-1-*.conf; then
+        fatal_ctx "Did not find grub_users directive in previous deployment"
+    fi
+    if grep -q "^grub_users" /boot/loader/entries/ostree-2-*.conf; then
+        fatal_ctx "Found grub_users directive in current deployment"
+    fi
+}
+
+configure() {
+    ver="$1"; shift
+    # delete previous deployment
+    rpm-ostree cleanup -pr
+    mount -o remount,rw /sysroot
+    ostree config unset sysroot.bls-append-except-default
+    sed '/"build"/s/.*/"build": "'$ver'",/' \
+        /sysroot/.coreos-aleph-version.json > /tmp/aleph-version
+    cat /tmp/aleph-version > /sysroot/.coreos-aleph-version.json
+    rm -f $STAMP
+}
+
+reboot() {
+    mark="$1"; shift
+    # ensure there's a previous deployment
+    rpm-ostree kargs --append "zz-$mark-zz"
+    ok "Rebooting into $mark"
+    /tmp/autopkgtest-reboot "$mark"
+}
+
+case "${AUTOPKGTEST_REBOOT_MARK:-}" in
+"")
+    # don't make assumptions about whether the fix has been applied in this
+    # image
+    configure 36.20220906.2.0
+    reboot testing-active-first
+    ;;
+testing-active-first)
+    check_success
+    reboot testing-duplicate
+    ;;
+testing-duplicate)
+    check "failed condition check"
+    configure 36.20221014.2.1
+    reboot testing-active-last
+    ;;
+testing-active-last)
+    check_success
+    configure 36.20220820.2.0
+    reboot testing-early
+    ;;
+testing-early)
+    check "too old to be affected"
+    configure 36.20221031.2.0
+    reboot testing-late
+    ;;
+testing-late)
+    check "too new to be affected"
+    configure 36.20220906.2.0
+    ostree config set sysroot.bls-append-except-default 'foo=bar'
+    reboot testing-already-set
+    ;;
+testing-already-set)
+    check "already has a value"
+    configure 37.20221021.1.1
+    reboot next-active-last
+    ;;
+next-active-last)
+    check_success
+    configure 36.20220820.3.0
+    reboot stable-active-first
+    ;;
+stable-active-first)
+    check_success
+    configure 36.20221001.3.1
+    reboot stable-active-last
+    ;;
+stable-active-last)
+    check_success
+    configure 36.20220806.3.0
+    reboot stable-early
+    ;;
+stable-early)
+    check "too old to be affected"
+    configure 36.20221014.3.0
+    reboot stable-late
+    ;;
+stable-late)
+    check "too new to be affected"
+    ok "All tests passed"
+    ;;
+*)
+    fatal_ctx "Unexpected mark"
+    ;;
+esac
