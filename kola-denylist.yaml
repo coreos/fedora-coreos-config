@@ -6,9 +6,15 @@
 - pattern: podman.workflow
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: ext.config.kdump.crash
-  tracker: https://github.com/coreos/coreos-assembler/issues/2725
+  tracker: https://github.com/coreos/coreos-assembler/issues/2725#issuecomment-1292616121
   arches:
     - ppc64le
+  streams:
+    - next-devel
+    - next
+    - testing-devel
+    - testing
+    - stable
 - pattern: coreos.boot-mirror.luks
   tracker: https://github.com/coreos/coreos-assembler/issues/2725
   arches:
@@ -23,14 +29,19 @@
   - s390x
 - pattern: ext.config.ignition.resource.remote
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
-  snooze: 2022-11-10
   arches:
   - s390x
 - pattern: rpmostree.install-uninstall
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
-  snooze: 2022-11-10
   arches:
   - s390x
 - pattern: ext.config.platforms.aws.nvme
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1306
-  snooze: 2022-11-10
+  streams:
+    - testing-devel
+    - testing
+    - stable
+- pattern: ext.config.networking.nameserver
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1332
+  arches:
+  - s390x
