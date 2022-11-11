@@ -63,35 +63,8 @@ method=auto
 
 [user]
 org.freedesktop.NetworkManager.origin=nm-initrd-generator"
-# EXPECTED_INITRD_NETWORK_CFG4
-#   - used on Fedora 37+
-EXPECTED_INITRD_NETWORK_CFG4="# Created by nm-initrd-generator
-
-[connection]
-id=Wired Connection
-uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-type=ethernet
-autoconnect-retries=1
-multi-connect=3
-
-[ethernet]
-
-[ipv4]
-dhcp-timeout=90
-method=auto
-required-timeout=20000
-
-[ipv6]
-dhcp-timeout=90
-method=auto
-
-[proxy]
-
-[user]
-org.freedesktop.NetworkManager.origin=nm-initrd-generator"
-
 # EXPECTED_INITRD_NETWORK_CFG5
-#   - used on Fedora 38+ and scos
+#   - used on Fedora 37+ and scos
 EXPECTED_INITRD_NETWORK_CFG5="# Created by nm-initrd-generator
 
 [connection]
@@ -202,11 +175,8 @@ normalize_connection_file() {
 
 source /etc/os-release
 if [ "$ID" == "fedora" ]; then
-    if [ "$VERSION_ID" -ge "38" ]; then
+    if [ "$VERSION_ID" -ge "37" ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG5
-        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG3
-    elif [ "$VERSION_ID" -eq "37" ]; then
-        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG4
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG3
     elif [ "$VERSION_ID" -eq "36" ]; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG3
