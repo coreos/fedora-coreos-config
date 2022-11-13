@@ -9,30 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  aardvark-dns:
-    evr: 1.2.0-6.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-5c25a19c97
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
-      type: fast-track
-  conmon:
-    evr: 2:2.1.4-3.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-b0af7af299
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
-      type: fast-track
-  containers-common:
-    evra: 4:1-73.fc37.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-5c25a19c97
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
-      type: fast-track
-  containers-common-extra:
-    evra: 4:1-73.fc37.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-5c25a19c97
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
-      type: fast-track
   expat:
     evr: 2.4.9-1.fc37
     metadata:
@@ -43,29 +19,5 @@ packages:
     evr: 3.7.8-2.fc37
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-bd6c888fd2
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
-      type: fast-track
-  libxml2:
-    evr: 2.10.3-2.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-a6812b0224
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1336
-      type: fast-track
-  netavark:
-    evr: 1.2.0-5.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-5c25a19c97
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
-      type: fast-track
-  podman:
-    evr: 4:4.3.0-2.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-5c25a19c97
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
-      type: fast-track
-  podman-plugins:
-    evr: 4:4.3.0-2.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-5c25a19c97
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
       type: fast-track
