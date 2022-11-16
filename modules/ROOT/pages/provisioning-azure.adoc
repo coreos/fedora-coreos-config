@@ -41,7 +41,7 @@ az group create -l "${az_region}" -n "${az_resource_group}"
 # Create storage account for uploading FCOS image
 az storage account create -g "${az_resource_group}" -n "${az_storage_account}"
 # Retrieve connection string for storage account
-cs=$(az storage account show-connection-string -n "${az_storage_account}" | jq -r .connectionString)
+cs=$(az storage account show-connection-string -n "${az_storage_account}" -g "${az_resource_group}" | jq -r .connectionString)
 # Create storage container for uploading FCOS image
 az storage container create --connection-string "${cs}" -n "${az_container}"
 ----
