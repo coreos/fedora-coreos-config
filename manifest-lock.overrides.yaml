@@ -34,9 +34,3 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
       type: pin
-  expat:
-    evr: 2.4.9-1.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-3c52402aec
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1223#issuecomment-1242724431
-      type: fast-track
