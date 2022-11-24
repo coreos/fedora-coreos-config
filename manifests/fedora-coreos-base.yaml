@@ -164,6 +164,8 @@ packages:
   # In F35+ need `iptables-legacy` package
   # See https://github.com/coreos/fedora-coreos-tracker/issues/676#issuecomment-928028451
   - iptables-legacy
+  # GPU Firmware files (not broken out into subpackage of linux-firmware in RHEL yet)
+  - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
 
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
