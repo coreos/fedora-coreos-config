@@ -1,0 +1,6 @@
+variant: fcos
+version: 1.4.0
+kernel_arguments:
+  should_exist:
+    - rd.net.timeout.carrier=15
+    - rd.neednet=1
