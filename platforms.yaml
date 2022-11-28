@@ -1,0 +1,165 @@
+# This file specifies image customizations that are specific to particular
+# architecture/platform pairs.  It is applied (indirectly, via
+# /boot/coreos/platforms.json) by create_disk.sh and gf-set-platform at
+# build time and coreos-installer at install time (if --platform is
+# specified).
+#
+# Currently this is used to configure the default console.  For any
+# arch/platform pairs not specified, GRUB and the kernel will apply their
+# own defaults.  Note that coreos-installer install --console will
+# completely override any GRUB commands specified here.
+#
+# s390x doesn't use GRUB and requires running zipl after updating kargs,
+# so it can't be added to this file without additional development work.
+#
+# All architectures, platforms, and fields are optional.
+aarch64:
+  aws:
+    # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-to-serial-console.html#sc-considerations
+    # It appears there's no screenshot support on ARM
+    grub_commands:
+      - serial --speed=115200 efi0
+      - terminal_input serial_efi0
+      - terminal_output serial_efi0
+    kernel_arguments:
+      - console=ttyS0,115200n8
+  azure:
+    # https://docs.microsoft.com/en-us/troubleshoot/azure/virtual-machines/serial-console-linux
+    # https://docs.microsoft.com/en-us/troubleshoot/azure/virtual-machines/boot-diagnostics
+    # Have GRUB write only to console, which gets copied to the serial port.
+    # If we use serial (serial efi0; terminal_output console serial_efi0)
+    # we get doubled output.
+    kernel_arguments:
+      - console=tty0
+      - console=ttyAMA0,115200n8
+  openstack:
+    # Graphical console primary, serial console available for logging
+    # https://docs.openstack.org/diskimage-builder/latest/elements/bootloader/README.html
+    # https://issues.redhat.com/browse/OCPBUGS-2926
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=ttyAMA0,115200n8
+      - console=tty0
+  packet:
+    # https://metal.equinix.com/developers/docs/resilience-recovery/serial-over-ssh/#limitations
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial
+      - terminal_output serial
+    kernel_arguments:
+      - console=ttyAMA0,115200
+  qemu:
+    # The kernel successfully autodetects a serial console, but we still
+    # want GRUB to use one
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+ppc64le:
+  openstack:
+    # Graphical console primary, serial console available for logging
+    # petitboot doesn't understand GRUB console commands
+    # https://docs.openstack.org/diskimage-builder/latest/elements/bootloader/README.html
+    # https://issues.redhat.com/browse/OCPBUGS-2926
+    kernel_arguments:
+      - console=hvc0
+      - console=tty0
+  qemu:
+    # petitboot doesn't understand GRUB console commands, but we need to
+    # pass console kargs
+    # https://github.com/coreos/coreos-assembler/pull/2400#discussion_r701412417
+    kernel_arguments:
+      - console=hvc0
+      - console=tty0
+x86_64:
+  aws:
+    # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-to-serial-console.html#sc-considerations
+    # https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetConsoleScreenshot.html
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=tty0
+      - console=ttyS0,115200n8
+  azure:
+    # https://docs.microsoft.com/en-us/troubleshoot/azure/virtual-machines/serial-console-linux
+    # https://docs.microsoft.com/en-us/troubleshoot/azure/virtual-machines/boot-diagnostics
+    # Have GRUB write only to console, which gets copied to the serial port.
+    # If we use serial we get doubled output.
+    kernel_arguments:
+      - console=tty0
+      - console=ttyS0,115200n8
+  gcp:
+    # Four serial ports are available; we use the first one
+    # https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-using-serial-console
+    # https://cloud.google.com/compute/docs/troubleshooting/capturing-vm-screenshots
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=tty0
+      - console=ttyS0,115200n8
+  ibmcloud:
+    # Docs suggest 9600 bps, but that doesn't seem reasonable
+    # https://cloud.ibm.com/docs/vpc?topic=vpc-create-linux-custom-image#kernel-args
+    # https://cloud.ibm.com/docs/vpc?topic=vpc-vsi_is_connecting_console&interface=ui
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=tty0
+      - console=ttyS0,115200n8
+  openstack:
+    # Graphical console primary, serial console available for logging
+    # https://docs.openstack.org/diskimage-builder/latest/elements/bootloader/README.html
+    # https://issues.redhat.com/browse/OCPBUGS-2926
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=ttyS0,115200n8
+      - console=tty0
+  packet:
+    # https://metal.equinix.com/developers/docs/resilience-recovery/serial-over-ssh/#limitations
+    grub_commands:
+      - serial --unit=1 --speed=115200
+      - terminal_input serial
+      - terminal_output serial
+    kernel_arguments:
+      - console=ttyS1,115200n8
+  qemu:
+    # https://github.com/coreos/fedora-coreos-tracker/issues/954
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=tty0
+      - console=ttyS0,115200n8
+  virtualbox:
+    # Graphical console primary, serial console available for logging
+    # https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-virtualbox/#_troubleshooting_first_boot_problems
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=ttyS0,115200n8
+      - console=tty0
+  vmware:
+    # Graphical console primary, serial console available for logging
+    # https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-vmware/#_troubleshooting_first_boot_problems
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=ttyS0,115200n8
+      - console=tty0
