@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Verify to install BIOS/PReP bootloader using grub2-install from 
+# the target system.
+# See:
+#  - https://github.com/coreos/coreos-assembler/pull/3190
+#  - https://github.com/coreos/coreos-assembler/issues/3148
+
+## kola:
+##   # This test should pass everywhere if it passes anywhere.
+##   platforms: qemu
+##   # The test is not available for aarch64 and s390x,
+##   # as aarch64 is UEFI only and s390x is not using grub2
+##   architectures: "!aarch64 !s390x"
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+boot_dev=/boot
+arch=$(arch)
+case ${arch} in
+  x86_64)
+    target=i386-pc
+    core="${boot_dev}/grub2/${target}/core.img"   
+    partition=$(findmnt -no SOURCE ${boot_dev})
+    device=$(lsblk --paths -no PKNAME ${partition})
+    # sync grub2-install parameter according to image build script
+    # https://github.com/coreos/coreos-assembler/blob/main/src/create_disk.sh
+    grub_install_args="--modules mdraid1x"
+    ;;
+  
+  ppc64le)
+    target=powerpc-ieee1275
+    core="${boot_dev}/grub2/${target}/core.elf"
+    device=$(realpath /dev/disk/by-partlabel/PowerPC-PReP-boot)
+    # sync grub2-install parameter according to image build script
+    # https://github.com/coreos/coreos-assembler/blob/main/src/create_disk.sh    
+    grub_install_args="--no-nvram"   
+    ;;
+
+  *)
+    fatal "grub2-install testing is not supported on ${arch}"
+    ;;
+esac
+
+[ -e ${core} ] || fatal "file ${core} doesn't exist"
+core_sum=$(sha256sum ${core} | awk '{print $1}')
+
+mount -o remount,rw ${boot_dev}
+grub2-install --target ${target} --boot-directory ${boot_dev} ${grub_install_args} ${device}
+
+new_core_sum=$(sha256sum ${core} | awk '{print $1}')
+
+# compare core.img checksum before and after run grub2-install
+if [ "${core_sum}" != "${new_core_sum}" ]; then
+  fatal "Error: not using grub2-install from target system"
+fi
+ok "using grub2-install from target system on ${arch}"
