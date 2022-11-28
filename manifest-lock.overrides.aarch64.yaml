@@ -9,28 +9,23 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  NetworkManager:
-    evr: 1:1.40.0-1.fc37
+  grub2-common:
+    evra: 1:2.06-63.fc37.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1352
       type: pin
-  NetworkManager-cloud-setup:
-    evr: 1:1.40.0-1.fc37
+  grub2-tools-minimal:
+    evra: 1:2.06-63.fc37.aarch64
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1352
       type: pin
-  NetworkManager-libnm:
-    evr: 1:1.40.0-1.fc37
+  grub2-efi-aa64:
+    evra: 1:2.06-63.fc37.aarch64
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1352
       type: pin
-  NetworkManager-team:
-    evr: 1:1.40.0-1.fc37
+  grub2-tools:
+    evra: 1:2.06-63.fc37.aarch64
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
-      type: pin
-  NetworkManager-tui:
-    evr: 1:1.40.0-1.fc37
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1352
       type: pin
