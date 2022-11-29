@@ -31,3 +31,5 @@ vmware-os-type: fedora64Guest
 # We use the newest version allowed by the oldest non-EOL VMware
 # Workstation/Player/Fusion/ESXi release: https://lifecycle.vmware.com/
 vmware-hw-version: 17
+
+compressor: xz
