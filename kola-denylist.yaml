@@ -19,25 +19,25 @@
 - pattern: coreos.boot-mirror.luks
   tracker: https://github.com/coreos/coreos-assembler/issues/2725
   arches:
-  - ppc64le
+    - ppc64le
 - pattern: coreos.boot-mirror
   tracker: https://github.com/coreos/coreos-assembler/issues/2725
   arches:
-  - ppc64le
+    - ppc64le
 - pattern: multipath.day2
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1206
   arches:
-  - s390x
+    - s390x
 - pattern: ext.config.ignition.resource.remote
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
   snooze: 2022-12-10
   arches:
-  - s390x
+    - s390x
 - pattern: rpmostree.install-uninstall
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
   snooze: 2022-12-10
   arches:
-  - s390x
+    - s390x
 - pattern: ext.config.platforms.aws.nvme
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1306#issuecomment-1300781645
   snooze: 2022-12-05
