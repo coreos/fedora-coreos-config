@@ -59,7 +59,10 @@ You now should be able to SSH into the instance using the associated IP address.
 ssh core@<ip address>
 ----
 
-In order to launch a customized FCOS instance, a valid Ignition configuration must be passed as user-data at creation time:
+
+In order to launch a customized FCOS instance, a valid Ignition configuration must be passed as metadata under the 
+`user-data` key at creation time. In the web console, this is available under the Management section. 
+From the command-line, use `--metadata-from-file`:
 
 .Launching and customizing a new instance
 [source, bash]
@@ -71,3 +74,4 @@ gcloud compute instances create --metadata-from-file "user-data=${CONFIG}" --ima
 ----
 
 NOTE: By design, https://cloud.google.com/compute/docs/startupscript[startup scripts] are not supported on FCOS. Instead, it is recommended to encode any startup logic as systemd service units in the Ignition configuration.
+Again, note you need to use the `user-data` key for Ignition; it will also not work to paste Ignition into this field in the web console.
