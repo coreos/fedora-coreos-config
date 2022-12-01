@@ -190,7 +190,7 @@
       "evra": "2.5.0-1.fc37.ppc64le"
     },
     "curl": {
-      "evra": "7.85.0-2.fc37.ppc64le"
+      "evra": "7.85.0-4.fc37.ppc64le"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-8.fc37.ppc64le"
@@ -223,10 +223,10 @@
       "evra": "1.02.175-9.fc37.ppc64le"
     },
     "device-mapper-multipath": {
-      "evra": "0.9.0-3.fc37.ppc64le"
+      "evra": "0.9.0-4.fc37.ppc64le"
     },
     "device-mapper-multipath-libs": {
-      "evra": "0.9.0-3.fc37.ppc64le"
+      "evra": "0.9.0-4.fc37.ppc64le"
     },
     "device-mapper-persistent-data": {
       "evra": "0.9.0-8.fc37.ppc64le"
@@ -442,7 +442,7 @@
       "evra": "20211215-3.fc37.ppc64le"
     },
     "irqbalance": {
-      "evra": "2:1.9.0-1.fc37.ppc64le"
+      "evra": "2:1.9.1-1.fc37.ppc64le"
     },
     "iscsi-initiator-utils": {
       "evra": "6.2.1.4-6.git2a8f9d8.fc37.ppc64le"
@@ -481,13 +481,13 @@
       "evra": "2.5.1-3.fc37.noarch"
     },
     "kernel": {
-      "evra": "6.0.9-300.fc37.ppc64le"
+      "evra": "6.0.10-300.fc37.ppc64le"
     },
     "kernel-core": {
-      "evra": "6.0.9-300.fc37.ppc64le"
+      "evra": "6.0.10-300.fc37.ppc64le"
     },
     "kernel-modules": {
-      "evra": "6.0.9-300.fc37.ppc64le"
+      "evra": "6.0.10-300.fc37.ppc64le"
     },
     "kexec-tools": {
       "evra": "2.0.25-1.fc37.ppc64le"
@@ -505,7 +505,7 @@
       "evra": "30-2.fc37.ppc64le"
     },
     "kpartx": {
-      "evra": "0.9.0-3.fc37.ppc64le"
+      "evra": "0.9.0-4.fc37.ppc64le"
     },
     "krb5-libs": {
       "evra": "1.19.2-13.fc37.ppc64le"
@@ -559,7 +559,7 @@
       "evra": "1.46.5-3.fc37.ppc64le"
     },
     "libcurl-minimal": {
-      "evra": "7.85.0-2.fc37.ppc64le"
+      "evra": "7.85.0-4.fc37.ppc64le"
     },
     "libdaemon": {
       "evra": "0.14-24.fc37.ppc64le"
@@ -811,7 +811,7 @@
       "evra": "2:4.17.3-0.fc37.ppc64le"
     },
     "libxcrypt": {
-      "evra": "4.4.33-1.fc37.ppc64le"
+      "evra": "4.4.33-3.fc37.ppc64le"
     },
     "libxml2": {
       "evra": "2.10.3-2.fc37.ppc64le"
@@ -1069,10 +1069,10 @@
       "evra": "4.8-11.fc37.ppc64le"
     },
     "selinux-policy": {
-      "evra": "37.14-1.fc37.noarch"
+      "evra": "37.15-1.fc37.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "37.14-1.fc37.noarch"
+      "evra": "37.15-1.fc37.noarch"
     },
     "servicelog": {
       "evra": "1.1.16-2.fc37.ppc64le"
@@ -1198,10 +1198,10 @@
       "evra": "2.38.1-1.fc37.ppc64le"
     },
     "vim-data": {
-      "evra": "2:9.0.915-1.fc37.noarch"
+      "evra": "2:9.0.963-1.fc37.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.915-1.fc37.ppc64le"
+      "evra": "2:9.0.963-1.fc37.ppc64le"
     },
     "which": {
       "evra": "2.21-35.fc37.ppc64le"
@@ -1241,16 +1241,16 @@
     }
   },
   "metadata": {
-    "generated": "2022-11-27T20:53:43Z",
+    "generated": "2022-12-01T20:34:55Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-11-05T08:04:20Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2022-11-26T22:19:40Z"
+        "generated": "2022-11-27T22:17:53Z"
       },
       "fedora-updates": {
-        "generated": "2022-11-27T01:19:06Z"
+        "generated": "2022-12-01T01:18:49Z"
       }
     }
   }
