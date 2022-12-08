@@ -30,9 +30,6 @@ set -xeuo pipefail
 
 test_setup() {
 
-    # This is needed to run a container with systemd
-    setsebool container_manage_cgroup 1
-
     # create a network namespace
     ip netns add container
 
