@@ -28,6 +28,8 @@ set -xeuo pipefail
 # Just run on QEMU; it should work theoretically on cloud platforms, but many
 # of those have platform-specific sources which take precedence.
 
+NTPHOSTIP=$(getent hosts time-c-g.nist.gov | cut -d ' ' -f 1)
+
 test_setup() {
 
     # create a network namespace
@@ -43,7 +45,6 @@ test_setup() {
 
     # run podman commands to set up dnsmasq server
     pushd "$(mktemp -d)"
-    NTPHOSTIP=$(getent hosts time-c-g.nist.gov | cut -d ' ' -f 1)
     cat <<EOF >Dockerfile
 FROM registry.fedoraproject.org/fedora:36
 RUN dnf -y install systemd dnsmasq iproute iputils \
@@ -75,16 +76,13 @@ main() {
     test_setup
 
     # check for NTP server information
-    # Name: time-c-g.nist.gov  IP address: 129.6.15.30
-    NTPSERVER=""
     retries=300
-    while [[ $retries -gt 0 && ! $NTPSERVER =~ "time-c-g.nist.gov" ]]; do
-         NTPSERVER=$(chronyc sources)
-         if [[ $NTPSERVER != *"time-c-g.nist.gov"* ]]; then
-             echo "waiting for ntp server to appear"
-             sleep 1
-             retries=$((retries - 1))
-         fi
+    while [[ $retries -gt 0 ]]; do
+         NTPSERVER=$(chronyc -n sources)
+         [[ "$NTPSERVER" =~ "$NTPHOSTIP" ]] && break
+         echo "waiting for ntp server to appear"
+         sleep 1
+         retries=$((retries - 1))
     done
 
     if [ $retries -eq  0 ]; then
