@@ -1,94 +1,40 @@
 #!/bin/bash
-# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv", "timeoutMin": 15, "minMemory": 1536 }
+#
 # This script creates two veth interfaces i.e. one for the host machine
 # and other for the container(dnsmasq server). This setup will be helpful
 # to verify the DHCP propagation of NTP servers. This will also avoid any
 # regression that might cause in RHCOS or FCOS when the upstream changes
 # come down and obsolete the temporary work (https://github.com/coreos/fedora-coreos-config/pull/412)
 #
-# - tags: needs-internet
-#   - This test builds a container from remote sources.
-#   - This test uses a remote NTP server.
-# - platforms: qemu-unpriv
-#   - Limit it to qemu because some cloud providers have their own
-#     special sauce for NTP/chrony and we don't want to interfere with
-#     that.
-# - timeoutMin: 15
-#   - Pulling and building the container can take a long time if a
-#     slow mirror gets chosen.
-# - minMemory: 1536
-#   - There's a bug in dnf that is causing OOM on low memory systems:
-#     https://bugzilla.redhat.com/show_bug.cgi?id=1907030
-#     https://pagure.io/releng/issue/10935#comment-808601
+## kola: 
+##   # Add the needs-internet tag. This test builds a container from remote
+##   # sources and uses a remote NTP server.
+##   tags: "needs-internet"
+##   # Limit to qemu because some cloud providers have their own special
+##   # sauce for NTP/chrony and we don't want to interfere with that.
+##   platforms: qemu
+##   # Pulling and building the container can take a long time if a
+##   # slow mirror gets chosen. Bump the timeout to 15 minutes
+##   timeoutMin: 15
+##   # There's a bug in dnf that is causing OOM on low memory systems:
+##   # https://bugzilla.redhat.com/show_bug.cgi?id=1907030
+##   # https://pagure.io/releng/issue/10935#comment-808601
+##   minMemory: 1536
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
-
-# Just run on QEMU; it should work theoretically on cloud platforms, but many
-# of those have platform-specific sources which take precedence.
-
-NTPHOSTIP=$(getent hosts time-c-g.nist.gov | cut -d ' ' -f 1)
-
-test_setup() {
-
-    # create a network namespace
-    ip netns add container
-
-    # create veth pair and assign a namespace to veth-container
-    ip link add veth-host type veth peer name veth-container
-    ip link set veth-container netns container
-
-    # assign an IP address to the `veth-container` interface and bring it up
-    ip netns exec container ip address add 172.16.0.1/24 dev veth-container
-    ip netns exec container ip link set veth-container up
-
-    # run podman commands to set up dnsmasq server
-    pushd "$(mktemp -d)"
-    cat <<EOF >Dockerfile
-FROM registry.fedoraproject.org/fedora:37
-RUN dnf -y install systemd dnsmasq iproute iputils \
-&& dnf clean all \
-&& systemctl enable dnsmasq
-RUN echo -e 'dhcp-range=172.16.0.10,172.16.0.20,12h\nbind-interfaces\ninterface=veth-container\ndhcp-option=option:ntp-server,$NTPHOSTIP' > /etc/dnsmasq.d/dhcp
-CMD [ "/sbin/init" ]
-EOF
-
-    if is_fcos || is_rhcos8; then
-        podman build -t dnsmasq .
-    else
-        # only workaround for scos and rhel9
-        # https://github.com/openshift/os/issues/964
-        # https://bugzilla.redhat.com/show_bug.cgi?id=2123246 (revert PR when bug is fixed)
-        podman build --security-opt seccomp=/usr/share/containers/seccomp.json -t dnsmasq .
-    fi
-    popd
-    podman run -d --rm --name dnsmasq --privileged --network ns:/var/run/netns/container dnsmasq
-
-    # Tell NM to manage the `veth-host` interface and bring it up (will attempt DHCP).
-    # Do this after we start dnsmasq so we don't have to deal with DHCP timeouts.
-    nmcli dev set veth-host managed yes
-    ip link set veth-host up
-}
+. $KOLA_EXT_DATA/ntplib.sh
 
 main() {
 
-    test_setup
+    ntp_host_ip=$(getent hosts time-c-g.nist.gov | cut -d ' ' -f 1)
 
-    # check for NTP server information
-    retries=300
-    while [[ $retries -gt 0 ]]; do
-         NTPSERVER=$(chronyc -n sources)
-         [[ "$NTPSERVER" =~ "$NTPHOSTIP" ]] && break
-         echo "waiting for ntp server to appear"
-         sleep 1
-         retries=$((retries - 1))
-    done
+    ntp_test_setup $ntp_host_ip
 
-    if [ $retries -eq  0 ]; then
-        echo "propagation of ntp server information via dhcp failed"
-        exit 1
-    fi
+    check_for_ntp_server $ntp_host_ip "chronyc -n sources"
+
+    ok "chronyd got ntp servers from DHCP"
 }
 
 main
