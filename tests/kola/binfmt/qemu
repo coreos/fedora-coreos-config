@@ -22,7 +22,7 @@ set -xeuo pipefail
 
 case "$(arch)" in
     aarch64|s390x)
-        containerArch=$(podman run --arch=amd64 --rm registry.fedoraproject.org/fedora:36 arch)
+        containerArch=$(podman run --arch=amd64 --rm registry.fedoraproject.org/fedora:37 arch)
         if [ "$containerArch" != "x86_64" ]; then
             fatal "Test failed: x86_64 qemu emulator failed to run"
         fi
