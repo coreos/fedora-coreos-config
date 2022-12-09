@@ -54,3 +54,6 @@
 - pattern: ext.config.networking.default-network-behavior-change
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1341#issuecomment-1309756265
   snooze: 2023-01-05
+- pattern: ext.config.ntp.timesyncd.dhcp-propagation
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1359
+  snooze: 2023-01-15
