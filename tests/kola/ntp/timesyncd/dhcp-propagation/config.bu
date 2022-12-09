@@ -1,0 +1,17 @@
+variant: fcos
+version: 1.4.0
+systemd:
+  units:
+    - name: chronyd.service
+      enabled: false
+    - name: systemd-timesyncd.service
+      enabled: true
+# There currently isn't any NetworkManager dispatcher that
+# propagates DHCP info to timesyncd in Fedora so we'll just
+# pull one that we can use from the internet.
+storage:
+  files:
+    - path: /etc/NetworkManager/dispatcher.d/30-timesyncd
+      contents:
+        source: "https://github.com/eworm-de/networkmanager-dispatcher-timesyncd/raw/master/30-timesyncd"
+      mode: 0755
