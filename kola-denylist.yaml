@@ -7,7 +7,6 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/coreos-assembler/issues/2725#issuecomment-1292616121
-  snooze: 2023-01-04
   arches:
     - ppc64le
   streams:
@@ -50,10 +49,7 @@
     - stable
 - pattern: ext.config.platforms.aws.nvme
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1306#issuecomment-1300781645
-  snooze: 2022-12-05
 - pattern: ext.config.networking.default-network-behavior-change
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1341#issuecomment-1309756265
-  snooze: 2023-01-05
 - pattern: ext.config.ntp.timesyncd.dhcp-propagation
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1359
-  snooze: 2023-01-15
