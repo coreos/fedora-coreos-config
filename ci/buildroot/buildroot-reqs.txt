@@ -52,3 +52,7 @@ clang-analyzer
 
 # We don't want zombies in our pods
 dumb-init
+
+# Used to check Bash scripts in CI
+ShellCheck
+file
