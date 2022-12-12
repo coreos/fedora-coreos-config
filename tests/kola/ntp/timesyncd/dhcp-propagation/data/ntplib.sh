@@ -1,1 +1,1 @@
-../../../ntplib.sh
+../../../data/ntplib.sh
