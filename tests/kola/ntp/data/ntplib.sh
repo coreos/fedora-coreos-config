@@ -1,5 +1,3 @@
-#!/bin/bash
-#
 # This is a library created for our NTP tests
 
 . $KOLA_EXT_DATA/commonlib.sh
