@@ -1,0 +1,44 @@
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/team0.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=team0
+          type=team
+          autoconnect-retries=1
+          interface-name=team0
+          multi-connect=1
+          [team]
+          config={"runner": {"name": "activebackup"}, "link_watch": {"name": "ethtool"}}
+          [ipv4]
+          dns-search=
+          may-fail=false
+          method=auto
+    - path: /etc/NetworkManager/system-connections/team0-slave-eth1.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=team0-slave-eth1
+          type=ethernet
+          interface-name=eth1
+          master=team0
+          slave-type=team
+          [team-port]
+          config={"prio": 100}
+    - path: /etc/NetworkManager/system-connections/team0-slave-eth2.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=team0-slave-eth2
+          type=ethernet
+          interface-name=eth2
+          master=team0
+          slave-type=team
+          [team-port]
+          config={"prio": 100}
