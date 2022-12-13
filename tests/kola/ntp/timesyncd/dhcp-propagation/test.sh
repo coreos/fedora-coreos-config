@@ -20,6 +20,8 @@
 ##   # https://bugzilla.redhat.com/show_bug.cgi?id=1907030
 ##   # https://pagure.io/releng/issue/10935#comment-808601
 ##   minMemory: 1536
+##   # We only care about timesyncd in Fedora. It's not available elsewhere.
+##   distros: fcos
 
 set -xeuo pipefail
 
