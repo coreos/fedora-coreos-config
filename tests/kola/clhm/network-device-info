@@ -9,7 +9,10 @@ set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-if [ ! -f /etc/issue.d/22*.issue ]; then
+for file in /etc/issue.d/22*.issue
+do
+    if [ ! -f "$file" ]; then
     fatal "Network Device info does not exist"
-fi
+    fi
+done
 ok "Network Device info exists"
