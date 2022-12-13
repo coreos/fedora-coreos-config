@@ -28,7 +28,7 @@ list_broken_symlinks_skip=(
 )
 
 # If RHCOS, update the array of ignored symlinks
-if [[ is_rhcos ]]; then
+if is_rhcos; then
     list_broken_symlinks_skip+=(
         '/etc/grub2-efi.cfg'
         '/etc/rhsm-host'
