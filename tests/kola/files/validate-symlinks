@@ -29,12 +29,13 @@ list_broken_symlinks_skip=(
 
 # If RHCOS, update the array of ignored symlinks
 if is_rhcos; then
-    list_broken_symlinks_skip+=(
+    rhcos_list=(
         '/etc/grub2-efi.cfg'
         '/etc/rhsm-host'
         '/etc/pki/entitlement-host'
         '/etc/sysconfig/grub'
     )
+    list_broken_symlinks_skip+=("${rhcos_list[@]}")
 fi
 
 find /usr/ /etc/ -type l -not -path "/usr/etc*" | while read -r file_name; do
