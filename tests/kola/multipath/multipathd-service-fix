@@ -1,6 +1,8 @@
 #!/bin/bash
-# kola: { "exclusive": false, "platforms": "qemu-unpriv" }
-# Just run on qemu since the answer is the same everywhere
+## kola:
+##   exclusive: false
+##   # Just run on qemu since the answer is the same everywhere
+##   platforms: qemu-unpriv
 
 set -xeuo pipefail
 

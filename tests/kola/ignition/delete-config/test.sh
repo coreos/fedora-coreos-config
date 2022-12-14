@@ -1,8 +1,8 @@
 #!/bin/bash
-# kola: { "platforms": "qemu-unpriv" }
-# - platforms: qemu-unpriv
-#   - Ideally we'd test on virtualbox and vmware, but we don't have tests
-#     there, so we mock specifically for ignition.platform.id=qemu
+## kola:
+##   # Ideally we'd test on virtualbox and vmware, but we don't have tests
+##   # there, so we mock specifically for ignition.platform.id=qemu
+##   platforms: qemu-unpriv
 
 set -xeuo pipefail
 

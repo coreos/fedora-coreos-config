@@ -1,7 +1,8 @@
 #!/bin/bash
 set -xeuo pipefail
 
-# kola: { "platforms": "qemu" }
+## kola:
+##   platforms: qemu
 #
 # Test that the fallback hostname is `localhost`. This test
 # validates that the fallback hostname is set to `localhost`

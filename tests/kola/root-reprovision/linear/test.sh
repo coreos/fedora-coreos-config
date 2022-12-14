@@ -1,18 +1,16 @@
 #!/bin/bash
-# kola: { "platforms": "qemu", "minMemory": 4096, "additionalDisks": ["5G", "5G"], "timeoutMin": 15, "tags": "reprovision" }
-#
-# - platforms: qemu
-#   - This test should pass everywhere if it passes anywhere.
-#   - additionalDisks is only supported on qemu.
-# - tags: reprovision
-#   - This test reprovisions the rootfs.
-# - minMemory: 4096
-#   - Root reprovisioning requires at least 4GiB of memory.
-# - additionalDisks: ["5G", "5G"]
-#   - Linear RAID is setup on these disks.
-# - timeoutMin: 15
-#   - This test includes a lot of disk I/O and needs a higher
-#     timeout value than the default.
+## kola:
+##   # additionalDisks is only supported on qemu.
+##   platforms: qemu
+##   # Root reprovisioning requires at least 4GiB of memory.
+##   minMemory: 4096
+##   # Linear RAID is setup on these disks.
+##   additionalDisks: ["5G", "5G"]
+##   # This test includes a lot of disk I/O and needs a higher
+##   # timeout value than the default.
+##   timeoutMin: 15
+##   # This test reprovisions the rootfs.
+##   tags: reprovision
 
 set -xeuo pipefail
 
