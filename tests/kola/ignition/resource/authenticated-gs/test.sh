@@ -1,9 +1,9 @@
 #!/bin/bash
-# kola: { "tags": "needs-internet", "platforms": "gce" }
-# - tags: needs-internet
-#   - We fetch resources from GCS.
-# - platforms: gce
-#   - We authenticate to GCS with the GCE instance's credentials.
+## kola:
+##   # We fetch resources from GCS.
+##   tags: needs-internet
+##   # We authenticate to GCS with the GCE instance's credentials.
+##   platforms: gce
 
 set -xeuo pipefail
 
