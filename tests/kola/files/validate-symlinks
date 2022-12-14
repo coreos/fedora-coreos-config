@@ -1,12 +1,12 @@
 #!/bin/bash
-# kola: { "exclusive": false, "platforms": "qemu" }
+# kola: { "exclusive": false, "platforms": "qemu-unpriv" }
 #
 # Check if there are broken symlinks in /etc/ and /usr/.
 # See: https://github.com/coreos/fedora-coreos-config/issues/1782
 #
 # - distros: fcos
 #   - Only run on FCOS until we've tested it on RHCOS.
-# - platforms: qemu
+# - platforms: qemu-unpriv
 #   - This test should pass everywhere if it passes anywhere.
 
 set -xeuo pipefail

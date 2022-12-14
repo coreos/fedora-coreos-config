@@ -1,7 +1,7 @@
 #!/bin/bash
-# kola: { "platforms": "qemu", "minMemory": 4096, "timeoutMin": 15, "tags": "reprovision" }
+# kola: { "platforms": "qemu-unpriv", "minMemory": 4096, "timeoutMin": 15, "tags": "reprovision" }
 #
-# - platforms: qemu
+# - platforms: qemu-unpriv
 #   - This test should pass everywhere if it passes anywhere.
 # - tags: reprovision
 #   - This test reprovisions the rootfs.

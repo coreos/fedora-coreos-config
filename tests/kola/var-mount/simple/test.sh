@@ -1,8 +1,8 @@
 #!/bin/bash
 set -xeuo pipefail
 
-# restrict to qemu for now because the primary disk path is platform-dependent
-# kola: {"platforms": "qemu"}
+# restrict to qemu-unpriv for now because the primary disk path is platform-dependent
+# kola: {"platforms": "qemu-unpriv"}
 
 . $KOLA_EXT_DATA/commonlib.sh
 

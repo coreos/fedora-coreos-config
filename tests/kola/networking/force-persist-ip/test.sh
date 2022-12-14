@@ -10,9 +10,9 @@ set -xeuo pipefail
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1958930#c29
 
-# kola: { "platforms": "qemu", "additionalNics": 1, "appendKernelArgs": "ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:eth1:none:8.8.8.8 net.ifnames=0 coreos.force_persist_ip", "architectures": "!s390x" }
+# kola: { "platforms": "qemu-unpriv", "additionalNics": 1, "appendKernelArgs": "ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:eth1:none:8.8.8.8 net.ifnames=0 coreos.force_persist_ip", "architectures": "!s390x" }
 #
-# - platforms: qemu
+# - platforms: qemu-unpriv
 #   - This test should pass everywhere if it passes anywhere.
 # - additionalNics: 1
 #   - Add 1 NIC for this test

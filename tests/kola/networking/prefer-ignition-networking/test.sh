@@ -12,8 +12,8 @@ set -xeuo pipefail
 
 # https://github.com/coreos/fedora-coreos-config/issues/1499
 # - Disable the test on s390x
-# kola: { "platforms": "qemu", "additionalNics": 1, "appendKernelArgs": "ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:eth1:none:8.8.8.8 net.ifnames=0", "architectures": "!s390x" }
-# - platforms: qemu
+# kola: { "platforms": "qemu-unpriv", "additionalNics": 1, "appendKernelArgs": "ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:eth1:none:8.8.8.8 net.ifnames=0", "architectures": "!s390x" }
+# - platforms: qemu-unpriv
 #   - This test should pass everywhere if it passes anywhere.
 # - additionalNics: 1
 #   - Add 1 NIC for this test

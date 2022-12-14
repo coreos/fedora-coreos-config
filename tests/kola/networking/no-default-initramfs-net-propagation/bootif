@@ -1,12 +1,12 @@
 #!/bin/bash
-# kola: { "platforms": "qemu", "appendFirstbootKernelArgs": "BOOTIF=52:54:00:12:34:56" }
+# kola: { "platforms": "qemu-unpriv", "appendFirstbootKernelArgs": "BOOTIF=52:54:00:12:34:56" }
 #
 # In addition to the pure network defaults case we should also make
 # sure that when BOOTIF= or rd.bootif= are provided on the kernel
 # command line (typically from PXE servers) that we don't propagate
 # networking configs either. See https://github.com/coreos/fedora-coreos-tracker/issues/1048
 #
-# - platforms: qemu
+# - platforms: qemu-unpriv
 #   - This test should pass everywhere if it passes anywhere.
 # - appendFirstbootKernelArgs: "BOOTIF=52:54:00:12:34:56"
 #   - Append BOOTIF kernel argument so we can test how nm-initrd-generator

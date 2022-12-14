@@ -1,5 +1,5 @@
 #!/bin/bash
-# kola: { "platforms": "qemu", "additionalNics": 2, "appendKernelArgs": "bond=bond0:eth1,eth2:mode=active-backup,miimon=100:9000 ip=10.10.10.10::10.10.10.1:255.255.255.0:staticvlanbond:bond0.100:none:9000 vlan=bond0.100:bond0 net.ifnames=0", "architectures": "!s390x"}
+# kola: { "platforms": "qemu-unpriv", "additionalNics": 2, "appendKernelArgs": "bond=bond0:eth1,eth2:mode=active-backup,miimon=100:9000 ip=10.10.10.10::10.10.10.1:255.255.255.0:staticvlanbond:bond0.100:none:9000 vlan=bond0.100:bond0 net.ifnames=0", "architectures": "!s390x"}
 
 # Configuring MTU on a VLAN subinterface for the bond,
 # - verify MTU on the bond matches config
@@ -7,7 +7,7 @@
 # - verify ip address on the VLAN subinterface for the bond matches config
 # See https://bugzilla.redhat.com/show_bug.cgi?id=1932502#c9
 
-# - platforms: qemu
+# - platforms: qemu-unpriv
 #   - This test should pass everywhere if it passes anywhere.
 # - additionalNics: 2
 #   - Add 2 NIC for this test

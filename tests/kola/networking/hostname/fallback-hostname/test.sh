@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xeuo pipefail
 
-# kola: { "platforms": "qemu" }
+# kola: { "platforms": "qemu-unpriv" }
 #
 # Test that the fallback hostname is `localhost`. This test
 # validates that the fallback hostname is set to `localhost`
@@ -10,7 +10,7 @@ set -xeuo pipefail
 # hostname is set from the fallback hostname and is `localhost`.
 # https://github.com/coreos/fedora-coreos-tracker/issues/902
 #
-# - platforms: qemu
+# - platforms: qemu-unpriv
 #   - This test should pass everywhere if it passes anywhere.
 
 . $KOLA_EXT_DATA/commonlib.sh

@@ -1,9 +1,9 @@
 #!/bin/bash
-# kola: {"platforms": "qemu", "exclusive": false, "tags": "needs-internet", "distros": "fcos", "architectures": "aarch64 s390x"}
+# kola: {"platforms": "qemu-unpriv", "exclusive": false, "tags": "needs-internet", "distros": "fcos", "architectures": "aarch64 s390x"}
 # Test the x86_64 emulator on aarch64 and s390x images for now
 # https://github.com/coreos/fedora-coreos-tracker/issues/1237
 #
-# - platforms: qemu
+# - platforms: qemu-unpriv
 #   - This test should pass everywhere if it passes anywhere.
 # - exclusive: false
 #   - This test doesn't make meaningful changes to the system and

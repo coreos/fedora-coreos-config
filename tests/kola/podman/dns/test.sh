@@ -1,11 +1,11 @@
 #!/bin/bash
 set -xeuo pipefail
 
-# kola: { "platforms": "qemu", "tags": "needs-internet", "exclusive": false, "timeoutMin": 3 }
+# kola: { "platforms": "qemu-unpriv", "tags": "needs-internet", "exclusive": false, "timeoutMin": 3 }
 # Tests that rootless podman containers can DNS resolve external domains.
 # https://github.com/coreos/fedora-coreos-tracker/issues/923
 #
-# - platforms: qemu
+# - platforms: qemu-unpriv
 #   - This test should pass everywhere if it passes anywhere.
 # - tags: needs-internet
 #   - This test pulls a container from a registry.
