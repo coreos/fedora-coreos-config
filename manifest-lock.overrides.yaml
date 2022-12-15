@@ -34,3 +34,15 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
       type: pin
+  selinux-policy:
+    evra: 38.1-1.fc38.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-cdeb268b2f
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1364
+      type: fast-track
+  selinux-policy-targeted:
+    evra: 38.1-1.fc38.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2022-cdeb268b2f
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1364
+      type: fast-track
