@@ -1,20 +1,19 @@
 #!/bin/bash
-# kola: {"platforms": "qemu", "exclusive": false, "tags": "needs-internet", "distros": "fcos", "architectures": "aarch64 s390x"}
 # Test the x86_64 emulator on aarch64 and s390x images for now
 # https://github.com/coreos/fedora-coreos-tracker/issues/1237
 #
-# - platforms: qemu
-#   - This test should pass everywhere if it passes anywhere.
-# - exclusive: false
-#   - This test doesn't make meaningful changes to the system and
-#     should be able to be combined with other tests.
-# - tags: needs-internet
-#   - This test pulls a container from a registry.
-# - distros:
-#   - Only run on fcos, as rhel does not support emulation
-# - architectures: aarch64 s390x
-#   - We decided to ship x86_64 emulator to only these arches for now.
-#   - Refer to the above referenced issue for more details
+## kola:
+##   # This test should pass everywhere if it passes anywhere.
+##   platforms: qemu
+##   # This test doesn't make meaningful changes to the system and should
+##   # be able to be combined with other tests.
+##   exclusive: false
+##   # This test pulls a container from a registry.
+##   tags: needs-internet
+##   # Only run on fcos, as rhel does not support emulation
+##   distros: fcos
+##   # We decided to ship x86_64 emulator to only these arches for now.
+##   architectures: aarch64 s390x
 
 set -xeuo pipefail
 
