@@ -1,5 +1,18 @@
 #!/bin/bash
-# kola: { "tags": "needs-internet", "platforms": "qemu-unpriv", "timeoutMin": 15, "minMemory": 1536 }
+## kola:
+##   # This test builds a container from remote sources.
+##   # This test uses a remote NTP server.
+##   tags: needs-internet
+##   # If the test works anywhere it should work everywhere.
+##   platforms: qemu-unpriv
+##   # Pulling and building the container can take a long time if a
+##   # slow mirror gets chosen.
+##   timeoutMin: 15
+##   # There's a bug in dnf that is causing OOM on low memory systems:
+##   # https://bugzilla.redhat.com/show_bug.cgi?id=1907030
+##   # https://pagure.io/releng/issue/10935#comment-808601
+##   minMemory: 1536
+
 # This script runs a rootless podman container (rootless because it's
 # run as the `core` user) with systemd inside that brings up httpd.
 # It tests that rootless+systemd works. See issue:
@@ -7,19 +20,6 @@
 #
 # If it gets easy to change the kargs in the future we should try this
 # both on cgroups v1 and cgroups v2.
-#
-# - tags: needs-internet
-#   - This test builds a container from remote sources.
-#   - This test uses a remote NTP server.
-# - platforms: qemu-unpriv
-#   - If the test works anywhere it should work everywhere.
-# - timeoutMin: 15
-#   - Pulling and building the container can take a long time if a
-#     slow mirror gets chosen.
-# - minMemory: 1536
-#   - There's a bug in dnf that is causing OOM on low memory systems:
-#     https://bugzilla.redhat.com/show_bug.cgi?id=1907030
-#     https://pagure.io/releng/issue/10935#comment-808601
 
 set -xeuo pipefail
 . $KOLA_EXT_DATA/commonlib.sh

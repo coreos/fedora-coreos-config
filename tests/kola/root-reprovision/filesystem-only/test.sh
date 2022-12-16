@@ -1,15 +1,14 @@
 #!/bin/bash
-# kola: { "platforms": "qemu", "minMemory": 4096, "timeoutMin": 15, "tags": "reprovision" }
-#
-# - platforms: qemu
-#   - This test should pass everywhere if it passes anywhere.
-# - tags: reprovision
-#   - This test reprovisions the rootfs.
-# - minMemory: 4096
-#   - Root reprovisioning requires at least 4GiB of memory.
-# - timeoutMin: 15
-#   - This test includes a lot of disk I/O and needs a higher
-#     timeout value than the default.
+## kola:
+##   # This test should pass everywhere if it passes anywhere.
+##   platforms: qemu
+##   # Root reprovisioning requires at least 4GiB of memory.
+##   minMemory: 4096
+##   # This test includes a lot of disk I/O and needs a higher
+##   # timeout value than the default.
+##   timeoutMin: 15
+##   # This test reprovisions the rootfs.
+##   tags: reprovision
 
 set -xeuo pipefail
 

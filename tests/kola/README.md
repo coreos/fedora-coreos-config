@@ -12,6 +12,7 @@ so:
 
 ```bash
 #!/bin/bash
-# kola: {"distros": "fcos"}
+## kola:
+##   distros: fcos
 ...
 ```
