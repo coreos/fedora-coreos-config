@@ -34,6 +34,11 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
       type: pin
+  container-selinux:
+    evra: 2:2.193.0-1.fc38.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1364#issuecomment-1355059716
+      type: pin
   selinux-policy:
     evra: 38.1-1.fc38.noarch
     metadata:
