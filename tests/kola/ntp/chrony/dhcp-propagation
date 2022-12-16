@@ -6,7 +6,7 @@
 # regression that might cause in RHCOS or FCOS when the upstream changes
 # come down and obsolete the temporary work (https://github.com/coreos/fedora-coreos-config/pull/412)
 #
-## kola: 
+## kola:
 ##   # Add the needs-internet tag. This test builds a container from remote
 ##   # sources and uses a remote NTP server.
 ##   tags: "needs-internet"

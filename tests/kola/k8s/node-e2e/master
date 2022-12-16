@@ -1,6 +1,12 @@
 #!/bin/bash
-# kola: {"minMemory": 4096, "timeoutMin": 45, "minDisk": 20, "architectures": "x86_64", "requiredTag": "k8s", "tags": "needs-internet"}
-# Just run on x86_64 for now. We'd need multi-arch images with go 1.17.
+## kola:
+##   minMemory: 4096
+##   timeoutMin: 45
+##   minDisk: 20
+##   # Just run on x86_64 for now. We'd need multi-arch images with go 1.17.
+##   architectures: x86_64
+##   requiredTag: k8s
+##   tags: needs-internet
 
 set -xeuo pipefail
 

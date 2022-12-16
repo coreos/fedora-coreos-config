@@ -4,7 +4,9 @@ set -xeuo pipefail
 # symlinks present in initramfs
 # https://bugzilla.redhat.com/show_bug.cgi?id=1990506
 
-# kola: {"platforms": "qemu", "additionalDisks": ["5G:mpath"]}
+## kola:
+##   platforms: qemu
+##   additionalDisks: ["5G:mpath"]
 
 . $KOLA_EXT_DATA/commonlib.sh
 
