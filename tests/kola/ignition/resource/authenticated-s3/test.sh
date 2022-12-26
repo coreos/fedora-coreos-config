@@ -1,9 +1,9 @@
 #!/bin/bash
-# kola: { "tags": "needs-internet", "platforms": "aws" }
-# - tags: needs-internet
-#   - We fetch resources from S3.
-# - platforms: aws
-#   - We authenticate to S3 with the EC2 instance's IAM role.
+## kola:
+##   # We fetch resources from S3.
+##   tags: needs-internet
+##   # We authenticate to S3 with the EC2 instance's IAM role.
+##   platforms: aws
 
 set -xeuo pipefail
 

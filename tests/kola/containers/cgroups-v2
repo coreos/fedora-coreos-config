@@ -1,8 +1,10 @@
 #!/bin/bash
-# kola: { "distros": "fcos", "exclusive": false }
-# This test only runs on FCOS because RHCOS does not currently support cgroupsv2
-# by default.
-# TODO-RHCOS: drop "fcos" tag when cgroupsv2 lands in RHCOS
+## kola:
+##   # This test only runs on FCOS because RHCOS does not currently
+##   # support cgroupsv2 by default.
+##   # TODO-RHCOS: drop "fcos" tag when cgroupsv2 lands in RHCOS
+##   distros: fcos
+##   exclusive: false
 
 set -xeuo pipefail
 

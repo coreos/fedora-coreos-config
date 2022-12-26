@@ -1,8 +1,10 @@
 #!/bin/bash
-# kola: { "distros": "fcos", "exclusive": false }
-# This test only runs on FCOS because the `dnsmasq` service on RHCOS is simply
-# disabled, not masked.
-# TODO-RHCOS: adapt test to check that `dnsmasq` is in the proper state on RHCOS
+## kola:
+##   # This test only runs on FCOS because the `dnsmasq` service on RHCOS is simply
+##   # disabled, not masked.
+##   # TODO-RHCOS: adapt test to check that `dnsmasq` is in the proper state on RHCOS
+##   distros: fcos
+##   exclusive: false
 
 set -xeuo pipefail
 

@@ -1,11 +1,11 @@
 #!/bin/bash
-# kola: { "tags": "needs-internet", "noInstanceCreds": true }
-# - tags: needs-internet
-#   - We fetch resources from S3 and GCS.
-# - noInstanceCreds: don't pass AWS or GCP credentials to instance
-#   - This test verifies that Ignition can fetch anonymous resources within
-#     a cloud platform (S3 -> EC2, GCS -> GCE) when no credentials are
-#     supplied
+## kola:
+##   # We fetch resources from S3 and GCS
+##   tags: needs-internet
+##   # Don't pass AWS or GCP credentials to instance
+##   # This test verifies that Ignition can fetch anonymous resources within
+##   # a cloud platform (S3 -> EC2, GCS -> GCE) when no credentials are supplied
+##   noInstanceCreds: true
 
 set -xeuo pipefail
 

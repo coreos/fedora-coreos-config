@@ -1,11 +1,11 @@
 #!/bin/bash
-# kola: { "platforms": "qemu-unpriv", "allowConfigWarnings": true }
-# - platforms: qemu-unpriv
-#   - This test should pass everywhere if it passes anywhere.
-# - allowConfigWarnings: true
-#   - We intentionally exclude the Install section from a systemd unit.
-#     This is valid but not ideal, so Butane warns about it.
 # This test ensures that Ignition warnings are displayed on the console.
+## kola:
+##   # This test should pass everywhere if it passes anywhere.
+##   platforms: qemu-unpriv
+##   # We intentionally exclude the Install section from a systemd unit.
+##   # This is valid but not ideal, so Butane warns about it.
+##   allowConfigWarnings: true
 
 set -xeuo pipefail
 
