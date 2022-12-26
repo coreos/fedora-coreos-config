@@ -1,5 +1,16 @@
 #!/bin/bash
-# kola: { "platforms": "qemu", "additionalNics": 2, "appendKernelArgs": "net.ifnames=0", "architectures": "!s390x"}
+## kola:
+##   # This test should pass everywhere if it passes anywhere.
+##   platforms: qemu
+##   # Add 2 NIC for this test
+##   additionalNics: 2
+##   # We use net.ifnames=0 to disable consistent network naming here because on
+##   # different firmwares (BIOS vs UEFI) the NIC names are different.
+##   # See https://github.com/coreos/fedora-coreos-tracker/issues/1060
+##   appendKernelArgs: net.ifnames=0
+##   # appendKernelArgs doesn't work on s390x
+##   # https://github.com/coreos/coreos-assembler/issues/2776
+##   architectures: "!s390x"
 
 # Set MTU on a VLAN subinterface for the bond using ignition config and check
 # - verify MTU on the bond matches config
@@ -15,18 +26,6 @@
 
 # Using kernel args to `configure MTU on a VLAN subinterface for the bond` refer to
 # https://github.com/coreos/fedora-coreos-config/pull/1401
-
-# - platforms: qemu
-#   - This test should pass everywhere if it passes anywhere.
-# - additionalNics: 2
-#   - Add 2 NIC for this test
-# - appendKernelArgs: "net.ifnames=0"
-#   - We use net.ifnames=0 to disable consistent network naming here because on
-#     different firmwares (BIOS vs UEFI) the NIC names are different.
-#     See https://github.com/coreos/fedora-coreos-tracker/issues/1060
-# - architectures: !s390x
-#   - appendKernelArgs doesn't work on s390x
-#   - https://github.com/coreos/coreos-assembler/issues/2776
 
 set -xeuo pipefail
 
