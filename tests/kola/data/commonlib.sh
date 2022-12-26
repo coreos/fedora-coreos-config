@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # This is a common library created for the ok & fatal function and symlinks
 # added to the data/ in each directory
 

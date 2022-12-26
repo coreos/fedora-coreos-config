@@ -97,7 +97,6 @@ postprocess:
   # Docs removal comes from manifests/fedora-coreos.yaml
   # - systemd-firstboot comes from manifests/ignition-and-ostree.yaml
   # - systemd-gpt-auto-generator comes from ignition-and-ostree.yaml
-  # - dotlockfile comes from bootable-rpm-ostree.yaml
   - |
     #!/usr/bin/env bash
     set -euo pipefail
@@ -111,7 +110,6 @@ postprocess:
     # why we are removing them in the postprocess scripts here.
     # The .build-id links are pointing to binaries that we remove in other parts of the FCOS manifest.
     list_known_removed_folders=(
-      '/usr/bin/dotlockfile'
       '/usr/bin/systemd-firstboot'
       '/usr/lib/systemd/system-generators/systemd-gpt-auto-generator'
       '/usr/share/doc/'

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Verify bridge networks works via kernel arguments.
+## kola:
+##   # This test should pass everywhere if it passes anywhere.
+##   platforms: qemu
+##   # Add 2 NIC for this test
+##   additionalNics: 2
+##   # Configuration of the 2 NICs for this test
+##   # We use net.ifnames=0 to disable consistent network naming here because on
+##   # different firmwares (BIOS vs UEFI) the NIC names are different.
+##   # See https://github.com/coreos/fedora-coreos-tracker/issues/1060
+##   appendKernelArgs: "ip=10.10.10.10::10.10.10.1:255.255.255.0:mybridge:br0:none bridge=br0:eth1,eth2 net.ifnames=0"
+##   # appendKernelArgs doesn't work on s390x
+##   # https://github.com/coreos/coreos-assembler/issues/2776
+##   architectures: "!s390x"
+
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+bridge="br0"
+
+# Verify "br0" gets ip address by `appendKernelArgs` in `kola` above
+nic_ip=$(get_ipv4_for_nic ${bridge})
+if [ "${nic_ip}" != "10.10.10.10" ]; then
+    fatal "Error: get ${bridge} ip = ${nic_ip}, expected is 10.10.10.10"
+fi
+ok "get ${bridge} ip is 10.10.10.10"
