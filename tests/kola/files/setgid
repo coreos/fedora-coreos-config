@@ -1,5 +1,6 @@
 #!/bin/bash
-# kola: { "exclusive": false }
+## kola:
+##   exclusive: false
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
