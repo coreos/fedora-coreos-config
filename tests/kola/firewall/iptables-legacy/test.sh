@@ -1,7 +1,9 @@
 #!/bin/bash
-# kola: { "distros": "fcos", "exclusive": true }
-# This test verifies that one can configure a node to use the legacy iptables
-# backend. It is scoped to only FCOS because RHCOS only supports nft.
+## kola:
+##   # This test verifies that one can configure a node to use the legacy iptables
+##   # backend. It is scoped to only FCOS because RHCOS only supports nft.
+##   distros: fcos
+##   exclusive: true
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh

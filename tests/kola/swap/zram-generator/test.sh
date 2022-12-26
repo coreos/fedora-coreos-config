@@ -1,7 +1,9 @@
 #!/bin/bash
-# kola: { "distros": "fcos", "exclusive": true}
-# This test conflicts with swap/zram-default so we cannot set this to non-exclusive
-# This test only runs on FCOS because RHCOS does not have zram support.
+## kola:
+##   # This test only runs on FCOS because RHCOS does not have zram support.
+##   distros: fcos
+##   # This test conflicts with swap/zram-default so we cannot set this to non-exclusive
+##   exclusive: true
 
 set -xeuo pipefail
 
