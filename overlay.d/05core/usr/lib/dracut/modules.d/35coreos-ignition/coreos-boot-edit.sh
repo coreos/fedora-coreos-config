@@ -14,6 +14,12 @@ karg() {
     echo "${value}"
 }
 
+# If we've already bound boot, then we should have nothing to do.
+bootdev=$(karg boot)
+if [ -n "$bootdev" ]; then
+    exit 0
+fi
+
 # Mount /boot. Note that we mount /boot but we don't unmount it because we
 # are run in a systemd unit with MountFlags=slave so it is unmounted for us.
 bootmnt=/mnt/boot_partition
