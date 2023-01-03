@@ -42,7 +42,7 @@ jobs:
       - name: Install dependencies
         run: dnf install -y git jq python3-bodhi-client python3-pyyaml
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.inputs.target }}
           # We need an unbroken commit chain when pushing to the fork.  Don't
@@ -80,7 +80,7 @@ jobs:
           echo "COMMIT_TITLE=${title}" >> ${GITHUB_ENV}
           echo "PR_TITLE=${pr_title}" >> ${GITHUB_ENV}
       - name: Open pull request
-        uses: peter-evans/create-pull-request@v3.8.2
+        uses: peter-evans/create-pull-request@v4.2.3
         with:
           token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
           branch: ${{ env.BRANCH_NAME }}
