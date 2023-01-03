@@ -16,6 +16,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Update versions
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ci/update-versions.py
       - name: Create commit
         run: |

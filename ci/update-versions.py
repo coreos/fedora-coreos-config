@@ -15,6 +15,7 @@ FCOS_STREAMS = {
 }
 
 basedir = os.path.normpath(os.path.join(os.path.dirname(sys.argv[0]), '..'))
+github_token = os.getenv('GITHUB_TOKEN')
 
 with open(os.path.join(basedir, 'antora.yml'), 'r+') as fh:
     config = yaml.safe_load(fh)
@@ -22,7 +23,11 @@ with open(os.path.join(basedir, 'antora.yml'), 'r+') as fh:
     orig_attrs = attrs.copy()
 
     for attr, repo in GITHUB_RELEASES.items():
-        resp = requests.get(f'https://api.github.com/repos/{repo}/releases/latest')
+        headers = {'Authorization': f'Bearer {github_token}'} if github_token else {}
+        resp = requests.get(
+            f'https://api.github.com/repos/{repo}/releases/latest',
+            headers=headers
+        )
         resp.raise_for_status()
         tag = resp.json()['tag_name']
         attrs[attr] = tag.lstrip('v')
