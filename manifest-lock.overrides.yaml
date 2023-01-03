@@ -39,3 +39,13 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1366
       type: pin
+  coreos-installer:
+    evr: 0.16.0-1.fc37
+    metadata:
+      reason: https://example.com/dnm-ci-test
+      type: pin
+  coreos-installer-bootinfra:
+    evr: 0.16.0-1.fc37
+    metadata:
+      reason: https://example.com/dnm-ci-test
+      type: pin
