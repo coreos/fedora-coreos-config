@@ -19,13 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Post PR comment
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           script: |
             const url = 'https://raw.githubusercontent.com/coreos/fedora-coreos-pipeline/main/next-devel/status.json'
             const resp = await github.request(url)
             if (!JSON.parse(resp.data).enabled) {
-              await github.issues.createComment({
+              await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
