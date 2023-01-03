@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Update versions
         run: ci/update-versions.py
       - name: Create commit
@@ -26,7 +26,7 @@ jobs:
                   -m "Triggered by update-versions GitHub Action."
           fi
       - name: Open pull request
-        uses: peter-evans/create-pull-request@v3.8.2
+        uses: peter-evans/create-pull-request@v4.2.3
         with:
           token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
           branch: update-versions
