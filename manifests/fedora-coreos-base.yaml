@@ -174,8 +174,8 @@ packages:
 # https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
 # https://access.redhat.com/solutions/41535
 #
-# Include the qemu-user-static-x86 package on aarch64 and s390x FCOS images
-# to allow access to the large inventory of containers only built for x86_64.
+# Include the qemu-user-static-x86 package on non-x86_64 FCOS images to allow
+# access to the large inventory of containers only built for x86_64.
 # https://github.com/coreos/fedora-coreos-tracker/issues/1237
 packages-x86_64:
   - irqbalance
@@ -184,6 +184,7 @@ packages-ppc64le:
   - librtas
   - powerpc-utils-core
   - ppc64-diag-rtas
+  - qemu-user-static-x86
 packages-aarch64:
   - irqbalance
   - qemu-user-static-x86
