@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# kola: { "distros": "fcos", "exclusive": false }
+## kola:
+##   distros: fcos
+##   exclusive: false
 #
 # This performs a sanity check on system users that are shipped
 # as part of the base OS. Those users come in different shapes

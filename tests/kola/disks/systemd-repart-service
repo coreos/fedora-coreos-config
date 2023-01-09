@@ -1,9 +1,11 @@
 #!/bin/bash
-# kola: { "distros": "fcos", "exclusive": false }
-# This test only runs on FCOS because the version of `systemd-udev` in RHCOS does
-# not include `systemd-repart`
-# TODO-RHCOS: consider dropping the "fcos" tag if/when `systemd-udev` in RHEL
-# starts to include `systemd-repart`
+## kola:
+##   # This test only runs on FCOS because the version of `systemd-udev` in RHCOS does
+##   # not include `systemd-repart`
+##   # TODO-RHCOS: consider dropping the "fcos" tag if/when `systemd-udev` in RHEL
+##   # starts to include `systemd-repart`
+##   distros: fcos
+##   exclusive: false
 
 set -xeuo pipefail
 
