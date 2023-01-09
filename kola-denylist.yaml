@@ -7,7 +7,7 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/coreos-assembler/issues/2725#issuecomment-1292616121
-  snooze: 2023-01-04
+  snooze: 2023-02-04
   arches:
     - ppc64le
   streams:
@@ -53,7 +53,9 @@
   snooze: 2023-01-10
 - pattern: ext.config.networking.default-network-behavior-change
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1341#issuecomment-1309756265
-  snooze: 2023-01-05
-- pattern: ext.config.ntp.timesyncd.dhcp-propagation
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1359
-  snooze: 2023-01-15
+  snooze: 2023-02-05
+- pattern: ext.config.ntp.timesyncd.dhcp-propagation                                                                                                       
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1364#issuecomment-1371727078
+  snooze: 2023-02-05
+  streams:
+    - rawhide
