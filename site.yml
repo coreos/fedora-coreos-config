@@ -7,7 +7,7 @@ content:
     branches: HEAD
 ui:
   bundle:
-    url: https://asamalik.fedorapeople.org/ui-bundle.zip
+    url: https://gitlab.com/fedora/docs/docs-website/ui-bundle/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
   default_layout: with_menu
 output:
