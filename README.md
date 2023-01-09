@@ -160,9 +160,10 @@ Tests should follow the following format:
 
 ```bash
 #!/bin/bash
-# kola: { "exclusive": false, ... }
-# ^^----- kola option comment
-# ^^----- See all options in <https://coreos.github.io/coreos-assembler/kola/external-tests/#kolajson>
+## kola:
+##   exclusive: false
+##   platforms: aws gcp
+##   # See all options in https://coreos.github.io/coreos-assembler/kola/external-tests/#kolajson
 #
 # Short summary of what the test does, why we need it, etc.
 #

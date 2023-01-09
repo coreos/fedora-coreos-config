@@ -1,5 +1,6 @@
 #!/bin/bash
-# kola: {"platforms": "qemu"}
+## kola:
+##   platforms: qemu
 # These are read-only not-necessarily-related checks that verify default system
 # configuration both on first and subsequent boots.
 
