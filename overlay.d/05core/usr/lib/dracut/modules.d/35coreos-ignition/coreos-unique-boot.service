@@ -5,6 +5,7 @@ DefaultDependencies=no
 Before=ignition-diskful.target
 Wants=systemd-udevd.service
 After=systemd-udevd.service
+ConditionKernelCommandLine=!boot
 # And since the boot device may be on multipath; optionally wait for it to
 # appear via the dynamic target.
 After=coreos-multipath-wait.target
