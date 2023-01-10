@@ -1,5 +1,5 @@
 [Unit]
-Description=Persist osmet files (ISO)
+Description=Persist Osmet Files (ISO)
 DefaultDependencies=false
 ConditionPathExists=/run/ostree-live
 ConditionKernelCommandLine=coreos.liveiso

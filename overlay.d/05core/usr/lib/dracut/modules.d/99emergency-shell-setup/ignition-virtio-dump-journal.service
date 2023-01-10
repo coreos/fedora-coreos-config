@@ -1,5 +1,5 @@
 [Unit]
-Description=Dump journal to virtio port
+Description=Dump Journal to Virtio Port
 ConditionPathExists=/etc/initrd-release
 DefaultDependencies=false
 ConditionVirtualization=|kvm

@@ -1,7 +1,7 @@
 # This service is used for printing a message if no ssh keys were added
 # by Ignition/Afterburn
 [Unit]
-Description=Check that ssh-keys are added by Afterburn/Ignition
+Description=Check That SSH Keys Are Added by Afterburn/Ignition
 # It allows other units to synchronize around any instance
 # of `afterburn-sshkeys@` and not just the `core` user.
 # See https://github.com/coreos/afterburn/pull/481

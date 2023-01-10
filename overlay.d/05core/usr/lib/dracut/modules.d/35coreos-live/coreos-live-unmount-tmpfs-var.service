@@ -7,7 +7,7 @@
 # before switching roots.
 
 [Unit]
-Description=Unmount live /var if persistent /var is configured
+Description=Unmount Live /var if Persistent /var Is Configured
 DefaultDependencies=false
 ConditionPathExists=/run/ostree-live
 ConditionPathExists=|/sysroot/etc/systemd/system/var.mount
