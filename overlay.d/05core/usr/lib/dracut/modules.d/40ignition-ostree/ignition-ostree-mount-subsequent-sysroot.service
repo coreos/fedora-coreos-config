@@ -1,6 +1,6 @@
 # Note this unit is conditionally enabled by ignition-ostree-generator
 [Unit]
-Description=CoreOS: Mount (subsequent) /sysroot
+Description=CoreOS: Mount /sysroot (Subsequent Boot)
 # These dependencies should match the "other" in
 # ignition-ostree-mount-firsboot-sysroot.service
 DefaultDependencies=false
