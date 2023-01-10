@@ -9,6 +9,7 @@ After=ignition-disks.service
 # If we've reprovisioned the rootfs, then there's no need to restamp
 ConditionPathExists=!/run/ignition-ostree-transposefs
 ConditionKernelCommandLine=!rootfs.roothash
+ConditionKernelCommandLine=!root
 
 After=dev-disk-by\x2dlabel-root.device
 # Avoid racing with fsck
