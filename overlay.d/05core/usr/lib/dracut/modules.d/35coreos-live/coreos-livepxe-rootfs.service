@@ -1,5 +1,5 @@
 [Unit]
-Description=Acquire live PXE rootfs image
+Description=Acquire Live PXE rootfs Image
 DefaultDependencies=false
 ConditionPathExists=/usr/lib/initrd-release
 ConditionPathExists=/run/ostree-live
