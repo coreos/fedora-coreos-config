@@ -1,7 +1,7 @@
 # This service is used for printing a message if
 # cgroups v1 is still being used
 [Unit]
-Description=Check if cgroupsv1 is still being used
+Description=Check if cgroupsv1 Is Still Being Used
 ConditionControlGroupController=v1
 [Service]
 Type=oneshot
