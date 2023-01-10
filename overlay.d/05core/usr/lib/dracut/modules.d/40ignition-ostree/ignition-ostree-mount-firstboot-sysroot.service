@@ -1,5 +1,5 @@
 [Unit]
-Description=Ignition OSTree: Mount (firstboot) /sysroot
+Description=Ignition OSTree: Mount /sysroot (First Boot)
 # These dependencies should match the "other" in
 # ignition-ostree-mount-subsequent-sysroot.service
 DefaultDependencies=false

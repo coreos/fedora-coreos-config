@@ -1,5 +1,5 @@
 [Unit]
-Description=Ignition OSTree: Grow root filesystem
+Description=Ignition OSTree: Grow Root Filesystem
 DefaultDependencies=false
 ConditionKernelCommandLine=ostree
 ConditionPathExists=!/run/ostree-live
