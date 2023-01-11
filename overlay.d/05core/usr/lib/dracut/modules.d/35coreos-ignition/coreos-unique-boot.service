@@ -1,5 +1,5 @@
 [Unit]
-Description=Ensure filesystem labeled `boot` is unique
+Description=Ensure Unique `boot` Filesystem Label
 ConditionPathExists=/etc/initrd-release
 DefaultDependencies=no
 Before=ignition-diskful.target

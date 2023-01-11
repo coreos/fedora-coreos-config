@@ -4,7 +4,7 @@
 # cache to avoid this.
 
 [Unit]
-Description=Clear SSSD NSS cache in persistent /var
+Description=Clear SSSD NSS Cache in Persistent /var
 DefaultDependencies=false
 ConditionPathExists=/run/ostree-live
 ConditionPathExists=/sysroot/var/lib/sss/mc
