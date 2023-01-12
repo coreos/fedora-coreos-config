@@ -34,9 +34,3 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
       type: pin
-  container-selinux:
-    evra: 2:2.198.0-1.fc37.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-d03c3d75ec
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1366
-      type: fast-track
