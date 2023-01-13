@@ -21,6 +21,9 @@ TRIVIAL_FAST_TRACKS = [
     # Packages that don't need a reason URL when fast-tracking
     'console-login-helper-messages',
     'ignition',
+    'kernel',
+    'kernel-headers',
+    'kernel-tools',
     'ostree',
     'rpm-ostree',
     'rust-afterburn',
