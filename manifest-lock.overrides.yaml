@@ -39,6 +39,21 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1364#issuecomment-1355059716
       type: pin
+  fedora-release-common:
+    evra: 38-0.8.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1380
+      type: pin
+  fedora-release-coreos:
+    evra: 38-0.8.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1380
+      type: pin
+  fedora-release-identity-coreos:
+    evra: 38-0.8.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1380
+      type: pin
   selinux-policy:
     evra: 38.1-1.fc38.noarch
     metadata:
