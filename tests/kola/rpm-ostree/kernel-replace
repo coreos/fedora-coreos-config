@@ -1,0 +1,122 @@
+#!/bin/bash
+## kola:
+##   # This test only runs on FCOS due to a problem with skopeo copy on
+##   # RHCOS. See: https://github.com/containers/skopeo/issues/1846
+##   distros: fcos
+##   # We fetch packages from centos mirrors.
+##   tags: needs-internet
+#
+# Build container image with a new kernel and reboot into the new image.
+#
+# Copyright (C) 2023 Red Hat, Inc.
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the
+# Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+# Boston, MA 02111-1307, USA.
+
+set -euo pipefail
+. $KOLA_EXT_DATA/commonlib.sh
+set -x
+cd $(mktemp -d)
+
+# TODO: It'd be much better to test this via a registry
+image_dir=/var/tmp/fcos
+image=oci:$image_dir
+image_pull=ostree-unverified-image:$image
+tmp_imagedir=/var/tmp/fcos-tmp
+arch=$(arch)
+fversion="37"
+kver="6.0.7-301.fc$fversion.${arch}"
+
+case "${AUTOPKGTEST_REBOOT_MARK:-}" in
+  "")
+    # Take the existing ostree commit, and export it to a container image, then rebase to it.
+    checksum=$(rpm-ostree status --json | jq -r '.deployments[0].checksum')
+    v0=$(rpm-ostree status --json | jq -r '.deployments[0].version')
+    rm ${image_dir} -rf
+    # Since we're switching OS update stream, turn off zincati
+    systemctl mask --now zincati
+    ostree container encapsulate --repo=/ostree/repo ${checksum} "${image}"
+    # This one keeps --experimental, but we also test without it below
+    rpm-ostree rebase --experimental "$image_pull"
+    ostree container image list --repo=/ostree/repo | tee imglist.txt
+    # Test rebasing back to ostree https://github.com/coreos/rpm-ostree/issues/3677
+    rpm-ostree rebase "$checksum"
+    rpm-ostree rebase "$image_pull"
+    /tmp/autopkgtest-reboot 1
+    ;;
+  1)
+    # Setup
+    # copy the OCI dir to containers-storage for a local build
+    skopeo copy $image containers-storage:localhost/fcos
+    rm "${image_dir}" -rf
+    td=$(mktemp -d)
+    cd ${td}
+    version=$(rpm-ostree --version | grep Version)
+cat > dracut_call.sh << EOF
+#!/bin/bash
+# Temporary workaround for: https://github.com/coreos/rpm-ostree/issues/4190
+# This has been fixed on rpm-ostree 2022.18 and this script will be removed
+# once that version reaches the stable coreos stream.
+if [[ "$version" == *"2023"* ]] || [[ "$version" == *"2022.19"* ]]; then
+    echo "Running rpm-ostree 2022.19 or newer.";
+else
+    echo "Running rpm-ostree 2022.18 or older, rebuilding the initramfs.";
+    echo "Building initramfs for Kernel: $kver" 
+    /usr/libexec/rpm-ostree/wrapped/dracut --tmpdir /tmp/ --no-hostonly --kver $kver --reproducible \
+    -v --add ostree -f /tmp/initramfs2.img
+    mv /tmp/initramfs2.img /lib/modules/$kver/initramfs.img
+fi;
+EOF
+cat > Dockerfile << EOF
+FROM localhost/fcos
+RUN rpm-ostree cliwrap install-to-root /
+ADD dracut_call.sh dracut_call.sh
+RUN cat dracut_call.sh
+RUN chmod +x dracut_call.sh && rpm-ostree override replace https://dl.fedoraproject.org/pub/fedora/linux/releases/$fversion/Everything/$arch/os/Packages/k/kernel-$kver.rpm \
+    https://dl.fedoraproject.org/pub/fedora/linux/releases/$fversion/Everything/$arch/os/Packages/k/kernel-core-$kver.rpm \
+    https://dl.fedoraproject.org/pub/fedora/linux/releases/$fversion/Everything/$arch/os/Packages/k/kernel-modules-$kver.rpm && \
+    ./dracut_call.sh && \
+    ostree container commit
+EOF
+    # Older podman found in RHEL8 blows up without /etc/resolv.conf
+    # which happens in our qemu path.
+    touched_resolv_conf=0
+    if test '!' -f /etc/resolv.conf; then
+      podmanv=$(podman --version)
+      case "${podmanv#podman version }" in
+        3.*) touched_resolv_conf=1; touch /etc/resolv.conf;;
+      esac
+    fi
+    podman build --net=host -t localhost/fcos-derived --squash .
+    if test "${touched_resolv_conf}" -eq 1; then
+      rm -vf /etc/resolv.conf
+    fi
+    derived=oci:$image_dir:derived
+    skopeo copy containers-storage:localhost/fcos-derived $derived
+    rpm-ostree --version
+    rpm-ostree rebase ostree-unverified-image:$derived
+    ostree container image list --repo=/ostree/repo
+    rm $image_dir -rf
+    /tmp/autopkgtest-reboot 2
+    ;;
+  2)
+    un=$(uname -r)
+    if test "$un" != "$kver"; then
+      echo "Expected kernel $kver but found $un"
+      exit 1
+    fi
+    test -f /usr/lib/modules/$kver/initramfs.img
+    test -f /usr/lib/modules/$kver/vmlinuz
+esac
