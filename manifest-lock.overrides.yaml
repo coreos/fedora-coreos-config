@@ -10,27 +10,32 @@
 
 packages:
   NetworkManager:
-    evr: 1:1.40.0-1.fc37
+    evr: 1:1.40.10-1.fc37
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7f92dd90a3
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
-      type: pin
+      type: fast-track
   NetworkManager-cloud-setup:
-    evr: 1:1.40.0-1.fc37
+    evr: 1:1.40.10-1.fc37
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7f92dd90a3
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
-      type: pin
+      type: fast-track
   NetworkManager-libnm:
-    evr: 1:1.40.0-1.fc37
+    evr: 1:1.40.10-1.fc37
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7f92dd90a3
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
-      type: pin
+      type: fast-track
   NetworkManager-team:
-    evr: 1:1.40.0-1.fc37
+    evr: 1:1.40.10-1.fc37
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7f92dd90a3
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
-      type: pin
+      type: fast-track
   NetworkManager-tui:
-    evr: 1:1.40.0-1.fc37
+    evr: 1:1.40.10-1.fc37
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7f92dd90a3
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
-      type: pin
+      type: fast-track
