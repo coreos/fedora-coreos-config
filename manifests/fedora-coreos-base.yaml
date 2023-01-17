@@ -20,6 +20,7 @@ ostree-layers:
   - overlay/08nouveau
   - overlay/09misc
   - overlay/20platform-chrony
+  - overlay/25-azure-udev-rules
 
 # Be minimal
 recommends: false
