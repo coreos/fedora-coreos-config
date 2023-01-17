@@ -58,6 +58,9 @@ are_default_NM_configs() {
     # Copy over the previously generated connection(s) profiles
     cp  /run/NetworkManager/system-connections/* \
         /run/coreos-teardown-initramfs/connections-compare-1/
+    # Delete lo.nmconnection if it was created.
+    # https://github.com/coreos/fedora-coreos-tracker/issues/1385
+    rm -f /run/coreos-teardown-initramfs/connections-compare-1/lo.nmconnection
     # Do a new run with the default input
     /usr/libexec/nm-initrd-generator \
         -c /run/coreos-teardown-initramfs/connections-compare-2 \
@@ -127,6 +130,9 @@ propagate_initramfs_networking() {
             else
                 echo "info: propagating initramfs networking config to the real root"
                 cp -v /run/NetworkManager/system-connections/* /sysroot/etc/NetworkManager/system-connections/
+                # Delete lo.nmconnection if it was created.
+                # https://github.com/coreos/fedora-coreos-tracker/issues/1385
+                rm -vf /sysroot/etc/NetworkManager/system-connections/lo.nmconnection
                 coreos-relabel /etc/NetworkManager/system-connections/
             fi
         else
