@@ -1,10 +1,14 @@
 #!/bin/bash
 ## kola:
+##   # Increase timeout since this test has a lot of I/O and involves rebasing
+##   timeoutMin: 15
 ##   # This test only runs on FCOS due to a problem with skopeo copy on
 ##   # RHCOS. See: https://github.com/containers/skopeo/issues/1846
 ##   distros: fcos
-##   # We fetch packages from centos mirrors.
-##   tags: needs-internet
+##   # tags:
+##   #   - needs-internet - we fetch files from koji
+##   #   - platform-independent - should pass everywhere if it passes anywhere
+##   tags: "needs-internet platform-independent"
 #
 # Build container image with a new kernel and reboot into the new image.
 #
@@ -36,8 +40,7 @@ image=oci:$image_dir
 image_pull=ostree-unverified-image:$image
 tmp_imagedir=/var/tmp/fcos-tmp
 arch=$(arch)
-fversion="37"
-kver="6.0.7-301.fc$fversion.${arch}"
+kver="6.0.7-301.fc37.${arch}"
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
@@ -84,9 +87,8 @@ FROM localhost/fcos
 RUN rpm-ostree cliwrap install-to-root /
 ADD dracut_call.sh dracut_call.sh
 RUN cat dracut_call.sh
-RUN chmod +x dracut_call.sh && rpm-ostree override replace https://dl.fedoraproject.org/pub/fedora/linux/releases/$fversion/Everything/$arch/os/Packages/k/kernel-$kver.rpm \
-    https://dl.fedoraproject.org/pub/fedora/linux/releases/$fversion/Everything/$arch/os/Packages/k/kernel-core-$kver.rpm \
-    https://dl.fedoraproject.org/pub/fedora/linux/releases/$fversion/Everything/$arch/os/Packages/k/kernel-modules-$kver.rpm && \
+RUN chmod +x dracut_call.sh && rpm-ostree override replace \ 
+    https://koji.fedoraproject.org/koji/buildinfo?buildID=2084352 && \
     ./dracut_call.sh && \
     ostree container commit
 EOF
