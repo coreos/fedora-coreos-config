@@ -52,3 +52,16 @@ Add static chrony configuration for NTP servers provided on platforms
 such as `azure`, `aws`, `gcp`. The chrony config for these NTP servers
 should override other chrony configuration (e.g. DHCP-provided)
 configuration.
+
+25-azure-udev-rules
+-------------------
+
+Add udev rules for SRIOV networking on Azure. The udev rules are also
+needed in the initramfs [1] and are delivered here via a dracut
+module. This may be able to be removed once an upstream PR [2]
+merges, though we need to make sure the RPM [3] includes the dracut
+bits to include the rules in the initramfs too.
+
+[1] https://github.com/coreos/fedora-coreos-tracker/issues/1383
+[2] https://github.com/Azure/WALinuxAgent/pull/1622
+[3] https://src.fedoraproject.org/rpms/WALinuxAgent/pull-request/4
