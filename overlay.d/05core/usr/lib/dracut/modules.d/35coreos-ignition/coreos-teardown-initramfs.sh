@@ -177,7 +177,7 @@ down_interface() {
 }
 
 # Iterate through the interfaces in the machine and take them down.
-# Note that in the futre we would like to possibly use `nmcli` networking off`
+# Note that in the future we would like to possibly use `nmcli` networking off`
 # for this. See the following two comments for details:
 # https://github.com/coreos/fedora-coreos-tracker/issues/394#issuecomment-599721763
 # https://github.com/coreos/fedora-coreos-tracker/issues/394#issuecomment-599746049
