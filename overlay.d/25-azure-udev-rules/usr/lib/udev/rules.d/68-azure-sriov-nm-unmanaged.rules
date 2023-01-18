@@ -2,3 +2,5 @@
 # This interface is transparently bonded to the synthetic interface,
 # so NetworkManager should just ignore any SRIOV interfaces.
 SUBSYSTEM=="net", DRIVERS=="hv_pci", ACTION=="add|change|move", ENV{NM_UNMANAGED}="1"
+IMPORT{cmdline}=="ignition.platform.id=azure", SUBSYSTEM=="net", DRIVERS=="mlx[45]_core", ACTION=="add|change|move", ENV{NM_UNMANAGED}="1"
+
