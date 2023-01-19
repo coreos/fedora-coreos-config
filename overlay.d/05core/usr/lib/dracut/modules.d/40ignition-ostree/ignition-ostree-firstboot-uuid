@@ -18,7 +18,7 @@ if ! [ -b "${target}" ]; then
   exit 1
 fi
 
-eval $(blkid -o export ${target})
+eval $(blkid -p -o export ${target})
 case "${label}" in
   root) orig_uuid="${rootfs_uuid}"; orig_type=xfs ;;
   boot) orig_uuid="${bootfs_uuid}"; orig_type=ext4 ;;
