@@ -58,7 +58,7 @@ done
 # because the partition, once extended, might include leftover superblocks
 # from the previous contents of the disk (notably ZFS), causing blkid to
 # refuse to return any filesystem type at all.
-eval $(blkid -o export "${src}")
+eval $(blkid -p -o export "${src}")
 ROOTFS_TYPE=${TYPE:-}
 case "${ROOTFS_TYPE}" in
     xfs|ext4|btrfs) ;;
