@@ -16,7 +16,7 @@ ostree-layers:
   - overlay/09misc
   - overlay/14NetworkManager-plugins
   - overlay/20platform-chrony
-  - overlay/25-azure-udev-rules
+  - overlay/25azure-udev-rules
 
 initramfs-args:
   - --no-hostonly
