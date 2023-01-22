@@ -14,24 +14,6 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1364#issuecomment-1355059716
       type: pin
-  fedora-release-common:
-    evra: 38-0.18.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-db60a723ab
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1380#issuecomment-1398571821
-      type: fast-track
-  fedora-release-coreos:
-    evra: 38-0.18.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-db60a723ab
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1380#issuecomment-1398571821
-      type: fast-track
-  fedora-release-identity-coreos:
-    evra: 38-0.18.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-db60a723ab
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1380#issuecomment-1398571821
-      type: fast-track
   selinux-policy:
     evra: 38.1-1.fc38.noarch
     metadata:
