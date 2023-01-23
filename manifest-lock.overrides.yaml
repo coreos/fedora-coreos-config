@@ -8,4 +8,10 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  qemu-user-static-x86:
+    evr: 2:7.0.0-13.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-cf93567517
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1389
+      type: fast-track
