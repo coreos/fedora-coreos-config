@@ -5,7 +5,7 @@
   "storage": {
     "disks": [
       {
-        "device": "${BOOTDEV}",
+        "device": "/dev/disk/by-id/coreos-boot-disk",
         "partitions": [
           {
             "label": "boot",
