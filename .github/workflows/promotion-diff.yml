@@ -37,6 +37,12 @@ jobs:
           # manifest.yaml is per-branch, so we care about changes vs. the
           # one in the base, not the one from the origin
           cp base/manifest.yaml origin/
+      - name: Normalize kola-denylist.yaml
+        run: |
+          # When we promote to a production branch we strip out the
+          # snooze lines. Let's do the same here so we don't get warnings.
+          # See https://github.com/coreos/fedora-coreos-releng-automation/pull/165
+          sed -E -i 's/^(\s+)(snooze:\s+.*)/\1# \2 (disabled on promotion)/' origin/kola-denylist.yaml
       - name: Compare trees
         uses: coreos/actions-lib/check-diff@main
         with:
