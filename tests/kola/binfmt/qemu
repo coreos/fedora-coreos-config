@@ -1,5 +1,5 @@
 #!/bin/bash
-# Test the x86_64 emulator on aarch64 and s390x images for now
+# Test the x86_64 emulator on non-x86_64 instances.
 # https://github.com/coreos/fedora-coreos-tracker/issues/1237
 #
 ## kola:
@@ -12,15 +12,15 @@
 ##   tags: needs-internet
 ##   # Only run on fcos, as rhel does not support emulation
 ##   distros: fcos
-##   # We decided to ship x86_64 emulator to only these arches for now.
-##   architectures: aarch64 s390x
+##   # We ship the x86_64 on all non-x86_64 arches.
+##   architectures: "! x86_64"
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
 case "$(arch)" in
-    aarch64|s390x)
+    aarch64|ppc64le|s390x)
         containerArch=$(podman run --arch=amd64 --rm registry.fedoraproject.org/fedora:37 arch)
         if [ "$containerArch" != "x86_64" ]; then
             fatal "Test failed: x86_64 qemu emulator failed to run"
