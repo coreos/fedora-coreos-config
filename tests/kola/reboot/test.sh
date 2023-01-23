@@ -56,7 +56,7 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
       ok "found root karg"
 
       bootsrc=$(findmnt -nvr /boot -o SOURCE)
-      eval $(blkid -o export "${bootsrc}")
+      eval $(blkid -p -o export "${bootsrc}")
       grep boot=UUID="${UUID}" /proc/cmdline
       ok "found boot karg"
 
