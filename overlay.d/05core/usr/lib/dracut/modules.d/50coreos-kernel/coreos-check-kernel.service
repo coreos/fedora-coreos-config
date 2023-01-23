@@ -1,5 +1,5 @@
 [Unit]
-Description=Check that initrd matches kernel
+Description=Check That Initrd Matches Kernel
 DefaultDependencies=false
 Before=sysinit.target systemd-modules-load.service
 ConditionPathIsDirectory=!/usr/lib/modules/%v
