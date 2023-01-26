@@ -37,7 +37,8 @@ elif [[ -n "${rootfs_url}" ]]; then
     # Doing this allows us to retry all errors (including transient
     # "no route to host" errors during startup). Note we can't use
     # curl's --retry-all-errors here because it's not in el8's curl yet.
-    # We retry forever, matching Ignition's semantics.
+    # We don't need to verify TLS certificates because we're checking the
+    # image hash. We retry forever, matching Ignition's semantics.
     curl_common_args="--silent --show-error --insecure --location"
     while ! curl --head $curl_common_args "${rootfs_url}" >/dev/null; do
         echo "Couldn't establish connectivity with the server specified by:" >&2
@@ -46,8 +47,6 @@ elif [[ -n "${rootfs_url}" ]]; then
         sleep 5
     done
 
-    # We don't need to verify TLS certificates because we're checking the
-    # image hash.
     # bsdtar can read cpio archives and we already depend on it for
     # coreos-liveiso-persist-osmet.service, so use it instead of cpio.
     # We shouldn't need a --retry here since we've just successfully HEADed the
