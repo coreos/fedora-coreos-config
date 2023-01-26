@@ -47,12 +47,24 @@ elif [[ -n "${rootfs_url}" ]]; then
         sleep 5
     done
 
+    # We shouldn't need a --retry from here on since we've just successfully
+    # HEADed the file, but let's add one just to be safe (e.g. if the
+    # connection just went online and flickers or something).
+    curl_common_args+=" --retry 5"
+
+    # Do a HEAD again but just once and with `--fail` so that if e.g. it's
+    # missing, we get a clearer error than if it were part of the pipeline
+    # below.
+    curl_common_args+=" --fail"
+    if ! curl --head $curl_common_args "${rootfs_url}" >/dev/null; then
+        echo "Couldn't query the server for the rootfs specified by:" >&2
+        echo "coreos.live.rootfs_url=${rootfs_url}" >&2
+        exit 1
+    fi
+
     # bsdtar can read cpio archives and we already depend on it for
     # coreos-liveiso-persist-osmet.service, so use it instead of cpio.
-    # We shouldn't need a --retry here since we've just successfully HEADed the
-    # file, but let's add one just to be safe (e.g. if the connection just went
-    # online and flickers or something).
-    if ! curl $curl_common_args --retry 5 "${rootfs_url}" | \
+    if ! curl $curl_common_args "${rootfs_url}" | \
             rdcore stream-hash /etc/coreos-live-want-rootfs | \
             bsdtar -xf - -C / ; then
         echo "Couldn't fetch, verify, and unpack image specified by:" >&2
