@@ -59,6 +59,10 @@ elif [[ -n "${rootfs_url}" ]]; then
         echo "Couldn't fetch, verify, and unpack image specified by:" >&2
         echo "coreos.live.rootfs_url=${rootfs_url}" >&2
         echo "Check that the URL is correct and that the rootfs version matches the initramfs." >&2
+        source /etc/os-release
+        if [ -n "${OSTREE_VERSION:-}" ]; then
+            echo "The version of this initramfs is ${OSTREE_VERSION}." >&2
+        fi
         exit 1
     fi
 else
