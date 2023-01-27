@@ -87,7 +87,7 @@ FROM localhost/fcos
 RUN rpm-ostree cliwrap install-to-root /
 ADD dracut_call.sh dracut_call.sh
 RUN cat dracut_call.sh
-RUN chmod +x dracut_call.sh && rpm-ostree override replace \ 
+RUN chmod +x dracut_call.sh && rpm-ostree override replace \
     https://koji.fedoraproject.org/koji/buildinfo?buildID=2084352 && \
     ./dracut_call.sh && \
     ostree container commit
