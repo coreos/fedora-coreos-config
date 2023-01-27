@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   # This test should pass everywhere if it passes anywhere.
-##   platforms: qemu-unpriv
+##   platforms: platform-independent
 ##   # We intentionally exclude the Install section from a systemd unit.
 ##   # This is valid but not ideal, so Butane warns about it.
 ##   allowConfigWarnings: true

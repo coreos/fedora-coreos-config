@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   platforms: qemu
+##   platforms: platform-independent
 #
 # Test that the fallback hostname is `localhost`. This test
 # validates that the fallback hostname is set to `localhost`

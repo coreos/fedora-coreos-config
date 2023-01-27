@@ -6,7 +6,7 @@
 ##   distros: fcos
 ##   # We don't need to test this on every platform. If it passes in one place it
 ##   # will pass everywhere.
-##   platforms: qemu-unpriv
+##   platforms: platform-independent
 #
 # This test makes sure that ignition is able to unmask units It just so happens
 # we have masked dnsmasq in FCOS so we can test this by unmasking it.

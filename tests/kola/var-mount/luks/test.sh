@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   # restrict to qemu for now because the primary disk path is platform-dependent
-##   platforms: qemu
+##   platforms: platform-independent
 ##   architectures: "!s390x"
 
 set -xeuo pipefail
