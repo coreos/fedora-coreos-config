@@ -10,7 +10,7 @@
 ##   platforms: qemu-unpriv
 ##   # Toolbox container is currently available only for x86_64 and aarch64 in Fedora
 ##   architectures: x86_64 aarch64
-
+#
 # Make sure that basic toolbox functionnality is working:
 # - Creating a toolbox
 # - Running a command in a toolbox
