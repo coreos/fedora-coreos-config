@@ -1,11 +1,4 @@
 #!/bin/bash
-#
-# This script creates two veth interfaces i.e. one for the host machine
-# and other for the container(dnsmasq server). This setup will be helpful
-# to verify the DHCP propagation of NTP servers. This will also avoid any
-# regression that might cause in RHCOS or FCOS when the upstream changes
-# come down and obsolete the temporary work (https://github.com/coreos/fedora-coreos-config/pull/412)
-#
 ## kola:
 ##   # Add the needs-internet tag. This test builds a container from remote
 ##   # sources and uses a remote NTP server.
@@ -22,6 +15,12 @@
 ##   minMemory: 1536
 ##   # We only care about timesyncd in Fedora. It's not available elsewhere.
 ##   distros: fcos
+#
+# This script creates two veth interfaces i.e. one for the host machine
+# and other for the container(dnsmasq server). This setup will be helpful
+# to verify the DHCP propagation of NTP servers. This will also avoid any
+# regression that might cause in RHCOS or FCOS when the upstream changes
+# come down and obsolete the temporary work (https://github.com/coreos/fedora-coreos-config/pull/412)
 
 set -xeuo pipefail
 
