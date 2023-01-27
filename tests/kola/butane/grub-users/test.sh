@@ -6,7 +6,7 @@
 ##  # ppc64le and s390x
 ##  architectures: "!ppc64le s390x"
 ##  # Running on multiple platforms won't prove anything further
-##  platforms: qemu
+##  platforms: platform-independent
 #
 # Check Butane GRUB sugar as best we can from inside the OS.
 

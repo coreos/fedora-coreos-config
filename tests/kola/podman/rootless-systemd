@@ -4,7 +4,7 @@
 ##   # This test uses a remote NTP server.
 ##   tags: needs-internet
 ##   # If the test works anywhere it should work everywhere.
-##   platforms: qemu-unpriv
+##   platforms: platform-independent
 ##   # Pulling and building the container can take a long time if a
 ##   # slow mirror gets chosen.
 ##   timeoutMin: 15

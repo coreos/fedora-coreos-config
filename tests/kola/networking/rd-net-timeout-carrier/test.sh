@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   # This test should pass everywhere if it passes anywhere.
-##   platforms: platform-qemu-unpriv
+##   platforms: platform-independent
 #
 # This test verifies that NetworkManager supports configuring the
 # carrier timeout via the `rd.net.timeout.carrier=` karg. Without

@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   # This test should pass everywhere if it passes anywhere.
-##   platforms: qemu
+##   platforms: platform-independent
 ##   # Root reprovisioning requires at least 4GiB of memory.
 ##   minMemory: 4096
 ##   # A TPM backend device is not available on s390x to suport TPM.

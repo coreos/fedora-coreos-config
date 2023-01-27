@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   # This test should pass everywhere if it passes anywhere.
-##   platforms: qemu
+##   platforms: platform-independent
 ##   # Add 2 NIC for this test
 ##   additionalNics: 2
 ##   # We use net.ifnames=0 to disable consistent network naming here because on

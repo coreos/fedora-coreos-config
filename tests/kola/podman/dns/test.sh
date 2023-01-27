@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   # This test should pass everywhere if it passes anywhere.
-##   platforms: qemu
+##   platforms: platform-independent
 ##   # This test pulls a container from a registry.
 ##   tags: needs-internet
 ##   # This test doesn't make meaningful changes to the system and

@@ -2,7 +2,7 @@
 ## kola:
 ##   exclusive: false
 ##   # Just run on qemu since the answer is the same everywhere
-##   platforms: qemu-unpriv
+##   platforms: platform-independent
 
 set -xeuo pipefail
 

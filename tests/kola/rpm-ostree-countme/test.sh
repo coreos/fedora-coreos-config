@@ -4,7 +4,7 @@
 ##   distros: fcos
 ##   tags: needs-internet
 ##   # No need to run on any other platform than QEMU.
-##   platforms: qemu-unpriv
+##   platforms: platform-independent
 
 set -xeuo pipefail
 

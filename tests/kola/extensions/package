@@ -4,7 +4,7 @@
 ##   distros: fcos
 ##   tags: needs-internet
 ##   # This test should pass everywhere if it passes anywhere.
-##   platforms: qemu
+##   platforms: platform-independent
 ##   # This is dependent on network and disk speed but we've seen the
 ##   # test take longer than 10 minutes in our aarch64 qemu tests.
 ##   timeoutMin: 15
