@@ -30,6 +30,15 @@ if ! grep prjquota <<< "${rootflags}"; then
 fi
 ok "root mounted with prjquota"
 
+table=$(dmsetup table myluksdev)
+if ! grep -q allow_discards <<< "${table}"; then
+    fatal "missing allow_discards in root DM table: ${table}"
+fi
+if ! grep -q no_read_workqueue <<< "${table}"; then
+    fatal "missing no_read_workqueue in root DM table: ${table}"
+fi
+ok "discard and custom option enabled for root LUKS"
+
 # while we're here, sanity-check that boot is mounted by UUID
 if ! systemctl cat boot.mount | grep -q What=/dev/disk/by-uuid; then
   systemctl cat boot.mount
