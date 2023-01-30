@@ -37,6 +37,8 @@ packages:
   # Boost starving threads
   # https://github.com/coreos/fedora-coreos-tracker/issues/753
   - stalld
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1362
+  - audit
 
 postprocess:
   # Make kdump work on firstboot
