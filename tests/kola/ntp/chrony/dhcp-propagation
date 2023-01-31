@@ -28,7 +28,10 @@ set -xeuo pipefail
 
 main() {
 
-    ntp_host_ip=$(getent hosts time-c-g.nist.gov | cut -d ' ' -f 1)
+    # Choose a host from https://tf.nist.gov/tf-cgi/servers.cgi
+    # that can get DNS over DNSSEC since the environment our OpenShift
+    # runs in requires DNSSEC validation. Test with https://dnsviz.net/
+    ntp_host_ip=$(getent hosts utcnist.colorado.edu | cut -d ' ' -f 1)
 
     ntp_test_setup $ntp_host_ip
 
