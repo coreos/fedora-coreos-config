@@ -5,17 +5,6 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: podman.workflow
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
-- pattern: ext.config.kdump.crash
-  tracker: https://github.com/coreos/coreos-assembler/issues/2725#issuecomment-1292616121
-  snooze: 2023-02-04
-  arches:
-    - ppc64le
-  streams:
-    - next-devel
-    - next
-    - testing-devel
-    - testing
-    - stable
 - pattern: coreos.boot-mirror.luks
   tracker: https://github.com/coreos/coreos-assembler/issues/2725
   arches:
