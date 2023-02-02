@@ -5,9 +5,7 @@
 ##   # This test only runs on FCOS due to a problem with skopeo copy on
 ##   # RHCOS. See: https://github.com/containers/skopeo/issues/1846
 ##   distros: fcos
-##   # tags:
-##   #   - needs-internet - we fetch files from koji
-##   #   - platform-independent - should pass everywhere if it passes anywhere
+##   # Needs internet access as we fetch files from koji
 ##   tags: "needs-internet platform-independent"
 #
 # Build container image with a new kernel and reboot into the new image.

@@ -1,8 +1,7 @@
 #!/bin/bash
 ## kola:
-##   exclusive: false
-##   # No need to run on any other platform than QEMU.
 ##   platforms: platform-independent
+##   exclusive: false
 #
 # Since we depend so much on the default networking configurations let's
 # alert ourselves when any default networking configuration changes in
