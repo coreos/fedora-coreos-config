@@ -3,8 +3,7 @@
 ##   # This test doesn't meaningfully change the system and
 ##   # can be run with other tests.
 ##   exclusive: false
-##   # - This test pulls a container image from the network.
-##   # - This test should pass everywhere if it passes anywhere.
+##   # This test pulls a container image from the network.
 ##   tags: "needs-internet platform-independent"
 
 set -xeuo pipefail
