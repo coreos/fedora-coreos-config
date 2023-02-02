@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   platforms: platform-independent
+##   tags: "platform-independent"
 #
 # This test verifies that NetworkManager supports configuring the
 # carrier timeout via the `rd.net.timeout.carrier=` karg. Without

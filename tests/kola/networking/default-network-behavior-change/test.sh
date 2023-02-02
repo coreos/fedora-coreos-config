@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   platforms: platform-independent
+##   tags: "platform-independent"
 ##   exclusive: false
 #
 # Since we depend so much on the default networking configurations let's

@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   platforms: platform-independent
+##   tags: "platform-independent"
 #
 # Test that the fallback hostname is `localhost`. This test
 # validates that the fallback hostname is set to `localhost`

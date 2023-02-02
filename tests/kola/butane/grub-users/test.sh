@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##  platforms: platform-independent
+##  tags: "platform-independent"
 ##  # GRUB sugar currently only exists in FCOS
 ##  distros: fcos
 ##  # coreos-post-ignition-checks.service forbids GRUB passwords on
