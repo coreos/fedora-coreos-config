@@ -1,13 +1,12 @@
 #!/bin/bash
 ## kola:
+##   platforms: platform-independent
 ##   # This test only runs on FCOS because RHCOS is missing the `machinectl` command.
 ##   # Additionally, there are some distro specific choices made for this test that
 ##   # should/could be adapted for RHCOS.
 ##   # TODO-RHCOS: adapt test for RHCOS specifics or create separate RHCOS toolbox test
 ##   distros: fcos
 ##   tags: needs-internet
-##   # Only run on QEMU to reduce CI costs as nothing is platform specific here.
-##   platforms: platform-independent
 ##   # Toolbox container is currently available only for x86_64 and aarch64 in Fedora
 ##   architectures: x86_64 aarch64
 #
