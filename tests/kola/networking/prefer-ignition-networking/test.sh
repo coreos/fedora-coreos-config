@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   # additionalNics is only suppoorted on QEMU
+##   # additionalNics is only supported on QEMU
 ##   platforms: qemu
 ##   # Add 1 additional NIC for this test
 ##   additionalNics: 1
