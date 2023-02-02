@@ -1,7 +1,8 @@
 #!/bin/bash
-# Verify some dependencies of the rpm-ostree container stack.
 ## kola:
 ##   exclusive: false
+#
+# Verify some dependencies of the rpm-ostree container stack.
 
 set -xeuo pipefail
 

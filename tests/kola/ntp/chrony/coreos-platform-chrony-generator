@@ -2,6 +2,7 @@
 ## kola:
 ##   exclusive: false
 ##   platforms: "aws azure gce"
+#
 # Test the coreos-platform-chrony generator.
 
 set -xeuo pipefail
