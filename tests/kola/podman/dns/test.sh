@@ -1,8 +1,7 @@
 #!/bin/bash
 ## kola:
-##   platforms: platform-independent
 ##   # This test pulls a container from a registry.
-##   tags: needs-internet
+##   tags: "platform-independent needs-internet"
 ##   # This test doesn't make meaningful changes to the system and
 ##   # should be able to be combined with other tests.
 ##   exclusive: false

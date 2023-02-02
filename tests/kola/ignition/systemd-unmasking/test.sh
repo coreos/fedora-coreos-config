@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   platforms: platform-independent
+##   tags: "platform-independent"
 ##   # This test is currently scoped to FCOS because `dnsmasq` is not masked on
 ##   # RHCOS.
 ##   # TODO-RHCOS: determine if any services on RHCOS are masked and adapt test

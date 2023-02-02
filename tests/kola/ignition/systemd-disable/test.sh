@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   platforms: platform-independent
+##   tags: "platform-independent"
 ##   # This test is currently scoped to FCOS because `zincati` is only available
 ##   # on FCOS.
 ##   # TODO-RHCOS: Determine if any services on RHCOS may be disabled and adapt test
