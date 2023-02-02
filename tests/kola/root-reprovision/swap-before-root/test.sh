@@ -4,7 +4,7 @@
 ##   # RHCOS. See: https://github.com/openshift/os/issues/665
 ##   distros: fcos
 ##   # additionalDisks is only supported on qemu.
-##   platforms: qemu
+##   platforms: platform-independent
 ##   # Root reprovisioning requires at least 4GiB of memory.
 ##   minMemory: 4096
 ##   # This test includes a lot of disk I/O and needs a higher

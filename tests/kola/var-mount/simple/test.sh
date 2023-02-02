@@ -1,9 +1,10 @@
 #!/bin/bash
-set -xeuo pipefail
-
-# restrict to qemu for now because the primary disk path is platform-dependent
 ## kola:
 ##   platforms: qemu
+#
+# Restrict to qemu for now because the primary disk path is platform-dependent
+
+set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
