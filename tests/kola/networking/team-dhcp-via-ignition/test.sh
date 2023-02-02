@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   # This test should pass everywhere if it passes anywhere.
+##   # additionalNics is only suppoorted on QEMU
 ##   platforms: qemu
 ##   # Add 2 NIC for this test
 ##   additionalNics: 2

@@ -1,5 +1,6 @@
 #!/bin/bash
 ## kola:
+##   # additionalDisks is only supported on QEMU
 ##   platforms: qemu
 ##   additionalDisks: ["5G:mpath"]
 #
