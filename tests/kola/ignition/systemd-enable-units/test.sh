@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   platforms: platform-independent
+##   tags: "platform-independent"
 #
 # This test makes sure that ignition is able to enable systemd units of
 # different types.
