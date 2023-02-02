@@ -1,6 +1,5 @@
 #!/bin/bash
 ## kola:
-##   # This test should pass everywhere if it passes anywhere.
 ##   platforms: platform-independent
 ##   # Root reprovisioning requires at least 4GiB of memory.
 ##   minMemory: 4096

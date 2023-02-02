@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
-##   # This test should pass everywhere if it passes anywhere.
-##   platforms: platform-independent
+##   # appendFirstbootKernelArgs is only supported on QEMU
+##   platforms: qemu
 ##   # The functionality we're testing here.
 ##   appendFirstbootKernelArgs: "rd.net.timeout.dhcp=30 rd.net.dhcp.retry=8"
 ##   # appendFirstbootKernelArgs doesn't work on s390x

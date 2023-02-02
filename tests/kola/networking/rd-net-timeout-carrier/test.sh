@@ -1,6 +1,5 @@
 #!/bin/bash
 ## kola:
-##   # This test should pass everywhere if it passes anywhere.
 ##   platforms: platform-independent
 #
 # This test verifies that NetworkManager supports configuring the

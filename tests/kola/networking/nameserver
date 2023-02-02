@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
-##   # This test should pass everywhere if it passes anywhere.
-##   platforms: platform-independent
+##   # appendKernelArgs is only supported on QEMU
+##   platforms: qemu
 ##   appendKernelArgs: "nameserver=8.8.8.8 nameserver=1.1.1.1"
 ##   # appendKernelArgs doesn't work on s390x
 ##   # https://github.com/coreos/coreos-assembler/issues/2776

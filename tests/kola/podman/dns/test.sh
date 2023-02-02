@@ -1,6 +1,5 @@
 #!/bin/bash
 ## kola:
-##   # This test should pass everywhere if it passes anywhere.
 ##   platforms: platform-independent
 ##   # This test pulls a container from a registry.
 ##   tags: needs-internet
