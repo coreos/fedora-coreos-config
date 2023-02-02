@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   platforms: platform-independent
+##   tags: "platform-independent"
 ##   # The test is not available for aarch64 and s390x,
 ##   # as aarch64 is UEFI only and s390x is not using grub2
 ##   architectures: "!aarch64 s390x"

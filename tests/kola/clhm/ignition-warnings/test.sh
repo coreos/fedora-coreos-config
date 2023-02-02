@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   platforms: platform-independent
+##   tags: "platform-independent"
 ##   # We intentionally exclude the Install section from a systemd unit.
 ##   # This is valid but not ideal, so Butane warns about it.
 ##   allowConfigWarnings: true
