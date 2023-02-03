@@ -19,3 +19,9 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-e1cd8776f0
       type: fast-track
+  podman:
+    evr: 5:4.4.1-1.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-539e1ce6d7
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/998
+      type: fast-track
