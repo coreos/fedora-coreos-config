@@ -85,7 +85,9 @@ FROM localhost/fcos
 RUN rpm-ostree cliwrap install-to-root /
 ADD dracut_call.sh dracut_call.sh
 RUN cat dracut_call.sh
-RUN chmod +x dracut_call.sh && rpm-ostree override replace \
+# Once kernel-modules-core is in all supported releases, we can remove this conditional.
+RUN if rpm -q kernel-modules-core; then echo "kernel-modules-core installed.. removing"; remove="--remove kernel-modules-core"; fi && \
+    chmod +x dracut_call.sh && rpm-ostree override replace \$remove \
     https://koji.fedoraproject.org/koji/buildinfo?buildID=2084352 && \
     ./dracut_call.sh && \
     ostree container commit
