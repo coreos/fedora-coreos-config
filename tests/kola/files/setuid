@@ -20,6 +20,7 @@ list_setuid_files=(
     '/usr/bin/sudo'
     '/usr/bin/umount'
     '/usr/lib/polkit-1/polkit-agent-helper-1'
+    '/usr/libexec/openssh/ssh-keysign'
     '/usr/sbin/grub2-set-bootflag'
     '/usr/sbin/mount.nfs'
     '/usr/sbin/pam_timestamp_check'

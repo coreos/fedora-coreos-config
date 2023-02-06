@@ -8,7 +8,7 @@
 ##   # Add rd.neednet=1 so we can force networking to be brought up on
 ##   # qemu to test that doing so doesn't materially change things.
 ##   appendFirstbootKernelArgs: "BOOTIF=52:54:00:12:34:56 rd.neednet=1"
-
+#
 # In addition to the pure network defaults case we should also make
 # sure that when BOOTIF= or rd.bootif= are provided on the kernel
 # command line (typically from PXE servers) that we don't propagate

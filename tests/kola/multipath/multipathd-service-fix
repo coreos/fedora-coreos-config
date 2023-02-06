@@ -1,8 +1,7 @@
 #!/bin/bash
 ## kola:
+##   tags: "platform-independent"
 ##   exclusive: false
-##   # Just run on qemu since the answer is the same everywhere
-##   platforms: qemu-unpriv
 
 set -xeuo pipefail
 

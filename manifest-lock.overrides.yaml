@@ -9,9 +9,13 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  qemu-user-static-x86:
-    evr: 2:7.0.0-13.fc37
+  afterburn:
+    evr: 5.4.0-1.fc37
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-cf93567517
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1389
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-e1cd8776f0
+      type: fast-track
+  afterburn-dracut:
+    evr: 5.4.0-1.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-e1cd8776f0
       type: fast-track

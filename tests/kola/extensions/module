@@ -1,17 +1,16 @@
 #!/bin/bash
-# This test ensures that we can install some common tools as OS extensions.
-set -xeuo pipefail
-
 ## kola:
+##   tags: "platform-independent needs-internet"
 ##   # This test only runs on FCOS as OS extensions are implemented differently on RHCOS.
 ##   distros: fcos
-##   tags: needs-internet
-##   # This test should pass everywhere if it passes anywhere.
-##   platforms: qemu
 ##   # This is dependent on network and disk speed but we've seen the
 ##   # test take longer than 10 minutes in our aarch64 qemu tests.
 ##   timeoutMin: 15
 ##   minMemory: 1536
+#
+# This test ensures that we can install some common tools as OS extensions.
+
+set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 

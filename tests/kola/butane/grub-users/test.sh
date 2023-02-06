@@ -1,12 +1,11 @@
 #!/bin/bash
 ## kola:
+##  tags: "platform-independent"
 ##  # GRUB sugar currently only exists in FCOS
 ##  distros: fcos
 ##  # coreos-post-ignition-checks.service forbids GRUB passwords on
 ##  # ppc64le and s390x
 ##  architectures: "!ppc64le s390x"
-##  # Running on multiple platforms won't prove anything further
-##  platforms: qemu
 #
 # Check Butane GRUB sugar as best we can from inside the OS.
 

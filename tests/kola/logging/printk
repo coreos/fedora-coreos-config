@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+#
 # Verify default console log level; xref https://github.com/coreos/fedora-coreos-tracker/issues/1244
 
 set -xeuo pipefail

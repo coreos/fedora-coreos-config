@@ -1,8 +1,6 @@
 #!/bin/bash
-set -xeuo pipefail
-
 ## kola:
-##   # This test should pass everywhere if it passes anywhere.
+##   # additionalNics is only supported on QEMU
 ##   platforms: qemu
 ##   # Add 1 additional NIC for this test
 ##   additionalNics: 1
@@ -14,15 +12,17 @@ set -xeuo pipefail
 ##   # appendKernelArgs doesn't work on s390x so skip there
 ##   # https://github.com/coreos/coreos-assembler/issues/2776
 ##   architectures: "!s390x"
-
+#
 # Setup configuration for a single NIC with two different ways:
 # - kargs provide static network config for eth1 without coreos.force_persist_ip
 # - ignition provides dhcp network config for eth1
 # Expected result:
 # - without coreos.force_persist_ip Ignition networking
 #   configuration wins, verify that eth1 gets ip via dhcp
-
+#
 # https://bugzilla.redhat.com/show_bug.cgi?id=1958930#c29
+
+set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 

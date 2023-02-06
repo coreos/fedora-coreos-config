@@ -1,10 +1,10 @@
 #!/bin/bash
-set -xeuo pipefail
-
 ## kola:
-##   # restrict to qemu for now because the primary disk path is platform-dependent
+##   # Restrict to qemu for now because the primary disk path is platform-dependent
 ##   platforms: qemu
 ##   architectures: "!s390x"
+
+set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
