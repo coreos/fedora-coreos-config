@@ -9,34 +9,9 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  NetworkManager:
-    evr: 1:1.40.0-1.fc37
+  qemu-user-static-x86:
+    evr: 2:7.0.0-13.fc37
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
-      type: pin
-  NetworkManager-cloud-setup:
-    evr: 1:1.40.0-1.fc37
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
-      type: pin
-  NetworkManager-libnm:
-    evr: 1:1.40.0-1.fc37
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
-      type: pin
-  NetworkManager-team:
-    evr: 1:1.40.0-1.fc37
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
-      type: pin
-  NetworkManager-tui:
-    evr: 1:1.40.0-1.fc37
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1341
-      type: pin
-  container-selinux:
-    evra: 2:2.198.0-1.fc37.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-d03c3d75ec
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1366
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-cf93567517
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1389
       type: fast-track

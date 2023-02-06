@@ -15,7 +15,7 @@ case "${1:-unset}" in
         mount --bind /tmp/cmdline /proc/cmdline
         ;;
     stop)
-        umount /proc/cmdline
+        umount -l /proc/cmdline
         rm /tmp/cmdline
         ;;
     *)
