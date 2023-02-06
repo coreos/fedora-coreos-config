@@ -4,6 +4,7 @@
 ##   # backend. It is scoped to only FCOS because RHCOS only supports nft.
 ##   distros: fcos
 ##   exclusive: true
+
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh

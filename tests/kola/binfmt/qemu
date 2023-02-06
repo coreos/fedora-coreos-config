@@ -1,19 +1,17 @@
 #!/bin/bash
-# Test the x86_64 emulator on non-x86_64 instances.
-# https://github.com/coreos/fedora-coreos-tracker/issues/1237
-#
 ## kola:
-##   # This test should pass everywhere if it passes anywhere.
-##   platforms: qemu
+##   # This test pulls a container from a registry.
+##   tags: "platform-independent needs-internet"
 ##   # This test doesn't make meaningful changes to the system and should
 ##   # be able to be combined with other tests.
 ##   exclusive: false
-##   # This test pulls a container from a registry.
-##   tags: needs-internet
 ##   # Only run on fcos, as rhel does not support emulation
 ##   distros: fcos
 ##   # We ship the x86_64 on all non-x86_64 arches.
 ##   architectures: "! x86_64"
+#
+# Test the x86_64 emulator on non-x86_64 instances.
+# https://github.com/coreos/fedora-coreos-tracker/issues/1237
 
 set -xeuo pipefail
 

@@ -1,8 +1,6 @@
 #!/bin/bash
-set -xeuo pipefail
-
 ## kola:
-##   platforms: qemu
+##   tags: "platform-independent"
 #
 # Test that the fallback hostname is `localhost`. This test
 # validates that the fallback hostname is set to `localhost`
@@ -11,11 +9,6 @@ set -xeuo pipefail
 # hostname is set from the fallback hostname and is `localhost`.
 # https://github.com/coreos/fedora-coreos-tracker/issues/902
 #
-# - platforms: qemu
-#   - This test should pass everywhere if it passes anywhere.
-
-. $KOLA_EXT_DATA/commonlib.sh
-
 # Use the output of hostnamectl to gather information about how
 # the hostname is/was set. We're expecting something like this:
 #   {
@@ -38,8 +31,8 @@ set -xeuo pipefail
 #       "HardwareModel" : "Standard PC _i440FX + PIIX, 1996_",
 #       "ProductUUID" : null
 #   }
-
-# "hostnamectl --json=pretty" is not supported on rhel8 yet, the 
+#
+# "hostnamectl --json=pretty" is not supported on rhel8 yet, the
 # expected output like this:
 #    Static hostname: n/a
 # Transient hostname: localhost
@@ -53,6 +46,9 @@ set -xeuo pipefail
 #             Kernel: Linux 4.18.0-372.19.1.el8_6.x86_64
 #       Architecture: x86-64
 
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
 
 if is_rhcos8; then
     if [ $(hostnamectl --transient) != 'localhost' ]; then

@@ -1,6 +1,4 @@
 #!/usr/bin/bash
-set -eu -o pipefail
-
 # This script attempts to test the configurations in our documentation
 # at https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-network-configuration/.
 # All it does is test the various documented scenarios via both the
@@ -32,6 +30,8 @@ set -eu -o pipefail
 #     systemctl enable dnsmasq --now
 #
 # - Dusty Mabe - dusty@dustymabe.com
+
+set -eu -o pipefail
 
 vmname="coreos-docs-nettest"
 

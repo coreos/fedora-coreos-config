@@ -1,16 +1,15 @@
 #!/bin/bash
 ## kola:
+##   tags: "platform-independent"
 ##   exclusive: false
-##   # No need to run on any other platform than QEMU.
-##   platforms: qemu-unpriv
-
-set -xeuo pipefail
-
+#
 # Since we depend so much on the default networking configurations let's
 # alert ourselves when any default networking configuration changes in
 # NetworkManager. This allows us to react and adjust to the changes
 # (if needed) instead of finding out later that problems were introduced.
 # some context in: https://github.com/coreos/fedora-coreos-tracker/issues/1000
+
+set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 

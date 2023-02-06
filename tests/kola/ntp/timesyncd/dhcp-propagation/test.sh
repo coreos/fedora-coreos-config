@@ -1,11 +1,4 @@
 #!/bin/bash
-#
-# This script creates two veth interfaces i.e. one for the host machine
-# and other for the container(dnsmasq server). This setup will be helpful
-# to verify the DHCP propagation of NTP servers. This will also avoid any
-# regression that might cause in RHCOS or FCOS when the upstream changes
-# come down and obsolete the temporary work (https://github.com/coreos/fedora-coreos-config/pull/412)
-#
 ## kola:
 ##   # Add the needs-internet tag. This test builds a container from remote
 ##   # sources and uses a remote NTP server.
@@ -22,6 +15,12 @@
 ##   minMemory: 1536
 ##   # We only care about timesyncd in Fedora. It's not available elsewhere.
 ##   distros: fcos
+#
+# This script creates two veth interfaces i.e. one for the host machine
+# and other for the container(dnsmasq server). This setup will be helpful
+# to verify the DHCP propagation of NTP servers. This will also avoid any
+# regression that might cause in RHCOS or FCOS when the upstream changes
+# come down and obsolete the temporary work (https://github.com/coreos/fedora-coreos-config/pull/412)
 
 set -xeuo pipefail
 
@@ -30,7 +29,10 @@ set -xeuo pipefail
 
 main() {
 
-    ntp_host_ip=$(getent hosts time-c-g.nist.gov | cut -d ' ' -f 1)
+    # Choose a host from https://tf.nist.gov/tf-cgi/servers.cgi
+    # that can get DNS over DNSSEC since the environment our OpenShift
+    # runs in requires DNSSEC validation. Test with https://dnsviz.net/
+    ntp_host_ip=$(getent hosts utcnist.colorado.edu | cut -d ' ' -f 1)
 
     ntp_test_setup $ntp_host_ip
 

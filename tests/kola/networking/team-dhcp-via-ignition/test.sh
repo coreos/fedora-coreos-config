@@ -1,10 +1,6 @@
 #!/bin/bash
-# Verify team networking using ignition config works.
-# The ignition config refers to
-# https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-network-configuration/
-
 ## kola:
-##   # This test should pass everywhere if it passes anywhere.
+##   # additionalNics is only supported on QEMU
 ##   platforms: qemu
 ##   # Add 2 NIC for this test
 ##   additionalNics: 2
@@ -15,6 +11,10 @@
 ##   # appendKernelArgs doesn't work on s390x
 ##   # https://github.com/coreos/coreos-assembler/issues/2776
 ##   architectures: "!s390x"
+#
+# Verify team networking using ignition config works.
+# The ignition config refers to
+# https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-network-configuration/
 
 set -xeuo pipefail
 

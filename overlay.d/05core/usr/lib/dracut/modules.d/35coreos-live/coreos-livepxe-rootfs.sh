@@ -37,7 +37,8 @@ elif [[ -n "${rootfs_url}" ]]; then
     # Doing this allows us to retry all errors (including transient
     # "no route to host" errors during startup). Note we can't use
     # curl's --retry-all-errors here because it's not in el8's curl yet.
-    # We retry forever, matching Ignition's semantics.
+    # We don't need to verify TLS certificates because we're checking the
+    # image hash. We retry forever, matching Ignition's semantics.
     curl_common_args="--silent --show-error --insecure --location"
     while ! curl --head $curl_common_args "${rootfs_url}" >/dev/null; do
         echo "Couldn't establish connectivity with the server specified by:" >&2
@@ -46,19 +47,33 @@ elif [[ -n "${rootfs_url}" ]]; then
         sleep 5
     done
 
-    # We don't need to verify TLS certificates because we're checking the
-    # image hash.
+    # We shouldn't need a --retry from here on since we've just successfully
+    # HEADed the file, but let's add one just to be safe (e.g. if the
+    # connection just went online and flickers or something).
+    curl_common_args+=" --retry 5"
+
+    # Do a HEAD again but just once and with `--fail` so that if e.g. it's
+    # missing, we get a clearer error than if it were part of the pipeline
+    # below.
+    curl_common_args+=" --fail"
+    if ! curl --head $curl_common_args "${rootfs_url}" >/dev/null; then
+        echo "Couldn't query the server for the rootfs specified by:" >&2
+        echo "coreos.live.rootfs_url=${rootfs_url}" >&2
+        exit 1
+    fi
+
     # bsdtar can read cpio archives and we already depend on it for
     # coreos-liveiso-persist-osmet.service, so use it instead of cpio.
-    # We shouldn't need a --retry here since we've just successfully HEADed the
-    # file, but let's add one just to be safe (e.g. if the connection just went
-    # online and flickers or something).
-    if ! curl $curl_common_args --retry 5 "${rootfs_url}" | \
+    if ! curl $curl_common_args "${rootfs_url}" | \
             rdcore stream-hash /etc/coreos-live-want-rootfs | \
             bsdtar -xf - -C / ; then
         echo "Couldn't fetch, verify, and unpack image specified by:" >&2
         echo "coreos.live.rootfs_url=${rootfs_url}" >&2
         echo "Check that the URL is correct and that the rootfs version matches the initramfs." >&2
+        source /etc/os-release
+        if [ -n "${OSTREE_VERSION:-}" ]; then
+            echo "The version of this initramfs is ${OSTREE_VERSION}." >&2
+        fi
         exit 1
     fi
 else

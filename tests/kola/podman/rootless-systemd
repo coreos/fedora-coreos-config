@@ -2,9 +2,7 @@
 ## kola:
 ##   # This test builds a container from remote sources.
 ##   # This test uses a remote NTP server.
-##   tags: needs-internet
-##   # If the test works anywhere it should work everywhere.
-##   platforms: qemu-unpriv
+##   tags: "platform-independent needs-internet"
 ##   # Pulling and building the container can take a long time if a
 ##   # slow mirror gets chosen.
 ##   timeoutMin: 15
@@ -12,7 +10,7 @@
 ##   # https://bugzilla.redhat.com/show_bug.cgi?id=1907030
 ##   # https://pagure.io/releng/issue/10935#comment-808601
 ##   minMemory: 1536
-
+#
 # This script runs a rootless podman container (rootless because it's
 # run as the `core` user) with systemd inside that brings up httpd.
 # It tests that rootless+systemd works. See issue:

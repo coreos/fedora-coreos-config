@@ -1,9 +1,8 @@
 #!/bin/bash
 ## kola:
+##   tags: "platform-independent"
 ##   # This is a read-only test that can be run with other tests.
 ##   exclusive: false
-##   # This test should pass everywhere if it passes anywhere
-##   platforms: qemu-unpriv
 #
 # Check if there are broken symlinks in /etc/ and /usr/.
 # See: https://github.com/coreos/fedora-coreos-config/issues/1782

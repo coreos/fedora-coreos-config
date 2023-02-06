@@ -2,7 +2,7 @@
 ## kola:
 ##   # Ideally we'd test on virtualbox and vmware, but we don't have tests
 ##   # there, so we mock specifically for ignition.platform.id=qemu
-##   platforms: qemu-unpriv
+##   platforms: qemu
 
 set -xeuo pipefail
 

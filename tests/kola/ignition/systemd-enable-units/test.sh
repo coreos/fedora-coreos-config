@@ -1,8 +1,7 @@
 #!/bin/bash
 ## kola:
-##   # We don't need to test this on every platform. If it passes in
-##   # one place it will pass everywhere.
-##   platforms: qemu-unpriv
+##   tags: "platform-independent"
+#
 # This test makes sure that ignition is able to enable systemd units of
 # different types.
 # https://github.com/coreos/ignition/issues/586
