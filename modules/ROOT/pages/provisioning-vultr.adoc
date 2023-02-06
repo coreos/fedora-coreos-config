@@ -1,6 +1,6 @@
 = Provisioning Fedora CoreOS on Vultr
 
-This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Vultr. FCOS images are currently not published directly on Vultr, but they can be uploaded as https://www.vultr.com/docs/requirements-for-uploading-an-os-iso-to-vultr[custom images].
+This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Vultr. Vultr publishes FCOS images, but they are out of date, so **we do not recommend using the standard Vultr images**. Instead, a current FCOS release can be uploaded as a https://www.vultr.com/docs/requirements-for-uploading-an-os-iso-to-vultr[custom image].
 
 == Prerequisites
 
