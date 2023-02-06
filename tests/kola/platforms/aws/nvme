@@ -1,21 +1,16 @@
 #!/bin/bash
-# Test to make sure AWS instances with nvme storage get a device
-# properly created for it. See https://github.com/coreos/fedora-coreos-tracker/issues/1306
-#
 ## kola:
 ##   # This is a read-only test and can be run with other tests
 ##   exclusive: false
 ##   # This test is targeted at AWS
 ##   platforms: aws
-
-
-set -xeuo pipefail
-
-. $KOLA_EXT_DATA/commonlib.sh
-
+#
+# Test to make sure AWS instances with nvme storage get a device
+# properly created for it. See https://github.com/coreos/fedora-coreos-tracker/issues/1306
+#
 # We'll check to see if anything is listed in `nvme list-subsys`
 # and then run the test based on that. Example output:
-# 
+#
 # [core@ip-10-0-1-155 ~]$ nvme list-subsys -o json
 # [
 #   {
@@ -37,6 +32,11 @@ set -xeuo pipefail
 #     ]
 #   }
 # ]
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
 nvme_info=$(nvme list-subsys -o json || true)
 has_nvme=$(jq -r ".[].Subsystems[].Paths[] | select(.Name == \"nvme0\").Name" <<< "$nvme_info")
 if [ -n "${has_nvme}" ]; then

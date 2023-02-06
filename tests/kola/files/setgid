@@ -1,11 +1,15 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
 # List of known files and directories with SetGID bit set
+# Drop '/usr/libexec/openssh/ssh-keysign' after
+# https://src.fedoraproject.org/rpms/openssh/c/b615362fd0b4da657d624571441cb74983de6e3f?branch=rawhide
+# is in all OS.
 list_setgid_files=(
     '/usr/bin/write'
     '/usr/libexec/openssh/ssh-keysign'

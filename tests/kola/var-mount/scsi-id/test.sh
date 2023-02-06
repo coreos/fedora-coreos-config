@@ -1,12 +1,14 @@
 #!/bin/bash
-set -xeuo pipefail
+## kola:
+##   # additionalDisks is only supported on QEMU
+##   platforms: qemu
+##   additionalDisks: ["5G:mpath"]
+#
 # This is to verify udev rules /dev/disk/by-id/scsi-*
 # symlinks present in initramfs
 # https://bugzilla.redhat.com/show_bug.cgi?id=1990506
 
-## kola:
-##   platforms: qemu
-##   additionalDisks: ["5G:mpath"]
+set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
