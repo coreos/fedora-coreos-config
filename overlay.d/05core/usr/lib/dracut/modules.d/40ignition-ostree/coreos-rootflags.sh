@@ -21,7 +21,7 @@ if [ -d /run/ignition-ostree-transposefs/root ]; then
     fi
 fi
 
-eval $(blkid -o export ${rootpath})
+eval $(blkid -p -o export ${rootpath})
 if [ "${TYPE}" == "xfs" ]; then
     # We use prjquota on XFS by default to aid multi-tenant Kubernetes (and
     # other container) clusters.  See

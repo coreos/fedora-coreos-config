@@ -20,7 +20,7 @@ else
         # Get the PKNAME
         eval $(lsblk --output PKNAME --pairs --paths --nodeps "$1")
         # Get the PTUUID
-        eval $(blkid -o export $PKNAME)
+        eval $(blkid -p -o export $PKNAME)
     else
         # PTUUID is the disk guid, PKNAME is the parent kernel name
         eval $(lsblk --output PTUUID,PKNAME --pairs --paths --nodeps "$1")
