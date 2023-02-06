@@ -5,9 +5,7 @@
 ##   # This test only runs on FCOS due to a problem with skopeo copy on
 ##   # RHCOS. See: https://github.com/containers/skopeo/issues/1846
 ##   distros: fcos
-##   # tags:
-##   #   - needs-internet - we fetch files from koji
-##   #   - platform-independent - should pass everywhere if it passes anywhere
+##   # Needs internet access as we fetch files from koji
 ##   tags: "needs-internet platform-independent"
 #
 # Build container image with a new kernel and reboot into the new image.
@@ -76,7 +74,7 @@ if [[ "$version" == *"2023"* ]] || [[ "$version" == *"2022.19"* ]]; then
     echo "Running rpm-ostree 2022.19 or newer.";
 else
     echo "Running rpm-ostree 2022.18 or older, rebuilding the initramfs.";
-    echo "Building initramfs for Kernel: $kver" 
+    echo "Building initramfs for Kernel: $kver"
     /usr/libexec/rpm-ostree/wrapped/dracut --tmpdir /tmp/ --no-hostonly --kver $kver --reproducible \
     -v --add ostree -f /tmp/initramfs2.img
     mv /tmp/initramfs2.img /lib/modules/$kver/initramfs.img
@@ -87,7 +85,9 @@ FROM localhost/fcos
 RUN rpm-ostree cliwrap install-to-root /
 ADD dracut_call.sh dracut_call.sh
 RUN cat dracut_call.sh
-RUN chmod +x dracut_call.sh && rpm-ostree override replace \ 
+# Once kernel-modules-core is in all supported releases, we can remove this conditional.
+RUN if rpm -q kernel-modules-core; then echo "kernel-modules-core installed.. removing"; remove="--remove kernel-modules-core"; fi && \
+    chmod +x dracut_call.sh && rpm-ostree override replace \$remove \
     https://koji.fedoraproject.org/koji/buildinfo?buildID=2084352 && \
     ./dracut_call.sh && \
     ostree container commit

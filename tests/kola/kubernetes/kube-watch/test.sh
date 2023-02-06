@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+#
 # This is for verifying that `kubernetes_file_t` labeled files can be
 # watched by systemd
 # See: https://github.com/coreos/fedora-coreos-tracker/issues/861

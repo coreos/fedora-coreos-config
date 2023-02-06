@@ -5,17 +5,6 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: podman.workflow
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
-- pattern: ext.config.kdump.crash
-  tracker: https://github.com/coreos/coreos-assembler/issues/2725#issuecomment-1292616121
-  # snooze: 2023-02-04 (disabled on promotion)
-  arches:
-    - ppc64le
-  streams:
-    - next-devel
-    - next
-    - testing-devel
-    - testing
-    - stable
 - pattern: coreos.boot-mirror.luks
   tracker: https://github.com/coreos/coreos-assembler/issues/2725
   arches:
@@ -51,8 +40,3 @@
 - pattern: ext.config.platforms.aws.nvme
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1306#issuecomment-1378864963
   # snooze: 2023-02-10 (disabled on promotion)
-- pattern: ext.config.ntp.timesyncd.dhcp-propagation                                                                                                       
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1364#issuecomment-1371727078
-  # snooze: 2023-02-05 (disabled on promotion)
-  streams:
-    - rawhide
