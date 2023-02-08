@@ -54,7 +54,10 @@ elif [[ -n "${rootfs_url}" ]]; then
 
     # Do a HEAD again but just once and with `--fail` so that if e.g. it's
     # missing, we get a clearer error than if it were part of the pipeline
-    # below.
+    # below. Otherwise, the `curl` error emitted there would get lost among
+    # all the spurious errors from the other commands in that pipeline and also
+    # wouldn't show up in the journal logs dumped by `emergency-shell.sh` since
+    # it only prints 10 lines.
     curl_common_args+=" --fail"
     if ! curl --head $curl_common_args "${rootfs_url}" >/dev/null; then
         echo "Couldn't query the server for the rootfs specified by:" >&2
