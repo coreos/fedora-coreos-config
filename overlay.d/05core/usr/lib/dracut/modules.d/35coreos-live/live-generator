@@ -152,20 +152,6 @@ Type=squashfs
 # is checked by coreos-assembler cmd-buildextend-live at build time.
 Options=loop,offset=124
 EOF
-
-    # And one more unit to workaround what we think is a systemd bug.
-    # We've found the system can stall waiting for run-media-iso.mount
-    # and apparently any operation seems to be effective at reviving
-    # the system.
-    # https://github.com/coreos/fedora-coreos-tracker/issues/1233#issuecomment-1238814171
-    cat >"${UNIT_DIR}/workaround-stalled-media-iso-mount.service" <<EOF
-[Service]
-Type=simple
-StandardOutput=journal
-StandardError=journal
-ExecStart=bash -c "sleep 10; echo 'warn: tracker issue workaround engaged for https://github.com/coreos/fedora-coreos-tracker/issues/1233'"
-EOF
-    add_requires workaround-stalled-media-iso-mount.service basic.target
 fi
 
 # It turns out that `tmpfs` currently munches all SELinux labels
