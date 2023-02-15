@@ -6,11 +6,11 @@
 - pattern: podman.workflow
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: coreos.boot-mirror.luks
-  tracker: https://github.com/coreos/coreos-assembler/issues/2725
+  tracker: https://github.com/coreos/coreos-assembler/issues/3360
   arches:
     - ppc64le
 - pattern: coreos.boot-mirror
-  tracker: https://github.com/coreos/coreos-assembler/issues/2725
+  tracker: https://github.com/coreos/coreos-assembler/issues/3361
   arches:
     - ppc64le
 - pattern: ext.config.ignition.resource.remote
