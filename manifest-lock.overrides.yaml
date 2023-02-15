@@ -9,6 +9,11 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  container-selinux:
+    evra: 2:2.193.0-1.fc38.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1412
+      type: pin
   glib2:
     evr: 2.74.1-3.fc38
     metadata:
@@ -28,6 +33,16 @@ packages:
     evr: 9.0p1-9.fc38
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1394
+      type: pin
+  selinux-policy:
+    evra: 38.1-1.fc38.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1412
+      type: pin
+  selinux-policy-targeted:
+    evra: 38.1-1.fc38.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1412
       type: pin
   systemd:
     evr: 252.4-4.fc38
