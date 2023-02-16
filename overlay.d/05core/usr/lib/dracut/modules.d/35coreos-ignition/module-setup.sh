@@ -26,6 +26,13 @@ install() {
         sgdisk \
         uname
 
+    # For IBM SecureExecution
+    if [[ $(uname -m) = s390x ]]; then
+        inst_multiple \
+            gpg \
+            gpg-agent
+    fi
+
     inst_simple "$moddir/coreos-diskful-generator" \
         "$systemdutildir/system-generators/coreos-diskful-generator"
 
@@ -76,4 +83,8 @@ install() {
 
     # IBM Secure Execution. Ignition config for reencryption of / and /boot
     inst_simple "$moddir/01-secex.ign" /usr/lib/coreos/01-secex.ign
+    install_ignition_unit "coreos-secex-ignition-decrypt.service"
+    inst_script "$moddir/coreos-secex-ignition-decrypt.sh" \
+        "/usr/sbin/coreos-secex-ignition-decrypt"
+
 }
