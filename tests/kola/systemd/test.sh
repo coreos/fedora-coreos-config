@@ -22,39 +22,3 @@ if [ $timeout_seconds -eq 165 ]; then
 else
   fatal "FAIL: The default shutdown time is not 2 minutes and 45 seconds. This system is $timeout"
 fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# # Get the current time in seconds since the epoch
-# current_time=$(date +%s)
-
-# # Add 165 seconds to the current time
-# new_time=$((current_time + 165))
-
-# # Print the new time in the format "YYYY-MM-DD HH:MM:SS"
-# echo $(date -d @$new_time +"%H:%M:%S")
-
-
-# systemctl show your.service --property=DefaultTimeoutStartUSec 
-
-
-#DefaultTimeoutStartUSec=1min 30s
-
-
