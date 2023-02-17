@@ -9,11 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  glib2:
-    evr: 2.74.1-3.fc38
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1418
-      type: pin
   openssh:
     evr: 9.0p1-9.fc38
     metadata:
