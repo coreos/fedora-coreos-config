@@ -19,7 +19,7 @@
       "evra": "2.8.0.11-1.fc37.noarch"
     },
     "aardvark-dns": {
-      "evra": "1.4.0-1.fc37.s390x"
+      "evra": "1.5.0-4.fc37.s390x"
     },
     "acl": {
       "evra": "2.3.1-4.fc37.s390x"
@@ -103,16 +103,16 @@
       "evra": "7.0-1.fc37.s390x"
     },
     "clevis": {
-      "evra": "18-14.fc37.s390x"
+      "evra": "19-1.fc37.s390x"
     },
     "clevis-dracut": {
-      "evra": "18-14.fc37.s390x"
+      "evra": "19-1.fc37.s390x"
     },
     "clevis-luks": {
-      "evra": "18-14.fc37.s390x"
+      "evra": "19-1.fc37.s390x"
     },
     "clevis-systemd": {
-      "evra": "18-14.fc37.s390x"
+      "evra": "19-1.fc37.s390x"
     },
     "cloud-utils-growpart": {
       "evra": "0.31-11.fc37.noarch"
@@ -142,10 +142,10 @@
       "evra": "1.1.1-8.fc37.s390x"
     },
     "containers-common": {
-      "evra": "4:1-78.fc37.noarch"
+      "evra": "4:1-80.fc37.noarch"
     },
     "containers-common-extra": {
-      "evra": "4:1-78.fc37.noarch"
+      "evra": "4:1-80.fc37.noarch"
     },
     "coreos-installer": {
       "evra": "0.16.1-2.fc37.s390x"
@@ -178,10 +178,10 @@
       "evra": "20220815-1.gite4ed860.fc37.noarch"
     },
     "cryptsetup": {
-      "evra": "2.5.0-1.fc37.s390x"
+      "evra": "2.6.1-1.fc37.s390x"
     },
     "cryptsetup-libs": {
-      "evra": "2.5.0-1.fc37.s390x"
+      "evra": "2.6.1-1.fc37.s390x"
     },
     "curl": {
       "evra": "7.85.0-5.fc37.s390x"
@@ -229,7 +229,7 @@
       "evra": "3.8-3.fc37.s390x"
     },
     "dnsmasq": {
-      "evra": "2.88-1.fc37.s390x"
+      "evra": "2.89-1.fc37.s390x"
     },
     "dosfstools": {
       "evra": "4.2-4.fc37.s390x"
@@ -691,7 +691,7 @@
       "evra": "2.38.1-1.fc37.s390x"
     },
     "libsmbclient": {
-      "evra": "2:4.17.5-0.fc37.s390x"
+      "evra": "2:4.17.5-1.fc37.s390x"
     },
     "libsolv": {
       "evra": "0.7.22-3.fc37.s390x"
@@ -754,7 +754,7 @@
       "evra": "0.3.2-4.fc37.s390x"
     },
     "libwbclient": {
-      "evra": "2:4.17.5-0.fc37.s390x"
+      "evra": "2:4.17.5-1.fc37.s390x"
     },
     "libxcrypt": {
       "evra": "4.4.33-4.fc37.s390x"
@@ -787,7 +787,7 @@
       "evra": "4.94.0-4.fc37.s390x"
     },
     "lua-libs": {
-      "evra": "5.4.4-7.fc37.s390x"
+      "evra": "5.4.4-9.fc37.s390x"
     },
     "luksmeta": {
       "evra": "9-14.fc37.s390x"
@@ -835,7 +835,7 @@
       "evra": "2.0-0.64.20160912git.fc37.s390x"
     },
     "netavark": {
-      "evra": "1.4.0-1.fc37.s390x"
+      "evra": "1.5.0-4.fc37.s390x"
     },
     "nettle": {
       "evra": "3.8-2.fc37.s390x"
@@ -991,13 +991,13 @@
       "evra": "2:2.25.0-4.fc37.s390x"
     },
     "samba-client-libs": {
-      "evra": "2:4.17.5-0.fc37.s390x"
+      "evra": "2:4.17.5-1.fc37.s390x"
     },
     "samba-common": {
-      "evra": "2:4.17.5-0.fc37.noarch"
+      "evra": "2:4.17.5-1.fc37.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.17.5-0.fc37.s390x"
+      "evra": "2:4.17.5-1.fc37.s390x"
     },
     "sed": {
       "evra": "4.8-11.fc37.s390x"
@@ -1126,13 +1126,13 @@
       "evra": "2.38.1-1.fc37.s390x"
     },
     "veritysetup": {
-      "evra": "2.5.0-1.fc37.s390x"
+      "evra": "2.6.1-1.fc37.s390x"
     },
     "vim-data": {
-      "evra": "2:9.0.1293-1.fc37.noarch"
+      "evra": "2:9.0.1307-1.fc37.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.1293-1.fc37.s390x"
+      "evra": "2:9.0.1307-1.fc37.s390x"
     },
     "which": {
       "evra": "2.21-35.fc37.s390x"
@@ -1172,16 +1172,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-02-16T00:00:00Z",
+    "generated": "2023-02-18T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-11-05T08:04:18Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-02-15T22:37:09Z"
+        "generated": "2023-02-16T22:18:56Z"
       },
       "fedora-updates": {
-        "generated": "2023-02-16T01:51:19Z"
+        "generated": "2023-02-18T01:07:58Z"
       }
     }
   }

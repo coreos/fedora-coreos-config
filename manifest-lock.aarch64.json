@@ -19,7 +19,7 @@
       "evra": "2.8.0.11-1.fc37.noarch"
     },
     "aardvark-dns": {
-      "evra": "1.4.0-1.fc37.aarch64"
+      "evra": "1.5.0-4.fc37.aarch64"
     },
     "acl": {
       "evra": "2.3.1-4.fc37.aarch64"
@@ -106,16 +106,16 @@
       "evra": "7.0-1.fc37.aarch64"
     },
     "clevis": {
-      "evra": "18-14.fc37.aarch64"
+      "evra": "19-1.fc37.aarch64"
     },
     "clevis-dracut": {
-      "evra": "18-14.fc37.aarch64"
+      "evra": "19-1.fc37.aarch64"
     },
     "clevis-luks": {
-      "evra": "18-14.fc37.aarch64"
+      "evra": "19-1.fc37.aarch64"
     },
     "clevis-systemd": {
-      "evra": "18-14.fc37.aarch64"
+      "evra": "19-1.fc37.aarch64"
     },
     "cloud-utils-growpart": {
       "evra": "0.31-11.fc37.noarch"
@@ -145,10 +145,10 @@
       "evra": "1.1.1-8.fc37.aarch64"
     },
     "containers-common": {
-      "evra": "4:1-78.fc37.noarch"
+      "evra": "4:1-80.fc37.noarch"
     },
     "containers-common-extra": {
-      "evra": "4:1-78.fc37.noarch"
+      "evra": "4:1-80.fc37.noarch"
     },
     "coreos-installer": {
       "evra": "0.16.1-2.fc37.aarch64"
@@ -181,10 +181,10 @@
       "evra": "20220815-1.gite4ed860.fc37.noarch"
     },
     "cryptsetup": {
-      "evra": "2.5.0-1.fc37.aarch64"
+      "evra": "2.6.1-1.fc37.aarch64"
     },
     "cryptsetup-libs": {
-      "evra": "2.5.0-1.fc37.aarch64"
+      "evra": "2.6.1-1.fc37.aarch64"
     },
     "curl": {
       "evra": "7.85.0-5.fc37.aarch64"
@@ -232,7 +232,7 @@
       "evra": "3.8-3.fc37.aarch64"
     },
     "dnsmasq": {
-      "evra": "2.88-1.fc37.aarch64"
+      "evra": "2.89-1.fc37.aarch64"
     },
     "dosfstools": {
       "evra": "4.2-4.fc37.aarch64"
@@ -742,7 +742,7 @@
       "evra": "2.38.1-1.fc37.aarch64"
     },
     "libsmbclient": {
-      "evra": "2:4.17.5-0.fc37.aarch64"
+      "evra": "2:4.17.5-1.fc37.aarch64"
     },
     "libsolv": {
       "evra": "0.7.22-3.fc37.aarch64"
@@ -808,7 +808,7 @@
       "evra": "0.3.2-4.fc37.aarch64"
     },
     "libwbclient": {
-      "evra": "2:4.17.5-0.fc37.aarch64"
+      "evra": "2:4.17.5-1.fc37.aarch64"
     },
     "libxcrypt": {
       "evra": "4.4.33-4.fc37.aarch64"
@@ -844,7 +844,7 @@
       "evra": "4.94.0-4.fc37.aarch64"
     },
     "lua-libs": {
-      "evra": "5.4.4-7.fc37.aarch64"
+      "evra": "5.4.4-9.fc37.aarch64"
     },
     "luksmeta": {
       "evra": "9-14.fc37.aarch64"
@@ -895,7 +895,7 @@
       "evra": "2.0-0.64.20160912git.fc37.aarch64"
     },
     "netavark": {
-      "evra": "1.4.0-1.fc37.aarch64"
+      "evra": "1.5.0-4.fc37.aarch64"
     },
     "nettle": {
       "evra": "3.8-2.fc37.aarch64"
@@ -1054,13 +1054,13 @@
       "evra": "2:1.1.4-1.fc37.aarch64"
     },
     "samba-client-libs": {
-      "evra": "2:4.17.5-0.fc37.aarch64"
+      "evra": "2:4.17.5-1.fc37.aarch64"
     },
     "samba-common": {
-      "evra": "2:4.17.5-0.fc37.noarch"
+      "evra": "2:4.17.5-1.fc37.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.17.5-0.fc37.aarch64"
+      "evra": "2:4.17.5-1.fc37.aarch64"
     },
     "sed": {
       "evra": "4.8-11.fc37.aarch64"
@@ -1195,10 +1195,10 @@
       "evra": "2.38.1-1.fc37.aarch64"
     },
     "vim-data": {
-      "evra": "2:9.0.1293-1.fc37.noarch"
+      "evra": "2:9.0.1307-1.fc37.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.1293-1.fc37.aarch64"
+      "evra": "2:9.0.1307-1.fc37.aarch64"
     },
     "which": {
       "evra": "2.21-35.fc37.aarch64"
@@ -1238,16 +1238,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-02-16T00:00:00Z",
+    "generated": "2023-02-18T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-11-05T08:04:22Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-02-15T22:45:15Z"
+        "generated": "2023-02-16T22:22:32Z"
       },
       "fedora-updates": {
-        "generated": "2023-02-16T01:51:02Z"
+        "generated": "2023-02-18T01:07:41Z"
       }
     }
   }
