@@ -65,7 +65,7 @@ method=auto
 [user]
 org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 # EXPECTED_INITRD_NETWORK_CFG5
-#   - used on Fedora 37+ and scos
+#   - used on Fedora 37+, scos and RHEL 9.2
 EXPECTED_INITRD_NETWORK_CFG5="# Created by nm-initrd-generator
 
 [connection]
@@ -143,7 +143,7 @@ method=auto
 [.nmmeta]
 nm-generated=true"
 # EXPECTED_REALROOT_NETWORK_CFG3:
-#   - used on all Fedora 37+ and scos
+#   - used on all Fedora 37+, scos and RHEL 9.2
 EXPECTED_REALROOT_NETWORK_CFG3="[connection]
 id=Wired connection 1
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -189,7 +189,7 @@ elif [[ "${ID_LIKE}" =~ "rhel" ]]; then
     # For the version comparison use string substitution to remove the
     # '.` from the version so we can use integer comparison
 
-    if is_scos; then
+    if is_scos || is_rhcos9; then
         EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG5
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG3
     elif [ "${RHEL_VERSION/\./}" -ge 86 ]; then

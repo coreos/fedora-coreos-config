@@ -6,17 +6,13 @@
 - pattern: podman.workflow
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: coreos.boot-mirror.luks
-  tracker: https://github.com/coreos/coreos-assembler/issues/2725
+  tracker: https://github.com/coreos/coreos-assembler/issues/3360
   arches:
     - ppc64le
 - pattern: coreos.boot-mirror
-  tracker: https://github.com/coreos/coreos-assembler/issues/2725
+  tracker: https://github.com/coreos/coreos-assembler/issues/3361
   arches:
     - ppc64le
-- pattern: multipath.day2
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1206
-  arches:
-    - s390x
 - pattern: ext.config.ignition.resource.remote
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
   arches:
@@ -38,5 +34,10 @@
     - testing
     - stable
 - pattern: ext.config.platforms.aws.nvme
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1306#issuecomment-1378864963
-  # snooze: 2023-02-10 (disabled on promotion)
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1306#issuecomment-1426106534
+  # snooze: 2023-03-10 (disabled on promotion)
+- pattern: ext.config.extensions.module
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1420
+  # snooze: 2023-03-08 (disabled on promotion)
+  streams:
+    - rawhide
