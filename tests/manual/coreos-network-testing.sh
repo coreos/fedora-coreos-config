@@ -1,7 +1,4 @@
 #!/usr/bin/bash
-set -eu -o pipefail
-#set -x
-
 # This script attempts to test networking configuration in various
 # scenarios/configurations. It tries to test what should happen
 # when initramfs networking is passed and/or networking config is
@@ -9,7 +6,11 @@ set -eu -o pipefail
 # configured network is passed properly to the real root when it
 # should be and not when it shouldn't be. See the following issue
 # for more details: https://github.com/coreos/fedora-coreos-tracker/issues/394
+#
 # - Dusty Mabe - dusty@dustymabe.com
+
+set -eu -o pipefail
+#set -x
 
 vmname="coreos-nettest"
 

@@ -1,12 +1,12 @@
 #!/bin/bash
 ## kola:
-##   # This test should pass everywhere if it passes anywhere.
+##   # appendKernelArgs is only supported on QEMU
 ##   platforms: qemu
 ##   appendKernelArgs: "nameserver=8.8.8.8 nameserver=1.1.1.1"
 ##   # appendKernelArgs doesn't work on s390x
 ##   # https://github.com/coreos/coreos-assembler/issues/2776
 ##   architectures: "!s390x"
-
+#
 # Verify multiple nameservers config via kernel arguments work well
 # RHCOS: need to check /etc/resolv.conf and nmconnection
 # FCOS:  using systemd-resolved which needs to run resolvectl to check
@@ -30,7 +30,7 @@ elif is_rhcos; then
         grep -q "nameserver 1.1.1.1" ${resolv}); then
         fatal "Error: can not find nameserver in ${resolv}"
     fi
-fi 
+fi
 
 # check nameserver in config file
 conf=/etc/NetworkManager/system-connections/default_connection.nmconnection

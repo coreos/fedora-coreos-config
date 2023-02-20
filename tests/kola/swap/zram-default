@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+#
 # We can run this on both FCOS and RHCOS as neither should have a zram device
 # enabled by default. (In RHCOS, there is no zram support at all)
 

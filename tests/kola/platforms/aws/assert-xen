@@ -1,6 +1,4 @@
 #!/bin/bash
-# Test to make sure the booted AWS instance is XEN based
-#
 ## kola:
 ##   # This is a read-only test and can be run with other tests
 ##   exclusive: false
@@ -12,6 +10,7 @@
 ##   # the test.
 ##   requiredTag: aws-xen-test
 #
+# Test to make sure the booted AWS instance is XEN based
 
 set -xeuo pipefail
 

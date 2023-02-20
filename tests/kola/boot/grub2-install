@@ -1,17 +1,16 @@
 #!/bin/bash
-
-# Verify to install BIOS/PReP bootloader using grub2-install from 
+## kola:
+##   tags: "platform-independent"
+##   # The test is not available for aarch64 and s390x,
+##   # as aarch64 is UEFI only and s390x is not using grub2
+##   architectures: "!aarch64 s390x"
+#
+# Verify to install BIOS/PReP bootloader using grub2-install from
 # the target system.
 # See:
 #  - https://github.com/coreos/coreos-assembler/pull/3190
 #  - https://github.com/coreos/coreos-assembler/issues/3148
 
-## kola:
-##   # This test should pass everywhere if it passes anywhere.
-##   platforms: qemu
-##   # The test is not available for aarch64 and s390x,
-##   # as aarch64 is UEFI only and s390x is not using grub2
-##   architectures: "!aarch64 s390x"
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
@@ -21,20 +20,20 @@ arch=$(arch)
 case ${arch} in
   x86_64)
     target=i386-pc
-    core="${boot_dev}/grub2/${target}/core.img"   
+    core="${boot_dev}/grub2/${target}/core.img"
     partition=$(findmnt -no SOURCE ${boot_dev})
     device=$(lsblk --paths -no PKNAME ${partition})
     # sync grub2-install parameter according to image build script
     # https://github.com/coreos/coreos-assembler/blob/main/src/create_disk.sh
     grub_install_args="--modules mdraid1x"
     ;;
-  
+
   ppc64le)
     target=powerpc-ieee1275
     core="${boot_dev}/grub2/${target}/core.elf"
     device=$(realpath /dev/disk/by-partlabel/PowerPC-PReP-boot)
     # sync grub2-install parameter according to image build script
-    # https://github.com/coreos/coreos-assembler/blob/main/src/create_disk.sh    
+    # https://github.com/coreos/coreos-assembler/blob/main/src/create_disk.sh
     grub_install_args="--no-nvram"   
     ;;
 

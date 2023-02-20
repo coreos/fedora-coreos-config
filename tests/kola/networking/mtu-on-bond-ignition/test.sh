@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   # This test should pass everywhere if it passes anywhere.
+##   # additionalNics is only supported on QEMU
 ##   platforms: qemu
 ##   # Add 2 NIC for this test
 ##   additionalNics: 2
@@ -11,19 +11,19 @@
 ##   # appendKernelArgs doesn't work on s390x
 ##   # https://github.com/coreos/coreos-assembler/issues/2776
 ##   architectures: "!s390x"
-
+#
 # Set MTU on a VLAN subinterface for the bond using ignition config and check
 # - verify MTU on the bond matches config
 # - verify MTU on the VLAN subinterface for the bond matches config
 # - verify ip address on the VLAN subinterface for the bond matches config
-
+#
 # The ignition config is generated using nm-initrd-generator according to
 # https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-network-configuration/
 # kargs="bond=bond0:eth1,eth2:mode=active-backup,miimon=100:9000 \
 #        ip=10.10.10.10::10.10.10.1:255.255.255.0:staticvlanbond:bond0.100:none:9000: \
 #        vlan=bond0.100:bond0"
 # $/usr/libexec/nm-initrd-generator -s -- $kargs
-
+#
 # Using kernel args to `configure MTU on a VLAN subinterface for the bond` refer to
 # https://github.com/coreos/fedora-coreos-config/pull/1401
 

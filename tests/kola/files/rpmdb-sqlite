@@ -1,13 +1,16 @@
 #!/bin/bash
 ## kola:
-##   # This test only runs on FCOS as the RHCOS rpmdb has not migrated to sqlite yet.
-##   # TODO-RHCOS: drop the "fcos" tag when RHCOS migrates to using sqlite
-##   distros: fcos
+##   # Read only test thus safe to run in parallel
 ##   exclusive: false
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
+
+if is_rhcos8; then
+    ok "nothing to check for RHCOS 8"
+    exit 0
+fi
 
 # make sure we're using the sqlite rpmdb backend
 # https://github.com/coreos/fedora-coreos-tracker/issues/623

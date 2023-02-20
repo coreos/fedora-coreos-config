@@ -1,10 +1,8 @@
 #!/bin/bash
 ## kola:
+##   tags: "platform-independent needs-internet"
 ##   # This test only runs on FCOS because countme support is not available in RHCOS
 ##   distros: fcos
-##   tags: needs-internet
-##   # No need to run on any other platform than QEMU.
-##   platforms: qemu-unpriv
 
 set -xeuo pipefail
 
