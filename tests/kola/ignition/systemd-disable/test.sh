@@ -1,12 +1,11 @@
 #!/bin/bash
 ## kola:
-##   # This test is currently scoped to FCOS because `zincati` is only available on
-##   # FCOS.
+##   tags: "platform-independent"
+##   # This test is currently scoped to FCOS because `zincati` is only available
+##   # on FCOS.
 ##   # TODO-RHCOS: Determine if any services on RHCOS may be disabled and adapt test
 ##   distros: fcos
-##   # We don't need to test this on every platform. If it passes in
-##   # one place it will pass everywhere.
-##   platforms: qemu-unpriv
+#
 # This test makes sure that ignition is able to disable units
 # https://github.com/coreos/fedora-coreos-tracker/issues/392
 

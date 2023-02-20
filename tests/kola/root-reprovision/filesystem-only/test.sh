@@ -1,14 +1,12 @@
 #!/bin/bash
 ## kola:
-##   # This test should pass everywhere if it passes anywhere.
-##   platforms: qemu
+##   # This test reprovisions the rootfs.
+##   tags: "platform-independent reprovision"
 ##   # Root reprovisioning requires at least 4GiB of memory.
 ##   minMemory: 4096
 ##   # This test includes a lot of disk I/O and needs a higher
 ##   # timeout value than the default.
 ##   timeoutMin: 15
-##   # This test reprovisions the rootfs.
-##   tags: reprovision
 
 set -xeuo pipefail
 
