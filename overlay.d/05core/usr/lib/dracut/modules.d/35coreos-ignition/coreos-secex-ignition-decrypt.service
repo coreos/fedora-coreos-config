@@ -1,0 +1,17 @@
+[Unit]
+Description=CoreOS Secex Ignition Config Decryptor
+ConditionPathExists=/etc/initrd-release
+ConditionPathExists=/run/coreos/secure-execution
+DefaultDependencies=false
+
+OnFailure=emergency.target
+OnFailureJobMode=isolate
+
+# Run after virtio_blk and before Ignition
+After=coreos-gpt-setup.service
+Before=ignition-fetch-offline.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/coreos-secex-ignition-decrypt

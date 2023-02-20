@@ -53,6 +53,12 @@ is_rhcos8() {
     [ "${ID}" == "rhcos" ] && [ "${RHEL_VERSION%%.*}" -eq 8 ]
 }
 
+# rhcos9
+is_rhcos9() {
+    source /etc/os-release
+    [ "${ID}" == "rhcos" ] && [ "${RHEL_VERSION%%.*}" -eq 9 ]
+}
+
 # scos
 is_scos() {
     source /etc/os-release
