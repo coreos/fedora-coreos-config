@@ -19,7 +19,7 @@
       "evra": "2.8.0.11-1.fc37.noarch"
     },
     "aardvark-dns": {
-      "evra": "1.4.0-1.fc37.ppc64le"
+      "evra": "1.5.0-4.fc37.ppc64le"
     },
     "acl": {
       "evra": "2.3.1-4.fc37.ppc64le"
@@ -37,13 +37,13 @@
       "evra": "1.21-1.fc37.ppc64le"
     },
     "amd-gpu-firmware": {
-      "evra": "20230117-146.fc37.noarch"
+      "evra": "20230210-147.fc37.noarch"
     },
     "attr": {
       "evra": "2.5.1-5.fc37.ppc64le"
     },
     "audit-libs": {
-      "evra": "3.0.9-1.fc37.ppc64le"
+      "evra": "3.1-2.fc37.ppc64le"
     },
     "authselect": {
       "evra": "1.4.2-1.fc37.ppc64le"
@@ -103,19 +103,19 @@
       "evra": "4.3-1.fc37.ppc64le"
     },
     "cifs-utils": {
-      "evra": "6.15-2.fc37.ppc64le"
+      "evra": "7.0-1.fc37.ppc64le"
     },
     "clevis": {
-      "evra": "18-14.fc37.ppc64le"
+      "evra": "19-1.fc37.ppc64le"
     },
     "clevis-dracut": {
-      "evra": "18-14.fc37.ppc64le"
+      "evra": "19-1.fc37.ppc64le"
     },
     "clevis-luks": {
-      "evra": "18-14.fc37.ppc64le"
+      "evra": "19-1.fc37.ppc64le"
     },
     "clevis-systemd": {
-      "evra": "18-14.fc37.ppc64le"
+      "evra": "19-1.fc37.ppc64le"
     },
     "cloud-utils-growpart": {
       "evra": "0.31-11.fc37.noarch"
@@ -145,10 +145,10 @@
       "evra": "1.1.1-8.fc37.ppc64le"
     },
     "containers-common": {
-      "evra": "4:1-78.fc37.noarch"
+      "evra": "4:1-80.fc37.noarch"
     },
     "containers-common-extra": {
-      "evra": "4:1-78.fc37.noarch"
+      "evra": "4:1-80.fc37.noarch"
     },
     "coreos-installer": {
       "evra": "0.16.1-2.fc37.ppc64le"
@@ -175,16 +175,16 @@
       "evra": "3.17.1-3.fc37.ppc64le"
     },
     "crun": {
-      "evra": "1.7.2-3.fc37.ppc64le"
+      "evra": "1.8-1.fc37.ppc64le"
     },
     "crypto-policies": {
       "evra": "20220815-1.gite4ed860.fc37.noarch"
     },
     "cryptsetup": {
-      "evra": "2.5.0-1.fc37.ppc64le"
+      "evra": "2.6.1-1.fc37.ppc64le"
     },
     "cryptsetup-libs": {
-      "evra": "2.5.0-1.fc37.ppc64le"
+      "evra": "2.6.1-1.fc37.ppc64le"
     },
     "curl": {
       "evra": "7.85.0-5.fc37.ppc64le"
@@ -196,16 +196,16 @@
       "evra": "2.1.28-8.fc37.ppc64le"
     },
     "dbus": {
-      "evra": "1:1.14.4-1.fc37.ppc64le"
+      "evra": "1:1.14.6-1.fc37.ppc64le"
     },
     "dbus-broker": {
-      "evra": "32-1.fc37.ppc64le"
+      "evra": "33-1.fc37.ppc64le"
     },
     "dbus-common": {
-      "evra": "1:1.14.4-1.fc37.noarch"
+      "evra": "1:1.14.6-1.fc37.noarch"
     },
     "dbus-libs": {
-      "evra": "1:1.14.4-1.fc37.ppc64le"
+      "evra": "1:1.14.6-1.fc37.ppc64le"
     },
     "device-mapper": {
       "evra": "1.02.175-9.fc37.ppc64le"
@@ -232,7 +232,7 @@
       "evra": "3.8-3.fc37.ppc64le"
     },
     "dnsmasq": {
-      "evra": "2.88-1.fc37.ppc64le"
+      "evra": "2.89-1.fc37.ppc64le"
     },
     "dosfstools": {
       "evra": "4.2-4.fc37.ppc64le"
@@ -352,7 +352,7 @@
       "evra": "0.21.1-1.fc37.ppc64le"
     },
     "git-core": {
-      "evra": "2.39.1-1.fc37.ppc64le"
+      "evra": "2.39.2-1.fc37.ppc64le"
     },
     "glib2": {
       "evra": "2.74.1-2.fc37.ppc64le"
@@ -409,7 +409,7 @@
       "evra": "56-2.fc37.ppc64le"
     },
     "intel-gpu-firmware": {
-      "evra": "20230117-146.fc37.noarch"
+      "evra": "20230210-147.fc37.noarch"
     },
     "iproute": {
       "evra": "5.18.0-2.fc37.ppc64le"
@@ -478,13 +478,13 @@
       "evra": "2.5.1-3.fc37.noarch"
     },
     "kernel": {
-      "evra": "6.1.9-200.fc37.ppc64le"
+      "evra": "6.1.11-200.fc37.ppc64le"
     },
     "kernel-core": {
-      "evra": "6.1.9-200.fc37.ppc64le"
+      "evra": "6.1.11-200.fc37.ppc64le"
     },
     "kernel-modules": {
-      "evra": "6.1.9-200.fc37.ppc64le"
+      "evra": "6.1.11-200.fc37.ppc64le"
     },
     "kexec-tools": {
       "evra": "2.0.25-1.fc37.ppc64le"
@@ -580,7 +580,7 @@
       "evra": "2.38.1-1.fc37.ppc64le"
     },
     "libffi": {
-      "evra": "3.4.2-9.fc37.ppc64le"
+      "evra": "3.4.4-1.fc37.ppc64le"
     },
     "libfido2": {
       "evra": "1.11.0-3.fc37.ppc64le"
@@ -601,7 +601,7 @@
       "evra": "237-3.fc37.ppc64le"
     },
     "libgusb": {
-      "evra": "0.4.4-1.fc37.ppc64le"
+      "evra": "0.4.5-1.fc37.ppc64le"
     },
     "libibverbs": {
       "evra": "41.0-1.fc37.ppc64le"
@@ -700,7 +700,7 @@
       "evra": "0.21.1-6.fc37.ppc64le"
     },
     "libpwquality": {
-      "evra": "1.4.5-1.fc37.ppc64le"
+      "evra": "1.4.5-3.fc37.ppc64le"
     },
     "libref_array": {
       "evra": "0.1.5-52.fc37.ppc64le"
@@ -742,7 +742,7 @@
       "evra": "2.38.1-1.fc37.ppc64le"
     },
     "libsmbclient": {
-      "evra": "2:4.17.5-0.fc37.ppc64le"
+      "evra": "2:4.17.5-1.fc37.ppc64le"
     },
     "libsolv": {
       "evra": "0.7.22-3.fc37.ppc64le"
@@ -808,7 +808,7 @@
       "evra": "0.3.2-4.fc37.ppc64le"
     },
     "libwbclient": {
-      "evra": "2:4.17.5-0.fc37.ppc64le"
+      "evra": "2:4.17.5-1.fc37.ppc64le"
     },
     "libxcrypt": {
       "evra": "4.4.33-4.fc37.ppc64le"
@@ -823,19 +823,19 @@
       "evra": "0.2.5-8.fc37.ppc64le"
     },
     "libzstd": {
-      "evra": "1.5.2-3.fc37.ppc64le"
+      "evra": "1.5.4-1.fc37.ppc64le"
     },
     "linux-atm-libs": {
       "evra": "2.5.1-33.fc37.ppc64le"
     },
     "linux-firmware": {
-      "evra": "20230117-146.fc37.noarch"
+      "evra": "20230210-147.fc37.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20230117-146.fc37.noarch"
+      "evra": "20230210-147.fc37.noarch"
     },
     "lmdb-libs": {
-      "evra": "0.9.29-4.fc37.ppc64le"
+      "evra": "0.9.30-1.fc37.ppc64le"
     },
     "logrotate": {
       "evra": "3.20.1-3.fc37.ppc64le"
@@ -844,7 +844,7 @@
       "evra": "4.94.0-4.fc37.ppc64le"
     },
     "lua-libs": {
-      "evra": "5.4.4-7.fc37.ppc64le"
+      "evra": "5.4.4-9.fc37.ppc64le"
     },
     "luksmeta": {
       "evra": "9-14.fc37.ppc64le"
@@ -892,7 +892,7 @@
       "evra": "2.0-0.64.20160912git.fc37.ppc64le"
     },
     "netavark": {
-      "evra": "1.4.0-1.fc37.ppc64le"
+      "evra": "1.5.0-4.fc37.ppc64le"
     },
     "nettle": {
       "evra": "3.8-2.fc37.ppc64le"
@@ -916,7 +916,7 @@
       "evra": "2.0.14-6.fc37.ppc64le"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20230117-146.fc37.noarch"
+      "evra": "20230210-147.fc37.noarch"
     },
     "nvme-cli": {
       "evra": "2.2.1-1.fc37.ppc64le"
@@ -937,10 +937,10 @@
       "evra": "8.8p1-7.fc37.ppc64le"
     },
     "openssl": {
-      "evra": "1:3.0.5-3.fc37.ppc64le"
+      "evra": "1:3.0.8-1.fc37.ppc64le"
     },
     "openssl-libs": {
-      "evra": "1:3.0.5-3.fc37.ppc64le"
+      "evra": "1:3.0.8-1.fc37.ppc64le"
     },
     "os-prober": {
       "evra": "1.81-1.fc37.ppc64le"
@@ -991,10 +991,10 @@
       "evra": "1.8.0-3.fc37.ppc64le"
     },
     "podman": {
-      "evra": "4:4.3.1-1.fc37.ppc64le"
+      "evra": "5:4.4.1-1.fc37.ppc64le"
     },
     "podman-plugins": {
-      "evra": "4:4.3.1-1.fc37.ppc64le"
+      "evra": "5:4.4.1-1.fc37.ppc64le"
     },
     "policycoreutils": {
       "evra": "3.4-6.fc37.ppc64le"
@@ -1060,13 +1060,13 @@
       "evra": "2:1.1.4-1.fc37.ppc64le"
     },
     "samba-client-libs": {
-      "evra": "2:4.17.5-0.fc37.ppc64le"
+      "evra": "2:4.17.5-1.fc37.ppc64le"
     },
     "samba-common": {
-      "evra": "2:4.17.5-0.fc37.noarch"
+      "evra": "2:4.17.5-1.fc37.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.17.5-0.fc37.ppc64le"
+      "evra": "2:4.17.5-1.fc37.ppc64le"
     },
     "sed": {
       "evra": "4.8-11.fc37.ppc64le"
@@ -1099,7 +1099,7 @@
       "evra": "2.2-2.fc37.ppc64le"
     },
     "skopeo": {
-      "evra": "1:1.10.0-3.fc37.ppc64le"
+      "evra": "1:1.11.0-2.fc37.ppc64le"
     },
     "slang": {
       "evra": "2.3.3-1.fc37.ppc64le"
@@ -1156,22 +1156,22 @@
       "evra": "1.9.12-1.p2.fc37.ppc64le"
     },
     "systemd": {
-      "evra": "251.10-588.fc37.ppc64le"
+      "evra": "251.11-2.fc37.ppc64le"
     },
     "systemd-container": {
-      "evra": "251.10-588.fc37.ppc64le"
+      "evra": "251.11-2.fc37.ppc64le"
     },
     "systemd-libs": {
-      "evra": "251.10-588.fc37.ppc64le"
+      "evra": "251.11-2.fc37.ppc64le"
     },
     "systemd-pam": {
-      "evra": "251.10-588.fc37.ppc64le"
+      "evra": "251.11-2.fc37.ppc64le"
     },
     "systemd-resolved": {
-      "evra": "251.10-588.fc37.ppc64le"
+      "evra": "251.11-2.fc37.ppc64le"
     },
     "systemd-udev": {
-      "evra": "251.10-588.fc37.ppc64le"
+      "evra": "251.11-2.fc37.ppc64le"
     },
     "tar": {
       "evra": "2:1.34-5.fc37.ppc64le"
@@ -1186,7 +1186,7 @@
       "evra": "5.4-1.fc37.ppc64le"
     },
     "tpm2-tss": {
-      "evra": "3.2.1-1.fc37.ppc64le"
+      "evra": "3.2.2-1.fc37.ppc64le"
     },
     "tzdata": {
       "evra": "2022g-1.fc37.noarch"
@@ -1201,10 +1201,10 @@
       "evra": "2.38.1-1.fc37.ppc64le"
     },
     "vim-data": {
-      "evra": "2:9.0.1262-1.fc37.noarch"
+      "evra": "2:9.0.1307-1.fc37.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.1262-1.fc37.ppc64le"
+      "evra": "2:9.0.1307-1.fc37.ppc64le"
     },
     "which": {
       "evra": "2.21-35.fc37.ppc64le"
@@ -1240,20 +1240,20 @@
       "evra": "1.1.2-2.fc37.ppc64le"
     },
     "zstd": {
-      "evra": "1.5.2-3.fc37.ppc64le"
+      "evra": "1.5.4-1.fc37.ppc64le"
     }
   },
   "metadata": {
-    "generated": "2023-02-05T00:00:00Z",
+    "generated": "2023-02-18T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-11-05T08:04:20Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-02-04T22:44:56Z"
+        "generated": "2023-02-16T22:20:25Z"
       },
       "fedora-updates": {
-        "generated": "2023-02-05T01:34:13Z"
+        "generated": "2023-02-18T01:07:52Z"
       }
     }
   }

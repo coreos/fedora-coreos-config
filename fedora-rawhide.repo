@@ -14,7 +14,7 @@ type=rpm
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 skip_if_unavailable=False
-excludepkgs=kernel kernel-core kernel-modules
+excludepkgs=kernel kernel-core kernel-modules kernel-modules-core
 
 # We are choosing to use only nodebug kernels in Fedora CoreOS
 # for our testing. We've seen too many issues where an issue either
@@ -35,4 +35,4 @@ type=rpm
 gpgcheck=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 skip_if_unavailable=False
-includepkgs=kernel kernel-core kernel-modules
+includepkgs=kernel kernel-core kernel-modules kernel-modules-core
