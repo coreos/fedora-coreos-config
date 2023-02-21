@@ -46,3 +46,10 @@
   snooze: 2023-03-08
   streams:
     - rawhide
+- pattern: ext.config.files.file-directory-permissions
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1427
+  snooze: 2023-03-08
+  streams:
+    - rawhide
+    - branched
+    - next-devel
