@@ -9,19 +9,40 @@ permissions:
   contents: read
 
 jobs:
+  buildmatrix:
+    name: "Build job matrix"
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{steps.build.outputs.matrix}}
+    steps:
+      - name: Build job matrix
+        id: build
+        run: |
+          set -xeuo pipefail
+
+          branches=(testing-devel branched rawhide)
+
+          enabled="$(curl -L https://raw.githubusercontent.com/coreos/fedora-coreos-pipeline/main/next-devel/status.json | jq .enabled)"
+          case "${enabled}" in
+          true) branches+=(next-devel) ;;
+          false) ;;
+          *)
+            echo "Unexpected value: ${enabled}"
+            exit 1
+            ;;
+          esac
+
+          echo "matrix=$(xargs -n 1 echo <<< "${branches[@]}" | jq -cnR '[inputs]')" >> $GITHUB_OUTPUT
   remove-graduated-overrides:
     name: Remove graduated overrides
+    needs: buildmatrix
     runs-on: ubuntu-latest
     # TODO: use cosa directly here
     # https://github.com/coreos/coreos-assembler/issues/2223
     container: quay.io/coreos-assembler/fcos-buildroot:testing-devel
     strategy:
       matrix:
-        branch:
-          - testing-devel
-          - next-devel
-          - branched
-          - rawhide
+        branch: ${{fromJson(needs.buildmatrix.outputs.matrix)}}
       fail-fast: false
     steps:
       - name: Enable CoreOS continuous repo
