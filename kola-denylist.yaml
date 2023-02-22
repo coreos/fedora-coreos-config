@@ -25,6 +25,9 @@
   #  - testing-devel
   #  - testing
   #  - stable
+- pattern: ext.config.ignition.resource.authenticated-s3
+  tracker: https://github.com/coreos/ignition/pull/1558
+  snooze: 2023-03-06
 - pattern: ext.config.butane.grub-users
   tracker: https://github.com/coreos/ignition/pull/1558
   snooze: 2023-03-06
