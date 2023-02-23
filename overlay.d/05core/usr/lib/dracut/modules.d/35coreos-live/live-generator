@@ -30,6 +30,9 @@ fi
 add_requires sysroot.mount     initrd-root-fs.target
 add_requires sysroot-etc.mount initrd-root-fs.target
 add_requires sysroot-var.mount initrd-root-fs.target
+# make sure we enable network if required for coreos-livepxe-rootfs
+# https://github.com/coreos/fedora-coreos-tracker/issues/1423
+add_requires coreos-enable-network.service initrd-root-fs.target
 
 mkdir -p "${UNIT_DIR}/ostree-prepare-root.service.d"
 cat > "${UNIT_DIR}/ostree-prepare-root.service.d/10-live.conf" <<EOF
