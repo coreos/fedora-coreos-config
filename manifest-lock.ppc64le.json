@@ -91,7 +91,7 @@
       "evra": "1.0.8-12.fc37.ppc64le"
     },
     "c-ares": {
-      "evra": "1.17.2-3.fc37.ppc64le"
+      "evra": "1.19.0-1.fc37.ppc64le"
     },
     "ca-certificates": {
       "evra": "2023.2.60-1.0.fc37.noarch"
@@ -121,7 +121,7 @@
       "evra": "0.31-11.fc37.noarch"
     },
     "conmon": {
-      "evra": "2:2.1.5-1.fc37.ppc64le"
+      "evra": "2:2.1.6-3.fc37.ppc64le"
     },
     "console-login-helper-messages": {
       "evra": "0.21.3-3.fc37.noarch"
@@ -382,19 +382,19 @@
       "evra": "3.7-4.fc37.ppc64le"
     },
     "grub2-common": {
-      "evra": "1:2.06-84.fc37.noarch"
+      "evra": "1:2.06-88.fc37.noarch"
     },
     "grub2-ppc64le": {
-      "evra": "1:2.06-84.fc37.ppc64le"
+      "evra": "1:2.06-88.fc37.ppc64le"
     },
     "grub2-ppc64le-modules": {
-      "evra": "1:2.06-84.fc37.noarch"
+      "evra": "1:2.06-88.fc37.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.06-84.fc37.ppc64le"
+      "evra": "1:2.06-88.fc37.ppc64le"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-84.fc37.ppc64le"
+      "evra": "1:2.06-88.fc37.ppc64le"
     },
     "gzip": {
       "evra": "1.12-2.fc37.ppc64le"
@@ -403,7 +403,7 @@
       "evra": "3.23-7.fc37.ppc64le"
     },
     "ignition": {
-      "evra": "2.14.0-4.fc37.ppc64le"
+      "evra": "2.15.0-3.fc37.ppc64le"
     },
     "inih": {
       "evra": "56-2.fc37.ppc64le"
@@ -478,13 +478,13 @@
       "evra": "2.5.1-3.fc37.noarch"
     },
     "kernel": {
-      "evra": "6.1.11-200.fc37.ppc64le"
+      "evra": "6.1.12-200.fc37.ppc64le"
     },
     "kernel-core": {
-      "evra": "6.1.11-200.fc37.ppc64le"
+      "evra": "6.1.12-200.fc37.ppc64le"
     },
     "kernel-modules": {
-      "evra": "6.1.11-200.fc37.ppc64le"
+      "evra": "6.1.12-200.fc37.ppc64le"
     },
     "kexec-tools": {
       "evra": "2.0.25-1.fc37.ppc64le"
@@ -991,10 +991,10 @@
       "evra": "1.8.0-3.fc37.ppc64le"
     },
     "podman": {
-      "evra": "5:4.4.1-1.fc37.ppc64le"
+      "evra": "5:4.4.1-3.fc37.ppc64le"
     },
     "podman-plugins": {
-      "evra": "5:4.4.1-1.fc37.ppc64le"
+      "evra": "5:4.4.1-3.fc37.ppc64le"
     },
     "policycoreutils": {
       "evra": "3.4-6.fc37.ppc64le"
@@ -1228,7 +1228,7 @@
       "evra": "2.1.0-19.fc37.ppc64le"
     },
     "zchunk-libs": {
-      "evra": "1.2.3-1.fc37.ppc64le"
+      "evra": "1.2.4-1.fc37.ppc64le"
     },
     "zincati": {
       "evra": "0.0.25-1.fc37.ppc64le"
@@ -1244,16 +1244,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-02-21T00:00:00Z",
+    "generated": "2023-02-23T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-11-05T08:04:20Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-02-18T22:19:09Z"
+        "generated": "2023-02-23T04:54:29Z"
       },
       "fedora-updates": {
-        "generated": "2023-02-20T01:11:40Z"
+        "generated": "2023-02-23T02:10:54Z"
       }
     }
   }
