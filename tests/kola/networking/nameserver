@@ -1,5 +1,6 @@
 #!/bin/bash
 ## kola:
+##   exclusive: false
 ##   # appendKernelArgs is only supported on QEMU
 ##   platforms: qemu
 ##   appendKernelArgs: "nameserver=8.8.8.8 nameserver=1.1.1.1"

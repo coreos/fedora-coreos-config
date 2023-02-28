@@ -1,5 +1,6 @@
 #!/bin/bash
 ## kola:
+##   exclusive: false
 ##   platforms: qemu
 #
 # These are read-only not-necessarily-related checks that verify default system

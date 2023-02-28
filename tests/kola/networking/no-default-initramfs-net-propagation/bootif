@@ -1,5 +1,6 @@
 #!/bin/bash
 ## kola:
+##   exclusive: false
 ##   # appendFirstbootKernelArgs is only supported on qemu
 ##   platforms: qemu
 ##   # Append BOOTIF kernel argument so we can test how nm-initrd-generator

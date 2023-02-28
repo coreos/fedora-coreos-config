@@ -1,5 +1,6 @@
 #!/bin/bash
 ## kola:
+##   exclusive: false
 ##   # We fetch resources from S3 and GCS
 ##   tags: needs-internet
 ##   # Don't pass AWS or GCP credentials to instance

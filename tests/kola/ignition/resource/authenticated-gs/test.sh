@@ -1,5 +1,6 @@
 #!/bin/bash
 ## kola:
+##   exclusive: false
 ##   # We fetch resources from GCS.
 ##   tags: needs-internet
 ##   # We authenticate to GCS with the GCE instance's credentials.
