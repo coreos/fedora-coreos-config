@@ -1,0 +1,24 @@
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/nmstate/br-ex-policy.yml
+      contents:
+        inline: |
+          capture:
+            default-gw-route: routes.running.destination=="0.0.0.0/0"
+            default-gw-iface: interfaces.name==capture.default-gw-route.routes.running.0.next-hop-interface
+          desiredState:
+            interfaces:
+            - name: "{{ capture.default-gw-iface.interfaces.0.name }}"
+              type: ethernet
+              state: up
+            - name: br-ex
+              type: linux-bridge
+              copy-mac-from: "{{ capture.default-gw-iface.interfaces.0.name }}"
+              state: up
+              ipv4: "{{ capture.default-gw-iface.interfaces.0.ipv4 }}"
+              ipv6: "{{ capture.default-gw-iface.interfaces.0.ipv6 }}"
+              bridge:
+                port:
+                - name: "{{ capture.default-gw-iface.interfaces.0.name }}"
