@@ -15,7 +15,7 @@
     - ppc64le
 - pattern: ext.config.ignition.resource.remote
   tracker: https://github.com/coreos/ignition/pull/1558
-  snooze: 2023-03-06
+  snooze: 2023-03-13
   #tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
   #arches:
   #  - s390x
@@ -27,10 +27,10 @@
   #  - stable
 - pattern: ext.config.ignition.resource.authenticated-s3
   tracker: https://github.com/coreos/ignition/pull/1558
-  snooze: 2023-03-06
+  snooze: 2023-03-13
 - pattern: ext.config.butane.grub-users
   tracker: https://github.com/coreos/ignition/pull/1558
-  snooze: 2023-03-06
+  snooze: 2023-03-13
 - pattern: rpmostree.install-uninstall
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
   arches:
