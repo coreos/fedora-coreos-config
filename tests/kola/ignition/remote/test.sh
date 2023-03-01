@@ -1,7 +1,6 @@
 #!/bin/bash
 ## kola:
 ##   tags: needs-internet
-## exclusive false
 #
 # To test https://bugzilla.redhat.com/show_bug.cgi?id=1980679
 # remote.ign on github: inject kernelArguments and write something to /etc/testfile

@@ -1,6 +1,5 @@
 #!/bin/bash
 ## kola:
-##   exclusive: false
 ##   tags: "platform-independent"
 ##   # This test is currently scoped to FCOS because `dnsmasq` is not masked on
 ##   # RHCOS.

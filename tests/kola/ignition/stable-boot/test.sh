@@ -1,6 +1,5 @@
 #!/bin/bash
 ## kola:
-##   exclusive: false
 ##   tags: "platform-independent"
 #
 # This test makes sure that ignition is able to use `coreos-boot-disk` symlink.

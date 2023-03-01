@@ -1,6 +1,5 @@
 #!/bin/bash
 ## kola:
-##   exclusive: false
 ##   tags: "platform-independent"
 #
 # This test verifies that NetworkManager supports configuring the

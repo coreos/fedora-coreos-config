@@ -1,6 +1,5 @@
 #!/bin/bash
 ## kola:
-##   exclusive: false
 ##   # We're pulling a container image from Quay.io
 ##   tags: "platform-independent needs-internet"
 #

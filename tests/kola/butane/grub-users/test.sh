@@ -1,6 +1,5 @@
 #!/bin/bash
 ## kola:
-##  exclusive: false
 ##  tags: "platform-independent"
 ##  # GRUB sugar currently only exists in FCOS
 ##  distros: fcos
