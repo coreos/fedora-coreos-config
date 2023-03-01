@@ -46,7 +46,7 @@ cosaPod(cpus: 4, memory: "9Gi") {
 
     stage("Test ISO") {
         shwrap("cd /srv/coreos && cosa buildextend-live")
-        kolaTestIso(extraArgs4k: "--no-pxe")
+        kolaTestIso()
     }
 
     // also print the pkgdiff as a separate stage to make it more visible
