@@ -34,3 +34,8 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1441
       type: pin
+  nmstate:
+    evr: 2.2.8-2.fc37
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-59543876eb
+      type: fast-track
