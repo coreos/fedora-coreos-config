@@ -1,0 +1,36 @@
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/containers/systemd/test.container
+      contents:
+        inline: |
+          [Unit]
+          Description=A minimal container
+
+          [Container]
+          Image=registry.fedoraproject.org/fedora-minimal
+          Exec=sleep 60
+          Volume=test.volume:/data
+          Network=test.network
+
+          [Service]
+          Restart=always
+
+          [Install]
+          WantedBy=multi-user.target default.target
+    - path: /etc/containers/systemd/test.volume
+      contents:
+        inline: |
+          [Volume]
+          User=root
+          Group=root
+          Label=org.test.Key=quadlet-test-volume
+    - path: /etc/containers/systemd/test.network
+      contents:
+        inline: |
+          [Network]
+          Subnet=172.16.0.0/24
+          Gateway=172.16.0.1
+          IPRange=172.16.0.0/28
+          Label=org.test.Key=quadlet-test-network
