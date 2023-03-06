@@ -30,6 +30,9 @@ fi
 add_requires sysroot.mount     initrd-root-fs.target
 add_requires sysroot-etc.mount initrd-root-fs.target
 add_requires sysroot-var.mount initrd-root-fs.target
+# make sure we enable network if required for coreos-livepxe-rootfs
+# https://github.com/coreos/fedora-coreos-tracker/issues/1423
+add_requires coreos-enable-network.service initrd-root-fs.target
 
 mkdir -p "${UNIT_DIR}/ostree-prepare-root.service.d"
 cat > "${UNIT_DIR}/ostree-prepare-root.service.d/10-live.conf" <<EOF
@@ -154,9 +157,22 @@ Options=loop,offset=124
 EOF
 fi
 
-# It turns out that `tmpfs` currently munches all SELinux labels
+# The systemd default for /run is 20% of RAM, but we want to use basically all of RAM,
+# so we make a distinct tmpfs that allows more.  Note the file we create there is
+# "thinly provisioned", so we're not actually allocating all of that.
+cat >>"${UNIT_DIR}/run-ephemeral_base.mount" <<EOF
+[Unit]
+DefaultDependencies=false
+[Mount]
+What=tmpfs
+Where=/run/ephemeral_base
+Type=tmpfs
+Options=size=50%%
+EOF
+
+# But it turns out that `tmpfs` currently munches all SELinux labels
 # we set before policy is loaded, so we make an XFS filesystem
-# loopback mounted that's sized the same as /run.
+# loopback mounted on top of the base tmpfs.
 # https://github.com/coreos/fedora-coreos-config/pull/499
 cat >"${UNIT_DIR}/sysroot-xfs-ephemeral-mkfs.service" <<'EOF'
 [Unit]
@@ -165,14 +181,15 @@ DefaultDependencies=false
 # can run really early.
 After=systemd-tmpfiles-setup-dev.service
 ConditionPathExists=/usr/lib/initrd-release
+RequiresMountsFor=/run/ephemeral_base
 # Something seems to be causing us to rerun?
-ConditionPathExists=!/run/ephemeral
+ConditionPathExists=!/run/ephemeral_base/loopfs
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/bin/sh -c 'set -euo pipefail; mem=$$(($$(stat -f -c "%%b * %%s / 1024" /run))) && /bin/truncate -s $${mem}k /run/ephemeral.xfsloop'
-ExecStart=/sbin/mkfs.xfs /run/ephemeral.xfsloop
+ExecStart=/bin/sh -c 'set -euo pipefail; mem=$$(($$(stat -f -c "%%b * %%s / 1024" /run/ephemeral_base))) && /bin/truncate -s $${mem}k /run/ephemeral_base/loopfs'
+ExecStart=/sbin/mkfs.xfs /run/ephemeral_base/loopfs
 ExecStart=/bin/mkdir /run/ephemeral
 EOF
 add_requires sysroot-xfs-ephemeral-mkfs.service initrd-root-fs.target
@@ -183,7 +200,7 @@ DefaultDependencies=false
 Requires=sysroot-xfs-ephemeral-mkfs.service
 After=sysroot-xfs-ephemeral-mkfs.service
 [Mount]
-What=/run/ephemeral.xfsloop
+What=/run/ephemeral_base/loopfs
 Where=/run/ephemeral
 Type=xfs
 Options=loop,discard
