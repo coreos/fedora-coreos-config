@@ -66,5 +66,17 @@
         "wipeFilesystem": true
       }
     ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "mask": true,
+        "name": "serial-getty@.service"
+      },
+      {
+        "mask": true,
+        "name": "autovt@.service"
+      }
+    ]
   }
 }
