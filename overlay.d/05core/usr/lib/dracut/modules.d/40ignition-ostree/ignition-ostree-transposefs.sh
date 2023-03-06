@@ -24,6 +24,11 @@ saved_prep=${saved_data}/prep
 zram_dev=${saved_data}/zram_dev
 partstate_root=/run/ignition-ostree-rootfs-partstate.sh
 
+is_rhcos9() {
+    source /etc/os-release
+    [ "${ID}" == "rhcos" ] && [ "${RHEL_VERSION%%.*}" -eq 9 ]
+}
+
 # Print jq query string for wiped filesystems with label $1
 query_fslabel() {
     echo ".storage?.filesystems? // [] | map(select(.label == \"$1\" and .wipeFilesystem == true))"
@@ -289,6 +294,12 @@ case "${1:-}" in
         if [ -d "${saved_data}" ]; then
             read dev < "${zram_dev}"
             umount "${saved_data}"
+            # After unmounting, make sure zram device state is stable before we remove it.
+            # See https://github.com/openshift/os/issues/1149
+            # Should remove when https://bugzilla.redhat.com/show_bug.cgi?id=2172058 is fixed.
+            if [ $(uname -m) != x86_64 ] && is_rhcos9; then
+                udevadm trigger --settle "/dev/zram${dev}"
+            fi
             rm -rf "${saved_data}" "${partstate_root}"
             echo "${dev}" > /sys/class/zram-control/hot_remove
         fi
