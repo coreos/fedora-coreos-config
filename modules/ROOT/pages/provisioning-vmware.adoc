@@ -2,7 +2,7 @@
 
 This guide shows how to provision new Fedora CoreOS (FCOS) nodes on the VMware hypervisor.
 
-NOTE: Fedora CoreOS supports VMware ESXi &ge; 6.5, VMware Workstation &ge; 16, and VMware Fusion &ge; 12. It may be possible to
+NOTE: Fedora CoreOS supports VMware ESXi &ge; 7.0, VMware Workstation &ge; 16, and VMware Fusion &ge; 12. It may be possible to
 xref:provisioning-vmware.adoc#_modifying_ovf_metadata[modify the metadata of the OVF] to run in older VMware products, but compatibility and supportability cannot be guaranteed.
 
 == Prerequisites
