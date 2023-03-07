@@ -19,6 +19,7 @@ if ! cmp {/usr,}/etc/chrony.conf >/dev/null; then
     exit 0
 fi
 
+mkdir -p /run/coreos
 confpath=/run/coreos/platform-chrony.conf
 altenvfilepath=/run/coreos/sysconfig-chrony
 cmdline=( $(</proc/cmdline) )
