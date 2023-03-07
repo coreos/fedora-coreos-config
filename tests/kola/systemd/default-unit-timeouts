@@ -16,7 +16,10 @@ DefaultTimeoutStopUSec=$(systemctl show --value --property=DefaultTimeoutStopUSe
 DefaultTimeoutAbortUSec=$(systemctl show --value --property=DefaultTimeoutAbortUSec)
 DefaultDeviceTimeoutUSec=$(systemctl show --value --property=DefaultDeviceTimeoutUSec)
 
-error="DefaultTimeoutStartUsec=$DefaultTimeoutStartUSec DefaultTimeoutStopUSec=$DefaultTimeoutStopUSec DefaultTimeoutAbortUSec=$DefaultTimeoutAbortUSec DefaultDeviceTimeoutUSec=$DefaultDeviceTimeoutUSec"
+error="DefaultTimeoutStartUsec=$DefaultTimeoutStartUSec "
+error+="DefaultTimeoutStopUSec=$DefaultTimeoutStopUSec "
+error+="DefaultTimeoutAbortUSec=$DefaultTimeoutAbortUSec "
+error+="DefaultDeviceTimeoutUSec=$DefaultDeviceTimeoutUSec"
 timeout="1min 30s"
 
 systemd_version=$(rpm -q --queryformat '%{VERSION}' systemd)
