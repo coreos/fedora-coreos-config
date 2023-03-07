@@ -41,7 +41,7 @@ else
     fatal $error
 fi
 
-if [[ "${systemd_version}" == "${required_version}" || "${systemd_version}" > "${required_version}" ]]; then
+if vergte "${systemd_version}" "${required_version}"; then
     if [[ $DefaultDeviceTimeoutUSec == "$timeout" ]]; then
         ok "The default device timeout is 1m 30 seconds."
     else
