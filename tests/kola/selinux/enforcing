@@ -1,14 +1,51 @@
 #!/bin/bash
 ## kola:
-##   exclusive: false
+##   exclusive: true
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-# SELinux should be on
-enforce=$(getenforce)
-if [ "${enforce}" != "Enforcing" ]; then
-    fatal "Error: Expected SELinux Enforcing, found ${enforce}"
-fi
-ok "selinux is Enforcing"
+case "${AUTOPKGTEST_REBOOT_MARK:-}" in
+  "")
+    # SELinux should be on
+    enforce=$(getenforce)
+    if [ "${enforce}" != "Enforcing" ]; then
+      fatal "Error: Expected SELinux Enforcing, found ${enforce}"
+    fi
+    ok "SELinux is Enforcing"
+
+    # Check SELinux switches to Permissive mode
+    setenforce 0
+    enforce=$(getenforce)
+    if [ "${enforce}" != "Permissive" ]; then
+      fatal "Error: Expected SELinux Permissive, found ${enforce}"
+    fi
+    ok "SELinux is Permissive"
+
+    # Check SELinux switches back to Enforcing mode
+    setenforce 1
+    enforce=$(getenforce)
+    if [ "${enforce}" != "Enforcing" ]; then
+      fatal "Error: Expected SELinux Enforcing, found ${enforce}"
+    fi
+    ok "SELinux is Enforcing"
+
+    # Modify config to permanently switch to permissive
+    sed -i 's/SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
+    ok "First boot"
+    /tmp/autopkgtest-reboot rebooted
+    ;;
+  rebooted)
+    # check SELinux is in permissive mode
+    enforce=$(getenforce)  
+    if [ "${enforce}" != "Permissive" ]; then
+      fatal "Error: Expected SELinux Permissive, found ${enforce}"
+    fi
+    ok "SELinux is Permissive"
+    ok "Second boot"
+    ;;
+  *) 
+    fatal "unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}"
+    ;;
+esac
