@@ -44,11 +44,6 @@
 - pattern: ext.config.platforms.aws.nvme
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1306#issuecomment-1426106534
   snooze: 2023-03-10
-- pattern: ext.config.extensions.module
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1420
-  snooze: 2023-03-08
-  streams:
-    - rawhide
 - pattern: ext.config.files.file-directory-permissions
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1427
   snooze: 2023-03-20
