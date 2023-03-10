@@ -79,7 +79,7 @@
       "evra": "3.6.1-3.fc37.aarch64"
     },
     "btrfs-progs": {
-      "evra": "6.1.3-1.fc37.aarch64"
+      "evra": "6.2.1-1.fc37.aarch64"
     },
     "bubblewrap": {
       "evra": "0.5.0-3.fc37.aarch64"
@@ -262,13 +262,13 @@
       "evra": "38-6.fc37.aarch64"
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.188-3.fc37.noarch"
+      "evra": "0.189-1.fc37.noarch"
     },
     "elfutils-libelf": {
-      "evra": "0.188-3.fc37.aarch64"
+      "evra": "0.189-1.fc37.aarch64"
     },
     "elfutils-libs": {
-      "evra": "0.188-3.fc37.aarch64"
+      "evra": "0.189-1.fc37.aarch64"
     },
     "ethtool": {
       "evra": "2:6.2-1.fc37.aarch64"
@@ -1153,22 +1153,25 @@
       "evra": "1.9.13-1.p2.fc37.aarch64"
     },
     "systemd": {
-      "evra": "251.13-4.fc37.aarch64"
+      "evra": "251.13-5.fc37.aarch64"
+    },
+    "systemd-boot-unsigned": {
+      "evra": "251.13-5.fc37.aarch64"
     },
     "systemd-container": {
-      "evra": "251.13-4.fc37.aarch64"
+      "evra": "251.13-5.fc37.aarch64"
     },
     "systemd-libs": {
-      "evra": "251.13-4.fc37.aarch64"
+      "evra": "251.13-5.fc37.aarch64"
     },
     "systemd-pam": {
-      "evra": "251.13-4.fc37.aarch64"
+      "evra": "251.13-5.fc37.aarch64"
     },
     "systemd-resolved": {
-      "evra": "251.13-4.fc37.aarch64"
+      "evra": "251.13-5.fc37.aarch64"
     },
     "systemd-udev": {
-      "evra": "251.13-4.fc37.aarch64"
+      "evra": "251.13-5.fc37.aarch64"
     },
     "tar": {
       "evra": "2:1.34-5.fc37.aarch64"
@@ -1241,16 +1244,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-03-07T00:00:00Z",
+    "generated": "2023-03-10T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-11-05T08:04:22Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-03-07T21:16:20Z"
+        "generated": "2023-03-08T00:04:54Z"
       },
       "fedora-updates": {
-        "generated": "2023-03-07T01:24:43Z"
+        "generated": "2023-03-10T01:18:45Z"
       }
     }
   }
