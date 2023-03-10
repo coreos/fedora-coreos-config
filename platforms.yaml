@@ -115,6 +115,18 @@ x86_64:
     kernel_arguments:
       - console=tty0
       - console=ttyS0,115200n8
+  kubevirt:
+    # No official docs on this for kubevirt. Requested some:
+    # https://github.com/kubevirt/kubevirt/issues/9400
+    # The web UI displays the VNC console first, so go with
+    # graphical console primary, serial console secondary.
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=ttyS0,115200n8
+      - console=tty0
   openstack:
     # Graphical console primary, serial console available for logging
     # https://docs.openstack.org/diskimage-builder/latest/elements/bootloader/README.html
