@@ -1,0 +1,56 @@
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/ssh-host-key
+      mode: 0640
+      group:
+        name: ssh_keys
+      contents:
+        inline: |
+          -----BEGIN OPENSSH PRIVATE KEY-----
+          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
+          -----END OPENSSH PRIVATE KEY-----
+    - path: /etc/ssh-host-key.pub
+      mode: 0644
+      contents:
+        inline: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCQm5gASERPr1FwqY3jmGiUiTcdvM2zeEzi0Gh8D1H93DkQyhR3oFhJcdXRCowZiNLZSogIb/MqtgxZjq4GMv9ertqJ7NngBpU00PIU0e5j06vT9bWPnQmEQEMlx7uuNE+1vuMa0c12KhN+129vZRBBabQqjySud09mo13/M1cMRi0GgyPE4tiC3zwEN0gpcPXDT/cZ0vKxB2vMiyeiZiGBCVWbETdVGFMBhSBO4pUM87fc6a4DwsTzBQf0/BXfJ8HjHjvQRtP/xz3L+2AW0a2tNPQgRGtT2teYD1k8pUEcxukKCEZwyZ1q2XOJs5kidDcWVS80WfgcNXGvpllLxkI4/CNWvHnQttW9QfDr+2/yOuiOmRbccv1GRTj1GIekbvb9jW6Yg9ZpaMa0upEKOJYaSXQ+PGz86SSLNEvf2HNtGzPKkExJ4pTv9Cw8u6JKPyYjmzp+bu0qnywJDJ3LaTgEGKqjzTUpajdX6rlfYvLWDbRPVawc+XqiEhK7XmWfUqs=
+    - path: /etc/ssh/sshd_config.d/80-hostkey.conf
+      mode: 0600
+      contents:
+        inline: HostKey /etc/ssh-host-key
