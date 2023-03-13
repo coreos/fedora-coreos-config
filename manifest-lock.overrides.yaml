@@ -8,19 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  openssh:
-    evr: 9.0p1-9.fc38
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1394
-      type: pin
-  openssh-clients:
-    evr: 9.0p1-9.fc38
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1394
-      type: pin
-  openssh-server:
-    evr: 9.0p1-9.fc38
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1394
-      type: pin
+packages: {}
