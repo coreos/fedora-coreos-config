@@ -9,30 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  clevis:
-    evr: 19-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f7a298ee7d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1356#issuecomment-1463962490
-      type: fast-track
-  clevis-dracut:
-    evr: 19-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f7a298ee7d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1356#issuecomment-1463962490
-      type: fast-track
-  clevis-luks:
-    evr: 19-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f7a298ee7d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1356#issuecomment-1463962490
-      type: fast-track
-  clevis-systemd:
-    evr: 19-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f7a298ee7d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1356#issuecomment-1463962490
-      type: fast-track
   gnutls:
     evr: 3.8.0-2.fc38
     metadata:
