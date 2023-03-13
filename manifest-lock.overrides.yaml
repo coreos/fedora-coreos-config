@@ -9,6 +9,16 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  coreos-installer:
+    evr: 0.17.0-1.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-8c9cfc425e
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.17.0-1.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-8c9cfc425e
+      type: fast-track
   gnutls:
     evr: 3.8.0-2.fc38
     metadata:
