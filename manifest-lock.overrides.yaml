@@ -19,9 +19,3 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-8c9cfc425e
       type: fast-track
-  gnutls:
-    evr: 3.8.0-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-5b378b82b3
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1356#issuecomment-1463962490
-      type: fast-track
