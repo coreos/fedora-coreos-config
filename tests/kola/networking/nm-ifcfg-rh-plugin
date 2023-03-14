@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# We want to do a check here to make sure the ifcfg-rh plugin
+# is not loaded on FCOS (it can't be because it should never
+# even be included in the filesystem). We also want to make
+# sure that at least for RHCOS8 it is included.
+#
+## kola:
+##   # This test should behave the same on every platform.
+##   tags: "platform-independent"
+##   # This is a read-only, nondestructive test.
+##   exclusive: false
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+
+# Check if it exists or not. The plugin provides a dbus interface
+# so if it is loaded there will be something listening at that name
+exists=0
+busctl status com.redhat.ifcfgrh1 && exists=1
+
+if is_fcos; then
+    [ "$exists" == "0" ] || fatal "ifcfg-rh plugin detected on FCOS"
+elif is_rhcos || is_scos; then
+    [ "$exists" == "1" ] || fatal "ifcfg-rh plugin not detected on RHCOS/SCOS"
+else
+    fatal "nm-ifcfg-rh-plugin does not support this distro/version"
+fi
+
+ok "ifcfg-rh plugin test successful"
