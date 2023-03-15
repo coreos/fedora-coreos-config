@@ -29,13 +29,6 @@
     - testing-devel
     - testing
     - stable
-- pattern: ext.config.files.file-directory-permissions
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1427
-  snooze: 2023-03-20
-  streams:
-    - branched
-    - next-devel
-    - next
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1430
   snooze: 2023-03-22
