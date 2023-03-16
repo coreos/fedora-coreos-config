@@ -139,7 +139,7 @@
       "evra": "2:2.201.0-1.fc37.noarch"
     },
     "containerd": {
-      "evra": "1.6.15-1.fc37.x86_64"
+      "evra": "1.6.19-1.fc37.x86_64"
     },
     "containernetworking-plugins": {
       "evra": "1.1.1-8.fc37.x86_64"
@@ -946,13 +946,13 @@
       "evra": "2.6.4-1.fc37.x86_64"
     },
     "openssh": {
-      "evra": "8.8p1-7.fc37.x86_64"
+      "evra": "8.8p1-9.fc37.x86_64"
     },
     "openssh-clients": {
-      "evra": "8.8p1-7.fc37.x86_64"
+      "evra": "8.8p1-9.fc37.x86_64"
     },
     "openssh-server": {
-      "evra": "8.8p1-7.fc37.x86_64"
+      "evra": "8.8p1-9.fc37.x86_64"
     },
     "openssl": {
       "evra": "1:3.0.8-1.fc37.x86_64"
@@ -1051,10 +1051,10 @@
       "evra": "4.18.0-1.fc37.x86_64"
     },
     "rpm-ostree": {
-      "evra": "2023.1-1.fc37.x86_64"
+      "evra": "2023.2-1.fc37.x86_64"
     },
     "rpm-ostree-libs": {
-      "evra": "2023.1-1.fc37.x86_64"
+      "evra": "2023.2-1.fc37.x86_64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.18.0-1.fc37.x86_64"
@@ -1162,25 +1162,25 @@
       "evra": "1.9.13-1.p2.fc37.x86_64"
     },
     "systemd": {
-      "evra": "251.13-5.fc37.x86_64"
+      "evra": "251.13-6.fc37.x86_64"
     },
     "systemd-boot-unsigned": {
-      "evra": "251.13-5.fc37.x86_64"
+      "evra": "251.13-6.fc37.x86_64"
     },
     "systemd-container": {
-      "evra": "251.13-5.fc37.x86_64"
+      "evra": "251.13-6.fc37.x86_64"
     },
     "systemd-libs": {
-      "evra": "251.13-5.fc37.x86_64"
+      "evra": "251.13-6.fc37.x86_64"
     },
     "systemd-pam": {
-      "evra": "251.13-5.fc37.x86_64"
+      "evra": "251.13-6.fc37.x86_64"
     },
     "systemd-resolved": {
-      "evra": "251.13-5.fc37.x86_64"
+      "evra": "251.13-6.fc37.x86_64"
     },
     "systemd-udev": {
-      "evra": "251.13-5.fc37.x86_64"
+      "evra": "251.13-6.fc37.x86_64"
     },
     "tar": {
       "evra": "2:1.34-5.fc37.x86_64"
@@ -1253,16 +1253,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-03-15T00:00:00Z",
+    "generated": "2023-03-16T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-11-05T08:04:38Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-03-15T19:08:47Z"
+        "generated": "2023-03-15T22:28:12Z"
       },
       "fedora-updates": {
-        "generated": "2023-03-15T00:50:46Z"
+        "generated": "2023-03-16T18:23:26Z"
       }
     }
   }
