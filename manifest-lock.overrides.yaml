@@ -19,3 +19,18 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-d6f3402ea1
       type: fast-track
+  kernel:
+    evr: 6.1.18-200.fc37
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1441
+      type: pin
+  kernel-core:
+    evr: 6.1.18-200.fc37
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1441
+      type: pin
+  kernel-modules:
+    evr: 6.1.18-200.fc37
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1441
+      type: pin
