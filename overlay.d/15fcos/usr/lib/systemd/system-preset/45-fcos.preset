@@ -1,3 +1,6 @@
 enable coreos-check-ssh-keys.service
 # Check if cgroupsv1 is still being used
 enable coreos-check-cgroups.service
+# Upgrade aarch64 bootloader to avoid
+# https://github.com/coreos/fedora-coreos-tracker/issues/1441
+enable coreos-bootupctl-update-aarch64.service
