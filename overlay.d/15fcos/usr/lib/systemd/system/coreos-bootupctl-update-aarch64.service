@@ -1,0 +1,15 @@
+# Remove after the next barrier release
+# https://github.com/coreos/fedora-coreos-tracker/issues/1441
+
+[Unit]
+Description=Update aarch64 Bootloader
+ConditionArchitecture=arm64
+ConditionFirmware=uefi
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bootupctl update
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
