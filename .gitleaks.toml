@@ -1,5 +1,0 @@
-[allowlist]
-description = "Exclude test keys from Red Hat secret scanning"
-files = [
-    ".*custom-host-key-permissions.*",
-]
