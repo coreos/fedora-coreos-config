@@ -6,6 +6,8 @@ Fedora CoreOS ships with both the `docker` CLI tool (as provided via https://mob
 == Example configuration
 The following Butane config snippet configures the systemd `hello.service` to run https://www.busybox.net[busybox].
 
+TIP: You may be able to use local file references to systemd units instead of inlining them. See xref:tutorial-services.adoc#_using_butanes__files_dir_parameter_to_embed_files[Using butane's `--files-dir` Parameter to Embed Files] for more information.
+
 .Example for running busybox using systemd and podman
 [source,yaml]
 ----

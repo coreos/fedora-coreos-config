@@ -104,11 +104,62 @@ storage:
               /etc/issue.d/50_public-ipv4.issue
 ----
 
+TIP: You may be able to use local file references to systemd units instead of inlining them. See xref:#_using_butanes__files_dir_parameter_to_embed_files[Using butane's `--files-dir` Parameter to Embed Files] for more information.
+
 And then convert to Ignition:
 
 [source,bash]
 ----
 butane --pretty --strict services.bu --output services.ign
+----
+
+=== Using butane's `--files-dir` Parameter to Embed Files
+
+Depending on the variant and version you use, you can use local file references to systemd units instead of inlining them.
+The example from the xref:#_writing_the_butane_config_and_converting_to_ignition[previous section] can thus be rewritten as follows:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.5.0
+systemd:
+  units:
+    - name: serial-getty@ttyS0.service
+      dropins:
+      - name: autologin-core.conf
+        contents_local: systemd/autologin-core.conf
+    - name: issuegen-public-ipv4.service
+      enabled: true
+      contents_local: systemd/issuegen-public-ipv4.service
+storage:
+  files:
+    - path: /etc/hostname
+      mode: 0644
+      contents:
+        inline: |
+          tutorial
+    - path: /etc/profile.d/systemd-pager.sh
+      mode: 0644
+      contents:
+        inline: |
+          # Tell systemd to not use a pager when printing information
+          export SYSTEMD_PAGER=cat
+    - path: /usr/local/bin/public-ipv4.sh
+      mode: 0755
+      contents:
+        inline: |
+          #!/bin/bash
+          echo "Detected Public IPv4: is $(curl https://ipv4.icanhazip.com)" > \
+              /etc/issue.d/50_public-ipv4.issue
+----
+
+NOTE: Check the https://coreos.github.io/butane/specs/[Configuration specifications] for more details and which versions of your selected variant support it.
+
+And then convert to Ignition (assuming the files (`autologin-core.conf` and `issuegen-public-ipv4.service`) are in a directory called `systemd` in your current working directory):
+
+[source,bash]
+----
+butane --pretty --strict --files-dir="./systemd"  services.bu --output services.ign
 ----
 
 == Testing

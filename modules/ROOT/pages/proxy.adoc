@@ -30,6 +30,8 @@ storage:
 
 https://github.com/coreos/zincati[Zincati] polls for OS updates, and https://github.com/coreos/rpm-ostree[rpm-ostree] is used to apply OS and layered package updates both therefore requiring internet access. The optional anonymized https://docs.fedoraproject.org/en-US/fedora-coreos/counting/[countme] service also requires access if enabled.
 
+TIP: You may be able to use local file references to systemd units instead of inlining them. See xref:tutorial-services.adoc#_using_butanes__files_dir_parameter_to_embed_files[Using butane's `--files-dir` Parameter to Embed Files] for more information.
+
 [source,yaml]
 ----
 variant: fcos

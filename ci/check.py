@@ -18,6 +18,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 import textwrap
 
 ERR = '\x1b[1;31m'
@@ -36,35 +37,53 @@ args = parser.parse_args()
 def handle_error(e):
     raise e
 
+
+# List of files required during verification
+tmpfiles = {
+    # tutorial-services.adoc
+    os.path.join('systemd', 'autologin-core.conf'): '[Service]\n# Override Execstart in main unit',
+    os.path.join('systemd', 'issuegen-public-ipv4.service'): '[Unit]\nBefore=systemd-user-sessions.service\n[Install]\nWantedBy=multi-user.target',
+    # authentication.adoc
+    os.path.join('users', 'core', 'id_rsa.pub'): 'ssh-rsa AAAAB',
+    os.path.join('users', 'jlebon', 'id_rsa.pub'): 'ssh-rsa AAAAB',
+    os.path.join('users', 'jlebon', 'id_ed25519.pub'): 'ssh-ed25519 AAAAC',
+    os.path.join('users', 'miabbott', 'id_rsa.pub'): 'ssh-rsa AAAAB',
+}
+
 ret = 0
-for dirpath, dirnames, filenames in os.walk('.', onerror=handle_error):
-    dirnames.sort()  # walk in sorted order
-    for filename in sorted(filenames):
-        filepath = os.path.join(dirpath, filename)
-        if not filename.endswith('.adoc'):
-            continue
-        with open(filepath) as fh:
-            filedata = fh.read()
-        # Iterate over YAML source blocks
-        for match in matcher.finditer(filedata):
-            bu = match.group(1)
-            buline = filedata.count('\n', 0, match.start(1)) + 1
-            if not bu.startswith('variant:'):
-                print(f'{WARN}Ignoring non-Butane YAML at {filepath}:{buline}{RESET}')
+with tempfile.TemporaryDirectory() as tmpdocs:
+    for path, contents in tmpfiles.items():
+        os.makedirs(os.path.join(tmpdocs, os.path.dirname(path)), exist_ok=True)
+        with open(os.path.join(tmpdocs, path), 'w') as fh:
+            fh.write(contents)
+    for dirpath, dirnames, filenames in os.walk('.', onerror=handle_error):
+        dirnames.sort()  # walk in sorted order
+        for filename in sorted(filenames):
+            filepath = os.path.join(dirpath, filename)
+            if not filename.endswith('.adoc'):
                 continue
-            if args.verbose:
-                print(f'Checking Butane config at {filepath}:{buline}')
-            result = subprocess.run(
-                    ['podman', 'run', '--rm', '-i', container, '--strict'],
-                    universal_newlines=True, # can be spelled "text" on >= 3.7
+            with open(filepath) as fh:
+                filedata = fh.read()
+            # Iterate over YAML source blocks
+            for match in matcher.finditer(filedata):
+                bu = match.group(1)
+                buline = filedata.count('\n', 0, match.start(1)) + 1
+                if not bu.startswith('variant:'):
+                    print(f'{WARN}Ignoring non-Butane YAML at {filepath}:{buline}{RESET}')
+                    continue
+                if args.verbose:
+                    print(f'Checking Butane config at {filepath}:{buline}')
+                result = subprocess.run(
+                    ['podman', 'run', '--rm', '-i', '-v=' + tmpdocs + ':/files-dir', container, '--strict', '--files-dir=/files-dir'],
+                    universal_newlines=True,  # can be spelled "text" on >= 3.7
                     input=bu,
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.PIPE)
-            if result.returncode != 0:
-                formatted = textwrap.indent(result.stderr.strip(), '  ')
-                # Not necessary for ANSI terminals, but required by GitHub's
-                # log renderer
-                formatted = ERR + formatted.replace('\n', '\n' + ERR)
-                print(f'{ERR}Invalid Butane config at {filepath}:{buline}:\n{formatted}{RESET}')
-                ret = 1
+                if result.returncode != 0:
+                    formatted = textwrap.indent(result.stderr.strip(), '  ')
+                    # Not necessary for ANSI terminals, but required by GitHub's
+                    # log renderer
+                    formatted = ERR + formatted.replace('\n', '\n' + ERR)
+                    print(f'{ERR}Invalid Butane config at {filepath}:{buline}:\n{formatted}{RESET}')
+                    ret = 1
 sys.exit(ret)

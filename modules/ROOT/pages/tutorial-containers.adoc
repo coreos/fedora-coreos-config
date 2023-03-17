@@ -14,6 +14,8 @@ As usual, we will set up console autologin, a hostname, systemd pager configurat
 
 Similarly to what we did in the second provisioning scenario, we will write the following Butane config in a file called `containers.bu`:
 
+TIP: Optionally, you can replace the SSH public key in the yaml file with your own public key so you can log in to the booted instance remotely. If you choose not to do this you'll still be auto logged in to the serial console.
+
 .Example with automatic serial console login, SSH key, and multiple systemd units
 [source,yaml]
 ----
@@ -87,7 +89,7 @@ storage:
           export SYSTEMD_PAGER=cat
 ----
 
-TIP: Optionally you can replace the SSH pubkey in the yaml file with your own public key so you can log in to the booted instance. If you choose not to do this you'll still be auto logged in to the serial console.
+TIP: You may be able to use local file references to systemd units and SSH public keys instead of inlining them. See xref:authentication.adoc#_using_file_references_to_ssh_keys[Using File References to SSH Keys] and xref:tutorial-services.adoc#_using_butanes__files_dir_parameter_to_embed_files[Using butane's `--files-dir` Parameter to Embed Files] for more information.
 
 Run Butane to convert that to an Ignition config:
 

@@ -20,7 +20,7 @@ passwd:
     - name: miabbott
 ----
 
-You will typically want to configure SSH keys or a password, in order to be able to login as those users.
+You will typically want to configure SSH keys or a password, in order to be able to log in as those users.
 
 == Using an SSH Key
 
@@ -38,22 +38,60 @@ passwd:
     - name: jlebon
       ssh_authorized_keys:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5QFS...
-        - sh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
+        - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
     - name: miabbott
       ssh_authorized_keys:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTey7R...
 ----
 
+=== Using File References to SSH Keys
+
+Depending on the configuration variant and version you use, you can use local file references to SSH public keys instead
+of inlining them.
+The example from the xref:#_using_an_ssh_key[previous section] can thus be rewritten as follows:
+
+[source,yaml]
+----
+variant: fcos
+version: 1.5.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys_local:
+        - users/core/id_rsa.pub
+    - name: jlebon
+      ssh_authorized_keys_local:
+        - users/jlebon/id_rsa.pub
+        - users/jlebon/id_ed25519.pub
+    - name: miabbott
+      ssh_authorized_keys_local:
+        - users/miabbott/id_rsa.pub
+----
+
+You have to use `butane` with the `--files-dir` parameter to allow loading files from disk when converting to Ignition configurations for this to work.
+
+NOTE: Check the https://coreos.github.io/butane/specs/[Configuration specifications] for more details and which versions
+of your selected variant support it. Generally, each file may contain multiple SSH keys, one per line, and you may
+additionally specify inline `ssh_authorized_keys` as well as long as the SSH keys are unique.
+
 === SSH Key Locations
 
-sshd uses a https://github.com/coreos/ssh-key-dir[helper program] to read public keys from files in a user's `~/.ssh/authorized_keys.d` directory. Key files are read in alphabetical order, ignoring dotfiles. The standard `~/.ssh/authorized_keys` file is read afterward, in the usual way. To debug the reading of `~/.ssh/authorized_keys.d`, manually run the helper program and inspect its output:
+https://man.openbsd.org/sshd_config[sshd] uses a https://github.com/coreos/ssh-key-dir[helper program], specified via
+the `AuthorizedKeysCommand` directive, to read public keys from files in a user's `~/.ssh/authorized_keys.d` directory.
+The `AuthorizedKeysCommand` is tried after the usual `AuthorizedKeysFile` files (defaulting to `~/.ssh/authorized_keys`)
+and will not be executed if a matching key is found there. Key files in `~/.ssh/authorized_keys.d` are read in
+alphabetical order, ignoring dotfiles.
+
+Ignition writes configured SSH keys to `~/.ssh/authorized_keys.d/ignition`. On platforms where SSH keys can be configured at the platform level, such as AWS, Afterburn writes those keys to `~/.ssh/authorized_keys.d/afterburn`.
+
+To debug the reading of `~/.ssh/authorized_keys.d`, manually run the helper program and inspect its output:
 
 [source,bash]
 ----
 /usr/libexec/ssh-key-dir
 ----
 
-Ignition writes configured SSH keys to `~/.ssh/authorized_keys.d/ignition`. On platforms where SSH keys can be configured at the platform level, such as AWS, Afterburn writes those keys to `~/.ssh/authorized_keys.d/afterburn`.
+To view and validate the effective configuration for sshd, two test modes (`-t`, `-T`) are available as documented on the https://man.openbsd.org/sshd[manual pages].
 
 == Using Password Authentication
 
@@ -71,7 +109,7 @@ passwd:
     - name: jlebon
       ssh_authorized_keys:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5QFS...
-        - sh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
+        - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
     - name: miabbott
       password_hash: $y$j9T$aUmgEDoFIDPhGxEe2FUjc/$C5A...
       ssh_authorized_keys:
@@ -111,7 +149,7 @@ passwd:
         - wheel
       ssh_authorized_keys:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5QFS...
-        - sh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
+        - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
     - name: miabbott
       groups:
         - docker
@@ -142,7 +180,7 @@ passwd:
         - wheel
       ssh_authorized_keys:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5QFS...
-        - sh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
+        - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
     - name: miabbott
       groups:
         - docker
@@ -177,7 +215,7 @@ passwd:
         - sudo
       ssh_authorized_keys:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5QFS...
-        - sh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
+        - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIveEaMRW...
     - name: miabbott
       groups:
         - docker
