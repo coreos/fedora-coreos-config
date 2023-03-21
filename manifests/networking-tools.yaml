@@ -19,3 +19,6 @@ packages:
   - iptables nftables
   # Interactive network tools for admins
   - socat net-tools bind-utils
+  # Declarative network configuration
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1175
+  - nmstate
