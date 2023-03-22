@@ -54,6 +54,7 @@ mount_verbose() {
     mount -o "${mode}" "${srcdev}" "${destdir}"
 }
 
+# A copy of this exists in ignition-ostree-growfs.sh.
 # Sometimes, for some reason the by-label symlinks aren't updated. Detect these
 # cases, and explicitly `udevadm trigger`.
 # See: https://bugzilla.redhat.com/show_bug.cgi?id=1908780
