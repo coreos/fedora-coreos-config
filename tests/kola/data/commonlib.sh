@@ -86,3 +86,31 @@ is_service_active() {
     # return actual result
     systemctl is-active "${service}"
 }
+
+## Some functions to support version comparison
+# Returns true iff $1 is equal to $2
+vereq() {
+    [ "$1" == "$2" ]
+}
+
+# Returns true iff $1 is less than $2
+verlt() {
+    vereq $1 $2 && return 1
+    local lowest="$(echo -e "$1\n$2" | sort -V | head -n 1)"
+    [ "$1" == "$lowest" ]
+}
+
+# Returns true iff $1 is less than or equal to $2
+verlte() {
+    vereq $1 $2 || verlt $1 $2
+}
+
+# Returns true iff $1 is greater than to $2
+vergt() {
+    ! verlte $1 $2
+}
+
+# Returns true iff $1 is greater than or equal to $2
+vergte() {
+    vereq $1 $2 || vergt $1 $2
+}
