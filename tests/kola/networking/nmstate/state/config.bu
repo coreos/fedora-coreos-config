@@ -1,0 +1,17 @@
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/nmstate/br-ex.yml
+      contents:
+        inline: |
+          interfaces:
+           - name: br-ex
+             type: linux-bridge
+             state: up
+             ipv4:
+               enabled: false
+             ipv6:
+               enabled: false
+             bridge:
+               port: []
