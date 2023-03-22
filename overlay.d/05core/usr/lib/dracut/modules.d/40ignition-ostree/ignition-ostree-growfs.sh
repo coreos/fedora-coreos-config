@@ -147,5 +147,6 @@ case "${ROOTFS_TYPE}" in
     btrfs) btrfs filesystem resize max ${path} ;;
 esac
 
-# this is useful for tests
+# The ignition-ostree-transposefs-xfsauto.service unit needs to know if we
+# actually run. This is also useful for tests.
 touch /run/ignition-ostree-growfs.stamp

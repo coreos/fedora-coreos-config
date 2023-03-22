@@ -129,6 +129,29 @@ mount_and_save_filesystem_by_label() {
     fi
 }
 
+# This implements https://github.com/coreos/fedora-coreos-tracker/issues/1183.
+should_autosave_rootfs() {
+    local fstype
+    fstype=$(lsblk -no FSTYPE "${root_part}")
+    if [ "$fstype" != xfs ]; then
+        echo "Filesystem is not XFS (found $fstype); skipping" >&2
+        echo 0
+        return
+    fi
+    local agcount
+    eval $(xfs_info "${root_part}" | grep -o 'agcount=[0-9]*')
+    # Semi-arbitrarily chosen: this is roughly ~64G currently (based on initial
+    # ag sizing at build time) which seems like a good rootfs size at which to
+    # discriminate between "throwaway/short-lived systems" and "long-running
+    # workload systems". It's not like XFS performance is way worse at 128.
+    if [ "$agcount" -lt 128 ]; then
+        echo "Filesystem agcount is $agcount; skipping" >&2
+        echo 0
+        return
+    fi
+    echo 1
+}
+
 ensure_zram_dev() {
     if test -d "${saved_data}"; then
         return 0
@@ -219,6 +242,23 @@ case "${1:-}" in
         fi
         if [ "${creates_prep}" != "0" ]; then
             mkdir "${saved_prep}"
+        fi
+        ;;
+    autosave-xfs)
+        should_autosave=$(should_autosave_rootfs)
+        if [ "${should_autosave}" = "1" ]; then
+            wipes_root=1
+            ensure_zram_dev
+            # in the in-place reprovisioning case, the rootfs was already saved
+            if [ ! -d "${saved_root}" ]; then
+                mkdir "${saved_root}"
+                echo "Moving rootfs to RAM..."
+                mount_and_save_filesystem_by_label root "${saved_root}"
+                print_zram_mm_stat
+            fi
+            mkfs.xfs "${root_part}" -L root -f
+            # for tests
+            touch /run/ignition-ostree-autosaved-xfs.stamp
         fi
         ;;
     save)
