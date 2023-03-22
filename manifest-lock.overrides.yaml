@@ -8,4 +8,22 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  dracut:
+    evr: 059-2.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-e8ca690ff3
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/919
+      type: fast-track
+  dracut-network:
+    evr: 059-2.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-e8ca690ff3
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/919
+      type: fast-track
+  dracut-squash:
+    evr: 059-2.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-e8ca690ff3
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/919
+      type: fast-track
