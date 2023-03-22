@@ -39,6 +39,11 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
           fatal "ignition-ostree-growfs ran"
       fi
 
+      # check that autosave-xfs didn't run
+      if [ -e /run/ignition-ostree-autosaved-xfs.stamp ]; then
+          fatal "unexpected autosaved XFS"
+      fi
+
       # reboot once to sanity-check we can find root on second boot
       /tmp/autopkgtest-reboot rebooted
       ;;
