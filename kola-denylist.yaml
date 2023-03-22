@@ -14,15 +14,23 @@
   arches:
     - ppc64le
 - pattern: ext.config.ignition.resource.remote
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
-  arches:
-    - s390x
-  streams:
-    - next-devel
-    - next
-    - testing-devel
-    - testing
-    - stable
+  tracker: https://github.com/coreos/ignition/pull/1558
+  # snooze: 2023-03-13 (disabled on promotion)
+  #tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
+  #arches:
+  #  - s390x
+  #streams:
+  #  - next-devel
+  #  - next
+  #  - testing-devel
+  #  - testing
+  #  - stable
+- pattern: ext.config.ignition.resource.authenticated-s3
+  tracker: https://github.com/coreos/ignition/pull/1558
+  # snooze: 2023-03-13 (disabled on promotion)
+- pattern: ext.config.butane.grub-users
+  tracker: https://github.com/coreos/ignition/pull/1558
+  # snooze: 2023-03-13 (disabled on promotion)
 - pattern: rpmostree.install-uninstall
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
   arches:
@@ -41,3 +49,19 @@
   # snooze: 2023-03-08 (disabled on promotion)
   streams:
     - rawhide
+- pattern: ext.config.files.file-directory-permissions
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1427
+  # snooze: 2023-03-08 (disabled on promotion)
+  streams:
+    - rawhide
+    - branched
+    - next-devel
+- pattern: ext.config.kdump.crash
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1430
+  # snooze: 2023-03-08 (disabled on promotion)
+  arches:
+    - aarch64
+  streams:
+    - rawhide
+    - branched
+    - next-devel
