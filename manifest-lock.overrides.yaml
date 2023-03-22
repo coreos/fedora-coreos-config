@@ -9,21 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  kernel:
-    evr: 6.1.18-200.fc37
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1441
-      type: pin
-  kernel-core:
-    evr: 6.1.18-200.fc37
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1441
-      type: pin
-  kernel-modules:
-    evr: 6.1.18-200.fc37
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1441
-      type: pin
   xfsprogs:
     evr: 5.18.0-3.fc37
     metadata:
