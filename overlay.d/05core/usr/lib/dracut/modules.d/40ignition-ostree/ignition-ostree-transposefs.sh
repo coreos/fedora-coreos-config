@@ -96,8 +96,12 @@ mount_and_restore_filesystem_by_label() {
     local mountpoint=$1; shift
     local saved_fs=$1; shift
     local new_dev
-    new_dev=$(jq -r "$(query_fslabel "${label}") | .[0].device" "${ignition_cfg}")
-    udev_trigger_on_label_mismatch "${label}" "${new_dev}"
+    new_dev=$(jq -r "$(query_fslabel "${label}") | .[0].device // \"\"" "${ignition_cfg}")
+    # in the autosave-xfs path, it's not driven by the Ignition config so we
+    # don't expect a new device there
+    if [ -n "${new_dev}" ]; then
+        udev_trigger_on_label_mismatch "${label}" "${new_dev}"
+    fi
     mount_verbose "/dev/disk/by-label/${label}" "${mountpoint}" rw
     find "${saved_fs}" -mindepth 1 -maxdepth 1 -exec mv -t "${mountpoint}" {} +
 }
