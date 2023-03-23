@@ -481,13 +481,16 @@
       "evra": "2.5.1-3.fc37.noarch"
     },
     "kernel": {
-      "evra": "6.1.18-200.fc37.ppc64le"
+      "evra": "6.2.7-200.fc37.ppc64le"
     },
     "kernel-core": {
-      "evra": "6.1.18-200.fc37.ppc64le"
+      "evra": "6.2.7-200.fc37.ppc64le"
     },
     "kernel-modules": {
-      "evra": "6.1.18-200.fc37.ppc64le"
+      "evra": "6.2.7-200.fc37.ppc64le"
+    },
+    "kernel-modules-core": {
+      "evra": "6.2.7-200.fc37.ppc64le"
     },
     "kexec-tools": {
       "evra": "2.0.25-1.fc37.ppc64le"
@@ -1180,7 +1183,7 @@
       "evra": "251.13-6.fc37.ppc64le"
     },
     "tar": {
-      "evra": "2:1.34-5.fc37.ppc64le"
+      "evra": "2:1.34-6.fc37.ppc64le"
     },
     "teamd": {
       "evra": "1.31-6.fc37.ppc64le"
@@ -1250,16 +1253,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-03-22T00:00:00Z",
+    "generated": "2023-03-23T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2022-11-05T08:04:20Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-03-21T17:45:15Z"
+        "generated": "2023-03-23T00:36:45Z"
       },
       "fedora-updates": {
-        "generated": "2023-03-22T01:20:15Z"
+        "generated": "2023-03-23T01:21:37Z"
       }
     }
   }
