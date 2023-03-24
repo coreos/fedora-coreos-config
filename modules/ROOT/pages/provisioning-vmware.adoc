@@ -42,12 +42,19 @@ CONFIG_ENCODING='base64'
 CONFIG_ENCODED=$(cat example.ign | base64 -w0 -)
 ----
 
-An alternative to plain `base64` encoding is `gzip+base64` as described in the https://coreos.github.io/ignition/supported-platforms/[Ignition supported platforms]. This is especially useful when submitting the Ignition config via `govc` as an _inline_ parameter. In that case the encoded config is limited to slightly under 128 KiB on Linux, 256 KiB on macOS, and 32 KiB on Windows (8 KiB if using `cmd.exe` or PowerShell). If your config is larger than that limit, you may be able to submit it inline after compressing it with `gzip`.
+An alternative to plain `base64` encoding is `gzip+base64` as described in the https://coreos.github.io/ignition/supported-platforms/[Ignition supported platforms]. This is especially useful when submitting the Ignition config via `govc` as an _inline_ argument. In that case the encoded config is limited to slightly under 128 KiB on Linux, 256 KiB on macOS, and 32 KiB on Windows (8 KiB if using `cmd.exe` or PowerShell). If your config is larger than that limit, you may be able to submit it inline after compressing it with `gzip`.
 
 [source, bash]
 ----
 CONFIG_ENCODING='gzip+base64'
 CONFIG_ENCODED=$(cat example.ign | gzip -9 | base64 -w0 -)
+----
+
+If your generated Ignition configuration is still too large, you will encounter an `Argument list too long` error or similar. The last resort is to use a configuration file. Instead of setting an environment variable containing your Ignition configuration, create an `ovftool` compatible configuration file in the directory you are invoking from like so:
+
+[source, bash]
+----
+printf "extraConfig:guestinfo.ignition.config.data=$(cat example.ign | base64 -w0 -)\n" > ovftool.cfg
 ----
 
 == Booting a new VM on Workstation or Fusion
