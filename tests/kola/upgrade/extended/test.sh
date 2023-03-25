@@ -101,7 +101,8 @@ ok "Reached version: $version"
 # If so then we can exit with success!
 if vereq $version $target_version; then
     ok "Fully upgraded to $target_version"
-    bootupctl status
+    # log bootupctl information for inspection where available
+    [ -f /usr/bin/bootupctl ] && /usr/bin/bootupctl status
     exit 0
 fi
 
