@@ -32,14 +32,16 @@ set -eux -o pipefail
 #       - tail -f tmp/kola/ext.config.upgrade.extended/*/journal.txt | grep --color -i 'ok reached version'
 #
 # For convenience, here is a list of the earliest releases on each
-# stream/architecture:
+# stream/architecture. x86_64 minimum version has to be 32.x because
+# of https://github.com/coreos/fedora-coreos-tracker/issues/1448
 #
 # stable
-#   - x86_64  31.20200108.3.0
+#   - x86_64  31.20200108.3.0 -> works for BIOS, not UEFI
+#             32.20200601.3.0
 #   - aarch64 34.20210821.3.0
 #   - s390x   36.20220618.3.1
 # testing
-#   - x86_64  30.20190716.1
+#   - x86_64  32.20200601.2.1
 #   - aarch64 34.20210904.2.0
 #   - s390x   36.20220618.2.0
 # next
