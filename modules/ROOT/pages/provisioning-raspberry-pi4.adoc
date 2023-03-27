@@ -36,7 +36,7 @@ In this case we can grab these files from the `uboot-images-armv8`, `bcm2711-fir
 
 [source, bash]
 ----
-RELEASE=35 # The target Fedora Release. Use the same one that current FCOS is based on.
+RELEASE=37 # The target Fedora Release. Use the same one that current FCOS is based on.
 mkdir -p /tmp/RPi4boot/boot/efi/
 sudo dnf install -y --downloadonly --release=$RELEASE --forcearch=aarch64 --destdir=/tmp/RPi4boot/  uboot-images-armv8 bcm283x-firmware bcm283x-overlays
 ----
@@ -167,7 +167,7 @@ FCOSEFIPARTITION=$(lsblk $FCOSDISK -J -oLABEL,PATH  | jq -r '.blockdevices[] | s
 mkdir /tmp/FCOSEFIpart
 sudo mount $FCOSEFIPARTITION /tmp/FCOSEFIpart
 pushd /tmp/FCOSEFIpart
-VERSION=v1.32  # use latest one from https://github.com/pftf/RPi4/releases
+VERSION=v1.34  # use latest one from https://github.com/pftf/RPi4/releases
 sudo curl -LO https://github.com/pftf/RPi4/releases/download/${VERSION}/RPi4_UEFI_Firmware_${VERSION}.zip
 sudo unzip RPi4_UEFI_Firmware_${VERSION}.zip
 sudo rm RPi4_UEFI_Firmware_${VERSION}.zip
