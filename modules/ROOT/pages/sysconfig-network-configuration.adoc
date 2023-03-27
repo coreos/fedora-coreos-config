@@ -4,7 +4,7 @@
 
 === Background
 
-Unless xref:#_disabling_automatic_configuration_of_ethernet_devices[otherwise configured], Fedora CoreOS (FCOS) will attempt DHCP on every interface with a cable plugged in. However, if you need to use static addressing or more complex networking (vlans, bonds, bridges, teams, etc..), you can do so in a number of ways which are summarized below. Regardless of the way you choose to configure networking it all ends up as configuration for NetworkManager, which takes the form of NetworkManager keyfiles. More information on the keyfile format can be found https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[here]. More information on the subsection options for keyfiles can be found https://developer.gnome.org/NetworkManager/stable/ref-settings.html[here].
+Unless xref:#_disabling_automatic_configuration_of_ethernet_devices[otherwise configured], Fedora CoreOS (FCOS) will attempt DHCP on every interface with a cable plugged in. However, if you need to use static addressing or more complex networking (vlans, bonds, bridges, teams, etc..), you can do so in a number of ways which are summarized below. Regardless of the way you choose to configure networking it all ends up as configuration for NetworkManager, which takes the form of NetworkManager keyfiles. More information on the keyfile format can be found https://networkmanager.dev/docs/api/latest/nm-settings-keyfile.html[here]. More information on the subsection options for keyfiles can be found https://networkmanager.dev/docs/api/latest/ref-settings.html[here].
 
 === Configuration Options
 
@@ -99,7 +99,7 @@ See https://coreos.github.io/afterburn/usage/initrd-network-cmdline/[the Afterbu
 
 WARNING: If you need networking to grab your Ignition config and your environment requires more complex networking than the default of DHCP to grab the Ignition config, then you'll need to use another method other than Ignition to configure the network.
 
-Networking configuration can be performed by writing out files described in an Ignition config. These are https://developer.gnome.org/NetworkManager/stable/nm-settings-keyfile.html[NetworkManager keyfiles] that are written to `/etc/NetworkManager/system-connections/` that tell NetworkManager what to do.
+Networking configuration can be performed by writing out files described in an Ignition config. These are https://networkmanager.dev/docs/api/latest/nm-settings-keyfile.html[NetworkManager keyfiles] that are written to `/etc/NetworkManager/system-connections/` that tell NetworkManager what to do.
 
 Any configuration provided via Ignition will be considered at a higher priority than any other method of configuring the Network for a Fedora CoreOS instance. If you specify Networking configuration via Ignition, try not to use other mechanisms to configure the network.
 
@@ -155,7 +155,7 @@ NOTE: FCOS uses https://www.freedesktop.org/wiki/Software/systemd/PredictableNet
 
 === Generating NetworkManager Keyfiles using `nm-initrd-generator`
 
-NetworkManager ships a tool, https://developer.gnome.org/NetworkManager/stable/nm-initrd-generator.html[nm-initrd-generator], that can generate keyfiles from dracut kernel argument syntax. This might be a good way to either convert from kernel arguments to keyfiles or to just quickly generate some keyfiles giving a small amount of input and then tweak some more detailed settings.
+NetworkManager ships a tool, https://networkmanager.dev/docs/api/latest/nm-initrd-generator.html[nm-initrd-generator], that can generate keyfiles from dracut kernel argument syntax. This might be a good way to either convert from kernel arguments to keyfiles or to just quickly generate some keyfiles giving a small amount of input and then tweak some more detailed settings.
 
 Here's an example of generating keyfiles for a bond via `nm-initrd-generator`:
 
