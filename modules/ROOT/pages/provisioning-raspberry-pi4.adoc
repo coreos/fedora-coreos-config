@@ -5,7 +5,7 @@ Fedora CoreOS produces 64-bit ARM (`aarch64`) artifacts. These images can be use
 - xref:#_installing_fcos_and_booting_via_u_boot[Installing FCOS and Booting via U-Boot]
 - xref:#_installing_fcos_and_booting_via_edk2[Installing FCOS and Booting via EDK2]
 
-U-Boot is the way the Raspberry Pi 4 has traditionally been booted. The https://rpi4-uefi.dev/about/[EDK2 Firmware] is an effort to provide a layer that will make RPi4 SystemReady ES (SBBR compliant) similar to most larger 64-bit ARM servers.
+U-Boot is the way the Raspberry Pi 4 has traditionally been booted. The https://github.com/pftf/RPi4/[EDK2 Firmware] is an effort to provide a layer that will make RPi4 SystemReady ES (SBBR compliant) similar to most larger 64-bit ARM servers.
 
 ## Updating EEPROM on Raspberry Pi 4
 
