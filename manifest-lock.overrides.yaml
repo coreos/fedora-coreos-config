@@ -9,9 +9,45 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  fedora-release-common:
+    evra: 38-0.32.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-bb12d0efe6
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1394
+      type: fast-track
+  fedora-release-coreos:
+    evra: 38-0.32.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-bb12d0efe6
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1394
+      type: fast-track
+  fedora-release-identity-coreos:
+    evra: 38-0.32.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-bb12d0efe6
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1394
+      type: fast-track
   nmstate:
     evr: 2.2.9-1.fc38
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-a226c4298d
       reason: https://github.com/coreos/coreos-assembler/pull/3397
+      type: fast-track
+  openssh:
+    evr: 9.0p1-14.fc38.1
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-bb12d0efe6
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1394
+      type: fast-track
+  openssh-clients:
+    evr: 9.0p1-14.fc38.1
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-bb12d0efe6
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1394
+      type: fast-track
+  openssh-server:
+    evr: 9.0p1-14.fc38.1
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-bb12d0efe6
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1394
       type: fast-track
