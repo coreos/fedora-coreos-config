@@ -1,7 +1,7 @@
 = Debugging kernel crashes using kdump
 
 == Introduction
-kdump is a service that creates crash dumps when there is a kernel crash. It uses kexec to boot into a secondary kernel (known as a capture kernel), then exports the contents of the kernel's memory (known as a crash dump or vmcore) to the filesystem. The contents of vmcore can then be analyzed to root cause the kernel crash.
+kdump is a service that creates crash dumps when there is a kernel crash. It uses https://www.mankier.com/8/kexec[`kexec(8)`] to boot into a secondary kernel (known as a capture kernel), then exports the contents of the kernel's memory (known as a crash dump or vmcore) to the filesystem. The contents of vmcore can then be analyzed to root cause the kernel crash.
 
 Configuring kdump requires setting the `crashkernel` kernel argument and enabling the kdump systemd service. Memory must be reserved for the crash kernel during booting of the first kernel. `crashkernel=auto` generally doesn't reserve enough memory on Fedora CoreOS, so it is recommended to specify `crashkernel=300M`. 
 
