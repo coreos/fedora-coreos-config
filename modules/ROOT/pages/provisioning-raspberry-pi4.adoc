@@ -56,7 +56,8 @@ Run `coreos-installer` to install to the target disk. There are https://coreos.g
 [source, bash]
 ----
 FCOSDISK=/dev/sdX
-sudo coreos-installer install --architecture=aarch64 -i config.ign $FCOSDISK
+STREAM=stable # or `next` or `testing`
+sudo coreos-installer install -a aarch64 -s $STREAM -i config.ign $FCOSDISK
 ----
 
 NOTE: Make sure you provide an xref:producing-ign.adoc[Ignition config] when you run `coreos-installer`.
@@ -156,7 +157,8 @@ First, run `coreos-installer` to install to the target disk:
 [source, bash]
 ----
 FCOSDISK=/dev/sdX
-sudo coreos-installer install --architecture=aarch64 -i config.ign $FCOSDISK
+STREAM=stable # or `next` or `testing`
+sudo coreos-installer install -a aarch64 -s $STREAM -i config.ign $FCOSDISK
 ----
 
 Now you can mount the 2nd partition and pull down the EDK2 firmware files:
