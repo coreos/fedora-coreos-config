@@ -100,7 +100,7 @@ To create a disk (SD or USB) with the firmware on it you can do something like:
 
 [source, bash]
 ----
-VERSION=v1.32  # use latest one from https://github.com/pftf/RPi4/releases
+VERSION=v1.34  # use latest one from https://github.com/pftf/RPi4/releases
 UEFIDISK=/dev/sdX
 sudo mkfs.vfat $UEFIDISK
 mkdir /tmp/UEFIdisk
