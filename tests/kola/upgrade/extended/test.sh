@@ -60,13 +60,19 @@ fi
 version=$(rpm-ostree status  --json | jq -r '.deployments[0].version')
 stream=$(rpm-ostree status  --json | jq -r '.deployments[0]["base-commit-meta"]["fedora-coreos.stream"]')
 
+# Pick up the last release for the current stream
 test -f /srv/releases.json || \
     curl -L "https://builds.coreos.fedoraproject.org/prod/streams/${stream}/releases.json" > /srv/releases.json
-test -f /srv/builds.json || \
-    curl -L "https://builds.coreos.fedoraproject.org/prod/streams/${stream}/builds/builds.json" > /srv/builds.json
-
 last_release=$(jq -r .releases[-1].version /srv/releases.json)
+
+# If the user dropped down a /etc/target_stream file then we'll
+# pick up the info from there.
+target_stream=$stream
+test -f /etc/target_stream && target_stream=$(< /etc/target_stream)
+test -f /srv/builds.json || \
+    curl -L "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/builds.json" > /srv/builds.json
 target_version=$(jq -r .builds[0].id /srv/builds.json)
+
 
 grab-gpg-keys() {
     # For older FCOS we had an issue where when we tried to pull the
@@ -139,7 +145,7 @@ esac
 # version, which should be in the compose OSTree repo.
 if vereq $version $last_release; then
     systemctl stop zincati
-    rpm-ostree rebase fedora-compose: $target_version
+    rpm-ostree rebase "fedora-compose:fedora/$(arch)/coreos/${target_stream}" $target_version
     /tmp/autopkgtest-reboot reboot # execute the reboot
     sleep infinity
 fi
