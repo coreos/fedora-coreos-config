@@ -1,7 +1,7 @@
 = Running Containers
 
 == Introduction
-Fedora CoreOS ships with both docker and podman installed. This page explains how to use systemd units to start and stop containers with podman.
+Fedora CoreOS ships with both the `docker` CLI tool (as provided via https://mobyproject.org/[Moby]) and https://podman.io[podman] installed. This page explains how to use systemd units to start and stop containers with podman.
 
 == Example configuration
 The following Butane config snippet configures the systemd `hello.service` to run https://www.busybox.net[busybox].
@@ -34,7 +34,7 @@ systemd:
 
 === Running etcd
 
-etcd is not shipped as part of Fedora CoreOS. To use it, run it as a container, as shown below.
+https://etcd.io[etcd] is not shipped as part of Fedora CoreOS. To use it, run it as a container, as shown below.
 
 .Butane config for setting up single node etcd
 [source,yaml]
