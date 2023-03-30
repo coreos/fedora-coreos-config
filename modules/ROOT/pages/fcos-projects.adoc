@@ -2,7 +2,7 @@
 
 This a list of projects that are actively using Fedora CoreOS:
 
-* https://docs.podman.io/en/latest/markdown/podman-machine.1.html[Podman Machine] uses Fedora CoreOS to run containers in a local environment (notably including Windows and MacOS X), and also has a https://docs.podman.io/en/latest/markdown/podman-machine-os.1.html[podman machine os] command that allows customization of Fedora CoreOS in a container-native way.
+* https://docs.podman.io/en/latest/markdown/podman-machine.1.html[Podman Machine] uses Fedora CoreOS to run containers in a local environment (notably including Windows and macOS), and also has a https://docs.podman.io/en/latest/markdown/podman-machine-os.1.html[podman machine os] command that allows customization of Fedora CoreOS in a container-native way.
 * https://www.okd.io[OKD] is the Community Distribution of Kubernetes that powers https://www.openshift.com/products/container-platform[Red Hat OpenShift Container Platform]. By default, Fedora CoreOS is the underlying OS used by the control plane nodes and the worker nodes.
 * https://github.com/poseidon/typhoon[Typhoon] is a minimal and free Kubernetes distribution. Users of Typhoon have the option of using Fedora CoreOS as the underlying OS for their nodes.
 * https://wiki.openstack.org/wiki/Magnum[OpenStack Magnum] is an OpenStack API service developed by the OpenStack Containers Team making container orchestration engines such as Docker Swarm, Kubernetes, and Apache Mesos available as first class resources in OpenStack. Fedora CoreOS is used as the underlying OS for nodes that are provisioned via Magnum.
