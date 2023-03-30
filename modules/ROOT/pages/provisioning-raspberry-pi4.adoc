@@ -7,7 +7,7 @@ Fedora CoreOS produces 64-bit ARM (`aarch64`) artifacts. These images can be use
 
 U-Boot is the way the Raspberry Pi 4 has traditionally been booted. The https://github.com/pftf/RPi4/[EDK2 Firmware] is an effort to provide a layer that will make RPi4 SystemReady ES (SBBR compliant) similar to most larger 64-bit ARM servers.
 
-## Updating EEPROM on Raspberry Pi 4
+== Updating EEPROM on Raspberry Pi 4
 
 The Raspberry Pi 4 uses an EEPROM to boot the system. The EEPROM/Firmware in the past https://github.com/raspberrypi/rpi-eeprom/blob/master/firmware/release-notes.md#2021-10-04---add-support-for-gpt-fat16-and-increase-usb-timeouts---beta[had problems reading a FAT16 EFI partition], which https://github.com/coreos/fedora-coreos-tracker/issues/993[FCOS uses]. For the best experience getting FCOS to run on the RPi4 please update the EEPROM to the latest version. To check if you have the latest version you can go to the https://github.com/raspberrypi/rpi-eeprom/releases[raspberrypi/rpi-eeprom releases page] and make sure the version reported by your Raspberry Pi on boot is from around the same date as the last release.
 
@@ -28,7 +28,7 @@ image::raspberry-pi-imager.png["Raspberry Pi Imager Application"]
 
 At this point you can follow https://www.raspberrypi.org/documentation/computers/raspberry-pi.html#updating-the-bootloader[the documentation] for how to create the disk and then update your Raspberry Pi 4.
 
-## Installing FCOS and Booting via U-Boot
+== Installing FCOS and Booting via U-Boot
 
 To run FCOS on a Raspberry Pi 4 via U-Boot the SD card or USB disk needs to be prepared on another system and then the disk moved to the RPi4. After writing FCOS to the disk a few more files will need to be copied in place on the EFI partition of the FCOS disk. Check out the https://www.raspberrypi.com/documentation/computers/configuration.html#boot-folder-contents[Raspberry Pi Documentation] to read more about what these files are for.
 
@@ -80,7 +80,7 @@ Now take the USB/SD card and attach it to the RPi4 and boot.
 TIP: It can take some time to boot, especially if the disk is slow. Be patient. You may not see anything on the screen for 20-30 seconds.
 
 
-## Installing FCOS and Booting via EDK2
+== Installing FCOS and Booting via EDK2
 
 There is a EDK2 UEFI firmware implementation for the RPi4 (https://github.com/pftf/RPi4/[pftf/RPi4]) that attempts to make the RPi4 SystemReady ES (SBBR compliant) and allows you to pretend that the RPi4 is similar to any other SystemReady server hardware.
 
@@ -92,7 +92,7 @@ You can write the firmware to a disk (USB or SD card) and then boot/install FCOS
 These options are covered in the following sections. Regardless of which option you choose you'll want to consider if you need to either xref:#_edk2_firmware_changing_the_3g_limit[Change the 3G RAM limit] or xref:#_edk2_firmware_gpio_via_devicetree[Enable DeviceTree Boot].
 
 
-### EDK2: Separate Firmware Disk Mode
+=== EDK2: Separate Firmware Disk Mode
 
 In separate disk mode the EDK2 firmware will take up either the SD card slot or a USB slot on your RPi4. Once the firmware disk is attached to the system you'll be able to follow the xref:bare-metal.adoc[bare metal install documentation] and pretend like the RPi4 is any other server hardware.
 
@@ -118,7 +118,7 @@ Attaching this disk to your Pi4 you can now install FCOS as you would on any bar
 NOTE: The separate firmware disk will need to stay attached permanently for future boots to work.
 
 
-### EDK2: Combined Fedora CoreOS + EDK2 Firmware Disk
+=== EDK2: Combined Fedora CoreOS + EDK2 Firmware Disk
 
 In combined disk mode the EDK2 firmware will live inside the EFI partition of Fedora CoreOS, allowing for a single disk to be used for the EDK2 firmware and FCOS.
 
@@ -128,7 +128,7 @@ There are a few ways to achieve this goal:
 - Prepare Pi4 Disk on Alternate Machine
 
 
-#### EDK2: Combined Disk Mode Direct Install
+==== EDK2: Combined Disk Mode Direct Install
 
 When performing a direct install, meaning you boot (via the EDK2 firmware) into the Fedora CoreOS live environment (ISO or PXE) and run `coreos-installer`, you can mount the EFI partition (2nd partition) of the installed FCOS disk after the installation is complete and copy the EDK2 firmware files over:
 
@@ -148,7 +148,7 @@ Now you can remove the extra disk from the RPi4 and reboot the machine.
 
 TIP: It can take some time to boot, especially if the disk is slow. Be patient. You may not see anything on the screen for 20-30 seconds.
 
-#### EDK2: Combined Disk Mode Alternate Machine Disk Preparation
+==== EDK2: Combined Disk Mode Alternate Machine Disk Preparation
 
 When preparing the RPi4 disk from an alternate machine (i.e. creating the disk from your laptop) then you can mount the 2nd partition **after** running `coreos-installer` and pull down the EDK2 firmware files.
 
@@ -181,7 +181,7 @@ Now take the USB/SD card and attach it to the RPi4 and boot.
 
 TIP: It can take some time to boot, especially if the disk is slow. Be patient. You may not see anything on the screen for 20-30 seconds.
 
-### EDK2 Firmware: Changing the 3G limit
+=== EDK2 Firmware: Changing the 3G limit
 
 If you have a Pi4 with more than 3G of memory you'll most likely want to disable the 3G memory limitation. In the EDK2 firmware menu go to
 
@@ -189,7 +189,7 @@ If you have a Pi4 with more than 3G of memory you'll most likely want to disable
 - `F10` to save -> `Y` to confirm
 - `Esc` to top level menu and select `reset` to cycle the system.
 
-### EDK2 Firmware: GPIO via DeviceTree
+=== EDK2 Firmware: GPIO via DeviceTree
 
 With the EDK2 Firmware in ACPI mode (the default) you won't get access to GPIO (i.e. no Pi HATs will work). To get access to GPIO pins you'll need to change the setting to DeviceTree mode in the EDK2 menus.
 
