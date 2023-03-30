@@ -6,7 +6,7 @@ NOTE: Make sure that you have completed the steps described in the xref:tutorial
 
 Fedora CoreOS does not have a separate install disk. Instead, every instance starts from a generic disk image which is customized on first boot via https://github.com/coreos/ignition[Ignition].
 
-Ignition config files are written in JSON but are typically not user friendly. Configurations are thus written in a simpler format, the Butane config, that is then converted into an Ignition config. The tool responsible for converting Butane configs into Ignition configs is naturally called Butane.
+Ignition config files are written in JSON but are typically not user-friendly. Configurations are thus written in a simpler format, the Butane config, that is then converted into an Ignition config. The tool responsible for converting Butane configs into Ignition configs is naturally called Butane.
 
 == First Ignition config via Butane
 

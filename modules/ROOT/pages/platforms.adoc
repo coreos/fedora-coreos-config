@@ -18,9 +18,9 @@ The currently supported platforms and their identifiers are listed below.
 * IBM Cloud, VPC Generation 2 (`ibmcloud`): Cloud platform. See xref:provisioning-ibmcloud.adoc[Booting on IBM Cloud].
 * Bare metal (`metal`): With BIOS, UEFI or network boot, with standard or 4k Native disks. See xref:bare-metal.adoc[Installing on Bare Metal] or xref:live-booting-ipxe.adoc[Live-booting via iPXE].
 * Nutanix (`nutanix`): Hypervisor.
-* OpenStack (cloud platform): `openstack`): Cloud platform. See xref:provisioning-openstack.adoc[Booting on OpenStack].
+* OpenStack (`openstack`): Cloud platform. See xref:provisioning-openstack.adoc[Booting on OpenStack].
 * QEMU (`qemu`): Hypervisor. See xref:provisioning-libvirt.adoc[Booting on libvirt]
-* VirtualBox ('virtualbox'): Hypervisor. See xref:provisioning-virtualbox.adoc[Booting on VirtualBox].
+* VirtualBox (`virtualbox`): Hypervisor. See xref:provisioning-virtualbox.adoc[Booting on VirtualBox].
 * VMware ESXi, Fusion, and Workstation (`vmware`): Hypervisor. See xref:provisioning-vmware.adoc[Booting on VMware]. Fedora CoreOS images currently use https://kb.vmware.com/s/article/1003746[hardware version] 17, supporting VMware ESXi 7.0 or later, Fusion 12.0 or later, and Workstation 16.0 or later.
 * Vultr (`vultr`): Cloud platform. See xref:provisioning-vultr.adoc[Booting on Vultr].
 
@@ -42,7 +42,7 @@ The currently supported platforms and their identifiers are listed below.
 
 Each Fedora CoreOS image boots with a platform-specific identifier, available on the kernel command-line. The name of the parameter is `ignition.platform.id`. The platform ID is consumed by OS components such as https://github.com/coreos/ignition[Ignition] and https://github.com/coreos/afterburn[Afterburn]. Additionally, it can be used in systemd units via https://www.freedesktop.org/software/systemd/man/systemd.unit.html#ConditionKernelCommandLine=[`ConditionKernelCommandLine=`].
 
-See https://coreos.github.io/ignition/supported-platforms/[Ignition's Supported Platforms] and https://coreos.github.io/afterburn/platforms/[Afterburn's Supported Platforms] documentation pages for more details about which features are supported for each platforms. Note that some platforms are currently supported by Ignition and Afterburn but are not yet supported by Fedora CoreOS.
+See https://coreos.github.io/ignition/supported-platforms/[Ignition's Supported Platforms] and https://coreos.github.io/afterburn/platforms/[Afterburn's Supported Platforms] documentation pages for more details about which features are supported for each platform. Note that some platforms are currently supported by Ignition and Afterburn but are not yet supported by Fedora CoreOS.
 
 The Platform ID can be introspected at runtime, as follows:
 

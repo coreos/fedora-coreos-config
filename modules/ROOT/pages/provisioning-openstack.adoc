@@ -15,7 +15,7 @@ If you do not want to use Ignition to get started, you can make use of the https
 
 You also need to have access to an OpenStack environment and a functioning
 https://docs.openstack.org/python-designateclient/latest/user/shell-v2.html[`openstack` CLI].
-Typically you'll https://docs.openstack.org/python-openstackclient/latest/configuration/index.html[configure the client]
+Typically, you'll https://docs.openstack.org/python-openstackclient/latest/configuration/index.html[configure the client]
 by using a `clouds.yaml` file or via environment variables. If you're starting from scratch, this
 environment may need networks, SSH key pairs, security groups, etc.. set up. Please consult the
 https://docs.openstack.org/[OpenStack Documentation] to learn more.

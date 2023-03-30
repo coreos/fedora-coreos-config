@@ -113,7 +113,7 @@ In particular, note the following guidelines:
 - Avoid setting `wipe_filesystem` or `wipe_volume` for https://coreos.github.io/ignition/operator-notes/#filesystem-reuse-semantics[filesystems] or LUKS volumes that you intend to reuse. (You can safely set `wipe_table` or `wipe_partition_entry` when reusing a disk, since those don't modify the contents of a https://coreos.github.io/ignition/operator-notes/#partition-reuse-semantics[partition].)
 - When reusing LUKS volumes, you must configure a `key_file`. Ignition cannot reuse Clevis-backed LUKS volumes.
 - Avoid writing persistent data to RAID volumes, since Ignition cannot reuse those.
-- When writing files in persistent storage, set `overwrite` to `true` to avoid Ignition failures when reusing a filesystem that already has the file. Avoid using the `append` directive for persistent files, since the append will occur on every boot.
+- When writing files in persistent storage, set `overwrite` to `true` to avoid Ignition failures when reusing a filesystem that already has the file. Avoid using the `append` directive for persistent files, since the append operation will occur on every boot.
 
 == Update process
 

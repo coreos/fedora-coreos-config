@@ -2,9 +2,9 @@
 
 NOTE: Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
 
-In this tutorial, we will setup SSH access and start a container at boot. Fedora CoreOS is focused on running applications/services in containers thus we recommend trying to run containers and avoid modifying the host directly. Running containers and keeping a pristine host layer makes automatic updates more reliable and allows for separation of concerns with the Fedora CoreOS team responsible for the OS and end-user operators/sysadmins responsible for the applications.
+In this tutorial, we will set up SSH access and start a container at boot. Fedora CoreOS is focused on running applications/services in containers thus we recommend trying to run containers and avoid modifying the host directly. Running containers and keeping a pristine host layer makes automatic updates more reliable and allows for separation of concerns with the Fedora CoreOS team responsible for the OS and end-user operators/sysadmins responsible for the applications.
 
-As usual we will setup console autologin, a hostname, systemd pager configuration, but we will also:
+As usual, we will set up console autologin, a hostname, systemd pager configuration, but we will also:
 
 * Add an SSH Key for the `core` user.
 * Add a systemd service (`failure.service`) that fails on boot.
@@ -14,6 +14,7 @@ As usual we will setup console autologin, a hostname, systemd pager configuratio
 
 Similarly to what we did in the second provisioning scenario, we will write the following Butane config in a file called `containers.bu`:
 
+.Example with automatic serial console login, SSH key, and multiple systemd units
 [source,yaml]
 ----
 variant: fcos
@@ -152,7 +153,7 @@ Failed Units: 1
 
 The `Failed Units` message is coming from the https://github.com/coreos/console-login-helper-messages[console login helper messages] helpers. This particular helper shows us when `systemd` has services that are in a failed state. In this case we made `failure.service` with `ExecStart=/usr/bin/false`, so we intentionally created a service that will always fail in order to illustrate the helper messages.
 
-Now that we’re up and we don’t have any real failures we can check out the service that we care about (`etcd-member.service`):
+Now that we’re up and don’t have any real failures we can check out the service that we care about (`etcd-member.service`):
 
 ----
 [core@tutorial ~]$ systemctl status --full etcd-member.service

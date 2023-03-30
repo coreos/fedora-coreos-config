@@ -13,7 +13,7 @@ Currently, if the root filesystem is smaller than 8 GiB, a warning is emitted on
 
 == Referencing block devices from Ignition
 
-Many of the examples below will reference a block device, such as `/dev/vda`.  The name of the available block devices depends on the underlying infrastructure (bare metal vs cloud), and often the specific instance type.  For example in AWS, some instance types have NVMe drives (`/dev/nvme*`), others use `/dev/xvda*`.
+Many of the examples below will reference a block device, such as `/dev/vda`. The name of the available block devices depends on the underlying infrastructure (bare metal vs cloud), and often the specific instance type. For example in AWS, some instance types have NVMe drives (`/dev/nvme*`), others use `/dev/xvda*`.
 
 If your disk configuration is simple and uses the same disk the OS was booted from then the `/dev/disk/by-id/coreos-boot-disk` link can be used to conveniently refer to that device. This link is only available during provisioning for the purpose of making it easy to refer to the same disk the OS was booted from.
 
@@ -183,7 +183,7 @@ storage:
 
 NOTE: You don't need the `path` or `with_mount_unit` keys; FCOS knows that the root partition is special and will figure out how to find it and mount it.
 
-If you want to replicate the boot disk across multiple drives for resiliency to drive failure, you need to mirror all of the default partitions (root, boot, EFI System Partition, and bootloader code).  There is special Butane config syntax for this:
+If you want to replicate the boot disk across multiple drives for resiliency to drive failure, you need to mirror all the default partitions (root, boot, EFI System Partition, and bootloader code). There is special Butane config syntax for this:
 
 .Mirroring the boot disk onto two drives
 [source,yaml]
@@ -540,7 +540,7 @@ The EFI-SYSTEM partition can be deleted or reformatted when BIOS booting. Simila
 
 == Mounted Filesystems
 
-Fedora CoreOS uses OSTree, which is a system for managing multiple bootable operating system trees that share storage. This is distinct from e.g. Container Linux which used a dual partition system. In Fedora CoreOS each operating system version is part of the `/` filesystem.  All deployments share the same `/var` which can be on the same filesystem, or mounted separately.
+Fedora CoreOS uses OSTree, which is a system for managing multiple bootable operating system trees that share storage. This is distinct from e.g. Container Linux which used a dual partition system. In Fedora CoreOS each operating system version is part of the `/` filesystem. All deployments share the same `/var` which can be on the same filesystem, or mounted separately.
 
 This shows the default mountpoints for a Fedora CoreOS system installed on a `/dev/vda` disk:
 

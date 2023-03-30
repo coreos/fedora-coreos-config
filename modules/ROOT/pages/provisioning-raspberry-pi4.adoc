@@ -38,12 +38,12 @@ In this case we can grab these files from the `uboot-images-armv8`, `bcm2711-fir
 ----
 RELEASE=37 # The target Fedora Release. Use the same one that current FCOS is based on.
 mkdir -p /tmp/RPi4boot/boot/efi/
-sudo dnf install -y --downloadonly --release=$RELEASE --forcearch=aarch64 --destdir=/tmp/RPi4boot/  uboot-images-armv8 bcm283x-firmware bcm283x-overlays
+sudo dnf install -y --downloadonly --release=$RELEASE --forcearch=aarch64 --destdir=/tmp/RPi4boot/ uboot-images-armv8 bcm283x-firmware bcm283x-overlays
 ----
 
 Now extract the contents of the RPMs and copy the proper `u-boot.bin` for the RPi4 into place:
 
-WARNING: The following commands to extract the contents of the RPMs, the use of `coreos-installer`, and copying of the files to the ESP partition should be done from outside of a Toolbx container. The `root` user in the container maps to a different user ID (UID) than the `root` (`UID=0`) user on the host. Attempting to run some of these commands in the container and some of these commands on the host can result in permission errors or ownership errors and may impact your ability to successfully install Fedora CoreOS.
+WARNING: The following commands to extract the contents of the RPMs, the use of `coreos-installer`, and copying of the files to the ESP partition should be done from outside a Toolbx container. The `root` user in the container maps to a different user ID (UID) than the `root` (`UID=0`) user on the host. Attempting to run some of these commands in the container and some of these commands on the host can result in permission errors or ownership errors and may impact your ability to successfully install Fedora CoreOS.
 
 [source, bash]
 ----
@@ -130,7 +130,7 @@ There are a few ways to achieve this goal:
 
 #### EDK2: Combined Disk Mode Direct Install
 
-When performing a direct install, meaning you boot (via the EDK2 firmware) into the Fedora CoreOS live environment (ISO or PXE) and run `coreos-installer`, you can mount the EFI partition (2nd partition) of the installed FCOS disk after the install is complete and copy the EDK2 firmware files over:
+When performing a direct install, meaning you boot (via the EDK2 firmware) into the Fedora CoreOS live environment (ISO or PXE) and run `coreos-installer`, you can mount the EFI partition (2nd partition) of the installed FCOS disk after the installation is complete and copy the EDK2 firmware files over:
 
 [source, bash]
 ----

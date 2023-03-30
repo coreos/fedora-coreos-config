@@ -19,7 +19,7 @@ Whether or not a machine needs networking in the initramfs can dictate how a use
 * via live image customization
 ** by embedding network configuration in the live ISO or PXE image
 * via `coreos-installer install --copy-network`
-** by propagating the install environment networking configuration
+** by propagating the installation environment networking configuration
 * via Afterburn
 ** by applying network configuration injected by various platforms
 * via Ignition
@@ -38,11 +38,11 @@ On the first boot of a machine a user can provide kernel arguments that define n
 
 1. In the most generic form, you can stop an instance at the GRUB prompt on the first boot (Ignition boot) and add them to the existing set of kernel arguments.
 
-2. For a bare metal install where you automate the install via kernel arguments added, (i.e., `coreos.inst.install_dev=`), you can also append networking arguments there and they will apply to the install boot and also the first boot (Ignition boot) of the installed machine.
+2. For a bare metal install where you automate the installation via kernel arguments added, (i.e., `coreos.inst.install_dev=`), you can also append networking arguments there and they will apply to the install boot and also the first boot (Ignition boot) of the installed machine.
 
 3. For a PXE boot you can add networking kernel arguments to your existing set of kernel arguments in your PXE configuration.
 
-An example set of kernel arguments for statically configuring an IP address for `ens2` looks like like:
+An example set of kernel arguments for statically configuring an IP address for `ens2` looks like:
 
 [source, bash]
 ----
@@ -74,10 +74,10 @@ For more details on embedding network configuration in a live image, see the xre
 
 For manual bare metal install workflows it may not be preferable to use dracut kernel arguments for configuring network:
 
-- the syntax is not very user friendly
+- the syntax is not very user-friendly
 - manipulating kernel arguments by grabbing the GRUB prompt can be challenging
 
-The `--copy-network` option to `coreos-installer install` will copy the files from `/etc/NetworkManager/system-connections/` directory into the installed system. For an interactive install this allows the user to populate networking configuration in a variety of ways before doing the install:
+The `--copy-network` option to `coreos-installer install` will copy the files from `/etc/NetworkManager/system-connections/` directory into the installed system. For an interactive install this allows the user to populate networking configuration in a variety of ways before doing the installation:
 
 - using the `nmcli` command
 - using the `nmtui` TUI interface
@@ -91,7 +91,7 @@ It also allows the user to do hardware discovery on the node (i.e. "what are my 
 
 On certain platforms Afterburn will inject networking configuration, either configured by the user or by the platform, during the initramfs.
 
-Currently this is only utilized on VMWare. The implementation there allows for users to specify networking configuration in the form of dracut networking arguments without having to stop the boot of the machine and manually inject those arguments themselves.
+Currently, this is only utilized on VMWare. The implementation there allows for users to specify networking configuration in the form of dracut networking arguments without having to stop the boot of the machine and manually inject those arguments themselves.
 
 See https://coreos.github.io/afterburn/usage/initrd-network-cmdline/[the Afterburn documentation] for more information.
 

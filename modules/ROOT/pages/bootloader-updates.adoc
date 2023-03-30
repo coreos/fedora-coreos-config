@@ -2,11 +2,11 @@
 
 == bootupd
 
-Updating the bootloader is not currently automatic.  The https://github.com/coreos/bootupd/[bootupd]
+Updating the bootloader is not currently automatic. The https://github.com/coreos/bootupd/[bootupd]
 project is included in Fedora CoreOS and may be used for manual updates.
 
 This is usually only relevant on bare metal scenarios, or virtualized
-hypervisors that support Secure Boot.  An example reason to update the
+hypervisors that support Secure Boot. An example reason to update the
 bootloader is for https://eclypsium.com/2020/07/29/theres-a-hole-in-the-boot/[the BootHole vulnerability].
 
 At the moment, only the EFI system partition (i.e. not the BIOS MBR) can be updated by bootupd.
@@ -57,7 +57,7 @@ systemd:
 === Using images that predate bootupd
 
 Older CoreOS images that predate the existence of bootupd need
-an explicit "adoption" phase.  If `bootupctl status` says the component
+an explicit "adoption" phase. If `bootupctl status` says the component
 is `Adoptable`, perform the adoption with `bootupctl adopt-and-update`.
 
 [source,bash]

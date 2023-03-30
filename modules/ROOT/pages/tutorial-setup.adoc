@@ -21,9 +21,9 @@ You should start with the setup instructions from this page as they must be comp
 
 == Virtualization with `libvirt`
 
-These tutorials are written targeting a Linux environment with a working `libvirt` setup and hardware virtualization support via `KVM`. There is however nothing specific to the `libvirt` environment in those tutorials and you can thus try the same configurations on any platform where you have console access (or you can skip to the SSH access tutorial to get remote access).
+These tutorials are written targeting a Linux environment with a working `libvirt` setup and hardware virtualization support via `KVM`. There is, however, nothing specific to the `libvirt` environment in those tutorials and you can thus try the same configurations on any platform where you have console access (or you can skip to the SSH access tutorial to get remote access).
 
-For instructions to setup `libvirt` and `KVM` you may refer to the https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/[Getting started with virtualization] guide from Fedora. Although this setup guide is focused on Fedora, the tutorials should work on any distribution with `libvirt` installed and running.
+For instructions to set up `libvirt` and `KVM` you may refer to the https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/[Getting started with virtualization] guide from Fedora. Although this setup guide is focused on Fedora, the tutorials should work on any distribution with `libvirt` installed and running.
 
 == CoreOS tools
 
@@ -43,7 +43,7 @@ cd ~/coreos
 
 === Setup with `podman` or `docker`
 
-All of the tools required to work with Fedora CoreOS are available from containers hosted on https://quay.io/[quay.io]:
+All the tools required to work with Fedora CoreOS are available from containers hosted on https://quay.io/[quay.io]:
 
 [source,bash]
 ----
@@ -163,7 +163,7 @@ mv ignition-validate-x86_64-linux ignition-validate
 chmod a+x ignition-validate
 ----
 
-You may then setup aliases for `butane` and `ignition-validate`:
+You may then set up aliases for `butane` and `ignition-validate`:
 
 [source,bash]
 ----

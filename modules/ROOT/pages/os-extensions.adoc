@@ -7,7 +7,7 @@ However, in some cases it is necessary to add software to the base OS itself. Fo
 To do this, you can use https://coreos.github.io/rpm-ostree/[`rpm-ostree install`]. Consider these packages as "extensions": they extend the functionality of the base OS rather than e.g. providing runtimes for user applications. That said, there are no restrictions on which packages one can actually install. By default, packages are downloaded from the https://docs.fedoraproject.org/en-US/quick-docs/repositories/[Fedora repositories].
 
 To start the layering of a package, you need to write a systemd unit that executes the `rpm-ostree` command to install the wanted package(s).
-By default with `rpm-ostree install`, changes are queued for the next boot.  The `-A/--apply-live` option can be used to apply changes live *and* have them persist.
+By default, with `rpm-ostree install`, changes are queued for the next boot. The `-A/--apply-live` option can be used to apply changes live *and* have them persist.
 
 == Example: Layering vim and setting it as the default editor
 

@@ -4,7 +4,7 @@
 Fedora CoreOS ships with both docker and podman installed. This page explains how to use systemd units to start and stop containers with podman.
 
 == Example configuration
-The following Butane config snippet configures the systemd hello.service to run busybox.
+The following Butane config snippet configures the systemd `hello.service` to run https://www.busybox.net[busybox].
 
 .Example for running busybox using systemd and podman
 [source,yaml]

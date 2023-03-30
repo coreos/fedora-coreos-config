@@ -10,7 +10,7 @@ This guide provides instructions to install Fedora CoreOS to bare metal. Three o
 
 Before installing FCOS, you must have an Ignition configuration file and host it somewhere (e.g. using `python3 -m http.server`). If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
 
-NOTE: If you have servers with different types and/or number of hard drives, you must create a separate customized Ignition config for each machine (or machine class).  A good model is to have the common parts of the configuration factored out into a separate Ignition configuration which can be merged into (via HTTP or inline) the per-machine custom config.
+NOTE: If you have servers with different types and/or number of hard drives, you must create a separate customized Ignition config for each machine (or machine class). A good model is to have the common parts of the configuration factored out into a separate Ignition configuration which can be merged into (via HTTP or inline) the per-machine custom config.
 
 == Installing from live ISO
 
@@ -166,9 +166,9 @@ For details on available customizations, see the https://coreos.github.io/coreos
 
 === ISO installation on diverse hardware
 
-Commonly bare metal systems will have a diversity of hardware - some systems may have NVMe drives `/dev/nvme*`, whereas others have `/dev/sd*` for example.  You will almost certainly have to template the value of `/dev/sda` above.
+Commonly bare metal systems will have a diversity of hardware - some systems may have NVMe drives `/dev/nvme*`, whereas others have `/dev/sd*` for example. You will almost certainly have to template the value of `/dev/sda` above.
 
-A useful approach is to script generating a per-machine `.iso`.  If you have a hardware database (whether a text file in git or relational database) then it will work to generate a per-machine `target-dell.ign` and `target-hp.ign` for example, and specify that to `--dest-ignition` alongside the appropriate `--dest-device` to generate `fedora-coreos-install-dell.iso` and `fedora-coreos-install-hp.iso`.
+A useful approach is to script generating a per-machine `.iso`. If you have a hardware database (whether a text file in git or relational database) then it will work to generate a per-machine `target-dell.ign` and `target-hp.ign` for example, and specify that to `--dest-ignition` alongside the appropriate `--dest-device` to generate `fedora-coreos-install-dell.iso` and `fedora-coreos-install-hp.iso`.
 
 Alternatively, instead of generating per-machine ISOs, you can have a `--pre-install` script run a privileged container which inspects the target system and writes an appropriate https://coreos.github.io/coreos-installer/customizing-install/#config-file-format[installer config] to `/etc/coreos/installer.d`.
 
@@ -178,7 +178,7 @@ You can use any of the methods described above to reinstall Fedora CoreOS on the
 
 === Data persistence
 
-The installer does not completely scrub the target disk. Thanks to Ignition's https://coreos.github.io/ignition/operator-notes#filesystem-reuse-semantics[filesystem-reuse semantics], if you apply a config with the exact same partition and filesystem settings as the first install, all previously stored data in additional partitions will still be available. This can be useful for persisting e.g. `/var/lib/containers` or `/var/home` between reinstalls. There are some restrictions however. See the xref:live-booting.adoc#_using_persistent_state[Using persistent state] section for more information. You will also want to ensure the root filesystem is a fixed number at least 8 GiB as described in xref:storage.adoc[Configuring Storage] so that data partitions are not accidentally overwritten.
+The installer does not completely scrub the target disk. Thanks to Ignition's https://coreos.github.io/ignition/operator-notes#filesystem-reuse-semantics[filesystem-reuse semantics], if you apply a config with the exact same partition and filesystem settings as the first install, all previously stored data in additional partitions will still be available. This can be useful for persisting e.g. `/var/lib/containers` or `/var/home` between reinstalls. There are some restrictions, however. See the xref:live-booting.adoc#_using_persistent_state[Using persistent state] section for more information. You will also want to ensure the root filesystem is a fixed number at least 8 GiB as described in xref:storage.adoc[Configuring Storage] so that data partitions are not accidentally overwritten.
 
 === Destination drive
 

@@ -58,7 +58,7 @@ systemd:
 
 == Defining drop-in units for container daemons
 
-If using docker then the docker.service drop-in is sufficient. If running Kubernetes with containerd (and no docker) then the containerd.service drop-in may be necessary.
+If using docker then the `docker.service` drop-in is sufficient. If running Kubernetes with containerd (and no docker) then the `containerd.service` drop-in may be necessary.
 
 [source,yaml]
 ----

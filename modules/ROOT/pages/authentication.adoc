@@ -20,7 +20,7 @@ passwd:
     - name: miabbott
 ----
 
-You  will typically want to configure SSH keys or a password, in order to be able to login as those users.
+You will typically want to configure SSH keys or a password, in order to be able to login as those users.
 
 == Using an SSH Key
 
@@ -78,7 +78,7 @@ passwd:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTey7R...
 ----
 
-To generate a secure password hash, use `mkpasswd` from the `whois` package.  Your Linux distro may ship a different `mkpasswd` implementation; you can ensure you're using the correct one by running it from a container:
+To generate a secure password hash, use `mkpasswd` from the `whois` package. Your Linux distro may ship a different `mkpasswd` implementation; you can ensure you're using the correct one by running it from a container:
 
 [source]
 ----

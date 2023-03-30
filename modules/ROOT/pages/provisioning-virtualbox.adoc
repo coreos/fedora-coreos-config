@@ -82,7 +82,7 @@ ignition:
 
 === Configuring networking
 
-By default the VM will use https://www.virtualbox.org/manual/UserManual.html#networkingmodes[NAT networking]. This will share the IP address of your host. Alternatively, if you want the VM to use a different IP address than your host, you can set the VM's network adapter to Bridged.
+By default, the VM will use https://www.virtualbox.org/manual/UserManual.html#networkingmodes[NAT networking]. This will share the IP address of your host. Alternatively, if you want the VM to use a different IP address than your host, you can set the VM's network adapter to "Bridged networking".
 
 ==== NAT networking
 
@@ -103,7 +103,7 @@ ssh core@localhost -p 2222
 
 ==== Bridged networking
 
-If you want the VM to use a different IP address than your host, you can set the VM's network adapter to Bridged.
+If you want the VM to use a different IP address than your host, you can set the VM's network adapter to "Bridged networking".
 
 . Determine the network adapter that should be bridged to the VM. To get the name of your host's default network adapter, you can run:
 +

@@ -1,6 +1,6 @@
 = Using a remote Ignition config
 
-With Ignition, you are not limited to the configuration provided locally to a system and you can retrieve other Ignition configs from a remote source. Those configs will then either replace or be merged into the existing config.
+With Ignition, you are not limited to the configuration provided locally to a system and can retrieve other Ignition configs from a remote source. Those configs will then either replace or be merged into the existing config.
 
 The complete list of supported protocols and related options for remote Ignition files is described in the https://coreos.github.io/ignition/specs/[Ignition specification].
 

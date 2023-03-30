@@ -18,7 +18,7 @@ storage:
 
 This example creates a file named `/var/helloworld` with some content defined
 in-line. It also sets the file mode to `0644` (readable by all, writable by the
-owner) and sets owernship to `dnsmasq:dnsmasq`.
+owner) and sets ownership to `dnsmasq:dnsmasq`.
 
 .Example to create a file with in-line content
 [source,yaml]
@@ -40,7 +40,7 @@ storage:
 
 This example creates a file with its content fetched from a remote location. In
 this case, it fetches an HTTPS URL and expects the file to be compressed with
-gzip and will decompress it before writting it on the disk. The decompressed
+gzip and will decompress it before writing it on the disk. The decompressed
 content is checked against the hash value specified in the config. The format
 is `sha512-` followed by the 128 hex characters given by the sha512sum command.
 The resulting file is made readable and executable by all.

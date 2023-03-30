@@ -17,7 +17,7 @@ The new defaults will depend on both the CPU architecture and platform.
 NOTE: The changes will only affect new Fedora CoreOS installations.
       Upgraded systems will retain their current console settings.
 
-See also the https://lists.fedoraproject.org/archives/list/coreos-status@lists.fedoraproject.org/thread/GHLXX4MXNHUEAXQLK6BZN45IQYHRVQB4/[coreos-status anouncement].
+See also the https://lists.fedoraproject.org/archives/list/coreos-status@lists.fedoraproject.org/thread/GHLXX4MXNHUEAXQLK6BZN45IQYHRVQB4/[coreos-status announcement].
 
 === Planning
 
@@ -46,7 +46,7 @@ In summary:
 
 - On many architecture/platform pairs, Fedora CoreOS will allow GRUB and the kernel to follow their own defaults.
   On x86_64, this causes the graphical console to be selected, even if no video card is available.
-  In particular, *x86_64 bare metal installs will no longer use a serial console by default*.
+  In particular, *x86_64 bare metal installations will no longer use a serial console by default*.
 
 - On platforms that expect specific system consoles to be used, such as AWS, Azure, and GCP, Fedora CoreOS will select those consoles by default.
 
@@ -87,7 +87,7 @@ The full release notes for Podman v4 are available https://github.com/containers
 
 - Rollbacks to a version with Podman v3.x will require manual action: Podman v4.0 will perform several schema migrations in the Podman database when it is first run. These schema migrations will cause Podman v3.x and earlier to be unable to read certain network configuration information from the database. This means that it will not be possible to roll back to a release with Podman v3.x without losing some functionality in existing containers.
 
-- Only new installations will use the new network stack by default: Existing systems will keep using the CNI network stack with Podman v4.0. To benefit from the new network stack, you will have to remove all existing containers, images and network with the `podman system reset` command. It is recommend to reboot to apply the change.
+- Only new installations will use the new network stack by default: Existing systems will keep using the CNI network stack with Podman v4.0. To benefit from the new network stack, you will have to remove all existing containers, images and network with the `podman system reset` command. It is recommended to reboot to apply the change.
 
 To validate this change in advance in your deployment, you can use the following instructions to try Podman v4.0 on a node for testing purposes:
 
@@ -196,5 +196,5 @@ This change will be rolled out ...
 
 === Notes
 
-Detailed description of the change, the impacts, how to test, what manual actions are neeed, etc.
+Detailed description of the change, the impacts, how to test, what manual actions are needed, etc.
 ////

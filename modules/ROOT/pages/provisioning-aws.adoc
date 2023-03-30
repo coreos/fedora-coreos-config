@@ -22,7 +22,7 @@ include::getting-started-aws.adoc[]
 
 In order to launch a customized FCOS instance, a valid Ignition configuration must be passed as its https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data[user data] at creation time. You can use the same command from the xref:#_minimal_example[] but add `--user-data file://path/to/config.ign` argument:
 
-NOTE: The SSH key for the `core` user is supplied via Afterburn in this example as well. 
+NOTE: The SSH key for the `core` user is supplied via Afterburn in this example as well.
 
 .Launching and customizing a new instance
 [source,bash]

@@ -2,7 +2,7 @@
 
 NOTE: Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
 
-In this tutorial, we will setup a user level systemd unit for an unprivileged user. There are times when it's helpful to launch a user-level https://www.freedesktop.org/software/systemd/man/systemd.unit.html[systemd unit] without having to log in. For example, you may wish to launch a container that provides a network service or run an HPC job. For this setup, we will add the following to a Butane config:
+In this tutorial, we will set up a user level systemd unit for an unprivileged user. There are times when it's helpful to launch a user-level https://www.freedesktop.org/software/systemd/man/systemd.unit.html[systemd unit] without having to log in. For example, you may wish to launch a container that provides a network service or run an HPC job. For this setup, we will add the following to a Butane config:
 
 * A user level systemd unit: `/home/sleeper/.config/systemd/user/linger-example.service`.
 * Enable it as a user level systemd service.

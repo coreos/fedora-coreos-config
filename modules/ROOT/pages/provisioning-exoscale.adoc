@@ -14,7 +14,7 @@ You also need to have access to an Exoscale account. https://portal.exoscale.com
 
 == Uploading an FCOS image as a custom Template
 
-NOTE: Exoscale offers official FCOS templates, but they are currently out of date. For now we recommend creating your own template. Track progress on fixing this in https://github.com/coreos/fedora-coreos-tracker/issues/1166[#1166].
+NOTE: Exoscale offers official FCOS templates, but they are currently out of date. For now, we recommend creating your own template. Track progress on fixing this in https://github.com/coreos/fedora-coreos-tracker/issues/1166[#1166].
 
 Exoscale provides https://community.exoscale.com/documentation/compute/custom-templates[Custom Templates] to be able to upload any cloud image. To create a Custom Template you first need to download and decompress the image.
 
@@ -56,7 +56,7 @@ You can provision a FCOS instance using the Exoscale https://portal.exoscale.com
 
 NOTE: You will need to use at least version https://github.com/exoscale/cli/releases/tag/v1.54.0[v1.54.0] of the Exoscale CLI.
 
-WARNING: Do not use the `--cloud-init-compress` argument to the CLI.  It causes the Ignition config to be passed compressed to the instance and https://github.com/coreos/fedora-coreos-tracker/issues/1160[Ignition doesn't tolerate that].
+WARNING: Do not use the `--cloud-init-compress` argument to the CLI. It causes the Ignition config to be passed compressed to the instance and https://github.com/coreos/fedora-coreos-tracker/issues/1160[Ignition doesn't tolerate that].
 
 .Launching a new instance with Exoscale CLI
 [source, bash]
@@ -74,7 +74,7 @@ exo compute instance create $NAME \
     --cloud-init "path/to/ignition-file.ign"
 ----
 
-NOTE: If just SSH access is desired and no further customization is required, you don't need to pass any Ignition file and you can omit the `--cloud-init` argument.
+NOTE: If just SSH access is desired and no further customization is required, you don't need to pass any Ignition file and can omit the `--cloud-init` argument.
 
 TIP: You can find out the instance's assigned IP by running `exo compute instance show $NAME`
 

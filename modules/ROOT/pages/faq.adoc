@@ -81,7 +81,7 @@ https://lists.fedoraproject.org/archives/list/coreos@lists.fedoraproject.org/[co
 * website at https://getfedora.org/coreos/
 * Twitter at https://twitter.com/fedoracoreos[@fedoracoreos] (Fedora CoreOS news), https://twitter.com/fedora[@fedora] (all Fedora and other relevant news)
 
-There is a community meeting that happens every week.  See the https://calendar.fedoraproject.org/CoreOS/[Fedora CoreOS fedocal] for the most up-to-date information.
+There is a community meeting that happens every week. See the https://calendar.fedoraproject.org/CoreOS/[Fedora CoreOS fedocal] for the most up-to-date information.
 
 If you think you have found a problem with Fedora CoreOS, file an issue in our https://github.com/coreos/fedora-coreos-tracker/issues[issue tracker].
 
@@ -284,12 +284,12 @@ The summary is that Fedora CoreOS uses the format `X.Y.Z.A`
 
 The version numbering scheme is subject to change and is not intended to be parsed by machine.
 
-== Why is the dnsmasq.service systemd unit masked?
+== Why is the `dnsmasq.service` systemd unit masked?
 
 We have found that the dnsmasq binary can be used for several host
 applications, including podman and NetworkManager. For this reason we
 include the dnsmasq package in the base OSTree layer, but we discourage
-the use of the dnsmasq.service in the host by masking it with
+the use of the `dnsmasq.service` in the host by masking it with
 `systemctl mask dnsmasq.service`.
 
 _"Why do you mask the service?"_
@@ -365,7 +365,7 @@ storage:
 
 == Why do I get SELinux denials after updates if I have local policy modifications?
 
-Currently the OSTree and SELinux tooling conflict a bit. If you have
+Currently, the OSTree and SELinux tooling conflict a bit. If you have
 permanently applied local policy modifications then policy updates
 delivered by the OS will no longer apply; your policy stays frozen.
 This means any policy "fixes" needed to enable new functionality will
@@ -434,7 +434,7 @@ If your system is in this state you have two options:
 ** This means you start with the latest policy.
 * Follow the workaround in https://github.com/coreos/fedora-coreos-tracker/issues/701[coreos/fedora-coreos-tracker#701] to restore the base policy.
 
-== Why is the systemd-repart.service systemd unit masked?
+== Why is the `systemd-repart.service` systemd unit masked?
 
 https://www.freedesktop.org/software/systemd/man/systemd-repart.html[system-repart]
 is a tool to grow and add partitions to a partition table. On Fedora CoreOS, we
@@ -446,5 +446,5 @@ specific disk layout. It is also capable of reconfiguring the root filesystem
 (from xfs to ext4 for example), setting up LUKS, etc... See the
 xref:storage.adoc[Configuring Storage] page for examples.
 
-See the xref:faq.adoc#_why_is_the_dnsmasq_service_systemd_unit_masked[Why is the dnsmasq.service systemd unit masked]
+See the xref:faq.adoc#_why_is_the_dnsmasq_service_systemd_unit_masked[Why is the `dnsmasq.service` systemd unit masked]
 entry for an example config to unmask this unit.

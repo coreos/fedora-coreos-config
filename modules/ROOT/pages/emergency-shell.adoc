@@ -43,7 +43,7 @@ kernel_arguments:
     # Order is significant, so group both arguments into the same list entry.
     - console=tty0 console=ttyS0,115200n8
   should_not_exist:
-    # Remove any existing defaults.  Adjust as needed.
+    # Remove any existing defaults. Adjust as needed.
     - console=hvc0
     - console=tty0
     - console=ttyAMA0,115200n8
