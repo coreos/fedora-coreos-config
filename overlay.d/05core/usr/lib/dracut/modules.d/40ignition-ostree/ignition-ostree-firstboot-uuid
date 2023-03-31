@@ -62,10 +62,6 @@ if [ "${TYPE}" == "${orig_type}" ] && [ "${UUID}" == "${orig_uuid}" ]; then
     *) echo "unexpected filesystem type ${TYPE}" 1>&2; exit 1 ;;
   esac
   udevadm settle || :
-  # Workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2162151.
-  # We nuke the blkid cache containing stale UUIDs so that future blkid calls
-  # (or tools leveraging libblkid) will be forced to re-probe.
-  rm -rf /run/blkid
   echo "Regenerated UUID for ${target}"
 else
   echo "No changes required for ${target} TYPE=${TYPE} UUID=${UUID}"
