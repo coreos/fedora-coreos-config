@@ -110,39 +110,20 @@ ssh core@<ip address>
 
 This section shows how to use vSphere facilities to configure and run VMs from the command-line. Similar steps can be performed via the graphical UI too.
 
-=== Importing the OVA
+TIP: While the examples below use `govc session.login` to authenticate, you can also use environment variables to provide credentials. Check the https://github.com/vmware/govmomi/tree/main/govc#usage[official documentation] for details.
 
-The downloaded OVA has to be first imported into vSphere library:
+=== Setting up a new VM
+
+You can now deploy a new VM, starting from the OVA and the encoded Ignition configuration:
 
 [source, bash]
 ----
 FCOS_OVA='./ova-templates/fedora-coreos-31.20200210.3.0-vmware.x86_64.ova'
-LIBRARY='fcos-images'
-TEMPLATE_NAME='fcos-31.20200210.3.0'
-govc session.login -u 'user:password@host'
-govc library.create "${LIBRARY}"
-govc library.import -n "${TEMPLATE_NAME}" "${LIBRARY}" "${FCOS_OVA}"
-----
-
-=== Setting up a new VM
-
-You can now deploy a new VM, starting from the template in the library and the encoded Ignition configuration:
-
-[source, bash]
-----
 VM_NAME='fcos-node01'
-govc library.deploy "${LIBRARY}/${TEMPLATE_NAME}" "${VM_NAME}"
+govc session.login -u 'user:password@host'
+govc import.ova -name ${VM_NAME} ${FCOS_OVA}
 govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data.encoding=${CONFIG_ENCODING}"
 govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data=${CONFIG_ENCODED}"
-----
-
-Note: If the vcenter has multiple datacenters and datastores, you must specify them explicitly:
-[source, bash]
-----
-# Get resource pool using `$ govc find / -type ResourcePool`
-RESOURCE_POOL="/Datacenter6.5/host/Cluster6.5/Resources"
-DATASTORE="datastore-129"
-govc library.deploy -pool=${RESOURCE_POOL} -ds=${DATASTORE} "${LIBRARY}/${TEMPLATE_NAME}" "${VM_NAME}"
 ----
 
 A new `fcos-node01` VM is now available for booting. Its hardware configuration can be further customized at this point, and then powered-up:
@@ -158,6 +139,39 @@ If you set up an xref:authentication.adoc[SSH key] for the default `core` user, 
 [source, bash]
 ----
 ssh core@<ip address>
+----
+
+=== Using the OVA from the vSphere library
+
+In case you want to spawn multiple, different VMs based on the same base image you can import it into the vSphere library for easy reuse:
+
+[source, bash]
+----
+FCOS_OVA='./ova-templates/fedora-coreos-31.20200210.3.0-vmware.x86_64.ova'
+LIBRARY='fcos-images'
+TEMPLATE_NAME='fcos-31.20200210.3.0'
+govc session.login -u 'user:password@host'
+govc library.create "${LIBRARY}"
+govc library.import -n "${TEMPLATE_NAME}" "${LIBRARY}" "${FCOS_OVA}"
+----
+
+Creating a new instance can now be done using the `govc library.deploy` command:
+
+[source, bash]
+----
+VM_NAME='fcos-node01'
+govc library.deploy "${LIBRARY}/${TEMPLATE_NAME}" "${VM_NAME}"
+govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data.encoding=${CONFIG_ENCODING}"
+govc vm.change -vm "${VM_NAME}" -e "guestinfo.ignition.config.data=${CONFIG_ENCODED}"
+----
+
+Note: If the vCenter has multiple datacenters and datastores, you must specify them explicitly:
+[source, bash]
+----
+# Get resource pool using `$ govc find / -type ResourcePool`
+RESOURCE_POOL="/Datacenter6.5/host/Cluster6.5/Resources"
+DATASTORE="datastore-129"
+govc library.deploy -pool=${RESOURCE_POOL} -ds=${DATASTORE} "${LIBRARY}/${TEMPLATE_NAME}" "${VM_NAME}"
 ----
 
 === First-boot networking and Ignition
