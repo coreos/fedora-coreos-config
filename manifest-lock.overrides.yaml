@@ -8,10 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  nmstate:
-    evr: 2.2.9-2.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-2122902605
-      reason: https://github.com/coreos/coreos-assembler/pull/3397
-      type: fast-track
+packages: {}
