@@ -294,14 +294,28 @@ case "${1:-}" in
         if [ -d "${saved_data}" ]; then
             read dev < "${zram_dev}"
             umount "${saved_data}"
+            rm -rf "${saved_data}" "${partstate_root}"
             # After unmounting, make sure zram device state is stable before we remove it.
             # See https://github.com/openshift/os/issues/1149
             # Should remove when https://bugzilla.redhat.com/show_bug.cgi?id=2172058 is fixed.
+            # Seems the previous workaround https://github.com/coreos/fedora-coreos-config/pull/2226
+            # can not completely resolve the race issue, try in loop with a small sleep for el9 + !x86_64.
             if [ $(uname -m) != x86_64 ] && is_rhcos9; then
-                udevadm trigger --settle "/dev/zram${dev}"
+                for x in {0..10}; do
+                    if ! echo "${dev}" > /sys/class/zram-control/hot_remove 2>/dev/null; then
+                        sleep 0.1
+                    else
+                        dev=
+                        break
+                    fi
+                done
+                # try it one last time and let it possibly fail
+                if [ -n "${dev}" ]; then
+                    echo "${dev}" > /sys/class/zram-control/hot_remove
+                fi
+            else
+                echo "${dev}" > /sys/class/zram-control/hot_remove
             fi
-            rm -rf "${saved_data}" "${partstate_root}"
-            echo "${dev}" > /sys/class/zram-control/hot_remove
         fi
         ;;
     *)

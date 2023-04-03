@@ -1,0 +1,56 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   tags: "platform-independent"
+#
+# Checks if default shutdown time is 1m 30s
+#
+# See: https://github.com/coreos/fedora-coreos-tracker/issues/1404
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+DefaultTimeoutStartUSec=$(systemctl show --value --property=DefaultTimeoutStartUSec)
+DefaultTimeoutStopUSec=$(systemctl show --value --property=DefaultTimeoutStopUSec)
+DefaultTimeoutAbortUSec=$(systemctl show --value --property=DefaultTimeoutAbortUSec)
+DefaultDeviceTimeoutUSec=$(systemctl show --value --property=DefaultDeviceTimeoutUSec)
+
+error="DefaultTimeoutStartUsec=$DefaultTimeoutStartUSec "
+error+="DefaultTimeoutStopUSec=$DefaultTimeoutStopUSec "
+error+="DefaultTimeoutAbortUSec=$DefaultTimeoutAbortUSec "
+error+="DefaultDeviceTimeoutUSec=$DefaultDeviceTimeoutUSec"
+timeout="1min 30s"
+
+systemd_version=$(rpm -q --queryformat '%{VERSION}' systemd)
+required_version="252.4"
+
+# Verify that the timeouts are 1 minute and 30 seconds (90 seconds)
+
+if [[ "$DefaultTimeoutStartUSec" == "$timeout" ]]; then
+    ok "The default start timeout is 1m 30 seconds."
+else
+    fatal $error
+fi
+
+if [[ $DefaultTimeoutStopUSec == "$timeout" ]]; then
+    ok "The default stop timeout is 1m 30 seconds."
+else
+    fatal $error
+fi
+
+if [[ $DefaultTimeoutAbortUSec == "$timeout" ]]; then
+    ok "The default abort timeout time is 1m 30 seconds."
+else
+    fatal $error
+fi
+
+if vergte "${systemd_version}" "${required_version}"; then
+    if [[ $DefaultDeviceTimeoutUSec == "$timeout" ]]; then
+        ok "The default device timeout is 1m 30 seconds."
+    else
+        fatal $error
+    fi
+else
+    ok "This variable is not available in the current systemd version"
+fi
