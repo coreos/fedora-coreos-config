@@ -3,7 +3,7 @@ set -euo pipefail
 # Configuring the timeserver for the platform is often handled
 # by pre-baking a config into a particular image for a platform, but
 # that doesn't work for us because we have a single update stream.  Hence
-# this generator dynamically inspects the platform and reconfigures chrony.
+# this service dynamically inspects the platform and reconfigures chrony.
 #
 # AWS: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html
 # Azure: https://docs.microsoft.com/en-us/azure/virtual-machines/linux/time-sync
@@ -11,28 +11,28 @@ set -euo pipefail
 #
 # Originally spawned from discussion in https://github.com/openshift/installer/pull/3513
 
-. /usr/lib/coreos/generator-lib.sh
+self=$(basename "$0")
 
-self=$(basename $0)
-confpath=/run/coreos-platform-chrony.conf
-
-platform=$(karg ignition.platform.id)
-case "${platform}" in
-    azure|azurestack|aws|gcp) ;;  # OK, this is a platform we know how to support
-    *) exit 0 ;;
-esac
-
-# Exit early if we have already been run once
-if [[ -f "${confpath}" ]]; then
-    echo "$self: ${confpath} already exists; skipping"
-    exit 0
-fi
-
-# Exit early if chrony configuration as been changed from the image default
+# Exit early if chrony configuration has been changed from the image default
 if ! cmp {/usr,}/etc/chrony.conf >/dev/null; then
     echo "$self: /etc/chrony.conf is modified; not changing the default"
     exit 0
 fi
+
+mkdir -p /run/coreos
+confpath=/run/coreos/platform-chrony.conf
+altenvfilepath=/run/coreos/sysconfig-chrony
+cmdline=( $(</proc/cmdline) )
+cmdline_arg() {
+    local name="$1" value
+    for arg in "${cmdline[@]}"; do
+        if [[ "${arg%%=*}" == "${name}" ]]; then
+            value="${arg#*=}"
+        fi
+    done
+    echo "${value}"
+}
+platform=$(cmdline_arg ignition.platform.id)
 
 # If not set already (by host customization or this script), set
 # PEERNTP=no so that DHCP-provided NTP servers are not added to chrony.
@@ -82,14 +82,11 @@ esac
 # Policy doesn't allow chronyd to read run_t
 chcon --reference=/etc/chrony.conf "${confpath}"
 
-UNIT_DIR="${1:-/tmp}"
 
-unitconfpath="${UNIT_DIR}/chronyd.service.d/coreos-platform-chrony.conf"
-mkdir -p $(dirname "${unitconfpath}")
-cat >"${unitconfpath}" << EOF
-[Service]
-ExecStart=
-ExecStart=/usr/sbin/chronyd -f ${confpath} \$OPTIONS
-EOF
+# Read in the existing $OPTIONS variable setting from /etc/sysconfig/chronyd
+# and write out a new $OPTIONS variable (with specified new configuration path)
+# to /etc/sysconfig/chronyd
+source /etc/sysconfig/chronyd
+echo "OPTIONS='${OPTIONS} -f ${confpath}'" > ${altenvfilepath}
 
 echo "$self: Updated chrony to use ${platform} configuration ${confpath}"
