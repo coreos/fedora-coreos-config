@@ -4,7 +4,7 @@ DefaultDependencies=false
 After=ignition-disks.service
 # Avoid racing with UUID regeneration
 After=ignition-ostree-uuid-root.service
-Before=ignition-ostree-growfs.service
+After=ignition-ostree-growfs.service
 Before=ignition-ostree-mount-firstboot-sysroot.service
 OnFailure=emergency.target
 OnFailureJobMode=isolate
