@@ -9,9 +9,15 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  nmstate:
-    evr: 2.2.9-1.fc38
+  podman:
+    evr: 5:4.4.4-3.fc38
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-a226c4298d
-      reason: https://github.com/coreos/coreos-assembler/pull/3397
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-c6f82ee005
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1455
+      type: fast-track
+  podman-plugins:
+    evr: 5:4.4.4-3.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-c6f82ee005
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1455
       type: fast-track
