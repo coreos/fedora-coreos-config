@@ -176,7 +176,7 @@ ensure_zram_dev() {
     echo $(( mem_available * 90 / 100 ))K > /sys/block/zram"${dev}"/mem_limit
     mkfs.xfs -q /dev/zram"${dev}"
     mkdir "${saved_data}"
-    mount /dev/zram"${dev}" "${saved_data}"
+    mount -t xfs /dev/zram"${dev}" "${saved_data}"
     # save the zram device number created for when called to cleanup
     echo "${dev}" > "${zram_dev}"
 }
