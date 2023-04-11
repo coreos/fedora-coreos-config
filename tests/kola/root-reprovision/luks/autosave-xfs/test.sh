@@ -10,7 +10,7 @@
 ##   # timeout value than the default.
 ##   timeoutMin: 15
 ##   # Trigger automatic XFS reprovisioning
-##   minDisk: 64
+##   minDisk: 100
 
 set -xeuo pipefail
 
