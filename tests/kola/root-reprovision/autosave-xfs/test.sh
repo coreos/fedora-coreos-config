@@ -3,7 +3,7 @@
 ##   # This test reprovisions the rootfs automatically.
 ##   tags: "platform-independent reprovision"
 ##   # Trigger automatic XFS reprovisioning
-##   minDisk: 64
+##   minDisk: 100
 ##   # Root reprovisioning requires at least 4GiB of memory.
 ##   minMemory: 4096
 ##   # This test includes a lot of disk I/O and needs a higher
