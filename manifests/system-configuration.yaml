@@ -37,6 +37,8 @@ packages:
   # Boost starving threads
   # https://github.com/coreos/fedora-coreos-tracker/issues/753
   - stalld
+  # Ignition aware SSH key management
+  - ssh-key-dir
 
 postprocess:
   # Mask systemd-repart. Ignition is responsible for partition setup on first
