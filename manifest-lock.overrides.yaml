@@ -19,31 +19,6 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1479
       type: pin
-  libblkid:
-    evr: 2.38.1-4.fc38
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1462
-      type: pin
-  libfdisk:
-    evr: 2.38.1-4.fc38
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1462
-      type: pin
-  libmount:
-    evr: 2.38.1-4.fc38
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1462
-      type: pin
-  libsmartcols:
-    evr: 2.38.1-4.fc38
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1462
-      type: pin
-  libuuid:
-    evr: 2.38.1-4.fc38
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1462
-      type: pin
   linux-firmware:
     evra: 20230310-148.fc39.noarch
     metadata:
@@ -58,14 +33,4 @@ packages:
     evra: 20230310-148.fc39.noarch
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1479
-      type: pin
-  util-linux:
-    evr: 2.38.1-4.fc38
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1462
-      type: pin
-  util-linux-core:
-    evr: 2.38.1-4.fc38
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1462
       type: pin
