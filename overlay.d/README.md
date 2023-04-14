@@ -74,9 +74,13 @@ bits to include the rules in the initramfs too.
 Add udev rules and scripts needed from google-guest-configs [1] for disk
 configuration in GCP, such as local SSD controllers (nvme and scsi).
 
-There is an opened BZ [2] requesting a subpackage of google-compute-engine-guest-configs
+The udev rules are also needed in the initramfs [2] and are delivered here via a dracut
+module.
+
+There is an opened BZ [3] requesting a subpackage of google-compute-engine-guest-configs
 containing only what we need. Once we get it, we can include this rpm in the
 OS (Fedora/RHEL) and drop this module entirely.
 
 [1] https://github.com/GoogleCloudPlatform/guest-configs/tree/master/src/lib/udev
-[2] https://bugzilla.redhat.com/show_bug.cgi?id=218286
+[2] https://issues.redhat.com/browse/OCPBUGS-10942
+[3] https://bugzilla.redhat.com/show_bug.cgi?id=2182865
