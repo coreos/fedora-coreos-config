@@ -9,24 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  fuse-common:
-    evr: 3.13.1-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-37e142ea83
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1356#issuecomment-1507828970
-      type: fast-track
-  fuse3:
-    evr: 3.13.1-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-37e142ea83
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1356#issuecomment-1507828970
-      type: fast-track
-  fuse3-libs:
-    evr: 3.13.1-2.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-37e142ea83
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1356#issuecomment-1507828970
-      type: fast-track
   podman:
     evr: 5:4.4.4-3.fc38
     metadata:
