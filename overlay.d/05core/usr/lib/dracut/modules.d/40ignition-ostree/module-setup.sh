@@ -28,6 +28,8 @@ install() {
         systemd-sysusers \
         systemd-tmpfiles \
         sort \
+        xfs_info \
+        xfs_spaceman \
         uniq
 
     if [[ $(uname -m) = s390x ]]; then
@@ -81,7 +83,7 @@ install() {
 
     inst_multiple jq chattr
     inst_script "$moddir/ignition-ostree-transposefs.sh" "/usr/libexec/ignition-ostree-transposefs"
-    for x in detect save restore; do
+    for x in detect save autosave-xfs restore; do
         install_ignition_unit ignition-ostree-transposefs-${x}.service
     done
 
