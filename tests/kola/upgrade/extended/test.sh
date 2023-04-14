@@ -57,8 +57,11 @@ if [ -f /etc/zincati/config.d/90-disable-auto-updates.toml ]; then
     systemctl restart zincati
 fi
 
-version=$(rpm-ostree status  --json | jq -r '.deployments[0].version')
-stream=$(rpm-ostree status  --json | jq -r '.deployments[0]["base-commit-meta"]["fedora-coreos.stream"]')
+get_booted_deployment_json() {
+    rpm-ostree status  --json | jq -r '.deployments[] | select(.booted == true)'
+}
+version=$(get_booted_deployment_json | jq -r '.version')
+stream=$(get_booted_deployment_json | jq -r '.["base-commit-meta"]["fedora-coreos.stream"]')
 
 # Pick up the last release for the current stream
 test -f /srv/releases.json || \
