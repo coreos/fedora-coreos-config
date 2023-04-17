@@ -117,6 +117,16 @@ EOF
     need_zincati_restart='true'
 }
 
+fix-allow-downgrade() {
+    # Older FCOS will complain about an upgrade target being 'chronologically older than current'
+    # This is documented in https://github.com/coreos/fedora-coreos-tracker/issues/481
+    # We can workaround the problem via a config dropin:
+    cat <<'EOF' > /run/zincati/config.d/99-fedora-coreos-allow-downgrade.toml
+updates.allow_downgrade = true
+EOF
+    need_zincati_restart='true'
+}
+
 ok "Reached version: $version"
 
 # Are we all the way at the desired target version?
@@ -140,17 +150,25 @@ fi
 # - 35.20211119.2.0
 # - 35.20211119.1.0
 #
+# First release with new enough rpm-ostree with fix for allow-downgrade issue
+# - 31.20200517.3.0
+# - 31.20200517.2.0
+# - 32.20200517.1.0
+#
 case "$stream" in
     'next')
         verlt $version '35.20211119.1.0' && grab-gpg-keys
+        verlt $version '32.20200517.1.0' && fix-allow-downgrade
         verlt $version '32.20200505.1.0' && fix-update-url
         ;;
     'testing')
         verlt $version '35.20211119.2.0' && grab-gpg-keys
+        verlt $version '31.20200517.2.0' && fix-allow-downgrade
         verlt $version '31.20200505.2.0' && fix-update-url
         ;;
     'stable')
         verlt $version '35.20211119.3.0' && grab-gpg-keys
+        verlt $version '31.20200517.3.0' && fix-allow-downgrade
         verlt $version '31.20200505.3.0' && fix-update-url
         ;;
     *) fatal "unexpected stream: $stream";;
