@@ -1,0 +1,24 @@
+variant: fcos
+# Must use version 1.0.0 here to use Ignition spec 3.0.0 for
+# our oldest supported starting points (i.e. 31.20200108.3.0)
+version: 1.0.0
+storage:
+  files:
+    - path: /etc/systemd/journald.conf.d/forward-to-console.conf
+      mode: 0644
+      contents:
+        inline: |
+          # Send journal messages to the console. This is so we can see the
+          # progress even after autopkgtest-reboot-prepare has been called.
+          [Journal]
+          ForwardToConsole=yes
+    - path: /etc/zincati/config.d/99-config.toml
+      mode: 0644
+      contents:
+        inline: |
+          # Don't wait for any rollout window, update ASAP
+          [identity]
+          rollout_wariness = 0.0000
+          # Increase the frequency at which we check for updates
+          [agent.timing]
+          steady_interval_secs = 20
