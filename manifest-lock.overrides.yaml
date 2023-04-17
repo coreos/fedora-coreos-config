@@ -9,38 +9,33 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  coreos-installer:
-    evr: 0.17.0-1.fc37
+  fuse-common:
+    evr: 3.13.1-2.fc38
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-d6f3402ea1
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-37e142ea83
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1356#issuecomment-1507828970
       type: fast-track
-  coreos-installer-bootinfra:
-    evr: 0.17.0-1.fc37
+  fuse3:
+    evr: 3.13.1-2.fc38
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-d6f3402ea1
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-37e142ea83
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1356#issuecomment-1507828970
       type: fast-track
-  kernel:
-    evr: 6.1.18-200.fc37
+  fuse3-libs:
+    evr: 3.13.1-2.fc38
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1441
-      type: pin
-  kernel-core:
-    evr: 6.1.18-200.fc37
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1441
-      type: pin
-  kernel-modules:
-    evr: 6.1.18-200.fc37
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1441
-      type: pin
-  nmstate:
-    evr: 2.2.8-2.fc37
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-59543876eb
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-37e142ea83
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1356#issuecomment-1507828970
       type: fast-track
-  xfsprogs:
-    evr: 5.18.0-3.fc37
+  podman:
+    evr: 5:4.4.4-3.fc38
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1443
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-c6f82ee005
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1455
+      type: fast-track
+  podman-plugins:
+    evr: 5:4.4.4-3.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-c6f82ee005
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1455
+      type: fast-track

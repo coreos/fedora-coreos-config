@@ -4,6 +4,7 @@ ConditionKernelCommandLine=|ignition.platform.id=azurestack
 ConditionKernelCommandLine=|ignition.platform.id=azure
 ConditionKernelCommandLine=|ignition.platform.id=aws
 ConditionKernelCommandLine=|ignition.platform.id=gcp
+ConditionKernelCommandLine=|ignition.platform.id=qemu
 Before=NetworkManager.service
 Before=chronyd.service
 
