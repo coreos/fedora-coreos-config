@@ -117,7 +117,7 @@ fi
 
 # Apply workarounds based on the current version of the system.
 #
-# First release on each stream with new enough zincati for updates stg.fedoraprojec.org
+# First release on each stream with new enough zincati for updates stg.fedoraproject.org
 # - 31.20200505.3.0
 # - 31.20200505.2.0
 # - 32.20200505.1.0
@@ -130,7 +130,7 @@ fi
 case "$stream" in
     'next')
         verlt $version '35.20211119.1.0' && grab-gpg-keys
-        verlt $version '31.20200505.1.0' && fix-update-url
+        verlt $version '32.20200505.1.0' && fix-update-url
         ;;
     'testing')
         verlt $version '35.20211119.2.0' && grab-gpg-keys
