@@ -51,10 +51,12 @@ set -eux -o pipefail
 
 . /etc/os-release # for $VERSION_ID
 
+need_zincati_restart='false'
+
 # delete the disabling of updates that was done by the test framework
 if [ -f /etc/zincati/config.d/90-disable-auto-updates.toml ]; then
     rm -f /etc/zincati/config.d/90-disable-auto-updates.toml
-    systemctl restart zincati
+    need_zincati_restart='true'
 fi
 
 get_booted_deployment_json() {
@@ -91,6 +93,9 @@ grab-gpg-keys() {
             sudo tee "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${ver}-primary"
         sudo chcon -v --reference="/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${VERSION_ID}-primary" "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${ver}-primary"
     done
+    # restart Zincati in case the process had been kicked off earlier
+    # than this script ran.
+    need_zincati_restart='true'
 }
 
 fix-update-url() {
@@ -101,7 +106,7 @@ fix-update-url() {
 [cincinnati]
 base_url= "https://updates.coreos.fedoraproject.org"
 EOF
-    systemctl restart zincati
+    need_zincati_restart='true'
 }
 
 ok "Reached version: $version"
@@ -152,6 +157,9 @@ if vereq $version $last_release; then
     /tmp/autopkgtest-reboot reboot # execute the reboot
     sleep infinity
 fi
+
+# Restart Zincati if configuration was changed
+[ "${need_zincati_restart}" == "true" ] && systemctl restart zincati
 
 # Watch the Zincati logs to see if it got a lead on a new update.
 # Timeout after some time if no update. Unset pipefail since the
