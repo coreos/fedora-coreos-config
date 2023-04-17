@@ -59,6 +59,14 @@ if [ -f /etc/zincati/config.d/90-disable-auto-updates.toml ]; then
     need_zincati_restart='true'
 fi
 
+# Early `next` releases before [1] had auto-updates disabled too. Let's
+# drop that config if it exists.
+# [1] https://github.com/coreos/fedora-coreos-config/commit/99eab318998441760cca224544fc713651f7a16d
+if [ -f /etc/zincati/config.d/90-disable-on-non-production-stream.toml ]; then
+    rm -f /etc/zincati/config.d/90-disable-on-non-production-stream.toml
+    need_zincati_restart='true'
+fi
+
 get_booted_deployment_json() {
     rpm-ostree status  --json | jq -r '.deployments[] | select(.booted == true)'
 }
