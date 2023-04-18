@@ -5,6 +5,12 @@ set -euo pipefail
 # partition, unless it determines that either the rootfs was moved or the
 # partition was already resized (e.g. via Ignition).
 
+# In the IBM Secure Execution case we use Ignition to grow and reencrypt rootfs
+# see overlay.d/05core/usr/lib/dracut/modules.d/35coreos-ignition/coreos-diskful-generator
+if [[ -f /run/coreos/secure-execution ]]; then
+    exit 0
+fi
+
 # This is copied from ignition-ostree-transposefs.sh.
 # Sometimes, for some reason the by-label symlinks aren't updated. Detect these
 # cases, and explicitly `udevadm trigger`.
@@ -41,12 +47,6 @@ saved_partstate=/run/ignition-ostree-rootfs-partstate.sh
 path=/sysroot
 src=/dev/disk/by-label/root
 mount "${src}" "${path}"
-
-# In the IBM Secure Execution case we use Ignition to grow and reencrypt rootfs
-# see overlay.d/05core/usr/lib/dracut/modules.d/35coreos-ignition/coreos-diskful-generator
-if [[ -f /run/coreos/secure-execution ]]; then
-    exit 0
-fi
 
 if [ ! -f "${saved_partstate}" ]; then
     partition=$(realpath /dev/disk/by-label/root)
