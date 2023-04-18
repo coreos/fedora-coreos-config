@@ -13,8 +13,13 @@ set -xeuo pipefail
 . $KOLA_EXT_DATA/commonlib.sh
 
 required_initrd_files=(
+    # Files from the 25azure-udev-rules overlay
     "/usr/lib/udev/rules.d/66-azure-storage.rules"
     "/usr/lib/udev/rules.d/99-azure-product-uuid.rules"
+    # Files from the 30gcp-udev-rules overlay
+    "/usr/lib/udev/rules.d/64-gce-disk-removal.rules"
+    "/usr/lib/udev/rules.d/65-gce-disk-naming.rules"
+    "/usr/lib/udev/google_nvme_id"
 )
 
 tmpd=$(mktemp -d)
