@@ -52,7 +52,7 @@
       "evra": "1.4.2-2.fc38.s390x"
     },
     "avahi-libs": {
-      "evra": "0.8-20.fc38.s390x"
+      "evra": "0.8-22.fc38.s390x"
     },
     "basesystem": {
       "evra": "11-15.fc38.noarch"
@@ -229,7 +229,7 @@
       "evra": "3.9-1.fc38.s390x"
     },
     "dnsmasq": {
-      "evra": "2.89-1.fc38.s390x"
+      "evra": "2.89-2.fc38.s390x"
     },
     "dosfstools": {
       "evra": "4.2-6.fc38.s390x"
@@ -772,7 +772,7 @@
       "evra": "4.4.33-7.fc38.s390x"
     },
     "libxml2": {
-      "evra": "2.10.3-3.fc38.s390x"
+      "evra": "2.10.4-1.fc38.s390x"
     },
     "libyaml": {
       "evra": "0.2.5-9.fc38.s390x"
@@ -943,10 +943,10 @@
       "evra": "3.5-1.fc38.s390x"
     },
     "polkit": {
-      "evra": "122-3.fc38.s390x"
+      "evra": "122-3.fc38.1.s390x"
     },
     "polkit-libs": {
-      "evra": "122-3.fc38.s390x"
+      "evra": "122-3.fc38.1.s390x"
     },
     "polkit-pkla-compat": {
       "evra": "0.1-23.fc38.s390x"
@@ -1184,16 +1184,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-04-17T00:00:00Z",
+    "generated": "2023-04-18T00:00:00Z",
     "rpmmd_repos": {
+      "fedora": {
+        "generated": "2023-04-13T20:36:40Z"
+      },
       "fedora-coreos-pool": {
-        "generated": "2023-04-17T00:29:21Z"
+        "generated": "2023-04-17T02:46:43Z"
       },
-      "fedora-next": {
-        "generated": "2023-04-14T09:32:06Z"
-      },
-      "fedora-next-updates": {
-        "generated": "2023-04-16T01:55:15Z"
+      "fedora-updates": {
+        "generated": "2023-04-18T01:31:54Z"
       }
     }
   }
