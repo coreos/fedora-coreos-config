@@ -108,6 +108,22 @@ postprocess:
     set -xeuo pipefail
     rm -vrf /usr/lib/modules/*aarch64/dtb/qcom/
 
+  # Force the ssh-host-keys-migration to happen on every boot
+  # to handle cases where someone did a upgrade->rollback->upgrade
+  # See https://github.com/coreos/fedora-coreos-tracker/issues/1473
+  # We should remove this after the next barrier release.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    mkdir -p /usr/lib/systemd/system/ssh-host-keys-migration.service.d
+    cat <<'EOF' > /usr/lib/systemd/system/ssh-host-keys-migration.service.d/coreos-force-migration-on-every-boot.conf
+    # Force the ssh-host-keys-migration to happen on every boot
+    # to handle cases where someone did a upgrade->rollback->upgrade
+    # See https://github.com/coreos/fedora-coreos-tracker/issues/1473
+    [Unit]
+    ConditionPathExists=
+    EOF
+
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go
 # into one of the sub-manifests listed at the top.
