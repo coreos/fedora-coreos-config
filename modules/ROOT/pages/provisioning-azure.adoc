@@ -2,6 +2,8 @@
 
 This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Azure. Fedora currently does not publish Fedora CoreOS images within Azure, so you must download an Azure image from Fedora and upload it to your Azure subscription.
 
+NOTE: FCOS does not support legacy https://learn.microsoft.com/en-us/azure/virtual-machines/classic-vm-deprecation[Azure Service Manager] virtual machines.
+
 == Prerequisites
 
 Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
