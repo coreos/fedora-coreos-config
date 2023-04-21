@@ -1,6 +1,8 @@
 = Provisioning Fedora CoreOS on IBM Cloud
 
-This guide shows how to provision new Fedora CoreOS (FCOS) instances in IBM Cloud VPC Generation 2 for either the `x86_64` or `s390x` architectures.
+This guide shows how to provision new Fedora CoreOS (FCOS) instances in IBM Cloud for either the `x86_64` or `s390x` architectures.
+
+NOTE: FCOS does not support https://cloud.ibm.com/docs/cloud-infrastructure?topic=cloud-infrastructure-compare-infrastructure[IBM Cloud Classic Infrastructure].
 
 == Prerequisites
 
@@ -33,7 +35,7 @@ ibmcloud resource group-create $RESOURCE_GROUP # Create the resource group if it
 ibmcloud target -g $RESOURCE_GROUP
 ----
 
-There are also several other pieces that need to be in place, like a VPC, SSH keys, networks, permissions, etc. Unfortunately, this guide is not a comprehensive IBM Cloud guide. If you are new to IBM Cloud please familiarize yourself using https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started[the documentation for VPC Gen2] first.
+There are also several other pieces that need to be in place, like a VPC, SSH keys, networks, permissions, etc. Unfortunately, this guide is not a comprehensive IBM Cloud guide. If you are new to IBM Cloud please familiarize yourself using https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started[the documentation for IBM Cloud VPC networks] first.
 
 === Creating an Image
 

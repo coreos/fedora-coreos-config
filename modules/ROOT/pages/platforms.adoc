@@ -15,7 +15,7 @@ The currently supported platforms and their identifiers are listed below.
 * DigitalOcean (`digitalocean`): Cloud platform. See xref:provisioning-digitalocean.adoc[Booting on DigitalOcean].
 * Exoscale (`exoscale`): Cloud platform. See xref:provisioning-exoscale.adoc[Booting on Exoscale].
 * Google Cloud Platform (`gcp`): Cloud platform. See xref:provisioning-gcp.adoc[Booting on GCP].
-* IBM Cloud, VPC Generation 2 (`ibmcloud`): Cloud platform. See xref:provisioning-ibmcloud.adoc[Booting on IBM Cloud].
+* IBM Cloud (`ibmcloud`): Cloud platform. See xref:provisioning-ibmcloud.adoc[Booting on IBM Cloud].
 * Bare metal (`metal`): With BIOS, UEFI or network boot, with standard or 4k Native disks. See xref:bare-metal.adoc[Installing on Bare Metal] or xref:live-booting-ipxe.adoc[Live-booting via iPXE].
 * Nutanix (`nutanix`): Hypervisor.
 * OpenStack (`openstack`): Cloud platform. See xref:provisioning-openstack.adoc[Booting on OpenStack].
@@ -33,7 +33,7 @@ The currently supported platforms and their identifiers are listed below.
 
 === s390x
 
-* IBM Cloud, VPC Generation 2 (`ibmcloud`): Cloud platform. See xref:provisioning-ibmcloud.adoc[Booting on IBM Cloud].
+* IBM Cloud (`ibmcloud`): Cloud platform. See xref:provisioning-ibmcloud.adoc[Booting on IBM Cloud].
 * Bare metal (`metal`): From disk or network boot. See xref:bare-metal.adoc[Installing on Bare Metal] or xref:live-booting-ipxe.adoc[Live-booting via iPXE].
 * QEMU (`qemu`): Hypervisor. See xref:provisioning-libvirt.adoc[Booting on libvirt]
 * OpenStack (cloud platform): `openstack`): Cloud platform. See xref:provisioning-openstack.adoc[Booting on OpenStack].
