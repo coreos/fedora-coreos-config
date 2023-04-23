@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.42.0-1.fc38.s390x"
+      "evra": "1:1.42.6-1.fc38.s390x"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.42.0-1.fc38.s390x"
+      "evra": "1:1.42.6-1.fc38.s390x"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.42.0-1.fc38.s390x"
+      "evra": "1:1.42.6-1.fc38.s390x"
     },
     "NetworkManager-team": {
-      "evra": "1:1.42.0-1.fc38.s390x"
+      "evra": "1:1.42.6-1.fc38.s390x"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.42.0-1.fc38.s390x"
+      "evra": "1:1.42.6-1.fc38.s390x"
     },
     "WALinuxAgent-udev": {
       "evra": "2.9.0.4-1.fc38.noarch"
@@ -37,7 +37,10 @@
       "evra": "1.22-1.fc38.s390x"
     },
     "amd-gpu-firmware": {
-      "evra": "20230310-148.fc38.noarch"
+      "evra": "20230404-149.fc38.noarch"
+    },
+    "atheros-firmware": {
+      "evra": "20230404-149.fc38.noarch"
     },
     "attr": {
       "evra": "2.5.1-6.fc38.s390x"
@@ -71,6 +74,9 @@
     },
     "bind-utils": {
       "evra": "32:9.18.13-1.fc38.s390x"
+    },
+    "brcmfmac-firmware": {
+      "evra": "20230404-149.fc38.noarch"
     },
     "bsdtar": {
       "evra": "3.6.1-4.fc38.s390x"
@@ -148,10 +154,10 @@
       "evra": "4:1-89.fc38.noarch"
     },
     "coreos-installer": {
-      "evra": "0.17.0-1.fc38.s390x"
+      "evra": "0.17.0-2.fc38.s390x"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.17.0-1.fc38.s390x"
+      "evra": "0.17.0-2.fc38.s390x"
     },
     "coreutils": {
       "evra": "9.1-11.fc38.s390x"
@@ -385,7 +391,7 @@
       "evra": "56-3.fc38.s390x"
     },
     "intel-gpu-firmware": {
-      "evra": "20230310-148.fc38.noarch"
+      "evra": "20230404-149.fc38.noarch"
     },
     "iproute": {
       "evra": "6.1.0-1.fc38.s390x"
@@ -631,7 +637,7 @@
       "evra": "1.0.1-23.fc38.s390x"
     },
     "libnfsidmap": {
-      "evra": "1:2.6.2-2.rc8.fc38.s390x"
+      "evra": "1:2.6.3-0.fc38.s390x"
     },
     "libnftnl": {
       "evra": "1.2.4-2.fc38.s390x"
@@ -784,10 +790,10 @@
       "evra": "2.5.1-34.fc38.s390x"
     },
     "linux-firmware": {
-      "evra": "20230310-148.fc38.noarch"
+      "evra": "20230404-149.fc38.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20230310-148.fc38.noarch"
+      "evra": "20230404-149.fc38.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.30-1.fc38.s390x"
@@ -825,6 +831,9 @@
     "mpfr": {
       "evra": "4.1.1-3.fc38.s390x"
     },
+    "mt7xxx-firmware": {
+      "evra": "20230404-149.fc38.noarch"
+    },
     "nano": {
       "evra": "7.2-2.fc38.s390x"
     },
@@ -853,7 +862,7 @@
       "evra": "0.52.23-2.fc38.s390x"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.2-2.rc8.fc38.s390x"
+      "evra": "1:2.6.3-0.fc38.s390x"
     },
     "nftables": {
       "evra": "1:1.0.5-2.fc38.s390x"
@@ -868,7 +877,7 @@
       "evra": "2.18.1-22.fc38.s390x"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20230310-148.fc38.noarch"
+      "evra": "20230404-149.fc38.noarch"
     },
     "nvme-cli": {
       "evra": "2.4-1.fc38.s390x"
@@ -967,10 +976,13 @@
       "evra": "20230318-1.fc38.noarch"
     },
     "qemu-user-static-x86": {
-      "evra": "2:7.2.0-6.fc38.s390x"
+      "evra": "2:7.2.1-1.fc38.s390x"
     },
     "readline": {
       "evra": "8.2-3.fc38.s390x"
+    },
+    "realtek-firmware": {
+      "evra": "20230404-149.fc38.noarch"
     },
     "rpcbind": {
       "evra": "1.2.6-4.rc2.fc38.s390x"
@@ -991,7 +1003,7 @@
       "evra": "4.18.1-1.fc38.s390x"
     },
     "rpm-sequoia": {
-      "evra": "1.3.0-1.fc38.s390x"
+      "evra": "1.4.0-1.fc38.s390x"
     },
     "rsync": {
       "evra": "3.2.7-2.fc38.s390x"
@@ -1015,10 +1027,10 @@
       "evra": "4.8-12.fc38.s390x"
     },
     "selinux-policy": {
-      "evra": "38.10-1.fc38.noarch"
+      "evra": "38.11-1.fc38.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "38.10-1.fc38.noarch"
+      "evra": "38.11-1.fc38.noarch"
     },
     "setup": {
       "evra": "2.14.3-2.fc38.noarch"
@@ -1120,7 +1132,7 @@
       "evra": "0.0.99.4-1.fc38.s390x"
     },
     "tpm2-tools": {
-      "evra": "5.5-1.fc38.s390x"
+      "evra": "5.5-3.fc38.s390x"
     },
     "tpm2-tss": {
       "evra": "4.0.1-3.fc38.s390x"
@@ -1184,7 +1196,7 @@
     }
   },
   "metadata": {
-    "generated": "2023-04-21T00:00:00Z",
+    "generated": "2023-04-23T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:36:40Z"
@@ -1193,7 +1205,7 @@
         "generated": "2023-04-21T16:55:41Z"
       },
       "fedora-updates": {
-        "generated": "2023-04-21T02:01:26Z"
+        "generated": "2023-04-23T01:01:39Z"
       }
     }
   }
