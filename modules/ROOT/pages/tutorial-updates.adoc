@@ -6,7 +6,7 @@ In this tutorial, we will not focus on provisioning but on what happens during u
 
 == Downloading an older Fedora CoreOS release
 
-One of the defining features of Fedora CoreOS is automatic updates. To see them in action, we have to download an older Fedora CoreOS release. Start by picking an older release from the https://getfedora.org/en/coreos?stream=stable[Fedora CoreOS release page]:
+One of the defining features of Fedora CoreOS is automatic updates. To see them in action, we have to download an older Fedora CoreOS release. Start by picking an older release from the https://fedoraproject.org/coreos/release-notes/[Fedora CoreOS release page]:
 
 [source,bash]
 ----
@@ -20,7 +20,7 @@ Once the archive has been downloaded, make sure to verify its integrity:
 
 [source,bash]
 ----
-curl https://getfedora.org/static/fedora.gpg | gpg --import
+curl https://fedoraproject.org/fedora.gpg | gpg --import
 gpg --verify fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz.sig
 ----
 
