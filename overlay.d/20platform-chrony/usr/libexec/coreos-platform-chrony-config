@@ -83,11 +83,11 @@ case "${platform}" in
          echo 'refclock PHC /dev/ptp_hyperv poll 3 dpoll -2 offset 0'
          echo 'leapsectz right/UTC'
         ) >> "${confpath}" ;;
-    aws)
+    aws | ec2)
         (echo '# See also https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html'
          echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4'
         ) >> "${confpath}" ;;
-    gcp)
+    gcp | gce)
         (echo '# See also https://cloud.google.com/compute/docs/instances/managing-instances#configure-ntp'
          echo '# and https://cloud.google.com/compute/docs/images/configuring-imported-images'
          echo 'server metadata.google.internal prefer iburst'
