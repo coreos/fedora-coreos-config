@@ -1,8 +1,8 @@
 #!/bin/bash
 ## kola:
 ##   tags: "platform-independent"
-#
-# This test makes sure that ignition is able to use `coreos-boot-disk` symlink.
+##   description: Verify that ignition is able to use 
+##     `coreos-boot-disk` symlink.
 
 set -xeuo pipefail
 

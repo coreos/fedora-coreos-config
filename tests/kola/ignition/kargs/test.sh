@@ -1,5 +1,8 @@
 #!/bin/bash
 # TODO: Doc
+## kola:
+##   platforms: qemu
+##   description: Verify ignition supports kernel arguments.
 
 set -xeuo pipefail
 
