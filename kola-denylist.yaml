@@ -18,3 +18,6 @@
   snooze: 2023-05-03
   arches:
     - aarch64
+- pattern: ext.config.networking.nmstate.*
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1480
+  snooze: 2023-05-08
