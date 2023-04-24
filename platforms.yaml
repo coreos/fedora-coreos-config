@@ -85,6 +85,7 @@ x86_64:
     kernel_arguments:
       - console=tty0
       - console=ttyS0,115200n8
+      - systemd.journald.forward_to_console
   azure:
     # https://docs.microsoft.com/en-us/troubleshoot/azure/virtual-machines/serial-console-linux
     # https://docs.microsoft.com/en-us/troubleshoot/azure/virtual-machines/boot-diagnostics
@@ -93,6 +94,7 @@ x86_64:
     kernel_arguments:
       - console=tty0
       - console=ttyS0,115200n8
+      - systemd.journald.forward_to_console
   gcp:
     # Four serial ports are available; we use the first one
     # https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-using-serial-console
@@ -104,6 +106,7 @@ x86_64:
     kernel_arguments:
       - console=tty0
       - console=ttyS0,115200n8
+      - systemd.journald.forward_to_console
   ibmcloud:
     # Docs suggest 9600 bps, but that doesn't seem reasonable
     # https://cloud.ibm.com/docs/vpc?topic=vpc-create-linux-custom-image#kernel-args
@@ -115,6 +118,7 @@ x86_64:
     kernel_arguments:
       - console=tty0
       - console=ttyS0,115200n8
+      - systemd.journald.forward_to_console
   kubevirt:
     # No official docs on this for kubevirt. Requested some:
     # https://github.com/kubevirt/kubevirt/issues/9400
@@ -127,6 +131,7 @@ x86_64:
     kernel_arguments:
       - console=ttyS0,115200n8
       - console=tty0
+      - systemd.journald.forward_to_console
   openstack:
     # Graphical console primary, serial console available for logging
     # https://docs.openstack.org/diskimage-builder/latest/elements/bootloader/README.html
@@ -138,6 +143,7 @@ x86_64:
     kernel_arguments:
       - console=ttyS0,115200n8
       - console=tty0
+      - systemd.journald.forward_to_console
   packet:
     # https://metal.equinix.com/developers/docs/resilience-recovery/serial-over-ssh/#limitations
     grub_commands:
@@ -146,6 +152,7 @@ x86_64:
       - terminal_output serial
     kernel_arguments:
       - console=ttyS1,115200n8
+      - systemd.journald.forward_to_console
   qemu:
     # https://github.com/coreos/fedora-coreos-tracker/issues/954
     grub_commands:
@@ -155,6 +162,7 @@ x86_64:
     kernel_arguments:
       - console=tty0
       - console=ttyS0,115200n8
+      - systemd.journald.forward_to_console
   virtualbox:
     # Graphical console primary, serial console available for logging
     # https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-virtualbox/#_troubleshooting_first_boot_problems
@@ -165,6 +173,7 @@ x86_64:
     kernel_arguments:
       - console=ttyS0,115200n8
       - console=tty0
+      - systemd.journald.forward_to_console
   vmware:
     # Graphical console primary, serial console available for logging
     # https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-vmware/#_troubleshooting_first_boot_problems
@@ -175,3 +184,4 @@ x86_64:
     kernel_arguments:
       - console=ttyS0,115200n8
       - console=tty0
+      - systemd.journald.forward_to_console
