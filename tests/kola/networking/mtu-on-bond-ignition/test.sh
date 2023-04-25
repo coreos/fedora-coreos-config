@@ -11,6 +11,8 @@
 ##   # appendKernelArgs doesn't work on s390x
 ##   # https://github.com/coreos/coreos-assembler/issues/2776
 ##   architectures: "!s390x"
+##   description: Verify that configure MTU on a VLAN subinterface for 
+##     the bond via ignition works.
 #
 # Set MTU on a VLAN subinterface for the bond using ignition config and check
 # - verify MTU on the bond matches config
