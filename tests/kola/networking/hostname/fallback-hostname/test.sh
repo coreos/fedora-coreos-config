@@ -1,13 +1,13 @@
 #!/bin/bash
 ## kola:
 ##   tags: "platform-independent"
-#
-# Test that the fallback hostname is `localhost`. This test
-# validates that the fallback hostname is set to `localhost`
-# by first disabling NetworkManager from setting the hostname
-# via DHCP or DNS (see config.bu) and then verifying that the
-# hostname is set from the fallback hostname and is `localhost`.
-# https://github.com/coreos/fedora-coreos-tracker/issues/902
+##   description: >
+##     Test that the fallback hostname is `localhost`. This test
+##     validates that the fallback hostname is set to `localhost`
+##     by first disabling NetworkManager from setting the hostname
+##     via DHCP or DNS (see config.bu) and then verifying that the
+##     hostname is set from the fallback hostname and is `localhost`.
+##     https://github.com/coreos/fedora-coreos-tracker/issues/902
 #
 # Use the output of hostnamectl to gather information about how
 # the hostname is/was set. We're expecting something like this:

@@ -1,12 +1,12 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify NM's internal DHCP client runs by default.
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-# Ensure NM's internal DHCP client runs by default
 if ! journalctl -b 0 -u NetworkManager --grep=dhcp | grep -q "Using DHCP client 'internal'"; then
   fatal "Error: NetworkManager's internal DHCP client is not running"
 fi
