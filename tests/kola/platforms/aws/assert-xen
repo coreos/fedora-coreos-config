@@ -9,8 +9,8 @@
 ##   # should only run on Xen instances and the caller should request
 ##   # the test.
 ##   requiredTag: aws-xen-test
-#
-# Test to make sure the booted AWS instance is XEN based
+##   description: Verify that we can create an AWS instance with 
+##     XEN based.
 
 set -xeuo pipefail
 

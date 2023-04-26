@@ -7,7 +7,7 @@
 ##     there. According to [1] and [2] the driver does not provide sufficient
 ##     information to systemd-udev for systemd's naming to work. It falls
 ##     back to basic ethX naming.
-##     See:
+##     See
 ##     - https://access.redhat.com/solutions/3204751
 ##     - https://github.com/Azure/WALinuxAgent/issues/1877
 ##     - https://github.com/coreos/fedora-coreos-config/commit/2a5c2abc796ac645d705700bf445b50d4cda8f5f

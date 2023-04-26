@@ -8,11 +8,11 @@
 ##   distros: fcos
 ##   # Toolbox container is currently available only for x86_64 and aarch64 in Fedora
 ##   architectures: x86_64 aarch64
-#
-# Make sure that basic toolbox functionnality is working:
-# - Creating a toolbox
-# - Running a command in a toolbox
-# - Removing all toolbox containers
+##   description: >
+##     Make sure that basic toolbox functionnality is working:
+##     - Creating a toolbox
+##     - Running a command in a toolbox
+##     - Removing all toolbox containers
 #
 # Important note: Commands are run indirectly via calls to `machinectl shell`
 # to re-create the user environment needed for unprivileged podman

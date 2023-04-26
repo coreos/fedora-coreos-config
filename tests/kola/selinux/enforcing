@@ -1,6 +1,8 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: true
+##   description: Verify selinux should be Enforcing by default.
+##     Also can switch to Permissive mode and switch back.
 
 set -xeuo pipefail
 

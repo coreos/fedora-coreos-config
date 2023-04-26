@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify that coreos-update-ca-trust service works.
 
 set -xeuo pipefail
 
