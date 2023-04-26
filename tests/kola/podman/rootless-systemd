@@ -10,11 +10,11 @@
 ##   # https://bugzilla.redhat.com/show_bug.cgi?id=1907030
 ##   # https://pagure.io/releng/issue/10935#comment-808601
 ##   minMemory: 1536
+##   description: Verify that rootless+systemd works.
+##     See https://github.com/containers/podman/issues/7441
 #
 # This script runs a rootless podman container (rootless because it's
 # run as the `core` user) with systemd inside that brings up httpd.
-# It tests that rootless+systemd works. See issue:
-# https://github.com/containers/podman/issues/7441
 #
 # If it gets easy to change the kargs in the future we should try this
 # both on cgroups v1 and cgroups v2.

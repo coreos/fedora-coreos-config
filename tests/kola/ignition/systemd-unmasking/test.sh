@@ -5,7 +5,7 @@
 ##   # RHCOS.
 ##   # TODO-RHCOS: determine if any services on RHCOS are masked and adapt test
 ##   distros: fcos
-##   description: Verify that ignition supports to unmask units.
+##   description: Verify that Ignition supports to unmask units.
 
 set -xeuo pipefail
 

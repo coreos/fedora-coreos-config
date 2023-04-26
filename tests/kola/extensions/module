@@ -7,8 +7,7 @@
 ##   # test take longer than 10 minutes in our aarch64 qemu tests.
 ##   timeoutMin: 15
 ##   minMemory: 1536
-#
-# This test ensures that we can install some common tools as OS extensions.
+##   description: Verify that we can install some common tools as OS extensions.
 
 set -xeuo pipefail
 

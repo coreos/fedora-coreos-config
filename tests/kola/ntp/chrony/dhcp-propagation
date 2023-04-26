@@ -13,6 +13,7 @@
 ##   # https://bugzilla.redhat.com/show_bug.cgi?id=1907030
 ##   # https://pagure.io/releng/issue/10935#comment-808601
 ##   minMemory: 1536
+##   description: Verify that chronyd service got ntp servers from DHCP.
 #
 # This script creates two veth interfaces i.e. one for the host machine
 # and other for the container(dnsmasq server). This setup will be helpful

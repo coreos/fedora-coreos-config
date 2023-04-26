@@ -7,8 +7,8 @@
 ##   distros: fcos
 ##   # Needs internet access as we fetch files from koji
 ##   tags: "needs-internet platform-independent"
-#
-# Build container image with a new kernel and reboot into the new image.
+##   description: Verify that build container image with a new kernel 
+##     and can reboot into the new image.
 #
 # Copyright (C) 2023 Red Hat, Inc.
 #
