@@ -8,29 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  amd-gpu-firmware:
-    evra: 20230310-148.fc39.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1479
-      type: pin
-  intel-gpu-firmware:
-    evra: 20230310-148.fc39.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1479
-      type: pin
-  linux-firmware:
-    evra: 20230310-148.fc39.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1479
-      type: pin
-  linux-firmware-whence:
-    evra: 20230310-148.fc39.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1479
-      type: pin
-  nvidia-gpu-firmware:
-    evra: 20230310-148.fc39.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1479
-      type: pin
+packages: {}
