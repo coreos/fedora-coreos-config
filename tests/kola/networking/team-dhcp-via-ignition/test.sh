@@ -8,9 +8,6 @@
 ##   # different firmwares (BIOS vs UEFI) the NIC names are different.
 ##   # See https://github.com/coreos/fedora-coreos-tracker/issues/1060
 ##   appendKernelArgs: "net.ifnames=0"
-##   # appendKernelArgs doesn't work on s390x
-##   # https://github.com/coreos/coreos-assembler/issues/2776
-##   architectures: "!s390x"
 ##   description: Verify team networking works via Ignition config.
 
 # The Ignition config refers to
