@@ -47,7 +47,7 @@ IGNITION_DEVICE_ARG="-fw_cfg name=opt/com.coreos/config,file=${IGNITION_CONFIG}"
 IGNITION_DEVICE_ARG="-drive file=${IGNITION_CONFIG},if=none,format=raw,readonly=on,id=ignition -device virtio-blk,serial=ignition,drive=ignition"
 
 qemu-kvm -m 2048 -cpu host -nographic -snapshot \
-  -drive if=virtio,file=${IMAGE} ${IGNITION_DEVICE_ARG}
+  -drive if=virtio,file=${IMAGE} ${IGNITION_DEVICE_ARG} \
   -nic user,model=virtio,hostfwd=tcp::2222-:22
 ----
 
@@ -56,7 +56,7 @@ qemu-kvm -m 2048 -cpu host -nographic -snapshot \
 ----
 qemu-img create -f qcow2 -F qcow2 -b ${IMAGE} my-fcos-vm.qcow2
 qemu-kvm -m 2048 -cpu host -nographic \
-  -drive if=virtio,file=my-fcos-vm.qcow2 ${IGNITION_DEVICE_ARG}
+  -drive if=virtio,file=my-fcos-vm.qcow2 ${IGNITION_DEVICE_ARG} \
   -nic user,model=virtio,hostfwd=tcp::2222-:22
 ----
 
