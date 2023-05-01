@@ -27,6 +27,15 @@ blktype=$(lsblk -o TYPE "${src}" --noheadings)
 fstype=$(findmnt -nvr /var/log -o FSTYPE)
 [[ $fstype == ext4 ]]
 
+table=$(dmsetup table varlog)
+if grep -q allow_discards <<< "${table}"; then
+    fatal "found allow_discards in /var/log DM table: ${table}"
+fi
+if grep -q no_read_workqueue <<< "${table}"; then
+    fatal "found no_read_workqueue in /var/log DM table: ${table}"
+fi
+ok "discard and custom option not enabled for /var/log"
+
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
       ok "mounted on first boot"
