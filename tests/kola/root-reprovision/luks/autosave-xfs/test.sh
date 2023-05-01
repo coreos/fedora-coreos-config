@@ -9,17 +9,25 @@
 ##   # This test includes a lot of disk I/O and needs a higher
 ##   # timeout value than the default.
 ##   timeoutMin: 15
+##   # Trigger automatic XFS reprovisioning
+##   minDisk: 100
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-# check that we didn't run automatic XFS reprovisioning
+# check that we ran automatic XFS reprovisioning
 if [ -z "${AUTOPKGTEST_REBOOT_MARK:-}" ]; then
-    if [ -f /run/ignition-ostree-autosaved-xfs.stamp ]; then
-        fatal "unexpected autosaved XFS"
+    if [ ! -f /run/ignition-ostree-autosaved-xfs.stamp ]; then
+        fatal "expected autosaved XFS"
     fi
-    ok "no autosaved XFS on large disk"
+    ok "autosaved XFS on large disk"
+
+    eval $(xfs_info / | grep -o 'agcount=[0-9]*')
+    if [ "$agcount" -gt 4 ]; then
+        fatal "expected agcount of at most 4, got ${agcount}"
+    fi
+    ok "low agcount on large disk"
 fi
 
 # run the rest of the tests
