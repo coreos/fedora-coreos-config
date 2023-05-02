@@ -51,10 +51,20 @@ set -eux -o pipefail
 
 . /etc/os-release # for $VERSION_ID
 
+need_zincati_restart='false'
+
 # delete the disabling of updates that was done by the test framework
 if [ -f /etc/zincati/config.d/90-disable-auto-updates.toml ]; then
     rm -f /etc/zincati/config.d/90-disable-auto-updates.toml
-    systemctl restart zincati
+    need_zincati_restart='true'
+fi
+
+# Early `next` releases before [1] had auto-updates disabled too. Let's
+# drop that config if it exists.
+# [1] https://github.com/coreos/fedora-coreos-config/commit/99eab318998441760cca224544fc713651f7a16d
+if [ -f /etc/zincati/config.d/90-disable-on-non-production-stream.toml ]; then
+    rm -f /etc/zincati/config.d/90-disable-on-non-production-stream.toml
+    need_zincati_restart='true'
 fi
 
 get_booted_deployment_json() {
@@ -91,6 +101,9 @@ grab-gpg-keys() {
             sudo tee "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${ver}-primary"
         sudo chcon -v --reference="/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${VERSION_ID}-primary" "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${ver}-primary"
     done
+    # restart Zincati in case the process had been kicked off earlier
+    # than this script ran.
+    need_zincati_restart='true'
 }
 
 fix-update-url() {
@@ -101,7 +114,17 @@ fix-update-url() {
 [cincinnati]
 base_url= "https://updates.coreos.fedoraproject.org"
 EOF
-    systemctl restart zincati
+    need_zincati_restart='true'
+}
+
+fix-allow-downgrade() {
+    # Older FCOS will complain about an upgrade target being 'chronologically older than current'
+    # This is documented in https://github.com/coreos/fedora-coreos-tracker/issues/481
+    # We can workaround the problem via a config dropin:
+    cat <<'EOF' > /run/zincati/config.d/99-fedora-coreos-allow-downgrade.toml
+updates.allow_downgrade = true
+EOF
+    need_zincati_restart='true'
 }
 
 ok "Reached version: $version"
@@ -117,7 +140,7 @@ fi
 
 # Apply workarounds based on the current version of the system.
 #
-# First release on each stream with new enough zincati for updates stg.fedoraprojec.org
+# First release on each stream with new enough zincati for updates stg.fedoraproject.org
 # - 31.20200505.3.0
 # - 31.20200505.2.0
 # - 32.20200505.1.0
@@ -127,17 +150,25 @@ fi
 # - 35.20211119.2.0
 # - 35.20211119.1.0
 #
+# First release with new enough rpm-ostree with fix for allow-downgrade issue
+# - 31.20200517.3.0
+# - 31.20200517.2.0
+# - 32.20200517.1.0
+#
 case "$stream" in
     'next')
         verlt $version '35.20211119.1.0' && grab-gpg-keys
-        verlt $version '31.20200505.1.0' && fix-update-url
+        verlt $version '32.20200517.1.0' && fix-allow-downgrade
+        verlt $version '32.20200505.1.0' && fix-update-url
         ;;
     'testing')
         verlt $version '35.20211119.2.0' && grab-gpg-keys
+        verlt $version '31.20200517.2.0' && fix-allow-downgrade
         verlt $version '31.20200505.2.0' && fix-update-url
         ;;
     'stable')
         verlt $version '35.20211119.3.0' && grab-gpg-keys
+        verlt $version '31.20200517.3.0' && fix-allow-downgrade
         verlt $version '31.20200505.3.0' && fix-update-url
         ;;
     *) fatal "unexpected stream: $stream";;
@@ -152,6 +183,9 @@ if vereq $version $last_release; then
     /tmp/autopkgtest-reboot reboot # execute the reboot
     sleep infinity
 fi
+
+# Restart Zincati if configuration was changed
+[ "${need_zincati_restart}" == "true" ] && systemctl restart zincati
 
 # Watch the Zincati logs to see if it got a lead on a new update.
 # Timeout after some time if no update. Unset pipefail since the
