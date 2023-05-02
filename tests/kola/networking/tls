@@ -1,0 +1,21 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   tags: "platform-independent needs-internet"
+##   description: Verify we can fetch from various popular hosts over TLS.
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+urls_to_fetch=(
+    "https://cloud.google.com"
+    "https://aws.amazon.com/"
+    "https://azure.microsoft.com"
+    "https://start.fedoraproject.org/"
+)
+
+for url in "${urls_to_fetch[@]}"; do
+    curl -I -s -S -m 30 --retry 5 "$url"
+done
+ok "tls"
