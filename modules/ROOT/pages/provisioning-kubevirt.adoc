@@ -1,0 +1,89 @@
+= Provisioning Fedora CoreOS on KubeVirt
+
+This guide shows how to provision new Fedora CoreOS (FCOS) nodes on any KubeVirt-enabled Kubernetes cluster.
+
+== Prerequisites
+
+Before provisioning an FCOS machine, you must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+You also need to have access to a Kubernetes environment with https://kubevirt.io/user-guide/operations/installation/[KubeVirt] installed.
+
+== Referencing the KubeVirt Image
+
+Fedora CoreOS is designed to be updated automatically, with different schedules per stream.
+
+The image for each stream can directly be referenced from the official registry:
+
+- `quay.io/fedora/fedora-coreos-kubevirt:stable`
+- `quay.io/fedora/fedora-coreos-kubevirt:testing`
+- `quay.io/fedora/fedora-coreos-kubevirt:next`
+
+== Launching a VM instance
+
+Given the `quay.io/fedora/fedora-coreos-kubevirt` images you can create a VMI defnition and combine that with an Ignition config to launch a machine.
+
+In the example below, the Ignition config stored in local file `example.ign` is exposed to the VMI via a Kubernetes Secret.
+Learn about various ways to expose userdata to VMIs in the https://kubevirt.io/user-guide/virtual_machines/startup_scripts/#startup-scripts[KubeVirt user guide].
+
+NOTE: If the user prefers, they can use `oc` instead of `kubectl` in the following commands.
+
+.Creating the secret
+[source, bash]
+----
+kubectl create secret generic ignition-payload --from-file=userdata=example.ign
+----
+
+.Launching a VM instance referencing the secret
+[source, bash]
+----
+STREAM="stable" # or "testing" or "next"
+cat <<END > vmi.yaml
+---
+apiVersion: kubevirt.io/v1
+kind: VirtualMachineInstance
+metadata:
+  name: my-fcos
+spec:
+  domain:
+    devices:
+      disks:
+      - disk:
+          bus: virtio
+        name: containerdisk
+      - disk:
+          bus: virtio
+        name: cloudinitdisk
+      rng: {}
+    resources:
+      requests:
+        memory: 2048M
+  volumes:
+  - containerDisk:
+      image: quay.io/coreos/fedora-coreos:${STREAM}
+    name: containerdisk
+  - name: cloudinitdisk
+    cloudInitConfigDrive:
+      secretRef:
+        name: ignition-payload
+END
+kubectl create -f vmi.yaml
+----
+
+Now you should be able to SSH into the instance. If you didn't change the defaults, the
+username is `core`.
+
+.Accessing the VM instance using https://kubevirt.io/user-guide/operations/virtctl_client_tool/[`virtctl`] via ssh
+[source, bash]
+----
+virtctl ssh core@my-fcos
+----
+
+== Mirroring the image for use in private registries
+
+If a private registry in air-gapped installations is used, the image can be mirrored to that registry using https://github.com/containers/skopeo[`skopeo`].
+
+.Mirroring a stable stream FCOS image
+[source, bash]
+----
+skopeo copy docker://quay.io/fedora/fedora-coreos-kubevirt:stable docker://myregistry.io/myorg/fedora-coreos-kubevirt:stable
+----

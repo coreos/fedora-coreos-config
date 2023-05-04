@@ -16,6 +16,7 @@ The currently supported platforms and their identifiers are listed below.
 * Exoscale (`exoscale`): Cloud platform. See xref:provisioning-exoscale.adoc[Booting on Exoscale].
 * Google Cloud Platform (`gcp`): Cloud platform. See xref:provisioning-gcp.adoc[Booting on GCP].
 * IBM Cloud (`ibmcloud`): Cloud platform. See xref:provisioning-ibmcloud.adoc[Booting on IBM Cloud].
+* KubeVirt (`kubevirt`): Cloud platform. See xref:provisioning-kubevirt.adoc[Booting on KubeVirt].
 * Bare metal (`metal`): With BIOS, UEFI or network boot, with standard or 4k Native disks. See xref:bare-metal.adoc[Installing on Bare Metal] or xref:live-booting-ipxe.adoc[Live-booting via iPXE].
 * Nutanix (`nutanix`): Hypervisor.
 * OpenStack (`openstack`): Cloud platform. See xref:provisioning-openstack.adoc[Booting on OpenStack].
