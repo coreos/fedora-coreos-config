@@ -1,0 +1,7 @@
+variant: fcos
+version: 1.4.0
+kernel_arguments:
+  should_exist:
+    # Persistently set the ifname kernel argument to set the given MAC to the
+    # NIC named `kolatest`. The MAC address is the default one QEMU assigns.
+    - ifname=kolatest:52:54:00:12:34:56

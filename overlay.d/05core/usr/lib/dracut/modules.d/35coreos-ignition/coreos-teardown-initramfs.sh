@@ -168,6 +168,20 @@ propagate_initramfs_hostname() {
     fi
 }
 
+# Propagate the ifname= karg udev rules. The policy here is:
+#
+#     - IF ifname karg udev rule file exists
+#     - THEN copy it to the real root
+#
+propagate_ifname_udev_rules() {
+    local udev_file='/etc/udev/rules.d/80-ifname.rules'
+    if [ -e "${udev_file}" ]; then
+        echo "info: propagating ifname karg udev rules to the real root"
+        cp -v "${udev_file}" "/sysroot/${udev_file}"
+        coreos-relabel "${udev_file}"
+    fi
+}
+
 main() {
     # Load libraries from dracut
     load_dracut_libs
@@ -192,6 +206,7 @@ main() {
     else
         propagate_initramfs_hostname
         propagate_initramfs_networking
+        propagate_ifname_udev_rules
     fi
 
     # Configuration has been propagated, but we can't clean up
