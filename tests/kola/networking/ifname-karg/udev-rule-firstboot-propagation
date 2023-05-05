@@ -1,0 +1,47 @@
+#!/bin/bash
+## kola:
+##   description: Verify firstboot ifname= karg udev rule propoagation works.
+##   # appendFirstbootKernelArgs is only supported on QEMU
+##   platforms: qemu
+##   # Append ifname kernel argument to set the given MAC address to the NIC
+##   # named `kolatest`. The MAC address is the default one QEMU assigns.
+##   appendFirstbootKernelArgs: "ifname=kolatest:52:54:00:12:34:56"
+##   # appendFirstbootKernelArgs doesn't work on s390x
+##   # https://github.com/coreos/coreos-assembler/issues/2776
+##   architectures: "!s390x"
+
+# Part of https://github.com/coreos/fedora-coreos-tracker/issues/553
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+. $KOLA_EXT_DATA/ifname-karg-lib.sh
+
+nicname='kolatest'
+
+case "${AUTOPKGTEST_REBOOT_MARK:-}" in
+    "")
+        ok "first boot"
+        # Make sure the rules were persisted from the initramfs
+        check_file_exists '/etc/udev/rules.d/80-ifname.rules' 
+        # On first boot we expect systemd-network-generator to run too
+        # because the ifname= karg was present, but only for first boot
+        check_file_exists "/run/systemd/network/90-${nicname}.link"
+        # Make sure the NIC is in use and got the expected IP address
+        check_ip "${nicname}"
+        /tmp/autopkgtest-reboot rebooted
+      ;;
+
+    rebooted)
+        ok "second boot"
+        # Make sure the rules are still there
+        check_file_exists '/etc/udev/rules.d/80-ifname.rules' 
+        # On second boot the ifname= karg isn't there so the file
+        # created by systemd-network-generator shouldn't exist.
+        check_file_not_exists "/run/systemd/network/90-${nicname}.link"
+        # Make sure the NIC is in use and got the expected IP address
+        check_ip "${nicname}"
+      ;;
+
+  *) fatal "unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}";;
+esac
