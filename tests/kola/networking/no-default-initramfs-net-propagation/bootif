@@ -3,8 +3,8 @@
 ##   # appendFirstbootKernelArgs is only supported on qemu
 ##   platforms: qemu
 ##   # Append BOOTIF kernel argument so we can test how nm-initrd-generator
-##   # and the coreos-teardown-initramfs interact. The MAC address is from:
-##   # https://github.com/coreos/coreos-assembler/blob/d5f1623aad6d133b2c7c00e784c04ab6828450c1/mantle/platform/metal.go#L468
+##   # and the coreos-teardown-initramfs interact. The MAC address is the
+##   # default one QEMU assigns.
 ##   # Add rd.neednet=1 so we can force networking to be brought up on
 ##   # qemu to test that doing so doesn't materially change things.
 ##   appendFirstbootKernelArgs: "BOOTIF=52:54:00:12:34:56 rd.neednet=1"
