@@ -213,3 +213,5 @@ butane --pretty --strict example.bu > example.ign
 ----
 +
 . Use the `example.ign` file to xref:getting-started.adoc[boot Fedora CoreOS].
+
+NOTE: If using Butane on Windows, `> example.ign` will create an UTF-16 encoded Ignition file. This can prevent Fedora CoreOS from booting properly. Use `--output example.ign` instead.
