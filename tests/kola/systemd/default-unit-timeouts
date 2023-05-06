@@ -3,7 +3,8 @@
 ##   exclusive: false
 ##   tags: "platform-independent"
 ##   description: Verify systemd default shutdown time is 1m 30s.
-##     See https://github.com/coreos/fedora-coreos-tracker/issues/1404
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1404
 
 set -xeuo pipefail
 

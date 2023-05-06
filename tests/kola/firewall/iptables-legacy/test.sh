@@ -3,8 +3,9 @@
 ##   distros: fcos
 ##   exclusive: true
 ##   description: Verify that one can configure a node to use the legacy 
-##     iptables backend. It is scoped to only FCOS because RHCOS only 
-##     supports nft.
+##     iptables backend. 
+
+# It is scoped to only FCOS because RHCOS only supports nft.
 
 set -xeuo pipefail
 

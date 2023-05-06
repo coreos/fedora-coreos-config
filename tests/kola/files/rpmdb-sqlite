@@ -4,7 +4,8 @@
 ##   exclusive: false
 ##   description: Verify that we're using the sqlite rpmdb backend
 ##     for RHCOS 9+ and FCOS 33+.
-##     See https://github.com/coreos/fedora-coreos-tracker/issues/623
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/623
 
 set -xeuo pipefail
 

@@ -3,7 +3,8 @@
 ##   tags: "platform-independent needs-internet"
 ##   description: Verify that configure a DHCP linux bridge using 
 ##     butane and nmstate service with policy works.
-##     See https://github.com/coreos/fedora-coreos-tracker/issues/1175
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1175
 
 set -xeuo pipefail
 

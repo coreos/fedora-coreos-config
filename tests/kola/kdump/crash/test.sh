@@ -9,7 +9,8 @@
 ##   # which can take longer than the default 10 minute timeout.
 ##   timeoutMin: 15
 ##   description: Verify that the crashkernel reserved memory is large enough.
-##     See https://docs.fedoraproject.org/en-US/fedora-coreos/debugging-kernel-crashes/
+
+# See https://docs.fedoraproject.org/en-US/fedora-coreos/debugging-kernel-crashes/
 
 set -xeuo pipefail
 

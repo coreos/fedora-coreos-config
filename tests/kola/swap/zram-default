@@ -2,9 +2,9 @@
 ## kola:
 ##   exclusive: false
 ##   description: Verify that we don't have swap on zram by default.
-##     See
-##     https://github.com/coreos/fedora-coreos-tracker/issues/509
-##     https://github.com/coreos/fedora-coreos-config/pull/687
+
+# https://github.com/coreos/fedora-coreos-tracker/issues/509
+# https://github.com/coreos/fedora-coreos-config/pull/687
 #
 # We can run this on both FCOS and RHCOS as neither should have a zram device
 # enabled by default. (In RHCOS, there is no zram support at all)

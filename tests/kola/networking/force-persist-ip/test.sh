@@ -12,9 +12,8 @@
 ##   # appendKernelArgs doesn't work on s390x
 ##   # https://github.com/coreos/coreos-assembler/issues/2776
 ##   architectures: "!s390x"
-##   description: Verify that coreos.force_persist_ip will force 
-##     propagating kernel argument based networking configuration 
-##     into the real root.
+##   description: Verify that coreos.force_persist_ip will force propagating 
+##     kernel argument based networking configuration into the real root.
 
 # Setup configuration for a single NIC with two different ways:
 # - kargs provide static network config for eth1 and also coreos.force_persist_ip

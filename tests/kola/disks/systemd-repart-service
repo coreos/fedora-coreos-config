@@ -7,7 +7,8 @@
 ##   distros: fcos
 ##   exclusive: false
 ##   description: Verify systemd-repart.service is masked.
-##     See https://github.com/coreos/fedora-coreos-config/pull/744
+
+# See https://github.com/coreos/fedora-coreos-config/pull/744
 
 set -xeuo pipefail
 

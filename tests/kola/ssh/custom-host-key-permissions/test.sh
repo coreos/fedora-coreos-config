@@ -3,9 +3,10 @@
 ##   tags: platform-independent
 ##   description: Verify that sshd still works with a custom 
 ##     host key with mode 640 and group ssh_keys.
-##     See
-##     - https://github.com/coreos/fedora-coreos-tracker/issues/1394
-##     - https://src.fedoraproject.org/rpms/openssh/pull-request/37
+
+# See
+# - https://github.com/coreos/fedora-coreos-tracker/issues/1394
+# - https://src.fedoraproject.org/rpms/openssh/pull-request/37
 
 set -xeuo pipefail
 

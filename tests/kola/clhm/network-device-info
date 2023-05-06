@@ -3,7 +3,8 @@
 ##   # This is a read-only test that can be run with other tests.
 ##   exclusive: false
 ##   description: Verify that CLHM wrote a snippet for the NIC IP info.
-##     See https://github.com/coreos/fedora-coreos-tracker/issues/1153
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1153
 
 set -xeuo pipefail
 

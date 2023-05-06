@@ -9,10 +9,11 @@
 ##   architectures: "!s390x"
 ##   description: Verify rd.net.timeout.dhcp and rd.net.dhcp.retry 
 ##     are supported by NetworkManager.
-##     See
-##     - https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/559
-##     - https://bugzilla.redhat.com/show_bug.cgi?id=1879094#c10
-##     - https://bugzilla.redhat.com/show_bug.cgi?id=1877740
+
+# See
+# - https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/559
+# - https://bugzilla.redhat.com/show_bug.cgi?id=1879094#c10
+# - https://bugzilla.redhat.com/show_bug.cgi?id=1877740
 
 # Append "rd.net.timeout.dhcp=30 rd.net.dhcp.retry=8" to kernel parameter 
 # when boot, get total timeout is `timeout * retry`, 30*8(240) seconds

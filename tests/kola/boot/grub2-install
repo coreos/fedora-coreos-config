@@ -6,9 +6,10 @@
 ##   architectures: "!aarch64 s390x"
 ##   description: Verify that we install BIOS/PReP bootloader 
 ##     using grub2-install from the target system.
-##     See
-##     - https://github.com/coreos/coreos-assembler/pull/3190
-##     - https://github.com/coreos/coreos-assembler/issues/3148
+
+# See
+# - https://github.com/coreos/coreos-assembler/pull/3190
+# - https://github.com/coreos/coreos-assembler/issues/3148
 
 set -xeuo pipefail
 

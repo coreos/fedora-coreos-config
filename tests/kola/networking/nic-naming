@@ -3,15 +3,15 @@
 ##   exclusive: false
 ##   platforms: "!azure"
 ##   description: Verify that we detected eth* NIC naming after booted.
-##     Disable on azure because of a limitation of the hv_netvsc driver
-##     there. According to [1] and [2] the driver does not provide sufficient
-##     information to systemd-udev for systemd's naming to work. It falls
-##     back to basic ethX naming.
-##     See
-##     - https://access.redhat.com/solutions/3204751
-##     - https://github.com/Azure/WALinuxAgent/issues/1877
-##     - https://github.com/coreos/fedora-coreos-config/commit/2a5c2abc796ac645d705700bf445b50d4cda8f5f
 
+# Disable on azure because of a limitation of the hv_netvsc driver
+# there. According to [1] and [2] the driver does not provide sufficient
+# information to systemd-udev for systemd's naming to work. It falls
+# back to basic ethX naming.
+# See
+# - https://access.redhat.com/solutions/3204751
+# - https://github.com/Azure/WALinuxAgent/issues/1877
+# - https://github.com/coreos/fedora-coreos-config/commit/2a5c2abc796ac645d705700bf445b50d4cda8f5f
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh

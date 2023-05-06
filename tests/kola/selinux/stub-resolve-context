@@ -6,9 +6,10 @@
 ##   exclusive: false
 ##   description: Verify that the stub-resolv.conf file has the correct 
 ##     selinux context.
-##     See
-##     - https://github.com/fedora-selinux/selinux-policy/pull/509#issuecomment-744540382
-##     - https://github.com/systemd/systemd/pull/17976
+
+# See
+# - https://github.com/fedora-selinux/selinux-policy/pull/509#issuecomment-744540382
+# - https://github.com/systemd/systemd/pull/17976
 
 set -xeuo pipefail
 

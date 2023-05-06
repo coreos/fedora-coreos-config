@@ -7,7 +7,8 @@
 ##   tags: "needs-internet platform-independent"
 ##   description: Verify that tmpfs mounts inside a container 
 ##     have the `container_file_t` label.
-##     See https://github.com/coreos/fedora-coreos-tracker/issues/1366
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1366
 
 set -xeuo pipefail
 
