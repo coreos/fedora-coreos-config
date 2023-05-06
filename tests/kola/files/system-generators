@@ -1,8 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-##   description: Verify files in /usr/lib/systemd/system-generators 
-##     are executable.
+##   description: Verify files in /usr/lib/systemd/system-generators are executable.
 
 set -xeuo pipefail
 

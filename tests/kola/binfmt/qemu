@@ -9,9 +9,9 @@
 ##   distros: fcos
 ##   # We ship the x86_64 on all non-x86_64 arches.
 ##   architectures: "! x86_64"
-##   description: Verify the x86_64 qemu emulator works on non-x86_64 
-##     instances.
-##     See https://github.com/coreos/fedora-coreos-tracker/issues/1237
+##   description: Verify the x86_64 qemu emulator works on non-x86_64 instances.
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1237
 
 set -xeuo pipefail
 

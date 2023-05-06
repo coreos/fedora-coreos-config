@@ -1,8 +1,9 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-##   description: Verifies that the expected iptables backend is configured.
-##     https://github.com/coreos/fedora-coreos-tracker/issues/676
+##   description: Verify that the expected iptables backend is configured.
+
+# https://github.com/coreos/fedora-coreos-tracker/issues/676
 
 set -xeuo pipefail
 

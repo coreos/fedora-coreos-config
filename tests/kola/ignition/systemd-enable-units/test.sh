@@ -3,9 +3,10 @@
 ##   tags: "platform-independent"
 ##   description: Verify that Ignition supports to enable systemd units 
 ##     of different types.
-##     See
-##     - https://github.com/coreos/ignition/issues/586
-##     - https://github.com/systemd/systemd/pull/9901
+
+# See
+# - https://github.com/coreos/ignition/issues/586
+# - https://github.com/systemd/systemd/pull/9901
 
 set -xeuo pipefail
 

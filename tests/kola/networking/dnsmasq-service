@@ -6,7 +6,8 @@
 ##   distros: fcos
 ##   exclusive: false
 ##   description: Verify dnsmasq service is masked.
-##     See https://github.com/coreos/fedora-coreos-tracker/issues/519#issuecomment-705140528
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/519#issuecomment-705140528
 
 set -xeuo pipefail
 

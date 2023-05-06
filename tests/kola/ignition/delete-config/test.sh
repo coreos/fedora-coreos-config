@@ -1,10 +1,10 @@
 #!/bin/bash
 ## kola:
 ##   platforms: qemu
-##   description: Verify that we delete userdata from provider 
-##     after Ignition completes.
-##     See https://github.com/coreos/ignition/issues/1315
+##   description: Verify that we delete userdata from provider after Ignition 
+##     completes.
 
+# See https://github.com/coreos/ignition/issues/1315
 # There are 2 services: 
 # 1)ignition-delete-config.service, which deletes Ignition 
 # configs from VMware and VirtualBox on first boot.

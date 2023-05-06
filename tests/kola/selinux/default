@@ -3,7 +3,8 @@
 ##   exclusive: false
 ##   tags: "platform-independent"
 ##   description: Verify that the SELinux policy isn't marked as modified.
-##     See https://github.com/openshift/os/issues/1036
+
+# See https://github.com/openshift/os/issues/1036
 
 set -xeuo pipefail
 

@@ -2,9 +2,9 @@
 ## kola:
 ##   exclusive: false
 ##   description: Verify the permissions and syntax of /etc/sudoers 
-##     and /etc/sudoers.d/* are readable only for root, instead of 
-##     world-readable for security concern.
-##     See https://bugzilla.redhat.com/show_bug.cgi?id=1981979
+##     and /etc/sudoers.d/* are readable only for root.
+
+# See https://bugzilla.redhat.com/show_bug.cgi?id=1981979
 
 set -xeuo pipefail
 

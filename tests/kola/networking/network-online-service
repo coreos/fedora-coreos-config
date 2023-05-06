@@ -2,7 +2,8 @@
 ## kola:
 ##   exclusive: false
 ##   description: Verify network-online.target is inactive by default.
-##     See https://github.com/coreos/fedora-coreos-config/pull/1088
+
+# See https://github.com/coreos/fedora-coreos-config/pull/1088
 
 set -xeuo pipefail
 
