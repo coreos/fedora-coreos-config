@@ -1,11 +1,11 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-#
-# This is just a basic sanity check; at some point we
-# will implement "project-owned tests run in the pipeline"
-# and be able to run the existing bootupd tests:
-# https://github.com/coreos/fedora-coreos-config/pull/677
+##   description: Verify that bootupd works.
+
+# We generally implement project-owned tests run in the pipeline
+# and be able to run the existing bootupd tests.
+# See https://github.com/coreos/fedora-coreos-config/pull/677
 
 set -xeuo pipefail
 

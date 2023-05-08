@@ -1,9 +1,9 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-#
-# Check that we are not including the kernel headers on the host.
-# See:
+##   description: Verify that we are not including the kernel headers on the host.
+
+# See
 # - https://bugzilla.redhat.com/show_bug.cgi?id=1814719
 # - https://gitlab.cee.redhat.com/coreos/redhat-coreos/-/merge_requests/1116
 

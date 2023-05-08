@@ -3,6 +3,7 @@
 ##   tags: "platform-independent needs-internet"
 ##   # This test only runs on FCOS because countme support is not available in RHCOS
 ##   distros: fcos
+##   description: Verify rpm-ostree-countme service works well.
 
 set -xeuo pipefail
 

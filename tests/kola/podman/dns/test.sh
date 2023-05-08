@@ -8,9 +8,10 @@
 ##   # This test reaches out to the internet and it could take more
 ##   # time to pull down the container.
 ##   timeoutMin: 3
-#
-# Tests that rootless podman containers can DNS resolve external domains.
-# https://github.com/coreos/fedora-coreos-tracker/issues/923
+##   description: Verify that DNS in rootless podman containers can 
+##     resolve external domains.
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/923
 
 set -xeuo pipefail
 

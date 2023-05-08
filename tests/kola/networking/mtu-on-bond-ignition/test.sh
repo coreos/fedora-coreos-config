@@ -11,13 +11,15 @@
 ##   # appendKernelArgs doesn't work on s390x
 ##   # https://github.com/coreos/coreos-assembler/issues/2776
 ##   architectures: "!s390x"
+##   description: Verify that configure MTU on a VLAN subinterface for 
+##     the bond via Ignition works.
 #
-# Set MTU on a VLAN subinterface for the bond using ignition config and check
+# Set MTU on a VLAN subinterface for the bond using Ignition config and check
 # - verify MTU on the bond matches config
 # - verify MTU on the VLAN subinterface for the bond matches config
 # - verify ip address on the VLAN subinterface for the bond matches config
 #
-# The ignition config is generated using nm-initrd-generator according to
+# The Ignition config is generated using nm-initrd-generator according to
 # https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-network-configuration/
 # kargs="bond=bond0:eth1,eth2:mode=active-backup,miimon=100:9000 \
 #        ip=10.10.10.10::10.10.10.1:255.255.255.0:staticvlanbond:bond0.100:none:9000: \

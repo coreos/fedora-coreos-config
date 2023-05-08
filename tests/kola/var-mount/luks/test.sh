@@ -3,6 +3,7 @@
 ##   # Restrict to qemu for now because the primary disk path is platform-dependent
 ##   platforms: qemu
 ##   architectures: "!s390x"
+##   description: Verify that reprovision disk with luks works.
 
 set -xeuo pipefail
 

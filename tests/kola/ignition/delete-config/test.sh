@@ -1,8 +1,24 @@
 #!/bin/bash
 ## kola:
-##   # Ideally we'd test on virtualbox and vmware, but we don't have tests
-##   # there, so we mock specifically for ignition.platform.id=qemu
 ##   platforms: qemu
+##   description: Verify that we delete userdata from provider after Ignition 
+##     completes.
+
+# See https://github.com/coreos/ignition/issues/1315
+# There are 2 services: 
+# 1)ignition-delete-config.service, which deletes Ignition 
+# configs from VMware and VirtualBox on first boot.
+# 2)coreos-ignition-delete-config.service, do the same thing 
+# on existing machines on upgrade, using a stamp file in /var/lib 
+# to avoid multiple runs.
+# Ideally we'd test on virtualbox and vmware, but we don't have tests
+# there, so we mock specifically for ignition.platform.id=qemu.
+# Test scenarios:
+# On first boot, verify that both 2 services ran. 
+# On upgrade boot, verify that 1) should not run, 2) should run.
+# On normal boot, verify that both 2 services should not run.
+# On upgrade boot with 2) masked, verify that both 2 services 
+# should not run.
 
 set -xeuo pipefail
 

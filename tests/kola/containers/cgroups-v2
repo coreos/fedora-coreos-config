@@ -5,6 +5,7 @@
 ##   # TODO-RHCOS: drop "fcos" tag when cgroupsv2 lands in RHCOS
 ##   distros: fcos
 ##   exclusive: false
+##   description: Verify the system supports cgroupsv2 on FCOS.
 
 set -xeuo pipefail
 

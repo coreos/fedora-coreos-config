@@ -1,9 +1,9 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-#
-# Verify /etc release symlinks are valid
-# See:
+##   description: Verify /etc release symlinks are valid.
+
+# See
 # - https://bugzilla.redhat.com/show_bug.cgi?id=2068148
 # - https://github.com/openshift/os/pull/815
 

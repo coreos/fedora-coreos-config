@@ -12,6 +12,7 @@
 ##   allowConfigWarnings: true
 ##   # This test reprovisions the rootfs.
 ##   tags: reprovision
+##   description: Verify the root reprovision and swap enabled are supported.
 
 set -xeuo pipefail
 
