@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify no files under /var and /etc have unlabeled_t SELinux label.
 
 set -xeuo pipefail
 

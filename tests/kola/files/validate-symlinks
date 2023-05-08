@@ -3,9 +3,10 @@
 ##   tags: "platform-independent"
 ##   # This is a read-only test that can be run with other tests.
 ##   exclusive: false
-#
-# Check if there are broken symlinks in /etc/ and /usr/.
-# See: https://github.com/coreos/fedora-coreos-config/issues/1782
+##   description: Verify that there are no broken symlinks in /etc/ and /usr/, 
+##     except the known files which require further investigation.
+
+# See https://github.com/coreos/fedora-coreos-config/issues/1782
 
 set -xeuo pipefail
 

@@ -1,6 +1,8 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify that there are no files and directories 
+##     with 'g+w' or 'o+w' permission in /etc, except the known lists.
 
 set -xeuo pipefail
 

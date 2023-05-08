@@ -5,9 +5,9 @@
 ##   # on FCOS.
 ##   # TODO-RHCOS: Determine if any services on RHCOS may be disabled and adapt test
 ##   distros: fcos
-#
-# This test makes sure that ignition is able to disable units
-# https://github.com/coreos/fedora-coreos-tracker/issues/392
+##   description: Verify that Ignition supports to disable units.
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/392
 
 set -xeuo pipefail
 

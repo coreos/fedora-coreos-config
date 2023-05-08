@@ -4,12 +4,12 @@
 ##   # TODO-RHCOS: adapt to use different `crypt` scheme for RHCOS
 ##   distros:  fcos
 ##   exclusive: false
+##   description: Verify that a user password provisioned by Ignition works.
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-#Testing that a user password provisioned by ignition works
 OUTPUT=$(echo 'foobar' | setsid su - tester -c id)
 
 if [[ $OUTPUT != "uid=1001(tester) gid=1001(tester) groups=1001(tester) context=system_u:system_r:unconfined_service_t:s0" ]]; then

@@ -6,6 +6,7 @@
 ##   timeoutMin: 45
 ##   # Only run this test when specifically requested.
 ##   requiredTag: extended-upgrade
+##   description: Verify upgrade works.
 
 set -eux -o pipefail
 

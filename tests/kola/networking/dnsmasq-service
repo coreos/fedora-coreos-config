@@ -5,13 +5,14 @@
 ##   # TODO-RHCOS: adapt test to check that `dnsmasq` is in the proper state on RHCOS
 ##   distros: fcos
 ##   exclusive: false
+##   description: Verify dnsmasq service is masked.
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/519#issuecomment-705140528
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-# make sure dnsmasq is masked
-# https://github.com/coreos/fedora-coreos-tracker/issues/519#issuecomment-705140528
 if [ "$(systemctl is-enabled dnsmasq.service)" != 'masked' ]; then
     fatal "dnsmasq.service systemd unit should be masked"
 fi

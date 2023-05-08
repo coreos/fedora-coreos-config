@@ -1,8 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-#
-# Test some services are enabled or disabled appropriately
+##   description: Verify logrotate and logrotate.timer services are enabled.
 
 set -xeuo pipefail
 

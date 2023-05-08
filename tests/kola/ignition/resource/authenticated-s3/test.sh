@@ -1,9 +1,9 @@
 #!/bin/bash
 ## kola:
-##   # We fetch resources from S3.
 ##   tags: needs-internet
 ##   # We authenticate to S3 with the EC2 instance's IAM role.
 ##   platforms: aws
+##   description: Verify that we can fetch resources from S3.
 
 set -xeuo pipefail
 
