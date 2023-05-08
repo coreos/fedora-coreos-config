@@ -1,0 +1,7 @@
+variant: fcos
+version: 1.4.0
+kernel_arguments:
+  should_exist:
+    - foobar
+  should_not_exist:
+    - mitigations=auto,nosmt

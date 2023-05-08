@@ -1,9 +1,0 @@
-{
-  "ignition": {
-    "version": "3.3.0"
-  },
-  "kernelArguments": {
-    "shouldExist": ["foobar"],
-    "shouldNotExist": ["mitigations=auto,nosmt"]
-  }
-}
