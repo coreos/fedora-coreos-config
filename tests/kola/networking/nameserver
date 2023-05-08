@@ -6,10 +6,11 @@
 ##   # appendKernelArgs doesn't work on s390x
 ##   # https://github.com/coreos/coreos-assembler/issues/2776
 ##   architectures: "!s390x"
-#
-# Verify multiple nameservers config via kernel arguments work well
-# RHCOS: need to check /etc/resolv.conf and nmconnection
-# FCOS:  using systemd-resolved which needs to run resolvectl to check
+##   description: Verify that we config multiple nameservers via kernel 
+##     arguments work well.
+
+# RHCOS: need to check /etc/resolv.conf and nmconnection.
+# FCOS:  using systemd-resolved which needs to run resolvectl to check.
 # See https://bugzilla.redhat.com/show_bug.cgi?id=1763341
 
 set -xeuo pipefail

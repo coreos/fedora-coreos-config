@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify initrd is compressed with zstd.
 #
 # If dracut can't find the configured compressor, it warns and falls back to
 # gzip (!).  Fail if the initrd isn't compressed with zstd.

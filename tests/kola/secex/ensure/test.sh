@@ -1,12 +1,13 @@
 #!/bin/bash
 ## kola:
-##   # This test verifies the s390x Secure Execution QEMU image works. It also
-##   # implicitly tests Ignition config decryption. We don't run it by default
-##   # because it requires running with `--qemu-secex`.
 ##   architectures: s390x
 ##   platforms: qemu
 ##   requiredTag: secex
 ##   timeoutMin: 3
+##   description: Verify the s390x Secure Execution QEMU image works. It also
+##     implicitly tests Ignition config decryption. 
+
+# We don't run it by default because it requires running with `--qemu-secex`.
 
 set -xeuo pipefail
 

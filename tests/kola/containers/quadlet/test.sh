@@ -2,8 +2,7 @@
 ## kola:
 ##   # We're pulling a container image from Quay.io
 ##   tags: "platform-independent needs-internet"
-#
-# Ensure that basic quadlet functionality works
+##   description: Verify that basic quadlet functionality works.
 
 set -xeuo pipefail
 

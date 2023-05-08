@@ -1,11 +1,12 @@
 #!/bin/bash
 ## kola:
 ##   tags: "platform-independent"
-#
-# This test makes sure that ignition is able to enable systemd units of
-# different types.
-# https://github.com/coreos/ignition/issues/586
-# https://github.com/systemd/systemd/pull/9901
+##   description: Verify that Ignition supports to enable systemd units 
+##     of different types.
+
+# See
+# - https://github.com/coreos/ignition/issues/586
+# - https://github.com/systemd/systemd/pull/9901
 
 set -xeuo pipefail
 
