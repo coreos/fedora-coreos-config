@@ -11,10 +11,6 @@ include:
   - shared-workarounds.yaml
   - shared-el9.yaml
 
-conditional-include:
-  - if: releasever <= 36
-    include: fallback-hostname.yaml
-
 ostree-layers:
   - overlay/05core
   - overlay/08nouveau
