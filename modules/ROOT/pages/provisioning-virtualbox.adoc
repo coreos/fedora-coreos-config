@@ -19,7 +19,7 @@ STREAM="stable"
 coreos-installer download -s "${STREAM}" -p virtualbox -f ova
 ----
 
-Alternatively, OVA images can be manually downloaded from the https://getfedora.org/coreos/download?tab=metal_virtualized[download page].
+Alternatively, OVA images can be manually downloaded from the https://fedoraproject.org/coreos/download/?stream=stable#baremetal[download page].
 
 == Booting a new VM on VirtualBox
 

@@ -25,7 +25,7 @@ STREAM="stable"
 coreos-installer download -d -s "${STREAM}" -p exoscale -f qcow2.xz
 ----
 
-Alternatively, QCOW2 images can be downloaded from the https://getfedora.org/coreos/download?tab=cloud_operators[download page] and manually decompressed.
+Alternatively, QCOW2 images can be downloaded from the https://fedoraproject.org/coreos/download/?stream=stable#cloud_images[download page] and manually decompressed.
 
 Next you can https://community.exoscale.com/documentation/compute/custom-templates/#register-a-custom-template[Register a Custom Template]. This can be done from the https://portal.exoscale.com/compute/templates/add[Web Portal] or the https://community.exoscale.com/documentation/tools/exoscale-command-line-interface/[Exoscale CLI]. Either option requires the uncompressed image to be uploaded somewhere public and for the URL and an MD5 checksum to be provided during registration. One option is to use the object storage provided by Exoscale to host the image.
 

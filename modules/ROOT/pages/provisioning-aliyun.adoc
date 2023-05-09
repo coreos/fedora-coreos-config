@@ -24,7 +24,7 @@ STREAM="stable"
 coreos-installer download --decompress -s "${STREAM}" -p aliyun -f qcow2.xz
 ----
 
-Alternatively, you can manually download an Alibaba Cloud image from the https://getfedora.org/coreos/download?tab=cloud_operators[download page]. Verify the download, following the instructions on that page, and decompress it.
+Alternatively, you can manually download an Alibaba Cloud image from the https://fedoraproject.org/coreos/download/?stream=stable#cloud_images[download page]. Verify the download, following the instructions on that page, and decompress it.
 
 == Uploading the image to Alibaba Cloud
 

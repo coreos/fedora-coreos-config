@@ -1,6 +1,6 @@
 :page-partial:
 
-. Fetch the latest image suitable for the `qemu` platform using `coreos-installer` (or https://getfedora.org/coreos/download/[download and verify] it from the web). You can use `coreos-installer` https://quay.io/repository/coreos/coreos-installer[as a container], or on Fedora install it from the repos.
+. Fetch the latest image suitable for the `qemu` platform using `coreos-installer` (or https://fedoraproject.org/coreos/download/[download and verify] it from the web). You can use `coreos-installer` https://quay.io/repository/coreos/coreos-installer[as a container], or on Fedora install it from the repos.
 +
 [source, bash]
 ----

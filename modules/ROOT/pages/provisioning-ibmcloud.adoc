@@ -42,7 +42,7 @@ There are also several other pieces that need to be in place, like a VPC, SSH ke
 The following sets of commands will show you how to download the most recent image for a stream, upload it to cloud storage, and then create the cloud image in IBM Cloud. It is worth noting that Fedora CoreOS comes in three streams, with different update schedules per stream. These steps show the `stable` stream as an example, but can be used for other streams too.
 
 
-.Fetch the latest image suitable for your target stream (or https://getfedora.org/coreos/download/[download and verify] it from the web).
+.Fetch the latest image suitable for your target stream (or https://fedoraproject.org/coreos/download/[download and verify] it from the web).
 [source, bash]
 ----
 STREAM='stable'

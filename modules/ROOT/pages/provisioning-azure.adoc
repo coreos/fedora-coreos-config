@@ -25,7 +25,7 @@ stream="stable"
 coreos-installer download --decompress -s "${stream}" -p azure -f vhd.xz
 ----
 
-Alternatively, you can manually download an Azure image from the https://getfedora.org/coreos/download?tab=cloud_operators[download page]. Verify the download, following the instructions on that page, and decompress it.
+Alternatively, you can manually download an Azure image from the https://fedoraproject.org/coreos/download/?stream=stable#cloud_images[download page]. Verify the download, following the instructions on that page, and decompress it.
 
 == Uploading the image to Azure
 

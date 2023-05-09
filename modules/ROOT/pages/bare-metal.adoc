@@ -16,7 +16,7 @@ NOTE: If you have servers with different types and/or number of hard drives, you
 
 To install FCOS onto bare metal using the live ISO interactively, follow these steps:
 
-- Download the latest ISO image from the https://getfedora.org/coreos/download?tab=metal_virtualized&stream=stable[download page] or with podman (see https://coreos.github.io/coreos-installer/cmd/download/[documentation] for options):
+- Download the latest ISO image from the https://fedoraproject.org/coreos/download/?stream=stable#baremetal[download page] or with podman (see https://coreos.github.io/coreos-installer/cmd/download/[documentation] for options):
 [source, bash]
 ----
 podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
@@ -113,7 +113,7 @@ In this example, `coreos-installer` will download the latest stable FCOS metal i
 
 == Downloading and mirroring the metal image
 
-Sometimes, it's necessary to download the metal image ahead of time and then have it passed locally to `coreos-installer` for installation. You can download the metal image directly from the https://getfedora.org/en/coreos/download?tab=metal_virtualized[FCOS download page], or you can use `coreos-installer download`.
+Sometimes, it's necessary to download the metal image ahead of time and then have it passed locally to `coreos-installer` for installation. You can download the metal image directly from the https://fedoraproject.org/coreos/download/?stream=stable#baremetal[FCOS download page], or you can use `coreos-installer download`.
 
 TIP: When installing via the live ISO or PXE, there is no need to download the metal image. It is already part of those environments.
 
