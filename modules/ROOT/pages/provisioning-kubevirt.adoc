@@ -59,7 +59,7 @@ spec:
         memory: 2048M
   volumes:
   - containerDisk:
-      image: quay.io/coreos/fedora-coreos:${STREAM}
+      image: quay.io/fedora/fedora-coreos-kubevirt:${STREAM}
     name: containerdisk
   - name: cloudinitdisk
     cloudInitConfigDrive:
