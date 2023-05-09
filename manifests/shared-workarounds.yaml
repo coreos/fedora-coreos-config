@@ -1,2 +1,7 @@
 # This manifest is a list of shared workarounds that are needed in both Fedora CoreOS
 # and downstreams (i.e. Red Hat CoreOS).
+
+packages:
+  # It will include xxd for FCOS and vim-common for RHCOS
+  # We can drop it once we get https://bugzilla.redhat.com/show_bug.cgi?id=2182865 done
+  - /usr/bin/xxd
