@@ -126,7 +126,7 @@ Once the archive has been downloaded, make sure to verify its integrity by follo
 
 [source,bash]
 ----
-curl https://getfedora.org/static/fedora.gpg | gpg --import
+curl https://fedoraproject.org/fedora.gpg | gpg --import
 gpg --verify fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz.sig
 ----
 
