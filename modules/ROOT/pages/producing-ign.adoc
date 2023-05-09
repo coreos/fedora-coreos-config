@@ -122,7 +122,7 @@ To use the Butane binary on Linux, follow these steps:
 +
 [source,bash]
 ----
-curl https://getfedora.org/static/fedora.gpg | gpg --import
+curl https://fedoraproject.org/fedora.gpg | gpg --import
 ----
 . Download the latest version of Butane and the detached signature from the https://github.com/coreos/butane/releases[releases page].
 . Verify it with gpg:
@@ -135,11 +135,11 @@ gpg --verify butane-x86_64-unknown-linux-gnu.asc
 ==== macOS
 To use the Butane binary on macOS, follow these steps:
 
-. If you have not already done so, download the https://getfedora.org/static/fedora.gpg[Fedora signing keys] and import them:
+. If you have not already done so, download the https://fedoraproject.org/fedora.gpg[Fedora signing keys] and import them:
 +
 [source,bash]
 ----
-curl https://getfedora.org/static/fedora.gpg | gpg --import
+curl https://fedoraproject.org/fedora.gpg | gpg --import
 ----
 . Download the latest version of Butane and the detached signature from the https://github.com/coreos/butane/releases[releases page].
 . Verify it with gpg:
@@ -152,11 +152,11 @@ gpg --verify butane-x86_64-apple-darwin.asc
 ==== Windows
 To use the Butane binary on Windows, follow these steps:
 
-. If you have not already done so, download the https://getfedora.org/static/fedora.gpg[Fedora signing keys] and import them:
+. If you have not already done so, download the https://fedoraproject.org/fedora.gpg[Fedora signing keys] and import them:
 +
 [source,powershell]
 ----
-Invoke-RestMethod -Uri https://getfedora.org/static/fedora.gpg | gpg --import
+Invoke-RestMethod -Uri https://fedoraproject.org/fedora.gpg | gpg --import
 ----
 . Download the latest version of Butane and the detached signature from the https://github.com/coreos/butane/releases[releases page].
 . Verify it with gpg:
