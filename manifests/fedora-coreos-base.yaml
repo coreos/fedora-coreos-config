@@ -3,10 +3,10 @@
 # core functionality.
 
 include:
+  - system-configuration.yaml
   - ignition-and-ostree.yaml
   - file-transfer.yaml
   - networking-tools.yaml
-  - system-configuration.yaml
   - user-experience.yaml
   - shared-workarounds.yaml
   - shared-el9.yaml
@@ -62,12 +62,6 @@ postprocess:
   - |
     #!/usr/bin/env bash
     systemctl mask dnsmasq.service
-  # Mask systemd-repart. Ignition is responsible for partition setup on first
-  # boot and does not use systemd-repart currently. See also
-  # https://github.com/coreos/fedora-coreos-tracker/issues/570
-  - |
-    #!/usr/bin/env bash
-    systemctl mask systemd-repart.service
 
   # Fedora 37 adds the nvmf dracut module to the initrd, causing
   # ext.config.files.dracut-executable to notice that the module puts a
