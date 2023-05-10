@@ -8,4 +8,14 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  afterburn:
+    evr: 5.4.0-2.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1492
+      type: pin
+  afterburn-dracut:
+    evr: 5.4.0-2.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1492
+      type: pin
