@@ -14,7 +14,7 @@ set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-context=$(podman run --rm --privileged registry.fedoraproject.org/fedora:37 \
+context=$(podman run --rm --privileged registry.fedoraproject.org/fedora:38 \
             bash -c "mount -t tmpfs tmpfs /mnt/ && stat --format '%C' /mnt/")
 if [ "$context" != "system_u:object_r:container_file_t:s0" ]; then
     fatal "SELinux context for files on a tmpfs inside a container is wrong"

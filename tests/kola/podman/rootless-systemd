@@ -33,7 +33,7 @@ set -euxo pipefail
 #       https://github.com/coreos/coreos-assembler/issues/1645
 cd $(mktemp -d)
 cat <<EOF > Containerfile
-FROM registry.fedoraproject.org/fedora:37
+FROM registry.fedoraproject.org/fedora:38
 RUN dnf -y update \
 && dnf -y install systemd httpd \
 && dnf clean all \
