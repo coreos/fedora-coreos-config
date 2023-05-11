@@ -11,6 +11,7 @@
 ##   timeoutMin: 15
 ##   # This test reprovisions the rootfs.
 ##   tags: reprovision
+##   description: Verify the root reprovision with linear RAID works.
 
 set -xeuo pipefail
 
@@ -37,6 +38,11 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
       # check that ignition-ostree-growfs didn't run
       if [ -e /run/ignition-ostree-growfs.stamp ]; then
           fatal "ignition-ostree-growfs ran"
+      fi
+
+      # check that autosave-xfs didn't run
+      if [ -e /run/ignition-ostree-autosaved-xfs.stamp ]; then
+          fatal "unexpected autosaved XFS"
       fi
 
       # reboot once to sanity-check we can find root on second boot

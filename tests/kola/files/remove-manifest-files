@@ -5,6 +5,7 @@
 ##   # TODO-RHCOS: modify test to check for RHCOS-specific `remove-files` entry
 ##   distros: fcos
 ##   exclusive: false
+##   description: Verify remove-files works in the manifest.
 
 set -xeuo pipefail
 

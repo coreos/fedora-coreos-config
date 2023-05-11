@@ -5,23 +5,48 @@ set -euo pipefail
 # partition, unless it determines that either the rootfs was moved or the
 # partition was already resized (e.g. via Ignition).
 
-# If root reprovisioning was triggered, this file contains state of the root
-# partition *before* ignition-disks.
-saved_partstate=/run/ignition-ostree-rootfs-partstate.sh
-
-# We run after the rootfs is mounted at /sysroot, but before ostree-prepare-root
-# moves it to /sysroot/sysroot.
-path=/sysroot
-
-# The use of tail is to avoid errors from duplicate mounts;
-# this shouldn't happen for us but we're being conservative.
-src=$(findmnt -nvr -o SOURCE "$path" | tail -n1)
-
 # In the IBM Secure Execution case we use Ignition to grow and reencrypt rootfs
 # see overlay.d/05core/usr/lib/dracut/modules.d/35coreos-ignition/coreos-diskful-generator
 if [[ -f /run/coreos/secure-execution ]]; then
     exit 0
 fi
+
+# This is copied from ignition-ostree-transposefs.sh.
+# Sometimes, for some reason the by-label symlinks aren't updated. Detect these
+# cases, and explicitly `udevadm trigger`.
+# See: https://bugzilla.redhat.com/show_bug.cgi?id=1908780
+udev_trigger_on_label_mismatch() {
+    local label=$1; shift
+    local expected_dev=$1; shift
+    local actual_dev
+    expected_dev=$(realpath "${expected_dev}")
+    # We `|| :` here because sometimes /dev/disk/by-label/$label is missing.
+    # We've seen this on Fedora kernels with debug enabled (common in `rawhide`).
+    # See https://github.com/coreos/fedora-coreos-tracker/issues/1092
+    actual_dev=$(realpath "/dev/disk/by-label/$label" || :)
+    if [ "$actual_dev" != "$expected_dev" ]; then
+        echo "Expected /dev/disk/by-label/$label to point to $expected_dev, but points to $actual_dev; triggering udev"
+        udevadm trigger --settle "$expected_dev"
+    fi
+}
+
+# This is also similar to bits from transposefs.sh.
+ignition_cfg=/run/ignition.json
+expected_dev=$(jq -r '.storage?.filesystems? // [] | map(select(.label == "root")) | .[0].device // ""' "${ignition_cfg}")
+if [ -n "${expected_dev}" ]; then
+    udev_trigger_on_label_mismatch root "${expected_dev}"
+fi
+
+# If root reprovisioning was triggered, this file contains state of the root
+# partition *before* ignition-disks.
+saved_partstate=/run/ignition-ostree-rootfs-partstate.sh
+
+# We run before the rootfs is mounted at /sysroot, but we still need to mount it
+# (in a private namespace) since XFS and Btrfs can only do resizing online (EXT4
+# can do either).
+path=/sysroot
+src=/dev/disk/by-label/root
+mount "${src}" "${path}"
 
 if [ ! -f "${saved_partstate}" ]; then
     partition=$(realpath /dev/disk/by-label/root)
@@ -122,5 +147,6 @@ case "${ROOTFS_TYPE}" in
     btrfs) btrfs filesystem resize max ${path} ;;
 esac
 
-# this is useful for tests
+# The ignition-ostree-transposefs-xfsauto.service unit needs to know if we
+# actually run. This is also useful for tests.
 touch /run/ignition-ostree-growfs.stamp

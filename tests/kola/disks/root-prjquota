@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify /sysroot is mounted with prjquota.
 
 set -xeuo pipefail
 

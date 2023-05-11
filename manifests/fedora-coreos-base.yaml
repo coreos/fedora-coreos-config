@@ -3,17 +3,13 @@
 # core functionality.
 
 include:
+  - system-configuration.yaml
   - ignition-and-ostree.yaml
   - file-transfer.yaml
   - networking-tools.yaml
-  - system-configuration.yaml
   - user-experience.yaml
   - shared-workarounds.yaml
   - shared-el9.yaml
-
-conditional-include:
-  - if: releasever <= 36
-    include: fallback-hostname.yaml
 
 ostree-layers:
   - overlay/05core
@@ -21,6 +17,7 @@ ostree-layers:
   - overlay/09misc
   - overlay/20platform-chrony
   - overlay/25azure-udev-rules
+  - overlay/30gcp-udev-rules
 
 # Be minimal
 recommends: false
@@ -65,12 +62,6 @@ postprocess:
   - |
     #!/usr/bin/env bash
     systemctl mask dnsmasq.service
-  # Mask systemd-repart. Ignition is responsible for partition setup on first
-  # boot and does not use systemd-repart currently. See also
-  # https://github.com/coreos/fedora-coreos-tracker/issues/570
-  - |
-    #!/usr/bin/env bash
-    systemctl mask systemd-repart.service
 
   # Fedora 37 adds the nvmf dracut module to the initrd, causing
   # ext.config.files.dracut-executable to notice that the module puts a
@@ -99,6 +90,29 @@ postprocess:
     ln -sf /usr/sbin/iptables-nft          /etc/alternatives/iptables
     ln -sf /usr/sbin/iptables-nft-restore  /etc/alternatives/iptables-restore
     ln -sf /usr/sbin/iptables-nft-save     /etc/alternatives/iptables-save
+
+  # Short term hack to avoid running out of space on aarch64. This should
+  # save us about 14M. https://github.com/coreos/fedora-coreos-tracker/issues/1464
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    rm -vrf /usr/lib/modules/*aarch64/dtb/qcom/
+
+  # Force the ssh-host-keys-migration to happen on every boot
+  # to handle cases where someone did a upgrade->rollback->upgrade
+  # See https://github.com/coreos/fedora-coreos-tracker/issues/1473
+  # We should remove this after the next barrier release.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    mkdir -p /usr/lib/systemd/system/ssh-host-keys-migration.service.d
+    cat <<'EOF' > /usr/lib/systemd/system/ssh-host-keys-migration.service.d/coreos-force-migration-on-every-boot.conf
+    # Force the ssh-host-keys-migration to happen on every boot
+    # to handle cases where someone did a upgrade->rollback->upgrade
+    # See https://github.com/coreos/fedora-coreos-tracker/issues/1473
+    [Unit]
+    ConditionPathExists=
+    EOF
 
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go

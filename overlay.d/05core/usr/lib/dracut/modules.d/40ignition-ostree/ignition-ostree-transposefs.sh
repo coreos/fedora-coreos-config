@@ -54,6 +54,7 @@ mount_verbose() {
     mount -o "${mode}" "${srcdev}" "${destdir}"
 }
 
+# A copy of this exists in ignition-ostree-growfs.sh.
 # Sometimes, for some reason the by-label symlinks aren't updated. Detect these
 # cases, and explicitly `udevadm trigger`.
 # See: https://bugzilla.redhat.com/show_bug.cgi?id=1908780
@@ -95,8 +96,12 @@ mount_and_restore_filesystem_by_label() {
     local mountpoint=$1; shift
     local saved_fs=$1; shift
     local new_dev
-    new_dev=$(jq -r "$(query_fslabel "${label}") | .[0].device" "${ignition_cfg}")
-    udev_trigger_on_label_mismatch "${label}" "${new_dev}"
+    new_dev=$(jq -r "$(query_fslabel "${label}") | .[0].device // \"\"" "${ignition_cfg}")
+    # in the autosave-xfs path, it's not driven by the Ignition config so we
+    # don't expect a new device there
+    if [ -n "${new_dev}" ]; then
+        udev_trigger_on_label_mismatch "${label}" "${new_dev}"
+    fi
     mount_verbose "/dev/disk/by-label/${label}" "${mountpoint}" rw
     find "${saved_fs}" -mindepth 1 -maxdepth 1 -exec mv -t "${mountpoint}" {} +
 }
@@ -122,6 +127,64 @@ mount_and_save_filesystem_by_label() {
     if [[ -f /run/coreos/secure-execution ]]; then
         veritysetup close "${label}"
     fi
+}
+
+# This implements https://github.com/coreos/fedora-coreos-tracker/issues/1183.
+should_autosave_rootfs() {
+    local fstype
+    fstype=$(lsblk -no FSTYPE "${root_part}")
+    if [ "$fstype" != xfs ]; then
+        echo "Filesystem is not XFS (found $fstype); skipping" >&2
+        echo 0
+        return
+    fi
+    local agcount
+    eval $(xfs_info "${root_part}" | grep -o 'agcount=[0-9]*')
+    # Semi-arbitrarily chosen: this is roughly ~64G currently (based on initial
+    # ag sizing at build time) which seems like a good rootfs size at which to
+    # discriminate between "throwaway/short-lived systems" and "long-running
+    # workload systems". It's not like XFS performance is way worse at 128.
+    if [ "$agcount" -lt 128 ]; then
+        echo "Filesystem agcount is $agcount; skipping" >&2
+        echo 0
+        return
+    fi
+    echo 1
+}
+
+ensure_zram_dev() {
+    if test -d "${saved_data}"; then
+        return 0
+    fi
+    mem_available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
+    # Just error out early if we don't even have 1G to work with. This
+    # commonly happens if you `cosa run` but forget to add `--memory`. That
+    # way you get a nicer error instead of the spew of EIO errors from `cp`.
+    # The amount we need is really dependent on a bunch of factors, but just
+    # ballpark it at 3G.
+    if [ "${mem_available}" -lt $((1*1024*1024)) ] && [ "${wipes_root}" != 0 ]; then
+        echo "Root reprovisioning requires at least 3G of RAM" >&2
+        exit 1
+    fi
+    modprobe zram num_devices=0
+    read dev < /sys/class/zram-control/hot_add
+    # disksize is set arbitrarily large, as zram is capped by mem_limit
+    echo 10G > /sys/block/zram"${dev}"/disksize
+    # Limit zram to 90% of available RAM: we want to be greedy since the
+    # boot breaks anyway, but we still want to leave room for everything
+    # else so it hits ENOSPC and doesn't invoke the OOM killer
+    echo $(( mem_available * 90 / 100 ))K > /sys/block/zram"${dev}"/mem_limit
+    mkfs.xfs -q /dev/zram"${dev}"
+    mkdir "${saved_data}"
+    mount -t xfs /dev/zram"${dev}" "${saved_data}"
+    # save the zram device number created for when called to cleanup
+    echo "${dev}" > "${zram_dev}"
+}
+
+print_zram_mm_stat() {
+    echo "zram usage:"
+    read dev < "${zram_dev}"
+    cat /sys/block/zram"${dev}"/mm_stat
 }
 
 # In Secure Execution case user is not allowed to modify partition table
@@ -162,29 +225,8 @@ case "${1:-}" in
             echo "Found duplicate or missing ESP, BIOS-BOOT, or PReP labels in config" >&2
             exit 1
         fi
-        mem_available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
-        # Just error out early if we don't even have 1G to work with. This
-        # commonly happens if you `cosa run` but forget to add `--memory`. That
-        # way you get a nicer error instead of the spew of EIO errors from `cp`.
-        # The amount we need is really dependent on a bunch of factors, but just
-        # ballpark it at 3G.
-        if [ "${mem_available}" -lt $((1*1024*1024)) ] && [ "${wipes_root}" != 0 ]; then
-            echo "Root reprovisioning requires at least 3G of RAM" >&2
-            exit 1
-        fi
-        modprobe zram num_devices=0
-        read dev < /sys/class/zram-control/hot_add
-        # disksize is set arbitrarily large, as zram is capped by mem_limit
-        echo 10G > /sys/block/zram"${dev}"/disksize
-        # Limit zram to 90% of available RAM: we want to be greedy since the
-        # boot breaks anyway, but we still want to leave room for everything
-        # else so it hits ENOSPC and doesn't invoke the OOM killer
-        echo $(( mem_available * 90 / 100 ))K > /sys/block/zram"${dev}"/mem_limit
-        mkfs.xfs -q /dev/zram"${dev}"
-        mkdir "${saved_data}"
-        mount /dev/zram"${dev}" "${saved_data}"
-        # save the zram device number created for when called to cleanup
-        echo "${dev}" > "${zram_dev}"
+
+        ensure_zram_dev
 
         if [ "${wipes_root}" != "0" ]; then
             mkdir "${saved_root}"
@@ -200,6 +242,23 @@ case "${1:-}" in
         fi
         if [ "${creates_prep}" != "0" ]; then
             mkdir "${saved_prep}"
+        fi
+        ;;
+    autosave-xfs)
+        should_autosave=$(should_autosave_rootfs)
+        if [ "${should_autosave}" = "1" ]; then
+            wipes_root=1
+            ensure_zram_dev
+            # in the in-place reprovisioning case, the rootfs was already saved
+            if [ ! -d "${saved_root}" ]; then
+                mkdir "${saved_root}"
+                echo "Moving rootfs to RAM..."
+                mount_and_save_filesystem_by_label root "${saved_root}"
+                print_zram_mm_stat
+            fi
+            mkfs.xfs "${root_part}" -L root -f
+            # for tests
+            touch /run/ignition-ostree-autosaved-xfs.stamp
         fi
         ;;
     save)
@@ -233,9 +292,7 @@ case "${1:-}" in
             echo "Moving PReP partition to RAM..."
             cat "${prep_part}" > "${saved_prep}/partition"
         fi
-        echo "zram usage:"
-        read dev < "${zram_dev}"
-        cat /sys/block/zram"${dev}"/mm_stat
+        print_zram_mm_stat
         ;;
     restore)
         # Mounts happen in a private mount namespace since we're not "offically" mounting

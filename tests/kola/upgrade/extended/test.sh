@@ -6,6 +6,7 @@
 ##   timeoutMin: 45
 ##   # Only run this test when specifically requested.
 ##   requiredTag: extended-upgrade
+##   description: Verify upgrade works.
 
 set -eux -o pipefail
 
@@ -32,14 +33,16 @@ set -eux -o pipefail
 #       - tail -f tmp/kola/ext.config.upgrade.extended/*/journal.txt | grep --color -i 'ok reached version'
 #
 # For convenience, here is a list of the earliest releases on each
-# stream/architecture:
+# stream/architecture. x86_64 minimum version has to be 32.x because
+# of https://github.com/coreos/fedora-coreos-tracker/issues/1448
 #
 # stable
-#   - x86_64  31.20200108.3.0
+#   - x86_64  31.20200108.3.0 -> works for BIOS, not UEFI
+#             32.20200601.3.0
 #   - aarch64 34.20210821.3.0
 #   - s390x   36.20220618.3.1
 # testing
-#   - x86_64  30.20190716.1
+#   - x86_64  32.20200601.2.1
 #   - aarch64 34.20210904.2.0
 #   - s390x   36.20220618.2.0
 # next
@@ -49,22 +52,41 @@ set -eux -o pipefail
 
 . /etc/os-release # for $VERSION_ID
 
+need_zincati_restart='false'
+
 # delete the disabling of updates that was done by the test framework
 if [ -f /etc/zincati/config.d/90-disable-auto-updates.toml ]; then
     rm -f /etc/zincati/config.d/90-disable-auto-updates.toml
-    systemctl restart zincati
+    need_zincati_restart='true'
 fi
 
-version=$(rpm-ostree status  --json | jq -r '.deployments[0].version')
-stream=$(rpm-ostree status  --json | jq -r '.deployments[0]["base-commit-meta"]["fedora-coreos.stream"]')
+# Early `next` releases before [1] had auto-updates disabled too. Let's
+# drop that config if it exists.
+# [1] https://github.com/coreos/fedora-coreos-config/commit/99eab318998441760cca224544fc713651f7a16d
+if [ -f /etc/zincati/config.d/90-disable-on-non-production-stream.toml ]; then
+    rm -f /etc/zincati/config.d/90-disable-on-non-production-stream.toml
+    need_zincati_restart='true'
+fi
 
+get_booted_deployment_json() {
+    rpm-ostree status  --json | jq -r '.deployments[] | select(.booted == true)'
+}
+version=$(get_booted_deployment_json | jq -r '.version')
+stream=$(get_booted_deployment_json | jq -r '.["base-commit-meta"]["fedora-coreos.stream"]')
+
+# Pick up the last release for the current stream
 test -f /srv/releases.json || \
     curl -L "https://builds.coreos.fedoraproject.org/prod/streams/${stream}/releases.json" > /srv/releases.json
-test -f /srv/builds.json || \
-    curl -L "https://builds.coreos.fedoraproject.org/prod/streams/${stream}/builds/builds.json" > /srv/builds.json
-
 last_release=$(jq -r .releases[-1].version /srv/releases.json)
+
+# If the user dropped down a /etc/target_stream file then we'll
+# pick up the info from there.
+target_stream=$stream
+test -f /etc/target_stream && target_stream=$(< /etc/target_stream)
+test -f /srv/builds.json || \
+    curl -L "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/builds.json" > /srv/builds.json
 target_version=$(jq -r .builds[0].id /srv/builds.json)
+
 
 grab-gpg-keys() {
     # For older FCOS we had an issue where when we tried to pull the
@@ -80,6 +102,9 @@ grab-gpg-keys() {
             sudo tee "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${ver}-primary"
         sudo chcon -v --reference="/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${VERSION_ID}-primary" "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${ver}-primary"
     done
+    # restart Zincati in case the process had been kicked off earlier
+    # than this script ran.
+    need_zincati_restart='true'
 }
 
 fix-update-url() {
@@ -90,7 +115,17 @@ fix-update-url() {
 [cincinnati]
 base_url= "https://updates.coreos.fedoraproject.org"
 EOF
-    systemctl restart zincati
+    need_zincati_restart='true'
+}
+
+fix-allow-downgrade() {
+    # Older FCOS will complain about an upgrade target being 'chronologically older than current'
+    # This is documented in https://github.com/coreos/fedora-coreos-tracker/issues/481
+    # We can workaround the problem via a config dropin:
+    cat <<'EOF' > /run/zincati/config.d/99-fedora-coreos-allow-downgrade.toml
+updates.allow_downgrade = true
+EOF
+    need_zincati_restart='true'
 }
 
 ok "Reached version: $version"
@@ -99,13 +134,14 @@ ok "Reached version: $version"
 # If so then we can exit with success!
 if vereq $version $target_version; then
     ok "Fully upgraded to $target_version"
-    bootupctl status
+    # log bootupctl information for inspection where available
+    [ -f /usr/bin/bootupctl ] && /usr/bin/bootupctl status
     exit 0
 fi
 
 # Apply workarounds based on the current version of the system.
 #
-# First release on each stream with new enough zincati for updates stg.fedoraprojec.org
+# First release on each stream with new enough zincati for updates stg.fedoraproject.org
 # - 31.20200505.3.0
 # - 31.20200505.2.0
 # - 32.20200505.1.0
@@ -115,17 +151,25 @@ fi
 # - 35.20211119.2.0
 # - 35.20211119.1.0
 #
+# First release with new enough rpm-ostree with fix for allow-downgrade issue
+# - 31.20200517.3.0
+# - 31.20200517.2.0
+# - 32.20200517.1.0
+#
 case "$stream" in
     'next')
         verlt $version '35.20211119.1.0' && grab-gpg-keys
-        verlt $version '31.20200505.1.0' && fix-update-url
+        verlt $version '32.20200517.1.0' && fix-allow-downgrade
+        verlt $version '32.20200505.1.0' && fix-update-url
         ;;
     'testing')
         verlt $version '35.20211119.2.0' && grab-gpg-keys
+        verlt $version '31.20200517.2.0' && fix-allow-downgrade
         verlt $version '31.20200505.2.0' && fix-update-url
         ;;
     'stable')
         verlt $version '35.20211119.3.0' && grab-gpg-keys
+        verlt $version '31.20200517.3.0' && fix-allow-downgrade
         verlt $version '31.20200505.3.0' && fix-update-url
         ;;
     *) fatal "unexpected stream: $stream";;
@@ -136,9 +180,15 @@ esac
 # version, which should be in the compose OSTree repo.
 if vereq $version $last_release; then
     systemctl stop zincati
-    rpm-ostree rebase fedora-compose: $target_version
+    rpm-ostree rebase "fedora-compose:fedora/$(arch)/coreos/${target_stream}" $target_version
     /tmp/autopkgtest-reboot reboot # execute the reboot
     sleep infinity
+fi
+
+# Restart Zincati if configuration was changed
+if [ "${need_zincati_restart}" == "true" ]; then
+    rpm-ostree cancel # in case anything was already in progress
+    systemctl restart zincati
 fi
 
 # Watch the Zincati logs to see if it got a lead on a new update.

@@ -2,9 +2,6 @@
 ## kola:
 ##   # This test's config manually references /dev/vda and is thus QEMU only
 ##   platforms: qemu
-##   # This test only runs on FCOS due to a problem enabling a swap partition on
-##   # RHCOS. See: https://github.com/openshift/os/issues/665
-##   distros: fcos
 ##   # Root reprovisioning requires at least 4GiB of memory.
 ##   minMemory: 4096
 ##   # This test includes a lot of disk I/O and needs a higher
@@ -15,6 +12,7 @@
 ##   allowConfigWarnings: true
 ##   # This test reprovisions the rootfs.
 ##   tags: reprovision
+##   description: Verify the root reprovision and swap enabled are supported.
 
 set -xeuo pipefail
 

@@ -13,32 +13,19 @@
   tracker: https://github.com/coreos/coreos-assembler/issues/3361
   arches:
     - ppc64le
-- pattern: ext.config.ignition.resource.remote
-  tracker: https://github.com/coreos/butane/issues/430
-  snooze: 2023-03-31
-  #tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
-  #arches:
-  #  - s390x
-  #streams:
-  #  - testing-devel
-  #  - testing
-  #  - stable
-- pattern: ext.config.ignition.resource.authenticated-s3
-  tracker: https://github.com/coreos/butane/issues/430
-  snooze: 2023-03-31
-- pattern: ext.config.butane.grub-users
-  tracker: https://github.com/coreos/butane/issues/430
-  snooze: 2023-03-31
-- pattern: rpmostree.install-uninstall
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
-  arches:
-    - s390x
-  streams:
-    - testing-devel
-    - testing
-    - stable
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1430
-  snooze: 2023-04-12
+  snooze: 2023-05-23
   arches:
     - aarch64
+# This snooze won't fully work because we run our reprovision tests in
+# the pipeline in a separate step and there is an issue if all tests in
+# a kola run are denylisted: https://github.com/coreos/coreos-assembler/issues/3464
+# To workaround we've added the reprovision label to the `boot.grub2-install` test.
+- pattern: ext.config.root-reprovision.*
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1489
+  snooze: 2023-05-23
+  arches:
+    - ppc64le
+  streams:
+    - rawhide

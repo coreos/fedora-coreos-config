@@ -9,15 +9,18 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  nmstate:
-    evr: 2.2.9-2.fc37
+  afterburn:
+    evr: 5.4.0-2.fc38
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-2122902605
-      reason: https://github.com/coreos/coreos-assembler/pull/3397
-      type: fast-track
-  xfsprogs:
-    evr: 6.1.0-2.fc37
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1492
+      type: pin
+  afterburn-dracut:
+    evr: 5.4.0-2.fc38
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-59700c9754
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1443
-      type: fast-track
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1492
+      type: pin
+  moby-engine:
+    evr: 20.10.23-1.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1476
+      type: pin

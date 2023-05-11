@@ -19,7 +19,7 @@ ntp_test_setup() {
     # run podman commands to set up dnsmasq server
     pushd "$(mktemp -d)"
     cat <<EOF >Dockerfile
-FROM registry.fedoraproject.org/fedora:37
+FROM registry.fedoraproject.org/fedora:38
 RUN dnf -y install systemd dnsmasq iproute iputils \
 && dnf clean all \
 && systemctl enable dnsmasq
@@ -27,14 +27,7 @@ RUN echo -e 'dhcp-range=172.16.0.10,172.16.0.20,12h\nbind-interfaces\ninterface=
 CMD [ "/sbin/init" ]
 EOF
 
-    if is_fcos || is_rhcos8; then
-        podman build -t dnsmasq .
-    else
-        # only workaround for scos and rhel9
-        # https://github.com/openshift/os/issues/964
-        # https://bugzilla.redhat.com/show_bug.cgi?id=2123246 (revert PR when bug is fixed)
-        podman build --security-opt seccomp=/usr/share/containers/seccomp.json -t dnsmasq .
-    fi
+    podman build -t dnsmasq .
     popd
     podman run -d --rm --name dnsmasq --privileged --network ns:/var/run/netns/container dnsmasq
 

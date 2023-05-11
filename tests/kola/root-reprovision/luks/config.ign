@@ -1,6 +1,6 @@
 {
   "ignition": {
-    "version": "3.2.0"
+    "version": "3.4.0"
   },
   "storage": {
     "luks": [
@@ -10,6 +10,8 @@
         "clevis": {
           "tpm2": true
         },
+        "discard": true,
+        "openOptions": ["--perf-no_read_workqueue"],
         "label": "root",
         "wipeVolume": true
       }

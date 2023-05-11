@@ -5,9 +5,7 @@
 ##   # RHCOS.
 ##   # TODO-RHCOS: determine if any services on RHCOS are masked and adapt test
 ##   distros: fcos
-#
-# This test makes sure that ignition is able to unmask units It just so happens
-# we have masked dnsmasq in FCOS so we can test this by unmasking it.
+##   description: Verify that Ignition supports to unmask units.
 
 set -xeuo pipefail
 

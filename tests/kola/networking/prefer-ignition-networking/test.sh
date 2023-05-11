@@ -9,18 +9,16 @@
 ##   # different firmwares (BIOS vs UEFI) the NIC names are different.
 ##   # See https://github.com/coreos/fedora-coreos-tracker/issues/1060
 ##   appendKernelArgs: "ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:eth1:none:8.8.8.8 net.ifnames=0"
-##   # appendKernelArgs doesn't work on s390x so skip there
-##   # https://github.com/coreos/coreos-assembler/issues/2776
-##   architectures: "!s390x"
-#
+##   description: Verify that networking configuration is propagated 
+##     via Ignition by default.
+
 # Setup configuration for a single NIC with two different ways:
 # - kargs provide static network config for eth1 without coreos.force_persist_ip
-# - ignition provides dhcp network config for eth1
+# - Ignition provides dhcp network config for eth1
 # Expected result:
 # - without coreos.force_persist_ip Ignition networking
 #   configuration wins, verify that eth1 gets ip via dhcp
-#
-# https://bugzilla.redhat.com/show_bug.cgi?id=1958930#c29
+# See https://bugzilla.redhat.com/show_bug.cgi?id=1958930#c29
 
 set -xeuo pipefail
 

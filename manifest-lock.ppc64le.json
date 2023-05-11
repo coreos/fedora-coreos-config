@@ -1,1268 +1,1292 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.40.10-1.fc37.ppc64le"
+      "evra": "1:1.42.6-1.fc38.ppc64le"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.40.10-1.fc37.ppc64le"
+      "evra": "1:1.42.6-1.fc38.ppc64le"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.40.10-1.fc37.ppc64le"
+      "evra": "1:1.42.6-1.fc38.ppc64le"
     },
     "NetworkManager-team": {
-      "evra": "1:1.40.10-1.fc37.ppc64le"
+      "evra": "1:1.42.6-1.fc38.ppc64le"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.40.10-1.fc37.ppc64le"
+      "evra": "1:1.42.6-1.fc38.ppc64le"
     },
     "WALinuxAgent-udev": {
-      "evra": "2.8.0.11-1.fc37.noarch"
+      "evra": "2.9.0.4-1.fc38.noarch"
     },
     "aardvark-dns": {
-      "evra": "1.5.0-4.fc37.ppc64le"
+      "evra": "1.6.0-1.fc38.ppc64le"
     },
     "acl": {
-      "evra": "2.3.1-4.fc37.ppc64le"
+      "evra": "2.3.1-6.fc38.ppc64le"
     },
     "adcli": {
-      "evra": "0.9.1-11.fc37.ppc64le"
+      "evra": "0.9.2-2.fc38.ppc64le"
     },
     "afterburn": {
-      "evra": "5.4.0-1.fc37.ppc64le"
+      "evra": "5.4.0-2.fc38.ppc64le"
     },
     "afterburn-dracut": {
-      "evra": "5.4.0-1.fc37.ppc64le"
+      "evra": "5.4.0-2.fc38.ppc64le"
     },
     "alternatives": {
-      "evra": "1.22-1.fc37.ppc64le"
+      "evra": "1.24-1.fc38.ppc64le"
     },
     "amd-gpu-firmware": {
-      "evra": "20230310-148.fc37.noarch"
+      "evra": "20230404-149.fc38.noarch"
+    },
+    "atheros-firmware": {
+      "evra": "20230404-149.fc38.noarch"
     },
     "attr": {
-      "evra": "2.5.1-5.fc37.ppc64le"
+      "evra": "2.5.1-6.fc38.ppc64le"
     },
     "audit-libs": {
-      "evra": "3.1-2.fc37.ppc64le"
+      "evra": "3.1.1-1.fc38.ppc64le"
     },
     "authselect": {
-      "evra": "1.4.2-1.fc37.ppc64le"
+      "evra": "1.4.2-2.fc38.ppc64le"
     },
     "authselect-libs": {
-      "evra": "1.4.2-1.fc37.ppc64le"
+      "evra": "1.4.2-2.fc38.ppc64le"
     },
     "avahi-libs": {
-      "evra": "0.8-18.fc37.ppc64le"
+      "evra": "0.8-22.fc38.ppc64le"
     },
     "basesystem": {
-      "evra": "11-14.fc37.noarch"
+      "evra": "11-15.fc38.noarch"
     },
     "bash": {
-      "evra": "5.2.15-1.fc37.ppc64le"
+      "evra": "5.2.15-3.fc38.ppc64le"
     },
     "bash-completion": {
-      "evra": "1:2.11-8.fc37.noarch"
+      "evra": "1:2.11-9.fc38.noarch"
     },
     "bc": {
-      "evra": "1.07.1-16.fc37.ppc64le"
+      "evra": "1.07.1-17.fc38.ppc64le"
     },
     "bind-libs": {
-      "evra": "32:9.18.13-1.fc37.ppc64le"
+      "evra": "32:9.18.14-1.fc38.ppc64le"
     },
     "bind-license": {
-      "evra": "32:9.18.13-1.fc37.noarch"
+      "evra": "32:9.18.14-1.fc38.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.18.13-1.fc37.ppc64le"
+      "evra": "32:9.18.14-1.fc38.ppc64le"
+    },
+    "brcmfmac-firmware": {
+      "evra": "20230404-149.fc38.noarch"
     },
     "bsdtar": {
-      "evra": "3.6.1-3.fc37.ppc64le"
+      "evra": "3.6.1-4.fc38.ppc64le"
     },
     "btrfs-progs": {
-      "evra": "6.2.1-1.fc37.ppc64le"
+      "evra": "6.2.2-1.fc38.ppc64le"
     },
     "bubblewrap": {
-      "evra": "0.5.0-3.fc37.ppc64le"
+      "evra": "0.7.0-1.fc38.ppc64le"
     },
     "bzip2": {
-      "evra": "1.0.8-12.fc37.ppc64le"
+      "evra": "1.0.8-13.fc38.ppc64le"
     },
     "bzip2-libs": {
-      "evra": "1.0.8-12.fc37.ppc64le"
+      "evra": "1.0.8-13.fc38.ppc64le"
     },
     "c-ares": {
-      "evra": "1.19.0-1.fc37.ppc64le"
+      "evra": "1.19.0-1.fc38.ppc64le"
     },
     "ca-certificates": {
-      "evra": "2023.2.60-1.0.fc37.noarch"
+      "evra": "2023.2.60-2.fc38.noarch"
     },
     "catatonit": {
-      "evra": "0.1.7-10.fc37.ppc64le"
+      "evra": "0.1.7-14.fc38.ppc64le"
     },
     "chrony": {
-      "evra": "4.3-1.fc37.ppc64le"
+      "evra": "4.3-3.fc38.ppc64le"
     },
     "cifs-utils": {
-      "evra": "7.0-1.fc37.ppc64le"
+      "evra": "7.0-1.fc38.ppc64le"
     },
     "clevis": {
-      "evra": "19-2.fc37.ppc64le"
+      "evra": "19-2.fc38.ppc64le"
     },
     "clevis-dracut": {
-      "evra": "19-2.fc37.ppc64le"
+      "evra": "19-2.fc38.ppc64le"
     },
     "clevis-luks": {
-      "evra": "19-2.fc37.ppc64le"
+      "evra": "19-2.fc38.ppc64le"
     },
     "clevis-systemd": {
-      "evra": "19-2.fc37.ppc64le"
+      "evra": "19-2.fc38.ppc64le"
     },
     "cloud-utils-growpart": {
-      "evra": "0.31-11.fc37.noarch"
+      "evra": "0.31-12.fc38.noarch"
     },
     "conmon": {
-      "evra": "2:2.1.7-2.fc37.ppc64le"
+      "evra": "2:2.1.7-2.fc38.ppc64le"
     },
     "console-login-helper-messages": {
-      "evra": "0.21.3-3.fc37.noarch"
+      "evra": "0.21.3-4.fc38.noarch"
     },
     "console-login-helper-messages-issuegen": {
-      "evra": "0.21.3-3.fc37.noarch"
+      "evra": "0.21.3-4.fc38.noarch"
     },
     "console-login-helper-messages-motdgen": {
-      "evra": "0.21.3-3.fc37.noarch"
+      "evra": "0.21.3-4.fc38.noarch"
     },
     "console-login-helper-messages-profile": {
-      "evra": "0.21.3-3.fc37.noarch"
+      "evra": "0.21.3-4.fc38.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.205.0-1.fc37.noarch"
+      "evra": "2:2.211.1-1.fc38.noarch"
     },
     "containerd": {
-      "evra": "1.6.19-1.fc37.ppc64le"
+      "evra": "1.6.19-1.fc38.ppc64le"
     },
     "containernetworking-plugins": {
-      "evra": "1.1.1-16.fc37.ppc64le"
+      "evra": "1.1.1-16.fc38.ppc64le"
     },
     "containers-common": {
-      "evra": "4:1-80.fc37.noarch"
+      "evra": "4:1-89.fc38.noarch"
     },
     "containers-common-extra": {
-      "evra": "4:1-80.fc37.noarch"
+      "evra": "4:1-89.fc38.noarch"
     },
     "coreos-installer": {
-      "evra": "0.17.0-1.fc37.ppc64le"
+      "evra": "0.17.0-3.fc38.ppc64le"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.17.0-1.fc37.ppc64le"
+      "evra": "0.17.0-3.fc38.ppc64le"
     },
     "coreutils": {
-      "evra": "9.1-7.fc37.ppc64le"
+      "evra": "9.1-12.fc38.ppc64le"
     },
     "coreutils-common": {
-      "evra": "9.1-7.fc37.ppc64le"
+      "evra": "9.1-12.fc38.ppc64le"
     },
     "cpio": {
-      "evra": "2.13-13.fc37.ppc64le"
+      "evra": "2.13-14.fc38.ppc64le"
     },
     "cracklib": {
-      "evra": "2.9.7-30.fc37.ppc64le"
+      "evra": "2.9.7-31.fc38.ppc64le"
     },
     "criu": {
-      "evra": "3.17.1-3.fc37.ppc64le"
+      "evra": "3.17.1-5.fc38.ppc64le"
     },
     "criu-libs": {
-      "evra": "3.17.1-3.fc37.ppc64le"
+      "evra": "3.17.1-5.fc38.ppc64le"
     },
     "crun": {
-      "evra": "1.8.2-2.fc37.ppc64le"
+      "evra": "1.8.4-1.fc38.ppc64le"
     },
     "crypto-policies": {
-      "evra": "20220815-1.gite4ed860.fc37.noarch"
+      "evra": "20230301-1.gita12f7b2.fc38.noarch"
     },
     "cryptsetup": {
-      "evra": "2.6.1-1.fc37.ppc64le"
+      "evra": "2.6.1-1.fc38.ppc64le"
     },
     "cryptsetup-libs": {
-      "evra": "2.6.1-1.fc37.ppc64le"
+      "evra": "2.6.1-1.fc38.ppc64le"
     },
     "curl": {
-      "evra": "7.85.0-7.fc37.ppc64le"
+      "evra": "8.0.1-1.fc38.ppc64le"
     },
     "cyrus-sasl-gssapi": {
-      "evra": "2.1.28-8.fc37.ppc64le"
+      "evra": "2.1.28-9.fc38.ppc64le"
     },
     "cyrus-sasl-lib": {
-      "evra": "2.1.28-8.fc37.ppc64le"
+      "evra": "2.1.28-9.fc38.ppc64le"
     },
     "dbus": {
-      "evra": "1:1.14.6-1.fc37.ppc64le"
+      "evra": "1:1.14.6-1.fc38.ppc64le"
     },
     "dbus-broker": {
-      "evra": "33-1.fc37.ppc64le"
+      "evra": "33-1.fc38.ppc64le"
     },
     "dbus-common": {
-      "evra": "1:1.14.6-1.fc37.noarch"
+      "evra": "1:1.14.6-1.fc38.noarch"
     },
     "dbus-libs": {
-      "evra": "1:1.14.6-1.fc37.ppc64le"
+      "evra": "1:1.14.6-1.fc38.ppc64le"
     },
     "device-mapper": {
-      "evra": "1.02.175-9.fc37.ppc64le"
+      "evra": "1.02.189-2.fc38.ppc64le"
     },
     "device-mapper-event": {
-      "evra": "1.02.175-9.fc37.ppc64le"
+      "evra": "1.02.189-2.fc38.ppc64le"
     },
     "device-mapper-event-libs": {
-      "evra": "1.02.175-9.fc37.ppc64le"
+      "evra": "1.02.189-2.fc38.ppc64le"
     },
     "device-mapper-libs": {
-      "evra": "1.02.175-9.fc37.ppc64le"
+      "evra": "1.02.189-2.fc38.ppc64le"
     },
     "device-mapper-multipath": {
-      "evra": "0.9.0-4.fc37.ppc64le"
+      "evra": "0.9.4-2.fc38.ppc64le"
     },
     "device-mapper-multipath-libs": {
-      "evra": "0.9.0-4.fc37.ppc64le"
+      "evra": "0.9.4-2.fc38.ppc64le"
     },
     "device-mapper-persistent-data": {
-      "evra": "0.9.0-8.fc37.ppc64le"
+      "evra": "0.9.0-10.fc38.ppc64le"
     },
     "diffutils": {
-      "evra": "3.8-3.fc37.ppc64le"
+      "evra": "3.9-1.fc38.ppc64le"
     },
     "dnsmasq": {
-      "evra": "2.89-1.fc37.ppc64le"
+      "evra": "2.89-2.fc38.ppc64le"
     },
     "dosfstools": {
-      "evra": "4.2-4.fc37.ppc64le"
+      "evra": "4.2-6.fc38.ppc64le"
     },
     "dracut": {
-      "evra": "057-5.fc37.ppc64le"
+      "evra": "059-3.fc38.ppc64le"
     },
     "dracut-network": {
-      "evra": "057-5.fc37.ppc64le"
+      "evra": "059-3.fc38.ppc64le"
     },
     "dracut-squash": {
-      "evra": "057-5.fc37.ppc64le"
+      "evra": "059-3.fc38.ppc64le"
+    },
+    "duktape": {
+      "evra": "2.7.0-2.fc38.ppc64le"
     },
     "e2fsprogs": {
-      "evra": "1.46.5-3.fc37.ppc64le"
+      "evra": "1.46.5-4.fc38.ppc64le"
     },
     "e2fsprogs-libs": {
-      "evra": "1.46.5-3.fc37.ppc64le"
+      "evra": "1.46.5-4.fc38.ppc64le"
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.189-1.fc37.noarch"
+      "evra": "0.189-2.fc38.noarch"
     },
     "elfutils-libelf": {
-      "evra": "0.189-1.fc37.ppc64le"
+      "evra": "0.189-2.fc38.ppc64le"
     },
     "elfutils-libs": {
-      "evra": "0.189-1.fc37.ppc64le"
+      "evra": "0.189-2.fc38.ppc64le"
     },
     "ethtool": {
-      "evra": "2:6.2-1.fc37.ppc64le"
+      "evra": "2:6.2-1.fc38.ppc64le"
     },
     "expat": {
-      "evra": "2.5.0-1.fc37.ppc64le"
+      "evra": "2.5.0-2.fc38.ppc64le"
     },
     "fedora-gpg-keys": {
-      "evra": "37-2.noarch"
+      "evra": "38-1.noarch"
     },
     "fedora-release-common": {
-      "evra": "37-16.noarch"
+      "evra": "38-35.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "37-16.noarch"
+      "evra": "38-35.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "37-16.noarch"
+      "evra": "38-35.noarch"
     },
     "fedora-repos": {
-      "evra": "37-2.noarch"
+      "evra": "38-1.noarch"
     },
     "fedora-repos-archive": {
-      "evra": "37-2.noarch"
+      "evra": "38-1.noarch"
     },
     "fedora-repos-modular": {
-      "evra": "37-2.noarch"
+      "evra": "38-1.noarch"
     },
     "fedora-repos-ostree": {
-      "evra": "37-2.noarch"
+      "evra": "38-1.noarch"
     },
     "file": {
-      "evra": "5.42-4.fc37.ppc64le"
+      "evra": "5.44-3.fc38.ppc64le"
     },
     "file-libs": {
-      "evra": "5.42-4.fc37.ppc64le"
+      "evra": "5.44-3.fc38.ppc64le"
     },
     "filesystem": {
-      "evra": "3.18-2.fc37.ppc64le"
+      "evra": "3.18-3.fc38.ppc64le"
     },
     "findutils": {
-      "evra": "1:4.9.0-2.fc37.ppc64le"
+      "evra": "1:4.9.0-3.fc38.ppc64le"
     },
     "flatpak-session-helper": {
-      "evra": "1.14.4-1.fc37.ppc64le"
+      "evra": "1.15.4-1.fc38.ppc64le"
     },
     "fstrm": {
-      "evra": "0.6.1-5.fc37.ppc64le"
+      "evra": "0.6.1-6.fc38.ppc64le"
     },
     "fuse": {
-      "evra": "2.9.9-15.fc37.ppc64le"
+      "evra": "2.9.9-16.fc38.ppc64le"
     },
     "fuse-common": {
-      "evra": "3.10.5-5.fc37.ppc64le"
+      "evra": "3.14.1-1.fc38.ppc64le"
     },
     "fuse-libs": {
-      "evra": "2.9.9-15.fc37.ppc64le"
+      "evra": "2.9.9-16.fc38.ppc64le"
     },
     "fuse-overlayfs": {
-      "evra": "1.9-6.fc37.ppc64le"
+      "evra": "1.10-3.fc38.ppc64le"
     },
     "fuse-sshfs": {
-      "evra": "3.7.3-2.fc37.ppc64le"
+      "evra": "3.7.3-3.fc38.ppc64le"
     },
     "fuse3": {
-      "evra": "3.10.5-5.fc37.ppc64le"
+      "evra": "3.14.1-1.fc38.ppc64le"
     },
     "fuse3-libs": {
-      "evra": "3.10.5-5.fc37.ppc64le"
+      "evra": "3.14.1-1.fc38.ppc64le"
     },
     "fwupd": {
-      "evra": "1.8.12-1.fc37.ppc64le"
+      "evra": "1.8.15-1.fc38.ppc64le"
     },
     "gawk": {
-      "evra": "5.1.1-4.fc37.ppc64le"
+      "evra": "5.1.1-5.fc38.ppc64le"
     },
     "gdbm-libs": {
-      "evra": "1:1.23-2.fc37.ppc64le"
+      "evra": "1:1.23-3.fc38.ppc64le"
     },
     "gdisk": {
-      "evra": "1.0.9-4.fc37.ppc64le"
+      "evra": "1.0.9-5.fc38.ppc64le"
     },
     "gettext-envsubst": {
-      "evra": "0.21.1-1.fc37.ppc64le"
+      "evra": "0.21.1-2.fc38.ppc64le"
     },
     "gettext-libs": {
-      "evra": "0.21.1-1.fc37.ppc64le"
+      "evra": "0.21.1-2.fc38.ppc64le"
     },
     "gettext-runtime": {
-      "evra": "0.21.1-1.fc37.ppc64le"
+      "evra": "0.21.1-2.fc38.ppc64le"
     },
     "git-core": {
-      "evra": "2.39.2-1.fc37.ppc64le"
+      "evra": "2.40.1-1.fc38.ppc64le"
     },
     "glib2": {
-      "evra": "2.74.6-1.fc37.ppc64le"
+      "evra": "2.76.2-1.fc38.ppc64le"
     },
     "glibc": {
-      "evra": "2.36-9.fc37.ppc64le"
+      "evra": "2.37-4.fc38.ppc64le"
     },
     "glibc-common": {
-      "evra": "2.36-9.fc37.ppc64le"
+      "evra": "2.37-4.fc38.ppc64le"
     },
     "glibc-gconv-extra": {
-      "evra": "2.36-9.fc37.ppc64le"
+      "evra": "2.37-4.fc38.ppc64le"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.36-9.fc37.ppc64le"
+      "evra": "2.37-4.fc38.ppc64le"
     },
     "gmp": {
-      "evra": "1:6.2.1-3.fc37.ppc64le"
+      "evra": "1:6.2.1-4.fc38.ppc64le"
     },
     "gnupg2": {
-      "evra": "2.3.8-1.fc37.ppc64le"
+      "evra": "2.4.0-3.fc38.ppc64le"
     },
     "gnutls": {
-      "evra": "3.8.0-2.fc37.ppc64le"
+      "evra": "3.8.0-2.fc38.ppc64le"
     },
     "gpgme": {
-      "evra": "1.17.0-4.fc37.ppc64le"
+      "evra": "1.17.1-3.fc38.ppc64le"
     },
     "grep": {
-      "evra": "3.7-4.fc37.ppc64le"
+      "evra": "3.8-3.fc38.ppc64le"
     },
     "grub2-common": {
-      "evra": "1:2.06-89.fc37.noarch"
+      "evra": "1:2.06-95.fc38.noarch"
     },
     "grub2-ppc64le": {
-      "evra": "1:2.06-89.fc37.ppc64le"
+      "evra": "1:2.06-95.fc38.ppc64le"
     },
     "grub2-ppc64le-modules": {
-      "evra": "1:2.06-89.fc37.noarch"
+      "evra": "1:2.06-95.fc38.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.06-89.fc37.ppc64le"
+      "evra": "1:2.06-95.fc38.ppc64le"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-89.fc37.ppc64le"
+      "evra": "1:2.06-95.fc38.ppc64le"
     },
     "gzip": {
-      "evra": "1.12-2.fc37.ppc64le"
+      "evra": "1.12-3.fc38.ppc64le"
     },
     "hostname": {
-      "evra": "3.23-7.fc37.ppc64le"
+      "evra": "3.23-8.fc38.ppc64le"
     },
     "ignition": {
-      "evra": "2.15.0-3.fc37.ppc64le"
+      "evra": "2.15.0-3.fc38.ppc64le"
     },
     "inih": {
-      "evra": "56-2.fc37.ppc64le"
+      "evra": "56-3.fc38.ppc64le"
     },
     "intel-gpu-firmware": {
-      "evra": "20230310-148.fc37.noarch"
+      "evra": "20230404-149.fc38.noarch"
     },
     "iproute": {
-      "evra": "5.18.0-2.fc37.ppc64le"
+      "evra": "6.1.0-1.fc38.ppc64le"
     },
     "iproute-tc": {
-      "evra": "5.18.0-2.fc37.ppc64le"
+      "evra": "6.1.0-1.fc38.ppc64le"
     },
     "iptables-legacy": {
-      "evra": "1.8.8-4.fc37.ppc64le"
+      "evra": "1.8.9-2.fc38.ppc64le"
     },
     "iptables-legacy-libs": {
-      "evra": "1.8.8-4.fc37.ppc64le"
+      "evra": "1.8.9-2.fc38.ppc64le"
     },
     "iptables-libs": {
-      "evra": "1.8.8-4.fc37.ppc64le"
+      "evra": "1.8.9-2.fc38.ppc64le"
     },
     "iptables-nft": {
-      "evra": "1.8.8-4.fc37.ppc64le"
+      "evra": "1.8.9-2.fc38.ppc64le"
     },
     "iptables-services": {
-      "evra": "1.8.8-4.fc37.noarch"
+      "evra": "1.8.9-2.fc38.noarch"
     },
     "iptables-utils": {
-      "evra": "1.8.8-4.fc37.ppc64le"
+      "evra": "1.8.9-2.fc38.ppc64le"
     },
     "iputils": {
-      "evra": "20221126-1.fc37.ppc64le"
+      "evra": "20221126-2.fc38.ppc64le"
     },
     "irqbalance": {
-      "evra": "2:1.9.1-1.fc37.ppc64le"
+      "evra": "2:1.9.2-1.fc38.ppc64le"
     },
     "iscsi-initiator-utils": {
-      "evra": "6.2.1.4-6.git2a8f9d8.fc37.ppc64le"
+      "evra": "6.2.1.4-10.git2a8f9d8.fc38.ppc64le"
     },
     "iscsi-initiator-utils-iscsiuio": {
-      "evra": "6.2.1.4-6.git2a8f9d8.fc37.ppc64le"
+      "evra": "6.2.1.4-10.git2a8f9d8.fc38.ppc64le"
     },
     "isns-utils-libs": {
-      "evra": "0.101-5.fc37.ppc64le"
+      "evra": "0.101-6.fc38.ppc64le"
     },
     "jansson": {
-      "evra": "2.13.1-5.fc37.ppc64le"
+      "evra": "2.13.1-6.fc38.ppc64le"
     },
     "jemalloc": {
-      "evra": "5.3.0-2.fc37.ppc64le"
+      "evra": "5.3.0-3.fc38.ppc64le"
     },
     "jose": {
-      "evra": "11-6.fc37.ppc64le"
+      "evra": "11-7.fc38.ppc64le"
     },
     "jq": {
-      "evra": "1.6-14.fc37.ppc64le"
+      "evra": "1.6-15.fc38.ppc64le"
     },
     "json-c": {
-      "evra": "0.16-3.fc37.ppc64le"
+      "evra": "0.16-4.fc38.ppc64le"
     },
     "json-glib": {
-      "evra": "1.6.6-3.fc37.ppc64le"
+      "evra": "1.6.6-4.fc38.ppc64le"
     },
     "kbd": {
-      "evra": "2.5.1-3.fc37.ppc64le"
+      "evra": "2.5.1-5.fc38.ppc64le"
     },
     "kbd-legacy": {
-      "evra": "2.5.1-3.fc37.noarch"
+      "evra": "2.5.1-5.fc38.noarch"
     },
     "kbd-misc": {
-      "evra": "2.5.1-3.fc37.noarch"
+      "evra": "2.5.1-5.fc38.noarch"
     },
     "kernel": {
-      "evra": "6.2.7-200.fc37.ppc64le"
+      "evra": "6.2.15-300.fc38.ppc64le"
     },
     "kernel-core": {
-      "evra": "6.2.7-200.fc37.ppc64le"
+      "evra": "6.2.15-300.fc38.ppc64le"
     },
     "kernel-modules": {
-      "evra": "6.2.7-200.fc37.ppc64le"
+      "evra": "6.2.15-300.fc38.ppc64le"
     },
     "kernel-modules-core": {
-      "evra": "6.2.7-200.fc37.ppc64le"
+      "evra": "6.2.15-300.fc38.ppc64le"
     },
     "kexec-tools": {
-      "evra": "2.0.25-1.fc37.ppc64le"
+      "evra": "2.0.26-3.fc38.ppc64le"
     },
     "keyutils": {
-      "evra": "1.6.1-5.fc37.ppc64le"
+      "evra": "1.6.1-6.fc38.ppc64le"
     },
     "keyutils-libs": {
-      "evra": "1.6.1-5.fc37.ppc64le"
+      "evra": "1.6.1-6.fc38.ppc64le"
     },
     "kmod": {
-      "evra": "30-2.fc37.ppc64le"
+      "evra": "30-4.fc38.ppc64le"
     },
     "kmod-libs": {
-      "evra": "30-2.fc37.ppc64le"
+      "evra": "30-4.fc38.ppc64le"
     },
     "kpartx": {
-      "evra": "0.9.0-4.fc37.ppc64le"
+      "evra": "0.9.4-2.fc38.ppc64le"
     },
     "krb5-libs": {
-      "evra": "1.19.2-13.fc37.ppc64le"
+      "evra": "1.20.1-8.fc38.ppc64le"
     },
     "less": {
-      "evra": "590-5.fc37.ppc64le"
+      "evra": "633-1.fc38.ppc64le"
     },
     "libacl": {
-      "evra": "2.3.1-4.fc37.ppc64le"
+      "evra": "2.3.1-6.fc38.ppc64le"
     },
     "libaio": {
-      "evra": "0.3.111-14.fc37.ppc64le"
+      "evra": "0.3.111-15.fc38.ppc64le"
     },
     "libarchive": {
-      "evra": "3.6.1-3.fc37.ppc64le"
+      "evra": "3.6.1-4.fc38.ppc64le"
     },
     "libargon2": {
-      "evra": "20190702-1.fc37.ppc64le"
+      "evra": "20190702-2.fc38.ppc64le"
     },
     "libassuan": {
-      "evra": "2.5.5-5.fc37.ppc64le"
+      "evra": "2.5.5-6.fc38.ppc64le"
+    },
+    "libatomic": {
+      "evra": "13.1.1-2.fc38.ppc64le"
     },
     "libattr": {
-      "evra": "2.5.1-5.fc37.ppc64le"
+      "evra": "2.5.1-6.fc38.ppc64le"
     },
     "libbasicobjects": {
-      "evra": "0.1.1-52.fc37.ppc64le"
+      "evra": "0.1.1-53.fc38.ppc64le"
     },
     "libblkid": {
-      "evra": "2.38.1-1.fc37.ppc64le"
+      "evra": "2.38.1-4.fc38.ppc64le"
     },
     "libbpf": {
-      "evra": "2:0.8.0-2.fc37.ppc64le"
+      "evra": "2:1.1.0-2.fc38.ppc64le"
     },
     "libbsd": {
-      "evra": "0.11.7-2.fc37.ppc64le"
+      "evra": "0.11.7-4.fc38.ppc64le"
     },
     "libcap": {
-      "evra": "2.48-5.fc37.ppc64le"
+      "evra": "2.48-6.fc38.ppc64le"
     },
     "libcap-ng": {
-      "evra": "0.8.3-3.fc37.ppc64le"
+      "evra": "0.8.3-5.fc38.ppc64le"
     },
     "libcbor": {
-      "evra": "0.7.0-7.fc37.ppc64le"
+      "evra": "0.7.0-9.fc38.ppc64le"
     },
     "libcollection": {
-      "evra": "0.7.0-52.fc37.ppc64le"
+      "evra": "0.7.0-53.fc38.ppc64le"
     },
     "libcom_err": {
-      "evra": "1.46.5-3.fc37.ppc64le"
+      "evra": "1.46.5-4.fc38.ppc64le"
     },
     "libcurl-minimal": {
-      "evra": "7.85.0-7.fc37.ppc64le"
+      "evra": "8.0.1-1.fc38.ppc64le"
     },
     "libdaemon": {
-      "evra": "0.14-24.fc37.ppc64le"
+      "evra": "0.14-25.fc38.ppc64le"
     },
     "libdb": {
-      "evra": "5.3.28-53.fc37.ppc64le"
+      "evra": "5.3.28-55.fc38.ppc64le"
     },
     "libdhash": {
-      "evra": "0.5.0-52.fc37.ppc64le"
+      "evra": "0.5.0-53.fc38.ppc64le"
     },
     "libeconf": {
-      "evra": "0.4.0-4.fc37.ppc64le"
+      "evra": "0.4.0-5.fc38.ppc64le"
     },
     "libedit": {
-      "evra": "3.1-43.20221009cvs.fc37.ppc64le"
+      "evra": "3.1-45.20221030cvs.fc38.ppc64le"
     },
     "libevent": {
-      "evra": "2.1.12-7.fc37.ppc64le"
+      "evra": "2.1.12-8.fc38.ppc64le"
     },
     "libfdisk": {
-      "evra": "2.38.1-1.fc37.ppc64le"
+      "evra": "2.38.1-4.fc38.ppc64le"
     },
     "libffi": {
-      "evra": "3.4.4-1.fc37.ppc64le"
+      "evra": "3.4.4-2.fc38.ppc64le"
     },
     "libfido2": {
-      "evra": "1.11.0-3.fc37.ppc64le"
+      "evra": "1.12.0-3.fc38.ppc64le"
     },
     "libgcab1": {
-      "evra": "1.5-1.fc37.ppc64le"
+      "evra": "1.5-2.fc38.ppc64le"
     },
     "libgcc": {
-      "evra": "12.2.1-4.fc37.ppc64le"
+      "evra": "13.1.1-2.fc38.ppc64le"
     },
     "libgcrypt": {
-      "evra": "1.10.1-4.fc37.ppc64le"
+      "evra": "1.10.2-1.fc38.ppc64le"
     },
     "libgpg-error": {
-      "evra": "1.46-1.fc37.ppc64le"
+      "evra": "1.47-1.fc38.ppc64le"
     },
     "libgudev": {
-      "evra": "237-3.fc37.ppc64le"
+      "evra": "237-4.fc38.ppc64le"
     },
     "libgusb": {
-      "evra": "0.4.5-1.fc37.ppc64le"
+      "evra": "0.4.5-1.fc38.ppc64le"
     },
     "libibverbs": {
-      "evra": "41.0-1.fc37.ppc64le"
+      "evra": "44.0-3.fc38.ppc64le"
     },
     "libicu": {
-      "evra": "71.1-2.fc37.ppc64le"
+      "evra": "72.1-2.fc38.ppc64le"
     },
     "libidn2": {
-      "evra": "2.3.4-1.fc37.ppc64le"
+      "evra": "2.3.4-2.fc38.ppc64le"
     },
     "libini_config": {
-      "evra": "1.3.1-52.fc37.ppc64le"
+      "evra": "1.3.1-53.fc38.ppc64le"
     },
     "libipa_hbac": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "libjcat": {
-      "evra": "0.1.13-1.fc37.ppc64le"
+      "evra": "0.1.13-1.fc38.ppc64le"
     },
     "libjose": {
-      "evra": "11-6.fc37.ppc64le"
+      "evra": "11-7.fc38.ppc64le"
     },
     "libkcapi": {
-      "evra": "1.4.0-2.fc37.ppc64le"
+      "evra": "1.4.0-5.fc38.ppc64le"
     },
     "libkcapi-hmaccalc": {
-      "evra": "1.4.0-2.fc37.ppc64le"
+      "evra": "1.4.0-5.fc38.ppc64le"
     },
     "libksba": {
-      "evra": "1.6.3-1.fc37.ppc64le"
+      "evra": "1.6.3-2.fc38.ppc64le"
     },
     "libldb": {
-      "evra": "2.6.1-1.fc37.ppc64le"
+      "evra": "2.7.2-1.fc38.ppc64le"
     },
     "libluksmeta": {
-      "evra": "9-14.fc37.ppc64le"
+      "evra": "9-15.fc38.ppc64le"
     },
     "libmaxminddb": {
-      "evra": "1.7.1-1.fc37.ppc64le"
+      "evra": "1.7.1-2.fc38.ppc64le"
     },
     "libmd": {
-      "evra": "1.0.4-2.fc37.ppc64le"
+      "evra": "1.0.4-3.fc38.ppc64le"
     },
     "libmnl": {
-      "evra": "1.0.5-1.fc37.ppc64le"
+      "evra": "1.0.5-2.fc38.ppc64le"
     },
     "libmodulemd": {
-      "evra": "2.14.0-4.fc37.ppc64le"
+      "evra": "2.15.0-2.fc38.ppc64le"
     },
     "libmount": {
-      "evra": "2.38.1-1.fc37.ppc64le"
+      "evra": "2.38.1-4.fc38.ppc64le"
     },
     "libndp": {
-      "evra": "1.8-4.fc37.ppc64le"
+      "evra": "1.8-5.fc38.ppc64le"
     },
     "libnet": {
-      "evra": "1.2-6.fc37.ppc64le"
+      "evra": "1.2-7.fc38.ppc64le"
     },
     "libnetfilter_conntrack": {
-      "evra": "1.0.8-5.fc37.ppc64le"
+      "evra": "1.0.8-7.fc38.ppc64le"
     },
     "libnfnetlink": {
-      "evra": "1.0.1-22.fc37.ppc64le"
+      "evra": "1.0.1-23.fc38.ppc64le"
     },
     "libnfsidmap": {
-      "evra": "1:2.6.2-2.rc6.fc37.ppc64le"
+      "evra": "1:2.6.3-0.fc38.ppc64le"
     },
     "libnftnl": {
-      "evra": "1.2.2-2.fc37.ppc64le"
+      "evra": "1.2.4-2.fc38.ppc64le"
     },
     "libnghttp2": {
-      "evra": "1.51.0-1.fc37.ppc64le"
+      "evra": "1.52.0-1.fc38.ppc64le"
     },
     "libnl3": {
-      "evra": "3.7.0-2.fc37.ppc64le"
+      "evra": "3.7.0-3.fc38.ppc64le"
     },
     "libnl3-cli": {
-      "evra": "3.7.0-2.fc37.ppc64le"
+      "evra": "3.7.0-3.fc38.ppc64le"
     },
     "libnsl2": {
-      "evra": "2.0.0-4.fc37.ppc64le"
+      "evra": "2.0.0-5.fc38.ppc64le"
     },
     "libnvme": {
-      "evra": "1.2-1.fc37.ppc64le"
+      "evra": "1.4-2.fc38.ppc64le"
     },
     "libpath_utils": {
-      "evra": "0.2.1-52.fc37.ppc64le"
+      "evra": "0.2.1-53.fc38.ppc64le"
     },
     "libpcap": {
-      "evra": "14:1.10.3-1.fc37.ppc64le"
+      "evra": "14:1.10.4-1.fc38.ppc64le"
     },
     "libpkgconf": {
-      "evra": "1.8.0-3.fc37.ppc64le"
+      "evra": "1.8.0-6.fc38.ppc64le"
     },
     "libpsl": {
-      "evra": "0.21.1-6.fc37.ppc64le"
+      "evra": "0.21.2-2.fc38.ppc64le"
     },
     "libpwquality": {
-      "evra": "1.4.5-3.fc37.ppc64le"
+      "evra": "1.4.5-3.fc38.ppc64le"
     },
     "libref_array": {
-      "evra": "0.1.5-52.fc37.ppc64le"
+      "evra": "0.1.5-53.fc38.ppc64le"
     },
     "librepo": {
-      "evra": "1.15.1-1.fc37.ppc64le"
+      "evra": "1.15.1-2.fc38.ppc64le"
     },
     "libreport-filesystem": {
-      "evra": "2.17.4-1.fc37.noarch"
+      "evra": "2.17.10-1.fc38.noarch"
     },
     "librtas": {
-      "evra": "2.0.2-13.fc37.ppc64le"
+      "evra": "2.0.4-1.fc38.ppc64le"
     },
     "libseccomp": {
-      "evra": "2.5.3-3.fc37.ppc64le"
+      "evra": "2.5.3-4.fc38.ppc64le"
     },
     "libselinux": {
-      "evra": "3.5-1.fc37.ppc64le"
+      "evra": "3.5-1.fc38.ppc64le"
     },
     "libselinux-utils": {
-      "evra": "3.5-1.fc37.ppc64le"
+      "evra": "3.5-1.fc38.ppc64le"
     },
     "libsemanage": {
-      "evra": "3.5-1.fc37.ppc64le"
+      "evra": "3.5-2.fc38.ppc64le"
     },
     "libsepol": {
-      "evra": "3.5-1.fc37.ppc64le"
+      "evra": "3.5-1.fc38.ppc64le"
     },
     "libservicelog": {
-      "evra": "1.1.19-4.fc37.ppc64le"
+      "evra": "1.1.19-5.fc38.ppc64le"
     },
     "libsigsegv": {
-      "evra": "2.14-3.fc37.ppc64le"
+      "evra": "2.14-4.fc38.ppc64le"
     },
     "libslirp": {
-      "evra": "4.7.0-2.fc37.ppc64le"
+      "evra": "4.7.0-3.fc38.ppc64le"
     },
     "libsmartcols": {
-      "evra": "2.38.1-1.fc37.ppc64le"
+      "evra": "2.38.1-4.fc38.ppc64le"
     },
     "libsmbclient": {
-      "evra": "2:4.17.6-0.fc37.ppc64le"
+      "evra": "2:4.18.2-0.fc38.ppc64le"
     },
     "libsolv": {
-      "evra": "0.7.22-3.fc37.ppc64le"
+      "evra": "0.7.22-4.fc38.ppc64le"
     },
     "libss": {
-      "evra": "1.46.5-3.fc37.ppc64le"
+      "evra": "1.46.5-4.fc38.ppc64le"
     },
     "libsss_certmap": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "libsss_idmap": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "libsss_nss_idmap": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "libsss_sudo": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "libstdc++": {
-      "evra": "12.2.1-4.fc37.ppc64le"
+      "evra": "13.1.1-2.fc38.ppc64le"
     },
     "libtalloc": {
-      "evra": "2.3.4-3.fc37.ppc64le"
+      "evra": "2.4.0-2.fc38.ppc64le"
     },
     "libtasn1": {
-      "evra": "4.19.0-1.fc37.ppc64le"
+      "evra": "4.19.0-2.fc38.ppc64le"
     },
     "libtdb": {
-      "evra": "1.4.7-3.fc37.ppc64le"
+      "evra": "1.4.8-1.fc38.ppc64le"
     },
     "libteam": {
-      "evra": "1.31-6.fc37.ppc64le"
+      "evra": "1.31-7.fc38.ppc64le"
     },
     "libtevent": {
-      "evra": "0.13.0-1.fc37.ppc64le"
+      "evra": "0.14.1-1.fc38.ppc64le"
     },
     "libtirpc": {
-      "evra": "1.3.3-0.fc37.ppc64le"
+      "evra": "1.3.3-1.rc1.fc38.ppc64le"
     },
     "libtool-ltdl": {
-      "evra": "2.4.7-2.fc37.ppc64le"
+      "evra": "2.4.7-6.fc38.ppc64le"
     },
     "libunistring": {
-      "evra": "1.0-2.fc37.ppc64le"
+      "evra": "1.1-3.fc38.ppc64le"
+    },
+    "libunistring1.0": {
+      "evra": "1.0-1.fc38.ppc64le"
     },
     "libusb1": {
-      "evra": "1.0.25-9.fc37.ppc64le"
+      "evra": "1.0.26-2.fc38.ppc64le"
     },
     "libuser": {
-      "evra": "0.63-13.fc37.ppc64le"
+      "evra": "0.64-2.fc38.ppc64le"
     },
     "libutempter": {
-      "evra": "1.2.1-7.fc37.ppc64le"
+      "evra": "1.2.1-8.fc38.ppc64le"
     },
     "libuuid": {
-      "evra": "2.38.1-1.fc37.ppc64le"
+      "evra": "2.38.1-4.fc38.ppc64le"
     },
     "libuv": {
-      "evra": "1:1.44.2-2.fc37.ppc64le"
+      "evra": "1:1.44.2-3.fc38.ppc64le"
     },
     "libverto": {
-      "evra": "0.3.2-4.fc37.ppc64le"
+      "evra": "0.3.2-5.fc38.ppc64le"
     },
     "libwbclient": {
-      "evra": "2:4.17.6-0.fc37.ppc64le"
+      "evra": "2:4.18.2-0.fc38.ppc64le"
     },
     "libxcrypt": {
-      "evra": "4.4.33-4.fc37.ppc64le"
+      "evra": "4.4.33-7.fc38.ppc64le"
     },
     "libxml2": {
-      "evra": "2.10.3-2.fc37.ppc64le"
+      "evra": "2.10.4-1.fc38.ppc64le"
     },
     "libxmlb": {
-      "evra": "0.3.11-1.fc37.ppc64le"
+      "evra": "0.3.11-1.fc38.ppc64le"
     },
     "libyaml": {
-      "evra": "0.2.5-8.fc37.ppc64le"
+      "evra": "0.2.5-9.fc38.ppc64le"
     },
     "libzstd": {
-      "evra": "1.5.4-1.fc37.ppc64le"
+      "evra": "1.5.5-1.fc38.ppc64le"
     },
     "linux-atm-libs": {
-      "evra": "2.5.1-33.fc37.ppc64le"
+      "evra": "2.5.1-34.fc38.ppc64le"
     },
     "linux-firmware": {
-      "evra": "20230310-148.fc37.noarch"
+      "evra": "20230404-149.fc38.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20230310-148.fc37.noarch"
+      "evra": "20230404-149.fc38.noarch"
     },
     "lmdb-libs": {
-      "evra": "0.9.30-1.fc37.ppc64le"
+      "evra": "0.9.30-1.fc38.ppc64le"
     },
     "logrotate": {
-      "evra": "3.20.1-3.fc37.ppc64le"
+      "evra": "3.21.0-2.fc38.ppc64le"
     },
     "lsof": {
-      "evra": "4.94.0-4.fc37.ppc64le"
+      "evra": "4.96.3-3.fc38.ppc64le"
     },
     "lua-libs": {
-      "evra": "5.4.4-9.fc37.ppc64le"
+      "evra": "5.4.4-9.fc38.ppc64le"
     },
     "luksmeta": {
-      "evra": "9-14.fc37.ppc64le"
+      "evra": "9-15.fc38.ppc64le"
     },
     "lvm2": {
-      "evra": "2.03.11-9.fc37.ppc64le"
+      "evra": "2.03.18-2.fc38.ppc64le"
     },
     "lvm2-libs": {
-      "evra": "2.03.11-9.fc37.ppc64le"
+      "evra": "2.03.18-2.fc38.ppc64le"
     },
     "lz4-libs": {
-      "evra": "1.9.4-1.fc37.ppc64le"
+      "evra": "1.9.4-2.fc38.ppc64le"
     },
     "lzo": {
-      "evra": "2.10-7.fc37.ppc64le"
+      "evra": "2.10-8.fc38.ppc64le"
     },
     "mdadm": {
-      "evra": "4.2-2.fc37.ppc64le"
+      "evra": "4.2-4.fc38.ppc64le"
     },
     "moby-engine": {
-      "evra": "20.10.23-1.fc37.ppc64le"
-    },
-    "mozjs102": {
-      "evra": "102.9.0-1.fc37.ppc64le"
+      "evra": "20.10.23-1.fc38.ppc64le"
     },
     "mpfr": {
-      "evra": "4.1.0-10.fc37.ppc64le"
+      "evra": "4.1.1-3.fc38.ppc64le"
+    },
+    "mt7xxx-firmware": {
+      "evra": "20230404-149.fc38.noarch"
     },
     "nano": {
-      "evra": "6.4-1.fc37.ppc64le"
+      "evra": "7.2-2.fc38.ppc64le"
     },
     "nano-default-editor": {
-      "evra": "6.4-1.fc37.noarch"
+      "evra": "7.2-2.fc38.noarch"
     },
     "ncurses": {
-      "evra": "6.3-4.20220501.fc37.ppc64le"
+      "evra": "6.4-3.20230114.fc38.ppc64le"
     },
     "ncurses-base": {
-      "evra": "6.3-4.20220501.fc37.noarch"
+      "evra": "6.4-3.20230114.fc38.noarch"
     },
     "ncurses-libs": {
-      "evra": "6.3-4.20220501.fc37.ppc64le"
+      "evra": "6.4-3.20230114.fc38.ppc64le"
     },
     "net-tools": {
-      "evra": "2.0-0.64.20160912git.fc37.ppc64le"
+      "evra": "2.0-0.65.20160912git.fc38.ppc64le"
     },
     "netavark": {
-      "evra": "1.5.0-4.fc37.ppc64le"
+      "evra": "1.6.0-2.fc38.ppc64le"
     },
     "nettle": {
-      "evra": "3.8-2.fc37.ppc64le"
+      "evra": "3.8-3.fc38.ppc64le"
     },
     "newt": {
-      "evra": "0.52.23-1.fc37.ppc64le"
+      "evra": "0.52.23-2.fc38.ppc64le"
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.2-2.rc6.fc37.ppc64le"
+      "evra": "1:2.6.3-0.fc38.ppc64le"
     },
     "nftables": {
-      "evra": "1:1.0.4-3.fc37.ppc64le"
+      "evra": "1:1.0.5-2.fc38.ppc64le"
     },
     "nmstate": {
-      "evra": "2.2.9-2.fc37.ppc64le"
+      "evra": "2.2.10-4.fc38.ppc64le"
     },
     "npth": {
-      "evra": "1.6-9.fc37.ppc64le"
+      "evra": "1.6-12.fc38.ppc64le"
     },
     "nss-altfiles": {
-      "evra": "2.18.1-21.fc37.ppc64le"
+      "evra": "2.18.1-22.fc38.ppc64le"
     },
     "numactl-libs": {
-      "evra": "2.0.14-6.fc37.ppc64le"
+      "evra": "2.0.16-2.fc38.ppc64le"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20230310-148.fc37.noarch"
+      "evra": "20230404-149.fc38.noarch"
     },
     "nvme-cli": {
-      "evra": "2.2.1-1.fc37.ppc64le"
+      "evra": "2.4-2.fc38.ppc64le"
     },
     "oniguruma": {
-      "evra": "6.9.8-2.D20220919gitb041f6d.fc37.ppc64le"
+      "evra": "6.9.8-2.D20220919gitb041f6d.fc38.1.ppc64le"
     },
     "openldap": {
-      "evra": "2.6.4-1.fc37.ppc64le"
+      "evra": "2.6.4-1.fc38.ppc64le"
     },
     "openssh": {
-      "evra": "8.8p1-9.fc37.ppc64le"
+      "evra": "9.0p1-15.fc38.ppc64le"
     },
     "openssh-clients": {
-      "evra": "8.8p1-9.fc37.ppc64le"
+      "evra": "9.0p1-15.fc38.ppc64le"
     },
     "openssh-server": {
-      "evra": "8.8p1-9.fc37.ppc64le"
+      "evra": "9.0p1-15.fc38.ppc64le"
     },
     "openssl": {
-      "evra": "1:3.0.8-1.fc37.ppc64le"
+      "evra": "1:3.0.8-2.fc38.ppc64le"
     },
     "openssl-libs": {
-      "evra": "1:3.0.8-1.fc37.ppc64le"
+      "evra": "1:3.0.8-2.fc38.ppc64le"
     },
     "os-prober": {
-      "evra": "1.81-1.fc37.ppc64le"
+      "evra": "1.81-3.fc38.ppc64le"
     },
     "ostree": {
-      "evra": "2022.7-2.fc37.ppc64le"
+      "evra": "2023.1-2.fc38.ppc64le"
     },
     "ostree-grub2": {
-      "evra": "2022.7-2.fc37.ppc64le"
+      "evra": "2023.1-2.fc38.ppc64le"
     },
     "ostree-libs": {
-      "evra": "2022.7-2.fc37.ppc64le"
+      "evra": "2023.1-2.fc38.ppc64le"
     },
     "p11-kit": {
-      "evra": "0.24.1-3.fc37.ppc64le"
+      "evra": "0.24.1-6.fc38.ppc64le"
     },
     "p11-kit-trust": {
-      "evra": "0.24.1-3.fc37.ppc64le"
+      "evra": "0.24.1-6.fc38.ppc64le"
     },
     "pam": {
-      "evra": "1.5.2-14.fc37.ppc64le"
+      "evra": "1.5.2-16.fc38.ppc64le"
     },
     "pam-libs": {
-      "evra": "1.5.2-14.fc37.ppc64le"
+      "evra": "1.5.2-16.fc38.ppc64le"
+    },
+    "passt": {
+      "evra": "0^20230509.g96f8d55-1.fc38.ppc64le"
+    },
+    "passt-selinux": {
+      "evra": "0^20230509.g96f8d55-1.fc38.noarch"
     },
     "passwd": {
-      "evra": "0.80-13.fc37.ppc64le"
-    },
-    "pcre": {
-      "evra": "8.45-1.fc37.2.ppc64le"
+      "evra": "0.80-14.fc38.ppc64le"
     },
     "pcre2": {
-      "evra": "10.40-1.fc37.1.ppc64le"
+      "evra": "10.42-1.fc38.1.ppc64le"
     },
     "pcre2-syntax": {
-      "evra": "10.40-1.fc37.1.noarch"
+      "evra": "10.42-1.fc38.1.noarch"
     },
     "pigz": {
-      "evra": "2.7-2.fc37.ppc64le"
+      "evra": "2.7-3.fc38.ppc64le"
     },
     "pkgconf": {
-      "evra": "1.8.0-3.fc37.ppc64le"
+      "evra": "1.8.0-6.fc38.ppc64le"
     },
     "pkgconf-m4": {
-      "evra": "1.8.0-3.fc37.noarch"
+      "evra": "1.8.0-6.fc38.noarch"
     },
     "pkgconf-pkg-config": {
-      "evra": "1.8.0-3.fc37.ppc64le"
+      "evra": "1.8.0-6.fc38.ppc64le"
     },
     "podman": {
-      "evra": "5:4.4.2-2.fc37.ppc64le"
+      "evra": "5:4.5.0-1.fc38.ppc64le"
     },
     "podman-plugins": {
-      "evra": "5:4.4.2-2.fc37.ppc64le"
+      "evra": "5:4.5.0-1.fc38.ppc64le"
     },
     "policycoreutils": {
-      "evra": "3.5-1.fc37.ppc64le"
+      "evra": "3.5-1.fc38.ppc64le"
     },
     "polkit": {
-      "evra": "121-4.fc37.ppc64le"
+      "evra": "122-3.fc38.1.ppc64le"
     },
     "polkit-libs": {
-      "evra": "121-4.fc37.ppc64le"
+      "evra": "122-3.fc38.1.ppc64le"
     },
     "polkit-pkla-compat": {
-      "evra": "0.1-22.fc37.ppc64le"
+      "evra": "0.1-23.fc38.ppc64le"
     },
     "popt": {
-      "evra": "1.19-1.fc37.ppc64le"
+      "evra": "1.19-2.fc38.ppc64le"
     },
     "powerpc-utils-core": {
-      "evra": "1.3.10-4.fc37.ppc64le"
+      "evra": "1.3.11-1.fc38.ppc64le"
     },
     "ppc64-diag-rtas": {
-      "evra": "2.7.8-4.fc37.ppc64le"
+      "evra": "2.7.9-2.fc38.ppc64le"
     },
     "procps-ng": {
-      "evra": "3.3.17-6.fc37.2.ppc64le"
+      "evra": "3.3.17-9.fc38.ppc64le"
     },
     "protobuf-c": {
-      "evra": "1.4.1-2.fc37.ppc64le"
+      "evra": "1.4.1-4.fc38.ppc64le"
     },
     "psmisc": {
-      "evra": "23.4-4.fc37.ppc64le"
+      "evra": "23.6-2.fc38.ppc64le"
     },
     "publicsuffix-list-dafsa": {
-      "evra": "20210518-5.fc37.noarch"
+      "evra": "20230318-1.fc38.noarch"
     },
     "qemu-user-static-x86": {
-      "evra": "2:7.0.0-14.fc37.ppc64le"
+      "evra": "2:7.2.1-2.fc38.ppc64le"
     },
     "readline": {
-      "evra": "8.2-2.fc37.ppc64le"
+      "evra": "8.2-3.fc38.ppc64le"
+    },
+    "realtek-firmware": {
+      "evra": "20230404-149.fc38.noarch"
     },
     "rpcbind": {
-      "evra": "1.2.6-3.rc2.fc37.ppc64le"
+      "evra": "1.2.6-4.rc2.fc38.ppc64le"
     },
     "rpm": {
-      "evra": "4.18.0-1.fc37.ppc64le"
+      "evra": "4.18.1-3.fc38.ppc64le"
     },
     "rpm-libs": {
-      "evra": "4.18.0-1.fc37.ppc64le"
+      "evra": "4.18.1-3.fc38.ppc64le"
     },
     "rpm-ostree": {
-      "evra": "2023.2-1.fc37.ppc64le"
+      "evra": "2023.3-1.fc38.ppc64le"
     },
     "rpm-ostree-libs": {
-      "evra": "2023.2-1.fc37.ppc64le"
+      "evra": "2023.3-1.fc38.ppc64le"
     },
     "rpm-plugin-selinux": {
-      "evra": "4.18.0-1.fc37.ppc64le"
+      "evra": "4.18.1-3.fc38.ppc64le"
+    },
+    "rpm-sequoia": {
+      "evra": "1.4.0-2.fc38.ppc64le"
     },
     "rsync": {
-      "evra": "3.2.7-1.fc37.ppc64le"
+      "evra": "3.2.7-2.fc38.ppc64le"
     },
     "runc": {
-      "evra": "2:1.1.4-1.fc37.ppc64le"
+      "evra": "2:1.1.7-1.fc38.ppc64le"
     },
     "samba-client-libs": {
-      "evra": "2:4.17.6-0.fc37.ppc64le"
+      "evra": "2:4.18.2-0.fc38.ppc64le"
     },
     "samba-common": {
-      "evra": "2:4.17.6-0.fc37.noarch"
+      "evra": "2:4.18.2-0.fc38.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.17.6-0.fc37.ppc64le"
+      "evra": "2:4.18.2-0.fc38.ppc64le"
     },
     "sed": {
-      "evra": "4.8-11.fc37.ppc64le"
+      "evra": "4.8-12.fc38.ppc64le"
     },
     "selinux-policy": {
-      "evra": "37.19-1.fc37.noarch"
+      "evra": "38.12-1.fc38.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "37.19-1.fc37.noarch"
+      "evra": "38.12-1.fc38.noarch"
     },
     "servicelog": {
-      "evra": "1.1.16-2.fc37.ppc64le"
+      "evra": "1.1.16-3.fc38.ppc64le"
     },
     "setup": {
-      "evra": "2.14.1-2.fc37.noarch"
+      "evra": "2.14.3-2.fc38.noarch"
     },
     "sg3_utils": {
-      "evra": "1.46-4.fc37.ppc64le"
+      "evra": "1.46-5.fc38.ppc64le"
     },
     "sg3_utils-libs": {
-      "evra": "1.46-4.fc37.ppc64le"
+      "evra": "1.46-5.fc38.ppc64le"
     },
     "shadow-utils": {
-      "evra": "2:4.12.3-5.fc37.ppc64le"
+      "evra": "2:4.13-6.fc38.ppc64le"
     },
     "shadow-utils-subid": {
-      "evra": "2:4.12.3-5.fc37.ppc64le"
+      "evra": "2:4.13-6.fc38.ppc64le"
     },
     "shared-mime-info": {
-      "evra": "2.2-2.fc37.ppc64le"
+      "evra": "2.2-3.fc38.ppc64le"
     },
     "skopeo": {
-      "evra": "1:1.11.1-1.fc37.ppc64le"
+      "evra": "1:1.12.0-1.fc38.ppc64le"
     },
     "slang": {
-      "evra": "2.3.3-1.fc37.ppc64le"
+      "evra": "2.3.3-3.fc38.ppc64le"
     },
     "slirp4netns": {
-      "evra": "1.2.0-8.fc37.ppc64le"
+      "evra": "1.2.0-12.fc38.ppc64le"
     },
     "snappy": {
-      "evra": "1.1.9-5.fc37.ppc64le"
+      "evra": "1.1.9-7.fc38.ppc64le"
     },
     "socat": {
-      "evra": "1.7.4.2-3.fc37.ppc64le"
+      "evra": "1.7.4.4-2.fc38.ppc64le"
     },
     "sqlite-libs": {
-      "evra": "3.40.0-1.fc37.ppc64le"
+      "evra": "3.40.1-2.fc38.ppc64le"
     },
     "squashfs-tools": {
-      "evra": "4.5.1-2.fc37.ppc64le"
+      "evra": "4.5.1-3.fc38.ppc64le"
     },
     "ssh-key-dir": {
-      "evra": "0.1.4-1.fc37.ppc64le"
+      "evra": "0.1.4-3.fc38.ppc64le"
     },
     "sssd-ad": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "sssd-client": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "sssd-common": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "sssd-common-pac": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "sssd-ipa": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "sssd-krb5": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "sssd-krb5-common": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "sssd-ldap": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "sssd-nfs-idmap": {
-      "evra": "2.8.2-1.fc37.ppc64le"
+      "evra": "2.8.2-4.fc38.ppc64le"
     },
     "stalld": {
-      "evra": "1.16-2.fc37.ppc64le"
+      "evra": "1.16-3.fc38.ppc64le"
     },
     "sudo": {
-      "evra": "1.9.13-1.p2.fc37.ppc64le"
+      "evra": "1.9.13-1.p2.fc38.ppc64le"
     },
     "systemd": {
-      "evra": "251.13-6.fc37.ppc64le"
+      "evra": "253.4-1.fc38.ppc64le"
     },
     "systemd-container": {
-      "evra": "251.13-6.fc37.ppc64le"
+      "evra": "253.4-1.fc38.ppc64le"
     },
     "systemd-libs": {
-      "evra": "251.13-6.fc37.ppc64le"
+      "evra": "253.4-1.fc38.ppc64le"
     },
     "systemd-pam": {
-      "evra": "251.13-6.fc37.ppc64le"
+      "evra": "253.4-1.fc38.ppc64le"
     },
     "systemd-resolved": {
-      "evra": "251.13-6.fc37.ppc64le"
+      "evra": "253.4-1.fc38.ppc64le"
     },
     "systemd-udev": {
-      "evra": "251.13-6.fc37.ppc64le"
+      "evra": "253.4-1.fc38.ppc64le"
     },
     "tar": {
-      "evra": "2:1.34-6.fc37.ppc64le"
+      "evra": "2:1.34-8.fc38.ppc64le"
     },
     "teamd": {
-      "evra": "1.31-6.fc37.ppc64le"
+      "evra": "1.31-7.fc38.ppc64le"
     },
     "toolbox": {
-      "evra": "0.0.99.4-1.fc37.ppc64le"
+      "evra": "0.0.99.4-1.fc38.ppc64le"
     },
     "tpm2-tools": {
-      "evra": "5.4-1.fc37.ppc64le"
+      "evra": "5.5-3.fc38.ppc64le"
     },
     "tpm2-tss": {
-      "evra": "3.2.2-1.fc37.ppc64le"
+      "evra": "4.0.1-3.fc38.ppc64le"
     },
     "tzdata": {
-      "evra": "2022g-1.fc37.noarch"
+      "evra": "2023c-1.fc38.noarch"
     },
     "userspace-rcu": {
-      "evra": "0.13.0-5.fc37.ppc64le"
+      "evra": "0.13.2-2.fc38.ppc64le"
     },
     "util-linux": {
-      "evra": "2.38.1-1.fc37.ppc64le"
+      "evra": "2.38.1-4.fc38.ppc64le"
     },
     "util-linux-core": {
-      "evra": "2.38.1-1.fc37.ppc64le"
+      "evra": "2.38.1-4.fc38.ppc64le"
     },
     "vim-data": {
-      "evra": "2:9.0.1423-1.fc37.noarch"
+      "evra": "2:9.0.1486-1.fc38.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.1423-1.fc37.ppc64le"
+      "evra": "2:9.0.1486-1.fc38.ppc64le"
     },
     "which": {
-      "evra": "2.21-39.fc37.ppc64le"
+      "evra": "2.21-39.fc38.ppc64le"
     },
     "wireguard-tools": {
-      "evra": "1.0.20210914-3.fc37.ppc64le"
+      "evra": "1.0.20210914-4.fc38.ppc64le"
     },
     "xfsprogs": {
-      "evra": "6.1.0-2.fc37.ppc64le"
+      "evra": "6.1.0-3.fc38.ppc64le"
     },
     "xxhash-libs": {
-      "evra": "0.8.1-3.fc37.ppc64le"
+      "evra": "0.8.1-4.fc38.ppc64le"
     },
     "xz": {
-      "evra": "5.4.1-1.fc37.ppc64le"
+      "evra": "5.4.1-1.fc38.ppc64le"
     },
     "xz-libs": {
-      "evra": "5.4.1-1.fc37.ppc64le"
+      "evra": "5.4.1-1.fc38.ppc64le"
     },
     "yajl": {
-      "evra": "2.1.0-19.fc37.ppc64le"
+      "evra": "2.1.0-20.fc38.ppc64le"
     },
     "zchunk-libs": {
-      "evra": "1.3.0-1.fc37.ppc64le"
+      "evra": "1.3.1-1.fc38.ppc64le"
     },
     "zincati": {
-      "evra": "0.0.25-2.fc37.ppc64le"
+      "evra": "0.0.25-4.fc38.ppc64le"
     },
     "zlib": {
-      "evra": "1.2.12-5.fc37.ppc64le"
+      "evra": "1.2.13-3.fc38.ppc64le"
     },
     "zram-generator": {
-      "evra": "1.1.2-2.fc37.ppc64le"
+      "evra": "1.1.2-4.fc38.ppc64le"
     },
     "zstd": {
-      "evra": "1.5.4-1.fc37.ppc64le"
+      "evra": "1.5.5-1.fc38.ppc64le"
     }
   },
   "metadata": {
-    "generated": "2023-03-26T00:00:00Z",
+    "generated": "2023-05-17T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
-        "generated": "2022-11-05T08:04:20Z"
+        "generated": "2023-04-13T20:36:47Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-03-25T05:18:22Z"
+        "generated": "2023-05-14T22:34:27Z"
       },
       "fedora-updates": {
-        "generated": "2023-03-26T01:12:18Z"
+        "generated": "2023-05-17T01:26:14Z"
       }
     }
   }

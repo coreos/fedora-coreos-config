@@ -4,12 +4,12 @@ DefaultDependencies=false
 ConditionKernelCommandLine=ostree
 ConditionPathExists=!/run/ostree-live
 Before=initrd-root-fs.target
-After=sysroot.mount ignition-ostree-mount-firstboot-sysroot.service
-# This shouldn't be strictly necessary, but it's cleaner to not have OSTree muck
-# around with moving mounts while we're still resizing the filesystem.
-Before=ostree-prepare-root.service
+Before=sysroot.mount ignition-ostree-mount-firstboot-sysroot.service
+After=ignition-ostree-uuid-root.service
 
 [Service]
 Type=oneshot
 ExecStart=/usr/sbin/ignition-ostree-growfs
 RemainAfterExit=yes
+# So we can transiently mount sysroot
+MountFlags=slave

@@ -3,22 +3,25 @@
 ##   tags: "platform-independent"
 ##   # This is a read-only test that can be run with other tests.
 ##   exclusive: false
-#
-# Check if there are broken symlinks in /etc/ and /usr/.
-# See: https://github.com/coreos/fedora-coreos-config/issues/1782
+##   description: Verify that there are no broken symlinks in /etc/ and /usr/, 
+##     except the known files which require further investigation.
+
+# See https://github.com/coreos/fedora-coreos-config/issues/1782
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-# List of known broken symlinks that require further investigation:
+# List of known broken symlinks that require further investigation.
+# The sym links in /usr/lib/firmware are often broken and are
+# typically not an issue, so let's skip this location altogether.
 list_broken_symlinks_skip=(
     '/etc/mtab'
     '/etc/ssl/'
     '/etc/swid/swidtags.d/fedoraproject.org'
     '/etc/xdg/systemd/user'
     '/usr/lib/.build-id/'
-    '/usr/lib/firmware/qcom/LENOVO/21BX.xz'
+    '/usr/lib/firmware'
     '/usr/lib/modules/'
     '/usr/share/rhel/secrets/etc-pki-entitlement'
     '/usr/share/rhel/secrets/redhat.repo'
