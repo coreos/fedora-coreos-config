@@ -39,12 +39,9 @@ packages:
   - stalld
 
 postprocess:
-  # Make kdump work on firstboot
+  # Mask systemd-repart. Ignition is responsible for partition setup on first
+  # boot and does not use systemd-repart currently. See also
+  # https://github.com/coreos/fedora-coreos-tracker/issues/570
   - |
     #!/usr/bin/env bash
-    # Make kdump ignore `ignition.firstboot` when copying kargs from
-    # the running kernel to the kdump kernel when passing to be kexec.
-    # This makes it so kdump can be set up on the very first boot.
-    # Upstream request to have this upstream so we can stop carrying it here:
-    # https://lists.fedoraproject.org/archives/list/kexec@lists.fedoraproject.org/thread/5P4WIJLW2TSGF4PZGRZGOXYML4RXZU23/
-    sed -i -e 's/KDUMP_COMMANDLINE_REMOVE="/KDUMP_COMMANDLINE_REMOVE="ignition.firstboot /' /etc/sysconfig/kdump
+    systemctl mask systemd-repart.service

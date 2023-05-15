@@ -9,9 +9,9 @@
 ##   distros: fcos
 ##   # We ship the x86_64 on all non-x86_64 arches.
 ##   architectures: "! x86_64"
-#
-# Test the x86_64 emulator on non-x86_64 instances.
-# https://github.com/coreos/fedora-coreos-tracker/issues/1237
+##   description: Verify the x86_64 qemu emulator works on non-x86_64 instances.
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1237
 
 set -xeuo pipefail
 
@@ -19,7 +19,7 @@ set -xeuo pipefail
 
 case "$(arch)" in
     aarch64|ppc64le|s390x)
-        containerArch=$(podman run --arch=amd64 --rm registry.fedoraproject.org/fedora:37 arch)
+        containerArch=$(podman run --arch=amd64 --rm registry.fedoraproject.org/fedora:38 arch)
         if [ "$containerArch" != "x86_64" ]; then
             fatal "Test failed: x86_64 qemu emulator failed to run"
         fi

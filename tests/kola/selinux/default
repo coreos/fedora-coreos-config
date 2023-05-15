@@ -2,9 +2,9 @@
 ## kola:
 ##   exclusive: false
 ##   tags: "platform-independent"
-#
-# Verify that the SELinux policy isn't marked as modified.
-# See: https://github.com/openshift/os/issues/1036.
+##   description: Verify that the SELinux policy isn't marked as modified.
+
+# See https://github.com/openshift/os/issues/1036
 
 set -xeuo pipefail
 

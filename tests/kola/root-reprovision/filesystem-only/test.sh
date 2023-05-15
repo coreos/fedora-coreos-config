@@ -7,6 +7,7 @@
 ##   # This test includes a lot of disk I/O and needs a higher
 ##   # timeout value than the default.
 ##   timeoutMin: 15
+##   description: Verify the root reprovisioning with specified file system works.
 
 set -xeuo pipefail
 

@@ -8,8 +8,9 @@
 ##   # This test includes a few reboots and the generation of a vmcore,
 ##   # which can take longer than the default 10 minute timeout.
 ##   timeoutMin: 15
-#
-# https://docs.fedoraproject.org/en-US/fedora-coreos/debugging-kernel-crashes/
+##   description: Verify that the crashkernel reserved memory is large enough.
+
+# See https://docs.fedoraproject.org/en-US/fedora-coreos/debugging-kernel-crashes/
 
 set -xeuo pipefail
 

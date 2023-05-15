@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify /etc/passwd and /etc/group have correct permissions.
 
 set -xeuo pipefail
 

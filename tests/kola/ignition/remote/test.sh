@@ -1,10 +1,13 @@
 #!/bin/bash
 ## kola:
 ##   tags: needs-internet
-#
-# To test https://bugzilla.redhat.com/show_bug.cgi?id=1980679
-# remote.ign on github: inject kernelArguments and write something to /etc/testfile
-# config.ign to include remote kargsfile.ign
+##   description: Verify Ignition supports remote config.
+
+# See https://bugzilla.redhat.com/show_bug.cgi?id=1980679
+# remote.ign is on github, inject kernelArguments and write 
+# something to /etc/testfile.
+# config.ign is to include remote kargsfile.ign.
+
 
 set -xeuo pipefail
 

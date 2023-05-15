@@ -1,8 +1,9 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-#
-# Verify default console log level; xref https://github.com/coreos/fedora-coreos-tracker/issues/1244
+##   description: Verify default console log level is 4.
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1244
 
 set -xeuo pipefail
 
