@@ -168,46 +168,17 @@ propagate_initramfs_hostname() {
     fi
 }
 
-down_interface() {
-    echo "info: taking down network device: $1"
-    # On recommendation from the NM team let's try to delete the device
-    # first and if that doesn't work then set it to down and flush any
-    # associated addresses. Deleting virtual devices (bonds, teams, bridges,
-    # ip-tunnels, etc) will clean up any associated kernel resources. A real
-    # device can't be deleted so that will fail and we'll fallback to setting
-    # it down and flushing addresses.
-    if ! ip link delete $1; then
-        ip link set $1 down
-        ip addr flush dev $1
-    fi
-}
-
-# Iterate through the interfaces in the machine and take them down.
-# Note that in the future we would like to possibly use `nmcli` networking off`
-# for this. See the following two comments for details:
-# https://github.com/coreos/fedora-coreos-tracker/issues/394#issuecomment-599721763
-# https://github.com/coreos/fedora-coreos-tracker/issues/394#issuecomment-599746049
-down_interfaces() {
-    if ! [ -z "$(ls /sys/class/net)" ]; then
-        for f in /sys/class/net/*; do
-            interface=$(basename "$f")
-            # The `bonding_masters` entry is not a true interface and thus
-            # cannot be taken down. Also skip local loopback
-            case "$interface" in
-                "lo" | "bonding_masters")
-                    continue
-                    ;;
-            esac
-            # When we start taking down devices some other devices can
-            # start to disappear (for example vlan on top of interface).
-            # If the device we're about to take down has disappeared
-            # since the start of this loop then skip taking it down.
-            if [ ! -e "$f" ]; then
-                echo "info: skipping teardown of ${interface}; no longer exists."
-                continue
-            fi
-            down_interface $interface
-        done
+# Propagate the ifname= karg udev rules. The policy here is:
+#
+#     - IF ifname karg udev rule file exists
+#     - THEN copy it to the real root
+#
+propagate_ifname_udev_rules() {
+    local udev_file='/etc/udev/rules.d/80-ifname.rules'
+    if [ -e "${udev_file}" ]; then
+        echo "info: propagating ifname karg udev rules to the real root"
+        cp -v "${udev_file}" "/sysroot/${udev_file}"
+        coreos-relabel "${udev_file}"
     fi
 }
 
@@ -215,8 +186,11 @@ main() {
     # Load libraries from dracut
     load_dracut_libs
 
-    # Take down all interfaces set up in the initramfs
-    down_interfaces
+    # Take down all networking set up in the initramfs
+    if systemctl is-active --quiet nm-initrd.service; then
+        echo "info: taking down initramfs networking"
+        nmcli networking off
+    fi
 
     # Clean up all routing
     echo "info: flushing all routing"
@@ -232,12 +206,16 @@ main() {
     else
         propagate_initramfs_hostname
         propagate_initramfs_networking
+        propagate_ifname_udev_rules
     fi
 
-    # Now that the configuration has been propagated (or not)
-    # clean it up so that no information from outside of the
-    # real root is passed on to NetworkManager in the real root
-    rm -rf /run/NetworkManager/
+    # Configuration has been propagated, but we can't clean up
+    # /run/NetworkManager because NM is still running. Let's drop
+    # down a tmpfiles.d snippet so that it's cleaned up first thing
+    # in the real root. Doing it this way prevents us having to write
+    # another unit to do the cleanup after this service has finished.
+    echo "R! /run/NetworkManager - - - - -" > \
+        /run/tmpfiles.d/15-teardown-initramfs-networkmanager.conf
 
     rm -f /run/udev/rules.d/80-coreos-boot-disk.rules
     rm -f /dev/disk/by-id/coreos-boot-disk

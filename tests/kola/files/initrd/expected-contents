@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify that the initrd includes some specific files.
 
 # This test runs on both FCOS & RHCOS. The initrd includes specific files which,
 # if omitted from the image, will cause some failures with certain Ignition

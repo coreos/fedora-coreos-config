@@ -15,6 +15,7 @@
 ##   minMemory: 1536
 ##   # We only care about timesyncd in Fedora. It's not available elsewhere.
 ##   distros: fcos
+##   description: Verify that timesyncd service got ntp servers from DHCP.
 #
 # This script creates two veth interfaces i.e. one for the host machine
 # and other for the container(dnsmasq server). This setup will be helpful

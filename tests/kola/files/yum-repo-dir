@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify /etc/yum.repos.d exists.
 
 set -xeuo pipefail
 

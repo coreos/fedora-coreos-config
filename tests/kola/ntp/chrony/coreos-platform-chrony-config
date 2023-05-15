@@ -2,8 +2,7 @@
 ## kola:
 ##   exclusive: false
 ##   platforms: "aws azure gcp qemu"
-#
-# Test the coreos-platform-chrony generator.
+##   description: Verify the coreos-platform-chrony generator works on cloud.
 
 set -xeuo pipefail
 

@@ -9,6 +9,16 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  afterburn:
+    evr: 5.4.0-2.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1492
+      type: pin
+  afterburn-dracut:
+    evr: 5.4.0-2.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1492
+      type: pin
   moby-engine:
     evr: 20.10.23-1.fc38
     metadata:

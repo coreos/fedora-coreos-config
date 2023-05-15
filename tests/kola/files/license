@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify /usr/share/licenses/fedora-coreos-config/LICENSE exists.
 
 set -xeuo pipefail
 
