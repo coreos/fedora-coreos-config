@@ -6,9 +6,6 @@
 ##   # Append ifname kernel argument to set the given MAC address to the NIC
 ##   # named `kolatest`. The MAC address is the default one QEMU assigns.
 ##   appendFirstbootKernelArgs: "ifname=kolatest:52:54:00:12:34:56"
-##   # appendFirstbootKernelArgs doesn't work on s390x
-##   # https://github.com/coreos/coreos-assembler/issues/2776
-##   architectures: "!s390x"
 
 # Part of https://github.com/coreos/fedora-coreos-tracker/issues/553
 
