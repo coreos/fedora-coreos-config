@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify /sysroot and /boot are read-only partitions.
 
 set -xeuo pipefail
 

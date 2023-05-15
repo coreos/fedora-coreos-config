@@ -1,9 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-#
-# It's easy for dracut modules to accidentally ship scripts without +x set.
-# Check for those.
+##   description: Verify all initrd scripts are executable.
 
 set -xeuo pipefail
 

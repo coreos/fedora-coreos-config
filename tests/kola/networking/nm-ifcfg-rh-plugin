@@ -1,20 +1,15 @@
 #!/bin/bash
-#
-# We want to do a check here to make sure the ifcfg-rh plugin
-# is not loaded on FCOS (it can't be because it should never
-# even be included in the filesystem). We also want to make
-# sure that at least for RHCOS8 it is included.
-#
 ## kola:
 ##   # This test should behave the same on every platform.
 ##   tags: "platform-independent"
 ##   # This is a read-only, nondestructive test.
 ##   exclusive: false
+##   description: Verify that the ifcfg-rh plugin is not loaded on FCOS,
+##     and make sure that at least for RHCOS8 it is included.
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
-
 
 # Check if it exists or not. The plugin provides a dbus interface
 # so if it is loaded there will be something listening at that name

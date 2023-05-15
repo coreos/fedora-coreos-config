@@ -1,6 +1,8 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify that there are no file/directory with 
+##     SetUID bit set, except the known files and directories.
 
 set -xeuo pipefail
 

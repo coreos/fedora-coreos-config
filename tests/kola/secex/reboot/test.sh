@@ -1,12 +1,14 @@
 #!/bin/bash
 ## kola:
-##   # This test verifies the qemu-secex image reboots with SE enabled. It also
-##   # implicitly tests Ignition config decryption. We don't run it by default
-##   # because it requires running with `--qemu-secex --qemu-secex-hostkey HKD-<serial>.crt`.
 ##   architectures: s390x
 ##   platforms: qemu
 ##   requiredTag: secex
 ##   timeoutMin: 3
+##   description: Verify the qemu-secex image reboots with SE enabled. It also
+##     implicitly tests Ignition config decryption.
+
+# We don't run it by default because it requires running with 
+# `--qemu-secex --qemu-secex-hostkey HKD-<serial>.crt`.
 
 set -xeuo pipefail
 

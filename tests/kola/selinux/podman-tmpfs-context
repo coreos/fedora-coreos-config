@@ -5,14 +5,16 @@
 ##   exclusive: false
 ##   # This test pulls a container image from the network.
 ##   tags: "needs-internet platform-independent"
+##   description: Verify that tmpfs mounts inside a container 
+##     have the `container_file_t` label.
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1366
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-# Make sure that tmpfs mounts inside a container have the `container_file_t` label.
-# https://github.com/coreos/fedora-coreos-tracker/issues/1366
-context=$(podman run --rm --privileged registry.fedoraproject.org/fedora:37 \
+context=$(podman run --rm --privileged registry.fedoraproject.org/fedora:38 \
             bash -c "mount -t tmpfs tmpfs /mnt/ && stat --format '%C' /mnt/")
 if [ "$context" != "system_u:object_r:container_file_t:s0" ]; then
     fatal "SELinux context for files on a tmpfs inside a container is wrong"

@@ -7,6 +7,8 @@
 ##   architectures: x86_64
 ##   requiredTag: k8s
 ##   tags: needs-internet
+##   description: Verify the Kubernetes e2e node tests work, and 
+##     ensure that we don't inadvertedly break Kubernetes.
 
 set -xeuo pipefail
 
