@@ -1,9 +1,10 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-#
-# Make sure that kdump didn't start (it's either disabled, or enabled but
-# conditional on crashkernel= karg, which we don't bake).
+##   description: Verify that kdump didn't start by default.
+
+# It's either disabled, or enabled but conditional on crashkernel= karg, 
+# which we don't bake.
 
 set -xeuo pipefail
 

@@ -1,9 +1,8 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-
-# This test verifies that the rootfs is automatically grown on first boot in the
-# default case and that the autosave-xfs logic didn't kick in.
+##   description: Verify that the rootfs is automatically grown on first 
+##     boot by default and that the autosave-xfs logic didn't kick in.
 
 set -xeuo pipefail
 

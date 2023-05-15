@@ -1,10 +1,10 @@
 #!/bin/bash
 ## kola:
 ##   tags: "platform-independent"
-#
-# This test verifies that NetworkManager supports configuring the
-# carrier timeout via the `rd.net.timeout.carrier=` karg. Without
-# recreating an environment that requires this setting to be set
+##   description: Verify that NetworkManager supports configuring the
+##     carrier timeout via the `rd.net.timeout.carrier=` karg.
+
+# Without recreating an environment that requires this setting to be set
 # (which would be hard to do), we'll test this by just making sure
 # that setting the kernel argument ensures the runtime configuration
 # file /run/NetworkManager/conf.d/15-carrier-timeout.conf gets created.

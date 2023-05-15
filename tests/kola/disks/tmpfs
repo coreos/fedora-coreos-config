@@ -1,12 +1,12 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify that we have tmpfs on /tmp.
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-# Ensure we have tmpfs on /tmp
 tmpfs=$(findmnt -n -o FSTYPE /tmp)
 if [ "${tmpfs}" != "tmpfs" ]; then
     fatal "Error: Expected tmpfs on /tmp, found: ${tmpfs}"

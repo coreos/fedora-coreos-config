@@ -4,9 +4,9 @@
 ##   exclusive: false
 ##   # This test is targeted at AWS
 ##   platforms: aws
-#
-# Test to make sure AWS instances with nvme storage get a device
-# properly created for it. See https://github.com/coreos/fedora-coreos-tracker/issues/1306
+##   description: Verify that we crate an AWS instances with nvme storage.
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1306
 #
 # We'll check to see if anything is listed in `nvme list-subsys`
 # and then run the test based on that. Example output:

@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify no initramfs network propagation by default.
 #
 # With pure network defaults no networking should have been propagated
 # from the initramfs. This test tries to verify that is the case.

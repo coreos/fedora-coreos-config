@@ -34,7 +34,7 @@
       "evra": "5.4.0-2.fc38.x86_64"
     },
     "alternatives": {
-      "evra": "1.22-1.fc38.x86_64"
+      "evra": "1.24-1.fc38.x86_64"
     },
     "amd-gpu-firmware": {
       "evra": "20230404-149.fc38.noarch"
@@ -46,7 +46,7 @@
       "evra": "2.5.1-6.fc38.x86_64"
     },
     "audit-libs": {
-      "evra": "3.1-2.fc38.x86_64"
+      "evra": "3.1.1-1.fc38.x86_64"
     },
     "authselect": {
       "evra": "1.4.2-2.fc38.x86_64"
@@ -142,7 +142,7 @@
       "evra": "0.21.3-4.fc38.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.209.0-1.fc38.noarch"
+      "evra": "2:2.211.1-1.fc38.noarch"
     },
     "containerd": {
       "evra": "1.6.19-1.fc38.x86_64"
@@ -157,16 +157,16 @@
       "evra": "4:1-89.fc38.noarch"
     },
     "coreos-installer": {
-      "evra": "0.17.0-2.fc38.x86_64"
+      "evra": "0.17.0-3.fc38.x86_64"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.17.0-2.fc38.x86_64"
+      "evra": "0.17.0-3.fc38.x86_64"
     },
     "coreutils": {
-      "evra": "9.1-11.fc38.x86_64"
+      "evra": "9.1-12.fc38.x86_64"
     },
     "coreutils-common": {
-      "evra": "9.1-11.fc38.x86_64"
+      "evra": "9.1-12.fc38.x86_64"
     },
     "cpio": {
       "evra": "2.13-14.fc38.x86_64"
@@ -193,7 +193,7 @@
       "evra": "2.6.1-1.fc38.x86_64"
     },
     "curl": {
-      "evra": "7.87.0-8.fc38.x86_64"
+      "evra": "8.0.1-1.fc38.x86_64"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-9.fc38.x86_64"
@@ -271,13 +271,13 @@
       "evra": "38-7.fc38.x86_64"
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.189-1.fc38.noarch"
+      "evra": "0.189-2.fc38.noarch"
     },
     "elfutils-libelf": {
-      "evra": "0.189-1.fc38.x86_64"
+      "evra": "0.189-2.fc38.x86_64"
     },
     "elfutils-libs": {
-      "evra": "0.189-1.fc38.x86_64"
+      "evra": "0.189-2.fc38.x86_64"
     },
     "ethtool": {
       "evra": "2:6.2-1.fc38.x86_64"
@@ -289,13 +289,13 @@
       "evra": "38-1.noarch"
     },
     "fedora-release-common": {
-      "evra": "38-34.noarch"
+      "evra": "38-35.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "38-34.noarch"
+      "evra": "38-35.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "38-34.noarch"
+      "evra": "38-35.noarch"
     },
     "fedora-repos": {
       "evra": "38-1.noarch"
@@ -349,7 +349,7 @@
       "evra": "3.14.1-1.fc38.x86_64"
     },
     "fwupd": {
-      "evra": "1.8.14-1.fc38.x86_64"
+      "evra": "1.8.15-1.fc38.x86_64"
     },
     "gawk": {
       "evra": "5.1.1-5.fc38.x86_64"
@@ -502,16 +502,16 @@
       "evra": "2.5.1-5.fc38.noarch"
     },
     "kernel": {
-      "evra": "6.2.13-300.fc38.x86_64"
+      "evra": "6.2.15-300.fc38.x86_64"
     },
     "kernel-core": {
-      "evra": "6.2.13-300.fc38.x86_64"
+      "evra": "6.2.15-300.fc38.x86_64"
     },
     "kernel-modules": {
-      "evra": "6.2.13-300.fc38.x86_64"
+      "evra": "6.2.15-300.fc38.x86_64"
     },
     "kernel-modules-core": {
-      "evra": "6.2.13-300.fc38.x86_64"
+      "evra": "6.2.15-300.fc38.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.26-3.fc38.x86_64"
@@ -535,7 +535,7 @@
       "evra": "1.20.1-8.fc38.x86_64"
     },
     "less": {
-      "evra": "608-2.fc38.x86_64"
+      "evra": "633-1.fc38.x86_64"
     },
     "libacl": {
       "evra": "2.3.1-6.fc38.x86_64"
@@ -583,7 +583,7 @@
       "evra": "1.46.5-4.fc38.x86_64"
     },
     "libcurl-minimal": {
-      "evra": "7.87.0-8.fc38.x86_64"
+      "evra": "8.0.1-1.fc38.x86_64"
     },
     "libdaemon": {
       "evra": "0.14-25.fc38.x86_64"
@@ -736,7 +736,7 @@
       "evra": "1.15.1-2.fc38.x86_64"
     },
     "libreport-filesystem": {
-      "evra": "2.17.9-1.fc38.noarch"
+      "evra": "2.17.10-1.fc38.noarch"
     },
     "libseccomp": {
       "evra": "2.5.3-4.fc38.x86_64"
@@ -937,7 +937,7 @@
       "evra": "1:1.0.5-2.fc38.x86_64"
     },
     "nmstate": {
-      "evra": "2.2.9-1.fc38.x86_64"
+      "evra": "2.2.10-4.fc38.x86_64"
     },
     "npth": {
       "evra": "1.6-12.fc38.x86_64"
@@ -1060,28 +1060,28 @@
       "evra": "1.2.6-4.rc2.fc38.x86_64"
     },
     "rpm": {
-      "evra": "4.18.1-1.fc38.x86_64"
+      "evra": "4.18.1-3.fc38.x86_64"
     },
     "rpm-libs": {
-      "evra": "4.18.1-1.fc38.x86_64"
+      "evra": "4.18.1-3.fc38.x86_64"
     },
     "rpm-ostree": {
-      "evra": "2023.2-1.fc38.x86_64"
+      "evra": "2023.3-1.fc38.x86_64"
     },
     "rpm-ostree-libs": {
-      "evra": "2023.2-1.fc38.x86_64"
+      "evra": "2023.3-1.fc38.x86_64"
     },
     "rpm-plugin-selinux": {
-      "evra": "4.18.1-1.fc38.x86_64"
+      "evra": "4.18.1-3.fc38.x86_64"
     },
     "rpm-sequoia": {
-      "evra": "1.4.0-1.fc38.x86_64"
+      "evra": "1.4.0-2.fc38.x86_64"
     },
     "rsync": {
       "evra": "3.2.7-2.fc38.x86_64"
     },
     "runc": {
-      "evra": "2:1.1.6-1.fc38.x86_64"
+      "evra": "2:1.1.7-1.fc38.x86_64"
     },
     "samba-client-libs": {
       "evra": "2:4.18.2-0.fc38.x86_64"
@@ -1123,7 +1123,7 @@
       "evra": "15.6-2.x86_64"
     },
     "skopeo": {
-      "evra": "1:1.11.2-1.fc38.x86_64"
+      "evra": "1:1.12.0-1.fc38.x86_64"
     },
     "slang": {
       "evra": "2.3.3-3.fc38.x86_64"
@@ -1180,22 +1180,22 @@
       "evra": "1.9.13-1.p2.fc38.x86_64"
     },
     "systemd": {
-      "evra": "253.2-1.fc38.x86_64"
+      "evra": "253.4-1.fc38.x86_64"
     },
     "systemd-container": {
-      "evra": "253.2-1.fc38.x86_64"
+      "evra": "253.4-1.fc38.x86_64"
     },
     "systemd-libs": {
-      "evra": "253.2-1.fc38.x86_64"
+      "evra": "253.4-1.fc38.x86_64"
     },
     "systemd-pam": {
-      "evra": "253.2-1.fc38.x86_64"
+      "evra": "253.4-1.fc38.x86_64"
     },
     "systemd-resolved": {
-      "evra": "253.2-1.fc38.x86_64"
+      "evra": "253.4-1.fc38.x86_64"
     },
     "systemd-udev": {
-      "evra": "253.2-1.fc38.x86_64"
+      "evra": "253.4-1.fc38.x86_64"
     },
     "tar": {
       "evra": "2:1.34-8.fc38.x86_64"
@@ -1268,16 +1268,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-04-30T00:00:00Z",
+    "generated": "2023-05-14T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:37:10Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-04-29T22:31:27Z"
+        "generated": "2023-05-13T22:03:16Z"
       },
       "fedora-updates": {
-        "generated": "2023-04-30T01:24:40Z"
+        "generated": "2023-05-14T01:27:09Z"
       }
     }
   }
