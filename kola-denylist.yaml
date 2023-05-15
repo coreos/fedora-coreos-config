@@ -13,22 +13,6 @@
   tracker: https://github.com/coreos/coreos-assembler/issues/3361
   arches:
     - ppc64le
-- pattern: ext.config.ignition.resource.remote
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
-  arches:
-    - s390x
-  streams:
-    - testing-devel
-    - testing
-    - stable
-- pattern: rpmostree.install-uninstall
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1215
-  arches:
-    - s390x
-  streams:
-    - testing-devel
-    - testing
-    - stable
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1430
   # snooze: 2023-05-03 (disabled on promotion)

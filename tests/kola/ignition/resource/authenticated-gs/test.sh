@@ -2,8 +2,8 @@
 ## kola:
 ##   # We fetch resources from GCS.
 ##   tags: needs-internet
-##   # We authenticate to GCS with the GCE instance's credentials.
-##   platforms: gce
+##   # We authenticate to GCS with the GCP instance's credentials.
+##   platforms: gcp
 
 set -xeuo pipefail
 
