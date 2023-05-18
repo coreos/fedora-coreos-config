@@ -32,6 +32,33 @@ systemd:
         WantedBy=multi-user.target
 ----
 
+.Example for running busybox using Podman Quadlet
+
+https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html[Podman Quadlet] is functionality included in podman that allows starting containers via systemd using a systemd generator. The example below is the same `hello.service` that was previously shown but deployed via the Podman Quadlet functionality.
+
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    - path: /etc/containers/systemd/hello.container
+      contents:
+        inline: |
+          [Unit]
+          Description=Hello Service
+          Wants=network-online.target
+          After=network-online.target
+
+          [Container]
+          ContainerName=busybox1
+          Image=docker.io/busybox
+          Exec=/bin/sh -c "trap 'exit 0' INT TERM; while true; do echo Hello World; sleep 1; done"
+
+          [Install]
+          WantedBy=multi-user.target
+----
+
 === Running etcd
 
 https://etcd.io[etcd] is not shipped as part of Fedora CoreOS. To use it, run it as a container, as shown below.
