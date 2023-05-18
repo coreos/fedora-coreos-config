@@ -22,3 +22,6 @@ packages:
   # Declarative network configuration
   # https://github.com/coreos/fedora-coreos-tracker/issues/1175
   - nmstate
+  # Advanced custom networking calculations
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1460
+  - ipcalc
