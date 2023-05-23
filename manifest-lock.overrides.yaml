@@ -10,12 +10,14 @@
 
 packages:
   afterburn:
-    evr: 5.4.0-2.fc39
+    evr: 5.4.2-1.fc39
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f74bfe678c
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1492
-      type: pin
+      type: fast-track
   afterburn-dracut:
-    evr: 5.4.0-2.fc39
+    evr: 5.4.2-1.fc39
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f74bfe678c
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1492
-      type: pin
+      type: fast-track
