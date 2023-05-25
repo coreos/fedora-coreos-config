@@ -23,6 +23,12 @@ conditional-include:
   - if: basearch != "s390x"
     # And remove some cruft from grub2
     include: grub2-removals.yaml
+  - if: basearch == "ppc64le"
+    # Need OSTree autopruning on ppc64le (because kernels aren't compressed)
+    # until we increase the size of /boot.
+    # https://github.com/coreos/fedora-coreos-tracker/issues/1247#issuecomment-1355314761
+    # https://github.com/coreos/fedora-coreos-tracker/issues/1495#issuecomment-1561765705
+    include: ostree-autoprune.yaml
 
 ostree-layers:
   - overlay/15fcos
