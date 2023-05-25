@@ -19,6 +19,24 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-a3adea94d9
       type: fast-track
+  fedora-release-common:
+    evra: 38-36.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-0504b1f717
+      reason: https://github.com/coreos/fedora-coreos-config/pull/2439
+      type: fast-track
+  fedora-release-coreos:
+    evra: 38-36.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-0504b1f717
+      reason: https://github.com/coreos/fedora-coreos-config/pull/2439
+      type: fast-track
+  fedora-release-identity-coreos:
+    evra: 38-36.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-0504b1f717
+      reason: https://github.com/coreos/fedora-coreos-config/pull/2439
+      type: fast-track
   moby-engine:
     evr: 20.10.23-1.fc38
     metadata:
