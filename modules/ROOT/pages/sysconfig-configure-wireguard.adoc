@@ -1,5 +1,7 @@
 = Configuring FCOS to use WireGuard
 
+WARNING: Some examples in this page may not work properly. An issue with WireGuard SELinux isolation breaks Pre/Post actions in the WireGuard configuration for recent releases of Fedora Coreos. You can check the progress of this issue on the https://github.com/coreos/fedora-coreos-tracker/issues/1487[issue tracker]. 
+
 == Introduction
 
 https://www.wireguard.com/[WireGuard] is a novel VPN that runs inside the Linux Kernel and uses state-of-the-art cryptography. It aims to be faster, simpler, leaner, and more useful than IPSec, while avoiding the massive headache. It intends to be considerably more performant than OpenVPN. WireGuard is designed as a general purpose VPN for running on embedded interfaces and super computers alike, fit for many different circumstances. It runs over UDP.
