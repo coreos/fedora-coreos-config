@@ -76,10 +76,10 @@ cmdline_arg() {
     echo "${value}"
 }
 
-# wait for 20s when in activating status
+# wait for ~60s when in activating status
 is_service_active() {
     local service="$1"
-    for x in {0..20}; do
+    for x in {0..60}; do
         [ $(systemctl is-active "${service}") != "activating" ] && break
         sleep 1
     done
