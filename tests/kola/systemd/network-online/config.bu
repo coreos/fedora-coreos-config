@@ -1,0 +1,19 @@
+variant: fcos
+version: 1.4.0
+systemd:
+  units:
+    - name: block-network-online.service
+      enabled: true
+      contents: |
+        [Unit]
+        After=NetworkManager-wait-online.service
+        Before=network-online.target
+        Wants=network-online.target
+
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=sleep infinity
+
+        [Install]
+        WantedBy=multi-user.target
