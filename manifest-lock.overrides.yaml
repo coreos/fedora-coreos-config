@@ -24,3 +24,8 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1476
       type: pin
+  util-linux:
+    evr: 2.38.1-4.fc38
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
