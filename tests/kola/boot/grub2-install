@@ -1,15 +1,19 @@
 #!/bin/bash
 ## kola:
-##   tags: "platform-independent"
+##   # add the reprovision tag here to temporarily to workaround
+##   # https://github.com/coreos/coreos-assembler/issues/3464. We can
+##   # remove the tag when https://github.com/coreos/fedora-coreos-tracker/issues/1489
+##   # is fixed.
+##   tags: "platform-independent reprovision"
 ##   # The test is not available for aarch64 and s390x,
 ##   # as aarch64 is UEFI only and s390x is not using grub2
 ##   architectures: "!aarch64 s390x"
-#
-# Verify to install BIOS/PReP bootloader using grub2-install from
-# the target system.
-# See:
-#  - https://github.com/coreos/coreos-assembler/pull/3190
-#  - https://github.com/coreos/coreos-assembler/issues/3148
+##   description: Verify that we install BIOS/PReP bootloader
+##     using grub2-install from the target system.
+
+# See
+# - https://github.com/coreos/coreos-assembler/pull/3190
+# - https://github.com/coreos/coreos-assembler/issues/3148
 
 set -xeuo pipefail
 

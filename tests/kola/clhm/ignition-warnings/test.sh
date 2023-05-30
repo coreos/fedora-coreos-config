@@ -4,8 +4,7 @@
 ##   # We intentionally exclude the Install section from a systemd unit.
 ##   # This is valid but not ideal, so Butane warns about it.
 ##   allowConfigWarnings: true
-#
-# This test ensures that Ignition warnings are displayed on the console.
+##   description: Verify the Ignition warnings are displayed on the console.
 
 set -xeuo pipefail
 

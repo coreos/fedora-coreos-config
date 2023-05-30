@@ -11,6 +11,7 @@
 ##   timeoutMin: 15
 ##   # This test reprovisions the rootfs.
 ##   tags: reprovision
+##   description: Verify the root reprovision with linear RAID works.
 
 set -xeuo pipefail
 
