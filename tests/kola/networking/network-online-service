@@ -1,13 +1,15 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
+##   description: Verify network-online.target is inactive by default.
+
+# See https://github.com/coreos/fedora-coreos-config/pull/1088
 
 set -xeuo pipefail
 
 . $KOLA_EXT_DATA/commonlib.sh
 
-# We shouldn't pull this into the transaction by default. See
-# https://github.com/coreos/fedora-coreos-config/pull/1088
+# We shouldn't pull this into the transaction by default.
 # https://www.freedesktop.org/wiki/Software/systemd/NetworkTarget/
 if ! systemctl show -p ActiveState network-online.target | grep -q ActiveState=inactive; then
     fatal "Unit network-online.target shouldn't be active"

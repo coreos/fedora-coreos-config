@@ -2,11 +2,11 @@
 ## kola:
 ##   distros: fcos
 ##   exclusive: false
-#
-# This performs a sanity check on system groups that are shipped
-# as part of the base OS. Those groups come in different shapes
-# (with static or dynamic GIDs, from plain files or from scriptlets)
-# and each case is covered by a corresponding check here below.
+##   description: Verify system groups that are shipped as part of the base OS.
+
+# Those groups come in different shapes (with static or dynamic GIDs, from
+# plain files or from scriptlets) and each case is covered by a corresponding
+# check here below.
 
 set -euo pipefail
 

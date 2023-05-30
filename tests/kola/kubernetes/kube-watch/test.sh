@@ -1,11 +1,12 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-#
-# This is for verifying that `kubernetes_file_t` labeled files can be
-# watched by systemd
-# See: https://github.com/coreos/fedora-coreos-tracker/issues/861
-# See: https://github.com/containers/container-selinux/issues/135
+##   description: Verify that `kubernetes_file_t` labeled files can be
+##     watched by systemd.
+
+# See
+# - https://github.com/coreos/fedora-coreos-tracker/issues/861
+# - https://github.com/containers/container-selinux/issues/135
 
 set -xeuo pipefail
 
