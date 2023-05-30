@@ -7,9 +7,6 @@
 ##   # validate that the systemd.link file gets created by
 ##   # systemd-network-generator.
 ##   appendFirstbootKernelArgs: "coreos.no_persist_ip"
-##   # appendFirstbootKernelArgs doesn't work on s390x
-##   # https://github.com/coreos/coreos-assembler/issues/2776
-##   architectures: "!s390x"
 
 set -xeuo pipefail
 

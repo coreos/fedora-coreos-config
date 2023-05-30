@@ -186,7 +186,10 @@ if vereq $version $last_release; then
 fi
 
 # Restart Zincati if configuration was changed
-[ "${need_zincati_restart}" == "true" ] && systemctl restart zincati
+if [ "${need_zincati_restart}" == "true" ]; then
+    rpm-ostree cancel # in case anything was already in progress
+    systemctl restart zincati
+fi
 
 # Watch the Zincati logs to see if it got a lead on a new update.
 # Timeout after some time if no update. Unset pipefail since the
