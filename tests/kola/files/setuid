@@ -11,6 +11,8 @@ set -xeuo pipefail
 # List of known files and directories with SetUID bit set
 list_setuid_files=(
     '/usr/bin/chage'
+    '/usr/bin/chfn'
+    '/usr/bin/chsh'
     '/usr/bin/fusermount'
     '/usr/bin/fusermount3'
     '/usr/bin/gpasswd'

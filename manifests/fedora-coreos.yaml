@@ -131,11 +131,6 @@ postprocess:
     done
 
 
-remove-from-packages:
-  # Drop some buggy sysusers fragments which do not match static IDs allocation:
-  # https://bugzilla.redhat.com/show_bug.cgi?id=2105177
-  - [dbus-common, /usr/lib/sysusers.d/dbus.conf]
-
 remove-files:
   # We don't ship man(1) or info(1)
   - usr/share/info
