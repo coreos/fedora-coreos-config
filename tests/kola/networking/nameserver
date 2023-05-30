@@ -3,9 +3,6 @@
 ##   # appendKernelArgs is only supported on QEMU
 ##   platforms: qemu
 ##   appendKernelArgs: "nameserver=8.8.8.8 nameserver=1.1.1.1"
-##   # appendKernelArgs doesn't work on s390x
-##   # https://github.com/coreos/coreos-assembler/issues/2776
-##   architectures: "!s390x"
 ##   description: Verify that we config multiple nameservers via kernel 
 ##     arguments work well.
 

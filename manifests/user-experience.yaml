@@ -44,6 +44,8 @@ packages:
   - runc
   - skopeo
   - toolbox
+  # passt provides user-mode networking daemons for namespaces
+  - passt
   # nvme-cli for managing nvme disks
   - nvme-cli
   # Used by admins interactively
