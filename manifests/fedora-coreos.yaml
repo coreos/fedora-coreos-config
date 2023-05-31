@@ -24,141 +24,141 @@ conditional-include:
     # And remove some cruft from grub2
     include: grub2-removals.yaml
 
-ostree-layers:
-  - overlay/15fcos
+# ostree-layers:
+#   - overlay/15fcos
 
-automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
-mutate-os-release: "${releasever}"
+# automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
+# mutate-os-release: "${releasever}"
 
-# All Fedora CoreOS streams share the same pool for locked files.
-lockfile-repos:
-  - fedora-coreos-pool
+# # All Fedora CoreOS streams share the same pool for locked files.
+# lockfile-repos:
+#   - fedora-coreos-pool
 
-packages:
-  - fedora-release-coreos
-  - fedora-repos-ostree
-  # fedora-repos-modular was converted into its own subpackage in f33
-  # Continue to include it in case users want to use it.
-  - fedora-repos-modular
-  # the archive repo for more reliable package layering
-  # https://github.com/coreos/fedora-coreos-tracker/issues/400
-  - fedora-repos-archive
-  # CL ships this.
-  - moby-engine
-  # Already pulled in by moby-engine, but let's be explicit. Typhoon uses it.
-  - containerd
-  # Updates
-  - zincati
-  # Include and set the default editor
-  - nano nano-default-editor
+# packages:
+#   - fedora-release-coreos
+#   - fedora-repos-ostree
+#   # fedora-repos-modular was converted into its own subpackage in f33
+#   # Continue to include it in case users want to use it.
+#   - fedora-repos-modular
+#   # the archive repo for more reliable package layering
+#   # https://github.com/coreos/fedora-coreos-tracker/issues/400
+#   - fedora-repos-archive
+#   # CL ships this.
+#   - moby-engine
+#   # Already pulled in by moby-engine, but let's be explicit. Typhoon uses it.
+#   - containerd
+#   # Updates
+#   - zincati
+#   # Include and set the default editor
+#   - nano nano-default-editor
 
-etc-group-members:
-  # Add the docker group to /etc/group
-  # https://github.com/coreos/fedora-coreos-tracker/issues/2
-  # This will be no longer needed when systemd-sysusers has been implemented:
-  # https://github.com/projectatomic/rpm-ostree/issues/49
-  - docker
+# etc-group-members:
+#   # Add the docker group to /etc/group
+#   # https://github.com/coreos/fedora-coreos-tracker/issues/2
+#   # This will be no longer needed when systemd-sysusers has been implemented:
+#   # https://github.com/projectatomic/rpm-ostree/issues/49
+#   - docker
 
-# ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
-# See also the version of this in fedora-coreos-base.yaml
-postprocess:
-  # Disable Zincati on non-release builds
-  # https://github.com/coreos/fedora-coreos-tracker/issues/212
-  - |
-    #!/usr/bin/env bash
-    set -euxo pipefail
-    source /etc/os-release
-    if [[ $OSTREE_VERSION = *.dev* ]]; then
-      mkdir -p /etc/zincati/config.d
-      echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nupdates.enabled = false' > /etc/zincati/config.d/95-disable-on-dev.toml
-    fi
-  # Users shouldn't be configuring `rpm-ostreed.conf`
-  # https://github.com/coreos/fedora-coreos-tracker/issues/271
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    cat > /tmp/rpm-ostreed.conf << 'EOF'
-    # By default, this system has its OS updates managed by
-    # `zincati.service`.  Changes made to this file may
-    # conflict with the configuation of `zincati.service`.
-    # See https://github.com/coreos/zincati for additional
-    # information.
+# # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
+# # See also the version of this in fedora-coreos-base.yaml
+# postprocess:
+#   # Disable Zincati on non-release builds
+#   # https://github.com/coreos/fedora-coreos-tracker/issues/212
+#   - |
+#     #!/usr/bin/env bash
+#     set -euxo pipefail
+#     source /etc/os-release
+#     if [[ $OSTREE_VERSION = *.dev* ]]; then
+#       mkdir -p /etc/zincati/config.d
+#       echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nupdates.enabled = false' > /etc/zincati/config.d/95-disable-on-dev.toml
+#     fi
+#   # Users shouldn't be configuring `rpm-ostreed.conf`
+#   # https://github.com/coreos/fedora-coreos-tracker/issues/271
+#   - |
+#     #!/usr/bin/env bash
+#     set -xeuo pipefail
+#     cat > /tmp/rpm-ostreed.conf << 'EOF'
+#     # By default, this system has its OS updates managed by
+#     # `zincati.service`.  Changes made to this file may
+#     # conflict with the configuation of `zincati.service`.
+#     # See https://github.com/coreos/zincati for additional
+#     # information.
 
-    EOF
-    cat /usr/etc/rpm-ostreed.conf >> /tmp/rpm-ostreed.conf
-    cp /tmp/rpm-ostreed.conf /usr/etc/rpm-ostreed.conf
-    rm /tmp/rpm-ostreed.conf
-  # Make sure that we do not ship broken symlinks:
-  # https://github.com/coreos/fedora-coreos-config/issues/1782
-  # Remove known broken symlinks that point to non-existing files or directories:
-  # - Remove `.build-id` for binaries that we remove in other parts of the FCOS manifest
-  # - Remove links to man pages that we remove in FCOS
-  # Man pages are removed in FCOS thus the links in alternatives pointing to those are left there broken.
-  # Docs removal comes from manifests/fedora-coreos.yaml
-  # - systemd-firstboot comes from manifests/ignition-and-ostree.yaml
-  # - systemd-gpt-auto-generator comes from ignition-and-ostree.yaml
-  - |
-    #!/usr/bin/env bash
-    set -euo pipefail
+#     EOF
+#     cat /usr/etc/rpm-ostreed.conf >> /tmp/rpm-ostreed.conf
+#     cp /tmp/rpm-ostreed.conf /usr/etc/rpm-ostreed.conf
+#     rm /tmp/rpm-ostreed.conf
+#   # Make sure that we do not ship broken symlinks:
+#   # https://github.com/coreos/fedora-coreos-config/issues/1782
+#   # Remove known broken symlinks that point to non-existing files or directories:
+#   # - Remove `.build-id` for binaries that we remove in other parts of the FCOS manifest
+#   # - Remove links to man pages that we remove in FCOS
+#   # Man pages are removed in FCOS thus the links in alternatives pointing to those are left there broken.
+#   # Docs removal comes from manifests/fedora-coreos.yaml
+#   # - systemd-firstboot comes from manifests/ignition-and-ostree.yaml
+#   # - systemd-gpt-auto-generator comes from ignition-and-ostree.yaml
+#   - |
+#     #!/usr/bin/env bash
+#     set -euo pipefail
 
-    list_broken_symlinks_folders=(
-      '/etc/alternatives/'
-      '/usr/lib/.build-id/'
-    )
+#     list_broken_symlinks_folders=(
+#       '/etc/alternatives/'
+#       '/usr/lib/.build-id/'
+#     )
 
-    # It is not possible to remove files from usr after first boot so that is
-    # why we are removing them in the postprocess scripts here.
-    # The .build-id links are pointing to binaries that we remove in other parts of the FCOS manifest.
-    list_known_removed_folders=(
-      '/usr/bin/systemd-firstboot'
-      '/usr/lib/systemd/system-generators/systemd-gpt-auto-generator'
-      '/usr/share/doc/'
-      '/usr/share/info/'
-      '/usr/share/man/'
-      )
-    for folder in "${list_broken_symlinks_folders[@]}"; do
-        find "${folder}" -type l | while read -r file_name; do
-            real_path=$(realpath -m "${file_name}");
-            if [[ -e "${real_path}" ]]; then
-              continue
-            fi
-            for element in "${list_known_removed_folders[@]}"; do
-              if [[ "${real_path}" == "${element}"* ]]; then
-                  rm -r "${file_name}"
-              fi
-            done
-        done
-    done
+#     # It is not possible to remove files from usr after first boot so that is
+#     # why we are removing them in the postprocess scripts here.
+#     # The .build-id links are pointing to binaries that we remove in other parts of the FCOS manifest.
+#     list_known_removed_folders=(
+#       '/usr/bin/systemd-firstboot'
+#       '/usr/lib/systemd/system-generators/systemd-gpt-auto-generator'
+#       '/usr/share/doc/'
+#       '/usr/share/info/'
+#       '/usr/share/man/'
+#       )
+#     for folder in "${list_broken_symlinks_folders[@]}"; do
+#         find "${folder}" -type l | while read -r file_name; do
+#             real_path=$(realpath -m "${file_name}");
+#             if [[ -e "${real_path}" ]]; then
+#               continue
+#             fi
+#             for element in "${list_known_removed_folders[@]}"; do
+#               if [[ "${real_path}" == "${element}"* ]]; then
+#                   rm -r "${file_name}"
+#               fi
+#             done
+#         done
+#     done
 
 
-remove-files:
-  # We don't ship man(1) or info(1)
-  - usr/share/info
-  - usr/share/man
-  # Drop text docs too
-  - usr/share/doc
+# remove-files:
+#   # We don't ship man(1) or info(1)
+#   - usr/share/info
+#   - usr/share/man
+#   # Drop text docs too
+#   - usr/share/doc
 
-# Things we don't expect to ship on the host.  We currently
-# have recommends: false so these could only come in via
-# hard requirement, in which case the build will fail.
-exclude-packages:
-  - python
-  - python2
-  - python2-libs
-  - python3
-  - python3-libs
-  - perl
-  - perl-interpreter
-  - nodejs
-  - dnf
-  - grubby
-  - cowsay  # Just in case
-  # Let's make sure initscripts doesn't get pulled back in
-  # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
-  - initscripts
-  # For (datacenter/cloud oriented) servers, we want to see the details by default.
-  # https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/HSMISZ3ETWQ4ETVLWZQJ55ARZT27AAV3/
-  - plymouth
-  # Do not use legacy ifcfg config format in NetworkManager
-  # See https://github.com/coreos/fedora-coreos-config/pull/1991
-  - NetworkManager-initscripts-ifcfg-rh
+# # Things we don't expect to ship on the host.  We currently
+# # have recommends: false so these could only come in via
+# # hard requirement, in which case the build will fail.
+# exclude-packages:
+#   - python
+#   - python2
+#   - python2-libs
+#   - python3
+#   - python3-libs
+#   - perl
+#   - perl-interpreter
+#   - nodejs
+#   - dnf
+#   - grubby
+#   - cowsay  # Just in case
+#   # Let's make sure initscripts doesn't get pulled back in
+#   # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
+#   - initscripts
+#   # For (datacenter/cloud oriented) servers, we want to see the details by default.
+#   # https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/HSMISZ3ETWQ4ETVLWZQJ55ARZT27AAV3/
+#   - plymouth
+#   # Do not use legacy ifcfg config format in NetworkManager
+#   # See https://github.com/coreos/fedora-coreos-config/pull/1991
+#   - NetworkManager-initscripts-ifcfg-rh

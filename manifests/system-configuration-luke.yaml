@@ -1,0 +1,15 @@
+packages:
+  - coreos-installer coreos-installer-bootinfra
+  - e2fsprogs
+  - lvm2
+  - xfsprogs
+  - passwd
+  - shadow-utils
+  - acl
+  - selinux-policy-targeted
+  - logrotate
+
+postprocess:
+  - |
+    #!/usr/bin/env bash
+    systemctl mask systemd-repart.service
