@@ -4,7 +4,7 @@
 # Target disk size in GB.
 # Make it at least 10G because we want the rootfs to be at least 8G:
 # https://github.com/coreos/fedora-coreos-tracker/issues/586
-size: 1
+size: 10
 
 extra-kargs:
     # Disable SMT on systems vulnerable to MDS or any similar future issue.
