@@ -5,6 +5,249 @@
     },
     "podman-plugins": {
       "evra": "5:4.5.0-1.fc38.x86_64"
+    },
+    "policycoreutils": {
+      "evra": "3.5-1.fc38.x86_64"
+    },
+    "polkit": {
+      "evra": "122-3.fc38.1.x86_64"
+    },
+    "polkit-libs": {
+      "evra": "122-3.fc38.1.x86_64"
+    },
+    "polkit-pkla-compat": {
+      "evra": "0.1-23.fc38.x86_64"
+    },
+    "popt": {
+      "evra": "1.19-2.fc38.x86_64"
+    },
+    "procps-ng": {
+      "evra": "3.3.17-9.fc38.x86_64"
+    },
+    "protobuf-c": {
+      "evra": "1.4.1-4.fc38.x86_64"
+    },
+    "psmisc": {
+      "evra": "23.6-2.fc38.x86_64"
+    },
+    "publicsuffix-list-dafsa": {
+      "evra": "20230318-1.fc38.noarch"
+    },
+    "readline": {
+      "evra": "8.2-3.fc38.x86_64"
+    },
+    "realtek-firmware": {
+      "evra": "20230515-150.fc38.noarch"
+    },
+    "rpcbind": {
+      "evra": "1.2.6-4.rc2.fc38.x86_64"
+    },
+    "rpm": {
+      "evra": "4.18.1-3.fc38.x86_64"
+    },
+    "rpm-libs": {
+      "evra": "4.18.1-3.fc38.x86_64"
+    },
+    "rpm-ostree": {
+      "evra": "2023.3-2.fc38.x86_64"
+    },
+    "rpm-ostree-libs": {
+      "evra": "2023.4-2.fc38.x86_64"
+    },
+    "rpm-plugin-selinux": {
+      "evra": "4.18.1-3.fc38.x86_64"
+    },
+    "rpm-sequoia": {
+      "evra": "1.4.0-3.fc38.x86_64"
+    },
+    "rsync": {
+      "evra": "3.2.7-2.fc38.x86_64"
+    },
+    "runc": {
+      "evra": "2:1.1.7-1.fc38.x86_64"
+    },
+    "samba-client-libs": {
+      "evra": "2:4.18.2-0.fc38.x86_64"
+    },
+    "samba-common": {
+      "evra": "2:4.18.2-0.fc38.noarch"
+    },
+    "samba-common-libs": {
+      "evra": "2:4.18.2-0.fc38.x86_64"
+    },
+    "sed": {
+      "evra": "4.8-12.fc38.x86_64"
+    },
+    "selinux-policy": {
+      "evra": "38.12-1.fc38.noarch"
+    },
+    "selinux-policy-targeted": {
+      "evra": "38.12-1.fc38.noarch"
+    },
+    "setup": {
+      "evra": "2.14.3-2.fc38.noarch"
+    },
+    "sg3_utils": {
+      "evra": "1.46-5.fc38.x86_64"
+    },
+    "sg3_utils-libs": {
+      "evra": "1.46-5.fc38.x86_64"
+    },
+    "shadow-utils": {
+      "evra": "2:4.13-6.fc38.x86_64"
+    },
+    "shadow-utils-subid": {
+      "evra": "2:4.13-6.fc38.x86_64"
+    },
+    "shared-mime-info": {
+      "evra": "2.2-3.fc38.x86_64"
+    },
+    "shim-x64": {
+      "evra": "15.6-2.x86_64"
+    },
+    "skopeo": {
+      "evra": "1:1.12.0-1.fc38.x86_64"
+    },
+    "slang": {
+      "evra": "2.3.3-3.fc38.x86_64"
+    },
+    "slirp4netns": {
+      "evra": "1.2.0-12.fc38.x86_64"
+    },
+    "snappy": {
+      "evra": "1.1.9-7.fc38.x86_64"
+    },
+    "socat": {
+      "evra": "1.7.4.4-2.fc38.x86_64"
+    },
+    "sqlite-libs": {
+      "evra": "3.40.1-2.fc38.x86_64"
+    },
+    "squashfs-tools": {
+      "evra": "4.5.1-3.fc38.x86_64"
+    },
+    "ssh-key-dir": {
+      "evra": "0.1.4-3.fc38.x86_64"
+    },
+    "sssd-ad": {
+      "evra": "2.9.0-1.fc38.x86_64"
+    },
+    "sssd-client": {
+      "evra": "2.9.0-1.fc38.x86_64"
+    },
+    "sssd-common": {
+      "evra": "2.9.0-1.fc38.x86_64"
+    },
+    "sssd-common-pac": {
+      "evra": "2.9.0-1.fc38.x86_64"
+    },
+    "sssd-ipa": {
+      "evra": "2.9.0-1.fc38.x86_64"
+    },
+    "sssd-krb5": {
+      "evra": "2.9.0-1.fc38.x86_64"
+    },
+    "sssd-krb5-common": {
+      "evra": "2.9.0-1.fc38.x86_64"
+    },
+    "sssd-ldap": {
+      "evra": "2.9.0-1.fc38.x86_64"
+    },
+    "sssd-nfs-idmap": {
+      "evra": "2.9.0-1.fc38.x86_64"
+    },
+    "stalld": {
+      "evra": "1.16-3.fc38.x86_64"
+    },
+    "sudo": {
+      "evra": "1.9.13-1.p2.fc38.x86_64"
+    },
+    "systemd": {
+      "evra": "253.4-1.fc38.x86_64"
+    },
+    "systemd-container": {
+      "evra": "253.4-1.fc38.x86_64"
+    },
+    "systemd-libs": {
+      "evra": "253.4-1.fc38.x86_64"
+    },
+    "systemd-pam": {
+      "evra": "253.4-1.fc38.x86_64"
+    },
+    "systemd-resolved": {
+      "evra": "253.4-1.fc38.x86_64"
+    },
+    "systemd-udev": {
+      "evra": "253.4-1.fc38.x86_64"
+    },
+    "tar": {
+      "evra": "2:1.34-8.fc38.x86_64"
+    },
+    "teamd": {
+      "evra": "1.31-7.fc38.x86_64"
+    },
+    "toolbox": {
+      "evra": "0.0.99.4-1.fc38.x86_64"
+    },
+    "tpm2-tools": {
+      "evra": "5.5-3.fc38.x86_64"
+    },
+    "tpm2-tss": {
+      "evra": "4.0.1-3.fc38.x86_64"
+    },
+    "tzdata": {
+      "evra": "2023c-1.fc38.noarch"
+    },
+    "userspace-rcu": {
+      "evra": "0.13.2-2.fc38.x86_64"
+    },
+    "util-linux": {
+      "evra": "2.38.1-4.fc38.x86_64"
+    },
+    "util-linux-core": {
+      "evra": "2.38.1-4.fc38.x86_64"
+    },
+    "vim-data": {
+      "evra": "2:9.0.1575-1.fc38.noarch"
+    },
+    "vim-minimal": {
+      "evra": "2:9.0.1575-1.fc38.x86_64"
+    },
+    "which": {
+      "evra": "2.21-39.fc38.x86_64"
+    },
+    "wireguard-tools": {
+      "evra": "1.0.20210914-4.fc38.x86_64"
+    },
+    "xfsprogs": {
+      "evra": "6.1.0-3.fc38.x86_64"
+    },
+    "xxhash-libs": {
+      "evra": "0.8.1-4.fc38.x86_64"
+    },
+    "xz": {
+      "evra": "5.4.1-1.fc38.x86_64"
+    },
+    "xz-libs": {
+      "evra": "5.4.1-1.fc38.x86_64"
+    },
+    "yajl": {
+      "evra": "2.1.0-20.fc38.x86_64"
+    },
+    "zchunk-libs": {
+      "evra": "1.3.1-1.fc38.x86_64"
+    },
+    "zincati": {
+      "evra": "0.0.25-4.fc38.x86_64"
+    },
+    "zlib": {
+      "evra": "1.2.13-3.fc38.x86_64"
+    },
+    "zram-generator": {
+      "evra": "1.1.2-4.fc38.x86_64"
+    },
+    "zstd": {
+      "evra": "1.5.5-1.fc38.x86_64"
     }
   },
   "metadata": {

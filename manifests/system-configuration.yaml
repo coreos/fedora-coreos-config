@@ -11,7 +11,7 @@ packages:
   - coreos-installer coreos-installer-bootinfra
   # Storage configuration/management
   ## cloud-utils-growpart - For growing root partition
-  - cifs-utils
+  ## - cifs-utils
   - cloud-utils-growpart
   - cryptsetup
   - device-mapper-multipath
