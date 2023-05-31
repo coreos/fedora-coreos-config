@@ -1,5 +1,12 @@
 {
-  "packages": {},
+  "packages": {
+    "podman": {
+      "evra": "5:4.5.0-1.fc38.x86_64"
+    },
+    "podman-plugins": {
+      "evra": "5:4.5.0-1.fc38.x86_64"
+    }
+  },
   "metadata": {
     "generated": "2023-05-27T00:00:00Z",
     "rpmmd_repos": {
