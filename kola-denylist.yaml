@@ -18,10 +18,6 @@
   snooze: 2023-06-21
   arches:
     - aarch64
-# This snooze won't fully work because we run our reprovision tests in
-# the pipeline in a separate step and there is an issue if all tests in
-# a kola run are denylisted: https://github.com/coreos/coreos-assembler/issues/3464
-# To workaround we've added the reprovision label to the `boot.grub2-install` test.
 - pattern: ext.config.root-reprovision.*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1489
   snooze: 2023-06-21
