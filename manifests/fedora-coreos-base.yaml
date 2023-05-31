@@ -63,20 +63,6 @@ postprocess:
     #!/usr/bin/env bash
     systemctl mask dnsmasq.service
 
-  # Fedora 37 adds the nvmf dracut module to the initrd, causing
-  # ext.config.files.dracut-executable to notice that the module puts a
-  # non-executable file in /usr/sbin.  Dracut has been updated to fix the
-  # missing permission, and hopefully this can be removed for Fedora 38.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1155
-  # https://github.com/dracutdevs/dracut/pull/1777
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    source /etc/os-release
-    if [ ${VERSION_ID} -le 37 ]; then
-        chmod +x /usr/lib/dracut/modules.d/95nvmf/nvmf-autoconnect.sh
-    fi
-
   # Default to iptables-nft. Otherwise, legacy wins. We can drop this once/if we
   # remove iptables-legacy. This is needed because alternatives don't work
   # https://github.com/coreos/fedora-coreos-tracker/issues/677
@@ -90,13 +76,6 @@ postprocess:
     ln -sf /usr/sbin/iptables-nft          /etc/alternatives/iptables
     ln -sf /usr/sbin/iptables-nft-restore  /etc/alternatives/iptables-restore
     ln -sf /usr/sbin/iptables-nft-save     /etc/alternatives/iptables-save
-
-  # Short term hack to avoid running out of space on aarch64. This should
-  # save us about 14M. https://github.com/coreos/fedora-coreos-tracker/issues/1464
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    rm -vrf /usr/lib/modules/*aarch64/dtb/qcom/
 
   # Force the ssh-host-keys-migration to happen on every boot
   # to handle cases where someone did a upgrade->rollback->upgrade
