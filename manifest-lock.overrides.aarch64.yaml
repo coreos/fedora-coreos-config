@@ -1,0 +1,23 @@
+# This lockfile should be used to pin to a package version (`type: pin`) or to
+# fast-track packages ahead of Bodhi (`type: fast-track`). Fast-tracked
+# packages will automatically be removed once they are in the stable repos.
+#
+# IMPORTANT: YAML comments *will not* be preserved. All `pin` overrides *must*
+# include a URL in the `metadata.reason` key. Overrides of type `fast-track`
+# *should* include a Bodhi update URL in the `metadata.bodhi` key and a URL
+# in the `metadata.reason` key, though it's acceptable to omit a `reason`
+# for FCOS-specific packages (ignition, afterburn, etc.).
+
+packages:
+  ostree:
+    evra: 2023.3-2.fc38.aarch64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-971df1fe12
+      reason: https://github.com/ostreedev/ostree/pull/2866
+      type: fast-track
+  ostree-libs:
+    evra: 2023.3-2.fc38.aarch64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-971df1fe12
+      reason: https://github.com/ostreedev/ostree/pull/2866
+      type: fast-track
