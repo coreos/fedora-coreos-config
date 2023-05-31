@@ -2,6 +2,8 @@
 ## kola:
 ##   exclusive: false
 ##   description: Verify that the initrd includes some specific files.
+##   # Currently the files we check only need to be available on x86_64 and aarch64
+##   architectures: x86_64 aarch64
 
 # This test runs on both FCOS & RHCOS. The initrd includes specific files which,
 # if omitted from the image, will cause some failures with certain Ignition
@@ -17,8 +19,9 @@ required_initrd_files=(
     # Files from the 25azure-udev-rules overlay
     "/usr/lib/udev/rules.d/66-azure-storage.rules"
     "/usr/lib/udev/rules.d/99-azure-product-uuid.rules"
-    # Files from the 30gcp-udev-rules overlay
-    "/usr/lib/udev/rules.d/64-gce-disk-removal.rules"
+    # Files from the google-compute-engine-guest-configs-udev RPM (FCOS)
+    # or 30gcp-udev-rules overlay (RHCOS). We can probably remove these
+    # checks once RHCOS is using the RPM too.
     "/usr/lib/udev/rules.d/65-gce-disk-naming.rules"
     "/usr/lib/udev/google_nvme_id"
 )
