@@ -15,7 +15,7 @@
     - ppc64le
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1430
-  snooze: 2023-06-01
+  snooze: 2023-06-21
   arches:
     - aarch64
 # This snooze won't fully work because we run our reprovision tests in
@@ -24,13 +24,8 @@
 # To workaround we've added the reprovision label to the `boot.grub2-install` test.
 - pattern: ext.config.root-reprovision.*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1489
-  snooze: 2023-06-01
+  snooze: 2023-06-21
   arches:
     - ppc64le
-  streams:
-    - rawhide
-- pattern: ext.config.files.validate-symlinks
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1496
-  snooze: 2023-06-01
   streams:
     - rawhide
