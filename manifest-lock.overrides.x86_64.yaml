@@ -10,14 +10,14 @@
 
 packages:
   ostree:
-    evra: 2023.3-2.fc38.x86_64
+    evra: 2023.3-3.fc38.x86_64
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-971df1fe12
-      reason: https://github.com/ostreedev/ostree/pull/2866
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-cab8a89753
+      reason: https://github.com/ostreedev/ostree/pull/2871
       type: fast-track
   ostree-libs:
-    evra: 2023.3-2.fc38.x86_64
+    evra: 2023.3-3.fc38.x86_64
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-971df1fe12
-      reason: https://github.com/ostreedev/ostree/pull/2866
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-cab8a89753
+      reason: https://github.com/ostreedev/ostree/pull/2871
       type: fast-track
