@@ -8,11 +8,7 @@ longer the case).
 
 This overlay matches `fedora-coreos-base.yaml`; core Ignition+ostree bits.
 
-06el9
------
-
-This overlay includes content shared between FCOS and RHCOS/SCOS 9, but not
-RHCOS 8.
+This overlay is shared with RHCOS/SCOS 9.
 
 08nouveau
 ---------
