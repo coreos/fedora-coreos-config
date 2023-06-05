@@ -9,7 +9,6 @@ include:
   - networking-tools.yaml
   - user-experience.yaml
   - shared-workarounds.yaml
-  - shared-el9.yaml
 
 ostree-layers:
   - overlay/05core
