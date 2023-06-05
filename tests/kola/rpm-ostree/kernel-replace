@@ -2,6 +2,9 @@
 ## kola:
 ##   # Increase timeout since this test has a lot of I/O and involves rebasing
 ##   timeoutMin: 15
+##   # We've seen some OOM when 1024M is used:
+##   # https://github.com/coreos/fedora-coreos-tracker/issues/1506
+##   minMemory: 2048
 ##   # This test only runs on FCOS due to a problem with skopeo copy on
 ##   # RHCOS. See: https://github.com/containers/skopeo/issues/1846
 ##   distros: fcos
