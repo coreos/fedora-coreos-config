@@ -306,6 +306,43 @@ storage:
 
 The expanded config doesn't include the `path` or `with_mount_unit` keys; FCOS knows that the root partition is special and will figure out how to find it and mount it.
 
+This next example binds the root filesystem encryption to PCR 7 which corresponds to the link:{https://uapi-group.org/specifications/specs/linux_tpm_pcr_registry/}[UEFI Boot Component] used to track the Secure Boot certificate from memory. Therefore, updates to the the UEFI firmware/certificates should not affect the value stored in PCR 7.
+
+NOTE: Binding for PCR 8 (UEFI Boot Component used to track commands and kernel command line) is not supported as the kernel command line changes with every OS update.
+
+.Encrypting the root filesystem with a TPM2 Clevis pin bound to PCR 7
+[source,yaml]
+----
+variant: fcos
+version: 1.4.0
+storage:
+  luks:
+    - name: root
+      label: luks-root
+      device: /dev/disk/by-partlabel/root
+      clevis:
+        custom:
+          needs_network: false
+          pin: tpm2
+          config: '{"pcr_bank":"sha1","pcr_ids":"7"}'
+      wipe_volume: true
+  filesystems:
+    - device: /dev/mapper/root
+      format: xfs
+      wipe_filesystem: true
+      label: root
+----
+
+More documentation for the `config` fields can be found in the `clevis` man pages: `man clevis-encrypt-tpm2`
+
+The following `clevis` command can be used to confirm that the root file system encryption is bound to PCR 7.
+
+[source,shell]
+----
+$ sudo clevis luks list -d /dev/disk/by-partlabel/root
+1: tpm2 '{"hash":"sha256","key":"ecc","pcr_bank":"sha1","pcr_ids":"7"}'
+----
+
 Here is an example of the simplified config syntax with Tang:
 
 .Encrypting the root filesystem with a Tang Clevis pin
