@@ -34,6 +34,36 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
       type: pin
+  systemd:
+    evr: 253.4-1.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1508
+      type: pin
+  systemd-container:
+    evr: 253.4-1.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1508
+      type: pin
+  systemd-libs:
+    evr: 253.4-1.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1508
+      type: pin
+  systemd-pam:
+    evr: 253.4-1.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1508
+      type: pin
+  systemd-resolved:
+    evr: 253.4-1.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1508
+      type: pin
+  systemd-udev:
+    evr: 253.4-1.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1508
+      type: pin
   util-linux:
     evr: 2.39-3.fc39
     metadata:
