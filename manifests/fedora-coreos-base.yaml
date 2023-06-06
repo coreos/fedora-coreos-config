@@ -16,7 +16,6 @@ ostree-layers:
   - overlay/09misc
   - overlay/20platform-chrony
   - overlay/25azure-udev-rules
-  - overlay/30gcp-udev-rules
 
 # Be minimal
 recommends: false
@@ -160,18 +159,25 @@ packages:
   - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
 
 
-# This thing is crying out to be pulled into systemd, but that hasn't happened
-# yet.  Also we may want to add to rpm-ostree something like arch negation;
-# basically right now it doesn't exist on s390x.
-# Anyways, it was requested by the Red Hat perf team for RHCOS, so we have it here.
-# https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
-# https://access.redhat.com/solutions/41535
+# - irqbalance
+#   - This thing is crying out to be pulled into systemd, but that hasn't happened
+#     yet.  Also we may want to add to rpm-ostree something like arch negation;
+#     basically right now it doesn't exist on s390x.
+#     Anyways, it was requested by the Red Hat perf team for RHCOS, so we have it here.
+#     https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
+#     https://access.redhat.com/solutions/41535
+# - qemu-user-static-x86
+#   - Include this on non-x86_64 FCOS images to allow access to the large
+#     inventory of containers only built for x86_64.
+#     https://github.com/coreos/fedora-coreos-tracker/issues/1237
 #
-# Include the qemu-user-static-x86 package on non-x86_64 FCOS images to allow
-# access to the large inventory of containers only built for x86_64.
-# https://github.com/coreos/fedora-coreos-tracker/issues/1237
+# - google-compute-engine-guest-configs-udev
+#   - Add this package on x86_64 and aarch64 (the two architectures
+#     GCP supports. https://github.com/coreos/fedora-coreos-tracker/issues/1494
+#     This should be moved to a shared manifest when RHEL has this package.
 packages-x86_64:
   - irqbalance
+  - google-compute-engine-guest-configs-udev
 packages-ppc64le:
   - irqbalance
   - librtas
@@ -181,6 +187,7 @@ packages-ppc64le:
 packages-aarch64:
   - irqbalance
   - qemu-user-static-x86
+  - google-compute-engine-guest-configs-udev
 packages-s390x:
   - qemu-user-static-x86
 
