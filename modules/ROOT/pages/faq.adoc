@@ -26,39 +26,6 @@ variety of containerized use cases, RHEL CoreOS provides a
 focused OS for OpenShift, released and life-cycled in tandem
 with the platform.
 
-== Does Fedora CoreOS replace Container Linux? What happens to CL?
-
-Fedora CoreOS is the official successor to CoreOS Container Linux, but it
-is not a drop-in replacement. CoreOS Container Linux will reach its
-https://coreos.com/os/eol/[end of life] on May 26, 2020, and will no longer
-receive updates after that date. For notes on migrating from Container Linux
-to Fedora CoreOS, see the xref:migrate-cl.adoc[migration guide].
-
-== Does Fedora CoreOS replace Fedora Atomic Host? What happens to Fedora Atomic Host and CentOS Atomic Host?
-
-Fedora CoreOS is the official successor to Fedora Atomic Host. The
-last Fedora Atomic Host release was version 29, which has now reached
-end-of-life.
-
-CentOS Atomic Host will continue producing downstream rebuilds of RHEL
-Atomic Host and will align with the end-of-life. The Fedora CoreOS
-project will be the consolidation point for the community distributions.
-Users are encouraged to move there in the future.
-
-== What happens to Project Atomic?
-
-Project Atomic is an umbrella project consisting of two flavors of
-Atomic Host (Fedora and CentOS) as well as various other
-container-related projects. Project Atomic as a project name will be
-sunset by the end of 2018 with a stronger individual focus on its
-successful projects such as Buildah and Cockpit. This merges the
-community side of the operating system more effectively with Fedora and
-allows for a clearer communication for other community-supported
-projects, specifically the well-adopted
-https://twitter.com/hashtag/nobigfatdaemons?src=hash[#nobigfatdaemons]
-approach of https://github.com/projectatomic/buildah[Buildah] and the
-versatile GUI server manager https://cockpit-project.org/[Cockpit].
-
 == What are the communication channels around Fedora CoreOS?
 
 We have the following new communication channels around Fedora CoreOS:
@@ -107,23 +74,6 @@ made changes. The content under `/var` is left untouched by rpm-ostree when
 applying upgrades or rollbacks. For more information, refer to the
 https://docs.fedoraproject.org/en-US/fedora-coreos/storage/#_mounted_filesystems[Mounted Filesystems]
 section.
-
-== How do I migrate from Container Linux to Fedora CoreOS?
-
-Migrations can be accomplished by re-provisioning the machine with
-Fedora CoreOS. For notes on migrating from Container Linux
-to Fedora CoreOS, see the xref:migrate-cl.adoc[migration guide].
-
-== How do I migrate from Fedora Atomic Host to Fedora CoreOS?
-
-As with Container Linux, the best practice is to re-provision the node, due
-to the cloud-init/Ignition transition at least. Since Fedora CoreOS uses
-rpm-ostree technology, it may be possible to rebase from Fedora
-Atomic Host to Fedora CoreOS, but it is not recommended. It's
-preferable to gain experience deploying systems using Ignition so
-that they can be re-provisioned easily if needed. For notes on migrating
-from Atomic Host to Fedora CoreOS, see the
-xref:migrate-ah.adoc[migration guide].
 
 == Which container runtimes are available on Fedora CoreOS?
 
@@ -288,47 +238,6 @@ systemd:
 
 For more information see
 https://github.com/coreos/fedora-coreos-tracker/issues/519[the tracker issue discussion].
-
-== Why does SSH stop working after upgrading to Fedora 33?
-
-In Fedora 33 there was a change to
-https://www.fedoraproject.org/wiki/Changes/StrongCryptoSettings2[implement stronger crypto defaults].
-Part of this included taking the
-https://www.openssh.com/txt/release-8.3[advice of OpenSSH] upstream
-and disabling the use of the `ssh-rsa` public key signature algorithm.
-
-You may hit issues if you use RSA keys and:
-
-* use an old version of the `SSH` client
-* use tooling/software libraries that don't support using RSA SHA2 public key signatures
-
-For example, Go has an https://github.com/golang/go/issues/37278[open issue]
-to solve this problem in its SSH implementation, but has yet to resolve it.
-This has been hit and worked around by the FCOS community in
-our build tooling and also our higher level projects:
-
-- https://github.com/coreos/fedora-coreos-tracker/issues/699[coreos/fedora-coreos-tracker#699]
-- https://github.com/coreos/coreos-assembler/issues/1772[coreos/coreos-assembler#1772]
-
-If you run into this problem and need to work around the issue, you
-have a few options:
-
-- Switch to a newer non-RSA key type.
-- Provide a configuration to your machine that re-enables the insecure key signatures:
-
-.Example Butane config for re-enabling SSH RSA SHA1 key signatures
-[source, yaml]
-----
-variant: fcos
-version: 1.4.0
-storage:
-  files:
-    - path: /etc/ssh/sshd_config.d/10-insecure-rsa-keysig.conf
-      mode: 0600
-      contents:
-        inline: |
-          PubkeyAcceptedKeyTypes=+ssh-rsa
-----
 
 == Why do I get SELinux denials after updates if I have local policy modifications?
 
