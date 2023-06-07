@@ -9,6 +9,18 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  binutils:
+    evr: 2.40-9.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-2944964c27
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1496#issuecomment-1572805200
+      type: fast-track
+  binutils-gold:
+    evr: 2.40-9.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-2944964c27
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1496#issuecomment-1572805200
+      type: fast-track
   libblkid:
     evr: 2.39-3.fc39
     metadata:
