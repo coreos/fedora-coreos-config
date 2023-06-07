@@ -12,11 +12,8 @@ updated.
 Fedora CoreOS is an automatically updating, minimal, monolithic,
 container-focused operating system, designed for clusters but also
 operable standalone, optimized for Kubernetes but also great without it.
-It aims to combine the best of both CoreOS Container Linux and Fedora
-Atomic Host, integrating technology like Ignition from Container Linux
-with rpm-ostree and SELinux hardening from Project Atomic. Its goal is
-to provide the best container host to run containerized workloads
-securely and at scale.
+Its goal is to provide the best container host to run containerized
+workloads securely and at scale.
 
 == How does Fedora CoreOS relate to RHEL CoreOS?
 
@@ -47,7 +44,7 @@ If you think you have found a problem with Fedora CoreOS, file an issue in our h
 
 Fedora CoreOS artifacts are available at https://fedoraproject.org/en/coreos/download/[fedoraproject.org].
 
-== Does Fedora CoreOS embrace the Container Linux Update Philosophy?
+== Does Fedora CoreOS update itself automatically?
 
 Yes, Fedora CoreOS comes with automatic
 updates and regular releases. Multiple update channels are provided
@@ -57,9 +54,7 @@ can be optionally self-hosted.
 
 == How are Fedora CoreOS nodes provisioned? Can I re-use existing cloud-init configurations?
 
-Fedora CoreOS is provisioned with Ignition. However, existing
-Ignition configurations will require changes, as the OS configuration
-will be different from Container Linux. Existing cloud-init
+Fedora CoreOS is provisioned with Ignition. Existing cloud-init
 configurations are not supported and will need to be migrated into their
 Ignition equivalent.
 
@@ -100,16 +95,14 @@ included by default. Instead, it is recommended to use the `toolbox` utility.
 
 xref:debugging-with-toolbox.adoc[Debugging with Toolbx].
 
-== How do I coordinate cluster-wide OS updates? Is locksmith or the Container Linux Update Operator available for Fedora CoreOS?
+== How do I coordinate cluster-wide OS updates?
 
-The `etcd-lock` feature from https://github.com/coreos/locksmith[locksmith] has
-been directly ported to Zincati, as a https://coreos.github.io/zincati/usage/updates-strategy/#lock-based-strategy[lock-based updates strategy].
-It has also been augmented to support multiple backends, not being anymore
-constrained to etcd2 only.
+The Zincati update manager includes a
+https://coreos.github.io/zincati/usage/updates-strategy/#lock-based-strategy[lock-based updates strategy]
+that supports multiple backends.
 
-The capabilities of https://github.com/coreos/container-linux-update-operator[Container Linux Update Operator (CLUO)]
-have been embedded into the https://github.com/openshift/machine-config-operator[Machine Config Operator (MCO)],
-which is a core component of OKD.
+OKD's https://github.com/openshift/machine-config-operator[Machine Config Operator (MCO)]
+automatically handles updates of Fedora CoreOS in OKD clusters.
 The MCO additionally covers reconciliation of machine configuration changes.
 
 == How do I upload Fedora CoreOS to private AWS EC2 regions?
@@ -138,8 +131,7 @@ It is worth noting that in Fedora CoreOS we have `docker.service`
 disabled by default but it is easily started if anything communicates
 with the `/var/run/docker.sock` because `docker.socket` is enabled by
 default. This means that if a user runs any `docker` command (via
-`sudo docker`) then the daemon will be activated. We did this to make
-the transition easier for users of Container Linux.
+`sudo docker`) then the daemon will be activated.
 
 In https://github.com/coreos/fedora-coreos-tracker/issues/408[coreos/fedora-coreos-tracker#408]
 it was pointed out that because of socket activation users who are

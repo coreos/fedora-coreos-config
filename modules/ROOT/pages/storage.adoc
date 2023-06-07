@@ -577,7 +577,7 @@ The EFI-SYSTEM partition can be deleted or reformatted when BIOS booting. Simila
 
 == Mounted Filesystems
 
-Fedora CoreOS uses OSTree, which is a system for managing multiple bootable operating system trees that share storage. This is distinct from e.g. Container Linux which used a dual partition system. In Fedora CoreOS each operating system version is part of the `/` filesystem. All deployments share the same `/var` which can be on the same filesystem, or mounted separately.
+Fedora CoreOS uses OSTree, which is a system for managing multiple bootable operating system trees that share storage. Each operating system version is part of the `/` filesystem. All deployments share the same `/var` which can be on the same filesystem, or mounted separately.
 
 This shows the default mountpoints for a Fedora CoreOS system installed on a `/dev/vda` disk:
 
