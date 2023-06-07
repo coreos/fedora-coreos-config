@@ -18,8 +18,6 @@ with rpm-ostree and SELinux hardening from Project Atomic. Its goal is
 to provide the best container host to run containerized workloads
 securely and at scale.
 
-https://discussion.fedoraproject.org/t/launch-faq-what-is-fedora-coreos/40[Discuss on discussion.fedoraproject.org]
-
 == How does Fedora CoreOS relate to Red Hat CoreOS?
 
 Fedora CoreOS is a freely available, community distribution that is the
@@ -28,8 +26,6 @@ variety of containerized use cases, Red Hat CoreOS provides a
 focused OS for OpenShift, released and life-cycled in tandem
 with the platform.
 
-https://discussion.fedoraproject.org/t/launch-faq-how-does-fedora-coreos-relate-to-red-hat-coreos/41[Discuss on discussion.fedoraproject.org]
-
 == Does Fedora CoreOS replace Container Linux? What happens to CL?
 
 Fedora CoreOS is the official successor to CoreOS Container Linux, but it
@@ -37,8 +33,6 @@ is not a drop-in replacement. CoreOS Container Linux will reach its
 https://coreos.com/os/eol/[end of life] on May 26, 2020, and will no longer
 receive updates after that date. For notes on migrating from Container Linux
 to Fedora CoreOS, see the xref:migrate-cl.adoc[migration guide].
-
-https://discussion.fedoraproject.org/t/launch-faq-does-fedora-coreos-replace-container-linux-what-happens-to-cl/42[Discuss on discussion.fedoraproject.org]
 
 == Does Fedora CoreOS replace Fedora Atomic Host? What happens to Fedora Atomic Host and CentOS Atomic Host?
 
@@ -50,8 +44,6 @@ CentOS Atomic Host will continue producing downstream rebuilds of RHEL
 Atomic Host and will align with the end-of-life. The Fedora CoreOS
 project will be the consolidation point for the community distributions.
 Users are encouraged to move there in the future.
-
-https://discussion.fedoraproject.org/t/launch-faq-does-fedora-coreos-replace-fedora-atomic-host-what-happens-to-fedora-atomic-host-and-centos-atomic-host/43[Discuss on discussion.fedoraproject.org]
 
 == What happens to Project Atomic?
 
@@ -66,8 +58,6 @@ projects, specifically the well-adopted
 https://twitter.com/hashtag/nobigfatdaemons?src=hash[#nobigfatdaemons]
 approach of https://github.com/projectatomic/buildah[Buildah] and the
 versatile GUI server manager https://cockpit-project.org/[Cockpit].
-
-https://discussion.fedoraproject.org/t/launch-faq-what-happens-to-project-atomic/44/1[Discuss on discussion.fedoraproject.org]
 
 == What are the communication channels around Fedora CoreOS?
 
@@ -84,15 +74,11 @@ There is a community meeting that happens every week. See the https://calendar.f
 
 If you think you have found a problem with Fedora CoreOS, file an issue in our https://github.com/coreos/fedora-coreos-tracker/issues[issue tracker].
 
-https://discussion.fedoraproject.org/t/launch-faq-what-are-the-communication-channels-around-fedora-coreos/46/1[Discuss on discussion.fedoraproject.org]
-
 == Technical FAQ
 
 === Where can I download Fedora CoreOS?
 
 Fedora CoreOS artifacts are available at https://fedoraproject.org/en/coreos/download/[fedoraproject.org].
-
-https://discussion.fedoraproject.org/t/launch-faq-where-can-i-download-fedora-coreos/47/1[Discuss on discussion.fedoraproject.org]
 
 == Does Fedora CoreOS embrace the Container Linux Update Philosophy?
 
@@ -103,8 +89,6 @@ service based on rpm-ostree technologies, with a server component that
 can be optionally self-hosted. Failures that prevent an update from
 booting will automatically be reverted.
 
-https://discussion.fedoraproject.org/t/launch-faq-does-fedora-coreos-embrace-the-container-linux-update-philosophy/48/1[Discuss on discussion.fedoraproject.org]
-
 == How are Fedora CoreOS nodes provisioned? Can I re-use existing cloud-init configurations?
 
 Fedora CoreOS is provisioned with Ignition. However, existing
@@ -112,8 +96,6 @@ Ignition configurations will require changes, as the OS configuration
 will be different from Container Linux. Existing cloud-init
 configurations are not supported and will need to be migrated into their
 Ignition equivalent.
-
-https://discussion.fedoraproject.org/t/launch-faq-how-are-fedora-coreos-nodes-provisioned-can-i-re-use-existing-cloud-init-configurations/49/1[Discuss on discussion.fedoraproject.org]
 
 == What data persists across upgrades and reboots?
 
@@ -132,8 +114,6 @@ Migrations can be accomplished by re-provisioning the machine with
 Fedora CoreOS. For notes on migrating from Container Linux
 to Fedora CoreOS, see the xref:migrate-cl.adoc[migration guide].
 
-https://discussion.fedoraproject.org/t/launch-faq-how-do-i-migrate-from-container-linux-to-fedora-coreos/50/1[Discuss on discussion.fedoraproject.org]
-
 == How do I migrate from Fedora Atomic Host to Fedora CoreOS?
 
 As with Container Linux, the best practice is to re-provision the node, due
@@ -145,15 +125,11 @@ that they can be re-provisioned easily if needed. For notes on migrating
 from Atomic Host to Fedora CoreOS, see the
 xref:migrate-ah.adoc[migration guide].
 
-https://discussion.fedoraproject.org/t/launch-faq-how-do-i-migrate-from-fedora-atomic-host-to-fedora-coreos/51/1[Discuss on discussion.fedoraproject.org]
-
 == Which container runtimes are available on Fedora CoreOS?
 
 Fedora CoreOS includes Docker and podman by default.
 Based on community engagement and support this list could
 change over time.
-
-https://discussion.fedoraproject.org/t/launch-faq-which-container-runtimes-are-available-on-fedora-coreos/52/1[Discuss on discussion.fedoraproject.org]
 
 == Can I run Kubernetes on Fedora CoreOS?
 
@@ -163,8 +139,6 @@ Container Linux and Atomic Host. We will work with the upstream
 Kubernetes community on tools (e.g. kubeadm) and best practices for
 installing Kubernetes on Fedora CoreOS.
 
-https://discussion.fedoraproject.org/t/launch-faq-can-i-run-kubernetes-on-fedora-coreos/54/1[Discuss on discussion.fedoraproject.org]
-
 == How do I run custom applications on Fedora CoreOS?
 
 On Fedora CoreOS, containers are the way to install and configure any
@@ -172,8 +146,6 @@ software not provided by the base operating system. The package layering
 mechanism provided by rpm-ostree will continue to exist for use in
 debugging a Fedora CoreOS machine, but we strongly discourage its use.
 For more about this, please refer to xref:running-containers.adoc[documentation].
-
-https://discussion.fedoraproject.org/t/launch-faq-how-do-i-run-custom-applications-on-fedora-coreos/55/1[Discuss on discussion.fedoraproject.org]
 
 == Where is my preferred tool for troubleshooting?
 
@@ -193,8 +165,6 @@ The capabilities of https://github.com/coreos/container-linux-update-operator[Co
 have been embedded into the https://github.com/openshift/machine-config-operator[Machine Config Operator (MCO)],
 which is a core component of OKD.
 The MCO additionally covers reconciliation of machine configuration changes.
-
-https://discussion.fedoraproject.org/t/launch-faq-how-do-i-coordinate-cluster-wide-os-updates-is-locksmith-or-the-container-linux-update-operator-available-for-fedora-coreos/56[Discuss on discussion.fedoraproject.org]
 
 == How do I upload Fedora CoreOS to private AWS EC2 regions?
 
@@ -247,8 +217,6 @@ systemd:
 == Are Fedora CoreOS x86_64 disk images hybrid BIOS+UEFI bootable?
 
 The x86_64 images we provide can be used for either BIOS (legacy) boot or UEFI boot. They contain a hybrid BIOS/UEFI partition setup that allows them to be used for either. The exception to that is the `metal4k` 4k native image, which is targeted at disks with 4k sectors and https://github.com/coreos/coreos-assembler/blob/12029fea7798fa5d3535eafcf8c3d02f9a6095e4/src/cmd-buildextend-metal#L200-L202[does not have a BIOS boot partition] because 4k native disks are https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/hard-drives-and-partitions#advanced-format-drives[only supported with UEFI].
-
-https://discussion.fedoraproject.org/t/are-fedora-coreos-disk-images-hybrid-bios-uefi-bootable/21911[Discuss on discussion.fedoraproject.org]
 
 == What's the difference between Ignition and Butane configurations?
 
