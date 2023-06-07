@@ -51,10 +51,9 @@ Fedora CoreOS artifacts are available at https://fedoraproject.org/en/coreos/dow
 
 Yes, Fedora CoreOS comes with automatic
 updates and regular releases. Multiple update channels are provided
-catering to different users' needs. It introduces a new node-update
+catering to different users' needs. Fedora CoreOS provides a node-update
 service based on rpm-ostree technologies, with a server component that
-can be optionally self-hosted. Failures that prevent an update from
-booting will automatically be reverted.
+can be optionally self-hosted.
 
 == How are Fedora CoreOS nodes provisioned? Can I re-use existing cloud-init configurations?
 
@@ -83,11 +82,8 @@ change over time.
 
 == Can I run Kubernetes on Fedora CoreOS?
 
-Yes. However, we envision Fedora CoreOS as not including a specific
-container orchestrator (or version of Kubernetes) by default — just like
-Container Linux and Atomic Host. We will work with the upstream
-Kubernetes community on tools (e.g. kubeadm) and best practices for
-installing Kubernetes on Fedora CoreOS.
+Yes. However, Fedora CoreOS does not include a specific container
+orchestrator (or version of Kubernetes) by default.
 
 == How do I run custom applications on Fedora CoreOS?
 
