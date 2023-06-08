@@ -142,7 +142,7 @@
       "evra": "0.21.3-4.fc38.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.216.0-1.fc38.noarch"
+      "evra": "2:2.218.0-1.fc38.noarch"
     },
     "containerd": {
       "evra": "1.6.19-1.fc38.ppc64le"
@@ -193,7 +193,7 @@
       "evra": "2.6.1-1.fc38.ppc64le"
     },
     "curl": {
-      "evra": "8.0.1-1.fc38.ppc64le"
+      "evra": "8.0.1-2.fc38.ppc64le"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-9.fc38.ppc64le"
@@ -202,16 +202,16 @@
       "evra": "2.1.28-9.fc38.ppc64le"
     },
     "dbus": {
-      "evra": "1:1.14.6-1.fc38.ppc64le"
+      "evra": "1:1.14.8-1.fc38.ppc64le"
     },
     "dbus-broker": {
       "evra": "33-1.fc38.ppc64le"
     },
     "dbus-common": {
-      "evra": "1:1.14.6-1.fc38.noarch"
+      "evra": "1:1.14.8-1.fc38.noarch"
     },
     "dbus-libs": {
-      "evra": "1:1.14.6-1.fc38.ppc64le"
+      "evra": "1:1.14.8-1.fc38.ppc64le"
     },
     "device-mapper": {
       "evra": "1.02.189-2.fc38.ppc64le"
@@ -577,7 +577,7 @@
       "evra": "1.46.5-4.fc38.ppc64le"
     },
     "libcurl-minimal": {
-      "evra": "8.0.1-1.fc38.ppc64le"
+      "evra": "8.0.1-2.fc38.ppc64le"
     },
     "libdaemon": {
       "evra": "0.14-25.fc38.ppc64le"
@@ -763,7 +763,7 @@
       "evra": "2.38.1-4.fc38.ppc64le"
     },
     "libsmbclient": {
-      "evra": "2:4.18.2-0.fc38.ppc64le"
+      "evra": "2:4.18.3-0.fc38.ppc64le"
     },
     "libsolv": {
       "evra": "0.7.22-4.fc38.ppc64le"
@@ -832,10 +832,10 @@
       "evra": "0.3.2-5.fc38.ppc64le"
     },
     "libwbclient": {
-      "evra": "2:4.18.2-0.fc38.ppc64le"
+      "evra": "2:4.18.3-0.fc38.ppc64le"
     },
     "libxcrypt": {
-      "evra": "4.4.34-1.fc38.ppc64le"
+      "evra": "4.4.35-1.fc38.ppc64le"
     },
     "libxml2": {
       "evra": "2.10.4-1.fc38.ppc64le"
@@ -1021,10 +1021,10 @@
       "evra": "1.8.0-6.fc38.ppc64le"
     },
     "podman": {
-      "evra": "5:4.5.0-1.fc38.ppc64le"
+      "evra": "5:4.5.1-1.fc38.ppc64le"
     },
     "podman-plugins": {
-      "evra": "5:4.5.0-1.fc38.ppc64le"
+      "evra": "5:4.5.1-1.fc38.ppc64le"
     },
     "policycoreutils": {
       "evra": "3.5-1.fc38.ppc64le"
@@ -1096,13 +1096,13 @@
       "evra": "2:1.1.7-1.fc38.ppc64le"
     },
     "samba-client-libs": {
-      "evra": "2:4.18.2-0.fc38.ppc64le"
+      "evra": "2:4.18.3-0.fc38.ppc64le"
     },
     "samba-common": {
-      "evra": "2:4.18.2-0.fc38.noarch"
+      "evra": "2:4.18.3-0.fc38.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.18.2-0.fc38.ppc64le"
+      "evra": "2:4.18.3-0.fc38.ppc64le"
     },
     "sed": {
       "evra": "4.8-12.fc38.ppc64le"
@@ -1237,10 +1237,10 @@
       "evra": "2.38.1-4.fc38.ppc64le"
     },
     "vim-data": {
-      "evra": "2:9.0.1592-1.fc38.noarch"
+      "evra": "2:9.0.1607-1.fc38.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.1592-1.fc38.ppc64le"
+      "evra": "2:9.0.1607-1.fc38.ppc64le"
     },
     "which": {
       "evra": "2.21-39.fc38.ppc64le"
@@ -1280,16 +1280,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-06-05T00:00:00Z",
+    "generated": "2023-06-08T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:36:47Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-06-02T20:21:09Z"
+        "generated": "2023-06-07T14:50:11Z"
       },
       "fedora-updates": {
-        "generated": "2023-06-05T01:12:18Z"
+        "generated": "2023-06-08T01:57:51Z"
       }
     }
   }
