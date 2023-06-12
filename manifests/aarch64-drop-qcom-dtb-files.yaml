@@ -1,0 +1,8 @@
+# Short term hack to avoid running out of space on aarch64. This should
+# save us about 14M. https://github.com/coreos/fedora-coreos-tracker/issues/1464
+# This can be removed once we are on F39+.
+postprocess:
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    rm -vrf /usr/lib/modules/*aarch64/dtb/qcom/
