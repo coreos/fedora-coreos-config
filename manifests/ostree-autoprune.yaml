@@ -1,0 +1,11 @@
+# Enable OSTree autopruning to help with /boot size constraints
+# https://github.com/coreos/fedora-coreos-tracker/issues/1495
+postprocess:
+  - |
+    #!/usr/bin/env bash
+    mkdir -p /usr/lib/systemd/system/ostree-finalize-staged.service.d
+    cat <<'EOF' > /usr/lib/systemd/system/ostree-finalize-staged.service.d/ostree-autoprune.conf
+    [Service]
+    # https://github.com/coreos/fedora-coreos-tracker/issues/1495
+    Environment=OSTREE_SYSROOT_OPTS=early-prune
+    EOF
