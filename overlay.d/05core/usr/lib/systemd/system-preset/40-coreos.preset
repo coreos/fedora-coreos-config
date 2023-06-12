@@ -32,6 +32,3 @@ enable rtas_errd.service
 enable clevis-luks-askpass.path
 # Provide status information about the Ignition run
 enable coreos-ignition-write-issues.service
-# Apply network configuration from /etc/nmstate/*.yml
-# We can drop this after merging https://src.fedoraproject.org/rpms/fedora-release/pull-request/255
-enable nmstate.service
