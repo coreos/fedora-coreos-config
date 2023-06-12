@@ -9,7 +9,6 @@ include:
   - networking-tools.yaml
   - user-experience.yaml
   - shared-workarounds.yaml
-  - shared-el9.yaml
 
 ostree-layers:
   - overlay/05core
@@ -17,7 +16,6 @@ ostree-layers:
   - overlay/09misc
   - overlay/20platform-chrony
   - overlay/25azure-udev-rules
-  - overlay/30gcp-udev-rules
 
 # Be minimal
 recommends: false
@@ -63,20 +61,6 @@ postprocess:
     #!/usr/bin/env bash
     systemctl mask dnsmasq.service
 
-  # Fedora 37 adds the nvmf dracut module to the initrd, causing
-  # ext.config.files.dracut-executable to notice that the module puts a
-  # non-executable file in /usr/sbin.  Dracut has been updated to fix the
-  # missing permission, and hopefully this can be removed for Fedora 38.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1155
-  # https://github.com/dracutdevs/dracut/pull/1777
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    source /etc/os-release
-    if [ ${VERSION_ID} -le 37 ]; then
-        chmod +x /usr/lib/dracut/modules.d/95nvmf/nvmf-autoconnect.sh
-    fi
-
   # Default to iptables-nft. Otherwise, legacy wins. We can drop this once/if we
   # remove iptables-legacy. This is needed because alternatives don't work
   # https://github.com/coreos/fedora-coreos-tracker/issues/677
@@ -90,13 +74,6 @@ postprocess:
     ln -sf /usr/sbin/iptables-nft          /etc/alternatives/iptables
     ln -sf /usr/sbin/iptables-nft-restore  /etc/alternatives/iptables-restore
     ln -sf /usr/sbin/iptables-nft-save     /etc/alternatives/iptables-save
-
-  # Short term hack to avoid running out of space on aarch64. This should
-  # save us about 14M. https://github.com/coreos/fedora-coreos-tracker/issues/1464
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    rm -vrf /usr/lib/modules/*aarch64/dtb/qcom/
 
   # Force the ssh-host-keys-migration to happen on every boot
   # to handle cases where someone did a upgrade->rollback->upgrade
@@ -182,18 +159,25 @@ packages:
   - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
 
 
-# This thing is crying out to be pulled into systemd, but that hasn't happened
-# yet.  Also we may want to add to rpm-ostree something like arch negation;
-# basically right now it doesn't exist on s390x.
-# Anyways, it was requested by the Red Hat perf team for RHCOS, so we have it here.
-# https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
-# https://access.redhat.com/solutions/41535
+# - irqbalance
+#   - This thing is crying out to be pulled into systemd, but that hasn't happened
+#     yet.  Also we may want to add to rpm-ostree something like arch negation;
+#     basically right now it doesn't exist on s390x.
+#     Anyways, it was requested by the Red Hat perf team for RHCOS, so we have it here.
+#     https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
+#     https://access.redhat.com/solutions/41535
+# - qemu-user-static-x86
+#   - Include this on non-x86_64 FCOS images to allow access to the large
+#     inventory of containers only built for x86_64.
+#     https://github.com/coreos/fedora-coreos-tracker/issues/1237
 #
-# Include the qemu-user-static-x86 package on non-x86_64 FCOS images to allow
-# access to the large inventory of containers only built for x86_64.
-# https://github.com/coreos/fedora-coreos-tracker/issues/1237
+# - google-compute-engine-guest-configs-udev
+#   - Add this package on x86_64 and aarch64 (the two architectures
+#     GCP supports. https://github.com/coreos/fedora-coreos-tracker/issues/1494
+#     This should be moved to a shared manifest when RHEL has this package.
 packages-x86_64:
   - irqbalance
+  - google-compute-engine-guest-configs-udev
 packages-ppc64le:
   - irqbalance
   - librtas
@@ -203,6 +187,7 @@ packages-ppc64le:
 packages-aarch64:
   - irqbalance
   - qemu-user-static-x86
+  - google-compute-engine-guest-configs-udev
 packages-s390x:
   - qemu-user-static-x86
 

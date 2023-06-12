@@ -1,0 +1,79 @@
+#!/bin/bash
+## kola:
+##   description: Verify new GCP udev rules work well on confidential instance.
+##   # Note: each local SSD is 375 GB in size, refer to https://cloud.google.com/compute/docs/disks/local-ssd
+##   additionalDisks: ["375G:channel=nvme"]
+##   platforms: gcp
+##   requiredTag: confidential
+
+# See https://issues.redhat.com/browse/OCPBUGS-7582
+# https://github.com/coreos/fedora-coreos-tracker/issues/1457
+#
+# Force this test to not run by default unless named specifically
+# or `--tag confidential` is passed to `kola run`, also requires
+# `--gcp-machinetype n2d-standard-2 --gcp-confidential-vm`
+#
+# It will create confidential instance on GCP with 1 nvme persistent disk 
+# and 1 local ssd disk, then check the new udev rules make effect.
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+# Set global variable with NVME json info
+NVME_INFO=$(nvme list-subsys -o json)
+
+# verify the instance is Confidential VM
+assert_confidential_vm() {
+    local sevlog=$(dmesg | grep SEV | head)
+    if [ -n "${sevlog}" ] && echo "${sevlog}" | grep "Memory Encryption Features active: AMD SEV"; then
+        ok "instance is Confidential VM"
+    else
+        fatal "instance should be Confidential VM"
+    fi
+}
+
+# check instance has 2 disks
+assert_two_nvme_disks() {
+    local nvme_count=$(jq -r ".[].Subsystems | length" <<< "${NVME_INFO}")
+    if [ $nvme_count -ne 2 ]; then
+        fatal "instance does not have 2 disks"
+    fi
+}
+
+# check nvme device
+assert_nvme_disk_accessible() {
+    local disk=$1
+    local nvme_disk=$(jq -r ".[].Subsystems[].Paths[] | select(.Name == \"${disk}\").Name" <<< "${NVME_INFO}")
+    if [ -n "${nvme_disk}" ]; then
+        if [ ! -e "/dev/${disk}n1" ]; then
+            fatal "instance has nvme device but no ${disk} accessible"
+        fi
+    else
+        fatal "can not find ${disk} on the instance"
+    fi
+}
+
+# check symlink
+assert_expected_symlink_exists() {
+    local device=$1
+    # Run google_nvme_id to populate ID_SERIAL_SHORT env var
+    eval $(/usr/lib/udev/google_nvme_id -d "${device}")
+    if [ ! -n "${ID_SERIAL_SHORT:-}" ]; then
+        fatal "can not get nvme ${device} ID_SERIAL_SHORT"
+    fi
+
+    local link="/dev/disk/by-id/google-${ID_SERIAL_SHORT}"
+    if ! ls -l "${link}"; then
+        fatal "can not find ${device} symlink ${link}"
+    fi
+}
+
+assert_confidential_vm
+assert_two_nvme_disks
+
+for disk in nvme0 nvme1; do
+    assert_nvme_disk_accessible $disk
+    assert_expected_symlink_exists "/dev/${disk}n1"
+    ok "Found /dev/${disk}n1 symlink"
+done
