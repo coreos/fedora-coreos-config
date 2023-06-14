@@ -12,8 +12,7 @@ cosaPod(cpus: 4, memory: "9Gi") {
     shwrap("""
         mkdir -p /srv/coreos && cd /srv/coreos
         cosa init ${env.WORKSPACE}/config
-        curl -LO https://raw.githubusercontent.com/coreos/fedora-coreos-releng-automation/main/scripts/download-overrides.py
-        python3 download-overrides.py
+        python3 /usr/lib/coreos-assembler/download-overrides.py
         # prep from the latest builds so that we generate a diff on PRs that add packages
         cosa buildfetch --stream=${env.CHANGE_TARGET}
     """)
