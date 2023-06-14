@@ -12,6 +12,8 @@ cosaPod(cpus: 4, memory: "9Gi") {
     shwrap("""
         mkdir -p /srv/coreos && cd /srv/coreos
         cosa init ${env.WORKSPACE}/config
+        pwd
+        ls -al ${env.WORKSPACE}
         python3 ${env.WORKSPACE}/usr/lib/coreos-assembler/download-overrides.py
         # prep from the latest builds so that we generate a diff on PRs that add packages
         cosa buildfetch --stream=${env.CHANGE_TARGET}
