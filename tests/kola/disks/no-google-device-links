@@ -1,0 +1,17 @@
+#!/bin/bash
+## kola:
+##   platforms: !gcp
+##   exclusive: false
+##   description: Verify no /dev/disk/by-id/*google* device links are found on non GCP.
+
+# See https://issues.redhat.com/browse/OCPBUGS-13754
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+links=$(find /dev/disk/by-id/ -iname "*google*")
+if [[ -n "${links:-}" ]]; then
+    fatal "Error: should not find /dev/disk/by-id/*google* device links on non GCP"
+fi
+ok "No /dev/disk/by-id/*google* device links are found on non GCP"
