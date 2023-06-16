@@ -55,9 +55,6 @@ lockfile-repos:
 packages:
   - fedora-release-coreos
   - fedora-repos-ostree
-  # fedora-repos-modular was converted into its own subpackage in f33
-  # Continue to include it in case users want to use it.
-  - fedora-repos-modular
   # the archive repo for more reliable package layering
   # https://github.com/coreos/fedora-coreos-tracker/issues/400
   - fedora-repos-archive
