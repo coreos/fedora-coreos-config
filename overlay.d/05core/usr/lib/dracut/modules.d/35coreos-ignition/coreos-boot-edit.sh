@@ -32,6 +32,7 @@ rm -vrf ${initramfs_firstboot_network_dir}
 root=$(karg root)
 if [ -z "${root}" ]; then
     rdcore rootmap /sysroot --boot-mount ${bootmnt}
+    echo "Prepared rootmap"
 fi
 
 # This does a few things:
