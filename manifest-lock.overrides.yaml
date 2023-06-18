@@ -24,18 +24,6 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1509
       type: pin
-  selinux-policy:
-    evra: 38.17-1.fc38.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-9050c32c92
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1447
-      type: fast-track
-  selinux-policy-targeted:
-    evra: 38.17-1.fc38.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-9050c32c92
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1447
-      type: fast-track
   systemd:
     evr: 253.4-1.fc38
     metadata:
