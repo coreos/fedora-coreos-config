@@ -9,31 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  libblkid:
-    evr: 2.39-3.fc39
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
-      type: pin
-  libfdisk:
-    evr: 2.39-3.fc39
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
-      type: pin
-  libmount:
-    evr: 2.39-3.fc39
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
-      type: pin
-  libsmartcols:
-    evr: 2.39-3.fc39
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
-      type: pin
-  libuuid:
-    evr: 2.39-3.fc39
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
-      type: pin
   passt:
     evr: 0^20230509.g96f8d55-1.fc39
     metadata:
@@ -44,6 +19,18 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1509
       type: pin
+  rpm-ostree:
+    evr: 2023.5-1.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7a8817d80b
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
+      type: fast-track
+  rpm-ostree-libs:
+    evr: 2023.5-1.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7a8817d80b
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
+      type: fast-track
   systemd:
     evr: 253.4-1.fc39
     metadata:
@@ -73,14 +60,4 @@ packages:
     evr: 253.4-1.fc39
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1508
-      type: pin
-  util-linux:
-    evr: 2.39-3.fc39
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
-      type: pin
-  util-linux-core:
-    evr: 2.39-3.fc39
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
       type: pin
