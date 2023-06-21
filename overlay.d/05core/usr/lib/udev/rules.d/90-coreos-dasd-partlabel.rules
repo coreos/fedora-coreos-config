@@ -1,0 +1,15 @@
+# CoreOS-specific symlinks for DASD disks
+# DASDs don't use GPT, but in some cases it'd be good to have '/dev/disk/by-partlabel/*' symlinks
+
+ACTION!="add|change", GOTO="dasd_partlabel_end"
+SUBSYSTEM!="block", GOTO="dasd_partlabel_end"
+KERNEL!="dasd*", GOTO="dasd_partlabel_end"
+
+# Act only on partitions with labeled filesystems
+ENV{DEVTYPE}!="partition", GOTO="dasd_partlabel_end"
+ENV{ID_FS_USAGE}!="filesystem", GOTO="dasd_partlabel_end"
+ENV{ID_FS_LABEL_ENC}!="?*", GOTO="dasd_partlabel_end"
+
+SYMLINK+="disk/by-partlabel/$env{ID_FS_LABEL_ENC}"
+
+LABEL="dasd_partlabel_end"
