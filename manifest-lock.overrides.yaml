@@ -19,18 +19,6 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1509
       type: pin
-  rpm-ostree:
-    evr: 2023.5-1.fc39
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7a8817d80b
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
-      type: fast-track
-  rpm-ostree-libs:
-    evr: 2023.5-1.fc39
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7a8817d80b
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1501
-      type: fast-track
   systemd:
     evr: 253.4-1.fc39
     metadata:
