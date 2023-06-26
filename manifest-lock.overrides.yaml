@@ -10,15 +10,17 @@
 
 packages:
   passt:
-    evr: 0^20230509.g96f8d55-1.fc39
+    evr: 0^20230625.g32660ce-1.fc39
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1509
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-cf99684fe2
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1509#issuecomment-1608091938
+      type: fast-track
   passt-selinux:
-    evra: 0^20230509.g96f8d55-1.fc39.noarch
+    evra: 0^20230625.g32660ce-1.fc39.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1509
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-cf99684fe2
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1509#issuecomment-1608091938
+      type: fast-track
   systemd:
     evr: 253.4-1.fc39
     metadata:
