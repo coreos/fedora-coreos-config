@@ -9,12 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  google-compute-engine-guest-configs-udev:
-    evra: 20230526.00-3.fc38.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-67a6c1b831
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1494
-      type: fast-track
   moby-engine:
     evr: 20.10.23-1.fc38
     metadata:

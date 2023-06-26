@@ -4,7 +4,8 @@ set -euo pipefail
 # See also ignition-ostree-check-rootfs-size.service
 # https://github.com/coreos/fedora-coreos-tracker/issues/586#issuecomment-777220000
 
-srcdev=$(findmnt -nvr -o SOURCE /sysroot | tail -n1)
+# /sysroot is the mounted deploy root, /sysroot/sysroot is the physical root filesystem
+srcdev=$(findmnt -nvr -o SOURCE /sysroot/sysroot | tail -n1)
 size=$(lsblk --nodeps --noheadings --bytes -o SIZE "${srcdev}")
 
 MINIMUM_GB=8

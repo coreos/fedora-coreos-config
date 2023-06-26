@@ -15,13 +15,34 @@
     - ppc64le
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1430
-  # snooze: 2023-06-21 (disabled on promotion)
+  # snooze: 2023-07-12 (disabled on promotion)
   arches:
     - aarch64
 - pattern: ext.config.root-reprovision.*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1489
-  # snooze: 2023-06-21 (disabled on promotion)
+  # snooze: 2023-07-12 (disabled on promotion)
   arches:
     - ppc64le
+  streams:
+    - rawhide
+- pattern: rpmostree.install-uninstall
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1515
+  # snooze: 2023-07-12 (disabled on promotion)
+  platforms:
+    - azure
+  streams:
+    - rawhide
+- pattern: rpmostree.upgrade-rollback
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1515
+  # snooze: 2023-07-12 (disabled on promotion)
+  platforms:
+    - azure
+  streams:
+    - rawhide
+- pattern: ostree.hotfix
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1515
+  # snooze: 2023-07-12 (disabled on promotion)
+  platforms:
+    - azure
   streams:
     - rawhide
