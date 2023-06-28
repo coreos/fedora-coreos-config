@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kola:
-##   platforms: !gcp
+##   platforms: "! gcp"
 ##   exclusive: false
 ##   description: Verify no /dev/disk/by-id/*google* device links are found on non GCP.
 
