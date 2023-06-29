@@ -8,14 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  passt:
-    evr: 0^20230509.g96f8d55-1.fc39
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1509
-      type: pin
-  passt-selinux:
-    evra: 0^20230509.g96f8d55-1.fc39.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1509
-      type: pin
+packages: {}
