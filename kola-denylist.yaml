@@ -25,3 +25,13 @@
     - ppc64le
   streams:
     - rawhide
+- pattern: ext.config.ntp.chrony.dhcp-propagation
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1508
+  snooze: 2023-07-20
+  streams:
+    - rawhide
+- pattern: ext.config.ntp.timesyncd.dhcp-propagation
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1508
+  snooze: 2023-07-20
+  streams:
+    - rawhide
