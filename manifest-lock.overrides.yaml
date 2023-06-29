@@ -38,16 +38,6 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1476
       type: pin
-  passt:
-    evr: 0^20230509.g96f8d55-1.fc38
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1509
-      type: pin
-  passt-selinux:
-    evra: 0^20230509.g96f8d55-1.fc38.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1509
-      type: pin
   systemd:
     evr: 253.4-1.fc38
     metadata:
