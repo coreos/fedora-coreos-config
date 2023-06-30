@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.42.6-1.fc38.s390x"
+      "evra": "1:1.42.8-1.fc38.s390x"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.42.6-1.fc38.s390x"
+      "evra": "1:1.42.8-1.fc38.s390x"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.42.6-1.fc38.s390x"
+      "evra": "1:1.42.8-1.fc38.s390x"
     },
     "NetworkManager-team": {
-      "evra": "1:1.42.6-1.fc38.s390x"
+      "evra": "1:1.42.8-1.fc38.s390x"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.42.6-1.fc38.s390x"
+      "evra": "1:1.42.8-1.fc38.s390x"
     },
     "WALinuxAgent-udev": {
       "evra": "2.9.0.4-1.fc38.noarch"
@@ -925,10 +925,10 @@
       "evra": "1.5.2-16.fc38.s390x"
     },
     "passt": {
-      "evra": "0^20230509.g96f8d55-1.fc38.s390x"
+      "evra": "0^20230625.g32660ce-1.fc38.s390x"
     },
     "passt-selinux": {
-      "evra": "0^20230509.g96f8d55-1.fc38.noarch"
+      "evra": "0^20230625.g32660ce-1.fc38.noarch"
     },
     "passwd": {
       "evra": "0.80-14.fc38.s390x"
@@ -1003,10 +1003,10 @@
       "evra": "4.18.1-3.fc38.s390x"
     },
     "rpm-ostree": {
-      "evra": "2023.4-2.fc38.s390x"
+      "evra": "2023.5-1.fc38.s390x"
     },
     "rpm-ostree-libs": {
-      "evra": "2023.4-2.fc38.s390x"
+      "evra": "2023.5-1.fc38.s390x"
     },
     "rpm-plugin-selinux": {
       "evra": "4.18.1-3.fc38.s390x"
@@ -1205,16 +1205,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-06-29T00:00:00Z",
+    "generated": "2023-06-30T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:36:40Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-06-29T14:38:15Z"
+        "generated": "2023-06-29T20:48:03Z"
       },
       "fedora-updates": {
-        "generated": "2023-06-29T01:20:59Z"
+        "generated": "2023-06-30T01:14:08Z"
       }
     }
   }

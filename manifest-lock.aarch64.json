@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.42.6-1.fc38.aarch64"
+      "evra": "1:1.42.8-1.fc38.aarch64"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.42.6-1.fc38.aarch64"
+      "evra": "1:1.42.8-1.fc38.aarch64"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.42.6-1.fc38.aarch64"
+      "evra": "1:1.42.8-1.fc38.aarch64"
     },
     "NetworkManager-team": {
-      "evra": "1:1.42.6-1.fc38.aarch64"
+      "evra": "1:1.42.8-1.fc38.aarch64"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.42.6-1.fc38.aarch64"
+      "evra": "1:1.42.8-1.fc38.aarch64"
     },
     "WALinuxAgent-udev": {
       "evra": "2.9.0.4-1.fc38.noarch"
@@ -997,10 +997,10 @@
       "evra": "1.5.2-16.fc38.aarch64"
     },
     "passt": {
-      "evra": "0^20230509.g96f8d55-1.fc38.aarch64"
+      "evra": "0^20230625.g32660ce-1.fc38.aarch64"
     },
     "passt-selinux": {
-      "evra": "0^20230509.g96f8d55-1.fc38.noarch"
+      "evra": "0^20230625.g32660ce-1.fc38.noarch"
     },
     "passwd": {
       "evra": "0.80-14.fc38.aarch64"
@@ -1075,10 +1075,10 @@
       "evra": "4.18.1-3.fc38.aarch64"
     },
     "rpm-ostree": {
-      "evra": "2023.4-2.fc38.aarch64"
+      "evra": "2023.5-1.fc38.aarch64"
     },
     "rpm-ostree-libs": {
-      "evra": "2023.4-2.fc38.aarch64"
+      "evra": "2023.5-1.fc38.aarch64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.18.1-3.fc38.aarch64"
@@ -1277,16 +1277,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-06-29T00:00:00Z",
+    "generated": "2023-06-30T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:36:48Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-06-29T14:40:03Z"
+        "generated": "2023-06-29T20:47:59Z"
       },
       "fedora-updates": {
-        "generated": "2023-06-29T01:20:47Z"
+        "generated": "2023-06-30T01:13:56Z"
       }
     }
   }
