@@ -5,7 +5,7 @@
 ##   # Root reprovisioning requires at least 4GiB of memory.
 ##   minMemory: 4096
 ##   # A TPM backend device is not available on s390x to suport TPM.
-##   architectures: "!s390x"
+##   architectures: "! s390x"
 ##   # This test includes a lot of disk I/O and needs a higher
 ##   # timeout value than the default.
 ##   timeoutMin: 15

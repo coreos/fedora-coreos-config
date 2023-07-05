@@ -3,7 +3,7 @@
 ##   tags: "platform-independent"
 ##   # The test is not available for aarch64 and s390x,
 ##   # as aarch64 is UEFI only and s390x is not using grub2
-##   architectures: "!aarch64 s390x"
+##   architectures: "! aarch64 s390x"
 ##   description: Verify that we install BIOS/PReP bootloader
 ##     using grub2-install from the target system.
 
