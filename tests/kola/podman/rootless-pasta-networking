@@ -18,10 +18,10 @@ set -xeuo pipefail
 runascoreuserscript='#!/bin/bash
 set -euxo pipefail
 # Just a basic test that uses pasta network and sets the gateway
-podman run -i --net=pasta:-g,8.8.8.8 registry.fedoraproject.org/fedora:38 bash <<"EOF"
+podman run -i --net=pasta:--mtu,1500 registry.fedoraproject.org/fedora:38 bash <<"EOF"
 set -euxo pipefail
-# Verify the 8.8.8.8 got set as the gateway. No /sbin/ip so just use /proc/net/route
-cat /proc/net/route | grep 08080808
+# Verify the mtu got set to 1500. No /sbin/ip so just use /sys/class/net/<nic>/mtu
+cat /sys/class/net/e*/mtu | grep 1500
 # Download something from the internet. Here we use one of the test
 # fixtures from the ignition.resource.remote test.
 result=$(curl https://ignition-test-fixtures.s3.amazonaws.com/resources/anonymous)

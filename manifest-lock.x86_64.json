@@ -1,25 +1,25 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.42.6-1.fc38.x86_64"
+      "evra": "1:1.42.8-1.fc38.x86_64"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.42.6-1.fc38.x86_64"
+      "evra": "1:1.42.8-1.fc38.x86_64"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.42.6-1.fc38.x86_64"
+      "evra": "1:1.42.8-1.fc38.x86_64"
     },
     "NetworkManager-team": {
-      "evra": "1:1.42.6-1.fc38.x86_64"
+      "evra": "1:1.42.8-1.fc38.x86_64"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.42.6-1.fc38.x86_64"
+      "evra": "1:1.42.8-1.fc38.x86_64"
     },
     "WALinuxAgent-udev": {
       "evra": "2.9.0.4-1.fc38.noarch"
     },
     "aardvark-dns": {
-      "evra": "1.6.0-1.fc38.x86_64"
+      "evra": "1.7.0-1.fc38.x86_64"
     },
     "acl": {
       "evra": "2.3.1-6.fc38.x86_64"
@@ -37,10 +37,10 @@
       "evra": "1.24-1.fc38.x86_64"
     },
     "amd-gpu-firmware": {
-      "evra": "20230515-150.fc38.noarch"
+      "evra": "20230625-151.fc38.noarch"
     },
     "atheros-firmware": {
-      "evra": "20230515-150.fc38.noarch"
+      "evra": "20230625-151.fc38.noarch"
     },
     "attr": {
       "evra": "2.5.1-6.fc38.x86_64"
@@ -79,7 +79,7 @@
       "evra": "0.2.9-1.fc38.x86_64"
     },
     "brcmfmac-firmware": {
-      "evra": "20230515-150.fc38.noarch"
+      "evra": "20230625-151.fc38.noarch"
     },
     "bsdtar": {
       "evra": "3.6.1-4.fc38.x86_64"
@@ -142,7 +142,7 @@
       "evra": "0.21.3-4.fc38.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.218.0-1.fc38.noarch"
+      "evra": "2:2.219.0-1.fc38.noarch"
     },
     "containerd": {
       "evra": "1.6.19-1.fc38.x86_64"
@@ -235,7 +235,7 @@
       "evra": "0.9.0-10.fc38.x86_64"
     },
     "diffutils": {
-      "evra": "3.9-1.fc38.x86_64"
+      "evra": "3.10-1.fc38.x86_64"
     },
     "dnsmasq": {
       "evra": "2.89-5.fc38.x86_64"
@@ -271,16 +271,16 @@
       "evra": "38-7.fc38.x86_64"
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.189-2.fc38.noarch"
+      "evra": "0.189-3.fc38.noarch"
     },
     "elfutils-libelf": {
-      "evra": "0.189-2.fc38.x86_64"
+      "evra": "0.189-3.fc38.x86_64"
     },
     "elfutils-libs": {
-      "evra": "0.189-2.fc38.x86_64"
+      "evra": "0.189-3.fc38.x86_64"
     },
     "ethtool": {
-      "evra": "2:6.3-1.fc38.x86_64"
+      "evra": "2:6.4-1.fc38.x86_64"
     },
     "expat": {
       "evra": "2.5.0-2.fc38.x86_64"
@@ -436,7 +436,7 @@
       "evra": "56-3.fc38.x86_64"
     },
     "intel-gpu-firmware": {
-      "evra": "20230515-150.fc38.noarch"
+      "evra": "20230625-151.fc38.noarch"
     },
     "ipcalc": {
       "evra": "1.0.3-1.fc38.x86_64"
@@ -508,16 +508,16 @@
       "evra": "2.5.1-5.fc38.noarch"
     },
     "kernel": {
-      "evra": "6.3.8-200.fc38.x86_64"
+      "evra": "6.3.11-200.fc38.x86_64"
     },
     "kernel-core": {
-      "evra": "6.3.8-200.fc38.x86_64"
+      "evra": "6.3.11-200.fc38.x86_64"
     },
     "kernel-modules": {
-      "evra": "6.3.8-200.fc38.x86_64"
+      "evra": "6.3.11-200.fc38.x86_64"
     },
     "kernel-modules-core": {
-      "evra": "6.3.8-200.fc38.x86_64"
+      "evra": "6.3.11-200.fc38.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.26-3.fc38.x86_64"
@@ -556,7 +556,7 @@
       "evra": "20190702-2.fc38.x86_64"
     },
     "libassuan": {
-      "evra": "2.5.5-6.fc38.x86_64"
+      "evra": "2.5.6-1.fc38.x86_64"
     },
     "libattr": {
       "evra": "2.5.1-6.fc38.x86_64"
@@ -649,7 +649,7 @@
       "evra": "1.3.1-53.fc38.x86_64"
     },
     "libipa_hbac": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "libjcat": {
       "evra": "0.1.13-1.fc38.x86_64"
@@ -664,7 +664,7 @@
       "evra": "1.4.0-5.fc38.x86_64"
     },
     "libksba": {
-      "evra": "1.6.3-2.fc38.x86_64"
+      "evra": "1.6.4-1.fc38.x86_64"
     },
     "libldb": {
       "evra": "2.7.2-1.fc38.x86_64"
@@ -694,7 +694,7 @@
       "evra": "1.2-7.fc38.x86_64"
     },
     "libnetfilter_conntrack": {
-      "evra": "1.0.8-7.fc38.x86_64"
+      "evra": "1.0.9-1.fc38.x86_64"
     },
     "libnfnetlink": {
       "evra": "1.0.1-23.fc38.x86_64"
@@ -742,7 +742,7 @@
       "evra": "1.15.1-2.fc38.x86_64"
     },
     "libreport-filesystem": {
-      "evra": "2.17.10-1.fc38.noarch"
+      "evra": "2.17.11-1.fc38.noarch"
     },
     "libseccomp": {
       "evra": "2.5.3-4.fc38.x86_64"
@@ -769,7 +769,7 @@
       "evra": "2.38.1-4.fc38.x86_64"
     },
     "libsmbclient": {
-      "evra": "2:4.18.3-3.fc38.x86_64"
+      "evra": "2:4.18.4-0.fc38.x86_64"
     },
     "libsolv": {
       "evra": "0.7.22-4.fc38.x86_64"
@@ -778,16 +778,16 @@
       "evra": "1.46.5-4.fc38.x86_64"
     },
     "libsss_certmap": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "libsss_idmap": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "libsss_nss_idmap": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "libsss_sudo": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "libstdc++": {
       "evra": "13.1.1-4.fc38.x86_64"
@@ -838,10 +838,10 @@
       "evra": "0.3.2-5.fc38.x86_64"
     },
     "libwbclient": {
-      "evra": "2:4.18.3-3.fc38.x86_64"
+      "evra": "2:4.18.4-0.fc38.x86_64"
     },
     "libxcrypt": {
-      "evra": "4.4.35-1.fc38.x86_64"
+      "evra": "4.4.36-1.fc38.x86_64"
     },
     "libxml2": {
       "evra": "2.10.4-1.fc38.x86_64"
@@ -859,10 +859,10 @@
       "evra": "2.5.1-34.fc38.x86_64"
     },
     "linux-firmware": {
-      "evra": "20230515-150.fc38.noarch"
+      "evra": "20230625-151.fc38.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20230515-150.fc38.noarch"
+      "evra": "20230625-151.fc38.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.30-1.fc38.x86_64"
@@ -907,7 +907,7 @@
       "evra": "4.1.1-3.fc38.x86_64"
     },
     "mt7xxx-firmware": {
-      "evra": "20230515-150.fc38.noarch"
+      "evra": "20230625-151.fc38.noarch"
     },
     "nano": {
       "evra": "7.2-2.fc38.x86_64"
@@ -928,7 +928,7 @@
       "evra": "2.0-0.65.20160912git.fc38.x86_64"
     },
     "netavark": {
-      "evra": "1.6.0-2.fc38.x86_64"
+      "evra": "1.7.0-1.fc38.x86_64"
     },
     "nettle": {
       "evra": "3.8-3.fc38.x86_64"
@@ -955,7 +955,7 @@
       "evra": "2.0.16-2.fc38.x86_64"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20230515-150.fc38.noarch"
+      "evra": "20230625-151.fc38.noarch"
     },
     "nvme-cli": {
       "evra": "2.4-2.fc38.x86_64"
@@ -985,10 +985,10 @@
       "evra": "1.81-3.fc38.x86_64"
     },
     "ostree": {
-      "evra": "2023.4-1.fc38.x86_64"
+      "evra": "2023.4-2.fc38.x86_64"
     },
     "ostree-libs": {
-      "evra": "2023.4-1.fc38.x86_64"
+      "evra": "2023.4-2.fc38.x86_64"
     },
     "p11-kit": {
       "evra": "0.24.1-6.fc38.x86_64"
@@ -1003,10 +1003,10 @@
       "evra": "1.5.2-16.fc38.x86_64"
     },
     "passt": {
-      "evra": "0^20230509.g96f8d55-1.fc38.x86_64"
+      "evra": "0^20230625.g32660ce-1.fc38.x86_64"
     },
     "passt-selinux": {
-      "evra": "0^20230509.g96f8d55-1.fc38.noarch"
+      "evra": "0^20230625.g32660ce-1.fc38.noarch"
     },
     "passwd": {
       "evra": "0.80-14.fc38.x86_64"
@@ -1066,7 +1066,7 @@
       "evra": "8.2-3.fc38.x86_64"
     },
     "realtek-firmware": {
-      "evra": "20230515-150.fc38.noarch"
+      "evra": "20230625-151.fc38.noarch"
     },
     "rpcbind": {
       "evra": "1.2.6-4.rc2.fc38.x86_64"
@@ -1078,16 +1078,16 @@
       "evra": "4.18.1-3.fc38.x86_64"
     },
     "rpm-ostree": {
-      "evra": "2023.4-2.fc38.x86_64"
+      "evra": "2023.5-1.fc38.x86_64"
     },
     "rpm-ostree-libs": {
-      "evra": "2023.4-2.fc38.x86_64"
+      "evra": "2023.5-1.fc38.x86_64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.18.1-3.fc38.x86_64"
     },
     "rpm-sequoia": {
-      "evra": "1.4.0-3.fc38.x86_64"
+      "evra": "1.4.1-1.fc38.x86_64"
     },
     "rsync": {
       "evra": "3.2.7-2.fc38.x86_64"
@@ -1096,22 +1096,22 @@
       "evra": "2:1.1.7-1.fc38.x86_64"
     },
     "samba-client-libs": {
-      "evra": "2:4.18.3-3.fc38.x86_64"
+      "evra": "2:4.18.4-0.fc38.x86_64"
     },
     "samba-common": {
-      "evra": "2:4.18.3-3.fc38.noarch"
+      "evra": "2:4.18.4-0.fc38.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.18.3-3.fc38.x86_64"
+      "evra": "2:4.18.4-0.fc38.x86_64"
     },
     "sed": {
       "evra": "4.8-12.fc38.x86_64"
     },
     "selinux-policy": {
-      "evra": "38.17-1.fc38.noarch"
+      "evra": "38.20-1.fc38.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "38.17-1.fc38.noarch"
+      "evra": "38.20-1.fc38.noarch"
     },
     "setup": {
       "evra": "2.14.3-2.fc38.noarch"
@@ -1159,31 +1159,31 @@
       "evra": "0.1.4-3.fc38.x86_64"
     },
     "sssd-ad": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "sssd-client": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "sssd-common": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "sssd-common-pac": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "sssd-ipa": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "sssd-krb5": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "sssd-krb5-common": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "sssd-ldap": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "sssd-nfs-idmap": {
-      "evra": "2.9.0-1.fc38.x86_64"
+      "evra": "2.9.1-1.fc38.x86_64"
     },
     "stalld": {
       "evra": "1.16-3.fc38.x86_64"
@@ -1237,10 +1237,10 @@
       "evra": "2.38.1-4.fc38.x86_64"
     },
     "vim-data": {
-      "evra": "2:9.0.1649-1.fc38.noarch"
+      "evra": "2:9.0.1671-1.fc38.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.1649-1.fc38.x86_64"
+      "evra": "2:9.0.1671-1.fc38.x86_64"
     },
     "which": {
       "evra": "2.21-39.fc38.x86_64"
@@ -1280,16 +1280,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-06-25T00:00:00Z",
+    "generated": "2023-07-09T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:37:10Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-06-23T22:44:05Z"
+        "generated": "2023-07-07T22:38:23Z"
       },
       "fedora-updates": {
-        "generated": "2023-06-25T00:45:49Z"
+        "generated": "2023-07-09T02:13:58Z"
       }
     }
   }
