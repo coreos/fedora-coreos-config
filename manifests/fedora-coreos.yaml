@@ -45,7 +45,7 @@ conditional-include:
       - releasever == 38
     # Modularity is going away in F39+ so we'll only include
     # the fedora-repos-modular package in <39.
-    include: fedora-repos-modular.yaml
+    include: fedora-modularity.yaml
 
 ostree-layers:
   - overlay/15fcos
