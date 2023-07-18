@@ -217,6 +217,7 @@ Requires=sysroot.mount
 After=sysroot.mount
 # And after OSTree has set up the chroot() equivalent
 After=ostree-prepare-root.service
+Requires=ostree-prepare-root.service
 
 [Service]
 Type=oneshot
