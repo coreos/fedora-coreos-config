@@ -4,7 +4,7 @@ DefaultDependencies=false
 ConditionKernelCommandLine=ostree
 ConditionPathExists=!/run/ostree-live
 Before=initrd-root-fs.target
-Before=sysroot.mount ignition-ostree-mount-firstboot-sysroot.service
+Before=sysroot.mount
 After=ignition-ostree-uuid-root.service
 
 [Service]
