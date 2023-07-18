@@ -2,23 +2,29 @@
 # coreos-assembler to automatically skip some tests. For more information,
 # see: https://github.com/coreos/coreos-assembler/pull/866.
 - pattern: fcos.internet
+  warn: true
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: podman.workflow
+  warn: true
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: coreos.boot-mirror.luks
+  warn: true
   tracker: https://github.com/coreos/coreos-assembler/issues/3360
   arches:
     - ppc64le
 - pattern: coreos.boot-mirror
+  warn: true
   tracker: https://github.com/coreos/coreos-assembler/issues/3361
   arches:
     - ppc64le
 - pattern: ext.config.kdump.crash
+  warn: true
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1430
   snooze: 2023-08-02
   arches:
     - aarch64
 - pattern: ext.config.kdump.crash
+  warn: true
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1523
   snooze: 2023-07-20
   arches:
@@ -26,6 +32,7 @@
   streams:
     - rawhide
 - pattern: ext.config.root-reprovision.*
+  warn: true
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1489
   snooze: 2023-08-04
   arches:
@@ -33,11 +40,13 @@
   streams:
     - rawhide
 - pattern: ext.config.ntp.chrony.dhcp-propagation
+  warn: true
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1508
   snooze: 2023-07-20
   streams:
     - rawhide
 - pattern: ext.config.ntp.timesyncd.dhcp-propagation
+  warn: true
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1508
   snooze: 2023-07-20
   streams:
