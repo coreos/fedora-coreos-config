@@ -41,6 +41,23 @@ add_requires() {
     ln -sf "../${name}" "${requires_dir}/${name}"
 }
 
+if ! is-live-image; then
+    mkdir -p ${UNIT_DIR}
+    # We want to generate sysroot.mount on ostree systems, but we don't want
+    # to run if there's already a root= karg, where the systemd-fstab-generator
+    # should win.
+    if test -n "$(cmdline_arg ostree)" && test -z "$(cmdline_arg root)"; then
+        cat >${UNIT_DIR}/sysroot.mount << 'EOF'
+[Unit]
+Before=initrd-root-fs.target
+[Mount]
+What=/dev/disk/by-label/root
+Where=/sysroot
+EOF
+        add_requires sysroot.mount initrd-root-fs.target
+    fi
+fi
+
 if ! $(cmdline_bool 'ignition.firstboot' 0); then
     exit 0
 fi
