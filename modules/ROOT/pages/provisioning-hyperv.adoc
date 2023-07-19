@@ -1,0 +1,101 @@
+= Provisioning Fedora CoreOS on Microsoft Hyper-V
+
+This guide shows how to provision new Fedora CoreOS (FCOS) nodes on Microsoft Hyper-V.
+
+== Prerequisites
+
+You must have an Ignition configuration file containing your customizations. If you do not have one, see xref:producing-ign.adoc[Producing an Ignition File].
+
+You will also need a small utility from https://github.com/containers/libhvee[libhvee] called `kvpctl`. It attaches your Ignition config to your virtual machine. Precompiled binaries can be found on the project's https://github.com/containers/libhvee/releases[releases page].
+
+=== Downloading the disk image
+
+Hyper-V disk images can be manually downloaded from the https://fedoraproject.org/coreos/download/[download page]. Be sure to decompress the image after downloading.
+
+== Booting a new VM on Microsoft Hyper-V
+
+=== Creating a virtual switch
+
+You must first create a virtual switch so your virtual machine has a network to connect to. To do this, launch Hyper-V Manager and select your server from the list:
+
+image::hyperv-select-server.png[Hyper-V server list]
+
+Then click _Virtual Switch Manager..._ in the _Actions_ panel:
+
+image::hyperv-actions.png[Hyper-V Manager Actions panel]
+
+Follow the prompts under _New virtual network switch_ to create the virtual switch of the type you want:
+
+image::hyperv-switch-create.png[New Virtual Network Switch tab]
+
+=== Creating a virtual machine
+
+In the Actions panel of Hyper-V Manager, click _New_, then _Virtual Machine..._:
+
+image::hyperv-new.png[Hyper-V Manager]
+
+This will launch the _New Virtual Machine Wizard_. When completing the wizard, note the following settings:
+
+. If you select a Generation 2 virtual machine, see <<Configuring Secure Boot>>.
+. When prompted to configure networking, select the virtual switch you created earlier.
+. When prompted to connect a virtual hard disk, select _Use an existing virtual disk_ and specify the disk image you downloaded earlier:
+
+image::hyperv-disk.png[Hyper-V Virtual Machine Disk Wizard]
+
+=== Setting the Ignition config
+
+Before starting your virtual machine for the first time, you must attach your Ignition config containing the customizations you want to apply to Fedora CoreOS.
+
+On Hyper-V, the Ignition config is presented to the hypervisor in parts. Ignition reads the parts and reassembles them into a single config. You can use the `kvpctl add-ign` subcommand to create these parts and attach them to the virtual machine. The syntax for the command is as follows:
+
+[source, powershell]
+----
+.\kvpctl.exe <name_of_vm> add-ign <path_to_ign_file>
+----
+
+For example:
+
+[source, console]
+----
+> .\kvpctl.exe myvm add-ign C:\Users\joe\myvm.ign
+added key:  ignition.config.0
+added key:  ignition.config.1
+added key:  ignition.config.2
+added key:  ignition.config.3
+added key:  ignition.config.4
+added key:  ignition.config.5
+added key:  ignition.config.6
+----
+
+=== Starting the VM
+
+Once you've attached the Ignition config to the virtual machine, right-click the virtual machine in Hyper-V Manager and select _Start_.
+
+=== Viewing the key-value pairs assigned to your virtual machine
+
+You can view the key-value pairs assigned to your machine with the `kvpctl get` subcommand. You can only get key-value pairs when the virtual machine is running.
+
+[source, powershell]
+----
+.\kvpctl.exe <name_of_vm> get
+----
+
+For example:
+
+[source, console]
+----
+> .\kvpctl.exe myvm get
+ignition.config.3 = th":"/etc/containers/registries.conf..."
+ignition.config.4 = ,"contents":{"source":"data:,makeste..."
+ignition.config.5 = nabled":false,"mask":true,"name":"do..."
+ignition.config.6 = service\n\n[Service]\nExecStart=/usr..."
+ignition.config.0 = {"ignition":{"config":{"replace":{"v..."
+ignition.config.1 = default.target.wants","user":{"name"..."
+ignition.config.2 = "user":{"name":"root"},"contents":{"..."
+----
+
+=== Configuring Secure Boot
+
+If you configure a Generation 2 virtual machine, Fedora CoreOS will not successfully boot until you change the Secure Boot template to _Microsoft UEFI Certificate Authority_. You can do this in the _Security_ tab of the virtual machine's Settings dialog:
+
+image::hyperv-secure-boot.png[Virtual machine Secure Boot settings]
