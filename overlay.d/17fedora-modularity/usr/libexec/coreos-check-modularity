@@ -1,0 +1,29 @@
+#!/usr/bin/bash
+# This script checks if the system has layered modular packages and
+# prints a message to the serial console.
+
+# Change the output color to yellow
+warn=$(echo -e '\033[0;33m')
+# No color
+nc=$(echo -e '\033[0m')
+
+# Find the number of installed modules
+num_modules=$(rpm-ostree status --json | jq '.deployments[0].modules | length')
+
+# If there are no modules then nothing to do here
+[ "$num_modules" == "0" ] && exit 0
+
+motd_path=/run/motd.d/35_modularity_warning.motd
+cat << EOF > "${motd_path}"
+${warn}
+############################################################################
+WARNING: This system has layered modularity RPMs. In Fedora 39 modularity
+has been retired. The system will most likely stop updating successfully
+when Fedora CoreOS transitions to Fedora 39. See this tracker for more info: 
+https://github.com/coreos/fedora-coreos-tracker/issues/1513
+
+To disable this warning, use:
+sudo systemctl disable coreos-check-modularity.service
+############################################################################
+${nc}
+EOF
