@@ -1,0 +1,10 @@
+# This service is used for printing a message if
+# modular RPMs are being used
+[Unit]
+Description=Check if modular packages are layered
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-check-modularity
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
