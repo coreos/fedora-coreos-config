@@ -30,8 +30,6 @@
   snooze: 2023-08-04
   arches:
     - ppc64le
-  streams:
-    - rawhide
 - pattern: ext.config.ntp.chrony.dhcp-propagation
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1508
   snooze: 2023-08-20
