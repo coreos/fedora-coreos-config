@@ -1,0 +1,7 @@
+# Modularity is going away in F39+ so we'll only include
+# the fedora-repos-modular package in <39.
+packages:
+  - fedora-repos-modular
+# And we'll warn users who have layered modular packages
+ostree-layers:
+  - overlay/17fedora-modularity
