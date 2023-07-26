@@ -5,6 +5,11 @@ After=ignition-disks.service
 # Avoid racing with UUID regeneration
 After=ignition-ostree-uuid-root.service
 After=ignition-ostree-growfs.service
+Before=initrd-root-fs.target
+# https://issues.redhat.com/browse/OCPBUGS-16157
+# On multipath systems mounting the /sysroot before
+# the ignition-ostree services causes the transpose to fai.
+Before=sysroot.mount
 Before=ignition-ostree-transposefs-restore.service
 OnFailure=emergency.target
 OnFailureJobMode=isolate
