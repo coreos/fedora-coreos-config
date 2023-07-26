@@ -32,8 +32,9 @@ list_broken_symlinks_skip=(
 if is_scos || is_rhcos; then
     rhcos_list=(
         '/etc/grub2-efi.cfg'
-        '/etc/rhsm-host'
         '/etc/pki/entitlement-host'
+        '/etc/pki/tls/'
+        '/etc/rhsm-host'
         '/etc/sysconfig/grub'
     )
     list_broken_symlinks_skip+=("${rhcos_list[@]}")
