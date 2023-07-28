@@ -9,6 +9,26 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  kernel:
+    evr: 6.3.12-200.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1489
+      type: pin
+  kernel-core:
+    evr: 6.3.12-200.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1489
+      type: pin
+  kernel-modules:
+    evr: 6.3.12-200.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1489
+      type: pin
+  kernel-modules-core:
+    evr: 6.3.12-200.fc38
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1489
+      type: pin
   moby-engine:
     evr: 20.10.23-1.fc38
     metadata:
