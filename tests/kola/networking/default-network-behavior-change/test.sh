@@ -24,22 +24,18 @@ type=ethernet
 autoconnect-retries=1
 multi-connect=3
 permissions=
-
 [ethernet]
 mac-address-blacklist=
-
 [ipv4]
 dhcp-timeout=90
 dns-search=
 method=auto
 required-timeout=20000
-
 [ipv6]
 addr-gen-mode=eui64
 dhcp-timeout=90
 dns-search=
 method=auto
-
 [proxy]"
 # EXPECTED_INITRD_NETWORK_CFG3
 #   - used on Fedora 36+ and RHEL8.6+
@@ -49,27 +45,21 @@ uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 type=ethernet
 autoconnect-retries=1
 multi-connect=3
-
 [ethernet]
-
 [ipv4]
 dhcp-timeout=90
 method=auto
 required-timeout=20000
-
 [ipv6]
 addr-gen-mode=eui64
 dhcp-timeout=90
 method=auto
-
 [proxy]
-
 [user]
 org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 # EXPECTED_INITRD_NETWORK_CFG5
 #   - used on Fedora 37+, scos and RHEL 9.2
 EXPECTED_INITRD_NETWORK_CFG5="# Created by nm-initrd-generator
-
 [connection]
 id=Wired Connection
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -77,20 +67,15 @@ type=ethernet
 autoconnect-priority=-100
 autoconnect-retries=1
 multi-connect=3
-
 [ethernet]
-
 [ipv4]
 dhcp-timeout=90
 method=auto
 required-timeout=20000
-
 [ipv6]
 dhcp-timeout=90
 method=auto
-
 [proxy]
-
 [user]
 org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 
@@ -104,21 +89,16 @@ autoconnect-priority=-999
 interface-name=xxxx
 permissions=
 timestamp=xxxxxxxxxx
-
 [ethernet]
 mac-address-blacklist=
-
 [ipv4]
 dns-search=
 method=auto
-
 [ipv6]
 addr-gen-mode=stable-privacy
 dns-search=
 method=auto
-
 [proxy]
-
 [.nmmeta]
 nm-generated=true"
 # EXPECTED_REALROOT_NETWORK_CFG2:
@@ -130,18 +110,13 @@ type=ethernet
 autoconnect-priority=-999
 interface-name=xxxx
 timestamp=xxxxxxxxxx
-
 [ethernet]
-
 [ipv4]
 method=auto
-
 [ipv6]
 addr-gen-mode=stable-privacy
 method=auto
-
 [proxy]
-
 [.nmmeta]
 nm-generated=true"
 # EXPECTED_REALROOT_NETWORK_CFG3:
@@ -153,26 +128,23 @@ type=ethernet
 autoconnect-priority=-999
 interface-name=xxxx
 timestamp=xxxxxxxxxx
-
 [ethernet]
-
 [ipv4]
 method=auto
-
 [ipv6]
 addr-gen-mode=default
 method=auto
-
 [proxy]
-
 [.nmmeta]
 nm-generated=true"
 
 # Function that will remove unique (per-run) data from a connection file
+# and also delete any blank lines.
 normalize_connection_file() {
     sed -e s/^uuid=.*$/uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/ \
         -e s/^timestamp=.*$/timestamp=xxxxxxxxxx/                 \
         -e s/^interface-name=.*$/interface-name=xxxx/             \
+        -e /^$/d                                                  \
         "${1}"
 }
 
