@@ -4,7 +4,7 @@
 ##   exclusive: false
 ##   # s390x doesn't have any configuration in platforms.yaml, so
 ##   # platforms.json is not included in the image
-##   architectures: "!s390x"
+##   architectures: "! s390x"
 ##   description: Verify that the kargs and grub.cfg commands specified in 
 ##     platforms.json have been properly applied to the image. 
 
