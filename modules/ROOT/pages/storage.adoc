@@ -306,7 +306,7 @@ storage:
 
 The expanded config doesn't include the `path` or `with_mount_unit` keys; FCOS knows that the root partition is special and will figure out how to find it and mount it.
 
-This next example binds the root filesystem encryption to PCR 7 which corresponds to the link:{https://uapi-group.org/specifications/specs/linux_tpm_pcr_registry/}[UEFI Boot Component] used to track the Secure Boot certificate from memory. Therefore, updates to the the UEFI firmware/certificates should not affect the value stored in PCR 7.
+This next example binds the root filesystem encryption to PCR 7 which corresponds to the https://uapi-group.org/specifications/specs/linux_tpm_pcr_registry/[UEFI Boot Component] used to track the Secure Boot certificate from memory. Therefore, updates to the the UEFI firmware/certificates should not affect the value stored in PCR 7.
 
 NOTE: Binding for PCR 8 (UEFI Boot Component used to track commands and kernel command line) is not supported as the kernel command line changes with every OS update.
 
