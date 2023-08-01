@@ -129,6 +129,8 @@ When you're finally ready to install FCOS, you can point it at your downloaded i
 
 The `coreos-installer iso customize` and `coreos-installer pxe customize` commands can be used to create customized ISO and PXE images with site-specific configuration, including the ability to perform unattended installations of Fedora CoreOS.
 
+NOTE: When booting an image created with `coreos-installer pxe customize`, the PXE or iPXE kernel command line must include the arguments `ignition.firstboot ignition.platform.id=metal`. If running in a virtual machine, replace `metal` with the https://coreos.github.io/ignition/supported-platforms/[platform ID] for your platform, such as `qemu` or `vmware`.
+
 For example:
 
 [source,bash,subs="attributes"]
