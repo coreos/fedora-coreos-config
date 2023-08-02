@@ -8,8 +8,7 @@ After=ignition-ostree-growfs.service
 Before=ignition-ostree-mount-firstboot-sysroot.service
 # https://issues.redhat.com/browse/OCPBUGS-16157
 # On multipath systems mounting the /sysroot before
-# the ignition-ostree services causes the transpose to fai.
-Before=initrd-root-fs.target
+# the ignition-ostree services causes the transpose to fail.
 Before=sysroot.mount
 OnFailure=emergency.target
 OnFailureJobMode=isolate
