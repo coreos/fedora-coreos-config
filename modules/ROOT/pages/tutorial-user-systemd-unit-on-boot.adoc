@@ -34,8 +34,6 @@ storage:
         inline: |
           [Unit]
           Description=A systemd user unit demo
-          After=network-online.target
-          Wants=network-online.target
           [Service]
           ExecStart=/usr/bin/sleep infinity
       user:
@@ -163,8 +161,6 @@ storage:
         inline: |
           [Unit]
           Description=A systemd user unit demo
-          After=network-online.target
-          Wants=network-online.target
           [Service]
           ExecStart=/usr/bin/sleep infinity
       user:
