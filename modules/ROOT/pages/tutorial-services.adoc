@@ -181,20 +181,20 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora-coreos-stable 
 And view on the console that the `Detected Public IPv4` is shown in the console output right before you are dropped to a login prompt:
 
 ----
-Fedora CoreOS 36.20220723.3.1
-Kernel 5.18.13-200.fc36.x86_64 on an x86_64 (ttyS0)
+Fedora CoreOS 38.20230709.3.0
+Kernel 6.3.11-200.fc38.x86_64 on an x86_64 (ttyS0)
 
-SSH host key: SHA256:YqTZ3U/ii68ApKg79keHqPAzf/PsdKzLovB53apvgXs (ECDSA)
-SSH host key: SHA256:4a81UJYA4p3bWDlDDTGk0DyBm7ZNdxp1CsQXiUncnPk (ED25519)
-SSH host key: SHA256:AEWciPbGCeMDypbP7paIE0GC3i6eRBUO4+xME4NGbQw (RSA)
-enp1s0: 192.168.122.109 fe80::4e18:28bb:b37f:7c61
-Ignition: ran on 2022/08/21 01:27:20 UTC (this boot)
+SSH host key: SHA256:tYHKk26+NZ/+ZytWLXClGz813PQJDGP/2+AiuZ8fiqk (ECDSA)
+SSH host key: SHA256:jJASZec/91zXd4or0uiFsvsfaLC6viLronfxIwQlNCs (ED25519)
+SSH host key: SHA256:2XlSZAehEu666fmXeM8d47lpIJd92MBOqgMazT4GsVw (RSA)
+enp1s0: 192.168.124.150 fe80::475a:7a10:2302:b670
+Ignition: ran on 2023/08/03 16:40:45 UTC (this boot)
 Ignition: user-provided config was applied
 No SSH authorized keys provided by Ignition or Afterburn
-Detected Public IPv4: is 82.255.80.95
+Detected Public IPv4: is 3.252.102.80
 tutorial login: core (automatic login)
 
-Fedora CoreOS 36.20220723.3.1
+Fedora CoreOS 38.20230709.3.0
 [core@tutorial ~]$
 ----
 
@@ -203,18 +203,20 @@ And the service shows it was launched successfully:
 ----
 [core@tutorial ~]$ systemctl status --full issuegen-public-ipv4.service
 ● issuegen-public-ipv4.service
-     Loaded: loaded (/etc/systemd/system/issuegen-public-ipv4.service; enabled; vendor preset: enabled)
-     Active: active (exited) since Sun 2022-08-21 01:27:29 UTC; 2min 11s ago
-    Process: 1646 ExecStart=/usr/local/bin/public-ipv4.sh (code=exited, status=0/SUCCESS)
-    Process: 1677 ExecStartPost=/usr/bin/touch /var/lib/issuegen-public-ipv4 (code=exited, status=0/SUCCESS)
-   Main PID: 1646 (code=exited, status=0/SUCCESS)
-        CPU: 42ms
+     Loaded: loaded (/etc/systemd/system/issuegen-public-ipv4.service; enabled; preset: enabled)
+    Drop-In: /usr/lib/systemd/system/service.d
+             └─10-timeout-abort.conf
+     Active: active (exited) since Thu 2023-08-03 16:40:55 UTC; 1min 7s ago
+    Process: 1423 ExecStart=/usr/local/bin/public-ipv4.sh (code=exited, status=0/SUCCESS)
+    Process: 1460 ExecStartPost=/usr/bin/touch /var/lib/issuegen-public-ipv4 (code=exited, status=0/SUCCESS)
+   Main PID: 1423 (code=exited, status=0/SUCCESS)
+        CPU: 84ms
 
-Aug 21 01:27:29 tutorial systemd[1]: Starting issuegen-public-ipv4.service...
-Aug 21 01:27:29 tutorial public-ipv4.sh[1647]:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-Aug 21 01:27:29 tutorial public-ipv4.sh[1647]:                                  Dload  Upload   Total   Spent    Left  Speed
-Aug 21 01:27:29 tutorial public-ipv4.sh[1647]: [237B blob data]
-Aug 21 01:27:29 tutorial systemd[1]: Finished issuegen-public-ipv4.service.
+Aug 03 16:40:55 tutorial systemd[1]: Starting issuegen-public-ipv4.service...
+Aug 03 16:40:55 tutorial public-ipv4.sh[1424]:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+Aug 03 16:40:55 tutorial public-ipv4.sh[1424]:                                  Dload  Upload   Total   Spent    Left  Speed
+Aug 03 16:40:55 tutorial public-ipv4.sh[1424]: [158B blob data]
+Aug 03 16:40:55 tutorial systemd[1]: Finished issuegen-public-ipv4.service.
 ----
 
 == Cleanup

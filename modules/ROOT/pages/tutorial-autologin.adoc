@@ -134,19 +134,18 @@ NOTE: Depending on your version of `virt-install`, you may not be able to use `-
 Once the machine is booted up you should see a few prompts and then you should be automatically logged in and presented with a bash shell:
 
 ----
-Fedora CoreOS 36.20220723.3.1
-Kernel 5.18.13-200.fc36.x86_64 on an x86_64 (ttyS0)
+Fedora CoreOS 38.20230709.3.0
+Kernel 6.3.11-200.fc38.x86_64 on an x86_64 (ttyS0)
 
-SSH host key: SHA256:BwuX9+1lUMHBbIGTUsT0DNptfSUquHnKBIJc/YhvEcM (ED25519)
-SSH host key: SHA256:XzycQMJkoasQIMziHIA9OFF2l49kqnR4HpXDM6I1bC4 (ECDSA)
-SSH host key: SHA256:DqwF9ukMxO0sVfhiN0PaMGu2gakeHaQoOLSAb2JWTTo (RSA)
-enp1s0: 192.168.122.99 fe80::e42:9a03:ea7a:1e6c
-Ignition: ran on 2022/08/21 01:14:35 UTC (this boot)
+SSH host key: SHA256:Eq0GiuflXh/3E+9h689DV4K2C0VQZ5UsXXfbJ7nB4rw (ECDSA)
+SSH host key: SHA256:53uunBzHa2kfCO20q8h4cFeM19QRSscwUWUPoL4BP+4 (ED25519)
+SSH host key: SHA256:HXrypq4OjKQ267RPhpptulMMYwsnrVWW3PYuvkIyt3k (RSA)
+Ignition: ran on 2023/08/03 15:59:14 UTC (this boot)
 Ignition: user-provided config was applied
 No SSH authorized keys provided by Ignition or Afterburn
 tutorial login: core (automatic login)
 
-Fedora CoreOS 36.20220723.3.1
+Fedora CoreOS 38.20230709.3.0
 [core@tutorial ~]$
 ----
 
@@ -172,18 +171,22 @@ We can also check that the hostname has correctly been set:
 [core@tutorial ~]$ cat /etc/hostname
 tutorial
 [core@tutorial ~]$ hostnamectl
- Static hostname: tutorial
-       Icon name: computer-vm
-         Chassis: vm 🖴
-      Machine ID: 0b91fa983c004e9a8b48d2bf0c7a7ced
-         Boot ID: 9cca41f8de404036b228abcd4600cdef
-  Virtualization: kvm
-Operating System: Fedora CoreOS 36.20220723.3.1
-     CPE OS Name: cpe:/o:fedoraproject:fedora:36
-          Kernel: Linux 5.18.13-200.fc36.x86_64
-    Architecture: x86-64
- Hardware Vendor: QEMU
-  Hardware Model: Standard PC _Q35 + ICH9, 2009_
+     Static hostname: tutorial
+           Icon name: computer-vm
+             Chassis: vm 🖴
+          Machine ID: fc4c5d5a14a741babe20559a25dcb846
+             Boot ID: 22ed3b3c049d42968fb6ca9e35c8055d
+      Virtualization: kvm
+    Operating System: Fedora CoreOS 38.20230709.3.0
+         CPE OS Name: cpe:/o:fedoraproject:fedora:38
+      OS Support End: Tue 2024-05-14
+OS Support Remaining: 9month 1w 3d
+              Kernel: Linux 6.3.11-200.fc38.x86_64
+        Architecture: x86-64
+     Hardware Vendor: QEMU
+      Hardware Model: Standard PC _Q35 + ICH9, 2009_
+    Firmware Version: 1.16.2-1.fc38
+       Firmware Date: Tue 2014-04-01
 ----
 
 == Exploring Fedora CoreOS internals
@@ -192,13 +195,13 @@ Once we have access to the console of the machine we can browse around a bit to 
 
 ----
 [core@tutorial ~]$ rpm -q ignition kernel moby-engine podman systemd rpm-ostree zincati
-ignition-2.14.0-2.fc36.x86_64
-kernel-5.18.13-200.fc36.x86_64
-moby-engine-20.10.17-3.fc36.x86_64
-podman-4.1.1-2.fc36.x86_64
-systemd-250.8-1.fc36.x86_64
-rpm-ostree-2022.10-3.fc36.x86_64
-zincati-0.0.24-3.fc36.x86_64
+ignition-2.15.0-3.fc38.x86_64
+kernel-6.3.11-200.fc38.x86_64
+moby-engine-20.10.23-1.fc38.x86_64
+podman-4.5.1-1.fc38.x86_64
+systemd-253.4-1.fc38.x86_64
+rpm-ostree-2023.5-1.fc38.x86_64
+zincati-0.0.25-4.fc38.x86_64
 ----
 
 We can also inspect the current revision of Fedora CoreOS:
@@ -207,12 +210,12 @@ We can also inspect the current revision of Fedora CoreOS:
 [core@tutorial ~]$ rpm-ostree status
 State: idle
 AutomaticUpdatesDriver: Zincati
-  DriverState: active; periodically polling for updates (last checked Sun 2022-08-21 01:19:57 UTC)
+  DriverState: active; periodically polling for updates (last checked Thu 2023-08-03 15:59:23 UTC)
 Deployments:
-* fedora:fedora/x86_64/coreos/stable
-                   Version: 36.20220723.3.1 (2022-08-08T17:18:13Z)
-                    Commit: e0b2bf7e843d71f2aff103705b491c3c28c1416cedcb093646fd44037b7b6a45
-              GPGSignature: Valid signature by 53DED2CB922D8B8D9E63FD18999F7CBF38AB71F4
+● fedora:fedora/x86_64/coreos/stable
+                  Version: 38.20230709.3.0 (2023-07-24T12:25:01Z)
+                   Commit: 552de26fe0fe6a5e491f7a4163db125e3d44b144ae53a8f5f488e3f8481c46f9
+             GPGSignature: Valid signature by 6A51BBABBA3D5467B6171221809A8D7CEB10B464
 ----
 
 And check on `zincati.service`, which communicates with our update server and tells `rpm-ostree` when to do an update and to what version to update to:
@@ -220,22 +223,29 @@ And check on `zincati.service`, which communicates with our update server and te
 ----
 [core@tutorial ~]$ systemctl status --full zincati.service
 ● zincati.service - Zincati Update Agent
-     Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; vendor preset: enabled)
-     Active: active (running) since Sun 2022-08-21 01:14:42 UTC; 9min ago
+     Loaded: loaded (/usr/lib/systemd/system/zincati.service; enabled; preset: enabled)
+    Drop-In: /usr/lib/systemd/system/service.d
+             └─10-timeout-abort.conf
+     Active: active (running) since Thu 2023-08-03 16:06:39 UTC; 18s ago
        Docs: https://github.com/coreos/zincati
-   Main PID: 1365 (zincati)
-     Status: "periodically polling for updates (last checked Sun 2022-08-21 01:19:57 UTC)"
-      Tasks: 5 (limit: 2254)
-     Memory: 17.7M
-        CPU: 212ms
+   Main PID: 1843 (zincati)
+     Status: "periodically polling for updates (last checked Thu 2023-08-03 16:06:39 UTC)"
+      Tasks: 6 (limit: 2238)
+     Memory: 2.8M
+        CPU: 257ms
      CGroup: /system.slice/zincati.service
-             └─ 1365 /usr/libexec/zincati agent -v
+             └─1843 /usr/libexec/zincati agent -v
 
-Aug 21 01:14:42 tutorial zincati[1365]: [INFO  zincati::cli::agent] starting update agent (zincati 0.0.24)
-Aug 21 01:14:42 tutorial zincati[1365]: [INFO  zincati::cincinnati] Cincinnati service: https://updates.coreos.fedoraproject.org
-Aug 21 01:14:42 tutorial zincati[1365]: [INFO  zincati::cli::agent] agent running on node '70a6b70b129e4108a417288136bda2fa', in update group 'default'
-Aug 21 01:14:42 tutorial zincati[1365]: [INFO  zincati::update_agent::actor] registering as the update driver for rpm-ostree
-Aug 21 01:14:42 tutorial zincati[1365]: [INFO  zincati::update_agent::actor] initialization complete, auto-updates logic enabled
+Aug 03 16:06:39 tutorial systemd[1]: Starting zincati.service - Zincati Update Agent...
+Aug 03 16:06:39 tutorial zincati[1843]: [INFO  zincati::cli::agent] starting update agent (zincati 0.0.25)
+Aug 03 16:06:39 tutorial zincati[1843]: [INFO  zincati::cincinnati] Cincinnati service: https://updates.coreos.fedoraproject.org
+Aug 03 16:06:39 tutorial zincati[1843]: [INFO  zincati::cli::agent] agent running on node '8fb5386cba574235a21ad3b2d59885d9', in update group 'default'
+Aug 03 16:06:39 tutorial zincati[1843]: [INFO  zincati::update_agent::actor] registering as the update driver for rpm-ostree
+Aug 03 16:06:39 tutorial zincati[1843]: [INFO  zincati::update_agent::actor] initialization complete, auto-updates logic enabled
+Aug 03 16:06:39 tutorial zincati[1843]: [INFO  zincati::strategy] update strategy: immediate
+Aug 03 16:06:39 tutorial systemd[1]: Started zincati.service - Zincati Update Agent.
+Aug 03 16:06:39 tutorial zincati[1843]: [INFO  zincati::update_agent::actor] reached steady state, periodically polling for updates
+Aug 03 16:06:41 tutorial zincati[1843]: [INFO  zincati::cincinnati] current release detected as not a dead-end
 ----
 
 One other interesting thing to do is view the logs from Ignition in case there is anything interesting there we may want to investigate:

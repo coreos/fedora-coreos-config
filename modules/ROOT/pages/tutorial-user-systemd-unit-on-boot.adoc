@@ -208,34 +208,37 @@ We can then verify that the unit has been started under the sleeper systemd user
 
 [source,bash]
 ----
-$ ssh core@192.168.x.y
 [core@localhost ~]$ sudo machinectl shell sleeper@
 Connected to the local host. Press ^] three times within 1s to exit session.
 [sleeper@localhost ~]$ systemctl --user status
 ● localhost.localdomain
     State: running
+    Units: 157 loaded (incl. loaded aliases)
      Jobs: 0 queued
    Failed: 0 units
-    Since: Sun 2022-08-21 02:22:44 UTC; 42s ago
+    Since: Thu 2023-08-03 18:31:27 UTC; 23s ago
+  systemd: 253.4-1.fc38
    CGroup: /user.slice/user-1001.slice/user@1001.service
            ├─app.slice
            │ └─linger-example.service
-           │   └─ 1671 /usr/bin/sleep infinity
+           │   └─1589 /usr/bin/sleep infinity
            └─init.scope
-             ├─ 1663 /usr/lib/systemd/systemd --user
-             └─ 1664 "(sd-pam)"
+             ├─1489 /usr/lib/systemd/systemd --user
+             └─1496 "(sd-pam)"
 [sleeper@localhost ~]$ systemctl --user status linger-example.service
 ● linger-example.service - A systemd user unit demo
-     Loaded: loaded (/var/home/sleeper/.config/systemd/user/linger-example.service; enabled; vendor preset: disabled)
-     Active: active (running) since Sun 2022-08-21 02:22:45 UTC; 55s ago
-   Main PID: 1671 (sleep)
-      Tasks: 1 (limit: 2254)
-     Memory: 228.0K
-        CPU: 4ms
+     Loaded: loaded (/var/home/sleeper/.config/systemd/user/linger-example.service; enabled; preset: disabled)
+    Drop-In: /usr/lib/systemd/user/service.d
+             └─10-timeout-abort.conf
+     Active: active (running) since Thu 2023-08-03 18:31:27 UTC; 38s ago
+   Main PID: 1589 (sleep)
+      Tasks: 1 (limit: 2238)
+     Memory: 224.0K
+        CPU: 1ms
      CGroup: /user.slice/user-1001.slice/user@1001.service/app.slice/linger-example.service
-             └─ 1671 /usr/bin/sleep infinity
+             └─1589 /usr/bin/sleep infinity
 
-Aug 21 02:22:45 localhost.localdomain systemd[1663]: Started linger-example.service - A systemd user unit demo.
+Aug 03 18:31:27 localhost.localdomain systemd[1489]: Started linger-example.service - A systemd user unit demo.
 ----
 
 == Cleanup
