@@ -48,6 +48,8 @@ tmpfiles = {
     os.path.join('users', 'jlebon', 'id_rsa.pub'): 'ssh-rsa AAAAB',
     os.path.join('users', 'jlebon', 'id_ed25519.pub'): 'ssh-ed25519 AAAAC',
     os.path.join('users', 'miabbott', 'id_rsa.pub'): 'ssh-rsa AAAAB',
+    # tutorial-containers.adoc, tutorial-setup.adoc, tutorial-updates.adoc, tutorial-user-systemd-unit-on-boot.adoc
+    os.path.join('ssh-key.pub'): 'ssh-rsa AAAAB',
 }
 
 ret = 0

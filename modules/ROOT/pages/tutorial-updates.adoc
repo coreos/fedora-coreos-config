@@ -42,10 +42,10 @@ mv fedora-coreos-$RELEASE-qemu.x86_64.qcow2 fedora-coreos-older.qcow2
 
 == Writing the Butane config and converting to Ignition
 
-We will create a Butane config that:
+We will create a Butane config that will:
 
-* Sets up console autologin.
-* Add an SSH Key for the `core` user.
+* Set up console autologin.
+* Add an SSH Key for the `core` user from the local `ssh-key.pub` file.
 
 Let's write this Butane config to a file called `updates.bu`:
 
@@ -56,8 +56,8 @@ version: 1.5.0
 passwd:
   users:
     - name: core
-      ssh_authorized_keys:
-        - ssh-rsa AAAA...
+      ssh_authorized_keys_local:
+        - ssh-key.pub
 systemd:
   units:
     - name: serial-getty@ttyS0.service
@@ -86,7 +86,7 @@ Run Butane to convert that to an Ignition config:
 
 [source,bash]
 ----
-butane --pretty --strict updates.bu --output updates.ign
+butane --pretty --strict --files-dir=./ updates.bu --output updates.ign
 ----
 
 == Startup and initial update

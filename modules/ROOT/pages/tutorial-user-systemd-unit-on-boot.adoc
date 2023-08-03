@@ -123,8 +123,8 @@ version: 1.5.0
 passwd:
   users:
     - name: core
-      ssh_authorized_keys:
-        - ssh-rsa ...
+      ssh_authorized_keys_local:
+        - ssh-key.pub
     - name: sleeper
 storage:
   directories:
@@ -181,7 +181,7 @@ This config can be converted to Ignition:
 
 [source,bash]
 ----
-butane --pretty --strict user.bu --output user.ign
+butane --pretty --strict --files-dir=./ user.bu --output user.ign
 ----
 
 == Testing

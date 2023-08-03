@@ -25,6 +25,26 @@ These tutorials are written targeting a Linux environment with a working `libvir
 
 For instructions to set up `libvirt` and `KVM` you may refer to the https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/[Getting started with virtualization] guide from Fedora. Although this setup guide is focused on Fedora, the tutorials should work on any distribution with `libvirt` installed and running.
 
+== Local working directory
+
+To keep all configuration files and Fedora CoreOS images in the same place, we will create a new directory to work from:
+
+[source,bash]
+----
+mkdir ~/coreos
+cd ~/coreos
+----
+
+== SSH public key
+
+Some of the tutorials add an SSH public key to the instances to allow for SSH access as opposed to serial console access. Please place a public key in your current working directory under the filename
+`ssh-key.pub`. For example, for a RSA keypair the default location would be in `~/.ssh/id_rsa.pub`:
+
+[source,bash]
+----
+cp ~/.ssh/id_rsa.pub ssh-key.pub
+----
+
 == CoreOS tools
 
 For the tutorials, we will need the following tools:
@@ -33,13 +53,6 @@ For the tutorials, we will need the following tools:
   * `coreos-installer`: To download the latest Fedora CoreOS QCOW2 image.
   * `ignition-validate`: To validate Ignition configuration files.
 
-To keep all configurations files and Fedora CoreOS images in the same place, we will create a new directory to work from:
-
-[source,bash]
-----
-mkdir ~/coreos
-cd ~/coreos
-----
 
 === Setup with `podman` or `docker`
 
