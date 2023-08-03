@@ -22,7 +22,7 @@ We can create a config file named `autologin.bu` now as:
 [source,yaml]
 ----
 variant: fcos
-version: 1.4.0
+version: 1.5.0
 systemd:
   units:
     - name: serial-getty@ttyS0.service
@@ -62,7 +62,7 @@ The resulting Ignition configuration produced by Butane as `autologin.ign` has t
 ----
 {
   "ignition": {
-    "version": "3.3.0"
+    "version": "3.4.0"
   },
   "storage": {
     "files": [

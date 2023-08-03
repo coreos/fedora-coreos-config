@@ -53,7 +53,7 @@ We can now create a Butane config by including the script and the systemd unit d
 [source,yaml]
 ----
 variant: fcos
-version: 1.4.0
+version: 1.5.0
 systemd:
   units:
     - name: serial-getty@ttyS0.service

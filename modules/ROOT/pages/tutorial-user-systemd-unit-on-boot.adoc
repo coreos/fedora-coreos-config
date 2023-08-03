@@ -14,7 +14,7 @@ In this example, we will launch a systemd service for the user `sleeper`. First,
 [source,yaml]
 ----
 variant: fcos
-version: 1.4.0
+version: 1.5.0
 passwd:
   users:
     - name: sleeper
@@ -25,7 +25,7 @@ This will also create the home directory for the `sleeper` user. Then we can add
 [source,yaml]
 ----
 variant: fcos
-version: 1.4.0
+version: 1.5.0
 storage:
   files:
     - path: /home/sleeper/.config/systemd/user/linger-example.service
@@ -47,7 +47,7 @@ System services can be directly enabled in Butane configs but user level service
 [source,yaml]
 ----
 variant: fcos
-version: 1.4.0
+version: 1.5.0
 storage:
   directories:
     - path: /home/sleeper/.config/systemd/user/default.target.wants
@@ -71,7 +71,7 @@ We set up lingering for the systemd user level instance so that it gets started 
 [source,yaml]
 ----
 variant: fcos
-version: 1.4.0
+version: 1.5.0
 storage:
   files:
     - path: /var/lib/systemd/linger/sleeper
@@ -83,7 +83,7 @@ As the following directories do not exist yet, we will have to create them to te
 [source,yaml]
 ----
 variant: fcos
-version: 1.4.0
+version: 1.5.0
 storage:
   directories:
     - path: /home/sleeper/.config
@@ -119,7 +119,7 @@ The final Butane config, stored in `user.bu`, will be:
 [source,yaml]
 ----
 variant: fcos
-version: 1.4.0
+version: 1.5.0
 passwd:
   users:
     - name: core

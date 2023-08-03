@@ -20,7 +20,7 @@ TIP: Optionally, you can replace the SSH public key in the yaml file with your o
 [source,yaml]
 ----
 variant: fcos
-version: 1.4.0
+version: 1.5.0
 passwd:
   users:
     - name: core
