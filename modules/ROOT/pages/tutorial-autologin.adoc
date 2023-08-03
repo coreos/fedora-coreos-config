@@ -12,10 +12,10 @@ Ignition config files are written in JSON but are typically not user-friendly. C
 
 Let's create a very simple Butane config that will perform the following actions:
 
-- Add a systemd dropin to override the default `serial-getty@ttyS0.service`.
-    - The override will make the service automatically log the `core` user in to the serial console of the booted machine.
-- Set the system hostname by dropping a file at `/etc/hostname`,
-- Add a bash profile that tells systemd to not use a pager for output.
+* Add a systemd dropin to override the default `serial-getty@ttyS0.service`.
+    * The override will make the service automatically log the `core` user in to the serial console of the booted machine.
+* Set the system hostname by dropping a file at `/etc/hostname`,
+* Add a bash profile that tells systemd to not use a pager for output.
 
 We can create a config file named `autologin.bu` now as:
 
