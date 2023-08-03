@@ -8,7 +8,9 @@ As usual, we will set up console autologin, a hostname, systemd pager configurat
 
 * Add an SSH Key for the `core` user from the local `ssh-key.pub` file.
 * Add a systemd service (`failure.service`) that fails on boot.
-* Add a systemd service that will use a container to bring up a hosted service.
+* Add a running container via a Podman https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html[quadlet systemd.unit container file].
+    * This `etcd-member.container` will then be associated with a `etcd-member.service` on the running system.
+    * `etcd-member.service` will launch and manage the lifecycle of the container using `podman`.
 
 == Writing the Butane config and converting to Ignition
 
@@ -46,32 +48,6 @@ systemd:
 
         [Install]
         WantedBy=multi-user.target
-    - name: etcd-member.service
-      enabled: true
-      contents: |
-        [Unit]
-        Description=Run a single node etcd
-        After=network-online.target
-        Wants=network-online.target
-
-        [Service]
-        ExecStartPre=mkdir -p /var/lib/etcd
-        ExecStartPre=-/bin/podman kill etcd
-        ExecStartPre=-/bin/podman rm etcd
-        ExecStartPre=-/bin/podman pull quay.io/coreos/etcd
-        ExecStart=/bin/podman run --name etcd --net=host \
-                    --volume /var/lib/etcd:/etcd-data:z  \
-                    quay.io/coreos/etcd:latest /usr/local/bin/etcd              \
-                            --data-dir /etcd-data --name node1                  \
-                            --initial-advertise-peer-urls http://127.0.0.1:2380 \
-                            --listen-peer-urls http://127.0.0.1:2380            \
-                            --advertise-client-urls http://127.0.0.1:2379       \
-                            --listen-client-urls http://127.0.0.1:2379          \
-                            --initial-cluster node1=http://127.0.0.1:2380
-        ExecStop=/bin/podman stop etcd
-
-        [Install]
-        WantedBy=multi-user.target
 storage:
   files:
     - path: /etc/hostname
@@ -85,6 +61,30 @@ storage:
         inline: |
           # Tell systemd to not use a pager when printing information
           export SYSTEMD_PAGER=cat
+    - path: /etc/containers/systemd/etcd-member.container
+      mode: 0644
+      contents:
+        inline: |
+          [Unit]
+          Description=Run a single node etcd
+          After=network-online.target
+          Wants=network-online.target
+
+          [Container]
+          ContainerName=etcd
+          Image=quay.io/coreos/etcd:latest
+          Network=host
+          Volume=etcd-data:/etcd-data
+          Exec=/usr/local/bin/etcd                                \
+              --name node1 --data-dir /etcd-data                  \
+              --initial-advertise-peer-urls http://127.0.0.1:2380 \
+              --listen-peer-urls http://127.0.0.1:2380            \
+              --advertise-client-urls http://127.0.0.1:2379       \
+              --listen-client-urls http://127.0.0.1:2379          \
+              --initial-cluster node1=http://127.0.0.1:2380
+
+          [Install]
+          WantedBy=multi-user.target
 ----
 
 Run Butane to convert that to an Ignition config:
@@ -151,7 +151,7 @@ Failed Units: 1
 
 The `Failed Units` message is coming from the https://github.com/coreos/console-login-helper-messages[console login helper messages] helpers. This particular helper shows us when `systemd` has services that are in a failed state. In this case we made `failure.service` with `ExecStart=/usr/bin/false`, so we intentionally created a service that will always fail in order to illustrate the helper messages.
 
-Now that we’re up and don’t have any real failures we can check out the service that we care about (`etcd-member.service`):
+Now that we’re up and don’t have any real failures we can check out the status of `etcd-member.service`, which was generated from our `etcd-member.container` file.
 
 ----
 [core@tutorial ~]$ systemctl status --full etcd-member.service
