@@ -6,12 +6,11 @@ In this tutorial, we will not focus on provisioning but on what happens during u
 
 == Downloading an older Fedora CoreOS release
 
-One of the defining features of Fedora CoreOS is automatic updates. To see them in action, we have to download an older Fedora CoreOS release. Start by picking an older release from the https://fedoraproject.org/coreos/release-notes/[Fedora CoreOS release page]:
+One of the defining features of Fedora CoreOS is automatic updates. To see them in action, we have to download an older Fedora CoreOS release. In this case we'll boot the `N-1` release of Fedora CoreOS, which can be seen from the https://fedoraproject.org/coreos/release-notes/[Fedora CoreOS release page] or by using the `releases.json` metadata:
 
 [source,bash]
 ----
-# replace "XX.XXXXXXXX.X.X" with one of older release IDs from the release page above (e.g. "34.20210919.3.0")
-RELEASE="XX.XXXXXXXX.X.X"
+RELEASE=$(curl https://builds.coreos.fedoraproject.org/prod/streams/stable/releases.json | jq -r .releases[-2].version)
 curl -O https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$RELEASE/x86_64/fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz
 curl -O https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$RELEASE/x86_64/fedora-coreos-$RELEASE-qemu.x86_64.qcow2.xz.sig
 ----
@@ -105,6 +104,8 @@ virt-install --name=fcos --vcpus=2 --ram=2048 --os-variant=fedora-coreos-stable 
     --disk=size=20,backing_store=${PWD}/fedora-coreos-older.qcow2
 ----
 
+Disconnect from the serial console by pressing `CTRL` + `]` and then use the reported IP address for the NIC from the serial console to log in using the `core` user via SSH:
+
 As the system is not up to date, Zincati will notice this and will start updating the system. You should see the update process happening right away:
 
 NOTE: All necessary network services may not be up and running during the initial check. In such case Zincati will check for updates again in about 5 minutes.
@@ -180,7 +181,7 @@ Aug 03 19:52:55 localhost.localdomain zincati[1816]: [INFO  zincati::update_agen
 Aug 03 19:52:55 localhost.localdomain zincati[1816]: [WARN  zincati::update_agent] interactive sessions detected, entering grace period (maximum 10 minutes)
 ----
 
-Shortly after the update has been staged, the system should reboot to apply the latest update. You may need to stop the autologin service to initiate the reboot.
+Shortly after the update has been staged the system will reboot by default. However if it detects active user sessions it will wait and show a message to the user:
 
 ----
 Broadcast message from Zincati at Thu 2023-08-03 19:52:55 UTC:
@@ -189,11 +190,18 @@ If permitted by the update strategy, Zincati will reboot into this update when
 all interactive users have logged out, or in 10 minutes, whichever comes
 earlier. Please log out of all active sessions in order to let the auto-update
 process continue.
+----
+
+Once the user sessions have ceased the reboot will continue. In this case we need to stop the autologin on ttyS0 service and log out of SSH as well:
+
+----
 [core@localhost ~]$ sudo systemctl stop serial-getty@ttyS0.service
 [core@localhost ~]$ exit
 logout
 Connection to 192.168.124.222 closed.
 ----
+
+TIP: You can monitor the serial console to see when the machine has performed the reboot via `virsh console fcos`.
 
 When we log back in we can view the current version of Fedora CoreOS is now the latest one. The `rpm-ostree status` output will also show the older version, which still exists in case we need to rollback:
 
@@ -292,7 +300,7 @@ Aug 03 20:05:06 localhost.localdomain zincati[813]: [INFO  zincati::cincinnati] 
 
 == Cleanup
 
-Now let's clean up the instance. Disconnect from the serial console by pressing `CTRL` + `]` or from SSH and then destroy the machine:
+Now let's clean up the instance. Disconnect from the machine and then destroy it:
 
 ----
 virsh destroy fcos
