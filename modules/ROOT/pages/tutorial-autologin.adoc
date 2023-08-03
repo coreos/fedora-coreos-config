@@ -251,15 +251,14 @@ Aug 03 16:06:41 tutorial zincati[1843]: [INFO  zincati::cincinnati] current rele
 One other interesting thing to do is view the logs from Ignition in case there is anything interesting there we may want to investigate:
 
 ----
-[core@tutorial ~]$ journalctl -t ignition
-...
+journalctl -t ignition
 ----
 
 And finally, of course we can use the `podman` (or `docker`) command to inspect the current state of containers on the system:
 
 ----
-[core@tutorial ~]$ podman version
-[core@tutorial ~]$ podman info
+podman version
+podman info
 ----
 
 NOTE: `podman` commands can be run as root or as non-root user. `docker` commands need to be run as root via `sudo` unless the user has been added to the `docker` group.

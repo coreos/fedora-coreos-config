@@ -238,7 +238,7 @@ If the system is not functioning fully for whatever reason we can go back to the
 
 [source,bash]
 ----
-[core@localhost ~]$ sudo rpm-ostree rollback --reboot
+sudo rpm-ostree rollback --reboot
 ----
 
 After logging back in after reboot we can see we are now booted back into the old deployment from before the upgrade occurred:
