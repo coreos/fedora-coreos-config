@@ -9,13 +9,15 @@ In this tutorial, we will run a script on the first boot via a systemd service. 
 
 == Writing the script
 
-Let's write a simple script that uses https://icanhazip.com/[icanhazip.com] to create an issue file to display as a prelogin message on the console:
+Let's write a simple script that uses https://icanhazip.com/[icanhazip.com] to create an issue file to display as a prelogin message on the console and store it in `public-ipv4.sh`.
 
 [source,bash]
 ----
+cat <<'EOF' > public-ipv4.sh
 #!/bin/bash
 echo "Detected Public IPv4: is $(curl https://ipv4.icanhazip.com)" > \
     /etc/issue.d/50_public-ipv4.issue
+EOF
 ----
 
 This could be useful in cloud environments where you might have different public and private addresses.
@@ -24,10 +26,11 @@ We will store this script into `/usr/local/bin/public-ipv4.sh` when we provision
 
 == Writing the systemd service
 
-We need to call the script from the previous section by using a systemd unit. Here is one that works for what we want, which is to execute on first boot and not again:
+We need to call the script from the previous section by using a systemd unit. Let's write a systemd unit into the `issuegen-public-ipv4.service` file that does what we want, which is to execute on first boot and not again:
 
-[source,service]
+[source,bash]
 ----
+cat <<'EOF' > issuegen-public-ipv4.service
 [Unit]
 Before=systemd-user-sessions.service
 Wants=network-online.target
@@ -42,13 +45,12 @@ RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
+EOF
 ----
-
-We will call this unit `issuegen-public-ipv4.service` and we will embed it into the Butane config in the next section.
 
 == Writing the Butane config and converting to Ignition
 
-We can now create a Butane config by including the script and the systemd unit directly as inline content into the systemd/units and storage/files sections. The final Butane config, stored in `services.bu`, will be:
+We can now create a Butane config that will include the script and systemd unit file contents by picking up the local `public-ipv4.sh` and `issuegen-public-ipv4.service` files using local file references. The final Butane config, stored in `services.bu`, will be:
 
 [source,yaml]
 ----
@@ -67,21 +69,7 @@ systemd:
           ExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM
     - name: issuegen-public-ipv4.service
       enabled: true
-      contents: |
-        [Unit]
-        Before=systemd-user-sessions.service
-        Wants=network-online.target
-        After=network-online.target
-        ConditionPathExists=!/var/lib/issuegen-public-ipv4
-
-        [Service]
-        Type=oneshot
-        ExecStart=/usr/local/bin/public-ipv4.sh
-        ExecStartPost=/usr/bin/touch /var/lib/issuegen-public-ipv4
-        RemainAfterExit=yes
-
-        [Install]
-        WantedBy=multi-user.target
+      contents_local: issuegen-public-ipv4.service
 storage:
   files:
     - path: /etc/hostname
@@ -98,68 +86,16 @@ storage:
     - path: /usr/local/bin/public-ipv4.sh
       mode: 0755
       contents:
-        inline: |
-          #!/bin/bash
-          echo "Detected Public IPv4: is $(curl https://ipv4.icanhazip.com)" > \
-              /etc/issue.d/50_public-ipv4.issue
+        local: public-ipv4.sh
 ----
 
-TIP: You may be able to use local file references to systemd units instead of inlining them. See xref:#_using_butanes__files_dir_parameter_to_embed_files[Using butane's `--files-dir` Parameter to Embed Files] for more information.
+NOTE: Check the Butane https://coreos.github.io/butane/examples/[Examples] and https://coreos.github.io/butane/specs/[Configuration specifications] for more details about local file includes.
 
-And then convert to Ignition:
+With the files `public-ipv4.sh`, `issuegen-public-ipv4.service`, and `services.bu` in the current working directory we can now convert to Ignition:
 
 [source,bash]
 ----
-butane --pretty --strict services.bu --output services.ign
-----
-
-=== Using butane's `--files-dir` Parameter to Embed Files
-
-Depending on the variant and version you use, you can use local file references to systemd units instead of inlining them.
-The example from the xref:#_writing_the_butane_config_and_converting_to_ignition[previous section] can thus be rewritten as follows:
-
-[source,yaml]
-----
-variant: fcos
-version: 1.5.0
-systemd:
-  units:
-    - name: serial-getty@ttyS0.service
-      dropins:
-      - name: autologin-core.conf
-        contents_local: systemd/autologin-core.conf
-    - name: issuegen-public-ipv4.service
-      enabled: true
-      contents_local: systemd/issuegen-public-ipv4.service
-storage:
-  files:
-    - path: /etc/hostname
-      mode: 0644
-      contents:
-        inline: |
-          tutorial
-    - path: /etc/profile.d/systemd-pager.sh
-      mode: 0644
-      contents:
-        inline: |
-          # Tell systemd to not use a pager when printing information
-          export SYSTEMD_PAGER=cat
-    - path: /usr/local/bin/public-ipv4.sh
-      mode: 0755
-      contents:
-        inline: |
-          #!/bin/bash
-          echo "Detected Public IPv4: is $(curl https://ipv4.icanhazip.com)" > \
-              /etc/issue.d/50_public-ipv4.issue
-----
-
-NOTE: Check the https://coreos.github.io/butane/specs/[Configuration specifications] for more details and which versions of your selected variant support it.
-
-And then convert to Ignition (assuming the files (`autologin-core.conf` and `issuegen-public-ipv4.service`) are in a directory called `systemd` in your current working directory):
-
-[source,bash]
-----
-butane --pretty --strict --files-dir="./systemd"  services.bu --output services.ign
+butane --pretty --strict --files-dir=./ services.bu --output services.ign
 ----
 
 == Testing

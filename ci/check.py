@@ -41,8 +41,8 @@ def handle_error(e):
 # List of files required during verification
 tmpfiles = {
     # tutorial-services.adoc
-    os.path.join('systemd', 'autologin-core.conf'): '[Service]\n# Override Execstart in main unit',
-    os.path.join('systemd', 'issuegen-public-ipv4.service'): '[Unit]\nBefore=systemd-user-sessions.service\n[Install]\nWantedBy=multi-user.target',
+    os.path.join('public-ipv4.sh'): '#!/bin/bash\ntrue',
+    os.path.join('issuegen-public-ipv4.service'): '[Unit]\nBefore=systemd-user-sessions.service\n[Install]\nWantedBy=multi-user.target',
     # authentication.adoc
     os.path.join('users', 'core', 'id_rsa.pub'): 'ssh-rsa AAAAB',
     os.path.join('users', 'jlebon', 'id_rsa.pub'): 'ssh-rsa AAAAB',
