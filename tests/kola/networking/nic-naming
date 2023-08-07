@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-##   platforms: "!azure"
+##   platforms: "! azure"
 ##   description: Verify that we detected eth* NIC naming after booted.
 
 # Disable on azure because of a limitation of the hv_netvsc driver
