@@ -15,19 +15,12 @@
     - ppc64le
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1430
-  # snooze: 2023-08-02 (disabled on promotion)
+  # snooze: 2023-08-16 (disabled on promotion)
   arches:
     - aarch64
-- pattern: ext.config.kdump.crash
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1523
-  # snooze: 2023-07-20 (disabled on promotion)
-  arches:
-    - ppc64le
-  streams:
-    - rawhide
 - pattern: ext.config.root-reprovision.*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1489
-  # snooze: 2023-08-04 (disabled on promotion)
+  # snooze: 2023-08-18 (disabled on promotion)
   arches:
     - ppc64le
   streams:
