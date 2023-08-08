@@ -93,8 +93,6 @@ install() {
     done
     inst_script "$moddir/ignition-ostree-firstboot-uuid" \
         "/usr/sbin/ignition-ostree-firstboot-uuid"
-    inst_script "$moddir/coreos-rootflags.sh" \
-        "/usr/sbin/coreos-rootflags"
 
     install_ignition_unit ignition-ostree-growfs.service
     inst_script "$moddir/ignition-ostree-growfs.sh" \
