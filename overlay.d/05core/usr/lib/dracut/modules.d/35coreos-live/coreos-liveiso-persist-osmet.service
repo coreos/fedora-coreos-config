@@ -4,8 +4,6 @@ DefaultDependencies=false
 ConditionPathExists=/run/ostree-live
 ConditionKernelCommandLine=coreos.liveiso
 RequiresMountsFor=/run/media/iso
-# on el8, the ISO is mounted by our own systemd unit
-After=run-media-iso-mount.service
 Before=initrd-switch-root.target
 
 [Service]
