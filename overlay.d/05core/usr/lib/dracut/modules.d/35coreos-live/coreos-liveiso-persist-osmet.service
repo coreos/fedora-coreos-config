@@ -1,10 +1,12 @@
 [Unit]
 Description=Persist Osmet Files (ISO)
-DefaultDependencies=false
 ConditionPathExists=/run/ostree-live
 ConditionKernelCommandLine=coreos.liveiso
 RequiresMountsFor=/run/media/iso
 Before=initrd-switch-root.target
+# DefaultDependencies=true so this unit gets stopped on switchroot to
+# allow for /run/media/iso to get unmounted.
+DefaultDependencies=true
 
 [Service]
 Type=oneshot
