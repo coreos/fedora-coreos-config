@@ -14,8 +14,7 @@ After=ignition-disks.service
 # The script checks if the rootfs was reprovisioned so let's wait
 # until after that has completed if it was requested.
 After=ignition-ostree-transposefs-restore.service
-# Requires the root device to exist
-Requires=dev-disk-by\x2dlabel-root.device
+# Needs to run after the root device is available
 After=dev-disk-by\x2dlabel-root.device
 
 [Service]
