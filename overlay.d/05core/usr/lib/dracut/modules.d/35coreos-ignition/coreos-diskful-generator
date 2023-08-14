@@ -77,6 +77,7 @@ Where=/sysroot
 Options=${OPTIONS}
 EOF
     add_requires sysroot.mount initrd-root-fs.target
+    add_requires coreos-rootflags.service initrd-root-fs.target
 fi
 
 if ! $(cmdline_bool 'ignition.firstboot' 0); then
