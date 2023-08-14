@@ -87,4 +87,8 @@ install() {
     inst_script "$moddir/coreos-secex-ignition-decrypt.sh" \
         "/usr/sbin/coreos-secex-ignition-decrypt"
 
+    inst_multiple jq blkid
+    inst_script "$moddir/coreos-rootflags.sh" \
+        "/usr/sbin/coreos-rootflags"
+    install_ignition_unit coreos-rootflags.service initrd-root-fs.target
 }
