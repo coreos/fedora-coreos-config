@@ -6,6 +6,7 @@ ConditionKernelCommandLine=ostree
 ConditionPathExists=!/run/ostree-live
 After=ignition-ostree-growfs.service
 After=ostree-prepare-root.service
+Requires=ostree-prepare-root.service
 # Allow Ignition config to blank out the warning
 Before=ignition-files.service
 
