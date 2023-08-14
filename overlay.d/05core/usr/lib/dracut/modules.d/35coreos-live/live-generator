@@ -212,11 +212,9 @@ DefaultDependencies=false
 RequiresMountsFor=/run/ephemeral
 ConditionPathExists=/usr/lib/initrd-release
 ConditionPathExists=!/run/ephemeral/var
-# Make sure /sysroot is mounted first, since we're mounting under there
-Requires=sysroot.mount
-After=sysroot.mount
-# And after OSTree has set up the chroot() equivalent
+# We want to run after ostree is set up
 After=ostree-prepare-root.service
+Requires=ostree-prepare-root.service
 
 [Service]
 Type=oneshot

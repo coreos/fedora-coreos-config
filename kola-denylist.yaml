@@ -25,18 +25,64 @@
     - ppc64le
   streams:
     - rawhide
-- pattern: ext.config.ntp.chrony.dhcp-propagation
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1508
-  snooze: 2023-08-20
-  streams:
-    - rawhide
-- pattern: ext.config.ntp.timesyncd.dhcp-propagation
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1508
-  snooze: 2023-08-20
-  streams:
-    - rawhide
 - pattern: ext.config.toolbox
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1539
   snooze: 2023-09-10
   streams:
     - rawhide
+- pattern: ext.config.networking.nameserver
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  snooze: 2023-08-28
+  streams:
+    - rawhide
+    - branched
+    - next-devel
+- pattern: ext.config.networking.no-persist-ip
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  snooze: 2023-08-28
+  streams:
+    - rawhide
+    - branched
+    - next-devel
+- pattern: ext.config.networking.prefer-ignition-networking
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  snooze: 2023-08-28
+  streams:
+    - rawhide
+    - branched
+    - next-devel
+- pattern: ext.config.networking.ifname-karg.everyboot-systemd-link-file
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  snooze: 2023-08-28
+  streams:
+    - rawhide
+    - branched
+    - next-devel
+- pattern: ext.config.networking.force-persist-ip
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  snooze: 2023-08-28
+  streams:
+    - rawhide
+    - branched
+    - next-devel
+- pattern: ext.config.networking.bridge-static-via-kargs
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  snooze: 2023-08-28
+  streams:
+    - rawhide
+    - branched
+    - next-devel
+- pattern: ext.config.networking.ifname-karg.udev-rule-firstboot-propagation
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  snooze: 2023-08-28
+  streams:
+    - rawhide
+    - branched
+    - next-devel
+- pattern: ext.config.networking.mtu-on-bond-kargs
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  snooze: 2023-08-28
+  streams:
+    - rawhide
+    - branched
+    - next-devel
