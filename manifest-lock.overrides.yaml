@@ -9,6 +9,30 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  kernel:
+    evr: 6.4.11-200.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-1ccaad9e2e
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1489
+      type: fast-track
+  kernel-core:
+    evr: 6.4.11-200.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-1ccaad9e2e
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1489
+      type: fast-track
+  kernel-modules:
+    evr: 6.4.11-200.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-1ccaad9e2e
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1489
+      type: fast-track
+  kernel-modules-core:
+    evr: 6.4.11-200.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-1ccaad9e2e
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1489
+      type: fast-track
   moby-engine:
     evr: 20.10.23-1.fc38
     metadata:

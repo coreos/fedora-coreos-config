@@ -18,13 +18,6 @@
   snooze: 2023-08-31
   arches:
     - aarch64
-- pattern: ext.config.root-reprovision.*
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1489
-  snooze: 2023-08-18
-  arches:
-    - ppc64le
-  streams:
-    - rawhide
 - pattern: ext.config.networking.nameserver
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
   snooze: 2023-08-28
