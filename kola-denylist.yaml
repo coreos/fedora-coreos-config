@@ -25,11 +25,6 @@
     - ppc64le
   streams:
     - rawhide
-- pattern: ext.config.toolbox
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1539
-  snooze: 2023-09-10
-  streams:
-    - rawhide
 - pattern: ext.config.rpm-ostree.kernel-replace
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1549
   snooze: 2023-09-10
