@@ -8,10 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  zincati:
-    evr: 0.0.25-6.fc40
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-56c1d9f63d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1547
-      type: fast-track
+packages: {}
