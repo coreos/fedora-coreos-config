@@ -59,3 +59,45 @@ You now should be able to SSH into the instance using the associated IP address.
 ----
 ssh core@<ip address>
 ----
+
+==== Remote ignition configuration
+
+As user-data is limited to 16 KB, you may need to use an external source for your ignition configuration.
+A common solution is to upload the config to a S3 bucket, as the following steps show:
+
+[source, bash]
+.Create a new s3 bucket
+----
+NAME='instance1'
+aws s3 mb s3://$NAME-infra
+----
+
+[source, bash]
+.Upload the ignition file
+----
+NAME='instance1'
+USERDATA='/path/to/config.ign' # path to your Ignition config
+aws s3 cp $USERDATA s3://$NAME-infra/bootstrap.ign
+----
+
+You can verify the file have been correctly uploaded:
+[source, bash]
+.List files in the bucket
+----
+NAME='instance1'
+aws s3 ls s3://$NAME-infra/
+----
+
+Then create a minimal Ignition config as follows:
+[source,yaml]
+.Retrieving a remote Ignition file from a s3 bucket
+----
+variant: fcos
+version: 1.4.0
+ignition:
+  config:
+    replace:
+      source: s3://instance1-infra/bootstrap.ign
+----
+
+Then you can launch the instance using the same command as xref:#_customized_example[], passing the minimal configuration you just created.
