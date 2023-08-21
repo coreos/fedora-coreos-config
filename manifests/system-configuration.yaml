@@ -39,6 +39,8 @@ packages:
   - stalld
   # Ignition aware SSH key management
   - ssh-key-dir
+  # Allow for configuring different timezones
+  - tzdata
 
 postprocess:
   # Mask systemd-repart. Ignition is responsible for partition setup on first
