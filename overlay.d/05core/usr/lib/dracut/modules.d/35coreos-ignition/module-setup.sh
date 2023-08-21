@@ -87,4 +87,9 @@ install() {
     inst_script "$moddir/coreos-secex-ignition-decrypt.sh" \
         "/usr/sbin/coreos-secex-ignition-decrypt"
 
+    inst_multiple jq blkid
+    inst_script "$moddir/coreos-rootflags.sh" \
+        "/usr/sbin/coreos-rootflags"
+    # Install unit, but don't enable it. Will be pulled in by diskful generator.
+    inst_simple "$moddir/coreos-rootflags.service" "$systemdsystemunitdir/coreos-rootflags.service"
 }
