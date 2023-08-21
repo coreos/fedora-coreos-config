@@ -5,7 +5,7 @@
 ##   distros: fcos
 ##   # coreos-post-ignition-checks.service forbids GRUB passwords on
 ##   # ppc64le and s390x
-##   architectures: "!ppc64le s390x"
+##   architectures: "! ppc64le s390x"
 ##   description: Verify that setting GRUB password works.
 
 set -xeuo pipefail
