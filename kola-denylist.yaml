@@ -35,3 +35,9 @@
   # snooze: 2023-08-20 (disabled on promotion)
   streams:
     - rawhide
+- pattern: iso-offline-install-fromram.4k.uefi
+  tracker: https://github.com/coreos/fedora-coreos-config/pull/2560#issuecomment-1687073302
+- pattern: iso-offline-install-fromram.ppcfw
+  tracker: https://github.com/coreos/fedora-coreos-config/pull/2560#issuecomment-1687073302
+- pattern: iso-offline-install-fromram.uefi
+  tracker: https://github.com/coreos/fedora-coreos-config/pull/2560#issuecomment-1687073302
