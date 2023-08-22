@@ -25,12 +25,16 @@ podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
     quay.io/coreos/coreos-installer:release download -f iso
 ----
 
-- Use `coreos-installer iso customize` to embed your Ignition config into the ISO image. For example, for an Ignition config called `config.ign`:
+- Use `coreos-installer iso customize` to customize the ISO for your needs. In this example we assume an Ignition config exists in a file `config.ign`. We also add the optional `coreos.liveiso.fromram` kernel argument to the live boot.
++
+NOTE: The `coreos.liveiso.fromram` is optional and is used in cases where you want to have no references to the booted media (ISO) once the system is up and running. This enables use cases like removing the media after boot or rewriting the disk the booted media is on, but does require more memory.
 +
 [source,bash,subs="attributes"]
 ----
+KERNEL_ARG='--live-karg-append=coreos.liveiso.fromram'
+IGNITION_ARG='--live-ignition=./config.ign'
 podman run --security-opt label=disable --pull=always --rm -v .:/data -w /data \
-    quay.io/coreos/coreos-installer:release iso customize --live-ignition config.ign \
+    quay.io/coreos/coreos-installer:release iso customize $KERNEL_ARG $IGNITION_ARG \
     -o customized.iso fedora-coreos-{stable-version}-live.x86_64.iso
 ----
 
