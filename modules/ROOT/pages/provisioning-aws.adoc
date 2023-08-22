@@ -60,7 +60,7 @@ You now should be able to SSH into the instance using the associated IP address.
 ssh core@<ip address>
 ----
 
-==== Remote ignition configuration
+== Remote ignition configuration
 
 As user-data is limited to 16 KB, you may need to use an external source for your ignition configuration.
 A common solution is to upload the config to a S3 bucket, as the following steps show:
@@ -76,8 +76,8 @@ aws s3 mb s3://$NAME-infra
 .Upload the ignition file
 ----
 NAME='instance1'
-USERDATA='/path/to/config.ign' # path to your Ignition config
-aws s3 cp $USERDATA s3://$NAME-infra/bootstrap.ign
+CONFIG='/path/to/config.ign' # path to your Ignition config
+aws s3 cp CONFIG s3://$NAME-infra/bootstrap.ign
 ----
 
 You can verify the file have been correctly uploaded:
@@ -101,3 +101,30 @@ ignition:
 ----
 
 Then you can launch the instance using the same command as xref:#_customized_example[], passing the minimal configuration you just created.
+
+Once the first boot is completed, make sure to delete the configuration as it may contain sensitive data.
+See xref:#_configuration_cleanup[].
+
+== Configuration cleanup
+
+Once the instance have completed the first boot, we recommend cleaning up the configuration files.
+Any container running on the instance could be able to read the config, raising security concerns.
+
+[source,bash]
+.Deleting the Ignition configuration from the s3 bucket
+----
+NAME='instance1'
+aws s3 rm CONFIG s3://$NAME-infra/bootstrap.ign
+----
+
+Optionnally, you can delete the whole bucket:
+[source,bash]
+.Deleting the s3 bucket
+----
+NAME='instance1'
+aws s3 rb s3://$NAME-infra
+----
+
+NOTE: The instance's user data cannot be modified without stopping the instance.
+If you need to have secrets in your ignition configuration you should store it into a s3 bucket and have a minimal configuration in user-data.
+Make sure to clear the s3 bucket when the first boot is completed.
