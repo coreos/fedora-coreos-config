@@ -5,7 +5,7 @@
 ##   exclusive: false
 ##   # May support e.g. centos in the future
 ##   distros: "fcos rhcos"
-##   description: Verify the RPM %{vendor} flag for everything installed 
+##   description: Verify the RPM %{vendor} flag for everything installed
 ##     matches what we expect.
 
 set -xeuo pipefail

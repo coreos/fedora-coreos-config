@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   tags: "platform-independent"
-##   description: Verify that Ignition supports to enable systemd units 
+##   description: Verify that Ignition supports to enable systemd units
 ##     of different types.
 
 # See

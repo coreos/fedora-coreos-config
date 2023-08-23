@@ -1,8 +1,8 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-##   description: Verify that `kubernetes_file_t` labeled files can be read 
-##     by systemd, also verify the `kube-env` service started successfully  
+##   description: Verify that `kubernetes_file_t` labeled files can be read
+##     by systemd, also verify the `kube-env` service started successfully
 ##     and the service wrote to the journal successfully.
 
 # See https://bugzilla.redhat.com/show_bug.cgi?id=1973418

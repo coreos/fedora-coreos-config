@@ -8,7 +8,7 @@
 ##   distros: fcos
 ##   # Toolbox container is currently available only for x86_64 and aarch64 in Fedora
 ##   architectures: x86_64 aarch64
-##   description: Make sure that basic toolbox functionality works (creating, 
+##   description: Make sure that basic toolbox functionality works (creating,
 ##     running commands, and removing).
 
 # Important note: Commands are run indirectly via calls to `machinectl shell`

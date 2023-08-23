@@ -11,7 +11,7 @@
 ##   timeoutMin: 15
 ##   # Trigger automatic XFS reprovisioning
 ##   minDisk: 100
-##   description: Verify the root reprovision with XFS and TPM 
+##   description: Verify the root reprovision with XFS and TPM
 ##     on large disk triggers autosaved.
 
 set -xeuo pipefail

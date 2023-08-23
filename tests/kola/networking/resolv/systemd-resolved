@@ -4,7 +4,7 @@
 ##  # RHCOS
 ##   distros:  fcos
 ##   exclusive: false
-##   description: Verify systemd-resolved and the stub listener 
+##   description: Verify systemd-resolved and the stub listener
 ##     should be enabled by default.
 
 set -xeuo pipefail

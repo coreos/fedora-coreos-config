@@ -5,7 +5,7 @@
 ##   exclusive: false
 ##   # This test pulls a container image from the network.
 ##   tags: "needs-internet platform-independent"
-##   description: Verify that tmpfs mounts inside a container 
+##   description: Verify that tmpfs mounts inside a container
 ##     have the `container_file_t` label.
 
 # See https://github.com/coreos/fedora-coreos-tracker/issues/1366

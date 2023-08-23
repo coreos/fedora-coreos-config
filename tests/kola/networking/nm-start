@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-##   description: Verify kola on QEMU shouldn't bring up networking in the 
+##   description: Verify kola on QEMU shouldn't bring up networking in the
 ##     initrd by default, and on AWS we did bring up networking in the initrd.
 
 # See https://github.com/coreos/fedora-coreos-config/pull/426

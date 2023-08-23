@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   platforms: qemu
-##   description: Verify default system configuration are both on first and 
+##   description: Verify default system configuration are both on first and
 ##     subsequent boots.
 
 set -xeuo pipefail
