@@ -128,3 +128,5 @@ aws s3 rb s3://$NAME-infra
 NOTE: The instance's user data cannot be modified without stopping the instance.
 If you need to have secrets in your ignition configuration you should store it into a s3 bucket and have a minimal configuration in user-data.
 Make sure to clear the s3 bucket when the first boot is completed.
+
+See the https://coreos.github.io/ignition/operator-notes/#secrets[ignition documentation] for more advice on secret management.
