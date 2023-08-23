@@ -4,7 +4,7 @@
 ##   distros: fcos
 ##   # This test conflicts with swap/zram-default so we cannot set this to non-exclusive
 ##   exclusive: true
-##   description: Verify that swap on zram devices can be set up using the 
+##   description: Verify that swap on zram devices can be set up using the
 ##     zram-generator as defined.
 
 # See docs at https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-configure-swaponzram/

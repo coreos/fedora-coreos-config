@@ -41,14 +41,14 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
     ;;
   rebooted)
     # check SELinux is in permissive mode
-    enforce=$(getenforce)  
+    enforce=$(getenforce)
     if [ "${enforce}" != "Permissive" ]; then
       fatal "Error: Expected SELinux Permissive, found ${enforce}"
     fi
     ok "SELinux is Permissive"
     ok "Second boot"
     ;;
-  *) 
+  *)
     fatal "unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}"
     ;;
 esac

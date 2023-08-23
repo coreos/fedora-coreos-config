@@ -35,7 +35,7 @@ case ${arch} in
     device=$(realpath /dev/disk/by-partlabel/PowerPC-PReP-boot)
     # sync grub2-install parameter according to image build script
     # https://github.com/coreos/coreos-assembler/blob/main/src/create_disk.sh
-    grub_install_args="--no-nvram"   
+    grub_install_args="--no-nvram"
     ;;
 
   *)

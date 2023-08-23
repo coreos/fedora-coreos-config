@@ -8,7 +8,7 @@
 ##   # different firmwares (BIOS vs UEFI) the NIC names are different.
 ##   # See https://github.com/coreos/fedora-coreos-tracker/issues/1060
 ##   appendKernelArgs: net.ifnames=0
-##   description: Verify that configure MTU on a VLAN subinterface for 
+##   description: Verify that configure MTU on a VLAN subinterface for
 ##     the bond via Ignition works.
 #
 # Set MTU on a VLAN subinterface for the bond using Ignition config and check

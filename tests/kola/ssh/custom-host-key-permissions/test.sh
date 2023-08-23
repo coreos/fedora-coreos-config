@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   tags: platform-independent
-##   description: Verify that sshd still works with a custom 
+##   description: Verify that sshd still works with a custom
 ##     host key with mode 640 and group ssh_keys.
 
 # See

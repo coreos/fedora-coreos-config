@@ -9,7 +9,7 @@
 ##   # different firmwares (BIOS vs UEFI) the NIC names are different.
 ##   # See https://github.com/coreos/fedora-coreos-tracker/issues/1060
 ##   appendKernelArgs: "bond=bond0:eth1,eth2:mode=active-backup,miimon=100:9000 ip=10.10.10.10::10.10.10.1:255.255.255.0:staticvlanbond:bond0.100:none:9000 vlan=bond0.100:bond0 net.ifnames=0"
-##   description: Verify that configuring MTU on a VLAN subinterface 
+##   description: Verify that configuring MTU on a VLAN subinterface
 ##     for the bond via kernel arguements works.
 
 # Configuring MTU on a VLAN subinterface for the bond,

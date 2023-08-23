@@ -3,7 +3,7 @@
 ##   # additionalDisks is only supported on QEMU
 ##   platforms: qemu
 ##   additionalDisks: ["5G:mpath"]
-##   description: Verify udev rules /dev/disk/by-id/scsi-* symlinks exist 
+##   description: Verify udev rules /dev/disk/by-id/scsi-* symlinks exist
 ##     in initramfs.
 
 # See https://bugzilla.redhat.com/show_bug.cgi?id=1990506

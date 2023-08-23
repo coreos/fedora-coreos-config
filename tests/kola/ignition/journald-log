@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-##   description: Verify that we send the journald log entry for a 
+##   description: Verify that we send the journald log entry for a
 ##     user-provided config.
 
 # See https://github.com/coreos/ignition/pull/958 for the MESSAGE_ID source.
