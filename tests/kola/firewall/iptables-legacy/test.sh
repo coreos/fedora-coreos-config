@@ -9,7 +9,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # Make sure we're on legacy iptables
 if ! iptables --version | grep legacy; then

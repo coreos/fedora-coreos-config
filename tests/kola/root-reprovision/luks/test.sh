@@ -14,7 +14,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # check that we didn't run automatic XFS reprovisioning
 if [ -z "${AUTOPKGTEST_REBOOT_MARK:-}" ]; then

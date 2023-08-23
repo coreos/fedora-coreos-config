@@ -19,7 +19,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # Try five times to create the toolbox to avoid Fedora registry infra flakes
 for i in $(seq 1 5); do

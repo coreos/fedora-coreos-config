@@ -10,7 +10,8 @@
 
 set -eux -o pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # This test will attempt to test an upgrade from a given starting
 # point (assumed by the caller passing in a specific

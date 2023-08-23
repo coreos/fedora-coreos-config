@@ -10,7 +10,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # make sure the presets worked and the instantiated unit is enabled
 if [ "$(systemctl is-enabled touch@foo.service)" != 'enabled' ]; then
