@@ -14,7 +14,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if [ ! -f /run/ignition-ostree-autosaved-xfs.stamp ]; then
     fatal "expected autosaved XFS"

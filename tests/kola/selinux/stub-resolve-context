@@ -13,7 +13,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 context=$(stat --format "%C" /run/systemd/resolve/stub-resolv.conf)
 if [ "$context" != "system_u:object_r:net_conf_t:s0" ]; then

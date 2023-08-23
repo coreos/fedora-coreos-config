@@ -31,9 +31,11 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 # Boston, MA 02111-1307, USA.
 
-set -euo pipefail
-. $KOLA_EXT_DATA/commonlib.sh
-set -x
+set -euxo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
 cd $(mktemp -d)
 
 # TODO: It'd be much better to test this via a registry

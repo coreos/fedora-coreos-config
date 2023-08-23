@@ -9,7 +9,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 for file_name in /etc/system-release-cpe /etc/system-release /etc/redhat-release /etc/os-release
 do

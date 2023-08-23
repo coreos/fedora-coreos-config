@@ -12,7 +12,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 context=$(podman run --rm --privileged registry.fedoraproject.org/fedora:38 \
             bash -c "mount -t tmpfs tmpfs /mnt/ && stat --format '%C' /mnt/")

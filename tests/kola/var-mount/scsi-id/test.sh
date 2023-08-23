@@ -10,7 +10,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 fstype=$(findmnt -nvr /var -o FSTYPE)
 if [ $fstype != xfs ]; then

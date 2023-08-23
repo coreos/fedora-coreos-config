@@ -6,7 +6,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 bin_ctx=$(stat -c %C /usr/sbin)
 usrlocal_sbin_ctx=$(stat -c %C /var/usrlocal/sbin)

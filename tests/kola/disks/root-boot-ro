@@ -5,7 +5,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 for part in /sysroot /boot; do
     if ! findmnt -n -o options ${part} | grep -q "ro,"; then

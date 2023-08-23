@@ -11,7 +11,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if ! grep -q 'zram0' /proc/swaps; then
     fatal "expected zram0 to be set up"

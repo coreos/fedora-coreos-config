@@ -15,7 +15,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 srcdev=$(findmnt -nvr / -o SOURCE)
 [[ ${srcdev} == $(realpath /dev/md/foobar) ]]

@@ -9,7 +9,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if [ "$( stat -c %C /etc/kubernetes/envfile)" != "system_u:object_r:kubernetes_file_t:s0" ]; then
     fatal "/etc/kubernetes/envfile is labeled incorrectly"
