@@ -46,6 +46,11 @@ conditional-include:
     # Modularity is going away in F39+ so we'll only include
     # the fedora-repos-modular package in <39.
     include: fedora-modularity.yaml
+  - if: releasever >= 39
+    # https://fedoraproject.org/wiki/Changes/EnableFwupdRefreshByDefault
+    # Merge with overlay.d/15fcos/usr/lib/systemd/system-preset/45-fcos.preset
+    # once Fedora 39 is released to all streams
+    include: enable-fwupd-refresh-timer.yaml
 
 ostree-layers:
   - overlay/15fcos
