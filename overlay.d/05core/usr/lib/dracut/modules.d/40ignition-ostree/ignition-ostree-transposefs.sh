@@ -139,17 +139,24 @@ should_autosave_rootfs() {
         return
     fi
     local agcount
+    # This runs xfs_info on the unmounted filesystem, because mounting an
+    # XFS filesystem that has grown an excessive number of allocation groups
+    # can be very slow.
     eval $(xfs_info "${root_part}" | grep -o 'agcount=[0-9]*')
-    # Semi-arbitrarily chosen: this is roughly ~64G currently (based on initial
-    # ag sizing at build time) which seems like a good rootfs size at which to
-    # discriminate between "throwaway/short-lived systems" and "long-running
-    # workload systems". It's not like XFS performance is way worse at 128.
-    if [ "$agcount" -lt 128 ]; then
-        echo "Filesystem agcount is $agcount; skipping" >&2
+    # This is roughly ~700GiB currently (based on initial ag sizing at build time)
+    # which ensures we grow only on "large" root filesystems.
+    # Specifically for e.g. OpenShift, this ensures we don't reprovision on default
+    # worker node root filesystems.
+    local threshold
+    threshold=400
+    if [ "$agcount" -lt "${threshold}" ]; then
+        echo "autosave-xfs: ${root_part} agcount=$agcount is lower than threshold=${threshold}" >&2
         echo 0
         return
+    else
+        echo "autosave-xfs: ${root_part} agcount=$agcount meets threshold=${threshold}" >&2
+        echo 1
     fi
-    echo 1
 }
 
 ensure_zram_dev() {
