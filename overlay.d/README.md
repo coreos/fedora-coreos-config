@@ -42,6 +42,15 @@ Things that are more closely "Fedora CoreOS":
 Disable Zincati on non-production streams:
 https://github.com/coreos/fedora-coreos-tracker/issues/163
 
+18fwupd-refresh-timer
+---------------------
+
+Enable fwupd-refresh.timer on Fedora 39:
+https://fedoraproject.org/wiki/Changes/EnableFwupdRefreshByDefault
+
+Move to overlay.d/15fcos/usr/lib/systemd/system-preset/45-fcos.preset once
+Fedora 39 lands in all streams.
+
 20platform-chrony
 -----------------
 
