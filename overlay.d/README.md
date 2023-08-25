@@ -79,3 +79,17 @@ bits to include the rules in the initramfs too.
 [1] https://github.com/coreos/fedora-coreos-tracker/issues/1383
 [2] https://github.com/Azure/WALinuxAgent/pull/1622
 [3] https://src.fedoraproject.org/rpms/WALinuxAgent/pull-request/4
+
+30lvmdevices
+-------------------
+
+Populate an lvmdevices(8) file to limit LVM from autoactivating all
+devices it sees in a system. By default systems will get a "blank"
+configuration file with a comment in it explaining what it is used
+for. There is also a one-time "populate" service that will run and
+add any devices it sees into the devices file. This will serve to
+import existing devices on upgrading systems or new systems with
+pre-existing LVM devices attached. See the tracker issue [1] for more
+information.
+
+[1] https://github.com/coreos/fedora-coreos-tracker/issues/1517
