@@ -1,0 +1,46 @@
+#!/bin/bash
+set -euo pipefail
+
+# This script will detect any LVM devices and add them to the lvmdevices
+# file, which will force this host to only consider those devices in
+# the future. This script should be run once to do the population and
+# should not need to be run again. See
+# https://github.com/coreos/fedora-coreos-tracker/issues/1517
+
+LVMDEVICESFILENAME="system.devices"
+LVMDEVICESFILE="/etc/lvm/devices/${LVMDEVICESFILENAME}"
+
+# If the devices file doesn't exist that is a bit odd because we
+# shipped it in the same update this migration script runs but let's
+# just bail out. Someone could have deleted the lvmdevices file and
+# then later accidentally run the migration script again.
+if [ ! -f $LVMDEVICESFILE ]; then
+    echo "$LVMDEVICESFILE does not exist. Exiting."
+    exit 0
+fi
+
+# If the file exists and the file is different than what was shipped
+# then we exit early. In this case the system likely already had an
+# lvmdevices file defined already.
+if ! diff -u "/usr/${LVMDEVICESFILE}" "${LVMDEVICESFILE}"; then
+    echo "Detected modified $LVMDEVICESFILE file. Exiting."
+    exit 0
+fi
+
+# Detect all existing PVs using `pvs` with a blank devicesfile
+# setting, which will un-limit the search.
+PVS=$(pvs --devicesfile="" --noheadings -o pv_name)
+
+if [ -z "$PVS" ]; then
+    echo "No LVM devices detected. Exiting."
+    exit 0
+fi
+
+echo "Populating lvmdevices file with detected devices."
+for pv in $(pvs --devicesfile="" --noheadings -o pv_name); do
+    echo "Adding ${pv} to lvmdevices file $LVMDEVICESFILE"
+    lvmdevices --journal output --adddev "$pv" --devicesfile "$LVMDEVICESFILENAME"
+done
+
+echo "Activating lvmdevices after devices file population"
+pvscan --cache --activate ay

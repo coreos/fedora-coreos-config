@@ -1,0 +1,65 @@
+#!/bin/bash
+## kola:
+##   description: Verify LVM devices file handling works as expected.
+##                This test is meant to cover coreos-populate-lvmdevices.service.
+##   # additionalDisks is only supported on qemu.
+##   platforms: qemu
+##   # A few extra disks to set up LVM on.
+##   additionalDisks: ["1G", "2G"]
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+LVMDEVICESFILENAME="system.devices"
+LVMDEVICESFILE="/etc/lvm/devices/${LVMDEVICESFILENAME}"
+
+# Check that coreos-populate-lvmdevices did run
+if [ ! -e /var/lib/coreos-populate-lvmdevices.stamp ]; then
+  fatal "coreos-populate-lvmdevices didn't run"
+fi
+
+case "${AUTOPKGTEST_REBOOT_MARK:-}" in
+  "")
+      # Verify the lvmdevices file by default matches what was shipped.
+      if ! diff -u "/usr/${LVMDEVICESFILE}" "${LVMDEVICESFILE}"; then
+          fatal "Detected modified $LVMDEVICESFILE file."
+      fi
+
+      # Set up LVM on the two disks and set up a vg/lv/fs/mount on one
+      # of them. Specify a blank devicesfile so the *create commands
+      # won't touch our devices file.
+      pvcreate --devicesfile="" /dev/vda /dev/vdb
+      vgcreate --devicesfile="" vg1 /dev/vda
+      lvcreate --devicesfile="" vg1 --name=lv1 -l 100%FREE
+      mkfs.ext4 /dev/vg1/lv1
+      echo "/dev/vg1/lv1 /srv/ ext4 defaults 0 2" >> /etc/fstab
+
+      # Remove the stamp file to force the "migration" to happen on
+      # next boot.
+      rm -f /var/lib/coreos-populate-lvmdevices.stamp
+
+      # reboot to simulate running migration for first time on a
+      # system with pre-existing LVM devices
+      /tmp/autopkgtest-reboot rebooted
+      ;;
+
+  rebooted)
+      # Check that the devices are in the devices file.
+      grep -q 'DEVNAME=/dev/vda' "$LVMDEVICESFILE" || fatal "Missing vda in devices file"
+      grep -q 'DEVNAME=/dev/vdb' "$LVMDEVICESFILE" || fatal "Missing vdb in devices file"
+
+      # Check that we can see the PVs
+      if [ "$(pvs --noheadings | wc -l)" != '2' ]; then
+        fatal "Incorrect number of LVM PVs detected"
+      fi
+
+      # Check that /srv/ is a mountpoint
+      if ! mountpoint /srv; then
+        fatal "/srv/ is not mounted, but it should be"
+      fi
+
+      ok "LVM Devices file populated correctly"
+      ;;
+  *) fatal "unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}";;
+esac
