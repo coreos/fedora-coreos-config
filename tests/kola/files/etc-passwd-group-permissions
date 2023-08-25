@@ -5,7 +5,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 for f in '/etc/passwd' '/etc/group'; do
     if [[ $(stat --format="%a %u %g" "${f}") != "644 0 0" ]]; then

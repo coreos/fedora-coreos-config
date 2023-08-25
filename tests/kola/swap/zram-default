@@ -11,7 +11,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if [ -e /dev/zram0 ]; then
     fatal "zram0 swap device set up on default install"

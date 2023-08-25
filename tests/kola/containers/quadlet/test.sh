@@ -6,7 +6,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if [[ "$(podman volume inspect systemd-test | jq -r '.[0].Labels."org.test.Key"')" != "quadlet-test-volume" ]]; then
     fatal "Volume not correctly created"

@@ -11,12 +11,13 @@
 ##   timeoutMin: 15
 ##   # Trigger automatic XFS reprovisioning
 ##   minDisk: 100
-##   description: Verify the root reprovision with XFS and TPM 
+##   description: Verify the root reprovision with XFS and TPM
 ##     on large disk triggers autosaved.
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # check that we ran automatic XFS reprovisioning
 if [ -z "${AUTOPKGTEST_REBOOT_MARK:-}" ]; then
