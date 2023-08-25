@@ -9,7 +9,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # make sure the system is on cgroups v2
 has_cgroup_karg=1

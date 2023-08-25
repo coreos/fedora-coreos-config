@@ -9,12 +9,13 @@
 ##   # This test includes a lot of disk I/O and needs a higher
 ##   # timeout value than the default.
 ##   timeoutMin: 15
-##   description: Verify the root reprovision with XFS 
+##   description: Verify the root reprovision with XFS
 ##     on large disk triggers autosaved.
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if [ ! -f /run/ignition-ostree-autosaved-xfs.stamp ]; then
     fatal "expected autosaved XFS"

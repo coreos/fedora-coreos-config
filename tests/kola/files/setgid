@@ -1,12 +1,13 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-##   description: Verify that there are no file/directory with 
+##   description: Verify that there are no file/directory with
 ##     SetGID bit set, except the known files and directories.
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # List of known files and directories with SetGID bit set
 # Drop '/usr/libexec/openssh/ssh-keysign' after
