@@ -3,12 +3,13 @@
 ##   exclusive: false
 ##   description: Verify that kdump didn't start by default.
 
-# It's either disabled, or enabled but conditional on crashkernel= karg, 
+# It's either disabled, or enabled but conditional on crashkernel= karg,
 # which we don't bake.
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if ! systemctl show -p ActiveState kdump.service | grep -q ActiveState=inactive; then
     fatal "Unit kdump.service shouldn't be active"

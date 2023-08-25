@@ -9,7 +9,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # Make sure the systemd unit (dnsmasq) is unmasked and enabled
 if [ "$(systemctl is-enabled dnsmasq.service)" != 'enabled' ]; then

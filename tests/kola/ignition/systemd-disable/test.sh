@@ -11,7 +11,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if [ "$(systemctl is-enabled zincati.service)" != 'disabled' ]; then
     fatal "zincati.service systemd unit should be disabled"

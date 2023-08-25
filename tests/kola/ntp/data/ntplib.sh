@@ -1,6 +1,7 @@
 # This is a library created for our NTP tests
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 ntp_test_setup() {
     ntp_host_ip=$1

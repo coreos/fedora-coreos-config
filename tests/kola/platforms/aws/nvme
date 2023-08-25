@@ -35,7 +35,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 nvme_info=$(nvme list-subsys -o json || true)
 has_nvme=$(jq -r ".[].Subsystems[].Paths[] | select(.Name == \"nvme0\").Name" <<< "$nvme_info")
