@@ -67,7 +67,7 @@ such as `azure`, `aws`, `gcp`. The chrony config for these NTP servers
 should override other chrony configuration (e.g. DHCP-provided)
 configuration.
 
-25-azure-udev-rules
+25azure-udev-rules
 -------------------
 
 Add udev rules for SRIOV networking on Azure. The udev rules are also
