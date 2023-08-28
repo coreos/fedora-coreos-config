@@ -9,7 +9,7 @@ set -xeuo pipefail
 . $KOLA_EXT_DATA/commonlib.sh
 
 for bashfile in .bashrc .bash_profile .bash_logout
-do 
+do
     if ! test -f "/var/roothome/${bashfile}"; then
         fatal "Error: could not find /var/roothome/${bashfile}"
     fi
