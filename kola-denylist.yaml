@@ -83,3 +83,9 @@
     - rawhide
     - branched
     - next-devel
+- pattern: coreos.ignition.ssh.key
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1553
+  snooze: 2023-09-04
+  warn: true
+  platforms:
+    - azure
