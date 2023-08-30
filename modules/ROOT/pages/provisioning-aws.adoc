@@ -62,7 +62,7 @@ ssh core@<ip address>
 
 == Remote Ignition configuration
 
-As user-data is limited to 16 KB, you may need to use an external source for your ignition configuration.
+As user-data is limited to 16 KB, you may need to use an external source for your Ignition configuration.
 A common solution is to upload the config to a S3 bucket, as the following steps show:
 
 [source, bash]
@@ -73,7 +73,7 @@ aws s3 mb s3://$NAME-infra
 ----
 
 [source, bash]
-.Upload the ignition file
+.Upload the Ignition file
 ----
 NAME='instance1'
 CONFIG='/path/to/config.ign' # path to your Ignition config

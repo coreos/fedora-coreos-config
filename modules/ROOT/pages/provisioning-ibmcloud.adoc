@@ -93,7 +93,7 @@ ibmcloud is images --visibility private
 
 Now that you have an image created in your account you can launch a VM instance. You'll have to specify several pieces of information in the command. Embedded in the example below are tips for how to grab that information before launching an instance.
 
-You'll also need the Ignition config you created earlier. Here it is represented in the example command as `@example.ign`, which indicates a file in the current directory named `example.ign`. The @ is required before the path to the ignition file.
+You'll also need the Ignition config you created earlier. Here it is represented in the example command as `@example.ign`, which indicates a file in the current directory named `example.ign`. The @ is required before the path to the Ignition file.
 
 .Launching a VM instance
 [source, bash]
