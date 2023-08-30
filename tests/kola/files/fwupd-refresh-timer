@@ -3,6 +3,8 @@
 ##   exclusive: false
 ##   description: Verify fwupd-refresh.timer is enabled.
 ##   tags: "platform-independent"
+##   # This test only runs on FCOS as we only enable the timer there
+##   distros: fcos
 
 set -xeuo pipefail
 
