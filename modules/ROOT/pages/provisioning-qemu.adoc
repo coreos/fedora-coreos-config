@@ -14,7 +14,7 @@ TIP: If running with SELinux enabled, make sure your OS image and Ignition file 
 
 == Booting a new VM on QEMU
 
-This section shows how to boot a new VM on QEMU. Based on the platform, The Ignition file is passed to the VM, which sets the ignition key in the QEMU firmware configuration device.
+This section shows how to boot a new VM on QEMU. Based on the platform, The Ignition file is passed to the VM, which sets the `opt/com.coreos/config` key in the QEMU firmware configuration device.
 
 You can use `-snapshot` to make `qemu-kvm` allocate temporary storage for the VM, or `qemu-img create` to first create a layered qcow2.
 
