@@ -60,7 +60,7 @@ You now should be able to SSH into the instance using the associated IP address.
 ssh core@<ip address>
 ----
 
-== Remote ignition configuration
+== Remote Ignition configuration
 
 As user-data is limited to 16 KB, you may need to use an external source for your ignition configuration.
 A common solution is to upload the config to a S3 bucket, as the following steps show:
@@ -107,9 +107,9 @@ See xref:#_configuration_cleanup[].
 
 == Configuration cleanup
 
-If you need to have secrets in your ignition configuration you should store it into a S3 bucket and have a minimal configuration in user-data.
+If you need to have secrets in your Ignition configuration you should store it into a S3 bucket and have a minimal configuration in user-data.
 Once the instance has completed the first boot, clear the S3 bucket as any process or container running on the instance could access it.
-See the https://coreos.github.io/ignition/operator-notes/#secrets[ignition documentation] for more advice on secret management.
+See the https://coreos.github.io/ignition/operator-notes/#secrets[Ignition documentation] for more advice on secret management.
 
 [source,bash]
 .Deleting the Ignition configuration from the s3 bucket
