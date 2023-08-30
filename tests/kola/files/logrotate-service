@@ -2,6 +2,7 @@
 ## kola:
 ##   exclusive: false
 ##   description: Verify logrotate and logrotate.timer services are enabled.
+##   tags: "platform-independent"
 
 set -xeuo pipefail
 
