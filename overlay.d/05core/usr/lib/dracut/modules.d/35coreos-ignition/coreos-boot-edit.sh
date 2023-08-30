@@ -3,7 +3,7 @@ set -euo pipefail
 
 # For a description of how this is used, see `coreos-boot-edit.service`.
 
-cmdline=( $(</proc/cmdline) )
+IFS=" " read -r -a cmdline <<< "$(</proc/cmdline)"
 karg() {
     local name="$1" value="${2:-}"
     for arg in "${cmdline[@]}"; do

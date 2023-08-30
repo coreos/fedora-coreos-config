@@ -8,7 +8,7 @@ UNIT_DIR="${1:-/tmp}"
 
 have_karg() {
     local arg="$1"
-    local cmdline=( $(</proc/cmdline) )
+    IFS=" " read -r -a cmdline <<< "$(</proc/cmdline)"
     local i
     for i in "${cmdline[@]}"; do
         if [[ "$i" =~ "$arg=" ]]; then
@@ -20,7 +20,7 @@ have_karg() {
 
 karg() {
     local name="$1" value="${2:-}"
-    local cmdline=( $(</proc/cmdline) )
+    IFS=" " read -r -a cmdline <<< "$(</proc/cmdline)"
     for arg in "${cmdline[@]}"; do
         if [[ "${arg%%=*}" == "${name}" ]]; then
             value="${arg#*=}"
