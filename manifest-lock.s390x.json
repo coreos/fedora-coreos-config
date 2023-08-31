@@ -336,6 +336,9 @@
     "fuse3-libs": {
       "evra": "3.14.1-1.fc38.s390x"
     },
+    "fwupd": {
+      "evra": "1.9.4-1.fc38.s390x"
+    },
     "gawk": {
       "evra": "5.1.1-5.fc38.s390x"
     },
@@ -510,6 +513,9 @@
     "libassuan": {
       "evra": "2.5.6-1.fc38.s390x"
     },
+    "libatomic": {
+      "evra": "13.2.1-1.fc38.s390x"
+    },
     "libattr": {
       "evra": "2.5.1-6.fc38.s390x"
     },
@@ -570,6 +576,9 @@
     "libfido2": {
       "evra": "1.12.0-3.fc38.s390x"
     },
+    "libgcab1": {
+      "evra": "1.5-2.fc38.s390x"
+    },
     "libgcc": {
       "evra": "13.2.1-1.fc38.s390x"
     },
@@ -578,6 +587,12 @@
     },
     "libgpg-error": {
       "evra": "1.47-1.fc38.s390x"
+    },
+    "libgudev": {
+      "evra": "237-4.fc38.s390x"
+    },
+    "libgusb": {
+      "evra": "0.4.5-1.fc38.s390x"
     },
     "libibverbs": {
       "evra": "44.0-3.fc38.s390x"
@@ -593,6 +608,9 @@
     },
     "libipa_hbac": {
       "evra": "2.9.1-1.fc38.s390x"
+    },
+    "libjcat": {
+      "evra": "0.1.13-1.fc38.s390x"
     },
     "libjose": {
       "evra": "11-7.fc38.s390x"
@@ -759,6 +777,9 @@
     "libunistring1.0": {
       "evra": "1.0-1.fc38.s390x"
     },
+    "libusb1": {
+      "evra": "1.0.26-2.fc38.s390x"
+    },
     "libuser": {
       "evra": "0.64-2.fc38.s390x"
     },
@@ -782,6 +803,9 @@
     },
     "libxml2": {
       "evra": "2.10.4-1.fc38.s390x"
+    },
+    "libxmlb": {
+      "evra": "0.3.12-1.fc38.s390x"
     },
     "libyaml": {
       "evra": "0.2.5-9.fc38.s390x"
@@ -1056,6 +1080,9 @@
     "shadow-utils-subid": {
       "evra": "2:4.13-6.fc38.s390x"
     },
+    "shared-mime-info": {
+      "evra": "2.2-3.fc38.s390x"
+    },
     "skopeo": {
       "evra": "1:1.13.2-1.fc38.s390x"
     },
@@ -1205,16 +1232,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-08-29T00:00:00Z",
+    "generated": "2023-08-30T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:36:40Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-08-26T22:32:48Z"
+        "generated": "2023-08-29T22:33:44Z"
       },
       "fedora-updates": {
-        "generated": "2023-08-29T01:26:53Z"
+        "generated": "2023-08-30T01:24:10Z"
       }
     }
   }
