@@ -18,20 +18,22 @@ The image for each stream can directly be referenced from the official registry:
 - `quay.io/fedora/fedora-coreos-kubevirt:testing`
 - `quay.io/fedora/fedora-coreos-kubevirt:next`
 
-== Launching a virtual machine
+== Creating an Ignition config secret
 
-Given the `quay.io/fedora/fedora-coreos-kubevirt` images you can create a VM definition and combine that with an Ignition config to launch a machine.
-
-In the example below, the Ignition config stored in local file `example.ign` is exposed to the VM via a Kubernetes Secret.
-Learn about various ways to expose userdata to VMs in the https://kubevirt.io/user-guide/virtual_machines/startup_scripts/#startup-scripts[KubeVirt user guide].
-
-NOTE: If the user prefers, they can use `oc` instead of `kubectl` in the following commands.
+There are various ways to expose userdata to Kubevirt VMs that are covered in the https://kubevirt.io/user-guide/virtual_machines/startup_scripts/#startup-scripts[KubeVirt user guide]. In this example we'll use the Ignition config stored in local file `example.ign` to create a secret named `ignition-payload`. We'll then use this secret when defining our virtual machine in the examples below.
 
 .Creating the secret
 [source, bash]
 ----
 kubectl create secret generic ignition-payload --from-file=userdata=example.ign
 ----
+
+NOTE: If the user prefers, they can use `oc` instead of `kubectl` in the commands throughout this guide.
+
+
+== Launching a virtual machine
+
+Given the `quay.io/fedora/fedora-coreos-kubevirt` images you can create a VM definition and combine that with the Ignition secret reference to launch a virtual machine.
 
 .Launching a VM instance referencing the secret
 [source, bash]
