@@ -18,12 +18,12 @@ The image for each stream can directly be referenced from the official registry:
 - `quay.io/fedora/fedora-coreos-kubevirt:testing`
 - `quay.io/fedora/fedora-coreos-kubevirt:next`
 
-== Launching a VM instance
+== Launching a virtual machine
 
-Given the `quay.io/fedora/fedora-coreos-kubevirt` images you can create a VMI defnition and combine that with an Ignition config to launch a machine.
+Given the `quay.io/fedora/fedora-coreos-kubevirt` images you can create a VM definition and combine that with an Ignition config to launch a machine.
 
-In the example below, the Ignition config stored in local file `example.ign` is exposed to the VMI via a Kubernetes Secret.
-Learn about various ways to expose userdata to VMIs in the https://kubevirt.io/user-guide/virtual_machines/startup_scripts/#startup-scripts[KubeVirt user guide].
+In the example below, the Ignition config stored in local file `example.ign` is exposed to the VM via a Kubernetes Secret.
+Learn about various ways to expose userdata to VMs in the https://kubevirt.io/user-guide/virtual_machines/startup_scripts/#startup-scripts[KubeVirt user guide].
 
 NOTE: If the user prefers, they can use `oc` instead of `kubectl` in the following commands.
 
@@ -37,36 +37,40 @@ kubectl create secret generic ignition-payload --from-file=userdata=example.ign
 [source, bash]
 ----
 STREAM="stable" # or "testing" or "next"
-cat <<END > vmi.yaml
+cat <<END > vm.yaml
 ---
 apiVersion: kubevirt.io/v1
-kind: VirtualMachineInstance
+kind: VirtualMachine
 metadata:
   name: my-fcos
 spec:
-  domain:
-    devices:
-      disks:
-      - disk:
-          bus: virtio
-        name: containerdisk
-      - disk:
-          bus: virtio
-        name: cloudinitdisk
-      rng: {}
-    resources:
-      requests:
-        memory: 2048M
-  volumes:
-  - containerDisk:
-      image: quay.io/fedora/fedora-coreos-kubevirt:${STREAM}
-    name: containerdisk
-  - name: cloudinitdisk
-    cloudInitConfigDrive:
-      secretRef:
-        name: ignition-payload
+  runStrategy: Always
+  template:
+    spec:
+      domain:
+        devices:
+          disks:
+          - name: containerdisk
+            disk:
+              bus: virtio
+          - name: cloudinitdisk
+            disk:
+              bus: virtio
+          rng: {}
+        resources:
+          requests:
+            memory: 2048M
+      volumes:
+      - name: containerdisk
+        containerDisk:
+          image: quay.io/fedora/fedora-coreos-kubevirt:${STREAM}
+          imagePullPolicy: Always
+      - name: cloudinitdisk
+        cloudInitConfigDrive:
+          secretRef:
+            name: ignition-payload
 END
-kubectl create -f vmi.yaml
+kubectl create -f vm.yaml
 ----
 
 Now you should be able to SSH into the instance. If you didn't change the defaults, the
