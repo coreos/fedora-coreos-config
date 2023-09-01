@@ -84,6 +84,74 @@ username is `core`.
 virtctl ssh core@my-fcos
 ----
 
+== Launching a virtual machine with persistent storage
+
+The above example will give you a VM that will lose any changes made to it if it is stopped and started again. You can instruct the cluster to import a containerdisk into a Physical Volume when provisioning in order to have virtual machine will have persistence of the OS disk across stop/start operations.
+
+The positive to this approach is that the machine behaves much more like a traditional virtual machine. The drawback is that the cluster needs to offer Block PV storage and not all clusters may do that.
+
+NOTE: You may have to specify a `storageClassName` parameter in the `spec.dataVolumeTemplates.spec.storage` section of the config if your cluster doesn't offer a default. See the https://kubevirt.io/api-reference/v1.0.0/definitions.html#_v1beta1_storagespec[API docs].
+
+.Launching a VM with persistent storage
+[source, bash]
+----
+STREAM="stable" # or "testing" or "next"
+DISK=10
+cat <<END > vm.yaml
+---
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: my-fcos
+spec:
+  runStrategy: Always
+  dataVolumeTemplates:
+  - metadata:
+      name: fcos-os-disk-volume
+    spec:
+      source:
+        registry:
+          url:
+           docker://quay.io/fedora/fedora-coreos-kubevirt:${STREAM}
+      storage:
+        volumeMode: Block
+        resources:
+          requests:
+            storage: ${DISK}Gi
+        accessModes:
+          - ReadWriteOnce
+  template:
+    spec:
+      domain:
+        devices:
+          disks:
+          - name: fcos-os-disk
+            disk:
+              bus: virtio
+          - name: cloudinitdisk
+            disk:
+              bus: virtio
+            name: cloudinitdisk
+          rng: {}
+        resources:
+          requests:
+            memory: 2048M
+      volumes:
+      - name: fcos-os-disk
+        dataVolume:
+          name: fcos-os-disk-volume
+      - name: cloudinitdisk
+        cloudInitConfigDrive:
+          secretRef:
+            name: ignition-payload
+END
+kubectl create -f vm.yaml
+----
+
+NOTE: The data volume import into the PVC from the container registry may take some time. You can monitor the import by watching the logs of the `importer-fcos-os-disk-volume` pod.
+
+After the machine is up you can connect to it using `virtctl` as shown in the previous example.
+
 == Mirroring the image for use in private registries
 
 If a private registry in air-gapped installations is used, the image can be mirrored to that registry using https://github.com/containers/skopeo[`skopeo`].
