@@ -13,7 +13,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 hypervisor=$(curl http://169.254.169.254/2022-09-24/meta-data/system || true)
 if [ "${hypervisor}" != "xen" ]; then

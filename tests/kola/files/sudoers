@@ -1,14 +1,15 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-##   description: Verify the permissions and syntax of /etc/sudoers 
+##   description: Verify the permissions and syntax of /etc/sudoers
 ##     and /etc/sudoers.d/* are readable only for root.
 
 # See https://bugzilla.redhat.com/show_bug.cgi?id=1981979
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 visudo -c
 ok "sudoers files are valid"

@@ -1,7 +1,8 @@
 # This file is sourced by both `ext.config.root-reprovision.luks`
 # and `ext.config.root-reprovision.luks.autosave-xfs`.
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 srcdev=$(findmnt -nvr / -o SOURCE)
 [[ ${srcdev} == /dev/mapper/myluksdev ]]

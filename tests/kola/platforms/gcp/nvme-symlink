@@ -13,12 +13,13 @@
 # or `--tag confidential` is passed to `kola run`, also requires
 # `--gcp-machinetype n2d-standard-2 --gcp-confidential-vm`
 #
-# It will create confidential instance on GCP with 1 nvme persistent disk 
+# It will create confidential instance on GCP with 1 nvme persistent disk
 # and 1 local ssd disk, then check the new udev rules make effect.
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # Set global variable with NVME json info
 NVME_INFO=$(nvme list-subsys -o json)

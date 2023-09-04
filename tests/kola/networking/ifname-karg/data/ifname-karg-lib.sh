@@ -1,6 +1,7 @@
 # This is a library created for our ifname-karg tests
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # check IP for given NIC name
 check_ip() {

@@ -8,14 +8,15 @@
 ##   # This test reaches out to the internet and it could take more
 ##   # time to pull down the container.
 ##   timeoutMin: 3
-##   description: Verify that DNS in rootless podman containers can 
+##   description: Verify that DNS in rootless podman containers can
 ##     resolve external domains.
 
 # See https://github.com/coreos/fedora-coreos-tracker/issues/923
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 runascoreuserscript='
 #!/bin/bash

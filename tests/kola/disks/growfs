@@ -1,12 +1,13 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-##   description: Verify that the rootfs is automatically grown on first 
+##   description: Verify that the rootfs is automatically grown on first
 ##     boot by default and that the autosave-xfs logic didn't kick in.
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if [ ! -f /run/ignition-ostree-growfs.stamp ]; then
     fatal "rootfs was not grown on first boot"

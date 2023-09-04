@@ -1,0 +1,25 @@
+[Unit]
+Description=CoreOS Populate LVM Devices File
+Documentation=https://github.com/coreos/fedora-coreos-tracker/issues/1517
+# Only run this import once.
+ConditionPathExists=!/var/lib/coreos-populate-lvmdevices.stamp
+# Don't add default dependencies so we can run early enough to populate
+# the devices file before any LVM devices are used.
+DefaultDependencies=false
+# Since our ConditionPathExists file lives under /var/lib/ let's make
+# sure any filesystems/mounts that exist and are needed to access that
+# directory are set up.
+RequiresMountsFor=/var/lib
+# On OpenShift/Kubernetes we want to ensure we run before kubernetes
+# comes up where storage drivers may be initiated and present more LVM
+# devices to the system that we don't want to be considered.
+Before=kubelet.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/libexec/coreos-populate-lvmdevices
+ExecStartPost=touch /var/lib/coreos-populate-lvmdevices.stamp
+
+[Install]
+WantedBy=default.target
