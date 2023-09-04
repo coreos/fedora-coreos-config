@@ -14,7 +14,8 @@
 # - https://github.com/coreos/fedora-coreos-config/commit/2a5c2abc796ac645d705700bf445b50d4cda8f5f
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if ip link | grep -o -e " eth[0-9]:"; then
     fatal "detected eth* NIC naming on node"

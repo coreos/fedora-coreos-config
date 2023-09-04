@@ -1,0 +1,17 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   description: Verify /var/roothome/.bash* files exist.
+
+# See https://bugzilla.redhat.com/show_bug.cgi?id=1193590
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+for bashfile in .bashrc .bash_profile .bash_logout
+do
+    if ! test -f "/var/roothome/${bashfile}"; then
+        fatal "Error: could not find /var/roothome/${bashfile}"
+    fi
+done
+ok "have /var/roothome/.bash* files"
