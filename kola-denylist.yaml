@@ -15,29 +15,62 @@
     - ppc64le
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1430
-  # snooze: 2023-08-16 (disabled on promotion)
+  # snooze: 2023-08-31 (disabled on promotion)
   arches:
     - aarch64
-- pattern: ext.config.root-reprovision.*
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1489
-  # snooze: 2023-08-18 (disabled on promotion)
-  arches:
-    - ppc64le
+- pattern: ext.config.networking.nameserver
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  # snooze: 2023-08-28 (disabled on promotion)
   streams:
     - rawhide
-- pattern: ext.config.ntp.chrony.dhcp-propagation
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1508
-  # snooze: 2023-08-20 (disabled on promotion)
+    - branched
+    - next-devel
+- pattern: ext.config.networking.no-persist-ip
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  # snooze: 2023-08-28 (disabled on promotion)
   streams:
     - rawhide
-- pattern: ext.config.ntp.timesyncd.dhcp-propagation
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1508
-  # snooze: 2023-08-20 (disabled on promotion)
+    - branched
+    - next-devel
+- pattern: ext.config.networking.prefer-ignition-networking
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  # snooze: 2023-08-28 (disabled on promotion)
   streams:
     - rawhide
-- pattern: iso-offline-install-fromram.4k.uefi
-  tracker: https://github.com/coreos/fedora-coreos-config/pull/2560#issuecomment-1687073302
-- pattern: iso-offline-install-fromram.ppcfw
-  tracker: https://github.com/coreos/fedora-coreos-config/pull/2560#issuecomment-1687073302
-- pattern: iso-offline-install-fromram.uefi
-  tracker: https://github.com/coreos/fedora-coreos-config/pull/2560#issuecomment-1687073302
+    - branched
+    - next-devel
+- pattern: ext.config.networking.ifname-karg.everyboot-systemd-link-file
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  # snooze: 2023-08-28 (disabled on promotion)
+  streams:
+    - rawhide
+    - branched
+    - next-devel
+- pattern: ext.config.networking.force-persist-ip
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  # snooze: 2023-08-28 (disabled on promotion)
+  streams:
+    - rawhide
+    - branched
+    - next-devel
+- pattern: ext.config.networking.bridge-static-via-kargs
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  # snooze: 2023-08-28 (disabled on promotion)
+  streams:
+    - rawhide
+    - branched
+    - next-devel
+- pattern: ext.config.networking.ifname-karg.udev-rule-firstboot-propagation
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  # snooze: 2023-08-28 (disabled on promotion)
+  streams:
+    - rawhide
+    - branched
+    - next-devel
+- pattern: ext.config.networking.mtu-on-bond-kargs
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+  # snooze: 2023-08-28 (disabled on promotion)
+  streams:
+    - rawhide
+    - branched
+    - next-devel
