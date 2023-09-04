@@ -13,7 +13,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 required_initrd_files=(
     # Files from the 25azure-udev-rules overlay

@@ -2,7 +2,7 @@
 ## kola:
 ##   tags: "platform-independent"
 ##   exclusive: false
-##   description: Verify the default networking configurations match expected 
+##   description: Verify the default networking configurations match expected
 ##     results.
 #
 # Since we depend so much on the default networking configurations let's
@@ -13,7 +13,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # EXPECTED_INITRD_NETWORK_CFG2
 #   - used on older RHEL 8.4 release

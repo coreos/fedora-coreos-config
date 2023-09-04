@@ -1,0 +1,8 @@
+# LVM uses devices listed in this file.
+#
+# This is an empty lvmdevices(8) file placed here by the CoreOS overlays.
+# The existence of the file prevents LVM from auto-activating any LVM devices
+# that aren't explicitly allowlisted by being added to this file. Any newly
+# added PV/VG devices that get created via pvcreate/vgreate will have an entry
+# added here automatically by the tools. For more information on this see
+# https://github.com/coreos/fedora-coreos-tracker/issues/1517

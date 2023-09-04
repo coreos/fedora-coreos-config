@@ -9,7 +9,7 @@
 ##   # different firmwares (BIOS vs UEFI) the NIC names are different.
 ##   # See https://github.com/coreos/fedora-coreos-tracker/issues/1060
 ##   appendKernelArgs: "ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:eth1:none:8.8.8.8 net.ifnames=0"
-##   description: Verify that networking configuration is propagated 
+##   description: Verify that networking configuration is propagated
 ##     via Ignition by default.
 
 # Setup configuration for a single NIC with two different ways:
@@ -22,7 +22,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # Verify eth1 gets ip address via dhcp
 nic_name="eth1"

@@ -4,12 +4,13 @@
 ##  # RHCOS
 ##   distros:  fcos
 ##   exclusive: false
-##   description: Verify systemd-resolved and the stub listener 
+##   description: Verify systemd-resolved and the stub listener
 ##     should be enabled by default.
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if ! systemctl is-enabled systemd-resolved 1>/dev/null; then
     fatal "Unit systemd-resolved should be enabled"

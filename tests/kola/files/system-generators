@@ -5,7 +5,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 find /usr/lib/systemd/system-generators -type f | while read -r f; do
     mode=$(stat -c '%a' "${f}")

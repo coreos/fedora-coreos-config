@@ -10,13 +10,15 @@
 ##   # timeout value than the default.
 ##   timeoutMin: 15
 ##   # Trigger automatic XFS reprovisioning
-##   minDisk: 100
-##   description: Verify the root reprovision with XFS and TPM 
+##   minDisk: 1000
+##   description: Verify the root reprovision with XFS and TPM
 ##     on large disk triggers autosaved.
+##     This test is meant to cover ignition-ostree-transposefs-autosave-xfs.service
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # check that we ran automatic XFS reprovisioning
 if [ -z "${AUTOPKGTEST_REBOOT_MARK:-}" ]; then
@@ -26,8 +28,9 @@ if [ -z "${AUTOPKGTEST_REBOOT_MARK:-}" ]; then
     ok "autosaved XFS on large disk"
 
     eval $(xfs_info / | grep -o 'agcount=[0-9]*')
-    if [ "$agcount" -gt 4 ]; then
-        fatal "expected agcount of at most 4, got ${agcount}"
+    expected=4
+    if [ "$agcount" -gt "${expected}" ]; then
+        fatal "expected agcount of at most ${expected}, got ${agcount}"
     fi
     ok "low agcount on large disk"
 fi

@@ -42,6 +42,23 @@ Things that are more closely "Fedora CoreOS":
 Disable Zincati on non-production streams:
 https://github.com/coreos/fedora-coreos-tracker/issues/163
 
+17fedora-modularity
+-------------------
+
+Check for layered modularity RPMs to warn users of the retirement in Fedora 39
+via Console Login Helper Messages.
+
+Remove once Fedora 39 lands in all streams.
+
+18fwupd-refresh-timer
+---------------------
+
+Enable fwupd-refresh.timer on Fedora 39:
+https://fedoraproject.org/wiki/Changes/EnableFwupdRefreshByDefault
+
+Move to overlay.d/15fcos/usr/lib/systemd/system-preset/45-fcos.preset once
+Fedora 39 lands in all streams.
+
 20platform-chrony
 -----------------
 
@@ -50,7 +67,7 @@ such as `azure`, `aws`, `gcp`. The chrony config for these NTP servers
 should override other chrony configuration (e.g. DHCP-provided)
 configuration.
 
-25-azure-udev-rules
+25azure-udev-rules
 -------------------
 
 Add udev rules for SRIOV networking on Azure. The udev rules are also
@@ -62,3 +79,17 @@ bits to include the rules in the initramfs too.
 [1] https://github.com/coreos/fedora-coreos-tracker/issues/1383
 [2] https://github.com/Azure/WALinuxAgent/pull/1622
 [3] https://src.fedoraproject.org/rpms/WALinuxAgent/pull-request/4
+
+30lvmdevices
+-------------------
+
+Populate an lvmdevices(8) file to limit LVM from autoactivating all
+devices it sees in a system. By default systems will get a "blank"
+configuration file with a comment in it explaining what it is used
+for. There is also a one-time "populate" service that will run and
+add any devices it sees into the devices file. This will serve to
+import existing devices on upgrading systems or new systems with
+pre-existing LVM devices attached. See the tracker issue [1] for more
+information.
+
+[1] https://github.com/coreos/fedora-coreos-tracker/issues/1517

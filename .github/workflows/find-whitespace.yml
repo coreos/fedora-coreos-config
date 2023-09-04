@@ -1,0 +1,22 @@
+name: Find whitespace
+
+on:
+  pull_request:
+    branches: [testing-devel]
+
+permissions:
+  contents: read
+
+jobs:
+  find-whitespace:
+    name: Find whitespace
+    runs-on: ubuntu-latest
+    container: quay.io/coreos-assembler/fcos-buildroot:testing-devel
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      # https://github.com/actions/checkout/issues/760
+      - name: Mark git checkout as safe
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Look for whitespace at the end of line
+        run: ci/find-whitespace

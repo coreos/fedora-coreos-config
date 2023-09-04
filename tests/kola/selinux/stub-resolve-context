@@ -4,7 +4,7 @@
 ##   # RHCOS
 ##   distros:  fcos
 ##   exclusive: false
-##   description: Verify that the stub-resolv.conf file has the correct 
+##   description: Verify that the stub-resolv.conf file has the correct
 ##     selinux context.
 
 # See
@@ -13,7 +13,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 context=$(stat --format "%C" /run/systemd/resolve/stub-resolv.conf)
 if [ "$context" != "system_u:object_r:net_conf_t:s0" ]; then
