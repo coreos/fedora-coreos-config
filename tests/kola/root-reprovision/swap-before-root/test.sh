@@ -16,7 +16,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 swapstatus=$(systemctl is-active dev-disk-by\\x2dpartlabel-swap.swap)
 [[ ${swapstatus} == active ]]

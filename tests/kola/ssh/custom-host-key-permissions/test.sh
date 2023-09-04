@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   tags: platform-independent
-##   description: Verify that sshd still works with a custom 
+##   description: Verify that sshd still works with a custom
 ##     host key with mode 640 and group ssh_keys.
 
 # See
@@ -10,7 +10,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # recent Fedora sshd binaries will fail to start if all configured host keys
 # have mode > 600 and their modes haven't automatically been fixed
