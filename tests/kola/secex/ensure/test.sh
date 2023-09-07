@@ -3,9 +3,9 @@
 ##   architectures: s390x
 ##   platforms: qemu
 ##   requiredTag: secex
-##   timeoutMin: 3
+##   timeoutMin: 5
 ##   description: Verify the s390x Secure Execution QEMU image works. It also
-##     implicitly tests Ignition config decryption. 
+##     implicitly tests Ignition config decryption.
 
 # We don't run it by default because it requires running with `--qemu-secex`.
 
