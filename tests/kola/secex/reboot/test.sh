@@ -3,11 +3,11 @@
 ##   architectures: s390x
 ##   platforms: qemu
 ##   requiredTag: secex
-##   timeoutMin: 3
+##   timeoutMin: 5
 ##   description: Verify the qemu-secex image reboots with SE enabled. It also
 ##     implicitly tests Ignition config decryption.
 
-# We don't run it by default because it requires running with 
+# We don't run it by default because it requires running with
 # `--qemu-secex --qemu-secex-hostkey HKD-<serial>.crt`.
 
 set -xeuo pipefail
