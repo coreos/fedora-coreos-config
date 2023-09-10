@@ -84,13 +84,13 @@ you currently have to explicitly list them in your Butane config. See
 https://github.com/coreos/butane/issues/380[butane#380] for the tracking issue
 in Butane for a future better syntax for this case.
 
-.Example to set permissions and ownership for a file and its parent directories
+.Example to create directories with specific ownership
 [source,yaml]
 ----
 variant: fcos
 version: 1.4.0
 storage:
-  files:
+  directories:
     - path: /home/builder/.config
       user:
         name: builder
