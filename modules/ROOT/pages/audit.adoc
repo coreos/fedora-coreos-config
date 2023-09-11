@@ -1,0 +1,32 @@
+= Managing the audit daemon (`auditd`)
+
+Starting with the first release based on Fedora 39, Fedora CoreOS includes the audit daemon (`auditd`) to load and manage audit rules.
+
+Like all system daemons on Fedora CoreOS, the audit daemon is managed by systemd but with an exception: it can not be stopped or restarted via `systemctl stop auditd` or `systemctl restart auditd` for compliance reasons.
+
+From https://access.redhat.com/solutions/2664811[Unable to restart/stop auditd service using systemctl command in RHEL]:
+
+[quote]
+____
+"The reason for this unusual handling of restart/stop requests is that auditd is treated specially by the kernel: the credentials of a process that sends a killing signal to auditd are saved to the audit log. The audit developers do not want to see the credentials of PID 1 logged there. They want to see the login UID of the user who initiated the action."
+____
+
+To stop and restart the audit daemon, you should use the following commands:
+
+[source,bash]
+----
+$ sudo auditctl --signal stop
+$ sudo systemctl start  # Only if you want it started again
+----
+
+You may also use the following commands to reload the rules, rotate the logs, resume logging or dump the daemon state:
+
+[source,bash]
+----
+$ sudo auditctl --signal reload
+$ sudo auditctl --signal rotate
+$ sudo auditctl --signal resume
+$ sudo auditctl --signal state
+----
+
+See https://man7.org/linux/man-pages/man8/auditctl.8.html[auditctl(8)] and https://man7.org/linux/man-pages/man8/auditd.8.html[auditd(8)] for more details about those commands.
