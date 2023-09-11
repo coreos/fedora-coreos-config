@@ -175,13 +175,13 @@
       "evra": "2.9.11-1.fc38.x86_64"
     },
     "criu": {
-      "evra": "3.17.1-5.fc38.x86_64"
+      "evra": "3.18-1.fc38.x86_64"
     },
     "criu-libs": {
-      "evra": "3.17.1-5.fc38.x86_64"
+      "evra": "3.18-1.fc38.x86_64"
     },
     "crun": {
-      "evra": "1.8.7-1.fc38.x86_64"
+      "evra": "1.9-1.fc38.x86_64"
     },
     "crypto-policies": {
       "evra": "20230301-1.gita12f7b2.fc38.noarch"
@@ -847,7 +847,7 @@
       "evra": "2.10.4-1.fc38.x86_64"
     },
     "libxmlb": {
-      "evra": "0.3.12-1.fc38.x86_64"
+      "evra": "0.3.14-1.fc38.x86_64"
     },
     "libyaml": {
       "evra": "0.2.5-9.fc38.x86_64"
@@ -1003,10 +1003,10 @@
       "evra": "1.5.2-16.fc38.x86_64"
     },
     "passt": {
-      "evra": "0^20230823.ga7e4bfb-1.fc38.x86_64"
+      "evra": "0^20230908.g05627dc-1.fc38.x86_64"
     },
     "passt-selinux": {
-      "evra": "0^20230823.ga7e4bfb-1.fc38.noarch"
+      "evra": "0^20230908.g05627dc-1.fc38.noarch"
     },
     "passwd": {
       "evra": "0.80-14.fc38.x86_64"
@@ -1192,22 +1192,22 @@
       "evra": "1.9.13-2.p2.fc38.x86_64"
     },
     "systemd": {
-      "evra": "253.7-1.fc38.x86_64"
+      "evra": "253.9-1.fc38.x86_64"
     },
     "systemd-container": {
-      "evra": "253.7-1.fc38.x86_64"
+      "evra": "253.9-1.fc38.x86_64"
     },
     "systemd-libs": {
-      "evra": "253.7-1.fc38.x86_64"
+      "evra": "253.9-1.fc38.x86_64"
     },
     "systemd-pam": {
-      "evra": "253.7-1.fc38.x86_64"
+      "evra": "253.9-1.fc38.x86_64"
     },
     "systemd-resolved": {
-      "evra": "253.7-1.fc38.x86_64"
+      "evra": "253.9-1.fc38.x86_64"
     },
     "systemd-udev": {
-      "evra": "253.7-1.fc38.x86_64"
+      "evra": "253.9-1.fc38.x86_64"
     },
     "tar": {
       "evra": "2:1.34-8.fc38.x86_64"
@@ -1280,16 +1280,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-09-09T00:00:00Z",
+    "generated": "2023-09-11T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:37:10Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-09-07T22:37:12Z"
+        "generated": "2023-09-09T22:37:04Z"
       },
       "fedora-updates": {
-        "generated": "2023-09-09T01:26:40Z"
+        "generated": "2023-09-11T01:05:49Z"
       }
     }
   }
