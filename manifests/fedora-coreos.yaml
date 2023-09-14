@@ -186,8 +186,6 @@ exclude-packages:
   # Let's make sure initscripts doesn't get pulled back in
   # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
   - initscripts
-  # nor /usr/sbin/service
-  - initscripts-service
   # For (datacenter/cloud oriented) servers, we want to see the details by default.
   # https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/HSMISZ3ETWQ4ETVLWZQJ55ARZT27AAV3/
   - plymouth
