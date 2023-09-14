@@ -21,3 +21,13 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-16fc6e5f21
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1362
       type: fast-track
+  coreos-installer:
+    evr: 0.18.0-1.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-faf8348c34
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.18.0-1.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-faf8348c34
+      type: fast-track
