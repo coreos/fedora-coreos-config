@@ -10,15 +10,15 @@
 
 packages:
   audit:
-    evr: 3.1.2-3.fc39
+    evr: 3.1.2-4.fc39
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-16fc6e5f21
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-641e1cd18e
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1362
       type: fast-track
   audit-libs:
-    evr: 3.1.2-3.fc39
+    evr: 3.1.2-4.fc39
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-16fc6e5f21
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-641e1cd18e
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1362
       type: fast-track
   coreos-installer:
