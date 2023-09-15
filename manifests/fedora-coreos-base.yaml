@@ -3,6 +3,7 @@
 # core functionality.
 
 include:
+  - kernel.yaml
   - system-configuration.yaml
   - ignition-and-ostree.yaml
   - file-transfer.yaml
