@@ -1,12 +1,11 @@
-# This minimal base starts just from: kernel + systemd + rpm-ostree + bootloader.
+# This minimal base is the userspace: systemd + rpm-ostree + bootloader.
 # The intent of this is to inherit from this if you are doing something highly
 # custom that e.g. might not involve Ignition or podman, but you do want
 # rpm-ostree.
 # We expect most people though using coreos-assembler to inherit from
 # fedora-coreos-base.yaml.
 packages:
- # Kernel + systemd.
- - kernel systemd
+ - systemd
  # linux-firmware now a recommends so let's explicitly include it
  # https://gitlab.com/cki-project/kernel-ark/-/commit/32271d0cd9bd52d386eb35497c4876a8f041f70b
  # https://src.fedoraproject.org/rpms/kernel/c/f55c3e9ed8605ff28cb9a922efbab1055947e213?branch=rawhide
