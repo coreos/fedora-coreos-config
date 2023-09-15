@@ -2,3 +2,9 @@
 # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
 # streams.
 include: image-base.yaml
+
+# see https://github.com/coreos/coreos-assembler/pull/3607
+# Defaults for AWS
+aws-imdsv2-only: false
+aws-volume-type: "gp2"
+aws-x86-boot-mode: "legacy-bios"
