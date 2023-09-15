@@ -3,6 +3,8 @@
 # core functionality.
 
 include:
+  - kernel.yaml
+  - firmware.yaml
   - system-configuration.yaml
   - ignition-and-ostree.yaml
   - file-transfer.yaml
@@ -96,8 +98,6 @@ postprocess:
 # available in RHCOS or not desired in RHCOS). All other packages should go
 # into one of the sub-manifests listed at the top.
 packages:
-  # We use the default kernel package, but note c9s may differ
-  - kernel
   # Security
   - polkit
   # Containers

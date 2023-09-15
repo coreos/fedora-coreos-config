@@ -1,13 +1,1 @@
-# Integration with https://github.com/coreos/bootupd
-# xref https://github.com/coreos/fedora-coreos-tracker/issues/510
-packages:
-  - bootupd
-
-postprocess:
-  - |
-    #!/bin/bash
-    set -xeuo pipefail
-    # Until we have https://github.com/coreos/rpm-ostree/pull/2275
-    mkdir -p /run
-    # Transforms /usr/lib/ostree-boot into a bootupd-compatible update payload
-    /usr/bin/bootupctl backend generate-update-metadata /
+../sagano/tier-0/bootupd.yaml
