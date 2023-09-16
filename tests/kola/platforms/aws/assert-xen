@@ -16,7 +16,8 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-hypervisor=$(curl http://169.254.169.254/2022-09-24/meta-data/system || true)
+token=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+hypervisor=$(curl -H "X-aws-ec2-metadata-token: $token" http://169.254.169.254/2022-09-24/meta-data/system || true)
 if [ "${hypervisor}" != "xen" ]; then
     fatal "expected xen instance type"
 fi
