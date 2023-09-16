@@ -7,17 +7,14 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1430
-  snooze: 2023-09-13
+  snooze: 2023-09-28
   warn: true
   arches:
     - aarch64
   streams:
     - stable
     - testing
-    - next
     - testing-devel
-    - next-devel
-    - branched
 - pattern: ext.config.networking.nameserver
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1542
   snooze: 2023-09-28
@@ -94,3 +91,5 @@
   warn: true
   streams:
     - rawhide
+    - next-devel
+    - next
