@@ -39,6 +39,9 @@
     "amd-gpu-firmware": {
       "evra": "20230804-153.fc39.noarch"
     },
+    "atheros-firmware": {
+      "evra": "20230804-153.fc39.noarch"
+    },
     "attr": {
       "evra": "2.5.1-8.fc39.ppc64le"
     },
@@ -77,6 +80,9 @@
     },
     "bind-utils": {
       "evra": "32:9.18.17-1.fc39.ppc64le"
+    },
+    "brcmfmac-firmware": {
+      "evra": "20230804-153.fc39.noarch"
     },
     "bsdtar": {
       "evra": "3.7.1-1.fc39.ppc64le"
@@ -388,19 +394,19 @@
       "evra": "3.11-3.fc39.ppc64le"
     },
     "grub2-common": {
-      "evra": "1:2.06-95.fc39.noarch"
+      "evra": "1:2.06-98.fc39.noarch"
     },
     "grub2-ppc64le": {
-      "evra": "1:2.06-95.fc39.ppc64le"
+      "evra": "1:2.06-98.fc39.ppc64le"
     },
     "grub2-ppc64le-modules": {
-      "evra": "1:2.06-95.fc39.noarch"
+      "evra": "1:2.06-98.fc39.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.06-95.fc39.ppc64le"
+      "evra": "1:2.06-98.fc39.ppc64le"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-95.fc39.ppc64le"
+      "evra": "1:2.06-98.fc39.ppc64le"
     },
     "gvisor-tap-vsock-gvforwarder": {
       "evra": "6:0.7.0-6.fc39.ppc64le"
@@ -888,6 +894,9 @@
     "mpfr": {
       "evra": "4.2.0-3.fc39.ppc64le"
     },
+    "mt7xxx-firmware": {
+      "evra": "20230804-153.fc39.noarch"
+    },
     "nano": {
       "evra": "7.2-4.fc39.ppc64le"
     },
@@ -1055,6 +1064,9 @@
     },
     "readline": {
       "evra": "8.2-4.fc39.ppc64le"
+    },
+    "realtek-firmware": {
+      "evra": "20230804-153.fc39.noarch"
     },
     "rpcbind": {
       "evra": "1.2.6-4.rc2.fc39.1.ppc64le"
@@ -1268,13 +1280,13 @@
     }
   },
   "metadata": {
-    "generated": "2023-09-16T00:00:00Z",
+    "generated": "2023-09-17T00:00:00Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2023-09-15T16:22:48Z"
+        "generated": "2023-09-17T00:25:48Z"
       },
       "fedora-next": {
-        "generated": "2023-09-15T22:12:17Z"
+        "generated": "2023-09-16T09:17:08Z"
       },
       "fedora-next-updates": {
         "generated": "2018-02-28T16:06:00Z"
