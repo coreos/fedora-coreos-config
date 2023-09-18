@@ -85,7 +85,7 @@
       "evra": "3.6.1-4.fc38.aarch64"
     },
     "btrfs-progs": {
-      "evra": "6.3.3-1.fc38.aarch64"
+      "evra": "6.5.1-1.fc38.aarch64"
     },
     "bubblewrap": {
       "evra": "0.7.0-1.fc38.aarch64"
@@ -124,7 +124,7 @@
       "evra": "19-2.fc38.aarch64"
     },
     "cloud-utils-growpart": {
-      "evra": "0.31-12.fc38.noarch"
+      "evra": "0.33-3.fc38.noarch"
     },
     "conmon": {
       "evra": "2:2.1.7-2.fc38.aarch64"
@@ -157,10 +157,10 @@
       "evra": "4:1-89.fc38.noarch"
     },
     "coreos-installer": {
-      "evra": "0.17.0-5.fc38.aarch64"
+      "evra": "0.18.0-1.fc38.aarch64"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.17.0-5.fc38.aarch64"
+      "evra": "0.18.0-1.fc38.aarch64"
     },
     "coreutils": {
       "evra": "9.1-12.fc38.aarch64"
@@ -175,13 +175,13 @@
       "evra": "2.9.11-1.fc38.aarch64"
     },
     "criu": {
-      "evra": "3.17.1-5.fc38.aarch64"
+      "evra": "3.18-1.fc38.aarch64"
     },
     "criu-libs": {
-      "evra": "3.17.1-5.fc38.aarch64"
+      "evra": "3.18-1.fc38.aarch64"
     },
     "crun": {
-      "evra": "1.8.7-1.fc38.aarch64"
+      "evra": "1.9-1.fc38.aarch64"
     },
     "crypto-policies": {
       "evra": "20230301-1.gita12f7b2.fc38.noarch"
@@ -193,7 +193,7 @@
       "evra": "2.6.1-1.fc38.aarch64"
     },
     "curl": {
-      "evra": "8.0.1-3.fc38.aarch64"
+      "evra": "8.0.1-4.fc38.aarch64"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-9.fc38.aarch64"
@@ -202,16 +202,16 @@
       "evra": "2.1.28-9.fc38.aarch64"
     },
     "dbus": {
-      "evra": "1:1.14.8-1.fc38.aarch64"
+      "evra": "1:1.14.10-1.fc38.aarch64"
     },
     "dbus-broker": {
       "evra": "33-1.fc38.aarch64"
     },
     "dbus-common": {
-      "evra": "1:1.14.8-1.fc38.noarch"
+      "evra": "1:1.14.10-1.fc38.noarch"
     },
     "dbus-libs": {
-      "evra": "1:1.14.8-1.fc38.aarch64"
+      "evra": "1:1.14.10-1.fc38.aarch64"
     },
     "device-mapper": {
       "evra": "1.02.189-2.fc38.aarch64"
@@ -280,7 +280,7 @@
       "evra": "0.189-3.fc38.aarch64"
     },
     "ethtool": {
-      "evra": "2:6.4-1.fc38.aarch64"
+      "evra": "2:6.5-1.fc38.aarch64"
     },
     "expat": {
       "evra": "2.5.0-2.fc38.aarch64"
@@ -349,7 +349,7 @@
       "evra": "3.14.1-1.fc38.aarch64"
     },
     "fwupd": {
-      "evra": "1.9.4-1.fc38.aarch64"
+      "evra": "1.9.5-1.fc38.aarch64"
     },
     "gawk": {
       "evra": "5.1.1-5.fc38.aarch64"
@@ -373,19 +373,19 @@
       "evra": "2.41.0-1.fc38.aarch64"
     },
     "glib2": {
-      "evra": "2.76.5-1.fc38.aarch64"
+      "evra": "2.76.5-2.fc38.aarch64"
     },
     "glibc": {
-      "evra": "2.37-4.fc38.aarch64"
+      "evra": "2.37-5.fc38.aarch64"
     },
     "glibc-common": {
-      "evra": "2.37-4.fc38.aarch64"
+      "evra": "2.37-5.fc38.aarch64"
     },
     "glibc-gconv-extra": {
-      "evra": "2.37-4.fc38.aarch64"
+      "evra": "2.37-5.fc38.aarch64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.37-4.fc38.aarch64"
+      "evra": "2.37-5.fc38.aarch64"
     },
     "gmp": {
       "evra": "1:6.2.1-4.fc38.aarch64"
@@ -406,16 +406,19 @@
       "evra": "3.8-3.fc38.aarch64"
     },
     "grub2-common": {
-      "evra": "1:2.06-97.fc38.noarch"
+      "evra": "1:2.06-98.fc38.noarch"
     },
     "grub2-efi-aa64": {
-      "evra": "1:2.06-97.fc38.aarch64"
+      "evra": "1:2.06-98.fc38.aarch64"
     },
     "grub2-tools": {
-      "evra": "1:2.06-97.fc38.aarch64"
+      "evra": "1:2.06-98.fc38.aarch64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-97.fc38.aarch64"
+      "evra": "1:2.06-98.fc38.aarch64"
+    },
+    "gvisor-tap-vsock-gvforwarder": {
+      "evra": "6:0.7.0-6.fc38.aarch64"
     },
     "gzip": {
       "evra": "1.12-3.fc38.aarch64"
@@ -436,10 +439,10 @@
       "evra": "1.0.3-1.fc38.aarch64"
     },
     "iproute": {
-      "evra": "6.1.0-1.fc38.aarch64"
+      "evra": "6.4.0-1.fc38.aarch64"
     },
     "iproute-tc": {
-      "evra": "6.1.0-1.fc38.aarch64"
+      "evra": "6.4.0-1.fc38.aarch64"
     },
     "iptables-legacy": {
       "evra": "1.8.9-4.fc38.aarch64"
@@ -502,16 +505,16 @@
       "evra": "2.5.1-5.fc38.noarch"
     },
     "kernel": {
-      "evra": "6.4.12-200.fc38.aarch64"
+      "evra": "6.4.15-200.fc38.aarch64"
     },
     "kernel-core": {
-      "evra": "6.4.12-200.fc38.aarch64"
+      "evra": "6.4.15-200.fc38.aarch64"
     },
     "kernel-modules": {
-      "evra": "6.4.12-200.fc38.aarch64"
+      "evra": "6.4.15-200.fc38.aarch64"
     },
     "kernel-modules-core": {
-      "evra": "6.4.12-200.fc38.aarch64"
+      "evra": "6.4.15-200.fc38.aarch64"
     },
     "kexec-tools": {
       "evra": "2.0.26-3.fc38.aarch64"
@@ -574,7 +577,7 @@
       "evra": "2.48-6.fc38.aarch64"
     },
     "libcap-ng": {
-      "evra": "0.8.3-5.fc38.aarch64"
+      "evra": "0.8.3-8.fc38.aarch64"
     },
     "libcbor": {
       "evra": "0.7.0-9.fc38.aarch64"
@@ -586,7 +589,7 @@
       "evra": "1.46.5-4.fc38.aarch64"
     },
     "libcurl-minimal": {
-      "evra": "8.0.1-3.fc38.aarch64"
+      "evra": "8.0.1-4.fc38.aarch64"
     },
     "libdaemon": {
       "evra": "0.14-25.fc38.aarch64"
@@ -844,7 +847,7 @@
       "evra": "2.10.4-1.fc38.aarch64"
     },
     "libxmlb": {
-      "evra": "0.3.12-1.fc38.aarch64"
+      "evra": "0.3.14-1.fc38.aarch64"
     },
     "libyaml": {
       "evra": "0.2.5-9.fc38.aarch64"
@@ -937,7 +940,7 @@
       "evra": "1:1.0.5-2.fc38.aarch64"
     },
     "nmstate": {
-      "evra": "2.2.13-2.fc38.aarch64"
+      "evra": "2.2.15-1.fc38.aarch64"
     },
     "npth": {
       "evra": "1.6-12.fc38.aarch64"
@@ -997,10 +1000,10 @@
       "evra": "1.5.2-16.fc38.aarch64"
     },
     "passt": {
-      "evra": "0^20230823.ga7e4bfb-1.fc38.aarch64"
+      "evra": "0^20230908.g05627dc-1.fc38.aarch64"
     },
     "passt-selinux": {
-      "evra": "0^20230823.ga7e4bfb-1.fc38.noarch"
+      "evra": "0^20230908.g05627dc-1.fc38.noarch"
     },
     "passwd": {
       "evra": "0.80-14.fc38.aarch64"
@@ -1024,10 +1027,10 @@
       "evra": "1.8.0-6.fc38.aarch64"
     },
     "podman": {
-      "evra": "5:4.6.2-1.fc38.aarch64"
+      "evra": "5:4.6.2-3.fc38.aarch64"
     },
     "podman-plugins": {
-      "evra": "5:4.6.2-1.fc38.aarch64"
+      "evra": "5:4.6.2-3.fc38.aarch64"
     },
     "policycoreutils": {
       "evra": "3.5-1.fc38.aarch64"
@@ -1075,10 +1078,10 @@
       "evra": "4.18.1-3.fc38.aarch64"
     },
     "rpm-ostree": {
-      "evra": "2023.5-1.fc38.aarch64"
+      "evra": "2023.7-1.fc38.aarch64"
     },
     "rpm-ostree-libs": {
-      "evra": "2023.5-1.fc38.aarch64"
+      "evra": "2023.7-1.fc38.aarch64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.18.1-3.fc38.aarch64"
@@ -1090,7 +1093,7 @@
       "evra": "3.2.7-2.fc38.aarch64"
     },
     "runc": {
-      "evra": "2:1.1.7-1.fc38.aarch64"
+      "evra": "2:1.1.8-1.fc38.aarch64"
     },
     "samba-client-libs": {
       "evra": "2:4.18.6-1.fc38.aarch64"
@@ -1105,10 +1108,10 @@
       "evra": "4.8-12.fc38.aarch64"
     },
     "selinux-policy": {
-      "evra": "38.25-1.fc38.noarch"
+      "evra": "38.27-1.fc38.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "38.25-1.fc38.noarch"
+      "evra": "38.27-1.fc38.noarch"
     },
     "setup": {
       "evra": "2.14.3-2.fc38.noarch"
@@ -1132,7 +1135,7 @@
       "evra": "15.6-2.aarch64"
     },
     "skopeo": {
-      "evra": "1:1.13.2-1.fc38.aarch64"
+      "evra": "1:1.13.3-1.fc38.aarch64"
     },
     "slang": {
       "evra": "2.3.3-3.fc38.aarch64"
@@ -1189,22 +1192,22 @@
       "evra": "1.9.13-2.p2.fc38.aarch64"
     },
     "systemd": {
-      "evra": "253.7-1.fc38.aarch64"
+      "evra": "253.9-1.fc38.aarch64"
     },
     "systemd-container": {
-      "evra": "253.7-1.fc38.aarch64"
+      "evra": "253.9-1.fc38.aarch64"
     },
     "systemd-libs": {
-      "evra": "253.7-1.fc38.aarch64"
+      "evra": "253.9-1.fc38.aarch64"
     },
     "systemd-pam": {
-      "evra": "253.7-1.fc38.aarch64"
+      "evra": "253.9-1.fc38.aarch64"
     },
     "systemd-resolved": {
-      "evra": "253.7-1.fc38.aarch64"
+      "evra": "253.9-1.fc38.aarch64"
     },
     "systemd-udev": {
-      "evra": "253.7-1.fc38.aarch64"
+      "evra": "253.9-1.fc38.aarch64"
     },
     "tar": {
       "evra": "2:1.34-8.fc38.aarch64"
@@ -1234,10 +1237,10 @@
       "evra": "2.38.1-4.fc38.aarch64"
     },
     "vim-data": {
-      "evra": "2:9.0.1712-1.fc38.noarch"
+      "evra": "2:9.0.1872-1.fc38.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.1712-1.fc38.aarch64"
+      "evra": "2:9.0.1872-1.fc38.aarch64"
     },
     "which": {
       "evra": "2.21-39.fc38.aarch64"
@@ -1277,16 +1280,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-09-02T00:00:00Z",
+    "generated": "2023-09-18T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:36:48Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-09-01T22:30:50Z"
+        "generated": "2023-09-17T00:27:35Z"
       },
       "fedora-updates": {
-        "generated": "2023-09-02T01:03:54Z"
+        "generated": "2023-09-18T01:16:31Z"
       }
     }
   }
