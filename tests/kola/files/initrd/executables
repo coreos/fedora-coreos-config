@@ -5,7 +5,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 tmpd=$(mktemp -d)
 ( cd "${tmpd}" && lsinitrd --unpack /boot/ostree/*/init* )

@@ -10,7 +10,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if [ "$(systemctl is-active kube-watch.path)" != "active" ]; then
     fatal "kube-watch.path did not activate successfully"

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -euo pipefail
+
+main() {
+    local files_with_whitespace
+    files_with_whitespace="$(find manifests overlay.d tests -type f -exec grep -El " +$" {} \;)"
+
+    if [[ -n "${files_with_whitespace}" ]]; then
+        echo "[+] Found files with whitespace at the end of line"
+        echo "${files_with_whitespace}"
+        exit 1
+    fi
+
+    echo "[+] No files with whitespace at the end of line"
+    exit 0
+}
+
+main "${@}"

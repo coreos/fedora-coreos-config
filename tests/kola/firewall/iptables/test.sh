@@ -7,7 +7,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if ! iptables --version | grep nf_tables; then
     iptables --version # output for logs

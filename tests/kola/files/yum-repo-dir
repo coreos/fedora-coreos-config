@@ -5,7 +5,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if ! test -d /etc/yum.repos.d; then
     fatal "Error: not find /etc/yum.repos.d"

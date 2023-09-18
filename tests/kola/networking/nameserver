@@ -3,7 +3,7 @@
 ##   # appendKernelArgs is only supported on QEMU
 ##   platforms: qemu
 ##   appendKernelArgs: "nameserver=8.8.8.8 nameserver=1.1.1.1"
-##   description: Verify that we config multiple nameservers via kernel 
+##   description: Verify that we config multiple nameservers via kernel
 ##     arguments work well.
 
 # RHCOS: need to check /etc/resolv.conf and nmconnection.
@@ -12,7 +12,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if is_fcos; then
     # run resolvectl

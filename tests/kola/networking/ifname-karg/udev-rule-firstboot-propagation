@@ -11,7 +11,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 . $KOLA_EXT_DATA/ifname-karg-lib.sh
 
 nicname='kolatest'
@@ -20,7 +21,7 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
     "")
         ok "first boot"
         # Make sure the rules were persisted from the initramfs
-        check_file_exists '/etc/udev/rules.d/80-ifname.rules' 
+        check_file_exists '/etc/udev/rules.d/80-ifname.rules'
         # On first boot we expect systemd-network-generator to run too
         # because the ifname= karg was present, but only for first boot
         check_file_exists "/run/systemd/network/90-${nicname}.link"
@@ -32,7 +33,7 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
     rebooted)
         ok "second boot"
         # Make sure the rules are still there
-        check_file_exists '/etc/udev/rules.d/80-ifname.rules' 
+        check_file_exists '/etc/udev/rules.d/80-ifname.rules'
         # On second boot the ifname= karg isn't there so the file
         # created by systemd-network-generator shouldn't exist.
         check_file_not_exists "/run/systemd/network/90-${nicname}.link"

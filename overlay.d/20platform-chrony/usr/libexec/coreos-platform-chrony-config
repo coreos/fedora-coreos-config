@@ -23,7 +23,7 @@ if ! cmp {/usr,}/etc/sysconfig/chronyd >/dev/null; then
     exit 0
 fi
 
-cmdline=( $(</proc/cmdline) )
+IFS=" " read -r -a cmdline <<< "$(</proc/cmdline)"
 cmdline_arg() {
     local name="$1" value
     for arg in "${cmdline[@]}"; do

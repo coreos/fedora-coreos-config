@@ -20,7 +20,8 @@
 
 set -euo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # The fact that we're here means that `systemd-user-sessions.service` was
 # reached and logins work since kola was able to SSH to start us. But let's do
