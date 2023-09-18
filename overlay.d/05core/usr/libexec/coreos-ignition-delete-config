@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-cmdline=( $(</proc/cmdline) )
+IFS=" " read -r -a cmdline <<< "$(</proc/cmdline)"
 cmdline_arg() {
     local name="$1" value
     for arg in "${cmdline[@]}"; do

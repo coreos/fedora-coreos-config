@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   tags: "platform-independent"
-##   description: Verify that Ignition supports to enable systemd units 
+##   description: Verify that Ignition supports to enable systemd units
 ##     of different types.
 
 # See
@@ -10,7 +10,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # make sure the presets worked and the instantiated unit is enabled
 if [ "$(systemctl is-enabled touch@foo.service)" != 'enabled' ]; then

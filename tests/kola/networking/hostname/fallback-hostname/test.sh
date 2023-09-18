@@ -48,7 +48,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 if is_rhcos8; then
     if [ $(hostnamectl --transient) != 'localhost' ]; then

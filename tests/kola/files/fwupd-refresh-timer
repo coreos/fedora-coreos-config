@@ -1,0 +1,23 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   description: Verify fwupd-refresh.timer is enabled.
+##   tags: "platform-independent"
+##   # This test only runs on FCOS as we only enable the timer there
+##   distros: fcos
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+if verlt "$(get_fedora_ver)" 39; then
+    ok "Skipping fwupd-refresh.timer test"
+    exit 0
+fi
+
+unit="fwupd-refresh.timer"
+if ! systemctl is-enabled ${unit} 1>/dev/null; then
+    fatal "Unit ${unit} should be enabled"
+fi
+ok "Unit ${unit} is enabled as expected"

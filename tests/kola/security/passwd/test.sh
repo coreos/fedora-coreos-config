@@ -8,7 +8,8 @@
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 OUTPUT=$(echo 'foobar' | setsid su - tester -c id)
 

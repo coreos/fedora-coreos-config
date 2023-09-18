@@ -9,12 +9,13 @@
 ##   # This test includes a lot of disk I/O and needs a higher
 ##   # timeout value than the default.
 ##   timeoutMin: 15
-##   description: Verify the root reprovision with XFS and TPM 
+##   description: Verify the root reprovision with XFS and TPM
 ##     does not trigger autosaved.
 
 set -xeuo pipefail
 
-. $KOLA_EXT_DATA/commonlib.sh
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
 
 # check that we didn't run automatic XFS reprovisioning
 if [ -z "${AUTOPKGTEST_REBOOT_MARK:-}" ]; then
