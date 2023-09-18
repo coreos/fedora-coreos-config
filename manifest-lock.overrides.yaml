@@ -31,6 +31,12 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-faf8348c34
       type: fast-track
+  gvisor-tap-vsock-gvforwarder:
+    evr: 6:0.7.0-6.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7fe120ca99
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1557#issuecomment-1720041318
+      type: fast-track
   podman:
     evr: 5:4.6.2-3.fc39
     metadata:
@@ -43,9 +49,15 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7fe120ca99
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1557#issuecomment-1720041318
       type: fast-track
-  gvisor-tap-vsock-gvforwarder:
-    evr: 6:0.7.0-6.fc39
+  selinux-policy:
+    evra: 38.28-1.fc39.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7fe120ca99
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1557#issuecomment-1720041318
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-22190b6562
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1542
+      type: fast-track
+  selinux-policy-targeted:
+    evra: 38.28-1.fc39.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-22190b6562
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1542
       type: fast-track
