@@ -75,10 +75,19 @@ get_booted_deployment_json() {
 version=$(get_booted_deployment_json | jq -r '.version')
 stream=$(get_booted_deployment_json | jq -r '.["base-commit-meta"]["fedora-coreos.stream"]')
 
-# Pick up the last release for the current stream
-test -f /srv/releases.json || \
-    curl -L "https://builds.coreos.fedoraproject.org/prod/streams/${stream}/releases.json" > /srv/releases.json
-last_release=$(jq -r .releases[-1].version /srv/releases.json)
+# Pick up the last release for the current stream from the update server
+test -f /srv/updateinfo.json || \
+    curl -L "https://updates.coreos.fedoraproject.org/v1/graph?basearch=$(arch)&stream=${stream}" > /srv/updateinfo.json
+last_release=$(jq -r .nodes[-1].version /srv/updateinfo.json)
+last_release_index=$(jq -r '.nodes[-1].metadata."org.fedoraproject.coreos.releases.age_index"' /srv/updateinfo.json)
+latest_edge=$(jq -r .edges[0][1] /srv/updateinfo.json)
+
+# Now that we have the release from update json, let's check if it has an edge pointing to it
+# The latest_edge would ideally have the value of last_release_index if the release has rolled out
+# If the edge does not exist, we would pick the second last release as our last_release
+if [ $last_release_index != $latest_edge ]; then
+    last_release=$(jq -r .nodes[-2].version /srv/updateinfo.json)
+fi
 
 # If the user dropped down a /etc/target_stream file then we'll
 # pick up the info from there.
