@@ -21,6 +21,11 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-641e1cd18e
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1362
       type: fast-track
+  containerd:
+    evr: 1.6.19-1.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1578
+      type: pin
   coreos-installer:
     evr: 0.18.0-1.fc39
     metadata:
