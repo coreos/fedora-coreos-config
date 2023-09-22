@@ -79,7 +79,7 @@ stream=$(get_booted_deployment_json | jq -r '.["base-commit-meta"]["fedora-coreo
 test -f /srv/updateinfo.json || \
     curl -L "https://updates.coreos.fedoraproject.org/v1/graph?basearch=$(arch)&stream=${stream}" > /srv/updateinfo.json
 last_release=$(jq -r .nodes[-1].version /srv/updateinfo.json)
-last_release_index=$(jq -r '.nodes[-1].metadata."org.fedoraproject.coreos.releases.age_index"' /srv/updateinfo.json)
+last_release_index=$(jq '.nodes | length-1' /srv/updateinfo.json)
 latest_edge=$(jq -r .edges[0][1] /srv/updateinfo.json)
 
 # Now that we have the release from update json, let's check if it has an edge pointing to it
