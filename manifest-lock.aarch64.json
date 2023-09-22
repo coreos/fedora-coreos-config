@@ -142,7 +142,7 @@
       "evra": "0.21.3-4.fc38.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.221.1-1.fc38.noarch"
+      "evra": "2:2.222.0-1.fc38.noarch"
     },
     "containerd": {
       "evra": "1.6.19-1.fc38.aarch64"
@@ -406,16 +406,16 @@
       "evra": "3.8-3.fc38.aarch64"
     },
     "grub2-common": {
-      "evra": "1:2.06-98.fc38.noarch"
+      "evra": "1:2.06-100.fc38.noarch"
     },
     "grub2-efi-aa64": {
-      "evra": "1:2.06-98.fc38.aarch64"
+      "evra": "1:2.06-100.fc38.aarch64"
     },
     "grub2-tools": {
-      "evra": "1:2.06-98.fc38.aarch64"
+      "evra": "1:2.06-100.fc38.aarch64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-98.fc38.aarch64"
+      "evra": "1:2.06-100.fc38.aarch64"
     },
     "gvisor-tap-vsock-gvforwarder": {
       "evra": "6:0.7.0-6.fc38.aarch64"
@@ -982,10 +982,10 @@
       "evra": "1.81-3.fc38.aarch64"
     },
     "ostree": {
-      "evra": "2023.5-2.fc38.aarch64"
+      "evra": "2023.6-1.fc38.aarch64"
     },
     "ostree-libs": {
-      "evra": "2023.5-2.fc38.aarch64"
+      "evra": "2023.6-1.fc38.aarch64"
     },
     "p11-kit": {
       "evra": "0.25.0-1.fc38.aarch64"
@@ -1108,10 +1108,10 @@
       "evra": "4.8-12.fc38.aarch64"
     },
     "selinux-policy": {
-      "evra": "38.27-1.fc38.noarch"
+      "evra": "38.28-1.fc38.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "38.27-1.fc38.noarch"
+      "evra": "38.28-1.fc38.noarch"
     },
     "setup": {
       "evra": "2.14.3-2.fc38.noarch"
@@ -1192,22 +1192,22 @@
       "evra": "1.9.13-2.p2.fc38.aarch64"
     },
     "systemd": {
-      "evra": "253.9-1.fc38.aarch64"
+      "evra": "253.10-1.fc38.aarch64"
     },
     "systemd-container": {
-      "evra": "253.9-1.fc38.aarch64"
+      "evra": "253.10-1.fc38.aarch64"
     },
     "systemd-libs": {
-      "evra": "253.9-1.fc38.aarch64"
+      "evra": "253.10-1.fc38.aarch64"
     },
     "systemd-pam": {
-      "evra": "253.9-1.fc38.aarch64"
+      "evra": "253.10-1.fc38.aarch64"
     },
     "systemd-resolved": {
-      "evra": "253.9-1.fc38.aarch64"
+      "evra": "253.10-1.fc38.aarch64"
     },
     "systemd-udev": {
-      "evra": "253.9-1.fc38.aarch64"
+      "evra": "253.10-1.fc38.aarch64"
     },
     "tar": {
       "evra": "2:1.34-8.fc38.aarch64"
@@ -1280,16 +1280,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-09-18T00:00:00Z",
+    "generated": "2023-09-22T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:36:48Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-09-17T00:27:35Z"
+        "generated": "2023-09-22T15:25:26Z"
       },
       "fedora-updates": {
-        "generated": "2023-09-18T01:16:31Z"
+        "generated": "2023-09-22T01:12:12Z"
       }
     }
   }
