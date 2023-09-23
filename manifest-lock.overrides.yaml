@@ -14,21 +14,3 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1578
       type: pin
-  gvisor-tap-vsock-gvforwarder:
-    evr: 6:0.7.0-6.fc39
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7fe120ca99
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1557#issuecomment-1720041318
-      type: fast-track
-  podman:
-    evr: 5:4.6.2-3.fc39
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7fe120ca99
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1557#issuecomment-1720041318
-      type: fast-track
-  podman-plugins:
-    evr: 5:4.6.2-3.fc39
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7fe120ca99
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1557#issuecomment-1720041318
-      type: fast-track
