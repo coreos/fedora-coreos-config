@@ -58,13 +58,19 @@ NOTE: You will need to use at least version https://github.com/exoscale/cli/rele
 
 WARNING: Do not use the `--cloud-init-compress` argument to the CLI. It causes the Ignition config to be passed compressed to the instance and https://github.com/coreos/fedora-coreos-tracker/issues/1160[Ignition doesn't tolerate that].
 
+.Add your ssh-key
+[source, bash]
+----
+exo compute ssh-key register key-name /path/to/key
+----
+
 .Launching a new instance with Exoscale CLI
 [source, bash]
 ----
 NAME='worker'
 TYPE='standard.medium'
 DISK='10' # in GiB
-SSHKEY='mykey'
+SSHKEY='key-name'
 TEMPLATE=$TEMPLATE # template name set above
 exo compute instance create $NAME \
     --disk-size $DISK \
