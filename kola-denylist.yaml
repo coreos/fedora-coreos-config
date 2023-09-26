@@ -21,14 +21,6 @@
   warn: true
   platforms:
     - azure
-- pattern: ext.config.kdump.crash
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1560
-  snooze: 2023-09-30
-  warn: true
-  streams:
-    - rawhide
-    - next-devel
-    - next
 - pattern: ext.config.docker.basic
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1578
   snooze: 2023-10-13
