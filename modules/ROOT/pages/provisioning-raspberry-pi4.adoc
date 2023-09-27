@@ -36,7 +36,7 @@ In this case we can grab these files from the `uboot-images-armv8`, `bcm2711-fir
 
 [source, bash]
 ----
-RELEASE=37 # The target Fedora Release. Use the same one that current FCOS is based on.
+RELEASE=39 # The target Fedora Release. Use the same one that current FCOS is based on.
 mkdir -p /tmp/RPi4boot/boot/efi/
 sudo dnf install -y --downloadonly --release=$RELEASE --forcearch=aarch64 --destdir=/tmp/RPi4boot/ uboot-images-armv8 bcm283x-firmware bcm283x-overlays
 ----
@@ -48,7 +48,7 @@ WARNING: The following commands to extract the contents of the RPMs, the use of 
 [source, bash]
 ----
 for rpm in /tmp/RPi4boot/*rpm; do rpm2cpio $rpm | sudo cpio -idv -D /tmp/RPi4boot/; done
-sudo mv /tmp/RPi4boot/usr/share/uboot/rpi_4/u-boot.bin /tmp/RPi4boot/boot/efi/rpi4-u-boot.bin
+sudo mv /tmp/RPi4boot/usr/share/uboot/rpi_arm64/u-boot.bin /tmp/RPi4boot/boot/efi/rpi-u-boot.bin
 ----
 
 Run `coreos-installer` to install to the target disk. There are https://coreos.github.io/coreos-installer/getting-started/[various ways] to run `coreos-installer` and install to a target disk. We won't cover them all here, but this workflow most closely mirrors the xref:bare-metal.adoc#_installing_from_the_container["Installing from the container"] documentation.
@@ -57,8 +57,10 @@ Run `coreos-installer` to install to the target disk. There are https://coreos.g
 ----
 FCOSDISK=/dev/sdX
 STREAM=stable # or `next` or `testing`
-sudo coreos-installer install -a aarch64 -s $STREAM -i config.ign $FCOSDISK
+sudo coreos-installer install -a aarch64 -s $STREAM -i config.ign --append-karg nomodeset $FCOSDISK
 ----
+
+NOTE: We pass in `--append-karg nomodeset` here to workaround https://bugzilla.redhat.com/show_bug.cgi?id=2246428[an issue] where monitor output will be lost during system boot.
 
 NOTE: Make sure you provide an xref:producing-ign.adoc[Ignition config] when you run `coreos-installer`.
 
