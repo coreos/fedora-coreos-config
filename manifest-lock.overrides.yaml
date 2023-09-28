@@ -14,3 +14,15 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1476
       type: pin
+  podman:
+    evr: 5:4.7.0-1.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-b7c4711bd0
+      reason: https://github.com/containers/podman/releases/tag/v4.7.0
+      type: fast-track
+  podman-plugins:
+    evr: 5:4.7.0-1.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-b7c4711bd0
+      reason: https://github.com/containers/podman/releases/tag/v4.7.0
+      type: fast-track
