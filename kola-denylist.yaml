@@ -27,3 +27,11 @@
   warn: true
   streams:
     - rawhide
+- pattern: ext.config.kdump.crash
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1588
+  snooze: 2023-10-24
+  warn: true
+  arches:
+    - ppc64le
+  streams:
+    - rawhide
