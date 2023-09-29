@@ -27,11 +27,13 @@ required_initrd_files=(
     "/usr/lib/udev/google_nvme_id"
 )
 
-required_initrd_kmods=(
+required_initrd_kmods=()
+
+if grep CONFIG_ISCSI_IBFT=m "/usr/lib/modules/$(uname -r)/config"; then
     # iSCSI iBFT kernel module
     # https://issues.redhat.com/browse/OCPBUGS-19811
-    "iscsi_ibft"
-)
+    required_initrd_kmods+=("iscsi_ibft")
+fi
 
 tmpd=$(mktemp -d)
 cleanup() {
