@@ -49,10 +49,10 @@
       "evra": "3.1.2-1.fc38.s390x"
     },
     "authselect": {
-      "evra": "1.4.2-2.fc38.s390x"
+      "evra": "1.4.3-1.fc38.s390x"
     },
     "authselect-libs": {
-      "evra": "1.4.2-2.fc38.s390x"
+      "evra": "1.4.3-1.fc38.s390x"
     },
     "avahi-libs": {
       "evra": "0.8-22.fc38.s390x"
@@ -67,13 +67,13 @@
       "evra": "1:2.11-9.fc38.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.18.17-1.fc38.s390x"
+      "evra": "32:9.18.19-1.fc38.s390x"
     },
     "bind-license": {
-      "evra": "32:9.18.17-1.fc38.noarch"
+      "evra": "32:9.18.19-1.fc38.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.18.17-1.fc38.s390x"
+      "evra": "32:9.18.19-1.fc38.s390x"
     },
     "brcmfmac-firmware": {
       "evra": "20230919-1.fc38.noarch"
@@ -178,7 +178,7 @@
       "evra": "3.18-1.fc38.s390x"
     },
     "crun": {
-      "evra": "1.9-1.fc38.s390x"
+      "evra": "1.9.2-1.fc38.s390x"
     },
     "crypto-policies": {
       "evra": "20230301-1.gita12f7b2.fc38.noarch"
@@ -730,7 +730,7 @@
       "evra": "2.38.1-4.fc38.s390x"
     },
     "libsmbclient": {
-      "evra": "2:4.18.6-1.fc38.s390x"
+      "evra": "2:4.18.7-1.fc38.s390x"
     },
     "libsolv": {
       "evra": "0.7.22-4.fc38.s390x"
@@ -799,7 +799,7 @@
       "evra": "0.3.2-5.fc38.s390x"
     },
     "libwbclient": {
-      "evra": "2:4.18.6-1.fc38.s390x"
+      "evra": "2:4.18.7-1.fc38.s390x"
     },
     "libxcrypt": {
       "evra": "4.4.36-1.fc38.s390x"
@@ -916,7 +916,7 @@
       "evra": "6.9.8-2.D20220919gitb041f6d.fc38.1.s390x"
     },
     "openldap": {
-      "evra": "2.6.4-1.fc38.s390x"
+      "evra": "2.6.6-1.fc38.s390x"
     },
     "openssh": {
       "evra": "9.0p1-17.fc38.s390x"
@@ -979,10 +979,10 @@
       "evra": "1.8.0-6.fc38.s390x"
     },
     "podman": {
-      "evra": "5:4.6.2-3.fc38.s390x"
+      "evra": "5:4.7.0-1.fc38.s390x"
     },
     "podman-plugins": {
-      "evra": "5:4.6.2-3.fc38.s390x"
+      "evra": "5:4.7.0-1.fc38.s390x"
     },
     "policycoreutils": {
       "evra": "3.5-1.fc38.s390x"
@@ -1012,7 +1012,7 @@
       "evra": "20230812-1.fc38.noarch"
     },
     "qemu-user-static-x86": {
-      "evra": "2:7.2.5-1.fc38.s390x"
+      "evra": "2:7.2.6-1.fc38.s390x"
     },
     "readline": {
       "evra": "8.2-3.fc38.s390x"
@@ -1051,13 +1051,13 @@
       "evra": "2:2.25.0-4.fc38.s390x"
     },
     "samba-client-libs": {
-      "evra": "2:4.18.6-1.fc38.s390x"
+      "evra": "2:4.18.7-1.fc38.s390x"
     },
     "samba-common": {
-      "evra": "2:4.18.6-1.fc38.noarch"
+      "evra": "2:4.18.7-1.fc38.noarch"
     },
     "samba-common-libs": {
-      "evra": "2:4.18.6-1.fc38.s390x"
+      "evra": "2:4.18.7-1.fc38.s390x"
     },
     "sed": {
       "evra": "4.8-12.fc38.s390x"
@@ -1235,16 +1235,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-09-27T00:00:00Z",
+    "generated": "2023-09-29T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:36:40Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-09-26T23:27:25Z"
+        "generated": "2023-09-28T16:16:26Z"
       },
       "fedora-updates": {
-        "generated": "2023-09-27T02:38:04Z"
+        "generated": "2023-09-29T01:19:50Z"
       }
     }
   }
