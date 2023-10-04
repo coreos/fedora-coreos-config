@@ -40,9 +40,9 @@ jobs:
       - name: Normalize kola-denylist.yaml
         run: |
           # When we promote to a production branch we strip out the
-          # snooze lines. Let's do the same here so we don't get warnings.
-          # See https://github.com/coreos/fedora-coreos-releng-automation/pull/165
-          sed -E -i 's/^(\s+)(snooze:\s+.*)/\1# \2 (disabled on promotion)/' origin/kola-denylist.yaml
+          # snooze and warn lines. Let's do the same here so we don't get warnings.
+          # See https://github.com/coreos/fedora-coreos-releng-automation/pull/179
+          sed -E -i 's/^(\s+)((snooze:|warn:)\s+.*)/\1# \2 (disabled on promotion)/' origin/kola-denylist.yaml
       - name: Compare trees
         uses: coreos/actions-lib/check-diff@main
         with:
