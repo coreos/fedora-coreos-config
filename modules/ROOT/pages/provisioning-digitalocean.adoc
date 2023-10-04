@@ -10,7 +10,7 @@ NOTE: Fedora CoreOS has a default `core` user that can be used to explore the OS
 
 If you do not want to use Ignition to get started, you can make use of the https://coreos.github.io/afterburn/platforms/[Afterburn support].
 
-You also need to have access to a DigitalOcean account. The examples below use the https://github.com/digitalocean/doctl[doctl] command-line tool.
+You also need to have access to a DigitalOcean account. The examples below use the https://github.com/digitalocean/doctl[doctl] command-line tool and https://stedolan.github.io/jq/[jq] as a command-line JSON processor.
 
 == Creating a DigitalOcean custom image
 
@@ -27,6 +27,8 @@ doctl compute image create my-fcos-image --region sfo2 --image-url <download-url
 # Wait for image creation to finish
 while ! doctl compute image list-user --output json | jq -c '.[] | select(.name=="my-fcos-image")' | grep available; do sleep 5; done
 ----
+
+The above command uploads the image and waits until it is ready to be used. This process can take a long time, in our testing we have seen it take up to 15 minutes. Wait time is dependent on upload speeds and platform load.
 
 === Launching a droplet
 
