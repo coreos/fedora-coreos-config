@@ -14,15 +14,27 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1578
       type: pin
-  podman:
-    evr: 5:4.7.0-1.fc39
+  glibc:
+    evr: 2.38-6.fc39
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-73f739ce37
-      reason: https://github.com/containers/podman/releases/tag/v4.7.0
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-63e5a77522
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1591
       type: fast-track
-  podman-plugins:
-    evr: 5:4.7.0-1.fc39
+  glibc-common:
+    evr: 2.38-6.fc39
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-73f739ce37
-      reason: https://github.com/containers/podman/releases/tag/v4.7.0
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-63e5a77522
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1591
+      type: fast-track
+  glibc-gconv-extra:
+    evr: 2.38-6.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-63e5a77522
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1591
+      type: fast-track
+  glibc-minimal-langpack:
+    evr: 2.38-6.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-63e5a77522
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1591
       type: fast-track
