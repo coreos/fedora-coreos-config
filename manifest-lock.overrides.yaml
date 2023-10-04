@@ -9,6 +9,30 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  glibc:
+    evr: 2.37-10.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-2b8c11ee75
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1591
+      type: fast-track
+  glibc-common:
+    evr: 2.37-10.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-2b8c11ee75
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1591
+      type: fast-track
+  glibc-gconv-extra:
+    evr: 2.37-10.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-2b8c11ee75
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1591
+      type: fast-track
+  glibc-minimal-langpack:
+    evr: 2.37-10.fc38
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-2b8c11ee75
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1591
+      type: fast-track
   moby-engine:
     evr: 20.10.23-1.fc38
     metadata:
