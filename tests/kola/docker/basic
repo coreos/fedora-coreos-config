@@ -11,6 +11,6 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-docker run --rm registry.fedoraproject.org/fedora:38 true
+docker run --rm quay.io/fedora/fedora:38 true
 
 ok "basic docker run successfully"
