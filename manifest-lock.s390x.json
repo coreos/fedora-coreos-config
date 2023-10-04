@@ -82,7 +82,7 @@
       "evra": "3.6.1-4.fc38.s390x"
     },
     "btrfs-progs": {
-      "evra": "6.3.3-1.fc38.s390x"
+      "evra": "6.5.1-1.fc38.s390x"
     },
     "bubblewrap": {
       "evra": "0.7.0-1.fc38.s390x"
@@ -121,7 +121,7 @@
       "evra": "19-2.fc38.s390x"
     },
     "cloud-utils-growpart": {
-      "evra": "0.31-12.fc38.noarch"
+      "evra": "0.33-3.fc38.noarch"
     },
     "conmon": {
       "evra": "2:2.1.7-2.fc38.s390x"
@@ -154,10 +154,10 @@
       "evra": "4:1-89.fc38.noarch"
     },
     "coreos-installer": {
-      "evra": "0.17.0-5.fc38.s390x"
+      "evra": "0.18.0-1.fc38.s390x"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.17.0-5.fc38.s390x"
+      "evra": "0.18.0-1.fc38.s390x"
     },
     "coreutils": {
       "evra": "9.1-12.fc38.s390x"
@@ -172,13 +172,13 @@
       "evra": "2.9.11-1.fc38.s390x"
     },
     "criu": {
-      "evra": "3.17.1-5.fc38.s390x"
+      "evra": "3.18-1.fc38.s390x"
     },
     "criu-libs": {
-      "evra": "3.17.1-5.fc38.s390x"
+      "evra": "3.18-1.fc38.s390x"
     },
     "crun": {
-      "evra": "1.8.7-1.fc38.s390x"
+      "evra": "1.9-1.fc38.s390x"
     },
     "crypto-policies": {
       "evra": "20230301-1.gita12f7b2.fc38.noarch"
@@ -190,7 +190,7 @@
       "evra": "2.6.1-1.fc38.s390x"
     },
     "curl": {
-      "evra": "8.0.1-3.fc38.s390x"
+      "evra": "8.0.1-4.fc38.s390x"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-9.fc38.s390x"
@@ -199,16 +199,16 @@
       "evra": "2.1.28-9.fc38.s390x"
     },
     "dbus": {
-      "evra": "1:1.14.8-1.fc38.s390x"
+      "evra": "1:1.14.10-1.fc38.s390x"
     },
     "dbus-broker": {
       "evra": "33-1.fc38.s390x"
     },
     "dbus-common": {
-      "evra": "1:1.14.8-1.fc38.noarch"
+      "evra": "1:1.14.10-1.fc38.noarch"
     },
     "dbus-libs": {
-      "evra": "1:1.14.8-1.fc38.s390x"
+      "evra": "1:1.14.10-1.fc38.s390x"
     },
     "device-mapper": {
       "evra": "1.02.189-2.fc38.s390x"
@@ -268,7 +268,7 @@
       "evra": "0.189-3.fc38.s390x"
     },
     "ethtool": {
-      "evra": "2:6.4-1.fc38.s390x"
+      "evra": "2:6.5-1.fc38.s390x"
     },
     "expat": {
       "evra": "2.5.0-2.fc38.s390x"
@@ -337,7 +337,7 @@
       "evra": "3.14.1-1.fc38.s390x"
     },
     "fwupd": {
-      "evra": "1.9.4-1.fc38.s390x"
+      "evra": "1.9.5-1.fc38.s390x"
     },
     "gawk": {
       "evra": "5.1.1-5.fc38.s390x"
@@ -352,19 +352,19 @@
       "evra": "2.41.0-1.fc38.s390x"
     },
     "glib2": {
-      "evra": "2.76.5-1.fc38.s390x"
+      "evra": "2.76.5-2.fc38.s390x"
     },
     "glibc": {
-      "evra": "2.37-4.fc38.s390x"
+      "evra": "2.37-5.fc38.s390x"
     },
     "glibc-common": {
-      "evra": "2.37-4.fc38.s390x"
+      "evra": "2.37-5.fc38.s390x"
     },
     "glibc-gconv-extra": {
-      "evra": "2.37-4.fc38.s390x"
+      "evra": "2.37-5.fc38.s390x"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.37-4.fc38.s390x"
+      "evra": "2.37-5.fc38.s390x"
     },
     "gmp": {
       "evra": "1:6.2.1-4.fc38.s390x"
@@ -380,6 +380,9 @@
     },
     "grep": {
       "evra": "3.8-3.fc38.s390x"
+    },
+    "gvisor-tap-vsock-gvforwarder": {
+      "evra": "6:0.7.0-6.fc38.s390x"
     },
     "gzip": {
       "evra": "1.12-3.fc38.s390x"
@@ -400,10 +403,10 @@
       "evra": "1.0.3-1.fc38.s390x"
     },
     "iproute": {
-      "evra": "6.1.0-1.fc38.s390x"
+      "evra": "6.4.0-1.fc38.s390x"
     },
     "iproute-tc": {
-      "evra": "6.1.0-1.fc38.s390x"
+      "evra": "6.4.0-1.fc38.s390x"
     },
     "iptables-legacy": {
       "evra": "1.8.9-4.fc38.s390x"
@@ -463,16 +466,16 @@
       "evra": "2.5.1-5.fc38.noarch"
     },
     "kernel": {
-      "evra": "6.4.12-200.fc38.s390x"
+      "evra": "6.4.15-200.fc38.s390x"
     },
     "kernel-core": {
-      "evra": "6.4.12-200.fc38.s390x"
+      "evra": "6.4.15-200.fc38.s390x"
     },
     "kernel-modules": {
-      "evra": "6.4.12-200.fc38.s390x"
+      "evra": "6.4.15-200.fc38.s390x"
     },
     "kernel-modules-core": {
-      "evra": "6.4.12-200.fc38.s390x"
+      "evra": "6.4.15-200.fc38.s390x"
     },
     "kexec-tools": {
       "evra": "2.0.26-3.fc38.s390x"
@@ -535,7 +538,7 @@
       "evra": "2.48-6.fc38.s390x"
     },
     "libcap-ng": {
-      "evra": "0.8.3-5.fc38.s390x"
+      "evra": "0.8.3-8.fc38.s390x"
     },
     "libcbor": {
       "evra": "0.7.0-9.fc38.s390x"
@@ -547,7 +550,7 @@
       "evra": "1.46.5-4.fc38.s390x"
     },
     "libcurl-minimal": {
-      "evra": "8.0.1-3.fc38.s390x"
+      "evra": "8.0.1-4.fc38.s390x"
     },
     "libdaemon": {
       "evra": "0.14-25.fc38.s390x"
@@ -805,7 +808,7 @@
       "evra": "2.10.4-1.fc38.s390x"
     },
     "libxmlb": {
-      "evra": "0.3.12-1.fc38.s390x"
+      "evra": "0.3.14-1.fc38.s390x"
     },
     "libyaml": {
       "evra": "0.2.5-9.fc38.s390x"
@@ -895,7 +898,7 @@
       "evra": "1:1.0.5-2.fc38.s390x"
     },
     "nmstate": {
-      "evra": "2.2.13-2.fc38.s390x"
+      "evra": "2.2.15-1.fc38.s390x"
     },
     "npth": {
       "evra": "1.6-12.fc38.s390x"
@@ -949,10 +952,10 @@
       "evra": "1.5.2-16.fc38.s390x"
     },
     "passt": {
-      "evra": "0^20230823.ga7e4bfb-1.fc38.s390x"
+      "evra": "0^20230908.g05627dc-1.fc38.s390x"
     },
     "passt-selinux": {
-      "evra": "0^20230823.ga7e4bfb-1.fc38.noarch"
+      "evra": "0^20230908.g05627dc-1.fc38.noarch"
     },
     "passwd": {
       "evra": "0.80-14.fc38.s390x"
@@ -976,10 +979,10 @@
       "evra": "1.8.0-6.fc38.s390x"
     },
     "podman": {
-      "evra": "5:4.6.2-1.fc38.s390x"
+      "evra": "5:4.6.2-3.fc38.s390x"
     },
     "podman-plugins": {
-      "evra": "5:4.6.2-1.fc38.s390x"
+      "evra": "5:4.6.2-3.fc38.s390x"
     },
     "policycoreutils": {
       "evra": "3.5-1.fc38.s390x"
@@ -1027,10 +1030,10 @@
       "evra": "4.18.1-3.fc38.s390x"
     },
     "rpm-ostree": {
-      "evra": "2023.5-1.fc38.s390x"
+      "evra": "2023.7-1.fc38.s390x"
     },
     "rpm-ostree-libs": {
-      "evra": "2023.5-1.fc38.s390x"
+      "evra": "2023.7-1.fc38.s390x"
     },
     "rpm-plugin-selinux": {
       "evra": "4.18.1-3.fc38.s390x"
@@ -1042,7 +1045,7 @@
       "evra": "3.2.7-2.fc38.s390x"
     },
     "runc": {
-      "evra": "2:1.1.7-1.fc38.s390x"
+      "evra": "2:1.1.8-1.fc38.s390x"
     },
     "s390utils-core": {
       "evra": "2:2.25.0-4.fc38.s390x"
@@ -1060,10 +1063,10 @@
       "evra": "4.8-12.fc38.s390x"
     },
     "selinux-policy": {
-      "evra": "38.25-1.fc38.noarch"
+      "evra": "38.27-1.fc38.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "38.25-1.fc38.noarch"
+      "evra": "38.27-1.fc38.noarch"
     },
     "setup": {
       "evra": "2.14.3-2.fc38.noarch"
@@ -1084,7 +1087,7 @@
       "evra": "2.2-3.fc38.s390x"
     },
     "skopeo": {
-      "evra": "1:1.13.2-1.fc38.s390x"
+      "evra": "1:1.13.3-1.fc38.s390x"
     },
     "slang": {
       "evra": "2.3.3-3.fc38.s390x"
@@ -1141,22 +1144,22 @@
       "evra": "1.9.13-2.p2.fc38.s390x"
     },
     "systemd": {
-      "evra": "253.7-1.fc38.s390x"
+      "evra": "253.9-1.fc38.s390x"
     },
     "systemd-container": {
-      "evra": "253.7-1.fc38.s390x"
+      "evra": "253.9-1.fc38.s390x"
     },
     "systemd-libs": {
-      "evra": "253.7-1.fc38.s390x"
+      "evra": "253.9-1.fc38.s390x"
     },
     "systemd-pam": {
-      "evra": "253.7-1.fc38.s390x"
+      "evra": "253.9-1.fc38.s390x"
     },
     "systemd-resolved": {
-      "evra": "253.7-1.fc38.s390x"
+      "evra": "253.9-1.fc38.s390x"
     },
     "systemd-udev": {
-      "evra": "253.7-1.fc38.s390x"
+      "evra": "253.9-1.fc38.s390x"
     },
     "tar": {
       "evra": "2:1.34-8.fc38.s390x"
@@ -1189,10 +1192,10 @@
       "evra": "2.6.1-1.fc38.s390x"
     },
     "vim-data": {
-      "evra": "2:9.0.1712-1.fc38.noarch"
+      "evra": "2:9.0.1872-1.fc38.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.1712-1.fc38.s390x"
+      "evra": "2:9.0.1872-1.fc38.s390x"
     },
     "which": {
       "evra": "2.21-39.fc38.s390x"
@@ -1232,16 +1235,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-09-02T00:00:00Z",
+    "generated": "2023-09-18T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:36:40Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-09-01T22:29:03Z"
+        "generated": "2023-09-17T00:26:19Z"
       },
       "fedora-updates": {
-        "generated": "2023-09-02T01:04:08Z"
+        "generated": "2023-09-18T01:16:47Z"
       }
     }
   }
