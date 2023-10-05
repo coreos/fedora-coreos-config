@@ -2,6 +2,8 @@
 ## kola:
 ##   # Must not run this test with another podman test
 ##   exclusive: true
+##   # We only ship moby/docker in FCOS
+##   distros: fcos
 ##   # This test pulls a container image from remote sources.
 ##   tags: "platform-independent needs-internet"
 ##   description: Verify that running a basic container with docker works.
