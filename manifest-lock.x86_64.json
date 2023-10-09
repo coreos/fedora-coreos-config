@@ -52,10 +52,10 @@
       "evra": "3.1.2-4.fc39.x86_64"
     },
     "authselect": {
-      "evra": "1.4.2-3.fc39.x86_64"
+      "evra": "1.4.3-1.fc39.x86_64"
     },
     "authselect-libs": {
-      "evra": "1.4.2-3.fc39.x86_64"
+      "evra": "1.4.3-1.fc39.x86_64"
     },
     "avahi-libs": {
       "evra": "0.8-24.fc39.x86_64"
@@ -73,13 +73,13 @@
       "evra": "1:2.11-12.fc39.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.18.17-1.fc39.x86_64"
+      "evra": "32:9.18.19-1.fc39.x86_64"
     },
     "bind-license": {
-      "evra": "32:9.18.17-1.fc39.noarch"
+      "evra": "32:9.18.19-1.fc39.noarch"
     },
     "bind-utils": {
-      "evra": "32:9.18.17-1.fc39.x86_64"
+      "evra": "32:9.18.19-1.fc39.x86_64"
     },
     "bootupd": {
       "evra": "0.2.11-3.fc39.x86_64"
@@ -148,7 +148,7 @@
       "evra": "0.21.3-6.fc39.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.221.1-1.fc39.noarch"
+      "evra": "2:2.222.0-1.fc39.noarch"
     },
     "containerd": {
       "evra": "1.6.19-2.fc39.x86_64"
@@ -187,10 +187,10 @@
       "evra": "3.18-3.fc39.x86_64"
     },
     "crun": {
-      "evra": "1.9-1.fc39.x86_64"
+      "evra": "1.9.2-1.fc39.x86_64"
     },
     "crun-wasm": {
-      "evra": "1.9-1.fc39.x86_64"
+      "evra": "1.9.2-1.fc39.x86_64"
     },
     "crypto-policies": {
       "evra": "20230731-1.git5ed06e0.fc39.noarch"
@@ -358,7 +358,7 @@
       "evra": "3.16.1-1.fc39.x86_64"
     },
     "fwupd": {
-      "evra": "1.9.5-1.fc39.x86_64"
+      "evra": "1.9.5-2.fc39.x86_64"
     },
     "gawk": {
       "evra": "5.2.2-2.fc39.x86_64"
@@ -385,16 +385,16 @@
       "evra": "2.78.0-3.fc39.x86_64"
     },
     "glibc": {
-      "evra": "2.38-4.fc39.x86_64"
+      "evra": "2.38-6.fc39.x86_64"
     },
     "glibc-common": {
-      "evra": "2.38-4.fc39.x86_64"
+      "evra": "2.38-6.fc39.x86_64"
     },
     "glibc-gconv-extra": {
-      "evra": "2.38-4.fc39.x86_64"
+      "evra": "2.38-6.fc39.x86_64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.38-4.fc39.x86_64"
+      "evra": "2.38-6.fc39.x86_64"
     },
     "gmp": {
       "evra": "1:6.2.1-5.fc39.x86_64"
@@ -730,7 +730,7 @@
       "evra": "2.0.0-6.fc39.x86_64"
     },
     "libnvme": {
-      "evra": "1.5-3.fc39.x86_64"
+      "evra": "1.6-1.fc39.x86_64"
     },
     "libpath_utils": {
       "evra": "0.2.1-54.fc39.x86_64"
@@ -1144,7 +1144,7 @@
       "evra": "15.6-2.x86_64"
     },
     "skopeo": {
-      "evra": "1:1.13.2-1.fc39.x86_64"
+      "evra": "1:1.13.3-1.fc39.x86_64"
     },
     "slang": {
       "evra": "2.3.3-3.fc38.x86_64"
@@ -1204,22 +1204,22 @@
       "evra": "1.9.14-1.p3.fc39.x86_64"
     },
     "systemd": {
-      "evra": "254.1-2.fc39.x86_64"
+      "evra": "254.5-2.fc39.x86_64"
     },
     "systemd-container": {
-      "evra": "254.1-2.fc39.x86_64"
+      "evra": "254.5-2.fc39.x86_64"
     },
     "systemd-libs": {
-      "evra": "254.1-2.fc39.x86_64"
+      "evra": "254.5-2.fc39.x86_64"
     },
     "systemd-pam": {
-      "evra": "254.1-2.fc39.x86_64"
+      "evra": "254.5-2.fc39.x86_64"
     },
     "systemd-resolved": {
-      "evra": "254.1-2.fc39.x86_64"
+      "evra": "254.5-2.fc39.x86_64"
     },
     "systemd-udev": {
-      "evra": "254.1-2.fc39.x86_64"
+      "evra": "254.5-2.fc39.x86_64"
     },
     "tar": {
       "evra": "2:1.35-2.fc39.x86_64"
@@ -1295,13 +1295,13 @@
     }
   },
   "metadata": {
-    "generated": "2023-10-02T00:00:00Z",
+    "generated": "2023-10-06T00:00:00Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2023-10-01T23:23:20Z"
+        "generated": "2023-10-06T14:48:21Z"
       },
       "fedora-next": {
-        "generated": "2023-10-02T09:52:22Z"
+        "generated": "2023-10-06T09:48:20Z"
       },
       "fedora-next-updates": {
         "generated": "2018-02-20T19:18:14Z"

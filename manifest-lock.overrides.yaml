@@ -9,32 +9,38 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  bind-libs:
+    evr: 32:9.18.19-1.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-b4acb0f7c6
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  bind-license:
+    evra: 32:9.18.19-1.fc39.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-b4acb0f7c6
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  bind-utils:
+    evr: 32:9.18.19-1.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-b4acb0f7c6
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
   containerd:
     evr: 1.6.19-2.fc39
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1578
       type: pin
-  glibc:
-    evr: 2.38-6.fc39
+  crun:
+    evr: 1.9.2-1.fc39
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-63e5a77522
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1591
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-3e03106a9e
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
-  glibc-common:
-    evr: 2.38-6.fc39
+  skopeo:
+    evr: 1:1.13.3-1.fc39
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-63e5a77522
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1591
-      type: fast-track
-  glibc-gconv-extra:
-    evr: 2.38-6.fc39
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-63e5a77522
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1591
-      type: fast-track
-  glibc-minimal-langpack:
-    evr: 2.38-6.fc39
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-63e5a77522
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1591
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-35b56210f0
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
