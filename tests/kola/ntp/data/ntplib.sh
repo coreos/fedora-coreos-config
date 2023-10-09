@@ -20,7 +20,7 @@ ntp_test_setup() {
     # run podman commands to set up dnsmasq server
     pushd "$(mktemp -d)"
     cat <<EOF >Dockerfile
-FROM quay.io/fedora/fedora:38
+FROM registry.fedoraproject.org/fedora:38
 RUN dnf -y install systemd dnsmasq iproute iputils \
 && dnf clean all \
 && systemctl enable dnsmasq

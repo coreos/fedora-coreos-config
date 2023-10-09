@@ -22,7 +22,7 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-# Try five times to create the toolbox to avoid container registry infra flakes
+# Try five times to create the toolbox to avoid Fedora registry infra flakes
 for i in $(seq 1 5); do
     machinectl shell core@ /bin/toolbox create --assumeyes 1>/dev/null
     if [[ $(machinectl shell core@ /bin/toolbox list --containers | grep --count fedora-toolbox-) -ne 1 ]]; then
