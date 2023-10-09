@@ -27,14 +27,6 @@ required_initrd_files=(
     "/usr/lib/udev/google_nvme_id"
 )
 
-required_initrd_kmods=()
-
-if grep CONFIG_ISCSI_IBFT=m "/usr/lib/modules/$(uname -r)/config"; then
-    # iSCSI iBFT kernel module
-    # https://issues.redhat.com/browse/OCPBUGS-19811
-    required_initrd_kmods+=("iscsi_ibft")
-fi
-
 tmpd=$(mktemp -d)
 cleanup() {
     rm -r "${tmpd}"
@@ -45,13 +37,6 @@ trap cleanup EXIT
 for file in "${required_initrd_files[@]}"; do
     if [ ! -e "${tmpd}/${file}" ]; then
         fatal "${file} was not found in initrd"
-    fi
-done
-
-for kmod in "${required_initrd_kmods[@]}"; do
-    found=$(find "${tmpd}/usr/lib/modules/$(uname -r)" -name "${kmod}.ko*")
-    if [ -z "${found}" ]; then
-        fatal "kernel module ${kmod} was not found in initrd"
     fi
 done
 

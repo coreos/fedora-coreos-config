@@ -37,7 +37,7 @@ jobs:
   add-override:
     name: Add package override
     runs-on: ubuntu-latest
-    container: quay.io/fedora/fedora:latest
+    container: registry.fedoraproject.org/fedora:latest
     steps:
       - name: Install dependencies
         run: dnf install -y git jq python3-bodhi-client python3-pyyaml
