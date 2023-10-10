@@ -6,9 +6,15 @@ set -euo pipefail
 dn=$(dirname "$0")
 tmpd=$(mktemp -d) && trap 'rm -rf ${tmpd}' EXIT
 
+arch=$(arch)
+
 echo "Installing base build requirements"
 dnf -y install /usr/bin/xargs 'dnf-command(builddep)'
 deps=$(grep -v '^#' "${dn}"/buildroot-reqs.txt)
+if [ -f "${dn}/buildroot-reqs-${arch}.txt" ]; then
+  deps+=" "
+  deps+=$(grep -v '^#' "${dn}/buildroot-reqs-${arch}.txt")
+fi
 echo "${deps}" | xargs dnf -y install
 
 echo "Installing build dependencies of primary packages"
