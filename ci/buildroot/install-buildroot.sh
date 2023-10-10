@@ -6,14 +6,27 @@ set -euo pipefail
 dn=$(dirname "$0")
 tmpd=$(mktemp -d) && trap 'rm -rf ${tmpd}' EXIT
 
+arch=$(arch)
+
 echo "Installing base build requirements"
 dnf -y install /usr/bin/xargs 'dnf-command(builddep)'
 deps=$(grep -v '^#' "${dn}"/buildroot-reqs.txt)
+if [ -f "${dn}/buildroot-reqs-${arch}.txt" ]; then
+  deps+=" "
+  deps+=$(grep -v '^#' "${dn}/buildroot-reqs-${arch}.txt")
+fi
 echo "${deps}" | xargs dnf -y install
 
 echo "Installing build dependencies of primary packages"
 brs=$(grep -v '^#' "${dn}"/buildroot-buildreqs.txt)
-echo "${brs}" | xargs dnf -y builddep
+(cd "${tmpd}" && mkdir rpmbuild
+ echo "${brs}" | xargs dnf download --source
+ # rebuild the SRPM for this arch; see
+ # https://bugzilla.redhat.com/show_bug.cgi?id=1402784#c6
+ find . -name '*.src.rpm' -print0 | xargs -0n 1 rpmbuild -rs --nodeps \
+    -D "%_topdir $PWD/rpmbuild" -D "%_tmppath %{_topdir}/tmp"
+ dnf builddep -y rpmbuild/SRPMS/*.src.rpm)
+rm -rf "${tmpd:?}"/*
 
 echo "Installing build dependencies from canonical spec files"
 specs=$(grep -v '^#' "${dn}"/buildroot-specs.txt)
