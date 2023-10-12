@@ -1,20 +1,17 @@
 #!/usr/bin/env bash
-set -euo pipefail
+## kola:
+##   platforms: qemu
+##   description: Verify file ownership can reference system users.
 
-ok() {
-    echo "ok" "$@"
-}
+set -xeuo pipefail
 
-fatal() {
-    echo "$@" >&2
-    exit 1
-}
+. "$KOLA_EXT_DATA/commonlib.sh"
 
-TARGET="/etc/zincati/config.d/00-dummy-placeholder.toml"
+TARGET="/etc/dnsmasq/config.d/00-dummy-placeholder.toml"
 OWNER=$(stat -c '%U' "${TARGET}")
 
 # make sure the placeholder file is owned by the proper system user.
-if test "${OWNER}" != 'zincati' ; then
+if test "${OWNER}" != 'dnsmasq' ; then
     fatal "unexpected owner of ${TARGET}: ${OWNER}"
 fi
-ok "placeholder file correctly owned by zincati user"
+ok "placeholder file correctly owned by dnsmasq user"

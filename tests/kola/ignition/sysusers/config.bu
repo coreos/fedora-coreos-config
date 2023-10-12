@@ -1,12 +1,11 @@
----
 variant: fcos
-version: 1.0.0
+version: 1.4.0
 storage:
   files:
-    - path: /etc/zincati/config.d/00-dummy-placeholder.toml
+    - path: /etc/dnsmasq/config.d/00-dummy-placeholder.toml
       mode: 0644
       user:
-        name: "zincati"
+        name: "dnsmasq"
       contents:
         inline: |
           # Dummy placeholder
