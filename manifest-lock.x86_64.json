@@ -193,7 +193,7 @@
       "evra": "2.6.1-1.fc38.x86_64"
     },
     "curl": {
-      "evra": "8.0.1-4.fc38.x86_64"
+      "evra": "8.0.1-5.fc38.x86_64"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-9.fc38.x86_64"
@@ -424,7 +424,7 @@
       "evra": "1:2.06-102.fc38.x86_64"
     },
     "gvisor-tap-vsock-gvforwarder": {
-      "evra": "6:0.7.0-6.fc38.x86_64"
+      "evra": "6:0.7.1-1.fc38.x86_64"
     },
     "gzip": {
       "evra": "1.12-3.fc38.x86_64"
@@ -592,7 +592,7 @@
       "evra": "1.46.5-4.fc38.x86_64"
     },
     "libcurl-minimal": {
-      "evra": "8.0.1-4.fc38.x86_64"
+      "evra": "8.0.1-5.fc38.x86_64"
     },
     "libdaemon": {
       "evra": "0.14-25.fc38.x86_64"
@@ -961,7 +961,7 @@
       "evra": "20230919-1.fc38.noarch"
     },
     "nvme-cli": {
-      "evra": "2.4-2.fc38.x86_64"
+      "evra": "2.4-3.fc38.x86_64"
     },
     "oniguruma": {
       "evra": "6.9.8-2.D20220919gitb041f6d.fc38.1.x86_64"
@@ -1006,10 +1006,10 @@
       "evra": "1.5.2-16.fc38.x86_64"
     },
     "passt": {
-      "evra": "0^20230908.g05627dc-1.fc38.x86_64"
+      "evra": "0^20231004.gf851084-1.fc38.x86_64"
     },
     "passt-selinux": {
-      "evra": "0^20230908.g05627dc-1.fc38.noarch"
+      "evra": "0^20231004.gf851084-1.fc38.noarch"
     },
     "passwd": {
       "evra": "0.80-14.fc38.x86_64"
@@ -1283,16 +1283,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-10-11T00:00:00Z",
+    "generated": "2023-10-12T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:37:10Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-10-11T01:43:19Z"
+        "generated": "2023-10-12T16:29:48Z"
       },
       "fedora-updates": {
-        "generated": "2023-10-11T01:27:10Z"
+        "generated": "2023-10-12T01:40:03Z"
       }
     }
   }
