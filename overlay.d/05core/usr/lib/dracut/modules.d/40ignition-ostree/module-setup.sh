@@ -22,9 +22,9 @@ installkernel() {
 
 install() {
     inst_multiple \
+        chroot \
         bwrap \
         realpath \
-        rmdir \
         setfiles \
         chcon \
         systemd-sysusers \

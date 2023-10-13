@@ -46,7 +46,7 @@ cleanup() {
 
   umount --lazy --recursive "${TMP_CHROOT_DIR}"
   umount --recursive "${TMP_CHROOT_DIR}"
-  rmdir "${TMP_CHROOT_DIR}"
+  rm --dir "${TMP_CHROOT_DIR}"
 }
 
 trap cleanup EXIT

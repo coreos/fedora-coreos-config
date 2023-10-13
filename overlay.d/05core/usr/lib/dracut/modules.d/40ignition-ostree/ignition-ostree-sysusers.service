@@ -1,5 +1,5 @@
 [Unit]
-Description=Populate OSTree sysusers
+Description=Ignition OSTree: Create System Users
 DefaultDependencies=false
 ConditionKernelCommandLine=|ostree
 
