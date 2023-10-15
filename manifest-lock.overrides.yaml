@@ -9,18 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  curl:
-    evr: 8.0.1-5.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-b855de5c0f
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1593
-      type: fast-track
-  libcurl-minimal:
-    evr: 8.0.1-5.fc38
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-b855de5c0f
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1593
-      type: fast-track
   moby-engine:
     evr: 20.10.23-1.fc38
     metadata:
