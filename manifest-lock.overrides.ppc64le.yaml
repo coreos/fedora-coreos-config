@@ -9,56 +9,50 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  crun-wasm:
-    evra: 1.9.2-1.fc39.x86_64
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-3e03106a9e
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
-      type: fast-track
   grub2-common:
     evra: 1:2.06-104.fc39.noarch
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f46483e5b5
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
-  grub2-efi-x64:
-    evra: 1:2.06-104.fc39.x86_64
+  grub2-ppc64le:
+    evra: 1:2.06-104.fc39.ppc64le
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f46483e5b5
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
-  grub2-pc:
-    evra: 1:2.06-104.fc39.x86_64
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f46483e5b5
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
-      type: fast-track
-  grub2-pc-modules:
-    evra: 1:2.06-104.fc39.noarch
+  grub2-ppc64le-modules:
+    evra: 1:2.06-104.fc39.ppc64le
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f46483e5b5
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
   grub2-tools:
-    evra: 1:2.06-104.fc39.x86_64
+    evra: 1:2.06-104.fc39.ppc64le
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f46483e5b5
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
   grub2-tools-minimal:
-    evra: 1:2.06-104.fc39.x86_64
+    evra: 1:2.06-104.fc39.ppc64le
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f46483e5b5
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
+  libatomic:
+    evra: 13.2.1-4.fc39.ppc64le
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-1c6c5ebe1a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
   libgcc:
-    evra: 13.2.1-4.fc39.x86_64
+    evra: 13.2.1-4.fc39.ppc64le
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-1c6c5ebe1a
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
   libstdc++:
-    evra: 13.2.1-4.fc39.x86_64
+    evra: 13.2.1-4.fc39.ppc64le
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-1c6c5ebe1a
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
