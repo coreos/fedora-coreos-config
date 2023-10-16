@@ -77,7 +77,7 @@ stream=$(get_booted_deployment_json | jq -r '.["base-commit-meta"]["fedora-coreo
 
 # Pick up the last release for the current stream from the update server
 test -f /srv/updateinfo.json || \
-    curl -L "https://updates.coreos.fedoraproject.org/v1/graph?basearch=$(arch)&stream=${stream}" > /srv/updateinfo.json
+    curl -L "https://updates.coreos.fedoraproject.org/v1/graph?basearch=$(arch)&stream=${stream}&rollout_wariness=0" > /srv/updateinfo.json
 last_release=$(jq -r .nodes[-1].version /srv/updateinfo.json)
 last_release_index=$(jq '.nodes | length-1' /srv/updateinfo.json)
 latest_edge=$(jq -r .edges[0][1] /srv/updateinfo.json)
