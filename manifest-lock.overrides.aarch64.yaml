@@ -15,3 +15,45 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-3e03106a9e
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
+  grub2-common:
+    evra: 1:2.06-104.fc39.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f46483e5b5
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  grub2-efi-aa64:
+    evra: 1:2.06-104.fc39.aarch64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f46483e5b5
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  grub2-tools:
+    evra: 1:2.06-104.fc39.aarch64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f46483e5b5
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  grub2-tools-minimal:
+    evra: 1:2.06-104.fc39.aarch64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f46483e5b5
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  libatomic:
+    evra: 13.2.1-4.fc39.aarch64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-1c6c5ebe1a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  libgcc:
+    evra: 13.2.1-4.fc39.aarch64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-1c6c5ebe1a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  libstdc++:
+    evra: 13.2.1-4.fc39.aarch64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-1c6c5ebe1a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
