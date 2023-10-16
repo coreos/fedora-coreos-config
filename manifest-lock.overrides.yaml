@@ -56,6 +56,12 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-4e6f9b9b1a
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
+  gvisor-tap-vsock-gvforwarder:
+    evr: 6:0.7.1-1.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-817ed9e906
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
   libcurl-minimal:
     evr: 8.2.1-3.fc39
     metadata:
