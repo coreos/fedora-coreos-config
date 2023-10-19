@@ -9,6 +9,12 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  aardvark-dns:
+    evr: 1.8.0-1.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-d97c0821fa
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
   bind-libs:
     evr: 32:9.18.19-1.fc39
     metadata:
@@ -54,6 +60,30 @@ packages:
     evr: 6:0.7.1-1.fc39
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-817ed9e906
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  kernel:
+    evr: 6.5.7-300.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-3747088120
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  kernel-core:
+    evr: 6.5.7-300.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-3747088120
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  kernel-modules:
+    evr: 6.5.7-300.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-3747088120
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  kernel-modules-core:
+    evr: 6.5.7-300.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-3747088120
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
   libnet:
