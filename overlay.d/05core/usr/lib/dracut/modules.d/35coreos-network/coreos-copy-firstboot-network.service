@@ -34,10 +34,14 @@
 Description=Copy CoreOS Firstboot Networking Config
 ConditionPathExists=/usr/lib/initrd-release
 DefaultDependencies=false
+# iSCSI setups require network to mount a disk device, so we can't rely on it for
+# bootstrapping network
+ConditionKernelCommandLine=!rd.iscsi.ibft
+ConditionKernelCommandLine=!rd.iscsi.firmware
 # We're pulled in by ignition-complete.target; as good practice, add a matching
 # Before to be explicit about it gating on this unit passing.
 Before=ignition-complete.target
-Before=nm-initrd.service
+#Before=nm-initrd.service
 # compat: remove when everyone is on dracut 054+
 Before=dracut-initqueue.service
 After=dracut-cmdline.service

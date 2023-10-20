@@ -13,14 +13,19 @@ ConditionKernelCommandLine=|coreos.live.rootfs_url
 ConditionKernelCommandLine=|ignition.platform.id=azure
 ConditionKernelCommandLine=|ignition.platform.id=azurestack
 
+# iSCSI setups require network to mount a disk device, so we can't rely on it for
+# bootstrapping network
+ConditionKernelCommandLine=|rd.iscsi.ibft
+ConditionKernelCommandLine=|rd.iscsi.firmware
+
 # Creates /run/ignition/neednet
-After=ignition-fetch-offline.service
+#After=ignition-fetch-offline.service
 # Needs networking
 Before=ignition-fetch.service
 
 # See hack in coreos-enable-network, as well as coreos-copy-firstboot-network.service.
 After=dracut-cmdline.service
-Before=nm-initrd.service
+#Before=nm-initrd.service
 # compat: remove when everyone is on dracut 054+
 Before=dracut-initqueue.service
 
