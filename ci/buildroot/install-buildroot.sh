@@ -3,6 +3,10 @@ set -euo pipefail
 
 # This is invoked by Dockerfile
 
+dnf -y install dnf-plugins-core
+# We want to avoid a 7 day cycle for e.g. new ostree etc.
+dnf config-manager --set-enabled updates-testing
+
 dn=$(dirname "$0")
 tmpd=$(mktemp -d) && trap 'rm -rf ${tmpd}' EXIT
 
