@@ -3,5 +3,9 @@
 # streams.
 include: image-base.yaml
 
-# Plan to move this to all streams soon
-ostree-format: "oci-chunked-v1"
+
+# We don't have zincati for rawhide, so we can bypass the issues in
+# https://github.com/coreos/fedora-coreos-tracker/issues/1263
+# and enable it by default for rawhide!
+deploy-via-container: true
+container-imgref: "ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos:rawhide"
