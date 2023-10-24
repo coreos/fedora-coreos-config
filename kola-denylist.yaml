@@ -7,7 +7,7 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1430
-  snooze: 2023-10-24
+  snooze: 2023-11-15
   warn: true
   arches:
     - aarch64
@@ -29,7 +29,7 @@
     - rawhide
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1588
-  snooze: 2023-10-24
+  snooze: 2023-11-15
   warn: true
   arches:
     - ppc64le
