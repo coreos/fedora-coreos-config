@@ -142,7 +142,7 @@
       "evra": "0.21.3-4.fc38.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.222.0-1.fc38.noarch"
+      "evra": "2:2.224.0-1.fc38.noarch"
     },
     "containerd": {
       "evra": "1.6.19-1.fc38.aarch64"
@@ -181,7 +181,7 @@
       "evra": "3.18-1.fc38.aarch64"
     },
     "crun": {
-      "evra": "1.9.2-1.fc38.aarch64"
+      "evra": "1.10-1.fc38.aarch64"
     },
     "crypto-policies": {
       "evra": "20230301-1.gita12f7b2.fc38.noarch"
@@ -376,16 +376,16 @@
       "evra": "2.76.5-2.fc38.aarch64"
     },
     "glibc": {
-      "evra": "2.37-10.fc38.aarch64"
+      "evra": "2.37-12.fc38.aarch64"
     },
     "glibc-common": {
-      "evra": "2.37-10.fc38.aarch64"
+      "evra": "2.37-12.fc38.aarch64"
     },
     "glibc-gconv-extra": {
-      "evra": "2.37-10.fc38.aarch64"
+      "evra": "2.37-12.fc38.aarch64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.37-10.fc38.aarch64"
+      "evra": "2.37-12.fc38.aarch64"
     },
     "gmp": {
       "evra": "1:6.2.1-4.fc38.aarch64"
@@ -445,22 +445,22 @@
       "evra": "6.4.0-1.fc38.aarch64"
     },
     "iptables-legacy": {
-      "evra": "1.8.9-4.fc38.aarch64"
+      "evra": "1.8.9-4.fc38.1.aarch64"
     },
     "iptables-legacy-libs": {
-      "evra": "1.8.9-4.fc38.aarch64"
+      "evra": "1.8.9-4.fc38.1.aarch64"
     },
     "iptables-libs": {
-      "evra": "1.8.9-4.fc38.aarch64"
+      "evra": "1.8.9-4.fc38.1.aarch64"
     },
     "iptables-nft": {
-      "evra": "1.8.9-4.fc38.aarch64"
+      "evra": "1.8.9-4.fc38.1.aarch64"
     },
     "iptables-services": {
-      "evra": "1.8.9-4.fc38.noarch"
+      "evra": "1.8.9-4.fc38.1.noarch"
     },
     "iptables-utils": {
-      "evra": "1.8.9-4.fc38.aarch64"
+      "evra": "1.8.9-4.fc38.1.aarch64"
     },
     "iputils": {
       "evra": "20221126-2.fc38.aarch64"
@@ -739,7 +739,7 @@
       "evra": "0.1.5-53.fc38.aarch64"
     },
     "librepo": {
-      "evra": "1.16.0-2.fc38.aarch64"
+      "evra": "1.17.0-1.fc38.aarch64"
     },
     "libreport-filesystem": {
       "evra": "2.17.11-1.fc38.noarch"
@@ -958,7 +958,7 @@
       "evra": "2.4-3.fc38.aarch64"
     },
     "oniguruma": {
-      "evra": "6.9.8-2.D20220919gitb041f6d.fc38.1.aarch64"
+      "evra": "6.9.9-1.fc38.aarch64"
     },
     "openldap": {
       "evra": "2.6.6-1.fc38.aarch64"
@@ -1141,7 +1141,7 @@
       "evra": "2.3.3-3.fc38.aarch64"
     },
     "slirp4netns": {
-      "evra": "1.2.1-1.fc38.aarch64"
+      "evra": "1.2.2-1.fc38.aarch64"
     },
     "snappy": {
       "evra": "1.1.9-7.fc38.aarch64"
@@ -1237,10 +1237,10 @@
       "evra": "2.38.1-4.fc38.aarch64"
     },
     "vim-data": {
-      "evra": "2:9.0.1984-1.fc38.noarch"
+      "evra": "2:9.0.2048-1.fc38.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.1984-1.fc38.aarch64"
+      "evra": "2:9.0.2048-1.fc38.aarch64"
     },
     "which": {
       "evra": "2.21-39.fc38.aarch64"
@@ -1267,7 +1267,7 @@
       "evra": "1.3.2-1.fc38.aarch64"
     },
     "zincati": {
-      "evra": "0.0.25-4.fc38.aarch64"
+      "evra": "0.0.26-2.fc38.aarch64"
     },
     "zlib": {
       "evra": "1.2.13-3.fc38.aarch64"
@@ -1280,16 +1280,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-10-18T00:00:00Z",
+    "generated": "2023-10-24T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:36:48Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-10-18T00:08:37Z"
+        "generated": "2023-10-24T03:33:37Z"
       },
       "fedora-updates": {
-        "generated": "2023-10-18T01:40:47Z"
+        "generated": "2023-10-24T01:16:44Z"
       }
     }
   }
