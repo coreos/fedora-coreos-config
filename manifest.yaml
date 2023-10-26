@@ -13,11 +13,3 @@ repos:
   - fedora-next-updates
 
 include: manifests/fedora-coreos.yaml
-
-conditional-include:
-  # we only want these in next for now; see
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1375
-  - if: basearch == "x86_64"
-    include: manifests/crun-wasm.yaml
-  - if: basearch == "aarch64"
-    include: manifests/crun-wasm.yaml
