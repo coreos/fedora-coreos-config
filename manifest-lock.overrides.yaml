@@ -92,6 +92,12 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-bd2629d771
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
+  libnvme:
+    evr: 1.6-2.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-b4ed0a0db1
+      reason: https://pagure.io/releng/issue/11742#comment-880608
+      type: fast-track
   libsolv:
     evr: 0.7.25-1.fc39
     metadata:
