@@ -17,3 +17,5 @@ rm /boot/ignition.firstboot
 if [[ $(uname -m) = s390x ]]; then
     /usr/lib/dracut/modules.d/50rdcore/rdcore zipl --boot-mount=/boot
 fi
+
+sync
