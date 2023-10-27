@@ -21,15 +21,7 @@ ostree-layers:
 # Be minimal
 recommends: false
 
-ignore-removed-users:
-  - root
-ignore-removed-groups:
-  - root
-etc-group-members:
-  - wheel
-  - sudo
-  - systemd-journal
-  - adm
+sysusers: true
 
 check-passwd:
   type: "file"
