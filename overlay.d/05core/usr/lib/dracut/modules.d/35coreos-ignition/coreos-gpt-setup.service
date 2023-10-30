@@ -5,6 +5,8 @@ Before=systemd-fsck-root.service
 Before=ignition-diskful.target
 
 # Have some ordering with this service since it also wants to access the bootfs.
+# We run after it since that service runs early and is skipped if we're on
+# iSCSI, but we still run.
 After=coreos-copy-firstboot-network.service
 
 Requires=dev-disk-by\x2dlabel-boot.device

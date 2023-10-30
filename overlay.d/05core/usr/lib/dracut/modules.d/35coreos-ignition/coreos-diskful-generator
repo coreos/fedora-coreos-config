@@ -110,6 +110,11 @@ if test -n "$(cmdline_arg rd.iscsi.firmware)" || test -n "$(cmdline_arg netroot)
     # activate ignition-fetch.service
     mkdir -p /run/ignition
     touch /run/ignition/neednet
+
+    # With iSCSI, configuring networking via kargs is a hard requirement
+    # since it can't be picked up from the bootfs (i.e. injected via
+    # `--copy-network`). So neuter `coreos-copy-firstboot-network.service`.
+    ln -sf /dev/null "${EARLY_DIR}/ignition-complete.target.requires/coreos-copy-firstboot-network.service"
 fi
 
 # create symlink for udev rule
