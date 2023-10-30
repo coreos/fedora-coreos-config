@@ -1,16 +1,13 @@
 [Unit]
 Description=Ignition OSTree: Regenerate Filesystem UUID (boot)
-DefaultDependencies=false
 ConditionPathExists=/usr/lib/initrd-release
 ConditionKernelCommandLine=ostree
 ConditionPathExists=!/run/ostree-live
-# We run pretty early
-Before=coreos-copy-firstboot-network.service
-Before=coreos-ignition-setup-user.service
-Before=ignition-fetch-offline.service
 # Any services looking at mounts need to order after this
 # because it causes device re-probing.
 After=coreos-gpt-setup.service
+Before=ignition-disks.service
+
 # If we're going to reprovision the bootfs, then there's no need to restamp
 ConditionKernelCommandLine=!bootfs.roothash
 

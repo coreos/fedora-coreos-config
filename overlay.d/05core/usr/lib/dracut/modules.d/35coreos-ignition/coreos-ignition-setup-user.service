@@ -12,7 +12,7 @@ OnFailure=emergency.target
 OnFailureJobMode=isolate
 
 # On diskful boots, coreos-diskful-generator adds Requires/After on
-# dev-disk-by\x2dlabel-boot.device and coreos-gpt-setup.service
+# dev-disk-by\x2dlabel-boot.device
 
 [Service]
 Type=oneshot
