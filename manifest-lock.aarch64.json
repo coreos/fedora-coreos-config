@@ -148,7 +148,7 @@
       "evra": "0.21.3-6.fc39.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.222.0-1.fc39.noarch"
+      "evra": "2:2.224.0-1.fc39.noarch"
     },
     "containerd": {
       "evra": "1.6.19-2.fc39.aarch64"
@@ -187,10 +187,10 @@
       "evra": "3.18-3.fc39.aarch64"
     },
     "crun": {
-      "evra": "1.9.2-1.fc39.aarch64"
+      "evra": "1.11-1.fc39.aarch64"
     },
     "crun-wasm": {
-      "evra": "1.9.2-1.fc39.aarch64"
+      "evra": "1.11-1.fc39.aarch64"
     },
     "crypto-policies": {
       "evra": "20230731-1.git5ed06e0.fc39.noarch"
@@ -514,19 +514,19 @@
       "evra": "2.6.3-1.fc39.noarch"
     },
     "kernel": {
-      "evra": "6.5.7-300.fc39.aarch64"
+      "evra": "6.5.9-300.fc39.aarch64"
     },
     "kernel-core": {
-      "evra": "6.5.7-300.fc39.aarch64"
+      "evra": "6.5.9-300.fc39.aarch64"
     },
     "kernel-modules": {
-      "evra": "6.5.7-300.fc39.aarch64"
+      "evra": "6.5.9-300.fc39.aarch64"
     },
     "kernel-modules-core": {
-      "evra": "6.5.7-300.fc39.aarch64"
+      "evra": "6.5.9-300.fc39.aarch64"
     },
     "kexec-tools": {
-      "evra": "2.0.27-1.fc39.aarch64"
+      "evra": "2.0.27-2.fc39.aarch64"
     },
     "keyutils": {
       "evra": "1.6.1-7.fc39.aarch64"
@@ -727,7 +727,7 @@
       "evra": "2.0.0-6.fc39.aarch64"
     },
     "libnvme": {
-      "evra": "1.6-1.fc39.aarch64"
+      "evra": "1.6-2.fc39.aarch64"
     },
     "libpath_utils": {
       "evra": "0.2.1-54.fc39.aarch64"
@@ -748,7 +748,7 @@
       "evra": "0.1.5-54.fc39.aarch64"
     },
     "librepo": {
-      "evra": "1.16.0-2.fc39.aarch64"
+      "evra": "1.17.0-1.fc39.aarch64"
     },
     "libreport-filesystem": {
       "evra": "2.17.11-3.fc39.noarch"
@@ -964,7 +964,7 @@
       "evra": "2.5-4.fc39.aarch64"
     },
     "oniguruma": {
-      "evra": "6.9.8^20230501git41a3b80-2.fc39.aarch64"
+      "evra": "6.9.9-1.fc39.aarch64"
     },
     "openldap": {
       "evra": "2.6.6-1.fc39.aarch64"
@@ -1147,7 +1147,7 @@
       "evra": "2.3.3-3.fc38.aarch64"
     },
     "slirp4netns": {
-      "evra": "1.2.1-1.fc39.aarch64"
+      "evra": "1.2.2-1.fc39.aarch64"
     },
     "snappy": {
       "evra": "1.1.10-2.fc39.aarch64"
@@ -1246,10 +1246,10 @@
       "evra": "2.39.2-1.fc39.aarch64"
     },
     "vim-data": {
-      "evra": "2:9.0.1984-1.fc39.noarch"
+      "evra": "2:9.0.2048-1.fc39.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.1984-1.fc39.aarch64"
+      "evra": "2:9.0.2048-1.fc39.aarch64"
     },
     "wasmedge-rt": {
       "evra": "0.13.3-1.fc39.aarch64"
@@ -1292,13 +1292,13 @@
     }
   },
   "metadata": {
-    "generated": "2023-10-22T00:00:00Z",
+    "generated": "2023-10-27T00:00:00Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2023-10-20T15:55:24Z"
+        "generated": "2023-10-27T20:54:34Z"
       },
       "fedora-next": {
-        "generated": "2023-10-19T09:52:56Z"
+        "generated": "2023-10-27T09:29:55Z"
       },
       "fedora-next-updates": {
         "generated": "2018-02-20T19:13:29Z"

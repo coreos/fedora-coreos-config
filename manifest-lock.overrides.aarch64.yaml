@@ -10,9 +10,9 @@
 
 packages:
   crun-wasm:
-    evra: 1.9.2-1.fc39.aarch64
+    evra: 1.11-1.fc39.aarch64
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-3e03106a9e
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-0a1f1f38a9
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
   grub2-common:
