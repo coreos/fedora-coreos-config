@@ -43,7 +43,7 @@ attr
 gjs
 
 # Also, add clang since it's useful at least in CI for C/C++ projects
-clang lld
+clang
 # And the tools such as clang-format, used for style checking
 clang-tools-extra
 # All C/C++ projects should have CI that uses the sanitizers
