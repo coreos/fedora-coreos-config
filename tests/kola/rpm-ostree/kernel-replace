@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   # Increase timeout since this test has a lot of I/O and involves rebasing
-##   timeoutMin: 15
+##   timeoutMin: 20
 ##   # We've seen some OOM when 1024M is used:
 ##   # https://github.com/coreos/fedora-coreos-tracker/issues/1506
 ##   minMemory: 2048
@@ -44,7 +44,7 @@ image=oci:$image_dir
 image_pull=ostree-unverified-image:$image
 tmp_imagedir=/var/tmp/fcos-tmp
 arch=$(arch)
-kver="6.0.7-301.fc37.${arch}"
+kver="6.2.9-300.fc38.${arch}"
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
@@ -71,31 +71,11 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
     td=$(mktemp -d)
     cd ${td}
     version=$(rpm-ostree --version | grep Version)
-cat > dracut_call.sh << EOF
-#!/bin/bash
-# Temporary workaround for: https://github.com/coreos/rpm-ostree/issues/4190
-# This has been fixed on rpm-ostree 2022.18 and this script will be removed
-# once that version reaches the stable coreos stream.
-if [[ "$version" == *"2023"* ]] || [[ "$version" == *"2022.19"* ]]; then
-    echo "Running rpm-ostree 2022.19 or newer.";
-else
-    echo "Running rpm-ostree 2022.18 or older, rebuilding the initramfs.";
-    echo "Building initramfs for Kernel: $kver"
-    /usr/libexec/rpm-ostree/wrapped/dracut --tmpdir /tmp/ --no-hostonly --kver $kver --reproducible \
-    -v --add ostree -f /tmp/initramfs2.img
-    mv /tmp/initramfs2.img /lib/modules/$kver/initramfs.img
-fi;
-EOF
 cat > Dockerfile << EOF
 FROM localhost/fcos
 RUN rpm-ostree cliwrap install-to-root /
-ADD dracut_call.sh dracut_call.sh
-RUN cat dracut_call.sh
-# Once kernel-modules-core is in all supported releases, we can remove this conditional.
-RUN if rpm -q kernel-modules-core; then echo "kernel-modules-core installed.. removing"; remove="--remove kernel-modules-core"; fi && \
-    chmod +x dracut_call.sh && rpm-ostree override replace \$remove \
-    https://koji.fedoraproject.org/koji/buildinfo?buildID=2084352 && \
-    ./dracut_call.sh && \
+RUN rpm-ostree override replace \
+    https://koji.fedoraproject.org/koji/buildinfo?buildID=2178613 && \
     ostree container commit
 EOF
     # Older podman found in RHEL8 blows up without /etc/resolv.conf
