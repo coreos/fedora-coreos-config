@@ -84,9 +84,10 @@ if ! $(cmdline_bool 'ignition.firstboot' 0); then
     exit 0
 fi
 
-# coreos-ignition-setup-user.service should depend on the boot device node
-# only on diskful boots
+# coreos-ignition-setup-user.service and `coreos-copy-firstboot-network.service`
+# should depend on the boot device node only on diskful boots
 mkdir -p "${UNIT_DIR}/coreos-ignition-setup-user.service.d"
+mkdir -p "${UNIT_DIR}/coreos-copy-firstboot-network.service.d"
 cat > "${UNIT_DIR}/coreos-ignition-setup-user.service.d/diskful.conf" <<EOF
 [Unit]
 Requires=dev-disk-by\x2dlabel-boot.device
@@ -95,6 +96,8 @@ After=dev-disk-by\x2dlabel-boot.device
 Requires=coreos-gpt-setup.service
 After=coreos-gpt-setup.service
 EOF
+cp "${UNIT_DIR}/coreos-ignition-setup-user.service.d/diskful.conf" \
+    "${UNIT_DIR}/coreos-copy-firstboot-network.service.d/diskful.conf"
 
 # create symlink for udev rule
 mkdir -p /run/udev/rules.d/
