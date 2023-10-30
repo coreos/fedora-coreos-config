@@ -18,13 +18,13 @@ DefaultDependencies=false
 Before=ignition-mount.service
 Before=ignition-complete.target
 
-# Since we are tearing down networking using NetworkManager itself
-# we need to make sure NetworkManager is running. Similarly
-# dbus-broker since nmcli talks to the daemon via DBUS. Since the
-# ordering for ExecStop is the opposite of ExecStart we need to use
-# `After=` here.
-After=nm-initrd.service
-After=dbus-broker.service
+# Since we are tearing down networking we need to make sure
+# NetworkManager has been stopped, otherwise it'll be trying
+# to react to our delete/down operations. Since the ordering
+# for ExecStop is the opposite of ExecStart we need to use
+# `Before=nm-initrd.service`.
+# https://issues.redhat.com/browse/OCPBUGS-11052
+Before=nm-initrd.service
 
 # Make sure ExecStop= runs before we switch root
 Conflicts=initrd-switch-root.target umount.target
