@@ -13,6 +13,7 @@ set -e
 exec 1>/dev/kmsg; exec 2>&1
 
 UNIT_DIR="${1:-/tmp}"
+EARLY_DIR="${2:-/tmp}"
 
 IFS=" " read -r -a cmdline <<< "$(</proc/cmdline)"
 cmdline_arg() {
@@ -95,6 +96,21 @@ After=dev-disk-by\x2dlabel-boot.device
 EOF
 cp "${UNIT_DIR}/coreos-ignition-setup-user.service.d/diskful.conf" \
     "${UNIT_DIR}/coreos-copy-firstboot-network.service.d/diskful.conf"
+
+# If booting from iSCSI, then we need networking first before we
+# can see the bootfs. This has some implications.
+if test -n "$(cmdline_arg rd.iscsi.firmware)" || test -n "$(cmdline_arg netroot)"; then
+    mkdir -p "${EARLY_DIR}/ignition-complete.target.requires"
+
+    # In the injected Ignition config case, `coreos-ignition-setup-user.service`
+    # can't "pass" the config to `ignition-fetch-offline.service`. So we neuter
+    # the latter so that `ignition-fetch.service` (which runs after networking
+    # comes up) can pick it up instead.
+    ln -sf /dev/null "${EARLY_DIR}/ignition-complete.target.requires/ignition-fetch-offline.service"
+    # activate ignition-fetch.service
+    mkdir -p /run/ignition
+    touch /run/ignition/neednet
+fi
 
 # create symlink for udev rule
 mkdir -p /run/udev/rules.d/
