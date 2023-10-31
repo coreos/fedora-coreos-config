@@ -145,4 +145,9 @@ StandardOutput=null
 StandardError=null
 EOF
     done
+
+    # This one is done dynamically because it hard Requires a device to appear
+    # and if it's always part of the transaction, systemd will want the device
+    # to appear regardless of ConditionPathExists.
+    add_requires coreos-secex-ignition-decrypt.service ignition-diskful.target
 fi
