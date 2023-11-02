@@ -141,15 +141,15 @@ packages:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
   selinux-policy:
-    evra: 38.29-1.fc39.noarch
+    evra: 39.1-1.fc39.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-a2cd3807b5
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-24872e50a0
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
   selinux-policy-targeted:
-    evra: 38.29-1.fc39.noarch
+    evra: 39.1-1.fc39.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-a2cd3807b5
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-24872e50a0
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
   skopeo:
