@@ -37,10 +37,13 @@
       "evra": "1.25-1.fc38.ppc64le"
     },
     "amd-gpu-firmware": {
-      "evra": "20230919-1.fc38.noarch"
+      "evra": "20231030-1.fc38.noarch"
+    },
+    "amd-ucode-firmware": {
+      "evra": "20231030-1.fc38.noarch"
     },
     "atheros-firmware": {
-      "evra": "20230919-1.fc38.noarch"
+      "evra": "20231030-1.fc38.noarch"
     },
     "attr": {
       "evra": "2.5.1-6.fc38.ppc64le"
@@ -79,7 +82,7 @@
       "evra": "32:9.18.19-1.fc38.ppc64le"
     },
     "brcmfmac-firmware": {
-      "evra": "20230919-1.fc38.noarch"
+      "evra": "20231030-1.fc38.noarch"
     },
     "bsdtar": {
       "evra": "3.6.1-4.fc38.ppc64le"
@@ -340,7 +343,7 @@
       "evra": "3.14.1-1.fc38.ppc64le"
     },
     "fwupd": {
-      "evra": "1.9.6-1.fc38.ppc64le"
+      "evra": "1.9.7-1.fc38.ppc64le"
     },
     "gawk": {
       "evra": "5.1.1-5.fc38.ppc64le"
@@ -367,16 +370,16 @@
       "evra": "2.76.5-2.fc38.ppc64le"
     },
     "glibc": {
-      "evra": "2.37-12.fc38.ppc64le"
+      "evra": "2.37-13.fc38.ppc64le"
     },
     "glibc-common": {
-      "evra": "2.37-12.fc38.ppc64le"
+      "evra": "2.37-13.fc38.ppc64le"
     },
     "glibc-gconv-extra": {
-      "evra": "2.37-12.fc38.ppc64le"
+      "evra": "2.37-13.fc38.ppc64le"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.37-12.fc38.ppc64le"
+      "evra": "2.37-13.fc38.ppc64le"
     },
     "gmp": {
       "evra": "1:6.2.1-4.fc38.ppc64le"
@@ -424,7 +427,7 @@
       "evra": "57-1.fc38.ppc64le"
     },
     "intel-gpu-firmware": {
-      "evra": "20230919-1.fc38.noarch"
+      "evra": "20231030-1.fc38.noarch"
     },
     "ipcalc": {
       "evra": "1.0.3-1.fc38.ppc64le"
@@ -496,16 +499,16 @@
       "evra": "2.5.1-5.fc38.noarch"
     },
     "kernel": {
-      "evra": "6.5.8-200.fc38.ppc64le"
+      "evra": "6.5.9-200.fc38.ppc64le"
     },
     "kernel-core": {
-      "evra": "6.5.8-200.fc38.ppc64le"
+      "evra": "6.5.9-200.fc38.ppc64le"
     },
     "kernel-modules": {
-      "evra": "6.5.8-200.fc38.ppc64le"
+      "evra": "6.5.9-200.fc38.ppc64le"
     },
     "kernel-modules-core": {
-      "evra": "6.5.8-200.fc38.ppc64le"
+      "evra": "6.5.9-200.fc38.ppc64le"
     },
     "kexec-tools": {
       "evra": "2.0.26-3.fc38.ppc64le"
@@ -608,9 +611,6 @@
     },
     "libfido2": {
       "evra": "1.12.0-3.fc38.ppc64le"
-    },
-    "libgcab1": {
-      "evra": "1.5-2.fc38.ppc64le"
     },
     "libgcc": {
       "evra": "13.2.1-4.fc38.ppc64le"
@@ -856,10 +856,10 @@
       "evra": "2.5.1-34.fc38.ppc64le"
     },
     "linux-firmware": {
-      "evra": "20230919-1.fc38.noarch"
+      "evra": "20231030-1.fc38.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20230919-1.fc38.noarch"
+      "evra": "20231030-1.fc38.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.31-1.fc38.ppc64le"
@@ -898,7 +898,7 @@
       "evra": "4.1.1-3.fc38.ppc64le"
     },
     "mt7xxx-firmware": {
-      "evra": "20230919-1.fc38.noarch"
+      "evra": "20231030-1.fc38.noarch"
     },
     "nano": {
       "evra": "7.2-2.fc38.ppc64le"
@@ -946,7 +946,7 @@
       "evra": "2.0.16-2.fc38.ppc64le"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20230919-1.fc38.noarch"
+      "evra": "20231030-1.fc38.noarch"
     },
     "nvme-cli": {
       "evra": "2.4-3.fc38.ppc64le"
@@ -985,10 +985,10 @@
       "evra": "2023.6-1.fc38.ppc64le"
     },
     "p11-kit": {
-      "evra": "0.25.1-1.fc38.ppc64le"
+      "evra": "0.25.2-1.fc38.ppc64le"
     },
     "p11-kit-trust": {
-      "evra": "0.25.1-1.fc38.ppc64le"
+      "evra": "0.25.2-1.fc38.ppc64le"
     },
     "pam": {
       "evra": "1.5.2-16.fc38.ppc64le"
@@ -1069,7 +1069,7 @@
       "evra": "8.2-3.fc38.ppc64le"
     },
     "realtek-firmware": {
-      "evra": "20230919-1.fc38.noarch"
+      "evra": "20231030-1.fc38.noarch"
     },
     "rpcbind": {
       "evra": "1.2.6-4.rc2.fc38.ppc64le"
@@ -1240,10 +1240,10 @@
       "evra": "2.38.1-4.fc38.ppc64le"
     },
     "vim-data": {
-      "evra": "2:9.0.2048-1.fc38.noarch"
+      "evra": "2:9.0.2081-1.fc38.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.2048-1.fc38.ppc64le"
+      "evra": "2:9.0.2081-1.fc38.ppc64le"
     },
     "which": {
       "evra": "2.21-39.fc38.ppc64le"
@@ -1283,16 +1283,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-10-31T00:00:00Z",
+    "generated": "2023-11-04T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:36:47Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-10-27T20:53:34Z"
+        "generated": "2023-11-04T02:14:16Z"
       },
       "fedora-updates": {
-        "generated": "2023-10-31T01:08:11Z"
+        "generated": "2023-11-04T03:32:39Z"
       }
     }
   }
