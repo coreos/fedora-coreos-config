@@ -142,7 +142,7 @@
       "evra": "0.21.3-4.fc38.noarch"
     },
     "container-selinux": {
-      "evra": "2:2.222.0-1.fc38.noarch"
+      "evra": "2:2.224.0-1.fc38.noarch"
     },
     "containerd": {
       "evra": "1.6.19-1.fc38.x86_64"
@@ -181,7 +181,7 @@
       "evra": "3.18-1.fc38.x86_64"
     },
     "crun": {
-      "evra": "1.9.2-1.fc38.x86_64"
+      "evra": "1.10-1.fc38.x86_64"
     },
     "crypto-policies": {
       "evra": "20230301-1.gita12f7b2.fc38.noarch"
@@ -376,16 +376,16 @@
       "evra": "2.76.5-2.fc38.x86_64"
     },
     "glibc": {
-      "evra": "2.37-10.fc38.x86_64"
+      "evra": "2.37-12.fc38.x86_64"
     },
     "glibc-common": {
-      "evra": "2.37-10.fc38.x86_64"
+      "evra": "2.37-12.fc38.x86_64"
     },
     "glibc-gconv-extra": {
-      "evra": "2.37-10.fc38.x86_64"
+      "evra": "2.37-12.fc38.x86_64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.37-10.fc38.x86_64"
+      "evra": "2.37-12.fc38.x86_64"
     },
     "gmp": {
       "evra": "1:6.2.1-4.fc38.x86_64"
@@ -451,22 +451,22 @@
       "evra": "6.4.0-1.fc38.x86_64"
     },
     "iptables-legacy": {
-      "evra": "1.8.9-4.fc38.x86_64"
+      "evra": "1.8.9-4.fc38.1.x86_64"
     },
     "iptables-legacy-libs": {
-      "evra": "1.8.9-4.fc38.x86_64"
+      "evra": "1.8.9-4.fc38.1.x86_64"
     },
     "iptables-libs": {
-      "evra": "1.8.9-4.fc38.x86_64"
+      "evra": "1.8.9-4.fc38.1.x86_64"
     },
     "iptables-nft": {
-      "evra": "1.8.9-4.fc38.x86_64"
+      "evra": "1.8.9-4.fc38.1.x86_64"
     },
     "iptables-services": {
-      "evra": "1.8.9-4.fc38.noarch"
+      "evra": "1.8.9-4.fc38.1.noarch"
     },
     "iptables-utils": {
-      "evra": "1.8.9-4.fc38.x86_64"
+      "evra": "1.8.9-4.fc38.1.x86_64"
     },
     "iputils": {
       "evra": "20221126-2.fc38.x86_64"
@@ -511,16 +511,16 @@
       "evra": "2.5.1-5.fc38.noarch"
     },
     "kernel": {
-      "evra": "6.5.6-200.fc38.x86_64"
+      "evra": "6.5.8-200.fc38.x86_64"
     },
     "kernel-core": {
-      "evra": "6.5.6-200.fc38.x86_64"
+      "evra": "6.5.8-200.fc38.x86_64"
     },
     "kernel-modules": {
-      "evra": "6.5.6-200.fc38.x86_64"
+      "evra": "6.5.8-200.fc38.x86_64"
     },
     "kernel-modules-core": {
-      "evra": "6.5.6-200.fc38.x86_64"
+      "evra": "6.5.8-200.fc38.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.26-3.fc38.x86_64"
@@ -709,7 +709,7 @@
       "evra": "1.2.4-2.fc38.x86_64"
     },
     "libnghttp2": {
-      "evra": "1.52.0-1.fc38.x86_64"
+      "evra": "1.52.0-2.fc38.x86_64"
     },
     "libnl3": {
       "evra": "3.7.0-3.fc38.x86_64"
@@ -742,7 +742,7 @@
       "evra": "0.1.5-53.fc38.x86_64"
     },
     "librepo": {
-      "evra": "1.16.0-2.fc38.x86_64"
+      "evra": "1.17.0-1.fc38.x86_64"
     },
     "libreport-filesystem": {
       "evra": "2.17.11-1.fc38.noarch"
@@ -964,7 +964,7 @@
       "evra": "2.4-3.fc38.x86_64"
     },
     "oniguruma": {
-      "evra": "6.9.8-2.D20220919gitb041f6d.fc38.1.x86_64"
+      "evra": "6.9.9-1.fc38.x86_64"
     },
     "openldap": {
       "evra": "2.6.6-1.fc38.x86_64"
@@ -1111,10 +1111,10 @@
       "evra": "4.8-12.fc38.x86_64"
     },
     "selinux-policy": {
-      "evra": "38.29-1.fc38.noarch"
+      "evra": "38.30-1.fc38.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "38.29-1.fc38.noarch"
+      "evra": "38.30-1.fc38.noarch"
     },
     "setup": {
       "evra": "2.14.3-2.fc38.noarch"
@@ -1144,7 +1144,7 @@
       "evra": "2.3.3-3.fc38.x86_64"
     },
     "slirp4netns": {
-      "evra": "1.2.1-1.fc38.x86_64"
+      "evra": "1.2.2-1.fc38.x86_64"
     },
     "snappy": {
       "evra": "1.1.9-7.fc38.x86_64"
@@ -1195,22 +1195,22 @@
       "evra": "1.9.13-2.p2.fc38.x86_64"
     },
     "systemd": {
-      "evra": "253.10-1.fc38.x86_64"
+      "evra": "253.12-1.fc38.x86_64"
     },
     "systemd-container": {
-      "evra": "253.10-1.fc38.x86_64"
+      "evra": "253.12-1.fc38.x86_64"
     },
     "systemd-libs": {
-      "evra": "253.10-1.fc38.x86_64"
+      "evra": "253.12-1.fc38.x86_64"
     },
     "systemd-pam": {
-      "evra": "253.10-1.fc38.x86_64"
+      "evra": "253.12-1.fc38.x86_64"
     },
     "systemd-resolved": {
-      "evra": "253.10-1.fc38.x86_64"
+      "evra": "253.12-1.fc38.x86_64"
     },
     "systemd-udev": {
-      "evra": "253.10-1.fc38.x86_64"
+      "evra": "253.12-1.fc38.x86_64"
     },
     "tar": {
       "evra": "2:1.34-8.fc38.x86_64"
@@ -1240,10 +1240,10 @@
       "evra": "2.38.1-4.fc38.x86_64"
     },
     "vim-data": {
-      "evra": "2:9.0.1984-1.fc38.noarch"
+      "evra": "2:9.0.2048-1.fc38.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.1984-1.fc38.x86_64"
+      "evra": "2:9.0.2048-1.fc38.x86_64"
     },
     "which": {
       "evra": "2.21-39.fc38.x86_64"
@@ -1270,7 +1270,7 @@
       "evra": "1.3.2-1.fc38.x86_64"
     },
     "zincati": {
-      "evra": "0.0.25-4.fc38.x86_64"
+      "evra": "0.0.26-2.fc38.x86_64"
     },
     "zlib": {
       "evra": "1.2.13-3.fc38.x86_64"
@@ -1283,16 +1283,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-10-14T00:00:00Z",
+    "generated": "2023-10-27T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-04-13T20:37:10Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-10-14T02:07:48Z"
+        "generated": "2023-10-26T21:10:19Z"
       },
       "fedora-updates": {
-        "generated": "2023-10-14T01:23:14Z"
+        "generated": "2023-10-27T01:21:58Z"
       }
     }
   }
