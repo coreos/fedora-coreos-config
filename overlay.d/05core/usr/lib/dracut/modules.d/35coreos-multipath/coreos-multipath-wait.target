@@ -11,8 +11,8 @@ After=multipathd.service
 OnFailure=emergency.target
 OnFailureJobMode=isolate
 
-# This is already enforced transitively by coreos-gpt-setup.service, but
-# let's be more explicit and list it directly here too.
+# This is one of the earliest services that accesses the bootfs so make sure we
+# already have our multipath target.
 Before=coreos-ignition-setup-user.service
 
 # This is already enforced by coreos-multipath-trigger.service, though ideally

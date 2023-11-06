@@ -229,13 +229,22 @@ main() {
     # Load libraries from dracut
     load_dracut_libs
 
-    # Take down all interfaces set up in the initramfs
-    down_interfaces
+    # If we're using iSCSI, then we can't tear down networking since we'll lose
+    # root. This means in that case that the network config written to the real
+    # root won't be applied "from scratch". But anyway, since networking must
+    # stay on, it's simply not supported to configure the real root in a way
+    # that would require tearing down the connection on the interface involved.
+    if dracut_func getargbool 0 rd.iscsi.firmware || dracut_func getarg netroot; then
+        echo "info: iSCSI in use; not tearing down networking"
+    else
+        # Take down all interfaces set up in the initramfs
+        down_interfaces
 
-    # Clean up all routing
-    echo "info: flushing all routing"
-    ip route flush table main
-    ip route flush cache
+        # Clean up all routing
+        echo "info: flushing all routing"
+        ip route flush table main
+        ip route flush cache
+    fi
 
     # Hopefully our logic is sound enough that this is never needed, but
     # user's can explicitly disable initramfs network/hostname propagation
