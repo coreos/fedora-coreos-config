@@ -9,8 +9,8 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  moby-engine:
-    evr: 20.10.23-1.fc38
+  containerd:
+    evr: 1.6.19-2.fc39
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1476
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1578
       type: pin
