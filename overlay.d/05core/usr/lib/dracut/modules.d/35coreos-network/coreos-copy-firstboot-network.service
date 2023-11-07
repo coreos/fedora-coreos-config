@@ -11,7 +11,7 @@
 # - In the diskful case, we need to look for networking configuration on the
 #   /boot partition
 #     - i.e. after /dev/disk/by-label/boot is available
-#     - which is implied by running after coreos-gpt-setup (see below)
+#     - which is injected via coreos-diskful-generator
 # - Need to run before networking is brought up.
 #     - This is done in nm-initrd.service [1]
 #     - i.e. Before=nm-initrd.service
@@ -41,9 +41,6 @@ Before=nm-initrd.service
 # compat: remove when everyone is on dracut 054+
 Before=dracut-initqueue.service
 After=dracut-cmdline.service
-# Any services looking at mounts need to order after this
-# because it causes device re-probing.
-After=coreos-gpt-setup.service
 # And since the boot device may be on multipath; optionally wait for it to
 # appear via the dynamic target.
 After=coreos-multipath-wait.target
