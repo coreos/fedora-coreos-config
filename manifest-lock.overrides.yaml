@@ -9,13 +9,20 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  moby-engine:
-    evr: 20.10.23-1.fc38
+  containerd:
+    evr: 1.6.19-2.fc39
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1476
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1578
       type: pin
-  zincati:
-    evr: 0.0.26-2.fc38
+  selinux-policy:
+    evra: 39.1-1.fc39.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-06c1ba116f
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-24872e50a0
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
+      type: fast-track
+  selinux-policy-targeted:
+    evra: 39.1-1.fc39.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-24872e50a0
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1490#issuecomment-1720020468
       type: fast-track
