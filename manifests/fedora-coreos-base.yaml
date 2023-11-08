@@ -174,14 +174,16 @@ packages:
 #   - Include this on non-x86_64 FCOS images to allow access to the large
 #     inventory of containers only built for x86_64.
 #     https://github.com/coreos/fedora-coreos-tracker/issues/1237
-#
 # - google-compute-engine-guest-configs-udev
 #   - Add this package on x86_64 and aarch64 (the two architectures
 #     GCP supports. https://github.com/coreos/fedora-coreos-tracker/issues/1494
 #     This should be moved to a shared manifest when RHEL has this package.
+# - crun-wasm wasmedge-rt
+#   - Support for wasm runtime: https://github.com/coreos/fedora-coreos-tracker/issues/1375
 packages-x86_64:
   - irqbalance
   - google-compute-engine-guest-configs-udev
+  - crun-wasm wasmedge-rt
 packages-ppc64le:
   - irqbalance
   - librtas
@@ -192,6 +194,7 @@ packages-aarch64:
   - irqbalance
   - qemu-user-static-x86
   - google-compute-engine-guest-configs-udev
+  - crun-wasm wasmedge-rt
 packages-s390x:
   - qemu-user-static-x86
 
