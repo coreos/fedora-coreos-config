@@ -1,0 +1,64 @@
+#!/bin/bash
+## kola:
+##   tags: "platform-independent"
+##   description: Verify systemd-sysuser.service with `ConditionNeedsUpdate=`
+##     will be triggered with new deployment at boot time.
+
+# See https://github.com/ostreedev/ostree/issues/3069#issuecomment-1798115799
+
+# Systemd units using ConditionNeedsUpdate= run if the mtime of .updated in
+# the specified directory is newer than /usr. Since /usr has an mtime of
+# 0, there's no way to have an older .updated file refer to
+# https://ostreedev.github.io/ostree/repo/#content-objects. Systemd units
+# typically specify ConditionNeedsUpdate=/etc or ConditionNeedsUpdate=/var
+# to support stateless systems like ostree.
+
+# Remove the file .updated from the new deployment's /etc and the OS's /var
+# regardless of where they came from to ensure that these systemd units
+# run when booting new deployments, see
+# https://github.com/ostreedev/ostree/commit/19d18842cf2df944c7e9536494353aefa2916743
+
+set -xeuo pipefail
+
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+username=footest
+kargs="somedummykarg=1"
+
+case "${AUTOPKGTEST_REBOOT_MARK:-}" in
+  "")
+    ok "first boot"
+    if getent passwd ${username}; then
+      fatal "should not get user ${username} before testing"
+    fi
+    # create sysusers config
+    mkdir /etc/sysusers.d
+    echo "u      ${username}  -   ${username}" > /etc/sysusers.d/30-${username}.conf
+    /tmp/autopkgtest-reboot second-boot
+    ;;
+
+  second-boot)
+    # reboot to check user footest not created
+    ok "second boot"
+    if getent passwd ${username}; then
+      fatal "should not get user ${username} after second boot"
+    fi
+    # create a new deployment
+    rpm-ostree kargs --append=${kargs}
+    /tmp/autopkgtest-reboot third-boot
+    ;;
+
+  third-boot)
+    ok "third boot"
+    # check user footest is created
+    if ! getent passwd ${username}; then
+      fatal "should get user ${username} with new deployment after third boot"
+    fi
+    # check appended kargs
+    if ! grep "${kargs}" /proc/cmdline; then
+      fatal "can not get appended kargs ${kargs}"
+    fi
+    ;;
+
+    *) fatal "unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}";;
+esac
