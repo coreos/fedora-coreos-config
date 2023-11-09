@@ -195,9 +195,6 @@
     "crun-wasm": {
       "evra": "1.11.1-1.fc39.x86_64"
     },
-    "crun-wasm": {
-      "evra": "1.10-1.fc38.x86_64"
-    },
     "crypto-policies": {
       "evra": "20230731-1.git5ed06e0.fc39.noarch"
     },
@@ -338,9 +335,6 @@
     },
     "fmt": {
       "evra": "10.0.0-3.fc39.x86_64"
-    },
-    "fmt": {
-      "evra": "9.1.0-2.fc38.x86_64"
     },
     "fstrm": {
       "evra": "0.6.1-8.fc39.x86_64"
@@ -529,16 +523,16 @@
       "evra": "2.6.3-1.fc39.noarch"
     },
     "kernel": {
-      "evra": "6.5.9-300.fc39.x86_64"
+      "evra": "6.5.10-300.fc39.x86_64"
     },
     "kernel-core": {
-      "evra": "6.5.9-300.fc39.x86_64"
+      "evra": "6.5.10-300.fc39.x86_64"
     },
     "kernel-modules": {
-      "evra": "6.5.9-300.fc39.x86_64"
+      "evra": "6.5.10-300.fc39.x86_64"
     },
     "kernel-modules-core": {
-      "evra": "6.5.9-300.fc39.x86_64"
+      "evra": "6.5.10-300.fc39.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.27-2.fc39.x86_64"
@@ -1167,9 +1161,6 @@
     "spdlog": {
       "evra": "1.12.0-2.fc39.x86_64"
     },
-    "spdlog": {
-      "evra": "1.11.0-5.fc38.x86_64"
-    },
     "sqlite-libs": {
       "evra": "3.42.0-7.fc39.x86_64"
     },
@@ -1266,9 +1257,6 @@
     "wasmedge-rt": {
       "evra": "0.13.4-1.fc39.x86_64"
     },
-    "wasmedge-rt": {
-      "evra": "0.13.4-2.fc38.x86_64"
-    },
     "which": {
       "evra": "2.21-40.fc39.x86_64"
     },
@@ -1307,19 +1295,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-11-06T00:00:00Z",
+    "generated": "2023-11-09T00:00:00Z",
     "rpmmd_repos": {
-      "fedora-candidate-compose": {
+      "fedora": {
         "generated": "2023-11-01T00:12:39Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-11-05T01:43:59Z"
+        "generated": "2023-11-08T21:18:22Z"
       },
-      "fedora-next": {
-        "generated": "2023-11-03T02:50:25Z"
-      },
-      "fedora-next-updates": {
-        "generated": "2023-11-06T01:22:29Z"
+      "fedora-updates": {
+        "generated": "2023-11-08T01:14:26Z"
       }
     }
   }
