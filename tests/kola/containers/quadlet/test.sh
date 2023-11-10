@@ -17,7 +17,7 @@ if [[ "$(podman network inspect systemd-test | jq -r '.[0].labels."org.test.Key"
     fatal "Network not correctly created"
 fi
 
-if [[ "$(podman inspect systemd-test | jq -r '.[0].ImageName')" != "quay.io/fedora/fedora-minimal:latest" ]]; then
+if [[ "$(podman inspect systemd-test | jq -r '.[0].ImageName')" != "quay.io/fedora/fedora-minimal:39" ]]; then
     fatal "Container not using the correct image"
 fi
 
