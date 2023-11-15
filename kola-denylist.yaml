@@ -5,31 +5,21 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: podman.workflow
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
-- pattern: ext.config.kdump.crash
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1430
-  snooze: 2023-11-15
-  warn: true
-  arches:
-    - aarch64
-  streams:
-    - stable
-    - testing
-    - testing-devel
 - pattern: coreos.ignition.ssh.key
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1553
-  snooze: 2023-11-15
+  snooze: 2023-11-30
   warn: true
   platforms:
     - azure
 - pattern: ext.config.docker.basic
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1578
-  snooze: 2023-11-15
+  snooze: 2023-11-30
   warn: true
   streams:
     - rawhide
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1588
-  snooze: 2023-11-15
+  snooze: 2023-11-30
   warn: true
   arches:
     - ppc64le
