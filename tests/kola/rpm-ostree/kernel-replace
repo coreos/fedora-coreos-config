@@ -49,12 +49,22 @@ kver="6.2.9-300.fc38.${arch}"
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
     # Take the existing ostree commit, and export it to a container image, then rebase to it.
-    checksum=$(rpm-ostree status --json | jq -r '.deployments[0].checksum')
-    v0=$(rpm-ostree status --json | jq -r '.deployments[0].version')
+    rpm-ostree status --json > status.json
+    checksum=$(jq -r '.deployments[0].checksum' < status.json)
+    v0=$(jq -r '.deployments[0].version' < status.json)
+    imgref=$(jq -r '.deployments[0]["container-image-reference"]' < status.json)
     rm ${image_dir} -rf
+    encapsulate_args=()
+    # A hack...if we're booted into a container, then we need to fake things out
+    # for the merge commit to turn it back into an image.  What we *really* want
+    # here obviously is seamless support for re-serializing a container from
+    # the ostree storage, but right now we're not doing the tar-split stuff.
+    if [[ "$imgref" != null ]]; then
+      encapsulate_args+=("--label" "ostree.bootable=true")
+    fi
     # Since we're switching OS update stream, turn off zincati
     systemctl mask --now zincati
-    ostree container encapsulate --repo=/ostree/repo ${checksum} "${image}"
+    ostree container encapsulate "${encapsulate_args[@]}" --repo=/ostree/repo ${checksum} "${image}"
     # This one keeps --experimental, but we also test without it below
     rpm-ostree rebase --experimental "$image_pull"
     ostree container image list --repo=/ostree/repo | tee imglist.txt
