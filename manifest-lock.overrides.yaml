@@ -14,9 +14,3 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1578
       type: pin
-  zincati:
-    evr: 0.0.27-1.fc39
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-7699739559
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1608
-      type: fast-track
