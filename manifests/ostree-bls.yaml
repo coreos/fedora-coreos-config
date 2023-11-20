@@ -1,0 +1,10 @@
+# Enable fixed OSTree grub2 naming
+# https://github.com/ostreedev/ostree/pull/3007
+postprocess:
+  - |
+    #!/usr/bin/env bash
+    mkdir -p /usr/lib/systemd/system/ostree-finalize-staged.service.d
+    cat <<'EOF' > /usr/lib/systemd/system/ostree-finalize-staged.service.d/ostree-bls-naming.conf
+    [Service]
+    Environment=OSTREE_SYSROOT_OPTS=bootloader-naming-2
+    EOF

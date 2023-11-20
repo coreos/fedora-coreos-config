@@ -37,13 +37,10 @@
       "evra": "1.25-1.fc39.ppc64le"
     },
     "amd-gpu-firmware": {
-      "evra": "20231030-1.fc39.noarch"
-    },
-    "amd-ucode-firmware": {
-      "evra": "20231030-1.fc39.noarch"
+      "evra": "20231111-1.fc39.noarch"
     },
     "atheros-firmware": {
-      "evra": "20231030-1.fc39.noarch"
+      "evra": "20231111-1.fc39.noarch"
     },
     "attr": {
       "evra": "2.5.1-8.fc39.ppc64le"
@@ -67,10 +64,10 @@
       "evra": "11-18.fc39.noarch"
     },
     "bash": {
-      "evra": "5.2.15-5.fc39.ppc64le"
+      "evra": "5.2.21-1.fc39.ppc64le"
     },
     "bash-color-prompt": {
-      "evra": "0.1-6.fc39.noarch"
+      "evra": "0.2-1.fc39.noarch"
     },
     "bash-completion": {
       "evra": "1:2.11-12.fc39.noarch"
@@ -88,7 +85,7 @@
       "evra": "32:9.18.19-1.fc39.ppc64le"
     },
     "brcmfmac-firmware": {
-      "evra": "20231030-1.fc39.noarch"
+      "evra": "20231111-1.fc39.noarch"
     },
     "bsdtar": {
       "evra": "3.7.1-1.fc39.ppc64le"
@@ -136,7 +133,7 @@
       "evra": "0.33-3.fc39.noarch"
     },
     "conmon": {
-      "evra": "2:2.1.7-3.fc39.ppc64le"
+      "evra": "2:2.1.8-2.fc39.ppc64le"
     },
     "console-login-helper-messages": {
       "evra": "0.21.3-6.fc39.noarch"
@@ -193,7 +190,7 @@
       "evra": "1.11.1-1.fc39.ppc64le"
     },
     "crypto-policies": {
-      "evra": "20230731-1.git5ed06e0.fc39.noarch"
+      "evra": "20231113-1.gitb402e82.fc39.noarch"
     },
     "cryptsetup": {
       "evra": "2.6.1-3.fc39.ppc64le"
@@ -253,13 +250,13 @@
       "evra": "4.2-7.fc39.ppc64le"
     },
     "dracut": {
-      "evra": "059-15.fc39.ppc64le"
+      "evra": "059-16.fc39.ppc64le"
     },
     "dracut-network": {
-      "evra": "059-15.fc39.ppc64le"
+      "evra": "059-16.fc39.ppc64le"
     },
     "dracut-squash": {
-      "evra": "059-15.fc39.ppc64le"
+      "evra": "059-16.fc39.ppc64le"
     },
     "duktape": {
       "evra": "2.7.0-5.fc39.ppc64le"
@@ -271,13 +268,13 @@
       "evra": "1.47.0-2.fc39.ppc64le"
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.189-4.fc39.noarch"
+      "evra": "0.190-1.fc39.noarch"
     },
     "elfutils-libelf": {
-      "evra": "0.189-4.fc39.ppc64le"
+      "evra": "0.190-1.fc39.ppc64le"
     },
     "elfutils-libs": {
-      "evra": "0.189-4.fc39.ppc64le"
+      "evra": "0.190-1.fc39.ppc64le"
     },
     "ethtool": {
       "evra": "2:6.5-1.fc39.ppc64le"
@@ -319,7 +316,7 @@
       "evra": "1:4.9.0-5.fc39.ppc64le"
     },
     "flatpak-session-helper": {
-      "evra": "1.15.4-3.fc39.ppc64le"
+      "evra": "1.15.4-4.fc39.ppc64le"
     },
     "fstrm": {
       "evra": "0.6.1-8.fc39.ppc64le"
@@ -367,7 +364,7 @@
       "evra": "0.22-2.fc39.ppc64le"
     },
     "git-core": {
-      "evra": "2.41.0-2.fc39.ppc64le"
+      "evra": "2.42.0-2.fc39.ppc64le"
     },
     "glib2": {
       "evra": "2.78.1-1.fc39.ppc64le"
@@ -388,7 +385,7 @@
       "evra": "1:6.2.1-5.fc39.ppc64le"
     },
     "gnupg2": {
-      "evra": "2.4.3-2.fc39.ppc64le"
+      "evra": "2.4.3-4.fc39.ppc64le"
     },
     "gnutls": {
       "evra": "3.8.1-1.fc39.ppc64le"
@@ -400,19 +397,19 @@
       "evra": "3.11-3.fc39.ppc64le"
     },
     "grub2-common": {
-      "evra": "1:2.06-104.fc39.noarch"
+      "evra": "1:2.06-109.fc39.noarch"
     },
     "grub2-ppc64le": {
-      "evra": "1:2.06-104.fc39.ppc64le"
+      "evra": "1:2.06-109.fc39.ppc64le"
     },
     "grub2-ppc64le-modules": {
-      "evra": "1:2.06-104.fc39.noarch"
+      "evra": "1:2.06-109.fc39.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.06-104.fc39.ppc64le"
+      "evra": "1:2.06-109.fc39.ppc64le"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-104.fc39.ppc64le"
+      "evra": "1:2.06-109.fc39.ppc64le"
     },
     "gvisor-tap-vsock-gvforwarder": {
       "evra": "6:0.7.1-1.fc39.ppc64le"
@@ -430,7 +427,7 @@
       "evra": "57-2.fc39.ppc64le"
     },
     "intel-gpu-firmware": {
-      "evra": "20231030-1.fc39.noarch"
+      "evra": "20231111-1.fc39.noarch"
     },
     "ipcalc": {
       "evra": "1.0.3-2.fc39.ppc64le"
@@ -502,16 +499,16 @@
       "evra": "2.6.3-1.fc39.noarch"
     },
     "kernel": {
-      "evra": "6.5.9-300.fc39.ppc64le"
+      "evra": "6.5.11-300.fc39.ppc64le"
     },
     "kernel-core": {
-      "evra": "6.5.9-300.fc39.ppc64le"
+      "evra": "6.5.11-300.fc39.ppc64le"
     },
     "kernel-modules": {
-      "evra": "6.5.9-300.fc39.ppc64le"
+      "evra": "6.5.11-300.fc39.ppc64le"
     },
     "kernel-modules-core": {
-      "evra": "6.5.9-300.fc39.ppc64le"
+      "evra": "6.5.11-300.fc39.ppc64le"
     },
     "kexec-tools": {
       "evra": "2.0.27-2.fc39.ppc64le"
@@ -628,7 +625,7 @@
       "evra": "238-2.fc39.ppc64le"
     },
     "libgusb": {
-      "evra": "0.4.7-1.fc39.ppc64le"
+      "evra": "0.4.8-1.fc39.ppc64le"
     },
     "libibverbs": {
       "evra": "46.0-4.fc39.ppc64le"
@@ -643,7 +640,7 @@
       "evra": "1.3.1-54.fc39.ppc64le"
     },
     "libipa_hbac": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "libjcat": {
       "evra": "0.1.14-2.fc39.ppc64le"
@@ -703,10 +700,10 @@
       "evra": "1.55.1-4.fc39.ppc64le"
     },
     "libnl3": {
-      "evra": "3.8.0-1.fc39.ppc64le"
+      "evra": "3.8.0-2.fc39.ppc64le"
     },
     "libnl3-cli": {
-      "evra": "3.8.0-1.fc39.ppc64le"
+      "evra": "3.8.0-2.fc39.ppc64le"
     },
     "libnsl2": {
       "evra": "2.0.0-6.fc39.ppc64le"
@@ -778,16 +775,16 @@
       "evra": "1.47.0-2.fc39.ppc64le"
     },
     "libsss_certmap": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "libsss_idmap": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "libsss_nss_idmap": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "libsss_sudo": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "libstdc++": {
       "evra": "13.2.1-4.fc39.ppc64le"
@@ -856,10 +853,10 @@
       "evra": "2.5.1-36.fc39.ppc64le"
     },
     "linux-firmware": {
-      "evra": "20231030-1.fc39.noarch"
+      "evra": "20231111-1.fc39.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20231030-1.fc39.noarch"
+      "evra": "20231111-1.fc39.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.31-2.fc39.ppc64le"
@@ -898,7 +895,7 @@
       "evra": "4.2.0-3.fc39.ppc64le"
     },
     "mt7xxx-firmware": {
-      "evra": "20231030-1.fc39.noarch"
+      "evra": "20231111-1.fc39.noarch"
     },
     "nano": {
       "evra": "7.2-4.fc39.ppc64le"
@@ -946,7 +943,7 @@
       "evra": "2.0.16-3.fc39.ppc64le"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20231030-1.fc39.noarch"
+      "evra": "20231111-1.fc39.noarch"
     },
     "nvme-cli": {
       "evra": "2.6-1.fc39.ppc64le"
@@ -985,10 +982,10 @@
       "evra": "2023.7-2.fc39.ppc64le"
     },
     "p11-kit": {
-      "evra": "0.25.2-1.fc39.ppc64le"
+      "evra": "0.25.3-1.fc39.ppc64le"
     },
     "p11-kit-trust": {
-      "evra": "0.25.2-1.fc39.ppc64le"
+      "evra": "0.25.3-1.fc39.ppc64le"
     },
     "pam": {
       "evra": "1.5.3-3.fc39.ppc64le"
@@ -1024,10 +1021,10 @@
       "evra": "1.9.5-2.fc39.ppc64le"
     },
     "podman": {
-      "evra": "5:4.7.0-1.fc39.ppc64le"
+      "evra": "5:4.7.2-1.fc39.ppc64le"
     },
     "podman-plugins": {
-      "evra": "5:4.7.0-1.fc39.ppc64le"
+      "evra": "5:4.7.2-1.fc39.ppc64le"
     },
     "policycoreutils": {
       "evra": "3.5-8.fc39.ppc64le"
@@ -1051,7 +1048,7 @@
       "evra": "2.7.9-4.fc39.ppc64le"
     },
     "procps-ng": {
-      "evra": "4.0.3-4.fc39.ppc64le"
+      "evra": "4.0.3-5.fc39.ppc64le"
     },
     "protobuf-c": {
       "evra": "1.4.1-5.fc39.ppc64le"
@@ -1069,7 +1066,7 @@
       "evra": "8.2-4.fc39.ppc64le"
     },
     "realtek-firmware": {
-      "evra": "20231030-1.fc39.noarch"
+      "evra": "20231111-1.fc39.noarch"
     },
     "rpcbind": {
       "evra": "1.2.6-4.rc2.fc39.1.ppc64le"
@@ -1162,31 +1159,31 @@
       "evra": "0.1.4-4.fc39.ppc64le"
     },
     "sssd-ad": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "sssd-client": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "sssd-common": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "sssd-common-pac": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "sssd-ipa": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "sssd-krb5": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "sssd-krb5-common": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "sssd-ldap": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "sssd-nfs-idmap": {
-      "evra": "2.9.2-2.fc39.ppc64le"
+      "evra": "2.9.2-3.fc39.ppc64le"
     },
     "stalld": {
       "evra": "1.16-4.fc39.ppc64le"
@@ -1219,7 +1216,7 @@
       "evra": "1.32-1.fc39.ppc64le"
     },
     "toolbox": {
-      "evra": "0.0.99.4-3.fc39.ppc64le"
+      "evra": "0.0.99.4-5.fc39.ppc64le"
     },
     "tpm2-tools": {
       "evra": "5.5-4.fc39.ppc64le"
@@ -1240,10 +1237,10 @@
       "evra": "2.39.2-1.fc39.ppc64le"
     },
     "vim-data": {
-      "evra": "2:9.0.2081-1.fc39.noarch"
+      "evra": "2:9.0.2105-1.fc39.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.0.2081-1.fc39.ppc64le"
+      "evra": "2:9.0.2105-1.fc39.ppc64le"
     },
     "which": {
       "evra": "2.21-40.fc39.ppc64le"
@@ -1270,7 +1267,7 @@
       "evra": "1.3.2-1.fc39.ppc64le"
     },
     "zincati": {
-      "evra": "0.0.26-2.fc39.ppc64le"
+      "evra": "0.0.27-1.fc39.ppc64le"
     },
     "zlib": {
       "evra": "1.2.13-4.fc39.ppc64le"
@@ -1283,19 +1280,19 @@
     }
   },
   "metadata": {
-    "generated": "2023-11-06T00:00:00Z",
+    "generated": "2023-11-19T00:00:00Z",
     "rpmmd_repos": {
       "fedora-candidate-compose": {
         "generated": "2023-11-01T00:12:28Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-11-05T01:41:35Z"
+        "generated": "2023-11-18T23:10:40Z"
       },
       "fedora-next": {
         "generated": "2023-11-03T02:50:15Z"
       },
       "fedora-next-updates": {
-        "generated": "2023-11-06T01:22:24Z"
+        "generated": "2023-11-19T01:15:57Z"
       }
     }
   }

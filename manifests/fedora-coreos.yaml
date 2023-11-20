@@ -23,19 +23,9 @@ conditional-include:
   - if: basearch != "s390x"
     # And remove some cruft from grub2
     include: grub2-removals.yaml
-  - if: basearch == "ppc64le"
-    # Need OSTree autopruning on ppc64le (because kernels aren't compressed)
-    # until we increase the size of /boot.
-    # https://github.com/coreos/fedora-coreos-tracker/issues/1247#issuecomment-1355314761
-    # https://github.com/coreos/fedora-coreos-tracker/issues/1495#issuecomment-1561765705
-    include: ostree-autoprune.yaml
   - if:
-      - basearch == "aarch64"
-      - releasever >= 39
-    # In F39+ we will stop removing the qcom dtb files and thus we'll leverage OSTree autopruning
-    # so that we don't run into https://github.com/coreos/fedora-coreos-tracker/issues/1464
-    # again. OSTree autopruning is new so we're selectively enabling it before making it the default.
-    include: ostree-autoprune.yaml
+      - releasever >= 40
+    include: ostree-bls.yaml
   - if:
       - basearch == "aarch64"
       - releasever == 38
