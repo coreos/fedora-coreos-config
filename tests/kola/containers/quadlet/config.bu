@@ -9,7 +9,7 @@ storage:
           Description=A minimal container
 
           [Container]
-          Image=quay.io/fedora/fedora-minimal
+          Image=quay.io/fedora/fedora-minimal:39
           Exec=sleep 60
           Volume=test.volume:/data
           Network=test.network
