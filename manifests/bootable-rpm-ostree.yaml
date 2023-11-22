@@ -29,6 +29,7 @@ packages-s390x:
 packages-x86_64:
   - grub2 grub2-efi-x64 efibootmgr shim
   - microcode_ctl
+  - amd-ucode-firmware
 
 exclude-packages:
   # Exclude kernel-debug-core to make sure that it doesn't somehow get
