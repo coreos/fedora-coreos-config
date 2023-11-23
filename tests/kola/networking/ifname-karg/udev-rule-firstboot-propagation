@@ -24,7 +24,7 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
         check_file_exists '/etc/udev/rules.d/80-ifname.rules'
         # On first boot we expect systemd-network-generator to run too
         # because the ifname= karg was present, but only for first boot
-        check_file_exists "/run/systemd/network/90-${nicname}.link"
+        check_file_exists "/run/systemd/network/*-${nicname}.link"
         # Make sure the NIC is in use and got the expected IP address
         check_ip "${nicname}"
         /tmp/autopkgtest-reboot rebooted
@@ -36,7 +36,7 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
         check_file_exists '/etc/udev/rules.d/80-ifname.rules'
         # On second boot the ifname= karg isn't there so the file
         # created by systemd-network-generator shouldn't exist.
-        check_file_not_exists "/run/systemd/network/90-${nicname}.link"
+        check_file_not_exists "/run/systemd/network/*-${nicname}.link"
         # Make sure the NIC is in use and got the expected IP address
         check_ip "${nicname}"
       ;;
