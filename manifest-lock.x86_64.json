@@ -39,6 +39,9 @@
     "amd-gpu-firmware": {
       "evra": "20231111-1.fc39.noarch"
     },
+    "amd-ucode-firmware": {
+      "evra": "20231111-1.fc39.noarch"
+    },
     "atheros-firmware": {
       "evra": "20231111-1.fc39.noarch"
     },
@@ -187,10 +190,10 @@
       "evra": "3.18-3.fc39.x86_64"
     },
     "crun": {
-      "evra": "1.11.1-1.fc39.x86_64"
+      "evra": "1.11.2-1.fc39.x86_64"
     },
     "crun-wasm": {
-      "evra": "1.11.1-1.fc39.x86_64"
+      "evra": "1.11.2-1.fc39.x86_64"
     },
     "crypto-policies": {
       "evra": "20231113-1.gitb402e82.fc39.noarch"
@@ -358,7 +361,7 @@
       "evra": "3.16.1-1.fc39.x86_64"
     },
     "fwupd": {
-      "evra": "1.9.7-1.fc39.x86_64"
+      "evra": "1.9.9-1.fc39.x86_64"
     },
     "gawk": {
       "evra": "5.2.2-2.fc39.x86_64"
@@ -385,16 +388,16 @@
       "evra": "2.78.1-1.fc39.x86_64"
     },
     "glibc": {
-      "evra": "2.38-10.fc39.x86_64"
+      "evra": "2.38-11.fc39.x86_64"
     },
     "glibc-common": {
-      "evra": "2.38-10.fc39.x86_64"
+      "evra": "2.38-11.fc39.x86_64"
     },
     "glibc-gconv-extra": {
-      "evra": "2.38-10.fc39.x86_64"
+      "evra": "2.38-11.fc39.x86_64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.38-10.fc39.x86_64"
+      "evra": "2.38-11.fc39.x86_64"
     },
     "gmp": {
       "evra": "1:6.2.1-5.fc39.x86_64"
@@ -520,16 +523,16 @@
       "evra": "2.6.3-1.fc39.noarch"
     },
     "kernel": {
-      "evra": "6.5.11-300.fc39.x86_64"
+      "evra": "6.5.12-300.fc39.x86_64"
     },
     "kernel-core": {
-      "evra": "6.5.11-300.fc39.x86_64"
+      "evra": "6.5.12-300.fc39.x86_64"
     },
     "kernel-modules": {
-      "evra": "6.5.11-300.fc39.x86_64"
+      "evra": "6.5.12-300.fc39.x86_64"
     },
     "kernel-modules-core": {
-      "evra": "6.5.11-300.fc39.x86_64"
+      "evra": "6.5.12-300.fc39.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.27-2.fc39.x86_64"
@@ -1045,10 +1048,10 @@
       "evra": "3.5-8.fc39.x86_64"
     },
     "polkit": {
-      "evra": "123-1.fc39.x86_64"
+      "evra": "123-1.fc39.1.x86_64"
     },
     "polkit-libs": {
-      "evra": "123-1.fc39.x86_64"
+      "evra": "123-1.fc39.1.x86_64"
     },
     "polkit-pkla-compat": {
       "evra": "0.1-26.fc39.x86_64"
@@ -1084,10 +1087,10 @@
       "evra": "4.19.0-1.fc39.x86_64"
     },
     "rpm-ostree": {
-      "evra": "2023.8-2.fc39.x86_64"
+      "evra": "2023.10-3.fc39.x86_64"
     },
     "rpm-ostree-libs": {
-      "evra": "2023.8-2.fc39.x86_64"
+      "evra": "2023.10-3.fc39.x86_64"
     },
     "rpm-plugin-selinux": {
       "evra": "4.19.0-1.fc39.x86_64"
@@ -1252,7 +1255,7 @@
       "evra": "2:9.0.2105-1.fc39.x86_64"
     },
     "wasmedge-rt": {
-      "evra": "0.13.4-1.fc39.x86_64"
+      "evra": "0.13.5-1.fc39.x86_64"
     },
     "which": {
       "evra": "2.21-40.fc39.x86_64"
@@ -1292,19 +1295,19 @@
     }
   },
   "metadata": {
-    "generated": "2023-11-21T00:00:00Z",
+    "generated": "2023-11-23T00:00:00Z",
     "rpmmd_repos": {
       "fedora-candidate-compose": {
         "generated": "2023-11-01T00:12:39Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-11-20T23:05:12Z"
+        "generated": "2023-11-23T00:12:24Z"
       },
       "fedora-next": {
         "generated": "2023-11-03T02:50:25Z"
       },
       "fedora-next-updates": {
-        "generated": "2023-11-21T02:40:55Z"
+        "generated": "2023-11-23T01:15:44Z"
       }
     }
   }
