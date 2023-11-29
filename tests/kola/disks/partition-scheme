@@ -1,0 +1,61 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   description: Verify the partition scheme is what we expect.
+##
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+root_part=$(findmnt -n -o SOURCE /sysroot)
+disk_name=$(lsblk --json -o PKNAME --path "$root_part" | jq --raw-output '.blockdevices[].pkname')
+diskData=$(sfdisk --json "$disk_name" | jq '.partitiontable' )
+partitionData=$(echo $diskData | jq '.partitions[]')
+totalPartitions=$(echo $diskData | jq '.partitions | length')
+sector_size=$(echo $diskData | jq .sectorsize)
+
+if [[ $totalPartitions -ne 4 ]]; then
+    fatal "Expected 4 partitions, got $totalPartitions"
+fi
+
+# check sizes of each parition
+ONE_MiB=$(( 1024 * 1024 ))
+
+# An associative array that maps the partition label to the size (in MiB)
+# of the partition. For the root partition we set it to "" to skip the check
+# there because the growfs service runs on first boot. Checking start
+# should be enough there.
+declare -A expected=(
+    ["BIOS-BOOT"]="1"
+    ["EFI-SYSTEM"]="127"
+    ["boot"]="384"
+    ["root"]=""
+)
+
+# There is a 1MiB gap at the beginning of the disks
+expected_start=$(( 1 * $ONE_MiB / $sector_size ))
+
+# Iterate over the partitions and check their start and size
+for key in "${!expected[@]}"; do
+    size_MiB="${expected[${key}]}"
+    start=$(echo "$partitionData" | jq "select ( .name == \"$key\") | .start")
+    sectors=$(echo "$partitionData" | jq "select ( .name == \"$key\") | .size")
+    size=$(( $sectors * $sector_size ))
+    if [[ "$start" -ne "$expected_start" ]]; then
+        fatal "Expected $key partition start sector of $expected_start, got $start"
+    fi
+    if [ ! -z "$size_MiB" ]; then
+        expected_size=$(($size_MiB * $ONE_MiB))
+        if [[ "$expected_size" -ne "$size" ]]; then
+            fatal "Expected $key partition of size $expected_size, got $size"
+        fi
+    fi
+    # The expected start of the next partition will be the start of this partition
+    # plus the size of this partition.
+    expected_start=$(($expected_start + $size / $sector_size))
+done
+
+ok partition scheme
+exit 0
