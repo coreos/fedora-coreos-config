@@ -16,47 +16,60 @@ partitionData=$(echo $diskData | jq '.partitions[]')
 totalPartitions=$(echo $diskData | jq '.partitions | length')
 sector_size=$(echo $diskData | jq .sectorsize)
 
-arch=$(uname -m)
-
-if [[ "$arch" == "s390x" ]]; then
-    if [[ $totalPartitions -ne 2 ]]; then
-        fatal "Expected 2 partitions, got $totalPartitions"
-    fi
-    # An associative array that maps the partition label to the size (in MiB)
-    # of the partition. For the root partition we set it to "" to skip the check
-    # there because the growfs service runs on first boot. Checking start
-    # should be enough there.
-    declare -A expected=(
-        ["boot"]="384"
-        ["root"]=""
-    )
-else
-    if [[ $totalPartitions -ne 4 ]]; then
-        fatal "Expected 4 partitions, got $totalPartitions"
-    fi
-    # An associative array that maps the partition label to the size (in MiB)
-    # of the partition. For the root partition we set it to "" to skip the check
-    # there because the growfs service runs on first boot. Checking start
-    # should be enough there.
-    declare -A expected=(
-        ["BIOS-BOOT"]="1"
-        ["EFI-SYSTEM"]="127"
-        ["boot"]="384"
-        ["root"]=""
-    )
-fi
-
-# check sizes of each parition
 ONE_MiB=$(( 1024 * 1024 ))
+
+# Keep information about the expected partitions in
+# an associative array. Since associative arrays are
+# unordered keep around a sorted variable so we can
+# infer the correct order later.
+case "$(uname -m)" in
+    "aarch64")
+        sorted="reserved EFI-SYSTEM boot root"
+        declare -A expected=(
+            ["reserved"]="1"
+            ["EFI-SYSTEM"]="127"
+            ["boot"]="384"
+            ["root"]=""
+        );;
+    "ppc64le")
+        sorted="PowerPC-PReP-boot reserved boot root"
+        declare -A expected=(
+            ["PowerPC-PReP-boot"]="4"
+            ["reserved"]="1"
+            ["boot"]="384"
+            ["root"]=""
+        );;
+    "x86_64")
+        sorted="BIOS-BOOT EFI-SYSTEM boot root"
+        declare -A expected=(
+            ["BIOS-BOOT"]="1"
+            ["EFI-SYSTEM"]="127"
+            ["boot"]="384"
+            ["root"]=""
+        );;
+    "s390x")
+        sorted="boot root"
+        declare -A expected=(
+            ["boot"]="384"
+            ["root"]=""
+        );;
+esac
+
+# Check if the number of partitions match
+if [[ $totalPartitions -ne "${#expected[@]}" ]]; then
+    fatal "Expected ${#expected[@]} partitions, got $totalPartitions"
+fi
 
 # There is a 1MiB gap at the beginning of the disks
 expected_start=$(( 1 * $ONE_MiB / $sector_size ))
 
 # Iterate over the partitions and check their start and size
-for key in "${!expected[@]}"; do
+for key in $sorted; do
     size_MiB="${expected[${key}]}"
     start=$(echo "$partitionData" | jq "select ( .name == \"$key\") | .start")
     sectors=$(echo "$partitionData" | jq "select ( .name == \"$key\") | .size")
+    test -z "$start" && fatal "Could not detect start sector for $key"
+    test -z "$sectors" && fatal "Could not detect size in sectors for $key"
     size=$(( $sectors * $sector_size ))
     if [[ "$start" -ne "$expected_start" ]]; then
         fatal "Expected $key partition start sector of $expected_start, got $start"
@@ -73,4 +86,3 @@ for key in "${!expected[@]}"; do
 done
 
 ok partition scheme
-exit 0
