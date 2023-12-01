@@ -14,9 +14,3 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1578
       type: pin
-  ignition:
-    evr: 2.17.0-1.fc39
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f754cec812
-      reason: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f754cec812
-      type: fast-track
