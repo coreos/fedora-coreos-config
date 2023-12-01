@@ -16,23 +16,38 @@ partitionData=$(echo $diskData | jq '.partitions[]')
 totalPartitions=$(echo $diskData | jq '.partitions | length')
 sector_size=$(echo $diskData | jq .sectorsize)
 
-if [[ $totalPartitions -ne 4 ]]; then
-    fatal "Expected 4 partitions, got $totalPartitions"
+arch=$(uname -m)
+
+if [[ "$arch" == "s390x" ]]; then
+    if [[ $totalPartitions -ne 2 ]]; then
+        fatal "Expected 2 partitions, got $totalPartitions"
+    fi
+    # An associative array that maps the partition label to the size (in MiB)
+    # of the partition. For the root partition we set it to "" to skip the check
+    # there because the growfs service runs on first boot. Checking start
+    # should be enough there.
+    declare -A expected=(
+        ["boot"]="384"
+        ["root"]=""
+    )
+else
+    if [[ $totalPartitions -ne 4 ]]; then
+        fatal "Expected 4 partitions, got $totalPartitions"
+    fi
+    # An associative array that maps the partition label to the size (in MiB)
+    # of the partition. For the root partition we set it to "" to skip the check
+    # there because the growfs service runs on first boot. Checking start
+    # should be enough there.
+    declare -A expected=(
+        ["BIOS-BOOT"]="1"
+        ["EFI-SYSTEM"]="127"
+        ["boot"]="384"
+        ["root"]=""
+    )
 fi
 
 # check sizes of each parition
 ONE_MiB=$(( 1024 * 1024 ))
-
-# An associative array that maps the partition label to the size (in MiB)
-# of the partition. For the root partition we set it to "" to skip the check
-# there because the growfs service runs on first boot. Checking start
-# should be enough there.
-declare -A expected=(
-    ["BIOS-BOOT"]="1"
-    ["EFI-SYSTEM"]="127"
-    ["boot"]="384"
-    ["root"]=""
-)
 
 # There is a 1MiB gap at the beginning of the disks
 expected_start=$(( 1 * $ONE_MiB / $sector_size ))
