@@ -91,7 +91,7 @@
       "evra": "6.6.2-1.fc39.s390x"
     },
     "bubblewrap": {
-      "evra": "0.7.0-2.fc39.s390x"
+      "evra": "0.8.0-1.fc39.s390x"
     },
     "bzip2": {
       "evra": "1.0.8-16.fc39.s390x"
@@ -274,7 +274,7 @@
       "evra": "0.190-1.fc39.s390x"
     },
     "ethtool": {
-      "evra": "2:6.5-1.fc39.s390x"
+      "evra": "2:6.6-1.fc39.s390x"
     },
     "expat": {
       "evra": "2.5.0-3.fc39.s390x"
@@ -283,13 +283,13 @@
       "evra": "39-1.noarch"
     },
     "fedora-release-common": {
-      "evra": "39-30.noarch"
+      "evra": "39-34.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "39-30.noarch"
+      "evra": "39-34.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "39-30.noarch"
+      "evra": "39-34.noarch"
     },
     "fedora-repos": {
       "evra": "39-1.noarch"
@@ -313,7 +313,7 @@
       "evra": "1:4.9.0-5.fc39.s390x"
     },
     "flatpak-session-helper": {
-      "evra": "1.15.4-4.fc39.s390x"
+      "evra": "1.15.6-1.fc39.s390x"
     },
     "fstrm": {
       "evra": "0.6.1-8.fc39.s390x"
@@ -376,7 +376,7 @@
       "evra": "2.4.3-4.fc39.s390x"
     },
     "gnutls": {
-      "evra": "3.8.1-1.fc39.s390x"
+      "evra": "3.8.2-1.fc39.s390x"
     },
     "gpgme": {
       "evra": "1.20.0-5.fc39.s390x"
@@ -469,16 +469,16 @@
       "evra": "2.6.3-1.fc39.noarch"
     },
     "kernel": {
-      "evra": "6.5.12-300.fc39.s390x"
+      "evra": "6.6.2-201.fc39.s390x"
     },
     "kernel-core": {
-      "evra": "6.5.12-300.fc39.s390x"
+      "evra": "6.6.2-201.fc39.s390x"
     },
     "kernel-modules": {
-      "evra": "6.5.12-300.fc39.s390x"
+      "evra": "6.6.2-201.fc39.s390x"
     },
     "kernel-modules-core": {
-      "evra": "6.5.12-300.fc39.s390x"
+      "evra": "6.6.2-201.fc39.s390x"
     },
     "kexec-tools": {
       "evra": "2.0.27-3.fc39.s390x"
@@ -538,7 +538,7 @@
       "evra": "0.11.7-5.fc39.s390x"
     },
     "libcap": {
-      "evra": "2.48-7.fc39.s390x"
+      "evra": "2.48-8.fc39.s390x"
     },
     "libcap-ng": {
       "evra": "0.8.3-8.fc39.s390x"
@@ -634,7 +634,7 @@
       "evra": "9-16.fc39.s390x"
     },
     "libmaxminddb": {
-      "evra": "1.7.1-3.fc39.s390x"
+      "evra": "1.8.0-1.fc39.s390x"
     },
     "libmd": {
       "evra": "1.1.0-2.fc39.s390x"
@@ -790,7 +790,7 @@
       "evra": "2.39.2-1.fc39.s390x"
     },
     "libuv": {
-      "evra": "1:1.46.0-2.fc39.s390x"
+      "evra": "1:1.47.0-3.fc39.s390x"
     },
     "libverto": {
       "evra": "0.3.2-6.fc39.s390x"
@@ -949,10 +949,10 @@
       "evra": "1.5.3-3.fc39.s390x"
     },
     "passt": {
-      "evra": "0^20231107.g56d9f6d-1.fc39.s390x"
+      "evra": "0^20231119.g4f1709d-1.fc39.s390x"
     },
     "passt-selinux": {
-      "evra": "0^20231107.g56d9f6d-1.fc39.noarch"
+      "evra": "0^20231119.g4f1709d-1.fc39.noarch"
     },
     "passwd": {
       "evra": "0.80-15.fc39.s390x"
@@ -976,10 +976,10 @@
       "evra": "1.9.5-2.fc39.s390x"
     },
     "podman": {
-      "evra": "5:4.7.2-1.fc39.s390x"
+      "evra": "5:4.8.0-1.fc39.s390x"
     },
     "podman-plugins": {
-      "evra": "5:4.7.2-1.fc39.s390x"
+      "evra": "5:4.8.0-1.fc39.s390x"
     },
     "policycoreutils": {
       "evra": "3.5-8.fc39.s390x"
@@ -1045,7 +1045,7 @@
       "evra": "2:1.1.8-1.fc39.s390x"
     },
     "s390utils-core": {
-      "evra": "2:2.29.0-2.fc39.s390x"
+      "evra": "2:2.29.0-4.fc39.s390x"
     },
     "samba-client-libs": {
       "evra": "2:4.19.2-1.fc39.s390x"
@@ -1141,22 +1141,22 @@
       "evra": "1.9.14-1.p3.fc39.s390x"
     },
     "systemd": {
-      "evra": "254.5-2.fc39.s390x"
+      "evra": "254.7-1.fc39.s390x"
     },
     "systemd-container": {
-      "evra": "254.5-2.fc39.s390x"
+      "evra": "254.7-1.fc39.s390x"
     },
     "systemd-libs": {
-      "evra": "254.5-2.fc39.s390x"
+      "evra": "254.7-1.fc39.s390x"
     },
     "systemd-pam": {
-      "evra": "254.5-2.fc39.s390x"
+      "evra": "254.7-1.fc39.s390x"
     },
     "systemd-resolved": {
-      "evra": "254.5-2.fc39.s390x"
+      "evra": "254.7-1.fc39.s390x"
     },
     "systemd-udev": {
-      "evra": "254.5-2.fc39.s390x"
+      "evra": "254.7-1.fc39.s390x"
     },
     "tar": {
       "evra": "2:1.35-2.fc39.s390x"
@@ -1232,16 +1232,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-11-26T00:00:00Z",
+    "generated": "2023-12-01T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-11-25T23:46:23Z"
+        "generated": "2023-11-27T00:07:35Z"
       },
       "fedora-updates": {
-        "generated": "2023-11-26T01:34:12Z"
+        "generated": "2023-12-01T01:15:07Z"
       }
     }
   }

@@ -94,7 +94,7 @@
       "evra": "6.6.2-1.fc39.aarch64"
     },
     "bubblewrap": {
-      "evra": "0.7.0-2.fc39.aarch64"
+      "evra": "0.8.0-1.fc39.aarch64"
     },
     "bzip2": {
       "evra": "1.0.8-16.fc39.aarch64"
@@ -289,7 +289,7 @@
       "evra": "0.190-1.fc39.aarch64"
     },
     "ethtool": {
-      "evra": "2:6.5-1.fc39.aarch64"
+      "evra": "2:6.6-1.fc39.aarch64"
     },
     "expat": {
       "evra": "2.5.0-3.fc39.aarch64"
@@ -298,13 +298,13 @@
       "evra": "39-1.noarch"
     },
     "fedora-release-common": {
-      "evra": "39-30.noarch"
+      "evra": "39-34.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "39-30.noarch"
+      "evra": "39-34.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "39-30.noarch"
+      "evra": "39-34.noarch"
     },
     "fedora-repos": {
       "evra": "39-1.noarch"
@@ -328,7 +328,7 @@
       "evra": "1:4.9.0-5.fc39.aarch64"
     },
     "flatpak-session-helper": {
-      "evra": "1.15.4-4.fc39.aarch64"
+      "evra": "1.15.6-1.fc39.aarch64"
     },
     "fmt": {
       "evra": "10.0.0-3.fc39.aarch64"
@@ -403,7 +403,7 @@
       "evra": "2.4.3-4.fc39.aarch64"
     },
     "gnutls": {
-      "evra": "3.8.1-1.fc39.aarch64"
+      "evra": "3.8.2-1.fc39.aarch64"
     },
     "google-compute-engine-guest-configs-udev": {
       "evra": "20230929.00-1.fc39.noarch"
@@ -514,16 +514,16 @@
       "evra": "2.6.3-1.fc39.noarch"
     },
     "kernel": {
-      "evra": "6.5.12-300.fc39.aarch64"
+      "evra": "6.6.2-201.fc39.aarch64"
     },
     "kernel-core": {
-      "evra": "6.5.12-300.fc39.aarch64"
+      "evra": "6.6.2-201.fc39.aarch64"
     },
     "kernel-modules": {
-      "evra": "6.5.12-300.fc39.aarch64"
+      "evra": "6.6.2-201.fc39.aarch64"
     },
     "kernel-modules-core": {
-      "evra": "6.5.12-300.fc39.aarch64"
+      "evra": "6.6.2-201.fc39.aarch64"
     },
     "kexec-tools": {
       "evra": "2.0.27-3.fc39.aarch64"
@@ -583,7 +583,7 @@
       "evra": "0.11.7-5.fc39.aarch64"
     },
     "libcap": {
-      "evra": "2.48-7.fc39.aarch64"
+      "evra": "2.48-8.fc39.aarch64"
     },
     "libcap-ng": {
       "evra": "0.8.3-8.fc39.aarch64"
@@ -679,7 +679,7 @@
       "evra": "9-16.fc39.aarch64"
     },
     "libmaxminddb": {
-      "evra": "1.7.1-3.fc39.aarch64"
+      "evra": "1.8.0-1.fc39.aarch64"
     },
     "libmd": {
       "evra": "1.1.0-2.fc39.aarch64"
@@ -835,7 +835,7 @@
       "evra": "2.39.2-1.fc39.aarch64"
     },
     "libuv": {
-      "evra": "1:1.46.0-2.fc39.aarch64"
+      "evra": "1:1.47.0-3.fc39.aarch64"
     },
     "libverto": {
       "evra": "0.3.2-6.fc39.aarch64"
@@ -1003,10 +1003,10 @@
       "evra": "1.5.3-3.fc39.aarch64"
     },
     "passt": {
-      "evra": "0^20231107.g56d9f6d-1.fc39.aarch64"
+      "evra": "0^20231119.g4f1709d-1.fc39.aarch64"
     },
     "passt-selinux": {
-      "evra": "0^20231107.g56d9f6d-1.fc39.noarch"
+      "evra": "0^20231119.g4f1709d-1.fc39.noarch"
     },
     "passwd": {
       "evra": "0.80-15.fc39.aarch64"
@@ -1030,10 +1030,10 @@
       "evra": "1.9.5-2.fc39.aarch64"
     },
     "podman": {
-      "evra": "5:4.7.2-1.fc39.aarch64"
+      "evra": "5:4.8.0-1.fc39.aarch64"
     },
     "podman-plugins": {
-      "evra": "5:4.7.2-1.fc39.aarch64"
+      "evra": "5:4.8.0-1.fc39.aarch64"
     },
     "policycoreutils": {
       "evra": "3.5-8.fc39.aarch64"
@@ -1198,22 +1198,22 @@
       "evra": "1.9.14-1.p3.fc39.aarch64"
     },
     "systemd": {
-      "evra": "254.5-2.fc39.aarch64"
+      "evra": "254.7-1.fc39.aarch64"
     },
     "systemd-container": {
-      "evra": "254.5-2.fc39.aarch64"
+      "evra": "254.7-1.fc39.aarch64"
     },
     "systemd-libs": {
-      "evra": "254.5-2.fc39.aarch64"
+      "evra": "254.7-1.fc39.aarch64"
     },
     "systemd-pam": {
-      "evra": "254.5-2.fc39.aarch64"
+      "evra": "254.7-1.fc39.aarch64"
     },
     "systemd-resolved": {
-      "evra": "254.5-2.fc39.aarch64"
+      "evra": "254.7-1.fc39.aarch64"
     },
     "systemd-udev": {
-      "evra": "254.5-2.fc39.aarch64"
+      "evra": "254.7-1.fc39.aarch64"
     },
     "tar": {
       "evra": "2:1.35-2.fc39.aarch64"
@@ -1289,16 +1289,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-11-26T00:00:00Z",
+    "generated": "2023-12-01T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:29Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-11-25T23:46:28Z"
+        "generated": "2023-11-27T00:08:40Z"
       },
       "fedora-updates": {
-        "generated": "2023-11-26T01:34:03Z"
+        "generated": "2023-12-01T01:14:58Z"
       }
     }
   }
