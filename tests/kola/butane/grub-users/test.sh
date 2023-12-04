@@ -36,18 +36,18 @@ rebooted)
         fatal "Rebooted into old deployment"
     fi
     # cross-check karg with BLS configs
-    if grep -q test-added-karg /boot/loader.0/entries/ostree-1-fedora-coreos.conf; then
+    if grep -q test-added-karg /boot/loader.0/entries/ostree-1*.conf; then
         fatal "Old BLS config contains new karg"
     fi
-    if ! grep -q test-added-karg /boot/loader.0/entries/ostree-2-fedora-coreos.conf; then
+    if ! grep -q test-added-karg /boot/loader.0/entries/ostree-2*.conf; then
         fatal "New BLS config doesn't contain new karg"
     fi
     # old deployment should require a password to boot
-    if ! grep -q '^grub_users ""$' /boot/loader.0/entries/ostree-1-fedora-coreos.conf; then
+    if ! grep -q '^grub_users ""$' /boot/loader.0/entries/ostree-1*.conf; then
         fatal "Missing grub_users setting in old BLS config"
     fi
     # new one should not
-    if grep -q grub_users /boot/loader.0/entries/ostree-2-fedora-coreos.conf; then
+    if grep -q grub_users /boot/loader.0/entries/ostree-2*.conf; then
         fatal "grub_users setting present in new BLS config"
     fi
     ok "BLS grub_users setting"
