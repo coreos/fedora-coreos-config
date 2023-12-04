@@ -1,0 +1,21 @@
+# This yum repo entry represents the latest candidate compose for the given
+# Fedora release. During prep for final release some release blockers and
+# freeze exceptions are actually built in candidate composes first to
+# qualify them before they are promoted to the other repos. In order to pick
+# these packages up ASAP we'll pull from the latest candidate compose
+# as well. Note that if a package doesn't pass testing it will get
+# demoted from a later canddiate compose and never promoted to stable
+# repos. In this case a later bump-lockfile run will revert ot the
+# older NVR package that is currently in the stable repos. This should address:
+# https://github.com/coreos/fedora-coreos-tracker/issues/1602
+
+[fedora-candidate-compose]
+name=Fedora Candidate Compose $releasever - $basearch
+baseurl=https://kojipkgs.fedoraproject.org/compose/$releasever/latest-Fedora-$releasever/compose/Everything/$basearch/os/
+enabled=1
+#metadata_expire=7d
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+skip_if_unavailable=False
