@@ -8,3 +8,8 @@ repos:
   - fedora-rawhide
 
 include: manifests/fedora-coreos.yaml
+
+# Ship this in rawhide because we want to enable it in the future, also
+# to shake out any integration issues.
+packages:
+  - bootc
