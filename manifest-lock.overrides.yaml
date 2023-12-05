@@ -14,3 +14,13 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1578
       type: pin
+  podman:
+    evr: 5:4.7.2-1.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1625
+      type: pin
+  podman-plugins:
+    evr: 5:4.7.2-1.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1625
+      type: pin

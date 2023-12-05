@@ -7,26 +7,27 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: coreos.ignition.ssh.key
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1553
-  # snooze: 2023-11-30 (disabled on promotion)
+  # snooze: 2023-12-14 (disabled on promotion)
   # warn: true (disabled on promotion)
   platforms:
     - azure
 - pattern: ext.config.docker.basic
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1578
-  # snooze: 2023-11-30 (disabled on promotion)
+  # snooze: 2023-12-14 (disabled on promotion)
   # warn: true (disabled on promotion)
   streams:
     - rawhide
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1588
-  # snooze: 2023-11-30 (disabled on promotion)
+  # snooze: 2023-12-14 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - ppc64le
   streams:
     - rawhide
-- pattern: pxe-*.ppcfw
-  tracker: https://github.com/coreos/coreos-assembler/issues/3370
-  # nb: testiso doesn't read this, so it's just for consistency
+- pattern: coreos.unique.boot.failure
+  tracker: https://github.com/coreos/coreos-assembler/issues/3669
+  # snooze: 2023-12-12 (disabled on promotion)
+  # warn: true (disabled on promotion)
   arches:
-    - ppc64le
+    - aarch64
