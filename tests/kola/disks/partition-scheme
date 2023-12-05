@@ -1,0 +1,88 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   description: Verify the partition scheme is what we expect.
+##
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+root_part=$(findmnt -n -o SOURCE /sysroot)
+disk_name=$(lsblk --json -o PKNAME --path "$root_part" | jq --raw-output '.blockdevices[].pkname')
+diskData=$(sfdisk --json "$disk_name" | jq '.partitiontable' )
+partitionData=$(echo $diskData | jq '.partitions[]')
+totalPartitions=$(echo $diskData | jq '.partitions | length')
+sector_size=$(echo $diskData | jq .sectorsize)
+
+ONE_MiB=$(( 1024 * 1024 ))
+
+# Keep information about the expected partitions in
+# an associative array. Since associative arrays are
+# unordered keep around a sorted variable so we can
+# infer the correct order later.
+case "$(uname -m)" in
+    "aarch64")
+        sorted="reserved EFI-SYSTEM boot root"
+        declare -A expected=(
+            ["reserved"]="1"
+            ["EFI-SYSTEM"]="127"
+            ["boot"]="384"
+            ["root"]=""
+        );;
+    "ppc64le")
+        sorted="PowerPC-PReP-boot reserved boot root"
+        declare -A expected=(
+            ["PowerPC-PReP-boot"]="4"
+            ["reserved"]="1"
+            ["boot"]="384"
+            ["root"]=""
+        );;
+    "x86_64")
+        sorted="BIOS-BOOT EFI-SYSTEM boot root"
+        declare -A expected=(
+            ["BIOS-BOOT"]="1"
+            ["EFI-SYSTEM"]="127"
+            ["boot"]="384"
+            ["root"]=""
+        );;
+    "s390x")
+        sorted="boot root"
+        declare -A expected=(
+            ["boot"]="384"
+            ["root"]=""
+        );;
+esac
+
+# Check if the number of partitions match
+if [[ $totalPartitions -ne "${#expected[@]}" ]]; then
+    fatal "Expected ${#expected[@]} partitions, got $totalPartitions"
+fi
+
+# There is a 1MiB gap at the beginning of the disks
+expected_start=$(( 1 * $ONE_MiB / $sector_size ))
+
+# Iterate over the partitions and check their start and size
+for key in $sorted; do
+    size_MiB="${expected[${key}]}"
+    start=$(echo "$partitionData" | jq "select ( .name == \"$key\") | .start")
+    sectors=$(echo "$partitionData" | jq "select ( .name == \"$key\") | .size")
+    test -z "$start" && fatal "Could not detect start sector for $key"
+    test -z "$sectors" && fatal "Could not detect size in sectors for $key"
+    size=$(( $sectors * $sector_size ))
+    if [[ "$start" -ne "$expected_start" ]]; then
+        fatal "Expected $key partition start sector of $expected_start, got $start"
+    fi
+    if [ ! -z "$size_MiB" ]; then
+        expected_size=$(($size_MiB * $ONE_MiB))
+        if [[ "$expected_size" -ne "$size" ]]; then
+            fatal "Expected $key partition of size $expected_size, got $size"
+        fi
+    fi
+    # The expected start of the next partition will be the start of this partition
+    # plus the size of this partition.
+    expected_start=$(($expected_start + $size / $sector_size))
+done
+
+ok partition scheme
