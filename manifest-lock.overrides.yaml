@@ -10,10 +10,11 @@
 
 packages:
   containerd:
-    evr: 1.6.19-2.fc39
+    evr: 1.6.23-2.fc39
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-f3d6f65e2f
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1578
-      type: pin
+      type: fast-track
   podman:
     evr: 5:4.8.1-1.fc39
     metadata:
