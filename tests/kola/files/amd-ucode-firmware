@@ -1,0 +1,17 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   description: Verify that the host ships AMD microcode updates.
+
+# This will allow us to detect when the amd-ucode-firmware split happens in RHCOS:
+# https://github.com/coreos/fedora-coreos-tracker/issues/1618
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+if ! ls /usr/lib/firmware/amd-ucode/microcode*; then
+    fatal "no AMD microcode found on host"
+fi
+ok "found AMD microcode files"
