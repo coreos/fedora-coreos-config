@@ -184,6 +184,10 @@ packages-x86_64:
   - irqbalance
   - google-compute-engine-guest-configs-udev
   - crun-wasm wasmedge-rt
+  # Include AMD microcode updates, see https://github.com/coreos/fedora-coreos-tracker/issues/1618.
+  # This normally should belong in bootable-rpm-ostree.yaml (alongside
+  # `microcode_ctl`), but this change hasn't hit RHCOS yet.
+  - amd-ucode-firmware
 packages-ppc64le:
   - irqbalance
   - librtas
