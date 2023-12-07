@@ -2,6 +2,7 @@
 ## kola:
 ##   exclusive: false
 ##   description: Verify that the host ships AMD microcode updates.
+##   architectures: x86_64
 
 # This will allow us to detect when the amd-ucode-firmware split happens in RHCOS:
 # https://github.com/coreos/fedora-coreos-tracker/issues/1618
