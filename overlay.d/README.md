@@ -93,3 +93,9 @@ pre-existing LVM devices attached. See the tracker issue [1] for more
 information.
 
 [1] https://github.com/coreos/fedora-coreos-tracker/issues/1517
+
+40grub
+------
+
+Add in static grub configs that will be leveraged by bootupd when
+managing bootloaders. See https://github.com/coreos/bootupd/pull/543
