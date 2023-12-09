@@ -217,7 +217,7 @@
       }
     },
     "chrony": {
-      "evra": "4.4-1.fc39.s390x",
+      "evra": "4.5-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "chrony"
       }
@@ -289,13 +289,13 @@
       }
     },
     "container-selinux": {
-      "evra": "2:2.224.0-1.fc39.noarch",
+      "evra": "2:2.226.0-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "container-selinux"
       }
     },
     "containerd": {
-      "evra": "1.6.19-2.fc39.s390x",
+      "evra": "1.6.23-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "containerd"
       }
@@ -319,13 +319,13 @@
       }
     },
     "coreos-installer": {
-      "evra": "0.18.0-1.fc39.s390x",
+      "evra": "0.18.0-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.18.0-1.fc39.s390x",
+      "evra": "0.18.0-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
@@ -355,13 +355,13 @@
       }
     },
     "criu": {
-      "evra": "3.18-3.fc39.s390x",
+      "evra": "3.19-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "criu"
       }
     },
     "criu-libs": {
-      "evra": "3.18-3.fc39.s390x",
+      "evra": "3.19-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "criu"
       }
@@ -679,7 +679,7 @@
       }
     },
     "fwupd": {
-      "evra": "1.9.9-1.fc39.s390x",
+      "evra": "1.9.10-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -715,25 +715,25 @@
       }
     },
     "glibc": {
-      "evra": "2.38-11.fc39.s390x",
+      "evra": "2.38-14.fc39.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.38-11.fc39.s390x",
+      "evra": "2.38-14.fc39.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.38-11.fc39.s390x",
+      "evra": "2.38-14.fc39.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.38-11.fc39.s390x",
+      "evra": "2.38-14.fc39.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -751,7 +751,7 @@
       }
     },
     "gnutls": {
-      "evra": "3.8.2-1.fc39.s390x",
+      "evra": "3.8.2-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "gnutls"
       }
@@ -937,25 +937,25 @@
       }
     },
     "kernel": {
-      "evra": "6.6.3-200.fc39.s390x",
+      "evra": "6.6.4-200.fc39.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.6.3-200.fc39.s390x",
+      "evra": "6.6.4-200.fc39.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.6.3-200.fc39.s390x",
+      "evra": "6.6.4-200.fc39.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.6.3-200.fc39.s390x",
+      "evra": "6.6.4-200.fc39.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1039,7 +1039,7 @@
       }
     },
     "libatomic": {
-      "evra": "13.2.1-4.fc39.s390x",
+      "evra": "13.2.1-6.fc39.s390x",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1165,7 +1165,7 @@
       }
     },
     "libgcc": {
-      "evra": "13.2.1-4.fc39.s390x",
+      "evra": "13.2.1-6.fc39.s390x",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1465,7 +1465,7 @@
       }
     },
     "libsolv": {
-      "evra": "0.7.25-1.fc39.s390x",
+      "evra": "0.7.27-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "libsolv"
       }
@@ -1501,7 +1501,7 @@
       }
     },
     "libstdc++": {
-      "evra": "13.2.1-4.fc39.s390x",
+      "evra": "13.2.1-6.fc39.s390x",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1951,13 +1951,13 @@
       }
     },
     "podman": {
-      "evra": "5:4.7.2-1.fc39.s390x",
+      "evra": "5:4.8.1-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "podman"
       }
     },
     "podman-plugins": {
-      "evra": "5:4.7.2-1.fc39.s390x",
+      "evra": "5:4.8.1-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2053,13 +2053,13 @@
       }
     },
     "rpm-ostree": {
-      "evra": "2023.10-3.fc39.s390x",
+      "evra": "2023.11-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
     },
     "rpm-ostree-libs": {
-      "evra": "2023.10-3.fc39.s390x",
+      "evra": "2023.11-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
@@ -2071,7 +2071,7 @@
       }
     },
     "rpm-sequoia": {
-      "evra": "1.5.0-1.fc39.s390x",
+      "evra": "1.5.0-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "rust-rpm-sequoia"
       }
@@ -2167,7 +2167,7 @@
       }
     },
     "skopeo": {
-      "evra": "1:1.13.3-1.fc39.s390x",
+      "evra": "1:1.14.0-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "skopeo"
       }
@@ -2341,7 +2341,13 @@
       }
     },
     "tpm2-tss": {
-      "evra": "4.0.1-4.fc39.s390x",
+      "evra": "4.0.1-6.fc39.s390x",
+      "metadata": {
+        "sourcerpm": "tpm2-tss"
+      }
+    },
+    "tpm2-tss-fapi": {
+      "evra": "4.0.1-6.fc39.s390x",
       "metadata": {
         "sourcerpm": "tpm2-tss"
       }
@@ -2437,7 +2443,7 @@
       }
     },
     "zincati": {
-      "evra": "0.0.25-6.fc39.s390x",
+      "evra": "0.0.27-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "rust-zincati"
       }
@@ -2462,16 +2468,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-12-05T00:00:00Z",
+    "generated": "2023-12-08T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-12-04T23:02:53Z"
+        "generated": "2023-12-06T17:19:50Z"
       },
       "fedora-updates": {
-        "generated": "2023-12-05T01:31:12Z"
+        "generated": "2023-12-08T01:31:01Z"
       }
     }
   }
