@@ -73,13 +73,19 @@
       }
     },
     "amd-gpu-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
+      "metadata": {
+        "sourcerpm": "linux-firmware"
+      }
+    },
+    "amd-ucode-firmware": {
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "atheros-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -169,7 +175,7 @@
       }
     },
     "brcmfmac-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -883,7 +889,7 @@
       }
     },
     "intel-gpu-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1723,13 +1729,13 @@
       }
     },
     "linux-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "linux-firmware-whence": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1813,7 +1819,7 @@
       }
     },
     "mt7xxx-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1909,7 +1915,7 @@
       }
     },
     "nvidia-gpu-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2137,7 +2143,7 @@
       }
     },
     "realtek-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2582,16 +2588,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-12-14T00:00:00Z",
+    "generated": "2023-12-16T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:29Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-12-14T14:42:48Z"
+        "generated": "2023-12-15T22:46:25Z"
       },
       "fedora-updates": {
-        "generated": "2023-12-14T01:22:33Z"
+        "generated": "2023-12-15T18:55:54Z"
       }
     }
   }
