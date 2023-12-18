@@ -9,18 +9,8 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  containerd:
-    evr: 1.6.19-2.fc39
+  bootupd:
+    evr: 0.2.16-2.fc39
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1578
-      type: pin
-  podman:
-    evr: 5:4.7.2-1.fc39
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1625
-      type: pin
-  podman-plugins:
-    evr: 5:4.7.2-1.fc39
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1625
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-5705e05f53
+      type: fast-track

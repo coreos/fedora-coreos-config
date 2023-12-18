@@ -37,7 +37,7 @@
       }
     },
     "aardvark-dns": {
-      "evra": "1.8.0-1.fc39.aarch64",
+      "evra": "1.9.0-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "aardvark-dns"
       }
@@ -73,13 +73,19 @@
       }
     },
     "amd-gpu-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
+      "metadata": {
+        "sourcerpm": "linux-firmware"
+      }
+    },
+    "amd-ucode-firmware": {
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "atheros-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -163,13 +169,13 @@
       }
     },
     "bootupd": {
-      "evra": "0.2.12-2.fc39.aarch64",
+      "evra": "0.2.16-2.fc39.aarch64",
       "metadata": {
         "sourcerpm": "rust-bootupd"
       }
     },
     "brcmfmac-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -223,7 +229,7 @@
       }
     },
     "chrony": {
-      "evra": "4.4-1.fc39.aarch64",
+      "evra": "4.5-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "chrony"
       }
@@ -295,13 +301,13 @@
       }
     },
     "container-selinux": {
-      "evra": "2:2.224.0-1.fc39.noarch",
+      "evra": "2:2.226.0-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "container-selinux"
       }
     },
     "containerd": {
-      "evra": "1.6.19-2.fc39.aarch64",
+      "evra": "1.6.23-2.fc39.aarch64",
       "metadata": {
         "sourcerpm": "containerd"
       }
@@ -325,13 +331,13 @@
       }
     },
     "coreos-installer": {
-      "evra": "0.18.0-1.fc39.aarch64",
+      "evra": "0.18.0-2.fc39.aarch64",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.18.0-1.fc39.aarch64",
+      "evra": "0.18.0-2.fc39.aarch64",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
@@ -361,13 +367,13 @@
       }
     },
     "criu": {
-      "evra": "3.18-3.fc39.aarch64",
+      "evra": "3.19-2.fc39.aarch64",
       "metadata": {
         "sourcerpm": "criu"
       }
     },
     "criu-libs": {
-      "evra": "3.18-3.fc39.aarch64",
+      "evra": "3.19-2.fc39.aarch64",
       "metadata": {
         "sourcerpm": "criu"
       }
@@ -403,7 +409,7 @@
       }
     },
     "curl": {
-      "evra": "8.2.1-3.fc39.aarch64",
+      "evra": "8.2.1-4.fc39.aarch64",
       "metadata": {
         "sourcerpm": "curl"
       }
@@ -559,19 +565,19 @@
       }
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.190-1.fc39.noarch",
+      "evra": "0.190-4.fc39.noarch",
       "metadata": {
         "sourcerpm": "elfutils"
       }
     },
     "elfutils-libelf": {
-      "evra": "0.190-1.fc39.aarch64",
+      "evra": "0.190-4.fc39.aarch64",
       "metadata": {
         "sourcerpm": "elfutils"
       }
     },
     "elfutils-libs": {
-      "evra": "0.190-1.fc39.aarch64",
+      "evra": "0.190-4.fc39.aarch64",
       "metadata": {
         "sourcerpm": "elfutils"
       }
@@ -715,7 +721,7 @@
       }
     },
     "fwupd": {
-      "evra": "1.9.9-1.fc39.aarch64",
+      "evra": "1.9.10-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -763,31 +769,31 @@
       }
     },
     "glib2": {
-      "evra": "2.78.1-1.fc39.aarch64",
+      "evra": "2.78.3-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "glib2"
       }
     },
     "glibc": {
-      "evra": "2.38-11.fc39.aarch64",
+      "evra": "2.38-14.fc39.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.38-11.fc39.aarch64",
+      "evra": "2.38-14.fc39.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.38-11.fc39.aarch64",
+      "evra": "2.38-14.fc39.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.38-11.fc39.aarch64",
+      "evra": "2.38-14.fc39.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -805,7 +811,7 @@
       }
     },
     "gnutls": {
-      "evra": "3.8.2-1.fc39.aarch64",
+      "evra": "3.8.2-2.fc39.aarch64",
       "metadata": {
         "sourcerpm": "gnutls"
       }
@@ -829,25 +835,25 @@
       }
     },
     "grub2-common": {
-      "evra": "1:2.06-109.fc39.noarch",
+      "evra": "1:2.06-110.fc39.noarch",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-efi-aa64": {
-      "evra": "1:2.06-109.fc39.aarch64",
+      "evra": "1:2.06-110.fc39.aarch64",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-tools": {
-      "evra": "1:2.06-109.fc39.aarch64",
+      "evra": "1:2.06-110.fc39.aarch64",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-109.fc39.aarch64",
+      "evra": "1:2.06-110.fc39.aarch64",
       "metadata": {
         "sourcerpm": "grub2"
       }
@@ -883,7 +889,7 @@
       }
     },
     "intel-gpu-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1027,25 +1033,25 @@
       }
     },
     "kernel": {
-      "evra": "6.6.3-200.fc39.aarch64",
+      "evra": "6.6.6-200.fc39.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.6.3-200.fc39.aarch64",
+      "evra": "6.6.6-200.fc39.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.6.3-200.fc39.aarch64",
+      "evra": "6.6.6-200.fc39.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.6.3-200.fc39.aarch64",
+      "evra": "6.6.6-200.fc39.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1129,7 +1135,7 @@
       }
     },
     "libatomic": {
-      "evra": "13.2.1-4.fc39.aarch64",
+      "evra": "13.2.1-6.fc39.aarch64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1195,7 +1201,7 @@
       }
     },
     "libcurl-minimal": {
-      "evra": "8.2.1-3.fc39.aarch64",
+      "evra": "8.2.1-4.fc39.aarch64",
       "metadata": {
         "sourcerpm": "curl"
       }
@@ -1255,7 +1261,7 @@
       }
     },
     "libgcc": {
-      "evra": "13.2.1-4.fc39.aarch64",
+      "evra": "13.2.1-6.fc39.aarch64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1411,7 +1417,7 @@
       }
     },
     "libnfsidmap": {
-      "evra": "1:2.6.4-0.fc39.aarch64",
+      "evra": "1:2.6.4-0.rc2.fc39.aarch64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1555,7 +1561,7 @@
       }
     },
     "libsolv": {
-      "evra": "0.7.25-1.fc39.aarch64",
+      "evra": "0.7.27-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "libsolv"
       }
@@ -1591,7 +1597,7 @@
       }
     },
     "libstdc++": {
-      "evra": "13.2.1-4.fc39.aarch64",
+      "evra": "13.2.1-6.fc39.aarch64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1723,13 +1729,13 @@
       }
     },
     "linux-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "linux-firmware-whence": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1813,7 +1819,7 @@
       }
     },
     "mt7xxx-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1855,7 +1861,7 @@
       }
     },
     "netavark": {
-      "evra": "1.8.0-2.fc39.aarch64",
+      "evra": "1.9.0-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "netavark"
       }
@@ -1873,7 +1879,7 @@
       }
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.4-0.fc39.aarch64",
+      "evra": "1:2.6.4-0.rc2.fc39.aarch64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1909,7 +1915,7 @@
       }
     },
     "nvidia-gpu-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2059,13 +2065,13 @@
       }
     },
     "podman": {
-      "evra": "5:4.8.0-1.fc39.aarch64",
+      "evra": "5:4.8.1-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "podman"
       }
     },
     "podman-plugins": {
-      "evra": "5:4.8.0-1.fc39.aarch64",
+      "evra": "5:4.8.1-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2137,7 +2143,7 @@
       }
     },
     "realtek-firmware": {
-      "evra": "20231111-1.fc39.noarch",
+      "evra": "20231211-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2161,13 +2167,13 @@
       }
     },
     "rpm-ostree": {
-      "evra": "2023.10-3.fc39.aarch64",
+      "evra": "2023.11-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
     },
     "rpm-ostree-libs": {
-      "evra": "2023.10-3.fc39.aarch64",
+      "evra": "2023.11-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
@@ -2179,7 +2185,7 @@
       }
     },
     "rpm-sequoia": {
-      "evra": "1.5.0-1.fc39.aarch64",
+      "evra": "1.5.0-2.fc39.aarch64",
       "metadata": {
         "sourcerpm": "rust-rpm-sequoia"
       }
@@ -2275,7 +2281,7 @@
       }
     },
     "skopeo": {
-      "evra": "1:1.13.3-1.fc39.aarch64",
+      "evra": "1:1.14.0-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "skopeo"
       }
@@ -2455,7 +2461,13 @@
       }
     },
     "tpm2-tss": {
-      "evra": "4.0.1-4.fc39.aarch64",
+      "evra": "4.0.1-6.fc39.aarch64",
+      "metadata": {
+        "sourcerpm": "tpm2-tss"
+      }
+    },
+    "tpm2-tss-fapi": {
+      "evra": "4.0.1-6.fc39.aarch64",
       "metadata": {
         "sourcerpm": "tpm2-tss"
       }
@@ -2485,13 +2497,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.0.2120-1.fc39.noarch",
+      "evra": "2:9.0.2167-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.0.2120-1.fc39.aarch64",
+      "evra": "2:9.0.2167-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2576,19 +2588,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-12-04T00:00:00Z",
+    "generated": "2023-12-17T00:00:00Z",
     "rpmmd_repos": {
-      "fedora-candidate-compose": {
+      "fedora": {
         "generated": "2023-11-01T00:12:29Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-12-02T23:12:10Z"
+        "generated": "2023-12-16T02:52:09Z"
       },
-      "fedora-next": {
-        "generated": "2023-11-03T02:50:15Z"
-      },
-      "fedora-next-updates": {
-        "generated": "2023-12-04T01:26:19Z"
+      "fedora-updates": {
+        "generated": "2023-12-17T01:27:08Z"
       }
     }
   }
