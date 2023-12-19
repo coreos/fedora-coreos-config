@@ -14,3 +14,23 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2023-5705e05f53
       type: fast-track
+  kernel:
+    evr: 6.6.3-200.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1637
+      type: pin
+  kernel-core:
+    evr: 6.6.3-200.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1637
+      type: pin
+  kernel-modules:
+    evr: 6.6.3-200.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1637
+      type: pin
+  kernel-modules-core:
+    evr: 6.6.3-200.fc39
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1637
+      type: pin
