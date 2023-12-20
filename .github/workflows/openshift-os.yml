@@ -72,7 +72,7 @@ jobs:
             Bump fedora-coreos-config
 
             ${{ env.SHORTLOG }}
-          title: Bump fedora-coreos-config
+          title: "NO-JIRA: Bump fedora-coreos-config"
           body: |
             Created by [GitHub workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/openshift-os.yml) ([source](${{ github.server_url }}/${{ github.repository }}/blob/testing-devel/.github/workflows/openshift-os.yml)).
 
