@@ -13,7 +13,7 @@ set -xeuo pipefail
 . "$KOLA_EXT_DATA/commonlib.sh"
 
 case "$(arch)" in
-    x86_64|aarch64)
+    aarch64|ppc64le|x86_64)
         bootupctl status
         ok bootupctl
         ;;

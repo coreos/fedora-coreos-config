@@ -205,8 +205,9 @@ packages-s390x:
 
 # See https://github.com/coreos/bootupd
 arch-include:
-  x86_64: bootupd.yaml
   aarch64: bootupd.yaml
+  ppc64le: bootupd.yaml
+  x86_64: bootupd.yaml
 
 remove-from-packages:
   # Hopefully short-term hack -- see https://github.com/coreos/fedora-coreos-config/pull/1206#discussion_r705425869.
