@@ -13,5 +13,5 @@ storage:
   files:
     - path: /etc/NetworkManager/dispatcher.d/30-timesyncd
       contents:
-        source: "https://github.com/eworm-de/networkmanager-dispatcher-timesyncd/raw/master/30-timesyncd"
+        source: "https://github.com/eworm-de/networkmanager-dispatcher-timesyncd/raw/main/30-timesyncd"
       mode: 0755
