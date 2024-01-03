@@ -1,14 +1,17 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-##   description: Verify / has the immutable bit.
+##   description: Verify / has the immutable bit or we're using composefs.
 
 set -xeuo pipefail
 
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-if ! lsattr -d / | grep -qe '--i--'; then
+fstype=$(findmnt -nvr / -o FSTYPE)
+if test $fstype == overlay; then
+    echo "on overlayfs"
+elif ! lsattr -d / | grep -qe '--i--'; then
     fatal "missing immutable bit on /"
 fi
 ok immutable bit
