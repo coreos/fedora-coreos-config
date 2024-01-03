@@ -23,7 +23,7 @@ swapstatus=$(systemctl is-active dev-disk-by\\x2dpartlabel-swap.swap)
 [[ ${swapstatus} == active ]]
 ok "swap is active"
 
-fstype=$(findmnt -nvr / -o FSTYPE)
+fstype=$(findmnt -nvr /sysroot -o FSTYPE)
 [[ ${fstype} == xfs ]]
 ok "source is xfs"
 
