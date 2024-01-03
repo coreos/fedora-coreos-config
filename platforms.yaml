@@ -52,6 +52,9 @@ aarch64:
     kernel_arguments:
       - console=ttyAMA0,115200
   qemu:
+    kernel_arguments:
+      - console=hvc0
+      - console=ttyAMA0,115200
     # The kernel successfully autodetects a serial console, but we still
     # want GRUB to use one
     grub_commands:
@@ -153,6 +156,7 @@ x86_64:
       - terminal_input serial console
       - terminal_output serial console
     kernel_arguments:
+      - console=hvc0
       - console=tty0
       - console=ttyS0,115200n8
   virtualbox:
