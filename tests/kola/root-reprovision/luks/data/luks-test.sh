@@ -4,13 +4,13 @@
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-srcdev=$(findmnt -nvr / -o SOURCE)
+srcdev=$(findmnt -nvr /sysroot -o SOURCE)
 [[ ${srcdev} == /dev/mapper/myluksdev ]]
 
 blktype=$(lsblk -o TYPE "${srcdev}" --noheadings)
 [[ ${blktype} == crypt ]]
 
-fstype=$(findmnt -nvr / -o FSTYPE)
+fstype=$(findmnt -nvr /sysroot -o FSTYPE)
 [[ ${fstype} == xfs ]]
 ok "source is XFS on LUKS device"
 
