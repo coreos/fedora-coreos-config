@@ -331,13 +331,13 @@
       }
     },
     "coreos-installer": {
-      "evra": "0.18.0-2.fc39.x86_64",
+      "evra": "0.20.0-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.18.0-2.fc39.x86_64",
+      "evra": "0.20.0-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
@@ -391,7 +391,7 @@
       }
     },
     "crypto-policies": {
-      "evra": "20231113-1.gitb402e82.fc39.noarch",
+      "evra": "20231204-1.git1e3a2e4.fc39.noarch",
       "metadata": {
         "sourcerpm": "crypto-policies"
       }
@@ -433,7 +433,7 @@
       }
     },
     "dbus-broker": {
-      "evra": "34-1.fc39.x86_64",
+      "evra": "35-2.fc39.x86_64",
       "metadata": {
         "sourcerpm": "dbus-broker"
       }
@@ -1045,31 +1045,31 @@
       }
     },
     "kernel": {
-      "evra": "6.6.6-200.fc39.x86_64",
+      "evra": "6.6.8-200.fc39.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.6.6-200.fc39.x86_64",
+      "evra": "6.6.8-200.fc39.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.6.6-200.fc39.x86_64",
+      "evra": "6.6.8-200.fc39.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.6.6-200.fc39.x86_64",
+      "evra": "6.6.8-200.fc39.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kexec-tools": {
-      "evra": "2.0.27-3.fc39.x86_64",
+      "evra": "2.0.27-4.fc39.x86_64",
       "metadata": {
         "sourcerpm": "kexec-tools"
       }
@@ -1177,7 +1177,7 @@
       }
     },
     "libcap": {
-      "evra": "2.48-8.fc39.x86_64",
+      "evra": "2.48-9.fc39.x86_64",
       "metadata": {
         "sourcerpm": "libcap"
       }
@@ -1441,13 +1441,13 @@
       }
     },
     "libnl3": {
-      "evra": "3.8.0-2.fc39.x86_64",
+      "evra": "3.9.0-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "libnl3"
       }
     },
     "libnl3-cli": {
-      "evra": "3.8.0-2.fc39.x86_64",
+      "evra": "3.9.0-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "libnl3"
       }
@@ -1903,7 +1903,7 @@
       }
     },
     "nmstate": {
-      "evra": "2.2.15-1.fc39.x86_64",
+      "evra": "2.2.21-2.fc39.x86_64",
       "metadata": {
         "sourcerpm": "nmstate"
       }
@@ -1987,13 +1987,13 @@
       }
     },
     "ostree": {
-      "evra": "2023.7-2.fc39.x86_64",
+      "evra": "2023.8-2.fc39.x86_64",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-libs": {
-      "evra": "2023.7-2.fc39.x86_64",
+      "evra": "2023.8-2.fc39.x86_64",
       "metadata": {
         "sourcerpm": "ostree"
       }
@@ -2023,13 +2023,13 @@
       }
     },
     "passt": {
-      "evra": "0^20231119.g4f1709d-1.fc39.x86_64",
+      "evra": "0^20231204.gb86afe3-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20231119.g4f1709d-1.fc39.noarch",
+      "evra": "0^20231204.gb86afe3-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2077,13 +2077,13 @@
       }
     },
     "podman": {
-      "evra": "5:4.8.1-1.fc39.x86_64",
+      "evra": "5:4.8.2-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "podman"
       }
     },
     "podman-plugins": {
-      "evra": "5:4.8.1-1.fc39.x86_64",
+      "evra": "5:4.8.2-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2161,13 +2161,13 @@
       }
     },
     "rpm": {
-      "evra": "4.19.0-1.fc39.x86_64",
+      "evra": "4.19.1-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "rpm"
       }
     },
     "rpm-libs": {
-      "evra": "4.19.0-1.fc39.x86_64",
+      "evra": "4.19.1-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "rpm"
       }
@@ -2185,7 +2185,7 @@
       }
     },
     "rpm-plugin-selinux": {
-      "evra": "4.19.0-1.fc39.x86_64",
+      "evra": "4.19.1-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "rpm"
       }
@@ -2395,7 +2395,7 @@
       }
     },
     "stalld": {
-      "evra": "1.16-4.fc39.x86_64",
+      "evra": "1.16-7.fc39.x86_64",
       "metadata": {
         "sourcerpm": "stalld"
       }
@@ -2563,7 +2563,7 @@
       }
     },
     "zchunk-libs": {
-      "evra": "1.3.2-1.fc39.x86_64",
+      "evra": "1.4.0-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "zchunk"
       }
@@ -2594,16 +2594,16 @@
     }
   },
   "metadata": {
-    "generated": "2023-12-18T00:00:00Z",
+    "generated": "2024-01-03T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:39Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2023-12-17T23:50:00Z"
+        "generated": "2023-12-19T00:19:36Z"
       },
       "fedora-updates": {
-        "generated": "2023-12-18T01:59:10Z"
+        "generated": "2024-01-03T02:15:52Z"
       }
     }
   }
