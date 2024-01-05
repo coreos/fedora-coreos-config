@@ -11,7 +11,7 @@ set -xeuo pipefail
 
 # /var
 varsrc=$(findmnt -nvr /var -o SOURCE)
-rootsrc=$(findmnt -nvr / -o SOURCE)
+rootsrc=$(findmnt -nvr /sysroot -o SOURCE)
 [[ $(realpath "$varsrc") == $(realpath "$rootsrc") ]]
 ok "/var is backed by rootfs"
 

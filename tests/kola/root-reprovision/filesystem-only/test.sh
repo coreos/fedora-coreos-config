@@ -14,7 +14,7 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-fstype=$(findmnt -nvr / -o FSTYPE)
+fstype=$(findmnt -nvr /sysroot -o FSTYPE)
 [[ $fstype == ext4 ]]
 ok "source is ext4"
 
