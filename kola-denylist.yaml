@@ -23,3 +23,6 @@
   # warn: true (disabled on promotion)
   arches:
     - aarch64
+- pattern: iso-offline-install-iscsi.bios
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1638
+  # snooze: 2024-01-20 (disabled on promotion)

@@ -28,8 +28,7 @@ conditional-include:
     include: ostree-bls.yaml
   - if:
       - basearch == "aarch64"
-      - releasever == 38
-    # Remove qcom dtb on F38 files since autopruning isn't in place yet
+    # Remove qcom dtb to help us overcome https://github.com/coreos/fedora-coreos-tracker/issues/1637
     include: aarch64-drop-qcom-dtb-files.yaml
   - if:
       - releasever == 38
