@@ -1,0 +1,17 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   description: Verify that remove the base package succeeds.
+
+# See: https://github.com/fedora-silverblue/issue-tracker/issues/523
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+rpm-ostree override remove vim-minimal
+
+rpm-ostree cleanup -p
+
+ok "rpm-ostree override remove"
