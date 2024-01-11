@@ -1543,7 +1543,7 @@
       }
     },
     "libsmbclient": {
-      "evra": "2:4.19.3-1.fc39.ppc64le",
+      "evra": "2:4.19.4-2.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1675,7 +1675,7 @@
       }
     },
     "libwbclient": {
-      "evra": "2:4.19.3-1.fc39.ppc64le",
+      "evra": "2:4.19.4-2.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -2203,19 +2203,19 @@
       }
     },
     "samba-client-libs": {
-      "evra": "2:4.19.3-1.fc39.ppc64le",
+      "evra": "2:4.19.4-2.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common": {
-      "evra": "2:4.19.3-1.fc39.noarch",
+      "evra": "2:4.19.4-2.fc39.noarch",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common-libs": {
-      "evra": "2:4.19.3-1.fc39.ppc64le",
+      "evra": "2:4.19.4-2.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -2491,13 +2491,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.0.2190-1.fc39.noarch",
+      "evra": "2:9.1.016-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.0.2190-1.fc39.ppc64le",
+      "evra": "2:9.1.016-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2576,16 +2576,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-01-09T00:00:00Z",
+    "generated": "2024-01-11T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:28Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-01-08T19:22:03Z"
+        "generated": "2024-01-10T00:02:22Z"
       },
       "fedora-updates": {
-        "generated": "2024-01-09T01:36:31Z"
+        "generated": "2024-01-11T01:04:18Z"
       }
     }
   }
