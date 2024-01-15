@@ -11,8 +11,6 @@
   warn: true
   platforms:
     - azure
-- pattern: iso-offline-install-iscsi.bios
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1638
 - pattern: ext.config.files.console-config
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1654
   streams:
