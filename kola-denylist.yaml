@@ -7,22 +7,10 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: coreos.ignition.ssh.key
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1553
-  snooze: 2023-12-14
+  snooze: 2024-02-05
   warn: true
   platforms:
     - azure
-- pattern: ext.config.docker.basic
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1578
-  snooze: 2023-12-14
-  warn: true
-  streams:
-    - rawhide
-- pattern: coreos.unique.boot.failure
-  tracker: https://github.com/coreos/coreos-assembler/issues/3669
-  snooze: 2023-12-12
-  warn: true
-  arches:
-    - aarch64
 - pattern: iso-offline-install-iscsi.bios
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1638
   snooze: 2024-01-20
