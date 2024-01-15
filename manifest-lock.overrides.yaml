@@ -14,6 +14,26 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1630
       type: pin
+  kernel:
+    evr: 6.8.0-0.rc0.20240111gitde927f6c0b07.4.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1648
+      type: pin
+  kernel-core:
+    evr: 6.8.0-0.rc0.20240111gitde927f6c0b07.4.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1648
+      type: pin
+  kernel-modules:
+    evr: 6.8.0-0.rc0.20240111gitde927f6c0b07.4.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1648
+      type: pin
+  kernel-modules-core:
+    evr: 6.8.0-0.rc0.20240111gitde927f6c0b07.4.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1648
+      type: pin
   selinux-policy:
     evra: 40.5-1.fc40.noarch
     metadata:
