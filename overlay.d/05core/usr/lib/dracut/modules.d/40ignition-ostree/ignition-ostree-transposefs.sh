@@ -36,7 +36,7 @@ query_fslabel() {
 
 # Print jq query string for partitions with type GUID $1
 query_parttype() {
-    echo ".storage?.disks? // [] | map(.partitions?) | flatten | map(select(try .typeGuid catch \"\" | ascii_downcase == \"$1\"))"
+    echo ".storage?.disks? // [] | map(.partitions?) | flatten | map(select(has(\"typeGuid\") and (.typeGuid | ascii_downcase == \"$1\")))"
 }
 
 # Print partition labels for partitions with type GUID $1
