@@ -9,8 +9,15 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  bootupd:
-    evr: 0.2.17-2.fc39
+  ostree:
+    evra: 2023.8-3.fc39.aarch64
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-7fe41d9788
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-450e7cc057
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1637
+      type: fast-track
+  ostree-libs:
+    evra: 2023.8-3.fc39.aarch64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-450e7cc057
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1637
       type: fast-track

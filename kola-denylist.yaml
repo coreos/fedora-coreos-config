@@ -17,14 +17,6 @@
   # warn: true (disabled on promotion)
   streams:
     - rawhide
-- pattern: ext.config.kdump.crash
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1588
-  # snooze: 2023-12-14 (disabled on promotion)
-  # warn: true (disabled on promotion)
-  arches:
-    - ppc64le
-  streams:
-    - rawhide
 - pattern: coreos.unique.boot.failure
   tracker: https://github.com/coreos/coreos-assembler/issues/3669
   # snooze: 2023-12-12 (disabled on promotion)
@@ -33,4 +25,4 @@
     - aarch64
 - pattern: iso-offline-install-iscsi.bios
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1638
-  snooze: 2024-01-20
+  # snooze: 2024-01-20 (disabled on promotion)

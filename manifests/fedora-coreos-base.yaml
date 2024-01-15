@@ -18,6 +18,7 @@ ostree-layers:
   - overlay/20platform-chrony
   - overlay/25azure-udev-rules
   - overlay/30lvmdevices
+  - overlay/40grub
 
 # Be minimal
 recommends: false
@@ -184,6 +185,10 @@ packages-x86_64:
   - irqbalance
   - google-compute-engine-guest-configs-udev
   - crun-wasm wasmedge-rt
+  # Include AMD microcode updates, see https://github.com/coreos/fedora-coreos-tracker/issues/1618.
+  # This normally should belong in bootable-rpm-ostree.yaml (alongside
+  # `microcode_ctl`), but this change hasn't hit RHCOS yet.
+  - amd-ucode-firmware
 packages-ppc64le:
   - irqbalance
   - librtas
@@ -200,8 +205,9 @@ packages-s390x:
 
 # See https://github.com/coreos/bootupd
 arch-include:
-  x86_64: bootupd.yaml
   aarch64: bootupd.yaml
+  ppc64le: bootupd.yaml
+  x86_64: bootupd.yaml
 
 remove-from-packages:
   # Hopefully short-term hack -- see https://github.com/coreos/fedora-coreos-config/pull/1206#discussion_r705425869.
