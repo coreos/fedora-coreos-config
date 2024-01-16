@@ -12,9 +12,5 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-case "$(arch)" in
-    aarch64|ppc64le|x86_64)
-        bootupctl status
-        ok bootupctl
-        ;;
-esac
+bootupctl status
+ok bootupctl
