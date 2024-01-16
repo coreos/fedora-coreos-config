@@ -19,3 +19,9 @@
   snooze: 2024-01-22
   streams:
     - rawhide
+- pattern: ext.config.root-reprovision.linear
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1648
+  snooze: 2024-01-22
+  warn: true  
+  streams:
+    - rawhide
