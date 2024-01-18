@@ -10,7 +10,8 @@ include:
   - networking-tools.yaml
   - user-experience.yaml
   - shared-workarounds.yaml
-
+  # See https://github.com/coreos/bootupd
+  - bootupd.yaml
 ostree-layers:
   - overlay/05core
   - overlay/08nouveau
@@ -202,12 +203,6 @@ packages-aarch64:
   - crun-wasm wasmedge-rt
 packages-s390x:
   - qemu-user-static-x86
-
-# See https://github.com/coreos/bootupd
-arch-include:
-  aarch64: bootupd.yaml
-  ppc64le: bootupd.yaml
-  x86_64: bootupd.yaml
 
 remove-from-packages:
   # Hopefully short-term hack -- see https://github.com/coreos/fedora-coreos-config/pull/1206#discussion_r705425869.
