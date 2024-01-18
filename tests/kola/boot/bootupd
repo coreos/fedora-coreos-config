@@ -12,5 +12,20 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
+# Not all streams on which this test runs has bootupd on all arches yet. On
+# x86_64 and aarch64, we always expect bootupd to be installed. On ppc64le and
+# s390x, let's just conditionally check that *if* bootupd is installed, then
+# it's functioning as expected. We can harden it more once we've hard cut over
+# to 9.4.
+case "$(arch)" in
+    aarch64|x86_64)
+        ;;
+    *)
+        if ! rpm -q bootupd; then
+            exit 0
+        fi
+        ;;
+esac
+
 bootupctl status
 ok bootupctl
