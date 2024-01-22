@@ -487,7 +487,7 @@
       }
     },
     "device-mapper-persistent-data": {
-      "evra": "1.0.6-2.fc39.aarch64",
+      "evra": "1.0.9-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "device-mapper-persistent-data"
       }
@@ -859,7 +859,7 @@
       }
     },
     "gvisor-tap-vsock-gvforwarder": {
-      "evra": "6:0.7.1-1.fc39.aarch64",
+      "evra": "6:0.7.2-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "gvisor-tap-vsock"
       }
@@ -1033,25 +1033,25 @@
       }
     },
     "kernel": {
-      "evra": "6.6.11-200.fc39.aarch64",
+      "evra": "6.6.12-200.fc39.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.6.11-200.fc39.aarch64",
+      "evra": "6.6.12-200.fc39.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.6.11-200.fc39.aarch64",
+      "evra": "6.6.12-200.fc39.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.6.11-200.fc39.aarch64",
+      "evra": "6.6.12-200.fc39.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1417,7 +1417,7 @@
       }
     },
     "libnfsidmap": {
-      "evra": "1:2.6.4-0.rc2.fc39.aarch64",
+      "evra": "1:2.6.4-0.rc3.fc39.aarch64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1633,7 +1633,7 @@
       }
     },
     "libtirpc": {
-      "evra": "1.3.4-0.fc39.aarch64",
+      "evra": "1.3.4-0.rc2.fc39.aarch64",
       "metadata": {
         "sourcerpm": "libtirpc"
       }
@@ -1705,7 +1705,7 @@
       }
     },
     "libxmlb": {
-      "evra": "0.3.14-1.fc39.aarch64",
+      "evra": "0.3.15-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "libxmlb"
       }
@@ -1879,7 +1879,7 @@
       }
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.4-0.rc2.fc39.aarch64",
+      "evra": "1:2.6.4-0.rc3.fc39.aarch64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -2011,13 +2011,13 @@
       }
     },
     "passt": {
-      "evra": "0^20231204.gb86afe3-1.fc39.aarch64",
+      "evra": "0^20231230.gf091893-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20231204.gb86afe3-1.fc39.noarch",
+      "evra": "0^20231230.gf091893-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2449,7 +2449,7 @@
       }
     },
     "toolbox": {
-      "evra": "0.0.99.4-5.fc39.aarch64",
+      "evra": "0.0.99.5-2.fc39.aarch64",
       "metadata": {
         "sourcerpm": "toolbox"
       }
@@ -2497,13 +2497,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.016-1.fc39.noarch",
+      "evra": "2:9.1.031-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.016-1.fc39.aarch64",
+      "evra": "2:9.1.031-1.fc39.aarch64",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2588,16 +2588,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-01-17T00:00:00Z",
+    "generated": "2024-01-22T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:29Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-01-13T16:53:43Z"
+        "generated": "2024-01-19T22:03:21Z"
       },
       "fedora-updates": {
-        "generated": "2024-01-17T00:57:02Z"
+        "generated": "2024-01-22T01:06:09Z"
       }
     }
   }
