@@ -33,6 +33,9 @@ conditional-include:
     # Remove this once we have Podman v5 in f39.
     # xref: https://github.com/coreos/fedora-coreos-tracker/issues/1629
     include: cni-plugins.yaml
+  - if: releasever == 39
+    # Checks for breaking changes that came with Podman v5.
+    include: podman-v5.yaml
 
 ostree-layers:
   - overlay/15fcos
