@@ -22,6 +22,7 @@ TRIVIAL_FAST_TRACKS = [
     'console-login-helper-messages',
     'ignition',
     'ostree',
+    'podman',
     'rpm-ostree',
     'rust-afterburn',
     'rust-bootupd',
