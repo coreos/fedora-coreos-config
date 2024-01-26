@@ -151,19 +151,19 @@
       }
     },
     "bind-libs": {
-      "evra": "32:9.18.20-1.fc39.x86_64",
+      "evra": "32:9.18.21-2.fc39.x86_64",
       "metadata": {
         "sourcerpm": "bind"
       }
     },
     "bind-license": {
-      "evra": "32:9.18.20-1.fc39.noarch",
+      "evra": "32:9.18.21-2.fc39.noarch",
       "metadata": {
         "sourcerpm": "bind"
       }
     },
     "bind-utils": {
-      "evra": "32:9.18.20-1.fc39.x86_64",
+      "evra": "32:9.18.21-2.fc39.x86_64",
       "metadata": {
         "sourcerpm": "bind"
       }
@@ -307,7 +307,7 @@
       }
     },
     "container-selinux": {
-      "evra": "2:2.227.0-1.fc39.noarch",
+      "evra": "2:2.228.1-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "container-selinux"
       }
@@ -385,13 +385,13 @@
       }
     },
     "crun": {
-      "evra": "1.12-1.fc39.x86_64",
+      "evra": "1.13-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "crun"
       }
     },
     "crun-wasm": {
-      "evra": "1.12-1.fc39.x86_64",
+      "evra": "1.13-1.fc39.x86_64",
       "metadata": {
         "sourcerpm": "crun"
       }
@@ -1057,25 +1057,25 @@
       }
     },
     "kernel": {
-      "evra": "6.6.12-200.fc39.x86_64",
+      "evra": "6.6.13-200.fc39.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.6.12-200.fc39.x86_64",
+      "evra": "6.6.13-200.fc39.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.6.12-200.fc39.x86_64",
+      "evra": "6.6.13-200.fc39.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.6.12-200.fc39.x86_64",
+      "evra": "6.6.13-200.fc39.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -2161,7 +2161,7 @@
       }
     },
     "readline": {
-      "evra": "8.2-4.fc39.x86_64",
+      "evra": "8.2-6.fc39.x86_64",
       "metadata": {
         "sourcerpm": "readline"
       }
@@ -2618,16 +2618,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-01-24T00:00:00Z",
+    "generated": "2024-01-25T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:39Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-01-24T00:13:38Z"
+        "generated": "2024-01-24T16:55:13Z"
       },
       "fedora-updates": {
-        "generated": "2024-01-24T01:21:08Z"
+        "generated": "2024-01-25T00:34:24Z"
       }
     }
   }

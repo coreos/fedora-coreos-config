@@ -151,19 +151,19 @@
       }
     },
     "bind-libs": {
-      "evra": "32:9.18.20-1.fc39.s390x",
+      "evra": "32:9.18.21-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "bind"
       }
     },
     "bind-license": {
-      "evra": "32:9.18.20-1.fc39.noarch",
+      "evra": "32:9.18.21-2.fc39.noarch",
       "metadata": {
         "sourcerpm": "bind"
       }
     },
     "bind-utils": {
-      "evra": "32:9.18.20-1.fc39.s390x",
+      "evra": "32:9.18.21-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "bind"
       }
@@ -307,7 +307,7 @@
       }
     },
     "container-selinux": {
-      "evra": "2:2.227.0-1.fc39.noarch",
+      "evra": "2:2.228.1-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "container-selinux"
       }
@@ -385,7 +385,7 @@
       }
     },
     "crun": {
-      "evra": "1.12-1.fc39.s390x",
+      "evra": "1.13-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "crun"
       }
@@ -961,25 +961,25 @@
       }
     },
     "kernel": {
-      "evra": "6.6.12-200.fc39.s390x",
+      "evra": "6.6.13-200.fc39.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.6.12-200.fc39.s390x",
+      "evra": "6.6.13-200.fc39.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.6.12-200.fc39.s390x",
+      "evra": "6.6.13-200.fc39.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.6.12-200.fc39.s390x",
+      "evra": "6.6.13-200.fc39.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -2053,7 +2053,7 @@
       }
     },
     "readline": {
-      "evra": "8.2-4.fc39.s390x",
+      "evra": "8.2-6.fc39.s390x",
       "metadata": {
         "sourcerpm": "readline"
       }
@@ -2504,16 +2504,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-01-24T00:00:00Z",
+    "generated": "2024-01-25T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-01-24T00:12:38Z"
+        "generated": "2024-01-24T16:55:04Z"
       },
       "fedora-updates": {
-        "generated": "2024-01-24T01:21:01Z"
+        "generated": "2024-01-25T00:34:17Z"
       }
     }
   }
