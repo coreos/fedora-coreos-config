@@ -11,10 +11,11 @@ permissions:
 jobs:
   update-versions:
     name: Update versions
+    if: ${{ github.repository_owner == 'coreos' || github.event_name != 'schedule' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Update versions
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
