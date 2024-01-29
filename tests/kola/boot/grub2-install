@@ -18,23 +18,36 @@ set -xeuo pipefail
 
 boot_dev=/boot
 arch=$(arch)
+grub_install_args=""
+grub_modules=()
 case ${arch} in
   x86_64)
     target=i386-pc
     core="${boot_dev}/grub2/${target}/core.img"
     partition=$(findmnt -no SOURCE ${boot_dev})
     device=$(lsblk --paths -no PKNAME ${partition})
-    # sync grub2-install parameter according to image build script
-    # https://github.com/coreos/coreos-assembler/blob/main/src/create_disk.sh
-    grub_install_args="--modules mdraid1x"
+    #
+    # Handle modules for both the create_disk.sh case that only
+    # includes "mdraid1x" and bootupd case (used when building using
+    # OSBuild) that adds "part_gpt". The aleph stage in osbuild is
+    # the only one that creates a file at /sysroot/.aleph-version.json
+    #
+    # sync grub2-install parameters with the bootupd invocation from:
+    # https://github.com/coreos/bootupd/blob/main/src/bios.rs
+    grub_modules+=("mdraid1x")
+    if [ -f /sysroot/.aleph-version.json ]; then
+        # collapse this if in't the previous line when all is moved
+        # over to building using OSBuild.
+        grub_modules+=("part_gpt")
+    fi
     ;;
 
   ppc64le)
     target=powerpc-ieee1275
     core="${boot_dev}/grub2/${target}/core.elf"
     device=$(realpath /dev/disk/by-partlabel/PowerPC-PReP-boot)
-    # sync grub2-install parameter according to image build script
-    # https://github.com/coreos/coreos-assembler/blob/main/src/create_disk.sh
+    # sync grub2-install parameters with the bootupd invocation from:
+    # https://github.com/coreos/bootupd/blob/main/src/bios.rs
     grub_install_args="--no-nvram"
     ;;
 
@@ -47,7 +60,9 @@ esac
 core_sum=$(sha256sum ${core} | awk '{print $1}')
 
 mount -o remount,rw ${boot_dev}
-grub2-install --target ${target} --boot-directory ${boot_dev} ${grub_install_args} ${device}
+grub2-install --target ${target} --boot-directory ${boot_dev} \
+      ${grub_modules:+--modules "${grub_modules[*]}"}         \
+      ${grub_install_args} ${device}
 
 new_core_sum=$(sha256sum ${core} | awk '{print $1}')
 
