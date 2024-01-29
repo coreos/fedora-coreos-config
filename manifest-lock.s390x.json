@@ -205,7 +205,7 @@
       }
     },
     "c-ares": {
-      "evra": "1.21.0-1.fc39.s390x",
+      "evra": "1.25.0-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "c-ares"
       }
@@ -295,7 +295,7 @@
       }
     },
     "container-selinux": {
-      "evra": "2:2.226.0-1.fc39.noarch",
+      "evra": "2:2.227.0-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "container-selinux"
       }
@@ -685,7 +685,7 @@
       }
     },
     "fwupd": {
-      "evra": "1.9.10-1.fc39.s390x",
+      "evra": "1.9.11-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -943,25 +943,25 @@
       }
     },
     "kernel": {
-      "evra": "6.6.8-200.fc39.s390x",
+      "evra": "6.6.9-200.fc39.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.6.8-200.fc39.s390x",
+      "evra": "6.6.9-200.fc39.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.6.8-200.fc39.s390x",
+      "evra": "6.6.9-200.fc39.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.6.8-200.fc39.s390x",
+      "evra": "6.6.9-200.fc39.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1465,7 +1465,7 @@
       }
     },
     "libsmbclient": {
-      "evra": "2:4.19.3-1.fc39.s390x",
+      "evra": "2:4.19.4-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1597,7 +1597,7 @@
       }
     },
     "libwbclient": {
-      "evra": "2:4.19.3-1.fc39.s390x",
+      "evra": "2:4.19.4-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1837,19 +1837,19 @@
       }
     },
     "openssh": {
-      "evra": "9.3p1-9.fc39.s390x",
+      "evra": "9.3p1-10.fc39.s390x",
       "metadata": {
         "sourcerpm": "openssh"
       }
     },
     "openssh-clients": {
-      "evra": "9.3p1-9.fc39.s390x",
+      "evra": "9.3p1-10.fc39.s390x",
       "metadata": {
         "sourcerpm": "openssh"
       }
     },
     "openssh-server": {
-      "evra": "9.3p1-9.fc39.s390x",
+      "evra": "9.3p1-10.fc39.s390x",
       "metadata": {
         "sourcerpm": "openssh"
       }
@@ -1867,13 +1867,13 @@
       }
     },
     "ostree": {
-      "evra": "2023.8-2.fc39.s390x",
+      "evra": "2023.8-3.fc39.s390x",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-libs": {
-      "evra": "2023.8-2.fc39.s390x",
+      "evra": "2023.8-3.fc39.s390x",
       "metadata": {
         "sourcerpm": "ostree"
       }
@@ -1957,13 +1957,13 @@
       }
     },
     "podman": {
-      "evra": "5:4.8.2-1.fc39.s390x",
+      "evra": "5:4.8.3-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "podman"
       }
     },
     "podman-plugins": {
-      "evra": "5:4.8.2-1.fc39.s390x",
+      "evra": "5:4.8.3-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2101,19 +2101,19 @@
       }
     },
     "samba-client-libs": {
-      "evra": "2:4.19.3-1.fc39.s390x",
+      "evra": "2:4.19.4-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common": {
-      "evra": "2:4.19.3-1.fc39.noarch",
+      "evra": "2:4.19.4-2.fc39.noarch",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common-libs": {
-      "evra": "2:4.19.3-1.fc39.s390x",
+      "evra": "2:4.19.4-2.fc39.s390x",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -2359,7 +2359,7 @@
       }
     },
     "tzdata": {
-      "evra": "2023c-2.fc39.noarch",
+      "evra": "2023d-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "tzdata"
       }
@@ -2389,13 +2389,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.0.2167-1.fc39.noarch",
+      "evra": "2:9.1.016-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.0.2167-1.fc39.s390x",
+      "evra": "2:9.1.016-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2474,16 +2474,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-01-04T00:00:00Z",
+    "generated": "2024-01-12T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-01-03T06:52:38Z"
+        "generated": "2024-01-11T23:43:22Z"
       },
       "fedora-updates": {
-        "generated": "2024-01-04T01:58:15Z"
+        "generated": "2024-01-12T01:03:18Z"
       }
     }
   }
