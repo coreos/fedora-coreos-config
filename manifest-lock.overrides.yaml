@@ -14,6 +14,30 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1630
       type: pin
+  kernel:
+    evr: 6.8.0-0.rc2.20240130git861c0981648f.20.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-cba88e0da6
+      reason: https://github.com/coreos/fedora-coreos-config/pull/2824#issuecomment-1917926476
+      type: fast-track
+  kernel-core:
+    evr: 6.8.0-0.rc2.20240130git861c0981648f.20.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-cba88e0da6
+      reason: https://github.com/coreos/fedora-coreos-config/pull/2824#issuecomment-1917926476
+      type: fast-track
+  kernel-modules:
+    evr: 6.8.0-0.rc2.20240130git861c0981648f.20.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-cba88e0da6
+      reason: https://github.com/coreos/fedora-coreos-config/pull/2824#issuecomment-1917926476
+      type: fast-track
+  kernel-modules-core:
+    evr: 6.8.0-0.rc2.20240130git861c0981648f.20.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-cba88e0da6
+      reason: https://github.com/coreos/fedora-coreos-config/pull/2824#issuecomment-1917926476
+      type: fast-track
   selinux-policy:
     evra: 40.5-1.fc40.noarch
     metadata:
