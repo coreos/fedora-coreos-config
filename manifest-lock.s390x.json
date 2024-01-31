@@ -97,13 +97,13 @@
       }
     },
     "audit": {
-      "evra": "3.1.2-6.fc39.s390x",
+      "evra": "3.1.2-8.fc39.s390x",
       "metadata": {
         "sourcerpm": "audit"
       }
     },
     "audit-libs": {
-      "evra": "3.1.2-6.fc39.s390x",
+      "evra": "3.1.2-8.fc39.s390x",
       "metadata": {
         "sourcerpm": "audit"
       }
@@ -385,7 +385,7 @@
       }
     },
     "crun": {
-      "evra": "1.13-1.fc39.s390x",
+      "evra": "1.14-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "crun"
       }
@@ -499,7 +499,7 @@
       }
     },
     "dnsmasq": {
-      "evra": "2.89-6.fc39.s390x",
+      "evra": "2.89-7.fc39.s390x",
       "metadata": {
         "sourcerpm": "dnsmasq"
       }
@@ -565,7 +565,7 @@
       }
     },
     "ethtool": {
-      "evra": "2:6.6-1.fc39.s390x",
+      "evra": "2:6.7-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "ethtool"
       }
@@ -769,7 +769,7 @@
       }
     },
     "gnutls": {
-      "evra": "3.8.2-2.fc39.s390x",
+      "evra": "3.8.3-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "gnutls"
       }
@@ -1231,7 +1231,7 @@
       }
     },
     "libidn2": {
-      "evra": "2.3.4-3.fc39.s390x",
+      "evra": "2.3.7-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "libidn2"
       }
@@ -1291,7 +1291,7 @@
       }
     },
     "libmaxminddb": {
-      "evra": "1.8.0-1.fc39.s390x",
+      "evra": "1.9.1-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "libmaxminddb"
       }
@@ -1981,13 +1981,13 @@
       }
     },
     "podman": {
-      "evra": "5:4.8.3-1.fc39.s390x",
+      "evra": "5:4.9.0-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "podman"
       }
     },
     "podman-plugins": {
-      "evra": "5:4.8.3-1.fc39.s390x",
+      "evra": "5:4.9.0-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2101,7 +2101,7 @@
       }
     },
     "rpm-sequoia": {
-      "evra": "1.5.0-2.fc39.s390x",
+      "evra": "1.6.0-1.fc39.s390x",
       "metadata": {
         "sourcerpm": "rust-rpm-sequoia"
       }
@@ -2149,13 +2149,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "39.3-1.fc39.noarch",
+      "evra": "39.4-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "39.3-1.fc39.noarch",
+      "evra": "39.4-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2504,16 +2504,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-01-28T00:00:00Z",
+    "generated": "2024-01-31T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-01-28T02:40:35Z"
+        "generated": "2024-01-30T23:10:33Z"
       },
       "fedora-updates": {
-        "generated": "2024-01-28T02:35:59Z"
+        "generated": "2024-01-31T01:59:04Z"
       }
     }
   }
