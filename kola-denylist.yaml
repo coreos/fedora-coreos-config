@@ -13,12 +13,6 @@
     - azure
 - pattern: iso-offline-install-iscsi.bios
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1638
-- pattern: ext.config.root-reprovision.linear
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1648
-  snooze: 2024-02-05
-  warn: true  
-  streams:
-    - rawhide
 - pattern: ext.config.files.console-config
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1654
   streams:
