@@ -21,3 +21,27 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-daa3a4e52a
       reason: https://bodhi.fedoraproject.org/updates/FEDORA-2024-daa3a4e52a
       type: fast-track
+  glibc:
+    evr: 2.38-16.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-aec80d6e8a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1663
+      type: fast-track
+  glibc-common:
+    evr: 2.38-16.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-aec80d6e8a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1663
+      type: fast-track
+  glibc-gconv-extra:
+    evr: 2.38-16.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-aec80d6e8a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1663
+      type: fast-track
+  glibc-minimal-langpack:
+    evr: 2.38-16.fc39
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-aec80d6e8a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1663
+      type: fast-track
