@@ -26,6 +26,10 @@ conditional-include:
   - if:
       - releasever >= 40
     include: ostree-bls.yaml
+  - if: releasever == 39
+    # passwd RPM was obsoleted by shadow-utils in F40+, but we need to keep
+    # including it in F39. Remove this when we are on F40+ on all streams.
+    include: passwd.yaml
 
 ostree-layers:
   - overlay/15fcos
