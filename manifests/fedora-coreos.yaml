@@ -26,30 +26,10 @@ conditional-include:
   - if:
       - releasever >= 40
     include: ostree-bls.yaml
-  - if:
-      - basearch == "aarch64"
-    # Remove qcom dtb to help us overcome https://github.com/coreos/fedora-coreos-tracker/issues/1637
-    include: aarch64-drop-qcom-dtb-files.yaml
-  - if:
-      - releasever == 38
-    # Modularity is going away in F39+ so we'll only include
-    # the fedora-repos-modular package in <39.
-    include: fedora-modularity.yaml
-  - if: releasever >= 39
-    # https://fedoraproject.org/wiki/Changes/EnableFwupdRefreshByDefault
-    # Merge with overlay.d/15fcos/usr/lib/systemd/system-preset/45-fcos.preset
-    # once Fedora 39 is released to all streams
-    include: enable-fwupd-refresh-timer.yaml
-  - if: releasever >= 39
-    # https://github.com/coreos/fedora-coreos-tracker/issues/1362
-    # Merge with manifests/system-configuration.yaml once Fedora 39 is released
-    # to all streams
-    include: audit.yaml
-  - if: releasever >= 39
-    # https://github.com/coreos/fedora-coreos-tracker/issues/1567
-    # Merge with manifests/fedora-coreos.yaml once Fedora 39 is released
-    # to all streams
-    include: bash-color-prompt.yaml
+  - if: releasever == 39
+    # passwd RPM was obsoleted by shadow-utils in F40+, but we need to keep
+    # including it in F39. Remove this when we are on F40+ on all streams.
+    include: passwd.yaml
 
 ostree-layers:
   - overlay/15fcos
@@ -75,6 +55,9 @@ packages:
   - zincati
   # Include and set the default editor
   - nano nano-default-editor
+  # Introduce a default colored prompt for Fedora's default shell bash.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1567
+  - bash-color-prompt
 
 etc-group-members:
   # Add the docker group to /etc/group
