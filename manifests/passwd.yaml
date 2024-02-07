@@ -1,0 +1,6 @@
+packages:
+  # passwd was obsoleted by shadow-utils in F40+
+  # https://src.fedoraproject.org/rpms/shadow-utils/c/91360f25a8c8b810d59bec2803a2477a2647c775?branch=rawhide
+  # We'll include this file on F39 for now. It can be removed when we are no
+  # longer on F39. RHCOS was taken care of by https://github.com/openshift/os/pull/1438
+  - passwd

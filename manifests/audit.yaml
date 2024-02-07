@@ -1,6 +1,0 @@
-# https://github.com/coreos/fedora-coreos-tracker/issues/1362
-# Merge with manifests/system-configuration.yaml once Fedora 39 is released to
-# all streams
-packages:
-  # Manage and load rules in the audit subsystem in the kernel
-  - audit
