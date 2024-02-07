@@ -65,15 +65,15 @@ ssh core@<ip address>
 As user-data is limited to 16 KB, you may need to use an external source for your Ignition configuration.
 A common solution is to upload the config to a S3 bucket, as the following steps show:
 
-[source, bash]
 .Create a new s3 bucket
+[source, bash]
 ----
 NAME='instance1'
 aws s3 mb s3://$NAME-infra
 ----
 
-[source, bash]
 .Upload the Ignition file
+[source, bash]
 ----
 NAME='instance1'
 CONFIG='/path/to/config.ign' # path to your Ignition config
@@ -81,16 +81,18 @@ aws s3 cp CONFIG s3://$NAME-infra/bootstrap.ign
 ----
 
 You can verify the file have been correctly uploaded:
-[source, bash]
+
 .List files in the bucket
+[source, bash]
 ----
 NAME='instance1'
 aws s3 ls s3://$NAME-infra/
 ----
 
 Then create a minimal Ignition config as follows:
-[source,yaml,subs="attributes"]
+
 .Retrieving a remote Ignition file from a s3 bucket
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
 version: {butane-latest-stable-spec}
@@ -111,16 +113,17 @@ If you need to have secrets in your Ignition configuration you should store it i
 Once the instance has completed the first boot, clear the S3 bucket as any process or container running on the instance could access it.
 See the https://coreos.github.io/ignition/operator-notes/#secrets[Ignition documentation] for more advice on secret management.
 
-[source,bash]
 .Deleting the Ignition configuration from the s3 bucket
+[source,bash]
 ----
 NAME='instance1'
 aws s3 rm CONFIG s3://$NAME-infra/bootstrap.ign
 ----
 
 Optionnally, you can delete the whole bucket:
-[source,bash]
+
 .Deleting the s3 bucket
+[source,bash]
 ----
 NAME='instance1'
 aws s3 rb s3://$NAME-infra
