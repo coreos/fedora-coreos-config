@@ -1,4 +1,0 @@
-# https://fedoraproject.org/wiki/Changes/EnableFwupdRefreshByDefault
-# As this is for FCOS only for now, once Fedora 39 is released to all streams,
-# this should be moved to overlay.d/15fcos/usr/lib/systemd/system-preset/45-fcos.preset
-enable fwupd-refresh.timer
