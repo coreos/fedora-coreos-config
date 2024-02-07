@@ -26,10 +26,6 @@ conditional-include:
   - if:
       - releasever >= 40
     include: ostree-bls.yaml
-  - if:
-      - basearch == "aarch64"
-    # Remove qcom dtb to help us overcome https://github.com/coreos/fedora-coreos-tracker/issues/1637
-    include: aarch64-drop-qcom-dtb-files.yaml
 
 ostree-layers:
   - overlay/15fcos
