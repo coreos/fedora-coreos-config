@@ -3,6 +3,9 @@
 # RHCOS.
 
 packages:
+  # Manage and load rules in the audit subsystem in the kernel
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1362
+  - audit
   # Configuring SSH keys, cloud provider check-in, etc
   - afterburn afterburn-dracut
   # NTP support
