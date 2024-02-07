@@ -4,10 +4,10 @@ In Fedora 33 some editions https://www.fedoraproject.org/wiki/Releases/33/Change
 
 The documentation for the config file format lives in the https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md[upstream documentation] along with a comprehensive https://github.com/systemd/zram-generator/blob/main/zram-generator.conf.example[example]. The most basic form of a configuration file that will set up a `zram0` device for swap is:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/systemd/zram-generator.conf

@@ -6,10 +6,10 @@ This example creates a directory with the default mode (set to `0755`: readable
 and recurseable by all), and writable only by the owner (by default `root`).
 
 .Example to create a directory with default ownership and permissions
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   directories:
   - path: /opt/tools
@@ -21,10 +21,10 @@ in-line. It also sets the file mode to `0644` (readable by all, writable by the
 owner) and sets ownership to `dnsmasq:dnsmasq`.
 
 .Example to create a file with in-line content
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /var/helloworld
@@ -46,10 +46,10 @@ is `sha512-` followed by the 128 hex characters given by the sha512sum command.
 The resulting file is made readable and executable by all.
 
 .Example to create a files from a remote source
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /opt/tools/transmogrifier
@@ -67,10 +67,10 @@ This is useful to let local processes invoke a program without altering their
 PATH environment variable.
 
 .Example to create a symbolic link
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   links:
     - path: /usr/local/bin/transmogrifier
@@ -85,10 +85,10 @@ https://github.com/coreos/butane/issues/380[butane#380] for the tracking issue
 in Butane for a future better syntax for this case.
 
 .Example to create directories with specific ownership
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   directories:
     - path: /home/builder/.config

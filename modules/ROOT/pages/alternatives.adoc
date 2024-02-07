@@ -4,10 +4,10 @@ Due to an https://github.com/fedora-sysv/chkconfig/issues/9[ongoing issue] in ho
 
 Instead, until this issue is resolved, you can set the symlinks directly in `/etc/alternatives`. For example, to use the legacy-based variants of the `iptables` commands:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   links:
     - path: /etc/alternatives/iptables

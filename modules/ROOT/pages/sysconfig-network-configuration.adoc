@@ -105,10 +105,10 @@ Any configuration provided via Ignition will be considered at a higher priority 
 
 An example https://docs.fedoraproject.org/en-US/fedora-coreos/producing-ign/[Butane] config for the same static networking example that we showed above is:
 
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/ens2.nmconnection
@@ -247,10 +247,10 @@ ip=10.10.10.10::10.10.10.1:255.255.255.0:myhostname:ens2:none:8.8.8.8
 ==== Butane config
 
 .Template
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/${interface}.nmconnection
@@ -271,10 +271,10 @@ storage:
 ----
 
 .Rendered
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/ens2.nmconnection
@@ -317,10 +317,10 @@ bond=bond0:ens2,ens3:mode=active-backup,miimon=100
 ==== Butane config
 
 .Template
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/${bondname}.nmconnection
@@ -364,10 +364,10 @@ storage:
 ----
 
 .Rendered
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/bond0.nmconnection
@@ -432,10 +432,10 @@ bridge=br0:ens2,ens3
 ==== Butane config
 
 .Template
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/${bridgename}.nmconnection
@@ -476,10 +476,10 @@ storage:
 ----
 
 .Rendered
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/br0.nmconnection
@@ -541,10 +541,10 @@ team=team0:ens2,ens3
 ==== Butane config
 
 .Template
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/${teamname}.nmconnection
@@ -588,10 +588,10 @@ storage:
 ----
 
 .Rendered
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/team0.nmconnection
@@ -656,10 +656,10 @@ vlan=ens2.100:ens2
 ==== Butane config
 
 .Template
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/${interface}.${vlanid}.nmconnection
@@ -701,10 +701,10 @@ storage:
 ----
 
 .Rendered
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/ens2.100.nmconnection
@@ -768,10 +768,10 @@ vlan=bond0.100:bond0
 ==== Butane config
 
 .Template
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/${bondname}.${vlanid}.nmconnection
@@ -830,10 +830,10 @@ storage:
 ----
 
 .Rendered
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/bond0.100.nmconnection
@@ -897,10 +897,10 @@ By default, FCOS will attempt to autoconfigure (DHCP/SLAAC) on every interface w
 
 
 .Disable NetworkManager autoconfiguration of ethernet devices
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/NetworkManager/conf.d/noauto.conf

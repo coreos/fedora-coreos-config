@@ -53,10 +53,10 @@ NOTE: The `wg genpsk` command generates a PresharedKey that can only be used onc
 You can now configure your Ignition config to create the `wg0` configuration file:
 
 .Example FCOS WireGuard configuration
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/wireguard/wg0.conf
@@ -203,10 +203,10 @@ peer: <fcos_public_key>
 If you plan on forwarding all of your client's traffic through the FCOS instance you will need to enable IP Forwarding and you need to set and set some PostUp and PostDown directives:
 
 .Example FCOS WireGuard configuration with IP forwarding
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/sysctl.d/90-ipv4-ip-forward.conf

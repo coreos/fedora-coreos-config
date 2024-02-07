@@ -91,7 +91,7 @@ boot
 
 By default, the Fedora CoreOS live environment does not store any state on disk, and is reprovisioned from scratch on every boot. However, you may choose to store some persistent state (such as container images) in a filesystem that persists across reboots. For example, here's a Butane config that configures a persistent `/var`:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
 version: 1.1.0

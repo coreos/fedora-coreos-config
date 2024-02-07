@@ -138,10 +138,10 @@ $ sudo touch /etc/coreos/iptables-legacy.stamp
 
 For new nodes that get deployed between now and when the migration happens, you can create the `/etc/coreos/iptables-legacy.stamp` file using Ignition to ensure they don't get migrated. After the migration, you can bring up new nodes on the legacy backend by manually setting the symbolic links via Ignition. Below is a Butane config that does both of these:
 
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/coreos/iptables-legacy.stamp

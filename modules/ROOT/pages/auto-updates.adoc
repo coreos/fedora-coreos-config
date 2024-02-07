@@ -17,10 +17,10 @@ In order to receive updates very early in the phased rollout cycle, a node can b
 This can be done during provisioning by using the xref:producing-ign.adoc[Butane] config snippet shown below:
 
 .Example: configuring Zincati rollout wariness
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/zincati/config.d/51-rollout-wariness.toml
@@ -46,10 +46,10 @@ A specific finalization strategy can be configured on each node.
 The xref:producing-ign.adoc[Butane] snippet below shows how to define two maintenance windows during weekend days, starting at 22:30 UTC and lasting one hour each:
 
 .Example: configuring Zincati updates strategy
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/zincati/config.d/55-updates-strategy.toml

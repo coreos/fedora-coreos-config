@@ -2,10 +2,10 @@
 
 To set a custom hostname for your system, use the following Butane config to write to `/etc/hostname`:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/hostname

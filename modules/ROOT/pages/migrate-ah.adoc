@@ -24,10 +24,10 @@ ssh_authorized_keys:
 This can be manually translated into a `passwd` node within the Butane config:
 
 .Example of users:
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 passwd:
   users:
     - name: core

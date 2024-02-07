@@ -7,10 +7,10 @@ The complete list of supported protocols and related options for remote Ignition
 The following examples show how to retrieve an Ignition file from a remote source. They are both set to replace the current configuration with a remote Ignition file.
 
 .Retrieving a remote Ignition file via HTTPS
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 ignition:
   config:
     replace:
@@ -18,10 +18,10 @@ ignition:
 ----
 
 .Retrieving a remote Ignition file via HTTPS with a custom certificate authority
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 ignition:
   config:
     replace:
@@ -37,10 +37,10 @@ NOTE: The certificate authorities listed here are not automatically added to the
 In some cases, if you need to merge a local configuration and one or several remote ones, you can use the `merge` rather than `replace` in a Butane config.
 
 .Retrieving a remote Ignition file via HTTPS and merging it with the current config
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 ignition:
   config:
     merge:
@@ -57,10 +57,10 @@ Retrieving remote Ignition files via plain HTTP is also possible as shown below.
 WARNING: Retrieving a remote Ignition config via HTTP exposes the contents of the config to anyone monitoring network traffic. When using HTTP, it is advisable to use the verification option to ensure the contents haven't been tampered with.
 
 .Retrieving a remote Ignition file via HTTP
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 ignition:
   config:
     replace:
@@ -72,10 +72,10 @@ ignition:
 If you need to retrieve a remote Ignition file but have no direct access to the remote host, you can specify a proxy for plain HTTP and/or HTTPS. You can also specify hosts that should be excluded from proxying.
 
 .Retrieving a remote Ignition file via a proxy
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 ignition:
   config:
     merge:

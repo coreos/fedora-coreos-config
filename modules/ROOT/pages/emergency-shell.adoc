@@ -34,10 +34,10 @@ This will configure both the GRUB bootloader and the kernel to use the specified
 If you are launching FCOS from an image (in a cloud or a virtual machine), you can use Ignition to configure the console at provisioning time.
 
 .Example: Enabling primary serial and secondary graphical console
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 kernel_arguments:
   should_exist:
     # Order is significant, so group both arguments into the same list entry.

@@ -8,10 +8,10 @@ Persistent settings should be written under `/etc/sysctl.d/` during provisioning
 As an example, the xref:producing-ign.adoc[Butane] snippet below shows how to disable _SysRq_ keys:
 
 .Example: configuring kernel tunable to disable SysRq keys
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/sysctl.d/90-sysrq.conf

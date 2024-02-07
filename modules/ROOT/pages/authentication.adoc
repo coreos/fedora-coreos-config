@@ -10,10 +10,10 @@ If you do not want to use Ignition to manage the default user's SSH key(s), you 
 
 To create a new user (or users), add it to the `users` list of your Butane config. In the following example, the config creates two new usernames, but doesn't configure them to be especially useful.
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 passwd:
   users:
     - name: jlebon
@@ -26,10 +26,10 @@ You will typically want to configure SSH keys or a password, in order to be able
 
 To configure an SSH key for a local user, you can use a Butane config:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 passwd:
   users:
     - name: core
@@ -50,10 +50,10 @@ Depending on the configuration variant and version you use, you can use local fi
 of inlining them.
 The example from the xref:#_using_an_ssh_key[previous section] can thus be rewritten as follows:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.5.0
+version: {butane-latest-stable-spec}
 passwd:
   users:
     - name: core
@@ -97,10 +97,10 @@ To view and validate the effective configuration for sshd, two test modes (`-t`,
 
 Fedora CoreOS ships with no default passwords. You can use a Butane config to set a password for a local user. Building on the previous example, we can configure the `password_hash` for one or more users:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 passwd:
   users:
     - name: core
@@ -135,10 +135,10 @@ Fedora CoreOS comes with a few groups configured by default: `root`, `adm`, `whe
 
 When configuring users via Butane configs, we can specify groups that the user(s) should be a part of.
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 passwd:
   users:
     - name: core
@@ -161,10 +161,10 @@ passwd:
 
 If a group does not exist, users should create them as part of the Butane config.
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 passwd:
   groups:
     - name: engineering
@@ -195,10 +195,10 @@ passwd:
 
 The easiest way for users to be granted administrative privileges is to have them added to the `sudo` and `wheel` groups as part of the Butane config.
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 passwd:
   groups:
     - name: engineering
@@ -231,10 +231,10 @@ passwd:
 
 To enable password authentication via SSH, add the following to your Butane config:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/ssh/sshd_config.d/20-enable-passwords.conf

@@ -34,10 +34,10 @@ Updated: grub2-efi-x64-1:2.04-31.fc33.x86_64,shim-x64-15-8.x86_64
 ----
 
 .Example systemd unit to automate bootupd updates
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 systemd:
   units:
     - name: custom-bootupd-auto.service

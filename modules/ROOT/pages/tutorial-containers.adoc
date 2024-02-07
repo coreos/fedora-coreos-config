@@ -17,10 +17,10 @@ As usual, we will set up console autologin, a hostname, systemd pager configurat
 Similarly to what we did in the second provisioning scenario, we will write the following Butane config in a file called `containers.bu`:
 
 .Example with automatic serial console login, SSH key, and multiple systemd units
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.5.0
+version: {butane-latest-stable-spec}
 passwd:
   users:
     - name: core

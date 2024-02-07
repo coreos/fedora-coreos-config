@@ -11,10 +11,10 @@ In this tutorial, we will set up a user level systemd unit for an unprivileged u
 
 In this example, we will launch a systemd service for the user `sleeper`. First, let's create a user:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.5.0
+version: {butane-latest-stable-spec}
 passwd:
   users:
     - name: sleeper
@@ -22,10 +22,10 @@ passwd:
 
 This will also create the home directory for the `sleeper` user. Then we can add the systemd unit:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.5.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /home/sleeper/.config/systemd/user/linger-example.service
@@ -44,10 +44,10 @@ storage:
 
 System services can be directly enabled in Butane configs but user level services have to be manually enabled for now:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.5.0
+version: {butane-latest-stable-spec}
 storage:
   directories:
     - path: /home/sleeper/.config/systemd/user/default.target.wants
@@ -68,10 +68,10 @@ storage:
 
 We set up lingering for the systemd user level instance so that it gets started directly on boot and stays running:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.5.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /var/lib/systemd/linger/sleeper
@@ -80,10 +80,10 @@ storage:
 
 As the following directories do not exist yet, we will have to create them to tell Ignition to set the right ownership and permissions:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.5.0
+version: {butane-latest-stable-spec}
 storage:
   directories:
     - path: /home/sleeper/.config
@@ -116,10 +116,10 @@ storage:
 
 The final Butane config, stored in `user.bu`, will be:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.5.0
+version: {butane-latest-stable-spec}
 passwd:
   users:
     - name: core

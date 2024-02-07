@@ -15,10 +15,10 @@ $ sudo systemctl mask --now rpm-ostree-countme.timer
 
 You can use the following Butane config to disable counting during provisioning on first boot:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 systemd:
   units:
     - name: rpm-ostree-countme.timer

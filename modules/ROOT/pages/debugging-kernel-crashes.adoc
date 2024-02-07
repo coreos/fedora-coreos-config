@@ -9,10 +9,10 @@ By default, the vmcore will be saved in `/var/crash`. It is also possible to wri
 
 == Configuring kdump via Ignition
 .Example kdump configuration
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 kernel_arguments:
   should_exist:
   - 'crashkernel=300M'

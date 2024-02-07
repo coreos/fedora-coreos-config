@@ -6,10 +6,10 @@ You can create a systemd https://www.freedesktop.org/software/systemd/man/system
 For example, to name NIC with the MAC address `12:34:56:78:9a:bc` to "infra", place a systemd link file at `/etc/systemd/network/25-infra.link` using the xref:producing-ign.adoc[Butane] config snippet shown below:
 
 .Example: Customize NIC via systemd Link File
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/systemd/network/25-infra.link
@@ -26,10 +26,10 @@ storage:
 Similarly, also through Ignition configs, to name NIC with the MAC address `12:34:56:78:9a:bc` to "infra", create a https://man7.org/linux/man-pages/man7/udev.7.html[udev rule] at `/etc/udev/rules.d/80-ifname.rules` using the xref:producing-ign.adoc[Butane] config snippet shown below:
 
 .Example: Customize NIC via Udev Rules
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/udev/rules.d/80-ifname.rules

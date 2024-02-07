@@ -17,10 +17,10 @@ This example shows how to install the fully fledged `vim` text editor and how to
 
 NOTE: In the future, we will have a more Ignition-friendly method of doing this with stronger guarantees. See upstream issues https://github.com/coreos/butane/issues/81[butane#81] and https://github.com/coreos/fedora-coreos-tracker/issues/681[fedora-coreos-tracker#681] for more information.
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 systemd:
   units:
     # Installing vim as a layered package with rpm-ostree

@@ -140,10 +140,10 @@ To prevent making this mistake you can disable `docker` completely by
 masking the `docker.service` systemd unit.
 
 .Example Butane config for disabling docker.service
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 systemd:
   units:
     - name: docker.service
@@ -211,10 +211,10 @@ We don't recommend it, but if you really want to use it you can just
 unmask and enable it:
 
 .Example Butane config for unmasking dnsmasq.service
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 systemd:
   units:
     - name: dnsmasq.service
@@ -262,10 +262,10 @@ modifications dynamically. For example, for an SELinux boolean you can use the
 following systemd unit that executes on every boot:
 
 .Example Butane config for dynamically applying SELinux boolean
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 systemd:
   units:
     - name: setsebool.service

@@ -9,10 +9,10 @@ The following Butane config snippet configures the systemd `hello.service` to ru
 TIP: You may be able to use local file references to systemd units instead of inlining them. See xref:tutorial-services.adoc#_using_butanes__files_dir_parameter_to_embed_files[Using butane's `--files-dir` Parameter to Embed Files] for more information.
 
 .Example for running busybox using systemd and podman
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 systemd:
   units:
     - name: hello.service
@@ -38,10 +38,10 @@ systemd:
 
 https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html[Podman Quadlet] is functionality included in podman that allows starting containers via systemd using a systemd generator. The example below is the same `hello.service` that was previously shown but deployed via the Podman Quadlet functionality.
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/containers/systemd/hello.container
@@ -66,10 +66,10 @@ storage:
 https://etcd.io[etcd] is not shipped as part of Fedora CoreOS. To use it, run it as a container, as shown below.
 
 .Butane config for setting up single node etcd
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 systemd:
   units:
     - name: etcd-member.service

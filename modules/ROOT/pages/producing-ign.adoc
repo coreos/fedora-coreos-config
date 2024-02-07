@@ -186,10 +186,10 @@ The SSH public key will be provisioned to the Fedora CoreOS machine (via Ignitio
 
 . Copy the following example into a text editor:
 +
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 passwd:
   users:
     - name: core

@@ -26,10 +26,10 @@ For physical hardware, a good best practice is to reference devices via the `/de
 Here's an example Butane config to set up `/var` on a separate partition on the same primary disk:
 
 .Adding a /var partition to the primary disk
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   disks:
   - # The link to the block device the OS was booted from.
@@ -61,10 +61,10 @@ storage:
 You can of course mount only a subset of `/var` into a separate partition. For example, to mount `/var/lib/containers`:
 
 .Adding a /var/lib/containers partition to the primary disk
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   disks:
   - device: /dev/disk/by-id/coreos-boot-disk
@@ -87,10 +87,10 @@ storage:
 Alternatively, you can also mount storage from a separate disk. For example, here we mount `/var/log` from a partition on `/dev/vdb`:
 
 .Adding /var/log from a secondary disk
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   disks:
   - device: /dev/vdb
@@ -110,10 +110,10 @@ storage:
 .Defining a disk with multiple partitions
 In this example, we wipe the disk and create two new partitions.
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   disks:
     -
@@ -148,10 +148,10 @@ NOTE: You must have at least 4 GiB of RAM for root reprovisioning to work.
 Here's an example of moving from xfs to ext4, but reusing the same partition on the primary disk:
 
 .Changing the root filesystem to ext4
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   filesystems:
     - device: /dev/disk/by-partlabel/root
@@ -163,10 +163,10 @@ storage:
 Similarly to the previous section, you can also move the root filesystem entirely. Here, we're moving root to a RAID0 device:
 
 .Moving the root filesystem to RAID0
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   raid:
     - name: myroot
@@ -186,10 +186,10 @@ NOTE: You don't need the `path` or `with_mount_unit` keys; FCOS knows that the r
 If you want to replicate the boot disk across multiple drives for resiliency to drive failure, you need to mirror all the default partitions (root, boot, EFI System Partition, and bootloader code). There is special Butane config syntax for this:
 
 .Mirroring the boot disk onto two drives
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 boot_device:
   mirror:
     devices:
@@ -202,10 +202,10 @@ boot_device:
 This example demonstrates the process of creating the filesystem by defining and labeling the partitions, combining them into a RAID array, and formatting that array as ext4.
 
 .Defining a filesystem on a RAID storage device
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   disks:
   # This defines two partitions, each on its own disk. The disks are
@@ -248,10 +248,10 @@ storage:
 
 Here is an example to configure a LUKS device at `/var/lib/data`.
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   luks:
     - name: data
@@ -273,10 +273,10 @@ NOTE: You must have at least 4 GiB of RAM for root reprovisioning to work.
 There is simplified Butane config syntax for configuring root filesystem encryption and pinning. Here is an example of using it to create a TPM2-pinned encrypted root filesystem:
 
 .Encrypting the root filesystem with a TPM2 Clevis pin
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 boot_device:
   luks:
     tpm2: true
@@ -285,10 +285,10 @@ boot_device:
 This is equivalent to the following expanded config:
 
 .Encrypting the root filesystem with a TPM2 Clevis pin without using boot_device
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   luks:
     - name: root
@@ -311,10 +311,10 @@ This next example binds the root filesystem encryption to PCR 7 which correspond
 NOTE: Binding for PCR 8 (UEFI Boot Component used to track commands and kernel command line) is not supported as the kernel command line changes with every OS update.
 
 .Encrypting the root filesystem with a TPM2 Clevis pin bound to PCR 7
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   luks:
     - name: root
@@ -346,10 +346,10 @@ $ sudo clevis luks list -d /dev/disk/by-partlabel/root
 Here is an example of the simplified config syntax with Tang:
 
 .Encrypting the root filesystem with a Tang Clevis pin
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 boot_device:
   luks:
     tang:
@@ -364,10 +364,10 @@ NOTE: For more information about setting up a Tang server, see https://github.co
 You can configure both Tang and TPM2 pinning (including multiple Tang servers for redundancy). By default, only the TPM2 device or a single Tang server is needed to unlock the root filesystem. This can be changed using the `threshold` key:
 
 .Encrypting the root filesystem with both TPM2 and Tang pins
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 boot_device:
   luks:
     tang:
@@ -384,10 +384,10 @@ boot_device:
 If you use Ignition to reconfigure or move the root partition, that partition is not automatically grown on first boot (see related discussions in https://github.com/coreos/fedora-coreos-tracker/issues/570[this issue]). In the case of moving the root partition to a new disk (or multiple disks), you should set the desired partition size using the `size_mib` field. If reconfiguring the root filesystem in place, as in the LUKS example above, you can resize the existing partition using the `resize` field:
 
 .Resizing the root partition to its maximum size
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   disks:
     - device: /dev/vda
@@ -415,10 +415,10 @@ storage:
 This example creates a swap partition spanning all of the `sdb` device, creates a swap area on it, and creates a systemd swap unit so the swap area is enabled on boot.
 
 .Configuring a swap partition on a second disk
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   disks:
     - device: /dev/sdb
@@ -441,7 +441,7 @@ Fedora CoreOS systems can be configured to mount network filesystems such as NFS
 
 .Creating a systemd unit to mount an NFS filesystem on boot.
 NOTE: The `.mount` file must be named based on the path (e.g. `/var/mnt/data` = `var-mnt-data.mount`)
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
 version: 1.3.0
@@ -463,7 +463,7 @@ systemd:
 ----
 
 .Creating a systemd unit to mount an NFS filesystem when users access the mount point (automount)
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
 version: 1.3.0
@@ -501,10 +501,10 @@ systemd:
 This example configures a mirrored boot disk with a TPM2-encrypted root filesystem, overrides the sizes of the automatically-generated root partition replicas, and adds an encrypted mirrored `/var` partition which consumes the remainder of the disks.
 
 .Encrypted mirrored boot disk with separate /var
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 boot_device:
   luks:
     tpm2: true

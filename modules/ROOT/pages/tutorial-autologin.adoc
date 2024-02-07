@@ -19,10 +19,10 @@ Let's create a very simple Butane config that will perform the following actions
 
 We can create a config file named `autologin.bu` now as:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.5.0
+version: {butane-latest-stable-spec}
 systemd:
   units:
     - name: serial-getty@ttyS0.service

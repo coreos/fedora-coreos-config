@@ -48,10 +48,10 @@ We will create a Butane config that will:
 
 Let's write this Butane config to a file called `updates.bu`:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.5.0
+version: {butane-latest-stable-spec}
 passwd:
   users:
     - name: core

@@ -8,10 +8,10 @@ This is best done by defining a single file with required environment variables 
 
 This common file has to be subsequently referenced explicitly by each service that requires internet access thereby encouraging least privilege best practices.
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/example-proxy.env
@@ -32,10 +32,10 @@ https://github.com/coreos/zincati[Zincati] polls for OS updates, and https://git
 
 TIP: You may be able to use local file references to systemd units instead of inlining them. See xref:tutorial-services.adoc#_using_butanes__files_dir_parameter_to_embed_files[Using butane's `--files-dir` Parameter to Embed Files] for more information.
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 systemd:
   units:
     - name: rpm-ostreed.service
@@ -62,10 +62,10 @@ systemd:
 
 If using docker then the `docker.service` drop-in is sufficient. If running Kubernetes with containerd (and no docker) then the `containerd.service` drop-in may be necessary.
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 systemd:
   units:
     - name: docker.service
@@ -88,10 +88,10 @@ systemd:
 
 Podman has no daemon and so configuration is for each individual service scheduled, and can be done as part of the full systemd unit definition.
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 systemd:
   units:
     - name: example-svc.service

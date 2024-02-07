@@ -2,10 +2,10 @@
 
 To set your system keyboard layout (keymap), use the following Butane config to write to `/etc/vconsole.conf`:
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 storage:
   files:
     - path: /etc/vconsole.conf

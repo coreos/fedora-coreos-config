@@ -89,11 +89,11 @@ aws s3 ls s3://$NAME-infra/
 ----
 
 Then create a minimal Ignition config as follows:
-[source,yaml]
+[source,yaml,subs="attributes"]
 .Retrieving a remote Ignition file from a s3 bucket
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 ignition:
   config:
     replace:

@@ -68,10 +68,10 @@ If your Ignition config is larger than this limit, you can host the config on an
 . Upload your Ignition config to an HTTPS server.
 . xref:remote-ign.adoc[Create a Butane pointer config] that specifies the URL of your full Ignition config:
 +
-[source, yaml]
+[source,yaml,subs="attributes"]
 ----
 variant: fcos
-version: 1.4.0
+version: {butane-latest-stable-spec}
 ignition:
   config:
     replace:
