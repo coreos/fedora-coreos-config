@@ -30,11 +30,6 @@ conditional-include:
       - basearch == "aarch64"
     # Remove qcom dtb to help us overcome https://github.com/coreos/fedora-coreos-tracker/issues/1637
     include: aarch64-drop-qcom-dtb-files.yaml
-  - if:
-      - releasever == 38
-    # Modularity is going away in F39+ so we'll only include
-    # the fedora-repos-modular package in <39.
-    include: fedora-modularity.yaml
 
 ostree-layers:
   - overlay/15fcos

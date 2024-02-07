@@ -42,14 +42,6 @@ Things that are more closely "Fedora CoreOS":
 Disable Zincati on non-production streams:
 https://github.com/coreos/fedora-coreos-tracker/issues/163
 
-17fedora-modularity
--------------------
-
-Check for layered modularity RPMs to warn users of the retirement in Fedora 39
-via Console Login Helper Messages.
-
-Remove once Fedora 39 lands in all streams.
-
 20platform-chrony
 -----------------
 
