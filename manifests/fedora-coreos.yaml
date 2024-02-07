@@ -45,11 +45,6 @@ conditional-include:
     # Merge with manifests/system-configuration.yaml once Fedora 39 is released
     # to all streams
     include: audit.yaml
-  - if: releasever >= 39
-    # https://github.com/coreos/fedora-coreos-tracker/issues/1567
-    # Merge with manifests/fedora-coreos.yaml once Fedora 39 is released
-    # to all streams
-    include: bash-color-prompt.yaml
 
 ostree-layers:
   - overlay/15fcos
@@ -75,6 +70,9 @@ packages:
   - zincati
   # Include and set the default editor
   - nano nano-default-editor
+  # Introduce a default colored prompt for Fedora's default shell bash.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1567
+  - bash-color-prompt
 
 etc-group-members:
   # Add the docker group to /etc/group
