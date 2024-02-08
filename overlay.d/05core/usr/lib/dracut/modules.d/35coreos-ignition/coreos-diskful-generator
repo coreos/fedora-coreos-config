@@ -65,7 +65,11 @@ mkdir -p ${UNIT_DIR}
 # We want to generate sysroot.mount on ostree systems, but we don't want
 # to run if there's already a root= karg, where the systemd-fstab-generator
 # should win.
-if test -n "$(cmdline_arg ostree)" && test -z "$(cmdline_arg root)"; then
+# We also don't want to generate sysroot.mount if we are booting a kdump kernel
+# that aims to upload logs to a remote target, as the XFS kernel module won't be loaded
+# https://issues.redhat.com/browse/OCPBUGS-27935
+# FIXME: this kdump case should be removed when we are done with https://github.com/coreos/fedora-coreos-tracker/issues/1675
+if test -n "$(cmdline_arg ostree)" && test -z "$(cmdline_arg root)" && test -z "$(cmdline_arg kdump_remote_ip)"; then
     cat >${UNIT_DIR}/sysroot.mount << 'EOF'
 [Unit]
 Before=initrd-root-fs.target
