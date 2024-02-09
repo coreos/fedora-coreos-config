@@ -17,9 +17,6 @@ conditional-include:
   - if: prod == false
     # long-term, would be good to support specifying a nested TreeComposeConfig
     include: disable-zincati.yaml
-  - if: basearch == "aarch64"
-    # Fixup for kdump on aarch64 AWS instances
-    include: kdump-aarch64-aws-workaround.yaml
   - if: basearch != "s390x"
     # And remove some cruft from grub2
     include: grub2-removals.yaml
