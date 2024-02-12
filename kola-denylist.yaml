@@ -7,21 +7,11 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: coreos.ignition.ssh.key
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1553
-  # snooze: 2024-02-05 (disabled on promotion)
+  # snooze: 2024-02-26 (disabled on promotion)
   # warn: true (disabled on promotion)
   platforms:
     - azure
-- pattern: iso-offline-install-iscsi.bios
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1638
-- pattern: ext.config.rpm-ostree.kernel-replace
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1642
-  # snooze: 2024-02-05 (disabled on promotion)
-  # warn: true (disabled on promotion)
-  streams:
-    - rawhide
-- pattern: ext.config.root-reprovision.linear
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1648
-  # snooze: 2024-02-05 (disabled on promotion)
-  # warn: true   (disabled on promotion)
+- pattern: ext.config.files.console-config
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1654
   streams:
     - rawhide
