@@ -9,7 +9,11 @@
 ##   # RHCOS. See: https://github.com/containers/skopeo/issues/1846
 ##   distros: fcos
 ##   # Needs internet access as we fetch files from koji
-##   tags: "needs-internet platform-independent"
+##   # We add the "reprovision" tag here even though we aren't
+##   # reprovisioning as a hack so that in our pipeline the test
+##   # will execute with no other tests. We were seeing a lot of
+##   # timeouts on ppc64le.
+##   tags: "needs-internet platform-independent reprovision"
 ##   description: Verify that build of a container image with a new kernel
 ##     and reboot into it succeeds.
 

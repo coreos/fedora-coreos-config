@@ -102,5 +102,9 @@ install() {
     inst_script "$moddir/coreos-check-rootfs-size" \
         /usr/libexec/coreos-check-rootfs-size
 
+    install_ignition_unit ignition-ostree-mount-state-overlays.service
+    inst_script "$moddir/ignition-ostree-mount-state-overlays.sh" \
+        /usr/libexec/ignition-ostree-mount-state-overlays
+
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
 }
