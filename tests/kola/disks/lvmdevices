@@ -5,7 +5,7 @@
 ##   # additionalDisks is only supported on qemu.
 ##   platforms: qemu
 ##   # A few extra disks to set up LVM on.
-##   additionalDisks: ["1G", "2G"]
+##   additionalDisks: ["1G:serial=disk1", "2G:serial=disk2"]
 
 set -xeuo pipefail
 
@@ -29,8 +29,8 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
       # Set up LVM on the two disks and set up a vg/lv/fs/mount on one
       # of them. Specify a blank devicesfile so the *create commands
       # won't touch our devices file.
-      pvcreate --devicesfile="" /dev/vda /dev/vdb
-      vgcreate --devicesfile="" vg1 /dev/vda
+      pvcreate --devicesfile="" /dev/disk/by-id/virtio-disk1 /dev/disk/by-id/virtio-disk2
+      vgcreate --devicesfile="" vg1 /dev/disk/by-id/virtio-disk1
       lvcreate --devicesfile="" vg1 --name=lv1 -l 100%FREE
       mkfs.ext4 /dev/vg1/lv1
       echo "/dev/vg1/lv1 /srv/ ext4 defaults 0 2" >> /etc/fstab
@@ -46,8 +46,8 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
 
   rebooted)
       # Check that the devices are in the devices file.
-      grep -q 'DEVNAME=/dev/vda' "$LVMDEVICESFILE" || fatal "Missing vda in devices file"
-      grep -q 'DEVNAME=/dev/vdb' "$LVMDEVICESFILE" || fatal "Missing vdb in devices file"
+      grep -q 'IDTYPE=sys_serial IDNAME=disk1' "$LVMDEVICESFILE" || fatal "Missing disk1 in devices file"
+      grep -q 'IDTYPE=sys_serial IDNAME=disk2' "$LVMDEVICESFILE" || fatal "Missing disk2 in devices file"
 
       # Check that we can see the PVs
       if [ "$(pvs --noheadings | wc -l)" != '2' ]; then
