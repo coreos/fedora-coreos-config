@@ -1,3 +1,5 @@
 enable coreos-check-ssh-keys.service
 # Check if cgroupsv1 is still being used
 enable coreos-check-cgroups.service
+# https://fedoraproject.org/wiki/Changes/EnableFwupdRefreshByDefault
+enable fwupd-refresh.timer
