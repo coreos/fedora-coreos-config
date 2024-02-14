@@ -9,11 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  container-selinux:
-    evra: 2:2.224.0-1.fc40.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1630
-      type: pin
   libblkid:
     evr: 2.39.3-4.fc40
     metadata:
@@ -38,16 +33,6 @@ packages:
     evr: 2.39.3-4.fc40
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1666
-      type: pin
-  selinux-policy:
-    evra: 40.5-1.fc40.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1630
-      type: pin
-  selinux-policy-targeted:
-    evra: 40.5-1.fc40.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1630
       type: pin
   util-linux:
     evr: 2.39.3-4.fc40
