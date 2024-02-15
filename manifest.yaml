@@ -9,6 +9,9 @@ repos:
 
 include: manifests/fedora-coreos.yaml
 
+ostree-layers:
+  - overlay/08ostree-prepare-root
+
 # Ship this in rawhide because we want to enable it in the future, also
 # to shake out any integration issues.
 packages:
