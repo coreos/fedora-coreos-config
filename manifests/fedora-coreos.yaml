@@ -33,6 +33,8 @@ conditional-include:
     # Remove this once we have Podman v5 in f39.
     # xref: https://github.com/coreos/fedora-coreos-tracker/issues/1629
     include: cni-plugins.yaml
+  - if: stream == "rawhide"
+    include: composefs.yaml
 
 ostree-layers:
   - overlay/15fcos
