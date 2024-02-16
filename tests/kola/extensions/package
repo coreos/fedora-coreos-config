@@ -52,3 +52,9 @@ if [[ -n "${failed}" ]]; then
   fatal "could not install: ${failed}"
 fi
 ok "successfully installed os rpm package extensions"
+
+# also try the wrapped dnf
+if jq -e .cliwrap /usr/share/rpm-ostree/treefile.json; then
+  dnf install -y 'ltrace'
+  ok "dnf cliwrap"
+fi
