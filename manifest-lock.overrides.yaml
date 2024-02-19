@@ -8,39 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  libblkid:
-    evr: 2.39.3-4.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1666
-      type: pin
-  libfdisk:
-    evr: 2.39.3-4.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1666
-      type: pin
-  libmount:
-    evr: 2.39.3-4.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1666
-      type: pin
-  libsmartcols:
-    evr: 2.39.3-4.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1666
-      type: pin
-  libuuid:
-    evr: 2.39.3-4.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1666
-      type: pin
-  util-linux:
-    evr: 2.39.3-4.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1666
-      type: pin
-  util-linux-core:
-    evr: 2.39.3-4.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1666
-      type: pin
+packages: {}
