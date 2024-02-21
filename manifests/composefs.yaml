@@ -1,0 +1,3 @@
+# Enable composefs by default.
+ostree-layers:
+  - overlay/08composefs
