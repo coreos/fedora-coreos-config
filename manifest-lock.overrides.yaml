@@ -9,6 +9,26 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  kernel:
+    evr: 6.8.0-0.rc5.41.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1647
+      type: pin
+  kernel-core:
+    evr: 6.8.0-0.rc5.41.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1647
+      type: pin
+  kernel-modules:
+    evr: 6.8.0-0.rc5.41.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1647
+      type: pin
+  kernel-modules-core:
+    evr: 6.8.0-0.rc5.41.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1647
+      type: pin
   libblkid:
     evr: 2.39.3-4.fc40
     metadata:
