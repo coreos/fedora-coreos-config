@@ -15,3 +15,15 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-b94ef03275
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1671
       type: fast-track
+  coreos-installer:
+    evr: 0.21.0-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f5da825190
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-1954790135
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.21.0-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f5da825190
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-1954790135
+      type: fast-track
