@@ -64,7 +64,7 @@ is_rhcos9() {
 # scos
 is_scos() {
     source /etc/os-release
-    [ "${ID}" == "scos" ] && [ "${VARIANT_ID}" == "coreos" ]
+    { [ "${ID}" == "scos" ] || [ "${ID}" == "centos" ]; } && [ "${VARIANT_ID}" == "coreos" ]
 }
 
 IFS=" " read -r -a cmdline <<< "$(</proc/cmdline)"
