@@ -73,19 +73,19 @@
       }
     },
     "amd-gpu-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "amd-ucode-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "atheros-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -181,7 +181,7 @@
       }
     },
     "brcmfmac-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -193,7 +193,7 @@
       }
     },
     "btrfs-progs": {
-      "evra": "6.7-1.fc39.ppc64le",
+      "evra": "6.7.1-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "btrfs-progs"
       }
@@ -247,7 +247,7 @@
       }
     },
     "cirrus-audio-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -283,7 +283,7 @@
       }
     },
     "conmon": {
-      "evra": "2:2.1.8-2.fc39.ppc64le",
+      "evra": "2:2.1.10-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "conmon"
       }
@@ -841,7 +841,7 @@
       }
     },
     "gvisor-tap-vsock-gvforwarder": {
-      "evra": "6:0.7.2-1.fc39.ppc64le",
+      "evra": "6:0.7.3-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "gvisor-tap-vsock"
       }
@@ -871,13 +871,13 @@
       }
     },
     "intel-audio-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "intel-gpu-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1021,25 +1021,25 @@
       }
     },
     "kernel": {
-      "evra": "6.7.4-200.fc39.ppc64le",
+      "evra": "6.7.5-200.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.7.4-200.fc39.ppc64le",
+      "evra": "6.7.5-200.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.7.4-200.fc39.ppc64le",
+      "evra": "6.7.5-200.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.7.4-200.fc39.ppc64le",
+      "evra": "6.7.5-200.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1555,7 +1555,7 @@
       }
     },
     "libsmbclient": {
-      "evra": "2:4.19.4-3.fc39.ppc64le",
+      "evra": "2:4.19.5-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1687,7 +1687,7 @@
       }
     },
     "libwbclient": {
-      "evra": "2:4.19.4-3.fc39.ppc64le",
+      "evra": "2:4.19.5-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1729,13 +1729,13 @@
       }
     },
     "linux-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "linux-firmware-whence": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1813,7 +1813,7 @@
       }
     },
     "mt7xxx-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1909,7 +1909,7 @@
       }
     },
     "nvidia-gpu-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1921,7 +1921,7 @@
       }
     },
     "nxpwireless-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2161,7 +2161,7 @@
       }
     },
     "realtek-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2221,19 +2221,19 @@
       }
     },
     "samba-client-libs": {
-      "evra": "2:4.19.4-3.fc39.ppc64le",
+      "evra": "2:4.19.5-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common": {
-      "evra": "2:4.19.4-3.fc39.noarch",
+      "evra": "2:4.19.5-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common-libs": {
-      "evra": "2:4.19.4-3.fc39.ppc64le",
+      "evra": "2:4.19.5-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -2461,7 +2461,7 @@
       }
     },
     "tiwilink-firmware": {
-      "evra": "20240115-2.fc39.noarch",
+      "evra": "20240220-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2600,16 +2600,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-02-20T00:00:00Z",
+    "generated": "2024-02-22T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:28Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-02-19T23:40:05Z"
+        "generated": "2024-02-21T03:40:02Z"
       },
       "fedora-updates": {
-        "generated": "2024-02-20T01:27:25Z"
+        "generated": "2024-02-22T02:05:51Z"
       }
     }
   }
