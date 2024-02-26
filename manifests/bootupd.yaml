@@ -7,7 +7,5 @@ postprocess:
   - |
     #!/bin/bash
     set -xeuo pipefail
-    # Until we have https://github.com/coreos/rpm-ostree/pull/2275
-    mkdir -p /run
     # Transforms /usr/lib/ostree-boot into a bootupd-compatible update payload
-    /usr/bin/bootupctl backend generate-update-metadata /
+    /usr/bin/bootupctl backend generate-update-metadata
