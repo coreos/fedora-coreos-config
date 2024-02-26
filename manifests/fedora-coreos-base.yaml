@@ -54,7 +54,6 @@ postprocess:
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
-    setsebool -P -N container_use_cephfs on  # RHBZ#1692369
     setsebool -P -N virt_use_samba on  # RHBZ#1754825
 
   # Mask dnsmasq. We include dnsmasq for host services that use the dnsmasq
@@ -103,23 +102,10 @@ packages:
   - polkit
   # Containers
   - systemd-container catatonit
-  - fuse-overlayfs slirp4netns
   # Some host applications(i.e. NetworkManager) use dnsmasq
   # as the binary for some various utility operations.
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
   - dnsmasq
-  # For podman v4 netavark gets pulled in but it only recommends
-  # aardvark-dns (which provides name resolution based on container
-  # names). This functionality was previously provided by dnsname from
-  # podman-plugins in the podman v3 stack.
-  # See https://github.com/containers/netavark/pull/217
-  - aardvark-dns
-  # Since we need `containernetworking-plugins` installed to continue
-  # to support CNI networks we need to also explicitly install
-  # `netavark` so we get both of them installed since both of them
-  # provide `container-network-stack`.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071458717
-  - netavark
   # Minimal NFS client
   - nfs-utils-coreos
   # Active Directory support
@@ -179,12 +165,9 @@ packages:
 #   - Add this package on x86_64 and aarch64 (the two architectures
 #     GCP supports. https://github.com/coreos/fedora-coreos-tracker/issues/1494
 #     This should be moved to a shared manifest when RHEL has this package.
-# - crun-wasm wasmedge-rt
-#   - Support for wasm runtime: https://github.com/coreos/fedora-coreos-tracker/issues/1375
 packages-x86_64:
   - irqbalance
   - google-compute-engine-guest-configs-udev
-  - crun-wasm wasmedge-rt
   # Include AMD microcode updates, see https://github.com/coreos/fedora-coreos-tracker/issues/1618.
   # This normally should belong in bootable-rpm-ostree.yaml (alongside
   # `microcode_ctl`), but this change hasn't hit RHCOS yet.
@@ -199,7 +182,6 @@ packages-aarch64:
   - irqbalance
   - qemu-user-static-x86
   - google-compute-engine-guest-configs-udev
-  - crun-wasm wasmedge-rt
 packages-s390x:
   - qemu-user-static-x86
 

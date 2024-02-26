@@ -11,6 +11,9 @@ rojig:
 add-commit-metadata:
   fedora-coreos.stream: ${stream}
 
+# Include all container engines by default
+variables:
+  container_engines: true
 
 include: fedora-coreos-base.yaml
 conditional-include:
@@ -27,17 +30,25 @@ conditional-include:
     # passwd RPM was obsoleted by shadow-utils in F40+, but we need to keep
     # including it in F39. Remove this when we are on F40+ on all streams.
     include: passwd.yaml
-  - if: releasever == 39
+  - if:
+      - releasever == 39
+      - container_engines == true
     # No longer need CNI plugins in f40 since Podman dropped
     # support for CNI networking entirely in Podmanv5
     # Remove this once we have Podman v5 in f39.
     # xref: https://github.com/coreos/fedora-coreos-tracker/issues/1629
     include: cni-plugins.yaml
-  - if: releasever == 39
+  - if:
+      - releasever == 39
+      - container_engines == true
     # Checks for breaking changes that came with Podman v5.
     include: podman-v5.yaml
   - if: releasever >= 40
     include: cliwrap.yaml
+  - if: container_engines == true
+    include:
+      - podman.yaml
+      - moby-engine.yaml
 
 ostree-layers:
   - overlay/15fcos
@@ -55,10 +66,6 @@ packages:
   # the archive repo for more reliable package layering
   # https://github.com/coreos/fedora-coreos-tracker/issues/400
   - fedora-repos-archive
-  # CL ships this.
-  - moby-engine
-  # Already pulled in by moby-engine, but let's be explicit. Typhoon uses it.
-  - containerd
   # Updates
   - zincati
   # Include and set the default editor

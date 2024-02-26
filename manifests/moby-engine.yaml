@@ -1,0 +1,8 @@
+# This manifest is Fedora CoreOS only (not included in SCOS or RHCOS)
+
+packages:
+  # CL shipped this
+  - moby-engine
+  # Already pulled in by moby-engine, but let's be explicit. Typhoon uses it.
+  - containerd
+  - runc
