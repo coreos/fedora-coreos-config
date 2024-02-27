@@ -1,0 +1,34 @@
+# This manifest is Fedora CoreOS only (not included in SCOS or RHCOS)
+
+packages:
+  - podman
+  - crun
+  # Include toolbox here as it pulls podman
+  - toolbox
+  - fuse-overlayfs slirp4netns
+  # For podman v4 netavark gets pulled in but it only recommends
+  # aardvark-dns (which provides name resolution based on container
+  # names). This functionality was previously provided by dnsname from
+  # podman-plugins in the podman v3 stack.
+  # See https://github.com/containers/netavark/pull/217
+  - aardvark-dns
+  # Since we need `containernetworking-plugins` installed to continue
+  # to support CNI networks we need to also explicitly install
+  # `netavark` so we get both of them installed since both of them
+  # provide `container-network-stack`.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071458717
+  - netavark
+
+# Support for wasm runtime: https://github.com/coreos/fedora-coreos-tracker/issues/1375
+packages-x86_64:
+  - crun-wasm wasmedge-rt
+packages-aarch64:
+  - crun-wasm wasmedge-rt
+
+postprocess:
+  # Enable SELinux booleans used by OpenShift
+  # https://github.com/coreos/fedora-coreos-tracker/issues/284
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    setsebool -P -N container_use_cephfs on  # RHBZ#1692369
