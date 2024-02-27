@@ -6,11 +6,21 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
-      branch:
+      branch-name:
         # Allow overriding branch for syncs that need manual fixups
-        description: PR branch
+        description: PR branch name
         required: true
         default: fcc-sync
+      branch:
+        # Allow specifying the source branch for backports
+        description: Source branch to use for PR
+        required: true
+        default: testing-devel
+      target-branch:
+        # Allow specifying the target branch for backports
+        description: Target branch to open PR against
+        required: true
+        default: master
 
 permissions:
   # none at all
@@ -31,12 +41,16 @@ jobs:
 
       - name: Update submodule
         env:
-          BRANCH_NAME: ${{ github.event.inputs.branch }}
+          BRANCH_NAME: ${{ github.event.inputs.branch-name }}
+          SOURCE_BRANCH: ${{ github.event.inputs.branch }}
+          TARGET_BRANCH: ${{ github.event.inputs.target-branch }}
         run: |
           set -euxo pipefail
 
-          # Default branch name for on.schedule case
+          # Default branches names for on.schedule case
           echo "BRANCH_NAME=${BRANCH_NAME:-fcc-sync}" >> $GITHUB_ENV
+          echo "SOURCE_BRANCH=${SOURCE_BRANCH:-testing-devel}" >> $GITHUB_ENV
+          echo "TARGET_BRANCH=${TARGET_BRANCH:-master}" >> $GITHUB_ENV
 
           git submodule init
           git submodule update
@@ -53,7 +67,7 @@ jobs:
               echo "No non-trivial changes; exiting"
               exit 0
           fi
-          git checkout testing-devel
+          git checkout $SOURCE_BRANCH
 
           marker=OPENSHIFT-OS-END-OF-LOG-MARKER-$RANDOM$RANDOM$RANDOM
           cat >> $GITHUB_ENV <<EOF
@@ -68,6 +82,7 @@ jobs:
           token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
           push-to-fork: coreosbot-releng/os
           branch: ${{ env.BRANCH_NAME }}
+          base: ${{ env.TARGET_BRANCH }}
           commit-message: |
             Bump fedora-coreos-config
 
