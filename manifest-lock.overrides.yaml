@@ -21,3 +21,13 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f5da825190
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-1954790135
       type: fast-track
+  authselect:
+    evr: 1.5.0-3.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1680
+      type: pin
+  authselect-libs:
+    evr: 1.5.0-3.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1680
+      type: pin
