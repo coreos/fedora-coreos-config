@@ -36,8 +36,6 @@ conditional-include:
   - if: releasever == 39
     # Checks for breaking changes that came with Podman v5.
     include: podman-v5.yaml
-  - if: releasever >= 40
-    include: cliwrap.yaml
 
 ostree-layers:
   - overlay/15fcos
