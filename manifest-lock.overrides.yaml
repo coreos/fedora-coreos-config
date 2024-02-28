@@ -19,4 +19,15 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1680
       type: pin
-
+  coreos-installer:
+    evr: 0.21.0-1.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-a610b3508f
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1671
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.21.0-1.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-a610b3508f
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1671
+      type: fast-track
