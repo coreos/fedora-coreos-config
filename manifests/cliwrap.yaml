@@ -1,2 +1,5 @@
 # https://github.com/coreos/fedora-coreos-tracker/issues/730
-cliwrap: true
+cliwrap-binaries:
+  - dnf
+  # until https://github.com/coreos/rpm-ostree/issues/4726
+  - kernel-install
