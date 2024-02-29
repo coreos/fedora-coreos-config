@@ -6,22 +6,20 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
-      branch-name:
-        # Allow overriding branch for syncs that need manual fixups
-        description: PR branch name
-        required: true
-        default: fcc-sync
       branch:
         # Allow specifying the source branch for backports
         description: Source branch to use for PR
         required: true
         default: testing-devel
-      target-branch:
-        # Allow specifying the target branch for backports
-        description: Target branch to open PR against
-        required: true
-        default: master
-
+        type: choice
+        options:
+          - testing-devel
+          - rhcos-4.15
+          - rhcos-4.14
+          - rhcos-4.13
+          - rhcos-4.12
+          - rhcos-4.11
+          - rhcos-4.10
 permissions:
   # none at all
   contents: none
@@ -30,7 +28,31 @@ jobs:
   update-submodule:
     name: Update fedora-coreos-config submodule
     runs-on: ubuntu-latest
+    env:
+      SOURCE_BRANCH: ${{ github.event.inputs.branch }}
     steps:
+      - name: Set branches values
+        run: |
+          case $SOURCE_BRANCH in
+              testing-devel)
+                echo "TARGET_BRANCH=master" >> $GITHUB_ENV
+                echo "BRANCH_NAME=fcc-sync" >> $GITHUB_ENV
+              ;;
+              rhcos-*)
+              # split the string around the -
+                array=(${SOURCE_BRANCH//-/ })
+                OCP_VERSION=${array[1]}
+                echo "TARGET_BRANCH=release-${OCP_VERSION}" >> $GITHUB_ENV
+                echo "BRANCH_NAME=fcc-sync-${SOURCE_BRANCH}" >> $GITHUB_ENV
+                ;;
+              *)
+                # Default branches names for on.schedule case
+                echo "SOURCE_BRANCH=testing-devel" >> $GITHUB_ENV
+                echo "TARGET_BRANCH=master" >> $GITHUB_ENV
+                echo "BRANCH_NAME=fcc-sync" >> $GITHUB_ENV
+              ;;
+          esac
+
       - name: Check out repository
         uses: actions/checkout@v3
         with:
@@ -38,27 +60,22 @@ jobs:
           # We need an unbroken commit chain when pushing to the fork.  Don't
           # make assumptions about which commits are already available there.
           fetch-depth: 0
+          # We need to checkout against the target branch
+          ref: ${{ env.TARGET_BRANCH }}
 
       - name: Update submodule
-        env:
-          BRANCH_NAME: ${{ github.event.inputs.branch-name }}
-          SOURCE_BRANCH: ${{ github.event.inputs.branch }}
-          TARGET_BRANCH: ${{ github.event.inputs.target-branch }}
         run: |
           set -euxo pipefail
-
-          # Default branches names for on.schedule case
-          echo "BRANCH_NAME=${BRANCH_NAME:-fcc-sync}" >> $GITHUB_ENV
-          echo "SOURCE_BRANCH=${SOURCE_BRANCH:-testing-devel}" >> $GITHUB_ENV
-          echo "TARGET_BRANCH=${TARGET_BRANCH:-master}" >> $GITHUB_ENV
 
           git submodule init
           git submodule update
 
           cd fedora-coreos-config
+          # the submodule init only fetch the submodule commit and the default branch `testing-devel`
+          git fetch origin ${SOURCE_BRANCH}
           # Omit CoreOS Bot commits from the log message, since they generally
           # only affect FCOS
-          git shortlog "HEAD..testing-devel" --perl-regexp \
+          git shortlog "HEAD..FETCH_HEAD" --perl-regexp \
               --author='^((?!CoreOS Bot <coreosbot@fedoraproject.org>).*)$' \
               > $RUNNER_TEMP/shortlog
 
@@ -67,6 +84,7 @@ jobs:
               echo "No non-trivial changes; exiting"
               exit 0
           fi
+
           git checkout $SOURCE_BRANCH
 
           marker=OPENSHIFT-OS-END-OF-LOG-MARKER-$RANDOM$RANDOM$RANDOM
@@ -77,7 +95,7 @@ jobs:
           EOF
 
       - name: Open pull request
-        uses: peter-evans/create-pull-request@v4.2.3
+        uses: peter-evans/create-pull-request@v6.0.0
         with:
           token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
           push-to-fork: coreosbot-releng/os
