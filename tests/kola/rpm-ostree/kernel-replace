@@ -87,7 +87,8 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
     version=$(rpm-ostree --version | grep Version)
 cat > Dockerfile << EOF
 FROM localhost/fcos
-RUN rpm-ostree cliwrap install-to-root /
+# until we have https://github.com/coreos/rpm-ostree/pull/4848
+RUN if test ! -d /usr/libexec/rpm-ostree/wrapped; then rpm-ostree cliwrap install-to-root /; fi
 RUN rpm-ostree override replace \
     https://koji.fedoraproject.org/koji/buildinfo?buildID=2178613 && \
     ostree container commit
