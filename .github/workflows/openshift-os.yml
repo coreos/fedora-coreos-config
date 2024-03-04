@@ -20,6 +20,12 @@ on:
           - rhcos-4.12
           - rhcos-4.11
           - rhcos-4.10
+      jira:
+        description: The JIRA reference to put in the PR title. Defaults to "NO-JIRA".
+        required: false
+        default: NO-JIRA
+        type: string
+
 permissions:
   # none at all
   contents: none
@@ -30,29 +36,34 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SOURCE_BRANCH: ${{ github.event.inputs.branch }}
+      JIRA: ${{ github.event.inputs.jira }}
     steps:
       - name: Set branches values
         run: |
+          set -euxo pipefail
+
           case $SOURCE_BRANCH in
-              testing-devel)
+              # in the on.schedule case, the SOURCE_BRANCH is empty
+              testing-devel|"")
+                echo "SOURCE_BRANCH=testing-devel" >> $GITHUB_ENV
                 echo "TARGET_BRANCH=master" >> $GITHUB_ENV
                 echo "BRANCH_NAME=fcc-sync" >> $GITHUB_ENV
-              ;;
+                ;;
               rhcos-*)
-              # split the string around the -
+                # split the string around the -
                 array=(${SOURCE_BRANCH//-/ })
                 OCP_VERSION=${array[1]}
                 echo "TARGET_BRANCH=release-${OCP_VERSION}" >> $GITHUB_ENV
                 echo "BRANCH_NAME=fcc-sync-${SOURCE_BRANCH}" >> $GITHUB_ENV
+                echo "TITLE_PREFIX=[release-${OCP_VERSION}] " >> $GITHUB_ENV
                 ;;
               *)
-                # Default branches names for on.schedule case
-                echo "SOURCE_BRANCH=testing-devel" >> $GITHUB_ENV
-                echo "TARGET_BRANCH=master" >> $GITHUB_ENV
-                echo "BRANCH_NAME=fcc-sync" >> $GITHUB_ENV
-              ;;
+                echo "SOURCE_BRANCH=$SOURCE_BRANCH is invalid" >&2
+                exit 1
+                ;;
           esac
 
+          echo "JIRA=${JIRA:-NO-JIRA}" >> $GITHUB_ENV
       - name: Check out repository
         uses: actions/checkout@v3
         with:
@@ -105,7 +116,7 @@ jobs:
             Bump fedora-coreos-config
 
             ${{ env.SHORTLOG }}
-          title: "NO-JIRA: Bump fedora-coreos-config"
+          title: "${{ env.TITLE_PREFIX }}${{ env.JIRA }}: Bump fedora-coreos-config"
           body: |
             Created by [GitHub workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/openshift-os.yml) ([source](${{ github.server_url }}/${{ github.repository }}/blob/testing-devel/.github/workflows/openshift-os.yml)).
 
