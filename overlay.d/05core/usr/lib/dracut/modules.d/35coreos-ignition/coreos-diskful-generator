@@ -6,7 +6,17 @@
 # With Ignition v 2.5.0, ignition-dracut was merged into Ignition and the CoreOS
 # specific bits were deposited here.
 
-set -e
+set +euo pipefail
+. /usr/lib/dracut-lib.sh
+set -euo pipefail
+
+# dracut isn't nice with `set -e`
+dracut_func() {
+    set +euo pipefail
+    "$@"; local rc=$?
+    set -euo pipefail
+    return $rc
+}
 
 # Generators don't have logging right now
 # https://github.com/systemd/systemd/issues/15638
@@ -17,7 +27,8 @@ EARLY_DIR="${2:-/tmp}"
 
 IFS=" " read -r -a cmdline <<< "$(</proc/cmdline)"
 cmdline_arg() {
-    local name="$1" value="$2"
+    local name value
+    name="$1"
     for arg in "${cmdline[@]}"; do
         if [[ "${arg%%=*}" == "${name}" ]]; then
             value="${arg#*=}"
@@ -27,7 +38,8 @@ cmdline_arg() {
 }
 
 cmdline_bool() {
-    local value=$(cmdline_arg "$@")
+    local value
+    value=$(cmdline_arg "$@")
     case "$value" in
         ""|0|no|off) return 1;;
         *) return 0;;
@@ -62,16 +74,19 @@ fi
 # all old machines so there are still some that could exist that don't
 # have root= and rootflags= kargs. For that reason we run this bit of
 # code on EVERY diskful boot.
-mkdir -p ${UNIT_DIR}
+mkdir -p "${UNIT_DIR}"
 # We want to generate sysroot.mount on ostree systems, but we don't want
 # to run if there's already a root= karg, where the systemd-fstab-generator
 # should win.
 # We also don't want to generate sysroot.mount if we are booting a kdump kernel
-# that aims to upload logs to a remote target, as the XFS kernel module won't be loaded
+# that aims to upload logs to a remote target, as we may be in a diskless setup
 # https://issues.redhat.com/browse/OCPBUGS-27935
-# FIXME: this kdump case should be removed when we are done with https://github.com/coreos/fedora-coreos-tracker/issues/1675
-if test -n "$(cmdline_arg ostree)" && test -z "$(cmdline_arg root)" && test -z "$(cmdline_arg kdump_remote_ip)"; then
-    cat >${UNIT_DIR}/sysroot.mount << 'EOF'
+# FIXME use dracut-lib https://github.com/coreos/fedora-coreos-config/pull/2890#issuecomment-1985953499
+# rather than ConditionPathExists
+# Using dracut-lib seems to interfere with iscsi functionnality but this requires deeper investigation
+# and more tests : https://github.com/coreos/fedora-coreos-tracker/issues/1689
+if test -n "$(cmdline_arg ostree)" && test -z "$(cmdline_arg root)" && ! dracut_func getargbool 0 'kdump_remote_ip'; then
+    cat >"${UNIT_DIR}"/sysroot.mount << 'EOF'
 [Unit]
 Before=initrd-root-fs.target
 After=coreos-rootflags.service
@@ -85,7 +100,7 @@ EOF
     add_requires coreos-rootflags.service initrd-root-fs.target
 fi
 
-if ! $(cmdline_bool 'ignition.firstboot' 0); then
+if ! cmdline_bool 'ignition.firstboot'; then
     exit 0
 fi
 
