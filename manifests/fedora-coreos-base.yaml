@@ -104,11 +104,10 @@ packages:
   # Containers
   - systemd-container catatonit
   - fuse-overlayfs slirp4netns
-  # support for old style CNI networks and name resolution for
-  # podman containers with CNI networks
+  # Some host applications(i.e. NetworkManager) use dnsmasq
+  # as the binary for some various utility operations.
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071338097
-  - containernetworking-plugins podman-plugins dnsmasq
+  - dnsmasq
   # For podman v4 netavark gets pulled in but it only recommends
   # aardvark-dns (which provides name resolution based on container
   # names). This functionality was previously provided by dnsname from

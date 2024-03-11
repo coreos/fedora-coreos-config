@@ -47,11 +47,16 @@ ok "platforms.json exists!"
 platform=$(cmdline_arg ignition.platform.id)
 expected_kargs=$(platform_json_kargs "$platform")
 expected_grub_cmds=$(platform_json_grub_cmds "$platform")
+if [ -f /boot/grub2/console.cfg ]; then
+    grub_console_cfg_file=/boot/grub2/console.cfg
+else
+    grub_console_cfg_file=/boot/grub2/grub.cfg
+fi
 if [ -n "$expected_kargs" ] && ! grep -Eq " ${expected_kargs}( |$)" /proc/cmdline; then
     fatal "Didn't find $expected_kargs in $(cat /proc/cmdline)"
 fi
-if [ -n "$expected_grub_cmds" ] && ! grep -qzP "\n${expected_grub_cmds}\n" /boot/grub2/grub.cfg; then
-    fatal "Didn't find platform grub commands in /boot/grub2/grub.cfg"
+if [ -n "$expected_grub_cmds" ] && ! grep -qzP "\n${expected_grub_cmds}\n" $grub_console_cfg_file; then
+    fatal "Didn't find platform grub commands in ${grub_console_cfg_file}"
 fi
 ok "platforms.json matches grub.cfg and kargs"
 

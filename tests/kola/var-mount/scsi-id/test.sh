@@ -18,15 +18,7 @@ if [ $fstype != xfs ]; then
     fatal "Error: /var fstype is $fstype, expected is xfs"
 fi
 
-source /etc/os-release
-ostree_conf=""
-if [ "$ID" == "fedora" ]; then
-    ostree_conf="/boot/loader.1/entries/ostree-1-fedora-coreos.conf"
-elif [[ "${ID_LIKE}" =~ "rhel" ]]; then
-    ostree_conf="/boot/loader.1/entries/ostree-1-${ID}.conf"
-else
-    fatal "fail: not operating on expected OS"
-fi
+ostree_conf=$(ls /boot/loader/entries/*.conf)
 
 initramfs=/boot$(grep initrd ${ostree_conf} | sed 's/initrd //g')
 tempfile=$(mktemp)
