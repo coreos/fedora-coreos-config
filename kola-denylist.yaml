@@ -7,17 +7,13 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: coreos.ignition.ssh.key
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1553
-  # snooze: 2024-02-26 (disabled on promotion)
+  # snooze: 2024-03-29 (disabled on promotion)
   # warn: true (disabled on promotion)
   platforms:
     - azure
-- pattern: ext.config.files.console-config
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1654
-  streams:
-    - rawhide
 - pattern: ext.config.var-mount.scsi-id
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1670
-  # snooze: 2024-02-29 (disabled on promotion)
+  # snooze: 2024-03-18 (disabled on promotion)
   # warn: true (disabled on promotion)
   streams:
     - rawhide

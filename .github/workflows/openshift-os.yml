@@ -7,10 +7,24 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        # Allow overriding branch for syncs that need manual fixups
-        description: PR branch
+        # Allow specifying the source branch for backports
+        description: Source branch to use for PR
         required: true
-        default: fcc-sync
+        default: testing-devel
+        type: choice
+        options:
+          - testing-devel
+          - rhcos-4.15
+          - rhcos-4.14
+          - rhcos-4.13
+          - rhcos-4.12
+          - rhcos-4.11
+          - rhcos-4.10
+      jira:
+        description: The JIRA reference to put in the PR title. Defaults to "NO-JIRA".
+        required: false
+        default: NO-JIRA
+        type: string
 
 permissions:
   # none at all
@@ -20,7 +34,36 @@ jobs:
   update-submodule:
     name: Update fedora-coreos-config submodule
     runs-on: ubuntu-latest
+    env:
+      SOURCE_BRANCH: ${{ github.event.inputs.branch }}
+      JIRA: ${{ github.event.inputs.jira }}
     steps:
+      - name: Set branches values
+        run: |
+          set -euxo pipefail
+
+          case $SOURCE_BRANCH in
+              # in the on.schedule case, the SOURCE_BRANCH is empty
+              testing-devel|"")
+                echo "SOURCE_BRANCH=testing-devel" >> $GITHUB_ENV
+                echo "TARGET_BRANCH=master" >> $GITHUB_ENV
+                echo "BRANCH_NAME=fcc-sync" >> $GITHUB_ENV
+                ;;
+              rhcos-*)
+                # split the string around the -
+                array=(${SOURCE_BRANCH//-/ })
+                OCP_VERSION=${array[1]}
+                echo "TARGET_BRANCH=release-${OCP_VERSION}" >> $GITHUB_ENV
+                echo "BRANCH_NAME=fcc-sync-${SOURCE_BRANCH}" >> $GITHUB_ENV
+                echo "TITLE_PREFIX=[release-${OCP_VERSION}] " >> $GITHUB_ENV
+                ;;
+              *)
+                echo "SOURCE_BRANCH=$SOURCE_BRANCH is invalid" >&2
+                exit 1
+                ;;
+          esac
+
+          echo "JIRA=${JIRA:-NO-JIRA}" >> $GITHUB_ENV
       - name: Check out repository
         uses: actions/checkout@v3
         with:
@@ -28,23 +71,22 @@ jobs:
           # We need an unbroken commit chain when pushing to the fork.  Don't
           # make assumptions about which commits are already available there.
           fetch-depth: 0
+          # We need to checkout against the target branch
+          ref: ${{ env.TARGET_BRANCH }}
 
       - name: Update submodule
-        env:
-          BRANCH_NAME: ${{ github.event.inputs.branch }}
         run: |
           set -euxo pipefail
-
-          # Default branch name for on.schedule case
-          echo "BRANCH_NAME=${BRANCH_NAME:-fcc-sync}" >> $GITHUB_ENV
 
           git submodule init
           git submodule update
 
           cd fedora-coreos-config
+          # the submodule init only fetch the submodule commit and the default branch `testing-devel`
+          git fetch origin ${SOURCE_BRANCH}
           # Omit CoreOS Bot commits from the log message, since they generally
           # only affect FCOS
-          git shortlog "HEAD..testing-devel" --perl-regexp \
+          git shortlog "HEAD..FETCH_HEAD" --perl-regexp \
               --author='^((?!CoreOS Bot <coreosbot@fedoraproject.org>).*)$' \
               > $RUNNER_TEMP/shortlog
 
@@ -53,7 +95,8 @@ jobs:
               echo "No non-trivial changes; exiting"
               exit 0
           fi
-          git checkout testing-devel
+
+          git checkout $SOURCE_BRANCH
 
           marker=OPENSHIFT-OS-END-OF-LOG-MARKER-$RANDOM$RANDOM$RANDOM
           cat >> $GITHUB_ENV <<EOF
@@ -63,16 +106,17 @@ jobs:
           EOF
 
       - name: Open pull request
-        uses: peter-evans/create-pull-request@v4.2.3
+        uses: peter-evans/create-pull-request@v6.0.0
         with:
           token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
           push-to-fork: coreosbot-releng/os
           branch: ${{ env.BRANCH_NAME }}
+          base: ${{ env.TARGET_BRANCH }}
           commit-message: |
             Bump fedora-coreos-config
 
             ${{ env.SHORTLOG }}
-          title: "NO-JIRA: Bump fedora-coreos-config"
+          title: "${{ env.TITLE_PREFIX }}${{ env.JIRA }}: Bump fedora-coreos-config"
           body: |
             Created by [GitHub workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/openshift-os.yml) ([source](${{ github.server_url }}/${{ github.repository }}/blob/testing-devel/.github/workflows/openshift-os.yml)).
 

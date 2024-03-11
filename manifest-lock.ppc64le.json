@@ -175,7 +175,7 @@
       }
     },
     "bootupd": {
-      "evra": "0.2.17-2.fc39.ppc64le",
+      "evra": "0.2.18-2.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "rust-bootupd"
       }
@@ -553,19 +553,19 @@
       }
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.190-4.fc39.noarch",
+      "evra": "0.191-2.fc39.noarch",
       "metadata": {
         "sourcerpm": "elfutils"
       }
     },
     "elfutils-libelf": {
-      "evra": "0.190-4.fc39.ppc64le",
+      "evra": "0.191-2.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "elfutils"
       }
     },
     "elfutils-libs": {
-      "evra": "0.190-4.fc39.ppc64le",
+      "evra": "0.191-2.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "elfutils"
       }
@@ -589,19 +589,19 @@
       }
     },
     "fedora-release-common": {
-      "evra": "39-34.noarch",
+      "evra": "39-36.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
     },
     "fedora-release-coreos": {
-      "evra": "39-34.noarch",
+      "evra": "39-36.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
     },
     "fedora-release-identity-coreos": {
-      "evra": "39-34.noarch",
+      "evra": "39-36.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
@@ -679,7 +679,7 @@
       }
     },
     "fuse-overlayfs": {
-      "evra": "1.12-2.fc39.ppc64le",
+      "evra": "1.13-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "fuse-overlayfs"
       }
@@ -703,7 +703,7 @@
       }
     },
     "fwupd": {
-      "evra": "1.9.13-1.fc39.ppc64le",
+      "evra": "1.9.14-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -721,7 +721,7 @@
       }
     },
     "gdisk": {
-      "evra": "1.0.9-6.fc39.ppc64le",
+      "evra": "1.0.10-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "gdisk"
       }
@@ -745,7 +745,7 @@
       }
     },
     "git-core": {
-      "evra": "2.43.2-1.fc39.ppc64le",
+      "evra": "2.44.0-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "git"
       }
@@ -787,7 +787,7 @@
       }
     },
     "gnupg2": {
-      "evra": "2.4.3-4.fc39.ppc64le",
+      "evra": "2.4.4-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "gnupg2"
       }
@@ -1021,25 +1021,25 @@
       }
     },
     "kernel": {
-      "evra": "6.7.5-200.fc39.ppc64le",
+      "evra": "6.7.7-200.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.7.5-200.fc39.ppc64le",
+      "evra": "6.7.7-200.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.7.5-200.fc39.ppc64le",
+      "evra": "6.7.7-200.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.7.5-200.fc39.ppc64le",
+      "evra": "6.7.7-200.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1141,7 +1141,7 @@
       }
     },
     "libblkid": {
-      "evra": "2.39.3-5.fc39.ppc64le",
+      "evra": "2.39.3-6.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1231,7 +1231,7 @@
       }
     },
     "libfdisk": {
-      "evra": "2.39.3-5.fc39.ppc64le",
+      "evra": "2.39.3-6.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1375,7 +1375,7 @@
       }
     },
     "libmount": {
-      "evra": "2.39.3-5.fc39.ppc64le",
+      "evra": "2.39.3-6.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1549,7 +1549,7 @@
       }
     },
     "libsmartcols": {
-      "evra": "2.39.3-5.fc39.ppc64le",
+      "evra": "2.39.3-6.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1669,7 +1669,7 @@
       }
     },
     "libuuid": {
-      "evra": "2.39.3-5.fc39.ppc64le",
+      "evra": "2.39.3-6.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1831,19 +1831,19 @@
       }
     },
     "ncurses": {
-      "evra": "6.4-7.20230520.fc39.ppc64le",
+      "evra": "6.4-7.20230520.fc39.1.ppc64le",
       "metadata": {
         "sourcerpm": "ncurses"
       }
     },
     "ncurses-base": {
-      "evra": "6.4-7.20230520.fc39.noarch",
+      "evra": "6.4-7.20230520.fc39.1.noarch",
       "metadata": {
         "sourcerpm": "ncurses"
       }
     },
     "ncurses-libs": {
-      "evra": "6.4-7.20230520.fc39.ppc64le",
+      "evra": "6.4-7.20230520.fc39.1.ppc64le",
       "metadata": {
         "sourcerpm": "ncurses"
       }
@@ -2245,13 +2245,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "39.4-1.fc39.noarch",
+      "evra": "39.5-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "39.4-1.fc39.noarch",
+      "evra": "39.5-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2323,7 +2323,7 @@
       }
     },
     "socat": {
-      "evra": "1.7.4.4-3.fc39.ppc64le",
+      "evra": "1.8.0.0-2.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "socat"
       }
@@ -2413,37 +2413,37 @@
       }
     },
     "systemd": {
-      "evra": "254.9-1.fc39.ppc64le",
+      "evra": "254.10-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-container": {
-      "evra": "254.9-1.fc39.ppc64le",
+      "evra": "254.10-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-libs": {
-      "evra": "254.9-1.fc39.ppc64le",
+      "evra": "254.10-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-pam": {
-      "evra": "254.9-1.fc39.ppc64le",
+      "evra": "254.10-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-resolved": {
-      "evra": "254.9-1.fc39.ppc64le",
+      "evra": "254.10-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-udev": {
-      "evra": "254.9-1.fc39.ppc64le",
+      "evra": "254.10-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
@@ -2503,13 +2503,13 @@
       }
     },
     "util-linux": {
-      "evra": "2.39.3-5.fc39.ppc64le",
+      "evra": "2.39.3-6.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "util-linux"
       }
     },
     "util-linux-core": {
-      "evra": "2.39.3-5.fc39.ppc64le",
+      "evra": "2.39.3-6.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -2600,16 +2600,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-02-25T00:00:00Z",
+    "generated": "2024-03-09T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:28Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-02-24T17:26:05Z"
+        "generated": "2024-03-09T17:41:59Z"
       },
       "fedora-updates": {
-        "generated": "2024-02-25T01:16:52Z"
+        "generated": "2024-03-09T01:32:24Z"
       }
     }
   }
