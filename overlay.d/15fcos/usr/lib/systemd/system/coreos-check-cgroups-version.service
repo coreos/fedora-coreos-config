@@ -5,7 +5,7 @@ Description=Check if cgroupsv1 Is Still Being Used
 ConditionControlGroupController=v1
 [Service]
 Type=oneshot
-ExecStart=/usr/libexec/coreos-check-cgroups
+ExecStart=/usr/libexec/coreos-check-cgroups-version
 RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
