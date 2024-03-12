@@ -174,6 +174,32 @@ A useful approach is to script generating a per-machine `.iso`. If you have a ha
 
 Alternatively, instead of generating per-machine ISOs, you can have a `--pre-install` script run a privileged container which inspects the target system and writes an appropriate https://coreos.github.io/coreos-installer/customizing-install/#config-file-format[installer config] to `/etc/coreos/installer.d`.
 
+=== Installing on iSCSI
+
+To install CoreOS on an iSCSI boot device, follow the same
+steps as described above to get the live environnement, simply adding the correct kernel arguments.
+
+
+- Mount the iscsi target from the live environnement :
+[source, bash]
+----
+sudo iscsiadm -m discovery -t st -p 127.0.0.1
+sudo iscsiadm -m node -T iqn.2023-10.coreos.target.vm:coreos -l
+----
+
+- run `coreos-installer`:
+[source, bash]
+----
+sudo coreos-installer install \
+    /dev/disk/by-path/ip-127.0.0.1\:3260-iscsi-iqn.2023-10.coreos.target.vm\:coreos-lun-0 \
+    --append-karg rd.iscsi.initiator=iqn.2024-02.com.yourorg.name:lun0 \
+    --append-karg netroot=iscsi:iqn.2023-10.coreos.target.vm:coreos` \
+    --console ttyS0 \
+    --ignition-url https://example.com/example.ign
+----
+
+NOTE: If you are using iBFT you can load the initiator and target values from the firmware : `--append-karg rd.iscsi.firmware=1 --append-karg ip=ibft`
+
 == Reinstalling Fedora CoreOS
 
 You can use any of the methods described above to reinstall Fedora CoreOS on the same machine via the live environment.
