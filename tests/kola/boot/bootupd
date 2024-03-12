@@ -27,5 +27,10 @@ case "$(arch)" in
         ;;
 esac
 
+state_file=/boot/bootupd-state.json
+if [ ! -f "${state_file}" ]; then
+    fatal "${state_file} not present"
+fi
+
 bootupctl status
 ok bootupctl
