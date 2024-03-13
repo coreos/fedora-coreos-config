@@ -1,7 +1,5 @@
 #!/bin/bash
 ## kola:
-##   # This test's config manually references /dev/vda and is thus QEMU only
-##   platforms: qemu
 ##   # Root reprovisioning requires at least 4GiB of memory.
 ##   minMemory: 4096
 ##   # This test includes a lot of disk I/O and needs a higher
@@ -11,7 +9,7 @@
 ##   # legal but usually not intended, so Butane warns about it.
 ##   allowConfigWarnings: true
 ##   # This test reprovisions the rootfs.
-##   tags: reprovision
+##   tags: reprovision platform-independent
 ##   description: Verify the root reprovision and swap enabled are supported.
 
 set -xeuo pipefail
