@@ -1,9 +1,7 @@
 #!/bin/bash
 ## kola:
-##   platforms: qemu
 ##   description: Verify that provision disk with guid works.
-#
-# Restrict to qemu for now because the primary disk path is platform-dependent
+##   tags: platform-independent
 
 set -xeuo pipefail
 
