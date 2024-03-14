@@ -17,9 +17,9 @@ Many of the examples below will reference a block device, such as `/dev/vda`. Th
 
 If your disk configuration is simple and uses the same disk the OS was booted from then the `/dev/disk/by-id/coreos-boot-disk` link can be used to conveniently refer to that device. This link is only available during provisioning for the purpose of making it easy to refer to the same disk the OS was booted from.
 
-In cases where you need to access other disks, the simplest thing to do is to boot a single machine with an Ignition configuration that just gives you SSH access, and inspect the block devices via e.g. the `lsblk` command.
+If you need to access other disks, you can boot a single machine with an Ignition configuration with only SSH access, and then inspect the block devices via e.g. the `lsblk` command.
 
-For physical hardware, a good best practice is to reference devices via the `/dev/disk/by-id/` or `/dev/disk/by-path` links.
+For physical hardware, it is recommended to reference devices via the `/dev/disk/by-id/` or `/dev/disk/by-path` links.
 
 == Setting up separate /var mounts
 

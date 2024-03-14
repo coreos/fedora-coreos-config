@@ -36,7 +36,7 @@ sudo coreos-installer install /dev/sda \
     --ignition-url https://example.com/example.ign
 ----
 
-Once the installation is complete, you can simply `sudo reboot`. After rebooting, the first boot process begins. It is at this time that Ignition ingests the configuration file and provisions the system as specified.
+Once the installation is complete, you can reboot the system using `sudo reboot`. After rebooting, the first boot process begins. It is at this time that Ignition ingests the configuration file and provisions the system as specified.
 
 For more advanced ISO installs, including automation, see below. For more about the live ISO image, see the xref:live-reference.adoc[live image reference].
 

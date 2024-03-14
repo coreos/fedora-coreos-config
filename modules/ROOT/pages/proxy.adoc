@@ -6,7 +6,7 @@ This is best done by defining a single file with required environment variables 
 
 == Defining common proxy environment variables
 
-This common file has to be subsequently referenced explicitly by each service that requires internet access thereby encouraging least privilege best practices.
+This common file has to be subsequently referenced explicitly by each service that requires internet access.
 
 [source,yaml,subs="attributes"]
 ----

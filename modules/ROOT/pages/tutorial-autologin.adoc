@@ -6,11 +6,11 @@ NOTE: Make sure that you have completed the steps described in the xref:tutorial
 
 Fedora CoreOS does not have a separate install disk. Instead, every instance starts from a generic disk image which is customized on first boot via https://github.com/coreos/ignition[Ignition].
 
-Ignition config files are written in JSON but are typically not user-friendly. Configurations are thus written in a simpler format, the Butane config, that is then converted into an Ignition config. The tool responsible for converting Butane configs into Ignition configs is naturally called Butane.
+Ignition config files are written in JSON but are typically not user-friendly. Configurations are thus written in a simpler format, the Butane config, that is then converted into an Ignition config. The tool responsible for converting Butane configs into Ignition configs is called Butane.
 
 == First Ignition config via Butane
 
-Let's create a very simple Butane config that will perform the following actions:
+Let's create a small Butane config that will perform the following actions:
 
 * Add a systemd dropin to override the default `serial-getty@ttyS0.service`.
     * The override will make the service automatically log the `core` user in to the serial console of the booted machine.

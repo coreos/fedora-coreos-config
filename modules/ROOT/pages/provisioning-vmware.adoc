@@ -52,7 +52,7 @@ CONFIG_ENCODED=$(cat example.ign | gzip -9 | base64 -w0 -)
 
 If your generated Ignition configuration is still too large, you will encounter an `Argument list too long` error or similar. The solution to that problem depends on whether you are working with vSphere or Workstation/Fusion.
 
-For vSphere the solution is simple because instead of inlining the configuration file within your shell, `govc` allows you to specify a path to a local file instead with the https://github.com/vmware/govmomi/blob/main/govc/USAGE.md#vmchange[`vm.change`]-command and will handle reading and writing it internally, circumventing any shell limitations.
+For vSphere, instead of inlining the configuration file within your shell, `govc` allows you to specify a path to a local file with the https://github.com/vmware/govmomi/blob/main/govc/USAGE.md#vmchange[`vm.change`]-command and will handle reading and writing it internally, circumventing any shell limitations.
 
 [source, bash]
 ----
@@ -208,7 +208,7 @@ For further information on first-boot networking, see https://coreos.github.io/a
 
 You may encounter problems with your Ignition configuration that require access to the system log which appears during first-boot. To make a copy of the system log you can attach a serial device to the VM before booting. vSphere as well as Workstation and Fusion allow this and will save the output to a file of your choice.
 
-To attach a serial device simply modify the hardware settings of the powered off VM and add a `Serial Port`. Select the destination and name of the file to be created. Afterwards power on the VM. When encountering an error, check the file you initially specified - it should contain a copy of the system log.
+To attach a serial device, modify the hardware settings of the powered off VM and add a `Serial Port`. Select the destination and name of the file to be created. Afterwards power on the VM. When encountering an error, check the file you initially specified - it should contain a copy of the system log.
 
 The serial device can also be added to the VM via `govc` as described in the https://github.com/vmware/govmomi/blob/master/govc/USAGE.md#deviceserialconnect[official usage documentation]:
 
@@ -235,7 +235,7 @@ that may not be compatible with older, unsupported VMware products.
 However, you can modify the image's OVF metadata to specify an older
 virtual hardware version.
 
-The VMware OVA is simply a tarball that contains the files `disk.vmdk` and
+The VMware OVA is a tarball that contains the files `disk.vmdk` and
 `coreos.ovf`. In order to edit the metadata used by FCOS as a guest VM, you
 should untar the OVA artifact, edit the OVF file, then create a new OVA file.
 

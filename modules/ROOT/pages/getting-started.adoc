@@ -8,7 +8,7 @@ There are three Fedora CoreOS (FCOS) update streams available: `stable`, `testin
 
 Each stream has a canonical URL representing its current state in JSON format, known as "stream metadata". For example, the stream metadata URL for `stable` is: https://builds.coreos.fedoraproject.org/streams/stable.json
 
-For automating Fedora CoreOS installations, it is expected that you will interact with stream metadata. While Fedora CoreOS does automatic in-place updates, it is generally a good practice to start provisioning new machines from the latest images.
+For automating Fedora CoreOS installations, it is expected that you will interact with stream metadata. While Fedora CoreOS does automatic in-place updates, it is generally recommended to start provisioning new machines from the latest images.
 
 For more information on using stream metadata, see xref:stream-metadata.adoc[Stream Metadata].
 For more about the available streams, see xref:update-streams.adoc[Update Streams].

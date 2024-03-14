@@ -9,7 +9,7 @@ In this tutorial, we will run a script on the first boot via a systemd service. 
 
 == Writing the script
 
-Let's write a simple script that uses https://icanhazip.com/[icanhazip.com] to create an issue file to display as a prelogin message on the console and store it in `public-ipv4.sh`.
+Let's write a small script that uses https://icanhazip.com/[icanhazip.com] to create an issue file to display as a prelogin message on the console and store it in `public-ipv4.sh`.
 
 [source,bash]
 ----

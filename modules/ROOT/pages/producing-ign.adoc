@@ -17,7 +17,7 @@ During the transpilation process, Butane verifies the syntax of the YAML file, w
 
 Once you have an Ignition (`.ign`) file, you can use it to boot an FCOS system in a VM or install it on bare metal.
 
-TIP: Try to plan your configuration with the full set of customization details before provisioning a Fedora CoreOS instance. But don't worry if you forgot something as you can simply fix the configuration and re-deploy the instance from a fresh image.
+TIP: Try to plan your configuration with the full set of customization details before provisioning a Fedora CoreOS instance. But don't worry if you forgot something as you can fix the configuration and re-deploy the instance from a fresh image.
 
 == Getting Butane
 
@@ -166,7 +166,7 @@ Invoke-RestMethod -Uri https://fedoraproject.org/fedora.gpg | gpg --import
 gpg --verify butane-x86_64-pc-windows-gnu.exe.asc
 ----
 
-== A simple example
+== Example
 
 Create a basic Ignition config that modifies the default Fedora CoreOS user `core` to allow this user to log in with an SSH key.
 
