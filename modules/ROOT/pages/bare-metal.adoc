@@ -177,28 +177,60 @@ Alternatively, instead of generating per-machine ISOs, you can have a `--pre-ins
 === Installing on iSCSI
 
 To install CoreOS on an iSCSI boot device, follow the same
-steps as described above to get the live environnement, simply adding the correct kernel arguments.
+steps as described above to get the live environnement, and add add the iSCSI related kernel arguments.
 
 
-- Mount the iscsi target from the live environnement :
+- Mount the iSCSI target from the live environment:
 [source, bash]
 ----
 sudo iscsiadm -m discovery -t st -p 127.0.0.1
 sudo iscsiadm -m node -T iqn.2023-10.coreos.target.vm:coreos -l
 ----
 
-- run `coreos-installer`:
+- Append the necessary kargs when running `coreos-installer`:
+
+.Installing to an iSCSI target with iBFT
 [source, bash]
-----
+---
+sudo coreos-installer install \
+    /dev/disk/by-path/ip-127.0.0.1\:3260-iscsi-iqn.2023-10.coreos.target.vm\:coreos-lun-0 \
+    --append-karg rd.iscsi.firmware=1 --append-karg ip=ibft \
+    --console ttyS0 \
+    --ignition-url https://example.com/example.ign
+---
+
+.Installing to an iSCSI target with manual configuration
+[source, bash]
+---
 sudo coreos-installer install \
     /dev/disk/by-path/ip-127.0.0.1\:3260-iscsi-iqn.2023-10.coreos.target.vm\:coreos-lun-0 \
     --append-karg rd.iscsi.initiator=iqn.2024-02.com.yourorg.name:lun0 \
     --append-karg netroot=iscsi:iqn.2023-10.coreos.target.vm:coreos` \
     --console ttyS0 \
     --ignition-url https://example.com/example.ign
+---
+
+
+NOTE: All this can also be  set using `coreos-installer iso customize` or `coreos-installer pxe customize`. (See "Customizing installation" section above).
+
+For example using iBFT:
+
+[source,bash,subs="attributes"]
+----
+# Create customized.iso which:
+# - Automatically mounts iscsi target using mount-iscsi.sh
+# - Provisions the installed system with config.ign
+# - Configures the installed GRUB and kernel to use iBFT
+coreos-installer iso customize \
+    --pre-install mount-iscsi.sh \
+    --dest-device /dev/disk/by-path/ip-127.0.0.1\:3260-iscsi-iqn.2023-10.coreos.target.vm\:coreos-lun-0 \
+    --dest-ignition config.ign \
+    --dest-karg-append rd.iscsi.firmware=1 \
+    --dest-karg-append ip=ibft \
+    -o custom.iso fedora-coreos-{stable-version}-live.x86_64.iso
 ----
 
-NOTE: If you are using iBFT you can load the initiator and target values from the firmware : `--append-karg rd.iscsi.firmware=1 --append-karg ip=ibft`
+The  `--pre-install` flag is used to run a script with `iscsiadm` commands, `--dest-device` targets the mounted disk and then `--dest-karg-append` add the necessary kargs.
 
 == Reinstalling Fedora CoreOS
 
