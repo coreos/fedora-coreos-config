@@ -239,8 +239,9 @@ The VMware OVA is a tarball that contains the files `disk.vmdk` and
 `coreos.ovf`. In order to edit the metadata used by FCOS as a guest VM, you
 should untar the OVA artifact, edit the OVF file, then create a new OVA file.
 
-The example commands below change the OVF hardware version from the preconfigured
-value to hardware version `13`. (Note: the defaults in the OVF are subject to change.)
+The example commands below change the OVF hardware version from the preconfigured value to hardware version `13`.
+
+NOTE: The defaults in the OVF are subject to change.
 
 [source,bash,subs="attributes"]
 ----
