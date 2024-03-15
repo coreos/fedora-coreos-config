@@ -8,14 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  authselect:
-    evr: 1.5.0-3.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1680
-      type: pin
-  authselect-libs:
-    evr: 1.5.0-3.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1680
-      type: pin
+packages: {}
