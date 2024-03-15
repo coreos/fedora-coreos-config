@@ -73,19 +73,19 @@
       }
     },
     "amd-gpu-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "amd-ucode-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "atheros-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -181,7 +181,7 @@
       }
     },
     "brcmfmac-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -247,7 +247,7 @@
       }
     },
     "cirrus-audio-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -282,6 +282,18 @@
         "sourcerpm": "cloud-utils"
       }
     },
+    "composefs": {
+      "evra": "1.0.3-1.fc39.ppc64le",
+      "metadata": {
+        "sourcerpm": "composefs"
+      }
+    },
+    "composefs-libs": {
+      "evra": "1.0.3-1.fc39.ppc64le",
+      "metadata": {
+        "sourcerpm": "composefs"
+      }
+    },
     "conmon": {
       "evra": "2:2.1.10-1.fc39.ppc64le",
       "metadata": {
@@ -313,7 +325,7 @@
       }
     },
     "container-selinux": {
-      "evra": "2:2.229.0-1.fc39.noarch",
+      "evra": "2:2.230.0-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "container-selinux"
       }
@@ -343,13 +355,13 @@
       }
     },
     "coreos-installer": {
-      "evra": "0.20.0-1.fc39.ppc64le",
+      "evra": "0.21.0-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.20.0-1.fc39.ppc64le",
+      "evra": "0.21.0-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
@@ -391,7 +403,7 @@
       }
     },
     "crun": {
-      "evra": "1.14.3-1.fc39.ppc64le",
+      "evra": "1.14.4-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "crun"
       }
@@ -493,7 +505,7 @@
       }
     },
     "device-mapper-persistent-data": {
-      "evra": "1.0.11-1.fc39.ppc64le",
+      "evra": "1.0.12-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "device-mapper-persistent-data"
       }
@@ -703,7 +715,7 @@
       }
     },
     "fwupd": {
-      "evra": "1.9.14-1.fc39.ppc64le",
+      "evra": "1.9.15-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -811,31 +823,31 @@
       }
     },
     "grub2-common": {
-      "evra": "1:2.06-116.fc39.noarch",
+      "evra": "1:2.06-118.fc39.noarch",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-ppc64le": {
-      "evra": "1:2.06-116.fc39.ppc64le",
+      "evra": "1:2.06-118.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-ppc64le-modules": {
-      "evra": "1:2.06-116.fc39.noarch",
+      "evra": "1:2.06-118.fc39.noarch",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-tools": {
-      "evra": "1:2.06-116.fc39.ppc64le",
+      "evra": "1:2.06-118.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-116.fc39.ppc64le",
+      "evra": "1:2.06-118.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "grub2"
       }
@@ -871,13 +883,13 @@
       }
     },
     "intel-audio-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "intel-gpu-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1021,25 +1033,25 @@
       }
     },
     "kernel": {
-      "evra": "6.7.7-200.fc39.ppc64le",
+      "evra": "6.7.9-200.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.7.7-200.fc39.ppc64le",
+      "evra": "6.7.9-200.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.7.7-200.fc39.ppc64le",
+      "evra": "6.7.9-200.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.7.7-200.fc39.ppc64le",
+      "evra": "6.7.9-200.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1120,12 +1132,6 @@
       "evra": "2.5.6-2.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "libassuan"
-      }
-    },
-    "libatomic": {
-      "evra": "13.2.1-6.fc39.ppc64le",
-      "metadata": {
-        "sourcerpm": "gcc"
       }
     },
     "libattr": {
@@ -1651,7 +1657,7 @@
       }
     },
     "libusb1": {
-      "evra": "1.0.26-3.fc39.ppc64le",
+      "evra": "1.0.27-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "libusb1"
       }
@@ -1729,13 +1735,13 @@
       }
     },
     "linux-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "linux-firmware-whence": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1813,7 +1819,7 @@
       }
     },
     "mt7xxx-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1909,7 +1915,7 @@
       }
     },
     "nvidia-gpu-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1921,7 +1927,7 @@
       }
     },
     "nxpwireless-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1975,19 +1981,19 @@
       }
     },
     "ostree": {
-      "evra": "2023.8-3.fc39.ppc64le",
+      "evra": "2024.4-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-grub2": {
-      "evra": "2023.8-3.fc39.ppc64le",
+      "evra": "2024.4-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-libs": {
-      "evra": "2023.8-3.fc39.ppc64le",
+      "evra": "2024.4-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "ostree"
       }
@@ -2161,7 +2167,7 @@
       }
     },
     "realtek-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2185,13 +2191,13 @@
       }
     },
     "rpm-ostree": {
-      "evra": "2024.2-2.fc39.ppc64le",
+      "evra": "2024.3-3.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
     },
     "rpm-ostree-libs": {
-      "evra": "2024.2-2.fc39.ppc64le",
+      "evra": "2024.3-3.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
@@ -2461,13 +2467,13 @@
       }
     },
     "tiwilink-firmware": {
-      "evra": "20240220-1.fc39.noarch",
+      "evra": "20240312-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "toolbox": {
-      "evra": "0.0.99.5-2.fc39.ppc64le",
+      "evra": "0.0.99.5-4.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "toolbox"
       }
@@ -2515,13 +2521,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.113-1.fc39.noarch",
+      "evra": "2:9.1.158-1.fc39.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.113-1.fc39.ppc64le",
+      "evra": "2:9.1.158-1.fc39.ppc64le",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2600,16 +2606,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-03-09T00:00:00Z",
+    "generated": "2024-03-15T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2023-11-01T00:12:28Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-03-09T17:41:59Z"
+        "generated": "2024-03-10T17:39:33Z"
       },
       "fedora-updates": {
-        "generated": "2024-03-09T01:32:24Z"
+        "generated": "2024-03-15T01:00:31Z"
       }
     }
   }
