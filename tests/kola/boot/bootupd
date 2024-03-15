@@ -17,9 +17,18 @@ set -xeuo pipefail
 # s390x, let's just conditionally check that *if* bootupd is installed, then
 # it's functioning as expected. We can harden it more once we've hard cut over
 # to 9.4.
+check_state_file=
 case "$(arch)" in
     aarch64|x86_64)
+        # on these arches, we always expect state files to exist
+        check_state_file=1
         ;;
+    ppc64le)
+        # ppc64le has it if built by osbuild, otherwise not
+        if [ -e /sysroot/.aleph-version.json ]; then
+            check_state_file=1
+        fi
+        ;& # fallthrough
     *)
         if ! rpm -q bootupd; then
             exit 0
@@ -28,7 +37,7 @@ case "$(arch)" in
 esac
 
 state_file=/boot/bootupd-state.json
-if [ ! -f "${state_file}" ]; then
+if [ -n "${check_state_file}" ] && [ ! -f "${state_file}" ]; then
     fatal "${state_file} not present"
 fi
 
