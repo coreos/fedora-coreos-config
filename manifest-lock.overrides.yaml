@@ -8,4 +8,24 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  kernel:
+    evr: 6.8.0-63.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1693
+      type: pin
+  kernel-core:
+    evr: 6.8.0-63.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1693
+      type: pin
+  kernel-modules:
+    evr: 6.8.0-63.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1693
+      type: pin
+  kernel-modules-core:
+    evr: 6.8.0-63.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1693
+      type: pin
