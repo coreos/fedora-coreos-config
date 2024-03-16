@@ -36,6 +36,9 @@ conditional-include:
   - if: releasever == 39
     # Checks for breaking changes that came with Podman v5.
     include: podman-v5.yaml
+  - if: releasever >= 41
+    # Include makedumpfile subpackage from kexec-tools (new in F41+)
+    include: makedumpfile.yaml
 
 ostree-layers:
   - overlay/15fcos
