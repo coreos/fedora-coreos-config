@@ -9,23 +9,15 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  kernel:
-    evr: 6.8.0-63.fc41
+  passt:
+    evr: 0^20240318.g615d370-1.fc41
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1693
-      type: pin
-  kernel-core:
-    evr: 6.8.0-63.fc41
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-4b5b35a749
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1693#issuecomment-2004260760
+      type: fast-track
+  passt-selinux:
+    evra: 0^20240318.g615d370-1.fc41.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1693
-      type: pin
-  kernel-modules:
-    evr: 6.8.0-63.fc41
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1693
-      type: pin
-  kernel-modules-core:
-    evr: 6.8.0-63.fc41
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1693
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-4b5b35a749
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1693#issuecomment-2004260760
+      type: fast-track
