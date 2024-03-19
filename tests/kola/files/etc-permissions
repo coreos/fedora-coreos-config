@@ -1,0 +1,44 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   description: Verify that /etc/(passwd|group|shadow|gshadow) have correct permissions.
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+incorrect=""
+for f in '/etc/passwd' '/etc/group'; do
+    if [[ $(stat --format="%a %u %g" "${f}") != "644 0 0" ]]; then
+        incorrect+=" ${f}"
+    fi
+done
+for f in '/etc/passwd-' '/etc/group-'; do
+    if [[ -f "${f}" ]]; then
+        if [[ $(stat --format="%a %u %g" "${f}") != "644 0 0" ]]; then
+            incorrect+=" ${f}"
+        fi
+    fi
+done
+for f in '/etc/shadow' '/etc/gshadow'; do
+    if [[ $(stat --format="%a %u %g" "${f}") != "0 0 0" ]]; then
+        incorrect+=" ${f}"
+    fi
+done
+for f in '/etc/shadow-' '/etc/gshadow-'; do
+    if [[ -f "${f}" ]]; then
+        if [[ $(stat --format="%a %u %g" "${f}") != "0 0 0" ]]; then
+            incorrect+=" ${f}"
+        fi
+    fi
+done
+
+if [[ -n "${incorrect}" ]]; then
+    # We explicitely want to split on whitespace here
+    # shellcheck disable=SC2086
+    ls -al ${incorrect}
+    fatal "found incorrect permissions for: ${incorrect}"
+fi
+
+ok "correct ownership and mode on /etc/passwd, /etc/group, /etc/shadow and /etc/gshadow"
