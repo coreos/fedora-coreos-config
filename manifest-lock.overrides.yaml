@@ -21,3 +21,8 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-a610b3508f
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1671
       type: fast-track
+  ignition:
+    evr: 2.18.0-1.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-ad734e1656
+      type: fast-track
