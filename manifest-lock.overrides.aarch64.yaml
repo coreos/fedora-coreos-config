@@ -9,11 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  shim-aa64:
-    evr: 15.6-2
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1694
-      type: pin
   kernel:
     evr: 6.8.0-63.fc41
     metadata:
