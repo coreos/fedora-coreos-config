@@ -10,10 +10,10 @@
 
 packages:
   shim-aa64:
-    evr: 15.6-2
+    evra: 15.8-3.aarch64
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1694
-      type: pin
+      type: fast-track
   crun-wasm:
     evra: 1.14.4-1.fc40.aarch64
     metadata:
