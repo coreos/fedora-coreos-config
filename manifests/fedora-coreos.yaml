@@ -20,9 +20,6 @@ conditional-include:
   - if: basearch != "s390x"
     # And remove some cruft from grub2
     include: grub2-removals.yaml
-  - if:
-      - releasever >= 40
-    include: ostree-bls.yaml
   - if: releasever == 39
     # passwd RPM was obsoleted by shadow-utils in F40+, but we need to keep
     # including it in F39. Remove this when we are on F40+ on all streams.
@@ -36,6 +33,9 @@ conditional-include:
   - if: releasever == 39
     # Checks for breaking changes that came with Podman v5.
     include: podman-v5.yaml
+  - if: releasever >= 41
+    # Include makedumpfile subpackage from kexec-tools (new in F41+)
+    include: makedumpfile.yaml
 
 ostree-layers:
   - overlay/15fcos
