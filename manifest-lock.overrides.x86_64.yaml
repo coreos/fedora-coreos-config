@@ -15,3 +15,15 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1694
       type: pin
+  amd-ucode-firmware:
+    evra: 20240312-1.fc40.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-e62bcaf172
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  crun-wasm:
+    evra: 1.14.4-1.fc40.x86_64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-1aeb8ef84c
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
