@@ -9,15 +9,14 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  ostree:
-    evra: 2023.8-3.fc39.aarch64
+  shim-aa64:
+    evra: 15.8-3.aarch64
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-450e7cc057
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1637
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1694
       type: fast-track
-  ostree-libs:
-    evra: 2023.8-3.fc39.aarch64
+  crun-wasm:
+    evra: 1.14.4-1.fc40.aarch64
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-450e7cc057
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1637
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-1aeb8ef84c
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track

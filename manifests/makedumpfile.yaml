@@ -1,0 +1,4 @@
+# makedumpfile is needed for kdump and was broken out to a subpackage
+# in F41+. Drop this when we no longer support <F41.
+packages:
+  - makedumpfile
