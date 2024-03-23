@@ -3,7 +3,7 @@ version: 1.4.0
 
 storage:
   disks:
-    - device: /dev/vda
+    - device: /dev/disk/by-id/coreos-boot-disk
       partitions:
         - number: 4
           label: swap

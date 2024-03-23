@@ -1,3 +1,4 @@
+
 # This lockfile should be used to pin to a package version (`type: pin`) or to
 # fast-track packages ahead of Bodhi (`type: fast-track`). Fast-tracked
 # packages will automatically be removed once they are in the stable repos.
@@ -9,15 +10,20 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  ostree:
-    evra: 2023.8-3.fc39.x86_64
+  shim-x64:
+    evra: 15.8-3.x86_64
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-450e7cc057
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1637
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1694
       type: fast-track
-  ostree-libs:
-    evra: 2023.8-3.fc39.x86_64
+  amd-ucode-firmware:
+    evra: 20240312-1.fc40.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-450e7cc057
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1637
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-e62bcaf172
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  crun-wasm:
+    evra: 1.14.4-1.fc40.x86_64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-1aeb8ef84c
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
