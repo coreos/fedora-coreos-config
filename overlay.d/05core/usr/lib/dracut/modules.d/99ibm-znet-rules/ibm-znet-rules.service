@@ -1,0 +1,16 @@
+[Unit]
+Description=IBM znet udev-rules generator
+ConditionArchitecture=s390x
+ConditionPathExists=/etc/initrd-release
+DefaultDependencies=false
+Before=ignition-complete.target
+
+After=ostree-prepare-root.service
+Before=ignition-files.service
+
+ConditionKernelCommandLine=rd.znet
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/ibm-znet-rules
+RemainAfterExit=yes
