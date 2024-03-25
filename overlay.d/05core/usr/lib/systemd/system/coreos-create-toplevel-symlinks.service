@@ -1,0 +1,22 @@
+[Unit]
+Description=CoreOS Create Top-Level User Symlinks
+Documentation=https://docs.fedoraproject.org/en-US/fedora-coreos/
+ConditionPathExists=!/run/ostree-live
+DefaultDependencies=false
+RequiresMountsFor=/boot
+
+# We run on first boot only
+ConditionFirstBoot=true
+Before=first-boot-complete.target systemd-machine-id-commit.service
+Wants=first-boot-complete.target
+
+# We run before anything gets mounted
+Before=local-fs.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/ostree admin create-toplevel-user-links
+
+[Install]
+WantedBy=local-fs.target
