@@ -9,6 +9,38 @@ This list is in reverse chronological order to keep recent changes at the top.
 
 // To add a new change here, see the template at the end of the file.
 
+== Podman v5.0
+
+The Podman container runtime will be upgraded from v4 to v5. This is a https://blog.podman.io/2024/03/podman-5-0-has-been-released/[major release] that removes support for CNI networking in favor of Netavark.
+
+See also the https://fedoraproject.org/wiki/Changes/Podman5[Fedora Change] and the https://github.com/coreos/fedora-coreos-tracker/issues/1629[tracking issue].
+
+=== Planning
+
+This change will be rolled out together with the rebase to Fedora 40.
+
+|===
+|Update Stream |Targeted release date
+
+|`next` | 40.20240322.1.0
+|`testing`| To Be Determined
+|`stable`| Will follow `testing` as usual
+|===
+
+=== Notes
+
+The full release notes for Podman v5 are available https://github.com/containers/podman/releases/tag/v5.0.0[on GitHub] and the breaking changes are explained in https://blog.podman.io/2024/03/podman-5-0-breaking-changes-in-detail/[Podman 5.0 breaking changes in detail]. Here is a summary of how this will impact Fedora CoreOS nodes:
+
+- CNI networking support has been removed and Netavark is now the only supported option.
+
+- Pasta is now the default rootless networking backend.
+
+- In the (unlikely) case that you were using podman machine inside of Fedora CoreOS, you will have to delete and re-create your podman machine. See https://blog.podman.io/2024/03/migration-of-podman-4-to-podman-5-machines/[Migration of Podman 4 to Podman 5 machines] for more details.
+
+- Support for cgroups v1 is deprecated and will removed in a future version.
+
+- Rollbacks to a previous version with Podman v4.x will likely require manual action.
+
 == System console changing to platform-specific defaults
 
 The system console setup will be changed to get a better user experience by default.
