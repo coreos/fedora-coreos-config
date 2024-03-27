@@ -15,18 +15,6 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-a37718c58a
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
-  containers-common:
-    evra: 5:0.58.0-2.fc40.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-a267e93f8c
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2015837258
-      type: fast-track
-  containers-common-extra:
-    evra: 5:0.58.0-2.fc40.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-a267e93f8c
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2015837258
-      type: fast-track
   libnfsidmap:
     evr: 1:2.6.4-0.rc5.fc40
     metadata:
@@ -39,40 +27,16 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-32d78ca745
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
-  netavark:
-    evr: 0:1.10.3-3.fc40
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-a267e93f8c
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2015837258
-      type: fast-track
   nfs-utils-coreos:
     evr: 1:2.6.4-0.rc5.fc40
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3d80a949c6
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
-  podman:
-    evr: 5:5.0.0-1.fc40
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-a267e93f8c
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2015837258
-      type: fast-track
   rpcbind:
     evr: 1.2.6-4.rc3.fc40
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-d7ac14a9b7
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
-      type: fast-track
-  rpm-ostree:
-    evr: 2024.4-2.fc40
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-95b6bafb8b
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
-      type: fast-track
-  rpm-ostree-libs:
-    evr: 2024.4-2.fc40
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-95b6bafb8b
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
   socat:
