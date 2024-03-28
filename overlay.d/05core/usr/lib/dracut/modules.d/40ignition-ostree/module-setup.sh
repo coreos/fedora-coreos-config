@@ -22,6 +22,8 @@ installkernel() {
 
 install() {
     inst_multiple \
+        chroot \
+        bwrap \
         realpath \
         setfiles \
         chcon \
@@ -73,6 +75,10 @@ install() {
         sgdisk    \
         find
 
+    inst_script "$moddir/ignition-ostree-sysusers" \
+        "/usr/sbin/ignition-ostree-sysusers"
+    install_ignition_unit ignition-ostree-sysusers.service
+
     for x in mount populate; do
         install_ignition_unit ignition-ostree-${x}-var.service
         inst_script "$moddir/ignition-ostree-${x}-var.sh" "/usr/sbin/ignition-ostree-${x}-var"
@@ -107,4 +113,5 @@ install() {
         /usr/libexec/ignition-ostree-mount-state-overlays
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
+    inst_script "$moddir/coreos-sysroot-bwrap" /usr/bin/coreos-sysroot-bwrap
 }
