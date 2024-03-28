@@ -9,12 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  conmon:
-    evr: 2:2.1.10-1.fc40
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-a37718c58a
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
-      type: fast-track
   libnfsidmap:
     evr: 1:2.6.4-0.rc5.fc40
     metadata:
