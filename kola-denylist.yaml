@@ -20,3 +20,6 @@
     - branched
     - next
     - next-devel
+- pattern: coreos.boot-mirror*
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1659
+  warn: true
