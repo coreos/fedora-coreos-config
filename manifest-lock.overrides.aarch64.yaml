@@ -10,22 +10,22 @@
 
 packages:
   kernel:
-    evr: 6.8.0-63.fc41
+    evr: 6.9.0-0.rc1.17.fc41
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1647
       type: pin
   kernel-core:
-    evr: 6.8.0-63.fc41
+    evr: 6.9.0-0.rc1.17.fc41
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1647
       type: pin
   kernel-modules:
-    evr: 6.8.0-63.fc41
+    evr: 6.9.0-0.rc1.17.fc41
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1647
       type: pin
   kernel-modules-core:
-    evr: 6.8.0-63.fc41
+    evr: 6.9.0-0.rc1.17.fc41
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1647
       type: pin
