@@ -20,3 +20,12 @@
     - branched
     - next
     - next-devel
+- pattern: coreos.boot-mirror*
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1659
+  # warn: true (disabled on promotion)
+- pattern: ext.config.kdump.crash
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1698
+  # snooze: 2024-04-07 (disabled on promotion)
+  # warn: true (disabled on promotion)
+  streams:
+    - rawhide

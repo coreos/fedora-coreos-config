@@ -36,6 +36,13 @@ conditional-include:
   - if: releasever >= 41
     # Include makedumpfile subpackage from kexec-tools (new in F41+)
     include: makedumpfile.yaml
+  # On <41, we want to keep making sure dnf doesn't slip in somehow
+  # On 41+, we do want it
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1687
+  - if: releasever < 41
+    include: exclude-dnf.yaml
+  - if: releasever >= 41
+    include: include-dnf.yaml
 
 ostree-layers:
   - overlay/15fcos
@@ -163,7 +170,6 @@ exclude-packages:
   - perl
   - perl-interpreter
   - nodejs
-  - dnf
   - grubby
   - cowsay  # Just in case
   # Let's make sure initscripts doesn't get pulled back in
