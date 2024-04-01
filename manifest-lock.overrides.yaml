@@ -15,22 +15,10 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-d736bf394f
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
-  libnfsidmap:
-    evr: 1:2.6.4-0.rc5.fc40
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3d80a949c6
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
-      type: fast-track
   libtirpc:
     evr: 1.3.4-1.rc3.fc40
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-32d78ca745
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
-      type: fast-track
-  nfs-utils-coreos:
-    evr: 1:2.6.4-0.rc5.fc40
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3d80a949c6
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
   rpcbind:
