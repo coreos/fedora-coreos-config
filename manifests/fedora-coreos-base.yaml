@@ -150,9 +150,6 @@ packages:
   - console-login-helper-messages-motdgen
   # i18n
   - kbd
-  # zram-generator (but not zram-generator-defaults) for F33 change
-  # https://github.com/coreos/fedora-coreos-tracker/issues/509
-  - zram-generator
   # resolved was broken out to its own package in rawhide/f35
   - systemd-resolved
   # In F35+ need `iptables-legacy` package
