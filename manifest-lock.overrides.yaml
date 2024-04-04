@@ -8,4 +8,9 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  google-compute-engine-guest-configs-udev:
+    evra: 20240119.00-1.fc40.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1702
+      type: pin
