@@ -1,6 +1,6 @@
 = Setting up SSH access and starting containers at boot
 
-NOTE: Make sure that you have completed the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial.
+NOTE: Complete all the steps described in the xref:tutorial-setup.adoc[initial setup page] before starting this tutorial. Make sure you have create file `ssh-key.pub` following the instructions provided in the https://docs.fedoraproject.org/en-US/fedora-coreos/tutorial-setup/#_ssh_public_key[prerequisites] for the tutorial. We will use this key in the Butane configuration file that we are about to write.
 
 In this tutorial, we will set up SSH access and start a container at boot. Fedora CoreOS is focused on running applications/services in containers thus we recommend trying to run containers and avoid modifying the host directly. Running containers and keeping a pristine host layer makes automatic updates more reliable and allows for separation of concerns with the Fedora CoreOS team responsible for the OS and end-user operators/sysadmins responsible for the applications.
 
