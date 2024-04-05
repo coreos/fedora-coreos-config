@@ -15,6 +15,18 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-d736bf394f
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
+  rpm-ostree:
+    evr: 2024.4-3.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-049d306b11
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  rpm-ostree-libs:
+    evr: 2024.4-3.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-049d306b11
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
   socat:
     evr: 1.8.0.0-2.fc40
     metadata:
