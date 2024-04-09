@@ -43,6 +43,9 @@ packages:
   - ssh-key-dir
   # Allow for configuring different timezones
   - tzdata
+  # zram-generator (but not zram-generator-defaults) for F33 change
+  # https://github.com/coreos/fedora-coreos-tracker/issues/509
+  - zram-generator
 
 postprocess:
   # Mask systemd-repart. Ignition is responsible for partition setup on first
