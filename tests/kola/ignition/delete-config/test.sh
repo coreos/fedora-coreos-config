@@ -29,6 +29,10 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
 "")
     # Ignition boot
 
+    # https://github.com/coreos/ignition/issues/1833
+    if [ $(stat --format="%a" /etc/systemd/system/ignition-delete-config.service.d/50-kola.conf) != "644" ]; then
+        fatal "dropin file permission should be 644"
+    fi
     if [ ! -e /run/ignition-rmcfg-ran ]; then
         fatal "mocked ignition-rmcfg did not run on first boot"
     fi
