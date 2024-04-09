@@ -150,9 +150,6 @@ packages:
   - console-login-helper-messages-motdgen
   # i18n
   - kbd
-  # zram-generator (but not zram-generator-defaults) for F33 change
-  # https://github.com/coreos/fedora-coreos-tracker/issues/509
-  - zram-generator
   # resolved was broken out to its own package in rawhide/f35
   - systemd-resolved
   # In F35+ need `iptables-legacy` package
@@ -161,7 +158,7 @@ packages:
   # GPU Firmware files (not broken out into subpackage of linux-firmware in RHEL yet)
   - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
   # Wifi/BT firmware files https://github.com/coreos/fedora-coreos-tracker/issues/1575
-  - atheros-firmware brcmfmac-firmware mt7xxx-firmware realtek-firmware
+  - atheros-firmware brcmfmac-firmware mt7xxx-firmware realtek-firmware nxpwireless-firmware tiwilink-firmware
 
 
 # - irqbalance
