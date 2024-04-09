@@ -1,31 +1,31 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.45.91-1.fc40.ppc64le",
+      "evra": "1:1.46.0-2.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.45.91-1.fc40.ppc64le",
+      "evra": "1:1.46.0-2.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.45.91-1.fc40.ppc64le",
+      "evra": "1:1.46.0-2.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
     },
     "NetworkManager-team": {
-      "evra": "1:1.45.91-1.fc40.ppc64le",
+      "evra": "1:1.46.0-2.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
     },
     "NetworkManager-tui": {
-      "evra": "1:1.45.91-1.fc40.ppc64le",
+      "evra": "1:1.46.0-2.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
@@ -763,25 +763,25 @@
       }
     },
     "glibc": {
-      "evra": "2.39-4.fc40.ppc64le",
+      "evra": "2.39-6.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.39-4.fc40.ppc64le",
+      "evra": "2.39-6.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.39-4.fc40.ppc64le",
+      "evra": "2.39-6.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.39-4.fc40.ppc64le",
+      "evra": "2.39-6.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -1021,25 +1021,25 @@
       }
     },
     "kernel": {
-      "evra": "6.8.1-300.fc40.ppc64le",
+      "evra": "6.8.4-300.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.8.1-300.fc40.ppc64le",
+      "evra": "6.8.4-300.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.8.1-300.fc40.ppc64le",
+      "evra": "6.8.4-300.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.8.1-300.fc40.ppc64le",
+      "evra": "6.8.4-300.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1231,7 +1231,7 @@
       }
     },
     "libgcc": {
-      "evra": "14.0.1-0.12.fc40.ppc64le",
+      "evra": "14.0.1-0.13.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1573,7 +1573,7 @@
       }
     },
     "libstdc++": {
-      "evra": "14.0.1-0.12.fc40.ppc64le",
+      "evra": "14.0.1-0.13.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1849,7 +1849,7 @@
       }
     },
     "nmstate": {
-      "evra": "2.2.21-3.fc40.ppc64le",
+      "evra": "2.2.26-4.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "nmstate"
       }
@@ -1882,6 +1882,12 @@
       "evra": "2.8-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "nvme-cli"
+      }
+    },
+    "nxpwireless-firmware": {
+      "evra": "20240312-1.fc40.noarch",
+      "metadata": {
+        "sourcerpm": "linux-firmware"
       }
     },
     "oniguruma": {
@@ -1981,13 +1987,13 @@
       }
     },
     "passt": {
-      "evra": "0^20240320.g71dd405-1.fc40.ppc64le",
+      "evra": "0^20240326.g4988e2b-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20240320.g71dd405-1.fc40.noarch",
+      "evra": "0^20240326.g4988e2b-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2137,13 +2143,13 @@
       }
     },
     "rpm-ostree": {
-      "evra": "2024.4-2.fc40.ppc64le",
+      "evra": "2024.4-3.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
     },
     "rpm-ostree-libs": {
-      "evra": "2024.4-2.fc40.ppc64le",
+      "evra": "2024.4-3.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
@@ -2412,6 +2418,12 @@
         "sourcerpm": "libteam"
       }
     },
+    "tiwilink-firmware": {
+      "evra": "20240312-1.fc40.noarch",
+      "metadata": {
+        "sourcerpm": "linux-firmware"
+      }
+    },
     "toolbox": {
       "evra": "0.0.99.5-8.fc40.ppc64le",
       "metadata": {
@@ -2437,7 +2449,7 @@
       }
     },
     "tzdata": {
-      "evra": "2024a-2.fc40.noarch",
+      "evra": "2024a-4.fc40.noarch",
       "metadata": {
         "sourcerpm": "tzdata"
       }
@@ -2546,16 +2558,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-03-31T00:00:00Z",
+    "generated": "2024-04-08T00:00:00Z",
     "rpmmd_repos": {
       "fedora-candidate-compose": {
         "generated": "2024-03-20T22:23:44Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-03-31T02:17:13Z"
+        "generated": "2024-04-07T17:49:39Z"
       },
       "fedora-next": {
-        "generated": "2024-03-31T08:32:55Z"
+        "generated": "2024-04-07T08:48:18Z"
       },
       "fedora-next-updates": {
         "generated": "2024-02-13T17:21:09Z"
