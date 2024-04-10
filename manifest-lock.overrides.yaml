@@ -51,30 +51,6 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-1e8a70c30e
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
-  passt:
-    evr: 0^20240326.g4988e2b-1.fc40
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-4d3ddadf4d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1704
-      type: fast-track
-  passt-selinux:
-    evra: 0^20240326.g4988e2b-1.fc40.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-4d3ddadf4d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1704
-      type: fast-track
-  rpm-ostree:
-    evr: 2024.4-5.fc40
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-589189d414
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1705
-      type: fast-track
-  rpm-ostree-libs:
-    evr: 2024.4-5.fc40
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-589189d414
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1705
-      type: fast-track
   socat:
     evr: 1.8.0.0-2.fc40
     metadata:
