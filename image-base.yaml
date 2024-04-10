@@ -17,15 +17,6 @@ ignition-network-kcmdline: []
 # Optional remote by which to prefix the deployed OSTree ref
 ostree-remote: fedora
 
-# opt in to using the `metadata_csum_seed` feature of the ext4 filesystem
-# for the /boot filesystem. Support for this was only recently added to grub
-# and isn't available everywhere yet so we'll gate it behind this image.yaml
-# knob. It should be easy to know when RHEL/RHCOS supports this by just flipping
-# this to `true` and doing a build. It should error when building the disk
-# images if grub doesn't support it.
-# https://lists.gnu.org/archive/html/grub-devel/2021-06/msg00031.html
-bootfs_metadata_csum_seed: true
-
 vmware-os-type: fedora64Guest
 # VMware hardware versions: https://kb.vmware.com/s/article/1003746
 # We use the newest version allowed by the oldest non-EOL VMware
