@@ -54,3 +54,8 @@ postprocess:
   - |
     #!/usr/bin/env bash
     systemctl mask systemd-repart.service
+  # zram-generator-0.3.2 (shipped in centOS 9) provides a default
+  # zram-generator config, we want to disable it
+  - |
+    #!/usr/bin/env bash
+    rm -f /usr/lib/systemd/zram-generator.conf
