@@ -16,6 +16,7 @@ ConditionKernelCommandLine=ignition.firstboot
 Before=systemd-user-sessions.service
 
 [Service]
+Before=systemd-user-sessions.service
 Type=oneshot
 ProtectHome=read-only
 ExecStart=/usr/libexec/coreos-check-ssh-keys
