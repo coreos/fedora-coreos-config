@@ -2,7 +2,8 @@ variant: fcos
 version: 1.4.0
 storage:
   disks:
-    - device: /dev/disk/by-id/scsi-0NVME_VirtualMultipath_disk1
+    # the symlink is from wwn=123456789 converted to hexadecimal (base16)
+    - device: /dev/disk/by-id/scsi-300000000075bcd15
       wipe_table: true
       partitions:
         - number: 1
