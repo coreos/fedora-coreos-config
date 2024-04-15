@@ -123,6 +123,12 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cb8093bdf
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
+  podman:
+    evr: 5:5.0.1-1.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-c7e5c62b91
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
   realtek-firmware:
     evra: 20240410-1.fc40.noarch
     metadata:
