@@ -1,0 +1,66 @@
+
+== How do I add the missing wifi-firmwares?
+
+Some wifi-firmwares will be split into sub-packages in Fedora 39 and Fedora 40.
+Fedora Cores OS will keep them in until Fedora 41, but display a
+warning message in the console if NetworkManager-wifi is layered without
+any other wifi firmware packages having a layering request.
+
+If NetworkManager-wifi is a requested layered package, a warning is
+displayed to encourage users to also add a wifi-firmware.
+
+If you know what wifi firmware your system needs then request that package specifically.
+The available wifi firmware packages are:
+---
+atheros-firmware - Firmware for Qualcomm Atheros WiFi/Bluetooth adapters
+b43-fwcutter - Firmware extraction tool for Broadcom wireless driver
+b43-openfwwf - Open firmware for some Broadcom 43xx series WLAN chips
+brcmfmac-firmware - Firmware for Broadcom/Cypress brcmfmac WiFi/Bluetooth adapters
+iwlegacy-firmware - Firmware for Intel(R) Wireless WiFi Link 3945(A)BG and 4965AGN adapters
+iwlwifi-dvm-firmware - DVM Firmware for Intel(R) Wireless WiFi adapters
+iwlwifi-mvm-firmware - MVM Firmware for Intel(R) Wireless WiFi adapters
+libertas-firmware - Firmware for Marvell Libertas SD/USB WiFi Network Adapters
+mt7xxx-firmware - Firmware for Mediatek 7600/7900 series WiFi/Bluetooth adapters
+nxpwireless-firmware - Firmware for NXP WiFi/Bluetooth/UWB adapters
+realtek-firmware - Firmware for Realtek WiFi/Bluetooth adapters
+tiwilink-firmware - Firmware for Texas Instruments WiFi/Bluetooth adapters
+atmel-firmware - Firmware for Atmel at76c50x wireless network chips
+zd1211-firmware - Firmware for wireless devices based on zd1211 chipset
+---
+
+.Request the required firmware for your hardware:
+[source, text]
+----
+$ sudo rpm-ostree install -y iwlwifi-dvm-firmware --allow-inactive
+----
+
+If you don't know what firmware to request you can request
+all the wireless firmware available in Fedora.
+Please note this approach is sub-optimal as it will add a lot
+of uneeded packages on your system.
+.Request all available wifi firmware
+----
+$ sudo rpm-ostree install -y --allow-inactive \
+    atheros-firmware     \
+    b43-fwcutter         \
+    b43-openfwwf         \
+    brcmfmac-firmware    \
+    iwlegacy-firmware    \
+    iwlwifi-dvm-firmware \
+    iwlwifi-mvm-firmware \
+    libertas-firmware    \
+    mt7xxx-firmware      \
+    nxpwireless-firmware \
+    realtek-firmware     \
+    tiwilink-firmware    \
+    atmel-firmware       \
+    zd1211-firmware
+----
+
+You can now disable the warning with:
+[source, text]
+----
+sudo systemctl disable coreos-check-wireless-firmwares.service
+----
+
+Then reboot the system.
