@@ -7,7 +7,7 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: coreos.ignition.ssh.key
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1553
-  snooze: 2024-04-15
+  snooze: 2024-04-29
   warn: true
   platforms:
     - azure
@@ -16,9 +16,3 @@
   warn: true
   arches:
     - ppc64le
-- pattern: ext.config.kdump.crash
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1698
-  snooze: 2024-04-07
-  warn: true
-  streams:
-    - rawhide
