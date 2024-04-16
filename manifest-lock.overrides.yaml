@@ -9,6 +9,24 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  amd-gpu-firmware:
+    evra: 20240410-1.fc40.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cb8093bdf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  atheros-firmware:
+    evra: 20240410-1.fc40.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cb8093bdf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  brcmfmac-firmware:
+    evra: 20240410-1.fc40.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cb8093bdf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
   expat:
     evr: 2.6.2-1.fc40
     metadata:
@@ -33,6 +51,24 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-d736bf394f
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
+  intel-gpu-firmware:
+    evra: 20240410-1.fc40.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cb8093bdf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  libbsd:
+    evr: 0.12.2-2.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-86fbbe4bc7
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  libnfsidmap:
+    evr: 1:2.6.4-0.rc6.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-c74f78d6f8
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
   librepo:
     evr: 1.17.1-1.fc40
     metadata:
@@ -51,29 +87,65 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-1e8a70c30e
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
-  passt:
-    evr: 0^20240326.g4988e2b-1.fc40
+  linux-firmware:
+    evra: 20240410-1.fc40.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-4d3ddadf4d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1704
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cb8093bdf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
-  passt-selinux:
-    evra: 0^20240326.g4988e2b-1.fc40.noarch
+  linux-firmware-whence:
+    evra: 20240410-1.fc40.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-4d3ddadf4d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1704
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cb8093bdf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  mt7xxx-firmware:
+    evra: 20240410-1.fc40.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cb8093bdf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  nfs-utils-coreos:
+    evr: 1:2.6.4-0.rc6.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-c74f78d6f8
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  nvidia-gpu-firmware:
+    evra: 20240410-1.fc40.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cb8093bdf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  nxpwireless-firmware:
+    evra: 20240410-1.fc40.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cb8093bdf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  podman:
+    evr: 5:5.0.1-1.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-c7e5c62b91
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  realtek-firmware:
+    evra: 20240410-1.fc40.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cb8093bdf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
   rpm-ostree:
     evr: 2024.4-5.fc40
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-589189d414
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1705
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
   rpm-ostree-libs:
     evr: 2024.4-5.fc40
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-589189d414
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1705
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
   socat:
     evr: 1.8.0.0-2.fc40
@@ -81,16 +153,22 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-e3c9a5a3c8
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
-  vim-data:
-    evra: 2:9.1.181-1.fc40.noarch
+  tiwilink-firmware:
+    evra: 20240410-1.fc40.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-918ccf84c1
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cb8093bdf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
+      type: fast-track
+  vim-data:
+    evra: 2:9.1.309-1.fc40.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-453669c155
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
   vim-minimal:
-    evr: 2:9.1.181-1.fc40
+    evr: 2:9.1.309-1.fc40
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-918ccf84c1
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-453669c155
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1674#issuecomment-2010200582
       type: fast-track
   zstd:
