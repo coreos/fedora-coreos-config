@@ -34,8 +34,8 @@ conditional-include:
     # Checks for breaking changes that came with Podman v5.
     include: podman-v5.yaml
   - if: releasever >= 41
-    # Include makedumpfile subpackage from kexec-tools (new in F41+)
-    include: makedumpfile.yaml
+    # Include makedumpfile and kexec-utils subpackages from kexec-tools (new in F41+)
+    include: kdump.yaml
   # On <41, we want to keep making sure dnf doesn't slip in somehow
   # On 41+, we do want it
   # https://github.com/coreos/fedora-coreos-tracker/issues/1687
