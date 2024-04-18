@@ -27,8 +27,7 @@ EARLY_DIR="${2:-/tmp}"
 
 IFS=" " read -r -a cmdline <<< "$(</proc/cmdline)"
 cmdline_arg() {
-    local name value
-    name="$1"
+    local name="$1" value=""
     for arg in "${cmdline[@]}"; do
         if [[ "${arg%%=*}" == "${name}" ]]; then
             value="${arg#*=}"
