@@ -9,23 +9,36 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-if [[ "$(podman volume inspect systemd-test | jq -r '.[0].Labels."org.test.Key"')" != "quadlet-test-volume" ]]; then
+# Test volume
+if ! is_service_active test-volume.service; then
+  fatal "test-volume.service failed to start"
+fi
+volume_info=$(podman volume inspect systemd-test)
+if [[ "$(jq -r '.[0].Labels."org.test.Key"' <<< "$volume_info")" != "quadlet-test-volume" ]]; then
     fatal "Volume not correctly created"
 fi
 
-if [[ "$(podman network inspect systemd-test | jq -r '.[0].labels."org.test.Key"')" != "quadlet-test-network" ]]; then
+# Test network
+if ! is_service_active test-network.service; then
+  fatal "test-network.service failed to start"
+fi
+network_info=$(podman network inspect systemd-test)
+if [[ "$(jq -r '.[0].labels."org.test.Key"' <<< "$network_info")" != "quadlet-test-network" ]]; then
     fatal "Network not correctly created"
 fi
 
-if [[ "$(podman inspect systemd-test | jq -r '.[0].ImageName')" != "quay.io/fedora/fedora-minimal:39" ]]; then
+# Test container
+if ! is_service_active test.service; then
+  fatal "test-network.service failed to start"
+fi
+container_info=$(podman container inspect systemd-test)
+if [[ "$(jq -r '.[0].ImageName' <<< "$container_info")" != "quay.io/fedora/fedora-minimal:39" ]]; then
     fatal "Container not using the correct image"
 fi
-
-if [[ "$(podman inspect systemd-test | jq -r '.[0].NetworkSettings.Networks[].NetworkID')" != "systemd-test" ]]; then
+if [[ "$(jq -r '.[0].NetworkSettings.Networks[].NetworkID' <<< "$container_info")" != "systemd-test" ]]; then
     fatal "Container not using the correct network"
 fi
-
-if [[ "$(podman inspect systemd-test | jq -r '.[0].HostConfig.Binds[0]')" != "systemd-test:/data:rw,rprivate,nosuid,nodev,rbind" ]]; then
+if [[ "$(jq -r '.[0].HostConfig.Binds[0]' <<< "$container_info")" != "systemd-test:/data:rw,rprivate,nosuid,nodev,rbind" ]]; then
     fatal "Container not using the correct volume"
 fi
 
