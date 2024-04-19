@@ -310,3 +310,18 @@ xref:storage.adoc[Configuring Storage] page for examples.
 
 See the xref:faq.adoc#_why_is_the_dnsmasq_service_systemd_unit_masked[Why is the `dnsmasq.service` systemd unit masked]
 entry for an example config to unmask this unit.
+
+== How do I keep dropped wireless firmware?
+
+Some Wi-Fi firmware blbos were split into sub-packages in Fedora 39 and Fedora 40. Fedora Cores OS will keep them in until Fedora 41, but display a warning message in the console if NetworkManager-wifi is layered without any other wifi firmware packages having a layering request.
+
+If `NetworkManager-wifi` is a requested layered package, a warning is displayed to encourage users to also request a WiFi firmware package to prevent disrupted connectivity.
+
+To request the Wi-Fi firmware stay installed even when Fedora CoreOS drops these packages please follow the xref:sysconfig-enabling-wifi.adoc#_on_an_existing_fedora_coreos_system[steps to perform Wi-Fi enablement on an existing system].
+
+Once the packages are requested you can now disable the warning so it won't be checked on subsequent boots.
+
+[source, text]
+----
+sudo systemctl disable coreos-check-wireless-firmwares.service
+----

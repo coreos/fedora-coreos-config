@@ -1,0 +1,122 @@
+= Enabling Wi-Fi
+
+The primary use for Fedora CoreOS has been driving server hardware in individual datacenters or cloud environments, which have high speed wired networking without the need for Wi-Fi enablement. Since there are many different types of wireless cards, link:https://github.com/coreos/fedora-coreos-tracker/issues/862[adding Wi-Fi enablement to Fedora CoreOS by default] would require many large firmware binaries to be installed for a non-standard use, which isn't ideal.
+
+On the other hand, Fedora CoreOS is versatile enough to run on smaller devices in IoT applications or in home labs where Wi-Fi may be required. In these cases it is easy enough to add a layer with the needed tools and firmware.
+
+== Adding Wi-Fi tools and firmware
+
+Typically enabling Wi-Fi on Fedora CoreOS involves adding the `NetworkManager-wifi` package along with the firmware package that corresponds to the wireless card in your system. Here is a list of some of the wireless firmware packages in Fedora:
+
+.Wi-Fi firmware packages in Fedora
+[source, text]
+----
+atheros-firmware - Firmware for Qualcomm Atheros WiFi/Bluetooth adapters
+b43-fwcutter - Firmware extraction tool for Broadcom wireless driver
+b43-openfwwf - Open firmware for some Broadcom 43xx series WLAN chips
+brcmfmac-firmware - Firmware for Broadcom/Cypress brcmfmac WiFi/Bluetooth adapters
+iwlegacy-firmware - Firmware for Intel(R) Wireless WiFi Link 3945(A)BG and 4965AGN adapters
+iwlwifi-dvm-firmware - DVM Firmware for Intel(R) Wireless WiFi adapters
+iwlwifi-mvm-firmware - MVM Firmware for Intel(R) Wireless WiFi adapters
+libertas-firmware - Firmware for Marvell Libertas SD/USB WiFi Network Adapters
+mt7xxx-firmware - Firmware for Mediatek 7600/7900 series WiFi/Bluetooth adapters
+nxpwireless-firmware - Firmware for NXP WiFi/Bluetooth/UWB adapters
+realtek-firmware - Firmware for Realtek WiFi/Bluetooth adapters
+tiwilink-firmware - Firmware for Texas Instruments WiFi/Bluetooth adapters
+atmel-firmware - Firmware for Atmel at76c50x wireless network chips
+zd1211-firmware - Firmware for wireless devices based on zd1211 chipset
+----
+
+For example, if a system has a Qualcomm wireless card then adding the `NetworkManager-wifi` and `atheros-firmware` packages would sufficiently enable the system for connecting to Wi-Fi.
+
+
+== When installing Fedora CoreOS
+
+For new systems the packages can be added using the xref:os-extensions.adoc[Adding OS Extensions] workflow. A NetworkManager configuration for the Wi-Fi connection will also need to be added so the system knows which wireless network to connect to. For more information on network configuration in Fedora CoreOS see xref:sysconfig-network-configuration.adoc[Network Configuration].
+
+An example Butane config that combines the extension and network configuration is shown below.
+
+.Butane config for Wi-Fi enablement
+[source,yaml,subs="attributes"]
+----
+variant: fcos
+version: {butane-latest-stable-spec}
+systemd:
+  units:
+    # Enable Wi-Fi in NetworkManager for an Intel wireless card
+    - name: rpm-ostree-install-wifi.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Enable Wi-Fi
+        Wants=network-online.target
+        After=network-online.target
+        Before=zincati.service
+        ConditionPathExists=!/var/lib/%N.stamp
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/usr/bin/rpm-ostree install --apply-live --allow-inactive NetworkManager-wifi iwlwifi-dvm-firmware
+        ExecStart=/bin/touch /var/lib/%N.stamp
+        [Install]
+        WantedBy=multi-user.target
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/wifi-guest.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+          [connection]
+          id=wifi-guest
+          type=wifi
+          autoconnect=true
+          [wifi]
+          cloned-mac-address=permanent
+          mode=infrastructure
+          ssid=guest
+          mac-address=ab:cd:01:02:03:04
+          [wifi-security]
+          auth-alg=open
+          key-mgmt=wpa-psk
+          psk=PASSWORD
+          [ipv4]
+          method=auto
+----
+
+NOTE: When installing a system and adding WiFi enablement in this way the system will need to be on a wired network for the initial install since it will need to use the network to retrieve the WiFi enabling packages.
+
+
+== On an existing Fedora CoreOS system
+
+If you have a system up already and want to add Wi-Fi capabilities (i.e. if you want to move it to a location without wired access) you can request the required packages.
+
+.Request NetworkManager-wifi and a specific Wi-Fi firmware
+[source, text]
+----
+$ sudo rpm-ostree install -y --allow-inactive \
+    NetworkManager-wifi iwlwifi-dvm-firmware
+----
+
+If you don't know what firmware to request you can request all the wireless firmware available in Fedora. Please note this approach is sub-optimal as it will add many uneeded packages on your system.
+
+.Request NetworkManager-wifi and all available Wi-Fi firmware
+----
+$ sudo rpm-ostree install -y --allow-inactive \
+    NetworkManager-wifi  \
+    atheros-firmware     \
+    b43-fwcutter         \
+    b43-openfwwf         \
+    brcmfmac-firmware    \
+    iwlegacy-firmware    \
+    iwlwifi-dvm-firmware \
+    iwlwifi-mvm-firmware \
+    libertas-firmware    \
+    mt7xxx-firmware      \
+    nxpwireless-firmware \
+    realtek-firmware     \
+    tiwilink-firmware    \
+    atmel-firmware       \
+    zd1211-firmware
+----
+
+Then reboot the system.
