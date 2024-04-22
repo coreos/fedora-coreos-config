@@ -1,0 +1,63 @@
+#!/usr/bin/bash
+# This script checks if
+# and will prints a message to the serial console
+# to warn the user about missing wifi firmware messages
+# and provide remediation steps
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1575
+
+set -euo pipefail
+
+# List of wifi-firmwares
+# SOURCE: https://pagure.io/fedora-comps/blob/main/f/comps-f41.xml.in#_2700
+firmwares=(
+atheros-firmware
+b43-fwcutter
+b43-openfwwf
+brcmfmac-firmware
+iwlegacy-firmware
+iwlwifi-dvm-firmware
+iwlwifi-mvm-firmware
+libertas-firmware
+mt7xxx-firmware
+nxpwireless-firmware
+realtek-firmware
+tiwilink-firmware
+atmel-firmware
+bcm283x-firmware
+zd1211-firmware
+)
+# Get firmware names into `a|b|c|d` regex string
+regex=$(IFS='|'; echo "${firmwares[*]}")
+
+layered_packages="$(rpm-ostree status --json -b | jq -r '.deployments[0]."requested-packages"[]')"
+
+if grep -q "NetworkManager-wifi" <<< "$layered_packages"; then
+    if grep -qP $regex <<< "$layered_packages"; then
+      exit 0
+    fi
+else
+  exit 0
+fi
+
+# Change the output color to yellow
+warn=$(echo -e '\033[0;33m')
+# No color
+nc=$(echo -e '\033[0m')
+
+motd_path=/run/motd.d/30_wireless_firmwares_warning.motd
+
+cat << EOF > "${motd_path}"
+${warn}
+##########################################################################
+WARNING: The NetworkManager-wifi is a requested layered package on this
+system, but no Wi-Fi drivers are requested. The Wi-Fi drivers will no
+longer be included by default in the future.
+
+More context and remediation steps are available in the following FAQ entry:
+https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-enabling-wifi/
+
+To disable this warning, use:
+sudo systemctl disable coreos-check-wireless-firmwares.service
+##########################################################################
+${nc}
+EOF
