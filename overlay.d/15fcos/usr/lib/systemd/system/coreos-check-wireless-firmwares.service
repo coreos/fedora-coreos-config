@@ -1,12 +1,11 @@
 # This service is used for printing a message if
-# cgroups v1 is still being used
+# some wireless firmwares are missing
 [Unit]
-Description=Check if cgroupsv1 Is Still Being Used
-ConditionControlGroupController=v1
+Description=Check For Wireless Firmware Packages
 Before=systemd-user-sessions.service
 [Service]
 Type=oneshot
-ExecStart=/usr/libexec/coreos-check-cgroups-version
+ExecStart=/usr/libexec/coreos-check-wireless-firmwares
 RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
