@@ -2,7 +2,7 @@
 ## kola:
 ##   # additionalDisks is only supported on QEMU
 ##   platforms: qemu
-##   additionalDisks: ["5G:mpath"]
+##   additionalDisks: ["5G:channel=scsi,wwn=123456789"]
 ##   description: Verify udev rules /dev/disk/by-id/scsi-* symlinks exist
 ##     in initramfs.
 
