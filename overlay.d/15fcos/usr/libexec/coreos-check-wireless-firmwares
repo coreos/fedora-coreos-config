@@ -49,12 +49,12 @@ motd_path=/run/motd.d/30_wireless_firmwares_warning.motd
 cat << EOF > "${motd_path}"
 ${warn}
 ##########################################################################
-WARNING: The NetworkManager-wifi is a requested layered package on this
+WARNING: NetworkManager-wifi is a requested layered package on this
 system, but no Wi-Fi drivers are requested. The Wi-Fi drivers will no
 longer be included by default in the future.
 
 More context and remediation steps are available in the following FAQ entry:
-https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-enabling-wifi/
+https://docs.fedoraproject.org/en-US/fedora-coreos/faq/#wifi-fw
 
 To disable this warning, use:
 sudo systemctl disable coreos-check-wireless-firmwares.service
