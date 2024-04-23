@@ -157,8 +157,6 @@ packages:
   - iptables-legacy
   # GPU Firmware files (not broken out into subpackage of linux-firmware in RHEL yet)
   - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
-  # Wifi/BT firmware files https://github.com/coreos/fedora-coreos-tracker/issues/1575
-  - atheros-firmware brcmfmac-firmware mt7xxx-firmware realtek-firmware nxpwireless-firmware tiwilink-firmware
 
 
 # - irqbalance
