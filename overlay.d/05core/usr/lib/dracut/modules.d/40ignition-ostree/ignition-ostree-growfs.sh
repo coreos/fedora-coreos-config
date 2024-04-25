@@ -125,13 +125,23 @@ while true; do
             fi
             ;;
         crypt)
-            # XXX: yuck... we need to expose this sanely in clevis
-            (. /usr/bin/clevis-luks-common-functions
-             eval $(udevadm info --query=property --export "${NAME}")
-             # lsblk doesn't print PKNAME of crypt devices with --nodeps
-             PKNAME=/dev/$(ls "/sys/dev/block/${MAJMIN}/slaves")
-             clevis_luks_unlock_device "${PKNAME}" | cryptsetup resize -d- "${DM_NAME}"
-            )
+            # lsblk doesn't print PKNAME of crypt devices with --nodeps
+            PKNAME=/dev/$(ls "/sys/dev/block/${MAJMIN}/slaves")
+            LUKS_DUMP=$(cryptsetup luksDump "$PKNAME")
+            if grep -q clevis <<< "$LUKS_DUMP"; then
+                # XXX: yuck... we need to expose this sanely in clevis
+                (. /usr/bin/clevis-luks-common-functions
+                 eval $(udevadm info --query=property --export "${NAME}")
+                 clevis_luks_unlock_device "${PKNAME}" | cryptsetup resize -d- "${DM_NAME}"
+                )
+            elif grep -q "cipher: paes" <<< "$LUKS_DUMP"; then
+                # CEX LUKS volume: https://github.com/coreos/ignition/issues/1693
+                cryptsetup resize root --key-file /etc/luks/cex.key
+            else
+                echo "$LUKS_DUMP"
+                echo "error: unknown LUKS device"
+                exit 1
+            fi
             ;;
         # already checked
         *) echo "unreachable" 1>&2; exit 1 ;;
