@@ -5,6 +5,6 @@
 #
 # This image is used by CoreOS CI to build software like
 # Ignition, rpm-ostree, ostree, coreos-installer, etc...
-FROM quay.io/fedora/fedora:40
+FROM registry.fedoraproject.org/fedora:40
 COPY . /src
 RUN ./src/install-buildroot.sh && yum clean all && rm /src -rf
