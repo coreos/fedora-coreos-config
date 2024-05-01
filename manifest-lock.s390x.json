@@ -931,7 +931,7 @@
       }
     },
     "jq": {
-      "evra": "1.7.1-4.fc40.s390x",
+      "evra": "1.7.1-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "jq"
       }
@@ -1189,7 +1189,7 @@
       }
     },
     "libgpg-error": {
-      "evra": "1.48-1.fc40.s390x",
+      "evra": "1.49-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "libgpg-error"
       }
@@ -1531,7 +1531,7 @@
       }
     },
     "libteam": {
-      "evra": "1.32-4.fc40.s390x",
+      "evra": "1.32-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "libteam"
       }
@@ -1609,7 +1609,7 @@
       }
     },
     "libxmlb": {
-      "evra": "0.3.19-1.fc40.s390x",
+      "evra": "0.3.19-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "libxmlb"
       }
@@ -1897,19 +1897,19 @@
       }
     },
     "passim-libs": {
-      "evra": "0.1.5-3.fc40.s390x",
+      "evra": "0.1.7-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "passim"
       }
     },
     "passt": {
-      "evra": "0^20240326.g4988e2b-1.fc40.s390x",
+      "evra": "0^20240426.gd03c4e2-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20240326.g4988e2b-1.fc40.noarch",
+      "evra": "0^20240426.gd03c4e2-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -1951,7 +1951,7 @@
       }
     },
     "podman": {
-      "evra": "5:5.0.1-1.fc40.s390x",
+      "evra": "5:5.0.2-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2113,13 +2113,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "40.16-1.fc40.noarch",
+      "evra": "40.17-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "40.16-1.fc40.noarch",
+      "evra": "40.17-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2317,7 +2317,7 @@
       }
     },
     "teamd": {
-      "evra": "1.32-4.fc40.s390x",
+      "evra": "1.32-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "libteam"
       }
@@ -2383,13 +2383,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.309-1.fc40.noarch",
+      "evra": "2:9.1.354-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.309-1.fc40.s390x",
+      "evra": "2:9.1.354-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2468,16 +2468,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-04-25T00:00:00Z",
+    "generated": "2024-05-01T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:01Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-04-25T17:24:35Z"
+        "generated": "2024-04-29T18:03:01Z"
       },
       "fedora-updates": {
-        "generated": "2024-04-25T00:52:08Z"
+        "generated": "2024-05-01T04:09:28Z"
       }
     }
   }
