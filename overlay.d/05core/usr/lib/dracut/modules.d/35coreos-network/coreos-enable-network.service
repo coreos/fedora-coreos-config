@@ -2,7 +2,6 @@
 Description=CoreOS Enable Network
 ConditionPathExists=/etc/initrd-release
 DefaultDependencies=false
-After=basic.target
 
 # Triggering conditions for cases where we need network:
 #  * when Ignition signals that it is required for provisioning.
