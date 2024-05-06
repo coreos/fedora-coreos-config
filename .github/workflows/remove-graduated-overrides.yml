@@ -70,7 +70,7 @@ jobs:
                 -m "Triggered by remove-graduated-overrides GitHub Action."
           fi
       - name: Open pull request
-        uses: peter-evans/create-pull-request@v4.2.3
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
           branch: ${{ matrix.branch }}-graduation
