@@ -1,0 +1,9 @@
+# Wifi/BT firmware files kept in FCOS until the F41 rebase
+# See: https://github.com/coreos/fedora-coreos-tracker/issues/1575
+packages:
+  - atheros-firmware
+  - brcmfmac-firmware
+  - mt7xxx-firmware
+  - nxpwireless-firmware
+  - realtek-firmware
+  - tiwilink-firmware
