@@ -1,13 +1,2 @@
 packages:
   - dnf5
-
-# until dnf5 becomes the default, manually symlink dnf to it
-postprocess:
-  - |
-    #!/usr/bin/bash
-    set -euo pipefail
-    if command -v dnf; then
-      echo 'dnf5 is now the default, remove this postprocess script!' >&2
-      exit 1
-    fi
-    ln -s dnf5 /usr/bin/dnf
