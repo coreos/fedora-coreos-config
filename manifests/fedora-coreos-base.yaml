@@ -12,6 +12,7 @@ include:
   - shared-workarounds.yaml
   # See https://github.com/coreos/bootupd
   - bootupd.yaml
+  - shared-el9.yaml
 ostree-layers:
   - overlay/05core
   - overlay/08nouveau
