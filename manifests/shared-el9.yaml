@@ -1,0 +1,5 @@
+# Shared with EL 9 (CentOS Stream 9 and RHCOS 9) only
+packages:
+  # Teaming https://github.com/coreos/fedora-coreos-config/pull/289
+  # and http://bugzilla.redhat.com/1758162
+  - NetworkManager-team teamd
