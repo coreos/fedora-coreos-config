@@ -1,0 +1,8 @@
+# Shared with EL 10 (CentOS Stream 10 and RHCOS 10) only
+packages:
+  # GPU Firmware files (not broken out into subpackage of linux-firmware in RHEL yet)
+  - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
+  # makedumpfile and kexec were split into subpackages in kexec-tools 0.2.28-7
+  # These should be with kexec-tools in the user-experience manifest
+  - makedumpfile
+  - kdump-utils

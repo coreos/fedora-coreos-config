@@ -13,6 +13,7 @@ include:
   # See https://github.com/coreos/bootupd
   - bootupd.yaml
   - shared-el9.yaml
+  - shared-el10.yaml
 ostree-layers:
   - overlay/05core
   - overlay/08nouveau
@@ -156,16 +157,8 @@ packages:
   # In F35+ need `iptables-legacy` package
   # See https://github.com/coreos/fedora-coreos-tracker/issues/676#issuecomment-928028451
   - iptables-legacy
-  # GPU Firmware files (not broken out into subpackage of linux-firmware in RHEL yet)
-  - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
   # NIC firmware we've traditionally shipped but then were split out of linux-firmware in Fedora
   - qed-firmware # https://github.com/coreos/fedora-coreos-tracker/issues/1746
-  # makedumpfile and kexec were split into subpackages in kexec-tools 0.2.28-7
-  # which is not in RHCOS yet
-  # These should be with kexec-tools in the user-experience manifest, move them
-  # once the split lands in RHCOS.
-  - makedumpfile
-  - kdump-utils
 
 
 # - irqbalance
