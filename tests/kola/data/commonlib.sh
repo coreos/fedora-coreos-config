@@ -80,8 +80,9 @@ cmdline_arg() {
 
 # wait for ~60s when in activating status
 is_service_active() {
-    local service="$1"
-    for _x in {0..60}; do
+    local service="$1"; shift
+    local timeout="${1:-60}"; shift
+    for _x in $(seq "${timeout}"); do
         [ "$(systemctl is-active "${service}")" != "activating" ] && break
         sleep 1
     done
