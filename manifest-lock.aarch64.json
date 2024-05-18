@@ -31,7 +31,7 @@
       }
     },
     "WALinuxAgent-udev": {
-      "evra": "2.10.0.8-1.fc40.noarch",
+      "evra": "2.10.0.8-2.fc40.noarch",
       "metadata": {
         "sourcerpm": "WALinuxAgent"
       }
@@ -391,13 +391,13 @@
       }
     },
     "crun": {
-      "evra": "1.14.4-1.fc40.aarch64",
+      "evra": "1.15-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "crun"
       }
     },
     "crun-wasm": {
-      "evra": "1.14.4-1.fc40.aarch64",
+      "evra": "1.15-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "crun"
       }
@@ -2576,16 +2576,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-05-17T00:00:00Z",
+    "generated": "2024-05-18T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:04Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-05-16T23:31:32Z"
+        "generated": "2024-05-17T23:30:49Z"
       },
       "fedora-updates": {
-        "generated": "2024-05-17T01:03:39Z"
+        "generated": "2024-05-18T01:08:23Z"
       }
     }
   }
