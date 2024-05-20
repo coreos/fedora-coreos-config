@@ -43,6 +43,9 @@ conditional-include:
     include: exclude-dnf.yaml
   - if: releasever >= 41
     include: include-dnf.yaml
+  # Wifi firmwares will be dropped in F41
+  - if: releasever < 41
+    include: wifi-firmwares.yaml
 
 ostree-layers:
   - overlay/15fcos
