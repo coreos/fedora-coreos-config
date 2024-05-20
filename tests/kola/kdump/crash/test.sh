@@ -19,7 +19,9 @@ set -xeuo pipefail
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
-      if ! is_service_active kdump.service; then
+      # use 120s for this since kdump can take a while to build its initramfs,
+      # especially if the system is loaded
+      if ! is_service_active kdump.service 120; then
           fatal "kdump.service failed to start"
       fi
       # Verify that the crashkernel reserved memory is large enough

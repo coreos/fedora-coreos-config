@@ -31,7 +31,7 @@
       }
     },
     "WALinuxAgent-udev": {
-      "evra": "2.10.0.8-1.fc40.noarch",
+      "evra": "2.10.0.8-2.fc40.noarch",
       "metadata": {
         "sourcerpm": "WALinuxAgent"
       }
@@ -73,13 +73,13 @@
       }
     },
     "amd-gpu-firmware": {
-      "evra": "20240410-1.fc40.noarch",
+      "evra": "20240513-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "atheros-firmware": {
-      "evra": "20240410-1.fc40.noarch",
+      "evra": "20240513-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -175,7 +175,7 @@
       }
     },
     "brcmfmac-firmware": {
-      "evra": "20240410-1.fc40.noarch",
+      "evra": "20240513-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -187,7 +187,7 @@
       }
     },
     "btrfs-progs": {
-      "evra": "6.8-1.fc40.aarch64",
+      "evra": "6.8.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "btrfs-progs"
       }
@@ -391,19 +391,19 @@
       }
     },
     "crun": {
-      "evra": "1.14.4-1.fc40.aarch64",
+      "evra": "1.15-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "crun"
       }
     },
     "crun-wasm": {
-      "evra": "1.14.4-1.fc40.aarch64",
+      "evra": "1.15-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "crun"
       }
     },
     "crypto-policies": {
-      "evra": "20240201-2.git9f501f3.fc40.noarch",
+      "evra": "20240510-1.gitd287a42.fc40.noarch",
       "metadata": {
         "sourcerpm": "crypto-policies"
       }
@@ -523,19 +523,19 @@
       }
     },
     "dracut": {
-      "evra": "060-1.fc40.aarch64",
+      "evra": "101-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "dracut"
       }
     },
     "dracut-network": {
-      "evra": "060-1.fc40.aarch64",
+      "evra": "101-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "dracut"
       }
     },
     "dracut-squash": {
-      "evra": "060-1.fc40.aarch64",
+      "evra": "101-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "dracut"
       }
@@ -733,7 +733,7 @@
       }
     },
     "fwupd": {
-      "evra": "1.9.16-1.fc40.aarch64",
+      "evra": "1.9.19-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -781,37 +781,37 @@
       }
     },
     "git-core": {
-      "evra": "2.45.0-1.fc40.aarch64",
+      "evra": "2.45.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "git"
       }
     },
     "glib2": {
-      "evra": "2.80.0-1.fc40.aarch64",
+      "evra": "2.80.2-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "glib2"
       }
     },
     "glibc": {
-      "evra": "2.39-8.fc40.aarch64",
+      "evra": "2.39-13.fc40.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.39-8.fc40.aarch64",
+      "evra": "2.39-13.fc40.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.39-8.fc40.aarch64",
+      "evra": "2.39-13.fc40.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.39-8.fc40.aarch64",
+      "evra": "2.39-13.fc40.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -835,7 +835,7 @@
       }
     },
     "google-compute-engine-guest-configs-udev": {
-      "evra": "20240307.00-1.fc40.noarch",
+      "evra": "20240501.00-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "google-compute-engine-guest-configs"
       }
@@ -907,7 +907,7 @@
       }
     },
     "intel-gpu-firmware": {
-      "evra": "20240410-1.fc40.noarch",
+      "evra": "20240513-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1051,25 +1051,25 @@
       }
     },
     "kernel": {
-      "evra": "6.8.8-300.fc40.aarch64",
+      "evra": "6.8.9-300.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.8.8-300.fc40.aarch64",
+      "evra": "6.8.9-300.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.8.8-300.fc40.aarch64",
+      "evra": "6.8.9-300.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.8.8-300.fc40.aarch64",
+      "evra": "6.8.9-300.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1159,7 +1159,7 @@
       }
     },
     "libblkid": {
-      "evra": "2.40-13.fc40.aarch64",
+      "evra": "2.40.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1243,7 +1243,7 @@
       }
     },
     "libfdisk": {
-      "evra": "2.40-13.fc40.aarch64",
+      "evra": "2.40.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1261,7 +1261,7 @@
       }
     },
     "libgcc": {
-      "evra": "14.0.1-0.15.fc40.aarch64",
+      "evra": "14.1.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1387,7 +1387,7 @@
       }
     },
     "libmount": {
-      "evra": "2.40-13.fc40.aarch64",
+      "evra": "2.40.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1543,19 +1543,19 @@
       }
     },
     "libsmartcols": {
-      "evra": "2.40-13.fc40.aarch64",
+      "evra": "2.40.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "util-linux"
       }
     },
     "libsmbclient": {
-      "evra": "2:4.20.0-7.fc40.aarch64",
+      "evra": "2:4.20.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "libsolv": {
-      "evra": "0.7.28-1.fc40.aarch64",
+      "evra": "0.7.29-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "libsolv"
       }
@@ -1591,7 +1591,7 @@
       }
     },
     "libstdc++": {
-      "evra": "14.0.1-0.15.fc40.aarch64",
+      "evra": "14.1.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1645,7 +1645,7 @@
       }
     },
     "libusb1": {
-      "evra": "1.0.27-1.fc40.aarch64",
+      "evra": "1.0.27-2.fc40.aarch64",
       "metadata": {
         "sourcerpm": "libusb1"
       }
@@ -1657,7 +1657,7 @@
       }
     },
     "libuuid": {
-      "evra": "2.40-13.fc40.aarch64",
+      "evra": "2.40.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1675,7 +1675,7 @@
       }
     },
     "libwbclient": {
-      "evra": "2:4.20.0-7.fc40.aarch64",
+      "evra": "2:4.20.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1711,13 +1711,13 @@
       }
     },
     "linux-firmware": {
-      "evra": "20240410-1.fc40.noarch",
+      "evra": "20240513-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "linux-firmware-whence": {
-      "evra": "20240410-1.fc40.noarch",
+      "evra": "20240513-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1795,25 +1795,25 @@
       }
     },
     "mpfr": {
-      "evra": "4.2.1-3.fc40.aarch64",
+      "evra": "4.2.1-4.fc40.aarch64",
       "metadata": {
         "sourcerpm": "mpfr"
       }
     },
     "mt7xxx-firmware": {
-      "evra": "20240410-1.fc40.noarch",
+      "evra": "20240513-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "nano": {
-      "evra": "7.2-6.fc40.aarch64",
+      "evra": "7.2-7.fc40.aarch64",
       "metadata": {
         "sourcerpm": "nano"
       }
     },
     "nano-default-editor": {
-      "evra": "7.2-6.fc40.noarch",
+      "evra": "7.2-7.fc40.noarch",
       "metadata": {
         "sourcerpm": "nano"
       }
@@ -1897,7 +1897,7 @@
       }
     },
     "nvidia-gpu-firmware": {
-      "evra": "20240410-1.fc40.noarch",
+      "evra": "20240513-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1909,7 +1909,7 @@
       }
     },
     "nxpwireless-firmware": {
-      "evra": "20240410-1.fc40.noarch",
+      "evra": "20240513-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1987,13 +1987,13 @@
       }
     },
     "pam": {
-      "evra": "1.6.0-2.fc40.aarch64",
+      "evra": "1.6.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "pam"
       }
     },
     "pam-libs": {
-      "evra": "1.6.0-2.fc40.aarch64",
+      "evra": "1.6.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "pam"
       }
@@ -2005,13 +2005,13 @@
       }
     },
     "passt": {
-      "evra": "0^20240426.gd03c4e2-1.fc40.aarch64",
+      "evra": "0^20240510.g7288448-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20240426.gd03c4e2-1.fc40.noarch",
+      "evra": "0^20240510.g7288448-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2053,7 +2053,7 @@
       }
     },
     "podman": {
-      "evra": "5:5.0.2-1.fc40.aarch64",
+      "evra": "5:5.0.3-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2125,7 +2125,7 @@
       }
     },
     "realtek-firmware": {
-      "evra": "20240410-1.fc40.noarch",
+      "evra": "20240513-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2185,19 +2185,19 @@
       }
     },
     "samba-client-libs": {
-      "evra": "2:4.20.0-7.fc40.aarch64",
+      "evra": "2:4.20.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common": {
-      "evra": "2:4.20.0-7.fc40.noarch",
+      "evra": "2:4.20.1-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common-libs": {
-      "evra": "2:4.20.0-7.fc40.aarch64",
+      "evra": "2:4.20.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -2209,13 +2209,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "40.17-1.fc40.noarch",
+      "evra": "40.18-2.fc40.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "40.17-1.fc40.noarch",
+      "evra": "40.18-2.fc40.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2383,37 +2383,37 @@
       }
     },
     "systemd": {
-      "evra": "255.4-1.fc40.aarch64",
+      "evra": "255.6-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-container": {
-      "evra": "255.4-1.fc40.aarch64",
+      "evra": "255.6-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-libs": {
-      "evra": "255.4-1.fc40.aarch64",
+      "evra": "255.6-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-pam": {
-      "evra": "255.4-1.fc40.aarch64",
+      "evra": "255.6-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-resolved": {
-      "evra": "255.4-1.fc40.aarch64",
+      "evra": "255.6-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-udev": {
-      "evra": "255.4-1.fc40.aarch64",
+      "evra": "255.6-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
@@ -2431,7 +2431,7 @@
       }
     },
     "tiwilink-firmware": {
-      "evra": "20240410-1.fc40.noarch",
+      "evra": "20240513-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2473,25 +2473,25 @@
       }
     },
     "util-linux": {
-      "evra": "2.40-13.fc40.aarch64",
+      "evra": "2.40.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "util-linux"
       }
     },
     "util-linux-core": {
-      "evra": "2.40-13.fc40.aarch64",
+      "evra": "2.40.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "util-linux"
       }
     },
     "vim-data": {
-      "evra": "2:9.1.354-1.fc40.noarch",
+      "evra": "2:9.1.393-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.354-1.fc40.aarch64",
+      "evra": "2:9.1.393-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2576,16 +2576,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-05-04T00:00:00Z",
+    "generated": "2024-05-19T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:04Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-05-03T23:35:21Z"
+        "generated": "2024-05-18T23:56:37Z"
       },
       "fedora-updates": {
-        "generated": "2024-05-04T01:15:16Z"
+        "generated": "2024-05-19T01:25:41Z"
       }
     }
   }
