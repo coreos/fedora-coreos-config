@@ -31,7 +31,7 @@
       }
     },
     "WALinuxAgent-udev": {
-      "evra": "2.9.1.1-3.fc40.noarch",
+      "evra": "2.10.0.8-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "WALinuxAgent"
       }
@@ -151,19 +151,19 @@
       }
     },
     "bind-libs": {
-      "evra": "32:9.18.24-1.fc40.s390x",
+      "evra": "32:9.18.26-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "bind"
       }
     },
     "bind-license": {
-      "evra": "32:9.18.24-1.fc40.noarch",
+      "evra": "32:9.18.26-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "bind"
       }
     },
     "bind-utils": {
-      "evra": "32:9.18.24-1.fc40.s390x",
+      "evra": "32:9.18.26-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "bind"
       }
@@ -211,7 +211,7 @@
       }
     },
     "c-ares": {
-      "evra": "1.25.0-3.fc40.s390x",
+      "evra": "1.28.1-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "c-ares"
       }
@@ -241,25 +241,31 @@
       }
     },
     "clevis": {
-      "evra": "20-1.fc40.s390x",
+      "evra": "20-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "clevis"
       }
     },
     "clevis-dracut": {
-      "evra": "20-1.fc40.s390x",
+      "evra": "20-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "clevis"
       }
     },
     "clevis-luks": {
-      "evra": "20-1.fc40.s390x",
+      "evra": "20-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "clevis"
       }
     },
+    "clevis-pin-tpm2": {
+      "evra": "0.5.3-5.fc40.s390x",
+      "metadata": {
+        "sourcerpm": "clevis-pin-tpm2"
+      }
+    },
     "clevis-systemd": {
-      "evra": "20-1.fc40.s390x",
+      "evra": "20-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "clevis"
       }
@@ -397,19 +403,19 @@
       }
     },
     "cryptsetup": {
-      "evra": "2.7.1-1.fc40.s390x",
+      "evra": "2.7.2-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "cryptsetup"
       }
     },
     "cryptsetup-libs": {
-      "evra": "2.7.1-1.fc40.s390x",
+      "evra": "2.7.2-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "cryptsetup"
       }
     },
     "curl": {
-      "evra": "8.6.0-7.fc40.s390x",
+      "evra": "8.6.0-8.fc40.s390x",
       "metadata": {
         "sourcerpm": "curl"
       }
@@ -433,7 +439,7 @@
       }
     },
     "dbus-broker": {
-      "evra": "35-4.fc40.s390x",
+      "evra": "36-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "dbus-broker"
       }
@@ -511,19 +517,19 @@
       }
     },
     "dracut": {
-      "evra": "059-22.fc40.s390x",
+      "evra": "060-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "dracut"
       }
     },
     "dracut-network": {
-      "evra": "059-22.fc40.s390x",
+      "evra": "060-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "dracut"
       }
     },
     "dracut-squash": {
-      "evra": "059-22.fc40.s390x",
+      "evra": "060-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "dracut"
       }
@@ -583,19 +589,19 @@
       }
     },
     "fedora-release-common": {
-      "evra": "40-38.noarch",
+      "evra": "40-39.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
     },
     "fedora-release-coreos": {
-      "evra": "40-38.noarch",
+      "evra": "40-39.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
     },
     "fedora-release-identity-coreos": {
-      "evra": "40-38.noarch",
+      "evra": "40-39.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
@@ -643,7 +649,7 @@
       }
     },
     "flatpak-session-helper": {
-      "evra": "1.15.6-3.fc40.s390x",
+      "evra": "1.15.8-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "flatpak"
       }
@@ -727,7 +733,7 @@
       }
     },
     "git-core": {
-      "evra": "2.44.0-1.fc40.s390x",
+      "evra": "2.45.0-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "git"
       }
@@ -739,25 +745,25 @@
       }
     },
     "glibc": {
-      "evra": "2.39-6.fc40.s390x",
+      "evra": "2.39-8.fc40.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.39-6.fc40.s390x",
+      "evra": "2.39-8.fc40.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.39-6.fc40.s390x",
+      "evra": "2.39-8.fc40.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.39-6.fc40.s390x",
+      "evra": "2.39-8.fc40.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -775,7 +781,7 @@
       }
     },
     "gnutls": {
-      "evra": "3.8.4-1.fc40.s390x",
+      "evra": "3.8.5-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "gnutls"
       }
@@ -919,13 +925,13 @@
       }
     },
     "jose": {
-      "evra": "12-1.fc40.s390x",
+      "evra": "13-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "jose"
       }
     },
     "jq": {
-      "evra": "1.7.1-4.fc40.s390x",
+      "evra": "1.7.1-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "jq"
       }
@@ -961,25 +967,25 @@
       }
     },
     "kernel": {
-      "evra": "6.8.5-301.fc40.s390x",
+      "evra": "6.8.8-300.fc40.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.8.5-301.fc40.s390x",
+      "evra": "6.8.8-300.fc40.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.8.5-301.fc40.s390x",
+      "evra": "6.8.8-300.fc40.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.8.5-301.fc40.s390x",
+      "evra": "6.8.8-300.fc40.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1069,7 +1075,7 @@
       }
     },
     "libblkid": {
-      "evra": "2.40-0.9.rc1.fc40.s390x",
+      "evra": "2.40-13.fc40.s390x",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1081,13 +1087,13 @@
       }
     },
     "libbsd": {
-      "evra": "0.12.2-2.fc40.s390x",
+      "evra": "0.12.2-3.fc40.s390x",
       "metadata": {
         "sourcerpm": "libbsd"
       }
     },
     "libcap": {
-      "evra": "2.69-3.fc40.s390x",
+      "evra": "2.69-8.fc40.s390x",
       "metadata": {
         "sourcerpm": "libcap"
       }
@@ -1117,7 +1123,7 @@
       }
     },
     "libcurl-minimal": {
-      "evra": "8.6.0-7.fc40.s390x",
+      "evra": "8.6.0-8.fc40.s390x",
       "metadata": {
         "sourcerpm": "curl"
       }
@@ -1153,7 +1159,7 @@
       }
     },
     "libfdisk": {
-      "evra": "2.40-0.9.rc1.fc40.s390x",
+      "evra": "2.40-13.fc40.s390x",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1183,7 +1189,7 @@
       }
     },
     "libgpg-error": {
-      "evra": "1.48-1.fc40.s390x",
+      "evra": "1.49-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "libgpg-error"
       }
@@ -1195,7 +1201,7 @@
       }
     },
     "libgusb": {
-      "evra": "0.4.8-3.fc40.s390x",
+      "evra": "0.4.9-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "libgusb"
       }
@@ -1225,7 +1231,7 @@
       }
     },
     "libipa_hbac": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
@@ -1237,7 +1243,7 @@
       }
     },
     "libjose": {
-      "evra": "12-1.fc40.s390x",
+      "evra": "13-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "jose"
       }
@@ -1297,7 +1303,7 @@
       }
     },
     "libmount": {
-      "evra": "2.40-0.9.rc1.fc40.s390x",
+      "evra": "2.40-13.fc40.s390x",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1339,7 +1345,7 @@
       }
     },
     "libnghttp2": {
-      "evra": "1.59.0-2.fc40.s390x",
+      "evra": "1.59.0-3.fc40.s390x",
       "metadata": {
         "sourcerpm": "nghttp2"
       }
@@ -1453,13 +1459,13 @@
       }
     },
     "libsmartcols": {
-      "evra": "2.40-0.9.rc1.fc40.s390x",
+      "evra": "2.40-13.fc40.s390x",
       "metadata": {
         "sourcerpm": "util-linux"
       }
     },
     "libsmbclient": {
-      "evra": "2:4.20.0-0.5.rc4.fc40.s390x",
+      "evra": "2:4.20.0-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1477,25 +1483,25 @@
       }
     },
     "libsss_certmap": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "libsss_idmap": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "libsss_nss_idmap": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "libsss_sudo": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
@@ -1525,7 +1531,7 @@
       }
     },
     "libteam": {
-      "evra": "1.32-4.fc40.s390x",
+      "evra": "1.32-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "libteam"
       }
@@ -1567,7 +1573,7 @@
       }
     },
     "libuuid": {
-      "evra": "2.40-0.9.rc1.fc40.s390x",
+      "evra": "2.40-13.fc40.s390x",
       "metadata": {
         "sourcerpm": "util-linux"
       }
@@ -1585,7 +1591,7 @@
       }
     },
     "libwbclient": {
-      "evra": "2:4.20.0-0.5.rc4.fc40.s390x",
+      "evra": "2:4.20.0-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1597,13 +1603,13 @@
       }
     },
     "libxml2": {
-      "evra": "2.12.5-1.fc40.s390x",
+      "evra": "2.12.6-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "libxml2"
       }
     },
     "libxmlb": {
-      "evra": "0.3.17-1.fc40.s390x",
+      "evra": "0.3.19-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "libxmlb"
       }
@@ -1891,19 +1897,19 @@
       }
     },
     "passim-libs": {
-      "evra": "0.1.5-3.fc40.s390x",
+      "evra": "0.1.7-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "passim"
       }
     },
     "passt": {
-      "evra": "0^20240326.g4988e2b-1.fc40.s390x",
+      "evra": "0^20240426.gd03c4e2-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20240326.g4988e2b-1.fc40.noarch",
+      "evra": "0^20240426.gd03c4e2-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -1945,7 +1951,7 @@
       }
     },
     "podman": {
-      "evra": "5:5.0.1-1.fc40.s390x",
+      "evra": "5:5.0.2-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2041,13 +2047,13 @@
       }
     },
     "rpm-ostree": {
-      "evra": "2024.4-5.fc40.s390x",
+      "evra": "2024.5-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
     },
     "rpm-ostree-libs": {
-      "evra": "2024.4-5.fc40.s390x",
+      "evra": "2024.5-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
@@ -2065,7 +2071,7 @@
       }
     },
     "rsync": {
-      "evra": "3.2.7-7.fc40.s390x",
+      "evra": "3.3.0-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "rsync"
       }
@@ -2083,19 +2089,19 @@
       }
     },
     "samba-client-libs": {
-      "evra": "2:4.20.0-0.5.rc4.fc40.s390x",
+      "evra": "2:4.20.0-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common": {
-      "evra": "2:4.20.0-0.5.rc4.fc40.noarch",
+      "evra": "2:4.20.0-7.fc40.noarch",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common-libs": {
-      "evra": "2:4.20.0-0.5.rc4.fc40.s390x",
+      "evra": "2:4.20.0-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -2107,13 +2113,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "40.13-1.fc40.noarch",
+      "evra": "40.17-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "40.13-1.fc40.noarch",
+      "evra": "40.17-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2137,13 +2143,13 @@
       }
     },
     "shadow-utils": {
-      "evra": "2:4.15.1-1.fc40.s390x",
+      "evra": "2:4.15.1-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "shadow-utils"
       }
     },
     "shadow-utils-subid": {
-      "evra": "2:4.15.1-1.fc40.s390x",
+      "evra": "2:4.15.1-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "shadow-utils"
       }
@@ -2203,61 +2209,61 @@
       }
     },
     "sssd-ad": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-client": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-common": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-common-pac": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-ipa": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-krb5": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-krb5-common": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-ldap": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-nfs-idmap": {
-      "evra": "2.9.4-4.fc40.s390x",
+      "evra": "2.9.4-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "stalld": {
-      "evra": "1.19.1-1.fc40.s390x",
+      "evra": "1.19.2-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "stalld"
       }
@@ -2311,7 +2317,7 @@
       }
     },
     "teamd": {
-      "evra": "1.32-4.fc40.s390x",
+      "evra": "1.32-7.fc40.s390x",
       "metadata": {
         "sourcerpm": "libteam"
       }
@@ -2329,25 +2335,25 @@
       }
     },
     "tpm2-tools": {
-      "evra": "5.6-2.fc40.s390x",
+      "evra": "5.7-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "tpm2-tools"
       }
     },
     "tpm2-tss": {
-      "evra": "4.0.1-7.fc40.s390x",
+      "evra": "4.1.0-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "tpm2-tss"
       }
     },
     "tpm2-tss-fapi": {
-      "evra": "4.0.1-7.fc40.s390x",
+      "evra": "4.1.0-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "tpm2-tss"
       }
     },
     "tzdata": {
-      "evra": "2024a-4.fc40.noarch",
+      "evra": "2024a-5.fc40.noarch",
       "metadata": {
         "sourcerpm": "tzdata"
       }
@@ -2359,31 +2365,31 @@
       }
     },
     "util-linux": {
-      "evra": "2.40-0.9.rc1.fc40.s390x",
+      "evra": "2.40-13.fc40.s390x",
       "metadata": {
         "sourcerpm": "util-linux"
       }
     },
     "util-linux-core": {
-      "evra": "2.40-0.9.rc1.fc40.s390x",
+      "evra": "2.40-13.fc40.s390x",
       "metadata": {
         "sourcerpm": "util-linux"
       }
     },
     "veritysetup": {
-      "evra": "2.7.1-1.fc40.s390x",
+      "evra": "2.7.2-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "cryptsetup"
       }
     },
     "vim-data": {
-      "evra": "2:9.1.309-1.fc40.noarch",
+      "evra": "2:9.1.354-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.309-1.fc40.s390x",
+      "evra": "2:9.1.354-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2462,19 +2468,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-04-16T00:00:00Z",
+    "generated": "2024-05-04T00:00:00Z",
     "rpmmd_repos": {
-      "fedora-candidate-compose": {
+      "fedora": {
         "generated": "2024-04-14T18:51:01Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-04-15T23:01:11Z"
+        "generated": "2024-05-03T23:33:28Z"
       },
-      "fedora-next": {
-        "generated": "2024-04-15T08:47:20Z"
-      },
-      "fedora-next-updates": {
-        "generated": "2024-02-13T17:21:09Z"
+      "fedora-updates": {
+        "generated": "2024-05-04T01:15:22Z"
       }
     }
   }
