@@ -106,6 +106,8 @@ while true; do
                 # Since growpart does not understand device mapper, we have to use sfdisk.
                 echo ", +" | sfdisk --no-reread --no-tell-kernel --force -N "${partnum}" "${PKNAME}"
                 udevadm settle || : # Wait for udev-triggered kpartx to update mappings
+            elif [[ "${PKNAME}" = /dev/dasd* ]]; then
+                echo "partition is on DASD device; skipping growpart"
             else
                 partnum=$(cat "/sys/dev/block/${MAJMIN}/partition")
                 # XXX: ideally this'd be idempotent and we wouldn't `|| :`
