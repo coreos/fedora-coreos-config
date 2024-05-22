@@ -1,5 +1,5 @@
 [Unit]
-Description=CoreOS Ensure Unique Boot Filesystem
+Description=CoreOS Ignition Ensure Unique Boot Filesystem
 ConditionPathExists=/etc/initrd-release
 OnFailure=emergency.target
 OnFailureJobMode=isolate
