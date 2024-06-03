@@ -1,5 +1,5 @@
 [Unit]
-Description=Ensure Unique `boot` Filesystem Label
+Description=CoreOS Ensure Unique Boot Filesystem Label
 ConditionPathExists=/etc/initrd-release
 DefaultDependencies=no
 Before=ignition-diskful.target
