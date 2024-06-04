@@ -83,10 +83,10 @@ install() {
 
     # IBM Secure Execution. Ignition config for reencryption of / and /boot
     inst_simple "$moddir/01-secex.ign" /usr/lib/coreos/01-secex.ign
-    inst_simple "$moddir/coreos-secex-ignition-decrypt.service" \
-        "$systemdsystemunitdir/coreos-secex-ignition-decrypt.service"
-    inst_script "$moddir/coreos-secex-ignition-decrypt.sh" \
-        "/usr/sbin/coreos-secex-ignition-decrypt"
+    inst_simple "$moddir/coreos-secex-ignition-prepare.service" \
+        "$systemdsystemunitdir/coreos-secex-ignition-prepare.service"
+    inst_script "$moddir/coreos-secex-ignition-prepare.sh" \
+        "/usr/sbin/coreos-secex-ignition-prepare"
 
     inst_multiple jq blkid
     inst_script "$moddir/coreos-rootflags.sh" \
