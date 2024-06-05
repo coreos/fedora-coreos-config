@@ -41,7 +41,6 @@ packages:
   ## checkpoint/restore. https://github.com/coreos/fedora-coreos-tracker/issues/1370
   - crun criu criu-libs
   - podman
-  - runc
   - skopeo
   - toolbox
   # passt provides user-mode networking daemons for namespaces
