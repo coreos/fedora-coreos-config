@@ -331,13 +331,13 @@
       }
     },
     "containers-common": {
-      "evra": "5:0.58.0-2.fc40.noarch",
+      "evra": "5:0.59.1-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
     },
     "containers-common-extra": {
-      "evra": "5:0.58.0-2.fc40.noarch",
+      "evra": "5:0.59.1-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
@@ -1722,6 +1722,18 @@
         "sourcerpm": "linux-firmware"
       }
     },
+    "lld-libs": {
+      "evra": "18.1.6-1.fc40.aarch64",
+      "metadata": {
+        "sourcerpm": "lld"
+      }
+    },
+    "llvm-libs": {
+      "evra": "18.1.6-2.fc40.aarch64",
+      "metadata": {
+        "sourcerpm": "llvm"
+      }
+    },
     "lmdb-libs": {
       "evra": "0.9.33-1.fc40.aarch64",
       "metadata": {
@@ -2497,7 +2509,7 @@
       }
     },
     "wasmedge-rt": {
-      "evra": "0.13.5-2.fc40.aarch64",
+      "evra": "0.14.0-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "wasmedge"
       }
@@ -2576,16 +2588,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-06-07T00:00:00Z",
+    "generated": "2024-06-08T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:04Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-06-07T16:23:49Z"
+        "generated": "2024-06-08T16:33:34Z"
       },
       "fedora-updates": {
-        "generated": "2024-06-07T04:51:52Z"
+        "generated": "2024-06-08T05:17:05Z"
       }
     }
   }
