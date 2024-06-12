@@ -9,6 +9,18 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  containers-common:
+    evra: 5:0.59.1-2.fc40.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-ebe5c816a1
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1748
+      type: fast-track
+  containers-common-extra:
+    evra: 5:0.59.1-2.fc40.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-ebe5c816a1
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1748
+      type: fast-track
   ignition:
     evr: 2.19.0-1.fc40
     metadata:
