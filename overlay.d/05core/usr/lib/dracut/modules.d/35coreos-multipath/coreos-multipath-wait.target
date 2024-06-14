@@ -15,6 +15,4 @@ OnFailureJobMode=isolate
 # already have our multipath target.
 Before=coreos-ignition-setup-user.service
 
-# This is already enforced by coreos-multipath-trigger.service, though ideally
-# eventually we can get rid of that one and then we *would* need this.
 Before=cryptsetup-pre.target
