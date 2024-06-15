@@ -9,6 +9,11 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  container-selinux:
+    evra: 2:2.231.0-6.fc41.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
+      type: pin
   device-mapper:
     evr: 1.02.197-1.fc40
     metadata:
