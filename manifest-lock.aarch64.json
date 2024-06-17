@@ -55,19 +55,19 @@
       }
     },
     "afterburn": {
-      "evra": "5.5.1-2.fc40.aarch64",
+      "evra": "5.5.1-4.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rust-afterburn"
       }
     },
     "afterburn-dracut": {
-      "evra": "5.5.1-2.fc40.aarch64",
+      "evra": "5.5.1-4.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rust-afterburn"
       }
     },
     "alternatives": {
-      "evra": "1.26-3.fc40.aarch64",
+      "evra": "1.27-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "chkconfig"
       }
@@ -169,7 +169,7 @@
       }
     },
     "bootupd": {
-      "evra": "0.2.18-2.fc40.aarch64",
+      "evra": "0.2.19-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rust-bootupd"
       }
@@ -181,7 +181,7 @@
       }
     },
     "bsdtar": {
-      "evra": "3.7.2-3.fc40.aarch64",
+      "evra": "3.7.2-4.fc40.aarch64",
       "metadata": {
         "sourcerpm": "libarchive"
       }
@@ -319,7 +319,7 @@
       }
     },
     "container-selinux": {
-      "evra": "2:2.230.0-1.fc40.noarch",
+      "evra": "2:2.231.0-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "container-selinux"
       }
@@ -343,13 +343,13 @@
       }
     },
     "coreos-installer": {
-      "evra": "0.21.0-1.fc40.aarch64",
+      "evra": "0.21.0-3.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.21.0-1.fc40.aarch64",
+      "evra": "0.21.0-3.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
@@ -595,7 +595,7 @@
       }
     },
     "ethtool": {
-      "evra": "2:6.7-1.fc40.aarch64",
+      "evra": "2:6.9-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "ethtool"
       }
@@ -607,7 +607,7 @@
       }
     },
     "fedora-gpg-keys": {
-      "evra": "40-1.noarch",
+      "evra": "40-2.noarch",
       "metadata": {
         "sourcerpm": "fedora-repos"
       }
@@ -631,19 +631,19 @@
       }
     },
     "fedora-repos": {
-      "evra": "40-1.noarch",
+      "evra": "40-2.noarch",
       "metadata": {
         "sourcerpm": "fedora-repos"
       }
     },
     "fedora-repos-archive": {
-      "evra": "40-1.noarch",
+      "evra": "40-2.noarch",
       "metadata": {
         "sourcerpm": "fedora-repos"
       }
     },
     "fedora-repos-ostree": {
-      "evra": "40-1.noarch",
+      "evra": "40-2.noarch",
       "metadata": {
         "sourcerpm": "fedora-repos"
       }
@@ -733,7 +733,7 @@
       }
     },
     "fwupd": {
-      "evra": "1.9.19-1.fc40.aarch64",
+      "evra": "1.9.20-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -853,25 +853,25 @@
       }
     },
     "grub2-common": {
-      "evra": "1:2.06-121.fc40.noarch",
+      "evra": "1:2.06-123.fc40.noarch",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-efi-aa64": {
-      "evra": "1:2.06-121.fc40.aarch64",
+      "evra": "1:2.06-123.fc40.aarch64",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-tools": {
-      "evra": "1:2.06-121.fc40.aarch64",
+      "evra": "1:2.06-123.fc40.aarch64",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.06-121.fc40.aarch64",
+      "evra": "1:2.06-123.fc40.aarch64",
       "metadata": {
         "sourcerpm": "grub2"
       }
@@ -1051,25 +1051,25 @@
       }
     },
     "kernel": {
-      "evra": "6.8.9-300.fc40.aarch64",
+      "evra": "6.8.11-300.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.8.9-300.fc40.aarch64",
+      "evra": "6.8.11-300.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.8.9-300.fc40.aarch64",
+      "evra": "6.8.11-300.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.8.9-300.fc40.aarch64",
+      "evra": "6.8.11-300.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1135,7 +1135,7 @@
       }
     },
     "libarchive": {
-      "evra": "3.7.2-3.fc40.aarch64",
+      "evra": "3.7.2-4.fc40.aarch64",
       "metadata": {
         "sourcerpm": "libarchive"
       }
@@ -1231,7 +1231,7 @@
       }
     },
     "libedit": {
-      "evra": "3.1-50.20230828cvs.fc40.aarch64",
+      "evra": "3.1-51.20240517cvs.fc40.aarch64",
       "metadata": {
         "sourcerpm": "libedit"
       }
@@ -1261,7 +1261,7 @@
       }
     },
     "libgcc": {
-      "evra": "14.1.1-1.fc40.aarch64",
+      "evra": "14.1.1-4.fc40.aarch64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1381,7 +1381,7 @@
       }
     },
     "libmodulemd": {
-      "evra": "2.15.0-9.fc40.aarch64",
+      "evra": "2.15.0-12.fc40.aarch64",
       "metadata": {
         "sourcerpm": "libmodulemd"
       }
@@ -1591,7 +1591,7 @@
       }
     },
     "libstdc++": {
-      "evra": "14.1.1-1.fc40.aarch64",
+      "evra": "14.1.1-4.fc40.aarch64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1687,7 +1687,7 @@
       }
     },
     "libxml2": {
-      "evra": "2.12.6-1.fc40.aarch64",
+      "evra": "2.12.7-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "libxml2"
       }
@@ -1963,13 +1963,13 @@
       }
     },
     "ostree": {
-      "evra": "2024.5-1.fc40.aarch64",
+      "evra": "2024.6-2.fc40.aarch64",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-libs": {
-      "evra": "2024.5-1.fc40.aarch64",
+      "evra": "2024.6-2.fc40.aarch64",
       "metadata": {
         "sourcerpm": "ostree"
       }
@@ -2167,7 +2167,7 @@
       }
     },
     "rpm-sequoia": {
-      "evra": "1.6.0-2.fc40.aarch64",
+      "evra": "1.6.0-3.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rust-rpm-sequoia"
       }
@@ -2209,13 +2209,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "40.18-2.fc40.noarch",
+      "evra": "40.20-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "40.18-2.fc40.noarch",
+      "evra": "40.20-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2251,7 +2251,7 @@
       }
     },
     "shared-mime-info": {
-      "evra": "2.3-4.fc40.aarch64",
+      "evra": "2.3-5.fc40.aarch64",
       "metadata": {
         "sourcerpm": "shared-mime-info"
       }
@@ -2263,7 +2263,7 @@
       }
     },
     "skopeo": {
-      "evra": "1:1.15.0-1.fc40.aarch64",
+      "evra": "1:1.15.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "skopeo"
       }
@@ -2293,7 +2293,7 @@
       }
     },
     "spdlog": {
-      "evra": "1.12.0-3.fc40.aarch64",
+      "evra": "1.12.0-4.fc40.aarch64",
       "metadata": {
         "sourcerpm": "spdlog"
       }
@@ -2311,7 +2311,7 @@
       }
     },
     "ssh-key-dir": {
-      "evra": "0.1.4-6.fc40.aarch64",
+      "evra": "0.1.4-8.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rust-ssh-key-dir"
       }
@@ -2371,7 +2371,7 @@
       }
     },
     "stalld": {
-      "evra": "1.19.2-1.fc40.aarch64",
+      "evra": "1.19.3-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "stalld"
       }
@@ -2383,37 +2383,37 @@
       }
     },
     "systemd": {
-      "evra": "255.6-1.fc40.aarch64",
+      "evra": "255.7-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-container": {
-      "evra": "255.6-1.fc40.aarch64",
+      "evra": "255.7-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-libs": {
-      "evra": "255.6-1.fc40.aarch64",
+      "evra": "255.7-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-pam": {
-      "evra": "255.6-1.fc40.aarch64",
+      "evra": "255.7-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-resolved": {
-      "evra": "255.6-1.fc40.aarch64",
+      "evra": "255.7-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-udev": {
-      "evra": "255.6-1.fc40.aarch64",
+      "evra": "255.7-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
@@ -2563,7 +2563,7 @@
       }
     },
     "zram-generator": {
-      "evra": "1.1.2-9.fc40.aarch64",
+      "evra": "1.1.2-11.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rust-zram-generator"
       }
@@ -2576,16 +2576,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-05-19T00:00:00Z",
+    "generated": "2024-06-02T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:04Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-05-18T23:56:37Z"
+        "generated": "2024-05-19T23:38:19Z"
       },
       "fedora-updates": {
-        "generated": "2024-05-19T01:25:41Z"
+        "generated": "2024-06-02T01:16:49Z"
       }
     }
   }
