@@ -150,7 +150,6 @@ fi
 if [[ "${secure_execution}" = "1" ]]; then
     mkdir -p /run/coreos/
     touch /run/coreos/secure-execution
-    cp /usr/lib/coreos/01-secex.ign /usr/lib/ignition/base.d/01-secex.ign
     # Add dropins to disable Ignition logging for all stages
     stages=("fetch-offline" "fetch" "kargs" "disks" "mount" "files")
     for s in "${stages[@]}"; do
@@ -167,5 +166,5 @@ EOF
     # This one is done dynamically because it hard Requires a device to appear
     # and if it's always part of the transaction, systemd will want the device
     # to appear regardless of ConditionPathExists.
-    add_requires coreos-secex-ignition-decrypt.service ignition-diskful.target
+    add_requires coreos-secex-ignition-prepare.service ignition-diskful.target
 fi
