@@ -51,34 +51,25 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-if is_rhcos8; then
-    if [ $(hostnamectl --transient) != 'localhost' ]; then
-        fatal "transient hostname was not expected"
-    fi
-    if [ ! -z $(hostnamectl --static) ]; then
-        fatal "static hostname not expected to be set"
-    fi
-else
-    output=$(hostnamectl --json=pretty)
-    hostname=$(echo "$output" | jq -r '.Hostname')
-    fallback=$(echo "$output" | jq -r '.DefaultHostname')
-    static=$(echo "$output" | jq -r '.StaticHostname')
-    namesource=$(echo "$output" | jq -r '.HostnameSource')
+output=$(hostnamectl --json=pretty)
+hostname=$(echo "$output" | jq -r '.Hostname')
+fallback=$(echo "$output" | jq -r '.DefaultHostname')
+static=$(echo "$output" | jq -r '.StaticHostname')
+namesource=$(echo "$output" | jq -r '.HostnameSource')
 
-    if [ "$hostname" != 'localhost' ]; then
-        fatal "hostname was not expected"
-    fi
-    if [ "$fallback" != 'localhost' ]; then
-        fatal "fallback hostname was not expected"
-    fi
-    if [ "$static" != 'null' ]; then
-        fatal "static hostname not expected to be set"
-    fi
-    if [ "$namesource" != 'default' ]; then
-        # For this test since we disabled NM setting the hostname we
-        # expect the hostname to have been set via the fallback/default
-        fatal "hostname was set from non-default/fallback source"
-    fi
+if [ "$hostname" != 'localhost' ]; then
+    fatal "hostname was not expected"
+fi
+if [ "$fallback" != 'localhost' ]; then
+    fatal "fallback hostname was not expected"
+fi
+if [ "$static" != 'null' ]; then
+    fatal "static hostname not expected to be set"
+fi
+if [ "$namesource" != 'default' ]; then
+    # For this test since we disabled NM setting the hostname we
+    # expect the hostname to have been set via the fallback/default
+    fatal "hostname was set from non-default/fallback source"
 fi
 
 ok "fallback hostname wired up correctly"

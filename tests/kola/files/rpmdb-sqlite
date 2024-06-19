@@ -2,8 +2,7 @@
 ## kola:
 ##   # Read only test thus safe to run in parallel
 ##   exclusive: false
-##   description: Verify that we're using the sqlite rpmdb backend
-##     for RHCOS 9+ and FCOS 33+.
+##   description: Verify that we're using the sqlite rpmdb backend.
 
 # See https://github.com/coreos/fedora-coreos-tracker/issues/623
 
@@ -11,11 +10,6 @@ set -xeuo pipefail
 
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
-
-if is_rhcos8; then
-    ok "nothing to check for RHCOS 8"
-    exit 0
-fi
 
 if [ ! -f /usr/share/rpm/rpmdb.sqlite ]; then
     fatal "Didn't find file /usr/share/rpm/rpmdb.sqlite"
