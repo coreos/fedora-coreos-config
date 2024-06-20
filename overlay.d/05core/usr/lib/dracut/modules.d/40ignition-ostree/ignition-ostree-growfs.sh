@@ -111,6 +111,18 @@ while true; do
                 # XXX: ideally this'd be idempotent and we wouldn't `|| :`
                 growpart "${PKNAME}" "${partnum}" || :
             fi
+            # If this is a 512e disk, then ensure the partition end is 4K
+            # aligned to be compatible with LUKS. If it's a 4Kn disk, `size`
+            # necessarily must be 4K aligned (note the sysfs value is always
+            # reported in 512b sizes). We should be able to drop this once
+            # https://github.com/util-linux/util-linux/issues/2140 is fixed.
+            size=$(cat "/sys/dev/block/${MAJMIN}/size")
+            phy_sec=$(blockdev --getpbsz "${PKNAME}")
+            if [ "$((size % 8))" != 0 ] && [ "${phy_sec:-}" = 4096 ]; then
+                size=$(((size >> 3) << 3))  # round down to nearest 4K boundary
+                echo ", ${size}" | sfdisk --no-reread --force -N "${partnum}" "${PKNAME}"
+                partx --update --nr "${partnum}" "${PKNAME}"
+            fi
             ;;
         crypt)
             # XXX: yuck... we need to expose this sanely in clevis

@@ -42,6 +42,7 @@ install() {
     inst_multiple  \
         basename   \
         blkid      \
+        blockdev   \
         cat        \
         dirname    \
         findmnt    \
