@@ -101,8 +101,10 @@ while true; do
         part)
             eval $(udevadm info --query property --export "${current_blkdev}" | grep ^DM_ || :)
             if [ -n "${DM_MPATH:-}" ]; then
+                PKNAME=/dev/mapper/${DM_MPATH}
+                partnum=${DM_PART}
                 # Since growpart does not understand device mapper, we have to use sfdisk.
-                echo ", +" | sfdisk --no-reread --no-tell-kernel --force -N "${DM_PART}" "/dev/mapper/${DM_MPATH}"
+                echo ", +" | sfdisk --no-reread --no-tell-kernel --force -N "${partnum}" "${PKNAME}"
                 udevadm settle || : # Wait for udev-triggered kpartx to update mappings
             else
                 partnum=$(cat "/sys/dev/block/${MAJMIN}/partition")
