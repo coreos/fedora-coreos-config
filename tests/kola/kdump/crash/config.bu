@@ -12,3 +12,8 @@ systemd:
   units:
     - name: kdump.service
       enabled: true
+      dropins:
+        - name: debug.conf
+          contents: |
+            [Service]
+            Environment="debug=1"
