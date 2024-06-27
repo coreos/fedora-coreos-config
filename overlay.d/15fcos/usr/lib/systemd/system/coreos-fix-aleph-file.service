@@ -1,0 +1,14 @@
+# Remove after the next barrier release
+
+[Unit]
+Description=Fix CoreOS Aleph File
+Documentation=https://github.com/coreos/fedora-coreos-tracker/issues/1724
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-fix-aleph-file
+RemainAfterExit=yes
+MountFlags=slave
+
+[Install]
+WantedBy=multi-user.target
