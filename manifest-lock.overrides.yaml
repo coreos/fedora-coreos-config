@@ -19,3 +19,23 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f2e6b90acd
       type: fast-track
+  kernel:
+    evr: 6.8.11-300.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1752
+      type: pin
+  kernel-core:
+    evr: 6.8.11-300.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1752
+      type: pin
+  kernel-modules:
+    evr: 6.8.11-300.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1752
+      type: pin
+  kernel-modules-core:
+    evr: 6.8.11-300.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1752
+      type: pin
