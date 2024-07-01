@@ -15,6 +15,10 @@ cleanup() {
 
 trap cleanup EXIT
 
+# copy base Secure Execution config (enables LUKS+dm-verity for boot and root partitions)
+cp /usr/lib/coreos/01-secex.ign /usr/lib/ignition/base.d/01-secex.ign
+
+# decrypt user's config
 tmpd=$(mktemp -d)
 
 if [ ! -e "${disk}" ]; then

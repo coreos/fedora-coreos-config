@@ -1,7 +1,7 @@
 # This service is enabled by coreos-diskful-generator
 
 [Unit]
-Description=CoreOS Secex Ignition Config Decryptor
+Description=CoreOS Secex Ignition Config Preparation
 ConditionPathExists=/etc/initrd-release
 ConditionPathExists=/run/coreos/secure-execution
 DefaultDependencies=false
@@ -17,4 +17,4 @@ Before=ignition-fetch-offline.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/sbin/coreos-secex-ignition-decrypt
+ExecStart=/usr/sbin/coreos-secex-ignition-prepare
