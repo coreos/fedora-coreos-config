@@ -157,6 +157,8 @@ packages:
   - iptables-legacy
   # GPU Firmware files (not broken out into subpackage of linux-firmware in RHEL yet)
   - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
+  # NIC firmware we've traditionally shipped but then were split out of linux-firmware in Fedora
+  - qed-firmware # https://github.com/coreos/fedora-coreos-tracker/issues/1746
 
 
 # - irqbalance

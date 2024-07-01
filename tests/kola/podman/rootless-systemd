@@ -66,10 +66,6 @@ main() {
     sleep 5
 
     retryflag="--retry-all-errors"
-    # --retry-all-errors flag passed to curl is not available on RHEL8
-    if is_rhcos8; then
-        retryflag="--retry-connrefused"
-    fi
     # Try to grab the web page. Retry as it might not be up fully yet.
     if ! curl --silent --show-error --retry 5 ${retryflag} http://localhost:8080 >/dev/null; then
         runascoreuser podman logs httpd
