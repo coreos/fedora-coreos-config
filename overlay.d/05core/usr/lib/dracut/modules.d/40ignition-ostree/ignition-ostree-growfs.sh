@@ -101,13 +101,27 @@ while true; do
         part)
             eval $(udevadm info --query property --export "${current_blkdev}" | grep ^DM_ || :)
             if [ -n "${DM_MPATH:-}" ]; then
+                PKNAME=/dev/mapper/${DM_MPATH}
+                partnum=${DM_PART}
                 # Since growpart does not understand device mapper, we have to use sfdisk.
-                echo ", +" | sfdisk --no-reread --no-tell-kernel --force -N "${DM_PART}" "/dev/mapper/${DM_MPATH}"
+                echo ", +" | sfdisk --no-reread --no-tell-kernel --force -N "${partnum}" "${PKNAME}"
                 udevadm settle || : # Wait for udev-triggered kpartx to update mappings
             else
                 partnum=$(cat "/sys/dev/block/${MAJMIN}/partition")
                 # XXX: ideally this'd be idempotent and we wouldn't `|| :`
                 growpart "${PKNAME}" "${partnum}" || :
+            fi
+            # If this is a 512e disk, then ensure the partition end is 4K
+            # aligned to be compatible with LUKS. If it's a 4Kn disk, `size`
+            # necessarily must be 4K aligned (note the sysfs value is always
+            # reported in 512b sizes). We should be able to drop this once
+            # https://github.com/util-linux/util-linux/issues/2140 is fixed.
+            size=$(cat "/sys/dev/block/${MAJMIN}/size")
+            phy_sec=$(blockdev --getpbsz "${PKNAME}")
+            if [ "$((size % 8))" != 0 ] && [ "${phy_sec:-}" = 4096 ]; then
+                size=$(((size >> 3) << 3))  # round down to nearest 4K boundary
+                echo ", ${size}" | sfdisk --no-reread --force -N "${partnum}" "${PKNAME}"
+                partx --update --nr "${partnum}" "${PKNAME}"
             fi
             ;;
         crypt)

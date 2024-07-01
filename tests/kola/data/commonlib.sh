@@ -34,6 +34,7 @@ is_fcos() {
 # Note when using this, you probably also want to check `get_rhel_maj_ver`.
 is_rhcos() {
     source /etc/os-release
+    { [ "${ID}" == "rhel" ] && [ "${VARIANT_ID}" == "coreos" ]; } || \
     [ "${ID}" == "rhcos" ]
 }
 
@@ -46,19 +47,20 @@ get_fedora_ver() {
 
 get_rhel_maj_ver() {
     source /etc/os-release
-    echo "${RHEL_VERSION%%.*}"
-}
-
-# rhcos8
-is_rhcos8() {
-    source /etc/os-release
-    [ "${ID}" == "rhcos" ] && [ "${RHEL_VERSION%%.*}" -eq 8 ]
+    if [ "${ID}" == "rhcos" ]; then
+        echo "${RHEL_VERSION%%.*}"
+    elif [ "${ID}" == "rhel" ]; then
+        echo "${VERSION_ID%%.*}"
+    else
+        fatal "Unknown ID $ID"
+    fi
 }
 
 # rhcos9
 is_rhcos9() {
     source /etc/os-release
-    [ "${ID}" == "rhcos" ] && [ "${RHEL_VERSION%%.*}" -eq 9 ]
+    { [ "${ID}" == "rhcos" ] && [ "${RHEL_VERSION%%.*}" -eq 9 ]; } || \
+    { [ "${ID}" == "rhel" ] && [ "${VERSION_ID%%.*}" -eq 9 ]; }
 }
 
 # scos
