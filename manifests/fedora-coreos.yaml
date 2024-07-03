@@ -20,19 +20,6 @@ conditional-include:
   - if: basearch != "s390x"
     # And remove some cruft from grub2
     include: grub2-removals.yaml
-  - if: releasever == 39
-    # passwd RPM was obsoleted by shadow-utils in F40+, but we need to keep
-    # including it in F39. Remove this when we are on F40+ on all streams.
-    include: passwd.yaml
-  - if: releasever == 39
-    # No longer need CNI plugins in f40 since Podman dropped
-    # support for CNI networking entirely in Podmanv5
-    # Remove this once we have Podman v5 in f39.
-    # xref: https://github.com/coreos/fedora-coreos-tracker/issues/1629
-    include: cni-plugins.yaml
-  - if: releasever == 39
-    # Checks for breaking changes that came with Podman v5.
-    include: podman-v5.yaml
   # On <41, we want to keep making sure dnf doesn't slip in somehow
   # On 41+, we do want it
   # https://github.com/coreos/fedora-coreos-tracker/issues/1687
