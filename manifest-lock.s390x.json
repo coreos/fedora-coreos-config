@@ -991,7 +991,7 @@
       }
     },
     "kexec-tools": {
-      "evra": "2.0.28-4.fc40.s390x",
+      "evra": "2.0.28-10.fc40.s390x",
       "metadata": {
         "sourcerpm": "kexec-tools"
       }
@@ -1006,6 +1006,12 @@
       "evra": "1.6.3-3.fc40.s390x",
       "metadata": {
         "sourcerpm": "keyutils"
+      }
+    },
+    "kdump-utils": {
+      "evra": "1.0.42-10.fc40.s390x",
+      "metadata": {
+        "sourcerpm": "kdump-utils"
       }
     },
     "kmod": {
@@ -1690,6 +1696,12 @@
       "evra": "2.10-12.fc40.s390x",
       "metadata": {
         "sourcerpm": "lzo"
+      }
+    },
+    "makedumpfile": {
+      "evra": "1.7.5-11.fc40.s390x",
+      "metadata": {
+        "sourcerpm": "makedumpfile"
       }
     },
     "mdadm": {
