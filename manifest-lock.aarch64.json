@@ -1050,6 +1050,12 @@
         "sourcerpm": "kbd"
       }
     },
+    "kdump-utils": {
+      "evra": "1.0.42-10.fc40.aarch64",
+      "metadata": {
+        "sourcerpm": "kdump-utils"
+      }
+    },
     "kernel": {
       "evra": "6.8.11-300.fc40.aarch64",
       "metadata": {
@@ -1075,7 +1081,7 @@
       }
     },
     "kexec-tools": {
-      "evra": "2.0.28-4.fc40.aarch64",
+      "evra": "2.0.28-10.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kexec-tools"
       }
@@ -1786,6 +1792,12 @@
       "evra": "2.10-12.fc40.aarch64",
       "metadata": {
         "sourcerpm": "lzo"
+      }
+    },
+    "makedumpfile": {
+      "evra": "1.7.5-11.fc40.aarch64",
+      "metadata": {
+        "sourcerpm": "makedumpfile"
       }
     },
     "mdadm": {

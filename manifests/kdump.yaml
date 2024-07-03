@@ -1,8 +1,0 @@
-packages:
-# makedumpfile is needed for kdump and was broken out to a subpackage
-# in F41+. Move this to a main manifest file when we no longer support <F41.
-  - makedumpfile
-# systemd service files and other tools were moved into a subpackage
-# in F41+. Move this to a main manifest file when we no longer support <F41.
-# https://src.fedoraproject.org/rpms/kexec-tools/c/372b4c6c1597c3d9aaddda2d691260474973989e?branch=rawhide
-  - kdump-utils
