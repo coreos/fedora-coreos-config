@@ -6,6 +6,3 @@ enable fwupd-refresh.timer
 # Check if wifi firmwares are missing when NetworkManager-wifi is installed
 # https://github.com/coreos/fedora-coreos-tracker/issues/1575
 enable coreos-check-wireless-firmwares.service
-# Strip extraneous field in aleph files to avoid bootupctl failing
-# https://github.com/coreos/fedora-coreos-tracker/issues/1724
-enable coreos-fix-aleph-file.service
