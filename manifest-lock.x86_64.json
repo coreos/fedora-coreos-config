@@ -673,7 +673,7 @@
       }
     },
     "findutils": {
-      "evra": "1:4.9.0-8.fc40.x86_64",
+      "evra": "1:4.9.0-9.fc40.x86_64",
       "metadata": {
         "sourcerpm": "findutils"
       }
@@ -1075,25 +1075,25 @@
       }
     },
     "kernel": {
-      "evra": "6.8.11-300.fc40.x86_64",
+      "evra": "6.9.7-200.fc40.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.8.11-300.fc40.x86_64",
+      "evra": "6.9.7-200.fc40.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.8.11-300.fc40.x86_64",
+      "evra": "6.9.7-200.fc40.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.8.11-300.fc40.x86_64",
+      "evra": "6.9.7-200.fc40.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1285,7 +1285,7 @@
       }
     },
     "libgcc": {
-      "evra": "14.1.1-6.fc40.x86_64",
+      "evra": "14.1.1-7.fc40.x86_64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1495,7 +1495,7 @@
       }
     },
     "libpkgconf": {
-      "evra": "2.1.0-1.fc40.x86_64",
+      "evra": "2.1.1-1.fc40.x86_64",
       "metadata": {
         "sourcerpm": "pkgconf"
       }
@@ -1615,7 +1615,7 @@
       }
     },
     "libstdc++": {
-      "evra": "14.1.1-6.fc40.x86_64",
+      "evra": "14.1.1-7.fc40.x86_64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1975,19 +1975,19 @@
       }
     },
     "openssh": {
-      "evra": "9.6p1-1.fc40.2.x86_64",
+      "evra": "9.6p1-1.fc40.4.x86_64",
       "metadata": {
         "sourcerpm": "openssh"
       }
     },
     "openssh-clients": {
-      "evra": "9.6p1-1.fc40.2.x86_64",
+      "evra": "9.6p1-1.fc40.4.x86_64",
       "metadata": {
         "sourcerpm": "openssh"
       }
     },
     "openssh-server": {
-      "evra": "9.6p1-1.fc40.2.x86_64",
+      "evra": "9.6p1-1.fc40.4.x86_64",
       "metadata": {
         "sourcerpm": "openssh"
       }
@@ -2065,13 +2065,13 @@
       }
     },
     "pcre2": {
-      "evra": "10.42-2.fc40.2.x86_64",
+      "evra": "10.44-1.fc40.x86_64",
       "metadata": {
         "sourcerpm": "pcre2"
       }
     },
     "pcre2-syntax": {
-      "evra": "10.42-2.fc40.2.noarch",
+      "evra": "10.44-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "pcre2"
       }
@@ -2083,19 +2083,19 @@
       }
     },
     "pkgconf": {
-      "evra": "2.1.0-1.fc40.x86_64",
+      "evra": "2.1.1-1.fc40.x86_64",
       "metadata": {
         "sourcerpm": "pkgconf"
       }
     },
     "pkgconf-m4": {
-      "evra": "2.1.0-1.fc40.noarch",
+      "evra": "2.1.1-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "pkgconf"
       }
     },
     "pkgconf-pkg-config": {
-      "evra": "2.1.0-1.fc40.x86_64",
+      "evra": "2.1.1-1.fc40.x86_64",
       "metadata": {
         "sourcerpm": "pkgconf"
       }
@@ -2605,7 +2605,7 @@
       }
     },
     "zlib-ng-compat": {
-      "evra": "2.1.6-5.fc40.x86_64",
+      "evra": "2.1.7-1.fc40.x86_64",
       "metadata": {
         "sourcerpm": "zlib-ng"
       }
@@ -2624,16 +2624,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-07-01T00:00:00Z",
+    "generated": "2024-07-05T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:11Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-06-30T23:46:32Z"
+        "generated": "2024-07-04T11:04:41Z"
       },
       "fedora-updates": {
-        "generated": "2024-07-01T04:46:07Z"
+        "generated": "2024-07-05T06:13:33Z"
       }
     }
   }
