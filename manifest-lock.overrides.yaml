@@ -19,21 +19,3 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f2e6b90acd
       type: fast-track
-  openssh:
-    evr: 9.6p1-1.fc40.4
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-dc89a2e1bf
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1754
-      type: fast-track
-  openssh-clients:
-    evr: 9.6p1-1.fc40.4
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-dc89a2e1bf
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1754
-      type: fast-track
-  openssh-server:
-    evr: 9.6p1-1.fc40.4
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-dc89a2e1bf
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1754
-      type: fast-track
