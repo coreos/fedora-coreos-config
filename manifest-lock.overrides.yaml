@@ -8,4 +8,14 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  selinux-policy:
+    evra: 40.20-1.fc40.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1758
+      type: pin
+  selinux-policy-targeted:
+    evra: 40.20-1.fc40.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1758
+      type: pin
