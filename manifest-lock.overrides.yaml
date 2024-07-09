@@ -57,3 +57,13 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-dc89a2e1bf
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1754
       type: fast-track
+  selinux-policy:
+    evra: 40.20-1.fc40.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1758
+      type: pin
+  selinux-policy-targeted:
+    evra: 40.20-1.fc40.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1758
+      type: pin
