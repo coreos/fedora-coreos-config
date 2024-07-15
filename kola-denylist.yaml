@@ -22,3 +22,7 @@
   snooze: 2024-07-15
   arches:
     - aarch64
+- pattern: ext.config.shared.ntp.chrony.dhcp-propagation
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1761
+  warn: true
+  snooze: 2024-07-29
