@@ -16,9 +16,3 @@
   warn: true
   arches:
     - ppc64le
-- pattern: ext.config.kdump.crash
-  tracker: https://github.com/rhkdump/kdump-utils/issues/22
-  warn: true
-  snooze: 2024-07-15
-  arches:
-    - aarch64
