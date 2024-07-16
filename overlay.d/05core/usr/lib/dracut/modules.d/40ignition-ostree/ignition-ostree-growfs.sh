@@ -106,6 +106,8 @@ while true; do
                 # Since growpart does not understand device mapper, we have to use sfdisk.
                 echo ", +" | sfdisk --no-reread --no-tell-kernel --force -N "${partnum}" "${PKNAME}"
                 udevadm settle || : # Wait for udev-triggered kpartx to update mappings
+            elif [[ "${PKNAME}" = /dev/dasd* ]]; then
+                echo "partition is on DASD device; skipping growpart"
             else
                 partnum=$(cat "/sys/dev/block/${MAJMIN}/partition")
                 # XXX: ideally this'd be idempotent and we wouldn't `|| :`
@@ -125,13 +127,23 @@ while true; do
             fi
             ;;
         crypt)
-            # XXX: yuck... we need to expose this sanely in clevis
-            (. /usr/bin/clevis-luks-common-functions
-             eval $(udevadm info --query=property --export "${NAME}")
-             # lsblk doesn't print PKNAME of crypt devices with --nodeps
-             PKNAME=/dev/$(ls "/sys/dev/block/${MAJMIN}/slaves")
-             clevis_luks_unlock_device "${PKNAME}" | cryptsetup resize -d- "${DM_NAME}"
-            )
+            # lsblk doesn't print PKNAME of crypt devices with --nodeps
+            PKNAME=/dev/$(ls "/sys/dev/block/${MAJMIN}/slaves")
+            LUKS_DUMP=$(cryptsetup luksDump "$PKNAME" --dump-json-metadata)
+            if jq -e '[.tokens[].type] | index("clevis")' <<< "$LUKS_DUMP"; then
+                # XXX: yuck... we need to expose this sanely in clevis
+                (. /usr/bin/clevis-luks-common-functions
+                 eval $(udevadm info --query=property --export "${NAME}")
+                 clevis_luks_unlock_device "${PKNAME}" | cryptsetup resize -d- "${DM_NAME}"
+                )
+            elif jq -e '.segments["0"].encryption | startswith("paes")' <<< "$LUKS_DUMP"; then
+                # CEX LUKS volume: https://github.com/coreos/ignition/issues/1693
+                cryptsetup resize root --key-file /etc/luks/cex.key
+            else
+                echo "$LUKS_DUMP"
+                echo "error: unknown LUKS device"
+                exit 1
+            fi
             ;;
         # already checked
         *) echo "unreachable" 1>&2; exit 1 ;;
