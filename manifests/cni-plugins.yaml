@@ -1,5 +1,0 @@
-# Issue: https://github.com/coreos/fedora-coreos-config/pull/2818
-# Delete this file once we are on Podman v5 everywhere.
-# i.e. We have moved past F39.
-packages:
-  - containernetworking-plugins podman-plugins
