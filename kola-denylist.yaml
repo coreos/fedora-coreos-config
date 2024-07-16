@@ -17,8 +17,8 @@
   arches:
     - ppc64le
 - pattern: ext.config.kdump.crash
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1750
+  tracker: https://github.com/rhkdump/kdump-utils/issues/22
   # warn: true (disabled on promotion)
   # snooze: 2024-07-15 (disabled on promotion)
   arches:
-    - ppc64le
+    - aarch64
