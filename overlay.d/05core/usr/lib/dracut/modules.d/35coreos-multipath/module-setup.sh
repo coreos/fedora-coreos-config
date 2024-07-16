@@ -23,6 +23,4 @@ install() {
     # we don't enable these; they're enabled dynamically via the generator
     inst_simple "$moddir/coreos-multipath-wait.target" \
         "$systemdsystemunitdir/coreos-multipath-wait.target"
-    inst_simple "$moddir/coreos-multipath-trigger.service" \
-        "$systemdsystemunitdir/coreos-multipath-trigger.service"
 }

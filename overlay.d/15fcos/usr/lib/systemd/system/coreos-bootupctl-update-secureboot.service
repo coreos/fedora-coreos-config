@@ -1,0 +1,20 @@
+# Remove after the next barrier release
+
+[Unit]
+Description=Update Bootloader for Secure Boot-enabled Systems
+Documentation=https://github.com/coreos/fedora-coreos-tracker/issues/1752
+ConditionSecurity=uefi-secureboot
+
+# make sure to run after the aleph file is fixed
+# see https://github.com/coreos/fedora-coreos-tracker/issues/1724
+After=coreos-fix-aleph-file.service
+Requires=coreos-fix-aleph-file.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-update-bootloader
+RemainAfterExit=yes
+MountFlags=slave
+
+[Install]
+WantedBy=multi-user.target
