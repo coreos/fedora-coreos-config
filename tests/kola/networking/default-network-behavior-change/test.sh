@@ -160,7 +160,7 @@ if [ "$ID" == "fedora" ]; then
     else
         fatal "fail: not operating on expected OS version"
     fi
-elif [[ "${ID_LIKE}" =~ "rhel" ]]; then
+elif [[ "${ID}" = "rhel" ]] || [[ "${ID_LIKE}" =~ "rhel" ]]; then
     # For the version comparison use string substitution to remove the
     # '.` from the version so we can use integer comparison
 

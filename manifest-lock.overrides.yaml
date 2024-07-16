@@ -9,20 +9,51 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  containers-common:
-    evra: 5:0.59.1-2.fc40.noarch
+  afterburn:
+    evr: 5.6.0-1.fc40
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-ebe5c816a1
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1748
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f2e6b90acd
       type: fast-track
-  containers-common-extra:
-    evra: 5:0.59.1-2.fc40.noarch
+  afterburn-dracut:
+    evr: 5.6.0-1.fc40
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-ebe5c816a1
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1748
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f2e6b90acd
       type: fast-track
-  ignition:
-    evr: 2.19.0-1.fc40
+  kernel:
+    evr: 6.8.11-300.fc40
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-fd0b1de169
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1752
+      type: pin
+  kernel-core:
+    evr: 6.8.11-300.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1752
+      type: pin
+  kernel-modules:
+    evr: 6.8.11-300.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1752
+      type: pin
+  kernel-modules-core:
+    evr: 6.8.11-300.fc40
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1752
+      type: pin
+  openssh:
+    evr: 9.6p1-1.fc40.4
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-dc89a2e1bf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1754
+      type: fast-track
+  openssh-clients:
+    evr: 9.6p1-1.fc40.4
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-dc89a2e1bf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1754
+      type: fast-track
+  openssh-server:
+    evr: 9.6p1-1.fc40.4
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-dc89a2e1bf
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1754
       type: fast-track
