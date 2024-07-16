@@ -9,51 +9,13 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  afterburn:
-    evr: 5.6.0-1.fc40
+  selinux-policy:
+    evra: 40.20-1.fc40.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f2e6b90acd
-      type: fast-track
-  afterburn-dracut:
-    evr: 5.6.0-1.fc40
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f2e6b90acd
-      type: fast-track
-  kernel:
-    evr: 6.8.11-300.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1752
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1758
       type: pin
-  kernel-core:
-    evr: 6.8.11-300.fc40
+  selinux-policy-targeted:
+    evra: 40.20-1.fc40.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1752
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1758
       type: pin
-  kernel-modules:
-    evr: 6.8.11-300.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1752
-      type: pin
-  kernel-modules-core:
-    evr: 6.8.11-300.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1752
-      type: pin
-  openssh:
-    evr: 9.6p1-1.fc40.4
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-dc89a2e1bf
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1754
-      type: fast-track
-  openssh-clients:
-    evr: 9.6p1-1.fc40.4
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-dc89a2e1bf
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1754
-      type: fast-track
-  openssh-server:
-    evr: 9.6p1-1.fc40.4
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-dc89a2e1bf
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1754
-      type: fast-track
