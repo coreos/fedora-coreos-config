@@ -9,6 +9,7 @@ size: 10
 extra-kargs:
     # Disable SMT on systems vulnerable to MDS or any similar future issue.
     - mitigations=auto,nosmt
+    - enforcing=0
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
 # defaulting to `ip=auto rd.neednet=1` when it doesn't see this key.
