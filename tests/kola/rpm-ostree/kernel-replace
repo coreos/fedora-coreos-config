@@ -5,9 +5,6 @@
 ##   # We've seen some OOM when 1024M is used:
 ##   # https://github.com/coreos/fedora-coreos-tracker/issues/1506
 ##   minMemory: 2048
-##   # This test only runs on FCOS due to a problem with skopeo copy on
-##   # RHCOS. See: https://github.com/containers/skopeo/issues/1846
-##   distros: fcos
 ##   # Needs internet access as we fetch files from koji
 ##   # We add the "reprovision" tag here even though we aren't
 ##   # reprovisioning as a hack so that in our pipeline the test
@@ -43,13 +40,28 @@ set -euxo pipefail
 cd $(mktemp -d)
 
 # TODO: It'd be much better to test this via a registry
-image_dir=/var/tmp/fcos
-image=oci:$image_dir
-image_pull=ostree-unverified-image:$image
-tmp_imagedir=/var/tmp/fcos-tmp
-arch=$(arch)
-kver="6.2.9-300.fc38.${arch}"
 
+# define OS ID in order to assign appropriate kernel later
+OS_ID=$(. /etc/os-release; echo $ID)
+image_dir=/var/tmp/coreos
+image=oci:${image_dir}
+image_pull=ostree-unverified-image:$image
+tmp_imagedir=${image_dir}-tmp
+arch=$(arch)
+case "$OS_ID" in
+  rhcos|scos|rhel|centos)
+    kver="5.14.0-472.el9.${arch}"
+    url="https://mirror.stream.centos.org/9-stream/BaseOS/${arch}/os/Packages/kernel"
+    ;;
+  fedora)
+    kver="6.9.8-200.fc40.${arch}"
+    url="https://kojipkgs.fedoraproject.org//packages/kernel/6.9.8/200.fc40/${arch}/kernel"
+    ;;
+  *)
+    echo "Unknown OS_ID: ${OS_ID}"
+    exit 1
+    ;;
+esac
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
     # Take the existing ostree commit, and export it to a container image, then rebase to it.
@@ -80,16 +92,16 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   1)
     # Setup
     # copy the OCI dir to containers-storage for a local build
-    skopeo copy $image containers-storage:localhost/fcos
+    skopeo copy $image containers-storage:localhost/coreos
     rm "${image_dir}" -rf
     td=$(mktemp -d)
     cd ${td}
     version=$(rpm-ostree --version | grep Version)
-cat > Dockerfile << EOF
-FROM localhost/fcos
-RUN rpm-ostree cliwrap install-to-root /
+    cat > Containerfile << EOF
+FROM localhost/coreos
 RUN rpm-ostree override replace \
-    https://koji.fedoraproject.org/koji/buildinfo?buildID=2178613 && \
+    $url-{,core-,modules-,modules-core-,modules-extra-}$kver.rpm && \
+    rpm-ostree cleanup -m && \
     ostree container commit
 EOF
     # Older podman found in RHEL8 blows up without /etc/resolv.conf
@@ -101,12 +113,12 @@ EOF
         3.*) touched_resolv_conf=1; touch /etc/resolv.conf;;
       esac
     fi
-    podman build --net=host -t localhost/fcos-derived --squash .
+    podman build --net=host -t localhost/coreos-derived --squash .
     if test "${touched_resolv_conf}" -eq 1; then
       rm -vf /etc/resolv.conf
     fi
     derived=oci:$image_dir:derived
-    skopeo copy containers-storage:localhost/fcos-derived $derived
+    skopeo copy containers-storage:localhost/coreos-derived $derived
     rpm-ostree --version
     rpm-ostree rebase ostree-unverified-image:$derived
     ostree container image list --repo=/ostree/repo
@@ -118,7 +130,14 @@ EOF
     if test "$un" != "$kver"; then
       echo "Expected kernel $kver but found $un"
       exit 1
+    else
+      echo "Kernel switch to $un was successful"
     fi
     test -f /usr/lib/modules/$kver/initramfs.img
     test -f /usr/lib/modules/$kver/vmlinuz
+    ;;
+  *)
+    echo "Unknown AUTOPKGTEST_REBOOT_MARK: ${AUTOPKGTEST_REBOOT_MARK:-}"
+    exit 1
+    ;;
 esac

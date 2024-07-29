@@ -649,7 +649,7 @@
       }
     },
     "findutils": {
-      "evra": "1:4.9.0-8.fc40.ppc64le",
+      "evra": "1:4.9.0-9.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "findutils"
       }
@@ -769,25 +769,25 @@
       }
     },
     "glibc": {
-      "evra": "2.39-15.fc40.ppc64le",
+      "evra": "2.39-17.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.39-15.fc40.ppc64le",
+      "evra": "2.39-17.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.39-15.fc40.ppc64le",
+      "evra": "2.39-17.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.39-15.fc40.ppc64le",
+      "evra": "2.39-17.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -805,7 +805,7 @@
       }
     },
     "gnutls": {
-      "evra": "3.8.5-1.fc40.ppc64le",
+      "evra": "3.8.6-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "gnutls"
       }
@@ -1026,32 +1026,38 @@
         "sourcerpm": "kbd"
       }
     },
+    "kdump-utils": {
+      "evra": "1.0.42-10.fc40.ppc64le",
+      "metadata": {
+        "sourcerpm": "kdump-utils"
+      }
+    },
     "kernel": {
-      "evra": "6.8.11-300.fc40.ppc64le",
+      "evra": "6.9.7-200.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.8.11-300.fc40.ppc64le",
+      "evra": "6.9.7-200.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.8.11-300.fc40.ppc64le",
+      "evra": "6.9.7-200.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.8.11-300.fc40.ppc64le",
+      "evra": "6.9.7-200.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kexec-tools": {
-      "evra": "2.0.28-4.fc40.ppc64le",
+      "evra": "2.0.28-10.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kexec-tools"
       }
@@ -1237,7 +1243,7 @@
       }
     },
     "libgcc": {
-      "evra": "14.1.1-6.fc40.ppc64le",
+      "evra": "14.1.1-7.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1447,7 +1453,7 @@
       }
     },
     "libpkgconf": {
-      "evra": "2.1.0-1.fc40.ppc64le",
+      "evra": "2.1.1-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "pkgconf"
       }
@@ -1471,7 +1477,7 @@
       }
     },
     "librepo": {
-      "evra": "1.17.1-1.fc40.ppc64le",
+      "evra": "1.18.0-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "librepo"
       }
@@ -1579,7 +1585,7 @@
       }
     },
     "libstdc++": {
-      "evra": "14.1.1-6.fc40.ppc64le",
+      "evra": "14.1.1-7.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1764,6 +1770,12 @@
         "sourcerpm": "lzo"
       }
     },
+    "makedumpfile": {
+      "evra": "1.7.5-11.fc40.ppc64le",
+      "metadata": {
+        "sourcerpm": "makedumpfile"
+      }
+    },
     "mdadm": {
       "evra": "4.2-8.fc40.ppc64le",
       "metadata": {
@@ -1909,19 +1921,19 @@
       }
     },
     "openssh": {
-      "evra": "9.6p1-1.fc40.2.ppc64le",
+      "evra": "9.6p1-1.fc40.4.ppc64le",
       "metadata": {
         "sourcerpm": "openssh"
       }
     },
     "openssh-clients": {
-      "evra": "9.6p1-1.fc40.2.ppc64le",
+      "evra": "9.6p1-1.fc40.4.ppc64le",
       "metadata": {
         "sourcerpm": "openssh"
       }
     },
     "openssh-server": {
-      "evra": "9.6p1-1.fc40.2.ppc64le",
+      "evra": "9.6p1-1.fc40.4.ppc64le",
       "metadata": {
         "sourcerpm": "openssh"
       }
@@ -1963,13 +1975,13 @@
       }
     },
     "p11-kit": {
-      "evra": "0.25.3-4.fc40.ppc64le",
+      "evra": "0.25.5-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "p11-kit"
       }
     },
     "p11-kit-trust": {
-      "evra": "0.25.3-4.fc40.ppc64le",
+      "evra": "0.25.5-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "p11-kit"
       }
@@ -2005,13 +2017,13 @@
       }
     },
     "pcre2": {
-      "evra": "10.42-2.fc40.2.ppc64le",
+      "evra": "10.44-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "pcre2"
       }
     },
     "pcre2-syntax": {
-      "evra": "10.42-2.fc40.2.noarch",
+      "evra": "10.44-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "pcre2"
       }
@@ -2023,19 +2035,19 @@
       }
     },
     "pkgconf": {
-      "evra": "2.1.0-1.fc40.ppc64le",
+      "evra": "2.1.1-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "pkgconf"
       }
     },
     "pkgconf-m4": {
-      "evra": "2.1.0-1.fc40.noarch",
+      "evra": "2.1.1-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "pkgconf"
       }
     },
     "pkgconf-pkg-config": {
-      "evra": "2.1.0-1.fc40.ppc64le",
+      "evra": "2.1.1-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "pkgconf"
       }
@@ -2215,13 +2227,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "40.23-1.fc40.noarch",
+      "evra": "40.20-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "40.23-1.fc40.noarch",
+      "evra": "40.20-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2551,7 +2563,7 @@
       }
     },
     "zlib-ng-compat": {
-      "evra": "2.1.6-5.fc40.ppc64le",
+      "evra": "2.1.7-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "zlib-ng"
       }
@@ -2570,16 +2582,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-07-01T00:00:00Z",
+    "generated": "2024-07-09T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:03Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-06-30T23:45:23Z"
+        "generated": "2024-07-08T23:39:53Z"
       },
       "fedora-updates": {
-        "generated": "2024-07-01T04:45:53Z"
+        "generated": "2024-07-09T01:49:26Z"
       }
     }
   }
