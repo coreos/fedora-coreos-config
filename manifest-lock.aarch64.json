@@ -37,7 +37,7 @@
       }
     },
     "aardvark-dns": {
-      "evra": "1.11.0-1.fc40.aarch64",
+      "evra": "2:1.12.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "aardvark-dns"
       }
@@ -151,19 +151,13 @@
       }
     },
     "bind-libs": {
-      "evra": "32:9.18.26-1.fc40.aarch64",
-      "metadata": {
-        "sourcerpm": "bind"
-      }
-    },
-    "bind-license": {
-      "evra": "32:9.18.26-1.fc40.noarch",
+      "evra": "32:9.18.28-2.fc40.aarch64",
       "metadata": {
         "sourcerpm": "bind"
       }
     },
     "bind-utils": {
-      "evra": "32:9.18.26-1.fc40.aarch64",
+      "evra": "32:9.18.28-2.fc40.aarch64",
       "metadata": {
         "sourcerpm": "bind"
       }
@@ -331,25 +325,25 @@
       }
     },
     "containers-common": {
-      "evra": "5:0.59.2-1.fc40.noarch",
+      "evra": "5:0.60.0-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
     },
     "containers-common-extra": {
-      "evra": "5:0.59.2-1.fc40.noarch",
+      "evra": "5:0.60.0-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
     },
     "coreos-installer": {
-      "evra": "0.21.0-3.fc40.aarch64",
+      "evra": "0.22.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.21.0-3.fc40.aarch64",
+      "evra": "0.22.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
@@ -403,25 +397,25 @@
       }
     },
     "crypto-policies": {
-      "evra": "20240510-1.gitd287a42.fc40.noarch",
+      "evra": "20240725-1.git28d3e2d.fc40.noarch",
       "metadata": {
         "sourcerpm": "crypto-policies"
       }
     },
     "cryptsetup": {
-      "evra": "2.7.3-1.fc40.aarch64",
+      "evra": "2.7.4-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "cryptsetup"
       }
     },
     "cryptsetup-libs": {
-      "evra": "2.7.3-1.fc40.aarch64",
+      "evra": "2.7.4-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "cryptsetup"
       }
     },
     "curl": {
-      "evra": "8.6.0-8.fc40.aarch64",
+      "evra": "8.6.0-10.fc40.aarch64",
       "metadata": {
         "sourcerpm": "curl"
       }
@@ -781,7 +775,7 @@
       }
     },
     "git-core": {
-      "evra": "2.45.2-2.fc40.aarch64",
+      "evra": "2.46.0-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "git"
       }
@@ -793,25 +787,25 @@
       }
     },
     "glibc": {
-      "evra": "2.39-17.fc40.aarch64",
+      "evra": "2.39-22.fc40.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.39-17.fc40.aarch64",
+      "evra": "2.39-22.fc40.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.39-17.fc40.aarch64",
+      "evra": "2.39-22.fc40.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.39-17.fc40.aarch64",
+      "evra": "2.39-22.fc40.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -877,7 +871,7 @@
       }
     },
     "gvisor-tap-vsock-gvforwarder": {
-      "evra": "6:0.7.3-2.fc40.aarch64",
+      "evra": "6:0.7.4-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "gvisor-tap-vsock"
       }
@@ -1051,31 +1045,31 @@
       }
     },
     "kdump-utils": {
-      "evra": "1.0.42-10.fc40.aarch64",
+      "evra": "1.0.44-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kdump-utils"
       }
     },
     "kernel": {
-      "evra": "6.9.11-200.fc40.aarch64",
+      "evra": "6.9.12-200.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.9.11-200.fc40.aarch64",
+      "evra": "6.9.12-200.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.9.11-200.fc40.aarch64",
+      "evra": "6.9.12-200.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.9.11-200.fc40.aarch64",
+      "evra": "6.9.12-200.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1213,7 +1207,7 @@
       }
     },
     "libcurl-minimal": {
-      "evra": "8.6.0-8.fc40.aarch64",
+      "evra": "8.6.0-10.fc40.aarch64",
       "metadata": {
         "sourcerpm": "curl"
       }
@@ -1267,7 +1261,7 @@
       }
     },
     "libgcc": {
-      "evra": "14.1.1-7.fc40.aarch64",
+      "evra": "14.2.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1561,7 +1555,7 @@
       }
     },
     "libsolv": {
-      "evra": "0.7.29-1.fc40.aarch64",
+      "evra": "0.7.30-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "libsolv"
       }
@@ -1597,7 +1591,7 @@
       }
     },
     "libstdc++": {
-      "evra": "14.1.1-7.fc40.aarch64",
+      "evra": "14.2.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1867,7 +1861,7 @@
       }
     },
     "netavark": {
-      "evra": "1.11.0-1.fc40.aarch64",
+      "evra": "2:1.12.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "netavark"
       }
@@ -1987,13 +1981,13 @@
       }
     },
     "ostree": {
-      "evra": "2024.6-2.fc40.aarch64",
+      "evra": "2024.7-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-libs": {
-      "evra": "2024.6-2.fc40.aarch64",
+      "evra": "2024.7-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "ostree"
       }
@@ -2029,13 +2023,13 @@
       }
     },
     "passt": {
-      "evra": "0^20240624.g1ee2eca-1.fc40.aarch64",
+      "evra": "0^20240726.g57a21d2-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20240624.g1ee2eca-1.fc40.noarch",
+      "evra": "0^20240726.g57a21d2-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2161,7 +2155,7 @@
       }
     },
     "rpcbind": {
-      "evra": "1.2.6-4.rc3.fc40.aarch64",
+      "evra": "1.2.7-0.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rpcbind"
       }
@@ -2413,37 +2407,37 @@
       }
     },
     "systemd": {
-      "evra": "255.10-1.fc40.aarch64",
+      "evra": "255.10-3.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-container": {
-      "evra": "255.10-1.fc40.aarch64",
+      "evra": "255.10-3.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-libs": {
-      "evra": "255.10-1.fc40.aarch64",
+      "evra": "255.10-3.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-pam": {
-      "evra": "255.10-1.fc40.aarch64",
+      "evra": "255.10-3.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-resolved": {
-      "evra": "255.10-1.fc40.aarch64",
+      "evra": "255.10-3.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-udev": {
-      "evra": "255.10-1.fc40.aarch64",
+      "evra": "255.10-3.fc40.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
@@ -2515,13 +2509,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.571-1.fc40.noarch",
+      "evra": "2:9.1.660-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.571-1.fc40.aarch64",
+      "evra": "2:9.1.660-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2575,7 +2569,7 @@
       }
     },
     "zchunk-libs": {
-      "evra": "1.4.0-2.fc40.aarch64",
+      "evra": "1.5.1-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "zchunk"
       }
@@ -2606,16 +2600,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-07-28T00:00:00Z",
+    "generated": "2024-08-08T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:04Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-07-27T23:39:49Z"
+        "generated": "2024-08-07T16:36:06Z"
       },
       "fedora-updates": {
-        "generated": "2024-07-28T01:55:40Z"
+        "generated": "2024-08-08T02:33:00Z"
       }
     }
   }
