@@ -11,15 +11,15 @@ copy_file_if_exists() {
     fi
 }
 
-destination=/usr/lib/ignition
-mkdir -p $destination
-
 # systemd v256 now runs the initrd with ProtectSystem=yes, which makes /usr
 # read-only. Just remount it rw until we have:
 # https://github.com/coreos/ignition/issues/1891
 if [ ! -w /usr ]; then
     mount -o rw,remount /usr
 fi
+
+destination=/usr/lib/ignition
+mkdir -p $destination
 
 if is-live-image; then
     # Live image. If the user has supplied a config.ign via an appended
