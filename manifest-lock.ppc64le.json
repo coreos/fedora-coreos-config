@@ -91,19 +91,19 @@
       }
     },
     "audit": {
-      "evra": "4.0.1-1.fc40.ppc64le",
+      "evra": "4.0.2-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "audit"
       }
     },
     "audit-libs": {
-      "evra": "4.0.1-1.fc40.ppc64le",
+      "evra": "4.0.2-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "audit"
       }
     },
     "audit-rules": {
-      "evra": "4.0.1-1.fc40.ppc64le",
+      "evra": "4.0.2-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "audit"
       }
@@ -703,7 +703,7 @@
       }
     },
     "fwupd": {
-      "evra": "1.9.21-1.fc40.ppc64le",
+      "evra": "1.9.23-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -733,19 +733,19 @@
       }
     },
     "gettext-envsubst": {
-      "evra": "0.22.5-2.fc40.ppc64le",
+      "evra": "0.22.5-4.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "gettext"
       }
     },
     "gettext-libs": {
-      "evra": "0.22.5-2.fc40.ppc64le",
+      "evra": "0.22.5-4.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "gettext"
       }
     },
     "gettext-runtime": {
-      "evra": "0.22.5-2.fc40.ppc64le",
+      "evra": "0.22.5-4.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "gettext"
       }
@@ -1027,25 +1027,25 @@
       }
     },
     "kernel": {
-      "evra": "6.9.12-200.fc40.ppc64le",
+      "evra": "6.10.3-200.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.9.12-200.fc40.ppc64le",
+      "evra": "6.10.3-200.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.9.12-200.fc40.ppc64le",
+      "evra": "6.10.3-200.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.9.12-200.fc40.ppc64le",
+      "evra": "6.10.3-200.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1537,7 +1537,7 @@
       }
     },
     "libsmbclient": {
-      "evra": "2:4.20.2-1.fc40.ppc64le",
+      "evra": "2:4.20.4-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1614,6 +1614,12 @@
         "sourcerpm": "libtevent"
       }
     },
+    "libtextstyle": {
+      "evra": "0.22.5-4.fc40.ppc64le",
+      "metadata": {
+        "sourcerpm": "gettext"
+      }
+    },
     "libtirpc": {
       "evra": "1.3.5-0.fc40.ppc64le",
       "metadata": {
@@ -1663,7 +1669,7 @@
       }
     },
     "libwbclient": {
-      "evra": "2:4.20.2-1.fc40.ppc64le",
+      "evra": "2:4.20.4-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -2197,19 +2203,19 @@
       }
     },
     "samba-client-libs": {
-      "evra": "2:4.20.2-1.fc40.ppc64le",
+      "evra": "2:4.20.4-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common": {
-      "evra": "2:4.20.2-1.fc40.noarch",
+      "evra": "2:4.20.4-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common-libs": {
-      "evra": "2:4.20.2-1.fc40.ppc64le",
+      "evra": "2:4.20.4-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -2221,13 +2227,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "40.20-1.fc40.noarch",
+      "evra": "40.27-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "40.20-1.fc40.noarch",
+      "evra": "40.27-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2377,7 +2383,7 @@
       }
     },
     "stalld": {
-      "evra": "1.19.5-1.fc40.ppc64le",
+      "evra": "1.19.6-1.fc40.ppc64le",
       "metadata": {
         "sourcerpm": "stalld"
       }
@@ -2576,16 +2582,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-08-08T00:00:00Z",
+    "generated": "2024-08-12T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:03Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-08-07T16:34:35Z"
+        "generated": "2024-08-11T21:06:23Z"
       },
       "fedora-updates": {
-        "generated": "2024-08-08T02:33:10Z"
+        "generated": "2024-08-12T01:32:39Z"
       }
     }
   }
