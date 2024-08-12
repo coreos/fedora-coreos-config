@@ -9,19 +9,23 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  kexec-tools:
-    evr: 2.0.28-12.fc40
+  coreos-installer:
+    evr: 0.22.1-1.fc40
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-e9e4994b36
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1762
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-eeaf090672
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.22.1-1.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-eeaf090672
       type: fast-track
   selinux-policy:
-    evra: 40.20-1.fc40.noarch
+    evra: 40.27-1.fc40.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1758
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-995d585c91
+      type: fast-track
   selinux-policy-targeted:
-    evra: 40.20-1.fc40.noarch
+    evra: 40.27-1.fc40.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1758
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-995d585c91
+      type: fast-track
