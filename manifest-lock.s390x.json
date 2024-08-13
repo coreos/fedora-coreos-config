@@ -565,7 +565,7 @@
       }
     },
     "ethtool": {
-      "evra": "2:6.9-1.fc40.s390x",
+      "evra": "2:6.10-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "ethtool"
       }
@@ -792,12 +792,6 @@
         "sourcerpm": "grep"
       }
     },
-    "gvisor-tap-vsock-gvforwarder": {
-      "evra": "6:0.7.4-1.fc40.s390x",
-      "metadata": {
-        "sourcerpm": "gvisor-tap-vsock"
-      }
-    },
     "gzip": {
       "evra": "1.13-1.fc40.s390x",
       "metadata": {
@@ -991,7 +985,7 @@
       }
     },
     "kexec-tools": {
-      "evra": "2.0.28-12.fc40.s390x",
+      "evra": "2.0.29-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "kexec-tools"
       }
@@ -1147,7 +1141,7 @@
       }
     },
     "libedit": {
-      "evra": "3.1-51.20240517cvs.fc40.s390x",
+      "evra": "3.1-53.20240808cvs.fc40.s390x",
       "metadata": {
         "sourcerpm": "libedit"
       }
@@ -1333,7 +1327,7 @@
       }
     },
     "libnfsidmap": {
-      "evra": "1:2.6.4-0.rc6.fc40.s390x",
+      "evra": "1:2.6.4-0.rc8.fc40.s390x",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1777,7 +1771,7 @@
       }
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.4-0.rc6.fc40.s390x",
+      "evra": "1:2.6.4-0.rc8.fc40.s390x",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1909,13 +1903,13 @@
       }
     },
     "passt": {
-      "evra": "0^20240726.g57a21d2-1.fc40.s390x",
+      "evra": "0^20240806.gee36266-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20240726.g57a21d2-1.fc40.noarch",
+      "evra": "0^20240806.gee36266-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -1957,7 +1951,7 @@
       }
     },
     "podman": {
-      "evra": "5:5.1.2-1.fc40.s390x",
+      "evra": "5:5.2.0-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2480,7 +2474,7 @@
     }
   },
   "metadata": {
-    "generated": "2024-08-12T00:00:00Z",
+    "generated": "2024-08-13T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:01Z"
@@ -2489,7 +2483,7 @@
         "generated": "2024-08-11T21:06:02Z"
       },
       "fedora-updates": {
-        "generated": "2024-08-12T01:32:49Z"
+        "generated": "2024-08-13T07:41:05Z"
       }
     }
   }
