@@ -15,87 +15,12 @@ packages:
       reason: https://bugzilla.redhat.com/show_bug.cgi?id=2297094
       type: pin
   selinux-policy:
-    evra: 41.2-1.fc41.noarch
+    evra: 41.14-1.fc41.noarch
     metadata:
-      reason: https://bugzilla.redhat.com/show_bug.cgi?id=2292472
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-06bfcdcb10
+      type: fast-track
   selinux-policy-targeted:
-    evra: 41.2-1.fc41.noarch
+    evra: 41.14-1.fc41.noarch
     metadata:
-      reason: https://bugzilla.redhat.com/show_bug.cgi?id=2292472
-      type: pin
-  device-mapper:
-    evr: 1.02.197-1.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  device-mapper-event:
-    evr: 1.02.197-1.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  device-mapper-event-libs:
-    evr: 1.02.197-1.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  device-mapper-libs:
-    evr: 1.02.197-1.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  device-mapper-multipath:
-    evr: 0.9.7-7.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  device-mapper-multipath-libs:
-    evr: 0.9.7-7.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  kpartx:
-    evr: 0.9.7-7.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  lvm2:
-    evr: 2.03.23-1.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  lvm2-libs:
-    evr: 2.03.23-1.fc40
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  systemd:
-    evr: 255.5-1.fc41
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  systemd-container:
-    evr: 255.5-1.fc41
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  systemd-libs:
-    evr: 255.5-1.fc41
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  systemd-pam:
-    evr: 255.5-1.fc41
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  systemd-resolved:
-    evr: 255.5-1.fc41
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
-  systemd-udev:
-    evr: 255.5-1.fc41
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1735
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-06bfcdcb10
+      type: fast-track
