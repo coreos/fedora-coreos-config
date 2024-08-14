@@ -16,3 +16,8 @@
   warn: true
   arches:
     - ppc64le
+- pattern: ext.config.extensions.package
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1776
+  snooze: 2024-09-02
+  arches:
+    - aarch64
