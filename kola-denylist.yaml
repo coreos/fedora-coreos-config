@@ -21,28 +21,33 @@
   warn: true
   snooze: 2024-08-31
   streams:
+    - rawhide
     - branched
 - pattern: iso-offline-*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
   warn: true
   snooze: 2024-08-31
   streams:
+    - rawhide
     - branched
 - pattern: miniso-install*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
   warn: true
   snooze: 2024-08-31
   streams:
+    - rawhide
     - branched
 - pattern: pxe-online-*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
   warn: true
   snooze: 2024-08-31
   streams:
+    - rawhide
     - branched
 - pattern: pxe-offline-*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
   warn: true
   snooze: 2024-08-31
   streams:
+    - rawhide
     - branched
