@@ -51,3 +51,9 @@
   streams:
     - rawhide
     - branched
+- pattern: ext.config.files.validate-symlinks
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1782
+  warn: true
+  snooze: 2024-09-02
+  streams:
+    - rawhide
