@@ -9,11 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  json-glib:
-    evr: 1.8.0-1.fc40
-    metadata:
-      reason: https://bugzilla.redhat.com/show_bug.cgi?id=2297094
-      type: pin
   systemd:
     evr: 256.5-1.fc41
     metadata:

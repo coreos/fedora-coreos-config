@@ -14,8 +14,11 @@ set -xeuo pipefail
 . "$KOLA_EXT_DATA/commonlib.sh"
 
 # List of known broken symlinks that require further investigation.
-# The sym links in /usr/lib/firmware are often broken and are
-# typically not an issue, so let's skip this location altogether.
+#
+# - The symlinks in /usr/lib/firmware are often broken and are typically not an
+#   issue, so let's skip this location altogether.
+# - json-glib -> https://bugzilla.redhat.com/show_bug.cgi?id=2297094
+#
 list_broken_symlinks_skip=(
     '/etc/mtab'
     '/etc/ssl/'
@@ -25,6 +28,7 @@ list_broken_symlinks_skip=(
     '/usr/lib/bootc/storage'
     '/usr/lib/firmware'
     '/usr/lib/modules/'
+    '/usr/share/licenses/json-glib/COPYING'
     '/usr/share/rhel/secrets/etc-pki-entitlement'
     '/usr/share/rhel/secrets/redhat.repo'
     '/usr/share/rhel/secrets/rhsm'
