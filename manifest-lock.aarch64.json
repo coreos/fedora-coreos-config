@@ -1039,25 +1039,25 @@
       }
     },
     "kernel": {
-      "evra": "6.10.5-200.fc40.aarch64",
+      "evra": "6.10.6-200.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.10.5-200.fc40.aarch64",
+      "evra": "6.10.6-200.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.10.5-200.fc40.aarch64",
+      "evra": "6.10.6-200.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.10.5-200.fc40.aarch64",
+      "evra": "6.10.6-200.fc40.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1405,7 +1405,7 @@
       }
     },
     "libnfsidmap": {
-      "evra": "1:2.6.4-0.rc8.fc40.aarch64",
+      "evra": "1:2.7.1-0.fc40.aarch64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1873,7 +1873,7 @@
       }
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.4-0.rc8.fc40.aarch64",
+      "evra": "1:2.7.1-0.fc40.aarch64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -2017,13 +2017,13 @@
       }
     },
     "passt": {
-      "evra": "0^20240814.g61c0b0d-1.fc40.aarch64",
+      "evra": "0^20240821.g1d6142f-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20240814.g61c0b0d-1.fc40.noarch",
+      "evra": "0^20240821.g1d6142f-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2594,16 +2594,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-08-22T00:00:00Z",
+    "generated": "2024-08-25T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:04Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-08-21T00:41:57Z"
+        "generated": "2024-08-24T16:46:05Z"
       },
       "fedora-updates": {
-        "generated": "2024-08-22T02:22:04Z"
+        "generated": "2024-08-25T04:35:46Z"
       }
     }
   }

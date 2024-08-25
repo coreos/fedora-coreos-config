@@ -955,25 +955,25 @@
       }
     },
     "kernel": {
-      "evra": "6.10.5-200.fc40.s390x",
+      "evra": "6.10.6-200.fc40.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.10.5-200.fc40.s390x",
+      "evra": "6.10.6-200.fc40.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.10.5-200.fc40.s390x",
+      "evra": "6.10.6-200.fc40.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.10.5-200.fc40.s390x",
+      "evra": "6.10.6-200.fc40.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1321,7 +1321,7 @@
       }
     },
     "libnfsidmap": {
-      "evra": "1:2.6.4-0.rc8.fc40.s390x",
+      "evra": "1:2.7.1-0.fc40.s390x",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1765,7 +1765,7 @@
       }
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.6.4-0.rc8.fc40.s390x",
+      "evra": "1:2.7.1-0.fc40.s390x",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1897,13 +1897,13 @@
       }
     },
     "passt": {
-      "evra": "0^20240814.g61c0b0d-1.fc40.s390x",
+      "evra": "0^20240821.g1d6142f-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20240814.g61c0b0d-1.fc40.noarch",
+      "evra": "0^20240821.g1d6142f-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2468,16 +2468,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-08-22T00:00:00Z",
+    "generated": "2024-08-25T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:01Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-08-21T00:39:47Z"
+        "generated": "2024-08-24T16:43:40Z"
       },
       "fedora-updates": {
-        "generated": "2024-08-22T02:22:23Z"
+        "generated": "2024-08-25T04:36:06Z"
       }
     }
   }
