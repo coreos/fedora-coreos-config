@@ -22,6 +22,7 @@ list_broken_symlinks_skip=(
     '/etc/swid/swidtags.d/fedoraproject.org'
     '/etc/xdg/systemd/user'
     '/usr/lib/.build-id/'
+    '/usr/lib/bootc/storage'
     '/usr/lib/firmware'
     '/usr/lib/modules/'
     '/usr/share/rhel/secrets/etc-pki-entitlement'
