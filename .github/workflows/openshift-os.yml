@@ -14,6 +14,7 @@ on:
         type: choice
         options:
           - testing-devel
+          - rhcos-4.17
           - rhcos-4.16
           - rhcos-4.15
           - rhcos-4.14
