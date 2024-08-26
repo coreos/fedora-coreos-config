@@ -14,39 +14,3 @@ packages:
     metadata:
       reason: https://bugzilla.redhat.com/show_bug.cgi?id=2297094
       type: pin
-  systemd:
-    evr: 256.5-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-ff872f0544
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1775
-      type: fast-track
-  systemd-container:
-    evr: 256.5-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-ff872f0544
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1775
-      type: fast-track
-  systemd-libs:
-    evr: 256.5-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-ff872f0544
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1775
-      type: fast-track
-  systemd-pam:
-    evr: 256.5-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-ff872f0544
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1775
-      type: fast-track
-  systemd-resolved:
-    evr: 256.5-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-ff872f0544
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1775
-      type: fast-track
-  systemd-udev:
-    evr: 256.5-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-ff872f0544
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1775
-      type: fast-track
