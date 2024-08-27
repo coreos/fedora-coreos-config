@@ -2,3 +2,8 @@
 # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
 # streams.
 include: image-base.yaml
+
+extra-kargs:
+    # Disable systemd-ssh-generator until selinux-policy get fixed
+    # see https://github.com/coreos/fedora-coreos-tracker/issues/1786
+    - systemd.ssh_auto=no
