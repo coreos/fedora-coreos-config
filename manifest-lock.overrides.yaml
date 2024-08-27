@@ -8,40 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  systemd:
-    evr: 256.5-1.fc41
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-8d144cc8af
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1775
-      type: fast-track
-  systemd-container:
-    evr: 256.5-1.fc41
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-8d144cc8af
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1775
-      type: fast-track
-  systemd-libs:
-    evr: 256.5-1.fc41
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-8d144cc8af
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1775
-      type: fast-track
-  systemd-pam:
-    evr: 256.5-1.fc41
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-8d144cc8af
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1775
-      type: fast-track
-  systemd-resolved:
-    evr: 256.5-1.fc41
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-8d144cc8af
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1775
-      type: fast-track
-  systemd-udev:
-    evr: 256.5-1.fc41
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-8d144cc8af
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1775
-      type: fast-track
+packages: {}
