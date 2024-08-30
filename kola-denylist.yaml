@@ -51,3 +51,10 @@
   streams:
     - rawhide
     - branched
+- pattern: ext.config.kdump.crash
+  tracker: https://bugzilla.redhat.com/show_bug.cgi?id=2284097
+  snooze: 2024-09-01
+  warn: true
+  streams:
+    - rawhide
+    - branched

@@ -11,7 +11,10 @@ set -euo pipefail
 case "${1:-unset}" in
     start)
         treepath="$(echo /sysroot/ostree/boot.1/*/*/0)"
-        echo "$(cat /proc/cmdline) ostree=${treepath#/sysroot}" > /tmp/cmdline
+        # ostree-prepare-root requires /etc and /var to be writeable for composeFS
+        # which cannot happen in the live ISO. Disable composeFS there
+        # https://github.com/coreos/fedora-coreos-config/pull/3009#issuecomment-2235923719
+        echo "$(cat /proc/cmdline) ostree=${treepath#/sysroot} ostree.prepare-root.composefs=0" > /tmp/cmdline
         mount --bind /tmp/cmdline /proc/cmdline
         ;;
     stop)
