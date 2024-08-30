@@ -30,6 +30,8 @@ conditional-include:
   # Wifi firmwares will be dropped in F41
   - if: releasever < 41
     include: wifi-firmwares.yaml
+  - if: releasever >= 41
+    include: composefs.yaml
 
 ostree-layers:
   - overlay/15fcos
