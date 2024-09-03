@@ -145,7 +145,11 @@ ok "Reached version: $version"
 if vereq $version $target_version; then
     ok "Fully upgraded to $target_version"
     # log bootupctl information for inspection where available
-    [ -f /usr/bin/bootupctl ] && /usr/bin/bootupctl status
+    # and check the status output
+    [ -f /usr/bin/bootupctl ] && /usr/bin/bootupctl status | tee bootupctl.txt
+    if ! grep "CoreOS aleph version" bootupctl.txt; then
+        fatal "check bootupctl status output"
+    fi
     exit 0
 fi
 

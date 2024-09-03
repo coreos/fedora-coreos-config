@@ -22,11 +22,21 @@ case "$(arch)" in
     aarch64|x86_64)
         # on these arches, we always expect state files to exist
         check_state_file=1
+        # aarch64 (and x86_64) uses uefi firmware, should check grub2-efi
+        evr=$(rpm -q grub2-common --qf '%{EVR}')
+        if ! bootupctl status | grep "grub2-efi-.*-${evr}"; then
+            fatal "bootupctl status output should include grub2-efi package version"
+        fi
         ;;
     ppc64le)
         # ppc64le has it if built by osbuild, otherwise not
         if [ -e /sysroot/.aleph-version.json ]; then
             check_state_file=1
+        fi
+        # ppc64le (and x86_64) uses bios firmware, should check grub2-tools
+        grub_version=$(rpm -q grub2-tools --qf '%{NEVRA}')
+        if ! bootupctl status | grep "${grub_version}"; then
+            fatal "bootupctl status output should include grub2-tools package version"
         fi
         ;& # fallthrough
     *)
@@ -41,5 +51,10 @@ if [ -n "${check_state_file}" ] && [ ! -f "${state_file}" ]; then
     fatal "${state_file} not present"
 fi
 
-bootupctl status
+# Verify `bootupctl status` output contains related content.
+# https://github.com/coreos/bootupd/issues/694
+if ! bootupctl status | grep "CoreOS aleph version"; then
+    fatal "bootupctl status output should include 'CoreOS aleph version'"
+fi
+
 ok bootupctl
