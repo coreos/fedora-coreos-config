@@ -217,6 +217,10 @@ fi
 set -o pipefail
 
 
-# OK update has been initiated, prepare for reboot and sleep
+# OK update has been initiated, prepare for reboot and loop to show
+# status of zincati and rpm-ostreed
 /tmp/autopkgtest-reboot-prepare reboot
-sleep infinity
+while true; do
+    sleep 20
+    systemctl status rpm-ostreed zincati --lines=0
+done
