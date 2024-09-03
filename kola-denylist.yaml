@@ -7,7 +7,7 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: coreos.ignition.ssh.key
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1553
-  snooze: 2024-09-01
+  snooze: 2024-10-01
   warn: true
   platforms:
     - azure
@@ -19,41 +19,41 @@
 - pattern: iso-install.bios
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
   warn: true
-  snooze: 2024-08-31
+  snooze: 2024-09-16
   streams:
     - rawhide
     - branched
 - pattern: iso-offline-*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
   warn: true
-  snooze: 2024-08-31
+  snooze: 2024-09-16
   streams:
     - rawhide
     - branched
 - pattern: miniso-install*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
   warn: true
-  snooze: 2024-08-31
+  snooze: 2024-09-16
   streams:
     - rawhide
     - branched
 - pattern: pxe-online-*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
   warn: true
-  snooze: 2024-08-31
+  snooze: 2024-09-16
   streams:
     - rawhide
     - branched
 - pattern: pxe-offline-*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
   warn: true
-  snooze: 2024-08-31
+  snooze: 2024-09-16
   streams:
     - rawhide
     - branched
 - pattern: ext.config.kdump.crash
   tracker: https://bugzilla.redhat.com/show_bug.cgi?id=2284097
-  snooze: 2024-09-01
+  snooze: 2024-09-16
   warn: true
   streams:
     - rawhide
