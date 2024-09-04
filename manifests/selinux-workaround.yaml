@@ -1,0 +1,23 @@
+# Recent changes in the SELinux policy have broken a lot of our code.
+# Revert the affected domains back to permissive mode so we can
+# continue to build and test `releasever >= 41` until
+# https://github.com/fedora-selinux/selinux-policy/pull/2257 merges
+# and the domains are reverted upstream or until the issue is resolved
+# altogether
+postprocess:
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    cat > /tmp/fcos-workarounds.cil << EOF
+    ; https://bugzilla.redhat.com/show_bug.cgi?id=2300306
+    (typeattributeset cil_gen_require bootupd_t)
+    (typepermissive bootupd_t)
+    ; https://bugzilla.redhat.com/show_bug.cgi?id=2305385
+    (typeattributeset cil_gen_require coreos_installer_t)
+    (typepermissive coreos_installer_t)
+    ; https://bugzilla.redhat.com/show_bug.cgi?id=2306352
+    (typeattributeset cil_gen_require afterburn_t)
+    (typepermissive afterburn_t)
+    EOF
+    /usr/sbin/semodule -i /tmp/fcos-workarounds.cil
+    rm /tmp/fcos-workarounds.cil
