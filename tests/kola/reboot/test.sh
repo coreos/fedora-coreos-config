@@ -45,13 +45,19 @@ else
   umount /boot/efi
 fi
 
+# Boot 10 times to find any issues with multiple boots
+# and then verify expected settings on the last boot.
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
       ok "first boot"
-      /tmp/autopkgtest-reboot rebooted
+      /tmp/autopkgtest-reboot 2
       ;;
-
-  rebooted)
+  [2-9])
+      ok "boot ${AUTOPKGTEST_REBOOT_MARK}"
+      /tmp/autopkgtest-reboot "$((${AUTOPKGTEST_REBOOT_MARK} + 1))"
+      ;;
+  10)
+      ok "boot 10"
       # check for expected default kargs
       grep root=UUID="$(cat /boot/.root_uuid)" /proc/cmdline
       ok "found root karg"
@@ -60,8 +66,6 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
       eval $(blkid -p -o export "${bootsrc}")
       grep boot=UUID="${UUID}" /proc/cmdline
       ok "found boot karg"
-
-      ok "second boot"
       ;;
   *) fatal "unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}";;
 esac
