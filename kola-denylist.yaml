@@ -16,41 +16,6 @@
   warn: true
   arches:
     - ppc64le
-- pattern: iso-install.bios
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
-  warn: true
-  snooze: 2024-09-16
-  streams:
-    - rawhide
-    - branched
-- pattern: iso-offline-*
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
-  warn: true
-  snooze: 2024-09-16
-  streams:
-    - rawhide
-    - branched
-- pattern: miniso-install*
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
-  warn: true
-  snooze: 2024-09-16
-  streams:
-    - rawhide
-    - branched
-- pattern: pxe-online-*
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
-  warn: true
-  snooze: 2024-09-16
-  streams:
-    - rawhide
-    - branched
-- pattern: pxe-offline-*
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1779
-  warn: true
-  snooze: 2024-09-16
-  streams:
-    - rawhide
-    - branched
 - pattern: ext.config.kdump.crash
   tracker: https://bugzilla.redhat.com/show_bug.cgi?id=2284097
   snooze: 2024-09-16
