@@ -144,10 +144,10 @@ ok "Reached version: $version"
 # If so then we can exit with success!
 if vereq $version $target_version; then
     ok "Fully upgraded to $target_version"
-    # log bootupctl information for inspection where available
-    # and check the status output
-    [ -f /usr/bin/bootupctl ] && /usr/bin/bootupctl status | tee bootupctl.txt
-    if ! grep "CoreOS aleph version" bootupctl.txt; then
+    # log bootupctl information for inspection and check the status output
+    state=$(/usr/bin/bootupctl status 2>&1)
+    echo "$state"
+    if ! echo "$state" | grep -q "CoreOS aleph version"; then
         fatal "check bootupctl status output"
     fi
     exit 0
@@ -217,6 +217,10 @@ fi
 set -o pipefail
 
 
-# OK update has been initiated, prepare for reboot and sleep
+# OK update has been initiated, prepare for reboot and loop to show
+# status of zincati and rpm-ostreed
 /tmp/autopkgtest-reboot-prepare reboot
-sleep infinity
+while true; do
+    sleep 20
+    systemctl status rpm-ostreed zincati --lines=0
+done
