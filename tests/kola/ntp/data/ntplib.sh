@@ -21,6 +21,8 @@ ntp_test_setup() {
     pushd "$(mktemp -d)"
     cat <<EOF >Dockerfile
 FROM registry.fedoraproject.org/fedora:38
+RUN rm -f /etc/yum.repos.d/*.repo \
+&& curl -L https://raw.githubusercontent.com/coreos/fedora-coreos-config/testing-devel/fedora-archive.repo -o /etc/yum.repos.d/fedora-archive.repo
 RUN dnf -y install systemd dnsmasq iproute iputils \
 && dnf clean all \
 && systemctl enable dnsmasq
