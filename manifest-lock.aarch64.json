@@ -876,6 +876,12 @@
         "sourcerpm": "hostname"
       }
     },
+    "hwdata": {
+      "evra": "0.386-1.fc40.noarch",
+      "metadata": {
+        "sourcerpm": "hwdata"
+      }
+    },
     "ignition": {
       "evra": "2.19.0-1.fc40.aarch64",
       "metadata": {
@@ -2026,6 +2032,18 @@
       "evra": "0^20240821.g1d6142f-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "passt"
+      }
+    },
+    "pciutils": {
+      "evra": "3.13.0-1.fc40.aarch64",
+      "metadata": {
+        "sourcerpm": "pciutils"
+      }
+    },
+    "pciutils-libs": {
+      "evra": "3.13.0-1.fc40.aarch64",
+      "metadata": {
+        "sourcerpm": "pciutils"
       }
     },
     "pcre2": {
