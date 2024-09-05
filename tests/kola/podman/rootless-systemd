@@ -37,7 +37,7 @@ cd $(mktemp -d)
 cat <<EOF > Containerfile
 FROM quay.io/fedora/fedora:39
 RUN rm -f /etc/yum.repos.d/*.repo \
-&& curl -L https://raw.githubusercontent.com/coreos/fedora-coreos-config/testing-devel/fedora.repo -o /etc/yum.repos.d/fedora.repo
+&& curl -L https://raw.githubusercontent.com/coreos/fedora-coreos-config/testing-devel/fedora-archive.repo -o /etc/yum.repos.d/fedora-archive.repo
 RUN dnf -y update \
 && dnf -y install systemd httpd \
 && dnf clean all \
