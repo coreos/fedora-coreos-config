@@ -144,6 +144,16 @@ EOF
     fi
 }
 
+move-to-cgroups-v2() {
+    # When upgrading to latest F41+ the system won't even boot on cgroups v1
+    if grep -q unified_cgroup_hierarchy /proc/cmdline; then
+        systemctl stop zincati
+        rpm-ostree cancel
+        rpm-ostree kargs --delete=systemd.unified_cgroup_hierarchy
+        need_restart='true'
+    fi
+}
+
 ok "Reached version: $version"
 
 # Are we all the way at the desired target version?
@@ -179,16 +189,19 @@ fi
 case "$stream" in
     'next')
         verlt $version '35.20211119.1.0' && grab-gpg-keys
+        verlt $version '34.20210413.1.0' && move-to-cgroups-v2
         verlt $version '32.20200517.1.0' && fix-allow-downgrade
         verlt $version '32.20200505.1.0' && fix-update-url
         ;;
     'testing')
         verlt $version '35.20211119.2.0' && grab-gpg-keys
+        verlt $version '34.20210529.2.0' && move-to-cgroups-v2
         verlt $version '31.20200517.2.0' && fix-allow-downgrade
         verlt $version '31.20200505.2.0' && fix-update-url
         ;;
     'stable')
         verlt $version '35.20211119.3.0' && grab-gpg-keys
+        verlt $version '34.20210529.3.0' && move-to-cgroups-v2
         verlt $version '31.20200517.3.0' && fix-allow-downgrade
         verlt $version '31.20200505.3.0' && fix-update-url
         ;;
