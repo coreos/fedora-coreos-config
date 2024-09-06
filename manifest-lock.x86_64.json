@@ -409,13 +409,13 @@
       }
     },
     "cryptsetup": {
-      "evra": "2.7.4-1.fc40.x86_64",
+      "evra": "2.7.5-1.fc40.x86_64",
       "metadata": {
         "sourcerpm": "cryptsetup"
       }
     },
     "cryptsetup-libs": {
-      "evra": "2.7.4-1.fc40.x86_64",
+      "evra": "2.7.5-1.fc40.x86_64",
       "metadata": {
         "sourcerpm": "cryptsetup"
       }
@@ -1063,25 +1063,25 @@
       }
     },
     "kernel": {
-      "evra": "6.10.6-200.fc40.x86_64",
+      "evra": "6.10.7-200.fc40.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.10.6-200.fc40.x86_64",
+      "evra": "6.10.7-200.fc40.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.10.6-200.fc40.x86_64",
+      "evra": "6.10.7-200.fc40.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.10.6-200.fc40.x86_64",
+      "evra": "6.10.7-200.fc40.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1345,13 +1345,19 @@
       }
     },
     "libkcapi": {
-      "evra": "1.4.0-10.fc40.x86_64",
+      "evra": "1.5.0-4.fc40.x86_64",
+      "metadata": {
+        "sourcerpm": "libkcapi"
+      }
+    },
+    "libkcapi-hasher": {
+      "evra": "1.5.0-4.fc40.x86_64",
       "metadata": {
         "sourcerpm": "libkcapi"
       }
     },
     "libkcapi-hmaccalc": {
-      "evra": "1.4.0-10.fc40.x86_64",
+      "evra": "1.5.0-4.fc40.x86_64",
       "metadata": {
         "sourcerpm": "libkcapi"
       }
@@ -1477,7 +1483,7 @@
       }
     },
     "libpcap": {
-      "evra": "14:1.10.4-4.fc40.x86_64",
+      "evra": "14:1.10.5-1.fc40.x86_64",
       "metadata": {
         "sourcerpm": "libpcap"
       }
@@ -2630,16 +2636,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-09-03T00:00:00Z",
+    "generated": "2024-09-06T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:11Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-09-02T23:56:27Z"
+        "generated": "2024-09-06T17:25:35Z"
       },
       "fedora-updates": {
-        "generated": "2024-09-03T05:45:25Z"
+        "generated": "2024-09-06T03:45:04Z"
       }
     }
   }
