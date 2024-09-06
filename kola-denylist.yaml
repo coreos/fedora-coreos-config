@@ -17,7 +17,7 @@
   arches:
     - ppc64le
 - pattern: ext.config.kdump.crash
-  tracker: https://bugzilla.redhat.com/show_bug.cgi?id=2284097
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1791
   snooze: 2024-09-16
   warn: true
   streams:
