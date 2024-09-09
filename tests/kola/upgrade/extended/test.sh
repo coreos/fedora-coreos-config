@@ -53,12 +53,12 @@ set -eux -o pipefail
 
 . /etc/os-release # for $VERSION_ID
 
-need_zincati_restart='false'
+need_restart='false'
 
 # delete the disabling of updates that was done by the test framework
 if [ -f /etc/zincati/config.d/90-disable-auto-updates.toml ]; then
     rm -f /etc/zincati/config.d/90-disable-auto-updates.toml
-    need_zincati_restart='true'
+    need_restart='true'
 fi
 
 # Early `next` releases before [1] had auto-updates disabled too. Let's
@@ -66,7 +66,7 @@ fi
 # [1] https://github.com/coreos/fedora-coreos-config/commit/99eab318998441760cca224544fc713651f7a16d
 if [ -f /etc/zincati/config.d/90-disable-on-non-production-stream.toml ]; then
     rm -f /etc/zincati/config.d/90-disable-on-non-production-stream.toml
-    need_zincati_restart='true'
+    need_restart='true'
 fi
 
 get_booted_deployment_json() {
@@ -107,35 +107,51 @@ grab-gpg-keys() {
     # https://github.com/coreos/fedora-coreos-tracker/issues/749
     max_version=${target_version:0:2} # i.e. 36, 37, 38, etc..
     for ver in $(seq $VERSION_ID $max_version); do
-        test -e "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${ver}-primary" && continue
-        curl -L "https://src.fedoraproject.org/rpms/fedora-repos/raw/rawhide/f/RPM-GPG-KEY-fedora-${ver}-primary" | \
-            sudo tee "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${ver}-primary"
-        sudo chcon -v --reference="/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${VERSION_ID}-primary" "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${ver}-primary"
+        file="/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${ver}-primary"
+        if [ ! -e $file ]; then
+            need_restart='true'
+            curl -L "https://src.fedoraproject.org/rpms/fedora-repos/raw/rawhide/f/RPM-GPG-KEY-fedora-${ver}-primary" | \
+                sudo tee $file
+            sudo chcon -v --reference="/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${VERSION_ID}-primary" $file
+        fi
     done
-    # restart Zincati in case the process had been kicked off earlier
-    # than this script ran.
-    need_zincati_restart='true'
 }
 
 fix-update-url() {
     # We switched to non stg URL in zincati v0.0.10 [1]. For older clients
     # we need to update the runtime configuration of zincati to get past the problem.
     # [1] https://github.com/coreos/zincati/commit/1d73801ccd015cdce89f082cb1eeb9b4b8335760
-    cat <<'EOF' > /run/zincati/config.d/50-fedora-coreos-cincinnati.toml
+    file='/etc/zincati/config.d/50-fedora-coreos-cincinnati.toml'
+    if [ ! -e $file ]; then
+        need_restart='true'
+        cat > $file <<'EOF'
 [cincinnati]
 base_url= "https://updates.coreos.fedoraproject.org"
 EOF
-    need_zincati_restart='true'
+    fi
 }
 
 fix-allow-downgrade() {
     # Older FCOS will complain about an upgrade target being 'chronologically older than current'
     # This is documented in https://github.com/coreos/fedora-coreos-tracker/issues/481
     # We can workaround the problem via a config dropin:
-    cat <<'EOF' > /run/zincati/config.d/99-fedora-coreos-allow-downgrade.toml
+    file='/etc/zincati/config.d/99-fedora-coreos-allow-downgrade.toml'
+    if [ ! -e $file ]; then
+        need_restart='true'
+        cat > $file <<'EOF'
 updates.allow_downgrade = true
 EOF
-    need_zincati_restart='true'
+    fi
+}
+
+move-to-cgroups-v2() {
+    # When upgrading to latest F41+ the system won't even boot on cgroups v1
+    if grep -q unified_cgroup_hierarchy /proc/cmdline; then
+        systemctl stop zincati
+        rpm-ostree cancel
+        rpm-ostree kargs --delete=systemd.unified_cgroup_hierarchy
+        need_restart='true'
+    fi
 }
 
 ok "Reached version: $version"
@@ -144,8 +160,12 @@ ok "Reached version: $version"
 # If so then we can exit with success!
 if vereq $version $target_version; then
     ok "Fully upgraded to $target_version"
-    # log bootupctl information for inspection where available
-    [ -f /usr/bin/bootupctl ] && /usr/bin/bootupctl status
+    # log bootupctl information for inspection and check the status output
+    state=$(/usr/bin/bootupctl status 2>&1)
+    echo "$state"
+    if ! echo "$state" | grep -q "CoreOS aleph version"; then
+        fatal "check bootupctl status output"
+    fi
     exit 0
 fi
 
@@ -169,16 +189,19 @@ fi
 case "$stream" in
     'next')
         verlt $version '35.20211119.1.0' && grab-gpg-keys
+        verlt $version '34.20210413.1.0' && move-to-cgroups-v2
         verlt $version '32.20200517.1.0' && fix-allow-downgrade
         verlt $version '32.20200505.1.0' && fix-update-url
         ;;
     'testing')
         verlt $version '35.20211119.2.0' && grab-gpg-keys
+        verlt $version '34.20210529.2.0' && move-to-cgroups-v2
         verlt $version '31.20200517.2.0' && fix-allow-downgrade
         verlt $version '31.20200505.2.0' && fix-update-url
         ;;
     'stable')
         verlt $version '35.20211119.3.0' && grab-gpg-keys
+        verlt $version '34.20210529.3.0' && move-to-cgroups-v2
         verlt $version '31.20200517.3.0' && fix-allow-downgrade
         verlt $version '31.20200505.3.0' && fix-update-url
         ;;
@@ -191,14 +214,14 @@ esac
 if vereq $version $last_release; then
     systemctl stop zincati
     rpm-ostree rebase "fedora-compose:fedora/$(arch)/coreos/${target_stream}" $target_version
-    /tmp/autopkgtest-reboot reboot # execute the reboot
+    /tmp/autopkgtest-reboot $version # execute the reboot
     sleep infinity
 fi
 
-# Restart Zincati if configuration was changed
-if [ "${need_zincati_restart}" == "true" ]; then
-    rpm-ostree cancel # in case anything was already in progress
-    systemctl restart zincati
+# Restart if configuration was changed
+if [ "${need_restart}" == "true" ]; then
+    /tmp/autopkgtest-reboot setup
+    sleep infinity
 fi
 
 # Watch the Zincati logs to see if it got a lead on a new update.
@@ -213,6 +236,10 @@ fi
 set -o pipefail
 
 
-# OK update has been initiated, prepare for reboot and sleep
-/tmp/autopkgtest-reboot-prepare reboot
-sleep infinity
+# OK update has been initiated, prepare for reboot and loop to show
+# status of zincati and rpm-ostreed
+/tmp/autopkgtest-reboot-prepare $version
+while true; do
+    sleep 20
+    systemctl status rpm-ostreed zincati --lines=0
+done

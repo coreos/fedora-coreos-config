@@ -30,5 +30,5 @@ grep -q bootfs.roothash /proc/cmdline
 mount /dev/disk/by-label/se /sysroot/se
 [[ -f /sysroot/se/sdboot ]]
 
-check_luks /
+check_luks /sysroot
 check_luks /boot
