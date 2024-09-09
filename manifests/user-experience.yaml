@@ -50,3 +50,5 @@ packages:
   - nvme-cli
   # Used by admins interactively
   - lsof
+  # Locates executable files' paths in `PATH`
+  - which
