@@ -1,0 +1,165 @@
+#!/usr/bin/bash
+
+# Script to help fix selinux labels on systems that were created with
+# OSBuild before https://github.com/coreos/coreos-assembler/commit/d3302e0fc9bedec2d4e935e3528eb5abd44e7ae8
+# was put in place to ensure images didn't get created with unlabeled
+# or mislabeled files. See also
+# - https://github.com/coreos/fedora-coreos-tracker/issues/1771
+# - https://github.com/coreos/fedora-coreos-tracker/issues/1772
+#
+# Also handle /boot/.root_uuid and /boot/grub2/bootuuid.cfg created
+# by rdcore for some time without labels.
+# - https://github.com/coreos/fedora-coreos-tracker/issues/1770
+# - https://github.com/coreos/fedora-coreos-config/pull/3155
+
+set -eu -o pipefail
+
+print_header() {
+    echo '------------------------------------'
+    echo "$1"
+    echo
+}
+
+get_context() {
+    path=$1
+    getfattr -n security.selinux --absolute-name --only-values "${path}" | \
+        tr -d '\0' # Trim the null byte from the ouptut to prevent bash warning
+}
+
+path_unlabeled() {
+    test -e "$1" || return 1 # no exist so not unlabeled
+    if [ "$(get_context "$1")" == "system_u:object_r:unlabeled_t:s0" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+any_unlabeled() {
+    # shellcheck disable=SC2068
+    for file in $@; do
+        path_unlabeled "${file}" && return 0
+    done
+    return 1 # none were unlabeled
+}
+
+# Check a few known paths. If /sysroot is unlabeled then we need to
+# clean up the mess that OSBuild left behind #1771,#1772. If /boot/.root_uuid
+# or /boot/grub2/bootuuid.cfg are unlabeled we need to fix those two #1770.
+if ! any_unlabeled '/sysroot' '/boot/.root_uuid' '/boot/grub2/bootuuid.cfg'; then
+    echo "This CoreOS installation is properly labeled. Exiting"
+    exit 0
+fi
+
+print_header "Remounting filesystems read/write"
+# Note we don't need to remount them read-only later
+# because we are running with MountFlags=slave so
+# changes here won't propagate to the rest of the system
+mount -v -o remount,rw /boot
+mount -v -o remount,rw /sysroot
+
+# Fix the few ones we know about. Some of these are from #1770
+# and some from #1772, but it's easier to just combine the code.
+print_header "Fixing label for files on the /boot filesystem"
+for file in '.root_uuid' 'grub2/bootuuid.cfg' 'lost+found'; do
+    if path_unlabeled "/boot/${file}"; then
+        context=$(matchpathcon -n "/boot/${file}")
+        echo "Changing context of /boot/${file} to ${context}"
+        /usr/bin/chcon -h -v "${context}" "/boot/${file}"
+    fi
+done
+# Also handle coreos/platforms.json, which could have the wrong label
+if [ -e "/boot/coreos/platforms.json" ]; then
+    restorecon -v "/boot/coreos/platforms.json"
+fi
+
+if ! path_unlabeled "/sysroot"; then
+    # We don't need to go further with the other fixes since
+    # this system doesn't appear to be affected by #1771,#1772.
+    echo "coreos-fix-selinux-labels finished successfully" > /var/lib/coreos-fix-selinux-labels.stamp
+    exit 0
+fi
+
+print_header "Mounting boot partition separately to check shadowed /boot/efi"
+boot_mount_point=$(mktemp --directory)
+mount -v /dev/disk/by-label/boot "$boot_mount_point"
+if path_unlabeled "${boot_mount_point}/efi"; then
+    echo "Fixing label on shadowed /boot/efi"
+    context=$(matchpathcon -n "/boot/efi")
+    echo "Changing context of /boot/efi to ${context}"
+    /usr/bin/chcon -h -v "${context}" "${boot_mount_point}/efi"
+fi
+umount -v "$boot_mount_point"
+rmdir "$boot_mount_point"
+
+# The underlying /boot directory on the root filesystem can be wrong
+print_header "Checking shadowed /boot"
+if path_unlabeled "/sysroot/boot"; then
+    echo "Fixing the label for the /boot mount point on the root filesystem"
+    context=$(matchpathcon -n "/boot/")
+    echo "Changing context of /sysroot/boot to ${context}"
+    /usr/bin/chcon -h -v "${context}" "/sysroot/boot"
+fi
+
+# Fix unlabeled files. The find commands are hand crafted to try
+# to catch all unlabeled files, but not touch any objects in the
+# ostree repo and also not traverse too deep in the filesystem,
+# which could take more time than we'd like.
+#
+#  - /ostree/repo/refs/ to capture the container/blob/ files
+#  - /ostree/boot* to capture boot.x and bootx.x files
+#  - /ostree/repo/{.lock,config} - two known offenders
+#  - .aleph-version.json, .coreos-aleph-version.json - two more
+#  - -type l -or -type d  - all directories and symlinks in the repo
+#  - -type f -regex '.*\.\(commitmeta\|commit\|dirmeta\|dirtree\|origin\)$'
+#       - all .commitmeta, .commit, .dirmeta, .dirtree, .origin
+#         files in the repo and no other files (objects)
+#
+# Note that we explicitly prune /sysroot/ostree/deploy/*/var so we
+# don't consider anything under that path for our operation. Note
+# also some of these are left unquoted to allow for shell expansion.
+#
+context=$(matchpathcon -n "/")
+tmpfile=$(mktemp)
+print_header "Changing context of unlabeled files to ${context}"
+(
+    find "/sysroot/ostree/repo/refs"           \
+         "/sysroot/.aleph-version.json"        \
+         "/sysroot/.coreos-aleph-version.json" \
+         /sysroot/ostree/repo/{.lock,config}   \
+         /sysroot/ostree/boot*                 \
+             -context '*:unlabeled_t:*' -print0;
+    find "/sysroot/" -maxdepth 7 -path /sysroot/ostree/deploy/*/var -prune -o                \
+        \(                                                                                   \
+            -context '*:unlabeled_t:*'                                                       \
+            \(                                                                               \
+                -type l -or -type d -or                                                      \
+                \( -type f -regex '.*\.\(commitmeta\|commit\|dirmeta\|dirtree\|origin\)$' \) \
+            \)                                                                               \
+            -print0                                                                          \
+        \)
+) | xargs --null -I{} chcon -v -h "${context}" {} > "${tmpfile}"
+# Print something here for the journal, but not the full list of files
+# because that would be a lot. We'll dump those in the stamp file later.
+echo "Relabeled $(wc -l < "${tmpfile}") files to ${context}"
+
+# Update the stamp file with a record of what was done up until this point
+journalctl -b0 -u coreos-fix-selinux-labels.service >> /var/lib/coreos-fix-selinux-labels.stamp
+print_header "The following are the unlabeled files that were fixed" >> /var/lib/coreos-fix-selinux-labels.stamp
+cat "${tmpfile}" >> /var/lib/coreos-fix-selinux-labels.stamp
+rm -f "${tmpfile}"
+timestamp=$(date +%s)
+
+print_header "Checking the repository for consistency"
+if ! ostree fsck; then
+    echo "OSTree fsck found corruption. Please reprovision if you can or"  1>&2
+    echo "ask for help at https://discussion.fedoraproject.org/tag/coreos" 1>&2
+    echo "coreos-fix-selinux-labels finished with failure" > /var/lib/coreos-fix-selinux-labels.stamp
+    exit 1
+fi
+
+# Capture the final bits in the stamp file
+journalctl --since="@${timestamp}" -u coreos-fix-selinux-labels.service >> /var/lib/coreos-fix-selinux-labels.stamp
+
+# This will go to both the journal and the stamp file
+echo "coreos-fix-selinux-labels finished successfully" | tee -a /var/lib/coreos-fix-selinux-labels.stamp
