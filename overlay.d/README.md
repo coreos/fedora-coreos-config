@@ -10,6 +10,17 @@ This overlay matches `fedora-coreos-base.yaml`; core Ignition+ostree bits.
 
 This overlay is shared with RHCOS/SCOS 9.
 
+07fix-selinux-labels
+--------------------
+
+Fix incorrect SELinux labels in /boot and /sysroot
+- https://github.com/coreos/fedora-coreos-tracker/issues/1772
+- https://github.com/coreos/fedora-coreos-tracker/issues/1771
+We need this for both FCOS and RHCOS and it needs to live for
+some time (not just a single FCOS barrier release) so that we
+can ensure RHCOS 4.16 aleph nodes and some early 4.17 aleph
+nodes have been fixed. Remove it in the 4.19 cycle.
+
 08nouveau
 ---------
 
