@@ -52,3 +52,5 @@ packages:
   - lsof
   # Locates executable files' paths in `PATH`
   - which
+  # provides utilities for inspecting/setting devices connected to the PCI bus
+  - pciutils
