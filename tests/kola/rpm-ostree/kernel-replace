@@ -48,20 +48,37 @@ image=oci:${image_dir}
 image_pull=ostree-unverified-image:$image
 tmp_imagedir=${image_dir}-tmp
 arch=$(arch)
-case "$OS_ID" in
-  rhcos|scos|rhel|centos)
-    kver="5.14.0-472.el9.${arch}"
-    url="https://mirror.stream.centos.org/9-stream/BaseOS/${arch}/os/Packages/kernel"
-    ;;
-  fedora)
-    kver="6.9.8-200.fc40.${arch}"
-    url="https://kojipkgs.fedoraproject.org//packages/kernel/6.9.8/200.fc40/${arch}/kernel"
-    ;;
-  *)
-    echo "Unknown OS_ID: ${OS_ID}"
-    exit 1
-    ;;
-esac
+
+# we only want to query repos once but need the info on multiple boots, so write out state to /var
+if [ ! -f /var/kola-kernel.evr ]; then
+  case "$OS_ID" in
+    rhcos|scos|rhel|centos)
+      c9s_mirror="https://mirror.stream.centos.org/9-stream/BaseOS/${arch}/os"
+      # we're probably already on CentOS and running the latest kernel. so
+      # here we need to instead pick whatever the latest that's *not* the same
+      kver=$(dnf repoquery kernel --qf '%{EVR}' --repofrompath=tmp,"${c9s_mirror}" --disablerepo '*' --enablerepo tmp | \
+                grep -v "$(rpm -q kernel --qf '%{EVR}')" | tail -n1)
+      kver="${kver}.${arch}"
+      url="${c9s_mirror}/Packages/kernel"
+      ;;
+    fedora)
+      # to get the version to use: koji latest-pkg f40 kernel
+      # XXX: once we can rely on dnf in FCOS, use repoquery also here
+      kver="6.8.5-301.fc40.${arch}"
+      url="https://kojipkgs.fedoraproject.org//packages/kernel/6.8.5/301.fc40/${arch}/kernel"
+      ;;
+    *)
+      echo "Unknown OS_ID: ${OS_ID}"
+      exit 1
+      ;;
+  esac
+  echo "$kver" > /var/kola-kernel.evr
+  echo "$url" > /var/kola-kernel.url
+else
+  kver=$(cat /var/kola-kernel.evr)
+  url=$(cat /var/kola-kernel.url)
+fi
+
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
     # Take the existing ostree commit, and export it to a container image, then rebase to it.
