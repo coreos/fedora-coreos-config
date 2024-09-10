@@ -8,10 +8,11 @@
 
 # See https://issues.redhat.com/browse/OCPBUGS-7582
 # https://github.com/coreos/fedora-coreos-tracker/issues/1457
+# https://github.com/coreos/coreos-assembler/issues/3556
 #
 # Force this test to not run by default unless named specifically
 # or `--tag confidential` is passed to `kola run`, also requires
-# `--gcp-machinetype n2d-standard-2 --gcp-confidential-vm`
+# `--gcp-machinetype n2d-standard-2 --gcp-confidential-type sev_snp`
 #
 # It will create confidential instance on GCP with 1 nvme persistent disk
 # and 1 local ssd disk, then check the new udev rules make effect.
@@ -26,8 +27,8 @@ NVME_INFO=$(nvme list-subsys -o json)
 
 # verify the instance is Confidential VM
 assert_confidential_vm() {
-    local sevlog=$(dmesg | grep SEV | head)
-    if [ -n "${sevlog}" ] && echo "${sevlog}" | grep "Memory Encryption Features active: AMD SEV"; then
+    local sevlog=$(dmesg | grep SEV-SNP | head)
+    if [ -n "${sevlog}" ] && echo "${sevlog}" | grep "Memory Encryption Features active: AMD SEV SEV-ES SEV-SNP"; then
         ok "instance is Confidential VM"
     else
         fatal "instance should be Confidential VM"
