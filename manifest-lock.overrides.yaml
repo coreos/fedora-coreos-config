@@ -8,16 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  selinux-policy:
-    evra: 41.15-1.fc41.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-1597066f01
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1786
-      type: fast-track
-  selinux-policy-targeted:
-    evra: 41.15-1.fc41.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-1597066f01
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1786
-      type: fast-track
+packages: {}
