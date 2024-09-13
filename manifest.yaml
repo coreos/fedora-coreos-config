@@ -2,7 +2,7 @@ variables:
   stream: next-devel
   prod: false
 
-releasever: 40
+releasever: 41
 
 repos:
   # These repos are there to make it easier to add new packages to the OS and to
@@ -11,6 +11,6 @@ repos:
   # GitHub Action.
   - fedora-next
   - fedora-next-updates
-#  - fedora-candidate-compose
+  - fedora-candidate-compose
 
 include: manifests/fedora-coreos.yaml
