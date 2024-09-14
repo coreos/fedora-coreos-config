@@ -307,7 +307,7 @@
       }
     },
     "containerd": {
-      "evra": "1.7.19-2.fc41.s390x",
+      "evra": "1.7.21-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "containerd"
       }
@@ -499,7 +499,7 @@
       }
     },
     "docker-cli": {
-      "evra": "27.1.2-1.fc41.s390x",
+      "evra": "27.2.0-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
@@ -961,25 +961,25 @@
       }
     },
     "kernel": {
-      "evra": "6.11.0-0.rc5.43.fc41.s390x",
+      "evra": "6.11.0-0.rc7.56.fc41.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.11.0-0.rc5.43.fc41.s390x",
+      "evra": "6.11.0-0.rc7.56.fc41.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.11.0-0.rc5.43.fc41.s390x",
+      "evra": "6.11.0-0.rc7.56.fc41.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.11.0-0.rc5.43.fc41.s390x",
+      "evra": "6.11.0-0.rc7.56.fc41.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1717,13 +1717,13 @@
       }
     },
     "moby-engine": {
-      "evra": "27.1.2-1.fc41.s390x",
+      "evra": "27.2.0-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
     },
     "moby-filesystem": {
-      "evra": "27.1.2-1.fc41.noarch",
+      "evra": "27.2.0-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
@@ -1915,13 +1915,13 @@
       }
     },
     "passt": {
-      "evra": "0^20240821.g1d6142f-1.fc41.s390x",
+      "evra": "0^20240906.g6b38f07-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20240821.g1d6142f-1.fc41.noarch",
+      "evra": "0^20240906.g6b38f07-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2401,13 +2401,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.660-2.fc41.noarch",
+      "evra": "2:9.1.719-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.660-2.fc41.s390x",
+      "evra": "2:9.1.719-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2486,7 +2486,7 @@
     }
   },
   "metadata": {
-    "generated": "2024-09-13T00:00:00Z",
+    "generated": "2024-09-14T00:00:00Z",
     "rpmmd_repos": {
       "fedora-candidate-compose": {
         "generated": "2024-09-11T21:51:24Z"
@@ -2495,7 +2495,7 @@
         "generated": "2024-09-13T18:16:54Z"
       },
       "fedora-next": {
-        "generated": "2024-09-13T08:35:34Z"
+        "generated": "2024-09-14T08:36:23Z"
       },
       "fedora-next-updates": {
         "generated": "2018-02-28T16:06:49Z"
