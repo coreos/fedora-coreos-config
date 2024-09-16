@@ -8,4 +8,112 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  aardvark-dns:
+    evr: 2:1.12.2-2.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-30ed35ba86
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  amd-gpu-firmware:
+    evra: 20240909-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cd42e9e29
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  atheros-firmware:
+    evra: 20240909-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cd42e9e29
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  brcmfmac-firmware:
+    evra: 20240909-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cd42e9e29
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  chrony:
+    evr: 4.6-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-fef2f6c9a7
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  cryptsetup:
+    evr: 2.7.5-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-1448111d6c
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  cryptsetup-libs:
+    evr: 2.7.5-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-1448111d6c
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  flatpak-session-helper:
+    evr: 1.15.10-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-0c6db96fc3
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  hwdata:
+    evra: 0.387-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-aed4890721
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  intel-gpu-firmware:
+    evra: 20240909-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cd42e9e29
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  linux-firmware:
+    evra: 20240909-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cd42e9e29
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  linux-firmware-whence:
+    evra: 20240909-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cd42e9e29
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  mt7xxx-firmware:
+    evra: 20240909-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cd42e9e29
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  nvidia-gpu-firmware:
+    evra: 20240909-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cd42e9e29
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  nxpwireless-firmware:
+    evra: 20240909-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cd42e9e29
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  realtek-firmware:
+    evra: 20240909-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cd42e9e29
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  rpcbind:
+    evr: 1.2.7-1.rc1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-8963515937
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  tiwilink-firmware:
+    evra: 20240909-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-3cd42e9e29
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track

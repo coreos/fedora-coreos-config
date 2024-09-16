@@ -18,8 +18,16 @@
     - ppc64le
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1791
-  # snooze: 2024-09-16 (disabled on promotion)
+  # snooze: 2024-09-26 (disabled on promotion)
   # warn: true (disabled on promotion)
   streams:
     - rawhide
     - branched
+    - next-devel
+    - next
+- pattern: ext.config.extensions.package
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1795
+  # snooze: 2024-09-26 (disabled on promotion)
+  streams:
+    - next-devel
+    - next
