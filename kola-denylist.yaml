@@ -31,3 +31,9 @@
   streams:
     - next-devel
     - next
+- pattern: ext.config.rpm-ostree.kernel-replace
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1795
+  snooze: 2024-09-26
+  streams:
+    - next-devel
+    - next
