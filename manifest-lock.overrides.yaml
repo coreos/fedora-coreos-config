@@ -15,30 +15,6 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-30ed35ba86
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
       type: fast-track
-  chrony:
-    evr: 4.6-1.fc41
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-fef2f6c9a7
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
-      type: fast-track
-  cryptsetup:
-    evr: 2.7.5-1.fc41
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-1448111d6c
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
-      type: fast-track
-  cryptsetup-libs:
-    evr: 2.7.5-1.fc41
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-1448111d6c
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
-      type: fast-track
-  hwdata:
-    evra: 0.387-1.fc41.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-aed4890721
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
-      type: fast-track
   rpcbind:
     evr: 1.2.7-1.rc1.fc41
     metadata:
