@@ -373,7 +373,7 @@
       }
     },
     "crun": {
-      "evra": "1.15-2.fc41.s390x",
+      "evra": "1.17-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "crun"
       }
@@ -721,7 +721,7 @@
       }
     },
     "git-core": {
-      "evra": "2.46.0-1.fc41.s390x",
+      "evra": "2.46.1-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "git"
       }
@@ -1393,7 +1393,7 @@
       }
     },
     "libpcap": {
-      "evra": "14:1.10.4-5.fc41.s390x",
+      "evra": "14:1.10.5-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "libpcap"
       }
@@ -1843,19 +1843,19 @@
       }
     },
     "openssh": {
-      "evra": "9.8p1-3.fc41.s390x",
+      "evra": "9.8p1-3.fc41.1.s390x",
       "metadata": {
         "sourcerpm": "openssh"
       }
     },
     "openssh-clients": {
-      "evra": "9.8p1-3.fc41.s390x",
+      "evra": "9.8p1-3.fc41.1.s390x",
       "metadata": {
         "sourcerpm": "openssh"
       }
     },
     "openssh-server": {
-      "evra": "9.8p1-3.fc41.s390x",
+      "evra": "9.8p1-3.fc41.1.s390x",
       "metadata": {
         "sourcerpm": "openssh"
       }
@@ -1873,13 +1873,13 @@
       }
     },
     "ostree": {
-      "evra": "2024.7-1.fc41.s390x",
+      "evra": "2024.7-3.fc41.s390x",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-libs": {
-      "evra": "2024.7-1.fc41.s390x",
+      "evra": "2024.7-3.fc41.s390x",
       "metadata": {
         "sourcerpm": "ostree"
       }
@@ -2131,13 +2131,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "41.16-2.fc41.noarch",
+      "evra": "41.17-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "41.16-2.fc41.noarch",
+      "evra": "41.17-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2293,37 +2293,37 @@
       }
     },
     "systemd": {
-      "evra": "256.5-1.fc41.s390x",
+      "evra": "256.6-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-container": {
-      "evra": "256.5-1.fc41.s390x",
+      "evra": "256.6-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-libs": {
-      "evra": "256.5-1.fc41.s390x",
+      "evra": "256.6-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-pam": {
-      "evra": "256.5-1.fc41.s390x",
+      "evra": "256.6-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-resolved": {
-      "evra": "256.5-1.fc41.s390x",
+      "evra": "256.6-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-udev": {
-      "evra": "256.5-1.fc41.s390x",
+      "evra": "256.6-1.fc41.s390x",
       "metadata": {
         "sourcerpm": "systemd"
       }
@@ -2467,7 +2467,7 @@
       }
     },
     "zlib-ng-compat": {
-      "evra": "2.1.7-2.fc41.s390x",
+      "evra": "2.1.7-3.fc41.s390x",
       "metadata": {
         "sourcerpm": "zlib-ng"
       }
@@ -2486,16 +2486,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-09-17T00:00:00Z",
+    "generated": "2024-09-20T00:00:00Z",
     "rpmmd_repos": {
       "fedora-candidate-compose": {
         "generated": "2024-09-11T21:51:24Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-09-17T01:24:03Z"
+        "generated": "2024-09-20T17:57:03Z"
       },
       "fedora-next": {
-        "generated": "2024-09-17T08:34:10Z"
+        "generated": "2024-09-19T16:14:11Z"
       },
       "fedora-next-updates": {
         "generated": "2018-02-28T16:06:49Z"
