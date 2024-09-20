@@ -154,6 +154,45 @@ move-to-cgroups-v2() {
     fi
 }
 
+selinux-sanity-check() {
+    # Verify SELinux labels are sane. Migration scripts should have cleaned
+    # up https://github.com/coreos/fedora-coreos-tracker/issues/1772
+    unlabeled="$(find /sysroot -context *unlabeled_t* | xargs -I{} ls -ldZ '{}')"
+    if [ -n "${unlabeled}" ]; then
+        fatal "Some unlabeled files were found"
+    fi
+    mislabeled="$(restorecon -vnr /var/ /etc/ /usr/ /boot/)"
+    if [ -n "${mislabeled}" ]; then
+        # Exceptions for files that could be wrong (sometimes upgrades are messy)
+        #   Would relabel /var/lib/cni from system_u:object_r:var_lib_t:s0 to system_u:object_r:container_var_lib_t:s0
+        #   Would relabel /etc/selinux/targeted/semanage.read.LOCK from system_u:object_r:semanage_trans_lock_t:s0 to system_u:object_r:selinux_config_t:s0
+        #   Would relabel /etc/selinux/targeted/semanage.trans.LOCK from system_u:object_r:semanage_trans_lock_t:s0 to system_u:object_r:selinux_config_t:s0
+        #   Would relabel /etc/systemd/journald.conf.d from system_u:object_r:etc_t:s0 to system_u:object_r:systemd_conf_t:s0
+        #   Would relabel /etc/systemd/journald.conf.d/forward-to-console.conf from system_u:object_r:etc_t:s0 to system_u:object_r:systemd_conf_t:s0
+        #   Would relabel /boot/lost+found from system_u:object_r:unlabeled_t:s0 to system_u:object_r:lost_found_t:s0' ']'
+        declare -A exceptions=(
+            '/var/lib/cni'                                          '1'
+            '/etc/selinux/targeted/semanage.read.LOCK'              '1'
+            '/etc/selinux/targeted/semanage.trans.LOCK'             '1'
+            '/etc/systemd/journald.conf.d'                          '1'
+            '/etc/systemd/journald.conf.d/forward-to-console.conf'  '1'
+            '/boot/lost+found'                                      '1'
+        )
+        paths="$(echo "${mislabeled}" | grep "Would relabel" | cut -d ' ' -f 3)"
+        while read path; do
+            found=""
+            if [[ "${exceptions[$path]:-noexception}" == 'noexception' ]]; then
+                echo "Unexpected mislabeled file found: ${path}"
+                found="1"
+            fi
+        done <<< "${paths}"
+        if [ "${found}" == "1" ];then
+            fatal "Some unexpected mislabeled files were found."
+        fi
+    fi
+    ok "Selinux sanity checks passed"
+}
+
 ok "Reached version: $version"
 
 # Are we all the way at the desired target version?
@@ -166,6 +205,8 @@ if vereq $version $target_version; then
     if ! echo "$state" | grep -q "CoreOS aleph version"; then
         fatal "check bootupctl status output"
     fi
+    # One last check!
+    selinux-sanity-check
     exit 0
 fi
 

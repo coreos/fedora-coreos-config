@@ -1,0 +1,24 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   tags: "platform-independent"
+##   description: Verify there are no unlabeled or mislabeled files on the system.
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1772
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+unlabeled="$(find /sysroot -context *unlabeled_t* | xargs -I{} ls -ldZ '{}')"
+if [ -n "${unlabeled}" ]; then
+    fatal "Some unlabeled files were found"
+fi
+
+mislabeled="$(restorecon -vnr /var/ /etc/ /usr/ /boot/)"
+if [ -n "${mislabeled}" ]; then
+    fatal "Some mislabeled files were found"
+fi
+
+ok "No unlabeled or mislabeled files found!"
