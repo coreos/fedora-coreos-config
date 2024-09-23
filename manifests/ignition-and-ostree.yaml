@@ -29,6 +29,10 @@ remove-from-packages:
   # https://github.com/systemd/systemd/issues/13099
   - [systemd-udev, /usr/lib/systemd/system-generators/systemd-gpt-auto-generator]
 
+packages-s390x:
+  # for Secure Execution
+  - veritysetup
+
 postprocess:
   # Undo RPM scripts enabling units; we want the presets to be canonical
   # https://github.com/projectatomic/rpm-ostree/issues/1803
