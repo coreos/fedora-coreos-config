@@ -22,6 +22,7 @@ conditional-include:
   - if: releasever < 42
     include:
       - system-configuration-tier-x-dupes.yaml
+      - networking-tools-tier-x-dupes.yaml
       # See https://github.com/coreos/bootupd
       - bootupd.yaml
 
