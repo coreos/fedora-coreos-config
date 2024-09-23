@@ -1,0 +1,11 @@
+# All of these manifests duplicate tier-x. It's meant to be included by streams
+# which do not yet inherit from it (like FCOS <42, and "traditional" RHCOS)
+
+include:
+  - bootable-rpm-ostree.yaml
+  - ignition-and-ostree-tier-x-dupes.yaml
+  - system-configuration-tier-x-dupes.yaml
+  - networking-tools-tier-x-dupes.yaml
+  - user-experience-tier-x-dupes.yaml
+  # See https://github.com/coreos/bootupd
+  - bootupd.yaml

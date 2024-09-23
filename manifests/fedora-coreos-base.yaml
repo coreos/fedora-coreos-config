@@ -20,14 +20,7 @@ conditional-include:
   # all these are inherited from tier-x in f42+, but we carry them here to
   # enforce that there's really no coupling until f42
   - if: releasever < 42
-    include:
-      - bootable-rpm-ostree.yaml
-      - ignition-and-ostree-tier-x-dupes.yaml
-      - system-configuration-tier-x-dupes.yaml
-      - networking-tools-tier-x-dupes.yaml
-      - user-experience-tier-x-dupes.yaml
-      # See https://github.com/coreos/bootupd
-      - bootupd.yaml
+    include: tier-x-dupes.yaml
 
 ostree-layers:
   - overlay/05core
