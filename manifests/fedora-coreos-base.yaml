@@ -23,6 +23,7 @@ conditional-include:
     include:
       - system-configuration-tier-x-dupes.yaml
       - networking-tools-tier-x-dupes.yaml
+      - user-experience-tier-x-dupes.yaml
       # See https://github.com/coreos/bootupd
       - bootupd.yaml
 
