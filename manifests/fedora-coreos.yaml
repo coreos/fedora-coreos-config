@@ -17,7 +17,10 @@ conditional-include:
   - if: prod == false
     # long-term, would be good to support specifying a nested TreeComposeConfig
     include: disable-zincati.yaml
-  - if: basearch != "s390x"
+  - if:
+    - basearch != "s390x"
+    # for 42+, it's inherited from fedora-bootc
+    - releasever < 42
     # And remove some cruft from grub2
     include: grub2-removals.yaml
   # On <41, we want to keep making sure dnf doesn't slip in somehow
@@ -25,12 +28,14 @@ conditional-include:
   # https://github.com/coreos/fedora-coreos-tracker/issues/1687
   - if: releasever < 41
     include: exclude-dnf.yaml
-  - if: releasever >= 41
+  # for 42+, it's inherited from fedora-bootc
+  - if: releasever == 41
     include: include-dnf.yaml
   # Wifi firmwares will be dropped in F41
   - if: releasever < 41
     include: wifi-firmwares.yaml
-  - if: releasever >= 41
+  # for 42+, it's inherited from fedora-bootc
+  - if: releasever == 41
     include: composefs.yaml
   - if: releasever >= 41
     include: selinux-workaround.yaml
