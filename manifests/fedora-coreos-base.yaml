@@ -6,7 +6,6 @@ include:
   - kernel.yaml
   - system-configuration.yaml
   - ignition-and-ostree.yaml
-  - bootable-rpm-ostree.yaml
   - file-transfer.yaml
   - networking-tools.yaml
   - user-experience.yaml
@@ -22,6 +21,7 @@ conditional-include:
   # enforce that there's really no coupling until f42
   - if: releasever < 42
     include:
+      - bootable-rpm-ostree.yaml
       - system-configuration-tier-x-dupes.yaml
       - networking-tools-tier-x-dupes.yaml
       - user-experience-tier-x-dupes.yaml
