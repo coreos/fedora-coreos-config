@@ -187,7 +187,7 @@
       }
     },
     "bubblewrap": {
-      "evra": "0.8.0-3.fc40.s390x",
+      "evra": "0.10.0-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "bubblewrap"
       }
@@ -325,13 +325,13 @@
       }
     },
     "containers-common": {
-      "evra": "5:0.60.0-1.fc40.noarch",
+      "evra": "5:0.60.1-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
     },
     "containers-common-extra": {
-      "evra": "5:0.60.0-1.fc40.noarch",
+      "evra": "5:0.60.1-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
@@ -397,13 +397,13 @@
       }
     },
     "cryptsetup": {
-      "evra": "2.7.4-1.fc40.s390x",
+      "evra": "2.7.5-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "cryptsetup"
       }
     },
     "cryptsetup-libs": {
-      "evra": "2.7.4-1.fc40.s390x",
+      "evra": "2.7.5-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "cryptsetup"
       }
@@ -643,7 +643,7 @@
       }
     },
     "flatpak-session-helper": {
-      "evra": "1.15.8-1.fc40.s390x",
+      "evra": "1.15.10-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "flatpak"
       }
@@ -796,6 +796,12 @@
       "evra": "3.23-12.fc40.s390x",
       "metadata": {
         "sourcerpm": "hostname"
+      }
+    },
+    "hwdata": {
+      "evra": "0.386-1.fc40.noarch",
+      "metadata": {
+        "sourcerpm": "hwdata"
       }
     },
     "ignition": {
@@ -955,25 +961,25 @@
       }
     },
     "kernel": {
-      "evra": "6.10.6-200.fc40.s390x",
+      "evra": "6.10.7-200.fc40.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.10.6-200.fc40.s390x",
+      "evra": "6.10.7-200.fc40.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.10.6-200.fc40.s390x",
+      "evra": "6.10.7-200.fc40.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.10.6-200.fc40.s390x",
+      "evra": "6.10.7-200.fc40.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1021,7 +1027,7 @@
       }
     },
     "less": {
-      "evra": "643-4.fc40.s390x",
+      "evra": "643-6.fc40.s390x",
       "metadata": {
         "sourcerpm": "less"
       }
@@ -1237,13 +1243,19 @@
       }
     },
     "libkcapi": {
-      "evra": "1.4.0-10.fc40.s390x",
+      "evra": "1.5.0-4.fc40.s390x",
+      "metadata": {
+        "sourcerpm": "libkcapi"
+      }
+    },
+    "libkcapi-hasher": {
+      "evra": "1.5.0-4.fc40.s390x",
       "metadata": {
         "sourcerpm": "libkcapi"
       }
     },
     "libkcapi-hmaccalc": {
-      "evra": "1.4.0-10.fc40.s390x",
+      "evra": "1.5.0-4.fc40.s390x",
       "metadata": {
         "sourcerpm": "libkcapi"
       }
@@ -1369,13 +1381,13 @@
       }
     },
     "libpcap": {
-      "evra": "14:1.10.4-4.fc40.s390x",
+      "evra": "14:1.10.5-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "libpcap"
       }
     },
     "libpkgconf": {
-      "evra": "2.1.1-1.fc40.s390x",
+      "evra": "2.1.1-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "pkgconf"
       }
@@ -1681,7 +1693,7 @@
       }
     },
     "makedumpfile": {
-      "evra": "1.7.5-11.fc40.s390x",
+      "evra": "1.7.5-13.fc40.s390x",
       "metadata": {
         "sourcerpm": "makedumpfile"
       }
@@ -1747,7 +1759,7 @@
       }
     },
     "netavark": {
-      "evra": "2:1.12.1-1.fc40.s390x",
+      "evra": "2:1.12.2-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "netavark"
       }
@@ -1777,7 +1789,7 @@
       }
     },
     "nmstate": {
-      "evra": "2.2.33-1.fc40.s390x",
+      "evra": "2.2.34-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "nmstate"
       }
@@ -1908,6 +1920,18 @@
         "sourcerpm": "passt"
       }
     },
+    "pciutils": {
+      "evra": "3.13.0-1.fc40.s390x",
+      "metadata": {
+        "sourcerpm": "pciutils"
+      }
+    },
+    "pciutils-libs": {
+      "evra": "3.13.0-1.fc40.s390x",
+      "metadata": {
+        "sourcerpm": "pciutils"
+      }
+    },
     "pcre2": {
       "evra": "10.44-1.fc40.s390x",
       "metadata": {
@@ -1927,25 +1951,25 @@
       }
     },
     "pkgconf": {
-      "evra": "2.1.1-1.fc40.s390x",
+      "evra": "2.1.1-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "pkgconf"
       }
     },
     "pkgconf-m4": {
-      "evra": "2.1.1-1.fc40.noarch",
+      "evra": "2.1.1-2.fc40.noarch",
       "metadata": {
         "sourcerpm": "pkgconf"
       }
     },
     "pkgconf-pkg-config": {
-      "evra": "2.1.1-1.fc40.s390x",
+      "evra": "2.1.1-2.fc40.s390x",
       "metadata": {
         "sourcerpm": "pkgconf"
       }
     },
     "podman": {
-      "evra": "5:5.2.1-1.fc40.s390x",
+      "evra": "5:5.2.2-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2011,7 +2035,7 @@
       }
     },
     "qemu-user-static-x86": {
-      "evra": "2:8.2.2-1.fc40.s390x",
+      "evra": "2:8.2.6-3.fc40.s390x",
       "metadata": {
         "sourcerpm": "qemu"
       }
@@ -2161,7 +2185,7 @@
       }
     },
     "skopeo": {
-      "evra": "1:1.16.0-1.fc40.s390x",
+      "evra": "1:1.16.1-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "skopeo"
       }
@@ -2377,19 +2401,19 @@
       }
     },
     "veritysetup": {
-      "evra": "2.7.4-1.fc40.s390x",
+      "evra": "2.7.5-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "cryptsetup"
       }
     },
     "vim-data": {
-      "evra": "2:9.1.672-1.fc40.noarch",
+      "evra": "2:9.1.703-1.fc40.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.672-1.fc40.s390x",
+      "evra": "2:9.1.703-1.fc40.s390x",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2468,16 +2492,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-08-25T00:00:00Z",
+    "generated": "2024-09-06T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:01Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-08-24T16:43:40Z"
+        "generated": "2024-09-06T17:23:30Z"
       },
       "fedora-updates": {
-        "generated": "2024-08-25T04:36:06Z"
+        "generated": "2024-09-06T03:44:54Z"
       }
     }
   }
