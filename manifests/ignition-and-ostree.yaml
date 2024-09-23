@@ -5,9 +5,6 @@
 # One good model is to add fedora-coreos-config as a git submodule.  See:
 # https://github.com/coreos/coreos-assembler/pull/639
 
-# Include rpm-ostree + kernel + bootloader
-include: bootable-rpm-ostree.yaml
-
 # Modern defaults we want
 boot-location: modules
 tmp-is-dir: true
