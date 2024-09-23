@@ -3,17 +3,15 @@
 # generic enough to be shared downstream with RHCOS.
 
 packages:
-  # Standard tools for configuring network/hostname
-  - NetworkManager hostname
   # Interactive Networking configuration during coreos-install
   - NetworkManager-tui
   # Support for cloud quirks and dynamic config in real rootfs:
   # https://github.com/coreos/fedora-coreos-tracker/issues/320
   - NetworkManager-cloud-setup
-  # Route manipulation and QoS
-  - iproute iproute-tc
+  # Route QoS
+  - iproute-tc
   # Firewall manipulation
-  - iptables nftables
+  - nftables
   # Interactive network tools for admins
   - socat net-tools bind-utils
   # Declarative network configuration
