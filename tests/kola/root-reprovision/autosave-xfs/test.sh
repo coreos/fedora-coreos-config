@@ -25,7 +25,7 @@ fi
 journalctl -u ignition-ostree-transposefs-autosave-xfs.service --grep=agcount
 ok "autosaved XFS on large disk"
 
-eval $(xfs_info / | grep -o 'agcount=[0-9]*')
+eval $(xfs_info /sysroot | grep -o 'agcount=[0-9]*')
 expected=4
 if [ "$agcount" -gt "$expected" ]; then
     fatal "expected agcount of at most ${expected}, got ${agcount}"

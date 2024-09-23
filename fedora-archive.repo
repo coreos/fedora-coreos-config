@@ -1,0 +1,39 @@
+# Certain kola tests on older RHCOS branches rely on EOL Fedora containers
+# to set up and run the test environment. The ITUP cluster, being used by
+# the RHCOS pipeline, requires all outbound connections to be explicitly
+# specified in a Firewall Egress file. By using these archive repos on
+# the older RHCOS branches, we can ensure that those kola tests will
+# always download archived content from `https://dl.fedoraproject.org`.
+# We include both EOL and non-EOL repository locations in the baseurl list
+# to simplify maintenance, avoiding the need to remove the fedora.repo file
+# as versions reach EOL.
+
+[fedora-archive]
+name=Fedora $releasever - $basearch
+baseurl=https://dl.fedoraproject.org/pub/fedora/linux/releases/$releasever/Everything/$basearch/os/
+        https://dl.fedoraproject.org/pub/fedora-secondary/releases/$releasever/Everything/$basearch/os/
+        https://dl.fedoraproject.org/pub/archive/fedora/linux/releases/$releasever/Everything/$basearch/os/
+        https://dl.fedoraproject.org/pub/archive/fedora-secondary/releases/$releasever/Everything/$basearch/os/
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
+enabled=1
+#metadata_expire=7d
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+skip_if_unavailable=False
+
+[fedora-archive-updates]
+name=Fedora $releasever - $basearch
+baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/$releasever/Everything/$basearch/
+        https://dl.fedoraproject.org/pub/fedora-secondary/updates/$releasever/Everything/$basearch/
+        https://dl.fedoraproject.org/pub/archive/fedora/linux/updates/$releasever/Everything/$basearch/
+        https://dl.fedoraproject.org/pub/archive/fedora-secondary/updates/$releasever/Everything/$basearch/
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
+enabled=1
+#metadata_expire=7d
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+skip_if_unavailable=False
