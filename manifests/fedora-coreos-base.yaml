@@ -22,6 +22,7 @@ conditional-include:
   - if: releasever < 42
     include:
       - bootable-rpm-ostree.yaml
+      - ignition-and-ostree-tier-x-dupes.yaml
       - system-configuration-tier-x-dupes.yaml
       - networking-tools-tier-x-dupes.yaml
       - user-experience-tier-x-dupes.yaml
