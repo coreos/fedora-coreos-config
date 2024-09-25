@@ -55,13 +55,13 @@
       }
     },
     "afterburn": {
-      "evra": "5.6.0-1.fc40.aarch64",
+      "evra": "5.7.0-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rust-afterburn"
       }
     },
     "afterburn-dracut": {
-      "evra": "5.6.0-1.fc40.aarch64",
+      "evra": "5.7.0-1.fc40.aarch64",
       "metadata": {
         "sourcerpm": "rust-afterburn"
       }
@@ -325,13 +325,13 @@
       }
     },
     "containers-common": {
-      "evra": "5:0.60.1-1.fc40.noarch",
+      "evra": "5:0.60.2-2.fc40.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
     },
     "containers-common-extra": {
-      "evra": "5:0.60.1-1.fc40.noarch",
+      "evra": "5:0.60.2-2.fc40.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
@@ -1513,25 +1513,25 @@
       }
     },
     "libselinux": {
-      "evra": "3.6-4.fc40.aarch64",
+      "evra": "3.7-5.fc40.aarch64",
       "metadata": {
         "sourcerpm": "libselinux"
       }
     },
     "libselinux-utils": {
-      "evra": "3.6-4.fc40.aarch64",
+      "evra": "3.7-5.fc40.aarch64",
       "metadata": {
         "sourcerpm": "libselinux"
       }
     },
     "libsemanage": {
-      "evra": "3.6-3.fc40.aarch64",
+      "evra": "3.7-2.fc40.aarch64",
       "metadata": {
         "sourcerpm": "libsemanage"
       }
     },
     "libsepol": {
-      "evra": "3.6-3.fc40.aarch64",
+      "evra": "3.7-2.fc40.aarch64",
       "metadata": {
         "sourcerpm": "libsepol"
       }
@@ -2095,7 +2095,7 @@
       }
     },
     "policycoreutils": {
-      "evra": "3.6-3.fc40.aarch64",
+      "evra": "3.7-3.fc40.aarch64",
       "metadata": {
         "sourcerpm": "policycoreutils"
       }
@@ -2618,16 +2618,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-09-23T00:00:00Z",
+    "generated": "2024-09-25T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-04-14T18:51:04Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-09-22T23:50:31Z"
+        "generated": "2024-09-24T20:01:24Z"
       },
       "fedora-updates": {
-        "generated": "2024-09-23T01:19:43Z"
+        "generated": "2024-09-25T02:48:45Z"
       }
     }
   }
