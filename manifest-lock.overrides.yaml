@@ -8,4 +8,39 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  clevis:
+    evr: 20-2.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1803
+      type: pin
+  clevis-dracut:
+    evr: 20-2.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1803
+      type: pin
+  clevis-luks:
+    evr: 20-2.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1803
+      type: pin
+  clevis-systemd:
+    evr: 20-2.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1803
+      type: pin
+  dracut:
+    evr: 102-2.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1803
+      type: pin
+  dracut-network:
+    evr: 102-2.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1803
+      type: pin
+  dracut-squash:
+    evr: 102-2.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1803
+      type: pin
