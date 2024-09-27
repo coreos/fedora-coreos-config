@@ -13,11 +13,9 @@ set -xeuo pipefail
 
 # Add the `-not -regex '.*.0/var/mnt'` here to have an exception for
 # the /sysroot/ostree/deploy/*/deploy/*.0/var/mnt directory existing
-# and being unlabeled. We don't know why this file is getting created
-# early in boot (sometime in initrd teardown or very early systemd
-# startup in the real root), but the behavior is fixed in systemd
-# v254+ so this should no longer be a problem on RHCOS once we move
-# to EL10 and we can remove that from the `find` command below.
+# and being unlabeled. This is created by systemd pre-v254 during
+# pivoting (and so before the policy is loaded) as a temporary
+# mountpoint. We can remove it once we support el10+ only.
 unlabeled="$(find /sysroot -context '*unlabeled_t*' -not -regex '.*.0/var/mnt' -print0 | xargs --null -I{} ls -ldZ '{}')"
 if [ -n "${unlabeled}" ]; then
     fatal "Some unlabeled files were found"
