@@ -55,13 +55,13 @@
       }
     },
     "afterburn": {
-      "evra": "5.6.0-2.fc41.x86_64",
+      "evra": "5.7.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rust-afterburn"
       }
     },
     "afterburn-dracut": {
-      "evra": "5.6.0-2.fc41.x86_64",
+      "evra": "5.7.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rust-afterburn"
       }
@@ -205,7 +205,7 @@
       }
     },
     "ca-certificates": {
-      "evra": "2024.2.68_v8.0.302-3.fc41.noarch",
+      "evra": "2024.2.69_v8.0.401-1.0.fc41.noarch",
       "metadata": {
         "sourcerpm": "ca-certificates"
       }
@@ -721,7 +721,7 @@
       }
     },
     "fwupd": {
-      "evra": "1.9.23-1.fc41.x86_64",
+      "evra": "1.9.25-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -769,7 +769,7 @@
       }
     },
     "git-core": {
-      "evra": "2.46.1-1.fc41.x86_64",
+      "evra": "2.46.2-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "git"
       }
@@ -1027,7 +1027,7 @@
       }
     },
     "json-glib": {
-      "evra": "1.9.2-2.fc41.x86_64",
+      "evra": "1.10.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "json-glib"
       }
@@ -1441,7 +1441,7 @@
       }
     },
     "libnfsidmap": {
-      "evra": "1:2.7.1-0.fc41.x86_64",
+      "evra": "1:2.7.1-0.rc1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1915,7 +1915,7 @@
       }
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.7.1-0.fc41.x86_64",
+      "evra": "1:2.7.1-0.rc1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -2179,31 +2179,31 @@
       }
     },
     "rpm": {
-      "evra": "4.19.92-6.fc41.x86_64",
+      "evra": "4.19.94-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rpm"
       }
     },
     "rpm-libs": {
-      "evra": "4.19.92-6.fc41.x86_64",
+      "evra": "4.19.94-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rpm"
       }
     },
     "rpm-ostree": {
-      "evra": "2024.7-1.fc41.x86_64",
+      "evra": "2024.8-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
     },
     "rpm-ostree-libs": {
-      "evra": "2024.7-1.fc41.x86_64",
+      "evra": "2024.8-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
     },
     "rpm-plugin-selinux": {
-      "evra": "4.19.92-6.fc41.x86_64",
+      "evra": "4.19.94-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rpm"
       }
@@ -2533,13 +2533,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.719-1.fc41.noarch",
+      "evra": "2:9.1.737-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.719-1.fc41.x86_64",
+      "evra": "2:9.1.737-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2624,16 +2624,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-09-22T00:00:00Z",
+    "generated": "2024-09-28T00:00:00Z",
     "rpmmd_repos": {
       "fedora-candidate-compose": {
         "generated": "2024-09-11T21:51:31Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-09-21T23:47:03Z"
+        "generated": "2024-09-27T18:23:41Z"
       },
       "fedora-next": {
-        "generated": "2024-09-22T08:43:30Z"
+        "generated": "2024-09-27T08:49:03Z"
       },
       "fedora-next-updates": {
         "generated": "2018-02-20T19:18:14Z"
