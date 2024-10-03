@@ -21,3 +21,27 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-7e02fdb76d
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1553
       type: fast-track
+  grub2-common:
+    evra: 1:2.12-10.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-7d58433dd5
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1802
+      type: fast-track
+  grub2-pc:
+    evr: 1:2.12-10.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-7d58433dd5
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1802
+      type: fast-track
+  grub2-tools:
+    evr: 1:2.12-10.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-7d58433dd5
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1802
+      type: fast-track
+  grub2-tools-minimal:
+    evr: 1:2.12-10.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-7d58433dd5
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1802
+      type: fast-track
