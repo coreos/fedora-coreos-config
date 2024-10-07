@@ -16,8 +16,7 @@ karg() {
 
 # Mount /boot. Note that we mount /boot but we don't unmount it because we
 # are run in a systemd unit with MountFlags=slave so it is unmounted for us.
-bootmnt=/mnt/boot_partition
-mkdir -p ${bootmnt}
+bootmnt=/sysroot/boot
 bootdev=/dev/disk/by-label/boot
 mount -o rw ${bootdev} ${bootmnt}
 
@@ -44,3 +43,9 @@ fi
 # 4. it adds GRUB bootuuid.cfg dropins so that GRUB selects the boot filesystem
 #    by UUID
 rdcore bind-boot /sysroot ${bootmnt}
+
+# relabel files rdcore created; ideally in the future rdcore does this itself
+coreos-relabel /boot/.root_uuid
+if [ -e /sysroot/boot/grub2/bootuuid.cfg ]; then
+    coreos-relabel /boot/grub2/bootuuid.cfg
+fi
