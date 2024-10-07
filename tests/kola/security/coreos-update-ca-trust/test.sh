@@ -12,7 +12,7 @@ set -xeuo pipefail
 if ! systemctl show coreos-update-ca-trust.service -p ActiveState | grep ActiveState=active; then
     fatal "coreos-update-ca-trust.service not active"
 fi
-if ! grep '^# coreos.com$' /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt; then
+if ! grep '^# coreos.com$' /etc/pki/tls/certs/ca-bundle.crt; then
     fatal "expected coreos.com in ca-bundle"
 fi
 ok "coreos-update-ca-trust.service"
