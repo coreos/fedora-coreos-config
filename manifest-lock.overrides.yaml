@@ -21,3 +21,8 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-7e02fdb76d
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1553
       type: fast-track
+  podman:
+    evr: 5:5.2.4-1.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1809
+      type: pin
