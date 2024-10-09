@@ -40,6 +40,7 @@ list_setuid_files_rhcos=(
     '/usr/libexec/sssd/proxy_child'
     '/usr/libexec/sssd/selinux_child'
     '/usr/sbin/userhelper'
+    '/usr/libexec/clevis-luks-udisks2'
 )
 
 is_fcos="false"
