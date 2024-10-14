@@ -10,12 +10,3 @@
   warn: true
   arches:
     - ppc64le
-- pattern: ext.config.kdump.crash
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1791
-  snooze: 2024-10-14
-  warn: true
-  streams:
-    - rawhide
-    - branched
-    - next-devel
-    - next
