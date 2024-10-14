@@ -44,3 +44,9 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1803
       type: pin
+  kdump-utils:
+    evr: 1.0.47-1.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-edff699e08
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1791
+      type: fast-track
