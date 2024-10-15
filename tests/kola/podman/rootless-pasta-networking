@@ -20,7 +20,7 @@ set -xeuo pipefail
 runascoreuserscript='#!/bin/bash
 set -euxo pipefail
 # Just a basic test that uses pasta network and sets the gateway
-podman run -i --net=pasta:--mtu,1500 quay.io/fedora/fedora:40 bash <<"EOF"
+podman run -i --rm --net=pasta:--mtu,1500 quay.io/fedora/fedora:40 bash <<"EOF"
 set -euxo pipefail
 # Verify the mtu got set to 1500. No /sbin/ip so just use /sys/class/net/<nic>/mtu
 cat /sys/class/net/e*/mtu | grep 1500
