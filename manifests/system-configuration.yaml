@@ -16,19 +16,13 @@ packages:
   ## cloud-utils-growpart - For growing root partition
   - cifs-utils
   - cloud-utils-growpart
-  - cryptsetup
   - device-mapper-multipath
-  - e2fsprogs
   - iscsi-initiator-utils
-  - lvm2
   - mdadm
   - sg3_utils
-  - xfsprogs
   # User configuration
   - shadow-utils
   - acl
-  # SELinux policy
-  - selinux-policy-targeted
   # There are things that write outside of the journal still (such as the
   # classic wtmp, etc.). auditd also writes outside the journal but it has its
   # own log rotation.
@@ -41,11 +35,6 @@ packages:
   - stalld
   # Ignition aware SSH key management
   - ssh-key-dir
-  # Allow for configuring different timezones
-  - tzdata
-  # zram-generator (but not zram-generator-defaults) for F33 change
-  # https://github.com/coreos/fedora-coreos-tracker/issues/509
-  - zram-generator
 
 postprocess:
   # Mask systemd-repart. Ignition is responsible for partition setup on first

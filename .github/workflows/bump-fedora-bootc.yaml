@@ -1,0 +1,66 @@
+name: Bump fedora-bootc submodule
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bump-fedora-bootc-submodule:
+    name: Bump fedora-bootc submodule
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 0
+      # https://github.com/actions/checkout/issues/766
+      - name: Mark git checkout as safe
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Check if there are new commits
+        run: |
+          previous_rev=$(git -C fedora-bootc rev-parse HEAD)
+          git submodule update --remote fedora-bootc
+          new_rev=$(git -C fedora-bootc rev-parse HEAD)
+          if [ "${previous_rev}" != "${new_rev}" ]; then
+              if git -C fedora-bootc diff --quiet "${previous_rev}" "${new_rev}" tier-0 tier-x; then
+                  # reset back any changes to avoid a PR bump
+                  git submodule update
+              fi
+          fi
+          if git diff --quiet --exit-code; then
+              echo "No tier-0 or tier-x changes; exiting"
+              exit 0
+          fi
+
+          git -C fedora-bootc shortlog --no-merges "${previous_rev}..${new_rev}" -- tier-0 tier-x > $RUNNER_TEMP/shortlog
+
+          marker=END-OF-LOG-MARKER-$RANDOM$RANDOM$RANDOM
+          cat >> $GITHUB_ENV <<EOF
+          SHORTLOG<<$marker
+          $(cat $RUNNER_TEMP/shortlog)
+          $marker
+          EOF
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
+          push-to-fork: coreosbot-releng/fedora-coreos-config
+          branch: bump-fedora-bootc
+          commit-message: |
+            Bump fedora-bootc submodule
+
+            ${{ env.SHORTLOG }}
+          title: "Bump fedora-bootc submodule"
+          body: |
+            Created by [GitHub workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/bump-fedora-bootc.yml) ([source](${{ github.server_url }}/${{ github.repository }}/blob/testing-devel/.github/workflows/bump-fedora-bootc.yml)).
+
+            ```
+            ${{ env.SHORTLOG }}
+            ```
+          committer: "CoreOS Bot <coreosbot@fedoraproject.org>"
+          author: "CoreOS Bot <coreosbot@fedoraproject.org>"
