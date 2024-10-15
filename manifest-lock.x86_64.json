@@ -1,31 +1,31 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.49.4-1.fc41.x86_64",
+      "evra": "1:1.50.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.49.4-1.fc41.x86_64",
+      "evra": "1:1.50.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.49.4-1.fc41.x86_64",
+      "evra": "1:1.50.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
     },
     "NetworkManager-team": {
-      "evra": "1:1.49.4-1.fc41.x86_64",
+      "evra": "1:1.50.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
     },
     "NetworkManager-tui": {
-      "evra": "1:1.49.4-1.fc41.x86_64",
+      "evra": "1:1.50.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
@@ -163,7 +163,7 @@
       }
     },
     "bootupd": {
-      "evra": "0.2.20-2.fc41.x86_64",
+      "evra": "0.2.24-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rust-bootupd"
       }
@@ -223,25 +223,25 @@
       }
     },
     "cifs-utils": {
-      "evra": "7.0-7.fc41.x86_64",
+      "evra": "7.1-2.fc41.x86_64",
       "metadata": {
         "sourcerpm": "cifs-utils"
       }
     },
     "clevis": {
-      "evra": "20-3.fc41.x86_64",
+      "evra": "21-3.fc41.x86_64",
       "metadata": {
         "sourcerpm": "clevis"
       }
     },
     "clevis-dracut": {
-      "evra": "20-3.fc41.x86_64",
+      "evra": "21-3.fc41.x86_64",
       "metadata": {
         "sourcerpm": "clevis"
       }
     },
     "clevis-luks": {
-      "evra": "20-3.fc41.x86_64",
+      "evra": "21-3.fc41.x86_64",
       "metadata": {
         "sourcerpm": "clevis"
       }
@@ -253,7 +253,7 @@
       }
     },
     "clevis-systemd": {
-      "evra": "20-3.fc41.x86_64",
+      "evra": "21-3.fc41.x86_64",
       "metadata": {
         "sourcerpm": "clevis"
       }
@@ -391,7 +391,7 @@
       }
     },
     "crypto-policies": {
-      "evra": "20240826-1.gite824389.fc41.noarch",
+      "evra": "20241010-1.git8baf557.fc41.noarch",
       "metadata": {
         "sourcerpm": "crypto-policies"
       }
@@ -511,7 +511,7 @@
       }
     },
     "docker-cli": {
-      "evra": "27.3.1-1.fc41.x86_64",
+      "evra": "27.3.1-2.fc41.x86_64",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
@@ -1051,7 +1051,7 @@
       }
     },
     "kdump-utils": {
-      "evra": "1.0.44-2.fc41.x86_64",
+      "evra": "1.0.47-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "kdump-utils"
       }
@@ -1837,13 +1837,13 @@
       }
     },
     "moby-engine": {
-      "evra": "27.3.1-1.fc41.x86_64",
+      "evra": "27.3.1-2.fc41.x86_64",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
     },
     "moby-filesystem": {
-      "evra": "27.3.1-1.fc41.noarch",
+      "evra": "27.3.1-2.fc41.noarch",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
@@ -2088,6 +2088,12 @@
         "sourcerpm": "pcre2"
       }
     },
+    "pigz": {
+      "evra": "2.8-5.fc41.x86_64",
+      "metadata": {
+        "sourcerpm": "pigz"
+      }
+    },
     "pkgconf": {
       "evra": "2.3.0-1.fc41.x86_64",
       "metadata": {
@@ -2179,13 +2185,13 @@
       }
     },
     "rpm": {
-      "evra": "4.19.94-1.fc41.x86_64",
+      "evra": "4.20.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rpm"
       }
     },
     "rpm-libs": {
-      "evra": "4.19.94-1.fc41.x86_64",
+      "evra": "4.20.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rpm"
       }
@@ -2203,7 +2209,7 @@
       }
     },
     "rpm-plugin-selinux": {
-      "evra": "4.19.94-1.fc41.x86_64",
+      "evra": "4.20.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rpm"
       }
@@ -2624,16 +2630,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-10-13T00:00:00Z",
+    "generated": "2024-10-15T00:00:00Z",
     "rpmmd_repos": {
       "fedora-candidate-compose": {
         "generated": "2024-09-11T21:51:31Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-10-09T21:43:15Z"
+        "generated": "2024-10-14T16:51:30Z"
       },
       "fedora-next": {
-        "generated": "2024-10-13T08:40:31Z"
+        "generated": "2024-10-15T08:12:29Z"
       },
       "fedora-next-updates": {
         "generated": "2018-02-20T19:18:14Z"
