@@ -6,13 +6,19 @@ depends() {
     echo ignition rdcore
 }
 
-install_ignition_unit() {
+install_unit() {
     local unit=$1; shift
-    local target=${1:-complete}
+    local target=${1:-initrd}
     inst_simple "$moddir/$unit" "$systemdsystemunitdir/$unit"
     # note we `|| exit 1` here so we error out if e.g. the units are missing
     # see https://github.com/coreos/fedora-coreos-config/issues/799
-    systemctl -q --root="$initdir" add-requires "ignition-${target}.target" "$unit" || exit 1
+    systemctl -q --root="$initdir" add-requires "${target}.target" "$unit" || exit 1
+}
+
+install_ignition_unit() {
+    local unit=$1; shift
+    local target=${1:-complete}
+    install_unit "${unit}" "ignition-${target}"
 }
 
 installkernel() {
@@ -94,6 +100,13 @@ install() {
     done
     inst_script "$moddir/ignition-ostree-firstboot-uuid" \
         "/usr/sbin/ignition-ostree-firstboot-uuid"
+
+    # Support for initramfs binaries loaded from the real root
+    # https://github.com/coreos/fedora-coreos-tracker/issues/1247
+    install_ignition_unit ignition-ostree-firstboot-populate-initramfs.service diskful
+    install_unit ignition-ostree-subsequent-populate-initramfs.service initrd
+    # Keep this in sync with ignition-ostree-transposefs.sh
+    rm -v "${initdir}"/usr/bin/{ignition,afterburn}
 
     install_ignition_unit ignition-ostree-growfs.service
     inst_script "$moddir/ignition-ostree-growfs.sh" \
