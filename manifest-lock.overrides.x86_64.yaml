@@ -9,6 +9,24 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  grub2-common:
+    evra: 1:2.12-10.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-7d58433dd5
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1802
+      type: fast-track
+  grub2-tools:
+    evra: 1:2.12-10.fc41.x86_64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-7d58433dd5
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1802
+      type: fast-track
+  grub2-tools-minimal:
+    evra: 1:2.12-10.fc41.x86_64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-7d58433dd5
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1802
+      type: fast-track
   grub2-efi-x64:
     evra: 1:2.12-10.fc41.x86_64
     metadata:
@@ -21,4 +39,9 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-7d58433dd5
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1802
       type: fast-track
-
+  grub2-pc:
+    evra: 1:2.12-10.fc41.x86_64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-7d58433dd5
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1802
+      type: fast-track
