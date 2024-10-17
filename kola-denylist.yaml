@@ -1,6 +1,8 @@
 # This file documents currently known-to-fail kola tests. It is consumed by
 # coreos-assembler to automatically skip some tests. For more information,
 # see: https://github.com/coreos/coreos-assembler/pull/866.
+- pattern: default-checks
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/751
 - pattern: fcos.internet
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: podman.workflow
