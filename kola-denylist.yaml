@@ -17,3 +17,11 @@
     - branched
     - next-devel
     - next
+- pattern: ext.config.boot.bootupd-validate
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1788
+  snooze: 2024-11-18
+  streams:
+    - stable
+    - testing
+    - testing-devel
+    - next
