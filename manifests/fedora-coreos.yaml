@@ -63,13 +63,6 @@ packages:
   # https://github.com/coreos/fedora-coreos-tracker/issues/1567
   - bash-color-prompt
 
-etc-group-members:
-  # Add the docker group to /etc/group
-  # https://github.com/coreos/fedora-coreos-tracker/issues/2
-  # This will be no longer needed when systemd-sysusers has been implemented:
-  # https://github.com/projectatomic/rpm-ostree/issues/49
-  - docker
-
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos-base.yaml
 postprocess:
