@@ -5,12 +5,6 @@
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
 - pattern: podman.workflow
   tracker: https://github.com/coreos/coreos-assembler/pull/1478
-- pattern: coreos.ignition.ssh.key
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1553
-  # snooze: 2024-10-01 (disabled on promotion)
-  # warn: true (disabled on promotion)
-  platforms:
-    - azure
 - pattern: coreos.boot-mirror*
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1659
   # warn: true (disabled on promotion)
@@ -18,7 +12,7 @@
     - ppc64le
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1791
-  # snooze: 2024-09-26 (disabled on promotion)
+  # snooze: 2024-10-14 (disabled on promotion)
   # warn: true (disabled on promotion)
   streams:
     - rawhide

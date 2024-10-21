@@ -1,0 +1,50 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   tags: "platform-independent"
+##   description: Verify there are no unlabeled or mislabeled files on the system.
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1772
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+# Add the `-not -regex '.*.0/var/mnt'` here to have an exception for
+# the /sysroot/ostree/deploy/*/deploy/*.0/var/mnt directory existing
+# and being unlabeled. This is created by systemd pre-v254 during
+# pivoting (and so before the policy is loaded) as a temporary
+# mountpoint. We can remove it once we support el10+ only.
+unlabeled="$(find /sysroot -context '*unlabeled_t*' -not -regex '.*.0/var/mnt' -print0 | xargs --null -I{} ls -ldZ '{}')"
+if [ -n "${unlabeled}" ]; then
+    fatal "Some unlabeled files were found"
+fi
+
+mislabeled="$(restorecon -vnr /var/ /etc/ /usr/ /boot/)"
+if [ -n "${mislabeled}" ]; then
+    # Exceptions for files that could be wrong
+    # On RHCOS
+    #   - Would relabel /var/opt/cni from system_u:object_r:usr_t:s0 to system_u:object_r:var_t:s0
+    #     - https://github.com/openshift/os/issues/1624
+    #   - Would relabel /etc/iscsi/initiatorname.iscsi from system_u:object_r:etc_runtime_t:s0 to system_u:object_r:etc_t:s0
+    #     - Fixed by https://github.com/openshift/os/pull/1622
+    #     - Remove when the oldest supported RHCOS release is 4.18 or newer
+    declare -A exceptions=(
+        ['/var/opt/cni']=1
+        ['/etc/iscsi/initiatorname.iscsi']=1
+    )
+    paths="$(echo "${mislabeled}" | grep "Would relabel" | cut -d ' ' -f 3)"
+    found=""
+    while read -r path; do
+        if [[ "${exceptions[$path]:-noexception}" == 'noexception' ]]; then
+            echo "Unexpected mislabeled file found: ${path}"
+            found="1"
+        fi
+    done <<< "${paths}"
+    if [ "${found}" == "1" ];then
+        fatal "Some unexpected mislabeled files were found."
+    fi
+fi
+
+ok "No unlabeled or mislabeled files found!"
