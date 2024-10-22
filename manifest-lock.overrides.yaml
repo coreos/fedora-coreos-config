@@ -9,6 +9,12 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  kdump-utils:
+    evr: 1.0.48-1.fc40
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-b6681fcf56
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1813#issuecomment-2429448152
+      type: fast-track
   podman:
     evr: 5:5.2.5-1.fc40
     metadata:
