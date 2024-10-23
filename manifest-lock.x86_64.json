@@ -73,13 +73,13 @@
       }
     },
     "amd-gpu-firmware": {
-      "evra": "20241017-1.fc41.noarch",
+      "evra": "20241017-2.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "amd-ucode-firmware": {
-      "evra": "20241017-1.fc41.noarch",
+      "evra": "20241017-2.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -547,13 +547,13 @@
       }
     },
     "e2fsprogs": {
-      "evra": "1.47.1-3.fc41.x86_64",
+      "evra": "1.47.1-6.fc41.x86_64",
       "metadata": {
         "sourcerpm": "e2fsprogs"
       }
     },
     "e2fsprogs-libs": {
-      "evra": "1.47.1-3.fc41.x86_64",
+      "evra": "1.47.1-6.fc41.x86_64",
       "metadata": {
         "sourcerpm": "e2fsprogs"
       }
@@ -907,7 +907,7 @@
       }
     },
     "intel-gpu-firmware": {
-      "evra": "20241017-1.fc41.noarch",
+      "evra": "20241017-2.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1051,31 +1051,31 @@
       }
     },
     "kdump-utils": {
-      "evra": "1.0.47-1.fc41.x86_64",
+      "evra": "1.0.48-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "kdump-utils"
       }
     },
     "kernel": {
-      "evra": "6.11.3-300.fc41.x86_64",
+      "evra": "6.11.4-301.fc41.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.11.3-300.fc41.x86_64",
+      "evra": "6.11.4-301.fc41.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.11.3-300.fc41.x86_64",
+      "evra": "6.11.4-301.fc41.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.11.3-300.fc41.x86_64",
+      "evra": "6.11.4-301.fc41.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1207,7 +1207,7 @@
       }
     },
     "libcom_err": {
-      "evra": "1.47.1-3.fc41.x86_64",
+      "evra": "1.47.1-6.fc41.x86_64",
       "metadata": {
         "sourcerpm": "e2fsprogs"
       }
@@ -1585,7 +1585,7 @@
       }
     },
     "libss": {
-      "evra": "1.47.1-3.fc41.x86_64",
+      "evra": "1.47.1-6.fc41.x86_64",
       "metadata": {
         "sourcerpm": "e2fsprogs"
       }
@@ -1741,27 +1741,27 @@
       }
     },
     "linux-firmware": {
-      "evra": "20241017-1.fc41.noarch",
+      "evra": "20241017-2.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "linux-firmware-whence": {
-      "evra": "20241017-1.fc41.noarch",
+      "evra": "20241017-2.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
-    "lld-libs": {
-      "evra": "18.1.8-2.fc41.x86_64",
+    "lld18-libs": {
+      "evra": "18.1.8-6.fc41.x86_64",
       "metadata": {
-        "sourcerpm": "lld"
+        "sourcerpm": "lld18"
       }
     },
-    "llvm-libs": {
-      "evra": "18.1.8-2.fc41.x86_64",
+    "llvm18-libs": {
+      "evra": "18.1.8-4.fc41.x86_64",
       "metadata": {
-        "sourcerpm": "llvm"
+        "sourcerpm": "llvm18"
       }
     },
     "lmdb-libs": {
@@ -1951,7 +1951,7 @@
       }
     },
     "nvidia-gpu-firmware": {
-      "evra": "20241017-1.fc41.noarch",
+      "evra": "20241017-2.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2167,7 +2167,7 @@
       }
     },
     "qed-firmware": {
-      "evra": "20241017-1.fc41.noarch",
+      "evra": "20241017-2.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2491,7 +2491,7 @@
       }
     },
     "toolbox": {
-      "evra": "0.0.99.6-5.fc41.x86_64",
+      "evra": "0.0.99.6-6.fc41.x86_64",
       "metadata": {
         "sourcerpm": "toolbox"
       }
@@ -2630,16 +2630,16 @@
     }
   },
   "metadata": {
-    "generated": "2024-10-21T00:00:00Z",
+    "generated": "2024-10-23T00:00:00Z",
     "rpmmd_repos": {
       "fedora-candidate-compose": {
-        "generated": "2024-09-11T21:51:31Z"
+        "generated": "2024-10-21T21:28:04Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2024-10-21T12:35:49Z"
+        "generated": "2024-10-22T23:40:01Z"
       },
       "fedora-next": {
-        "generated": "2024-10-21T08:46:29Z"
+        "generated": "2024-10-22T08:47:54Z"
       },
       "fedora-next-updates": {
         "generated": "2018-02-20T19:18:14Z"
