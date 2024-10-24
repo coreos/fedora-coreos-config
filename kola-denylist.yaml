@@ -10,3 +10,9 @@
   warn: true
   arches:
     - ppc64le
+- pattern: kdump.crash.nfs
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1820
+  streams:
+     - rawhide
+     - next-devel
+     - next
