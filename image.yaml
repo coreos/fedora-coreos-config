@@ -9,3 +9,7 @@ include: image-base.yaml
 # and enable it by default for rawhide!
 deploy-via-container: true
 container-imgref: "ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos:rawhide"
+
+# Experiment with using zstd compression in rawhide
+compressor: zstd
+
