@@ -19,7 +19,7 @@ packages:
 packages-aarch64:
   - grub2-efi-aa64 efibootmgr shim
 packages-ppc64le:
-  - grub2 ostree-grub2
+  - grub2
 packages-s390x:
   # On Fedora, this is provided by s390utils-core. on RHEL, this is for now
   # provided by s390utils-base, but soon will be -core too.
