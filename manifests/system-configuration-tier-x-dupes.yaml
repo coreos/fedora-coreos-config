@@ -1,0 +1,14 @@
+# This manifest can go away in Fedora 42. It duplicates tier-x.
+
+packages:
+  - cryptsetup
+  - e2fsprogs
+  - lvm2
+  - xfsprogs
+  # SELinux policy
+  - selinux-policy-targeted
+  # Allow for configuring different timezones
+  - tzdata
+  # zram-generator (but not zram-generator-defaults) for F33 change
+  # https://github.com/coreos/fedora-coreos-tracker/issues/509
+  - zram-generator

@@ -10,10 +10,18 @@ include:
   - networking-tools.yaml
   - user-experience.yaml
   - shared-workarounds.yaml
-  # See https://github.com/coreos/bootupd
-  - bootupd.yaml
   - shared-el9.yaml
   - shared-el10.yaml
+
+conditional-include:
+  # starting from f42, we inherit from tier-x
+  - if: releasever >= 42
+    include: tier-x.yaml
+  # all these are inherited from tier-x in f42+, but we carry them here to
+  # enforce that there's really no coupling until f42
+  - if: releasever < 42
+    include: tier-x-dupes.yaml
+
 ostree-layers:
   - overlay/05core
   - overlay/08nouveau
