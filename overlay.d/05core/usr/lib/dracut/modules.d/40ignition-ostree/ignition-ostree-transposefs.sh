@@ -5,6 +5,10 @@ boot_sector_size=440
 esp_typeguid=c12a7328-f81f-11d2-ba4b-00a0c93ec93b
 bios_typeguid=21686148-6449-6e6f-744e-656564454649
 prep_typeguid=9e1a2d38-c612-4316-aa26-8b49521e5a8b
+# Binaries we store in the real root; keep this list in sync
+# with what's in module-setup.sh to remove them.
+rootfs_initramfs_binaries=(/usr/bin/afterburn)
+rootfs_ignition=/usr/lib/dracut/modules.d/30ignition/ignition
 
 # This is implementation details of Ignition; in the future, we should figure
 # out a way to ask Ignition directly whether there's a filesystem with label
@@ -213,6 +217,25 @@ check_and_set_secex_config() {
 check_and_set_secex_config
 
 case "${1:-}" in
+    # See documentation in the unit for this
+    populate-initramfs-pre-ignition)
+        # We're running before Ignition; we must mount sysroot on our own and find
+        # the ostree deployment, similar to the transposefs-save case.
+        mount_verbose "${root_part}" /sysroot
+        deployment=$(ls -d /sysroot/ostree/deploy/*/deploy/*/)
+        for binary in ${rootfs_initramfs_binaries[@]}; do
+            cp -p ${deployment}${binary} ${binary}
+        done
+        cp -p ${deployment}${rootfs_ignition} /usr/bin/ignition
+        ;;
+    # See documentation in the unit for this
+    populate-initramfs-subsequent)
+        for binary in ${rootfs_initramfs_binaries[@]}; do
+            # Here we have /sysroot mounted already, so just copy from there.
+            cp -p /sysroot${binary} ${binary}
+        done
+        cp -p /sysroot${rootfs_ignition} /usr/bin/ignition
+        ;;
     detect)
         # Mounts are not in a private namespace so we can mount ${saved_data}
         wipes_root=$(jq "$(query_fslabel root) | length" "${ignition_cfg}")
