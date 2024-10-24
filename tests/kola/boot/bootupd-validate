@@ -1,0 +1,87 @@
+#!/bin/bash
+## kola:
+##   # bootupd does not support bootloader update on s390x
+##   architectures: "! s390x"
+##   description: Extend bootupd test to include testing adoption and updates.
+
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1788#issuecomment-2326473398
+# Steps:
+# 1) Only x64 and aarch64 have esp device
+#  - Overwrite an existing file in the ESP
+#  - Verify that `bootupctl validate` fails as expected
+# 2) Remove /boot/bootupd-state.json
+# 3) Run `bootupctl adopt_and_update`
+# 4) Verify that validate is successful and results are expected
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+overwrite=
+# only x64 and aarch64 have esp device
+overwrite_file() {
+    case "$(arch)" in
+        x86_64|aarch64)
+            local esp_dev=$(realpath /dev/disk/by-partlabel/EFI-SYSTEM)
+            if [ ! -b "${esp_dev}" ]; then
+                fatal "can not find ${esp_dev}"
+            fi
+            mount -v "${esp_dev}" /boot/efi
+            local shim_file=$(find /boot/efi -name shim.efi)
+            if [ -z "${shim_file}" ]; then
+                fatal "can not find ${shim_file}"
+            fi
+            echo test > "${shim_file}"
+            umount -v "${esp_dev}"
+            overwrite=1
+            ;;
+        *)
+            echo "skipped overwrite"
+            ;;
+    esac
+}
+
+adopt_and_update() {
+    local state_file="/boot/bootupd-state.json"
+    if [ -f "${state_file}" ]; then
+        mount -o remount,rw /boot
+        rm -f ${state_file}
+        bootupctl adopt-and-update | grep "Adopted and updated.*"
+        [ ! -f "${state_file}" ] && fatal "Should find ${state_file}"
+        mount -o remount,ro /boot
+    else
+        fatal "could not find ${state_file}"
+    fi
+}
+
+validate() {
+    local msg_efi="Validated: EFI"
+    local msg_bios="Skipped: BIOS"
+
+    case "$(arch)" in
+        x86_64)
+            bootupctl validate | grep "${msg_bios}"
+            bootupctl validate | grep "${msg_efi}"
+            ;;
+        aarch64)
+            bootupctl validate | grep "${msg_efi}"
+            ;;
+        ppc64le)
+            bootupctl validate | grep "${msg_bios}"
+            ;;
+        *)
+            echo "skipped validate"
+            ;;
+    esac
+}
+
+overwrite_file
+if [ -n "${overwrite}" ] && bootupctl validate 2>&1; then
+    fatal "bootupctl validate did not fail as expected"
+fi
+
+adopt_and_update
+validate
+
+ok bootupctl adopt and update
