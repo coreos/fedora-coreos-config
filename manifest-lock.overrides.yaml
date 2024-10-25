@@ -8,4 +8,45 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  ignition:
+    evr: 2.20.0-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-5298e9e9d4
+      type: fast-track
+  kdump-utils:
+    evr: 1.0.48-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-664f875d92
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1813#issuecomment-2429526324
+      type: fast-track
+  libjcat:
+    evr: 0.2.2-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-e5837f91de
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  libuv:
+    evr: 1:1.49.2-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-fe98d45553
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  libxmlb:
+    evr: 0.3.21-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-e990b87d5a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  vim-data:
+    evra: 2:9.1.785-1.fc41.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-359e625548
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track
+  vim-minimal:
+    evr: 2:9.1.785-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-359e625548
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1695#issuecomment-2350064109
+      type: fast-track

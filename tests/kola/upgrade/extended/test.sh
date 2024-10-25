@@ -154,11 +154,18 @@ move-to-cgroups-v2() {
     fi
 }
 
-selinux-sanity-check() {
+# A helper to wait for the fix-selinux-labels script to finish
+wait-for-coreos-fix-selinux-labels() {
     # First make sure the migrations/fix script has finished (if it is going
     # to run) before doing the checks
     systemd-run --wait --property=After=coreos-fix-selinux-labels.service \
         echo "Waited for coreos-fix-selinux-labels.service to finish"
+}
+
+selinux-sanity-check() {
+    # First make sure the migrations/fix script has finished if this is the boot
+    # where the fixes are taking place.
+    wait-for-coreos-fix-selinux-labels
     # Verify SELinux labels are sane. Migration scripts should have cleaned
     # up https://github.com/coreos/fedora-coreos-tracker/issues/1772
     unlabeled="$(find /sysroot -context '*unlabeled_t*' -print0 | xargs --null -I{} ls -ldZ '{}')"
@@ -267,6 +274,10 @@ esac
 # version, which should be in the compose OSTree repo.
 if vereq $version $last_release; then
     systemctl stop zincati
+    # In case the SELinux fix script is running this boot let's wait for it to
+    # finish before initiating an `rpm-ostree rebase` so we aren't writing at the
+    # same time it's fixing.
+    wait-for-coreos-fix-selinux-labels
     rpm-ostree rebase "fedora-compose:fedora/$(arch)/coreos/${target_stream}" $target_version
     /tmp/autopkgtest-reboot $version # execute the reboot
     sleep infinity
