@@ -154,11 +154,18 @@ move-to-cgroups-v2() {
     fi
 }
 
-selinux-sanity-check() {
+# A helper to wait for the fix-selinux-labels script to finish
+wait-for-coreos-fix-selinux-labels() {
     # First make sure the migrations/fix script has finished (if it is going
     # to run) before doing the checks
     systemd-run --wait --property=After=coreos-fix-selinux-labels.service \
         echo "Waited for coreos-fix-selinux-labels.service to finish"
+}
+
+selinux-sanity-check() {
+    # First make sure the migrations/fix script has finished if this is the boot
+    # where the fixes are taking place.
+    wait-for-coreos-fix-selinux-labels
     # Verify SELinux labels are sane. Migration scripts should have cleaned
     # up https://github.com/coreos/fedora-coreos-tracker/issues/1772
     unlabeled="$(find /sysroot -context '*unlabeled_t*' -print0 | xargs --null -I{} ls -ldZ '{}')"
@@ -168,15 +175,20 @@ selinux-sanity-check() {
     mislabeled="$(restorecon -vnr /var/ /etc/ /usr/ /boot/)"
     if [ -n "${mislabeled}" ]; then
         # Exceptions for files that could be wrong (sometimes upgrades are messy)
-        #   Would relabel /var/lib/cni from system_u:object_r:var_lib_t:s0 to system_u:object_r:container_var_lib_t:s0
-        #   Would relabel /etc/selinux/targeted/semanage.read.LOCK from system_u:object_r:semanage_trans_lock_t:s0 to system_u:object_r:selinux_config_t:s0
-        #   Would relabel /etc/selinux/targeted/semanage.trans.LOCK from system_u:object_r:semanage_trans_lock_t:s0 to system_u:object_r:selinux_config_t:s0
-        #   Would relabel /etc/systemd/journald.conf.d from system_u:object_r:etc_t:s0 to system_u:object_r:systemd_conf_t:s0
-        #   Would relabel /etc/systemd/journald.conf.d/forward-to-console.conf from system_u:object_r:etc_t:s0 to system_u:object_r:systemd_conf_t:s0
-        #   Would relabel /boot/lost+found from system_u:object_r:unlabeled_t:s0 to system_u:object_r:lost_found_t:s0' ']'
-        #   Would relabel /var/lib/systemd/home from system_u:object_r:init_var_lib_t:s0 to system_u:object_r:systemd_homed_library_dir_t:s0
+        # - Would relabel /var/lib/cni from system_u:object_r:var_lib_t:s0 to system_u:object_r:container_var_lib_t:s0
+        # - Would relabel /etc/selinux/targeted/semanage.read.LOCK from system_u:object_r:semanage_trans_lock_t:s0 to system_u:object_r:selinux_config_t:s0
+        # - Would relabel /etc/selinux/targeted/semanage.trans.LOCK from system_u:object_r:semanage_trans_lock_t:s0 to system_u:object_r:selinux_config_t:s0
+        # - Would relabel /etc/systemd/journald.conf.d from system_u:object_r:etc_t:s0 to system_u:object_r:systemd_conf_t:s0
+        # - Would relabel /etc/systemd/journald.conf.d/forward-to-console.conf from system_u:object_r:etc_t:s0 to system_u:object_r:systemd_conf_t:s0
+        # - Would relabel /boot/lost+found from system_u:object_r:unlabeled_t:s0 to system_u:object_r:lost_found_t:s0' ']'
+        # - Would relabel /var/lib/systemd/home from system_u:object_r:init_var_lib_t:s0 to system_u:object_r:systemd_homed_library_dir_t:s0
         #       - 39.20230916.1.1->41.20240928.10.1
         #       - https://github.com/fedora-selinux/selinux-policy/commit/3ba70ae27d067f7edc0a52ff722511c5ada724f2
+        # - Would relabel /var/cache/systemd from system_u:object_r:var_t:s0 to system_u:object_r:systemd_cache_t:s0
+        #   Would relabel /var/cache/systemd/home from system_u:object_r:var_t:s0 to system_u:object_r:systemd_homed_cache_t:s0
+        #       - 38.20230322.1.0->42.20241023.91.0
+        #       - https://github.com/fedora-selinux/selinux-policy/commit/b08568ca696f14d3232adef6a291ebb0ec80ba46
+        #       - https://github.com/coreos/fedora-coreos-tracker/issues/1819
         declare -A exceptions=(
            ['/var/lib/cni']=1
            ['/etc/selinux/targeted/semanage.read.LOCK']=1
@@ -185,6 +197,8 @@ selinux-sanity-check() {
            ['/etc/systemd/journald.conf.d/forward-to-console.conf']=1
            ['/boot/lost+found']=1
            ['/var/lib/systemd/home']=1
+           ['/var/cache/systemd']=1
+           ['/var/cache/systemd/home']=1
         )
         paths="$(echo "${mislabeled}" | grep "Would relabel" | cut -d ' ' -f 3)"
         found=""
@@ -267,6 +281,10 @@ esac
 # version, which should be in the compose OSTree repo.
 if vereq $version $last_release; then
     systemctl stop zincati
+    # In case the SELinux fix script is running this boot let's wait for it to
+    # finish before initiating an `rpm-ostree rebase` so we aren't writing at the
+    # same time it's fixing.
+    wait-for-coreos-fix-selinux-labels
     rpm-ostree rebase "fedora-compose:fedora/$(arch)/coreos/${target_stream}" $target_version
     /tmp/autopkgtest-reboot $version # execute the reboot
     sleep infinity

@@ -11,6 +11,9 @@ ExecStartPre=/bin/touch /var/lib/coreos-fix-selinux-labels.stamp
 ExecStart=/usr/libexec/coreos-fix-selinux-labels
 RemainAfterExit=yes
 MountFlags=slave
+# Run before zincati so we're not creating new files on the filesystem
+# while we are fixing labels on existing files.
+Before=zincati.service
 
 [Install]
 WantedBy=multi-user.target
