@@ -10,10 +10,9 @@
   # warn: true (disabled on promotion)
   arches:
     - ppc64le
-- pattern: kdump.crash.ssh
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1813
+- pattern: kdump.crash.nfs
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1820
   streams:
-    - rawhide
-    - branched
-    - next-devel
-    - next
+     - rawhide
+     - next-devel
+     - next
