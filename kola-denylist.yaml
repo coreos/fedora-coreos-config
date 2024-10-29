@@ -10,16 +10,3 @@
   warn: true
   arches:
     - ppc64le
-- pattern: kdump.crash.nfs
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1820
-  streams:
-     - rawhide
-     - next-devel
-     - next
-- pattern: ext.config.boot.bootupd-validate
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1788
-  snooze: 2024-11-18
-  streams:
-    - stable
-    - testing
-    - testing-devel
