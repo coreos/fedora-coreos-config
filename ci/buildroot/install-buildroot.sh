@@ -5,7 +5,7 @@ set -euo pipefail
 
 dnf -y install dnf-plugins-core
 # We want to avoid a 7 day cycle for e.g. new ostree etc.
-dnf config-manager --set-enabled updates-testing
+dnf config-manager setopt updates-testing.enabled=1
 
 dn=$(dirname "$0")
 tmpd=$(mktemp -d) && trap 'rm -rf ${tmpd}' EXIT
