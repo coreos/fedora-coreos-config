@@ -35,7 +35,7 @@ rm -rf "${tmpd:?}"/*
 echo "Installing build dependencies from canonical spec files"
 specs=$(grep -v '^#' "${dn}"/buildroot-specs.txt)
 (cd "${tmpd}" && echo "${specs}" | xargs curl -L --remote-name-all)
-(cd "${tmpd}" && find . -type f -print0 | xargs -0 dnf -y builddep --spec)
+(cd "${tmpd}" && find . -type f -print0 | xargs -0 dnf -y builddep)
 rm -rf "${tmpd:?}"/*
 
 echo "Installing test dependencies from canonical upstream files"
