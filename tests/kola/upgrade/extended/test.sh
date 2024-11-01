@@ -162,10 +162,34 @@ wait-for-coreos-fix-selinux-labels() {
         echo "Waited for coreos-fix-selinux-labels.service to finish"
 }
 
+# Check if the rollback deployment has the dtb copy fix, which
+# means that the dtb files should have the correct SELinux labels.
+# https://github.com/coreos/fedora-coreos-tracker/issues/1808
+#
+# NOTE: we can drop this once the newest barrier release for all
+# streams is newer than 41.20241028.x.x.
+has_dtb_cp_fix() {
+    # The dtb copy issue was only ever an issue ever on aarch64
+    [ "$(arch)" != 'aarch64' ] && return 0
+    # We have the dtb copy fix if the rollback deployment is newer than
+    # when the fixed ostree was included. It should be fixed in the
+    # next round of releases after 41.20241028. Note 41.20241028.0.0
+    # is not a real build and uses `0` for the stream identifier, but
+    # should sort accordingly.
+    previous=$(rpm-ostree status --json | jq -r '.deployments[] | select(.booted == false).version')
+    if ! vergt $previous '41.20241028.0.0'; then
+        return 1
+    else
+        return 0
+    fi
+}
+
 selinux-sanity-check() {
     # First make sure the migrations/fix script has finished if this is the boot
     # where the fixes are taking place.
     wait-for-coreos-fix-selinux-labels
+    # Check to see if we have the dtb copy fix
+    has_dtb_cp_fix || add_dtb_exception='true'
     # Verify SELinux labels are sane. Migration scripts should have cleaned
     # up https://github.com/coreos/fedora-coreos-tracker/issues/1772
     unlabeled="$(find /sysroot -context '*unlabeled_t*' -print0 | xargs --null -I{} ls -ldZ '{}')"
@@ -206,8 +230,9 @@ selinux-sanity-check() {
             # Add in a few temporary glob exceptions
             # https://github.com/coreos/fedora-coreos-tracker/issues/1806
             [[ "${path}" =~ /etc/selinux/targeted/active/ ]] && continue
-            # https://github.com/coreos/fedora-coreos-tracker/issues/1808
-            [[ "${path}" =~ /boot/ostree/.*/dtb ]] && continue
+            if [ "${add_dtb_exception}" == 'true' ]; then
+                [[ "${path}" =~ /boot/ostree/.*/dtb ]] && continue
+            fi
             if [[ "${exceptions[$path]:-noexception}" == 'noexception' ]]; then
                 echo "Unexpected mislabeled file found: ${path}"
                 found="1"
