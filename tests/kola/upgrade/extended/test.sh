@@ -230,7 +230,7 @@ selinux-sanity-check() {
             # Add in a few temporary glob exceptions
             # https://github.com/coreos/fedora-coreos-tracker/issues/1806
             [[ "${path}" =~ /etc/selinux/targeted/active/ ]] && continue
-            if [ "${add_dtb_exception}" == 'true' ]; then
+            if [ "${add_dtb_exception:-}" == 'true' ]; then
                 [[ "${path}" =~ /boot/ostree/.*/dtb ]] && continue
             fi
             if [[ "${exceptions[$path]:-noexception}" == 'noexception' ]]; then
