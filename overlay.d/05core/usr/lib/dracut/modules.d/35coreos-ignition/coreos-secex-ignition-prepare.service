@@ -16,5 +16,7 @@ Before=ignition-fetch-offline.service
 
 [Service]
 Type=oneshot
+# Set to slave so rw remounting of /usr won't be for other units
+MountFlags=slave
 RemainAfterExit=yes
 ExecStart=/usr/sbin/coreos-secex-ignition-prepare
