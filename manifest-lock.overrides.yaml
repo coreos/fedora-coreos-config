@@ -9,9 +9,8 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  podman:
-    evr: 5:5.2.4-1.fc40
+  ignition:
+    evr: 2.20.0-1.fc41
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f0fd63c638
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1809
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-5298e9e9d4
       type: fast-track
