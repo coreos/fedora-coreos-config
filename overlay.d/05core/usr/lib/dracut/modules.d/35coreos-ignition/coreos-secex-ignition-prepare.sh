@@ -15,6 +15,12 @@ cleanup() {
 
 trap cleanup EXIT
 
+# Fedora 41 comes with systemd-256, where /usr is read-only during initramfs time.
+# https://github.com/coreos/ignition/issues/1891
+if [ ! -w /usr ]; then
+    mount -o rw,remount /usr
+fi
+
 # copy base Secure Execution config (enables LUKS+dm-verity for boot and root partitions)
 cp /usr/lib/coreos/01-secex.ign /usr/lib/ignition/base.d/01-secex.ign
 
