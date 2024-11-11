@@ -3,6 +3,9 @@ Description=Fix mislabeled or unlabeled SELinux contexts on files
 Documentation=https://github.com/coreos/fedora-coreos-tracker/issues/1771
 Documentation=https://github.com/coreos/fedora-coreos-tracker/issues/1772
 ConditionPathExists=!/var/lib/coreos-fix-selinux-labels.stamp
+# Run before zincati so we're not creating new files on the filesystem
+# while we are fixing labels on existing files.
+Before=zincati.service
 
 [Service]
 Type=oneshot
@@ -11,9 +14,6 @@ ExecStartPre=/bin/touch /var/lib/coreos-fix-selinux-labels.stamp
 ExecStart=/usr/libexec/coreos-fix-selinux-labels
 RemainAfterExit=yes
 MountFlags=slave
-# Run before zincati so we're not creating new files on the filesystem
-# while we are fixing labels on existing files.
-Before=zincati.service
 
 [Install]
 WantedBy=multi-user.target

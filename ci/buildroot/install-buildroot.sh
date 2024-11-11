@@ -5,7 +5,7 @@ set -euo pipefail
 
 dnf -y install dnf-plugins-core
 # We want to avoid a 7 day cycle for e.g. new ostree etc.
-dnf config-manager --set-enabled updates-testing
+dnf config-manager setopt updates-testing.enabled=1
 
 dn=$(dirname "$0")
 tmpd=$(mktemp -d) && trap 'rm -rf ${tmpd}' EXIT
@@ -35,7 +35,7 @@ rm -rf "${tmpd:?}"/*
 echo "Installing build dependencies from canonical spec files"
 specs=$(grep -v '^#' "${dn}"/buildroot-specs.txt)
 (cd "${tmpd}" && echo "${specs}" | xargs curl -L --remote-name-all)
-(cd "${tmpd}" && find . -type f -print0 | xargs -0 dnf -y builddep --spec)
+(cd "${tmpd}" && find . -type f -print0 | xargs -0 dnf -y builddep)
 rm -rf "${tmpd:?}"/*
 
 echo "Installing test dependencies from canonical upstream files"
