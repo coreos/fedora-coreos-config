@@ -159,6 +159,8 @@ packages:
   - iptables-legacy
   # NIC firmware we've traditionally shipped but then were split out of linux-firmware in Fedora
   - qed-firmware # https://github.com/coreos/fedora-coreos-tracker/issues/1746
+  # https://fedoraproject.org/wiki/Changes/DNFAndBootcInImageModeFedora
+  - bootc
 
 
 # - irqbalance
