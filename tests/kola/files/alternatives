@@ -1,0 +1,89 @@
+#!/bin/bash
+## kola:
+##   description: Verify that the alternatives config is properly migrated and test the migration
+##   distros: fcos
+# See
+# - https://github.com/coreos/fedora-coreos-tracker/issues/1818
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+# This test is only valid in version 43 or later
+if [ "$(get_fedora_ver)" -le 43 ]; then
+    ok "Skipping test for versions before 43"
+    exit 0
+fi
+
+if [[ -e "/var/lib/alternatives" ]]; then
+    ls -al "/var/lib/alternatives"
+    fatal "Error: Found '/var/lib/alternatives' which should not exist"
+fi
+if [[ ! -d "/etc/alternatives" ]]; then
+    fatal "Error: '/etc/alternatives' is missing"
+fi
+if [[ ! -d "/etc/alternatives-admindir" ]]; then
+    fatal "Error: '/etc/alternatives-admindir' is missing"
+fi
+
+# To test the migration we will re-create the setup from an older FCOS node
+
+# We need to overlay iptables-legacy as it is not included in the base image
+# since 43.
+rpm-ostree install --apply-live iptables-legacy
+
+# First, reset iptables to the legacy backend
+alternatives --set iptables /usr/bin/iptables-legacy
+if [[ $(alternatives --display iptables | grep -c "link currently points to /usr/bin/iptables-legacy") != "1" ]]; then
+    fatal "Could not set iptables to legacy backend for testing"
+fi
+if [[ $(iptables --version | grep -c "legacy") != "1" ]]; then
+    fatal "Could not set iptables to legacy backend for testing"
+fi
+
+# Then re-create the broken alternatives folder in /var
+install -dm0755 /var/lib/alternatives
+
+# Do the migration
+/usr/libexec/coreos-alternatives-migration
+
+if [[ $(alternatives --admindir /etc/alternatives-admindir --display iptables | grep -c -E 'link currently points to /usr/(bin|sbin)/iptables-nft' ) != "1" ]]; then
+    fatal "Error: migration did not set iptables to nft backend"
+fi
+if [[ $(iptables --version | grep -c "nf_tables") != "1" ]]; then
+    fatal "Error: iptables not reset to nftables backend"
+fi
+if [[ -d "/var/lib/alternatives" ]]; then
+    fatal "Error: /var/lib/alternatives should not exist anymore"
+fi
+
+# Second case, if an admin set some config up for alternatives
+
+# First, reset iptables to the legacy backend
+alternatives --set iptables /usr/bin/iptables-legacy
+if [[ $(alternatives --display iptables | grep -c "link currently points to /usr/bin/iptables-legacy") != "1" ]]; then
+    fatal "Could not set iptables to legacy backend for testing"
+fi
+if [[ $(iptables --version | grep -c "legacy") != "1" ]]; then
+    fatal "Could not set iptables to legacy backend for testing"
+fi
+
+# Then re-create the broken alternatives folder in /var
+install -dm0755 /var/lib/alternatives
+
+# And add some fake config
+touch /var/lib/alternatives/foo
+
+# Do the migration
+/usr/libexec/coreos-alternatives-migration
+
+if [[ $(alternatives --admindir /etc/alternatives-admindir --display iptables | grep -c -E 'link currently points to /usr/(bin|sbin)/iptables-nft') != "1" ]]; then
+    fatal "Error: migration did not set iptables to nft backend"
+fi
+if [[ $(iptables --version | grep -c "nf_tables") != "1" ]]; then
+    fatal "Error: iptables not reset to nftables backend"
+fi
+if [[ ! -d "/var/lib/alternatives" ]]; then
+    fatal "Error: /var/lib/alternatives should still exist"
+fi
