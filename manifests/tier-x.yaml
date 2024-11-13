@@ -12,3 +12,21 @@ machineid-compat: false
 # This is the historical default and what FCOS currently ships. fedora-bootc
 # uses the new `root` value, but migrating FCOS is not that simple...
 opt-usrlocal: var
+
+postprocess:
+  - |
+    #!/usr/bin/env bash
+    set -euo pipefail
+    # For now, rely on the `sysroot.readonly` knob in /ostree/config only.
+    # Having it in prepare-root.conf too throws off ostree-prepare-root in
+    # live PXE/ISO and we have no easy way to override it when building those.
+    # Really, we need to fix libostree + live ISOs to work well together:
+    # https://github.com/ostreedev/ostree/issues/1921
+    # It's awkward to edit arbitrary keyfile configs. Just rewrite it.
+    if grep -q readonly /usr/lib/ostree/prepare-root.conf; then
+        grep -q '^4 ' <(wc -l /usr/lib/ostree/prepare-root.conf)
+        cat > /usr/lib/ostree/prepare-root.conf <<EOF
+    [composefs]
+    enabled = true
+    EOF
+    fi
