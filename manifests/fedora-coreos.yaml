@@ -3,7 +3,7 @@
 # or are very "opinionated" like disabling SSH passwords by default.
 
 ref: fedora/${basearch}/coreos/${stream}
-rojig:
+metadata:
   license: MIT
   name: fedora-coreos
   summary: Fedora CoreOS ${stream}
