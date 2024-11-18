@@ -2,9 +2,6 @@
 # https://github.com/openshift/os/blob/71c974b1e456292033e3ef3fe7bcfe17d1855ebc/manifest.yaml#L12
 # Only apply changes here that should apply to both FCOS and RHCOS.
 
-# Default to `bash` in our container, the same as other containers we ship.
-container-cmd:
-  - /usr/bin/bash
 
 # These packages are either widely used utilities/services or
 # are targeted for improving the general CoreOS user experience.
@@ -12,20 +9,12 @@ container-cmd:
 # RHCOS.
 packages:
   # Basic user tools
-  ## jq - parsing/interacting with JSON data
-  - bash-completion
-  - coreutils
   - file
-  - jq
-  - less
-  - sudo
-  - vim-minimal
   # File compression/decompression
   ## bsdtar - dependency of 35coreos-live dracut module
   - bsdtar
   - bzip2
   - gzip
-  - tar
   - xz
   - zstd
   # Improved MOTD experience
@@ -34,14 +23,6 @@ packages:
   # kdump support
   # https://github.com/coreos/fedora-coreos-tracker/issues/622
   - kexec-tools
-  # Remote Access
-  - openssh-clients openssh-server
-  # Container tooling
-  ## crun recommends but doesn't require criu and criu-libs. We want them for
-  ## checkpoint/restore. https://github.com/coreos/fedora-coreos-tracker/issues/1370
-  - crun criu criu-libs
-  - podman
-  - skopeo
   - toolbox
   # passt provides user-mode networking daemons for namespaces
   - passt
