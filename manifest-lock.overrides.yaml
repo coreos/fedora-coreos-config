@@ -32,24 +32,20 @@ packages:
   kernel:
     evr: 6.12.0-65.fc42
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-d7500320f1
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1840
-      type: fast-track
+      type: pin
   kernel-core:
     evr: 6.12.0-65.fc42
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-d7500320f1
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1840
-      type: fast-track
+      type: pin
   kernel-modules:
     evr: 6.12.0-65.fc42
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-d7500320f1
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1840
-      type: fast-track
+      type: pin
   kernel-modules-core:
     evr: 6.12.0-65.fc42
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-d7500320f1
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1840
-      type: fast-track
+      type: pin
