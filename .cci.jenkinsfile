@@ -42,10 +42,8 @@ cosaPod(cpus: 4, memory: "9Gi") {
     }
     cosaBuild(skipInit: true, noStrict: no_strict_build, extraFetchArgs: '--with-cosa-overrides', extraArgs: parent_arg)
 
-    parallel metal: {
-        shwrap("cd /srv/coreos && cosa buildextend-metal")
-    }, metal4k: {
-        shwrap("cd /srv/coreos && cosa buildextend-metal4k")
+    stage("Metal/Metal4k") {
+        shwrap("cd /srv/coreos && cosa osbuild metal metal4k")
     }
 
     stage("Test ISO") {

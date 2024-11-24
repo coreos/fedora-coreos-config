@@ -1,0 +1,17 @@
+# This manifest can go away in Fedora 42. It duplicates tier-x.
+
+# Modern defaults we want
+boot-location: modules
+tmp-is-dir: true
+
+# Required by Ignition, and makes the system not compatible with Anaconda
+machineid-compat: false
+
+remove-from-packages:
+  # We don't want systemd-firstboot.service. It conceptually conflicts with
+  # Ignition.  We also inject runtime bits to disable it in systemd-firstboot.service.d/fcos-disable.conf
+  # to make it easier to use systemd builds from git.
+  - [systemd, /usr/lib/systemd/system/sysinit.target.wants/systemd-firstboot.service]
+  # We don't want auto-generated mount units. See also
+  # https://github.com/systemd/systemd/issues/13099
+  - [systemd-udev, /usr/lib/systemd/system-generators/systemd-gpt-auto-generator]

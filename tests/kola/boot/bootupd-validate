@@ -19,6 +19,8 @@ set -xeuo pipefail
 . "$KOLA_EXT_DATA/commonlib.sh"
 
 overwrite=
+bootupd_version=$(rpm -q --queryformat '%{VERSION}' bootupd)
+required_version='0.2.22'
 # only x64 and aarch64 have esp device
 overwrite_file() {
     case "$(arch)" in
@@ -28,7 +30,8 @@ overwrite_file() {
                 fatal "can not find ${esp_dev}"
             fi
             mount -v "${esp_dev}" /boot/efi
-            local shim_file=$(find /boot/efi -name shim.efi)
+            # on centos can not find shim.efi, use shimx64.efi instead
+            local shim_file=$(find /boot/efi \( -name "shim.efi" -o -name "shimx64.efi" \) | head -n1)
             if [ -z "${shim_file}" ]; then
                 fatal "can not find ${shim_file}"
             fi
@@ -61,7 +64,9 @@ validate() {
 
     case "$(arch)" in
         x86_64)
-            bootupctl validate | grep "${msg_bios}"
+            if vergte "${bootupd_version}" "${required_version}"; then
+                bootupctl validate | grep "${msg_bios}"
+            fi
             bootupctl validate | grep "${msg_efi}"
             ;;
         aarch64)
@@ -76,11 +81,20 @@ validate() {
     esac
 }
 
+# should remove this until https://issues.redhat.com/browse/RHEL-66584 is fixed
+set_selinux_permissve() {
+    source /etc/os-release
+    if is_scos || ([ "${RHEL_VERSION}" == "9.6" ] && [ "${VARIANT_ID}" == "coreos" ] ); then
+        semanage permissive -a bootupd_t
+    fi
+}
+
 overwrite_file
 if [ -n "${overwrite}" ] && bootupctl validate 2>&1; then
     fatal "bootupctl validate did not fail as expected"
 fi
 
+set_selinux_permissve
 adopt_and_update
 validate
 
