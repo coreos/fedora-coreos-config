@@ -1,0 +1,24 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   tags: "platform-independent"
+##   description: Verify systemd-firstboot isn't active.
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+UnitFileState=$(systemctl show systemd-firstboot.service --value --property=UnitFileState) # static
+UnitFilePreset=$(systemctl show systemd-firstboot.service --value --property=UnitFilePreset) # disabled
+ActiveState=$(systemctl show systemd-firstboot.service --value --property=ActiveState) # inactive
+SubState=$(systemctl show systemd-firstboot.service --value --property=SubState) # dead
+
+if [[ $UnitFileState != static ]] ||
+   [[ $UnitFilePreset != disabled ]] ||
+   [[ $ActiveState != inactive ]] ||
+   [[ $SubState != dead ]]; then
+    systemctl status systemd-firstboot.service
+    fatal "systemd-firstboot.service is not completely neutralized"
+fi
+ok "systemd-firstboot.service completely neutralized"

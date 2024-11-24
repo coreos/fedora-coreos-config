@@ -9,8 +9,35 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  ignition:
-    evr: 2.20.0-1.fc41
+  clevis:
+    evr: 21-5.fc41
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-5298e9e9d4
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1836
+      type: pin
+  clevis-dracut:
+    evr: 21-5.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1836
+      type: pin
+  clevis-luks:
+    evr: 21-5.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1836
+      type: pin
+  clevis-systemd:
+    evr: 21-5.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1836
+      type: pin
+  coreos-installer:
+    evr: 0.23.0-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f74beba038
+      reason: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f74beba038
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.23.0-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f74beba038
+      reason: https://bodhi.fedoraproject.org/updates/FEDORA-2024-f74beba038
       type: fast-track

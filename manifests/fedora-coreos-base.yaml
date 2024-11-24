@@ -10,10 +10,19 @@ include:
   - networking-tools.yaml
   - user-experience.yaml
   - shared-workarounds.yaml
-  # See https://github.com/coreos/bootupd
-  - bootupd.yaml
   - shared-el9.yaml
   - shared-el10.yaml
+
+conditional-include:
+  # starting from f42, we inherit from tier-x
+  # once we're on f42, we can move this up to the default list of includes above
+  - if: releasever >= 42
+    include: tier-x.yaml
+  # all these are inherited from tier-x in f42+, but we carry them here to
+  # enforce that there's really no coupling until f42
+  - if: releasever < 42
+    include: tier-x-dupes.yaml
+
 ostree-layers:
   - overlay/05core
   - overlay/08nouveau
@@ -159,8 +168,6 @@ packages:
   - iptables-legacy
   # NIC firmware we've traditionally shipped but then were split out of linux-firmware in Fedora
   - qed-firmware # https://github.com/coreos/fedora-coreos-tracker/issues/1746
-  # https://fedoraproject.org/wiki/Changes/DNFAndBootcInImageModeFedora
-  - bootc
 
 
 # - irqbalance
