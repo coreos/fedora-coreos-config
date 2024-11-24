@@ -1,0 +1,26 @@
+# This manifest can go away in Fedora 42. It duplicates tier-x.
+
+# Default to `bash` in our container, the same as other containers we ship.
+# Note this changes to /sbin/init in f42 as inherited by tier-x.
+container-cmd:
+  - /usr/bin/bash
+
+packages:
+  # Basic user tools
+  - bash-completion
+  - coreutils
+  # jq - parsing/interacting with JSON data
+  - jq
+  - less
+  - sudo
+  - vim-minimal
+  # File compression/decompression
+  - tar
+  # Remote Access
+  - openssh-clients openssh-server
+  # Container tooling
+  ## crun recommends but doesn't require criu and criu-libs. We want them for
+  ## checkpoint/restore. https://github.com/coreos/fedora-coreos-tracker/issues/1370
+  - crun criu criu-libs
+  - podman
+  - skopeo

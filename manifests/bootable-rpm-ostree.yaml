@@ -14,6 +14,8 @@ packages:
  - rpm-ostree nss-altfiles
  # firmware updates
  - fwupd
+ # https://fedoraproject.org/wiki/Changes/DNFAndBootcInImageModeFedora
+ - bootc
 
 # bootloader
 packages-aarch64:
@@ -24,8 +26,6 @@ packages-s390x:
   # On Fedora, this is provided by s390utils-core. on RHEL, this is for now
   # provided by s390utils-base, but soon will be -core too.
   - /usr/sbin/zipl
-  # for Secure Execution
-  - veritysetup
 packages-x86_64:
   - grub2 grub2-efi-x64 efibootmgr shim
   - microcode_ctl
