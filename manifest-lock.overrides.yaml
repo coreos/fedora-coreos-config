@@ -29,3 +29,8 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1836
       type: pin
+  qemu-user-static-x86:
+    evr: 2:9.1.1-2.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1846
+      type: pin
