@@ -29,9 +29,3 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1836
       type: pin
-  zram-generator:
-    evr: 1.2.1-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-2d17438c8f
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1844
-      type: fast-track
