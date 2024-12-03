@@ -24,3 +24,9 @@ vmware-os-type: fedora64Guest
 vmware-hw-version: 17
 
 compressor: xz
+
+platform-compressor:
+    # On Windows, it's the only compression tool we can rely on.
+    hyperv: zip
+    # On macOS, it's the only compression tool we can rely on.
+    applehv: gzip
