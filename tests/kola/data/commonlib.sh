@@ -22,6 +22,18 @@ get_ipv4_for_nic() {
     echo "$ip"
 }
 
+get_fedora_container_ref() {
+    local repo='quay.io/fedora/fedora'
+    local tag='41'
+    echo "${repo}:${tag}"
+}
+
+get_fedora_minimal_container_ref() {
+    local repo='quay.io/fedora/fedora-minimal'
+    local tag='41'
+    echo "${repo}:${tag}"
+}
+
 get_fcos_stream() {
     rpm-ostree status -b --json | jq -r '.deployments[0]["base-commit-meta"]["fedora-coreos.stream"]'
 }

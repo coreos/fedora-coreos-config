@@ -18,14 +18,15 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-runascoreuserscript='
+container=$(get_fedora_minimal_container_ref)
+runascoreuserscript="
 #!/bin/bash
 set -euxo pipefail
 
 podman network create testnetwork
-podman run --rm -t --network=testnetwork quay.io/fedora/fedora:40 getent hosts google.com
+podman run --rm -t --network=testnetwork $container getent hosts google.com
 podman network rm testnetwork
-'
+"
 
 runascoreuser() {
     # NOTE: If we don't use `| cat` the output won't get copied
