@@ -10,22 +10,26 @@
 
 packages:
   clevis:
-    evr: 21-5.fc41
+    evr: 21-7.fc41
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-57c484d6c1
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1836
-      type: pin
+      type: fast-track
   clevis-dracut:
-    evr: 21-5.fc41
+    evr: 21-7.fc41
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-57c484d6c1
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1836
-      type: pin
+      type: fast-track
   clevis-luks:
-    evr: 21-5.fc41
+    evr: 21-7.fc41
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-57c484d6c1
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1836
-      type: pin
+      type: fast-track
   clevis-systemd:
-    evr: 21-5.fc41
+    evr: 21-7.fc41
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-57c484d6c1
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1836
-      type: pin
+      type: fast-track
