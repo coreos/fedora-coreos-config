@@ -84,7 +84,7 @@ validate() {
 # should remove this until https://issues.redhat.com/browse/RHEL-66584 is fixed
 set_selinux_permissve() {
     source /etc/os-release
-    if is_scos || ([ "${RHEL_VERSION}" == "9.6" ] && [ "${VARIANT_ID}" == "coreos" ] ); then
+    if is_scos || [ "$(get_rhel_ver)" = "9.6" ]; then
         semanage permissive -a bootupd_t
     fi
 }

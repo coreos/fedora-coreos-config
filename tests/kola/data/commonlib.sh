@@ -57,15 +57,20 @@ get_fedora_ver() {
     fi
 }
 
-get_rhel_maj_ver() {
+get_rhel_ver() {
     source /etc/os-release
     if [ "${ID}" == "rhcos" ]; then
-        echo "${RHEL_VERSION%%.*}"
+        echo "${RHEL_VERSION}"
     elif [ "${ID}" == "rhel" ]; then
-        echo "${VERSION_ID%%.*}"
+        echo "${VERSION_ID}"
     else
         fatal "Unknown ID $ID"
     fi
+}
+
+get_rhel_maj_ver() {
+    local ver; ver=$(get_rhel_ver)
+    echo "${ver%%.*}"
 }
 
 # rhcos9
