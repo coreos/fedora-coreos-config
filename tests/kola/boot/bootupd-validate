@@ -19,8 +19,6 @@ set -xeuo pipefail
 . "$KOLA_EXT_DATA/commonlib.sh"
 
 overwrite=
-bootupd_version=$(rpm -q --queryformat '%{VERSION}' bootupd)
-required_version='0.2.22'
 # only x64 and aarch64 have esp device
 overwrite_file() {
     case "$(arch)" in
@@ -40,7 +38,7 @@ overwrite_file() {
             overwrite=1
             ;;
         *)
-            echo "skipped overwrite"
+            echo "skipped overwrite on platform without esp device"
             ;;
     esac
 }
@@ -64,9 +62,7 @@ validate() {
 
     case "$(arch)" in
         x86_64)
-            if vergte "${bootupd_version}" "${required_version}"; then
-                bootupctl validate | grep "${msg_bios}"
-            fi
+            bootupctl validate | grep "${msg_bios}"
             bootupctl validate | grep "${msg_efi}"
             ;;
         aarch64)
@@ -81,7 +77,7 @@ validate() {
     esac
 }
 
-# should remove this until https://issues.redhat.com/browse/RHEL-66584 is fixed
+# should remove this when https://issues.redhat.com/browse/RHEL-70849 is fixed
 set_selinux_permissve() {
     source /etc/os-release
     if is_scos || [ "$(get_rhel_ver)" = "9.6" ]; then
