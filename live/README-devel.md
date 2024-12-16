@@ -1,7 +1,7 @@
-These files will be copied to the target live ISO
-via the CoreOS Assembler buildextend-live call. It
-picks up all files in the coreos/fedora-coreos-config/live/
-directory and copies them to the base of the ISO.
+These files will be copied into the built OSTree at
+/usr/share/coreos-assembler/live/ by CoreOS Assembler.
+The file will then be picked up when building live media
+and copied to the base of the ISO.
 
 Files currently copied are:
 
