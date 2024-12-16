@@ -5,32 +5,15 @@
 # One good model is to add fedora-coreos-config as a git submodule.  See:
 # https://github.com/coreos/coreos-assembler/pull/639
 
-# Include rpm-ostree + kernel + bootloader
-include: bootable-rpm-ostree.yaml
-
-# Modern defaults we want
-boot-location: modules
-tmp-is-dir: true
-
-# Required by Ignition, and makes the system not compatible with Anaconda
-machineid-compat: false
-
 packages:
   - ignition
   - dracut-network
   # for encryption
   - clevis clevis-luks clevis-dracut clevis-systemd
 
-remove-from-packages:
-  # We don't want systemd-firstboot.service. It conceptually conflicts with
-  # Ignition.  We also inject runtime bits to disable it in systemd-firstboot.service.d/fcos-disable.conf
-  # to make it easier to use systemd builds from git.
-  - [systemd, /usr/bin/systemd-firstboot,
-              /usr/lib/systemd/system/systemd-firstboot.service,
-              /usr/lib/systemd/system/sysinit.target.wants/systemd-firstboot.service]
-  # We don't want auto-generated mount units. See also
-  # https://github.com/systemd/systemd/issues/13099
-  - [systemd-udev, /usr/lib/systemd/system-generators/systemd-gpt-auto-generator]
+packages-s390x:
+  # for Secure Execution
+  - veritysetup
 
 postprocess:
   # Undo RPM scripts enabling units; we want the presets to be canonical
