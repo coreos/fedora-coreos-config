@@ -15,7 +15,8 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-context=$(podman run --rm --privileged quay.io/fedora/fedora:40 \
+container=$(get_fedora_minimal_container_ref)
+context=$(podman run --rm --privileged "${container}" \
             bash -c "mount -t tmpfs tmpfs /mnt/ && stat --format '%C' /mnt/")
 if [ "$context" != "system_u:object_r:container_file_t:s0" ]; then
     fatal "SELinux context for files on a tmpfs inside a container is wrong"

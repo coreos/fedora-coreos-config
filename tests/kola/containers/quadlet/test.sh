@@ -32,7 +32,7 @@ if ! is_service_active test.service; then
   fatal "test-network.service failed to start"
 fi
 container_info=$(podman container inspect systemd-test)
-if [[ "$(jq -r '.[0].ImageName' <<< "$container_info")" != "quay.io/fedora/fedora-minimal:40" ]]; then
+if [[ "$(jq -r '.[0].ImageName' <<< "$container_info")" != "quay.io/fedora/fedora-minimal:latest" ]]; then
     fatal "Container not using the correct image"
 fi
 if [[ "$(jq -r '.[0].NetworkSettings.Networks[].NetworkID' <<< "$container_info")" != "systemd-test" ]]; then
