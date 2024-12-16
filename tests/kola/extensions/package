@@ -15,7 +15,6 @@ set -xeuo pipefail
 . "$KOLA_EXT_DATA/commonlib.sh"
 
 commands=(
-  'gdb'
   'htop'
   'strace'
   'tcpdump'
@@ -29,11 +28,11 @@ commands=(
 # rebases early to the next major Fedora and the other streams operate
 # continuously on non-stable Fedora we'll just limit this to
 # `stable`/`testing`/`testing-devel`. It's possible that this test will
-# fail on one of those streams if we fast track VIM and it's not
-# availabe in any repo, but we can just snooze the entire test in that
-# case.
+# fail on one of those streams if we fast track one of these and they're
+# not availabe in any repo, but we can just snooze the entire test in
+# that case.
 case "$(get_fcos_stream)" in
-    "stable"|"testing"|"testing-devel") commands+=('vim') ;;
+    "stable"|"testing"|"testing-devel") commands+=('vim' 'gdb') ;;
     *) ;;
 esac
 

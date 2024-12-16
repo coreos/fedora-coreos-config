@@ -18,9 +18,10 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
+container=$(get_fedora_container_ref)
 case "$(arch)" in
     aarch64|ppc64le|s390x)
-        containerArch=$(podman run --arch=amd64 --rm quay.io/fedora/fedora:40 arch)
+        containerArch=$(podman run --arch=amd64 --rm "${container}" arch)
         if [ "$containerArch" != "x86_64" ]; then
             fatal "Test failed: x86_64 qemu emulator failed to run"
         fi

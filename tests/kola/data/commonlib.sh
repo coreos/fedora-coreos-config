@@ -22,6 +22,18 @@ get_ipv4_for_nic() {
     echo "$ip"
 }
 
+get_fedora_container_ref() {
+    local repo='quay.io/fedora/fedora'
+    local tag='41'
+    echo "${repo}:${tag}"
+}
+
+get_fedora_minimal_container_ref() {
+    local repo='quay.io/fedora/fedora-minimal'
+    local tag='41'
+    echo "${repo}:${tag}"
+}
+
 get_fcos_stream() {
     rpm-ostree status -b --json | jq -r '.deployments[0]["base-commit-meta"]["fedora-coreos.stream"]'
 }
@@ -45,15 +57,20 @@ get_fedora_ver() {
     fi
 }
 
-get_rhel_maj_ver() {
+get_rhel_ver() {
     source /etc/os-release
     if [ "${ID}" == "rhcos" ]; then
-        echo "${RHEL_VERSION%%.*}"
+        echo "${RHEL_VERSION}"
     elif [ "${ID}" == "rhel" ]; then
-        echo "${VERSION_ID%%.*}"
+        echo "${VERSION_ID}"
     else
         fatal "Unknown ID $ID"
     fi
+}
+
+get_rhel_maj_ver() {
+    local ver; ver=$(get_rhel_ver)
+    echo "${ver%%.*}"
 }
 
 # rhcos9
