@@ -9,11 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  qemu-user-static-x86:
-    evr: 2:9.1.1-2.fc42
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1846
-      type: pin
   systemd:
     evr: 257-1.fc42
     metadata:
