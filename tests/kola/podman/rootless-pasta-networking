@@ -17,19 +17,20 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-runascoreuserscript='#!/bin/bash
+container=$(get_fedora_minimal_container_ref)
+runascoreuserscript="#!/bin/bash
 set -euxo pipefail
 # Just a basic test that uses pasta network and sets the gateway
-podman run -i --rm --net=pasta:--mtu,1500 quay.io/fedora/fedora:40 bash <<"EOF"
+podman run -i --rm --net=pasta:--mtu,1500 $container bash <<'EOF'
 set -euxo pipefail
 # Verify the mtu got set to 1500. No /sbin/ip so just use /sys/class/net/<nic>/mtu
 cat /sys/class/net/e*/mtu | grep 1500
 # Download something from the internet. Here we use one of the test
 # fixtures from the ignition.resource.remote test.
-result=$(curl https://ignition-test-fixtures.s3.amazonaws.com/resources/anonymous)
-[ "$result" == "kola-anonymous" ] || exit 1
+result=\$(curl https://ignition-test-fixtures.s3.amazonaws.com/resources/anonymous)
+[ \$result == 'kola-anonymous' ] || exit 1
 EOF
-'
+"
 
 runascoreuser() {
     # NOTE: If we don't use `| cat` the output won't get copied
