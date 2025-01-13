@@ -10,32 +10,38 @@
 
 packages:
   systemd:
-    evr: 257-1.fc42
+    evr: 257.2-4.fc42
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1857
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-c146da0204
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1857#issuecomment-2585193695
+      type: fast-track
   systemd-container:
-    evr: 257-1.fc42
+    evr: 257.2-4.fc42
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1857
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-c146da0204
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1857#issuecomment-2585193695
+      type: fast-track
   systemd-libs:
-    evr: 257-1.fc42
+    evr: 257.2-4.fc42
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1857
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-c146da0204
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1857#issuecomment-2585193695
+      type: fast-track
   systemd-pam:
-    evr: 257-1.fc42
+    evr: 257.2-4.fc42
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1857
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-c146da0204
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1857#issuecomment-2585193695
+      type: fast-track
   systemd-resolved:
-    evr: 257-1.fc42
+    evr: 257.2-4.fc42
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1857
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-c146da0204
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1857#issuecomment-2585193695
+      type: fast-track
   systemd-udev:
-    evr: 257-1.fc42
+    evr: 257.2-4.fc42
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1857
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-c146da0204
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1857#issuecomment-2585193695
+      type: fast-track
