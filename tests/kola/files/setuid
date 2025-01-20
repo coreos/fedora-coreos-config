@@ -10,6 +10,10 @@ set -xeuo pipefail
 . "$KOLA_EXT_DATA/commonlib.sh"
 
 # List of known files and directories with SetUID bit set
+# Binaries in sbin are duplicated to bin folowing the sbin/bin merge in Fedora 42
+# See:https://fedoraproject.org/wiki/Changes/Unify_bin_and_sbin
+# We can move the sbin entries to the list below for RHCOS only once all our streams are on F42.
+# We can drop all sbin entries once the sbin/bin merge lands in RHEL
 list_setuid_files=(
     '/usr/bin/chage'
     '/usr/bin/chfn'
@@ -17,13 +21,17 @@ list_setuid_files=(
     '/usr/bin/fusermount'
     '/usr/bin/fusermount3'
     '/usr/bin/gpasswd'
+    '/usr/bin/grub2-set-bootflag'
     '/usr/bin/mount'
+    '/usr/bin/mount.nfs'
     '/usr/bin/newgrp'
+    '/usr/bin/pam_timestamp_check'
     '/usr/bin/passwd'
     '/usr/bin/pkexec'
     '/usr/bin/su'
     '/usr/bin/sudo'
     '/usr/bin/umount'
+    '/usr/bin/unix_chkpwd'
     '/usr/lib/polkit-1/polkit-agent-helper-1'
     '/usr/libexec/openssh/ssh-keysign'
     '/usr/sbin/grub2-set-bootflag'
