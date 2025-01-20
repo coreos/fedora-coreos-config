@@ -1,0 +1,24 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   tags: secure-boot
+##   architectures: x86_64
+##   description: Verify that the lockdown LSM is set to integrity when booted using Secure Boot
+#
+# See https://bugzilla.redhat.com/show_bug.cgi?id=2333706
+
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+lockdown_state="$(cat "/sys/kernel/security/lockdown")"
+
+if [[ "$(mokutil --sb)" == "SecureBoot enabled" ]]; then
+    if [[ "${lockdown_state}" == "none [integrity] confidentiality" ]]; then
+        ok "lockdown LSM set to integrity on a Secure Boot system"
+    else
+        fatal "lockdown LSM not set to integrity on a Secure Boot system"
+    fi
+else
+    fatal "system is not running with Secure Boot enabled"
+fi
