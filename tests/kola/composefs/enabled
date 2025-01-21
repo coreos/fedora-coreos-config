@@ -1,0 +1,29 @@
+#!/bin/bash
+## kola:
+##   # We now have composefs turned on in CoreOS.
+##   description: Verify that composefs is on.
+
+set -euo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+# RHCOS/SCOS based on 9.4 doesn't use composefs, but legacy sysroot.readonly flag
+if ! is_fcos && [[ "$(get_rhel_ver)" = "9.4" ]]; then
+    echo "skipping 9.4"
+    exit 0
+fi
+
+features=$(ostree --version)
+if ! [[ "${features}" =~ "composefs" ]]; then
+    fatal "Error: ostree has no composefs support: ${features}"
+fi
+
+rootfs=$(findmnt -n -o FSTYPE /)
+if [ "${rootfs}" != "overlay" ]; then
+    fatal "Error: Expected overlay on /, found: ${rootfs}"
+fi
+
+journalctl -u ostree-prepare-root.service | grep -q "composefs: mounted successfully"
+
+ok "composefs is on"
