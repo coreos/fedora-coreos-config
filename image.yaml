@@ -2,3 +2,8 @@
 # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
 # streams.
 include: image-base.yaml
+
+# Move testing to use OCI images by default
+# https://github.com/coreos/fedora-coreos-tracker/issues/1823
+deploy-via-container: true
+container-imgref: "ostree-remote-image:fedora:registry:quay.io/fedora/fedora-coreos:testing"
