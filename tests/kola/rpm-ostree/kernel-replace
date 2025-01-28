@@ -113,7 +113,6 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
     rm "${image_dir}" -rf
     td=$(mktemp -d)
     cd ${td}
-    version=$(rpm-ostree --version | grep Version)
     cat > Containerfile << EOF
 FROM localhost/coreos
 RUN rpm-ostree override replace \
