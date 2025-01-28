@@ -43,10 +43,8 @@ cd $(mktemp -d)
 
 # define OS ID in order to assign appropriate kernel later
 OS_ID=$(. /etc/os-release; echo $ID)
-image_dir=/var/tmp/coreos
-image=oci:${image_dir}
-image_pull=ostree-unverified-image:$image
-tmp_imagedir=${image_dir}-tmp
+imagepath=/var/tmp/coreos.ociarchive
+imagespec="oci-archive:${imagepath}"
 arch=$(arch)
 
 # we only want to query repos once but need the info on multiple boots, so write out state to /var
@@ -86,7 +84,7 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
     checksum=$(jq -r '.deployments[0].checksum' < status.json)
     v0=$(jq -r '.deployments[0].version' < status.json)
     imgref=$(jq -r '.deployments[0]["container-image-reference"]' < status.json)
-    rm ${image_dir} -rf
+    rm -f ${imagepath}
     encapsulate_args=()
     # A hack...if we're booted into a container, then we need to fake things out
     # for the merge commit to turn it back into an image.  What we *really* want
@@ -97,36 +95,31 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
     fi
     # Since we're switching OS update stream, turn off zincati
     systemctl mask --now zincati
-    ostree container encapsulate "${encapsulate_args[@]}" --repo=/ostree/repo ${checksum} "${image}"
+    ostree container encapsulate "${encapsulate_args[@]}" --repo=/ostree/repo ${checksum} "${imagespec}"
     # This one keeps --experimental, but we also test without it below
-    rpm-ostree rebase --experimental "$image_pull"
+    rpm-ostree rebase --experimental "ostree-unverified-image:${imagespec}"
     ostree container image list --repo=/ostree/repo | tee imglist.txt
     # Test rebasing back to ostree https://github.com/coreos/rpm-ostree/issues/3677
     rpm-ostree rebase "$checksum"
-    rpm-ostree rebase "$image_pull"
+    rpm-ostree rebase "ostree-unverified-image:${imagespec}"
     /tmp/autopkgtest-reboot 1
     ;;
   1)
-    # Setup
-    # copy the OCI dir to containers-storage for a local build
-    skopeo copy $image containers-storage:localhost/coreos
-    rm "${image_dir}" -rf
     td=$(mktemp -d)
     cd ${td}
     cat > Containerfile << EOF
-FROM localhost/coreos
+FROM $imagespec
 RUN rpm-ostree override replace \
     $url-{,core-,modules-,modules-core-,modules-extra-}$kver.rpm && \
     rpm-ostree cleanup -m && \
     ostree container commit
 EOF
-    podman build --net=host -t localhost/coreos-derived --squash .
-    derived=oci:$image_dir:derived
-    skopeo copy containers-storage:localhost/coreos-derived $derived
+    derived_imagepath=/var/tmp/coreos-derived.ociarchive
+    derived_imagespec="oci-archive:${derived_imagepath}"
+    podman build --net=host -t "${derived_imagespec}" --squash .
     rpm-ostree --version
-    rpm-ostree rebase ostree-unverified-image:$derived
+    rpm-ostree rebase "ostree-unverified-image:$derived_imagespec"
     ostree container image list --repo=/ostree/repo
-    rm $image_dir -rf
     /tmp/autopkgtest-reboot 2
     ;;
   2)
