@@ -65,8 +65,6 @@ build_base_ociarchive() {
     if [[ "$imgref" != null ]]; then
       encapsulate_args+=("--label" "ostree.bootable=true")
     fi
-    # Since we're switching OS update stream, turn off zincati
-    systemctl mask --now zincati
     ostree container encapsulate "${encapsulate_args[@]}" --repo=/ostree/repo ${checksum} "${imagespec}"
 }
 
