@@ -121,19 +121,7 @@ RUN rpm-ostree override replace \
     rpm-ostree cleanup -m && \
     ostree container commit
 EOF
-    # Older podman found in RHEL8 blows up without /etc/resolv.conf
-    # which happens in our qemu path.
-    touched_resolv_conf=0
-    if test '!' -f /etc/resolv.conf; then
-      podmanv=$(podman --version)
-      case "${podmanv#podman version }" in
-        3.*) touched_resolv_conf=1; touch /etc/resolv.conf;;
-      esac
-    fi
     podman build --net=host -t localhost/coreos-derived --squash .
-    if test "${touched_resolv_conf}" -eq 1; then
-      rm -vf /etc/resolv.conf
-    fi
     derived=oci:$image_dir:derived
     skopeo copy containers-storage:localhost/coreos-derived $derived
     rpm-ostree --version
