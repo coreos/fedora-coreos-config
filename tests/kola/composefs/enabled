@@ -1,6 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   # We now have composefs turned on in CoreOS.
+##   exclusive: false
 ##   description: Verify that composefs is on.
 
 set -euo pipefail
