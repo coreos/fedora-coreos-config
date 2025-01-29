@@ -65,8 +65,6 @@ build_base_ociarchive() {
     if [[ "$imgref" != null ]]; then
       encapsulate_args+=("--label" "ostree.bootable=true")
     fi
-    # Since we're switching OS update stream, turn off zincati
-    systemctl mask --now zincati
     ostree container encapsulate "${encapsulate_args[@]}" --repo=/ostree/repo ${checksum} "${imagespec}"
 }
 
@@ -104,6 +102,10 @@ build_derived_ociarchive() {
 
     cat > Containerfile << EOF
 FROM $imagespec
+# Disable yum repos since we are overriding local files and we don't
+# want to reach out to the repos. This is done in a way such that if
+# there are no repo files (i.e. like on RHCOS) then it succeeds anyway.
+RUN ls /etc/yum.repos.d/*.repo 2>/dev/null | xargs --no-run-if-empty sed -i s/enabled=1/enabled=0/
 RUN rpm-ostree override replace /tmp/buildcontext/*rpm && \
     rpm-ostree cleanup -m && \
     ostree container commit
