@@ -81,8 +81,7 @@ build_derived_ociarchive() {
         dnf_opts="--repofrompath=tmp,"${c9s_mirror}" --disablerepo=* --enablerepo tmp"
         kver=$(dnf repoquery $dnf_opts kernel --qf '%{EVR}' | \
                   grep -v "$(rpm -q kernel --qf '%{EVR}')" | tail -n1)
-        # For some reason for now `kernel-modules-extra` doesn't resolve so we need to explicitly ask for it here
-        dnf download $dnf_opts --resolve "kernel-${kver}" "kernel-modules-extra-${kver}"
+        dnf download $dnf_opts --resolve kernel-{,core-,modules-,modules-core-,modules-extra-}$kver
         ;;
       fedora)
         VERSION_ID=$(. /etc/os-release; echo $VERSION_ID)
