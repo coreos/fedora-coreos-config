@@ -1,31 +1,31 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.50.0-1.fc41.aarch64",
+      "evra": "1:1.50.2-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.50.0-1.fc41.aarch64",
+      "evra": "1:1.50.2-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.50.0-1.fc41.aarch64",
+      "evra": "1:1.50.2-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
     },
     "NetworkManager-team": {
-      "evra": "1:1.50.0-1.fc41.aarch64",
+      "evra": "1:1.50.2-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
     },
     "NetworkManager-tui": {
-      "evra": "1:1.50.0-1.fc41.aarch64",
+      "evra": "1:1.50.2-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "NetworkManager"
       }
@@ -157,7 +157,7 @@
       }
     },
     "bootc": {
-      "evra": "1.1.2-2.fc41.aarch64",
+      "evra": "1.1.4-6.fc41.aarch64",
       "metadata": {
         "sourcerpm": "bootc"
       }
@@ -313,19 +313,19 @@
       }
     },
     "containerd": {
-      "evra": "1.7.24-3.fc41.aarch64",
+      "evra": "1.7.25-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "containerd"
       }
     },
     "containers-common": {
-      "evra": "5:0.61.0-1.fc41.noarch",
+      "evra": "5:0.61.1-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
     },
     "containers-common-extra": {
-      "evra": "5:0.61.0-1.fc41.noarch",
+      "evra": "5:0.61.1-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
@@ -781,25 +781,25 @@
       }
     },
     "glibc": {
-      "evra": "2.40-17.fc41.aarch64",
+      "evra": "2.40-21.fc41.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.40-17.fc41.aarch64",
+      "evra": "2.40-21.fc41.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.40-17.fc41.aarch64",
+      "evra": "2.40-21.fc41.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.40-17.fc41.aarch64",
+      "evra": "2.40-21.fc41.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -817,7 +817,7 @@
       }
     },
     "gnutls": {
-      "evra": "3.8.6-7.fc41.aarch64",
+      "evra": "3.8.8-3.fc41.aarch64",
       "metadata": {
         "sourcerpm": "gnutls"
       }
@@ -1039,31 +1039,31 @@
       }
     },
     "kdump-utils": {
-      "evra": "1.0.51-1.fc41.aarch64",
+      "evra": "1.0.52-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "kdump-utils"
       }
     },
     "kernel": {
-      "evra": "6.12.9-200.fc41.aarch64",
+      "evra": "6.12.10-200.fc41.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.12.9-200.fc41.aarch64",
+      "evra": "6.12.10-200.fc41.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.12.9-200.fc41.aarch64",
+      "evra": "6.12.10-200.fc41.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.12.9-200.fc41.aarch64",
+      "evra": "6.12.10-200.fc41.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1111,7 +1111,7 @@
       }
     },
     "less": {
-      "evra": "661-2.fc41.aarch64",
+      "evra": "668-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "less"
       }
@@ -1369,7 +1369,7 @@
       }
     },
     "libldb": {
-      "evra": "2:4.21.3-3.fc41.aarch64",
+      "evra": "2:4.21.3-5.fc41.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1381,7 +1381,7 @@
       }
     },
     "libmaxminddb": {
-      "evra": "1.12.1-1.fc41.aarch64",
+      "evra": "1.12.2-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "libmaxminddb"
       }
@@ -1435,7 +1435,7 @@
       }
     },
     "libnfsidmap": {
-      "evra": "1:2.8.1-4.rc2.fc41.aarch64",
+      "evra": "1:2.8.1-5.rc2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1567,7 +1567,7 @@
       }
     },
     "libsmbclient": {
-      "evra": "2:4.21.3-3.fc41.aarch64",
+      "evra": "2:4.21.3-5.fc41.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1687,7 +1687,7 @@
       }
     },
     "libuv": {
-      "evra": "1:1.49.2-1.fc41.aarch64",
+      "evra": "1:1.50.0-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "libuv"
       }
@@ -1699,13 +1699,13 @@
       }
     },
     "libwbclient": {
-      "evra": "2:4.21.3-3.fc41.aarch64",
+      "evra": "2:4.21.3-5.fc41.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "libxcrypt": {
-      "evra": "4.4.38-2.fc41.aarch64",
+      "evra": "4.4.38-3.fc41.aarch64",
       "metadata": {
         "sourcerpm": "libxcrypt"
       }
@@ -1903,7 +1903,7 @@
       }
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.8.1-4.rc2.fc41.aarch64",
+      "evra": "1:2.8.1-5.rc2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1957,25 +1957,25 @@
       }
     },
     "openldap": {
-      "evra": "2.6.8-6.fc41.aarch64",
+      "evra": "2.6.8-7.fc41.aarch64",
       "metadata": {
         "sourcerpm": "openldap"
       }
     },
     "openssh": {
-      "evra": "9.8p1-3.fc41.2.aarch64",
+      "evra": "9.9p1-2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "openssh"
       }
     },
     "openssh-clients": {
-      "evra": "9.8p1-3.fc41.2.aarch64",
+      "evra": "9.9p1-2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "openssh"
       }
     },
     "openssh-server": {
-      "evra": "9.8p1-3.fc41.2.aarch64",
+      "evra": "9.9p1-2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "openssh"
       }
@@ -1999,13 +1999,13 @@
       }
     },
     "ostree": {
-      "evra": "2024.9-1.fc41.aarch64",
+      "evra": "2025.1-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-libs": {
-      "evra": "2024.9-1.fc41.aarch64",
+      "evra": "2025.1-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "ostree"
       }
@@ -2041,13 +2041,13 @@
       }
     },
     "passt": {
-      "evra": "0^20241211.g09478d5-1.fc41.aarch64",
+      "evra": "0^20250121.g4f2c8e7-2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20241211.g09478d5-1.fc41.noarch",
+      "evra": "0^20250121.g4f2c8e7-2.fc41.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2101,7 +2101,7 @@
       }
     },
     "podman": {
-      "evra": "5:5.3.1-1.fc41.aarch64",
+      "evra": "5:5.3.2-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2149,7 +2149,7 @@
       }
     },
     "publicsuffix-list-dafsa": {
-      "evra": "20240107-4.fc41.noarch",
+      "evra": "20250116-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "publicsuffix-list"
       }
@@ -2215,7 +2215,7 @@
       }
     },
     "rsync": {
-      "evra": "3.3.0-3.fc41.aarch64",
+      "evra": "3.4.1-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "rsync"
       }
@@ -2227,19 +2227,19 @@
       }
     },
     "samba-client-libs": {
-      "evra": "2:4.21.3-3.fc41.aarch64",
+      "evra": "2:4.21.3-5.fc41.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common": {
-      "evra": "2:4.21.3-3.fc41.noarch",
+      "evra": "2:4.21.3-5.fc41.noarch",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common-libs": {
-      "evra": "2:4.21.3-3.fc41.aarch64",
+      "evra": "2:4.21.3-5.fc41.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -2347,7 +2347,7 @@
       }
     },
     "sqlite-libs": {
-      "evra": "3.46.1-1.fc41.aarch64",
+      "evra": "3.46.1-2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "sqlite"
       }
@@ -2624,16 +2624,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-01-17T00:00:00Z",
+    "generated": "2025-01-30T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-10-24T13:55:58Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-01-16T23:35:50Z"
+        "generated": "2025-01-30T07:26:38Z"
       },
       "fedora-updates": {
-        "generated": "2025-01-17T01:08:06Z"
+        "generated": "2025-01-29T04:57:28Z"
       }
     }
   }
