@@ -43,50 +43,20 @@ cd $(mktemp -d)
 
 # define OS ID in order to assign appropriate kernel later
 OS_ID=$(. /etc/os-release; echo $ID)
-image_dir=/var/tmp/coreos
-image=oci:${image_dir}
-image_pull=ostree-unverified-image:$image
-tmp_imagedir=${image_dir}-tmp
+imagepath=/var/tmp/coreos.ociarchive
+imagespec="oci-archive:${imagepath}"
+derived_imagepath=/var/tmp/coreos-derived.ociarchive
+derived_imagespec="oci-archive:${derived_imagepath}"
 arch=$(arch)
 
-# we only want to query repos once but need the info on multiple boots, so write out state to /var
-if [ ! -f /var/kola-kernel.evr ]; then
-  case "$OS_ID" in
-    rhcos|scos|rhel|centos)
-      c9s_mirror="https://mirror.stream.centos.org/9-stream/BaseOS/${arch}/os"
-      # we're probably already on CentOS and running the latest kernel. so
-      # here we need to instead pick whatever the latest that's *not* the same
-      kver=$(dnf repoquery kernel --qf '%{EVR}' --repofrompath=tmp,"${c9s_mirror}" --disablerepo '*' --enablerepo tmp | \
-                grep -v "$(rpm -q kernel --qf '%{EVR}')" | tail -n1)
-      kver="${kver}.${arch}"
-      url="${c9s_mirror}/Packages/kernel"
-      ;;
-    fedora)
-      # to get the version to use: koji latest-pkg f40 kernel
-      # XXX: once we can rely on dnf in FCOS, use repoquery also here
-      kver="6.8.5-301.fc40.${arch}"
-      url="https://kojipkgs.fedoraproject.org//packages/kernel/6.8.5/301.fc40/${arch}/kernel"
-      ;;
-    *)
-      echo "Unknown OS_ID: ${OS_ID}"
-      exit 1
-      ;;
-  esac
-  echo "$kver" > /var/kola-kernel.evr
-  echo "$url" > /var/kola-kernel.url
-else
-  kver=$(cat /var/kola-kernel.evr)
-  url=$(cat /var/kola-kernel.url)
-fi
 
-case "${AUTOPKGTEST_REBOOT_MARK:-}" in
-  "")
-    # Take the existing ostree commit, and export it to a container image, then rebase to it.
+build_base_ociarchive() {
+    # Take the existing ostree commit, and export it to a container image/ociarchive
     rpm-ostree status --json > status.json
     checksum=$(jq -r '.deployments[0].checksum' < status.json)
     v0=$(jq -r '.deployments[0].version' < status.json)
     imgref=$(jq -r '.deployments[0]["container-image-reference"]' < status.json)
-    rm ${image_dir} -rf
+    rm -f ${imagepath}
     encapsulate_args=()
     # A hack...if we're booted into a container, then we need to fake things out
     # for the merge commit to turn it back into an image.  What we *really* want
@@ -95,55 +65,83 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
     if [[ "$imgref" != null ]]; then
       encapsulate_args+=("--label" "ostree.bootable=true")
     fi
-    # Since we're switching OS update stream, turn off zincati
-    systemctl mask --now zincati
-    ostree container encapsulate "${encapsulate_args[@]}" --repo=/ostree/repo ${checksum} "${image}"
-    # This one keeps --experimental, but we also test without it below
-    rpm-ostree rebase --experimental "$image_pull"
-    ostree container image list --repo=/ostree/repo | tee imglist.txt
-    # Test rebasing back to ostree https://github.com/coreos/rpm-ostree/issues/3677
-    rpm-ostree rebase "$checksum"
-    rpm-ostree rebase "$image_pull"
-    /tmp/autopkgtest-reboot 1
-    ;;
-  1)
-    # Setup
-    # copy the OCI dir to containers-storage for a local build
-    skopeo copy $image containers-storage:localhost/coreos
-    rm "${image_dir}" -rf
-    td=$(mktemp -d)
-    cd ${td}
-    version=$(rpm-ostree --version | grep Version)
+    ostree container encapsulate "${encapsulate_args[@]}" --repo=/ostree/repo ${checksum} "${imagespec}"
+}
+
+build_derived_ociarchive() {
+    # do the container build in a temporary context directory
+    contextdir=$(mktemp -d)
+    pushd ${contextdir}
+
+    case "$OS_ID" in
+      rhcos|scos|rhel|centos)
+        c9s_mirror="https://mirror.stream.centos.org/9-stream/BaseOS/${arch}/os"
+        # we're probably already on CentOS and running the latest kernel. so
+        # here we need to instead pick whatever the latest that's *not* the same
+        dnf_opts="--repofrompath=tmp,"${c9s_mirror}" --disablerepo=* --enablerepo tmp"
+        kver=$(dnf repoquery $dnf_opts kernel --qf '%{EVR}' | \
+                  grep -v "$(rpm -q kernel --qf '%{EVR}')" | tail -n1)
+        dnf download $dnf_opts --resolve kernel-{,core-,modules-,modules-core-,modules-extra-}$kver
+        ;;
+      fedora)
+        VERSION_ID=$(. /etc/os-release; echo $VERSION_ID)
+        previous_version_id=$((VERSION_ID - 1))
+        dnf download --releasever "${previous_version_id}" --resolve \
+          --disablerepo=* --enablerepo=updates --enablerepo=fedora kernel
+        kver=$(rpm -qp --qf '%{EVR}' ./kernel-core*rpm)
+        ;;
+      *)
+        echo "Unknown OS_ID: ${OS_ID}"
+        exit 1
+        ;;
+    esac
+
+    # we only want to query repos once but need the info on multiple boots, so write out state to /var
+    echo "$kver" > /var/kola-kernel.evr
+
     cat > Containerfile << EOF
-FROM localhost/coreos
-RUN rpm-ostree override replace \
-    $url-{,core-,modules-,modules-core-,modules-extra-}$kver.rpm && \
+FROM $imagespec
+# Disable yum repos since we are overriding local files and we don't
+# want to reach out to the repos. This is done in a way such that if
+# there are no repo files (i.e. like on RHCOS) then it succeeds anyway.
+RUN ls /etc/yum.repos.d/*.repo 2>/dev/null | xargs --no-run-if-empty sed -i s/enabled=1/enabled=0/
+RUN rpm-ostree override replace /tmp/buildcontext/*rpm && \
     rpm-ostree cleanup -m && \
     ostree container commit
 EOF
-    # Older podman found in RHEL8 blows up without /etc/resolv.conf
-    # which happens in our qemu path.
-    touched_resolv_conf=0
-    if test '!' -f /etc/resolv.conf; then
-      podmanv=$(podman --version)
-      case "${podmanv#podman version }" in
-        3.*) touched_resolv_conf=1; touch /etc/resolv.conf;;
-      esac
-    fi
-    podman build --net=host -t localhost/coreos-derived --squash .
-    if test "${touched_resolv_conf}" -eq 1; then
-      rm -vf /etc/resolv.conf
-    fi
-    derived=oci:$image_dir:derived
-    skopeo copy containers-storage:localhost/coreos-derived $derived
+    podman build --volume $PWD:/tmp/buildcontext:z -t "${derived_imagespec}" --squash .
+    popd
+}
+
+case "${AUTOPKGTEST_REBOOT_MARK:-}" in
+  "")
+    # First thing, let's create the base and derived OCI archive image files
+    build_base_ociarchive
+    build_derived_ociarchive
+
+    # Since we're switching OS update streams, turn off zincati
+    systemctl mask --now zincati
+
+    # Rebase a few times to test the mechanisms
+    #
+    # This one keeps --experimental, but we also test without it below
+    rpm-ostree rebase --experimental "ostree-unverified-image:${imagespec}"
+    ostree container image list --repo=/ostree/repo | tee imglist.txt
+    # Test rebasing back to ostree https://github.com/coreos/rpm-ostree/issues/3677
+    rpm-ostree rebase "$checksum"
+    rpm-ostree rebase "ostree-unverified-image:${imagespec}"
+    /tmp/autopkgtest-reboot 1
+    ;;
+  1)
+    # Now test rebasing to the derived kernel-replaced image
     rpm-ostree --version
-    rpm-ostree rebase ostree-unverified-image:$derived
+    rpm-ostree rebase "ostree-unverified-image:$derived_imagespec"
     ostree container image list --repo=/ostree/repo
-    rm $image_dir -rf
     /tmp/autopkgtest-reboot 2
     ;;
   2)
-    un=$(uname -r)
+    kver="$(cat /var/kola-kernel.evr).${arch}" # expected
+    un=$(uname -r)                             # detected
     if test "$un" != "$kver"; then
       echo "Expected kernel $kver but found $un"
       exit 1
