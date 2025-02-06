@@ -6,9 +6,3 @@
   warn: true
   arches:
     - ppc64le
-- pattern: ext.config.rpm-ostree.kernel-replace
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1870
-  snooze: 2025-02-04
-  warn: true
-  streams:
-    - rawhide
