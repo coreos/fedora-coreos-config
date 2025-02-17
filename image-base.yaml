@@ -30,3 +30,6 @@ platform-compressor:
     hyperv: zip
     # On macOS, it's the only compression tool we can rely on.
     applehv: gzip
+    # For DigitalOcean you can upload a qcow2 compressed in either gzip or bzip2
+    # https://docs.digitalocean.com/products/custom-images/how-to/upload/
+    digitalocean: gzip
