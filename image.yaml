@@ -9,3 +9,7 @@ include: image-base.yaml
 # and enable it by default for rawhide!
 deploy-via-container: true
 container-imgref: "ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos:rawhide"
+
+# Enable 'erofs' by default for the rootfs in the Live ISO/PXE artifacts
+live-rootfs-fstype: "erofs"
+live-rootfs-fsoptions: "-zlzma,level=6 -Eall-fragments,fragdedupe=inode -C1048576 --quiet"
