@@ -137,3 +137,10 @@ vergt() {
 vergte() {
     vereq "$1" "$2" || vergt "$1" "$2"
 }
+
+# Verify the instance is Confidential VM type that matches expected
+assert_confidential_type_match() {
+    local cvm_type=$(systemd-detect-virt --cvm)
+    local expected=$1
+    [ "${cvm_type}" == "${expected}" ]
+}

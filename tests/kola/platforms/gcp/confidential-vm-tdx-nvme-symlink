@@ -1,0 +1,38 @@
+#!/bin/bash
+## kola:
+##   description: Verify new GCP udev rules work well on confidential instance
+##     with Intel TDX type.
+##   platforms: gcp
+##   requiredTag: confidential-tdx
+
+# See https://issues.redhat.com/browse/OCPBUGS-7582
+# https://github.com/coreos/fedora-coreos-tracker/issues/1814
+# https://github.com/bgartzi/coreos-assembler/commit/5f659ed43979f752accf53d44d45681a0d5accd3
+#
+# Intel TDX `c3-standard-4-lssd` is not supported.
+# https://cloud.google.com/confidential-computing/confidential-vm/docs/supported-configurations#limitations
+#
+# Force this test to not run by default unless named specifically
+# or `--tag confidential-tdx` is passed to `kola run`, also requires
+# `--gcp-confidential-type tdx`. (By default using
+# `--gcp-machinetype c3-standard-4`)
+#
+# It will create confidential instance on GCP with 1 nvme persistent disk,
+# then check the new udev rules make effect.
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+. $KOLA_EXT_DATA/gcp-lib.sh
+
+# Set global variable with NVME json info
+NVME_INFO=$(nvme list-subsys -o json)
+
+assert_confidential_type_match "tdx"
+assert_nvme_disk_count "${NVME_INFO}" "1"
+
+disk=nvme0
+assert_nvme_disk_accessible $disk "${NVME_INFO}"
+assert_expected_symlink_exists "/dev/${disk}n1"
+ok "Found /dev/${disk}n1 symlink"
