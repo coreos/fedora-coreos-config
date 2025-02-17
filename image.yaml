@@ -2,3 +2,7 @@
 # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
 # streams.
 include: image-base.yaml
+
+# Enable 'erofs' by default for the rootfs in the Live ISO/PXE artifacts
+live-rootfs-fstype: "erofs"
+live-rootfs-fsoptions: "-zlzma,level=6 -Eall-fragments,fragdedupe=inode -C1048576 --quiet"
