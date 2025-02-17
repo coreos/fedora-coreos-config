@@ -6,3 +6,9 @@
   # warn: true (disabled on promotion)
   arches:
     - ppc64le
+- pattern: ext.config.rpm-ostree.kernel-replace
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1870
+  # snooze: 2025-02-04 (disabled on promotion)
+  # warn: true (disabled on promotion)
+  streams:
+    - rawhide

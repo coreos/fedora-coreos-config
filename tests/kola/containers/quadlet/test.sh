@@ -35,7 +35,7 @@ container_info=$(podman container inspect systemd-test)
 if [[ "$(jq -r '.[0].ImageName' <<< "$container_info")" != "quay.io/fedora/fedora-minimal:latest" ]]; then
     fatal "Container not using the correct image"
 fi
-if [[ "$(jq -r '.[0].NetworkSettings.Networks[].NetworkID' <<< "$container_info")" != "systemd-test" ]]; then
+if [[ "$(jq -r '.[0].NetworkSettings.Networks | keys[0]' <<< "$container_info")" != "systemd-test" ]]; then
     fatal "Container not using the correct network"
 fi
 if [[ "$(jq -r '.[0].HostConfig.Binds[0]' <<< "$container_info")" != "systemd-test:/data:rw,rprivate,nosuid,nodev,rbind" ]]; then
