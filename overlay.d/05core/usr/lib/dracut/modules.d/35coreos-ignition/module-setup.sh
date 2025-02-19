@@ -23,8 +23,17 @@ install() {
         lsblk \
         sed \
         grep \
-        sgdisk \
         uname
+
+
+    # In some cases we had to vendor gdisk in Ignition.
+    # If this is the case here use that one.
+    # See https://issues.redhat.com/browse/RHEL-56080
+    if [ -f /usr/libexec/ignition-sgdisk ]; then
+        inst /usr/libexec/ignition-sgdisk /usr/sbin/sgdisk
+    else
+        inst sgdisk
+    fi
 
     # For IBM SecureExecution
     if [[ $(uname -m) = s390x ]]; then
