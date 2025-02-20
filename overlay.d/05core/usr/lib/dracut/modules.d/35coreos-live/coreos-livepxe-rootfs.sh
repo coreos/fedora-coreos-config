@@ -88,6 +88,20 @@ else
 fi
 
 # we support both squashfs and erofs, let's create the symlink for sysroot.mount
-sysroot=$(ls /root.*fs)
-echo "Creating symlink '/sysroot.img -> ${sysroot}'"
-ln -s "${sysroot}" /sysroot.img
+if [ -f /root.squashfs ]; then
+    fs=/root.squashfs
+    fstype=squashfs
+elif [ -f /root.erofs ]; then
+    fs=/root.erofs
+    fstype=erofs
+else
+    echo "No root.squashfs or root.erofs exists" >&2
+    exit 1
+fi
+
+# Let sysroot.mount know what path and type to use for mounting
+echo "Updating /rootfs.env with WHAT=${fs} TYPE=${fstype}"
+cat >/rootfs.env <<EOF
+WHAT=${fs}
+TYPE=${fstype}
+EOF

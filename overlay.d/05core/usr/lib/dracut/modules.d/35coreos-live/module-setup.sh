@@ -35,6 +35,9 @@ install() {
     inst_simple "$moddir/coreos-live-unmount-tmpfs-var.sh" \
         "/usr/sbin/coreos-live-unmount-tmpfs-var"
 
+    inst_simple "$moddir/coreos-liveiso-detect-rootfs-fstype.sh" \
+        "/usr/sbin/coreos-liveiso-detect-rootfs-fstype"
+
     inst_simple "$moddir/coreos-livepxe-rootfs.sh" \
         "/usr/sbin/coreos-livepxe-rootfs"
 
