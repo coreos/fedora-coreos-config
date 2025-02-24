@@ -8,4 +8,46 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  libblkid:
+    evr: 2.40.4-7.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-6ec8dfc721
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
+      type: fast-track
+  libfdisk:
+    evr: 2.40.4-7.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-6ec8dfc721
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
+      type: fast-track
+  libmount:
+    evr: 2.40.4-7.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-6ec8dfc721
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
+      type: fast-track
+  libsmartcols:
+    evr: 2.40.4-7.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-6ec8dfc721
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
+      type: fast-track
+  libuuid:
+    evr: 2.40.4-7.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-6ec8dfc721
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
+      type: fast-track
+  util-linux:
+    evr: 2.40.4-7.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-6ec8dfc721
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
+      type: fast-track
+  util-linux-core:
+    evr: 2.40.4-7.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-6ec8dfc721
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
+      type: fast-track
