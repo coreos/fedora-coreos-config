@@ -9,48 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  libblkid:
-    evr: 2.40.4-7.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-ed93228fb4
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
-      type: fast-track
-  libfdisk:
-    evr: 2.40.4-7.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-ed93228fb4
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
-      type: fast-track
-  libmount:
-    evr: 2.40.4-7.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-ed93228fb4
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
-      type: fast-track
-  libsmartcols:
-    evr: 2.40.4-7.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-ed93228fb4
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
-      type: fast-track
-  libuuid:
-    evr: 2.40.4-7.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-ed93228fb4
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
-      type: fast-track
-  util-linux:
-    evr: 2.40.4-7.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-ed93228fb4
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
-      type: fast-track
-  util-linux-core:
-    evr: 2.40.4-7.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-ed93228fb4
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1877
-      type: fast-track
   xfsprogs:
     evr: 6.12.0-3.fc42
     metadata:
