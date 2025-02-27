@@ -18,15 +18,16 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-team="team0"
+main() {
+    team="team0"
 
-# Verify team0 gets dhcp according to config.bu
-nic_ip=$(get_ipv4_for_nic ${team})
-if [ "${nic_ip}" != "10.0.2.31" ]; then
-    fatal "Error: get ${team} ip = ${nic_ip}, expected is 10.0.2.31"
-fi
+    # Verify team0 gets dhcp according to config.bu
+    nic_ip=$(get_ipv4_for_nic ${team})
+    if [ "${nic_ip}" != "10.0.2.31" ]; then
+        fatal "Error: get ${team} ip = ${nic_ip}, expected is 10.0.2.31"
+    fi
 
-expected_state="setup:
+    expected_state="setup:
   runner: activebackup
 ports:
   eth1
@@ -46,9 +47,18 @@ ports:
 runner:
   active port: eth1"
 
-state=`teamdctl team0 state`
-if ! diff -u <(echo "$expected_state") <(echo "$state"); then
-    fatal "Error: the expected team0 network is not the same as expected"
+    state=`teamdctl team0 state`
+    if ! diff -u <(echo "$expected_state") <(echo "$state"); then
+        fatal "Error: the expected team0 network is not the same as expected"
+    fi
+
+    ok "networking ${team} tests"
+}
+
+# See https://issues.redhat.com/browse/NMT-1056
+if match_maj_ver "10"; then
+    ok "skip team networking tests"
+    exit 0
 fi
 
-ok "networking ${team} tests"
+main
