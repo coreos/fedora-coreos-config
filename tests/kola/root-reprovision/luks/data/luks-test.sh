@@ -29,12 +29,17 @@ if ! grep -q no_read_workqueue <<< "${table}"; then
 fi
 ok "discard and custom option enabled for root LUKS"
 
-# while we're here, sanity-check that boot is mounted by UUID
-if ! systemctl cat boot.mount | grep -q What=/dev/disk/by-uuid; then
-  systemctl cat boot.mount
-  fatal "boot mounted not by UUID"
+# while we're here, sanity-check that boot is mounted by UUID or by multipath label
+if grep -q "rd.multipath=default" /proc/cmdline; then
+  expected_what=/dev/disk/by-label/dm-mpath-boot
+else
+  expected_what=/dev/disk/by-uuid
 fi
-ok "boot mounted by UUID"
+if ! systemctl cat boot.mount | grep -q What="${expected_what}"; then
+  systemctl cat boot.mount
+  fatal "boot mounted not by ${expected_what}"
+fi
+ok "boot mounted by ${expected_what}"
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
