@@ -76,6 +76,7 @@
 #     cosa kola run --build=$build ext.config.mynewtestiwrote
 
 import argparse
+import copy
 import json
 import os
 import os.path
@@ -146,6 +147,18 @@ def initialize_builds_info(buildsjson, arch, badbuild, goodbuild):
     info[badbuild]['heuristic'] = 'GIVEN'
     info[goodbuild]['status'] = 'GOOD'
     info[goodbuild]['heuristic'] = 'GIVEN'
+
+    # Trim the builds we're operating on in the info dict to just the
+    # range between the bad and good builds
+    in_range = False
+    for key, _ in copy.deepcopy(info).items():
+        if key == badbuild:
+            in_range = True
+        if not in_range:
+            info.pop(key)
+        if key == goodbuild:
+            in_range = False
+
     return info
 
 
