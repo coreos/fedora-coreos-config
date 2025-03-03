@@ -3,6 +3,11 @@
 # streams.
 include: image-base.yaml
 
+# Deploy via container now
+# https://github.com/coreos/fedora-coreos-tracker/issues/1823
+deploy-via-container: true
+container-imgref: "ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos:branched"
+
 # Enable 'erofs' by default for the rootfs in the Live ISO/PXE artifacts
 live-rootfs-fstype: "erofs"
 live-rootfs-fsoptions: "-zlzma,level=6 -Eall-fragments,fragdedupe=inode -C1048576 --quiet"
