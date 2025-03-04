@@ -18,8 +18,8 @@ set -xeuo pipefail
 
 token=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
 hypervisor=$(curl -H "X-aws-ec2-metadata-token: $token" http://169.254.169.254/2022-09-24/meta-data/system || true)
-if [ "${hypervisor}" != "xen" ]; then
+if echo "$hypervisor" | grep -q "xen"; then
+    ok xen instance type
+else
     fatal "expected xen instance type"
 fi
-
-ok xen instance type
