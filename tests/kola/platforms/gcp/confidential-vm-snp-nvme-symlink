@@ -1,0 +1,37 @@
+#!/bin/bash
+## kola:
+##   description: Verify new GCP udev rules work well on confidential instance.
+##   # Note: each local SSD is 375 GB in size, refer to https://cloud.google.com/compute/docs/disks/local-ssd
+##   additionalDisks: ["375G:channel=nvme"]
+##   platforms: gcp
+##   requiredTag: confidential-snp
+
+# See https://issues.redhat.com/browse/OCPBUGS-7582
+# https://github.com/coreos/fedora-coreos-tracker/issues/1457
+# https://github.com/coreos/coreos-assembler/issues/3556
+#
+# Force this test to not run by default unless named specifically
+# or `--tag confidential-snp` is passed to `kola run`, also requires
+# `--gcp-confidential-type sev_snp`. (By default using
+# `--gcp-machinetype n2d-standard-2`)
+#
+# It will create confidential instance on GCP with 1 nvme persistent disk
+# and 1 local ssd disk, then check the new udev rules make effect.
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+. $KOLA_EXT_DATA/gcp-lib.sh
+
+# Set global variable with NVME json info
+NVME_INFO=$(nvme list-subsys -o json)
+
+assert_confidential_type_match "sev-snp"
+assert_nvme_disk_count "${NVME_INFO}" "2"
+
+for disk in nvme0 nvme1; do
+    assert_nvme_disk_accessible $disk "${NVME_INFO}"
+    assert_expected_symlink_exists "/dev/${disk}n1"
+    ok "Found /dev/${disk}n1 symlink"
+done
