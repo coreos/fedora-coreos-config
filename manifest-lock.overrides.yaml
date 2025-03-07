@@ -10,7 +10,8 @@
 
 packages:
   xfsprogs:
-    evr: 6.12.0-3.fc42
+    evr: 6.13.0-2.fc43
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1876
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4989b0edf1
+      reason: https://bugzilla.redhat.com/show_bug.cgi?id=2346282
+      type: fast-track
