@@ -9,11 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  azure-vm-utils:
-    evr: 0.5.1-1.fc41
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-b24d671634
-      type: fast-track
   rpm-ostree:
     evr: 2025.6-3.fc41
     metadata:
