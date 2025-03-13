@@ -9,8 +9,13 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  ignition:
-    evr: 2.20.0-1.fc41
+  rpm-ostree:
+    evr: 2025.6-4.fc42
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2024-5298e9e9d4
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d9291ca2c7
+      type: fast-track
+  rpm-ostree-libs:
+    evr: 2025.6-4.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d9291ca2c7
       type: fast-track
