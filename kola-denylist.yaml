@@ -6,9 +6,3 @@
   warn: true
   arches:
     - ppc64le
-- pattern: pxe-offline-install.4k.ppcfw
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1886
-  warn: true
-  snooze: 2025-03-27
-  arches:
-    - ppc64le
