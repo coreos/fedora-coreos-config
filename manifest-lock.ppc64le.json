@@ -1129,7 +1129,7 @@
       }
     },
     "libatomic": {
-      "evra": "15.0.1-0.7.fc42.ppc64le",
+      "evra": "15.0.1-0.9.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1267,7 +1267,7 @@
       }
     },
     "libgcc": {
-      "evra": "15.0.1-0.7.fc42.ppc64le",
+      "evra": "15.0.1-0.9.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1603,7 +1603,7 @@
       }
     },
     "libstdc++": {
-      "evra": "15.0.1-0.7.fc42.ppc64le",
+      "evra": "15.0.1-0.9.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -2612,13 +2612,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-03-09T00:00:00Z",
+    "generated": "2025-03-14T00:00:00Z",
     "rpmmd_repos": {
+      "fedora-candidate-compose": {
+        "generated": "2025-03-12T08:22:19Z"
+      },
       "fedora-coreos-pool": {
-        "generated": "2025-03-08T11:52:48Z"
+        "generated": "2025-03-14T11:46:34Z"
       },
       "fedora-next": {
-        "generated": "2025-03-08T08:24:29Z"
+        "generated": "2025-03-14T04:30:09Z"
       },
       "fedora-next-updates": {
         "generated": "2025-02-04T16:34:59Z"
