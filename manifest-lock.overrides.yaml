@@ -19,3 +19,8 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d9291ca2c7
       type: fast-track
+  skopeo:
+    evr: 1:1.18.0-1.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
+      type: pin

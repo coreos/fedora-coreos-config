@@ -6,7 +6,7 @@ include: image-base.yaml
 # Move to use OCI images by default
 # https://github.com/coreos/fedora-coreos-tracker/issues/1823
 deploy-via-container: true
-container-imgref: "ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos:next-devel"
+container-imgref: "ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos:next"
 
 # Enable 'erofs' by default for the rootfs in the Live ISO/PXE artifacts
 live-rootfs-fstype: "erofs"
