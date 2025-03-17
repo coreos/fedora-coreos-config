@@ -168,7 +168,10 @@ packages:
   - iptables-legacy
   # NIC firmware we've traditionally shipped but then were split out of linux-firmware in Fedora
   - qed-firmware # https://github.com/coreos/fedora-coreos-tracker/issues/1746
-
+  # Include udev rules for NVMe backed Azure Instances
+  # see: https://issues.redhat.com/browse/COS-3124
+  # This package is not available in RHCOS yet
+  - azure-vm-utils
 
 # - irqbalance
 #   - This thing is crying out to be pulled into systemd, but that hasn't happened

@@ -73,13 +73,13 @@
       }
     },
     "amd-gpu-firmware": {
-      "evra": "20241210-1.fc41.noarch",
+      "evra": "20250311-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "amd-ucode-firmware": {
-      "evra": "20241210-1.fc41.noarch",
+      "evra": "20250311-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -124,6 +124,12 @@
       "evra": "0.8-29.fc41.x86_64",
       "metadata": {
         "sourcerpm": "avahi"
+      }
+    },
+    "azure-vm-utils": {
+      "evra": "0.5.1-1.fc41.x86_64",
+      "metadata": {
+        "sourcerpm": "azure-vm-utils"
       }
     },
     "basesystem": {
@@ -283,7 +289,7 @@
       }
     },
     "conmon": {
-      "evra": "2:2.1.12-3.fc41.x86_64",
+      "evra": "2:2.1.13-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "conmon"
       }
@@ -319,19 +325,19 @@
       }
     },
     "containerd": {
-      "evra": "1.7.25-1.fc41.x86_64",
+      "evra": "1.7.26-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "containerd"
       }
     },
     "containers-common": {
-      "evra": "5:0.62.0-1.fc41.noarch",
+      "evra": "5:0.62.1-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
     },
     "containers-common-extra": {
-      "evra": "5:0.62.0-1.fc41.noarch",
+      "evra": "5:0.62.1-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
@@ -505,7 +511,7 @@
       }
     },
     "dnf5": {
-      "evra": "5.2.10.0-2.fc41.x86_64",
+      "evra": "5.2.11.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "dnf5"
       }
@@ -787,25 +793,25 @@
       }
     },
     "glibc": {
-      "evra": "2.40-21.fc41.x86_64",
+      "evra": "2.40-23.fc41.x86_64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.40-21.fc41.x86_64",
+      "evra": "2.40-23.fc41.x86_64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.40-21.fc41.x86_64",
+      "evra": "2.40-23.fc41.x86_64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.40-21.fc41.x86_64",
+      "evra": "2.40-23.fc41.x86_64",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -847,37 +853,37 @@
       }
     },
     "grub2-common": {
-      "evra": "1:2.12-15.fc41.noarch",
+      "evra": "1:2.12-20.fc41.noarch",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-efi-x64": {
-      "evra": "1:2.12-15.fc41.x86_64",
+      "evra": "1:2.12-20.fc41.x86_64",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-pc": {
-      "evra": "1:2.12-15.fc41.x86_64",
+      "evra": "1:2.12-20.fc41.x86_64",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-pc-modules": {
-      "evra": "1:2.12-15.fc41.noarch",
+      "evra": "1:2.12-20.fc41.noarch",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-tools": {
-      "evra": "1:2.12-15.fc41.x86_64",
+      "evra": "1:2.12-20.fc41.x86_64",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.12-15.fc41.x86_64",
+      "evra": "1:2.12-20.fc41.x86_64",
       "metadata": {
         "sourcerpm": "grub2"
       }
@@ -895,7 +901,7 @@
       }
     },
     "hwdata": {
-      "evra": "0.392-1.fc41.noarch",
+      "evra": "0.393-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "hwdata"
       }
@@ -913,7 +919,7 @@
       }
     },
     "intel-gpu-firmware": {
-      "evra": "20241210-1.fc41.noarch",
+      "evra": "20250311-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1063,25 +1069,25 @@
       }
     },
     "kernel": {
-      "evra": "6.13.5-200.fc41.x86_64",
+      "evra": "6.13.6-200.fc41.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.13.5-200.fc41.x86_64",
+      "evra": "6.13.6-200.fc41.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.13.5-200.fc41.x86_64",
+      "evra": "6.13.6-200.fc41.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.13.5-200.fc41.x86_64",
+      "evra": "6.13.6-200.fc41.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1237,13 +1243,13 @@
       }
     },
     "libdnf5": {
-      "evra": "5.2.10.0-2.fc41.x86_64",
+      "evra": "5.2.11.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "dnf5"
       }
     },
     "libdnf5-cli": {
-      "evra": "5.2.10.0-2.fc41.x86_64",
+      "evra": "5.2.11.0-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "dnf5"
       }
@@ -1327,7 +1333,7 @@
       }
     },
     "libidn2": {
-      "evra": "2.3.7-2.fc41.x86_64",
+      "evra": "2.3.8-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "libidn2"
       }
@@ -1729,7 +1735,7 @@
       }
     },
     "libxmlb": {
-      "evra": "0.3.21-1.fc41.x86_64",
+      "evra": "0.3.22-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "libxmlb"
       }
@@ -1747,13 +1753,13 @@
       }
     },
     "linux-firmware": {
-      "evra": "20241210-1.fc41.noarch",
+      "evra": "20250311-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "linux-firmware-whence": {
-      "evra": "20241210-1.fc41.noarch",
+      "evra": "20250311-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1789,7 +1795,7 @@
       }
     },
     "lua-libs": {
-      "evra": "5.4.6-6.fc41.x86_64",
+      "evra": "5.4.7-3.fc41.x86_64",
       "metadata": {
         "sourcerpm": "lua"
       }
@@ -1933,7 +1939,7 @@
       }
     },
     "nmstate": {
-      "evra": "2.2.40-1.fc41.x86_64",
+      "evra": "2.2.42-2.fc41.x86_64",
       "metadata": {
         "sourcerpm": "nmstate"
       }
@@ -1957,7 +1963,7 @@
       }
     },
     "nvidia-gpu-firmware": {
-      "evra": "20241210-1.fc41.noarch",
+      "evra": "20250311-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2119,7 +2125,7 @@
       }
     },
     "podman": {
-      "evra": "5:5.4.0-1.fc41.x86_64",
+      "evra": "5:5.4.1-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2173,7 +2179,7 @@
       }
     },
     "qed-firmware": {
-      "evra": "20241210-1.fc41.noarch",
+      "evra": "20250311-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2203,13 +2209,13 @@
       }
     },
     "rpm-ostree": {
-      "evra": "2025.5-2.fc41.x86_64",
+      "evra": "2025.6-3.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
     },
     "rpm-ostree-libs": {
-      "evra": "2025.5-2.fc41.x86_64",
+      "evra": "2025.6-3.fc41.x86_64",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
@@ -2269,13 +2275,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "41.33-1.fc41.noarch",
+      "evra": "41.34-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "41.33-1.fc41.noarch",
+      "evra": "41.34-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2443,37 +2449,37 @@
       }
     },
     "systemd": {
-      "evra": "256.11-1.fc41.x86_64",
+      "evra": "256.12-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-container": {
-      "evra": "256.11-1.fc41.x86_64",
+      "evra": "256.12-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-libs": {
-      "evra": "256.11-1.fc41.x86_64",
+      "evra": "256.12-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-pam": {
-      "evra": "256.11-1.fc41.x86_64",
+      "evra": "256.12-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-resolved": {
-      "evra": "256.11-1.fc41.x86_64",
+      "evra": "256.12-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-udev": {
-      "evra": "256.11-1.fc41.x86_64",
+      "evra": "256.12-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
@@ -2545,13 +2551,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.1122-1.fc41.noarch",
+      "evra": "2:9.1.1169-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.1122-1.fc41.x86_64",
+      "evra": "2:9.1.1169-1.fc41.x86_64",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2636,16 +2642,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-03-02T00:00:00Z",
+    "generated": "2025-03-15T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-10-24T13:55:59Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-03-02T08:16:26Z"
+        "generated": "2025-03-15T17:31:50Z"
       },
       "fedora-updates": {
-        "generated": "2025-03-02T02:14:57Z"
+        "generated": "2025-03-15T02:15:40Z"
       }
     }
   }
