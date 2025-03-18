@@ -19,3 +19,9 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d9291ca2c7
       type: fast-track
+  zincati:
+    evr: 0.0.30-1.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-19fabb2ca6
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1823
+      type: fast-track
