@@ -10,10 +10,16 @@
 
 packages:
   ignition:
-    evr: 2.21.0-1.fc41
+    evr: 2.21.0-2.fc41
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-0f61d2ec37
-      reason: https://bodhi.fedoraproject.org/updates/FEDORA-2025-0f61d2ec37
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-8e8434512e
+      reason: https://github.com/coreos/ignition/pull/2037
+      type: fast-track
+  ignition-grub:
+    evr: 2.21.0-2.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-8e8434512e
+      reason: https://github.com/coreos/ignition/pull/2037
       type: fast-track
   rpm-ostree:
     evr: 2025.6-3.fc41
