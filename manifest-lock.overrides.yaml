@@ -8,4 +8,19 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  dnf5:
+    evr: 5.2.11.0-1.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
+      type: pin
+  libdnf5:
+    evr: 5.2.11.0-1.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
+      type: pin
+  libdnf5-cli:
+    evr: 5.2.11.0-1.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
+      type: pin
