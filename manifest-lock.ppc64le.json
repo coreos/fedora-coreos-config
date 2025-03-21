@@ -871,7 +871,13 @@
       }
     },
     "ignition": {
-      "evra": "2.21.0-1.fc42.ppc64le",
+      "evra": "2.21.0-2.fc42.ppc64le",
+      "metadata": {
+        "sourcerpm": "ignition"
+      }
+    },
+    "ignition-grub": {
+      "evra": "2.21.0-2.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "ignition"
       }
@@ -2612,13 +2618,13 @@
     }
   },
   "metadata": {
-    "generated": "2025-03-19T00:00:00Z",
+    "generated": "2025-03-20T00:00:00Z",
     "rpmmd_repos": {
       "fedora-candidate-compose": {
         "generated": "2025-03-12T08:22:19Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-03-19T07:45:19Z"
+        "generated": "2025-03-20T20:43:20Z"
       },
       "fedora-next": {
         "generated": "2025-03-19T16:47:34Z"
