@@ -22,14 +22,16 @@ packages:
       reason: https://github.com/coreos/ignition/pull/2037
       type: fast-track
   rpm-ostree:
-    evr: 2025.6-4.fc42
+    evr: 2025.6-6.fc42
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d9291ca2c7
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-7264fc66e6
+      reason: https://github.com/coreos/rpm-ostree/pull/5334
       type: fast-track
   rpm-ostree-libs:
-    evr: 2025.6-4.fc42
+    evr: 2025.6-6.fc42
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d9291ca2c7
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-7264fc66e6
+      reason: https://github.com/coreos/rpm-ostree/pull/5334
       type: fast-track
   zincati:
     evr: 0.0.30-1.fc42
