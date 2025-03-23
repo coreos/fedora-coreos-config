@@ -14,6 +14,21 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
+  dracut:
+    evr: 103-3.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1898
+      type: pin
+  dracut-network:
+    evr: 103-3.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1898
+      type: pin
+  dracut-squash:
+    evr: 103-3.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1898
+      type: pin
   libdnf5:
     evr: 5.2.11.0-1.fc43
     metadata:
