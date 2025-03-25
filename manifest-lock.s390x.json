@@ -1387,7 +1387,7 @@
       }
     },
     "libnvme": {
-      "evra": "1.11.1-2.fc42.s390x",
+      "evra": "1.12-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "libnvme"
       }
@@ -1584,6 +1584,12 @@
         "sourcerpm": "libunistring"
       }
     },
+    "liburing": {
+      "evra": "2.9-1.fc42.s390x",
+      "metadata": {
+        "sourcerpm": "liburing"
+      }
+    },
     "libusb1": {
       "evra": "1.0.27-9.fc42.s390x",
       "metadata": {
@@ -1735,19 +1741,19 @@
       }
     },
     "mpfr": {
-      "evra": "4.2.1-6.fc42.s390x",
+      "evra": "4.2.2-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "mpfr"
       }
     },
     "nano": {
-      "evra": "8.3-2.fc42.s390x",
+      "evra": "8.3-3.fc42.s390x",
       "metadata": {
         "sourcerpm": "nano"
       }
     },
     "nano-default-editor": {
-      "evra": "8.3-2.fc42.noarch",
+      "evra": "8.3-3.fc42.noarch",
       "metadata": {
         "sourcerpm": "nano"
       }
@@ -1777,7 +1783,7 @@
       }
     },
     "netavark": {
-      "evra": "2:1.14.0-1.fc42.s390x",
+      "evra": "2:1.14.1-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "netavark"
       }
@@ -1831,7 +1837,7 @@
       }
     },
     "nvme-cli": {
-      "evra": "2.11-3.fc42.s390x",
+      "evra": "2.12-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "nvme-cli"
       }
@@ -1849,19 +1855,19 @@
       }
     },
     "openssh": {
-      "evra": "9.9p1-7.fc42.s390x",
+      "evra": "9.9p1-9.fc42.s390x",
       "metadata": {
         "sourcerpm": "openssh"
       }
     },
     "openssh-clients": {
-      "evra": "9.9p1-7.fc42.s390x",
+      "evra": "9.9p1-9.fc42.s390x",
       "metadata": {
         "sourcerpm": "openssh"
       }
     },
     "openssh-server": {
-      "evra": "9.9p1-7.fc42.s390x",
+      "evra": "9.9p1-9.fc42.s390x",
       "metadata": {
         "sourcerpm": "openssh"
       }
@@ -1879,13 +1885,13 @@
       }
     },
     "ostree": {
-      "evra": "2025.1-1.fc42.s390x",
+      "evra": "2025.2-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-libs": {
-      "evra": "2025.1-1.fc42.s390x",
+      "evra": "2025.2-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "ostree"
       }
@@ -1921,13 +1927,13 @@
       }
     },
     "passt": {
-      "evra": "0^20250217.ga1e48a0-2.fc42.s390x",
+      "evra": "0^20250320.g32f6212-2.fc42.s390x",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20250217.ga1e48a0-2.fc42.noarch",
+      "evra": "0^20250320.g32f6212-2.fc42.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2059,13 +2065,13 @@
       }
     },
     "rpm": {
-      "evra": "4.20.0-8.fc42.s390x",
+      "evra": "4.20.1-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "rpm"
       }
     },
     "rpm-libs": {
-      "evra": "4.20.0-8.fc42.s390x",
+      "evra": "4.20.1-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "rpm"
       }
@@ -2083,7 +2089,7 @@
       }
     },
     "rpm-plugin-selinux": {
-      "evra": "4.20.0-8.fc42.s390x",
+      "evra": "4.20.1-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "rpm"
       }
@@ -2425,13 +2431,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.1202-1.fc42.noarch",
+      "evra": "2:9.1.1227-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.1202-1.fc42.s390x",
+      "evra": "2:9.1.1227-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2491,7 +2497,7 @@
       }
     },
     "zlib-ng-compat": {
-      "evra": "2.2.3-2.fc42.s390x",
+      "evra": "2.2.4-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "zlib-ng"
       }
@@ -2510,16 +2516,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-03-22T00:00:00Z",
+    "generated": "2025-03-25T00:00:00Z",
     "rpmmd_repos": {
       "fedora-candidate-compose": {
         "generated": "2025-03-12T08:22:18Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-03-21T18:42:41Z"
+        "generated": "2025-03-24T23:08:58Z"
       },
       "fedora-next": {
-        "generated": "2025-03-19T16:47:33Z"
+        "generated": "2025-03-24T08:31:37Z"
       },
       "fedora-next-updates": {
         "generated": "2025-02-04T16:35:00Z"
