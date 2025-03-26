@@ -21,6 +21,10 @@ if [ -f "${dn}/buildroot-reqs-${arch}.txt" ]; then
 fi
 echo "${deps}" | xargs dnf -y install
 
+# Downgrade rpmbuild from now because of rpmbuild bug
+# https://github.com/coreos/fedora-coreos-tracker/issues/1901
+dnf downgrade -y rpm-build --disablerepo=* --enablerepo=fedora
+
 echo "Installing build dependencies of primary packages"
 brs=$(grep -v '^#' "${dn}"/buildroot-buildreqs.txt)
 (cd "${tmpd}" && mkdir rpmbuild
