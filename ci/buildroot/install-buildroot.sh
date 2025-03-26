@@ -21,18 +21,20 @@ if [ -f "${dn}/buildroot-reqs-${arch}.txt" ]; then
 fi
 echo "${deps}" | xargs dnf -y install
 
-# Downgrade rpmbuild from now because of rpmbuild bug
-# https://github.com/coreos/fedora-coreos-tracker/issues/1901
-dnf downgrade -y rpm-build --disablerepo=* --enablerepo=fedora
-
 echo "Installing build dependencies of primary packages"
 brs=$(grep -v '^#' "${dn}"/buildroot-buildreqs.txt)
 (cd "${tmpd}" && mkdir rpmbuild
  echo "${brs}" | xargs dnf download --source
  # rebuild the SRPM for this arch; see
  # https://bugzilla.redhat.com/show_bug.cgi?id=1402784#c6
+ # Add workaround if on F41 for https://github.com/coreos/fedora-coreos-tracker/issues/1901
+ source /etc/os-release
+ workaround=""
+ if [ "${VERSION_ID}" == "41" ]; then
+    workaround="--noclean"
+ fi
  find . -name '*.src.rpm' -print0 | xargs -0n 1 rpmbuild -rs --nodeps \
-    -D "%_topdir $PWD/rpmbuild" -D "%_tmppath %{_topdir}/tmp"
+    -D "%_topdir $PWD/rpmbuild" -D "%_tmppath %{_topdir}/tmp" ${workaround}
  dnf builddep -y rpmbuild/SRPMS/*.src.rpm)
 rm -rf "${tmpd:?}"/*
 
