@@ -9,9 +9,19 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  zincati:
-    evr: 0.0.29-2.fc41
+  rpm-ostree:
+    evr: 2025.6-3.fc41
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-5b2f39bcf4
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1888
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4b9488bb4d
+      type: fast-track
+  rpm-ostree-libs:
+    evr: 2025.6-3.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4b9488bb4d
+      type: fast-track
+  zincati:
+    evr: 0.0.30-1.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-cc269f80fa
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1823
       type: fast-track
