@@ -154,14 +154,6 @@ move-to-cgroups-v2() {
     fi
 }
 
-# A helper to wait for the fix-selinux-labels script to finish
-wait-for-coreos-fix-selinux-labels() {
-    # First make sure the migrations/fix script has finished (if it is going
-    # to run) before doing the checks
-    systemd-run --wait --property=After=coreos-fix-selinux-labels.service \
-        echo "Waited for coreos-fix-selinux-labels.service to finish"
-}
-
 # We need to drop the rollback deployment. During upgrade
 # `...-> 40.20240906.1.0 (A)-> 41.20241109.1.0 (B)-> 42.20241114.91.0 (C)`
 # 1) A->B, A has the unfixed ostree, the upgrade will copy dtb files
@@ -186,9 +178,6 @@ drop_rollback_on_aarch64() {
 }
 
 selinux-sanity-check() {
-    # First make sure the migrations/fix script has finished if this is the boot
-    # where the fixes are taking place.
-    wait-for-coreos-fix-selinux-labels
     # Drop the rooback on aarch64 before checking.
     drop_rollback_on_aarch64
     # Verify SELinux labels are sane. Migration scripts should have cleaned
@@ -299,15 +288,19 @@ case "$stream" in
     *) fatal "unexpected stream: $stream";;
 esac
 
+# First, since coreos-fix-selinux-labels.service runs before zincati.service
+# let's wait until that service is finished before proceeding (and potentially
+# timing out below as a result of not waiting here). Note that if we are
+# running on an older release that doesn't have coreos-fix-selinux-labels.service
+# this is essentially a no-op.
+systemd-run --wait --property=After=coreos-fix-selinux-labels.service \
+    echo "Waited for coreos-fix-selinux-labels.service to finish"
+
 # If we have made it all the way to the last release then
 # we have one more test. We'll now rebase to the target
 # version, which should be in the compose OSTree repo.
 if vereq $version $last_release; then
     systemctl stop zincati
-    # In case the SELinux fix script is running this boot let's wait for it to
-    # finish before initiating an `rpm-ostree rebase` so we aren't writing at the
-    # same time it's fixing.
-    wait-for-coreos-fix-selinux-labels
     rpm-ostree rebase "fedora-compose:fedora/$(arch)/coreos/${target_stream}" $target_version
     /tmp/autopkgtest-reboot $version # execute the reboot
     sleep infinity
