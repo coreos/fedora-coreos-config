@@ -7,6 +7,7 @@
 
 packages:
   - ignition
+  - ignition-grub
   - dracut-network
   # for encryption
   - clevis clevis-luks clevis-dracut clevis-systemd
