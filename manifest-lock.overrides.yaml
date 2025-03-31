@@ -9,16 +9,33 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  rpm-ostree:
-    evr: 2025.6-3.fc41
+  dnf5:
+    evr: 5.2.11.0-1.fc41
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4b9488bb4d
-      type: fast-track
-  rpm-ostree-libs:
-    evr: 2025.6-3.fc41
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
+      type: pin
+  ignition:
+    evr: 2.21.0-2.fc41
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4b9488bb4d
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-8e8434512e
+      reason: https://github.com/coreos/ignition/pull/2037
       type: fast-track
+  ignition-grub:
+    evr: 2.21.0-2.fc41
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-8e8434512e
+      reason: https://github.com/coreos/ignition/pull/2037
+      type: fast-track
+  libdnf5:
+    evr: 5.2.11.0-1.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
+      type: pin
+  libdnf5-cli:
+    evr: 5.2.11.0-1.fc41
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
+      type: pin
   zincati:
     evr: 0.0.30-1.fc41
     metadata:
