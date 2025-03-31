@@ -73,10 +73,16 @@ booted_deployment_json=$(rpm-ostree status  --json | \
                          jq -r '.deployments[] | select(.booted == true)')
 version=$(jq -r '.version' <<< "${booted_deployment_json}")
 stream=$(jq -r '.["base-commit-meta"]["fedora-coreos.stream"]' <<< "${booted_deployment_json}")
+if [ "$stream" == "null" ]; then
+    # On a container based deployment we don't have the fedora coreos stream
+    # in the same place it used to be. Try to grab it from the new place.
+    ostree_manifest=$(jq -r '.["base-commit-meta"]["ostree.manifest"]' <<< "${booted_deployment_json}")
+    stream=$(jq -r '.annotations | .["fedora-coreos.stream"]' <<< "${ostree_manifest}")
+fi
 
 # Pick up the last release for the current stream from the update server
 test -f /srv/updateinfo.json || \
-    curl -L "https://updates.coreos.fedoraproject.org/v1/graph?basearch=$(arch)&stream=${stream}&rollout_wariness=0" > /srv/updateinfo.json
+    curl -L "https://updates.coreos.fedoraproject.org/v1/graph?basearch=$(arch)&stream=${stream}&rollout_wariness=0&oci=true" > /srv/updateinfo.json
 last_release=$(jq -r .nodes[-1].version /srv/updateinfo.json)
 last_release_index=$(jq '.nodes | length-1' /srv/updateinfo.json)
 latest_edge=$(jq -r .edges[0][1] /srv/updateinfo.json)
@@ -300,7 +306,7 @@ systemd-run --wait --property=After=coreos-fix-selinux-labels.service \
 # version, which should be in the compose OSTree repo.
 if vereq $version $last_release; then
     systemctl stop zincati
-    rpm-ostree rebase "fedora-compose:fedora/$(arch)/coreos/${target_stream}" $target_version
+    rpm-ostree rebase "ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos:${target_version}"
     /tmp/autopkgtest-reboot $version # execute the reboot
     sleep infinity
 fi
