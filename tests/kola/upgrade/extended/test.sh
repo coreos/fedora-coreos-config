@@ -69,11 +69,10 @@ if [ -f /etc/zincati/config.d/90-disable-on-non-production-stream.toml ]; then
     need_restart='true'
 fi
 
-get_booted_deployment_json() {
-    rpm-ostree status  --json | jq -r '.deployments[] | select(.booted == true)'
-}
-version=$(get_booted_deployment_json | jq -r '.version')
-stream=$(get_booted_deployment_json | jq -r '.["base-commit-meta"]["fedora-coreos.stream"]')
+booted_deployment_json=$(rpm-ostree status  --json | \
+                         jq -r '.deployments[] | select(.booted == true)')
+version=$(jq -r '.version' <<< "${booted_deployment_json}")
+stream=$(jq -r '.["base-commit-meta"]["fedora-coreos.stream"]' <<< "${booted_deployment_json}")
 
 # Pick up the last release for the current stream from the update server
 test -f /srv/updateinfo.json || \
