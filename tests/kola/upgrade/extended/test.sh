@@ -54,6 +54,7 @@ set -eux -o pipefail
 . /etc/os-release # for $VERSION_ID
 
 need_restart='false'
+arch=$(arch)
 
 # delete the disabling of updates that was done by the test framework
 if [ -f /etc/zincati/config.d/90-disable-auto-updates.toml ]; then
@@ -82,7 +83,7 @@ fi
 
 # Pick up the last release for the current stream from the update server
 test -f /srv/updateinfo.json || \
-    curl -L "https://updates.coreos.fedoraproject.org/v1/graph?basearch=$(arch)&stream=${stream}&rollout_wariness=0&oci=true" > /srv/updateinfo.json
+    curl -L "https://updates.coreos.fedoraproject.org/v1/graph?basearch=${arch}&stream=${stream}&rollout_wariness=0&oci=true" > /srv/updateinfo.json
 last_release=$(jq -r .nodes[-1].version /srv/updateinfo.json)
 last_release_index=$(jq '.nodes | length-1' /srv/updateinfo.json)
 latest_edge=$(jq -r .edges[0][1] /srv/updateinfo.json)
@@ -177,7 +178,7 @@ move-to-cgroups-v2() {
 # NOTE: we can drop this once moved to F43.
 drop_rollback_on_aarch64() {
     # The dtb copy issue was only ever an issue ever on aarch64
-    [ "$(arch)" != 'aarch64' ] && return
+    [ "${arch}" != 'aarch64' ] && return
     echo "Dropping rollback deployment because it could have mislabeled dtb files"
     rpm-ostree cleanup -r
 }
@@ -306,7 +307,13 @@ systemd-run --wait --property=After=coreos-fix-selinux-labels.service \
 # version, which should be in the compose OSTree repo.
 if vereq $version $last_release; then
     systemctl stop zincati
-    rpm-ostree rebase "ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos:${target_version}"
+    # Pull the ociarchive from the builds dir here because the
+    # containers aren't pushed to quay until the release job is run
+    # and that hasn't happened yet.
+    curl -L -o /srv/update.ociarchive \
+        "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/${target_version}/${arch}/fedora-coreos-${target_version}-ostree.${arch}.ociarchive"
+    rpm-ostree rebase "ostree-unverified-image:oci-archive:/srv/update.ociarchive"
+    rm /srv/update.ociarchive
     /tmp/autopkgtest-reboot $version # execute the reboot
     sleep infinity
 fi
