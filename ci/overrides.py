@@ -12,7 +12,7 @@ import subprocess
 
 import bodhi.client.bindings
 import dnf
-import hawkey
+import libdnf5
 import koji
 
 KOJI_URL = 'https://koji.fedoraproject.org/kojihub'
@@ -335,20 +335,30 @@ def graduate_lockfile(base, fn):
 
 
 def sack_has_nevra_greater_or_equal(base, nevra):
-    nevra = hawkey.split_nevra(nevra)
-    pkgs = base.sack.query().filterm(name=nevra.name,
-                                     arch=nevra.arch).latest().run()
+    from_nevra = libdnf5.rpm.VectorNevraForm(1, libdnf5.rpm.Nevra.Form_NEVRA)
+    nevra = libdnf5.rpm.Nevra.parse(nevra, from_nevra)[0]
+    pkgs = base.sack.query().filterm(name=nevra.get_name(),
+                                     arch=nevra.get_arch()).latest().run()
 
     if len(pkgs) == 0:
         # Odd... the only way I can imagine this happen is if we fast-track a
         # brand new package from Koji which hasn't hit the updates repo yet.
         # Corner-case, but let's be nice.
-        eprint(f"couldn't find package {nevra.name}; assuming not graduated")
+        eprint(
+            f"couldn't find package {
+                nevra.get_name()}; assuming not graduated")
         return False
 
-    nevra_latest = hawkey.split_nevra(str(pkgs[0]))
-    return nevra_latest >= nevra
+    nevra_latest = libdnf5.rpm.Nevra.parse(str(pkgs[0]), from_nevra)[0]
 
+    # Compare same way as it's done in C++ lindnf5's code:
+    # https://github.com/rpm-software-management/dnf5/blob/main/include/libdnf5/rpm/nevra.hpp#L195
+    for attr in ["get_epoch", "get_version", "get_release"]:
+        r = libdnf5.rpm.rpmvercmp(getattr(nevra, attr)(),
+                                  getattr(nevra_latest, attr)())
+        if r != 0:
+            return r > 0
+    return True
 
 
 def merge_overrides(fn, overrides):
