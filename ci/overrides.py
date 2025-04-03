@@ -11,7 +11,6 @@ import yaml
 import subprocess
 
 import bodhi.client.bindings
-import dnf
 import libdnf5
 import koji
 
@@ -164,10 +163,21 @@ def get_treefile():
 
 
 def get_dnf_base(treefile):
-    base = dnf.Base()
-    base.conf.reposdir = basedir
-    base.conf.releasever = treefile['releasever']
-    base.read_all_repos()
+    base = libdnf5.base.Base()
+    # Prevent loading libdnf5 plugins
+    base.get_config().plugins = False
+
+    # Override required options
+    base.get_config().reposdir = (basedir)
+    base.get_vars().set("releasever", str(treefile['releasever']))
+    base.get_vars().set("basearch", treefile['basearch'])
+
+    # Load configuration from the config files and finish initialization
+    base.load_config()
+    base.setup()
+
+    # Create repositories from system configuration files.
+    base.get_repo_sack().create_repos_from_reposdir()
     return base
 
 
@@ -277,12 +287,15 @@ def get_binary_packages(source_nvrs):
 
 
 def setup_repos(base, treefile):
-    for repo in base.repos.values():
+    query = libdnf5.repo.RepoQuery(base)
+    for repo in query:
         repo.disable()
 
     eprint("Enabled repos:")
     for repo in treefile['repos']:
-        base.repos[repo].enable()
+        query = libdnf5.repo.RepoQuery(base)
+        query.filter_id(repo)
+        query.get().enable()
         eprint(f"- {repo}")
 
 
@@ -304,9 +317,9 @@ def graduate_lockfile(base, fn):
     if len(lockfile.get('packages', {})) == 0:
         return
 
-    if base.sack is None:
-        eprint("Downloading metadata")
-        base.fill_sack(load_system_repo=False)
+    eprint("Downloading metadata")
+    base.get_repo_sack().load_repos(libdnf5.repo.Repo.Type_AVAILABLE)
+    basearch = base.get_vars().get_value("basearch")
 
     new_packages = {}
     for name, lock in lockfile['packages'].items():
@@ -320,7 +333,7 @@ def graduate_lockfile(base, fn):
         else:
             # it applies to all arches, so we can just check our arch (see
             # related TODO above)
-            nevra = f"{name}-{lock['evr']}.{base.conf.basearch}"
+            nevra = f"{name}-{lock['evr']}.{basearch}"
         graduated = sack_has_nevra_greater_or_equal(base, nevra)
         if not graduated:
             new_packages[name] = lock
@@ -337,8 +350,16 @@ def graduate_lockfile(base, fn):
 def sack_has_nevra_greater_or_equal(base, nevra):
     from_nevra = libdnf5.rpm.VectorNevraForm(1, libdnf5.rpm.Nevra.Form_NEVRA)
     nevra = libdnf5.rpm.Nevra.parse(nevra, from_nevra)[0]
-    pkgs = base.sack.query().filterm(name=nevra.get_name(),
-                                     arch=nevra.get_arch()).latest().run()
+
+    # Set default epoch
+    if not nevra.get_epoch():
+        nevra.set_epoch('0')
+
+    query = libdnf5.rpm.PackageQuery(base)
+    query.filter_arch(nevra.get_arch())
+    query.filter_name(nevra.get_name())
+    query.filter_latest_evr()
+    pkgs = [pkg.get_full_nevra() for pkg in query]
 
     if len(pkgs) == 0:
         # Odd... the only way I can imagine this happen is if we fast-track a
@@ -349,7 +370,7 @@ def sack_has_nevra_greater_or_equal(base, nevra):
                 nevra.get_name()}; assuming not graduated")
         return False
 
-    nevra_latest = libdnf5.rpm.Nevra.parse(str(pkgs[0]), from_nevra)[0]
+    nevra_latest = libdnf5.rpm.Nevra.parse(pkgs[0], from_nevra)[0]
 
     # Compare same way as it's done in C++ lindnf5's code:
     # https://github.com/rpm-software-management/dnf5/blob/main/include/libdnf5/rpm/nevra.hpp#L195
