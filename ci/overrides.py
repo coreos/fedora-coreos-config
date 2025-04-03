@@ -51,34 +51,36 @@ def main():
     parser = argparse.ArgumentParser(description='Manage overrides.')
     # "dest" to work around https://bugs.python.org/issue29298
     subcommands = parser.add_subparsers(title='subcommands', required=True,
-            dest='command')
+                                        dest='command')
 
-    fast_track = subcommands.add_parser('fast-track',
-            description='Fast-track Bodhi updates.')
+    fast_track = subcommands.add_parser(
+        'fast-track', description='Fast-track Bodhi updates.')
     fast_track.add_argument('update', nargs='+',
-            help='ID or URL of Bodhi update to fast-track')
-    fast_track.add_argument('-r', '--reason',
-            help='URL explaining the reason for the fast-track')
+                            help='ID or URL of Bodhi update to fast-track')
+    fast_track.add_argument(
+        '-r',
+        '--reason',
+        help='URL explaining the reason for the fast-track')
     fast_track.add_argument('--ignore-dist-mismatch', action='store_true',
-            help='ignore mismatched Fedora major version')
+                            help='ignore mismatched Fedora major version')
     fast_track.set_defaults(func=do_fast_track)
 
     pin = subcommands.add_parser('pin', description='Pin source RPMs.')
     pin.add_argument('nvr', nargs='+',
-            help='NVR of SRPM to pin')
+                     help='NVR of SRPM to pin')
     pin.add_argument('-r', '--reason', required=True,
-            help='URL explaining the reason for the pin')
+                     help='URL explaining the reason for the pin')
     pin.add_argument('--ignore-dist-mismatch', action='store_true',
-            help='ignore mismatched Fedora major version')
+                     help='ignore mismatched Fedora major version')
     pin.set_defaults(func=do_pin)
 
-    srpms = subcommands.add_parser('srpms',
-            description='Name the relevant source RPMs for a Bodhi update.')
+    srpms = subcommands.add_parser(
+        'srpms', description='Name the relevant source RPMs for a Bodhi update.')
     srpms.add_argument('update', help='ID or URL of Bodhi update')
     srpms.set_defaults(func=do_srpms)
 
-    graduate = subcommands.add_parser('graduate',
-            description='Remove graduated overrides.')
+    graduate = subcommands.add_parser(
+        'graduate', description='Remove graduated overrides.')
     graduate.set_defaults(func=do_graduate)
 
     args = parser.parse_args()
@@ -96,7 +98,8 @@ def do_fast_track(args):
         for source_nvr in source_nvrs:
             source_name = '-'.join(source_nvr.split('-')[:-2])
             if not args.reason and source_name not in TRIVIAL_FAST_TRACKS:
-                raise Exception(f'No reason URL specified and source package {source_name} not in {TRIVIAL_FAST_TRACKS}')
+                raise Exception(f'No reason URL specified and source package {
+                                source_name} not in {TRIVIAL_FAST_TRACKS}')
         for n, info in get_binary_packages(source_nvrs).items():
             if not args.ignore_dist_mismatch:
                 check_dist_tag(n, info, dist)
@@ -108,7 +111,8 @@ def do_fast_track(args):
                 info['metadata']['reason'] = args.reason
             overrides[n] = info
     if not overrides:
-        raise Exception('specified updates contain no binary packages listed in lockfiles')
+        raise Exception(
+            'specified updates contain no binary packages listed in lockfiles')
     for lockfile_path in get_lockfiles():
         merge_overrides(lockfile_path, overrides)
 
@@ -126,7 +130,8 @@ def do_pin(args):
         )
         overrides[n] = info
     if not overrides:
-        raise Exception('specified source packages produce no binary packages listed in lockfiles')
+        raise Exception(
+            'specified source packages produce no binary packages listed in lockfiles')
     for lockfile_path in get_lockfiles():
         merge_overrides(lockfile_path, overrides)
 
@@ -138,7 +143,8 @@ def do_srpms(args):
             print(nvr)
             printed = True
     if not printed:
-        raise Exception('specified update contains no binary packages listed in lockfiles')
+        raise Exception(
+            'specified update contains no binary packages listed in lockfiles')
 
 
 def do_graduate(_args):
@@ -189,7 +195,8 @@ def get_manifest_packages(arch):
 
     # If this branch has any lockfiles in it, return the lockfile for the
     # specified arch, or an empty dict if missing.
-    lockfile_path = lambda arch: os.path.join(basedir, f'manifest-lock.{arch}.json')
+    def lockfile_path(arch): return os.path.join(
+        basedir, f'manifest-lock.{arch}.json')
     if any(os.path.exists(lockfile_path(a)) for a in ARCHES):
         try:
             with open(lockfile_path(arch)) as f:
@@ -206,8 +213,8 @@ def get_manifest_packages(arch):
     if not versions:
         return {}
     eprint(f'Reading generated lockfile from build {versions[0]} on {arch}')
-    lockfile_url = GENERATED_LOCKFILE_URL_TEMPLATE.format(stream=get_stream(),
-            version=versions[0], arch=arch)
+    lockfile_url = GENERATED_LOCKFILE_URL_TEMPLATE.format(
+        stream=get_stream(), version=versions[0], arch=arch)
     resp = requests.get(lockfile_url)
     resp.raise_for_status()
     return resp.json()['packages']
@@ -238,7 +245,7 @@ def get_binary_packages(source_nvrs):
     accepted_in_arch = {}
     client = koji.ClientSession(KOJI_URL)
 
-    archful = lambda arch: arch != 'noarch'
+    def archful(arch): return arch != 'noarch'
 
     def arches_with_package(name, arch):
         '''For a given package and arch, return the arches that list the
@@ -261,8 +268,10 @@ def get_binary_packages(source_nvrs):
                 accepted_in_arch.setdefault(arch, set()).add(name)
 
     # Check that every arch has the same package set
-    if list(accepted_in_arch.values())[:-1] != list(accepted_in_arch.values())[1:]:
-        raise Exception(f'This tool cannot handle arch-specific overrides: {accepted_in_arch}')
+    if list(accepted_in_arch.values())[
+            :-1] != list(accepted_in_arch.values())[1:]:
+        raise Exception(
+            f'This tool cannot handle arch-specific overrides: {accepted_in_arch}')
 
     return binpkgs
 
@@ -341,6 +350,7 @@ def sack_has_nevra_greater_or_equal(base, nevra):
     return nevra_latest >= nevra
 
 
+
 def merge_overrides(fn, overrides):
     '''Modify the file fn by applying the specified package overrides.'''
     with open(fn) as f:
@@ -370,9 +380,11 @@ def get_expected_dist_tag():
 
 def check_dist_tag(name, info, dist):
     if 'evr' in info and not info['evr'].endswith(dist):
-        raise Exception(f"Package {name}-{info['evr']} doesn't match expected dist tag {dist}")
+        raise Exception(
+            f"Package {name}-{info['evr']} doesn't match expected dist tag {dist}")
     if 'evra' in info and not info['evra'].endswith(dist + '.noarch'):
-        raise Exception(f"Package {name}-{info['evra']} doesn't match expected dist tag {dist}")
+        raise Exception(
+            f"Package {name}-{info['evra']} doesn't match expected dist tag {dist}")
 
 
 def eprint(*args, **kwargs):
