@@ -80,6 +80,13 @@ is_rhcos9() {
     { [ "${ID}" == "rhel" ] && [ "${VERSION_ID%%.*}" -eq 9 ]; }
 }
 
+# rhcos10 && SCOS 10
+is_el10() {
+    source /etc/os-release
+    { [ "${ID}" == "rhel" ] && [ "${VERSION_ID%%.*}" -eq 10 ]; } || \
+    { [ "${ID}" == "centos" ] && [ "${VERSION_ID%%}" -eq 10 ]; }
+}
+
 # scos
 is_scos() {
     source /etc/os-release

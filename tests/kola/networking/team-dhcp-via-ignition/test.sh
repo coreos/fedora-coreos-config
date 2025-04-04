@@ -18,6 +18,12 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
+# Teamd is no longer supported in EL10
+# Exit early in that case
+ if is_el10; then
+   exit 0
+fi
+
 team="team0"
 
 # Verify team0 gets dhcp according to config.bu
