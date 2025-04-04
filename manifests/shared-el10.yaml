@@ -6,3 +6,13 @@ packages:
   # These should be with kexec-tools in the user-experience manifest
   - makedumpfile
   - kdump-utils
+
+postprocess:
+  # The 'fips-mode-setup' script have been removed in EL10 since [1][2], but is still needed
+  # for EL9, so we drop its usage here.
+  # [1] https://gitlab.com/redhat/centos-stream/rpms/crypto-policies/-/commit/67e22dbc3721d1d17505bff85228b465cd5ca225
+  # [2] https://gitlab.com/redhat-crypto/fedora-crypto-policies/-/commit/ff7551bbb3011f17cb8c6aac03f64682dde14c21
+  - |
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    sed -i "/.fips-mode-setup --enable.*/d" /usr/lib/dracut/modules.d/40rhcos-fips/rhcos-fips.sh
