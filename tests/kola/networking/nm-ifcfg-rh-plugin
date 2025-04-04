@@ -17,7 +17,9 @@ set -xeuo pipefail
 exists=0
 busctl status com.redhat.ifcfgrh1 && exists=1
 
-if is_fcos; then
+# ifcfg-rh support is dropped in EL 10
+# See https://gitlab.com/redhat/centos-stream/rpms/NetworkManager/-/commit/0a387cee26a3f61270480b5655014bf0013d0d69
+if is_fcos || is_el10; then
     [ "$exists" == "0" ] || fatal "ifcfg-rh plugin detected on FCOS"
 elif is_rhcos || is_scos; then
     [ "$exists" == "1" ] || fatal "ifcfg-rh plugin not detected on RHCOS/SCOS"
