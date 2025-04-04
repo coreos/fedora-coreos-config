@@ -15,20 +15,23 @@ packages:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
   dracut:
-    evr: 103-3.fc42
+    evr: 105-3.fc43
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1898
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-fe0cd9f98b
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1894
+      type: fast-track
   dracut-network:
-    evr: 103-3.fc42
+    evr: 105-3.fc43
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1898
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-fe0cd9f98b
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1894
+      type: fast-track
   dracut-squash:
-    evr: 103-3.fc42
+    evr: 105-3.fc43
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1898
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-fe0cd9f98b
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1894
+      type: fast-track
   libdnf5:
     evr: 5.2.11.0-1.fc43
     metadata:
