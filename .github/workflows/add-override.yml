@@ -40,10 +40,7 @@ jobs:
     container: quay.io/fedora/fedora:latest
     steps:
       - name: Install dependencies
-        # XXX: Note here we're installing python3-dnf, which pulls in libdnf,
-        # which is the old one. We should migrate to libdnf5 to match dnf5.
-        # https://github.com/coreos/fedora-coreos-config/issues/3254
-        run: dnf install -y git jq python3-bodhi-client python3-pyyaml python3-dnf
+        run: dnf install -y git jq python3-bodhi-client python3-pyyaml python3-libdnf5
       - name: Check out repository
         uses: actions/checkout@v3
         with:
