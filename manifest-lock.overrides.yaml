@@ -14,30 +14,6 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
-  dracut:
-    evr: 105-3.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-20999ea059
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1894
-      type: fast-track
-  dracut-network:
-    evr: 105-3.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-20999ea059
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1894
-      type: fast-track
-  dracut-squash:
-    evr: 105-3.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-20999ea059
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1894
-      type: fast-track
-  ignition:
-    evr: 2.21.0-2.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d721b4d902
-      reason: https://github.com/coreos/ignition/pull/2037
-      type: fast-track
   ignition-grub:
     evr: 2.21.0-2.fc42
     metadata:
