@@ -16,51 +16,9 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-# EXPECTED_INITRD_NETWORK_CFG2
-#   - used on older RHEL 8.4 release
-EXPECTED_INITRD_NETWORK_CFG2="[connection]
-id=Wired Connection
-uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-type=ethernet
-autoconnect-retries=1
-multi-connect=3
-permissions=
-[ethernet]
-mac-address-blacklist=
-[ipv4]
-dhcp-timeout=90
-dns-search=
-method=auto
-required-timeout=20000
-[ipv6]
-addr-gen-mode=eui64
-dhcp-timeout=90
-dns-search=
-method=auto
-[proxy]"
-# EXPECTED_INITRD_NETWORK_CFG3
-#   - used on Fedora 36+ and RHEL8.6+
-EXPECTED_INITRD_NETWORK_CFG3="[connection]
-id=Wired Connection
-uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-type=ethernet
-autoconnect-retries=1
-multi-connect=3
-[ethernet]
-[ipv4]
-dhcp-timeout=90
-method=auto
-required-timeout=20000
-[ipv6]
-addr-gen-mode=eui64
-dhcp-timeout=90
-method=auto
-[proxy]
-[user]
-org.freedesktop.NetworkManager.origin=nm-initrd-generator"
-# EXPECTED_INITRD_NETWORK_CFG5
-#   - used on Fedora 37+, scos and RHEL 9.2
-EXPECTED_INITRD_NETWORK_CFG5="# Created by nm-initrd-generator
+# EXPECTED_INITRD_NETWORK_CFG1
+#   - used on Fedora 37+, scos and RHEL 9.2+
+EXPECTED_INITRD_NETWORK_CFG1="# Created by nm-initrd-generator
 [connection]
 id=Wired Connection
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -81,48 +39,8 @@ method=auto
 org.freedesktop.NetworkManager.origin=nm-initrd-generator"
 
 # EXPECTED_REALROOT_NETWORK_CFG1:
-#   - used on RHEL <= 8.5
+#   - used on all Fedora 37+, scos and RHEL 9.2+
 EXPECTED_REALROOT_NETWORK_CFG1="[connection]
-id=Wired connection 1
-uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-type=ethernet
-autoconnect-priority=-999
-interface-name=xxxx
-permissions=
-timestamp=xxxxxxxxxx
-[ethernet]
-mac-address-blacklist=
-[ipv4]
-dns-search=
-method=auto
-[ipv6]
-addr-gen-mode=stable-privacy
-dns-search=
-method=auto
-[proxy]
-[.nmmeta]
-nm-generated=true"
-# EXPECTED_REALROOT_NETWORK_CFG2:
-#   - used on all Fedora 36+ and RHEL8.6+
-EXPECTED_REALROOT_NETWORK_CFG2="[connection]
-id=Wired connection 1
-uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-type=ethernet
-autoconnect-priority=-999
-interface-name=xxxx
-timestamp=xxxxxxxxxx
-[ethernet]
-[ipv4]
-method=auto
-[ipv6]
-addr-gen-mode=stable-privacy
-method=auto
-[proxy]
-[.nmmeta]
-nm-generated=true"
-# EXPECTED_REALROOT_NETWORK_CFG3:
-#   - used on all Fedora 37+, scos and RHEL 9.2
-EXPECTED_REALROOT_NETWORK_CFG3="[connection]
 id=Wired connection 1
 uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 type=ethernet
@@ -152,26 +70,14 @@ normalize_connection_file() {
 source /etc/os-release
 if [ "$ID" == "fedora" ]; then
     if [ "$VERSION_ID" -ge "37" ]; then
-        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG5
-        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG3
-    elif [ "$VERSION_ID" -eq "36" ]; then
-        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG3
-        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG2
+        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG1
+        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
     else
         fatal "fail: not operating on expected OS version"
     fi
 elif [[ "${ID}" = "rhel" ]] || [[ "${ID_LIKE}" =~ "rhel" ]]; then
-    # For the version comparison use string substitution to remove the
-    # '.` from the version so we can use integer comparison
-
-    if is_scos || is_rhcos9; then
-        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG5
-        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG3
-    elif [ "${RHEL_VERSION/\./}" -ge 86 ]; then
-        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG3
-        EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG2
-    elif [ "${RHEL_VERSION/\./}" -eq 84 ]; then
-        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG2
+    if is_scos || is_rhcos; then
+        EXPECTED_INITRD_NETWORK_CFG=$EXPECTED_INITRD_NETWORK_CFG1
         EXPECTED_REALROOT_NETWORK_CFG=$EXPECTED_REALROOT_NETWORK_CFG1
     else
         fatal "fail: not operating on expected OS version"
