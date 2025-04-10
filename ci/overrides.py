@@ -378,7 +378,9 @@ def sack_has_nevra_greater_or_equal(base, nevra):
         r = libdnf5.rpm.rpmvercmp(getattr(nevra, attr)(),
                                   getattr(nevra_latest, attr)())
         if r != 0:
-            return r > 0
+            # Description of 'rpmvercmp' is wrong, proper one:
+            # https://github.com/rpm-software-management/rpm/blob/master/rpmio/rpmvercmp.cc#L16
+            return r == -1
     return True
 
 
