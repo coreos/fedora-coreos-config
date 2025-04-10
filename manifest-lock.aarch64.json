@@ -121,7 +121,7 @@
       }
     },
     "azure-vm-utils": {
-      "evra": "0.5.1-1.fc41.aarch64",
+      "evra": "0.5.2-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "azure-vm-utils"
       }
@@ -163,7 +163,7 @@
       }
     },
     "bootc": {
-      "evra": "1.1.5-1.fc41.aarch64",
+      "evra": "1.1.6-3.fc41.aarch64",
       "metadata": {
         "sourcerpm": "bootc"
       }
@@ -313,25 +313,25 @@
       }
     },
     "container-selinux": {
-      "evra": "4:2.235.0-2.fc41.noarch",
+      "evra": "4:2.236.0-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "container-selinux"
       }
     },
     "containerd": {
-      "evra": "1.7.26-1.fc41.aarch64",
+      "evra": "1.7.27-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "containerd"
       }
     },
     "containers-common": {
-      "evra": "5:0.62.1-1.fc41.noarch",
+      "evra": "5:0.62.2-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
     },
     "containers-common-extra": {
-      "evra": "5:0.62.1-1.fc41.noarch",
+      "evra": "5:0.62.2-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
@@ -607,7 +607,7 @@
       }
     },
     "expat": {
-      "evra": "2.6.4-1.fc41.aarch64",
+      "evra": "2.7.0-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "expat"
       }
@@ -727,7 +727,7 @@
       }
     },
     "fwupd": {
-      "evra": "1.9.28-1.fc41.aarch64",
+      "evra": "1.9.29-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -775,13 +775,13 @@
       }
     },
     "git-core": {
-      "evra": "2.48.1-1.fc41.aarch64",
+      "evra": "2.49.0-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "git"
       }
     },
     "glib2": {
-      "evra": "2.82.2-1.fc41.aarch64",
+      "evra": "2.82.5-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "glib2"
       }
@@ -847,25 +847,25 @@
       }
     },
     "grub2-common": {
-      "evra": "1:2.12-20.fc41.noarch",
+      "evra": "1:2.12-21.fc41.noarch",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-efi-aa64": {
-      "evra": "1:2.12-20.fc41.aarch64",
+      "evra": "1:2.12-21.fc41.aarch64",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-tools": {
-      "evra": "1:2.12-20.fc41.aarch64",
+      "evra": "1:2.12-21.fc41.aarch64",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.12-20.fc41.aarch64",
+      "evra": "1:2.12-21.fc41.aarch64",
       "metadata": {
         "sourcerpm": "grub2"
       }
@@ -889,7 +889,13 @@
       }
     },
     "ignition": {
-      "evra": "2.20.0-5.fc41.aarch64",
+      "evra": "2.21.0-2.fc41.aarch64",
+      "metadata": {
+        "sourcerpm": "ignition"
+      }
+    },
+    "ignition-grub": {
+      "evra": "2.21.0-2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "ignition"
       }
@@ -1021,7 +1027,7 @@
       }
     },
     "json-glib": {
-      "evra": "1.10.0-1.fc41.aarch64",
+      "evra": "1.10.6-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "json-glib"
       }
@@ -1051,25 +1057,25 @@
       }
     },
     "kernel": {
-      "evra": "6.13.6-200.fc41.aarch64",
+      "evra": "6.13.8-200.fc41.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.13.6-200.fc41.aarch64",
+      "evra": "6.13.8-200.fc41.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.13.6-200.fc41.aarch64",
+      "evra": "6.13.8-200.fc41.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.13.6-200.fc41.aarch64",
+      "evra": "6.13.8-200.fc41.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1675,7 +1681,7 @@
       }
     },
     "libusb1": {
-      "evra": "1.0.27-9.fc41.aarch64",
+      "evra": "1.0.28-2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "libusb1"
       }
@@ -1717,7 +1723,7 @@
       }
     },
     "libxml2": {
-      "evra": "2.12.9-1.fc41.aarch64",
+      "evra": "2.12.10-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "libxml2"
       }
@@ -1891,7 +1897,7 @@
       }
     },
     "netavark": {
-      "evra": "2:1.14.0-1.fc41.aarch64",
+      "evra": "2:1.14.1-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "netavark"
       }
@@ -2005,13 +2011,13 @@
       }
     },
     "ostree": {
-      "evra": "2025.1-1.fc41.aarch64",
+      "evra": "2025.2-2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-libs": {
-      "evra": "2025.1-1.fc41.aarch64",
+      "evra": "2025.2-2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "ostree"
       }
@@ -2047,13 +2053,13 @@
       }
     },
     "passt": {
-      "evra": "0^20250217.ga1e48a0-2.fc41.aarch64",
+      "evra": "0^20250320.g32f6212-2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20250217.ga1e48a0-2.fc41.noarch",
+      "evra": "0^20250320.g32f6212-2.fc41.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2167,7 +2173,7 @@
       }
     },
     "qemu-user-static-x86": {
-      "evra": "2:9.1.3-1.fc41.aarch64",
+      "evra": "2:9.1.3-2.fc41.aarch64",
       "metadata": {
         "sourcerpm": "qemu"
       }
@@ -2185,13 +2191,13 @@
       }
     },
     "rpm": {
-      "evra": "4.20.0-1.fc41.aarch64",
+      "evra": "4.20.1-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "rpm"
       }
     },
     "rpm-libs": {
-      "evra": "4.20.0-1.fc41.aarch64",
+      "evra": "4.20.1-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "rpm"
       }
@@ -2209,7 +2215,7 @@
       }
     },
     "rpm-plugin-selinux": {
-      "evra": "4.20.0-1.fc41.aarch64",
+      "evra": "4.20.1-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "rpm"
       }
@@ -2515,7 +2521,7 @@
       }
     },
     "tzdata": {
-      "evra": "2025a-1.fc41.noarch",
+      "evra": "2025b-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "tzdata"
       }
@@ -2539,13 +2545,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.1169-1.fc41.noarch",
+      "evra": "2:9.1.1227-1.fc41.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.1169-1.fc41.aarch64",
+      "evra": "2:9.1.1227-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2605,7 +2611,7 @@
       }
     },
     "zincati": {
-      "evra": "0.0.29-1.fc41.aarch64",
+      "evra": "0.0.30-1.fc41.aarch64",
       "metadata": {
         "sourcerpm": "rust-zincati"
       }
@@ -2630,16 +2636,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-03-15T00:00:00Z",
+    "generated": "2025-03-31T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2024-10-24T13:55:58Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-03-15T17:32:34Z"
+        "generated": "2025-03-30T15:56:50Z"
       },
       "fedora-updates": {
-        "generated": "2025-03-15T02:15:22Z"
+        "generated": "2025-03-31T02:31:34Z"
       }
     }
   }
