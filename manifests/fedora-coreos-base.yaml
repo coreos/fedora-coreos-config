@@ -12,16 +12,7 @@ include:
   - shared-workarounds.yaml
   - shared-el9.yaml
   - shared-el10.yaml
-
-conditional-include:
-  # starting from f42, we inherit from tier-x
-  # once we're on f42, we can move this up to the default list of includes above
-  - if: releasever >= 42
-    include: tier-x.yaml
-  # all these are inherited from tier-x in f42+, but we carry them here to
-  # enforce that there's really no coupling until f42
-  - if: releasever < 42
-    include: tier-x-dupes.yaml
+  - tier-x.yaml
 
 ostree-layers:
   - overlay/05core

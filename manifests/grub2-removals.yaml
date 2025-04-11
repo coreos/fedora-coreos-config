@@ -1,8 +1,0 @@
-remove-from-packages:
-  # The grub bits are mainly designed for desktops, and IMO haven't seen
-  # enough testing in concert with ostree. At some point we'll flesh out
-  # the full plan in https://github.com/coreos/fedora-coreos-tracker/issues/47
-  - [grub2-tools, /etc/grub.d/08_fallback_counting,
-                  /etc/grub.d/10_reset_boot_success,
-                  /etc/grub.d/12_menu_auto_hide,
-                  /usr/lib/systemd/.*]
