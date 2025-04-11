@@ -10,17 +10,23 @@
 
 packages:
   dnf5:
-    evr: 5.2.11.0-1.fc41
+    evr: 5.2.11.0-1.fc42
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
   libdnf5:
-    evr: 5.2.11.0-1.fc41
+    evr: 5.2.11.0-1.fc42
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
   libdnf5-cli:
-    evr: 5.2.11.0-1.fc41
+    evr: 5.2.11.0-1.fc42
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
+  stalld:
+    evr: 1.19.8-2.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-22f9e2214d
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
+      type: fast-track
