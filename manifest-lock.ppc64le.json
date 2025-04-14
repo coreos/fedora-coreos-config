@@ -157,13 +157,13 @@
       }
     },
     "bind-libs": {
-      "evra": "32:9.18.33-1.fc42.ppc64le",
+      "evra": "32:9.18.35-2.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "bind"
       }
     },
     "bind-utils": {
-      "evra": "32:9.18.33-1.fc42.ppc64le",
+      "evra": "32:9.18.35-2.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "bind"
       }
@@ -211,7 +211,7 @@
       }
     },
     "c-ares": {
-      "evra": "1.34.4-3.fc42.ppc64le",
+      "evra": "1.34.5-1.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "c-ares"
       }
@@ -391,7 +391,7 @@
       }
     },
     "crun": {
-      "evra": "1.20-2.fc42.ppc64le",
+      "evra": "1.21-1.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "crun"
       }
@@ -499,7 +499,7 @@
       }
     },
     "diffutils": {
-      "evra": "3.10-9.fc42.ppc64le",
+      "evra": "3.11-3.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "diffutils"
       }
@@ -709,7 +709,7 @@
       }
     },
     "fwupd": {
-      "evra": "2.0.7-2.fc42.ppc64le",
+      "evra": "2.0.8-1.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -763,7 +763,7 @@
       }
     },
     "glib2": {
-      "evra": "2.84.0-1.fc42.ppc64le",
+      "evra": "2.84.1-1.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "glib2"
       }
@@ -984,12 +984,6 @@
         "sourcerpm": "jansson"
       }
     },
-    "jemalloc": {
-      "evra": "5.3.0-11.fc42.ppc64le",
-      "metadata": {
-        "sourcerpm": "jemalloc"
-      }
-    },
     "jose": {
       "evra": "14-4.fc42.ppc64le",
       "metadata": {
@@ -1039,25 +1033,25 @@
       }
     },
     "kernel": {
-      "evra": "6.14.0-63.fc42.ppc64le",
+      "evra": "6.14.2-300.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.14.0-63.fc42.ppc64le",
+      "evra": "6.14.2-300.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.14.0-63.fc42.ppc64le",
+      "evra": "6.14.2-300.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.14.0-63.fc42.ppc64le",
+      "evra": "6.14.2-300.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1453,7 +1447,7 @@
       }
     },
     "libnvme": {
-      "evra": "1.12-1.fc42.ppc64le",
+      "evra": "1.12-2.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "libnvme"
       }
@@ -1573,7 +1567,7 @@
       }
     },
     "libsolv": {
-      "evra": "0.7.31-5.fc42.ppc64le",
+      "evra": "0.7.32-4.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "libsolv"
       }
@@ -2089,7 +2083,7 @@
       }
     },
     "podman": {
-      "evra": "5:5.4.1-1.fc42.ppc64le",
+      "evra": "5:5.4.2-1.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2119,13 +2113,13 @@
       }
     },
     "powerpc-utils-core": {
-      "evra": "1.3.13-1.fc42.ppc64le",
+      "evra": "1.3.13-3.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "powerpc-utils"
       }
     },
     "ppc64-diag-rtas": {
-      "evra": "2.7.10-2.fc42.ppc64le",
+      "evra": "2.7.10-4.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "ppc64-diag"
       }
@@ -2137,7 +2131,7 @@
       }
     },
     "protobuf-c": {
-      "evra": "1.5.0-4.fc41.ppc64le",
+      "evra": "1.5.1-1.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "protobuf-c"
       }
@@ -2161,7 +2155,7 @@
       }
     },
     "qemu-user-static-x86": {
-      "evra": "2:9.2.2-2.fc42.ppc64le",
+      "evra": "2:9.2.3-1.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "qemu"
       }
@@ -2257,13 +2251,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "41.34-1.fc42.noarch",
+      "evra": "41.36-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "41.34-1.fc42.noarch",
+      "evra": "41.36-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2425,49 +2419,49 @@
       }
     },
     "systemd": {
-      "evra": "257.3-7.fc42.ppc64le",
+      "evra": "257.5-2.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-container": {
-      "evra": "257.3-7.fc42.ppc64le",
+      "evra": "257.5-2.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-libs": {
-      "evra": "257.3-7.fc42.ppc64le",
+      "evra": "257.5-2.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-pam": {
-      "evra": "257.3-7.fc42.ppc64le",
+      "evra": "257.5-2.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-resolved": {
-      "evra": "257.3-7.fc42.ppc64le",
+      "evra": "257.5-2.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-shared": {
-      "evra": "257.3-7.fc42.ppc64le",
+      "evra": "257.5-2.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-sysusers": {
-      "evra": "257.3-7.fc42.ppc64le",
+      "evra": "257.5-2.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-udev": {
-      "evra": "257.3-7.fc42.ppc64le",
+      "evra": "257.5-2.fc42.ppc64le",
       "metadata": {
         "sourcerpm": "systemd"
       }
@@ -2624,19 +2618,19 @@
     }
   },
   "metadata": {
-    "generated": "2025-04-10T00:00:00Z",
+    "generated": "2025-04-14T00:00:00Z",
     "rpmmd_repos": {
       "fedora-candidate-compose": {
         "generated": "2025-04-09T11:06:58Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-04-09T21:11:24Z"
+        "generated": "2025-04-12T21:35:17Z"
       },
       "fedora-next": {
-        "generated": "2025-04-09T08:16:27Z"
+        "generated": "2025-04-11T05:17:06Z"
       },
       "fedora-next-updates": {
-        "generated": "2025-02-04T16:34:59Z"
+        "generated": "2025-04-13T04:06:19Z"
       }
     }
   }
