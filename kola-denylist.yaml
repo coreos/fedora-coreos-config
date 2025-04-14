@@ -16,3 +16,9 @@
   # warn: true (disabled on promotion)
   streams:
     - rawhide
+- pattern: skip-console-warnings
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1924
+  platforms:
+    - openstack
+  streams:
+    - rawhide
