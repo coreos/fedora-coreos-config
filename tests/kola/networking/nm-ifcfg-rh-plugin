@@ -17,10 +17,10 @@ set -xeuo pipefail
 exists=0
 busctl status com.redhat.ifcfgrh1 && exists=1
 
-if is_fcos; then
-    [ "$exists" == "0" ] || fatal "ifcfg-rh plugin detected on FCOS"
-elif is_rhcos || is_scos; then
-    [ "$exists" == "1" ] || fatal "ifcfg-rh plugin not detected on RHCOS/SCOS"
+if is_fcos || match_maj_ver "10"; then
+    [ "$exists" == "0" ] || fatal "ifcfg-rh plugin detected on FCOS/RHCOS10/C10S"
+elif match_maj_ver "9"; then
+    [ "$exists" == "1" ] || fatal "ifcfg-rh plugin not detected on RHCOS9/C9S"
 else
     fatal "nm-ifcfg-rh-plugin does not support this distro/version"
 fi

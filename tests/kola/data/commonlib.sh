@@ -68,6 +68,18 @@ get_rhel_ver() {
     fi
 }
 
+get_cs_ver() {
+    source /etc/os-release
+    if [ "${ID}" == "scos" ] && [ "${VARIANT_ID}" == "coreos" ]; then
+        source /usr/lib/os-release.stream
+        echo "${VERSION_ID}"
+    elif [ "${ID}" == "centos" ] && [ "${VARIANT_ID}" == "coreos" ]; then
+        echo "${VERSION_ID}"
+    else
+        fatal "Unknown ID $ID"
+    fi
+}
+
 get_rhel_maj_ver() {
     local ver; ver=$(get_rhel_ver)
     echo "${ver%%.*}"
@@ -84,6 +96,12 @@ is_rhcos9() {
 is_scos() {
     source /etc/os-release
     { [ "${ID}" == "scos" ] || [ "${ID}" == "centos" ]; } && [ "${VARIANT_ID}" == "coreos" ]
+}
+
+# match rhcos9 / c9s, or rhcos10 /c10s
+match_maj_ver() {
+    local ver=$1
+    [ "$(get_rhel_maj_ver)" == "${ver}" ] || [ "$(get_cs_ver)" == "${ver}" ]
 }
 
 IFS=" " read -r -a cmdline <<< "$(</proc/cmdline)"

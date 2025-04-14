@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# This is a migration script to move FCOS to OCI transport
+#
+# Users that have disabled Zincati or use a non default ostree remote
+# won't be migrated.
+#
+# see https://fedoraproject.org/wiki/Changes/CoreOSOstree2OCIUpdates
+# and https://github.com/coreos/fedora-coreos-tracker/issues/1823
+
+CINCINNATI_URL="${CINCINNATI_URL:-https://raw-updates.coreos.fedoraproject.org/v1/graph}"
+
+# Save the rpm-ostree status.
+echo "Saving rpm-ostree status."
+status=$(rpm-ostree status --json --booted)
+
+# Maybe the machine is already on an OCI deployment
+booted_imgref=$(jq -r '.deployments[0]."container-image-reference"' <<< "$status")
+
+if [ "$booted_imgref" != "null" ]; then
+    echo "The booted deployment is already an OCI container."
+    exit 0
+fi
+
+# check if the origin was changed
+origin=$(jq -r '.deployments[0].origin' <<< "$status" | cut -d ':' -f 1)
+origin_url=$(ostree remote show-url "$origin")
+if [ "$origin_url" != "https://ostree.fedoraproject.org" ]; then
+    echo "ERROR: The OSTree origin is not matching the default Fedora CoreOS."
+    exit 0
+fi
+
+# fetch the SHA checksum of the matching OCI image for the booted deployment
+version=$(jq -r '.deployments[0].version' <<< "$status")
+stream=$(jq -r '.deployments[0]."base-commit-meta"."fedora-coreos.stream"' <<< "$status")
+checksum=$(jq -r '.deployments[0].checksum' <<< "$status")
+arch=$(arch)
+cin_url="$CINCINNATI_URL?basearch=$arch&stream=$stream&oci=true"
+
+# Grab the OCI update graph that matches our stream and arch.
+echo "Fetching cincinnati update graph for stream $stream on $arch"
+cincinnati_graph=$(curl "$cin_url" -s)
+imgref=$(echo "$cincinnati_graph" | jq --arg VERSION "$version" -r '.nodes[]  | select(.version==$VERSION) | .payload')
+if [ "$imgref" == "" ]; then
+    echo "ERROR: Could not find the current deployment in the update graph from cincinnati."
+    echo "   If it is proxied, you can override the cincinnati url with an environment varable."
+    echo "   e.g. CINCINNATI_URL=https://custom-cincinnati-address.com/v1/graph /usr/libexec/coreos-oci-rebase"
+    exit 0
+fi
+
+echo "Found OCI image $imgref in the update graph that matches the local deployment version."
+digest=$(echo "$imgref" | cut -d '@' -f 2)
+
+# Proceed with the migration by writing an override status file,
+# so at the next update, Zincati will pull the OCI image.
+
+echo "Writing a status override file for the booted deployment in /run/zincati/booted-status-override.json"
+cat > /run/zincati/booted-status-override.json << EOF
+{
+    "booted": true,
+    "container-image-reference": "ostree-remote-registry:fedora:$imgref",
+    "container-image-reference-digest": "$digest",
+    "base-commit-meta": {
+        "fedora-coreos.stream": "$stream"
+    },
+    "checksum": "$checksum",
+    "version": "$version"
+}
+EOF
+
+echo "Zincati will rebase to an OCI image for the next update."
