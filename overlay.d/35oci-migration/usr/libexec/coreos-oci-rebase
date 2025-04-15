@@ -8,6 +8,20 @@
 # see https://fedoraproject.org/wiki/Changes/CoreOSOstree2OCIUpdates
 # and https://github.com/coreos/fedora-coreos-tracker/issues/1823
 
+
+OCI_MIGRATION_OPT_OUT=/var/lib/coreos-oci-migration/opt-out.stamp
+OCI_MIGRATION_FAILED=/var/lib/coreos-oci-migration/failed.stamp
+
+if [ -e $OCI_MIGRATION_OPT_OUT ]; then
+    echo "${OCI_MIGRATION_OPT_OUT} to opt out of migration exists, doing nothing."
+    exit 0
+fi
+
+# create the failed stamp file as a precaution
+touch $OCI_MIGRATION_FAILED
+# if something goes wrong, exit the script so the failed stamp will remain
+set -euxo pipefail
+
 CINCINNATI_URL="${CINCINNATI_URL:-https://raw-updates.coreos.fedoraproject.org/v1/graph}"
 
 # Save the rpm-ostree status.
@@ -19,6 +33,7 @@ booted_imgref=$(jq -r '.deployments[0]."container-image-reference"' <<< "$status
 
 if [ "$booted_imgref" != "null" ]; then
     echo "The booted deployment is already an OCI container."
+    rm $OCI_MIGRATION_FAILED
     exit 0
 fi
 
@@ -27,7 +42,7 @@ origin=$(jq -r '.deployments[0].origin' <<< "$status" | cut -d ':' -f 1)
 origin_url=$(ostree remote show-url "$origin")
 if [ "$origin_url" != "https://ostree.fedoraproject.org" ]; then
     echo "ERROR: The OSTree origin is not matching the default Fedora CoreOS."
-    exit 0
+    exit 1
 fi
 
 # fetch the SHA checksum of the matching OCI image for the booted deployment
@@ -37,15 +52,20 @@ checksum=$(jq -r '.deployments[0].checksum' <<< "$status")
 arch=$(arch)
 cin_url="$CINCINNATI_URL?basearch=$arch&stream=$stream&oci=true"
 
+# Wait for the network to be online
+echo "Waiting for the network to be online."
+nm-online --timeout 120
+
 # Grab the OCI update graph that matches our stream and arch.
 echo "Fetching cincinnati update graph for stream $stream on $arch"
 cincinnati_graph=$(curl "$cin_url" -s)
 imgref=$(echo "$cincinnati_graph" | jq --arg VERSION "$version" -r '.nodes[]  | select(.version==$VERSION) | .payload')
 if [ "$imgref" == "" ]; then
     echo "ERROR: Could not find the current deployment in the update graph from cincinnati."
-    echo "   If it is proxied, you can override the cincinnati url with an environment varable."
+    echo "   If it is proxied, you can override the cincinnati url with an environment variable."
     echo "   e.g. CINCINNATI_URL=https://custom-cincinnati-address.com/v1/graph /usr/libexec/coreos-oci-rebase"
-    exit 0
+    echo "   Or add a drop-in to zincati with 'Environment=...'"
+    exit 1
 fi
 
 echo "Found OCI image $imgref in the update graph that matches the local deployment version."
@@ -69,3 +89,6 @@ cat > /run/zincati/booted-status-override.json << EOF
 EOF
 
 echo "Zincati will rebase to an OCI image for the next update."
+
+# All went well, delete the failed stamp
+rm $OCI_MIGRATION_FAILED
