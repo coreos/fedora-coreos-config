@@ -2,14 +2,3 @@
 # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
 # streams.
 include: image-base.yaml
-
-
-# We don't have zincati for rawhide, so we can bypass the issues in
-# https://github.com/coreos/fedora-coreos-tracker/issues/1263
-# and enable it by default for rawhide!
-deploy-via-container: true
-container-imgref: "ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos:{stream}"
-
-# Enable 'erofs' by default for the rootfs in the Live ISO/PXE artifacts
-live-rootfs-fstype: "erofs"
-live-rootfs-fsoptions: "-zlzma,level=6 -Eall-fragments,fragdedupe=inode -C1048576 --quiet"
