@@ -1,8 +1,3 @@
 enable coreos-check-ssh-keys.service
-# Check if cgroupsv1 is still being used
-enable coreos-check-cgroups-version.service
 # https://fedoraproject.org/wiki/Changes/EnableFwupdRefreshByDefault
 enable fwupd-refresh.timer
-# Check if wifi firmwares are missing when NetworkManager-wifi is installed
-# https://github.com/coreos/fedora-coreos-tracker/issues/1575
-enable coreos-check-wireless-firmwares.service
