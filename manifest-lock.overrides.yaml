@@ -24,3 +24,18 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
+  rpm:
+    evr: 4.20.1-3.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1929
+      type: pin
+  rpm-libs:
+    evr: 4.20.1-3.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1929
+      type: pin
+  rpm-plugin-selinux:
+    evr: 4.20.1-3.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1929
+      type: pin
