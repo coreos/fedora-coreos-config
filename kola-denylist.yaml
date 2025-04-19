@@ -38,3 +38,11 @@
     - aarch64
   streams:
     - rawhide
+- pattern: kdump.crash.nfs
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1925
+  snooze: 2025-04-30
+  warn: true
+  arches:
+    - aarch64
+  streams:
+    - rawhide
