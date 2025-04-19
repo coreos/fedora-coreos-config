@@ -36,12 +36,6 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
-  stalld:
-    evr: 1.19.8-2.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-22f9e2214d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
-      type: fast-track
   zincati:
     evr: 0.0.30-2.fc42
     metadata:
