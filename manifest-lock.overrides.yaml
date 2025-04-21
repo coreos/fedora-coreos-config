@@ -36,6 +36,16 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
+  rpm-ostree:
+    evr: 2025.7-2.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-96e470a839
+      type: fast-track
+  rpm-ostree-libs:
+    evr: 2025.7-2.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-96e470a839
+      type: fast-track
   zincati:
     evr: 0.0.30-2.fc42
     metadata:
