@@ -20,17 +20,6 @@ packages:
   # Improved MOTD experience
   - console-login-helper-messages-issuegen
   - console-login-helper-messages-profile
-  # kdump support
-  # https://github.com/coreos/fedora-coreos-tracker/issues/622
-  # The makedumpfile and kdump-utils RPMs were broken out in
-  # Fedora and EL10+. To be able to use the same package list
-  # Across EL9 + Fedora + EL10 let's just name paths for now.
-  # We can go back to just specifying the RPM names when we
-  # no longer support EL9.
-  - kexec-tools
-  - /usr/share/makedumpfile # makedumpfile RPM
-  - /usr/bin/kdumpctl       # kdump-utils RPM
-  # Container tooling
   - toolbox
   # passt provides user-mode networking daemons for namespaces
   - passt
@@ -42,3 +31,20 @@ packages:
   - which
   # provides utilities for inspecting/setting devices connected to the PCI bus
   - pciutils
+
+conditional-include:
+  - if: basearch != "riscv64"
+    include:
+      packages:
+        # kdump support
+        # https://github.com/coreos/fedora-coreos-tracker/issues/622
+        # The makedumpfile and kdump-utils RPMs were broken out in
+        # Fedora and EL10+. To be able to use the same package list
+        # Across EL9 + Fedora + EL10 let's just name paths for now.
+        # We can go back to just specifying the RPM names when we
+        # no longer support EL9.
+        # TODO: Not built for riscv yet
+        #       https://github.com/coreos/fedora-coreos-tracker/issues/1931
+        - kexec-tools
+        - /usr/share/makedumpfile # makedumpfile RPM
+        - /usr/bin/kdumpctl       # kdump-utils RPM
