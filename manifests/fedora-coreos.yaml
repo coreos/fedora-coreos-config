@@ -14,11 +14,18 @@ add-commit-metadata:
 
 include: fedora-coreos-base.yaml
 conditional-include:
-  - if: prod == false
-    # long-term, would be good to support specifying a nested TreeComposeConfig
-    include: disable-zincati.yaml
   - if: releasever >= 41
     include: selinux-workaround.yaml
+  # If not production then disable Zincati
+  - if: prod == false
+    include:
+      postprocess:
+        - |
+          #!/usr/bin/env bash
+          cat > /etc/zincati/config.d/90-disable-on-non-production-stream.toml << EOF
+          # https://github.com/coreos/fedora-coreos-tracker/issues/163
+          updates.enabled = false
+          EOF
 
 ostree-layers:
   - overlay/15fcos
