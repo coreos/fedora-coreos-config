@@ -30,7 +30,9 @@ fi
 ok "discard and custom option enabled for root LUKS"
 
 # while we're here, sanity-check that boot is mounted by UUID
-if ! systemctl cat boot.mount | grep -q What=/dev/disk/by-uuid; then
+expected_what=/dev/disk/by-uuid
+
+if ! systemctl cat boot.mount | grep -q What="${expected_what}"; then
   systemctl cat boot.mount
   fatal "boot mounted not by UUID"
 fi
