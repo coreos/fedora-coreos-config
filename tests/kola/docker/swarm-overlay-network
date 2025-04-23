@@ -1,0 +1,28 @@
+#!/bin/bash
+## kola:
+##   # Must not run this test with another podman test
+##   exclusive: true
+##   # We only ship moby/docker in FCOS
+##   distros: fcos
+##   # This test pulls a container image from remote sources.
+##   tags: "platform-independent needs-internet"
+##   description: Verify that swarm overlay networks bridge automatically allowing access to internet (google.com)
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+container=$(get_fedora_minimal_container_ref)
+
+main() {
+    docker swarm init
+    docker network create --driver overlay --attachable testnetwork
+    docker run -t --network=testnetwork $container curl https://icanhazip.com
+}
+
+if main; then
+    ok "Docker swarm overlay network working. Test passes."
+else
+    fatal "Docker swarm overlay working not functional. Test fails."
+fi
