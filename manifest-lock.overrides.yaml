@@ -21,11 +21,23 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-7d84dba7e2
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
       type: fast-track
+  containerd:
+    evr: 2.0.5-2.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-899ce97077
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1918
+      type: fast-track
   dnf5:
     evr: 5.2.11.0-1.fc42
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
+  docker-cli:
+    evr: 27.5.1-3.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-fdae28d838
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1918
+      type: fast-track
   dracut:
     evr: 105-3.fc42
     metadata:
@@ -77,6 +89,18 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-58918e87b6
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
+      type: fast-track
+  moby-engine:
+    evr: 27.5.1-3.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-fdae28d838
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1918
+      type: fast-track
+  moby-filesystem:
+    evra: 27.5.1-3.fc42.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-fdae28d838
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1918
       type: fast-track
   nmstate:
     evr: 2.2.43-1.fc42
