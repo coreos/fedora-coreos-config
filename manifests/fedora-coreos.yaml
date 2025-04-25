@@ -14,21 +14,32 @@ add-commit-metadata:
 
 include: fedora-coreos-base.yaml
 conditional-include:
-  - if: prod == false
-    # long-term, would be good to support specifying a nested TreeComposeConfig
-    include: disable-zincati.yaml
   - if: releasever >= 41
     include: selinux-workaround.yaml
+  # If not production then disable Zincati
+  - if: prod == false
+    include:
+      postprocess:
+        - |
+          #!/usr/bin/env bash
+          cat > /etc/zincati/config.d/90-disable-on-non-production-stream.toml << EOF
+          # https://github.com/coreos/fedora-coreos-tracker/issues/163
+          updates.enabled = false
+          EOF
+  # TODO: There is no coreos-pool tag/repo for RISCV yet
+  #       https://github.com/coreos/fedora-coreos-tracker/issues/1931
+  - if: basearch != "riscv64"
+    include:
+      # All Fedora CoreOS streams share the same pool for locked files.
+      lockfile-repos:
+        - fedora-coreos-pool
+
 
 ostree-layers:
   - overlay/15fcos
 
 automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
 mutate-os-release: "${releasever}"
-
-# All Fedora CoreOS streams share the same pool for locked files.
-lockfile-repos:
-  - fedora-coreos-pool
 
 packages:
   - fedora-release-coreos
