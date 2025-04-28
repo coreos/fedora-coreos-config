@@ -10,12 +10,6 @@
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1889
   arches:
     - ppc64le
-- pattern: ext.config.toolbox
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1908
-  snooze: 2025-04-14
-  warn: true
-  streams:
-    - rawhide
 - pattern: skip-console-warnings
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1924
   platforms:
