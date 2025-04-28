@@ -1,0 +1,21 @@
+# Pulled from http://fedora.riscv.rocks:3000/rpms/fedora-repos/src/commit/6289e6a44e1c897beeacaa363307a1b2d11db1c3/fedora-riscv.repo
+[fedora-riscv]
+name=Fedora RISC-V $releasever
+baseurl=http://fedora.riscv.rocks/repos-dist/f$releasever/latest/$basearch/
+enabled=1
+gpgcheck=0
+priority=99
+
+[fedora-riscv-debuginfo]
+name=Fedora RISC-V $releasever - Debug
+baseurl=http://fedora.riscv.rocks/repos-dist/f$releasever/latest/$basearch/debug/
+enabled=0
+gpgcheck=0
+priority=99
+
+[fedora-riscv-source]
+name=Fedora RISC-V $releasever - Source
+baseurl=http://fedora.riscv.rocks/repos-dist/f$releasever/latest/src/
+enabled=0
+gpgcheck=0
+priority=99
