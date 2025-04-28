@@ -9,36 +9,120 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  afterburn:
+    evr: 5.7.0-4.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-7d84dba7e2
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
+      type: fast-track
+  afterburn-dracut:
+    evr: 5.7.0-4.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-7d84dba7e2
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
+      type: fast-track
+  containerd:
+    evr: 2.0.5-2.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-899ce97077
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1918
+      type: fast-track
   dnf5:
-    evr: 5.2.11.0-1.fc41
+    evr: 5.2.11.0-1.fc42
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
-  ignition:
-    evr: 2.21.0-2.fc41
+  docker-cli:
+    evr: 27.5.1-3.fc42
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-8e8434512e
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-fdae28d838
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1918
+      type: fast-track
+  dracut:
+    evr: 105-3.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-20999ea059
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1894
+      type: fast-track
+  dracut-network:
+    evr: 105-3.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-20999ea059
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1894
+      type: fast-track
+  dracut-squash:
+    evr: 105-3.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-20999ea059
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1894
+      type: fast-track
+  hwdata:
+    evra: 0.394-1.fc42.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-5ae9d402c6
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
+      type: fast-track
+  ignition:
+    evr: 2.21.0-2.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d721b4d902
       reason: https://github.com/coreos/ignition/pull/2037
       type: fast-track
   ignition-grub:
-    evr: 2.21.0-2.fc41
+    evr: 2.21.0-2.fc42
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-8e8434512e
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d721b4d902
       reason: https://github.com/coreos/ignition/pull/2037
       type: fast-track
   libdnf5:
-    evr: 5.2.11.0-1.fc41
+    evr: 5.2.11.0-1.fc42
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
   libdnf5-cli:
-    evr: 5.2.11.0-1.fc41
+    evr: 5.2.11.0-1.fc42
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
-  zincati:
-    evr: 0.0.30-1.fc41
+  libxcrypt:
+    evr: 4.4.38-7.fc42
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-cc269f80fa
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1823
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-58918e87b6
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
+      type: fast-track
+  moby-engine:
+    evr: 27.5.1-3.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-fdae28d838
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1918
+      type: fast-track
+  moby-filesystem:
+    evra: 27.5.1-3.fc42.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-fdae28d838
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1918
+      type: fast-track
+  nmstate:
+    evr: 2.2.43-1.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-99aea8f822
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
+      type: fast-track
+  stalld:
+    evr: 1.19.8-2.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-22f9e2214d
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
+      type: fast-track
+  vim-data:
+    evra: 2:9.1.1275-1.fc42.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-2c282e22ca
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
+      type: fast-track
+  vim-minimal:
+    evr: 2:9.1.1275-1.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-2c282e22ca
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1851#issuecomment-2730109070
       type: fast-track
