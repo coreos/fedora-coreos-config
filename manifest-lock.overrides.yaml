@@ -74,6 +74,42 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d721b4d902
       reason: https://github.com/coreos/ignition/pull/2037
       type: fast-track
+  iptables-legacy:
+    evr: 1.8.11-5.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4c37f9fd93
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1939
+      type: fast-track
+  iptables-legacy-libs:
+    evr: 1.8.11-5.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4c37f9fd93
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1939
+      type: fast-track
+  iptables-libs:
+    evr: 1.8.11-5.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4c37f9fd93
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1939
+      type: fast-track
+  iptables-nft:
+    evr: 1.8.11-5.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4c37f9fd93
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1939
+      type: fast-track
+  iptables-services:
+    evra: 1.8.11-5.fc42.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4c37f9fd93
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1939
+      type: fast-track
+  iptables-utils:
+    evr: 1.8.11-5.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4c37f9fd93
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1939
+      type: fast-track
   libdnf5:
     evr: 5.2.11.0-1.fc42
     metadata:
