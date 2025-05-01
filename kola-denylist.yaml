@@ -18,7 +18,7 @@
     - rawhide
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1925
-  snooze: 2025-04-30
+  snooze: 2025-05-12
   warn: true
   arches:
     - aarch64
@@ -26,7 +26,7 @@
     - rawhide
 - pattern: kdump.crash.ssh
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1925
-  snooze: 2025-04-30
+  snooze: 2025-05-12
   warn: true
   arches:
     - aarch64
@@ -34,7 +34,7 @@
     - rawhide
 - pattern: kdump.crash.nfs
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1925
-  snooze: 2025-04-30
+  snooze: 2025-05-12
   warn: true
   arches:
     - aarch64
