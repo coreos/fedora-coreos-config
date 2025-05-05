@@ -9,18 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  coreos-installer:
-    evr: 0.24.0-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-a4f321c9d7
-      reason: https://github.com/coreos/coreos-installer/issues/1645
-      type: fast-track
-  coreos-installer-bootinfra:
-    evr: 0.24.0-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-a4f321c9d7
-      reason: https://github.com/coreos/coreos-installer/issues/1645
-      type: fast-track
   dnf5:
     evr: 5.2.11.0-1.fc42
     metadata:
@@ -36,16 +24,6 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
       type: pin
-  rpm-ostree:
-    evr: 2025.7-2.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-96e470a839
-      type: fast-track
-  rpm-ostree-libs:
-    evr: 2025.7-2.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-96e470a839
-      type: fast-track
   zincati:
     evr: 0.0.30-3.fc42
     metadata:
