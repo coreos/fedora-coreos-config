@@ -1,4 +1,4 @@
-name: Sync to openshift/os
+name: Sync to coreos/rhel-coreos-config
 on:
   # We could do push: branches: [testing-devel] but that would restart
   # downstream CI a lot
@@ -14,6 +14,7 @@ on:
         type: choice
         options:
           - testing-devel
+          - rhcos-4.18
           - rhcos-4.17
           - rhcos-4.16
           - rhcos-4.15
@@ -47,11 +48,13 @@ jobs:
           case $SOURCE_BRANCH in
               # in the on.schedule case, the SOURCE_BRANCH is empty
               testing-devel|"")
+                TARGET_REPO=coreos/rhel-coreos-config
                 echo "SOURCE_BRANCH=testing-devel" >> $GITHUB_ENV
                 echo "TARGET_BRANCH=master" >> $GITHUB_ENV
                 echo "BRANCH_NAME=fcc-sync" >> $GITHUB_ENV
                 ;;
               rhcos-*)
+                TARGET_REPO=openshift/os
                 # split the string around the -
                 array=(${SOURCE_BRANCH//-/ })
                 OCP_VERSION=${array[1]}
@@ -65,11 +68,13 @@ jobs:
                 ;;
           esac
 
+          echo "TARGET_REPO=${TARGET_REPO}" >> $GITHUB_ENV
+          echo "TARGET_REPO_NAME=${TARGET_REPO#*/}" >> $GITHUB_ENV
           echo "JIRA=${JIRA:-NO-JIRA}" >> $GITHUB_ENV
       - name: Check out repository
         uses: actions/checkout@v3
         with:
-          repository: openshift/os
+          repository: ${{ env.TARGET_REPO }}
           # We need an unbroken commit chain when pushing to the fork.  Don't
           # make assumptions about which commits are already available there.
           fetch-depth: 0
@@ -100,7 +105,7 @@ jobs:
 
           git checkout $SOURCE_BRANCH
 
-          marker=OPENSHIFT-OS-END-OF-LOG-MARKER-$RANDOM$RANDOM$RANDOM
+          marker=END-OF-LOG-MARKER-$RANDOM$RANDOM$RANDOM
           cat >> $GITHUB_ENV <<EOF
           SHORTLOG<<$marker
           $(cat $RUNNER_TEMP/shortlog)
@@ -111,7 +116,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
-          push-to-fork: coreosbot-releng/os
+          push-to-fork: coreosbot-releng/${{ env.TARGET_REPO_NAME }}
           branch: ${{ env.BRANCH_NAME }}
           base: ${{ env.TARGET_BRANCH }}
           commit-message: |
@@ -120,7 +125,7 @@ jobs:
             ${{ env.SHORTLOG }}
           title: "${{ env.TITLE_PREFIX }}${{ env.JIRA }}: Bump fedora-coreos-config"
           body: |
-            Created by [GitHub workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/openshift-os.yml) ([source](${{ github.server_url }}/${{ github.repository }}/blob/testing-devel/.github/workflows/openshift-os.yml)).
+            Created by [GitHub workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/bump-rhcos-submodule.yml) ([source](${{ github.server_url }}/${{ github.repository }}/blob/testing-devel/.github/workflows/bump-rhcos-submodule.yml)).
 
             ```
             ${{ env.SHORTLOG }}
