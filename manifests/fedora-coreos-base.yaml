@@ -14,7 +14,7 @@ include:
   - user-experience.yaml
   - shared-el9.yaml
   - shared-el10.yaml
-  - tier-x.yaml
+  - coreos-bootc-minimal-plus.yaml
 
 ostree-layers:
   - overlay/05core
