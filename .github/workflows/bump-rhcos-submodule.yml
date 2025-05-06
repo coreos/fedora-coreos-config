@@ -50,7 +50,7 @@ jobs:
               testing-devel|"")
                 TARGET_REPO=coreos/rhel-coreos-config
                 echo "SOURCE_BRANCH=testing-devel" >> $GITHUB_ENV
-                echo "TARGET_BRANCH=master" >> $GITHUB_ENV
+                echo "TARGET_BRANCH=main" >> $GITHUB_ENV
                 echo "BRANCH_NAME=fcc-sync" >> $GITHUB_ENV
                 ;;
               rhcos-*)
