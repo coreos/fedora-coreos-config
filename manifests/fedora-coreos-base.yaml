@@ -153,8 +153,6 @@ packages:
   - console-login-helper-messages-motdgen
   # i18n
   - kbd
-  # resolved was broken out to its own package in rawhide/f35
-  - systemd-resolved
   # In F35+ need `iptables-legacy` package
   # See https://github.com/coreos/fedora-coreos-tracker/issues/676#issuecomment-928028451
   - iptables-legacy
