@@ -39,3 +39,8 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1929
       type: pin
+  nfs-utils-coreos:
+    evr: 1:2.8.2-1.rc8.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1942
+      type: pin
