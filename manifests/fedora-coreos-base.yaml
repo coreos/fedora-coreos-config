@@ -2,6 +2,9 @@
 # Add things in this file which are somewhat "opinionated", not necessarily
 # core functionality.
 
+variables:
+  id: "fedora"
+
 include:
   - kernel.yaml
   - system-configuration.yaml
