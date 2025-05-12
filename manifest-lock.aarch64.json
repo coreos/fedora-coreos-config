@@ -67,7 +67,7 @@
       }
     },
     "alternatives": {
-      "evra": "1.32-1.fc42.aarch64",
+      "evra": "1.33-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "chkconfig"
       }
@@ -151,13 +151,13 @@
       }
     },
     "bind-libs": {
-      "evra": "32:9.18.35-2.fc42.aarch64",
+      "evra": "32:9.18.36-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "bind"
       }
     },
     "bind-utils": {
-      "evra": "32:9.18.35-2.fc42.aarch64",
+      "evra": "32:9.18.36-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "bind"
       }
@@ -169,7 +169,7 @@
       }
     },
     "bootupd": {
-      "evra": "0.2.26-3.fc42.aarch64",
+      "evra": "0.2.27-2.fc42.aarch64",
       "metadata": {
         "sourcerpm": "rust-bootupd"
       }
@@ -313,7 +313,7 @@
       }
     },
     "container-selinux": {
-      "evra": "4:2.236.0-1.fc42.noarch",
+      "evra": "4:2.237.0-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "container-selinux"
       }
@@ -583,19 +583,19 @@
       }
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.192-9.fc42.noarch",
+      "evra": "0.193-2.fc42.noarch",
       "metadata": {
         "sourcerpm": "elfutils"
       }
     },
     "elfutils-libelf": {
-      "evra": "0.192-9.fc42.aarch64",
+      "evra": "0.193-2.fc42.aarch64",
       "metadata": {
         "sourcerpm": "elfutils"
       }
     },
     "elfutils-libs": {
-      "evra": "0.192-9.fc42.aarch64",
+      "evra": "0.193-2.fc42.aarch64",
       "metadata": {
         "sourcerpm": "elfutils"
       }
@@ -667,7 +667,7 @@
       }
     },
     "filesystem": {
-      "evra": "3.18-36.fc42.aarch64",
+      "evra": "3.18-42.fc42.aarch64",
       "metadata": {
         "sourcerpm": "filesystem"
       }
@@ -727,7 +727,7 @@
       }
     },
     "fwupd": {
-      "evra": "2.0.8-1.fc42.aarch64",
+      "evra": "2.0.9-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -787,25 +787,25 @@
       }
     },
     "glibc": {
-      "evra": "2.41-3.fc42.aarch64",
+      "evra": "2.41-5.fc42.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.41-3.fc42.aarch64",
+      "evra": "2.41-5.fc42.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.41-3.fc42.aarch64",
+      "evra": "2.41-5.fc42.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.41-3.fc42.aarch64",
+      "evra": "2.41-5.fc42.aarch64",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -883,7 +883,7 @@
       }
     },
     "hwdata": {
-      "evra": "0.394-1.fc42.noarch",
+      "evra": "0.395-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "hwdata"
       }
@@ -931,37 +931,37 @@
       }
     },
     "iptables-legacy": {
-      "evra": "1.8.11-5.fc42.aarch64",
+      "evra": "1.8.11-7.fc42.aarch64",
       "metadata": {
         "sourcerpm": "iptables"
       }
     },
     "iptables-legacy-libs": {
-      "evra": "1.8.11-5.fc42.aarch64",
+      "evra": "1.8.11-7.fc42.aarch64",
       "metadata": {
         "sourcerpm": "iptables"
       }
     },
     "iptables-libs": {
-      "evra": "1.8.11-5.fc42.aarch64",
+      "evra": "1.8.11-7.fc42.aarch64",
       "metadata": {
         "sourcerpm": "iptables"
       }
     },
     "iptables-nft": {
-      "evra": "1.8.11-5.fc42.aarch64",
+      "evra": "1.8.11-7.fc42.aarch64",
       "metadata": {
         "sourcerpm": "iptables"
       }
     },
     "iptables-services": {
-      "evra": "1.8.11-5.fc42.noarch",
+      "evra": "1.8.11-7.fc42.noarch",
       "metadata": {
         "sourcerpm": "iptables"
       }
     },
     "iptables-utils": {
-      "evra": "1.8.11-5.fc42.aarch64",
+      "evra": "1.8.11-7.fc42.aarch64",
       "metadata": {
         "sourcerpm": "iptables"
       }
@@ -979,13 +979,13 @@
       }
     },
     "iscsi-initiator-utils": {
-      "evra": "6.2.1.10-0.gitd0f04ae.fc42.3.aarch64",
+      "evra": "6.2.1.11-0.git4b3e853.fc42.aarch64",
       "metadata": {
         "sourcerpm": "iscsi-initiator-utils"
       }
     },
     "iscsi-initiator-utils-iscsiuio": {
-      "evra": "6.2.1.10-0.gitd0f04ae.fc42.3.aarch64",
+      "evra": "6.2.1.11-0.git4b3e853.fc42.aarch64",
       "metadata": {
         "sourcerpm": "iscsi-initiator-utils"
       }
@@ -1051,25 +1051,25 @@
       }
     },
     "kernel": {
-      "evra": "6.14.3-300.fc42.aarch64",
+      "evra": "6.14.5-300.fc42.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.14.3-300.fc42.aarch64",
+      "evra": "6.14.5-300.fc42.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.14.3-300.fc42.aarch64",
+      "evra": "6.14.5-300.fc42.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.14.3-300.fc42.aarch64",
+      "evra": "6.14.5-300.fc42.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1147,7 +1147,7 @@
       }
     },
     "libatomic": {
-      "evra": "15.0.1-0.11.fc42.aarch64",
+      "evra": "15.1.1-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1285,7 +1285,7 @@
       }
     },
     "libgcc": {
-      "evra": "15.0.1-0.11.fc42.aarch64",
+      "evra": "15.1.1-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1435,7 +1435,7 @@
       }
     },
     "libnfsidmap": {
-      "evra": "1:2.8.2-1.rc8.fc42.aarch64",
+      "evra": "1:2.8.3-1.rc1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1615,7 +1615,7 @@
       }
     },
     "libstdc++": {
-      "evra": "15.0.1-0.11.fc42.aarch64",
+      "evra": "15.1.1-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1909,7 +1909,7 @@
       }
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.8.2-1.rc8.fc42.aarch64",
+      "evra": "1:2.8.3-1.rc1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -2041,19 +2041,19 @@
       }
     },
     "passim-libs": {
-      "evra": "0.1.9-1.fc42.aarch64",
+      "evra": "0.1.10-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "passim"
       }
     },
     "passt": {
-      "evra": "0^20250415.g2340bbf-1.fc42.aarch64",
+      "evra": "0^20250507.geea8a76-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20250415.g2340bbf-1.fc42.noarch",
+      "evra": "0^20250507.geea8a76-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2179,7 +2179,7 @@
       }
     },
     "rpcbind": {
-      "evra": "1.2.7-1.rc1.fc42.4.aarch64",
+      "evra": "1.2.7-2.rc1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "rpcbind"
       }
@@ -2227,7 +2227,7 @@
       }
     },
     "runc": {
-      "evra": "2:1.2.5-1.fc42.aarch64",
+      "evra": "2:1.3.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "runc"
       }
@@ -2263,13 +2263,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "41.38-1.fc42.noarch",
+      "evra": "41.39-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "41.38-1.fc42.noarch",
+      "evra": "41.39-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2437,49 +2437,49 @@
       }
     },
     "systemd": {
-      "evra": "257.5-2.fc42.aarch64",
+      "evra": "257.5-6.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-container": {
-      "evra": "257.5-2.fc42.aarch64",
+      "evra": "257.5-6.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-libs": {
-      "evra": "257.5-2.fc42.aarch64",
+      "evra": "257.5-6.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-pam": {
-      "evra": "257.5-2.fc42.aarch64",
+      "evra": "257.5-6.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-resolved": {
-      "evra": "257.5-2.fc42.aarch64",
+      "evra": "257.5-6.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-shared": {
-      "evra": "257.5-2.fc42.aarch64",
+      "evra": "257.5-6.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-sysusers": {
-      "evra": "257.5-2.fc42.aarch64",
+      "evra": "257.5-6.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-udev": {
-      "evra": "257.5-2.fc42.aarch64",
+      "evra": "257.5-6.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
@@ -2617,7 +2617,7 @@
       }
     },
     "zincati": {
-      "evra": "0.0.30-2.fc42.aarch64",
+      "evra": "0.0.30-3.fc42.aarch64",
       "metadata": {
         "sourcerpm": "rust-zincati"
       }
@@ -2642,16 +2642,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-04-27T00:00:00Z",
+    "generated": "2025-05-12T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2025-04-09T11:06:58Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-04-27T16:00:37Z"
+        "generated": "2025-05-11T13:30:58Z"
       },
       "fedora-updates": {
-        "generated": "2025-04-27T01:10:15Z"
+        "generated": "2025-05-12T01:45:00Z"
       }
     }
   }
