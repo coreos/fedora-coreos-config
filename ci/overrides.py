@@ -292,7 +292,7 @@ def setup_repos(base, treefile):
         repo.disable()
 
     eprint("Enabled repos:")
-    for repo in treefile['repos']:
+    for repo in treefile.get('repos', []):
         query = libdnf5.repo.RepoQuery(base)
         query.filter_id(repo)
         query.get().enable()

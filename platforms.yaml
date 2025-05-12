@@ -175,3 +175,13 @@ x86_64:
     kernel_arguments:
       - console=ttyS0,115200n8
       - console=tty0
+riscv64:
+  qemu:
+    # https://github.com/coreos/fedora-coreos-tracker/issues/954
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=tty0
+      - console=ttyS0,115200n8

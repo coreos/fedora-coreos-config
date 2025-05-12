@@ -1,8 +1,0 @@
-# This manifest can go away in Fedora 42. It duplicates tier-x.
-
-packages:
-  # Standard tools for configuring network/hostname
-  - NetworkManager hostname
-  - iproute
-  # Firewall manipulation
-  - iptables
