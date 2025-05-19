@@ -9,21 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  dnf5:
-    evr: 5.2.11.0-1.fc43
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
-      type: pin
-  libdnf5:
-    evr: 5.2.11.0-1.fc43
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
-      type: pin
-  libdnf5-cli:
-    evr: 5.2.11.0-1.fc43
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
-      type: pin
   rpm:
     evr: 4.20.1-3.fc43
     metadata:
