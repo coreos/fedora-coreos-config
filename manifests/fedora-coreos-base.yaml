@@ -4,6 +4,11 @@
 
 variables:
   id: "fedora"
+  # osversion is unused in Fedora for now, but it's needed because we
+  # do some conditional_includes: which do leverage the osversion
+  # defined in rhcos/scos. When https://github.com/coreos/rpm-ostree/pull/5392
+  # merges we can define this with values from other vars: osversion: "${id}-${releasever}"
+  osversion: "unused"
 
 include:
   - kernel.yaml
@@ -12,8 +17,7 @@ include:
   - file-transfer.yaml
   - networking-tools.yaml
   - user-experience.yaml
-  - shared-el9.yaml
-  - shared-el10.yaml
+  - shared-el.yaml
   - coreos-bootc-minimal-plus.yaml
 
 ostree-layers:
