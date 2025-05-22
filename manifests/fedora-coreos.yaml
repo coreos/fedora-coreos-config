@@ -21,7 +21,8 @@ conditional-include:
     include:
       postprocess:
         - |
-          #!/usr/bin/env bash
+          #!/usr/bin/bash
+          set -eux -o pipefail
           cat > /etc/zincati/config.d/90-disable-on-non-production-stream.toml << EOF
           # https://github.com/coreos/fedora-coreos-tracker/issues/163
           updates.enabled = false

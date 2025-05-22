@@ -20,8 +20,8 @@ postprocess:
   # Undo RPM scripts enabling units; we want the presets to be canonical
   # https://github.com/projectatomic/rpm-ostree/issues/1803
   - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
+    #!/usr/bin/bash
+    set -eux -o pipefail
     rm -rf /etc/systemd/system/*
     systemctl preset-all
     rm -rf /etc/systemd/user/*
