@@ -41,5 +41,6 @@ postprocess:
   # boot and does not use systemd-repart currently. See also
   # https://github.com/coreos/fedora-coreos-tracker/issues/570
   - |
-    #!/usr/bin/env bash
+    #!/usr/bin/bash
+    set -eux -o pipefail
     systemctl mask systemd-repart.service
