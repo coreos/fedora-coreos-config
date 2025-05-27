@@ -15,14 +15,3 @@ packages:
 packages-s390x:
   # for Secure Execution
   - veritysetup
-
-postprocess:
-  # Undo RPM scripts enabling units; we want the presets to be canonical
-  # https://github.com/projectatomic/rpm-ostree/issues/1803
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    rm -rf /etc/systemd/system/*
-    systemctl preset-all
-    rm -rf /etc/systemd/user/*
-    systemctl --user --global preset-all

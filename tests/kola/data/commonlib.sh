@@ -115,14 +115,18 @@ cmdline_arg() {
     echo "${value}"
 }
 
-# wait for ~60s when in activating status
+# Wait for a specified time (default 60s) while a service is
+# activating.
 is_service_active() {
     local service="$1"; shift
     local timeout="${1:-60}"; shift
-    for _x in $(seq "${timeout}"); do
-        [ "$(systemctl is-active "${service}")" != "activating" ] && break
-        sleep 1
-    done
+    # TODO: Maybe at some point in the future we'll be able
+    #       to set --property=JobTimeoutSec=${timeout} and
+    #       we won't have to run it through `/bin/timeout`.
+    timeout "${timeout}s"                     \
+    systemd-run --wait                        \
+        --property="After=${service}"         \
+        echo "Waited for $service to finish starting"
     # return actual result
     systemctl is-active "${service}"
 }

@@ -25,8 +25,8 @@ opt-usrlocal: var
 
 postprocess:
   - |
-    #!/usr/bin/env bash
-    set -euo pipefail
+    #!/usr/bin/bash
+    set -eux -o pipefail
     # For now, rely on the `sysroot.readonly` knob in /ostree/config only.
     # Having it in prepare-root.conf too throws off ostree-prepare-root in
     # live PXE/ISO and we have no easy way to override it when building those.
