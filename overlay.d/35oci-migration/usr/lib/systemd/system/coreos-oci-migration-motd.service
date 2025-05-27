@@ -1,0 +1,12 @@
+# This service is used for printing a message if
+# the oci migration failed or was opted out.
+[Unit]
+Description=Warn based on oci migration status
+Before=systemd-user-sessions.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-oci-migration-motd
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
