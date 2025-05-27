@@ -10,12 +10,6 @@
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1889
   arches:
     - ppc64le
-- pattern: ext.config.toolbox
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1908
-  # snooze: 2025-04-14 (disabled on promotion)
-  # warn: true (disabled on promotion)
-  streams:
-    - rawhide
 - pattern: skip-console-warnings
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1924
   platforms:
@@ -24,7 +18,7 @@
     - rawhide
 - pattern: ext.config.kdump.crash
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1925
-  # snooze: 2025-04-30 (disabled on promotion)
+  # snooze: 2025-05-12 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - aarch64
@@ -32,7 +26,7 @@
     - rawhide
 - pattern: kdump.crash.ssh
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1925
-  # snooze: 2025-04-30 (disabled on promotion)
+  # snooze: 2025-05-12 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - aarch64
@@ -40,7 +34,7 @@
     - rawhide
 - pattern: kdump.crash.nfs
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1925
-  # snooze: 2025-04-30 (disabled on promotion)
+  # snooze: 2025-05-12 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - aarch64
