@@ -1,0 +1,13 @@
+[Unit]
+Description=Warns if mount sources or options for critical system filesystems are incorrect
+Before=systemd-user-sessions.service
+ConditionPathExists=!/run/ostree-live
+
+[Service]
+Type=oneshot
+# Service should only run once at boot - set RemainAfterExit=yes.
+RemainAfterExit=yes
+ExecStart=/usr/libexec/coreos-warn-invalid-mounts
+
+[Install]
+WantedBy=multi-user.target
