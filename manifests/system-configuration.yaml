@@ -35,6 +35,9 @@ packages:
   - stalld
   # Ignition aware SSH key management
   - ssh-key-dir
+  # Provides tools that run in a confidential VM, 
+  # gather confidential-computing evidence and send it to Trustee and get secrets.
+  - trustee-guest-components
 
 postprocess:
   # Mask systemd-repart. Ignition is responsible for partition setup on first
