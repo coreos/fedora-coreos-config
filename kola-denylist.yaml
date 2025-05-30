@@ -16,12 +16,5 @@
     - openstack
   streams:
     - rawhide
-- pattern: ext.config.root-reprovision.*
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1926
-  snooze: 2025-05-26
-  arches:
-    - ppc64le
-  streams:
-    - rawhide
 - pattern: ext.config.multipath.resilient
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1937
