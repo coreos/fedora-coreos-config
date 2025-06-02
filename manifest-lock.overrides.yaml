@@ -9,11 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  nfs-utils-coreos:
-    evr: 1:2.8.2-1.rc8.fc43
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1942
-      type: pin
   selinux-policy:
     evra: 41.41-1.fc43.noarch
     metadata:
