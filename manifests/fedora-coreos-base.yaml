@@ -34,11 +34,11 @@ ignore-removed-users:
   - root
 ignore-removed-groups:
   - root
+# Add the sudo group to /etc/group
+# This is re-implemented below for the container-native flow. Nuke this once
+# that's the only path we support.
 etc-group-members:
-  - wheel
   - sudo
-  - systemd-journal
-  - adm
 
 check-passwd:
   type: "file"
@@ -115,6 +115,15 @@ postprocess:
     #!/usr/bin/env bash
     set -xeuo pipefail
     ln -sf multi-user.target /usr/lib/systemd/system/default.target
+
+  # Add the sudo group to /etc/group in container-native flow.
+  # We can nuke `etc-group-members` once this is the only supported path.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    if [ -f /run/.containerenv ]; then
+      grep sudo /usr/lib/group >> /etc/group
+    fi
 
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go

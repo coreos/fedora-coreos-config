@@ -80,11 +80,13 @@ packages:
   # https://github.com/coreos/fedora-coreos-tracker/issues/1567
   - bash-color-prompt
 
+# Add the docker group to /etc/group
+# https://github.com/coreos/fedora-coreos-tracker/issues/2
+# This will be no longer needed when systemd-sysusers has been implemented:
+# https://github.com/projectatomic/rpm-ostree/issues/49
+# This is re-implemented below for the container-native flow. Nuke this once
+# that's the only path we support.
 etc-group-members:
-  # Add the docker group to /etc/group
-  # https://github.com/coreos/fedora-coreos-tracker/issues/2
-  # This will be no longer needed when systemd-sysusers has been implemented:
-  # https://github.com/projectatomic/rpm-ostree/issues/49
   - docker
 
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
@@ -165,6 +167,18 @@ remove-files:
   - usr/share/man
   # Drop text docs too
   - usr/share/doc
+
+  # Add the docker group to /etc/group
+  # https://github.com/coreos/fedora-coreos-tracker/issues/2
+  # This will be no longer needed when systemd-sysusers has been implemented:
+  # https://github.com/projectatomic/rpm-ostree/issues/49
+  # We can nuke `etc-group-members` once this is the only path we support.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    if [ -f /run/.containerenv ]; then
+      grep docker /usr/lib/group >> /etc/group
+    fi
 
 # Things we don't expect to ship on the host.  We currently
 # have recommends: false so these could only come in via
