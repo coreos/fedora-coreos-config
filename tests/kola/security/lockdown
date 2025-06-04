@@ -1,6 +1,8 @@
 #!/bin/bash
 ## kola:
-##   exclusive: false
+##   # Mark as exclusive since we are requesting secureboot and that won't take effect when we're
+##   # running non-exclusively.
+##   exclusive: true
 ##   tags: secure-boot
 ##   architectures: x86_64
 ##   description: Verify that the lockdown LSM is set to integrity when booted using Secure Boot
