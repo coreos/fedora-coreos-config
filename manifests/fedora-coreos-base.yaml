@@ -47,8 +47,6 @@ check-groups:
   type: "file"
   filename: "group"
 
-default-target: multi-user.target
-
 # we can drop this when it's the rpm-ostree default
 rpmdb: sqlite
 
@@ -111,6 +109,12 @@ postprocess:
     #!/usr/bin/env bash
     set -xeuo pipefail
     chmod 440 /etc/sudoers.d/coreos-sudo-group
+
+  # Set the default systemd target to `multi-user.target`.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    ln -sf multi-user.target /usr/lib/systemd/system/default.target
 
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go
