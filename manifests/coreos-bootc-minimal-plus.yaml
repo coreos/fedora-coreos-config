@@ -25,6 +25,8 @@ machineid-compat: false
 # This is the historical default and what FCOS currently ships. fedora-bootc
 # uses the new `root` value, but migrating FCOS is not that simple...
 # https://coreos.github.io/rpm-ostree/treefile/#experimental-options
+# This is re-implemented below for the container-native flow. Nuke this once
+# that's the only path we support.
 opt-usrlocal: var
 
 postprocess:
@@ -43,6 +45,21 @@ postprocess:
     [composefs]
     enabled = true
     EOF
+    fi
+
+# Make `/opt and `/usr/local` symlinks.
+# This is the historical default and what FCOS currently ships. fedora-bootc
+# uses the new `root` value, but migrating FCOS is not that simple...
+# https://coreos.github.io/rpm-ostree/treefile/#experimental-options
+# We can nuke `opt-usrlocal: var` above once this is the only path we support.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    if [ -f /run/.containerenv ]; then
+        rm -vrf /opt;
+        ln -vs var/opt /opt
+        rm -vrf /usr/local
+        ln -vs ../var/usrlocal /usr/local
     fi
 
   # Required by Ignition, and makes the system not compatible with Anaconda.
