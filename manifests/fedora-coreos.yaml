@@ -165,13 +165,22 @@ postprocess:
         done
     done
 
+  # Delete documentation. (Note that fedora-bootc doesn't explicitly set
+  # `documentation`, and neither do we, so the rpm-ostree default is true. We
+  # historically have effectively done `the equivalent of `documentation: false`
+  # though.)
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
 
-remove-files:
-  # We don't ship man(1) or info(1)
-  - usr/share/info
-  - usr/share/man
-  # Drop text docs too
-  - usr/share/doc
+    # We don't ship man(1) or info(1)
+    rm -rf /usr/share/info
+    rm -rf /usr/share/man
+    # Drop text docs too
+    rm -rf /usr/share/doc
+
+    # Nuke broken alternatives links
+    rm -f /etc/alternatives/*-man
 
   # Add the docker group to /etc/group
   # https://github.com/coreos/fedora-coreos-tracker/issues/2
