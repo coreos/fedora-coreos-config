@@ -1,13 +1,15 @@
 # Here, we include bootc minimal-plus, but override some key settings.
 
-include: ../fedora-bootc/minimal-plus/manifest.yaml
-
 # If we are fedora there are a few more settings in
 # fedora-includes/generic.yaml that fedora-minimal-plus.yaml
 # pulls in. We need to monitor fedora-minimal-plus.yaml to
 # make sure we update our strategy here if that file changes.
 conditional-include:
-  - if: id == "fedora"
+  - if: deriving == false
+    include: ../fedora-bootc/minimal-plus/manifest.yaml
+  - if:
+    - id == "fedora"
+    - deriving == false
     include: ../fedora-bootc/fedora-includes/generic.yaml
 
 # Required by Ignition, and makes the system not compatible with Anaconda.
