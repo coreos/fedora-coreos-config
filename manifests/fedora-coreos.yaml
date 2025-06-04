@@ -115,8 +115,13 @@ postprocess:
     # information.
 
     EOF
-    cat /usr/etc/rpm-ostreed.conf >> /tmp/rpm-ostreed.conf
-    cp /tmp/rpm-ostreed.conf /usr/etc/rpm-ostreed.conf
+    conf_file=/usr/etc/rpm-ostreed.conf
+    # if we're deriving, then the config is in /etc already
+    if [ -f /run/.containerenv ]; then
+      conf_file=/etc/rpm-ostreed.conf
+    fi
+    cat "${conf_file}" >> /tmp/rpm-ostreed.conf
+    cp /tmp/rpm-ostreed.conf "${conf_file}"
     rm /tmp/rpm-ostreed.conf
   # Make sure that we do not ship broken symlinks:
   # https://github.com/coreos/fedora-coreos-config/issues/1782
