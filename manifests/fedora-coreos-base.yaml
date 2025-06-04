@@ -102,6 +102,15 @@ postprocess:
     ConditionPathExists=
     EOF
 
+  # sudo prefers its config files to be mode 440, and some security scanners
+  # complain if /etc/sudoers.d files are world-readable.
+  # https://bugzilla.redhat.com/show_bug.cgi?id=1981979
+  # This is added by the 05core overlay listed above.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    chmod 440 /etc/sudoers.d/coreos-sudo-group
+
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go
 # into one of the sub-manifests listed at the top.
