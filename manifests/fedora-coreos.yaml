@@ -11,6 +11,10 @@ metadata:
 add-commit-metadata:
   fedora-coreos.stream: ${stream}
 
+variables:
+  # upper manifests can override this when deriving from minimal-plus instead of
+  # doing a base compose
+  deriving: false
 
 include: fedora-coreos-base.yaml
 conditional-include:
@@ -76,11 +80,13 @@ packages:
   # https://github.com/coreos/fedora-coreos-tracker/issues/1567
   - bash-color-prompt
 
+# Add the docker group to /etc/group
+# https://github.com/coreos/fedora-coreos-tracker/issues/2
+# This will be no longer needed when systemd-sysusers has been implemented:
+# https://github.com/projectatomic/rpm-ostree/issues/49
+# This is re-implemented below for the container-native flow. Nuke this once
+# that's the only path we support.
 etc-group-members:
-  # Add the docker group to /etc/group
-  # https://github.com/coreos/fedora-coreos-tracker/issues/2
-  # This will be no longer needed when systemd-sysusers has been implemented:
-  # https://github.com/projectatomic/rpm-ostree/issues/49
   - docker
 
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
@@ -109,8 +115,13 @@ postprocess:
     # information.
 
     EOF
-    cat /usr/etc/rpm-ostreed.conf >> /tmp/rpm-ostreed.conf
-    cp /tmp/rpm-ostreed.conf /usr/etc/rpm-ostreed.conf
+    conf_file=/usr/etc/rpm-ostreed.conf
+    # if we're deriving, then the config is in /etc already
+    if [ -f /run/.containerenv ]; then
+      conf_file=/etc/rpm-ostreed.conf
+    fi
+    cat "${conf_file}" >> /tmp/rpm-ostreed.conf
+    cp /tmp/rpm-ostreed.conf "${conf_file}"
     rm /tmp/rpm-ostreed.conf
   # Make sure that we do not ship broken symlinks:
   # https://github.com/coreos/fedora-coreos-config/issues/1782
@@ -154,13 +165,34 @@ postprocess:
         done
     done
 
+  # Delete documentation. (Note that fedora-bootc doesn't explicitly set
+  # `documentation`, and neither do we, so the rpm-ostree default is true. We
+  # historically have effectively done `the equivalent of `documentation: false`
+  # though.)
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
 
-remove-files:
-  # We don't ship man(1) or info(1)
-  - usr/share/info
-  - usr/share/man
-  # Drop text docs too
-  - usr/share/doc
+    # We don't ship man(1) or info(1)
+    rm -rf /usr/share/info
+    rm -rf /usr/share/man
+    # Drop text docs too
+    rm -rf /usr/share/doc
+
+    # Nuke broken alternatives links
+    rm -f /etc/alternatives/*-man
+
+  # Add the docker group to /etc/group
+  # https://github.com/coreos/fedora-coreos-tracker/issues/2
+  # This will be no longer needed when systemd-sysusers has been implemented:
+  # https://github.com/projectatomic/rpm-ostree/issues/49
+  # We can nuke `etc-group-members` once this is the only path we support.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    if [ -f /run/.containerenv ]; then
+      grep docker /usr/lib/group >> /etc/group
+    fi
 
 # Things we don't expect to ship on the host.  We currently
 # have recommends: false so these could only come in via
