@@ -1,0 +1,236 @@
+#!/usr/bin/python3
+
+# This script is called by the Containerfile to build FCOS. Here's what it does at a high-level:
+# 1. It gathers the list of FCOS-specific packages using the manifests.
+# 2. It gathers the list of FCOS-specific overlays using the manifests.
+# 3. It runs `bootc-base-imagectl rebuild`, passing in the packages and overlays.
+# 4. It injects various metadata (e.g. image.json, live/ bits, and platforms.json).
+# 5. It runs the postprocess scripts defined in the manifest.
+
+import json
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+import yaml
+
+
+ARCH = os.uname().machine
+CONTEXTDIR = '/run/src'
+
+
+def main():
+    manifest_name = sys.argv[1]
+    version = sys.argv[2]
+    target_rootfs = sys.argv[3]
+
+    manifest_path = os.path.join(CONTEXTDIR, manifest_name)
+    manifest = get_treefile(manifest_path)
+
+    packages = list(manifest['packages'])
+
+    locked_nevras = get_locked_nevras()
+    if locked_nevras:
+        inject_pool_repo(locked_nevras)
+
+    packages.extend(locked_nevras)
+    overlays = gather_overlays(manifest)
+    build_rootfs(target_rootfs, manifest_path, packages, overlays)
+
+    inject_live(target_rootfs)
+    inject_image_json(target_rootfs, manifest_path)
+    inject_platforms_json(target_rootfs)
+
+    if version != "":
+        inject_version_info(target_rootfs, manifest['mutate-os-release'], version)
+    inject_postprocess_scripts(target_rootfs, manifest)
+
+
+def get_treefile(manifest_path):
+    with tempfile.NamedTemporaryFile(suffix='.json', mode='w') as tmp_manifest:
+        # This ensures that the treefile represents only the CoreOS bits and
+        # doesn't recurse into fedora-bootc. We can drop this once we've fully
+        # cut over to derivation.
+        json.dump({
+            "variables": {
+                "deriving": True
+            },
+            "include": manifest_path
+        }, tmp_manifest)
+        tmp_manifest.flush()
+        data = subprocess.check_output(['rpm-ostree', 'compose', 'tree',
+                                        '--print-only', tmp_manifest.name])
+    return json.loads(data)
+
+
+def build_rootfs(target_rootfs, manifest_path, packages, overlays):
+    with tempfile.NamedTemporaryFile(mode='w') as argsfile:
+        for pkg in packages:
+            argsfile.write(f"--install={pkg}\n")
+        for overlay in overlays:
+            argsfile.write(f"--add-dir={overlay}\n")
+        argsfile.flush()
+        cache_arg = ['--cachedir=/cache'] if os.path.isdir('/cache') else []
+        subprocess.check_call(["/usr/libexec/bootc-base-imagectl",
+                               "--args-file", argsfile.name, "build-rootfs",
+                               "--manifest", 'fedora-minimal-plus',
+                               target_rootfs] + cache_arg)
+
+
+def inject_postprocess_scripts(rootfs, manifest):
+    # since we have the derive-only manifest handy, just inject a script now
+    # that we can execute in the second stage. we could of course use e.g.
+    # bwrap to run those now, but... it's just cleaner to use multi-stage build
+    # semantics
+    for i, script in enumerate(manifest.get('postprocess', [])):
+        with open(os.path.join(rootfs, f'usr/libexec/coreos-postprocess-{i}'), mode='w') as f:
+            os.fchmod(f.fileno(), 0o755)
+            f.write(script)
+
+
+def get_locked_nevras():
+    lockfile_path = os.path.join(CONTEXTDIR, f"manifest-lock.{ARCH}.json")
+    overrides_path = os.path.join(CONTEXTDIR, "manifest-lock.overrides.yaml")
+    overrides_arch_path = os.path.join(CONTEXTDIR, f"manifest-lock.overrides.{ARCH}.yaml")
+
+    locks = {}
+    for path in [lockfile_path, overrides_path, overrides_arch_path]:
+        if os.path.exists(path):
+            with open(path) as f:
+                if path.endswith('.yaml'):
+                    data = yaml.safe_load(f)
+                else:
+                    data = json.load(f)
+                # this essentially re-implements the merge semantics of rpm-ostree
+                locks.update({pkgname: v['evra'] if 'evra' in v else v['evr']
+                              for (pkgname, v) in data['packages'].items()})
+    return [f'{k}-{v}' for (k, v) in locks.items()]
+
+
+def inject_pool_repo(locked_nevras):
+    # When adding the pool, we only want to _filter in_ locked packages;
+    # matching `lockfile-repos` semantics. This is abusing pretty hard the
+    # `includepkgs=` semantic but... it works.
+    shutil.copyfile(os.path.join(CONTEXTDIR, "fedora-coreos-pool.repo"),
+                    "/etc/yum.repos.d/pool.repo")
+    packages = ','.join(locked_nevras)
+    with open("/etc/yum.repos.d/pool.repo", 'a') as f:
+        f.write(f"\nincludepkgs={packages}\n")
+
+
+# This re-implements rpm-ostree's mutate-os-release to preserve the historical
+# /usr/lib/os-release API, but we may in the future completely sever off of that
+# and only rely on org.opencontainers.image.version as argued in:
+# https://gitlab.com/fedora/bootc/base-images/-/issues/40
+# https://gitlab.com/fedora/bootc/base-images/-/issues/46
+def inject_version_info(rootfs, base_version, version):
+    os_release_path = os.path.join(rootfs, 'usr/lib/os-release')
+    with open(os_release_path) as f:
+        from collections import OrderedDict
+        os_release = OrderedDict([line.strip().split('=', 1) for line in f])
+
+    for key in ['VERSION', 'PRETTY_NAME']:
+        os_release[key] = os_release[key].replace(base_version, version)
+    os_release['OSTREE_VERSION'] = f"'{version}'"
+    os_release['IMAGE_VERSION'] = f"'{version}'"
+
+    with open(os_release_path, mode='w', encoding='utf-8') as f:
+        for (k, v) in os_release.items():
+            f.write(f'{k}={v}\n')
+
+
+# This re-implements cosa's overlay logic.
+def gather_overlays(manifest):
+    overlays = []
+    for layer in manifest.get('ostree-layers', []):
+        assert layer.startswith('overlay/')
+        overlays.append(os.path.join(CONTEXTDIR, 'overlay.d', layer[len('overlay/'):]))
+    return overlays
+
+
+# Inject live/ bits.
+def inject_live(rootfs):
+    target_path = os.path.join(rootfs, 'usr/share/coreos-assembler/live')
+    shutil.copytree(os.path.join(CONTEXTDIR, "live"), target_path)
+
+
+def inject_image_json(rootfs, manifest_path):
+    manifest_vars = yaml.safe_load(open(manifest_path))['variables']
+    image = flatten_image_yaml(os.path.join(CONTEXTDIR, 'image.yaml'),
+                               format_args=manifest_vars)
+    fn = os.path.join(rootfs, 'usr/share/coreos-assembler/image.json')
+    with open(fn, 'w') as f:
+        json.dump(image, f, sort_keys=True)
+
+
+# Imported from cosa
+# Merge two lists, avoiding duplicates. Exact duplicate kargs could be valid
+# but we have no use case for them right now in our official images.
+def merge_lists(x, y, k):
+    x[k] = x.get(k, [])
+    assert isinstance(x[k], list)
+    y[k] = y.get(k, [])
+    assert isinstance(y[k], list)
+    x[k].extend([i for i in y[k] if i not in x[k]])
+
+
+# Imported from cosa
+def flatten_image_yaml(srcfile, base=None, format_args={}):
+    if base is None:
+        base = {}
+
+    with open(srcfile) as f:
+        contents = f.read()
+        srcyaml = yaml.safe_load(contents.format(**format_args))
+
+    # first, special-case list values
+    merge_lists(base, srcyaml, 'extra-kargs')
+
+    # then handle all the non-list values
+    base = merge_dicts(base, srcyaml)
+
+    if 'include' not in srcyaml:
+        return base
+
+    fn = os.path.join(os.path.dirname(srcfile), srcyaml['include'])
+    del base['include']
+    return flatten_image_yaml(fn, base=base, format_args=format_args)
+
+
+# Imported from cosa
+# Credit to @arithx
+def merge_dicts(x, y):
+    """
+    Merge two dicts recursively, but based on the difference.
+    """
+    sd = set(x.keys()).symmetric_difference(y.keys())
+    ret = {}
+    for d in [x, y]:
+        for k, v in d.items():
+            if k in sd:
+                # the key is only present in one dict, add it directly
+                ret.update({k: v})
+            elif isinstance(x[k], dict) and isinstance(y[k], dict):
+                # recursively merge
+                ret.update({k: merge_dicts(x[k], y[k])})
+            elif isinstance(x[k], list) and isinstance(y[k], list):
+                ret.update({k: x[k]})
+                merge_lists(ret, y, k)
+            else:
+                # first dictionary always takes precedence
+                ret.update({k: x[k]})
+    return ret
+
+
+def inject_platforms_json(rootfs):
+    with open(os.path.join(CONTEXTDIR, 'platforms.yaml')) as f:
+        platforms = yaml.safe_load(f)
+    fn = os.path.join(rootfs, 'usr/share/coreos-assembler/platforms.json')
+    if ARCH in platforms:
+        with open(fn, 'w') as f:
+            json.dump(platforms[ARCH], f, sort_keys=True, indent=2)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
