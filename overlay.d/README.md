@@ -70,3 +70,16 @@ pre-existing LVM devices attached. See the tracker issue [1] for more
 information.
 
 [1] https://github.com/coreos/fedora-coreos-tracker/issues/1517
+
+35oci-migration
+-------------------
+
+Trigger a migration script to instruct Zincati to rebase the system
+to using OCI images from quay.io/fedora/fedora-coreos for future
+updates. [1]
+This is composed of a migration script [2] and a motd generator to
+instruct the user if something go wrong or show a reminder if the
+user opted out.
+
+[1] https://github.com/coreos/fedora-coreos-tracker/issues/1890
+[2] https://github.com/coreos/fedora-coreos-config/pull/3355

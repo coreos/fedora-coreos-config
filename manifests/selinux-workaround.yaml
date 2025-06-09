@@ -6,8 +6,8 @@
 # altogether
 postprocess:
   - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
+    #!/usr/bin/bash
+    set -eux -o pipefail
     cat > /tmp/fcos-workarounds.cil << EOF
     ; https://bugzilla.redhat.com/show_bug.cgi?id=2300306
     (typeattributeset cil_gen_require bootupd_t)
