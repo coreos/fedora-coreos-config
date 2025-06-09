@@ -1,7 +1,0 @@
-# Config file for overriding permission bits on overlay files/dirs
-# Format: =<file mode in decimal> <absolute path to a file or directory>
-
-# sudo prefers its config files to be mode 440, and some security scanners
-# complain if /etc/sudoers.d files are world-readable.
-# https://bugzilla.redhat.com/show_bug.cgi?id=1981979
-=288 /etc/sudoers.d/coreos-sudo-group

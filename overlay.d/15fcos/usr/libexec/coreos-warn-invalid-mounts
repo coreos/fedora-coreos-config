@@ -1,0 +1,40 @@
+#!/usr/bin/bash
+
+. /usr/lib/console-login-helper-messages/motd.defs
+
+OUTDIR="${RUN_SNIPPETS}"
+
+warnings=""
+
+root_object=$(findmnt / --json | jq --arg ROOT '/' -r '.filesystems[] | select(.target==$ROOT)')
+
+# Check if the root filesystem source is "composefs"
+root_source=$(echo "$root_object" | jq -r '.source')
+if [[ "$root_source" != "composefs" ]]; then
+    warnings+="Warning: Root mountpoint ('/') is not a 'composefs' mount."$'\n'
+fi
+
+# Check if / is mounted read-only
+root_options=$(echo "$root_object" | jq -r '.options' | tr ',' '\n' | grep -c '^ro$')
+if [[ "$root_options" -ne 1 ]]; then
+    warnings+="Warning: Root mountpoint ('/') is not mounted read-only"$'\n'
+fi
+
+# Check if /sysroot is mounted read-only
+sysroot_options=$(findmnt /sysroot --json | jq --arg SYSROOT '/sysroot' -r '.filesystems[] | select(.target==$SYSROOT) | .options')
+if [[ $(echo "$sysroot_options" | tr ',' '\n' | grep -c '^ro$') -ne 1 ]]; then
+    warnings+="Warning: '/sysroot' is not mounted read-only"$'\n'
+fi
+
+# Remove trailing newline
+warnings="${warnings%$'\n'}"
+
+# Format final message with banner if warnings exist
+if [[ -n "$warnings" ]]; then
+    message=$'##########################################################################\n'
+    message+="$warnings"$'\n'
+    message+="To disable this warning, use:"$'\n'
+    message+="  sudo systemctl disable coreos-warn-invalid-mounts.service"$'\n'
+    message+='##########################################################################'
+    echo "$message" | write_via_tempfile "$OUTDIR/50_invalid_mounts.motd"
+fi

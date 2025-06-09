@@ -35,6 +35,7 @@ Things that are more closely "Fedora CoreOS":
 * enable FCOS-specific services by default
 * display warnings on the console if no ignition config was provided or no ssh
   key found.
+* display warnings if mount points are not set up properly
 
 20platform-chrony
 -----------------
