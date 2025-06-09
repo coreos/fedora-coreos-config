@@ -1,0 +1,36 @@
+# This file contains defaults for image.yaml and historically lived in
+# coreos-assembler.
+
+# related: https://github.com/osbuild/bootc-image-builder/pull/932
+bootfs: "ext4"
+rootfs: "xfs"
+# Add arguments here that will be passed to e.g. mkfs.xfs
+rootfs-args: ""
+# Set to "true" to enable composefs
+composefs: false
+
+# Additional default kernel arguments injected into disk images
+extra-kargs: []
+
+# Can also be oci-chunked
+ostree-format: oci-chunked-v1
+# Inject io.openshift.build.version-display-names for OpenShift CVO
+ostree-container-inject-openshift-cvo-labels: false
+# True if we should use `ostree container image deploy`
+deploy-via-container: false
+
+# Set this to a target container reference, e.g. ostree-unverified-registry:quay.io/example/os:latest
+# container-imgref: ""
+
+# Format used when generating a squashfs image.  Can also be e.g. gzip or lz4
+squashfs-compression: zstd
+
+# Defaults for VMware OVA, matching historical behavior
+vmware-hw-version: 13
+vmware-os-type: rhel7_64Guest
+vmware-secure-boot: true
+
+# Defaults for AWS
+aws-imdsv2-only: true
+aws-volume-type: "gp3"
+aws-x86-boot-mode: "uefi-preferred"
