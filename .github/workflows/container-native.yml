@@ -32,4 +32,4 @@ jobs:
       - name: Build
         run: podman build --security-opt=label=disable --cap-add=all --device /dev/fuse . -t localhost/fedora-coreos
       - name: Sanity-check
-        run: podman run --rm -ti localhost/fedora-coreos echo hello
+        run: podman run --rm localhost/fedora-coreos echo hello
