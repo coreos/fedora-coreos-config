@@ -209,6 +209,9 @@ selinux-sanity-check() {
         #       - 38.20230322.1.0->42.20241023.91.0
         #       - https://github.com/fedora-selinux/selinux-policy/commit/b08568ca696f14d3232adef6a291ebb0ec80ba46
         #       - https://github.com/coreos/fedora-coreos-tracker/issues/1819
+        # - Would relabel /var/lib/systemd/random-seed from system_u:object_r:init_var_lib_t:s0 to system_u:object_r:random_seed_t:s0
+        #       - 42.20250526.1.0 -> 42.20250609.1.0
+        #       - https://github.com/coreos/fedora-coreos-tracker/issues/1965#issuecomment-2959831808
         declare -A exceptions=(
            ['/var/lib/cni']=1
            ['/etc/selinux/targeted/semanage.read.LOCK']=1
@@ -219,6 +222,7 @@ selinux-sanity-check() {
            ['/var/lib/systemd/home']=1
            ['/var/cache/systemd']=1
            ['/var/cache/systemd/home']=1
+           ['/var/lib/systemd/random-seed']=1
         )
         paths="$(echo "${mislabeled}" | grep "Would relabel" | cut -d ' ' -f 3)"
         found=""
