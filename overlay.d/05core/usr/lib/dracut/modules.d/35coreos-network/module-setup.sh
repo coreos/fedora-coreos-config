@@ -4,6 +4,10 @@ check() {
     fi
 }
 
+depends() {
+    echo afterburn
+}
+
 install_and_enable_unit() {
     unit="$1"; shift
     target="$1"; shift
