@@ -2,12 +2,8 @@
 
 # This is the developer default version. In pipelines, this is driven by versionary.
 ARG VERSION="42"
-# XXX: This uses the Konflux-built version until it takes over from pungi and
-# shows up at the official quay.io/fedora/fedora-bootc endpoint since the latter
-# doesn't yet have bootc-base-imagectl.
-# https://gitlab.com/fedora/bootc/base-images/-/issues/44
-# XXX: Note also this should be a digested pull that gets bumped.
+# XXX: This should be a digested pull that gets bumped.
 # https://gitlab.com/fedora/bootc/tracker/-/issues/34
-ARG BUILDER_IMG=quay.io/bootc-devel/fedora-bootc-42-standard:latest
+ARG BUILDER_IMG=quay.io/fedora/fedora-bootc:42
 ARG MANIFEST=manifest.yaml
 
