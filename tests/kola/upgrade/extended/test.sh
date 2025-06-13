@@ -244,6 +244,29 @@ selinux-sanity-check() {
 
 ok "Reached version: $version"
 
+verify-alternatives-migration() {
+    # Do verification only if version is 43 or later.
+    if [ "$(get_fedora_ver)" -le 43 ]; then
+        ok "Skipping alternatives migration verfication for versions before 43"
+        return 0
+    fi
+
+    # Verify /var/lib/alternatives dir is removed
+    if [[ -e /var/lib/alternatives ]]; then
+        fatal "Error: migration didn't remove /var/lib/alternatives"
+    fi
+
+    # Verify iptables migration
+    if [[ $(alternatives --display iptables | grep -c -E 'link currently points to /usr/(bin|sbin)/iptables-nft') != "1" ]]; then
+        fatal "Error: migration did not set iptables to nft backend"
+    fi
+    if [[ $(iptables --version | grep -c "nf_tables") != "1" ]]; then
+        fatal "Error: iptables not reset to nftables backend"
+    fi
+
+    ok "alternatives migration verification passed."
+}
+
 # Are we all the way at the desired target version?
 # If so then we can exit with success!
 if vereq $version $target_version; then
@@ -256,6 +279,8 @@ if vereq $version $target_version; then
     fi
     # One last check!
     selinux-sanity-check
+    # One more last check
+    verify-alternatives-migration
     exit 0
 fi
 
