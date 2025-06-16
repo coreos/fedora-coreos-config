@@ -134,7 +134,13 @@ def inject_version_info(rootfs, base_version, version):
     os_release_path = os.path.join(rootfs, 'usr/lib/os-release')
     with open(os_release_path) as f:
         from collections import OrderedDict
-        os_release = OrderedDict([line.strip().split('=', 1) for line in f])
+        os_release = OrderedDict()
+        for line in f:
+            line = line.strip()
+            if len(line) == 0 or line.startswith('#'):
+                continue
+            (k, v) = line.split('=', 1)
+            os_release[k] = v
 
     for key in ['VERSION', 'PRETTY_NAME']:
         os_release[key] = os_release[key].replace(base_version, version)
