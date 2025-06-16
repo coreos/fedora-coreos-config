@@ -78,7 +78,7 @@ def build_rootfs(target_rootfs, manifest_path, packages, overlays, nodocs):
         cache_arg = ['--cachedir=/cache'] if os.path.isdir('/cache') else []
         subprocess.check_call(["/usr/libexec/bootc-base-imagectl",
                                "--args-file", argsfile.name, "build-rootfs",
-                               "--manifest", 'fedora-minimal-plus',
+                               "--manifest", 'minimal-plus',
                                target_rootfs] + cache_arg)
 
 
