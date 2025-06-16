@@ -36,7 +36,8 @@ def main():
 
     packages.extend(locked_nevras)
     overlays = gather_overlays(manifest)
-    build_rootfs(target_rootfs, manifest_path, packages, overlays)
+    nodocs = (manifest.get('documentation') is False)
+    build_rootfs(target_rootfs, manifest_path, packages, overlays, nodocs)
 
     inject_live(target_rootfs)
     inject_image_json(target_rootfs, manifest_path)
@@ -64,12 +65,14 @@ def get_treefile(manifest_path):
     return json.loads(data)
 
 
-def build_rootfs(target_rootfs, manifest_path, packages, overlays):
+def build_rootfs(target_rootfs, manifest_path, packages, overlays, nodocs):
     with tempfile.NamedTemporaryFile(mode='w') as argsfile:
         for pkg in packages:
             argsfile.write(f"--install={pkg}\n")
         for overlay in overlays:
             argsfile.write(f"--add-dir={overlay}\n")
+        if nodocs:
+            argsfile.write("--no-docs\n")
         argsfile.flush()
         cache_arg = ['--cachedir=/cache'] if os.path.isdir('/cache') else []
         subprocess.check_call(["/usr/libexec/bootc-base-imagectl",
