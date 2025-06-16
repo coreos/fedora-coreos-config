@@ -32,7 +32,7 @@ def main():
 
     locked_nevras = get_locked_nevras()
     if locked_nevras:
-        inject_pool_repo(locked_nevras)
+        inject_pool_repo_if_exists(locked_nevras)
 
     packages.extend(locked_nevras)
     overlays = gather_overlays(manifest)
@@ -108,12 +108,15 @@ def get_locked_nevras():
     return [f'{k}-{v}' for (k, v) in locks.items()]
 
 
-def inject_pool_repo(locked_nevras):
+def inject_pool_repo_if_exists(locked_nevras):
+    srcrepo = os.path.join(CONTEXTDIR, "fedora-coreos-pool.repo")
+    if not os.path.exists(srcrepo):
+        return
+
     # When adding the pool, we only want to _filter in_ locked packages;
     # matching `lockfile-repos` semantics. This is abusing pretty hard the
     # `includepkgs=` semantic but... it works.
-    shutil.copyfile(os.path.join(CONTEXTDIR, "fedora-coreos-pool.repo"),
-                    "/etc/yum.repos.d/pool.repo")
+    shutil.copyfile(srcrepo, "/etc/yum.repos.d/pool.repo")
     packages = ','.join(locked_nevras)
     with open("/etc/yum.repos.d/pool.repo", 'a') as f:
         f.write(f"\nincludepkgs={packages}\n")
