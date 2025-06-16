@@ -13,6 +13,7 @@ ARG MANIFEST
 # add this bit to the RUN command to make the developer path less painful.
 # --mount=type=cache,rw,id=coreos-build-cache,target=/cache
 RUN --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
+    --mount=type=secret,id=contentsets \
     --mount=type=bind,target=/run/src \
         /run/src/build-rootfs "${MANIFEST}" "${VERSION}" /target-rootfs
 

@@ -42,6 +42,7 @@ def main():
     inject_live(target_rootfs)
     inject_image_json(target_rootfs, manifest_path)
     inject_platforms_json(target_rootfs)
+    inject_content_manifest(target_rootfs, manifest)
 
     if version != "":
         inject_version_info(target_rootfs, manifest['mutate-os-release'], version)
@@ -174,6 +175,40 @@ def inject_image_json(rootfs, manifest_path):
     fn = os.path.join(rootfs, 'usr/share/coreos-assembler/image.json')
     with open(fn, 'w') as f:
         json.dump(image, f, sort_keys=True)
+
+
+def inject_content_manifest(target_rootfs, manifest):
+    content_manifest_path = '/run/secrets/contentsets'
+    if not os.path.exists(content_manifest_path):
+        return
+
+    with open(content_manifest_path) as f:
+        data = yaml.safe_load(f)
+
+    repos = []
+    for base_repo in manifest['repos']:
+        if base_repo in data['repo_mapping']:
+            if data['repo_mapping'][base_repo]['name'] != '':
+                repo_name = data['repo_mapping'][base_repo]['name'].replace('$ARCH', ARCH)
+                repos.append(repo_name)
+            else:
+                print('Warning: No corresponding repo in repository-to-cpe.json for ' + base_repo)
+        else:
+            # Warning message for repositories with no entry in content_sets.yaml
+            print('Warning: No corresponding entry in content_sets.yaml for ' + base_repo)
+
+    dest = os.path.join(target_rootfs, "usr/share/buildinfo/content_manifest.json")
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    with open(dest, 'w') as f:
+        json.dump(fp=f, obj={
+            'metadata': {
+                'icm_version': 1,
+                'icm_spec': 'https://raw.githubusercontent.com/containerbuildsystem/atomic-reactor/master/atomic_reactor/schemas/content_manifest.json',
+                'image_layer_index': 1
+            },
+            'content_sets': repos,
+            'image_contents': []
+        })
 
 
 # Imported from cosa
