@@ -27,7 +27,9 @@ ARG MANIFEST
 # Note: once we can rely on https://github.com/coreos/rpm-ostree/pull/5391,
 # add this bit to the RUN command to make the developer path less painful.
 # --mount=type=cache,rw,id=coreos-build-cache,target=/cache
-RUN --mount=type=bind,target=/run/src /run/src/build-rootfs "${MANIFEST}" "${VERSION}" /target-rootfs
+RUN --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
+    --mount=type=bind,target=/run/src \
+        /run/src/build-rootfs "${MANIFEST}" "${VERSION}" /target-rootfs
 
 FROM scratch
 ARG VERSION
