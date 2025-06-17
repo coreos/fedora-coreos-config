@@ -14,6 +14,16 @@
 #
 # All architectures, platforms, and fields are optional.
 aarch64:
+  # https://github.com/crc-org/vfkit/pull/323/files
+  # XXX update the above link to actual docs when it merges
+  applehv:
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=tty0
+      - console=hvc0
   aws:
     # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-to-serial-console.html#sc-considerations
     # It appears there's no screenshot support on ARM
@@ -75,6 +85,16 @@ ppc64le:
       - console=hvc0
       - console=tty0
 x86_64:
+  # https://github.com/crc-org/vfkit/pull/323/files
+  # XXX update the above link to actual docs when it merges
+  applehv:
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=tty0
+      - console=hvc0
   aws:
     # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-to-serial-console.html#sc-considerations
     # https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetConsoleScreenshot.html
