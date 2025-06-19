@@ -1,19 +1,7 @@
-# DO NOT EDIT. This Containerfile is produced by the concatenation of:
-# - Containerfile.advisory: contains this advisory
-# - Containerfile.args: contains stream-specific build args
-# - Containerfile.base: actual build logic
-# Rebuild it using `cat Containerfile.* > Containerfile`.
-
-### Containerfile.args
-
-# This is the developer default version. In pipelines, this is driven by versionary.
-ARG VERSION="42"
-# XXX: This should be a digested pull that gets bumped.
-# https://gitlab.com/fedora/bootc/tracker/-/issues/34
-ARG BUILDER_IMG=quay.io/fedora/fedora-bootc:42
-ARG MANIFEST=manifest.yaml
-
-### Containerfile.base
+# Overridden by argfile.conf. The values here are invalid on purpose.
+ARG VERSION=overridden
+ARG BUILDER_IMG=overridden
+ARG MANIFEST=overridden
 
 FROM ${BUILDER_IMG} as builder
 

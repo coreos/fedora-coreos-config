@@ -14,11 +14,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Validate synced Containerfile
-        run: |
-          set -xeuo pipefail
-          cat Containerfile.* > Containerfile
-          git diff --exit-code
       # cargo-culted from rpm-ostree CI
       # https://github.com/containers/podman/discussions/17362
       - name: Get newer podman
@@ -30,6 +25,5 @@ jobs:
           # Something is confused in latest GHA here
           sudo rm /var/lib/containers -rf
       - name: Build
-        run: podman build --security-opt=label=disable --cap-add=all --device /dev/fuse . -t localhost/fedora-coreos
-      - name: Sanity-check
+        run: podman build --security-opt=label=disable --cap-add=all --device /dev/fuse --build-arg-file build-args.conf . -t localhost/fedora-coreos
         run: podman run --rm localhost/fedora-coreos echo hello
