@@ -25,5 +25,8 @@ jobs:
           # Something is confused in latest GHA here
           sudo rm /var/lib/containers -rf
       - name: Build
-        run: podman build --security-opt=label=disable --cap-add=all --device /dev/fuse --build-arg-file build-args.conf . -t localhost/fedora-coreos
+        # Note: we should be able to drop the `-v $PWD:/run/src` once
+        # https://github.com/containers/buildah/issues/5952 is fixed.
+        run: podman build --security-opt=label=disable --cap-add=all --device /dev/fuse --build-arg-file build-args.conf  -v $PWD:/run/src . -t localhost/fedora-coreos
+      - name: Sanity-check
         run: podman run --rm localhost/fedora-coreos echo hello

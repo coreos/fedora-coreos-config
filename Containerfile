@@ -1,3 +1,11 @@
+# To build this, run podman/buildah like this:
+#
+#     podman build --security-opt=label=disable --cap-add=all --device /dev/fuse \
+#         --build-arg-file build-args.conf -v $PWD:/run/src . -t localhost/fedora-coreos
+#
+# Note: we should be able to drop the `-v $PWD:/run/src` once
+# https://github.com/containers/buildah/issues/5952 is fixed.
+
 # Overridden by argfile.conf. The values here are invalid on purpose.
 ARG VERSION=overridden
 ARG BUILDER_IMG=overridden
@@ -19,9 +27,19 @@ RUN --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
     --mount=type=secret,id=contentsets \
     --mount=type=bind,target=/run/src \
         /run/src/build-rootfs "${MANIFEST}" "${VERSION}" /target-rootfs
+RUN --mount=type=bind,target=/run/src,rw \
+      rpm-ostree experimental compose build-chunked-oci \
+        --bootc --format-version=1 --rootfs /target-rootfs \
+        --output oci-archive:/run/src/out.ociarchive
 
-FROM scratch
+FROM oci-archive:./out.ociarchive
 ARG VERSION
+# Need to reference builder here to force ordering. But since we have to run
+# something anyway, we might as well cleanup after ourselves.
+RUN --mount=type=bind,from=builder,target=/var/tmp \
+    --mount=type=bind,target=/run/src,rw \
+      rm /run/src/out.ociarchive
+
 COPY --from=builder /target-rootfs/ /
 RUN <<EOF
 set -xeuo pipefail
