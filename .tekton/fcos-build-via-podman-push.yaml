@@ -36,6 +36,10 @@ spec:
     value: 5d
   - name: output-image
     value: quay.io/konflux-fedora/coreos-tenant/fcos-build-via-podman:{{revision}}
+  - name: hermetic
+    value: true
+  - name: prefetch-input
+    value: '[{"type": "rpm", "path": "."}]'
   pipelineRef:
     params:
     - name: bundle
