@@ -22,7 +22,7 @@ set -xeuo pipefail
 
 # Check if the child device is part of the parent device
 srcdev=$(findmnt -nvr /sysroot -o SOURCE)
-parent_device="/dev/mapper/mpatha"
+parent_device="/dev/mapper/$(multipath -l -v 1)"
 
 if ! lsblk -pno NAME "$parent_device" | grep -qw "$srcdev"; then
     fatal "$srcdev is NOT a child of $parent_device."
