@@ -166,6 +166,15 @@ x86_64:
       - terminal_output serial
     kernel_arguments:
       - console=ttyS1,115200n8
+  proxmoxve:
+    # https://github.com/coreos/fedora-coreos-tracker/issues/1652#issuecomment-2992991313
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=tty0
+      - console=ttyS0,115200n8
   qemu:
     # https://github.com/coreos/fedora-coreos-tracker/issues/954
     grub_commands:
