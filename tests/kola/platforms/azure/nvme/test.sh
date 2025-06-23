@@ -5,6 +5,8 @@
 ##   exclusive: true
 ##   # This test is targeted at Azure
 ##   platforms: azure
+##   # Azure NVMe disk support is currently limited to x86_64
+##   architectures: x86_64
 ##   # attach an NVMe data disk to the instance
 ##   additionalDisks: ["30G:sku=UltraSSD_LRS"]
 ##   # This test requires an instance type that supports NVMe

@@ -348,12 +348,8 @@ def graduate_lockfile(base, fn):
 
 
 def sack_has_nevra_greater_or_equal(base, nevra):
-    from_nevra = libdnf5.rpm.VectorNevraForm(1, libdnf5.rpm.Nevra.Form_NEVRA)
-    nevra = libdnf5.rpm.Nevra.parse(nevra, from_nevra)[0]
-
-    # Set default epoch
-    if not nevra.get_epoch():
-        nevra.set_epoch('0')
+    form_nevra = libdnf5.rpm.VectorNevraForm(1, libdnf5.rpm.Nevra.Form_NEVRA)
+    nevra = libdnf5.rpm.Nevra.parse(nevra, form_nevra)[0]
 
     query = libdnf5.rpm.PackageQuery(base)
     query.filter_arch(nevra.get_arch())
@@ -370,18 +366,8 @@ def sack_has_nevra_greater_or_equal(base, nevra):
                 nevra.get_name()}; assuming not graduated")
         return False
 
-    nevra_latest = libdnf5.rpm.Nevra.parse(pkgs[0], from_nevra)[0]
-
-    # Compare same way as it's done in C++ lindnf5's code:
-    # https://github.com/rpm-software-management/dnf5/blob/main/include/libdnf5/rpm/nevra.hpp#L195
-    for attr in ["get_epoch", "get_version", "get_release"]:
-        r = libdnf5.rpm.rpmvercmp(getattr(nevra, attr)(),
-                                  getattr(nevra_latest, attr)())
-        if r != 0:
-            # Description of 'rpmvercmp' is wrong, proper one:
-            # https://github.com/rpm-software-management/rpm/blob/master/rpmio/rpmvercmp.cc#L16
-            return r == -1
-    return True
+    nevra_latest = libdnf5.rpm.Nevra.parse(pkgs[0], form_nevra)[0]
+    return not libdnf5.rpm.cmp_nevra(nevra_latest, nevra) #  nevra_latest >= nevra
 
 
 def merge_overrides(fn, overrides):
