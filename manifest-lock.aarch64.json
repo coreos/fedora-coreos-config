@@ -163,7 +163,7 @@
       }
     },
     "bootc": {
-      "evra": "1.1.7-1.fc42.aarch64",
+      "evra": "1.3.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "bootc"
       }
@@ -313,7 +313,7 @@
       }
     },
     "container-selinux": {
-      "evra": "4:2.237.0-1.fc42.noarch",
+      "evra": "4:2.238.0-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "container-selinux"
       }
@@ -325,37 +325,37 @@
       }
     },
     "containers-common": {
-      "evra": "5:0.63.0-1.fc42.noarch",
+      "evra": "5:0.63.1-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
     },
     "containers-common-extra": {
-      "evra": "5:0.63.0-1.fc42.noarch",
+      "evra": "5:0.63.1-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "containers-common"
       }
     },
     "coreos-installer": {
-      "evra": "0.24.0-1.fc42.aarch64",
+      "evra": "0.24.0-2.fc42.aarch64",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.24.0-1.fc42.aarch64",
+      "evra": "0.24.0-2.fc42.aarch64",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
     },
     "coreutils": {
-      "evra": "9.6-3.fc42.aarch64",
+      "evra": "9.6-4.fc42.aarch64",
       "metadata": {
         "sourcerpm": "coreutils"
       }
     },
     "coreutils-common": {
-      "evra": "9.6-3.fc42.aarch64",
+      "evra": "9.6-4.fc42.aarch64",
       "metadata": {
         "sourcerpm": "coreutils"
       }
@@ -517,7 +517,7 @@
       }
     },
     "docker-cli": {
-      "evra": "27.5.1-3.fc42.aarch64",
+      "evra": "28.2.2-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
@@ -655,13 +655,13 @@
       }
     },
     "file": {
-      "evra": "5.46-1.fc42.aarch64",
+      "evra": "5.46-3.fc42.aarch64",
       "metadata": {
         "sourcerpm": "file"
       }
     },
     "file-libs": {
-      "evra": "5.46-1.fc42.aarch64",
+      "evra": "5.46-3.fc42.aarch64",
       "metadata": {
         "sourcerpm": "file"
       }
@@ -727,7 +727,7 @@
       }
     },
     "fwupd": {
-      "evra": "2.0.10-1.fc42.aarch64",
+      "evra": "2.0.11-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -883,7 +883,7 @@
       }
     },
     "hwdata": {
-      "evra": "0.395-1.fc42.noarch",
+      "evra": "0.396-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "hwdata"
       }
@@ -1051,25 +1051,25 @@
       }
     },
     "kernel": {
-      "evra": "6.14.6-300.fc42.aarch64",
+      "evra": "6.14.9-300.fc42.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.14.6-300.fc42.aarch64",
+      "evra": "6.14.9-300.fc42.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.14.6-300.fc42.aarch64",
+      "evra": "6.14.9-300.fc42.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.14.6-300.fc42.aarch64",
+      "evra": "6.14.9-300.fc42.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1111,7 +1111,7 @@
       }
     },
     "krb5-libs": {
-      "evra": "1.21.3-5.fc42.aarch64",
+      "evra": "1.21.3-6.fc42.aarch64",
       "metadata": {
         "sourcerpm": "krb5"
       }
@@ -1327,7 +1327,7 @@
       }
     },
     "libipa_hbac": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
@@ -1369,7 +1369,7 @@
       }
     },
     "libldb": {
-      "evra": "2:4.22.1-1.fc42.aarch64",
+      "evra": "2:4.22.2-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1435,7 +1435,7 @@
       }
     },
     "libnfsidmap": {
-      "evra": "1:2.8.3-1.rc1.fc42.aarch64",
+      "evra": "1:2.8.3-1.rc2.fc42.aarch64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1537,19 +1537,19 @@
       }
     },
     "libselinux": {
-      "evra": "3.8-1.fc42.aarch64",
+      "evra": "3.8-2.fc42.aarch64",
       "metadata": {
         "sourcerpm": "libselinux"
       }
     },
     "libselinux-utils": {
-      "evra": "3.8-1.fc42.aarch64",
+      "evra": "3.8-2.fc42.aarch64",
       "metadata": {
         "sourcerpm": "libselinux"
       }
     },
     "libsemanage": {
-      "evra": "3.8-1.fc42.aarch64",
+      "evra": "3.8.1-2.fc42.aarch64",
       "metadata": {
         "sourcerpm": "libsemanage"
       }
@@ -1573,7 +1573,7 @@
       }
     },
     "libsmbclient": {
-      "evra": "2:4.22.1-1.fc42.aarch64",
+      "evra": "2:4.22.2-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1591,25 +1591,25 @@
       }
     },
     "libsss_certmap": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "libsss_idmap": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "libsss_nss_idmap": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "libsss_sudo": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
@@ -1705,7 +1705,7 @@
       }
     },
     "libwbclient": {
-      "evra": "2:4.22.1-1.fc42.aarch64",
+      "evra": "2:4.22.2-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1783,7 +1783,7 @@
       }
     },
     "lua-libs": {
-      "evra": "5.4.7-3.fc42.aarch64",
+      "evra": "5.4.8-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "lua"
       }
@@ -1831,13 +1831,13 @@
       }
     },
     "moby-engine": {
-      "evra": "27.5.1-3.fc42.aarch64",
+      "evra": "28.2.2-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
     },
     "moby-filesystem": {
-      "evra": "27.5.1-3.fc42.noarch",
+      "evra": "28.2.2-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
@@ -1891,7 +1891,7 @@
       }
     },
     "netavark": {
-      "evra": "2:1.15.0-1.fc42.aarch64",
+      "evra": "2:1.15.2-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "netavark"
       }
@@ -1909,7 +1909,7 @@
       }
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.8.3-1.rc1.fc42.aarch64",
+      "evra": "1:2.8.3-1.rc2.fc42.aarch64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1921,7 +1921,7 @@
       }
     },
     "nmstate": {
-      "evra": "2.2.44-1.fc42.aarch64",
+      "evra": "2.2.45-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "nmstate"
       }
@@ -2047,13 +2047,13 @@
       }
     },
     "passt": {
-      "evra": "0^20250512.g8ec1341-1.fc42.aarch64",
+      "evra": "0^20250606.g754c6d7-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20250512.g8ec1341-1.fc42.noarch",
+      "evra": "0^20250606.g754c6d7-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2107,7 +2107,7 @@
       }
     },
     "podman": {
-      "evra": "5:5.5.0-1.fc42.aarch64",
+      "evra": "5:5.5.1-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2119,13 +2119,13 @@
       }
     },
     "polkit": {
-      "evra": "126-2.fc42.aarch64",
+      "evra": "126-3.fc42.aarch64",
       "metadata": {
         "sourcerpm": "polkit"
       }
     },
     "polkit-libs": {
-      "evra": "126-2.fc42.aarch64",
+      "evra": "126-3.fc42.aarch64",
       "metadata": {
         "sourcerpm": "polkit"
       }
@@ -2167,7 +2167,7 @@
       }
     },
     "qemu-user-static-x86": {
-      "evra": "2:9.2.3-1.fc42.aarch64",
+      "evra": "2:9.2.4-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "qemu"
       }
@@ -2233,19 +2233,19 @@
       }
     },
     "samba-client-libs": {
-      "evra": "2:4.22.1-1.fc42.aarch64",
+      "evra": "2:4.22.2-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common": {
-      "evra": "2:4.22.1-1.fc42.noarch",
+      "evra": "2:4.22.2-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common-libs": {
-      "evra": "2:4.22.1-1.fc42.aarch64",
+      "evra": "2:4.22.2-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -2263,13 +2263,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "41.40-1.fc42.noarch",
+      "evra": "41.43-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "41.40-1.fc42.noarch",
+      "evra": "41.43-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2317,7 +2317,7 @@
       }
     },
     "skopeo": {
-      "evra": "1:1.18.0-1.fc42.aarch64",
+      "evra": "1:1.19.0-2.fc42.aarch64",
       "metadata": {
         "sourcerpm": "skopeo"
       }
@@ -2371,55 +2371,55 @@
       }
     },
     "sssd-ad": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-client": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-common": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-common-pac": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-ipa": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-krb5": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-krb5-common": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-ldap": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-nfs-idmap": {
-      "evra": "2.10.2-3.fc42.aarch64",
+      "evra": "2.11.0-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "sssd"
       }
@@ -2437,49 +2437,49 @@
       }
     },
     "systemd": {
-      "evra": "257.5-6.fc42.aarch64",
+      "evra": "257.6-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-container": {
-      "evra": "257.5-6.fc42.aarch64",
+      "evra": "257.6-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-libs": {
-      "evra": "257.5-6.fc42.aarch64",
+      "evra": "257.6-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-pam": {
-      "evra": "257.5-6.fc42.aarch64",
+      "evra": "257.6-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-resolved": {
-      "evra": "257.5-6.fc42.aarch64",
+      "evra": "257.6-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-shared": {
-      "evra": "257.5-6.fc42.aarch64",
+      "evra": "257.6-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-sysusers": {
-      "evra": "257.5-6.fc42.aarch64",
+      "evra": "257.6-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-udev": {
-      "evra": "257.5-6.fc42.aarch64",
+      "evra": "257.6-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
@@ -2503,7 +2503,7 @@
       }
     },
     "toolbox": {
-      "evra": "0.1.1-3.fc42.aarch64",
+      "evra": "0.1.2-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "toolbox"
       }
@@ -2551,13 +2551,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.1275-1.fc42.noarch",
+      "evra": "2:9.1.1435-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.1275-1.fc42.aarch64",
+      "evra": "2:9.1.1435-1.fc42.aarch64",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2642,16 +2642,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-05-26T00:00:00Z",
+    "generated": "2025-06-09T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2025-04-09T11:06:58Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-05-25T15:58:53Z"
+        "generated": "2025-06-08T07:33:33Z"
       },
       "fedora-updates": {
-        "generated": "2025-05-26T01:23:44Z"
+        "generated": "2025-06-09T02:30:39Z"
       }
     }
   }

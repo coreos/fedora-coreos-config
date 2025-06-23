@@ -42,3 +42,5 @@ container-imgref: "ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos:{s
 # Enable 'erofs' by default for the rootfs in the Live ISO/PXE artifacts
 live-rootfs-fstype: "erofs"
 live-rootfs-fsoptions: "-zlzma,level=6 -Eall-fragments,fragdedupe=inode -C1048576 --quiet"
+
+include: image-default.yaml

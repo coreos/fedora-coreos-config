@@ -11,7 +11,6 @@ variables:
   osversion: "unused"
 
 include:
-  - kernel.yaml
   - system-configuration.yaml
   - ignition-and-ostree.yaml
   - file-transfer.yaml
@@ -35,11 +34,11 @@ ignore-removed-users:
   - root
 ignore-removed-groups:
   - root
+# Add the sudo group to /etc/group
+# This is re-implemented below for the container-native flow. Nuke this once
+# that's the only path we support.
 etc-group-members:
-  - wheel
   - sudo
-  - systemd-journal
-  - adm
 
 check-passwd:
   type: "file"
@@ -47,8 +46,6 @@ check-passwd:
 check-groups:
   type: "file"
   filename: "group"
-
-default-target: multi-user.target
 
 # we can drop this when it's the rpm-ostree default
 rpmdb: sqlite
@@ -63,6 +60,7 @@ postprocess:
     set -eux -o pipefail
     setsebool -P -N container_use_cephfs on  # RHBZ#1692369
     setsebool -P -N virt_use_samba on  # RHBZ#1754825
+    rm -f /etc/selinux/targeted/semanage.*.LOCK
 
   # Mask dnsmasq. We include dnsmasq for host services that use the dnsmasq
   # binary but intentionally mask the systemd service so users can't easily
@@ -102,6 +100,30 @@ postprocess:
     [Unit]
     ConditionPathExists=
     EOF
+
+  # sudo prefers its config files to be mode 440, and some security scanners
+  # complain if /etc/sudoers.d files are world-readable.
+  # https://bugzilla.redhat.com/show_bug.cgi?id=1981979
+  # This is added by the 05core overlay listed above.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    chmod 440 /etc/sudoers.d/coreos-sudo-group
+
+  # Set the default systemd target to `multi-user.target`.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    ln -sf multi-user.target /usr/lib/systemd/system/default.target
+
+  # Add the sudo group to /etc/group in container-native flow.
+  # We can nuke `etc-group-members` once this is the only supported path.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    if [ -f /run/.containerenv ]; then
+      grep sudo /usr/lib/group >> /etc/group
+    fi
 
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go
