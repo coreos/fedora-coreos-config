@@ -3,6 +3,10 @@ Description=CoreOS Mark Ignition Boot Complete
 Documentation=https://docs.fedoraproject.org/en-US/fedora-coreos/
 ConditionKernelCommandLine=ignition.firstboot
 ConditionPathExists=!/run/ostree-live
+# This condition is required for cases where a soft-reboot is issued on the
+# firstboot. Soft reboot do not change the kernel or its command-line arguments,
+# which would cause this service to fail after the soft-reboot completes.
+ConditionPathExists=/boot/ignition.firstboot
 RequiresMountsFor=/boot
 
 [Service]

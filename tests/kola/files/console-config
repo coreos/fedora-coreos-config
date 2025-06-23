@@ -68,7 +68,8 @@ x86_64)
     # Matches the legacy defaults
     check_platforms_json qemu "console=tty0 console=ttyS0,115200n8" "serial --speed=115200\nterminal_input serial console\nterminal_output serial console"
     # Different from legacy defaults
-    check_platforms_json packet "console=ttyS1,115200n8" "serial --unit=1 --speed=115200\nterminal_input serial\nterminal_output serial"
+    check_platforms_json applehv "console=tty0 console=hvc0" "serial --speed=115200\nterminal_input serial console\nterminal_output serial console"
+    check_platforms_json azure "console=tty0 console=ttyS0,115200n8" ""
     ;;
 aarch64)
     # GRUB commands but no kargs
@@ -77,6 +78,10 @@ aarch64)
 ppc64le)
     # Kargs but no GRUB commands
     check_platforms_json qemu "console=hvc0 console=tty0" ""
+    ;;
+riscv)
+    # Matches the legacy defaults
+    check_platforms_json qemu "console=tty0 console=ttyS0,115200n8" "serial --speed=115200\nterminal_input serial console\nterminal_output serial console"
     ;;
 esac
 ok "platforms.json has expected contents"

@@ -8,4 +8,24 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  glibc:
+    evr: 2.41-5.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
+      type: pin
+  glibc-common:
+    evr: 2.41-5.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
+      type: pin
+  glibc-gconv-extra:
+    evr: 2.41-5.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
+      type: pin
+  glibc-minimal-langpack:
+    evr: 2.41-5.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
+      type: pin
