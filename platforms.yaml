@@ -53,6 +53,14 @@ aarch64:
     kernel_arguments:
       - console=ttyAMA0,115200n8
       - console=tty0
+  oraclecloud:
+    # https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/enablingserialconsoleaccess.htm
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=ttyAMA0,115200
   qemu:
     # The kernel successfully autodetects a serial console, but we still
     # want GRUB to use one
@@ -150,6 +158,14 @@ x86_64:
     kernel_arguments:
       - console=ttyS0,115200n8
       - console=tty0
+  oraclecloud:
+    # https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/enablingserialconsoleaccess.htm
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=ttyS0,115200
   proxmoxve:
     # https://pve.proxmox.com/wiki/Serial_Terminal
     grub_commands:
