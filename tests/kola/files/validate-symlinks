@@ -42,8 +42,6 @@ if is_scos || is_rhcos; then
         '/etc/pki/tls/'
         '/etc/rhsm-host'
         '/etc/sysconfig/grub'
-        # this will be dropped as part of https://issues.redhat.com/browse/OCPEDGE-1706
-        '/usr/lib/ocf/resource.d/ocp-tnf/podman-etcd'
     )
     list_broken_symlinks_skip+=("${rhcos_list[@]}")
 fi
