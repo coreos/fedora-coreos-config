@@ -85,7 +85,7 @@ mkdir -p "${UNIT_DIR}"
 # Using dracut-lib seems to interfere with iscsi functionnality but this requires deeper investigation
 # and more tests : https://github.com/coreos/fedora-coreos-tracker/issues/1689
 if test -n "$(cmdline_arg ostree)" && test -z "$(cmdline_arg root)" && ! dracut_func getargbool 0 'kdump_remote_ip'; then
-    cat >"${UNIT_DIR}"/sysroot.mount << 'EOF'
+    cat >"${UNIT_DIR}/sysroot.mount" <<EOF
 [Unit]
 Before=initrd-root-fs.target
 After=coreos-rootflags.service
@@ -93,7 +93,7 @@ After=coreos-rootflags.service
 EnvironmentFile=/run/coreos-rootflags
 What=/dev/disk/by-label/root
 Where=/sysroot
-Options=${OPTIONS}
+Options=${OPTIONS:-}
 EOF
     add_requires sysroot.mount initrd-root-fs.target
     add_requires coreos-rootflags.service initrd-root-fs.target
