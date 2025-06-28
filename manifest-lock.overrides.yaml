@@ -20,30 +20,6 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-ae9b685d28
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1973
       type: fast-track
-  glibc:
-    evr: 2.41-8.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-88ce2d977b
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
-      type: fast-track
-  glibc-common:
-    evr: 2.41-8.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-88ce2d977b
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
-      type: fast-track
-  glibc-gconv-extra:
-    evr: 2.41-8.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-88ce2d977b
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
-      type: fast-track
-  glibc-minimal-langpack:
-    evr: 2.41-8.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-88ce2d977b
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
-      type: fast-track
   moby-engine:
     evr: 28.3.0-1.fc42
     metadata:
