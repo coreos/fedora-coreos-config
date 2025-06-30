@@ -52,6 +52,16 @@ conditional-include:
         - python
         - python3
         - python3-libs
+  # We will enable bootloader-update.service on F43+.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1468#issuecomment-2996654547
+  # https://fedoraproject.org/wiki/Changes/AutomaticBootloaderUpdatesBootc
+  - if: releasever >= 43
+    include:
+      postprocess:
+        - |
+          #!/usr/bin/bash
+          set -eux -o pipefail
+          echo "enable bootloader-update.service" >> /usr/lib/systemd/system-preset/45-fcos.preset
 
 ostree-layers:
   - overlay/15fcos
