@@ -1,9 +1,11 @@
 [Unit]
-Description=CoreOS Wait For Multipathed Boot
+Description=CoreOS Wait For Multipathed Boot & Root
 DefaultDependencies=false
 After=dracut-cmdline.service
 Requires=dev-disk-by\x2dlabel-dm\x2dmpath\x2dboot.device
 After=dev-disk-by\x2dlabel-dm\x2dmpath\x2dboot.device
+Requires=dev-disk-by\x2dlabel-dm\x2dmpath\x2droot.device
+After=dev-disk-by\x2dlabel-dm\x2dmpath\x2droot.device
 Requires=multipathd.service
 After=multipathd.service
 

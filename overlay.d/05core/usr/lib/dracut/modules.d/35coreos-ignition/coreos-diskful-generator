@@ -89,6 +89,7 @@ if test -n "$(cmdline_arg ostree)" && test -z "$(cmdline_arg root)" && ! dracut_
 [Unit]
 Before=initrd-root-fs.target
 After=coreos-rootflags.service
+After=coreos-multipath-wait.target
 [Mount]
 EnvironmentFile=/run/coreos-rootflags
 What=/dev/disk/by-label/root
