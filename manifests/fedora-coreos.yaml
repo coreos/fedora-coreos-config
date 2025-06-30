@@ -46,8 +46,12 @@ conditional-include:
         - overlay/35oci-migration
   # Allow python in F43 for now until nfs package gets fixed.
   # https://github.com/coreos/fedora-coreos-tracker/issues/1942#issuecomment-2881075898
+  # iptables-legacy is not included from 43
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1818
   - if: releasever < 43
     include:
+      packages:
+        - iptables-legacy
       exclude-packages:
         - python
         - python3

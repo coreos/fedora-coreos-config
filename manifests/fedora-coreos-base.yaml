@@ -180,9 +180,6 @@ packages:
   - console-login-helper-messages-motdgen
   # i18n
   - kbd
-  # In F35+ need `iptables-legacy` package
-  # See https://github.com/coreos/fedora-coreos-tracker/issues/676#issuecomment-928028451
-  - iptables-legacy
   # NIC firmware we've traditionally shipped but then were split out of linux-firmware in Fedora
   - qed-firmware # https://github.com/coreos/fedora-coreos-tracker/issues/1746
   # Include udev rules for NVMe backed Azure Instances
