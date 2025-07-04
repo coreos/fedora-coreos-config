@@ -14,21 +14,3 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d35460c984
       type: fast-track
-  docker-cli:
-    evr: 28.3.0-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-ae9b685d28
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1973
-      type: fast-track
-  moby-engine:
-    evr: 28.3.0-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-ae9b685d28
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1973
-      type: fast-track
-  moby-filesystem:
-    evra: 28.3.0-1.fc42.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-ae9b685d28
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1973
-      type: fast-track
