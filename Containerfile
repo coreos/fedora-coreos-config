@@ -13,6 +13,8 @@ FROM ${BUILDER_IMG} as builder
 
 ARG VERSION=overridden
 ARG MANIFEST=overridden
+# XXX: see inject_passwd_group() in build-rootfs
+ARG PASSWD_GROUP_DIR
 
 # useful if you're hacking on rpm-ostree/bootc-base-imagectl
 # COPY rpm-ostree /usr/bin/
