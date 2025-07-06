@@ -9,23 +9,14 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  glibc:
-    evr: 2.41-5.fc42
+  bootupd:
+    evr: 0.2.28-2.fc42
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
-      type: pin
-  glibc-common:
-    evr: 2.41-5.fc42
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d35460c984
+      type: fast-track
+  sudo:
+    evr: 1.9.17-2.p1.fc42
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
-      type: pin
-  glibc-gconv-extra:
-    evr: 2.41-5.fc42
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
-      type: pin
-  glibc-minimal-langpack:
-    evr: 2.41-5.fc42
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-44c3b13554
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1978
+      type: fast-track

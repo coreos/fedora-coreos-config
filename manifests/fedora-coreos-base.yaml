@@ -85,22 +85,6 @@ postprocess:
     ln -sf /usr/sbin/iptables-nft-restore  /etc/alternatives/iptables-restore
     ln -sf /usr/sbin/iptables-nft-save     /etc/alternatives/iptables-save
 
-  # Force the ssh-host-keys-migration to happen on every boot
-  # to handle cases where someone did a upgrade->rollback->upgrade
-  # See https://github.com/coreos/fedora-coreos-tracker/issues/1473
-  # We should remove this after the next barrier release.
-  - |
-    #!/usr/bin/bash
-    set -eux -o pipefail
-    mkdir -p /usr/lib/systemd/system/ssh-host-keys-migration.service.d
-    cat <<'EOF' > /usr/lib/systemd/system/ssh-host-keys-migration.service.d/coreos-force-migration-on-every-boot.conf
-    # Force the ssh-host-keys-migration to happen on every boot
-    # to handle cases where someone did a upgrade->rollback->upgrade
-    # See https://github.com/coreos/fedora-coreos-tracker/issues/1473
-    [Unit]
-    ConditionPathExists=
-    EOF
-
   # sudo prefers its config files to be mode 440, and some security scanners
   # complain if /etc/sudoers.d files are world-readable.
   # https://bugzilla.redhat.com/show_bug.cgi?id=1981979
