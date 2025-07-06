@@ -73,13 +73,13 @@
       }
     },
     "amd-gpu-firmware": {
-      "evra": "20250509-1.fc42.noarch",
+      "evra": "20250627-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "amd-ucode-firmware": {
-      "evra": "20250509-1.fc42.noarch",
+      "evra": "20250627-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -91,19 +91,19 @@
       }
     },
     "audit": {
-      "evra": "4.0.3-2.fc42.x86_64",
+      "evra": "4.0.5-2.fc42.x86_64",
       "metadata": {
         "sourcerpm": "audit"
       }
     },
     "audit-libs": {
-      "evra": "4.0.3-2.fc42.x86_64",
+      "evra": "4.0.5-2.fc42.x86_64",
       "metadata": {
         "sourcerpm": "audit"
       }
     },
     "audit-rules": {
-      "evra": "4.0.3-2.fc42.x86_64",
+      "evra": "4.0.5-2.fc42.x86_64",
       "metadata": {
         "sourcerpm": "audit"
       }
@@ -169,13 +169,13 @@
       }
     },
     "bootc": {
-      "evra": "1.3.0-1.fc42.x86_64",
+      "evra": "1.4.0-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "bootc"
       }
     },
     "bootupd": {
-      "evra": "0.2.27-2.fc42.x86_64",
+      "evra": "0.2.28-2.fc42.x86_64",
       "metadata": {
         "sourcerpm": "rust-bootupd"
       }
@@ -187,7 +187,7 @@
       }
     },
     "btrfs-progs": {
-      "evra": "6.14-1.fc42.x86_64",
+      "evra": "6.15-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "btrfs-progs"
       }
@@ -391,13 +391,13 @@
       }
     },
     "crun": {
-      "evra": "1.21-1.fc42.x86_64",
+      "evra": "1.22-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "crun"
       }
     },
     "crun-wasm": {
-      "evra": "1.21-1.fc42.x86_64",
+      "evra": "1.22-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "crun"
       }
@@ -409,13 +409,13 @@
       }
     },
     "cryptsetup": {
-      "evra": "2.7.5-2.fc42.x86_64",
+      "evra": "2.8.0-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "cryptsetup"
       }
     },
     "cryptsetup-libs": {
-      "evra": "2.7.5-2.fc42.x86_64",
+      "evra": "2.8.0-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "cryptsetup"
       }
@@ -523,7 +523,7 @@
       }
     },
     "docker-cli": {
-      "evra": "28.2.2-1.fc42.x86_64",
+      "evra": "28.3.0-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
@@ -781,7 +781,7 @@
       }
     },
     "git-core": {
-      "evra": "2.49.0-1.fc42.x86_64",
+      "evra": "2.50.0-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "git"
       }
@@ -793,25 +793,25 @@
       }
     },
     "glibc": {
-      "evra": "2.41-6.fc42.x86_64",
+      "evra": "2.41-8.fc42.x86_64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.41-6.fc42.x86_64",
+      "evra": "2.41-8.fc42.x86_64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.41-6.fc42.x86_64",
+      "evra": "2.41-8.fc42.x86_64",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.41-6.fc42.x86_64",
+      "evra": "2.41-8.fc42.x86_64",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -925,7 +925,7 @@
       }
     },
     "intel-gpu-firmware": {
-      "evra": "20250509-1.fc42.noarch",
+      "evra": "20250627-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1069,25 +1069,25 @@
       }
     },
     "kernel": {
-      "evra": "6.14.11-300.fc42.x86_64",
+      "evra": "6.15.4-200.fc42.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.14.11-300.fc42.x86_64",
+      "evra": "6.15.4-200.fc42.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.14.11-300.fc42.x86_64",
+      "evra": "6.15.4-200.fc42.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.14.11-300.fc42.x86_64",
+      "evra": "6.15.4-200.fc42.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1135,7 +1135,7 @@
       }
     },
     "less": {
-      "evra": "668-2.fc42.x86_64",
+      "evra": "679-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "less"
       }
@@ -1447,7 +1447,7 @@
       }
     },
     "libnfsidmap": {
-      "evra": "1:2.8.3-2.rc2.fc42.x86_64",
+      "evra": "1:2.8.3-2.rc3.fc42.x86_64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1753,13 +1753,13 @@
       }
     },
     "linux-firmware": {
-      "evra": "20250509-1.fc42.noarch",
+      "evra": "20250627-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "linux-firmware-whence": {
-      "evra": "20250509-1.fc42.noarch",
+      "evra": "20250627-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1849,13 +1849,13 @@
       }
     },
     "moby-engine": {
-      "evra": "28.2.2-1.fc42.x86_64",
+      "evra": "28.3.0-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
     },
     "moby-filesystem": {
-      "evra": "28.2.2-1.fc42.noarch",
+      "evra": "28.3.0-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
@@ -1927,7 +1927,7 @@
       }
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.8.3-2.rc2.fc42.x86_64",
+      "evra": "1:2.8.3-2.rc3.fc42.x86_64",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1963,7 +1963,7 @@
       }
     },
     "nvidia-gpu-firmware": {
-      "evra": "20250509-1.fc42.noarch",
+      "evra": "20250627-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2077,13 +2077,13 @@
       }
     },
     "pciutils": {
-      "evra": "3.13.0-7.fc42.x86_64",
+      "evra": "3.14.0-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "pciutils"
       }
     },
     "pciutils-libs": {
-      "evra": "3.13.0-7.fc42.x86_64",
+      "evra": "3.14.0-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "pciutils"
       }
@@ -2125,7 +2125,7 @@
       }
     },
     "podman": {
-      "evra": "5:5.5.1-1.fc42.x86_64",
+      "evra": "5:5.5.2-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2179,7 +2179,7 @@
       }
     },
     "qed-firmware": {
-      "evra": "20250509-1.fc42.noarch",
+      "evra": "20250627-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2275,13 +2275,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "41.43-1.fc42.noarch",
+      "evra": "41.44-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "41.43-1.fc42.noarch",
+      "evra": "41.44-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2449,49 +2449,49 @@
       }
     },
     "systemd": {
-      "evra": "257.6-1.fc42.x86_64",
+      "evra": "257.7-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-container": {
-      "evra": "257.6-1.fc42.x86_64",
+      "evra": "257.7-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-libs": {
-      "evra": "257.6-1.fc42.x86_64",
+      "evra": "257.7-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-pam": {
-      "evra": "257.6-1.fc42.x86_64",
+      "evra": "257.7-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-resolved": {
-      "evra": "257.6-1.fc42.x86_64",
+      "evra": "257.7-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-shared": {
-      "evra": "257.6-1.fc42.x86_64",
+      "evra": "257.7-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-sysusers": {
-      "evra": "257.6-1.fc42.x86_64",
+      "evra": "257.7-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-udev": {
-      "evra": "257.6-1.fc42.x86_64",
+      "evra": "257.7-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
@@ -2563,13 +2563,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.1435-1.fc42.noarch",
+      "evra": "2:9.1.1484-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.1435-1.fc42.x86_64",
+      "evra": "2:9.1.1484-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2654,16 +2654,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-06-23T00:00:00Z",
+    "generated": "2025-07-05T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2025-04-09T11:06:59Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-06-21T18:47:01Z"
+        "generated": "2025-07-03T15:54:51Z"
       },
       "fedora-updates": {
-        "generated": "2025-06-23T00:49:15Z"
+        "generated": "2025-07-05T01:59:51Z"
       }
     }
   }
