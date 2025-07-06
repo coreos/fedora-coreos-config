@@ -167,7 +167,7 @@ postprocess:
 
   # Delete documentation. (Note that fedora-bootc doesn't explicitly set
   # `documentation`, and neither do we, so the rpm-ostree default is true. We
-  # historically have effectively done `the equivalent of `documentation: false`
+  # historically have effectively done the equivalent of `documentation: false`
   # though.)
   - |
     #!/usr/bin/env bash

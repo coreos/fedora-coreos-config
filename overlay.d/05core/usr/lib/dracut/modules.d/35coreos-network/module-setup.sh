@@ -1,3 +1,13 @@
+check() {
+    if [[ $IN_KDUMP == 1 ]]; then
+        return 1
+    fi
+}
+
+depends() {
+    echo afterburn
+}
+
 install_and_enable_unit() {
     unit="$1"; shift
     target="$1"; shift

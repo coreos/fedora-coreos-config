@@ -1,3 +1,9 @@
+check() {
+    if [[ $IN_KDUMP == 1 ]]; then
+        return 1
+    fi
+}
+
 depends() {
     # We need the rdcore binary
     echo rdcore
