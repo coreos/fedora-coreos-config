@@ -33,6 +33,7 @@ def main():
     locked_nevras = get_locked_nevras()
     if locked_nevras:
         inject_pool_repo_if_exists(locked_nevras)
+        create_and_inject_local_rpm_overrides_repo_if_needed(locked_nevras)
 
     packages.extend(locked_nevras)
     overlays = gather_overlays(manifest)
@@ -47,6 +48,24 @@ def main():
     if version != "":
         inject_version_info(target_rootfs, manifest['mutate-os-release'], version)
     inject_postprocess_scripts(target_rootfs, manifest)
+
+
+def create_and_inject_local_rpm_overrides_repo_if_needed(locked_nevras):
+    rpmoverrides_dir = os.path.join(CONTEXTDIR, 'rpmoverrides')
+    if not os.path.exists(rpmoverrides_dir):
+         return
+
+    # create local-overrides.repo
+    packages = ','.join(locked_nevras)
+    with open("/etc/yum.repos.d/local-overrides.repo", 'w') as f:
+        f.write(f"""
+[local-overrides]
+name=local-overrides
+baseurl=file://{rpmoverrides_dir}/
+gpgcheck=0
+cost=500
+includepkgs={packages}
+""")
 
 
 def get_treefile(manifest_path):
