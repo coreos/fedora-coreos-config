@@ -24,6 +24,25 @@ jobs:
           sudo apt install -y crun/testing podman/testing skopeo/testing
           # Something is confused in latest GHA here
           sudo rm /var/lib/containers -rf
+      - name: Download override packages and create yum repo
+        run: |
+          podman run --rm -v $PWD:/run/src -w /run/src quay.io/fedora/fedora:latest sh -c '
+            set -xeuo pipefail
+            dnf -y install koji createrepo_c python3-dnf python3-PyYAML && dnf clean all
+            overridesdir="rpmoverrides"
+
+            # prepare directory to download override packages
+            [ -d ${overridesdir} ] && rm -rf ${overridesdir}
+            mkdir -p "${overridesdir}"
+
+            curl -LO https://raw.githubusercontent.com/coreos/coreos-assembler/refs/heads/main/src/download-overrides.py
+            python3 download-overrides.py --downloaddir "./${overridesdir}" --lockfiledir "./"
+
+            # create local yum repo
+            if [[ -n $(ls "${overridesdir}/"*.rpm 2> /dev/null) ]]; then
+                cd "${overridesdir}" && createrepo_c .
+            fi
+          '
       - name: Build
         # Note: we should be able to drop the `-v $PWD:/run/src` once
         # https://github.com/containers/buildah/issues/5952 is fixed.
