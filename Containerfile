@@ -34,6 +34,7 @@ RUN --mount=type=bind,target=/run/src,rw \
 
 FROM oci-archive:./out.ociarchive
 ARG VERSION
+ARG NAME=overridden
 # Need to reference builder here to force ordering. But since we have to run
 # something anyway, we might as well cleanup after ourselves.
 RUN --mount=type=bind,from=builder,target=/var/tmp \
@@ -51,5 +52,6 @@ EOF
 LABEL containers.bootc=1
 LABEL ostree.bootable=1
 LABEL org.opencontainers.image.version=$VERSION
+LABEL com.coreos.osname=$NAME
 STOPSIGNAL SIGRTMIN+3
 CMD ["/sbin/init"]
