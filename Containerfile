@@ -6,15 +6,15 @@
 # Note: we should be able to drop the `-v $PWD:/run/src` once
 # https://github.com/containers/buildah/issues/5952 is fixed.
 
-# Overridden by argfile.conf. The values here are invalid on purpose.
-ARG VERSION=overridden
+# Overridden by argfile.conf. The value here in invalid on purpose.
 ARG BUILDER_IMG=overridden
-ARG MANIFEST=overridden
 
 FROM ${BUILDER_IMG} as builder
 
-ARG VERSION
-ARG MANIFEST
+ARG VERSION=overridden
+ARG MANIFEST=overridden
+# XXX: see inject_passwd_group() in build-rootfs
+ARG PASSWD_GROUP_DIR
 
 # useful if you're hacking on rpm-ostree/bootc-base-imagectl
 # COPY rpm-ostree /usr/bin/

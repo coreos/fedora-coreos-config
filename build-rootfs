@@ -86,6 +86,9 @@ def get_treefile(manifest_path):
 
 
 def build_rootfs(target_rootfs, manifest_path, packages, overlays, nodocs):
+    passwd_group_dir = os.getenv('PASSWD_GROUP_DIR')
+    if passwd_group_dir is not None:
+        inject_passwd_group(os.path.join(CONTEXTDIR, passwd_group_dir))
     with tempfile.NamedTemporaryFile(mode='w') as argsfile:
         for pkg in packages:
             argsfile.write(f"--install={pkg}\n")
@@ -99,6 +102,21 @@ def build_rootfs(target_rootfs, manifest_path, packages, overlays, nodocs):
                                "--args-file", argsfile.name, "build-rootfs",
                                "--manifest", 'minimal-plus',
                                target_rootfs] + cache_arg)
+
+
+# We want to keep our passwd/group as canonical for now. We should be
+# able to clean this up when we migrate them to sysusers instead. See:
+# https://github.com/coreos/rpm-ostree/pull/5427
+def inject_passwd_group(parent_dir):
+    minimal = '/usr/share/doc/bootc-base-imagectl/manifests/minimal'
+    dst_passwd = os.path.join(minimal, 'passwd')
+    dst_group = os.path.join(minimal, 'group')
+    # unlink first instead of overwriting as a way to confirm they're still there
+    os.unlink(dst_passwd)
+    os.unlink(dst_group)
+    print("Overriding passwd/group files", flush=True)
+    shutil.copy(os.path.join(parent_dir, 'passwd'), dst_passwd)
+    shutil.copy(os.path.join(parent_dir, 'group'), dst_group)
 
 
 def inject_postprocess_scripts(rootfs, manifest):
