@@ -9,6 +9,16 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  afterburn:
+    evr: 5.9.0-1.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-6fc5d75066
+      type: fast-track
+  afterburn-dracut:
+    evr: 5.9.0-1.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-6fc5d75066
+      type: fast-track
   bootupd:
     evr: 0.2.28-2.fc42
     metadata:
