@@ -6,7 +6,7 @@
 # Note: we should be able to drop the `-v $PWD:/run/src` once
 # https://github.com/containers/buildah/issues/5952 is fixed.
 
-# Overridden by argfile.conf. The value here in invalid on purpose.
+# Overridden by build-args.conf. The value here is invalid on purpose.
 ARG BUILDER_IMG=overridden
 
 FROM ${BUILDER_IMG} as builder
