@@ -9,6 +9,11 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  docker-cli:
+    evr: 28.3.0-1.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1973
+      type: pin
   glibc:
     evr: 2.41-5.fc42
     metadata:
@@ -28,6 +33,16 @@ packages:
     evr: 2.41-5.fc42
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1974
+      type: pin
+  moby-engine:
+    evr: 28.3.0-1.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1973
+      type: pin
+  moby-filesystem:
+    evra: 28.3.0-1.fc42.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1973
       type: pin
   sudo:
     evr: 1.9.17-2.p1.fc42
