@@ -24,6 +24,24 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d35460c984
       type: fast-track
+  dracut:
+    evr: 107-1.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-22f93702f0
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1937
+      type: fast-track
+  dracut-network:
+    evr: 107-1.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-22f93702f0
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1937
+      type: fast-track
+  dracut-squash:
+    evr: 107-1.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-22f93702f0
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1937
+      type: fast-track
   ignition:
     evr: 2.22.0-1.fc42
     metadata:
