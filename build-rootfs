@@ -46,7 +46,7 @@ def main():
 
     if version != "":
         inject_version_info(target_rootfs, manifest['mutate-os-release'], version)
-    inject_postprocess_scripts(target_rootfs, manifest)
+    run_postprocess_scripts(target_rootfs, manifest)
 
 
 def get_treefile(manifest_path):
@@ -120,15 +120,33 @@ def inject_passwd_group(parent_dir):
     shutil.copy(os.path.join(parent_dir, 'group'), dst_group)
 
 
-def inject_postprocess_scripts(rootfs, manifest):
+def run_postprocess_scripts(rootfs, manifest):
     # since we have the derive-only manifest handy, just inject a script now
     # that we can execute in the second stage. we could of course use e.g.
     # bwrap to run those now, but... it's just cleaner to use multi-stage build
     # semantics
     for i, script in enumerate(manifest.get('postprocess', [])):
-        with open(os.path.join(rootfs, f'usr/libexec/coreos-postprocess-{i}'), mode='w') as f:
+        name = f'usr/libexec/coreos-postprocess-{i}'
+        with open(os.path.join(rootfs, name), mode='w') as f:
             os.fchmod(f.fileno(), 0o755)
             f.write(script)
+        bwrap(rootfs, [f'/{name}'])
+        os.unlink(os.path.join(rootfs, name))
+
+
+# Could upstream this as e.g. `bootc-base-imagectl runroot /rootfs <cmd>` maybe?
+# But we'd need to carry it anyway at least for RHCOS 9.6.
+def bwrap(rootfs, args):
+    subprocess.check_call(['bwrap',
+                           '--dev', '/dev', '--proc', '/proc',
+                           '--dir', '/tmp', '--dir', '/var', '--tmpfs', '/run',
+                           '--bind', '/run/.containerenv', '/run/.containerenv',
+                           '--bind', f'{rootfs}/usr', '/usr',
+                           '--bind', f'{rootfs}/etc', '/etc',
+                           '--symlink', '/usr/lib', '/lib',
+                           '--symlink', '/usr/lib64', '/lib64',
+                           '--symlink', '/usr/bin', '/bin',
+                           '--symlink', '/usr/sbin', '/sbin', '--'] + args)
 
 
 def get_locked_nevras():

@@ -41,14 +41,6 @@ RUN --mount=type=bind,from=builder,target=/var/tmp \
     --mount=type=bind,target=/run/src,rw \
       rm /run/src/out.ociarchive
 
-COPY --from=builder /target-rootfs/ /
-RUN <<EOF
-set -xeuo pipefail
-for script in /usr/libexec/coreos-postprocess-*; do
-  $script; rm $script
-done
-EOF
-
 LABEL containers.bootc=1
 LABEL ostree.bootable=1
 LABEL org.opencontainers.image.version=$VERSION
