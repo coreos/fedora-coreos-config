@@ -29,6 +29,7 @@ jobs:
           podman run --rm -v $PWD:/run/src -w /run/src quay.io/fedora/fedora:latest sh -c '
             set -xeuo pipefail
             dnf -y install koji createrepo_c python3-dnf python3-PyYAML && dnf clean all
+            workdir="/run/src"
             overridesdir="rpmoverrides"
 
             # prepare directory to download override packages
@@ -40,12 +41,30 @@ jobs:
 
             # create local yum repo
             if [[ -n $(ls "${overridesdir}/"*.rpm 2> /dev/null) ]]; then
-                cd "${overridesdir}" && createrepo_c .
+              cd "${overridesdir}" && createrepo_c .
+              cat > "${workdir}"/local-overrides.repo <<EOF
+          [local-overrides]
+          name=local-overrides
+          baseurl=file://${workdir}/${overridesdir}/
+          enabled=1
+          gpgcheck=0
+          cost=500
+          EOF
+            else
+              # remove empty dir rpmoverrides
+              rmdir "${workdir}/${overridesdir}/"
             fi
+            rm "${workdir}"/download-overrides.py
           '
       - name: Build
         # Note: we should be able to drop the `-v $PWD:/run/src` once
         # https://github.com/containers/buildah/issues/5952 is fixed.
-        run: podman build --security-opt=label=disable --cap-add=all --device /dev/fuse --build-arg-file build-args.conf  -v $PWD:/run/src . -t localhost/fedora-coreos
+        run: |
+          set -xeuo pipefail
+          SECRETS=()
+          if [[ -f local-overrides.repo ]]; then
+            SECRETS+=(--secret id=yumrepos,src=local-overrides.repo)
+          fi
+          podman build "${SECRETS[@]}" --security-opt=label=disable --cap-add=all --device /dev/fuse --build-arg-file build-args.conf  -v $PWD:/run/src . -t localhost/fedora-coreos
       - name: Sanity-check
         run: podman run --rm localhost/fedora-coreos echo hello
