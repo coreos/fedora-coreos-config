@@ -22,3 +22,6 @@
   warn: true
   arches:
     - s390x
+- pattern: ext.config.rpm-ostree.kernel-replace
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1984
+  warn: true
