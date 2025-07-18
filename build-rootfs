@@ -329,6 +329,7 @@ def inject_platforms_json(rootfs):
     if ARCH in platforms:
         with open(fn, 'w') as f:
             json.dump(platforms[ARCH], f, sort_keys=True, indent=2)
+            f.write('\n')
 
 
 if __name__ == "__main__":
