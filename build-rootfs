@@ -130,6 +130,7 @@ def run_postprocess_scripts(rootfs, manifest):
         with open(os.path.join(rootfs, name), mode='w') as f:
             os.fchmod(f.fileno(), 0o755)
             f.write(script)
+        print(f"Running CoreOS postprocess script {i}", flush=True)
         bwrap(rootfs, [f'/{name}'])
         os.unlink(os.path.join(rootfs, name))
 
