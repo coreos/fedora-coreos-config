@@ -138,16 +138,11 @@ def run_postprocess_scripts(rootfs, manifest):
 # Could upstream this as e.g. `bootc-base-imagectl runroot /rootfs <cmd>` maybe?
 # But we'd need to carry it anyway at least for RHCOS 9.6.
 def bwrap(rootfs, args):
-    subprocess.check_call(['bwrap',
+    subprocess.check_call(['bwrap', '--bind', f'{rootfs}', '/',
                            '--dev', '/dev', '--proc', '/proc',
-                           '--dir', '/tmp', '--dir', '/var', '--tmpfs', '/run',
+                           '--tmpfs', '/tmp', '--tmpfs', '/var', '--tmpfs', '/run',
                            '--bind', '/run/.containerenv', '/run/.containerenv',
-                           '--bind', f'{rootfs}/usr', '/usr',
-                           '--bind', f'{rootfs}/etc', '/etc',
-                           '--symlink', '/usr/lib', '/lib',
-                           '--symlink', '/usr/lib64', '/lib64',
-                           '--symlink', '/usr/bin', '/bin',
-                           '--symlink', '/usr/sbin', '/sbin', '--'] + args)
+                           '--'] + args)
 
 
 def get_locked_nevras():
