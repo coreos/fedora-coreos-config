@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
     --mount=type=bind,target=/run/src \
         /run/src/build-rootfs "${MANIFEST}" "${VERSION}" /target-rootfs
 RUN --mount=type=bind,target=/run/src,rw \
-      rpm-ostree experimental compose build-chunked-oci \
+      rpm-ostree compose build-chunked-oci \
         --bootc --format-version=1 --rootfs /target-rootfs \
         --output oci-archive:/run/src/out.ociarchive
 
