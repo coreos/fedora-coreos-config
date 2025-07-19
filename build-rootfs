@@ -130,6 +130,7 @@ def run_postprocess_scripts(rootfs, manifest):
         with open(os.path.join(rootfs, name), mode='w') as f:
             os.fchmod(f.fileno(), 0o755)
             f.write(script)
+        print(f"Running CoreOS postprocess script {i}", flush=True)
         bwrap(rootfs, [f'/{name}'])
         os.unlink(os.path.join(rootfs, name))
 
@@ -137,16 +138,11 @@ def run_postprocess_scripts(rootfs, manifest):
 # Could upstream this as e.g. `bootc-base-imagectl runroot /rootfs <cmd>` maybe?
 # But we'd need to carry it anyway at least for RHCOS 9.6.
 def bwrap(rootfs, args):
-    subprocess.check_call(['bwrap',
+    subprocess.check_call(['bwrap', '--bind', f'{rootfs}', '/',
                            '--dev', '/dev', '--proc', '/proc',
-                           '--dir', '/tmp', '--dir', '/var', '--tmpfs', '/run',
+                           '--tmpfs', '/tmp', '--tmpfs', '/var', '--tmpfs', '/run',
                            '--bind', '/run/.containerenv', '/run/.containerenv',
-                           '--bind', f'{rootfs}/usr', '/usr',
-                           '--bind', f'{rootfs}/etc', '/etc',
-                           '--symlink', '/usr/lib', '/lib',
-                           '--symlink', '/usr/lib64', '/lib64',
-                           '--symlink', '/usr/bin', '/bin',
-                           '--symlink', '/usr/sbin', '/sbin', '--'] + args)
+                           '--'] + args)
 
 
 def get_locked_nevras():
@@ -333,6 +329,7 @@ def inject_platforms_json(rootfs):
     if ARCH in platforms:
         with open(fn, 'w') as f:
             json.dump(platforms[ARCH], f, sort_keys=True, indent=2)
+            f.write('\n')
 
 
 if __name__ == "__main__":
