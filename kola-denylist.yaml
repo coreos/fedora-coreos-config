@@ -18,7 +18,7 @@
     - rawhide
 - pattern: ext.config.multipath.resilient
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1980
-  snooze: 2025-07-10
-  warn: true
+  # snooze: 2025-07-10 (disabled on promotion)
+  # warn: true (disabled on promotion)
   arches:
     - s390x
