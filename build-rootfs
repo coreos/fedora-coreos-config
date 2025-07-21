@@ -112,8 +112,8 @@ def inject_yumrepos():
 
 
 def build_rootfs(target_rootfs, manifest_path, packages, locked_nevras, overlays, repos, nodocs):
-    passwd_group_dir = os.getenv('PASSWD_GROUP_DIR')
-    if passwd_group_dir is not None:
+    passwd_group_dir = os.getenv('PASSWD_GROUP_DIR', 'none')
+    if passwd_group_dir != 'none':
         inject_passwd_group(os.path.join(SRCDIR, passwd_group_dir))
     with tempfile.NamedTemporaryFile(mode='w') as argsfile:
         for pkg in packages:
@@ -130,6 +130,9 @@ def build_rootfs(target_rootfs, manifest_path, packages, locked_nevras, overlays
         if locked_nevras and lock_arg_supported():
             for locked_nevra in locked_nevras:
                 argsfile.write(f"--lock={locked_nevra}\n")
+        if passwd_group_dir == 'none':
+            argsfile.write("--sysusers\n")
+            argsfile.write("--nobody-99\n")
         argsfile.flush()
         cache_arg = []
         if os.path.isdir('/cache') and rpm_ostree_has_cachedir_fix():
