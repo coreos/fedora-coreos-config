@@ -46,7 +46,7 @@ def main():
 
     if version != "":
         inject_version_info(target_rootfs, manifest['mutate-os-release'], version)
-    inject_postprocess_scripts(target_rootfs, manifest)
+    run_postprocess_scripts(target_rootfs, manifest)
 
 
 def get_treefile(manifest_path):
@@ -67,6 +67,9 @@ def get_treefile(manifest_path):
 
 
 def build_rootfs(target_rootfs, manifest_path, packages, overlays, nodocs):
+    passwd_group_dir = os.getenv('PASSWD_GROUP_DIR')
+    if passwd_group_dir is not None:
+        inject_passwd_group(os.path.join(CONTEXTDIR, passwd_group_dir))
     with tempfile.NamedTemporaryFile(mode='w') as argsfile:
         for pkg in packages:
             argsfile.write(f"--install={pkg}\n")
@@ -74,23 +77,72 @@ def build_rootfs(target_rootfs, manifest_path, packages, overlays, nodocs):
             argsfile.write(f"--add-dir={overlay}\n")
         if nodocs:
             argsfile.write("--no-docs\n")
+            # temporarily work around https://issues.redhat.com/browse/RHEL-97826
+            tmpd = workaround_rhel_97826(argsfile)
         argsfile.flush()
         cache_arg = ['--cachedir=/cache'] if os.path.isdir('/cache') else []
         subprocess.check_call(["/usr/libexec/bootc-base-imagectl",
                                "--args-file", argsfile.name, "build-rootfs",
                                "--manifest", 'minimal-plus',
                                target_rootfs] + cache_arg)
+    if nodocs and tmpd is not None:
+        del tmpd
 
 
-def inject_postprocess_scripts(rootfs, manifest):
+def workaround_rhel_97826(argsfile):
+    basedir = 'usr/share/doc/bootc/baseimage/base'
+    # Detect if we have https://github.com/bootc-dev/bootc/pull/1352.
+    # This is not strictly correct because we're checking the _builder
+    # image_ which could be different from the target. In practice, we don't
+    # "cross-compose" and we're always going to be fetching equal or newer
+    # NEVRAs from the repos so this is fine.
+    if os.path.exists(f'/{basedir}/sysroot/.keepdir'):
+        return
+    print("Working around RHEL-97826", flush=True)
+    tmpd = tempfile.TemporaryDirectory()
+    shutil.copytree(f'/{basedir}', os.path.join(tmpd.name, basedir), symlinks=True)
+    argsfile.write(f'--add-dir={tmpd.name}')
+    return tmpd
+
+
+# We want to keep our passwd/group as canonical for now. We should be
+# able to clean this up when we migrate them to sysusers instead. See:
+# https://github.com/coreos/rpm-ostree/pull/5427
+def inject_passwd_group(parent_dir):
+    minimal = '/usr/share/doc/bootc-base-imagectl/manifests/minimal'
+    dst_passwd = os.path.join(minimal, 'passwd')
+    dst_group = os.path.join(minimal, 'group')
+    # unlink first instead of overwriting as a way to confirm they're still there
+    os.unlink(dst_passwd)
+    os.unlink(dst_group)
+    print("Overriding passwd/group files", flush=True)
+    shutil.copy(os.path.join(parent_dir, 'passwd'), dst_passwd)
+    shutil.copy(os.path.join(parent_dir, 'group'), dst_group)
+
+
+def run_postprocess_scripts(rootfs, manifest):
     # since we have the derive-only manifest handy, just inject a script now
     # that we can execute in the second stage. we could of course use e.g.
     # bwrap to run those now, but... it's just cleaner to use multi-stage build
     # semantics
     for i, script in enumerate(manifest.get('postprocess', [])):
-        with open(os.path.join(rootfs, f'usr/libexec/coreos-postprocess-{i}'), mode='w') as f:
+        name = f'usr/libexec/coreos-postprocess-{i}'
+        with open(os.path.join(rootfs, name), mode='w') as f:
             os.fchmod(f.fileno(), 0o755)
             f.write(script)
+        print(f"Running CoreOS postprocess script {i}", flush=True)
+        bwrap(rootfs, [f'/{name}'])
+        os.unlink(os.path.join(rootfs, name))
+
+
+# Could upstream this as e.g. `bootc-base-imagectl runroot /rootfs <cmd>` maybe?
+# But we'd need to carry it anyway at least for RHCOS 9.6.
+def bwrap(rootfs, args):
+    subprocess.check_call(['bwrap', '--bind', f'{rootfs}', '/',
+                           '--dev', '/dev', '--proc', '/proc',
+                           '--tmpfs', '/tmp', '--tmpfs', '/var', '--tmpfs', '/run',
+                           '--bind', '/run/.containerenv', '/run/.containerenv',
+                           '--'] + args)
 
 
 def get_locked_nevras():
@@ -277,6 +329,7 @@ def inject_platforms_json(rootfs):
     if ARCH in platforms:
         with open(fn, 'w') as f:
             json.dump(platforms[ARCH], f, sort_keys=True, indent=2)
+            f.write('\n')
 
 
 if __name__ == "__main__":

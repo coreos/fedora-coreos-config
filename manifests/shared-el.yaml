@@ -13,16 +13,3 @@ conditional-include:
     include: shared-el10.yaml
   - if: osversion == "centos-10"
     include: shared-el10.yaml
-
-# ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
-# See also the version of this in fedora-coreos.yaml
-postprocess:
-  # We apply part of the patch https://github.com/dracut-ng/dracut-ng/pull/1306 here
-  # while awaiting for the new dracut release to land.
-  # This script will start to fail once dracut 107 release available in repo, signaling
-  # to remove this postscript.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1937
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    sed -i '/^ExecStart=\/usr\/sbin\/mpathconf --enable$/,${s//ExecStart=\/usr\/sbin\/mpathconf --enable --user_friendly_names n/;b};$q1' /usr/lib/dracut/modules.d/90multipath/multipathd-configure.service
