@@ -1,0 +1,49 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/coreos/fedora-coreos-config?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "false"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
+      == "rawhide"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: fedora-coreos-rawhide
+    appstudio.openshift.io/component: fedora-coreos-rawhide
+    pipelines.appstudio.openshift.io/type: build
+  name: fedora-coreos-rawhide-on-push
+  namespace: coreos-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/konflux-fedora/coreos-tenant/fedora-coreos-rawhide:{{revision}}
+  - name: dockerfile
+    value: Containerfile
+  - name: path-context
+    value: .
+  - name: privileged-nested
+    value: true
+  - name: build-args
+    value: ["VERSION=43", "BUILDER_IMG=quay.io/fedora/fedora-bootc:rawhide", "MANIFEST=manifest.yaml", "PASSWD_GROUP_DIR=manifests"]
+  # This is required until https://github.com/containers/buildah/issues/5952 is fixed
+  # For now we are using this workaround https://github.com/konflux-ci/buildah-container/issues/134
+  - name: workingdir-mount
+    value: "/run/src"
+  pipelineRef:
+    params:
+    - name: bundle
+      value: quay.io/jcapitao/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:25e1074b0d8a4592d6fd31c7c3dd2cf8a01227031fccba7c3e67dafacfa587d7
+    - name: name
+      value: buildah-build-bootc-multi-platform-oci-ta
+    - name: kind
+      value: pipeline
+    resolver: bundles
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-fedora-coreos-rawhide
