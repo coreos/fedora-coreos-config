@@ -8,4 +8,14 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  shadow-utils:
+    evr: 2:4.17.4-4.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1988
+      type: pin
+  shadow-utils-subid:
+    evr: 2:4.17.4-4.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1988
+      type: pin
