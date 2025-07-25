@@ -23,7 +23,7 @@ jobs:
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Check if there are new commits
         run: |
-          diffset="fedora-minimal-plus.yaml fedora-includes/generic.yaml minimal/ minimal-plus/"
+          diffset="bootc-base-imagectl minimal-plus.hidden.yaml fedora-includes/generic.yaml minimal/ minimal-plus/"
           previous_rev=$(git -C fedora-bootc rev-parse HEAD)
           git submodule update --remote fedora-bootc
           new_rev=$(git -C fedora-bootc rev-parse HEAD)
