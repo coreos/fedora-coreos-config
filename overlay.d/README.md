@@ -10,6 +10,13 @@ This overlay matches `fedora-coreos-base.yaml`; core Ignition+ostree bits.
 
 This overlay is shared with RHCOS/SCOS 9.
 
+05custom-multipath-fix
+------
+
+Systemd override to apply the fix for multipathd.service
+It should be removed once we have a fix for multipath.
+For now info see: https://issues.redhat.com/browse/RHEL-96106
+
 07fix-selinux-labels
 --------------------
 
