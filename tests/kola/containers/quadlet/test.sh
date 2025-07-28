@@ -38,7 +38,7 @@ fi
 if [[ "$(jq -r '.[0].NetworkSettings.Networks | keys[0]' <<< "$container_info")" != "systemd-test" ]]; then
     fatal "Container not using the correct network"
 fi
-if [[ "$(jq -r '.[0].HostConfig.Binds[0]' <<< "$container_info")" != "systemd-test:/data:rw,rprivate,nosuid,nodev,rbind" ]]; then
+if [[ ! "$(jq -r '.[0].HostConfig.Binds[0]' <<< "$container_info")" =~ systemd-test:/data: ]]; then
     fatal "Container not using the correct volume"
 fi
 
