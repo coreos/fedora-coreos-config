@@ -22,24 +22,25 @@ ARG PASSWD_GROUP_DIR
 
 # Note: once we can rely on https://github.com/coreos/rpm-ostree/pull/5391,
 # add this bit to the RUN command to make the developer path less painful.
-# --mount=type=cache,rw,id=coreos-build-cache,target=/cache
+#
 RUN --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
+    --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
     --mount=type=secret,id=contentsets \
     --mount=type=bind,target=/run/src \
         /run/src/build-rootfs "${MANIFEST}" "${VERSION}" /target-rootfs
-RUN --mount=type=bind,target=/run/src,rw \
+RUN --mount=type=bind,target=/run/tmp \
       rpm-ostree compose build-chunked-oci \
         --bootc --format-version=1 --rootfs /target-rootfs \
-        --output oci-archive:/run/src/out.ociarchive
+        --output oci-archive:/run/tmp/out.ociarchive
 
-FROM oci-archive:./out.ociarchive
+FROM oci-archive:./tmp/out.ociarchive
 ARG VERSION
 ARG NAME=overridden
 # Need to reference builder here to force ordering. But since we have to run
 # something anyway, we might as well cleanup after ourselves.
 RUN --mount=type=bind,from=builder,target=/var/tmp \
-    --mount=type=bind,target=/run/src,rw \
-      rm /run/src/out.ociarchive
+    --mount=type=bind,target=/run/tmp,rw \
+      rm /run/tmp/out.ociarchive
 
 LABEL containers.bootc=1
 LABEL ostree.bootable=1
