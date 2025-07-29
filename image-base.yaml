@@ -34,9 +34,7 @@ platform-compressor:
     # https://docs.digitalocean.com/products/custom-images/how-to/upload/
     digitalocean: gzip
 
-# Move to use OCI images by default
-# https://github.com/coreos/fedora-coreos-tracker/issues/1823
-deploy-via-container: true
+# Set container-imgref
 container-imgref: "ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos:{stream}"
 
 # Enable 'erofs' by default for the rootfs in the Live ISO/PXE artifacts
