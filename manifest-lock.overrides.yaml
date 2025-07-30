@@ -10,12 +10,14 @@
 
 packages:
   shadow-utils:
-    evr: 2:4.17.4-4.fc43
+    evr: 2:4.18.0-3.fc43
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-3b1a650972
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1988
-      type: pin
+      type: fast-track
   shadow-utils-subid:
-    evr: 2:4.17.4-4.fc43
+    evr: 2:4.18.0-3.fc43
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-3b1a650972
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1988
-      type: pin
+      type: fast-track
