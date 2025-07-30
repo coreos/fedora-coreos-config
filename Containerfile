@@ -20,10 +20,8 @@ ARG PASSWD_GROUP_DIR
 # COPY rpm-ostree /usr/bin/
 # COPY bootc-base-imagectl /usr/libexec/
 
-# Note: once we can rely on https://github.com/coreos/rpm-ostree/pull/5391,
-# add this bit to the RUN command to make the developer path less painful.
-# --mount=type=cache,rw,id=coreos-build-cache,target=/cache
-RUN --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
+RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
+    --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
     --mount=type=secret,id=contentsets \
     --mount=type=bind,target=/run/src \
         /run/src/build-rootfs "${MANIFEST}" "${VERSION}" /target-rootfs
