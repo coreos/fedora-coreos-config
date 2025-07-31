@@ -38,6 +38,10 @@ spec:
     - PASSWD_GROUP_DIR=manifests
   - name: workingdir-mount
     value: /run/src
+  - name: build-platforms
+    value:
+    - linux/amd64
+    - linux/arm64
   - name: image-expires-after
     value: 5d
   pipelineRef:
