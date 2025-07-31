@@ -37,6 +37,10 @@ spec:
     - PASSWD_GROUP_DIR=manifests
   - name: workingdir-mount
     value: /run/src
+  - name: build-platforms
+    value:
+    - linux/amd64
+    - linux/arm64
   pipelineRef:
     params:
     - name: bundle
