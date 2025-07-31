@@ -18,14 +18,31 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-main() {
-    team="team0"
+check_ip() {
+    team="$1"
 
     # Verify team0 gets dhcp according to config.bu
     nic_ip=$(get_ipv4_for_nic ${team})
     if [ "${nic_ip}" != "10.0.2.31" ]; then
-        fatal "Error: get ${team} ip = ${nic_ip}, expected is 10.0.2.31"
+        # On s390x, devices use the CCW bus instead of PCI, which may cause them to appear in the wrong order
+        # https://github.com/coreos/fedora-coreos-tracker/issues/1992
+        if [ $(uname -m) == s390x ] && [ "${nic_ip}" == "10.0.2.32" ]; then
+            eval $(udevadm info --query=property /sys/class/net/eth1 | grep ID_NET_NAME_PATH)
+            if [[ "${ID_NET_NAME_PATH}" != "enc3" ]]; then
+                echo "Warn: CCW bus devices's order is wrong: eth0 altname is ${ID_NET_NAME_PATH}"
+            else
+                fatal "Error: get ${team} ip = ${nic_ip}, expected is 10.0.2.31. eth0 altname is ${ID_NET_NAME_PATH}"
+            fi
+        else
+            fatal "Error: get ${team} ip = ${nic_ip}, expected is 10.0.2.31"
+        fi
     fi
+}
+
+main() {
+    team="team0"
+
+    check_ip "${team}"
 
     expected_state="setup:
   runner: activebackup
