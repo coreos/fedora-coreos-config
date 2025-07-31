@@ -1,0 +1,50 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: fedora-coreos
+  namespace: coreos-tenant
+  labels:
+    appstudio.openshift.io/application: fedora-coreos
+    appstudio.openshift.io/component: fedora-coreos
+    pipelines.appstudio.openshift.io/type: build
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/coreos/fedora-coreos-config?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+  creationTimestamp: null
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/konflux-fedora/coreos-tenant/fedora-coreos-{{target_branch}}
+  - name: dockerfile
+    value: Containerfile
+  - name: path-context
+    value: .
+  - name: privileged-nested
+    value: true
+  - name: build-args
+    value:
+    - VERSION=42
+    - BUILDER_IMG=quay.io/fedora/fedora-bootc:42
+    - MANIFEST=manifest.yaml
+    - PASSWD_GROUP_DIR=manifests
+  # This is required until https://github.com/containers/buildah/issues/5952 is fixed
+  # For now we are using this workaround https://github.com/konflux-ci/buildah-container/issues/134
+  - name: workingdir-mount
+    value: /run/src
+  pipelineRef:
+    params:
+    - name: bundle
+      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:5cd05ed32a5f547459a6816eae31b215defeb16df5455292182ef6180d3cd9e0
+    - name: name
+      value: buildah-build-bootc-multi-platform-oci-ta
+    - name: kind
+      value: pipeline
+    resolver: bundles
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-fedora-coreos

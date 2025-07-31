@@ -1,0 +1,53 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: fedora-coreos-branched-on-pull-request
+  namespace: coreos-tenant
+  labels:
+    appstudio.openshift.io/application: fedora-coreos-branched
+    appstudio.openshift.io/component: fedora-coreos-branched
+    pipelines.appstudio.openshift.io/type: build
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/coreos/fedora-coreos-config?rev={{revision}}
+    build.appstudio.redhat.com/cancel-in-progress: "true"
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch == "branched"
+  creationTimestamp: null
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/konflux-fedora/coreos-tenant/fedora-coreos-{{target_branch}}:on-pr-{{revision}}
+  - name: dockerfile
+    value: Containerfile
+  - name: path-context
+    value: .
+  - name: privileged-nested
+    value: true
+  - name: build-args
+    value:
+    - VERSION=42
+    - BUILDER_IMG=quay.io/fedora/fedora-bootc:42
+    - MANIFEST=manifest.yaml
+    - PASSWD_GROUP_DIR=manifests
+  - name: workingdir-mount
+    value: /run/src
+  - name: image-expires-after
+    value: 5d
+  pipelineRef:
+    params:
+    - name: bundle
+      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:5cd05ed32a5f547459a6816eae31b215defeb16df5455292182ef6180d3cd9e0
+    - name: name
+      value: buildah-build-bootc-multi-platform-oci-ta
+    - name: kind
+      value: pipeline
+    resolver: bundles
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-fedora-coreos-branched
