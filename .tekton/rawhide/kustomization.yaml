@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - on-pull-request
   - on-push
-  - patch.yaml

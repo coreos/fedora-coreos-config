@@ -18,9 +18,6 @@ transformers:
     - kind: PipelineRun
       path: spec/taskRunTemplate/serviceAccountName
 patches:
-  - path: patch.yaml
-    target:
-      kind: PipelineRun
   - target:
       kind: PipelineRun
     patch: |-
