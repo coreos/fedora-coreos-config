@@ -180,11 +180,11 @@ drop_rollback_on_aarch64() {
     # The dtb copy issue was only ever an issue ever on aarch64
     [ "${arch}" != 'aarch64' ] && return
     echo "Dropping rollback deployment because it could have mislabeled dtb files"
-    rpm-ostree cleanup -r
+    rpm-ostree cleanup --rollback
 }
 
 selinux-sanity-check() {
-    # Drop the rooback on aarch64 before checking.
+    # Drop the rollback on aarch64 before checking.
     drop_rollback_on_aarch64
     # Verify SELinux labels are sane. Migration scripts should have cleaned
     # up https://github.com/coreos/fedora-coreos-tracker/issues/1772
@@ -311,6 +311,10 @@ systemd-run --wait --property=After=coreos-fix-selinux-labels.service \
 # version, which should be in the compose OSTree repo.
 if vereq $version $last_release; then
     systemctl stop zincati
+    # Since in the next steps we are making multiple copies of the update on the
+    # system (i.e. update.ociarchive and copying into OSTree storage) let's free
+    # up some space by dropping the rollback deployment.
+    rpm-ostree cleanup --rollback
     # Pull the ociarchive from the builds dir here because the
     # containers aren't pushed to quay until the release job is run
     # and that hasn't happened yet.
