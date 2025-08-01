@@ -8,7 +8,10 @@ import json
 import requests
 from urllib.parse import urlparse
 import yaml
-import subprocess
+
+sys.path.insert(0, os.path.dirname(os.path.realpath(sys.argv[0])))
+from manifest_utils import get_treefile as get_manifest_treefile
+sys.path.pop(0)
 
 import bodhi.client.bindings
 import libdnf5
@@ -156,10 +159,7 @@ def do_graduate(_args):
 
 
 def get_treefile():
-    treefile = subprocess.check_output(['rpm-ostree', 'compose', 'tree',
-                                        '--print-only',
-                                        os.path.join(basedir, 'manifest.yaml')])
-    return json.loads(treefile)
+    return get_manifest_treefile(os.path.join(basedir, 'manifest.yaml'))
 
 
 def get_dnf_base(treefile):

@@ -15,6 +15,10 @@ import sys
 import tempfile
 import yaml
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)) + '/ci')
+from manifest_utils import get_treefile, get_locked_nevras
+sys.path.pop(0)
+
 
 ARCH = os.uname().machine
 CONTEXTDIR = '/run/src'
@@ -26,11 +30,11 @@ def main():
     target_rootfs = sys.argv[3]
 
     manifest_path = os.path.join(CONTEXTDIR, manifest_name)
-    manifest = get_treefile(manifest_path)
+    manifest = get_treefile(manifest_path, deriving=True)
 
     packages = list(manifest['packages'])
 
-    locked_nevras = get_locked_nevras()
+    locked_nevras = get_locked_nevras(CONTEXTDIR, ARCH, as_strings=True)
     if locked_nevras:
         inject_pool_repo_if_exists(locked_nevras)
 
@@ -47,23 +51,6 @@ def main():
     if version != "":
         inject_version_info(target_rootfs, manifest['mutate-os-release'], version)
     run_postprocess_scripts(target_rootfs, manifest)
-
-
-def get_treefile(manifest_path):
-    with tempfile.NamedTemporaryFile(suffix='.json', mode='w') as tmp_manifest:
-        # This ensures that the treefile represents only the CoreOS bits and
-        # doesn't recurse into fedora-bootc. We can drop this once we've fully
-        # cut over to derivation.
-        json.dump({
-            "variables": {
-                "deriving": True
-            },
-            "include": manifest_path
-        }, tmp_manifest)
-        tmp_manifest.flush()
-        data = subprocess.check_output(['rpm-ostree', 'compose', 'tree',
-                                        '--print-only', tmp_manifest.name])
-    return json.loads(data)
 
 
 def build_rootfs(target_rootfs, manifest_path, packages, overlays, nodocs):
@@ -143,25 +130,6 @@ def bwrap(rootfs, args):
                            '--tmpfs', '/tmp', '--tmpfs', '/var', '--tmpfs', '/run',
                            '--bind', '/run/.containerenv', '/run/.containerenv',
                            '--'] + args)
-
-
-def get_locked_nevras():
-    lockfile_path = os.path.join(CONTEXTDIR, f"manifest-lock.{ARCH}.json")
-    overrides_path = os.path.join(CONTEXTDIR, "manifest-lock.overrides.yaml")
-    overrides_arch_path = os.path.join(CONTEXTDIR, f"manifest-lock.overrides.{ARCH}.yaml")
-
-    locks = {}
-    for path in [lockfile_path, overrides_path, overrides_arch_path]:
-        if os.path.exists(path):
-            with open(path) as f:
-                if path.endswith('.yaml'):
-                    data = yaml.safe_load(f)
-                else:
-                    data = json.load(f)
-                # this essentially re-implements the merge semantics of rpm-ostree
-                locks.update({pkgname: v['evra'] if 'evra' in v else v['evr']
-                              for (pkgname, v) in data['packages'].items()})
-    return [f'{k}-{v}' for (k, v) in locks.items()]
 
 
 def inject_pool_repo_if_exists(locked_nevras):
