@@ -1,0 +1,130 @@
+#!/usr/bin/python
+
+import argparse
+import os
+import re
+import sys
+import yaml
+
+# Correctly import get_treefile from the specified path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from manifest_utils import get_treefile, get_locked_nevras
+sys.path.pop(0)
+
+
+WORKDIR = os.getcwd()
+ARCH = os.uname().machine
+
+
+def filter_repofile(repos, locked_nevras, repo_path):
+    if not os.path.exists(repo_path):
+        print(f"Error: {repo_path} not found. Cannot inject includepkg filter.")
+        return
+
+    include_str = ','.join(locked_nevras)
+
+    with open(repo_path, 'r') as f:
+        repofile= f.read()
+
+    # We use a regex that looks for [reo_name] on a line by itself,
+    # possibly with whitespace.
+    sections = re.split(r'^\s*(\[.+\])\s*', repofile, flags=re.MULTILINE)
+
+    new_content = sections[0]  # part before any section
+    keep = False
+
+    # sections will be [before, section1_name, section1_content, section2_name, section2_content, ...]
+    for i in range(1, len(sections), 2):
+        name = sections[i]
+        # ignore repos that don't match the repos we want to use
+        if name.strip("[]") in repos:
+            repodef = sections[i+1]
+            if 'includepkgs=' not in repodef:
+                # We only keep the repo definition that we edited
+                # to avoid accidentaly taking in other packages
+                # from a repofile already having an includepkgs
+                # directive.
+                keep = True
+                new_content += name + '\n'
+                repodef += f"includepkgs={include_str}\n"
+                new_content += repodef
+
+    if keep:
+        with open(repo_path, 'w') as f:
+            f.write(new_content)
+
+    return keep
+
+
+def build_rpm_lockfile_config(packages, repo_files):
+    """
+    Augments package names in rpm_in_data with version numbers from locks.
+    Populates contentOrigin and repofiles.
+    """
+    # Initialize the structure for rpm_lockfile_input, similar to write_rpms_input_file
+    # This ensures consistency whether it comes from a manifest or directly
+    rpm_lockfile_config = {
+        'contentOrigin': {
+            'repofiles': repo_files
+        },
+        'installWeakDeps': False,
+        'context': {
+            'bare': True,
+        },
+        'packages': packages
+    }
+
+    return rpm_lockfile_config
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Generate rpm-lockfile-prototype input file from rpm-ostree manifest and augment with version overrides."
+    )
+
+    parser.add_argument(
+        'manifest',
+        help='Path to the rpm-ostree manifest (e.g., fedora-coreos-config/manifest.yaml)'
+    )
+    parser.add_argument(
+        '--output',
+        default='./rpms.in.yaml',
+        help="Path for the final rpm-lockfile-protoype config file. (default: './rpms.in.yaml')"
+    )
+
+    args = parser.parse_args()
+    contextdir = os.path.dirname(os.path.join(WORKDIR, args.manifest))
+
+    manifest_path = os.path.join(contextdir, os.path.basename(args.manifest))
+    # 1. Get initial manifest data from get_treefile
+    manifest_data = get_treefile(manifest_path, deriving=False)
+    repos = manifest_data.get('repos', [])
+    repos += manifest_data.get('lockfile-repos', [])
+
+    packages = manifest_data.get('packages', [])
+
+    # 2 Get locked NEVRAs from manifest-lock.overrides.yaml
+    locks = get_locked_nevras(contextdir, ARCH)
+
+    # Gather list of *.repo files
+    repofiles = [file for file in os.listdir(contextdir) if file.endswith('.repo')]
+    relevant_repofiles = []
+
+    # 3 inject filters to relevant repofiles
+    if locks:
+        locked_nevras = [f'{k}-{v}' for (k, v) in locks.items()]
+        for repofile in repofiles:
+            if filter_repofile(repos, locked_nevras, os.path.join(contextdir, repofile)):
+                print(f"\u2705 filter injected in: {os.path.join(contextdir, repofile)}")
+                relevant_repofiles.append(repofile)
+
+    # 4 generate rpm-lockfile-prototype input file
+    augmented_rpm_in = build_rpm_lockfile_config(packages, relevant_repofiles)
+
+    try:
+        with open(args.output, 'w') as f:
+            yaml.safe_dump(augmented_rpm_in, f, default_flow_style=False)
+        print(f"\u2705  RPM lock data saved to: {args.output}")
+    except IOError as e:
+        print(f"\u274c Error: Could not write to final output file '{args.output}'. Reason: {e}")
+        exit(1)
