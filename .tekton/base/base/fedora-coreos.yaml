@@ -27,12 +27,8 @@ spec:
     value: .
   - name: privileged-nested
     value: true
-  - name: build-args
-    value:
-    - VERSION=42
-    - BUILDER_IMG=quay.io/fedora/fedora-bootc:42
-    - MANIFEST=manifest.yaml
-    - PASSWD_GROUP_DIR=manifests
+  - name: build-args-file
+    value: 'build-args.conf'
   # This is required until https://github.com/containers/buildah/issues/5952 is fixed
   # For now we are using this workaround https://github.com/konflux-ci/buildah-container/issues/134
   - name: workingdir-mount
@@ -44,7 +40,7 @@ spec:
   pipelineRef:
     params:
     - name: bundle
-      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:5cd05ed32a5f547459a6816eae31b215defeb16df5455292182ef6180d3cd9e0
+      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:ea80d0ab92471fd4ad5bcaa6961781c3c66ce043e9fc4af7c6cc2b734e8499ca
     - name: name
       value: buildah-build-bootc-multi-platform-oci-ta
     - name: kind

@@ -1,8 +1,0 @@
----
-- op: replace
-  path: /spec/params/6/value
-  value:
-    - VERSION=43
-    - BUILDER_IMG=quay.io/fedora/fedora-bootc:43
-    - MANIFEST=manifest.yaml
-    - PASSWD_GROUP_DIR=manifests
