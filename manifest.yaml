@@ -19,7 +19,7 @@ conditional-include:
   - if: basearch == "riscv64"
     include:
       repos:
-        # These repos are provided by the RISCV SIG from a shadow koji instance
+        # These repos are provided by the RISCV SIG from secondary koji instance
         # https://fedoraproject.org/wiki/Architectures/RISC-V
         - fedora-riscv
         # The staging repo has the unsigned shim in it so we need it here too.
