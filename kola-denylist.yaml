@@ -16,3 +16,9 @@
   warn: true
   arches:
     - s390x
+- pattern: ext.config.docker*
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1998
+  snooze: 2025-08-14
+  warn: true
+  streams:
+    - rawhide
