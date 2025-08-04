@@ -8,6 +8,7 @@ set -euo pipefail
 # AWS: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html
 # Azure: https://docs.microsoft.com/en-us/azure/virtual-machines/linux/time-sync
 # GCP: https://cloud.google.com/compute/docs/instances/managing-instances#configure-ntp
+# Oracle Cloud Infrastructure: https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/configuringntpservice.htm
 #
 # Originally spawned from discussion in https://github.com/openshift/installer/pull/3513
 
@@ -91,6 +92,10 @@ case "${platform}" in
         (echo '# See also https://cloud.google.com/compute/docs/instances/managing-instances#configure-ntp'
          echo '# and https://cloud.google.com/compute/docs/images/configuring-imported-images'
          echo 'server metadata.google.internal prefer iburst'
+        ) >> "${confpath}" ;;
+    oraclecloud)
+        (echo '# See also https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/configuringntpservice.htm'
+         echo 'server 169.254.169.254 prefer iburst'
         ) >> "${confpath}" ;;
     qemu)
         sed -i s,'^#pool,pool,' "${confpath}"

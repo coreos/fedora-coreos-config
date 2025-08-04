@@ -1,0 +1,26 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base/
+nameSuffix: "-on-pull-request"
+patches:
+  - target:
+      kind: PipelineRun
+    patch: |-
+      - op: add
+        path: /metadata/annotations/build.appstudio.redhat.com~1pull_request_number
+        value: '{{pull_request_number}}'
+      - op: add
+        path: /metadata/annotations/build.appstudio.redhat.com~1cancel-in-progress
+        value: true
+      - op: replace
+        path: /spec/params/2
+        value:
+          name: output-image
+          value: quay.io/konflux-fedora/coreos-tenant/fedora-coreos-{{target_branch}}:on-pr-{{revision}}
+      - op: add
+        path: /spec/params/-
+        value:
+          name: image-expires-after
+          value: 5d
