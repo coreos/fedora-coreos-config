@@ -185,7 +185,7 @@ postprocess:
     #!/usr/bin/env bash
     set -xeuo pipefail
     if [ -f /run/.containerenv ]; then
-      grep docker /usr/lib/group >> /etc/group
+      grep ^docker: /usr/lib/group >> /etc/group
     fi
 
 # Things we don't expect to ship on the host.  We currently

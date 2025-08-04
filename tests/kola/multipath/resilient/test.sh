@@ -40,7 +40,7 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   rebooted)
       cat /proc/cmdline
       grep boot=UUID= /proc/cmdline
-      grep root=UUID= /proc/cmdline
+      grep -E "root=UUID=|root=/dev/disk/by-uuid/dm-mpath" /proc/cmdline
       ok "reboot"
       ;;
   *) fatal "unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}";;
