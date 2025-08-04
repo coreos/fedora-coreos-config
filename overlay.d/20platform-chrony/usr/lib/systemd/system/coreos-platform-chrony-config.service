@@ -8,6 +8,7 @@ ConditionKernelCommandLine=|ignition.platform.id=ec2
 # RHCOS 4.1/4.2 bootimages
 ConditionKernelCommandLine=|ignition.platform.id=gce
 ConditionKernelCommandLine=|ignition.platform.id=gcp
+ConditionKernelCommandLine=|ignition.platform.id=oraclecloud
 ConditionKernelCommandLine=|ignition.platform.id=qemu
 Before=NetworkManager.service
 Before=chronyd.service

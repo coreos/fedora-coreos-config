@@ -29,6 +29,25 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
       if grep -q "WARNING: Current crashkernel size is lower than recommended size" <<< "$output"; then
           fatal "The reserved crashkernel size is lower than recommended."
       fi
+
+      kdump_path="/var/lib/kdump/initramfs-$(uname -r)kdump.img"
+
+      if [[ ! -f "${kdump_path}" ]]; then
+          fatal "kdump initrd not found at path ${kdump_path}"
+      fi
+
+      initrd_modules=$(lsinitrd --mod "${kdump_path}")
+
+      # Test that ignition/afterburn modules are not present in the kdump initramfs
+      # See https://github.com/coreos/fedora-coreos-tracker/issues/1832
+      if echo "${initrd_modules}" | grep -q ignition; then
+          fatal "ignition found in kdump initrd"
+      fi
+
+      if echo "${initrd_modules}" | grep -q afterburn; then
+          fatal "afterburn found in kdump initrd"
+      fi
+
       /tmp/autopkgtest-reboot-prepare aftercrash
       # Add in a sleep to workaround race condition where XFS/kernel errors happen
       # during crash kernel boot.

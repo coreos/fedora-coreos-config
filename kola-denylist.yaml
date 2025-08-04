@@ -10,15 +10,15 @@
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1889
   arches:
     - ppc64le
-- pattern: skip-console-warnings
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1924
-  platforms:
-    - openstack
-  streams:
-    - rawhide
 - pattern: ext.config.multipath.resilient
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1980
   # snooze: 2025-07-10 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - s390x
+- pattern: ext.config.docker*
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1998
+  # snooze: 2025-08-14 (disabled on promotion)
+  # warn: true (disabled on promotion)
+  streams:
+    - rawhide

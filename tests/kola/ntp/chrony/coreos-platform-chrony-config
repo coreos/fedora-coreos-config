@@ -1,7 +1,7 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-##   platforms: "aws azure gcp qemu"
+##   platforms: "aws azure gcp qemu oraclecloud"
 ##   description: Verify the coreos-platform-chrony generator works on cloud.
 
 set -xeuo pipefail
@@ -14,6 +14,7 @@ case "${platform}" in
     aws) chronyc -n sources |grep '169.254.169.123'; echo "ok chrony aws" ;;
     azure) chronyc -n sources |grep 'PHC'; echo "ok chrony azure" ;;
     gcp) chronyc -n sources | grep '169.254.169.254'; echo "ok chrony gcp" ;;
+    oraclecloud) chronyc -n sources | grep '169.254.169.254'; echo "ok chrony oraclecloud" ;;
     qemu)
         # ptp_kvm isn't available on all arches nor all hosts, so don't assume it's always there; see
         # https://github.com/coreos/fedora-coreos-config/pull/2263#discussion_r1157694192

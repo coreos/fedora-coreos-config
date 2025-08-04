@@ -1,0 +1,24 @@
+name: Generate Tekton PipelineRuns Resources
+
+on:
+  pull_request:
+    branches:
+      - testing-devel
+    paths:
+      - '.tekton/**'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Execute generate command
+        run: ./ci/generate-tekton-pipelinerun
+
+      - name: Check for Git differences
+        # This step checks if the 'generate' command created any uncommitted changes.
+        run: |
+          git diff --exit-code

@@ -121,10 +121,10 @@ def inject_passwd_group(parent_dir):
 
 
 def run_postprocess_scripts(rootfs, manifest):
-    # since we have the derive-only manifest handy, just inject a script now
-    # that we can execute in the second stage. we could of course use e.g.
-    # bwrap to run those now, but... it's just cleaner to use multi-stage build
-    # semantics
+    # Since we have the derive-only manifest handy, just run the scripts now. An
+    # alternative is to run it as a second stage, which would avoid the bwrap,
+    # but operating on the raw rootfs means we don't pay for deleted files (nor
+    # without requiring another rechunk).
     for i, script in enumerate(manifest.get('postprocess', [])):
         name = f'usr/libexec/coreos-postprocess-{i}'
         with open(os.path.join(rootfs, name), mode='w') as f:
