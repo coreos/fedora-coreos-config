@@ -24,5 +24,8 @@ conditional-include:
         - fedora-riscv
         # The staging repo has the unsigned shim in it so we need it here too.
         - fedora-riscv-staging
+        # The fedora-riscv-koji repo allows us to get the latest built packages.
+        # The other repos aren't updated frequently.
+        - fedora-riscv-koji
 
 include: manifests/fedora-coreos.yaml
