@@ -101,7 +101,9 @@ def build_rootfs(target_rootfs, manifest_path, packages, overlays, repos, nodocs
             for repo in repos:
                 argsfile.write(f"--repo={repo}\n")
         argsfile.flush()
-        cache_arg = ['--cachedir=/cache'] if os.path.isdir('/cache') else []
+        cache_arg = []
+        if os.path.isdir('/cache') and rpm_ostree_has_cachedir_fix():
+            cache_arg = ['--cachedir=/cache']
         subprocess.check_call(["/usr/libexec/bootc-base-imagectl",
                                "--args-file", argsfile.name, "build-rootfs",
                                "--manifest", 'minimal-plus',
@@ -133,6 +135,18 @@ def workaround_rhel_97826(argsfile):
     shutil.copytree(f'/{basedir}', os.path.join(tmpd.name, basedir), symlinks=True)
     argsfile.write(f'--add-dir={tmpd.name}\n')
     return tmpd
+
+
+def rpm_ostree_has_cachedir_fix():
+    # we can only use --cachedir if we have rpm-ostree >= 2025.9 which has
+    # https://github.com/coreos/rpm-ostree/pull/5391
+    out = subprocess.check_output(['rpm-ostree', '--version'], encoding='utf-8')
+    data = yaml.safe_load(out)
+    version_str = data['rpm-ostree']['Version']
+    # ideally, we could use `packaging.version`, but that's not in centos-bootc
+    # but conveniently, Python list comparisons do the right thing here
+    version = [int(c) for c in version_str.split('.')]
+    return version >= [2025, 9]
 
 
 # We want to keep our passwd/group as canonical for now. We should be
