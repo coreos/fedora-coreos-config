@@ -131,7 +131,7 @@ def workaround_rhel_97826(argsfile):
     print("Working around RHEL-97826", flush=True)
     tmpd = tempfile.TemporaryDirectory()
     shutil.copytree(f'/{basedir}', os.path.join(tmpd.name, basedir), symlinks=True)
-    argsfile.write(f'--add-dir={tmpd.name}')
+    argsfile.write(f'--add-dir={tmpd.name}\n')
     return tmpd
 
 
