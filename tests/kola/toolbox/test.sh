@@ -24,29 +24,29 @@ set -xeuo pipefail
 
 # Try five times to create the toolbox to avoid container registry infra flakes
 for i in {1..5}; do
-    machinectl shell core@ /bin/toolbox create --assumeyes 1>/dev/null
-    if [[ $(machinectl shell core@ /bin/toolbox list --containers | grep --count fedora-toolbox-) -ne 1 ]]; then
+    machinectl -q shell core@ /bin/toolbox create --assumeyes 1>/dev/null
+    if [[ $(machinectl -qE TERM=dumb shell core@ /bin/toolbox list --containers | grep --count fedora-toolbox-) -ne 1 ]]; then
         echo "Could not create toolbox on try: $i"
         sleep 10
     else
         break
     fi
 done
-if [[ $(machinectl shell core@ /bin/toolbox list --containers | grep --count fedora-toolbox-) -ne 1 ]]; then
+if [[ $(machinectl -qE TERM=dumb shell core@ /bin/toolbox list --containers | grep --count fedora-toolbox-) -ne 1 ]]; then
     fatal "Could not create toolbox"
 fi
 ok toolbox create
 
-machinectl shell core@ /bin/toolbox run touch ok_toolbox
+machinectl -q shell core@ /bin/toolbox run touch ok_toolbox
 if [[ ! -f '/home/core/ok_toolbox' ]]; then
     fatal "Could not run a simple command inside a toolbox"
 fi
 ok toolbox run
 
-toolbox="$(machinectl shell core@ /bin/toolbox list --containers | grep fedora-toolbox- | awk '{print $2}')"
-machinectl shell core@ /bin/podman stop "${toolbox}"
-machinectl shell core@ /bin/toolbox rm "${toolbox}"
-if [[ -n "$(machinectl shell core@ /bin/toolbox list --containers)" ]]; then
+toolbox="$(machinectl -qE TERM=dumb shell core@ /bin/toolbox list --containers | awk '/fedora-toolbox-/ {print $2}')"
+machinectl -q shell core@ /bin/podman stop "${toolbox}"
+machinectl -q shell core@ /bin/toolbox rm "${toolbox}"
+if [[ -n "$(machinectl -qE TERM=dumb shell core@ /bin/toolbox list --containers)" ]]; then
     fatal "Could not remove the toolbox container"
 fi
 ok toolbox rm
