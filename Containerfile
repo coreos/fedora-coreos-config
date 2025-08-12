@@ -20,6 +20,9 @@ ARG PASSWD_GROUP_DIR
 # COPY rpm-ostree /usr/bin/
 # COPY bootc-base-imagectl /usr/libexec/
 
+# always nuke any leftover libdnf lockfile from interrupted runs
+RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
+        rm -rf /cache/cache/*lock*
 RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
     --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
     --mount=type=secret,id=contentsets \
