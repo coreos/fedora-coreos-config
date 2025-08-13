@@ -296,6 +296,12 @@ def gather_overlays(manifest):
     for layer in manifest.get('ostree-layers', []):
         assert layer.startswith('overlay/')
         overlays.append(os.path.join(CONTEXTDIR, 'overlay.d', layer[len('overlay/'):]))
+
+    rootfs_override = os.path.join(CONTEXTDIR, 'overrides/rootfs')
+    if os.path.isdir(rootfs_override) and len(os.listdir(rootfs_override)) > 0:
+        print("Injecting rootfs override")
+        overlays.append(rootfs_override)
+
     return overlays
 
 

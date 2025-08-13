@@ -10,6 +10,8 @@
 # mounted at `/run/src/overrides` is supported:
 # - The `overrides/rpm` directory can be a yum repo. Its packages take
 #   precedence over those from remote repos.
+# - The `overrides/rootfs` directory can contain files in a rootfs layout which
+#   will be copied on top of the final rootfs.
 
 # Overridden by build-args.conf. The value here is invalid on purpose.
 ARG BUILDER_IMG=overridden
