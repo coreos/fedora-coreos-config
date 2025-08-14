@@ -1,5 +1,7 @@
 #!/bin/bash
 ## kola:
+##   # we install iptables-legacy
+##   tags: "platform-independent needs-internet"
 ##   description: Verify that the alternatives config is properly migrated and test the migration
 ##   distros: fcos
 # See
