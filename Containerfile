@@ -5,6 +5,13 @@
 #
 # Note: we should be able to drop the `-v $PWD:/run/src` once
 # https://github.com/containers/buildah/issues/5952 is fixed.
+#
+# For development convenience, an `overrides/` directory in the context dir, or
+# mounted at `/run/src/overrides` is supported:
+# - The `overrides/rpm` directory can be a yum repo. Its packages take
+#   precedence over those from remote repos.
+# - The `overrides/rootfs` directory can contain files in a rootfs layout which
+#   will be copied on top of the final rootfs.
 
 # Overridden by build-args.conf. The value here is invalid on purpose.
 ARG BUILDER_IMG=overridden
@@ -20,6 +27,9 @@ ARG PASSWD_GROUP_DIR
 # COPY rpm-ostree /usr/bin/
 # COPY bootc-base-imagectl /usr/libexec/
 
+# always nuke any leftover libdnf lockfile from interrupted runs
+RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
+        rm -rf /cache/cache/*lock*
 RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
     --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
     --mount=type=secret,id=contentsets \
