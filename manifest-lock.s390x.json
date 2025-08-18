@@ -85,19 +85,19 @@
       }
     },
     "audit": {
-      "evra": "4.0.5-2.fc42.s390x",
+      "evra": "4.1.1-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "audit"
       }
     },
     "audit-libs": {
-      "evra": "4.0.5-2.fc42.s390x",
+      "evra": "4.1.1-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "audit"
       }
     },
     "audit-rules": {
-      "evra": "4.0.5-2.fc42.s390x",
+      "evra": "4.1.1-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "audit"
       }
@@ -385,7 +385,7 @@
       }
     },
     "crun": {
-      "evra": "1.22-1.fc42.s390x",
+      "evra": "1.23.1-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "crun"
       }
@@ -499,7 +499,7 @@
       }
     },
     "dnf5": {
-      "evra": "5.2.13.1-1.fc42.s390x",
+      "evra": "5.2.15.0-2.fc42.s390x",
       "metadata": {
         "sourcerpm": "dnf5"
       }
@@ -523,19 +523,19 @@
       }
     },
     "dracut": {
-      "evra": "107-1.fc42.s390x",
+      "evra": "107-2.fc42.s390x",
       "metadata": {
         "sourcerpm": "dracut"
       }
     },
     "dracut-network": {
-      "evra": "107-1.fc42.s390x",
+      "evra": "107-2.fc42.s390x",
       "metadata": {
         "sourcerpm": "dracut"
       }
     },
     "dracut-squash": {
-      "evra": "107-1.fc42.s390x",
+      "evra": "107-2.fc42.s390x",
       "metadata": {
         "sourcerpm": "dracut"
       }
@@ -577,7 +577,7 @@
       }
     },
     "ethtool": {
-      "evra": "2:6.15-1.fc42.s390x",
+      "evra": "2:6.15-3.fc42.s390x",
       "metadata": {
         "sourcerpm": "ethtool"
       }
@@ -595,19 +595,19 @@
       }
     },
     "fedora-release-common": {
-      "evra": "42-26.noarch",
+      "evra": "42-28.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
     },
     "fedora-release-coreos": {
-      "evra": "42-26.noarch",
+      "evra": "42-28.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
     },
     "fedora-release-identity-coreos": {
-      "evra": "42-26.noarch",
+      "evra": "42-28.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
@@ -643,7 +643,7 @@
       }
     },
     "filesystem": {
-      "evra": "3.18-42.fc42.s390x",
+      "evra": "3.18-47.fc42.s390x",
       "metadata": {
         "sourcerpm": "filesystem"
       }
@@ -703,7 +703,7 @@
       }
     },
     "fwupd": {
-      "evra": "2.0.12-1.fc42.s390x",
+      "evra": "2.0.13-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -745,25 +745,25 @@
       }
     },
     "glibc": {
-      "evra": "2.41-8.fc42.s390x",
+      "evra": "2.41-9.fc42.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.41-8.fc42.s390x",
+      "evra": "2.41-9.fc42.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.41-8.fc42.s390x",
+      "evra": "2.41-9.fc42.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.41-8.fc42.s390x",
+      "evra": "2.41-9.fc42.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -787,7 +787,7 @@
       }
     },
     "gpgme": {
-      "evra": "1.24.2-1.fc42.s390x",
+      "evra": "1.24.3-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "gpgme"
       }
@@ -895,7 +895,7 @@
       }
     },
     "iputils": {
-      "evra": "20240905-4.fc42.s390x",
+      "evra": "20250602-3.fc42.s390x",
       "metadata": {
         "sourcerpm": "iputils"
       }
@@ -973,25 +973,25 @@
       }
     },
     "kernel": {
-      "evra": "6.15.6-200.fc42.s390x",
+      "evra": "6.15.8-200.fc42.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.15.6-200.fc42.s390x",
+      "evra": "6.15.8-200.fc42.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.15.6-200.fc42.s390x",
+      "evra": "6.15.8-200.fc42.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.15.6-200.fc42.s390x",
+      "evra": "6.15.8-200.fc42.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1147,13 +1147,13 @@
       }
     },
     "libdnf5": {
-      "evra": "5.2.13.1-1.fc42.s390x",
+      "evra": "5.2.15.0-2.fc42.s390x",
       "metadata": {
         "sourcerpm": "dnf5"
       }
     },
     "libdnf5-cli": {
-      "evra": "5.2.13.1-1.fc42.s390x",
+      "evra": "5.2.15.0-2.fc42.s390x",
       "metadata": {
         "sourcerpm": "dnf5"
       }
@@ -1381,7 +1381,7 @@
       }
     },
     "libnvme": {
-      "evra": "1.14-1.fc42.s390x",
+      "evra": "1.15-2.fc42.s390x",
       "metadata": {
         "sourcerpm": "libnvme"
       }
@@ -1429,7 +1429,7 @@
       }
     },
     "librepo": {
-      "evra": "1.19.0-3.fc42.s390x",
+      "evra": "1.20.0-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "librepo"
       }
@@ -1825,7 +1825,7 @@
       }
     },
     "nvme-cli": {
-      "evra": "2.14-1.fc42.s390x",
+      "evra": "2.15-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "nvme-cli"
       }
@@ -1873,13 +1873,13 @@
       }
     },
     "ostree": {
-      "evra": "2025.3-2.fc42.s390x",
+      "evra": "2025.4-2.fc42.s390x",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-libs": {
-      "evra": "2025.3-2.fc42.s390x",
+      "evra": "2025.4-2.fc42.s390x",
       "metadata": {
         "sourcerpm": "ostree"
       }
@@ -2047,7 +2047,7 @@
       }
     },
     "rpcbind": {
-      "evra": "1.2.7-2.rc1.fc42.s390x",
+      "evra": "1.2.8-0.fc42.s390x",
       "metadata": {
         "sourcerpm": "rpcbind"
       }
@@ -2137,13 +2137,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "41.45-1.fc42.noarch",
+      "evra": "42.3-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "41.45-1.fc42.noarch",
+      "evra": "42.3-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2287,7 +2287,7 @@
       }
     },
     "stalld": {
-      "evra": "1.19.8-2.fc42.s390x",
+      "evra": "1.20.2-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "stalld"
       }
@@ -2504,16 +2504,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-07-21T00:00:00Z",
+    "generated": "2025-08-03T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2025-04-09T11:06:57Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-07-20T07:24:35Z"
+        "generated": "2025-08-01T16:00:23Z"
       },
       "fedora-updates": {
-        "generated": "2025-07-21T00:57:33Z"
+        "generated": "2025-08-03T01:10:37Z"
       }
     }
   }

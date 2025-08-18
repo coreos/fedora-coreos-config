@@ -1,0 +1,30 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base/on-pull-request
+transformers:
+  - |-
+    apiVersion: builtin
+    kind: PrefixSuffixTransformer
+    metadata:
+      name: SuffixTransformer
+    suffix: "-testing"
+    fieldSpecs:
+    - kind: PipelineRun
+      path: metadata/labels/appstudio.openshift.io\/application
+    - kind: PipelineRun
+      path: metadata/labels/appstudio.openshift.io\/component
+    - kind: PipelineRun
+      path: spec/taskRunTemplate/serviceAccountName
+patches:
+  - target:
+      kind: PipelineRun
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'fedora-coreos-testing-on-pull-request'
+      - op: replace
+        path: /metadata/annotations/pipelinesascode.tekton.dev~1on-cel-expression
+        value: 'event == "pull_request" && target_branch == "testing"'
+

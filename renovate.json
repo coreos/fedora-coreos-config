@@ -1,0 +1,52 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "baseBranches": ["main"],
+  "branchPrefix": "renovate/",
+  "prHourlyLimit": 0,
+  "branchConcurrentLimit": 0,
+  "baseBranchPatterns": [
+    "testing-devel",
+    "next-devel",
+    "rawhide",
+    "branched"
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchDepNames": ["quay.io/fedora/fedora"],
+      "enabled": false
+    },
+    {
+      "matchDatasources": ["git-submodules"],
+      "enabled": false
+    },
+    {
+      "matchManagers": ["rpm"],
+      "enabled": false
+    },
+    {
+      "matchManagers": ["custom.regex"],
+      "matchBaseBranches": [
+        "testing-devel"
+      ],
+      "matchPackageNames": [
+        "quay.io/fedora/fedora:**"
+      ]
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update Fedora base image based on endoflife-date",
+      "fileMatch": [
+        "Dockerfile|Containerfile"
+      ],
+      "matchStrings": [
+        "quay.io/fedora/fedora:(?<currentValue>.*)"
+      ],
+      "versioningTemplate": "loose",
+      "datasourceTemplate": "endoflife-date",
+      "depNameTemplate": "fedora"
+    }
+  ]
+}
