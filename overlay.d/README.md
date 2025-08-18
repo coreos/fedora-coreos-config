@@ -84,3 +84,8 @@ user opted out.
 
 [1] https://github.com/coreos/fedora-coreos-tracker/issues/1890
 [2] https://github.com/coreos/fedora-coreos-config/pull/3355
+
+50alternatives
+--------------
+
+Temporary overlay for the alternatives migration scripts.

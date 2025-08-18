@@ -7,6 +7,7 @@
 # 4. It injects various metadata (e.g. image.json, live/ bits, and platforms.json).
 # 5. It runs the postprocess scripts defined in the manifest.
 
+import glob
 import json
 import os
 import shutil
@@ -30,14 +31,22 @@ def main():
 
     packages = list(manifest['packages'])
 
-    locked_nevras = get_locked_nevras()
+    repos = manifest.get('repos', []) + manifest.get('lockfile-repos', [])
+    if repos:
+        inject_yumrepos()
+
+    local_overrides = prepare_local_rpm_overrides(target_rootfs)
+    if local_overrides:
+        repos += ['overrides']
+
+    locked_nevras = get_locked_nevras(local_overrides)
     if locked_nevras:
-        inject_pool_repo_if_exists(locked_nevras)
+        modify_pool_repo(locked_nevras)
 
     packages.extend(locked_nevras)
     overlays = gather_overlays(manifest)
     nodocs = (manifest.get('documentation') is False)
-    build_rootfs(target_rootfs, manifest_path, packages, overlays, nodocs)
+    build_rootfs(target_rootfs, manifest_path, packages, overlays, repos, nodocs)
 
     inject_live(target_rootfs)
     inject_image_json(target_rootfs, manifest_path)
@@ -66,7 +75,20 @@ def get_treefile(manifest_path):
     return json.loads(data)
 
 
-def build_rootfs(target_rootfs, manifest_path, packages, overlays, nodocs):
+def inject_yumrepos():
+    # first delete all the default repos
+    for repo in glob.glob('/etc/yum.repos.d/*.repo'):
+        if os.path.basename(repo) == 'secret.repo':
+            # this is a supported podman secret to inject repo files; see Containerfile
+            continue
+        os.unlink(repo)
+
+    # and now inject our repos
+    for repo in glob.glob(f'{CONTEXTDIR}/*.repo'):
+        shutil.copy(repo, "/etc/yum.repos.d")
+
+
+def build_rootfs(target_rootfs, manifest_path, packages, overlays, repos, nodocs):
     passwd_group_dir = os.getenv('PASSWD_GROUP_DIR')
     if passwd_group_dir is not None:
         inject_passwd_group(os.path.join(CONTEXTDIR, passwd_group_dir))
@@ -79,14 +101,28 @@ def build_rootfs(target_rootfs, manifest_path, packages, overlays, nodocs):
             argsfile.write("--no-docs\n")
             # temporarily work around https://issues.redhat.com/browse/RHEL-97826
             tmpd = workaround_rhel_97826(argsfile)
+        if repos and repo_arg_supported():
+            for repo in repos:
+                argsfile.write(f"--repo={repo}\n")
         argsfile.flush()
-        cache_arg = ['--cachedir=/cache'] if os.path.isdir('/cache') else []
+        cache_arg = []
+        if os.path.isdir('/cache') and rpm_ostree_has_cachedir_fix():
+            cache_arg = ['--cachedir=/cache']
         subprocess.check_call(["/usr/libexec/bootc-base-imagectl",
                                "--args-file", argsfile.name, "build-rootfs",
                                "--manifest", 'minimal-plus',
                                target_rootfs] + cache_arg)
     if nodocs and tmpd is not None:
         del tmpd
+
+
+def repo_arg_supported():
+    # Detect if we have https://gitlab.com/fedora/bootc/base-images/-/merge_requests/248.
+    # If not, then we can't use `--repo`. That's OK because that should only
+    # happen on RHEL, where we don't have any default repos anyway and only rely on
+    # the mounted secret repo file.
+    help = subprocess.check_output(['/usr/libexec/bootc-base-imagectl', 'build-rootfs', '-h'], encoding='utf-8')
+    return '--repo REPO' in help
 
 
 def workaround_rhel_97826(argsfile):
@@ -101,8 +137,20 @@ def workaround_rhel_97826(argsfile):
     print("Working around RHEL-97826", flush=True)
     tmpd = tempfile.TemporaryDirectory()
     shutil.copytree(f'/{basedir}', os.path.join(tmpd.name, basedir), symlinks=True)
-    argsfile.write(f'--add-dir={tmpd.name}')
+    argsfile.write(f'--add-dir={tmpd.name}\n')
     return tmpd
+
+
+def rpm_ostree_has_cachedir_fix():
+    # we can only use --cachedir if we have rpm-ostree >= 2025.9 which has
+    # https://github.com/coreos/rpm-ostree/pull/5391
+    out = subprocess.check_output(['rpm-ostree', '--version'], encoding='utf-8')
+    data = yaml.safe_load(out)
+    version_str = data['rpm-ostree']['Version']
+    # ideally, we could use `packaging.version`, but that's not in centos-bootc
+    # but conveniently, Python list comparisons do the right thing here
+    version = [int(c) for c in version_str.split('.')]
+    return version >= [2025, 9]
 
 
 # We want to keep our passwd/group as canonical for now. We should be
@@ -135,6 +183,38 @@ def run_postprocess_scripts(rootfs, manifest):
         os.unlink(os.path.join(rootfs, name))
 
 
+def prepare_local_rpm_overrides(rootfs):
+    overrides_repo = os.path.join(CONTEXTDIR, 'overrides/rpm')
+    if not os.path.isdir(f'{overrides_repo}/repodata'):
+        return None
+
+    pkglist = subprocess.check_output(['dnf', 'repoquery', f'--repofrompath=overrides,file://{overrides_repo}',
+                                       '--repo=overrides', '--latest-limit=1', f'--arch={ARCH},noarch',
+                                       '--qf', 'pkg: %{name} %{evr} %{arch}\n'], encoding='utf-8')
+    lockfile = {"packages": {}}
+    for line in pkglist.splitlines():
+        if not line.startswith("pkg: "):
+            continue
+        _, name, evr, arch = line.strip().split()
+        lockfile["packages"][name] = {"evra": f"{evr}.{arch}"}
+
+    if len(lockfile['packages']) == 0:
+        return None
+
+    with open('/etc/yum.repos.d/overrides.repo', 'w') as f:
+        f.write(f'''
+[overrides]
+name=overrides
+baseurl=file://{overrides_repo}
+gpgcheck=0
+cost=500
+priority=1
+''')
+
+    print("Injected", len(lockfile['packages']), 'package overrides')
+    return lockfile
+
+
 # Could upstream this as e.g. `bootc-base-imagectl runroot /rootfs <cmd>` maybe?
 # But we'd need to carry it anyway at least for RHCOS 9.6.
 def bwrap(rootfs, args):
@@ -145,7 +225,7 @@ def bwrap(rootfs, args):
                            '--'] + args)
 
 
-def get_locked_nevras():
+def get_locked_nevras(local_overrides):
     lockfile_path = os.path.join(CONTEXTDIR, f"manifest-lock.{ARCH}.json")
     overrides_path = os.path.join(CONTEXTDIR, "manifest-lock.overrides.yaml")
     overrides_arch_path = os.path.join(CONTEXTDIR, f"manifest-lock.overrides.{ARCH}.yaml")
@@ -161,20 +241,25 @@ def get_locked_nevras():
                 # this essentially re-implements the merge semantics of rpm-ostree
                 locks.update({pkgname: v['evra'] if 'evra' in v else v['evr']
                               for (pkgname, v) in data['packages'].items()})
+    if local_overrides:
+        # Note here we only add the minimal number of overrides needed to
+        # nullify the base locks rather than take all of them wholesale. We
+        # don't want to force-install everything in `overrides/rpm` -- e.g. we
+        # want to support dumb `koji download-build` flows. For everything else
+        # that's unlocked, we rely on the overrides repo having priority=1.
+        locks.update({pkgname: v['evra'] if 'evra' in v else v['evr']
+                      for (pkgname, v) in local_overrides['packages'].items()
+                      if pkgname in locks})
     return [f'{k}-{v}' for (k, v) in locks.items()]
 
 
-def inject_pool_repo_if_exists(locked_nevras):
-    srcrepo = os.path.join(CONTEXTDIR, "fedora-coreos-pool.repo")
-    if not os.path.exists(srcrepo):
-        return
-
+def modify_pool_repo(locked_nevras):
     # When adding the pool, we only want to _filter in_ locked packages;
     # matching `lockfile-repos` semantics. This is abusing pretty hard the
     # `includepkgs=` semantic but... it works.
-    shutil.copyfile(srcrepo, "/etc/yum.repos.d/pool.repo")
+    repo = os.path.join('/etc/yum.repos.d/fedora-coreos-pool.repo')
     packages = ','.join(locked_nevras)
-    with open("/etc/yum.repos.d/pool.repo", 'a') as f:
+    with open(repo, 'a') as f:
         f.write(f"\nincludepkgs={packages}\n")
 
 
@@ -211,6 +296,12 @@ def gather_overlays(manifest):
     for layer in manifest.get('ostree-layers', []):
         assert layer.startswith('overlay/')
         overlays.append(os.path.join(CONTEXTDIR, 'overlay.d', layer[len('overlay/'):]))
+
+    rootfs_override = os.path.join(CONTEXTDIR, 'overrides/rootfs')
+    if os.path.isdir(rootfs_override) and len(os.listdir(rootfs_override)) > 0:
+        print("Injecting rootfs override")
+        overlays.append(rootfs_override)
+
     return overlays
 
 
