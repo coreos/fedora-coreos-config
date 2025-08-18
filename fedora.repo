@@ -11,7 +11,7 @@ enabled=1
 repo_gpgcheck=0
 type=rpm
 gpgcheck=1
-gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-primary
 skip_if_unavailable=False
 
 [fedora-updates]
@@ -24,7 +24,7 @@ repo_gpgcheck=0
 type=rpm
 gpgcheck=1
 metadata_expire=6h
-gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-primary
 skip_if_unavailable=False
 
 [fedora-updates-testing]
@@ -35,5 +35,5 @@ baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/testing/$releaseve
 enabled=1
 gpgcheck=1
 metadata_expire=6h
-gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-primary
 skip_if_unavailable=False
