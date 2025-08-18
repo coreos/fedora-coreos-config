@@ -160,32 +160,16 @@ move-to-cgroups-v2() {
     fi
 }
 
-# We need to drop the rollback deployment. During upgrade
-# `...-> 40.20240906.1.0 (A)-> 41.20241109.1.0 (B)-> 42.20241114.91.0 (C)`
-# 1) A->B, A has the unfixed ostree, the upgrade will copy dtb files
-# to `/boot/ostree` both for current A and new B with wrong label
-# 2) B->C, B has the fixed ostree, the upgrade will prune A, leave B
-# with wrong label, and new C with correct label
-# 3) Finaly booting C and will check that B has the wrong label
-# In this case we need to drop the rollback before checking.
-#
-# If then upgrade to newer D, the upgrade will prune B (wrong label),
-# leave C with correct label, and new D with correct label. (We
-# should remove the drop under this case)
-#
-# https://github.com/coreos/fedora-coreos-tracker/issues/1808
-#
-# NOTE: we can drop this once moved to F43.
-drop_rollback_on_aarch64() {
-    # The dtb copy issue was only ever an issue ever on aarch64
-    [ "${arch}" != 'aarch64' ] && return
-    echo "Dropping rollback deployment because it could have mislabeled dtb files"
-    rpm-ostree cleanup --rollback
-}
-
 selinux-sanity-check() {
-    # Drop the rollback on aarch64 before checking.
-    drop_rollback_on_aarch64
+    # Drop the rollback deployment. In the case where the name of a
+    # label gets changed then the rollback deployment will show files
+    # as unlabeled_t because the currently loaded policy (i.e. the upgraded
+    # policy) doesn't know about the old label. Since we are more concerned
+    # about the upgraded system let's just focus on finding unlabeled files
+    # there and drop the rollback deployment.
+    # https://github.com/coreos/fedora-coreos-tracker/issues/2007#issuecomment-3197248482
+    echo "Dropping rollback deployment"
+    rpm-ostree cleanup --rollback
     # Verify SELinux labels are sane. Migration scripts should have cleaned
     # up https://github.com/coreos/fedora-coreos-tracker/issues/1772
     unlabeled="$(find /sysroot -context '*unlabeled_t*' -print0 | xargs --null -I{} ls -ldZ '{}')"
