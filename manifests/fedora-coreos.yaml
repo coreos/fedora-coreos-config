@@ -38,9 +38,12 @@ conditional-include:
       # All Fedora CoreOS streams share the same pool for locked files.
       lockfile-repos:
         - fedora-coreos-pool
-  # Roll out the OCI migration slowly
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1890#issuecomment-2881068761
-  - if: stream != "stable"
+  # The OCI migration is now happening in all streams, but we should
+  # be able to drop the migration code after the next barrier release.
+  # Let's just encode it to be dropped with F43, since we know there
+  # will be a barrier release before then.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1890
+  - if: releasever < 43
     include:
       ostree-layers:
         - overlay/35oci-migration
@@ -52,6 +55,12 @@ conditional-include:
         - python
         - python3
         - python3-libs
+
+  # Do the alternatives migration from 43
+  - if: releasever >= 43
+    include:
+      ostree-layers:
+        - overlay/50alternatives
 
 ostree-layers:
   - overlay/15fcos
