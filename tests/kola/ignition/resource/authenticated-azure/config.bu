@@ -1,0 +1,18 @@
+# Objects accessible by any authenticated azure user, such as the credentials
+# associated with the Azure Blob instance
+
+variant: fcos
+version: 1.2.0
+ignition:
+  config:
+    merge:
+      - source: "https://ignitiontestfixtures.blob.core.windows.net/private/authenticated-var.ign"
+storage:
+  files:
+    # Check that anonymous access works with credentials
+    - path: /var/resource/azure-anon
+      contents:
+        source: "https://ignitiontestfixtures.blob.core.windows.net/public/azure-anon"
+    - path: /var/resource/azure-auth
+      contents:
+        source: "https://ignitiontestfixtures.blob.core.windows.net/private/azure-auth"
