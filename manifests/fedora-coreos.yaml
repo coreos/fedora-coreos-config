@@ -55,6 +55,16 @@ conditional-include:
         - python
         - python3
         - python3-libs
+  # In F43 and older pull in the nfs-utils-coreos package
+  - if: releasever <= 43
+    include:
+      packages:
+        - nfs-utils-coreos
+  # In F44 we can use the nfs-client-utils package, which obsoletes nfs-utils-coreos
+  - if: releasever >= 44
+    include:
+      packages:
+        - nfs-client-utils
 
   # Do the alternatives migration from 43
   - if: releasever >= 43
