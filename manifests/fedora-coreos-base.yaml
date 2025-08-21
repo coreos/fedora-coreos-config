@@ -152,8 +152,6 @@ packages:
   # provide `container-network-stack`.
   # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071458717
   - netavark
-  # Minimal NFS client
-  - nfs-utils-coreos
   # Active Directory support
   - adcli
   # Additional firewall support; we aren't including these in RHCOS or they
