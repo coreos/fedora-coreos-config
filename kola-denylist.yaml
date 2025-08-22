@@ -10,9 +10,9 @@
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1889
   arches:
     - ppc64le
-- pattern: ext.config.docker*
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1998
-  snooze: 2025-08-14
+- pattern: ext.config.files.validate-symlinks
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2012
+  snooze: 2025-09-01
   warn: true
   streams:
     - rawhide
