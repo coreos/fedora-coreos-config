@@ -40,7 +40,7 @@ conditional-include:
         # https://github.com/coreos/fedora-coreos-tracker/issues/677
         # https://github.com/coreos/fedora-coreos-tracker/issues/676
         - |
-          #!/usr/bin/bash
+          #!/usr/bin/env bash
           set -eux -o pipefail
           ln -sf /usr/sbin/ip6tables-nft         /etc/alternatives/ip6tables
           ln -sf /usr/sbin/ip6tables-nft-restore /etc/alternatives/ip6tables-restore
@@ -88,7 +88,7 @@ postprocess:
   # Enable SELinux booleans used by OpenShift
   # https://github.com/coreos/fedora-coreos-tracker/issues/284
   - |
-    #!/usr/bin/bash
+    #!/usr/bin/env bash
     set -eux -o pipefail
     setsebool -P -N container_use_cephfs on  # RHBZ#1692369
     setsebool -P -N virt_use_samba on  # RHBZ#1754825
@@ -99,7 +99,7 @@ postprocess:
   # use it as an external dns server. We prefer they use a container for that.
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
   - |
-    #!/usr/bin/bash
+    #!/usr/bin/env bash
     set -eux -o pipefail
     systemctl mask dnsmasq.service
 
