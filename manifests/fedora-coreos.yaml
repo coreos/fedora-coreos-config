@@ -20,6 +20,7 @@ include: fedora-coreos-base.yaml
 conditional-include:
   - if: releasever >= 41
     include: selinux-workaround.yaml
+
   # If not production then disable Zincati
   - if: prod == false
     include:
@@ -31,42 +32,42 @@ conditional-include:
           # https://github.com/coreos/fedora-coreos-tracker/issues/163
           updates.enabled = false
           EOF
-  # TODO: There is no coreos-pool tag/repo for RISCV yet
-  #       https://github.com/coreos/fedora-coreos-tracker/issues/1931
+
+  # No coreos-pool tag/repo for RISCV
   - if: basearch != "riscv64"
     include:
-      # All Fedora CoreOS streams share the same pool for locked files.
       lockfile-repos:
         - fedora-coreos-pool
-  # The OCI migration is now happening in all streams, but we should
-  # be able to drop the migration code after the next barrier release.
-  # Let's just encode it to be dropped with F43, since we know there
-  # will be a barrier release before then.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1890
+
+  # OCI migration for releasever < 43
   - if: releasever < 43
     include:
       ostree-layers:
         - overlay/35oci-migration
-  # Allow python in F43 for now until nfs package gets fixed.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1942#issuecomment-2881075898
+
+  # Allow python in F43 for now until nfs package gets fixed
   - if: releasever < 43
     include:
       exclude-packages:
         - python
         - python3
         - python3-libs
-  # In F43 and older pull in the nfs-utils-coreos package
+
+  # Pull in nfs-utils-coreos for F43 and older
   - if: releasever <= 43
     include:
       packages:
         - nfs-utils-coreos
-  # In F44 we can use the nfs-client-utils package, which obsoletes nfs-utils-coreos
+
+  # For F44 and newer: include nfs-client-utils and remove nfs-utils-coreos
   - if: releasever >= 44
     include:
       packages:
         - nfs-client-utils
+      remove-from-packages:
+        - nfs-utils-coreos
 
-  # Do the alternatives migration from 43
+  # Do the alternatives migration from releasever >= 43
   - if: releasever >= 43
     include:
       ostree-layers:
