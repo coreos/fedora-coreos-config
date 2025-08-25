@@ -51,6 +51,8 @@ conditional-include:
   # https://github.com/coreos/fedora-coreos-tracker/issues/1942#issuecomment-2881075898
   - if: releasever < 43
     include:
+      # Note we can still use exclude-packages in F42 because we aren't
+      # building via container there.
       exclude-packages:
         - python
         - python3
@@ -207,23 +209,37 @@ postprocess:
       grep ^docker: /usr/lib/group >> /etc/group
     fi
 
-# Things we don't expect to ship on the host.  We currently
-# have recommends: false so these could only come in via
-# hard requirement, in which case the build will fail.
-exclude-packages:
-  - perl
-  - perl-interpreter
-  - nodejs
-  - grubby
-  - cowsay  # Just in case
-  # Let's make sure initscripts doesn't get pulled back in
-  # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
-  - initscripts
-  # nor /usr/sbin/service
-  - initscripts-service
-  # For (datacenter/cloud oriented) servers, we want to see the details by default.
-  # https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/HSMISZ3ETWQ4ETVLWZQJ55ARZT27AAV3/
-  - plymouth
-  # Do not use legacy ifcfg config format in NetworkManager
-  # See https://github.com/coreos/fedora-coreos-config/pull/1991
-  - NetworkManager-initscripts-ifcfg-rh
+  # Implement exclude-packages: in a postprocess because when building
+  # via container we don't have exclude-packages functionality.
+  #
+  # These are things we don't expect to ship on the host. We currently
+  # have recommends: false so these could only come in via hard requirement,
+  # in which case the build will fail.
+  - |
+    #!/usr/bin/env bash
+    set -x
+    excludes=(
+      perl
+      perl-interpreter
+      nodejs
+      grubby
+      cowsay  # Just in case
+    # Let's make sure initscripts doesn't get pulled back in
+    # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
+      initscripts
+    # nor /usr/sbin/service
+      initscripts-service
+    # For (datacenter/cloud oriented) servers, we want to see the details by default.
+    # https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/HSMISZ3ETWQ4ETVLWZQJ55ARZT27AAV3/
+      plymouth
+    # Do not use legacy ifcfg config format in NetworkManager
+    # See https://github.com/coreos/fedora-coreos-config/pull/1991
+      NetworkManager-initscripts-ifcfg-rh
+    )
+    # Determine if anything that isn't allowed is actually provided.
+    actuals="$(rpm -q --whatprovides ${excludes[@]} | grep -v 'no package provides')"
+    if [ ! -z "${actuals}" ]; then
+        echo "Something is providing excluded RPM functionality!" 1>&2
+        echo "${actuals}" 1>&2
+        exit 1
+    fi
