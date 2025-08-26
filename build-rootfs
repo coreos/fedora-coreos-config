@@ -191,14 +191,14 @@ def prepare_local_rpm_overrides(rootfs):
     pkglist = subprocess.check_output(['dnf', 'repoquery', f'--repofrompath=overrides,file://{overrides_repo}',
                                        '--repo=overrides', '--latest-limit=1', f'--arch={ARCH},noarch',
                                        '--qf', 'pkg: %{name} %{evr} %{arch}\n'], encoding='utf-8')
-    lockfile = {"packages": {}}
+    lockfile = {}
     for line in pkglist.splitlines():
         if not line.startswith("pkg: "):
             continue
         _, name, evr, arch = line.strip().split()
-        lockfile["packages"][name] = {"evra": f"{evr}.{arch}"}
+        lockfile[name] = {"evra": f"{evr}.{arch}"}
 
-    if len(lockfile['packages']) == 0:
+    if len(lockfile) == 0:
         return None
 
     with open('/etc/yum.repos.d/overrides.repo', 'w') as f:
@@ -211,7 +211,7 @@ cost=500
 priority=1
 ''')
 
-    print("Injected", len(lockfile['packages']), 'package overrides')
+    print("Injected", len(lockfile), 'package overrides')
     return lockfile
 
 
@@ -248,7 +248,7 @@ def get_locked_nevras(local_overrides):
         # want to support dumb `koji download-build` flows. For everything else
         # that's unlocked, we rely on the overrides repo having priority=1.
         locks.update({pkgname: v['evra'] if 'evra' in v else v['evr']
-                      for (pkgname, v) in local_overrides['packages'].items()
+                      for (pkgname, v) in local_overrides.items()
                       if pkgname in locks})
     return [f'{k}-{v}' for (k, v) in locks.items()]
 
