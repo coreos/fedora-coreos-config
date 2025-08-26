@@ -40,13 +40,10 @@ def main():
         repos += ['overrides']
 
     locked_nevras = get_locked_nevras(local_overrides)
-    if locked_nevras:
-        modify_pool_repo(locked_nevras)
 
-    packages.extend(locked_nevras)
     overlays = gather_overlays(manifest)
     nodocs = (manifest.get('documentation') is False)
-    build_rootfs(target_rootfs, manifest_path, packages, overlays, repos, nodocs)
+    build_rootfs(target_rootfs, manifest_path, packages, locked_nevras, overlays, repos, nodocs)
 
     inject_live(target_rootfs)
     inject_image_json(target_rootfs, manifest_path)
@@ -88,7 +85,7 @@ def inject_yumrepos():
         shutil.copy(repo, "/etc/yum.repos.d")
 
 
-def build_rootfs(target_rootfs, manifest_path, packages, overlays, repos, nodocs):
+def build_rootfs(target_rootfs, manifest_path, packages, locked_nevras, overlays, repos, nodocs):
     passwd_group_dir = os.getenv('PASSWD_GROUP_DIR')
     if passwd_group_dir is not None:
         inject_passwd_group(os.path.join(CONTEXTDIR, passwd_group_dir))
@@ -104,6 +101,9 @@ def build_rootfs(target_rootfs, manifest_path, packages, overlays, repos, nodocs
         if repos and repo_arg_supported():
             for repo in repos:
                 argsfile.write(f"--repo={repo}\n")
+        if locked_nevras and lock_arg_supported():
+            for locked_nevra in locked_nevras:
+                argsfile.write(f"--lock={locked_nevra}\n")
         argsfile.flush()
         cache_arg = []
         if os.path.isdir('/cache') and rpm_ostree_has_cachedir_fix():
@@ -123,6 +123,14 @@ def repo_arg_supported():
     # the mounted secret repo file.
     help = subprocess.check_output(['/usr/libexec/bootc-base-imagectl', 'build-rootfs', '-h'], encoding='utf-8')
     return '--repo REPO' in help
+
+
+def lock_arg_supported():
+    # Detect if we have https://gitlab.com/fedora/bootc/base-images/-/merge_requests/279.
+    # If not, then we can't use `--lock`. That should only happen in RHCOS,
+    # where we only use this for autolocking and not base lockfile management.
+    help = subprocess.check_output(['/usr/libexec/bootc-base-imagectl', 'build-rootfs', '-h'], encoding='utf-8')
+    return '--lock NEVRA' in help
 
 
 def workaround_rhel_97826(argsfile):
@@ -243,25 +251,9 @@ def get_locked_nevras(local_overrides):
                 locks.update({pkgname: v['evra'] if 'evra' in v else v['evr']
                               for (pkgname, v) in data['packages'].items()})
     if local_overrides:
-        # Note here we only add the minimal number of overrides needed to
-        # nullify the base locks rather than take all of them wholesale. We
-        # don't want to force-install everything in `overrides/rpm` -- e.g. we
-        # want to support dumb `koji download-build` flows. For everything else
-        # that's unlocked, we rely on the overrides repo having priority=1.
         locks.update({pkgname: v['evra'] if 'evra' in v else v['evr']
-                      for (pkgname, v) in local_overrides.items()
-                      if pkgname in locks})
+                      for (pkgname, v) in local_overrides.items()})
     return [f'{k}-{v}' for (k, v) in locks.items()]
-
-
-def modify_pool_repo(locked_nevras):
-    # When adding the pool, we only want to _filter in_ locked packages;
-    # matching `lockfile-repos` semantics. This is abusing pretty hard the
-    # `includepkgs=` semantic but... it works.
-    repo = os.path.join('/etc/yum.repos.d/fedora-coreos-pool.repo')
-    packages = ','.join(locked_nevras)
-    with open(repo, 'a') as f:
-        f.write(f"\nincludepkgs={packages}\n")
 
 
 # This re-implements rpm-ostree's mutate-os-release to preserve the historical
