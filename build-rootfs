@@ -230,6 +230,7 @@ def get_locked_nevras(local_overrides):
     overrides_path = os.path.join(CONTEXTDIR, "manifest-lock.overrides.yaml")
     overrides_arch_path = os.path.join(CONTEXTDIR, f"manifest-lock.overrides.{ARCH}.yaml")
 
+    # we go from lowest priority to highest here: base lockfiles, overrides, local overrides
     locks = {}
     for path in [lockfile_path, overrides_path, overrides_arch_path]:
         if os.path.exists(path):
