@@ -1,0 +1,17 @@
+#!/bin/bash
+set -euo pipefail
+
+arch=$(uname -m)
+. /etc/os-release
+
+# fast-track backport of https://github.com/coreos/rpm-ostree/pull/5475
+
+case "$VERSION_ID" in
+    43) urls=(https://kojipkgs.fedoraproject.org//packages/rpm-ostree/2025.10/3.fc43/"$arch"/rpm-ostree-{,libs-}2025.10-3.fc43."$arch".rpm);;
+    44) urls=(https://kojipkgs.fedoraproject.org//packages/rpm-ostree/2025.10/3.fc44/"$arch"/rpm-ostree-{,libs-}2025.10-3.fc44."$arch".rpm);;
+    *) exit 0;;
+esac
+
+if rpm -q "rpm-ostree-2025.10-1.fc43.$arch"; then
+    sudo dnf install -y "${urls[@]}"
+fi
