@@ -22,10 +22,10 @@ case "$(arch)" in
     aarch64|x86_64)
         # on these arches, we always expect state files to exist
         check_state_file=1
-        # aarch64 (and x86_64) uses uefi firmware, should check grub2-efi
+        # aarch64 (and x86_64) uses uefi firmware, should check grub2
         evr=$(rpm -q grub2-common --qf '%{EVR}')
-        if ! bootupctl status | grep "grub2-efi-.*-${evr}"; then
-            fatal "bootupctl status output should include grub2-efi package version"
+        if ! bootupctl status | grep "${evr}"; then
+            fatal "bootupctl status output should include grub2 package version"
         fi
         ;;
     ppc64le)
