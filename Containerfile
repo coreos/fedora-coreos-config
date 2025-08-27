@@ -23,6 +23,10 @@ ARG MANIFEST=overridden
 # XXX: see inject_passwd_group() in build-rootfs
 ARG PASSWD_GROUP_DIR
 
+# this allows FCOS/SCOS/RHCOS to do specific things before going into the shared build-rootfs script
+RUN --mount=type=bind,target=/run/src \
+  if test -x /run/src/buildroot-prep; then /run/src/buildroot-prep; fi
+
 # useful if you're hacking on rpm-ostree/bootc-base-imagectl
 # COPY rpm-ostree /usr/bin/
 # COPY bootc-base-imagectl /usr/libexec/
