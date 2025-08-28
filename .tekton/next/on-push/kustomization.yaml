@@ -26,5 +26,5 @@ patches:
         value: 'fedora-coreos-next-on-push'
       - op: replace
         path: /metadata/annotations/pipelinesascode.tekton.dev~1on-cel-expression
-        value: 'event == "push" && target_branch == "next"'
+        value: 'event == "push" && target_branch == "next" && !(files.all.all(f, f.matches("ci/buildroot/")))'
 

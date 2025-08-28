@@ -26,5 +26,5 @@ patches:
         value: 'fedora-coreos-branched-on-pull-request'
       - op: replace
         path: /metadata/annotations/pipelinesascode.tekton.dev~1on-cel-expression
-        value: 'event == "pull_request" && target_branch == "branched"'
+        value: 'event == "pull_request" && target_branch == "branched" && !(files.all.all(f, f.matches("ci/buildroot/")))'
 

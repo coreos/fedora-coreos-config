@@ -1,20 +1,21 @@
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
-  name: fedora-coreos-branched-on-pull-request
+  name: fcos-buildroot-on-pull-request
   namespace: coreos-tenant
   labels:
-    appstudio.openshift.io/application: fedora-coreos-branched
-    appstudio.openshift.io/component: fedora-coreos-branched
+    appstudio.openshift.io/application: fcos-buildroot
+    appstudio.openshift.io/component: fcos-buildroot
     pipelines.appstudio.openshift.io/type: build
   annotations:
     build.appstudio.openshift.io/repo: https://github.com/coreos/fedora-coreos-config?rev={{revision}}
-    build.appstudio.redhat.com/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch == "branched" && !(files.all.all(f, f.matches("ci/buildroot/")))
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
+      == "testing-devel" && (".tekton/fcos-buildroot-pull-request.yaml".pathChanged() || "ci/buildroot/**".pathChanged())
   creationTimestamp: null
 spec:
   params:
@@ -23,21 +24,11 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/konflux-fedora/coreos-tenant/fedora-coreos-{{target_branch}}:on-pr-{{revision}}
+    value: quay.io/konflux-fedora/coreos-tenant/fcos-buildroot:on-pr-{{revision}}
   - name: dockerfile
-    value: Containerfile
+    value: ./ci/buildroot/Dockerfile
   - name: path-context
-    value: .
-  - name: privileged-nested
-    value: true
-  - name: build-args-file
-    value: build-args.conf
-  - name: workingdir-mount
-    value: /run/src
-  - name: build-platforms
-    value:
-    - linux/amd64
-    - linux/arm64
+    value: ci/buildroot
   - name: image-expires-after
     value: 5d
   pipelineRef:
@@ -50,4 +41,4 @@ spec:
       value: pipeline
     resolver: bundles
   taskRunTemplate:
-    serviceAccountName: build-pipeline-fedora-coreos-branched
+    serviceAccountName: build-pipeline-fcos-buildroot
