@@ -53,5 +53,6 @@ LABEL containers.bootc=1
 LABEL ostree.bootable=1
 LABEL org.opencontainers.image.version=$VERSION
 LABEL com.coreos.osname=$NAME
+LABEL test
 STOPSIGNAL SIGRTMIN+3
 CMD ["/sbin/init"]
