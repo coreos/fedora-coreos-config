@@ -39,3 +39,8 @@ packages:
     metadata:
       reason: https://bodhi.fedoraproject.org/updates/FEDORA-2025-e5c1f79161#comment-4276575
       type: pin
+  shim-x64:
+    evra: 15.8-5.x86_64
+    metadata:
+      reason: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4c57835010
+      type: pin
