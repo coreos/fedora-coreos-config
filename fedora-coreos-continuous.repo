@@ -1,0 +1,7 @@
+# This is used in the buildah path for fast-tracking build tools
+[fedora-coreos-continuous]
+metadata_expire=1m
+baseurl=https://kojipkgs.fedoraproject.org/repos-dist/f$releasever-coreos-continuous/latest/$basearch/
+gpgcheck=0
+enabled=0
+skip_if_unavailable=False
