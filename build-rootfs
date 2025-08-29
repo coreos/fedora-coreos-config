@@ -31,7 +31,7 @@ def main():
 
     packages = list(manifest['packages'])
 
-    repos = manifest.get('repos', []) + manifest.get('lockfile-repos', [])
+    repos = manifest.get('repos', [])
     if repos:
         inject_yumrepos()
 
@@ -40,6 +40,16 @@ def main():
         repos += ['overrides']
 
     locked_nevras = get_locked_nevras(local_overrides)
+    if locked_nevras:
+        lockfile_repos = manifest.get('lockfile-repos', [])
+        # Lockfile repos require special handling because we only want locked
+        # NEVRAs to appear there. For lack of a generic solution for any repo
+        # there, we only special-case the one place where we know we use this.
+        if lockfile_repos == ['fedora-coreos-pool']:
+            modify_pool_repo(locked_nevras)
+            repos += lockfile_repos
+        elif len(lockfile_repos) > 0:
+            raise Exception(f"unknown lockfile-repo found in {lockfile_repos}")
 
     overlays = gather_overlays(manifest)
     nodocs = (manifest.get('documentation') is False)
@@ -254,6 +264,16 @@ def get_locked_nevras(local_overrides):
         locks.update({pkgname: v['evra'] if 'evra' in v else v['evr']
                       for (pkgname, v) in local_overrides.items()})
     return [f'{k}-{v}' for (k, v) in locks.items()]
+
+
+def modify_pool_repo(locked_nevras):
+    # When adding the pool, we only want to _filter in_ locked packages;
+    # matching `lockfile-repos` semantics. This is abusing pretty hard the
+    # `includepkgs=` semantic but... it works.
+    repo = os.path.join('/etc/yum.repos.d/fedora-coreos-pool.repo')
+    packages = ','.join(locked_nevras)
+    with open(repo, 'a') as f:
+        f.write(f"\nincludepkgs={packages}\n")
 
 
 # This re-implements rpm-ostree's mutate-os-release to preserve the historical
