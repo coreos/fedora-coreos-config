@@ -1,0 +1,13 @@
+[Unit]
+Description=Migrate systems to fixed alternatives configuration
+# This directory is deleted by the script, which means the "migration" will only ever run once.
+ConditionPathExists=/var/lib/alternatives
+RequiresMountsFor=/var
+
+[Service]
+ExecStart=/usr/libexec/coreos-alternatives-migration
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target

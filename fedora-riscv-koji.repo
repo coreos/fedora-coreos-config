@@ -1,0 +1,7 @@
+# Pulled from http://fedora.riscv.rocks:3000/rpms/fedora-repos/src/commit/6cdced6f3c08dcf2c2bc82406868cfc9f83b55be/fedora-riscv-koji.repo
+[fedora-riscv-koji]
+name=Fedora RISC-V $releasever - Koji
+baseurl=https://riscv-koji.fedoraproject.org/repos/f$releasever-build/latest/$basearch/
+enabled=0
+gpgcheck=0
+priority=97

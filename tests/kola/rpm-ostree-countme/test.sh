@@ -30,7 +30,7 @@ if [[ $(systemctl show -p ActiveState rpm-ostree-countme.timer) != "ActiveState=
 fi
 
 # Try five times to avoid Fedora infra flakes
-for i in $(seq 1 5); do
+for i in {1..5}; do
     # Remove status file so that we retry every time we flake
     rm -f /var/lib/private/rpm-ostree-countme/countme
     # Update the journal cursor

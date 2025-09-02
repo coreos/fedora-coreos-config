@@ -56,6 +56,12 @@ conditional-include:
         - python3
         - python3-libs
 
+  # Do the alternatives migration from 43
+  - if: releasever >= 43
+    include:
+      ostree-layers:
+        - overlay/50alternatives
+
 ostree-layers:
   - overlay/15fcos
 

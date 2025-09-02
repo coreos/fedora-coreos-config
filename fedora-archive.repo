@@ -20,7 +20,7 @@ enabled=1
 repo_gpgcheck=0
 type=rpm
 gpgcheck=1
-gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-primary
 skip_if_unavailable=False
 
 [fedora-archive-updates]
@@ -35,5 +35,5 @@ enabled=1
 repo_gpgcheck=0
 type=rpm
 gpgcheck=1
-gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-primary
 skip_if_unavailable=False

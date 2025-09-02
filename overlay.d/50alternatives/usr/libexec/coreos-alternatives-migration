@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -euo pipefail
+# set -x
+
+main() {
+    if [[ -L "/var/lib/alternatives" ]]; then
+        rm "/var/lib/alternatives"
+        echo "Removed /var/lib/alternatives symlink"
+    else
+        # We can safely directly try to remove the directory as rmdir will fail on
+        # a non-empty directory
+        rmdir "/var/lib/alternatives" || echo "Warning: /var/lib/alternatives is not empty"
+    fi
+
+    if [[ ! -e "/var/lib/alternatives" ]]; then
+        echo "Successfully removed /var/lib/alternatives"
+    fi
+
+    # Do the migration, explicitly using the new configuration directory to
+    # ignore /var/lib/alternatives if it still exists
+    alternatives --admindir /etc/alternatives-admindir --set iptables /usr/bin/iptables-nft \
+                 || (echo "Setting up iptables-nft alternatives failed" ; exit 1)
+
+    echo "Setting up iptables-nft alternatives succeeded"
+}
+
+main "${@}"

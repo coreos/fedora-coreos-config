@@ -27,6 +27,38 @@ ostree-layers:
   - overlay/25azure-udev-rules
   - overlay/30lvmdevices
 
+conditional-include:
+  - if: releasever < 43
+    include:
+      packages:
+        # iptables-legacy was in <43 but excluded from 43+
+        # https://github.com/coreos/fedora-coreos-tracker/issues/1818
+        - iptables-legacy
+      postprocess:
+        # Default to iptables-nft. Otherwise, legacy wins. We can drop this once/if we
+        # remove iptables-legacy. This is needed because alternatives don't work
+        # https://github.com/coreos/fedora-coreos-tracker/issues/677
+        # https://github.com/coreos/fedora-coreos-tracker/issues/676
+        - |
+          #!/usr/bin/bash
+          set -eux -o pipefail
+          ln -sf /usr/sbin/ip6tables-nft         /etc/alternatives/ip6tables
+          ln -sf /usr/sbin/ip6tables-nft-restore /etc/alternatives/ip6tables-restore
+          ln -sf /usr/sbin/ip6tables-nft-save    /etc/alternatives/ip6tables-save
+          ln -sf /usr/sbin/iptables-nft          /etc/alternatives/iptables
+          ln -sf /usr/sbin/iptables-nft-restore  /etc/alternatives/iptables-restore
+          ln -sf /usr/sbin/iptables-nft-save     /etc/alternatives/iptables-save
+  - if: releasever > 42
+    include:
+      postprocess:
+        # Hack to avoid running out of space on aarch64. This should save us about 29M.
+        # https://github.com/coreos/fedora-coreos-tracker/issues/2004
+        - |
+          #!/usr/bin/env bash
+          set -eux -o pipefail
+          rm -vrf /usr/lib/modules/*aarch64/dtb/qcom/
+
+
 # Be minimal
 recommends: false
 
@@ -70,20 +102,6 @@ postprocess:
     #!/usr/bin/bash
     set -eux -o pipefail
     systemctl mask dnsmasq.service
-
-  # Default to iptables-nft. Otherwise, legacy wins. We can drop this once/if we
-  # remove iptables-legacy. This is needed because alternatives don't work
-  # https://github.com/coreos/fedora-coreos-tracker/issues/677
-  # https://github.com/coreos/fedora-coreos-tracker/issues/676
-  - |
-    #!/usr/bin/bash
-    set -eux -o pipefail
-    ln -sf /usr/sbin/ip6tables-nft         /etc/alternatives/ip6tables
-    ln -sf /usr/sbin/ip6tables-nft-restore /etc/alternatives/ip6tables-restore
-    ln -sf /usr/sbin/ip6tables-nft-save    /etc/alternatives/ip6tables-save
-    ln -sf /usr/sbin/iptables-nft          /etc/alternatives/iptables
-    ln -sf /usr/sbin/iptables-nft-restore  /etc/alternatives/iptables-restore
-    ln -sf /usr/sbin/iptables-nft-save     /etc/alternatives/iptables-save
 
   # sudo prefers its config files to be mode 440, and some security scanners
   # complain if /etc/sudoers.d files are world-readable.
@@ -164,9 +182,6 @@ packages:
   - console-login-helper-messages-motdgen
   # i18n
   - kbd
-  # In F35+ need `iptables-legacy` package
-  # See https://github.com/coreos/fedora-coreos-tracker/issues/676#issuecomment-928028451
-  - iptables-legacy
   # NIC firmware we've traditionally shipped but then were split out of linux-firmware in Fedora
   - qed-firmware # https://github.com/coreos/fedora-coreos-tracker/issues/1746
   # Include udev rules for NVMe backed Azure Instances
