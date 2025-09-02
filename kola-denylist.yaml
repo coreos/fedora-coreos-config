@@ -16,3 +16,15 @@
   warn: true
   streams:
     - rawhide
+- pattern: fcos.ignition.v3.noop
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2021
+  snooze: 2025-09-15
+  warn: true
+  platforms:
+    - azure
+- pattern: fcos.ignition.misc.empty
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2021
+  snooze: 2025-09-15
+  warn: true
+  platforms:
+    - azure
