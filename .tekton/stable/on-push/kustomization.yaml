@@ -26,5 +26,5 @@ patches:
         value: 'fedora-coreos-stable-on-push'
       - op: replace
         path: /metadata/annotations/pipelinesascode.tekton.dev~1on-cel-expression
-        value: 'event == "push" && target_branch == "stable"'
+        value: 'event == "push" && target_branch == "stable" && !(files.all.all(f, f.matches("ci/buildroot/")))'
 

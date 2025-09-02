@@ -1,0 +1,22 @@
+#!/bin/bash
+set -euo pipefail
+
+# This script is called in the buildah path to modify the build environment
+# before entering the shared build-rootfs script. Example use cases are to
+# fast-track fixes or work around bugs.
+
+arch=$(uname -m)
+. /etc/os-release
+
+# Fast-track backport of https://github.com/coreos/rpm-ostree/pull/5475.
+# Comment this out if not used to not unnecessarily pay for repo metadata.
+cp /run/src/fedora-coreos-continuous.repo /etc/yum.repos.d
+sudo dnf update rpm-ostree -y --repo fedora-coreos-continuous --releasever "$VERSION_ID"
+
+# fast-track https://gitlab.com/fedora/bootc/base-images/-/merge_requests/279
+help=$(/usr/libexec/bootc-base-imagectl build-rootfs -h)
+if ! grep -q -- --lock <<< "$help"; then
+    echo "Patching bootc-base-imagectl"
+    sudo dnf install -y patch
+    curl -L https://gitlab.com/fedora/bootc/base-images/-/commit/35467bdbdcc01a8ad6b42c33c935ffe5c8c74395.patch | patch -p1 -d /usr/libexec
+fi
