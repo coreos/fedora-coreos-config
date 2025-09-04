@@ -60,5 +60,6 @@ LABEL org.opencontainers.image.version=$VERSION
 LABEL com.coreos.osname=$NAME
 LABEL org.opencontainers.image.title=$DESCRIPTION
 LABEL org.opencontainers.image.description=$DESCRIPTION
+LABEL test=yes
 STOPSIGNAL SIGRTMIN+3
 CMD ["/sbin/init"]
