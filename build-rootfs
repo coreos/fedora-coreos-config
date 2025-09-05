@@ -21,6 +21,8 @@ import yaml
 ARCH = os.uname().machine
 SRCDIR = '/src'
 INPUTHASH = '/run/inputhash'
+HERMETIC_REPO = '/etc/yum.repos.d/cachi2.repo'
+IS_HERMETIC = os.path.exists(HERMETIC_REPO)
 
 
 def main():
@@ -51,8 +53,9 @@ def main():
         # NEVRAs to appear there. For lack of a generic solution for any repo
         # there, we only special-case the one place where we know we use this.
         if lockfile_repos == ['fedora-coreos-pool']:
-            modify_pool_repo(locked_nevras)
-            repos += lockfile_repos
+            if not IS_HERMETIC:
+                modify_pool_repo(locked_nevras)
+                repos += lockfile_repos
         elif len(lockfile_repos) > 0:
             raise Exception(f"unknown lockfile-repo found in {lockfile_repos}")
 
@@ -110,12 +113,15 @@ def inject_yumrepos():
         if os.path.basename(repo) == 'secret.repo':
             # this is a supported podman secret to inject repo files; see Containerfile
             continue
+        if repo == HERMETIC_REPO:
+            # this is the repo Konflux injects when hermetic build is enabled
+            continue
         os.unlink(repo)
 
     # and now inject our repos
-    for repo in glob.glob(f'{SRCDIR}/*.repo'):
-        shutil.copy(repo, "/etc/yum.repos.d")
-
+    if not IS_HERMETIC:
+        for repo in glob.glob(f'{SRCDIR}/*.repo'):
+            shutil.copy(repo, "/etc/yum.repos.d")
 
 def build_rootfs(
     target_rootfs, manifest_path, packages, locked_nevras,
