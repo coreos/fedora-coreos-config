@@ -221,6 +221,9 @@ postprocess:
     excludes=(
       perl
       perl-interpreter
+      python
+      python3
+      python3-libs
       nodejs
       grubby
       cowsay  # Just in case
