@@ -8,34 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  kernel:
-    evr: 6.15.10-200.fc42
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2023
-      type: pin
-  kernel-core:
-    evr: 6.15.10-200.fc42
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2023
-      type: pin
-  kernel-modules:
-    evr: 6.15.10-200.fc42
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2023
-      type: pin
-  kernel-modules-core:
-    evr: 6.15.10-200.fc42
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2023
-      type: pin
-  vim-data:
-    evra: 2:9.1.1623-1.fc42.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2020
-      type: pin
-  vim-minimal:
-    evr: 2:9.1.1623-1.fc42
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2020
-      type: pin
+packages: {}
