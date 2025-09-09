@@ -47,16 +47,6 @@ conditional-include:
     include:
       ostree-layers:
         - overlay/35oci-migration
-  # Allow python in F43 for now until nfs package gets fixed.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1942#issuecomment-2881075898
-  - if: releasever < 43
-    include:
-      # Note we can still use exclude-packages in F42 because we aren't
-      # building via container there.
-      exclude-packages:
-        - python
-        - python3
-        - python3-libs
   # In F43 and older pull in the nfs-utils-coreos package
   - if: releasever <= 43
     include:
