@@ -1,0 +1,55 @@
+{
+  "default": [
+    {
+      "type": "reject"
+    }
+  ],
+  "transports": {
+    "docker-daemon": {
+      "": [
+        {
+          "type": "insecureAcceptAnything"
+        }
+      ]
+    },
+    "containers-storage": {
+      "": [
+        {
+          "type": "insecureAcceptAnything"
+        }
+      ]
+    },
+    "oci": {
+      "": [
+        {
+          "type": "insecureAcceptAnything"
+        }
+      ]
+    },
+    "oci-archive": {
+      "": [
+        {
+          "type": "insecureAcceptAnything"
+        }
+      ]
+    },
+    "docker": {
+      "": [
+        {
+          "type": "insecureAcceptAnything"
+        }
+      ],
+      "quay.io/fedora/fedora-coreos": [
+        {
+          "type": "signedBy",
+          "keyType": "GPGKeys",
+          "keyPaths": [
+            "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-42-primary",
+            "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-43-primary",
+            "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-44-primary"
+          ]
+        }
+      ]
+    }
+  }
+}

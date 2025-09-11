@@ -37,6 +37,15 @@ Things that are more closely "Fedora CoreOS":
   key found.
 * display warnings if mount points are not set up properly
 
+17fcos-container-signing
+------------------------
+
+Configuration for container signature verification for our
+fedora-coreos containers pulled from quay.io. Initially adding
+here in a separate overlay to make it easy to include on specific
+streams for the time being. Eventually can probably put this in
+15fcos.
+
 20platform-chrony
 -----------------
 
