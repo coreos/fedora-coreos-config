@@ -81,6 +81,19 @@ information.
 
 [1] https://github.com/coreos/fedora-coreos-tracker/issues/1517
 
+35container-signing-migration
+-----------------------------
+
+This overlay will be used to perform a migration such
+that upgrading systems will start using container signatures
+for verification as opposed to OSTree commit signatures.
+
+This is a necessary step for F43 as part of the build-via-container
+change [1]. See [2].
+
+[1] https://github.com/coreos/fedora-coreos-tracker/issues/1969
+[2] https://github.com/coreos/fedora-coreos-tracker/issues/2029
+
 50alternatives
 --------------
 
