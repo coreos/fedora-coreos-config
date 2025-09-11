@@ -15,7 +15,7 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-      == "testing-devel" && (".tekton/fcos-buildroot-pull-request.yaml".pathChanged() || "ci/buildroot/**".pathChanged())
+      == "testing-devel" && (".tekton/fcos-buildroot/fcos-buildroot-pull-request.yaml".pathChanged() || "ci/buildroot/**".pathChanged())
   creationTimestamp: null
 spec:
   params:
