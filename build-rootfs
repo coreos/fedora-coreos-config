@@ -32,7 +32,8 @@ def main():
     packages = list(manifest['packages'])
 
     repos = manifest.get('repos', [])
-    if repos:
+    lockfile_repos = manifest.get('lockfile-repos', [])
+    if repos or lockfile_repos:
         inject_yumrepos()
 
     local_overrides = prepare_local_rpm_overrides(target_rootfs)
@@ -41,7 +42,6 @@ def main():
 
     locked_nevras = get_locked_nevras(local_overrides)
     if locked_nevras:
-        lockfile_repos = manifest.get('lockfile-repos', [])
         # Lockfile repos require special handling because we only want locked
         # NEVRAs to appear there. For lack of a generic solution for any repo
         # there, we only special-case the one place where we know we use this.
