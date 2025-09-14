@@ -38,25 +38,6 @@ conditional-include:
       # All Fedora CoreOS streams share the same pool for locked files.
       lockfile-repos:
         - fedora-coreos-pool
-  # The OCI migration is now happening in all streams, but we should
-  # be able to drop the migration code after the next barrier release.
-  # Let's just encode it to be dropped with F43, since we know there
-  # will be a barrier release before then.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1890
-  - if: releasever < 43
-    include:
-      ostree-layers:
-        - overlay/35oci-migration
-  # Allow python in F43 for now until nfs package gets fixed.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1942#issuecomment-2881075898
-  - if: releasever < 43
-    include:
-      # Note we can still use exclude-packages in F42 because we aren't
-      # building via container there.
-      exclude-packages:
-        - python
-        - python3
-        - python3-libs
   # In F43 and older pull in the nfs-utils-coreos package
   - if: releasever <= 43
     include:
@@ -73,6 +54,27 @@ conditional-include:
     include:
       ostree-layers:
         - overlay/50alternatives
+  # Add container signing configuration. Initially rolling this out only
+  # to `next`, `next-devel` and mechanical streams.
+  - if:
+    - stream != "stable"
+    - stream != "testing"
+    - stream != "testing-devel"
+    include:
+      ostree-layers:
+        - overlay/17fcos-container-signing
+  # Perform migration to container signing versus ostree commit signing.
+  # This is a requirement for moving to build-via-container in F43,
+  # thus it must happen before the switch to F43. Initially rolling out
+  # to `next` and `next-devel`.
+  - if:
+    - stream != "stable"
+    - stream != "testing"
+    - stream != "testing-devel"
+    - releasever < 43
+    include:
+      ostree-layers:
+        - overlay/35container-signing-migration
 
 ostree-layers:
   - overlay/15fcos
@@ -221,6 +223,9 @@ postprocess:
     excludes=(
       perl
       perl-interpreter
+      python
+      python3
+      python3-libs
       nodejs
       grubby
       cowsay  # Just in case
