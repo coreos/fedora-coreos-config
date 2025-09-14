@@ -9,18 +9,13 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  dnf5:
-    evr: 5.2.11.0-1.fc42
+  ignition:
+    evr: 2.23.0-1.fc42
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
-      type: pin
-  libdnf5:
-    evr: 5.2.11.0-1.fc42
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-2b6a50d3c4
+      type: fast-track
+  ignition-grub:
+    evr: 2.23.0-1.fc42
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
-      type: pin
-  libdnf5-cli:
-    evr: 5.2.11.0-1.fc42
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-2b6a50d3c4
+      type: fast-track
