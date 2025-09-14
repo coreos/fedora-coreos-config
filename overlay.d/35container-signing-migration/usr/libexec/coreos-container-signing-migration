@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# This is a migration script to move FCOS to signature verification of
+# the pulled update container image.
+#
+# Users that have disabled Zincati or use a non default ostree remote
+# won't be migrated.
+#
+# See https://github.com/coreos/fedora-coreos-tracker/issues/2029
+
+
+MIGRATION_OPT_OUT=/var/lib/coreos-container-signing-migration/opt-out.stamp
+MIGRATION_FAILED=/var/lib/coreos-container-signing-migration/failed.stamp
+
+if [ -e $MIGRATION_OPT_OUT ]; then
+    echo "${MIGRATION_OPT_OUT} to opt out of migration exists, doing nothing."
+    exit 0
+fi
+
+# create the failed stamp file as a precaution
+touch $MIGRATION_FAILED
+# if something goes wrong, exit the script so the failed stamp will remain
+set -euxo pipefail
+
+# Save the rpm-ostree status.
+echo "Saving rpm-ostree status."
+status=$(rpm-ostree status --json --booted)
+
+# Error if the machine is not on an OCI deployment
+booted_imgref=$(jq -r '.deployments[0]."container-image-reference"' <<< "$status")
+if [ "$booted_imgref" == "null" ]; then
+    echo "ERROR: The booted deployment isn't an OCI container."
+    echo "ERROR: Can't proceed with container signing migration."
+    exit 1
+fi
+
+# Exit early if the machine is already migrated
+if [[ "$booted_imgref" =~ ostree-image-signed:docker://quay.io/fedora/fedora-coreos ]]; then
+    echo "INFO: The container signing migration was previously completed."
+    rm $MIGRATION_FAILED
+    exit 0
+fi
+
+# Error if the machine starting state doesn't match expectation
+if [[ ! "$booted_imgref" =~ ostree-remote-image:fedora:docker://quay.io/fedora/fedora-coreos ]]; then
+    # In this case the user is likely following some other image (quay.io/userx/fedora-coreos:testing)
+    # but it should still be ok to error here because zincati probably shouldn't be enabled?
+    echo "ERROR: The booted container imgref doesn't match the Fedora CoreOS default."
+    exit 1
+fi
+
+
+# gather information to populate the booted-status-override.json file
+version=$(jq -r '.deployments[0].version' <<< "$status")
+base_commit_meta=$(jq -r '.deployments[0]."base-commit-meta"' <<< "$status")
+checksum=$(jq -r '.deployments[0].checksum' <<< "$status")
+digest=$(jq -r '.deployments[0]."container-image-reference-digest"' <<< "$status")
+
+# Determine the updated imgref to use. THIS IS THE MIGRATION. Example:
+# from: ostree-remote-image:fedora:docker://quay.io/fedora/fedora-coreos:testing
+#   to: ostree-image-signed:docker://quay.io/fedora/fedora-coreos:${version}
+#
+# The hack here is we are replacing the stream tag with the version
+# tag, which triggers zincati's logic [1] to do a rebase instead of a
+# deploy, which means it will pick up the `ostree-image-signed` migration.
+#
+# The zincati code will still rebase to the stream tag [2], so this is
+# ultimately harmless.
+#
+# For more info on refspecs and what they mean see [3].
+#
+# [1] https://github.com/coreos/zincati/blob/c47f43edb1c35204d948d16c2520f185455ec244/src/rpm_ostree/actor.rs#L92
+# [2] https://github.com/coreos/zincati/blob/c47f43edb1c35204d948d16c2520f185455ec244/src/rpm_ostree/actor.rs#L88
+# [3] https://github.com/coreos/rpm-ostree/blob/6f386be3d474aeb24fdc7f672d38151f95069223/docs/container.md?plain=1#L53
+updated_imgref="ostree-image-signed:docker://quay.io/fedora/fedora-coreos:${version}"
+
+# Proceed with the migration by writing an override status file,
+# so at the next update, Zincati will use container signing.
+echo "Writing a status override file for the booted deployment in /run/zincati/booted-status-override.json"
+cat > /run/zincati/booted-status-override.json << EOF
+{
+    "booted": true,
+    "container-image-reference": "$updated_imgref",
+    "container-image-reference-digest": "$digest",
+    "base-commit-meta": $base_commit_meta,
+    "checksum": "$checksum",
+    "version": "$version"
+}
+EOF
+
+
+echo "Zincati will verify container signatures in the next update."
+
+# All went well, delete the failed stamp
+rm $MIGRATION_FAILED

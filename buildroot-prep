@@ -10,7 +10,7 @@ arch=$(uname -m)
 
 # Fast-track backport of https://github.com/coreos/rpm-ostree/pull/5475.
 # Comment this out if not used to not unnecessarily pay for repo metadata.
-cp /run/src/fedora-coreos-continuous.repo /etc/yum.repos.d
+cp /src/fedora-coreos-continuous.repo /etc/yum.repos.d
 sudo dnf update rpm-ostree -y --repo fedora-coreos-continuous --releasever "$VERSION_ID"
 
 # fast-track https://gitlab.com/fedora/bootc/base-images/-/merge_requests/279

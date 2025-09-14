@@ -1,0 +1,18 @@
+# by default, ignore everything
+*
+
+# only add what we actually need; this provides more accurate layer caching and
+# makes the COPY faster
+!/*.repo
+!/build-args.conf
+!/build-rootfs
+!/buildroot-prep
+!/image-base.yaml
+!/image-default.yaml
+!/image.yaml
+!/live/
+!/manifest-lock.*
+!/manifests/
+!/manifest.yaml
+!/overlay.d/
+!/platforms.yaml
