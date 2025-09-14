@@ -2,3 +2,7 @@
 # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
 # streams.
 include: image-base.yaml
+
+# Switching to `ostree-image-signed` on select streams for now. Hoist
+# back up into the shared image-base.yaml when it is rolled out everywhere.
+container-imgref: "ostree-image-signed:docker://quay.io/fedora/fedora-coreos:{stream}"
