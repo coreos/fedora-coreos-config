@@ -319,18 +319,28 @@ systemd-run --wait --property=After=coreos-fix-selinux-labels.service \
 # we have one more test. We'll now rebase to the target
 # version, which should be in the compose OSTree repo.
 if vereq $version $last_release; then
+    # Since we'll be manually running `rpm-ostree` let's stop zincati
     systemctl stop zincati
-    # Since in the next steps we are making multiple copies of the update on the
-    # system (i.e. update.ociarchive and copying into OSTree storage) let's free
-    # up some space by dropping the rollback deployment.
-    rpm-ostree cleanup --rollback
-    # Pull the ociarchive from the builds dir here because the
-    # containers aren't pushed to quay until the release job is run
-    # and that hasn't happened yet.
-    curl -L -o /srv/update.ociarchive \
-        "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/${target_version}/${arch}/fedora-coreos-${target_version}-ostree.${arch}.ociarchive"
-    rpm-ostree rebase "ostree-unverified-image:oci-archive:/srv/update.ociarchive"
-    rm /srv/update.ociarchive
+
+    inspect=$(skopeo inspect --retry-times=3 -n docker://quay.io/fedora/fedora-coreos:${target_stream})
+    registry_version=$(jq -r '.Labels."org.opencontainers.image.version"' <<< "${inspect}")
+    if [ "${registry_version}" == "${target_version}" ]; then
+        # If the container is already pushed to the registry we'll just upgrade
+        rpm-ostree upgrade
+    else
+        # Since in the next steps we are making multiple copies of the update on the
+        # system (i.e. update.ociarchive and copying into OSTree storage) let's free
+        # up some space by dropping the rollback deployment.
+        rpm-ostree cleanup --rollback
+        # Pull the ociarchive from the builds dir here because the
+        # containers aren't pushed to quay yet. This can happen in the
+        # case where the release job isn't autotriggered (i.e. prod builds)
+        # or if somehow the release job failed.
+        curl -L -o /srv/update.ociarchive \
+            "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/${target_version}/${arch}/fedora-coreos-${target_version}-ostree.${arch}.ociarchive"
+        rpm-ostree rebase "ostree-unverified-image:oci-archive:/srv/update.ociarchive"
+        rm /srv/update.ociarchive
+    fi
     /tmp/autopkgtest-reboot $version # execute the reboot
     sleep infinity
 fi
