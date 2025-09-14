@@ -163,7 +163,7 @@
       }
     },
     "bootc": {
-      "evra": "1.6.0-1.fc42.s390x",
+      "evra": "1.8.0-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "bootc"
       }
@@ -511,7 +511,7 @@
       }
     },
     "docker-cli": {
-      "evra": "28.3.3-1.fc42.s390x",
+      "evra": "28.4.0-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
@@ -703,7 +703,7 @@
       }
     },
     "fwupd": {
-      "evra": "2.0.15-1.fc42.s390x",
+      "evra": "2.0.16-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -1351,7 +1351,7 @@
       }
     },
     "libnfsidmap": {
-      "evra": "1:2.8.3-2.rc3.fc42.s390x",
+      "evra": "1:2.8.4-0.fc42.s390x",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -1717,13 +1717,13 @@
       }
     },
     "moby-engine": {
-      "evra": "28.3.3-1.fc42.s390x",
+      "evra": "28.4.0-1.fc42.s390x",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
     },
     "moby-filesystem": {
-      "evra": "28.3.3-1.fc42.noarch",
+      "evra": "28.4.0-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
@@ -1789,7 +1789,7 @@
       }
     },
     "nfs-utils-coreos": {
-      "evra": "1:2.8.3-2.rc3.fc42.s390x",
+      "evra": "1:2.8.4-0.fc42.s390x",
       "metadata": {
         "sourcerpm": "nfs-utils"
       }
@@ -2510,16 +2510,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-09-13T00:00:00Z",
+    "generated": "2025-09-14T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2025-04-09T11:06:57Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-09-12T10:14:50Z"
+        "generated": "2025-09-13T07:03:32Z"
       },
       "fedora-updates": {
-        "generated": "2025-09-13T03:33:48Z"
+        "generated": "2025-09-14T00:52:42Z"
       }
     }
   }
