@@ -7,7 +7,7 @@
 # https://github.com/containers/buildah/issues/5952 is fixed.
 #
 # For development convenience, an `overrides/` directory in the context dir, or
-# mounted at `/run/src/overrides` is supported:
+# mounted at `/src/overrides` is supported:
 # - The `overrides/rpm` directory can be a yum repo. Its packages take
 #   precedence over those from remote repos.
 # - The `overrides/rootfs` directory can contain files in a rootfs layout which
@@ -23,9 +23,12 @@ ARG MANIFEST=overridden
 # XXX: see inject_passwd_group() in build-rootfs
 ARG PASSWD_GROUP_DIR
 
+COPY . /src
+# canonicalize permission bits, see also https://gitlab.com/fedora/bootc/base-images/-/merge_requests/274
+RUN chmod -R a=rX,u+w /src
+
 # this allows FCOS/SCOS/RHCOS to do specific things before going into the shared build-rootfs script
-RUN --mount=type=bind,target=/run/src \
-  if test -x /run/src/buildroot-prep; then /run/src/buildroot-prep; fi
+RUN if test -x /src/buildroot-prep; then /src/buildroot-prep; fi
 
 # useful if you're hacking on rpm-ostree/bootc-base-imagectl
 # COPY rpm-ostree /usr/bin/
@@ -37,8 +40,7 @@ RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
 RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
     --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
     --mount=type=secret,id=contentsets \
-    --mount=type=bind,target=/run/src \
-        /run/src/build-rootfs "${MANIFEST}" "${VERSION}" /target-rootfs
+        /src/build-rootfs "${MANIFEST}" "${VERSION}" /target-rootfs
 RUN --mount=type=bind,target=/run/src,rw \
       rpm-ostree experimental compose build-chunked-oci \
         --bootc --format-version=1 --rootfs /target-rootfs \

@@ -1,0 +1,77 @@
+#!/usr/bin/bash
+# This script checks if container signing migration failed
+# or was opted-out and prints the appropriate message
+# to the console.
+#
+# See https://github.com/coreos/fedora-coreos-tracker/issues/2029
+
+MIGRATION_OPT_OUT=/var/lib/coreos-container-signing-migration/opt-out.stamp
+MIGRATION_FAILED=/var/lib/coreos-container-signing-migration/failed.stamp
+
+ZINCATI_ENABLED=$(systemctl is-enabled zincati.service)
+
+MOTD_PATH=/run/motd.d/30_container_signing_migration.motd
+# Start by deleting any previous motd we created,
+# e.g. if the migration failed then the user opted out, or fixed it.
+rm -f $MOTD_PATH
+
+opt_out_message="
+This system has been opted out of the migration to container signed
+images for updates as the opt-out stamp file exists.
+
+The system will likely fail to continue updating in the near future.
+See https://github.com/coreos/fedora-coreos-tracker/issues/2029
+
+When ready, the migration can be resumed by deleting
+${MIGRATION_OPT_OUT}, then restarting zincati.service"
+
+failed_message="
+The migration to OCI signed images for updates failed. Check the logs of
+zincati.service for more details.
+
+The system will likely fail to continue updating in the near future.
+See https://github.com/coreos/fedora-coreos-tracker/issues/2029
+
+When ready, the migration can be retried by deleting
+${MIGRATION_FAILED}, then restarting zincati.service"
+
+zincati_disabled_message="
+The zincati service is disabled on this system.
+
+If not done so already please migrate the system to the signed OCI backend
+for updates by running:
+
+stream=stable # or testing or next
+target=ostree-signed-image:registry:quay.io/fedora/fedora-coreos:\$stream
+sudo rpm-ostree rebase \$target --reboot
+
+Where \$stream matches the Fedora CoreOS stream the system is following.
+
+See https://github.com/coreos/fedora-coreos-tracker/issues/2029"
+
+write_motd () {
+
+# Change the output color to yellow
+warn=$(echo -e '\033[0;33m')
+# No color
+nc=$(echo -e '\033[0m')
+
+cat << EOF > "${MOTD_PATH}"
+${warn}
+##########################################################################
+${1}
+
+To disable this warning, use:
+sudo systemctl disable coreos-container-signing-migration-motd.service
+##########################################################################
+${nc}
+EOF
+}
+
+if [ -e $MIGRATION_OPT_OUT ]; then
+  write_motd "$opt_out_message"
+elif [ -e $MIGRATION_FAILED ]; then
+  write_motd "$failed_message"
+elif [ "$ZINCATI_ENABLED" == "disabled" ]; then
+  write_motd "$zincati_disabled_message"
+fi

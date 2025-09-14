@@ -1,0 +1,5 @@
+# Configuration to verify container pulls of Fedora CoreOS with signatures
+# fetched from the CoreOS builds bucket.
+docker:
+  quay.io/fedora/fedora-coreos:
+    lookaside: https://builds.coreos.fedoraproject.org/prod/signatures/oci

@@ -18,7 +18,7 @@ import yaml
 
 
 ARCH = os.uname().machine
-CONTEXTDIR = '/run/src'
+SRCDIR = '/src'
 
 
 def main():
@@ -26,13 +26,14 @@ def main():
     version = sys.argv[2]
     target_rootfs = sys.argv[3]
 
-    manifest_path = os.path.join(CONTEXTDIR, manifest_name)
+    manifest_path = os.path.join(SRCDIR, manifest_name)
     manifest = get_treefile(manifest_path)
 
     packages = list(manifest['packages'])
 
     repos = manifest.get('repos', [])
-    if repos:
+    lockfile_repos = manifest.get('lockfile-repos', [])
+    if repos or lockfile_repos:
         inject_yumrepos()
 
     local_overrides = prepare_local_rpm_overrides(target_rootfs)
@@ -41,7 +42,6 @@ def main():
 
     locked_nevras = get_locked_nevras(local_overrides)
     if locked_nevras:
-        lockfile_repos = manifest.get('lockfile-repos', [])
         # Lockfile repos require special handling because we only want locked
         # NEVRAs to appear there. For lack of a generic solution for any repo
         # there, we only special-case the one place where we know we use this.
@@ -91,14 +91,14 @@ def inject_yumrepos():
         os.unlink(repo)
 
     # and now inject our repos
-    for repo in glob.glob(f'{CONTEXTDIR}/*.repo'):
+    for repo in glob.glob(f'{SRCDIR}/*.repo'):
         shutil.copy(repo, "/etc/yum.repos.d")
 
 
 def build_rootfs(target_rootfs, manifest_path, packages, locked_nevras, overlays, repos, nodocs):
     passwd_group_dir = os.getenv('PASSWD_GROUP_DIR')
     if passwd_group_dir is not None:
-        inject_passwd_group(os.path.join(CONTEXTDIR, passwd_group_dir))
+        inject_passwd_group(os.path.join(SRCDIR, passwd_group_dir))
     with tempfile.NamedTemporaryFile(mode='w') as argsfile:
         for pkg in packages:
             argsfile.write(f"--install={pkg}\n")
@@ -202,7 +202,7 @@ def run_postprocess_scripts(rootfs, manifest):
 
 
 def prepare_local_rpm_overrides(rootfs):
-    overrides_repo = os.path.join(CONTEXTDIR, 'overrides/rpm')
+    overrides_repo = os.path.join(SRCDIR, 'overrides/rpm')
     if not os.path.isdir(f'{overrides_repo}/repodata'):
         return None
 
@@ -244,9 +244,9 @@ def bwrap(rootfs, args):
 
 
 def get_locked_nevras(local_overrides):
-    lockfile_path = os.path.join(CONTEXTDIR, f"manifest-lock.{ARCH}.json")
-    overrides_path = os.path.join(CONTEXTDIR, "manifest-lock.overrides.yaml")
-    overrides_arch_path = os.path.join(CONTEXTDIR, f"manifest-lock.overrides.{ARCH}.yaml")
+    lockfile_path = os.path.join(SRCDIR, f"manifest-lock.{ARCH}.json")
+    overrides_path = os.path.join(SRCDIR, "manifest-lock.overrides.yaml")
+    overrides_arch_path = os.path.join(SRCDIR, f"manifest-lock.overrides.{ARCH}.yaml")
 
     # we go from lowest priority to highest here: base lockfiles, overrides, local overrides
     locks = {}
@@ -308,9 +308,9 @@ def gather_overlays(manifest):
     overlays = []
     for layer in manifest.get('ostree-layers', []):
         assert layer.startswith('overlay/')
-        overlays.append(os.path.join(CONTEXTDIR, 'overlay.d', layer[len('overlay/'):]))
+        overlays.append(os.path.join(SRCDIR, 'overlay.d', layer[len('overlay/'):]))
 
-    rootfs_override = os.path.join(CONTEXTDIR, 'overrides/rootfs')
+    rootfs_override = os.path.join(SRCDIR, 'overrides/rootfs')
     if os.path.isdir(rootfs_override) and len(os.listdir(rootfs_override)) > 0:
         print("Injecting rootfs override")
         overlays.append(rootfs_override)
@@ -321,12 +321,12 @@ def gather_overlays(manifest):
 # Inject live/ bits.
 def inject_live(rootfs):
     target_path = os.path.join(rootfs, 'usr/share/coreos-assembler/live')
-    shutil.copytree(os.path.join(CONTEXTDIR, "live"), target_path)
+    shutil.copytree(os.path.join(SRCDIR, "live"), target_path)
 
 
 def inject_image_json(rootfs, manifest_path):
     manifest_vars = yaml.safe_load(open(manifest_path))['variables']
-    image = flatten_image_yaml(os.path.join(CONTEXTDIR, 'image.yaml'),
+    image = flatten_image_yaml(os.path.join(SRCDIR, 'image.yaml'),
                                format_args=manifest_vars)
     fn = os.path.join(rootfs, 'usr/share/coreos-assembler/image.json')
     with open(fn, 'w') as f:
@@ -427,7 +427,7 @@ def merge_dicts(x, y):
 
 
 def inject_platforms_json(rootfs):
-    with open(os.path.join(CONTEXTDIR, 'platforms.yaml')) as f:
+    with open(os.path.join(SRCDIR, 'platforms.yaml')) as f:
         platforms = yaml.safe_load(f)
     fn = os.path.join(rootfs, 'usr/share/coreos-assembler/platforms.json')
     if ARCH in platforms:
