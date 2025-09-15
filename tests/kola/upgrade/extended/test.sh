@@ -322,12 +322,22 @@ if vereq $version $last_release; then
     # Since we'll be manually running `rpm-ostree` let's stop zincati
     systemctl stop zincati
 
-    inspect=$(skopeo inspect --retry-times=3 -n docker://quay.io/fedora/fedora-coreos:${target_stream})
-    registry_version=$(jq -r '.Labels."org.opencontainers.image.version"' <<< "${inspect}")
-    if [ "${registry_version}" == "${target_version}" ]; then
-        # If the container is already pushed to the registry we'll just upgrade
-        rpm-ostree upgrade
-    else
+   # XXX: Since we can't rely on `ostree-image-signed` until the
+   #      streams have switched over to it we have to comment out the
+   #      true part of this if statement for now.
+   #
+   #inspect=$(skopeo inspect --retry-times=3 -n docker://quay.io/fedora/fedora-coreos:${target_stream})
+   #registry_version=$(jq -r '.Labels."org.opencontainers.image.version"' <<< "${inspect}")
+   #if [ "${registry_version}" == "${target_version}" ]; then
+   #    # If the container is already pushed to the registry we'll use the registry
+   #    if [ "${stream}" == "${target_stream}" ]; then
+   #        # If we aren't switching steams we can just upgrade
+   #        rpm-ostree upgrade
+   #    else
+   #        # else we need to rebase
+   #        rpm-ostree rebase "ostree-image-signed:docker://quay.io/fedora/fedora-coreos:{target_stream}"
+   #    fi
+   #else
         # Since in the next steps we are making multiple copies of the update on the
         # system (i.e. update.ociarchive and copying into OSTree storage) let's free
         # up some space by dropping the rollback deployment.
@@ -340,7 +350,7 @@ if vereq $version $last_release; then
             "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/${target_version}/${arch}/fedora-coreos-${target_version}-ostree.${arch}.ociarchive"
         rpm-ostree rebase "ostree-unverified-image:oci-archive:/srv/update.ociarchive"
         rm /srv/update.ociarchive
-    fi
+   #fi
     /tmp/autopkgtest-reboot $version # execute the reboot
     sleep infinity
 fi
