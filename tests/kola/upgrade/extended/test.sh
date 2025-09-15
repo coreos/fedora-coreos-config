@@ -325,8 +325,14 @@ if vereq $version $last_release; then
     inspect=$(skopeo inspect --retry-times=3 -n docker://quay.io/fedora/fedora-coreos:${target_stream})
     registry_version=$(jq -r '.Labels."org.opencontainers.image.version"' <<< "${inspect}")
     if [ "${registry_version}" == "${target_version}" ]; then
-        # If the container is already pushed to the registry we'll just upgrade
-        rpm-ostree upgrade
+        # If the container is already pushed to the registry we'll use the registry
+        if [ "${stream}" == "${target_stream}" ]; then
+            # If we aren't switching steams we can just upgrade
+            rpm-ostree upgrade
+        else
+            # else we need to rebase
+            rpm-ostree rebase "ostree-image-signed:docker://quay.io/fedora/fedora-coreos:{target_stream}"
+        fi
     else
         # Since in the next steps we are making multiple copies of the update on the
         # system (i.e. update.ociarchive and copying into OSTree storage) let's free
