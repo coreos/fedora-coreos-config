@@ -12,6 +12,30 @@
   ],
   "packageRules": [
     {
+      "matchPackageNames": [
+        "/^quay.io/bootc-devel/tekton-catalog//"
+      ],
+      "matchBaseBranches": [
+        "testing-devel"
+      ],
+      "enabled": true,
+      "groupName": "Konflux references",
+      "branchPrefix": "renovate/konflux/references/",
+      "group": {
+        "branchTopic": "{{{baseBranch}}}",
+        "commitMessageTopic": "{{{groupName}}}"
+      },
+      "commitMessageTopic": "Konflux references",
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Notes"
+      ],
+      "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{configDescription}}}{{{controls}}}{{{footer}}}",
+      "recreateWhen": "always",
+      "rebaseWhen": "behind-base-branch"
+    },
+    {
       "matchDatasources": ["docker"],
       "matchDepNames": ["quay.io/fedora/fedora"],
       "enabled": false
