@@ -76,6 +76,15 @@
       {
         "mask": true,
         "name": "autovt@.service"
+      },
+      {
+        "dropins": [
+          {
+            "contents": "# CPI may exit with code 6 (EXIT_NO_PERMIT_CPI)if permission is not granted\n[Service]\nSuccessExitStatus=6",
+            "name": "secex.conf"
+          }
+        ],
+        "name": "cpi.service"
       }
     ]
   }
