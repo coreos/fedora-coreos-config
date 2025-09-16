@@ -62,6 +62,9 @@ def main():
 
     if version != "":
         inject_version_info(target_rootfs, manifest['mutate-os-release'], version)
+    strict_mode = os.getenv('STRICT_MODE')
+    if strict_mode == '1':
+        verify_strict_mode(target_rootfs, locked_nevras)
     run_postprocess_scripts(target_rootfs, manifest)
 
 
@@ -235,12 +238,13 @@ priority=1
 
 # Could upstream this as e.g. `bootc-base-imagectl runroot /rootfs <cmd>` maybe?
 # But we'd need to carry it anyway at least for RHCOS 9.6.
-def bwrap(rootfs, args):
-    subprocess.check_call(['bwrap', '--bind', f'{rootfs}', '/',
-                           '--dev', '/dev', '--proc', '/proc',
-                           '--tmpfs', '/tmp', '--tmpfs', '/var', '--tmpfs', '/run',
-                           '--bind', '/run/.containerenv', '/run/.containerenv',
-                           '--'] + args)
+def bwrap(rootfs, args, capture=False):
+    args = ['bwrap', '--bind', f'{rootfs}', '/', '--dev', '/dev', '--proc',
+            '/proc', '--tmpfs', '/tmp', '--tmpfs', '/var', '--tmpfs', '/run',
+            '--bind', '/run/.containerenv', '/run/.containerenv', '--'] + args
+    if capture:
+        return subprocess.check_output(args, encoding='utf-8')
+    subprocess.check_call(args)
 
 
 def get_locked_nevras(local_overrides):
@@ -365,6 +369,15 @@ def inject_content_manifest(target_rootfs, manifest):
             'content_sets': repos,
             'image_contents': []
         })
+
+
+def verify_strict_mode(rootfs, locked_nevras):
+    rpms = bwrap(rootfs, ['rpm', '-qa', '--qf', '%{NEVRA}\t%{NEVR}\n'], capture=True)
+    for rpm in rpms.splitlines():
+        nevra, nevr = rpm.split()
+        if nevra not in locked_nevras and nevr not in locked_nevras:
+            raise Exception(f"found unlocked RPM in strict mode: {rpm}")
+    print("Strict mode: all installed packages were locked")
 
 
 # Imported from cosa
