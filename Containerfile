@@ -22,6 +22,7 @@ ARG VERSION=overridden
 ARG MANIFEST=overridden
 # XXX: see inject_passwd_group() in build-rootfs
 ARG PASSWD_GROUP_DIR
+ARG STRICT_MODE=0
 
 COPY . /src
 # canonicalize permission bits, see also https://gitlab.com/fedora/bootc/base-images/-/merge_requests/274
