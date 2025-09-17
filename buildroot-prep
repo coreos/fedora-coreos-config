@@ -11,7 +11,11 @@ arch=$(uname -m)
 # Fast-track backport of https://github.com/coreos/rpm-ostree/pull/5475.
 # Comment this out if not used to not unnecessarily pay for repo metadata.
 cp /src/fedora-coreos-continuous.repo /etc/yum.repos.d
-sudo dnf update rpm-ostree -y --repo fedora-coreos-continuous --releasever "$VERSION_ID"
+if [ "${VERSION_ID}" == 42 ]; then
+    sudo dnf update rpm-ostree -y --repo fedora-coreos-continuous --releasever "$VERSION_ID"
+else
+    sudo dnf install rpm-ostree-2025.10 --allow-downgrade -y --repo fedora-coreos-continuous --releasever "$VERSION_ID"
+fi
 
 # fast-track https://gitlab.com/fedora/bootc/base-images/-/merge_requests/279
 help=$(/usr/libexec/bootc-base-imagectl build-rootfs -h)
@@ -19,4 +23,3 @@ if ! grep -q -- --lock <<< "$help"; then
     echo "Patching bootc-base-imagectl"
     sudo dnf install -y patch
     curl -L https://gitlab.com/fedora/bootc/base-images/-/commit/35467bdbdcc01a8ad6b42c33c935ffe5c8c74395.patch | patch -p1 -d /usr/libexec
-fi
