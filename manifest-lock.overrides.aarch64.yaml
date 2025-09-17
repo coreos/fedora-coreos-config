@@ -1,0 +1,23 @@
+# This lockfile should be used to pin to a package version (`type: pin`) or to
+# fast-track packages ahead of Bodhi (`type: fast-track`). Fast-tracked
+# packages will automatically be removed once they are in the stable repos.
+#
+# IMPORTANT: YAML comments *will not* be preserved. All `pin` overrides *must*
+# include a URL in the `metadata.reason` key. Overrides of type `fast-track`
+# *should* include a Bodhi update URL in the `metadata.bodhi` key and a URL
+# in the `metadata.reason` key, though it's acceptable to omit a `reason`
+# for FCOS-specific packages (ignition, afterburn, etc.).
+
+packages:
+  crun:
+    evra: 1.24-1.fc43.aarch64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-191b6535ed
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  crun-wasm:
+    evra: 1.24-1.fc43.aarch64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-191b6535ed
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track

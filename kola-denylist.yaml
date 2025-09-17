@@ -12,13 +12,13 @@
     - ppc64le
 - pattern: fcos.ignition.v3.noop
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2021
-  # snooze: 2025-09-15 (disabled on promotion)
+  # snooze: 2025-09-29 (disabled on promotion)
   # warn: true (disabled on promotion)
   platforms:
     - azure
 - pattern: fcos.ignition.misc.empty
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2021
-  # snooze: 2025-09-15 (disabled on promotion)
+  # snooze: 2025-09-29 (disabled on promotion)
   # warn: true (disabled on promotion)
   platforms:
     - azure
