@@ -53,6 +53,11 @@ def main():
 
     overlays = gather_overlays(manifest)
     nodocs = (manifest.get('documentation') is False)
+
+    if version != "":
+        dracut_tmpd = inject_dracut_version(manifest['mutate-os-release'], version)
+        overlays += [dracut_tmpd.name]
+
     build_rootfs(target_rootfs, manifest_path, packages, locked_nevras, overlays, repos, nodocs)
 
     inject_live(target_rootfs)
@@ -61,7 +66,9 @@ def main():
     inject_content_manifest(target_rootfs, manifest)
 
     if version != "":
+        cleanup_dracut_version(target_rootfs, dracut_tmpd)
         inject_version_info(target_rootfs, manifest['mutate-os-release'], version)
+
     strict_mode = os.getenv('STRICT_MODE')
     if strict_mode == '1':
         verify_strict_mode(target_rootfs, locked_nevras)
@@ -298,6 +305,8 @@ def inject_version_info(rootfs, base_version, version):
             (k, v) = line.split('=', 1)
             os_release[k] = v
 
+    # The fields modified here match those in inject_dracut_version below. Keep
+    # them in sync.
     for key in ['VERSION', 'PRETTY_NAME']:
         os_release[key] = os_release[key].replace(base_version, version)
     os_release['OSTREE_VERSION'] = f"'{version}'"
@@ -306,6 +315,39 @@ def inject_version_info(rootfs, base_version, version):
     with open(os_release_path, mode='w', encoding='utf-8') as f:
         for (k, v) in os_release.items():
             f.write(f'{k}={v}\n')
+
+
+# This dynamically generates a dracut module which doesn't actually install
+# anything in the initrd. It just mutates the initrd-release installed by
+# dracut-systemd in the same way we mutate os-release above. Normally, we'd
+# only need inject_version_info above and dracut would create its initrd-release
+# based on that. But injection happens after the rpm-ostree compose and we want
+# to avoid regenerating the initramfs just for that.
+def inject_dracut_version(base_version, version):
+    tmpd = tempfile.TemporaryDirectory()
+    # we use 99 here so we run last, i.e. after initrd-release exists
+    module_setup = os.path.join(tmpd.name, 'usr/lib/dracut/modules.d/99dracut-coreos-version/module-setup.sh')
+    os.makedirs(os.path.dirname(module_setup), exist_ok=True)
+    with open(module_setup, 'w', encoding='utf-8') as f:
+        # The fields modified here match those in inject_version_info above.
+        # Keep them in sync.
+        f.write(f'''
+check() {{ return 0; }}
+install() {{
+    sed -i -E -e '/^(PRETTY_NAME|VERSION)=/ s/{base_version}/{version}/' $initdir/usr/lib/initrd-release
+    echo "OSTREE_VERSION='{version}'" >> $initdir/usr/lib/initrd-release
+    echo "IMAGE_VERSION='{version}'" >> $initdir/usr/lib/initrd-release
+}}
+''')
+    return tmpd
+
+
+def cleanup_dracut_version(rootfs, tmpd):
+    # we can nuke this from the rootfs now; any dracut regeneration from this
+    # point on (e.g. in derived builds, or client side) will be able to see the
+    # os-release changes done by inject_version_info
+    shutil.rmtree(f'{rootfs}/usr/lib/dracut/modules.d/99dracut-coreos-version')
+    del tmpd
 
 
 # This re-implements cosa's overlay logic.
