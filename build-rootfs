@@ -66,6 +66,7 @@ def main():
     if strict_mode == '1':
         verify_strict_mode(target_rootfs, locked_nevras)
     run_postprocess_scripts(target_rootfs, manifest)
+    cleanup_extraneous_files(target_rootfs)
 
 
 def get_treefile(manifest_path):
@@ -378,6 +379,17 @@ def verify_strict_mode(rootfs, locked_nevras):
         if nevra not in locked_nevras and nevr not in locked_nevras:
             raise Exception(f"found unlocked RPM in strict mode: {rpm}")
     print("Strict mode: all installed packages were locked")
+
+
+def cleanup_extraneous_files(rootfs):
+    def unlink_optional(f):
+        try:
+            os.unlink(os.path.join(rootfs, f))
+        except FileNotFoundError:
+            pass
+
+    # for now just this
+    unlink_optional('usr/share/rpm/.rpm.lock')
 
 
 # Imported from cosa
