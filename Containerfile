@@ -57,11 +57,11 @@ RUN --mount=type=bind,from=builder,target=/var/tmp \
     --mount=type=bind,target=/run/src,rw \
       rm /run/src/out.ociarchive
 
-LABEL containers.bootc=1
-LABEL ostree.bootable=1
-LABEL org.opencontainers.image.version=$VERSION
-LABEL com.coreos.osname=$NAME
-LABEL org.opencontainers.image.title=$DESCRIPTION
-LABEL org.opencontainers.image.description=$DESCRIPTION
+LABEL containers.bootc=1 \
+      ostree.bootable=1 \
+      org.opencontainers.image.version=$VERSION \
+      com.coreos.osname=$NAME \
+      org.opencontainers.image.title=$DESCRIPTION \
+      org.opencontainers.image.description=$DESCRIPTION
 STOPSIGNAL SIGRTMIN+3
 CMD ["/sbin/init"]
