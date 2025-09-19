@@ -45,7 +45,8 @@ RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
 RUN --mount=type=bind,target=/run/src,rw \
       rpm-ostree experimental compose build-chunked-oci \
         --bootc --format-version=1 --rootfs /target-rootfs \
-        --output oci-archive:/run/src/out.ociarchive
+        --output oci-archive:/run/src/out.ociarchive \
+        --label com.coreos.inputhash=$(cat /run/inputhash)
 
 FROM oci-archive:./out.ociarchive
 ARG VERSION
