@@ -8,11 +8,12 @@ set -euo pipefail
 arch=$(uname -m)
 . /etc/os-release
 
-# Fast-track backport of https://github.com/coreos/rpm-ostree/pull/5475.
-# Comment this out if not used to not unnecessarily pay for repo metadata.
 cp /src/fedora-coreos-continuous.repo /etc/yum.repos.d
-if [ "${VERSION_ID}" == 42 ]; then
+
+# NOTE: try to remove anything that queries repos here once it's no longer
+# needed so that we don't unnecessarily pay for repo metadata.
+
+# make sure we have https://github.com/coreos/rpm-ostree/pull/5454
+if ! rpm-ostree compose build-chunked-oci -h | grep -q -- --label; then
     sudo dnf update rpm-ostree -y --repo fedora-coreos-continuous --releasever "$VERSION_ID"
-else
-    sudo dnf install rpm-ostree-2025.10 --allow-downgrade -y --repo fedora-coreos-continuous --releasever "$VERSION_ID"
 fi
