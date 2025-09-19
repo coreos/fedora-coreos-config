@@ -14,6 +14,12 @@ list_setgid_files=(
     '/usr/bin/write'
     '/usr/libexec/utempter/utempter'
 )
+# Drop '/usr/libexec/openssh/ssh-keysign' after
+# https://src.fedoraproject.org/rpms/openssh/c/b615362fd0b4da657d624571441cb74983de6e3f?branch=rawhide
+# landed in EL9 (it's in Fedora and EL10 already).
+if match_maj_ver "9"; then
+    list_setgid_files+=('/usr/libexec/openssh/ssh-keysign')
+fi
 
 unknown_setgid_files=""
 while IFS= read -r -d '' e; do
