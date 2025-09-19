@@ -31,6 +31,9 @@ spec:
     value: ci/buildroot
   - name: image-expires-after
     value: 5d
+  - name: labels
+    value:
+      - description="Used by CoreOS CI to build software such as Ignition, rpm-ostree, ostree, coreos-installer, and more."
   pipelineRef:
     params:
     - name: bundle

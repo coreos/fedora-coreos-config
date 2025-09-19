@@ -28,6 +28,9 @@ spec:
     value: ./ci/buildroot/Dockerfile
   - name: path-context
     value: ci/buildroot
+  - name: labels
+    value:
+      - description="Used by CoreOS CI to build software such as Ignition, rpm-ostree, ostree, coreos-installer, and more."
   pipelineRef:
     params:
     - name: bundle
