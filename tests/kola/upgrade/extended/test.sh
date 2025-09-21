@@ -372,11 +372,22 @@ if ! timeout 90s $cmd | grep --max-count=1 'proceeding to stage it'; then
 fi
 set -o pipefail
 
+# OK update has been initiated. Let's fork off a process that will wait until
+# the deployment is written before signaling the impending reboot. Waiting
+# before signaling reboot will mean we get less timeouts in the code that
+# waits for the reboot to happen.
+#
+# The strategy of using systemd-run for this was lifted from
+# https://github.com/coreos/coreos-assembler/commit/242a88eae7e167efa9e04dcef9b751c6df137333
+#
+# On <35 SELinux won't allow a path unit to monitor /ostree/deploy, so disable
+verlt $version '35.00000000.0.0' && setenforce 0
+systemd-run -u refchanged                      \
+    --path-property=PathChanged=/ostree/deploy \
+    bash /tmp/autopkgtest-reboot-prepare $version
 
-# OK update has been initiated, prepare for reboot and loop to show
-# status of zincati and rpm-ostreed
-/tmp/autopkgtest-reboot-prepare $version
+# While we wait, loop to show status of zincati and rpm-ostreed
 while true; do
-    sleep 20
+    sleep 30
     systemctl status rpm-ostreed zincati --lines=0
 done
