@@ -24,3 +24,15 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-2b6a50d3c4
       type: fast-track
+  libselinux:
+    evr: 3.8-3.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-2a0988eb82
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2030
+      type: fast-track
+  libselinux-utils:
+    evr: 3.8-3.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-2a0988eb82
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2030
+      type: fast-track
