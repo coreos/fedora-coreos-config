@@ -3,7 +3,7 @@
 ##   # - needs-internet: to pull updates
 ##   tags: "needs-internet"
 ##   # Extend the timeout since a lot of updates/reboots can happen.
-##   timeoutMin: 45
+##   timeoutMin: 75
 ##   # Only run this test when specifically requested.
 ##   requiredTag: extended-upgrade
 ##   description: Verify upgrade works.
