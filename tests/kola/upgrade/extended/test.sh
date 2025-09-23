@@ -3,7 +3,7 @@
 ##   # - needs-internet: to pull updates
 ##   tags: "needs-internet"
 ##   # Extend the timeout since a lot of updates/reboots can happen.
-##   timeoutMin: 45
+##   timeoutMin: 75
 ##   # Only run this test when specifically requested.
 ##   requiredTag: extended-upgrade
 ##   description: Verify upgrade works.
@@ -389,5 +389,7 @@ systemd-run -u refchanged                      \
 # While we wait, loop to show status of zincati and rpm-ostreed
 while true; do
     sleep 30
-    systemctl status rpm-ostreed zincati --lines=0
+    # Ignore error here. Older systemd (~F32) errors here if one of
+    # the services isn't active.
+    systemctl status rpm-ostreed zincati --lines=0 || true
 done
