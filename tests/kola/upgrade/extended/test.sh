@@ -211,6 +211,11 @@ selinux-sanity-check() {
         paths="$(echo "${mislabeled}" | grep "Would relabel" | cut -d ' ' -f 3)"
         found=""
         while read -r path; do
+            # Add in a glob exception for /usr/etc/systemd/system for <F43 releases
+            # https://github.com/coreos/fedora-coreos-tracker/issues/2030#issuecomment-3329932294
+            if [[ "${path}" =~ /usr/etc/systemd/system ]] && [ "$(get_fedora_ver)" -eq 42 ]; then
+                 continue
+             fi
             if [[ "${exceptions[$path]:-noexception}" == 'noexception' ]]; then
                 echo "Unexpected mislabeled file found: ${path}"
                 found="1"
