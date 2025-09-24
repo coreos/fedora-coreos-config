@@ -41,14 +41,27 @@ if [[ "$booted_imgref" =~ ostree-image-signed:docker://quay.io/fedora/fedora-cor
     exit 0
 fi
 
+booted_imgref_matches_expected() {
+    local imgref=$1
+    if [[ "$imgref" =~ ostree-remote-image:fedora:docker://quay.io/fedora/fedora-coreos ]]; then
+        return 0
+    fi
+    if [[ "$imgref" =~ ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos ]]; then
+        # We could end up here if someone rebased following the instructions from:
+        # https://github.com/coreos/fedora-coreos-docs/blob/fde6977fdb8b3ebc6b1e54e44d7ca099f0d3c372/modules/ROOT/pages/update-streams.adoc?plain=1#L59
+        # See https://github.com/coreos/fedora-coreos-tracker/issues/2035#issuecomment-3327648073
+        return 0
+    fi
+    return 1 # Didn't match expected starting state
+}
+
 # Error if the machine starting state doesn't match expectation
-if [[ ! "$booted_imgref" =~ ostree-remote-image:fedora:docker://quay.io/fedora/fedora-coreos ]]; then
+if ! booted_imgref_matches_expected "$booted_imgref"; then
     # In this case the user is likely following some other image (quay.io/userx/fedora-coreos:testing)
     # but it should still be ok to error here because zincati probably shouldn't be enabled?
     echo "ERROR: The booted container imgref doesn't match the Fedora CoreOS default."
     exit 1
 fi
-
 
 # gather information to populate the booted-status-override.json file
 version=$(jq -r '.deployments[0].version' <<< "$status")
