@@ -211,9 +211,6 @@ selinux-sanity-check() {
         paths="$(echo "${mislabeled}" | grep "Would relabel" | cut -d ' ' -f 3)"
         found=""
         while read -r path; do
-            # Add in a few temporary glob exceptions
-            # https://github.com/coreos/fedora-coreos-tracker/issues/1806
-            [[ "${path}" =~ /etc/selinux/targeted/active/ ]] && continue
             if [[ "${exceptions[$path]:-noexception}" == 'noexception' ]]; then
                 echo "Unexpected mislabeled file found: ${path}"
                 found="1"
