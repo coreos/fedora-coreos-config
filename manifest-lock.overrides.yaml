@@ -27,18 +27,6 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-1a9b66e130
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
       type: fast-track
-  ignition:
-    evr: 2.23.0-1.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-85840ed9d8
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
-      type: fast-track
-  ignition-grub:
-    evr: 2.23.0-1.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-85840ed9d8
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
-      type: fast-track
   selinux-policy:
     evra: 42.9-1.fc43.noarch
     metadata:
