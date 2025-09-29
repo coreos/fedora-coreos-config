@@ -37,6 +37,15 @@ Things that are more closely "Fedora CoreOS":
   key found.
 * display warnings if mount points are not set up properly
 
+17fcos-container-signing
+------------------------
+
+Configuration for container signature verification for our
+fedora-coreos containers pulled from quay.io. Initially adding
+here in a separate overlay to make it easy to include on specific
+streams for the time being. Eventually can probably put this in
+15fcos.
+
 20platform-chrony
 -----------------
 
@@ -72,18 +81,18 @@ information.
 
 [1] https://github.com/coreos/fedora-coreos-tracker/issues/1517
 
-35oci-migration
--------------------
+35container-signing-migration
+-----------------------------
 
-Trigger a migration script to instruct Zincati to rebase the system
-to using OCI images from quay.io/fedora/fedora-coreos for future
-updates. [1]
-This is composed of a migration script [2] and a motd generator to
-instruct the user if something go wrong or show a reminder if the
-user opted out.
+This overlay will be used to perform a migration such
+that upgrading systems will start using container signatures
+for verification as opposed to OSTree commit signatures.
 
-[1] https://github.com/coreos/fedora-coreos-tracker/issues/1890
-[2] https://github.com/coreos/fedora-coreos-config/pull/3355
+This is a necessary step for F43 as part of the build-via-container
+change [1]. See [2].
+
+[1] https://github.com/coreos/fedora-coreos-tracker/issues/1969
+[2] https://github.com/coreos/fedora-coreos-tracker/issues/2029
 
 50alternatives
 --------------

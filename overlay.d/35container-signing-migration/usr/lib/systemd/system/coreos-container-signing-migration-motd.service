@@ -1,0 +1,12 @@
+# This service is used for printing a message if
+# the container signing migration failed or was opted out.
+[Unit]
+Description=Warn Based On Container Signing Migration Status
+After=zincati.service multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-container-signing-migration-motd
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
