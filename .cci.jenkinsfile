@@ -19,18 +19,16 @@ cosaPod(cpus: 4, memory: "9Gi") {
         cosa init ${env.WORKSPACE}/config
         python3 /usr/lib/coreos-assembler/download-overrides.py
         # prep from the latest builds so that we generate a diff on PRs that add packages
-        cosa buildfetch --stream=${env.CHANGE_TARGET}
+        cosa buildfetch --stream=${env.CHANGE_TARGET} --artifact=ostree
     """)
 
     // use a --parent-build arg so we can diff later and it matches prod
     def parent_arg = ""
-    def parent_commit = ""
     if (shwrapRc("test -e /srv/coreos/builds/latest/${basearch}/meta.json") == 0) {
         shwrap("cp /srv/coreos/builds/latest/${basearch}/meta.json .") // readJSON wants it in the WORKSPACE
         def meta = readJSON file: "meta.json"
         def version = meta["buildid"]
         parent_arg = "--parent-build ${version}"
-        parent_commit = meta["ostree-commit"]
     }
 
     // do a build. If we are operating on a mechanical stream then we
@@ -55,8 +53,7 @@ cosaPod(cpus: 4, memory: "9Gi") {
         stage("RPM Diff") {
             shwrap("""
                 cd /srv/coreos
-                new_commit=\$(jq -r '.["ostree-commit"]' builds/latest/${basearch}/meta.json)
-                rpm-ostree db diff --repo tmp/repo ${parent_commit} \${new_commit} | tee tmp/diff.txt
+                cosa diff --rpms | tee tmp/diff.txt
                 if grep -q Downgraded tmp/diff.txt; then
                     echo "Downgrade detected. This is likely unintentional. If not, you may safely ignore this error."
                     exit 1

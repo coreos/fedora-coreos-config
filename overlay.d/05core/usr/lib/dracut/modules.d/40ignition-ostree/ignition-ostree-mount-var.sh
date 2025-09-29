@@ -41,7 +41,9 @@ do_mount() {
     fi
 
     echo "Mounting $stateroot_var_path"
+    # older mount ignore 'rw' when using '-o bind,rw', so make 2 calls for now
     mount --bind "$stateroot_var_path" /sysroot/var
+    mount -o remount,bind,rw /sysroot/var
 }
 
 do_umount() {

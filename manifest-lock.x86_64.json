@@ -175,7 +175,7 @@
       }
     },
     "bootupd": {
-      "evra": "0.2.29-1.fc42.x86_64",
+      "evra": "0.2.30-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "rust-bootupd"
       }
@@ -421,7 +421,7 @@
       }
     },
     "curl": {
-      "evra": "8.11.1-5.fc42.x86_64",
+      "evra": "8.11.1-6.fc42.x86_64",
       "metadata": {
         "sourcerpm": "curl"
       }
@@ -535,19 +535,19 @@
       }
     },
     "dracut": {
-      "evra": "107-2.fc42.x86_64",
+      "evra": "107-4.fc42.x86_64",
       "metadata": {
         "sourcerpm": "dracut"
       }
     },
     "dracut-network": {
-      "evra": "107-2.fc42.x86_64",
+      "evra": "107-4.fc42.x86_64",
       "metadata": {
         "sourcerpm": "dracut"
       }
     },
     "dracut-squash": {
-      "evra": "107-2.fc42.x86_64",
+      "evra": "107-4.fc42.x86_64",
       "metadata": {
         "sourcerpm": "dracut"
       }
@@ -613,7 +613,7 @@
       }
     },
     "expat": {
-      "evra": "2.7.1-1.fc42.x86_64",
+      "evra": "2.7.2-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "expat"
       }
@@ -1069,25 +1069,25 @@
       }
     },
     "kernel": {
-      "evra": "6.16.7-200.fc42.x86_64",
+      "evra": "6.16.8-200.fc42.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.16.7-200.fc42.x86_64",
+      "evra": "6.16.8-200.fc42.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.16.7-200.fc42.x86_64",
+      "evra": "6.16.8-200.fc42.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.16.7-200.fc42.x86_64",
+      "evra": "6.16.8-200.fc42.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1225,7 +1225,7 @@
       }
     },
     "libcurl-minimal": {
-      "evra": "8.11.1-5.fc42.x86_64",
+      "evra": "8.11.1-6.fc42.x86_64",
       "metadata": {
         "sourcerpm": "curl"
       }
@@ -1549,13 +1549,13 @@
       }
     },
     "libselinux": {
-      "evra": "3.8-2.fc42.x86_64",
+      "evra": "3.8-3.fc42.x86_64",
       "metadata": {
         "sourcerpm": "libselinux"
       }
     },
     "libselinux-utils": {
-      "evra": "3.8-2.fc42.x86_64",
+      "evra": "3.8-3.fc42.x86_64",
       "metadata": {
         "sourcerpm": "libselinux"
       }
@@ -2029,13 +2029,13 @@
       }
     },
     "p11-kit": {
-      "evra": "0.25.6-1.fc42.x86_64",
+      "evra": "0.25.8-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "p11-kit"
       }
     },
     "p11-kit-trust": {
-      "evra": "0.25.6-1.fc42.x86_64",
+      "evra": "0.25.8-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "p11-kit"
       }
@@ -2059,13 +2059,13 @@
       }
     },
     "passt": {
-      "evra": "0^20250911.g6cbcccc-1.fc42.x86_64",
+      "evra": "0^20250919.g623dbf6-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "passt"
       }
     },
     "passt-selinux": {
-      "evra": "0^20250911.g6cbcccc-1.fc42.noarch",
+      "evra": "0^20250919.g623dbf6-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "passt"
       }
@@ -2209,13 +2209,13 @@
       }
     },
     "rpm-ostree": {
-      "evra": "2025.10-1.fc42.x86_64",
+      "evra": "2025.11-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
     },
     "rpm-ostree-libs": {
-      "evra": "2025.10-1.fc42.x86_64",
+      "evra": "2025.11-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
@@ -2275,13 +2275,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "42.8-1.fc42.noarch",
+      "evra": "42.9-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "42.8-1.fc42.noarch",
+      "evra": "42.9-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2437,7 +2437,7 @@
       }
     },
     "stalld": {
-      "evra": "1.20.4-1.fc42.x86_64",
+      "evra": "1.21.1-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "stalld"
       }
@@ -2515,7 +2515,7 @@
       }
     },
     "toolbox": {
-      "evra": "0.2-1.fc42.x86_64",
+      "evra": "0.3-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "toolbox"
       }
@@ -2563,19 +2563,19 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.1723-2.fc42.noarch",
+      "evra": "2:9.1.1775-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.1723-2.fc42.x86_64",
+      "evra": "2:9.1.1775-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "wasmedge-rt": {
-      "evra": "0.14.1-4.fc42.x86_64",
+      "evra": "0.15.0-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "wasmedge"
       }
@@ -2654,16 +2654,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-09-14T00:00:00Z",
+    "generated": "2025-09-29T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2025-04-09T11:06:59Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-09-13T07:07:51Z"
+        "generated": "2025-09-28T07:37:13Z"
       },
       "fedora-updates": {
-        "generated": "2025-09-14T00:52:45Z"
+        "generated": "2025-09-29T00:44:53Z"
       }
     }
   }
