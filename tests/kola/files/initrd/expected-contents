@@ -55,4 +55,9 @@ for kmod in "${required_initrd_kmods[@]}"; do
     fi
 done
 
+if ! grep OSTREE_VERSION "${tmpd}/usr/lib/initrd-release"; then
+    cat "${tmpd}/usr/lib/initrd-release"
+    fatal "no OSTREE_VERSION found in /usr/lib/initrd-release in initrd"
+fi
+
 ok "Found expected initrd files"
