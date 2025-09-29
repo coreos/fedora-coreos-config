@@ -3,7 +3,7 @@
 ##   # - needs-internet: to pull updates
 ##   tags: "needs-internet"
 ##   # Extend the timeout since a lot of updates/reboots can happen.
-##   timeoutMin: 45
+##   timeoutMin: 75
 ##   # Only run this test when specifically requested.
 ##   requiredTag: extended-upgrade
 ##   description: Verify upgrade works.
@@ -211,9 +211,11 @@ selinux-sanity-check() {
         paths="$(echo "${mislabeled}" | grep "Would relabel" | cut -d ' ' -f 3)"
         found=""
         while read -r path; do
-            # Add in a few temporary glob exceptions
-            # https://github.com/coreos/fedora-coreos-tracker/issues/1806
-            [[ "${path}" =~ /etc/selinux/targeted/active/ ]] && continue
+            # Add in a glob exception for /usr/etc/systemd/system for <F43 releases
+            # https://github.com/coreos/fedora-coreos-tracker/issues/2030#issuecomment-3329932294
+            if [[ "${path}" =~ /usr/etc/systemd/system ]] && [ "$(get_fedora_ver)" -eq 42 ]; then
+                 continue
+             fi
             if [[ "${exceptions[$path]:-noexception}" == 'noexception' ]]; then
                 echo "Unexpected mislabeled file found: ${path}"
                 found="1"
@@ -372,11 +374,24 @@ if ! timeout 90s $cmd | grep --max-count=1 'proceeding to stage it'; then
 fi
 set -o pipefail
 
+# OK update has been initiated. Let's fork off a process that will wait until
+# the deployment is written before signaling the impending reboot. Waiting
+# before signaling reboot will mean we get less timeouts in the code that
+# waits for the reboot to happen.
+#
+# The strategy of using systemd-run for this was lifted from
+# https://github.com/coreos/coreos-assembler/commit/242a88eae7e167efa9e04dcef9b751c6df137333
+#
+# On <35 SELinux won't allow a path unit to monitor /ostree/deploy, so disable
+verlt $version '35.00000000.0.0' && setenforce 0
+systemd-run -u refchanged                      \
+    --path-property=PathChanged=/ostree/deploy \
+    bash /tmp/autopkgtest-reboot-prepare $version
 
-# OK update has been initiated, prepare for reboot and loop to show
-# status of zincati and rpm-ostreed
-/tmp/autopkgtest-reboot-prepare $version
+# While we wait, loop to show status of zincati and rpm-ostreed
 while true; do
-    sleep 20
-    systemctl status rpm-ostreed zincati --lines=0
+    sleep 30
+    # Ignore error here. Older systemd (~F32) errors here if one of
+    # the services isn't active.
+    systemctl status rpm-ostreed zincati --lines=0 || true
 done

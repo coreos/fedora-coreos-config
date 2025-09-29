@@ -26,5 +26,5 @@ patches:
         value: 'fedora-coreos-testing-devel-on-push'
       - op: replace
         path: /metadata/annotations/pipelinesascode.tekton.dev~1on-cel-expression
-        value: 'event == "push" && target_branch == "testing-devel" && !(files.all.all(f, f.matches("ci/buildroot/"))) && !(".tekton/fcos-buildroot".pathChanged())'
+        value: 'event == "push" && target_branch == "testing-devel" && !(files.all.all(f, f.matches("ci/buildroot/"))) && !(".tekton/fcos-buildroot/*".pathChanged())'
 

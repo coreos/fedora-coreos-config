@@ -54,30 +54,17 @@ conditional-include:
     include:
       ostree-layers:
         - overlay/50alternatives
-  # Add container signing configuration. Initially rolling this out only
-  # to `next`, `next-devel` and mechanical streams.
-  - if:
-    - stream != "stable"
-    - stream != "testing"
-    - stream != "testing-devel"
-    include:
-      ostree-layers:
-        - overlay/17fcos-container-signing
   # Perform migration to container signing versus ostree commit signing.
   # This is a requirement for moving to build-via-container in F43,
-  # thus it must happen before the switch to F43. Initially rolling out
-  # to `next` and `next-devel`.
-  - if:
-    - stream != "stable"
-    - stream != "testing"
-    - stream != "testing-devel"
-    - releasever < 43
+  # thus it must happen before the switch to F43.
+  - if: releasever < 43
     include:
       ostree-layers:
         - overlay/35container-signing-migration
 
 ostree-layers:
   - overlay/15fcos
+  - overlay/17fcos-container-signing
 
 automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
 mutate-os-release: "${releasever}"

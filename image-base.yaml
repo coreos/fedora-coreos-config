@@ -35,7 +35,7 @@ platform-compressor:
     digitalocean: gzip
 
 # Set container-imgref
-container-imgref: "ostree-remote-registry:fedora:quay.io/fedora/fedora-coreos:{stream}"
+container-imgref: "ostree-image-signed:docker://quay.io/fedora/fedora-coreos:{stream}"
 
 # Enable 'erofs' by default for the rootfs in the Live ISO/PXE artifacts
 live-rootfs-fstype: "erofs"

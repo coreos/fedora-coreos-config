@@ -38,12 +38,14 @@ spec:
     value:
     - linux/amd64
     - linux/arm64
+    - linux/s390x
+    - linux/ppc64le
   - name: image-expires-after
     value: 5d
   pipelineRef:
     params:
     - name: bundle
-      value: quay.io/coreos-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:938ebbc9eec9836e2b010304103db8986788cfc9f6db33c1c76fe2e504be9052
+      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:ba3c2d68b527da50d06619c34f15341081c3969aa305f181ecb08e40226e3a28
     - name: name
       value: buildah-build-bootc-multi-platform-oci-ta
     - name: kind

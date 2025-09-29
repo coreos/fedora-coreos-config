@@ -45,7 +45,8 @@ RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
 RUN --mount=type=bind,target=/run/src,rw \
       rpm-ostree experimental compose build-chunked-oci \
         --bootc --format-version=1 --rootfs /target-rootfs \
-        --output oci-archive:/run/src/out.ociarchive
+        --output oci-archive:/run/src/out.ociarchive \
+        --label com.coreos.inputhash=$(cat /run/inputhash)
 
 FROM oci-archive:./out.ociarchive
 ARG VERSION
@@ -57,11 +58,11 @@ RUN --mount=type=bind,from=builder,target=/var/tmp \
     --mount=type=bind,target=/run/src,rw \
       rm /run/src/out.ociarchive
 
-LABEL containers.bootc=1
-LABEL ostree.bootable=1
-LABEL org.opencontainers.image.version=$VERSION
-LABEL com.coreos.osname=$NAME
-LABEL org.opencontainers.image.title=$DESCRIPTION
-LABEL org.opencontainers.image.description=$DESCRIPTION
+LABEL containers.bootc=1 \
+      ostree.bootable=1 \
+      org.opencontainers.image.version=$VERSION \
+      com.coreos.osname=$NAME \
+      org.opencontainers.image.title=$DESCRIPTION \
+      org.opencontainers.image.description=$DESCRIPTION
 STOPSIGNAL SIGRTMIN+3
 CMD ["/sbin/init"]
