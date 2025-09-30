@@ -41,12 +41,6 @@
       "enabled": false
     },
     {
-      "matchDatasources": [
-        "git-submodules"
-      ],
-      "enabled": false
-    },
-    {
       "matchManagers": [
         "rpm"
       ],
@@ -64,6 +58,9 @@
       ]
     }
   ],
+  "git-submodules": {
+    "enabled": false
+  },
   "customManagers": [
     {
       "customType": "regex",
