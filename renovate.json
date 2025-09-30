@@ -61,6 +61,14 @@
   "git-submodules": {
     "enabled": false
   },
+  "rpm-lockfile": {
+    "lockFileMaintenance": {
+      "enabled": false
+    }
+  },
+  "lockFileMaintenance": {
+    "enabled": false
+  },
   "customManagers": [
     {
       "customType": "regex",
