@@ -51,10 +51,6 @@ jobs:
         # https://github.com/containers/buildah/issues/5952 is fixed.
         run: |
           set -xeuo pipefail
-          SECRETS=()
-          if [[ -f local-overrides.repo ]]; then
-            SECRETS+=(--secret id=yumrepos,src=local-overrides.repo)
-          fi
-          podman build "${SECRETS[@]}" --security-opt=label=disable --cap-add=all --device /dev/fuse --build-arg-file build-args.conf  -v $PWD:/run/src . -t localhost/fedora-coreos
+          podman build --security-opt=label=disable --cap-add=all --device /dev/fuse --build-arg-file build-args.conf  -v $PWD:/run/src . -t localhost/fedora-coreos
       - name: Sanity-check
         run: podman run --rm localhost/fedora-coreos echo hello
