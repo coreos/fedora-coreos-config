@@ -73,7 +73,7 @@
       }
     },
     "amd-gpu-firmware": {
-      "evra": "20250917-1.fc43.noarch",
+      "evra": "20250917-2.fc43.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -913,7 +913,7 @@
       }
     },
     "intel-gpu-firmware": {
-      "evra": "20250917-1.fc43.noarch",
+      "evra": "20250917-2.fc43.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1141,7 +1141,7 @@
       }
     },
     "libatomic": {
-      "evra": "15.2.1-1.fc43.2.ppc64le",
+      "evra": "15.2.1-2.fc43.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1279,7 +1279,7 @@
       }
     },
     "libgcc": {
-      "evra": "15.2.1-1.fc43.2.ppc64le",
+      "evra": "15.2.1-2.fc43.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1369,7 +1369,7 @@
       }
     },
     "libldb": {
-      "evra": "2:4.23.0-13.fc43.ppc64le",
+      "evra": "2:4.23.1-1.fc43.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1579,7 +1579,7 @@
       }
     },
     "libsmbclient": {
-      "evra": "2:4.23.0-13.fc43.ppc64le",
+      "evra": "2:4.23.1-1.fc43.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1621,7 +1621,7 @@
       }
     },
     "libstdc++": {
-      "evra": "15.2.1-1.fc43.2.ppc64le",
+      "evra": "15.2.1-2.fc43.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1705,7 +1705,7 @@
       }
     },
     "libwbclient": {
-      "evra": "2:4.23.0-13.fc43.ppc64le",
+      "evra": "2:4.23.1-1.fc43.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1741,13 +1741,13 @@
       }
     },
     "linux-firmware": {
-      "evra": "20250917-1.fc43.noarch",
+      "evra": "20250917-2.fc43.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "linux-firmware-whence": {
-      "evra": "20250917-1.fc43.noarch",
+      "evra": "20250917-2.fc43.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1939,7 +1939,7 @@
       }
     },
     "nvidia-gpu-firmware": {
-      "evra": "20250917-1.fc43.noarch",
+      "evra": "20250917-2.fc43.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2173,7 +2173,7 @@
       }
     },
     "qed-firmware": {
-      "evra": "20250917-1.fc43.noarch",
+      "evra": "20250917-2.fc43.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2245,19 +2245,19 @@
       }
     },
     "samba-client-libs": {
-      "evra": "2:4.23.0-13.fc43.ppc64le",
+      "evra": "2:4.23.1-1.fc43.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common": {
-      "evra": "2:4.23.0-13.fc43.noarch",
+      "evra": "2:4.23.1-1.fc43.noarch",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common-libs": {
-      "evra": "2:4.23.0-13.fc43.ppc64le",
+      "evra": "2:4.23.1-1.fc43.ppc64le",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -2642,13 +2642,13 @@
     }
   },
   "metadata": {
-    "generated": "2025-10-02T00:00:00Z",
+    "generated": "2025-10-03T00:00:00Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2025-10-01T07:40:36Z"
+        "generated": "2025-10-02T16:05:12Z"
       },
       "fedora-next": {
-        "generated": "2025-10-01T08:05:58Z"
+        "generated": "2025-10-02T07:38:33Z"
       },
       "fedora-next-updates": {
         "generated": "2018-02-28T16:06:00Z"
