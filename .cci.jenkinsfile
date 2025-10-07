@@ -19,7 +19,7 @@ cosaPod(cpus: 4, memory: "9Gi") {
         cosa init ${env.WORKSPACE}/config
         python3 /usr/lib/coreos-assembler/download-overrides.py
         # prep from the latest builds so that we generate a diff on PRs that add packages
-        cosa buildfetch --stream=${env.CHANGE_TARGET} --artifact=ostree
+        cosa buildfetch --stream=${env.CHANGE_TARGET}
     """)
 
     // use a --parent-build arg so we can diff later and it matches prod

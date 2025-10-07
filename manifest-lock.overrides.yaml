@@ -9,6 +9,16 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  afterburn:
+    evr: 5.10.0-1.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-72eea5362d
+      type: fast-track
+  afterburn-dracut:
+    evr: 5.10.0-1.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-72eea5362d
+      type: fast-track
   audit:
     evr: 4.1.2-2.fc43
     metadata:
@@ -25,6 +35,18 @@ packages:
     evr: 4.1.2-2.fc43
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-1a9b66e130
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  libdrm:
+    evr: 2.4.126-1.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-551d41aa4b
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  libjcat:
+    evr: 0.2.5-1.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-e8de77a0f9
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
       type: fast-track
   selinux-policy:

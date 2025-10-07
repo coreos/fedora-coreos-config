@@ -26,5 +26,4 @@ patches:
         value: 'fedora-coreos-rawhide-on-push'
       - op: replace
         path: /metadata/annotations/pipelinesascode.tekton.dev~1on-cel-expression
-        value: 'event == "push" && target_branch == "rawhide" && !(files.all.all(f, f.matches("ci/buildroot/")))'
-
+        value: 'event == "push" && target_branch == "rawhide" && !(files.all.all(f, f.matches("ci/buildroot/") || f.matches(".tekton/fcos-buildroot/")))'
