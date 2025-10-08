@@ -19,6 +19,16 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-dfcddccd45
       type: fast-track
+  coreos-installer:
+    evr: 0.25.0-2.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d0456e1a08
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.25.0-2.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d0456e1a08
+      type: fast-track
   rpm-ostree:
     evr: 2025.11-1.fc42
     metadata:
