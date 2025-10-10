@@ -2,7 +2,7 @@
 # coreos-assembler to automatically skip some tests. For more information,
 # see: https://github.com/coreos/coreos-assembler/pull/866.
 - pattern: coreos.boot-mirror*
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1659
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2044
   warn: true
   arches:
     - ppc64le
