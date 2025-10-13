@@ -9,13 +9,15 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  ignition:
-    evr: 2.23.0-1.fc42
+  rpm-ostree:
+    evr: 2025.11-1.fc42
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-2b6a50d3c4
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-38be2fd733
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2030#issuecomment-3323900308
       type: fast-track
-  ignition-grub:
-    evr: 2.23.0-1.fc42
+  rpm-ostree-libs:
+    evr: 2025.11-1.fc42
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-2b6a50d3c4
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-38be2fd733
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2030#issuecomment-3323900308
       type: fast-track

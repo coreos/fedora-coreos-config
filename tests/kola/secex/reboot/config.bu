@@ -1,9 +1,0 @@
-variant: fcos
-version: 1.6.0
-storage:
-  files:
-    - path: /etc/sysconfig/cpi
-      overwrite: false
-      append:
-        - inline: |
-            CPI_PERMIT_ON_PVGUEST=1
