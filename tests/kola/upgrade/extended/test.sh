@@ -3,7 +3,7 @@
 ##   # - needs-internet: to pull updates
 ##   tags: "needs-internet"
 ##   # Extend the timeout since a lot of updates/reboots can happen.
-##   timeoutMin: 45
+##   timeoutMin: 75
 ##   # Only run this test when specifically requested.
 ##   requiredTag: extended-upgrade
 ##   description: Verify upgrade works.
@@ -211,9 +211,11 @@ selinux-sanity-check() {
         paths="$(echo "${mislabeled}" | grep "Would relabel" | cut -d ' ' -f 3)"
         found=""
         while read -r path; do
-            # Add in a few temporary glob exceptions
-            # https://github.com/coreos/fedora-coreos-tracker/issues/1806
-            [[ "${path}" =~ /etc/selinux/targeted/active/ ]] && continue
+            # Add in a glob exception for /usr/etc/systemd/system for <F43 releases
+            # https://github.com/coreos/fedora-coreos-tracker/issues/2030#issuecomment-3329932294
+            if [[ "${path}" =~ /usr/etc/systemd/system ]] && [ "$(get_fedora_ver)" -eq 42 ]; then
+                 continue
+             fi
             if [[ "${exceptions[$path]:-noexception}" == 'noexception' ]]; then
                 echo "Unexpected mislabeled file found: ${path}"
                 found="1"
@@ -322,12 +324,22 @@ if vereq $version $last_release; then
     # Since we'll be manually running `rpm-ostree` let's stop zincati
     systemctl stop zincati
 
-    inspect=$(skopeo inspect --retry-times=3 -n docker://quay.io/fedora/fedora-coreos:${target_stream})
-    registry_version=$(jq -r '.Labels."org.opencontainers.image.version"' <<< "${inspect}")
-    if [ "${registry_version}" == "${target_version}" ]; then
-        # If the container is already pushed to the registry we'll just upgrade
-        rpm-ostree upgrade
-    else
+   # XXX: Since we can't rely on `ostree-image-signed` until the
+   #      streams have switched over to it we have to comment out the
+   #      true part of this if statement for now.
+   #
+   #inspect=$(skopeo inspect --retry-times=3 -n docker://quay.io/fedora/fedora-coreos:${target_stream})
+   #registry_version=$(jq -r '.Labels."org.opencontainers.image.version"' <<< "${inspect}")
+   #if [ "${registry_version}" == "${target_version}" ]; then
+   #    # If the container is already pushed to the registry we'll use the registry
+   #    if [ "${stream}" == "${target_stream}" ]; then
+   #        # If we aren't switching steams we can just upgrade
+   #        rpm-ostree upgrade
+   #    else
+   #        # else we need to rebase
+   #        rpm-ostree rebase "ostree-image-signed:docker://quay.io/fedora/fedora-coreos:{target_stream}"
+   #    fi
+   #else
         # Since in the next steps we are making multiple copies of the update on the
         # system (i.e. update.ociarchive and copying into OSTree storage) let's free
         # up some space by dropping the rollback deployment.
@@ -340,7 +352,7 @@ if vereq $version $last_release; then
             "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/${target_version}/${arch}/fedora-coreos-${target_version}-ostree.${arch}.ociarchive"
         rpm-ostree rebase "ostree-unverified-image:oci-archive:/srv/update.ociarchive"
         rm /srv/update.ociarchive
-    fi
+   #fi
     /tmp/autopkgtest-reboot $version # execute the reboot
     sleep infinity
 fi
@@ -362,11 +374,24 @@ if ! timeout 90s $cmd | grep --max-count=1 'proceeding to stage it'; then
 fi
 set -o pipefail
 
+# OK update has been initiated. Let's fork off a process that will wait until
+# the deployment is written before signaling the impending reboot. Waiting
+# before signaling reboot will mean we get less timeouts in the code that
+# waits for the reboot to happen.
+#
+# The strategy of using systemd-run for this was lifted from
+# https://github.com/coreos/coreos-assembler/commit/242a88eae7e167efa9e04dcef9b751c6df137333
+#
+# On <35 SELinux won't allow a path unit to monitor /ostree/deploy, so disable
+verlt $version '35.00000000.0.0' && setenforce 0
+systemd-run -u refchanged                      \
+    --path-property=PathChanged=/ostree/deploy \
+    bash /tmp/autopkgtest-reboot-prepare $version
 
-# OK update has been initiated, prepare for reboot and loop to show
-# status of zincati and rpm-ostreed
-/tmp/autopkgtest-reboot-prepare $version
+# While we wait, loop to show status of zincati and rpm-ostreed
 while true; do
-    sleep 20
-    systemctl status rpm-ostreed zincati --lines=0
+    sleep 30
+    # Ignore error here. Older systemd (~F32) errors here if one of
+    # the services isn't active.
+    systemctl status rpm-ostreed zincati --lines=0 || true
 done

@@ -29,11 +29,9 @@ jobs:
           podman run --rm -v $PWD:/run/src -w /run/src quay.io/fedora/fedora:latest sh -c '
             set -xeuo pipefail
             dnf -y install koji createrepo_c python3-dnf python3-PyYAML && dnf clean all
-            workdir="/run/src"
-            overridesdir="rpmoverrides"
+            overridesdir="overrides/rpm"
 
             # prepare directory to download override packages
-            [ -d ${overridesdir} ] && rm -rf ${overridesdir}
             mkdir -p "${overridesdir}"
 
             curl -LO https://raw.githubusercontent.com/coreos/coreos-assembler/refs/heads/main/src/download-overrides.py
@@ -41,20 +39,12 @@ jobs:
 
             # create local yum repo
             if [[ -n $(ls "${overridesdir}/"*.rpm 2> /dev/null) ]]; then
-              cd "${overridesdir}" && createrepo_c .
-              cat > "${workdir}"/local-overrides.repo <<EOF
-          [local-overrides]
-          name=local-overrides
-          baseurl=file://${workdir}/${overridesdir}/
-          enabled=1
-          gpgcheck=0
-          cost=500
-          EOF
+              (cd "${overridesdir}" && createrepo_c .)
             else
               # remove empty dir rpmoverrides
-              rmdir "${workdir}/${overridesdir}/"
+              rm -rf "${overridesdir}/"
             fi
-            rm "${workdir}"/download-overrides.py
+            rm download-overrides.py
           '
       - name: Build
         # Note: we should be able to drop the `-v $PWD:/run/src` once
