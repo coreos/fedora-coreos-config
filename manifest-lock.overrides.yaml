@@ -37,28 +37,20 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-1a9b66e130
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
       type: fast-track
+  coreos-installer:
+    evr: 0.25.0-2.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-30a8bc20e9
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.25.0-2.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-30a8bc20e9
+      type: fast-track
   libdrm:
     evr: 2.4.126-1.fc43
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-551d41aa4b
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
-      type: fast-track
-  libjcat:
-    evr: 0.2.5-1.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-e8de77a0f9
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
-      type: fast-track
-  selinux-policy:
-    evra: 42.9-1.fc43.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-1a9b66e130
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
-      type: fast-track
-  selinux-policy-targeted:
-    evra: 42.9-1.fc43.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-1a9b66e130
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
       type: fast-track
   skopeo:
