@@ -6,10 +6,6 @@
   warn: true
   arches:
     - ppc64le
-- pattern: skip-console-warnings
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1889
-  arches:
-    - ppc64le
 - pattern: fcos.ignition.v3.noop
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2021
   snooze: 2025-10-06
