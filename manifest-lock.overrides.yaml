@@ -39,15 +39,3 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-423aeca2ee
       type: fast-track
-  rpm-ostree:
-    evr: 2025.11-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-38be2fd733
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2030#issuecomment-3323900308
-      type: fast-track
-  rpm-ostree-libs:
-    evr: 2025.11-1.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-38be2fd733
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2030#issuecomment-3323900308
-      type: fast-track
