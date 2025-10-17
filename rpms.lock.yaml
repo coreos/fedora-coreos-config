@@ -26,7 +26,7 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/a/alternatives-1.33-1.fc42.aarch64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/a/amd-gpu-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/a/amd-gpu-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/a/attr-2.5.2-5.fc42.aarch64.rpm
   - repoid: fedora
@@ -300,13 +300,13 @@ arches:
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/h/hwdata-0.400-1.fc42.noarch.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/ignition-2.23.0-1.fc42.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/ignition-2.24.0-1.fc42.aarch64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/ignition-grub-2.23.0-1.fc42.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/ignition-grub-2.24.0-1.fc42.aarch64.rpm
   - repoid: fedora-updates
-    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/i/inih-62-1.fc42.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/inih-62-1.fc42.aarch64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/intel-gpu-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/i/intel-gpu-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/ipcalc-1.0.3-11.fc42.aarch64.rpm
   - repoid: fedora
@@ -354,13 +354,13 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kdump-utils-1.0.56-1.fc42.aarch64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-6.16.11-200.fc42.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/k/kernel-6.16.12-200.fc42.aarch64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-core-6.16.11-200.fc42.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/k/kernel-core-6.16.12-200.fc42.aarch64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-modules-6.16.11-200.fc42.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/k/kernel-modules-6.16.12-200.fc42.aarch64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-modules-core-6.16.11-200.fc42.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/k/kernel-modules-core-6.16.12-200.fc42.aarch64.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kexec-tools-2.0.31-2.fc42.aarch64.rpm
   - repoid: fedora-updates
@@ -582,9 +582,9 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libzstd-1.5.7-1.fc42.aarch64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/linux-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/l/linux-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/linux-firmware-whence-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/l/linux-firmware-whence-20251011-1.fc42.noarch.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/lld18-libs-18.1.8-6.fc42.aarch64.rpm
   - repoid: fedora-updates
@@ -650,7 +650,7 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/numactl-libs-2.0.19-2.fc42.aarch64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/nvidia-gpu-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/n/nvidia-gpu-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/nvme-cli-2.15-2.fc42.aarch64.rpm
   - repoid: fedora
@@ -722,7 +722,7 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/publicsuffix-list-dafsa-20250616-1.fc42.noarch.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/q/qed-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/q/qed-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/q/qemu-user-static-x86-9.2.4-2.fc42.aarch64.rpm
   - repoid: fedora
@@ -814,21 +814,21 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sudo-1.9.17-2.p1.fc42.aarch64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-257.9-2.fc42.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/s/systemd-257.10-1.fc42.aarch64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-container-257.9-2.fc42.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/s/systemd-container-257.10-1.fc42.aarch64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-libs-257.9-2.fc42.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/s/systemd-libs-257.10-1.fc42.aarch64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-pam-257.9-2.fc42.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/s/systemd-pam-257.10-1.fc42.aarch64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-resolved-257.9-2.fc42.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/s/systemd-resolved-257.10-1.fc42.aarch64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-shared-257.9-2.fc42.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/s/systemd-shared-257.10-1.fc42.aarch64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-sysusers-257.9-2.fc42.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/s/systemd-sysusers-257.10-1.fc42.aarch64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-udev-257.9-2.fc42.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/aarch64/Packages/s/systemd-udev-257.10-1.fc42.aarch64.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/t/tar-1.35-5.fc42.aarch64.rpm
   - repoid: fedora-updates
@@ -908,7 +908,7 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/a/alternatives-1.33-1.fc42.ppc64le.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/a/amd-gpu-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/a/amd-gpu-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/a/attr-2.5.2-5.fc42.ppc64le.rpm
   - repoid: fedora
@@ -1176,13 +1176,13 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/h/hwdata-0.400-1.fc42.noarch.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/ignition-2.23.0-1.fc42.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/ignition-2.24.0-1.fc42.ppc64le.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/ignition-grub-2.23.0-1.fc42.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/ignition-grub-2.24.0-1.fc42.ppc64le.rpm
   - repoid: fedora
-    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/i/inih-62-1.fc42.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/inih-62-1.fc42.ppc64le.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/intel-gpu-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/i/intel-gpu-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/ipcalc-1.0.3-11.fc42.ppc64le.rpm
   - repoid: fedora-updates
@@ -1230,13 +1230,13 @@ arches:
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kdump-utils-1.0.56-1.fc42.ppc64le.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-6.16.11-200.fc42.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/k/kernel-6.16.12-200.fc42.ppc64le.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-core-6.16.11-200.fc42.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/k/kernel-core-6.16.12-200.fc42.ppc64le.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-modules-6.16.11-200.fc42.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/k/kernel-modules-6.16.12-200.fc42.ppc64le.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-modules-core-6.16.11-200.fc42.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/k/kernel-modules-core-6.16.12-200.fc42.ppc64le.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kexec-tools-2.0.31-2.fc42.ppc64le.rpm
   - repoid: fedora
@@ -1460,9 +1460,9 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libzstd-1.5.7-1.fc42.ppc64le.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/linux-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/l/linux-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/linux-firmware-whence-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/l/linux-firmware-whence-20251011-1.fc42.noarch.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/lmdb-libs-0.9.33-3.fc42.ppc64le.rpm
   - repoid: fedora-updates
@@ -1522,7 +1522,7 @@ arches:
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/numactl-libs-2.0.19-2.fc42.ppc64le.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/nvidia-gpu-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/n/nvidia-gpu-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/nvme-cli-2.15-2.fc42.ppc64le.rpm
   - repoid: fedora-updates
@@ -1600,7 +1600,7 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/publicsuffix-list-dafsa-20250616-1.fc42.noarch.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/q/qed-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/q/qed-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/q/qemu-user-static-x86-9.2.4-2.fc42.ppc64le.rpm
   - repoid: fedora
@@ -1690,21 +1690,21 @@ arches:
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sudo-1.9.17-2.p1.fc42.ppc64le.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-257.9-2.fc42.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/s/systemd-257.10-1.fc42.ppc64le.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-container-257.9-2.fc42.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/s/systemd-container-257.10-1.fc42.ppc64le.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-libs-257.9-2.fc42.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/s/systemd-libs-257.10-1.fc42.ppc64le.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-pam-257.9-2.fc42.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/s/systemd-pam-257.10-1.fc42.ppc64le.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-resolved-257.9-2.fc42.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/s/systemd-resolved-257.10-1.fc42.ppc64le.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-shared-257.9-2.fc42.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/s/systemd-shared-257.10-1.fc42.ppc64le.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-sysusers-257.9-2.fc42.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/s/systemd-sysusers-257.10-1.fc42.ppc64le.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-udev-257.9-2.fc42.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/ppc64le/Packages/s/systemd-udev-257.10-1.fc42.ppc64le.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/t/tar-1.35-5.fc42.ppc64le.rpm
   - repoid: fedora
@@ -1782,7 +1782,7 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/a/alternatives-1.33-1.fc42.s390x.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/a/amd-gpu-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/a/amd-gpu-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/a/attr-2.5.2-5.fc42.s390x.rpm
   - repoid: fedora
@@ -2032,13 +2032,13 @@ arches:
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/h/hwdata-0.400-1.fc42.noarch.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/ignition-2.23.0-1.fc42.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/ignition-2.24.0-1.fc42.s390x.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/ignition-grub-2.23.0-1.fc42.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/ignition-grub-2.24.0-1.fc42.s390x.rpm
   - repoid: fedora-updates
-    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/i/inih-62-1.fc42.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/inih-62-1.fc42.s390x.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/intel-gpu-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/i/intel-gpu-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/ipcalc-1.0.3-11.fc42.s390x.rpm
   - repoid: fedora
@@ -2084,13 +2084,13 @@ arches:
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kdump-utils-1.0.56-1.fc42.s390x.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-6.16.11-200.fc42.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/k/kernel-6.16.12-200.fc42.s390x.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-core-6.16.11-200.fc42.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/k/kernel-core-6.16.12-200.fc42.s390x.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-modules-6.16.11-200.fc42.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/k/kernel-modules-6.16.12-200.fc42.s390x.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-modules-core-6.16.11-200.fc42.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/k/kernel-modules-core-6.16.12-200.fc42.s390x.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kexec-tools-2.0.31-2.fc42.s390x.rpm
   - repoid: fedora
@@ -2306,9 +2306,9 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libzstd-1.5.7-1.fc42.s390x.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/linux-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/l/linux-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/linux-firmware-whence-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/l/linux-firmware-whence-20251011-1.fc42.noarch.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/lmdb-libs-0.9.33-3.fc42.s390x.rpm
   - repoid: fedora-updates
@@ -2366,7 +2366,7 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/nss-altfiles-2.23.0-6.fc42.s390x.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/nvidia-gpu-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/n/nvidia-gpu-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/nvme-cli-2.15-2.fc42.s390x.rpm
   - repoid: fedora
@@ -2436,7 +2436,7 @@ arches:
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/publicsuffix-list-dafsa-20250616-1.fc42.noarch.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/q/qed-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/q/qed-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/q/qemu-user-static-x86-9.2.4-2.fc42.s390x.rpm
   - repoid: fedora-updates
@@ -2526,21 +2526,21 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sudo-1.9.17-2.p1.fc42.s390x.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-257.9-2.fc42.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/s/systemd-257.10-1.fc42.s390x.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-container-257.9-2.fc42.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/s/systemd-container-257.10-1.fc42.s390x.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-libs-257.9-2.fc42.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/s/systemd-libs-257.10-1.fc42.s390x.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-pam-257.9-2.fc42.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/s/systemd-pam-257.10-1.fc42.s390x.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-resolved-257.9-2.fc42.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/s/systemd-resolved-257.10-1.fc42.s390x.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-shared-257.9-2.fc42.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/s/systemd-shared-257.10-1.fc42.s390x.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-sysusers-257.9-2.fc42.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/s/systemd-sysusers-257.10-1.fc42.s390x.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-udev-257.9-2.fc42.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/s390x/Packages/s/systemd-udev-257.10-1.fc42.s390x.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/t/tar-1.35-5.fc42.s390x.rpm
   - repoid: fedora-updates
@@ -2620,9 +2620,9 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/a/alternatives-1.33-1.fc42.x86_64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/a/amd-gpu-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/a/amd-gpu-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/a/amd-ucode-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/a/amd-ucode-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/a/attr-2.5.2-5.fc42.x86_64.rpm
   - repoid: fedora-updates
@@ -2900,13 +2900,13 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/h/hwdata-0.400-1.fc42.noarch.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/ignition-2.23.0-1.fc42.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/ignition-2.24.0-1.fc42.x86_64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/ignition-grub-2.23.0-1.fc42.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/ignition-grub-2.24.0-1.fc42.x86_64.rpm
   - repoid: fedora
-    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/i/inih-62-1.fc42.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/inih-62-1.fc42.x86_64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/intel-gpu-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/i/intel-gpu-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/ipcalc-1.0.3-11.fc42.x86_64.rpm
   - repoid: fedora-updates
@@ -2954,13 +2954,13 @@ arches:
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kdump-utils-1.0.56-1.fc42.x86_64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-6.16.11-200.fc42.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/k/kernel-6.16.12-200.fc42.x86_64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-core-6.16.11-200.fc42.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/k/kernel-core-6.16.12-200.fc42.x86_64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-modules-6.16.11-200.fc42.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/k/kernel-modules-6.16.12-200.fc42.x86_64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-modules-core-6.16.11-200.fc42.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/k/kernel-modules-core-6.16.12-200.fc42.x86_64.rpm
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kexec-tools-2.0.31-2.fc42.x86_64.rpm
   - repoid: fedora
@@ -3180,9 +3180,9 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libzstd-1.5.7-1.fc42.x86_64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/linux-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/l/linux-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/linux-firmware-whence-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/l/linux-firmware-whence-20251011-1.fc42.noarch.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/lld18-libs-18.1.8-6.fc42.x86_64.rpm
   - repoid: fedora-updates
@@ -3250,7 +3250,7 @@ arches:
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/numactl-libs-2.0.19-2.fc42.x86_64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/nvidia-gpu-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/n/nvidia-gpu-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/nvme-cli-2.15-2.fc42.x86_64.rpm
   - repoid: fedora-updates
@@ -3322,7 +3322,7 @@ arches:
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/publicsuffix-list-dafsa-20250616-1.fc42.noarch.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/q/qed-firmware-20250917-2.fc42.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/q/qed-firmware-20251011-1.fc42.noarch.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/r/readline-8.2-13.fc42.x86_64.rpm
   - repoid: fedora-updates
@@ -3412,21 +3412,21 @@ arches:
   - repoid: fedora-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sudo-1.9.17-2.p1.fc42.x86_64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-257.9-2.fc42.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/s/systemd-257.10-1.fc42.x86_64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-container-257.9-2.fc42.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/s/systemd-container-257.10-1.fc42.x86_64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-libs-257.9-2.fc42.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/s/systemd-libs-257.10-1.fc42.x86_64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-pam-257.9-2.fc42.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/s/systemd-pam-257.10-1.fc42.x86_64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-resolved-257.9-2.fc42.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/s/systemd-resolved-257.10-1.fc42.x86_64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-shared-257.9-2.fc42.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/s/systemd-shared-257.10-1.fc42.x86_64.rpm
   - repoid: fedora
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-sysusers-257.9-2.fc42.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/s/systemd-sysusers-257.10-1.fc42.x86_64.rpm
   - repoid: fedora-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-udev-257.9-2.fc42.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/42/Everything/x86_64/Packages/s/systemd-udev-257.10-1.fc42.x86_64.rpm
   - repoid: fedora
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/t/tar-1.35-5.fc42.x86_64.rpm
   - repoid: fedora-updates
