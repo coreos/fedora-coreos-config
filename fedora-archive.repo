@@ -14,6 +14,8 @@ baseurl=https://dl.fedoraproject.org/pub/fedora/linux/releases/$releasever/Every
         https://dl.fedoraproject.org/pub/fedora-secondary/releases/$releasever/Everything/$basearch/os/
         https://dl.fedoraproject.org/pub/archive/fedora/linux/releases/$releasever/Everything/$basearch/os/
         https://dl.fedoraproject.org/pub/archive/fedora-secondary/releases/$releasever/Everything/$basearch/os/
+        https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/$releasever/Everything/$basearch/os/
+        https://archives.fedoraproject.org/pub/archive/fedora-secondary/releases/$releasever/Everything/$basearch/os/
 #metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
 enabled=1
 #metadata_expire=7d
