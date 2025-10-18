@@ -19,6 +19,12 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-72eea5362d
       type: fast-track
+  amd-gpu-firmware:
+    evra: 20251011-1.fc43.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-db2c364f34
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
   audit:
     evr: 4.1.2-2.fc43
     metadata:
@@ -52,6 +58,18 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-30a8bc20e9
       type: fast-track
+  docker-cli:
+    evr: 28.5.1-2.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-57239b5d90
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  hwdata:
+    evra: 0.400-1.fc43.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-5d0490d32e
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
   ignition:
     evr: 2.24.0-1.fc43
     metadata:
@@ -62,15 +80,81 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-c8b9f97712
       type: fast-track
+  intel-gpu-firmware:
+    evra: 20251011-1.fc43.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-db2c364f34
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
   libdrm:
     evr: 2.4.126-1.fc43
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-551d41aa4b
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
       type: fast-track
+  linux-firmware:
+    evra: 20251011-1.fc43.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-db2c364f34
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  linux-firmware-whence:
+    evra: 20251011-1.fc43.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-db2c364f34
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  moby-engine:
+    evr: 28.5.1-2.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-57239b5d90
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  moby-filesystem:
+    evra: 28.5.1-2.fc43.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-57239b5d90
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  nmstate:
+    evr: 2.2.52-2.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-c64e240483
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  nvidia-gpu-firmware:
+    evra: 20251011-1.fc43.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-db2c364f34
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  qed-firmware:
+    evra: 20251011-1.fc43.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-db2c364f34
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  selinux-policy:
+    evra: 42.13-1.fc43.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-231a03fb59
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  selinux-policy-targeted:
+    evra: 42.13-1.fc43.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-231a03fb59
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
   skopeo:
     evr: 1:1.20.0-4.fc43
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4930235e51
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
+  stalld:
+    evr: 1.23.1-1.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-fae0c0199c
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
       type: fast-track
