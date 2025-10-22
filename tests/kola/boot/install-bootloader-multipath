@@ -1,0 +1,50 @@
+#!/bin/bash
+## kola:
+##   # bootupd does not support bootloader update on s390x
+##   architectures: "! s390x"
+##   # This uses appendKernelArgs and multipath, which is QEMU only
+##   platforms: qemu
+##   appendKernelArgs: "rd.multipath=default"
+##   primaryDisk: ":mpath"
+##   description: Verify bootupd install bootloader successfully on multipath.
+
+# See https://issues.redhat.com/browse/RHEL-81039
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+case "${AUTOPKGTEST_REBOOT_MARK:-}" in
+"")
+    ok "first boot"
+    if ! cat /proc/cmdline | grep -q rd.multipath=default; then
+        fatal "Not found kernel argument rd.multipath=default"
+    fi
+
+    boot_src=$(findmnt -nvr -o SOURCE /boot)
+    parent_device="/dev/mapper/$(multipath -l -v 1)"
+
+    if ! udevadm info --query=property "$parent_device" | grep -q MPATH_DEVICE_READY=1; then
+        fatal "device mapper ${dm_mpath} is not MPATH_DEVICE_READY"
+    fi
+
+    mount -o remount,rw /boot && rm -f /boot/bootupd-state.json
+
+    # Re-install bootloader on multipath
+    bootupctl backend install --auto --write-uuid --device "$parent_device" --update-firmware /
+    ok "Install bootloader on multipath"
+    /tmp/autopkgtest-reboot rebooted
+    ;;
+rebooted)
+    ok "second boot"
+    if ! bootupctl status | grep "CoreOS aleph version"; then
+        fatal "bootupctl status output should include 'CoreOS aleph version'"
+    fi
+
+    ok bootupctl
+    ;;
+*)
+    fatal "Unexpected mark: ${AUTOPKGTEST_REBOOT_MARK}"
+    ;;
+esac
