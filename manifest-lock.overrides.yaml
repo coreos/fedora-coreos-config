@@ -134,6 +134,12 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-db2c364f34
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
       type: fast-track
+  runc:
+    evr: 2:1.3.2-1.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-44ccc989e1
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      type: fast-track
   selinux-policy:
     evra: 42.13-1.fc43.noarch
     metadata:
