@@ -342,6 +342,13 @@ install() {{
     sed -i -E -e '/^(PRETTY_NAME|VERSION)=/ s/{base_version}/{version}/' $initdir/usr/lib/initrd-release
     echo "OSTREE_VERSION='{version}'" >> $initdir/usr/lib/initrd-release
     echo "IMAGE_VERSION='{version}'" >> $initdir/usr/lib/initrd-release
+
+    # XXX SUPER HACK to stamp out the systemd-gpt-auto-generator in the
+    # initramfs. The rm of the file in a postprocess we do runs after
+    # the initramfs is generated so we need something like this
+    # delivered via a dracut module that gets into an overlay in the
+    # original rpm-ostree compose.
+    rm -v $initdir/usr/lib/systemd/system-generators/systemd-gpt-auto-generator
 }}
 ''')
     return tmpd
