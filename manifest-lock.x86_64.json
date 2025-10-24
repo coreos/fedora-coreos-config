@@ -55,13 +55,13 @@
       }
     },
     "afterburn": {
-      "evra": "5.9.0-1.fc42.x86_64",
+      "evra": "5.10.0-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "rust-afterburn"
       }
     },
     "afterburn-dracut": {
-      "evra": "5.9.0-1.fc42.x86_64",
+      "evra": "5.10.0-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "rust-afterburn"
       }
@@ -73,13 +73,13 @@
       }
     },
     "amd-gpu-firmware": {
-      "evra": "20250808-1.fc42.noarch",
+      "evra": "20250917-2.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "amd-ucode-firmware": {
-      "evra": "20250808-1.fc42.noarch",
+      "evra": "20250917-2.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -175,7 +175,7 @@
       }
     },
     "bootupd": {
-      "evra": "0.2.30-1.fc42.x86_64",
+      "evra": "0.2.31-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "rust-bootupd"
       }
@@ -343,25 +343,25 @@
       }
     },
     "coreos-installer": {
-      "evra": "0.24.0-4.fc42.x86_64",
+      "evra": "0.25.0-2.fc42.x86_64",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.24.0-4.fc42.x86_64",
+      "evra": "0.25.0-2.fc42.x86_64",
       "metadata": {
         "sourcerpm": "rust-coreos-installer"
       }
     },
     "coreutils": {
-      "evra": "9.6-5.fc42.x86_64",
+      "evra": "9.6-6.fc42.x86_64",
       "metadata": {
         "sourcerpm": "coreutils"
       }
     },
     "coreutils-common": {
-      "evra": "9.6-5.fc42.x86_64",
+      "evra": "9.6-6.fc42.x86_64",
       "metadata": {
         "sourcerpm": "coreutils"
       }
@@ -822,6 +822,12 @@
         "sourcerpm": "gmp"
       }
     },
+    "gnulib-l10n": {
+      "evra": "20241231-1.fc42.noarch",
+      "metadata": {
+        "sourcerpm": "gnulib-l10n"
+      }
+    },
     "gnupg2": {
       "evra": "2.4.7-2.fc42.x86_64",
       "metadata": {
@@ -901,7 +907,7 @@
       }
     },
     "hwdata": {
-      "evra": "0.399-1.fc42.noarch",
+      "evra": "0.400-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "hwdata"
       }
@@ -925,7 +931,7 @@
       }
     },
     "intel-gpu-firmware": {
-      "evra": "20250808-1.fc42.noarch",
+      "evra": "20250917-2.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1039,7 +1045,7 @@
       }
     },
     "json-glib": {
-      "evra": "1.10.6-2.fc42.x86_64",
+      "evra": "1.10.8-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "json-glib"
       }
@@ -1069,25 +1075,25 @@
       }
     },
     "kernel": {
-      "evra": "6.16.8-200.fc42.x86_64",
+      "evra": "6.16.10-200.fc42.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.16.8-200.fc42.x86_64",
+      "evra": "6.16.10-200.fc42.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.16.8-200.fc42.x86_64",
+      "evra": "6.16.10-200.fc42.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.16.8-200.fc42.x86_64",
+      "evra": "6.16.10-200.fc42.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1255,7 +1261,7 @@
       }
     },
     "libdrm": {
-      "evra": "2.4.125-1.fc42.x86_64",
+      "evra": "2.4.126-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "libdrm"
       }
@@ -1345,7 +1351,7 @@
       }
     },
     "libjcat": {
-      "evra": "0.2.3-1.fc42.x86_64",
+      "evra": "0.2.5-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "libjcat"
       }
@@ -1747,13 +1753,13 @@
       }
     },
     "linux-firmware": {
-      "evra": "20250808-1.fc42.noarch",
+      "evra": "20250917-2.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "linux-firmware-whence": {
-      "evra": "20250808-1.fc42.noarch",
+      "evra": "20250917-2.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1933,7 +1939,7 @@
       }
     },
     "nmstate": {
-      "evra": "2.2.50-1.fc42.x86_64",
+      "evra": "2.2.52-2.fc42.x86_64",
       "metadata": {
         "sourcerpm": "nmstate"
       }
@@ -1957,7 +1963,7 @@
       }
     },
     "nvidia-gpu-firmware": {
-      "evra": "20250808-1.fc42.noarch",
+      "evra": "20250917-2.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1999,13 +2005,13 @@
       }
     },
     "openssl": {
-      "evra": "1:3.2.4-4.fc42.x86_64",
+      "evra": "1:3.2.6-2.fc42.x86_64",
       "metadata": {
         "sourcerpm": "openssl"
       }
     },
     "openssl-libs": {
-      "evra": "1:3.2.4-4.fc42.x86_64",
+      "evra": "1:3.2.6-2.fc42.x86_64",
       "metadata": {
         "sourcerpm": "openssl"
       }
@@ -2119,7 +2125,7 @@
       }
     },
     "podman": {
-      "evra": "5:5.6.1-1.fc42.x86_64",
+      "evra": "5:5.6.2-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "podman"
       }
@@ -2149,7 +2155,7 @@
       }
     },
     "procps-ng": {
-      "evra": "4.0.4-6.fc42.x86_64",
+      "evra": "4.0.4-6.fc42.1.x86_64",
       "metadata": {
         "sourcerpm": "procps-ng"
       }
@@ -2172,14 +2178,8 @@
         "sourcerpm": "publicsuffix-list"
       }
     },
-    "qcom-wwan-firmware": {
-      "evra": "20250808-1.fc42.noarch",
-      "metadata": {
-        "sourcerpm": "linux-firmware"
-      }
-    },
     "qed-firmware": {
-      "evra": "20250808-1.fc42.noarch",
+      "evra": "20250917-2.fc42.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2275,13 +2275,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "42.9-1.fc42.noarch",
+      "evra": "42.12-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "42.9-1.fc42.noarch",
+      "evra": "42.12-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2329,7 +2329,7 @@
       }
     },
     "skopeo": {
-      "evra": "1:1.20.0-1.fc42.x86_64",
+      "evra": "1:1.20.0-3.fc42.x86_64",
       "metadata": {
         "sourcerpm": "skopeo"
       }
@@ -2365,7 +2365,7 @@
       }
     },
     "sqlite-libs": {
-      "evra": "3.47.2-2.fc42.x86_64",
+      "evra": "3.47.2-5.fc42.x86_64",
       "metadata": {
         "sourcerpm": "sqlite"
       }
@@ -2437,7 +2437,7 @@
       }
     },
     "stalld": {
-      "evra": "1.21.1-1.fc42.x86_64",
+      "evra": "1.23.1-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "stalld"
       }
@@ -2563,13 +2563,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.1775-1.fc42.noarch",
+      "evra": "2:9.1.1818-1.fc42.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.1775-1.fc42.x86_64",
+      "evra": "2:9.1.1818-1.fc42.x86_64",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2654,16 +2654,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-09-29T00:00:00Z",
+    "generated": "2025-10-12T00:00:00Z",
     "rpmmd_repos": {
       "fedora": {
         "generated": "2025-04-09T11:06:59Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-09-28T07:37:13Z"
+        "generated": "2025-10-10T16:40:56Z"
       },
       "fedora-updates": {
-        "generated": "2025-09-29T00:44:53Z"
+        "generated": "2025-10-12T01:03:02Z"
       }
     }
   }
