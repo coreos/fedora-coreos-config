@@ -4,7 +4,7 @@ ACTION!="add|change", GOTO="stable_boot_end"
 SUBSYSTEM!="block", GOTO="stable_boot_end"
 
 ENV{DEVTYPE}=="disk" \
-  , PROGRAM=="coreos-disk-contains-fs $name boot" \
+  , PROGRAM=="coreos-disk-contains-partition-name $name boot" \
   , SYMLINK+="disk/by-id/coreos-boot-disk"
 
 LABEL="stable_boot_end"
