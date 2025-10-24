@@ -2,7 +2,11 @@ variables:
   stream: testing-devel
   prod: false
 
-releasever: 42
+metadata:
+  # tell `cosa build` to default to buildah path
+  build_with_buildah: true
+
+releasever: 43
 
 conditional-include:
   # TODO: There is no coreos-pool for RISCV yet
