@@ -4,10 +4,7 @@
   "prHourlyLimit": 0,
   "branchConcurrentLimit": 0,
   "baseBranchPatterns": [
-    "testing-devel",
-    "next-devel",
-    "rawhide",
-    "branched"
+    "testing-devel"
   ],
   "packageRules": [
     {
@@ -44,12 +41,6 @@
       "enabled": false
     },
     {
-      "matchDatasources": [
-        "git-submodules"
-      ],
-      "enabled": false
-    },
-    {
       "matchManagers": [
         "rpm"
       ],
@@ -67,6 +58,17 @@
       ]
     }
   ],
+  "git-submodules": {
+    "enabled": false
+  },
+  "rpm-lockfile": {
+    "lockFileMaintenance": {
+      "enabled": false
+    }
+  },
+  "lockFileMaintenance": {
+    "enabled": false
+  },
   "customManagers": [
     {
       "customType": "regex",
