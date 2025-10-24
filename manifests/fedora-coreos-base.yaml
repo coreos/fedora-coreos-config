@@ -225,9 +225,3 @@ packages-aarch64:
   - crun-wasm wasmedge-rt
 packages-s390x:
   - qemu-user-static-x86
-
-remove-from-packages:
-  # Hopefully short-term hack -- see https://github.com/coreos/fedora-coreos-config/pull/1206#discussion_r705425869.
-  # This keeps the size down and ensures nothing tries to use it, preventing us
-  # from shedding the dep eventually.
-  - [cracklib-dicts, .*]
