@@ -9,16 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  coreos-installer:
-    evr: 0.25.0-2.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d0456e1a08
-      type: fast-track
-  coreos-installer-bootinfra:
-    evr: 0.25.0-2.fc42
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-d0456e1a08
-      type: fast-track
   ignition:
     evr: 2.24.0-1.fc42
     metadata:
