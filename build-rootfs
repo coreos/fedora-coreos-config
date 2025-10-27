@@ -3,9 +3,9 @@
 # This script is called by the Containerfile to build FCOS. Here's what it does at a high-level:
 # 1. It gathers the list of FCOS-specific packages using the manifests.
 # 2. It gathers the list of FCOS-specific overlays using the manifests.
-# 3. It runs `bootc-base-imagectl rebuild`, passing in the packages and overlays.
-# 4. It injects various metadata (e.g. image.json, live/ bits, and platforms.json).
-# 5. It runs the postprocess scripts defined in the manifest.
+# 3. It gathers/generates the FCOS specific postprocess scripts.
+# 4. It runs `bootc-base-imagectl build-rootfs`, passing in all necessary args.
+# 5. It injects various metadata (e.g. image.json, live/ bits, and platforms.json).
 
 import glob
 import hashlib
@@ -61,10 +61,15 @@ def main():
         dracut_tmpd = inject_dracut_version(manifest['mutate-os-release'], version)
         overlays += [dracut_tmpd.name]
 
-    build_rootfs(
-        target_rootfs, manifest_path, packages,
-        locked_nevras, overlays, repos, nodocs, recommends
-    )
+    with tempfile.TemporaryDirectory(prefix='build-rootfs') as tmpd:
+        postprocess = []
+        postprocess.extend(gen_postprocess_scripts(tmpd, manifest))
+
+        build_rootfs(
+            target_rootfs, manifest_path, packages,
+            locked_nevras, overlays, repos, nodocs,
+            recommends, postprocess
+        )
 
     inject_live(target_rootfs)
     inject_image_json(target_rootfs, manifest_path)
@@ -79,7 +84,6 @@ def main():
     strict_mode = os.getenv('STRICT_MODE')
     if strict_mode == '1':
         verify_strict_mode(target_rootfs, locked_nevras)
-    run_postprocess_scripts(target_rootfs, manifest)
     cleanup_extraneous_files(target_rootfs)
 
     calculate_inputhash(target_rootfs, overlays, manifest)
@@ -117,7 +121,8 @@ def inject_yumrepos():
 
 def build_rootfs(
     target_rootfs, manifest_path, packages,
-    locked_nevras, overlays, repos, nodocs, recommends
+    locked_nevras, overlays, repos, nodocs,
+    recommends, postprocess
 ):
     passwd_group_dir = os.getenv('PASSWD_GROUP_DIR')
     if passwd_group_dir is not None:
@@ -127,6 +132,8 @@ def build_rootfs(
             argsfile.write(f"--install={pkg}\n")
         for overlay in overlays:
             argsfile.write(f"--add-dir={overlay}\n")
+        for script in postprocess:
+            argsfile.write(f"--postprocess={script}\n")
         if nodocs:
             argsfile.write("--no-docs\n")
             # temporarily work around https://issues.redhat.com/browse/RHEL-97826
@@ -211,19 +218,24 @@ def inject_passwd_group(parent_dir):
     shutil.copy(os.path.join(parent_dir, 'group'), dst_group)
 
 
-def run_postprocess_scripts(rootfs, manifest):
+# Generate files (scripts) that represent the postprocess scripts for
+# our current run. These will be passed through to bootc-base-imagectl
+# through the --postprocess argument.
+def gen_postprocess_scripts(tmpd, manifest):
     # Since we have the derive-only manifest handy, just run the scripts now. An
     # alternative is to run it as a second stage, which would avoid the bwrap,
     # but operating on the raw rootfs means we don't pay for deleted files (nor
     # without requiring another rechunk).
+    print("Generating CoreOS postprocess scripts")
+    scripts = []
     for i, script in enumerate(manifest.get('postprocess', [])):
-        name = f'usr/libexec/coreos-postprocess-{i}'
-        with open(os.path.join(rootfs, name), mode='w') as f:
-            os.fchmod(f.fileno(), 0o755)
+        name = f'coreos-postprocess-{i}'
+        path = os.path.join(tmpd, name)
+        scripts.append(path)
+        with open(path, mode='w') as f:
+            #os.fchmod(f.fileno(), 0o755)
             f.write(script)
-        print(f"Running CoreOS postprocess script {i}", flush=True)
-        bwrap(rootfs, [f'/{name}'])
-        os.unlink(os.path.join(rootfs, name))
+    return scripts
 
 
 def prepare_local_rpm_overrides(rootfs):
