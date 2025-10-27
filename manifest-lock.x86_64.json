@@ -151,13 +151,13 @@
       }
     },
     "bind-libs": {
-      "evra": "32:9.18.39-4.fc43.x86_64",
+      "evra": "32:9.18.41-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "bind"
       }
     },
     "bind-utils": {
-      "evra": "32:9.18.39-4.fc43.x86_64",
+      "evra": "32:9.18.41-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "bind"
       }
@@ -223,7 +223,7 @@
       }
     },
     "chrony": {
-      "evra": "4.8-1.fc43.x86_64",
+      "evra": "4.8-3.fc43.x86_64",
       "metadata": {
         "sourcerpm": "chrony"
       }
@@ -775,7 +775,7 @@
       }
     },
     "git-core": {
-      "evra": "2.51.0-2.fc43.x86_64",
+      "evra": "2.51.1-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "git"
       }
@@ -1081,37 +1081,37 @@
       }
     },
     "kdump-utils": {
-      "evra": "1.0.56-2.fc43.x86_64",
+      "evra": "1.0.58-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "kdump-utils"
       }
     },
     "kernel": {
-      "evra": "6.17.1-300.fc43.x86_64",
+      "evra": "6.17.4-300.fc43.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.17.1-300.fc43.x86_64",
+      "evra": "6.17.4-300.fc43.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.17.1-300.fc43.x86_64",
+      "evra": "6.17.4-300.fc43.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.17.1-300.fc43.x86_64",
+      "evra": "6.17.4-300.fc43.x86_64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kexec-tools": {
-      "evra": "2.0.31-3.fc43.x86_64",
+      "evra": "2.0.32-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "kexec-tools"
       }
@@ -1285,7 +1285,7 @@
       }
     },
     "libedit": {
-      "evra": "3.1-56.20250104cvs.fc43.x86_64",
+      "evra": "3.1-57.20251016cvs.fc43.x86_64",
       "metadata": {
         "sourcerpm": "libedit"
       }
@@ -1357,7 +1357,7 @@
       }
     },
     "libipa_hbac": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
@@ -1405,7 +1405,7 @@
       }
     },
     "libldb": {
-      "evra": "2:4.23.1-1.fc43.x86_64",
+      "evra": "2:4.23.2-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1609,7 +1609,7 @@
       }
     },
     "libsmbclient": {
-      "evra": "2:4.23.1-1.fc43.x86_64",
+      "evra": "2:4.23.2-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1627,25 +1627,25 @@
       }
     },
     "libsss_certmap": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "libsss_idmap": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "libsss_nss_idmap": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "libsss_sudo": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
@@ -1735,7 +1735,7 @@
       }
     },
     "libwbclient": {
-      "evra": "2:4.23.1-1.fc43.x86_64",
+      "evra": "2:4.23.2-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -1963,7 +1963,13 @@
       }
     },
     "ngtcp2": {
-      "evra": "1.15.1-1.fc43.x86_64",
+      "evra": "1.16.0-1.fc43.x86_64",
+      "metadata": {
+        "sourcerpm": "ngtcp2"
+      }
+    },
+    "ngtcp2-crypto-gnutls": {
+      "evra": "1.16.0-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "ngtcp2"
       }
@@ -2035,13 +2041,13 @@
       }
     },
     "openssl": {
-      "evra": "1:3.5.1-2.fc43.x86_64",
+      "evra": "1:3.5.4-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "openssl"
       }
     },
     "openssl-libs": {
-      "evra": "1:3.5.1-2.fc43.x86_64",
+      "evra": "1:3.5.4-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "openssl"
       }
@@ -2185,7 +2191,7 @@
       }
     },
     "procps-ng": {
-      "evra": "4.0.4-7.fc43.x86_64",
+      "evra": "4.0.4-7.fc43.1.x86_64",
       "metadata": {
         "sourcerpm": "procps-ng"
       }
@@ -2269,25 +2275,25 @@
       }
     },
     "runc": {
-      "evra": "2:1.3.1-1.fc43.x86_64",
+      "evra": "2:1.3.2-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "runc"
       }
     },
     "samba-client-libs": {
-      "evra": "2:4.23.1-1.fc43.x86_64",
+      "evra": "2:4.23.2-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common": {
-      "evra": "2:4.23.1-1.fc43.noarch",
+      "evra": "2:4.23.2-1.fc43.noarch",
       "metadata": {
         "sourcerpm": "samba"
       }
     },
     "samba-common-libs": {
-      "evra": "2:4.23.1-1.fc43.x86_64",
+      "evra": "2:4.23.2-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "samba"
       }
@@ -2413,55 +2419,55 @@
       }
     },
     "sssd-ad": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-client": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-common": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-common-pac": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-ipa": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-krb5": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-krb5-common": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-ldap": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
     },
     "sssd-nfs-idmap": {
-      "evra": "2.11.1-3.fc43.x86_64",
+      "evra": "2.11.1-4.fc43.x86_64",
       "metadata": {
         "sourcerpm": "sssd"
       }
@@ -2479,49 +2485,49 @@
       }
     },
     "systemd": {
-      "evra": "258-1.fc43.x86_64",
+      "evra": "258.1-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-container": {
-      "evra": "258-1.fc43.x86_64",
+      "evra": "258.1-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-libs": {
-      "evra": "258-1.fc43.x86_64",
+      "evra": "258.1-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-pam": {
-      "evra": "258-1.fc43.x86_64",
+      "evra": "258.1-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-resolved": {
-      "evra": "258-1.fc43.x86_64",
+      "evra": "258.1-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-shared": {
-      "evra": "258-1.fc43.x86_64",
+      "evra": "258.1-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-sysusers": {
-      "evra": "258-1.fc43.x86_64",
+      "evra": "258.1-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-udev": {
-      "evra": "258-1.fc43.x86_64",
+      "evra": "258.1-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "systemd"
       }
@@ -2593,13 +2599,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.1818-1.fc43.noarch",
+      "evra": "2:9.1.1863-1.fc43.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.1818-1.fc43.x86_64",
+      "evra": "2:9.1.1863-1.fc43.x86_64",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2684,7 +2690,7 @@
     }
   },
   "metadata": {
-    "generated": "2025-10-25T00:00:00Z",
+    "generated": "2025-10-27T00:00:00Z",
     "rpmmd_repos": {
       "fedora-candidate-compose": {
         "generated": "2025-10-23T03:37:20Z"
@@ -2696,7 +2702,7 @@
         "generated": "2025-10-24T04:56:13Z"
       },
       "fedora-next-updates": {
-        "generated": "2018-02-20T19:18:14Z"
+        "generated": "2025-10-27T17:09:13Z"
       }
     }
   }
