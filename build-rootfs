@@ -55,12 +55,16 @@ def main():
 
     overlays = gather_overlays(manifest)
     nodocs = (manifest.get('documentation') is False)
+    recommends = manifest.get('recommends')
 
     if version != "":
         dracut_tmpd = inject_dracut_version(manifest['mutate-os-release'], version)
         overlays += [dracut_tmpd.name]
 
-    build_rootfs(target_rootfs, manifest_path, packages, locked_nevras, overlays, repos, nodocs)
+    build_rootfs(
+        target_rootfs, manifest_path, packages,
+        locked_nevras, overlays, repos, nodocs, recommends
+    )
 
     inject_live(target_rootfs)
     inject_image_json(target_rootfs, manifest_path)
@@ -111,7 +115,10 @@ def inject_yumrepos():
         shutil.copy(repo, "/etc/yum.repos.d")
 
 
-def build_rootfs(target_rootfs, manifest_path, packages, locked_nevras, overlays, repos, nodocs):
+def build_rootfs(
+    target_rootfs, manifest_path, packages,
+    locked_nevras, overlays, repos, nodocs, recommends
+):
     passwd_group_dir = os.getenv('PASSWD_GROUP_DIR')
     if passwd_group_dir is not None:
         inject_passwd_group(os.path.join(SRCDIR, passwd_group_dir))
@@ -124,6 +131,10 @@ def build_rootfs(target_rootfs, manifest_path, packages, locked_nevras, overlays
             argsfile.write("--no-docs\n")
             # temporarily work around https://issues.redhat.com/browse/RHEL-97826
             tmpd = workaround_rhel_97826(argsfile)
+        if recommends:
+            if not recommends_arg_supported():
+                raise Exception(f"Need to set recommends: true but --recommends is unsupported")
+            argsfile.write("--recommends\n")
         if repos and repo_arg_supported():
             for repo in repos:
                 argsfile.write(f"--repo={repo}\n")
@@ -158,6 +169,12 @@ def lock_arg_supported():
     # If not, then we can't use `--lock`. That should only happen in RHCOS,
     # where we only use this for autolocking and not base lockfile management.
     return '--lock NEVRA' in get_bootc_base_imagectl_help()
+
+
+def recommends_arg_supported():
+    # Detect if we have https://gitlab.com/fedora/bootc/base-images/-/merge_requests/314.
+    # If not, then we can't use `--recommends` and should error.
+    return '--recommends' in get_bootc_base_imagectl_help()
 
 
 def workaround_rhel_97826(argsfile):
