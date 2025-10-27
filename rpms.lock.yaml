@@ -26,7 +26,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/a/alternatives-1.33-2.fc43.aarch64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/aarch64/os/Packages/a/amd-gpu-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/a/amd-gpu-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/a/attr-2.5.2-6.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
@@ -50,9 +50,9 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/b/bash-completion-2.16-2.fc43.noarch.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/b/bind-libs-9.18.39-4.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/b/bind-libs-9.18.41-1.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/b/bind-utils-9.18.39-4.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/b/bind-utils-9.18.41-1.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/b/bootc-1.8.0-1.fc43.aarch64.rpm
   - repoid: fedora-next
@@ -74,7 +74,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/c/catatonit-0.2.1-3.fc43.aarch64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/c/chrony-4.8-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/c/chrony-4.8-3.fc43.aarch64.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/c/cifs-utils-7.2-2.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
@@ -258,7 +258,7 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/gettext-runtime-0.25.1-2.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/git-core-2.51.0-2.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/g/git-core-2.51.1-1.fc43.aarch64.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/glib2-2.86.0-2.fc43.aarch64.rpm
   - repoid: fedora-next-updates
@@ -314,7 +314,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/inih-62-1.fc43.aarch64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/aarch64/os/Packages/i/intel-gpu-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/intel-gpu-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/ipcalc-1.0.3-12.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
@@ -356,17 +356,17 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kbd-misc-2.8.0-3.fc43.noarch.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kdump-utils-1.0.56-2.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/k/kdump-utils-1.0.58-1.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-6.17.1-300.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/k/kernel-6.17.4-300.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-core-6.17.1-300.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/k/kernel-core-6.17.4-300.fc43.aarch64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-modules-6.17.1-300.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/k/kernel-modules-6.17.4-300.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-modules-core-6.17.1-300.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/k/kernel-modules-core-6.17.4-300.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kexec-tools-2.0.31-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/k/kexec-tools-2.0.32-1.fc43.aarch64.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/keyutils-1.6.3-6.fc43.aarch64.rpm
   - repoid: fedora-next-updates
@@ -426,7 +426,7 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libeconf-0.7.9-2.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libedit-3.1-56.20250104cvs.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/l/libedit-3.1-57.20251016cvs.fc43.aarch64.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libevent-2.1.12-16.fc43.aarch64.rpm
   - repoid: fedora-next-updates
@@ -450,7 +450,7 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libini_config-1.3.1-59.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libipa_hbac-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/l/libipa_hbac-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libjcat-0.2.5-1.fc43.aarch64.rpm
   - repoid: fedora-next-updates
@@ -466,7 +466,7 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/liblastlog2-2.41.1-17.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libldb-4.23.1-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/l/libldb-4.23.2-1.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libluksmeta-9-25.fc43.aarch64.rpm
   - repoid: fedora-next
@@ -534,19 +534,19 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libsmartcols-2.41.1-17.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libsmbclient-4.23.1-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/l/libsmbclient-4.23.2-1.fc43.aarch64.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libsolv-0.7.34-5.fc43.aarch64.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libss-1.47.3-2.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libsss_certmap-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/l/libsss_certmap-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libsss_idmap-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/l/libsss_idmap-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libsss_nss_idmap-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/l/libsss_nss_idmap-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libsss_sudo-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/l/libsss_sudo-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libstdc++-15.2.1-2.fc43.aarch64.rpm
   - repoid: fedora-next-updates
@@ -576,7 +576,7 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libverto-0.3.2-11.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libwbclient-4.23.1-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/l/libwbclient-4.23.2-1.fc43.aarch64.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libxcrypt-4.4.38-8.fc43.aarch64.rpm
   - repoid: fedora-next-updates
@@ -588,9 +588,9 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libzstd-1.5.7-2.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/aarch64/os/Packages/l/linux-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/linux-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/aarch64/os/Packages/l/linux-firmware-whence-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/linux-firmware-whence-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/lld18-libs-18.1.8-8.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
@@ -650,246 +650,248 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/nftables-services-1.1.3-5.fc43.noarch.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/ngtcp2-1.15.1-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/n/ngtcp2-1.16.0-1.fc43.aarch64.rpm
   - repoid: fedora-next-updates
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/n/ngtcp2-crypto-gnutls-1.16.0-1.fc43.aarch64.rpm
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/nmstate-2.2.52-2.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/npth-1.8-3.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/nss-altfiles-2.23.0-7.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/numactl-libs-2.0.19-3.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/aarch64/os/Packages/n/nvidia-gpu-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/nvidia-gpu-firmware-20251021-1.fc43.noarch.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/nvme-cli-2.15-2.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/oniguruma-6.9.10-3.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/openldap-2.6.10-4.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/openssh-10.0p1-5.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/openssh-clients-10.0p1-5.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/openssh-server-10.0p1-5.fc43.aarch64.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/openssl-3.5.1-2.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/openssl-libs-3.5.1-2.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/o/openssl-3.5.4-1.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/o/openssl-libs-3.5.4-1.fc43.aarch64.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/os-prober-1.81-10.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/ostree-2025.6-1.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/ostree-libs-2025.6-1.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/p11-kit-0.25.8-1.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/p11-kit-trust-0.25.8-1.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/pam-1.7.1-3.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/pam-libs-1.7.1-3.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/passim-libs-0.1.10-2.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/passt-0^20250919.g623dbf6-1.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/passt-selinux-0^20250919.g623dbf6-1.fc43.noarch.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/pciutils-3.14.0-2.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/pciutils-libs-3.14.0-2.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/pcre2-10.46-1.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/pcre2-syntax-10.46-1.fc43.noarch.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/pigz-2.8-7.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/pkgconf-2.3.0-3.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/pkgconf-m4-2.3.0-3.fc43.noarch.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/pkgconf-pkg-config-2.3.0-3.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/podman-5.6.2-1.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/policycoreutils-3.9-5.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/polkit-126-6.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/polkit-libs-126-6.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/popt-1.19-9.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/procps-ng-4.0.4-7.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/p/procps-ng-4.0.4-7.fc43.1.aarch64.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/protobuf-c-1.5.1-2.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/psmisc-23.7-6.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/publicsuffix-list-dafsa-20250616-2.fc43.noarch.rpm
-  - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/aarch64/os/Packages/q/qed-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/q/qemu-user-static-x86-10.1.0-7.fc43.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/q/qed-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/q/qemu-user-static-x86-10.1.1-1.fc43.aarch64.rpm
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/r/readline-8.3-2.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/r/rpcbind-1.2.8-0.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/r/rpm-6.0.0-1.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/r/rpm-libs-6.0.0-1.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/r/rpm-ostree-2025.11-1.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/r/rpm-ostree-libs-2025.11-1.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/r/rpm-plugin-selinux-6.0.0-1.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/r/rpm-sequoia-1.9.0-2.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/r/rsync-3.4.1-4.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/r/runc-1.3.1-1.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/samba-client-libs-4.23.1-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/r/runc-1.3.2-1.fc43.aarch64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/samba-common-4.23.1-1.fc43.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/samba-client-libs-4.23.2-1.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/samba-common-libs-4.23.1-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/samba-common-4.23.2-1.fc43.noarch.rpm
   - repoid: fedora-candidate-compose
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/samba-common-libs-4.23.2-1.fc43.aarch64.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sdbus-cpp-2.1.0-3.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sed-4.9-5.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/selinux-policy-42.13-1.fc43.noarch.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/selinux-policy-targeted-42.13-1.fc43.noarch.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/setup-2.15.0-26.fc43.noarch.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sg3_utils-1.48-6.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sg3_utils-libs-1.48-6.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/shadow-utils-4.18.0-3.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/shadow-utils-subid-4.18.0-3.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/shared-mime-info-2.4-2.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/shim-aa64-15.8-3.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/skopeo-1.20.0-4.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/slang-2.3.3-8.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/slirp4netns-1.3.1-3.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/snappy-1.2.2-2.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/socat-1.8.0.3-1.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/spdlog-1.15.3-3.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sqlite-libs-3.50.2-2.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/squashfs-tools-4.6.1-7.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/ssh-key-dir-0.1.5-3.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sssd-ad-2.11.1-3.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sssd-client-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/sssd-ad-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sssd-common-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/sssd-client-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sssd-common-pac-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/sssd-common-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sssd-ipa-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/sssd-common-pac-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sssd-krb5-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/sssd-ipa-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sssd-krb5-common-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/sssd-krb5-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sssd-ldap-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/sssd-krb5-common-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sssd-nfs-idmap-2.11.1-3.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/sssd-ldap-2.11.1-4.fc43.aarch64.rpm
   - repoid: fedora-next-updates
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/sssd-nfs-idmap-2.11.1-4.fc43.aarch64.rpm
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/stalld-1.23.1-1.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sudo-1.9.17-5.p1.fc43.aarch64.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-258-1.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-container-258-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/systemd-258.1-1.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-libs-258-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/systemd-container-258.1-1.fc43.aarch64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-pam-258-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/systemd-libs-258.1-1.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-resolved-258-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/systemd-pam-258.1-1.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-shared-258-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/systemd-resolved-258.1-1.fc43.aarch64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-sysusers-258-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/systemd-shared-258.1-1.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/systemd-udev-258-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/systemd-sysusers-258.1-1.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/s/systemd-udev-258.1-1.fc43.aarch64.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/t/tar-1.35-6.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/t/teamd-1.32-12.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/t/tini-static-0.19.0-11.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/t/toolbox-0.3-1.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/t/tpm2-tools-5.7-4.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/t/tpm2-tss-4.1.3-8.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/t/tpm2-tss-fapi-4.1.3-8.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/t/tzdata-2025b-3.fc43.noarch.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/u/userspace-rcu-0.15.3-2.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/u/util-linux-2.41.1-17.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/u/util-linux-core-2.41.1-17.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/v/vim-data-9.1.1818-1.fc43.noarch.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/v/vim-minimal-9.1.1818-1.fc43.aarch64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/v/vim-data-9.1.1863-1.fc43.noarch.rpm
   - repoid: fedora-next
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/aarch64/Packages/v/vim-minimal-9.1.1863-1.fc43.aarch64.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/w/wasmedge-rt-0.15.0-1.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/w/which-2.23-3.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/w/wireguard-tools-1.0.20250521-2.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/x/xfsprogs-6.15.0-3.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/x/xxhash-libs-0.8.3-3.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/x/xz-5.8.1-2.fc43.aarch64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/x/xz-libs-5.8.1-2.fc43.aarch64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/y/yajl-2.1.0-38.fc43.aarch64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/z/zchunk-libs-1.5.1-3.fc43.aarch64.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/z/zincati-0.0.30-4.fc43.aarch64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/z/zlib-ng-compat-2.2.5-2.fc43.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/z/zincati-0.0.30-4.fc43.aarch64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/z/zram-generator-1.2.1-3.fc43.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/z/zlib-ng-compat-2.2.5-2.fc43.aarch64.rpm
   - repoid: fedora-next
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/z/zram-generator-1.2.1-3.fc43.aarch64.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/z/zstd-1.5.7-2.fc43.aarch64.rpm
 - arch: ppc64le
   packages:
@@ -918,7 +920,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/a/alternatives-1.33-2.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/ppc64le/os/Packages/a/amd-gpu-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/a/amd-gpu-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/a/attr-2.5.2-6.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
@@ -944,9 +946,9 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/b/bc-1.08.2-2.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/b/bind-libs-9.18.39-4.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/b/bind-libs-9.18.41-1.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/b/bind-utils-9.18.39-4.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/b/bind-utils-9.18.41-1.fc43.ppc64le.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/b/bootc-1.8.0-1.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
@@ -968,7 +970,7 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/c/catatonit-0.2.1-3.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/c/chrony-4.8-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/c/chrony-4.8-3.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/c/cifs-utils-7.2-2.fc43.ppc64le.rpm
   - repoid: fedora-next
@@ -1144,7 +1146,7 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/gettext-runtime-0.25.1-2.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/git-core-2.51.0-2.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/g/git-core-2.51.1-1.fc43.ppc64le.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/glib2-2.86.0-2.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
@@ -1200,7 +1202,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/inih-62-1.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/ppc64le/os/Packages/i/intel-gpu-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/intel-gpu-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/ipcalc-1.0.3-12.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
@@ -1242,17 +1244,17 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kbd-misc-2.8.0-3.fc43.noarch.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kdump-utils-1.0.56-2.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/k/kdump-utils-1.0.58-1.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-6.17.1-300.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/k/kernel-6.17.4-300.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-core-6.17.1-300.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/k/kernel-core-6.17.4-300.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-modules-6.17.1-300.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/k/kernel-modules-6.17.4-300.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-modules-core-6.17.1-300.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/k/kernel-modules-core-6.17.4-300.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kexec-tools-2.0.31-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/k/kexec-tools-2.0.32-1.fc43.ppc64le.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/keyutils-1.6.3-6.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
@@ -1312,7 +1314,7 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libeconf-0.7.9-2.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libedit-3.1-56.20250104cvs.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/l/libedit-3.1-57.20251016cvs.fc43.ppc64le.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libevent-2.1.12-16.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
@@ -1336,7 +1338,7 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libini_config-1.3.1-59.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libipa_hbac-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/l/libipa_hbac-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libjcat-0.2.5-1.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
@@ -1352,7 +1354,7 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/liblastlog2-2.41.1-17.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libldb-4.23.1-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/l/libldb-4.23.2-1.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libluksmeta-9-25.fc43.ppc64le.rpm
   - repoid: fedora-next
@@ -1422,19 +1424,19 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libsmartcols-2.41.1-17.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libsmbclient-4.23.1-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/l/libsmbclient-4.23.2-1.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libsolv-0.7.34-5.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libss-1.47.3-2.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libsss_certmap-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/l/libsss_certmap-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libsss_idmap-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/l/libsss_idmap-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libsss_nss_idmap-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/l/libsss_nss_idmap-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libsss_sudo-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/l/libsss_sudo-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libstdc++-15.2.1-2.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
@@ -1464,7 +1466,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libverto-0.3.2-11.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libwbclient-4.23.1-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/l/libwbclient-4.23.2-1.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libxcrypt-4.4.38-8.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
@@ -1476,9 +1478,9 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libzstd-1.5.7-2.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/ppc64le/os/Packages/l/linux-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/linux-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/ppc64le/os/Packages/l/linux-firmware-whence-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/linux-firmware-whence-20251021-1.fc43.noarch.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/lmdb-libs-0.9.33-4.fc43.ppc64le.rpm
   - repoid: fedora-next
@@ -1532,248 +1534,250 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/nftables-services-1.1.3-5.fc43.noarch.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/ngtcp2-1.15.1-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/n/ngtcp2-1.16.0-1.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/n/ngtcp2-crypto-gnutls-1.16.0-1.fc43.ppc64le.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/nmstate-2.2.52-2.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/npth-1.8-3.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/nss-altfiles-2.23.0-7.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/numactl-libs-2.0.19-3.fc43.ppc64le.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/ppc64le/os/Packages/n/nvidia-gpu-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/nvidia-gpu-firmware-20251021-1.fc43.noarch.rpm
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/nvme-cli-2.15-2.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/oniguruma-6.9.10-3.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/openldap-2.6.10-4.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/openssh-10.0p1-5.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/openssh-clients-10.0p1-5.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/openssh-server-10.0p1-5.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/openssl-3.5.1-2.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/openssl-libs-3.5.1-2.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/o/openssl-3.5.4-1.fc43.ppc64le.rpm
   - repoid: fedora-next
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/o/openssl-libs-3.5.4-1.fc43.ppc64le.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/os-prober-1.81-10.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/ostree-2025.6-1.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/ostree-grub2-2025.6-1.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/ostree-libs-2025.6-1.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/p11-kit-0.25.8-1.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/p11-kit-trust-0.25.8-1.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/pam-1.7.1-3.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/pam-libs-1.7.1-3.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/passim-libs-0.1.10-2.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/passt-0^20250919.g623dbf6-1.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/passt-selinux-0^20250919.g623dbf6-1.fc43.noarch.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/pciutils-3.14.0-2.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/pciutils-libs-3.14.0-2.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/pcre2-10.46-1.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/pcre2-syntax-10.46-1.fc43.noarch.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/pigz-2.8-7.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/pkgconf-2.3.0-3.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/pkgconf-m4-2.3.0-3.fc43.noarch.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/pkgconf-pkg-config-2.3.0-3.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/podman-5.6.2-1.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/policycoreutils-3.9-5.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/polkit-126-6.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/polkit-libs-126-6.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/popt-1.19-9.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/powerpc-utils-core-1.3.13-4.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/ppc64-diag-rtas-2.7.10-6.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/procps-ng-4.0.4-7.fc43.ppc64le.rpm
   - repoid: fedora-next
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/p/procps-ng-4.0.4-7.fc43.1.ppc64le.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/protobuf-c-1.5.1-2.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/psmisc-23.7-6.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/publicsuffix-list-dafsa-20250616-2.fc43.noarch.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/ppc64le/os/Packages/q/qed-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/q/qemu-user-static-x86-10.1.0-7.fc43.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/q/qed-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-candidate-compose
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/q/qemu-user-static-x86-10.1.1-1.fc43.ppc64le.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/r/readline-8.3-2.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/r/rpcbind-1.2.8-0.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/r/rpm-6.0.0-1.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/r/rpm-libs-6.0.0-1.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/r/rpm-ostree-2025.11-1.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/r/rpm-ostree-libs-2025.11-1.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/r/rpm-plugin-selinux-6.0.0-1.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/r/rpm-sequoia-1.9.0-2.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/r/rsync-3.4.1-4.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/r/runc-1.3.1-1.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/samba-client-libs-4.23.1-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/r/runc-1.3.2-1.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/samba-common-4.23.1-1.fc43.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/samba-client-libs-4.23.2-1.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/samba-common-libs-4.23.1-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/samba-common-4.23.2-1.fc43.noarch.rpm
   - repoid: fedora-next
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/samba-common-libs-4.23.2-1.fc43.ppc64le.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sdbus-cpp-2.1.0-3.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sed-4.9-5.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/selinux-policy-42.13-1.fc43.noarch.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/selinux-policy-targeted-42.13-1.fc43.noarch.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/servicelog-1.1.16-9.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/setup-2.15.0-26.fc43.noarch.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sg3_utils-1.48-6.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sg3_utils-libs-1.48-6.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/shadow-utils-4.18.0-3.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/shadow-utils-subid-4.18.0-3.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/shared-mime-info-2.4-2.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/skopeo-1.20.0-4.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/slang-2.3.3-8.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/slirp4netns-1.3.1-3.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/snappy-1.2.2-2.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/socat-1.8.0.3-1.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sqlite-libs-3.50.2-2.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/squashfs-tools-4.6.1-7.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/ssh-key-dir-0.1.5-3.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sssd-ad-2.11.1-3.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sssd-client-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/sssd-ad-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sssd-common-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/sssd-client-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sssd-common-pac-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/sssd-common-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sssd-ipa-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/sssd-common-pac-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sssd-krb5-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/sssd-ipa-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sssd-krb5-common-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/sssd-krb5-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sssd-ldap-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/sssd-krb5-common-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sssd-nfs-idmap-2.11.1-3.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/sssd-ldap-2.11.1-4.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/sssd-nfs-idmap-2.11.1-4.fc43.ppc64le.rpm
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/stalld-1.23.1-1.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sudo-1.9.17-5.p1.fc43.ppc64le.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-258-1.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-container-258-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/systemd-258.1-1.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-libs-258-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/systemd-container-258.1-1.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-pam-258-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/systemd-libs-258.1-1.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-resolved-258-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/systemd-pam-258.1-1.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-shared-258-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/systemd-resolved-258.1-1.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-sysusers-258-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/systemd-shared-258.1-1.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/systemd-udev-258-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/systemd-sysusers-258.1-1.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/s/systemd-udev-258.1-1.fc43.ppc64le.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/t/tar-1.35-6.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/t/teamd-1.32-12.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/t/tini-static-0.19.0-11.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/t/toolbox-0.3-1.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/t/tpm2-tools-5.7-4.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/t/tpm2-tss-4.1.3-8.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/t/tpm2-tss-fapi-4.1.3-8.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/t/tzdata-2025b-3.fc43.noarch.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/u/userspace-rcu-0.15.3-2.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/u/util-linux-2.41.1-17.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/u/util-linux-core-2.41.1-17.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/v/vim-data-9.1.1818-1.fc43.noarch.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/v/vim-minimal-9.1.1818-1.fc43.ppc64le.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/v/vim-data-9.1.1863-1.fc43.noarch.rpm
   - repoid: fedora-next
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/ppc64le/Packages/v/vim-minimal-9.1.1863-1.fc43.ppc64le.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/w/which-2.23-3.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/w/wireguard-tools-1.0.20250521-2.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/x/xfsprogs-6.15.0-3.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/x/xxhash-libs-0.8.3-3.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/x/xz-5.8.1-2.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/x/xz-libs-5.8.1-2.fc43.ppc64le.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/y/yajl-2.1.0-38.fc43.ppc64le.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/z/zchunk-libs-1.5.1-3.fc43.ppc64le.rpm
-  - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/z/zincati-0.0.30-4.fc43.ppc64le.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/z/zlib-ng-compat-2.2.5-2.fc43.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/z/zincati-0.0.30-4.fc43.ppc64le.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/z/zram-generator-1.2.1-3.fc43.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/z/zlib-ng-compat-2.2.5-2.fc43.ppc64le.rpm
   - repoid: fedora-candidate-compose
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/z/zram-generator-1.2.1-3.fc43.ppc64le.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/z/zstd-1.5.7-2.fc43.ppc64le.rpm
 - arch: s390x
   packages:
@@ -1802,7 +1806,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/a/alternatives-1.33-2.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/s390x/os/Packages/a/amd-gpu-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/a/amd-gpu-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/a/attr-2.5.2-6.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
@@ -1826,9 +1830,9 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/b/bash-completion-2.16-2.fc43.noarch.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/b/bind-libs-9.18.39-4.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/b/bind-libs-9.18.41-1.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/b/bind-utils-9.18.39-4.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/b/bind-utils-9.18.41-1.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/b/bootc-1.8.0-1.fc43.s390x.rpm
   - repoid: fedora-next
@@ -1850,7 +1854,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/c/catatonit-0.2.1-3.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/c/chrony-4.8-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/c/chrony-4.8-3.fc43.s390x.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/c/cifs-utils-7.2-2.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
@@ -2020,7 +2024,7 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/gdisk-1.0.10-4.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/git-core-2.51.0-2.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/g/git-core-2.51.1-1.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/glib2-2.86.0-2.fc43.s390x.rpm
   - repoid: fedora-next
@@ -2066,7 +2070,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/inih-62-1.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/s390x/os/Packages/i/intel-gpu-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/intel-gpu-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/ipcalc-1.0.3-12.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
@@ -2106,17 +2110,17 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kbd-misc-2.8.0-3.fc43.noarch.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kdump-utils-1.0.56-2.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/k/kdump-utils-1.0.58-1.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-6.17.1-300.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/k/kernel-6.17.4-300.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-core-6.17.1-300.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/k/kernel-core-6.17.4-300.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-modules-6.17.1-300.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/k/kernel-modules-6.17.4-300.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-modules-core-6.17.1-300.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/k/kernel-modules-core-6.17.4-300.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kexec-tools-2.0.31-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/k/kexec-tools-2.0.32-1.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/keyutils-1.6.3-6.fc43.s390x.rpm
   - repoid: fedora-next
@@ -2174,7 +2178,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libeconf-0.7.9-2.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libedit-3.1-56.20250104cvs.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/l/libedit-3.1-57.20251016cvs.fc43.s390x.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libevent-2.1.12-16.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
@@ -2198,7 +2202,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libini_config-1.3.1-59.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libipa_hbac-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/l/libipa_hbac-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libjcat-0.2.5-1.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
@@ -2214,7 +2218,7 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/liblastlog2-2.41.1-17.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libldb-4.23.1-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/l/libldb-4.23.2-1.fc43.s390x.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libluksmeta-9-25.fc43.s390x.rpm
   - repoid: fedora-next-updates
@@ -2280,19 +2284,19 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libsmartcols-2.41.1-17.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libsmbclient-4.23.1-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/l/libsmbclient-4.23.2-1.fc43.s390x.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libsolv-0.7.34-5.fc43.s390x.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libss-1.47.3-2.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libsss_certmap-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/l/libsss_certmap-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libsss_idmap-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/l/libsss_idmap-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libsss_nss_idmap-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/l/libsss_nss_idmap-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libsss_sudo-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/l/libsss_sudo-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libstdc++-15.2.1-2.fc43.s390x.rpm
   - repoid: fedora-next-updates
@@ -2320,7 +2324,7 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libverto-0.3.2-11.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libwbclient-4.23.1-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/l/libwbclient-4.23.2-1.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libxcrypt-4.4.38-8.fc43.s390x.rpm
   - repoid: fedora-next
@@ -2332,9 +2336,9 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libzstd-1.5.7-2.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/s390x/os/Packages/l/linux-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/linux-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/s390x/os/Packages/l/linux-firmware-whence-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/linux-firmware-whence-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/lmdb-libs-0.9.33-4.fc43.s390x.rpm
   - repoid: fedora-next-updates
@@ -2388,240 +2392,242 @@ arches:
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/nftables-services-1.1.3-5.fc43.noarch.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/ngtcp2-1.15.1-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/n/ngtcp2-1.16.0-1.fc43.s390x.rpm
   - repoid: fedora-next
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/n/ngtcp2-crypto-gnutls-1.16.0-1.fc43.s390x.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/nmstate-2.2.52-2.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/npth-1.8-3.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/nss-altfiles-2.23.0-7.fc43.s390x.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/s390x/os/Packages/n/nvidia-gpu-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/nvidia-gpu-firmware-20251021-1.fc43.noarch.rpm
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/nvme-cli-2.15-2.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/o/oniguruma-6.9.10-3.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/o/openldap-2.6.10-4.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/o/openssh-10.0p1-5.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/o/openssh-clients-10.0p1-5.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/o/openssh-server-10.0p1-5.fc43.s390x.rpm
-  - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/o/openssl-3.5.1-2.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/o/openssl-libs-3.5.1-2.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/o/openssl-3.5.4-1.fc43.s390x.rpm
   - repoid: fedora-next
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/o/openssl-libs-3.5.4-1.fc43.s390x.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/o/ostree-2025.6-1.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/o/ostree-libs-2025.6-1.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/p11-kit-0.25.8-1.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/p11-kit-trust-0.25.8-1.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/pam-1.7.1-3.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/pam-libs-1.7.1-3.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/passim-libs-0.1.10-2.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/passt-0^20250919.g623dbf6-1.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/passt-selinux-0^20250919.g623dbf6-1.fc43.noarch.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/pciutils-3.14.0-2.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/pciutils-libs-3.14.0-2.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/pcre2-10.46-1.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/pcre2-syntax-10.46-1.fc43.noarch.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/pigz-2.8-7.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/pkgconf-2.3.0-3.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/pkgconf-m4-2.3.0-3.fc43.noarch.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/pkgconf-pkg-config-2.3.0-3.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/podman-5.6.2-1.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/policycoreutils-3.9-5.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/polkit-126-6.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/polkit-libs-126-6.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/popt-1.19-9.fc43.s390x.rpm
-  - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/procps-ng-4.0.4-7.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/p/procps-ng-4.0.4-7.fc43.1.s390x.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/protobuf-c-1.5.1-2.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/psmisc-23.7-6.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/publicsuffix-list-dafsa-20250616-2.fc43.noarch.rpm
-  - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/s390x/os/Packages/q/qed-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/q/qemu-user-static-x86-10.1.0-7.fc43.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/q/qed-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/q/qemu-user-static-x86-10.1.1-1.fc43.s390x.rpm
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/r/readline-8.3-2.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/r/rpcbind-1.2.8-0.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/r/rpm-6.0.0-1.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/r/rpm-libs-6.0.0-1.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/r/rpm-ostree-2025.11-1.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/r/rpm-ostree-libs-2025.11-1.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/r/rpm-plugin-selinux-6.0.0-1.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/r/rpm-sequoia-1.9.0-2.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/r/rsync-3.4.1-4.fc43.s390x.rpm
-  - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/r/runc-1.3.1-1.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/r/runc-1.3.2-1.fc43.s390x.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/s390utils-core-2.38.0-2.fc43.s390x.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/samba-client-libs-4.23.1-1.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/samba-common-4.23.1-1.fc43.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/samba-client-libs-4.23.2-1.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/samba-common-libs-4.23.1-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/samba-common-4.23.2-1.fc43.noarch.rpm
   - repoid: fedora-next
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/samba-common-libs-4.23.2-1.fc43.s390x.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sdbus-cpp-2.1.0-3.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sed-4.9-5.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/selinux-policy-42.13-1.fc43.noarch.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/selinux-policy-targeted-42.13-1.fc43.noarch.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/setup-2.15.0-26.fc43.noarch.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sg3_utils-1.48-6.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sg3_utils-libs-1.48-6.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/shadow-utils-4.18.0-3.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/shadow-utils-subid-4.18.0-3.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/shared-mime-info-2.4-2.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/skopeo-1.20.0-4.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/slang-2.3.3-8.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/slirp4netns-1.3.1-3.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/snappy-1.2.2-2.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/socat-1.8.0.3-1.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sqlite-libs-3.50.2-2.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/squashfs-tools-4.6.1-7.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/ssh-key-dir-0.1.5-3.fc43.s390x.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sssd-ad-2.11.1-3.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sssd-client-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/sssd-ad-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sssd-common-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/sssd-client-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sssd-common-pac-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/sssd-common-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sssd-ipa-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/sssd-common-pac-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sssd-krb5-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/sssd-ipa-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sssd-krb5-common-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/sssd-krb5-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sssd-ldap-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/sssd-krb5-common-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sssd-nfs-idmap-2.11.1-3.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/sssd-ldap-2.11.1-4.fc43.s390x.rpm
   - repoid: fedora-next
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/sssd-nfs-idmap-2.11.1-4.fc43.s390x.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/stalld-1.23.1-1.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sudo-1.9.17-5.p1.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-258-1.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-container-258-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/systemd-258.1-1.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-libs-258-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/systemd-container-258.1-1.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-pam-258-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/systemd-libs-258.1-1.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-resolved-258-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/systemd-pam-258.1-1.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-shared-258-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/systemd-resolved-258.1-1.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-sysusers-258-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/systemd-shared-258.1-1.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/systemd-udev-258-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/systemd-sysusers-258.1-1.fc43.s390x.rpm
   - repoid: fedora-next-updates
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/s/systemd-udev-258.1-1.fc43.s390x.rpm
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/t/tar-1.35-6.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/t/teamd-1.32-12.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/t/tini-static-0.19.0-11.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/t/toolbox-0.3-1.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/t/tpm2-tools-5.7-4.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/t/tpm2-tss-4.1.3-8.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/t/tpm2-tss-fapi-4.1.3-8.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/t/tzdata-2025b-3.fc43.noarch.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/u/userspace-rcu-0.15.3-2.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/u/util-linux-2.41.1-17.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/u/util-linux-core-2.41.1-17.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/v/veritysetup-2.8.1-1.fc43.s390x.rpm
-  - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/v/vim-data-9.1.1818-1.fc43.noarch.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/v/vim-minimal-9.1.1818-1.fc43.s390x.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/v/vim-data-9.1.1863-1.fc43.noarch.rpm
   - repoid: fedora-next
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/s390x/Packages/v/vim-minimal-9.1.1863-1.fc43.s390x.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/w/which-2.23-3.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/w/wireguard-tools-1.0.20250521-2.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/x/xfsprogs-6.15.0-3.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/x/xxhash-libs-0.8.3-3.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/x/xz-5.8.1-2.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/x/xz-libs-5.8.1-2.fc43.s390x.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/y/yajl-2.1.0-38.fc43.s390x.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/z/zchunk-libs-1.5.1-3.fc43.s390x.rpm
-  - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/z/zincati-0.0.30-4.fc43.s390x.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/z/zlib-ng-compat-2.2.5-2.fc43.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/z/zincati-0.0.30-4.fc43.s390x.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/z/zram-generator-1.2.1-3.fc43.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/z/zlib-ng-compat-2.2.5-2.fc43.s390x.rpm
   - repoid: fedora-candidate-compose
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/z/zram-generator-1.2.1-3.fc43.s390x.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/z/zstd-1.5.7-2.fc43.s390x.rpm
 - arch: x86_64
   packages:
@@ -2650,9 +2656,9 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/a/alternatives-1.33-2.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/x86_64/os/Packages/a/amd-gpu-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/a/amd-gpu-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/x86_64/os/Packages/a/amd-ucode-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/a/amd-ucode-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/a/attr-2.5.2-6.fc43.x86_64.rpm
   - repoid: fedora-next
@@ -2676,9 +2682,9 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/b/bash-completion-2.16-2.fc43.noarch.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/b/bind-libs-9.18.39-4.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/b/bind-libs-9.18.41-1.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/b/bind-utils-9.18.39-4.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/b/bind-utils-9.18.41-1.fc43.x86_64.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/b/bootc-1.8.0-1.fc43.x86_64.rpm
   - repoid: fedora-next-updates
@@ -2700,7 +2706,7 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/c/catatonit-0.2.1-3.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/c/chrony-4.8-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/c/chrony-4.8-3.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/c/cifs-utils-7.2-2.fc43.x86_64.rpm
   - repoid: fedora-next
@@ -2884,7 +2890,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/gettext-runtime-0.25.1-2.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/git-core-2.51.0-2.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/g/git-core-2.51.1-1.fc43.x86_64.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/glib2-2.86.0-2.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
@@ -2944,7 +2950,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/inih-62-1.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/x86_64/os/Packages/i/intel-gpu-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/intel-gpu-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/ipcalc-1.0.3-12.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
@@ -2986,17 +2992,17 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kbd-misc-2.8.0-3.fc43.noarch.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kdump-utils-1.0.56-2.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/k/kdump-utils-1.0.58-1.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-6.17.1-300.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/k/kernel-6.17.4-300.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-core-6.17.1-300.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/k/kernel-core-6.17.4-300.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-modules-6.17.1-300.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/k/kernel-modules-6.17.4-300.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-modules-core-6.17.1-300.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/k/kernel-modules-core-6.17.4-300.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kexec-tools-2.0.31-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/k/kexec-tools-2.0.32-1.fc43.x86_64.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/keyutils-1.6.3-6.fc43.x86_64.rpm
   - repoid: fedora-next-updates
@@ -3054,7 +3060,7 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libeconf-0.7.9-2.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libedit-3.1-56.20250104cvs.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/l/libedit-3.1-57.20251016cvs.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libevent-2.1.12-16.fc43.x86_64.rpm
   - repoid: fedora-next
@@ -3078,7 +3084,7 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libini_config-1.3.1-59.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libipa_hbac-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/l/libipa_hbac-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libjcat-0.2.5-1.fc43.x86_64.rpm
   - repoid: fedora-next
@@ -3094,7 +3100,7 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/liblastlog2-2.41.1-17.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libldb-4.23.1-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/l/libldb-4.23.2-1.fc43.x86_64.rpm
   - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libluksmeta-9-25.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
@@ -3162,19 +3168,19 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libsmartcols-2.41.1-17.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libsmbclient-4.23.1-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/l/libsmbclient-4.23.2-1.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libsolv-0.7.34-5.fc43.x86_64.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libss-1.47.3-2.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libsss_certmap-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/l/libsss_certmap-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libsss_idmap-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/l/libsss_idmap-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libsss_nss_idmap-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/l/libsss_nss_idmap-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libsss_sudo-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/l/libsss_sudo-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libstdc++-15.2.1-2.fc43.x86_64.rpm
   - repoid: fedora-next
@@ -3204,7 +3210,7 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libverto-0.3.2-11.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libwbclient-4.23.1-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/l/libwbclient-4.23.2-1.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libxcrypt-4.4.38-8.fc43.x86_64.rpm
   - repoid: fedora-next
@@ -3216,9 +3222,9 @@ arches:
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libzstd-1.5.7-2.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/x86_64/os/Packages/l/linux-firmware-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/linux-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/x86_64/os/Packages/l/linux-firmware-whence-20251021-1.fc43.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/linux-firmware-whence-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/lld18-libs-18.1.8-8.fc43.x86_64.rpm
   - repoid: fedora-next-updates
@@ -3280,244 +3286,246 @@ arches:
   - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/nftables-services-1.1.3-5.fc43.noarch.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/ngtcp2-1.15.1-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/n/ngtcp2-1.16.0-1.fc43.x86_64.rpm
   - repoid: fedora-next-updates
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/n/ngtcp2-crypto-gnutls-1.16.0-1.fc43.x86_64.rpm
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/nmstate-2.2.52-2.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/npth-1.8-3.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/nss-altfiles-2.23.0-7.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/numactl-libs-2.0.19-3.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/x86_64/os/Packages/n/nvidia-gpu-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/nvidia-gpu-firmware-20251021-1.fc43.noarch.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/nvme-cli-2.15-2.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/oniguruma-6.9.10-3.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/openldap-2.6.10-4.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/openssh-10.0p1-5.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/openssh-clients-10.0p1-5.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/openssh-server-10.0p1-5.fc43.x86_64.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/openssl-3.5.1-2.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/openssl-libs-3.5.1-2.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/o/openssl-3.5.4-1.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/o/openssl-libs-3.5.4-1.fc43.x86_64.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/os-prober-1.81-10.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/ostree-2025.6-1.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/ostree-libs-2025.6-1.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/p11-kit-0.25.8-1.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/p11-kit-trust-0.25.8-1.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/pam-1.7.1-3.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/pam-libs-1.7.1-3.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/passim-libs-0.1.10-2.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/passt-0^20250919.g623dbf6-1.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/passt-selinux-0^20250919.g623dbf6-1.fc43.noarch.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/pciutils-3.14.0-2.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/pciutils-libs-3.14.0-2.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/pcre2-10.46-1.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/pcre2-syntax-10.46-1.fc43.noarch.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/pigz-2.8-7.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/pkgconf-2.3.0-3.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/pkgconf-m4-2.3.0-3.fc43.noarch.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/pkgconf-pkg-config-2.3.0-3.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/podman-5.6.2-1.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/policycoreutils-3.9-5.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/polkit-126-6.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/polkit-libs-126-6.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/popt-1.19-9.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/procps-ng-4.0.4-7.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/p/procps-ng-4.0.4-7.fc43.1.x86_64.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/protobuf-c-1.5.1-2.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/psmisc-23.7-6.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/publicsuffix-list-dafsa-20250616-2.fc43.noarch.rpm
-  - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/compose/43/latest-Fedora-43/compose/Everything/x86_64/os/Packages/q/qed-firmware-20251021-1.fc43.noarch.rpm
   - repoid: fedora-next
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/q/qed-firmware-20251021-1.fc43.noarch.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/r/readline-8.3-2.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/r/rpcbind-1.2.8-0.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/r/rpm-6.0.0-1.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/r/rpm-libs-6.0.0-1.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/r/rpm-ostree-2025.11-1.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/r/rpm-ostree-libs-2025.11-1.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/r/rpm-plugin-selinux-6.0.0-1.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/r/rpm-sequoia-1.9.0-2.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/r/rsync-3.4.1-4.fc43.x86_64.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/r/runc-1.3.1-1.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/samba-client-libs-4.23.1-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/r/runc-1.3.2-1.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/samba-common-4.23.1-1.fc43.noarch.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/samba-client-libs-4.23.2-1.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/samba-common-libs-4.23.1-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/samba-common-4.23.2-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/samba-common-libs-4.23.2-1.fc43.x86_64.rpm
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sdbus-cpp-2.1.0-3.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sed-4.9-5.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/selinux-policy-42.13-1.fc43.noarch.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/selinux-policy-targeted-42.13-1.fc43.noarch.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/setup-2.15.0-26.fc43.noarch.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sg3_utils-1.48-6.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sg3_utils-libs-1.48-6.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/shadow-utils-4.18.0-3.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/shadow-utils-subid-4.18.0-3.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/shared-mime-info-2.4-2.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/shim-x64-15.8-3.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/skopeo-1.20.0-4.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/slang-2.3.3-8.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/slirp4netns-1.3.1-3.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/snappy-1.2.2-2.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/socat-1.8.0.3-1.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/spdlog-1.15.3-3.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sqlite-libs-3.50.2-2.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/squashfs-tools-4.6.1-7.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/ssh-key-dir-0.1.5-3.fc43.x86_64.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sssd-ad-2.11.1-3.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sssd-client-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/sssd-ad-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sssd-common-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/sssd-client-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sssd-common-pac-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/sssd-common-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sssd-ipa-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/sssd-common-pac-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sssd-krb5-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/sssd-ipa-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sssd-krb5-common-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/sssd-krb5-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sssd-ldap-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/sssd-krb5-common-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sssd-nfs-idmap-2.11.1-3.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/sssd-ldap-2.11.1-4.fc43.x86_64.rpm
   - repoid: fedora-next
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/sssd-nfs-idmap-2.11.1-4.fc43.x86_64.rpm
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/stalld-1.23.1-1.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sudo-1.9.17-5.p1.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-258-1.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-container-258-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/systemd-258.1-1.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-libs-258-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/systemd-container-258.1-1.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-pam-258-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/systemd-libs-258.1-1.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-resolved-258-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/systemd-pam-258.1-1.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-shared-258-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/systemd-resolved-258.1-1.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-sysusers-258-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/systemd-shared-258.1-1.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/systemd-udev-258-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/systemd-sysusers-258.1-1.fc43.x86_64.rpm
   - repoid: fedora-next-updates
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/s/systemd-udev-258.1-1.fc43.x86_64.rpm
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/t/tar-1.35-6.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/t/teamd-1.32-12.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/t/tini-static-0.19.0-11.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/t/toolbox-0.3-1.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/t/tpm2-tools-5.7-4.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/t/tpm2-tss-4.1.3-8.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/t/tpm2-tss-fapi-4.1.3-8.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/t/tzdata-2025b-3.fc43.noarch.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/u/userspace-rcu-0.15.3-2.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/u/util-linux-2.41.1-17.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/u/util-linux-core-2.41.1-17.fc43.x86_64.rpm
-  - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/v/vim-data-9.1.1818-1.fc43.noarch.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/v/vim-minimal-9.1.1818-1.fc43.x86_64.rpm
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/v/vim-data-9.1.1863-1.fc43.noarch.rpm
   - repoid: fedora-candidate-compose
+    url: https://dl.fedoraproject.org/pub/fedora/linux/updates/43/Everything/x86_64/Packages/v/vim-minimal-9.1.1863-1.fc43.x86_64.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/w/wasmedge-rt-0.15.0-1.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/w/which-2.23-3.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/w/wireguard-tools-1.0.20250521-2.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/x/xfsprogs-6.15.0-3.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/x/xxhash-libs-0.8.3-3.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/x/xz-5.8.1-2.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/x/xz-libs-5.8.1-2.fc43.x86_64.rpm
-  - repoid: fedora-next
+  - repoid: fedora-next-updates
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/y/yajl-2.1.0-38.fc43.x86_64.rpm
-  - repoid: fedora-next-updates
+  - repoid: fedora-candidate-compose
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/z/zchunk-libs-1.5.1-3.fc43.x86_64.rpm
-  - repoid: fedora-candidate-compose
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/z/zincati-0.0.30-4.fc43.x86_64.rpm
   - repoid: fedora-next
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/z/zlib-ng-compat-2.2.5-2.fc43.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/z/zincati-0.0.30-4.fc43.x86_64.rpm
   - repoid: fedora-next-updates
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/z/zram-generator-1.2.1-3.fc43.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/z/zlib-ng-compat-2.2.5-2.fc43.x86_64.rpm
   - repoid: fedora-candidate-compose
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/z/zram-generator-1.2.1-3.fc43.x86_64.rpm
+  - repoid: fedora-next
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/z/zstd-1.5.7-2.fc43.x86_64.rpm
 lockfileVendor: redhat
 lockfileVersion: 1
