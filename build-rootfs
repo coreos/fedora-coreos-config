@@ -57,12 +57,13 @@ def main():
     nodocs = (manifest.get('documentation') is False)
     recommends = manifest.get('recommends')
 
-    if version != "":
-        dracut_tmpd = inject_dracut_version(manifest['mutate-os-release'], version)
-        overlays += [dracut_tmpd.name]
-
     with tempfile.TemporaryDirectory(prefix='build-rootfs') as tmpd:
         postprocess = []
+        if version != "":
+            base_version = manifest['mutate-os-release']
+            postprocess.append(
+                gen_mutate_os_release_postprocess(tmpd, base_version, version)
+            )
         postprocess.extend(gen_postprocess_scripts(tmpd, manifest))
 
         build_rootfs(
@@ -75,11 +76,6 @@ def main():
     inject_image_json(target_rootfs, manifest_path)
     inject_platforms_json(target_rootfs)
     inject_content_manifest(target_rootfs, manifest)
-
-    if version != "":
-        overlays.remove(dracut_tmpd.name)
-        cleanup_dracut_version(target_rootfs, dracut_tmpd)
-        inject_version_info(target_rootfs, manifest['mutate-os-release'], version)
 
     strict_mode = os.getenv('STRICT_MODE')
     if strict_mode == '1':
@@ -319,68 +315,33 @@ def modify_pool_repo(locked_nevras):
 # and only rely on org.opencontainers.image.version as argued in:
 # https://gitlab.com/fedora/bootc/base-images/-/issues/40
 # https://gitlab.com/fedora/bootc/base-images/-/issues/46
-def inject_version_info(rootfs, base_version, version):
-    os_release_path = os.path.join(rootfs, 'usr/lib/os-release')
-    with open(os_release_path) as f:
-        from collections import OrderedDict
-        os_release = OrderedDict()
-        for line in f:
-            line = line.strip()
-            if len(line) == 0 or line.startswith('#'):
-                continue
-            (k, v) = line.split('=', 1)
-            os_release[k] = v
+def gen_mutate_os_release_postprocess(tmpd, base_version, version):
+    name = 'coreos-postprocess-mutate-os-release'
+    path = os.path.join(tmpd, name)
+    script = f'''
+#!/usr/bin/env bash
+set -euxo pipefail
+tmp_file=$(mktemp)
 
-    # The fields modified here match those in inject_dracut_version below. Keep
-    # them in sync.
-    for key in ['VERSION', 'PRETTY_NAME']:
-        os_release[key] = os_release[key].replace(base_version, version)
-    os_release['OSTREE_VERSION'] = f"'{version}'"
-    os_release['IMAGE_VERSION'] = f"'{version}'"
+# Read the os-release file line by line and make replacements
+while read line; do
+    if [[ $line == VERSION=* || $line == PRETTY_NAME=* ]]; then
+        echo "${{line//{base_version}/{version}}}" >> "$tmp_file"
+    else
+        echo "$line" >> "$tmp_file"
+    fi
+done < /usr/lib/os-release
 
-    with open(os_release_path, mode='w', encoding='utf-8') as f:
-        for (k, v) in os_release.items():
-            f.write(f'{k}={v}\n')
+# Add new fields
+echo "OSTREE_VERSION='{version}'" >> "$tmp_file"
+echo "IMAGE_VERSION='{version}'" >> "$tmp_file"
 
-
-# This dynamically generates a dracut module which doesn't actually install
-# anything in the initrd. It just mutates the initrd-release installed by
-# dracut-systemd in the same way we mutate os-release above. Normally, we'd
-# only need inject_version_info above and dracut would create its initrd-release
-# based on that. But injection happens after the rpm-ostree compose and we want
-# to avoid regenerating the initramfs just for that.
-def inject_dracut_version(base_version, version):
-    tmpd = tempfile.TemporaryDirectory()
-    # we use 99 here so we run last, i.e. after initrd-release exists
-    module_setup = os.path.join(tmpd.name, 'usr/lib/dracut/modules.d/99dracut-coreos-version/module-setup.sh')
-    os.makedirs(os.path.dirname(module_setup), exist_ok=True)
-    with open(module_setup, 'w', encoding='utf-8') as f:
-        # The fields modified here match those in inject_version_info above.
-        # Keep them in sync.
-        f.write(f'''
-check() {{ return 0; }}
-install() {{
-    sed -i -E -e '/^(PRETTY_NAME|VERSION)=/ s/{base_version}/{version}/' $initdir/usr/lib/initrd-release
-    echo "OSTREE_VERSION='{version}'" >> $initdir/usr/lib/initrd-release
-    echo "IMAGE_VERSION='{version}'" >> $initdir/usr/lib/initrd-release
-
-    # XXX SUPER HACK to stamp out the systemd-gpt-auto-generator in the
-    # initramfs. The rm of the file in a postprocess we do runs after
-    # the initramfs is generated so we need something like this
-    # delivered via a dracut module that gets into an overlay in the
-    # original rpm-ostree compose.
-    rm -v $initdir/usr/lib/systemd/system-generators/systemd-gpt-auto-generator
-}}
-''')
-    return tmpd
-
-
-def cleanup_dracut_version(rootfs, tmpd):
-    # we can nuke this from the rootfs now; any dracut regeneration from this
-    # point on (e.g. in derived builds, or client side) will be able to see the
-    # os-release changes done by inject_version_info
-    shutil.rmtree(f'{rootfs}/usr/lib/dracut/modules.d/99dracut-coreos-version')
-    del tmpd
+# Replace the original file
+mv "$tmp_file" /usr/lib/os-release
+'''
+    with open(path, mode='w') as f:
+        f.write(script)
+    return path
 
 
 # This re-implements cosa's overlay logic.
