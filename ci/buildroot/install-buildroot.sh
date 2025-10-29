@@ -27,14 +27,8 @@ brs=$(grep -v '^#' "${dn}"/buildroot-buildreqs.txt)
  echo "${brs}" | xargs dnf download --source
  # rebuild the SRPM for this arch; see
  # https://bugzilla.redhat.com/show_bug.cgi?id=1402784#c6
- # Add workaround if on F42 for https://github.com/coreos/fedora-coreos-tracker/issues/1901
- source /etc/os-release
- workaround=""
- if [ "${VERSION_ID}" == "42" ]; then
-    workaround="--noclean"
- fi
  find . -name '*.src.rpm' -print0 | xargs -0n 1 rpmbuild -rs --nodeps \
-    -D "%_topdir $PWD/rpmbuild" -D "%_tmppath %{_topdir}/tmp" ${workaround}
+    -D "%_topdir $PWD/rpmbuild" -D "%_tmppath %{_topdir}/tmp"
  dnf builddep -y rpmbuild/SRPMS/*.src.rpm)
 rm -rf "${tmpd:?}"/*
 
