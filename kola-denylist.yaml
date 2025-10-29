@@ -1,11 +1,6 @@
 # This file documents currently known-to-fail kola tests. It is consumed by
 # coreos-assembler to automatically skip some tests. For more information,
 # see: https://github.com/coreos/coreos-assembler/pull/866.
-- pattern: coreos.boot-mirror*
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2044
-  warn: true
-  arches:
-    - ppc64le
 - pattern: coreos.unique.boot.failure
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2019
   snooze: 2025-11-10
