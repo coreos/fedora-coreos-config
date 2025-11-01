@@ -196,6 +196,9 @@ selinux-sanity-check() {
         # - Would relabel /var/lib/systemd/random-seed from system_u:object_r:init_var_lib_t:s0 to system_u:object_r:random_seed_t:s0
         #       - 42.20250526.1.0 -> 42.20250609.1.0
         #       - https://github.com/coreos/fedora-coreos-tracker/issues/1965#issuecomment-2959831808
+        # - Would relabel /var/opt/kola* from unconfined_u:object_r:var_t:s0 to unconfined_u:object_r:usr_t:s0
+        #       - 42.20250410.2.0 -> 43.20251031.20.0
+        #       - https://github.com/coreos/fedora-coreos-tracker/issues/2052#issuecomment-3474594545
         declare -A exceptions=(
            ['/var/lib/cni']=1
            ['/etc/selinux/targeted/semanage.read.LOCK']=1
@@ -207,6 +210,9 @@ selinux-sanity-check() {
            ['/var/cache/systemd']=1
            ['/var/cache/systemd/home']=1
            ['/var/lib/systemd/random-seed']=1
+           ['/var/opt/kola']=1
+           ['/var/opt/kola/extdata']=1
+           ['/var/opt/kola/extdata/commonlib.sh']=1
         )
         paths="$(echo "${mislabeled}" | grep "Would relabel" | cut -d ' ' -f 3)"
         found=""
