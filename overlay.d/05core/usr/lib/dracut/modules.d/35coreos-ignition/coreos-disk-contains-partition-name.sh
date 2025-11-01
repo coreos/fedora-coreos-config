@@ -25,7 +25,7 @@ if  [[ -n ${multipath} ]]; then
     fi
 fi
 
-if sfdisk "/dev/${disk}" --json | jq -e '.partitiontable.partitions | any(.name == "'"${label}"'")'; then
+if /usr/sbin/sfdisk "/dev/${disk}" --json | jq -e '.partitiontable.partitions | any(.name == "'"${label}"'")'; then
     exit 0
 fi
 
