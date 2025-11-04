@@ -481,7 +481,9 @@ def calculate_inputhash(rootfs, overlays, manifest):
         all_files = sorted(all_files)
         for file in all_files:
             with open(file, 'rb') as f:
-                h.update(hashlib.file_digest(f, 'sha256').digest())
+                # When python3.11+ is the minimal version we can use hashlib.file_digest
+                # h.update(hashlib.file_digest(f, 'sha256').digest())
+                h.update(hashlib.sha256(f.read()).digest())
                 has_x_bit = os.stat(f.fileno()).st_mode & 0o111 != 0
                 h.update(bytes([has_x_bit]))
 
