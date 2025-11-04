@@ -56,14 +56,14 @@ def main():
     overlays = gather_overlays(manifest)
     nodocs = (manifest.get('documentation') is False)
     recommends = manifest.get('recommends')
-
-    if version != "":
-        dracut_tmpd = inject_dracut_version(manifest['mutate-os-release'], version)
-        overlays += [dracut_tmpd.name]
+    # We generate the initramfs using dracut ourselves later after our
+    # CoreOS postprocess scripts have run. If this version of rpm-ostree
+    # supports it we'll tell it to not run dracut in the initial compose.
+    no_initramfs = True if no_initramfs_arg_supported() else False
 
     build_rootfs(
-        target_rootfs, manifest_path, packages,
-        locked_nevras, overlays, repos, nodocs, recommends
+        target_rootfs, manifest_path, packages, locked_nevras,
+        overlays, repos, nodocs, recommends, no_initramfs
     )
 
     inject_live(target_rootfs)
@@ -72,14 +72,13 @@ def main():
     inject_content_manifest(target_rootfs, manifest)
 
     if version != "":
-        overlays.remove(dracut_tmpd.name)
-        cleanup_dracut_version(target_rootfs, dracut_tmpd)
         inject_version_info(target_rootfs, manifest['mutate-os-release'], version)
 
     strict_mode = os.getenv('STRICT_MODE')
     if strict_mode == '1':
         verify_strict_mode(target_rootfs, locked_nevras)
     run_postprocess_scripts(target_rootfs, manifest)
+    run_dracut(target_rootfs)
     cleanup_extraneous_files(target_rootfs)
 
     calculate_inputhash(target_rootfs, overlays, manifest)
@@ -116,8 +115,8 @@ def inject_yumrepos():
 
 
 def build_rootfs(
-    target_rootfs, manifest_path, packages,
-    locked_nevras, overlays, repos, nodocs, recommends
+    target_rootfs, manifest_path, packages, locked_nevras,
+    overlays, repos, nodocs, recommends, no_initramfs
 ):
     passwd_group_dir = os.getenv('PASSWD_GROUP_DIR')
     if passwd_group_dir is not None:
@@ -135,6 +134,8 @@ def build_rootfs(
             if not recommends_arg_supported():
                 raise Exception(f"Need to set recommends: true but --recommends is unsupported")
             argsfile.write("--recommends\n")
+        if no_initramfs:
+            argsfile.write("--no-initramfs\n")
         if repos and repo_arg_supported():
             for repo in repos:
                 argsfile.write(f"--repo={repo}\n")
@@ -175,6 +176,24 @@ def recommends_arg_supported():
     # Detect if we have https://gitlab.com/fedora/bootc/base-images/-/merge_requests/314.
     # If not, then we can't use `--recommends` and should error.
     return '--recommends' in get_bootc_base_imagectl_help()
+
+
+def no_initramfs_arg_supported():
+    # Detect if we have # https://gitlab.com/fedora/bootc/base-images/-/merge_requests/320.
+    # If not, then we can't use `--no-initramfs`, but that's OK because it's just
+    # an optimization to prevent building the initramfs twice.
+    if not '--no-initramfs' in get_bootc_base_imagectl_help():
+        return False
+    # Detect if we have https://github.com/coreos/rpm-ostree/commit/481fbb034292666578780bacfdbf3dae9d10e6c3
+    # At the time of this writing it's unreleased in rpm-ostree but it
+    # should be in the next release (2025.13 or 2026.1).
+    out = subprocess.check_output(['rpm-ostree', '--version'], encoding='utf-8')
+    data = yaml.safe_load(out)
+    version_str = data['rpm-ostree']['Version']
+    # ideally, we could use `packaging.version`, but that's not in centos-bootc
+    # but conveniently, Python list comparisons do the right thing here
+    version = [int(c) for c in version_str.split('.')]
+    return version >= [2025, 13]
 
 
 def workaround_rhel_97826(argsfile):
@@ -235,6 +254,15 @@ def run_postprocess_scripts(rootfs, manifest):
         os.unlink(os.path.join(rootfs, name))
 
 
+def run_dracut(rootfs):
+    print(f"Running dracut to generate the initramfs", flush=True)
+    # https://docs.fedoraproject.org/en-US/bootc/initramfs/#_modifying_and_regenerating_the_initrd
+    kver = bwrap(rootfs, ['ls', '/usr/lib/modules'], capture=True).strip()
+    bwrap(rootfs, ['env', 'DRACUT_NO_XATTR=1',
+                   'dracut', '--verbose', '--force',  '--reproducible',
+                   '--no-hostonly', f"/usr/lib/modules/{kver}/initramfs.img", kver])
+
+
 def prepare_local_rpm_overrides(rootfs):
     overrides_repo = os.path.join(SRCDIR, 'overrides/rpm')
     if not os.path.isdir(f'{overrides_repo}/repodata'):
@@ -270,8 +298,9 @@ priority=1
 # Could upstream this as e.g. `bootc-base-imagectl runroot /rootfs <cmd>` maybe?
 # But we'd need to carry it anyway at least for RHCOS 9.6.
 def bwrap(rootfs, args, capture=False):
-    args = ['bwrap', '--bind', f'{rootfs}', '/', '--dev', '/dev', '--proc',
-            '/proc', '--tmpfs', '/tmp', '--tmpfs', '/var', '--tmpfs', '/run',
+    args = ['bwrap', '--bind', f'{rootfs}', '/', '--dev', '/dev',
+            '--proc', '/proc', '--tmpfs', '/tmp', '--tmpfs', '/var',
+            '--tmpfs', '/var/tmp', '--tmpfs', '/run',
             '--bind', '/run/.containerenv', '/run/.containerenv', '--'] + args
     if capture:
         return subprocess.check_output(args, encoding='utf-8')
@@ -328,8 +357,6 @@ def inject_version_info(rootfs, base_version, version):
             (k, v) = line.split('=', 1)
             os_release[k] = v
 
-    # The fields modified here match those in inject_dracut_version below. Keep
-    # them in sync.
     for key in ['VERSION', 'PRETTY_NAME']:
         os_release[key] = os_release[key].replace(base_version, version)
     os_release['OSTREE_VERSION'] = f"'{version}'"
@@ -338,46 +365,6 @@ def inject_version_info(rootfs, base_version, version):
     with open(os_release_path, mode='w', encoding='utf-8') as f:
         for (k, v) in os_release.items():
             f.write(f'{k}={v}\n')
-
-
-# This dynamically generates a dracut module which doesn't actually install
-# anything in the initrd. It just mutates the initrd-release installed by
-# dracut-systemd in the same way we mutate os-release above. Normally, we'd
-# only need inject_version_info above and dracut would create its initrd-release
-# based on that. But injection happens after the rpm-ostree compose and we want
-# to avoid regenerating the initramfs just for that.
-def inject_dracut_version(base_version, version):
-    tmpd = tempfile.TemporaryDirectory()
-    # we use 99 here so we run last, i.e. after initrd-release exists
-    module_setup = os.path.join(tmpd.name, 'usr/lib/dracut/modules.d/99dracut-coreos-version/module-setup.sh')
-    os.makedirs(os.path.dirname(module_setup), exist_ok=True)
-    with open(module_setup, 'w', encoding='utf-8') as f:
-        # The fields modified here match those in inject_version_info above.
-        # Keep them in sync.
-        f.write(f'''
-check() {{ return 0; }}
-install() {{
-    sed -i -E -e '/^(PRETTY_NAME|VERSION)=/ s/{base_version}/{version}/' $initdir/usr/lib/initrd-release
-    echo "OSTREE_VERSION='{version}'" >> $initdir/usr/lib/initrd-release
-    echo "IMAGE_VERSION='{version}'" >> $initdir/usr/lib/initrd-release
-
-    # XXX SUPER HACK to stamp out the systemd-gpt-auto-generator in the
-    # initramfs. The rm of the file in a postprocess we do runs after
-    # the initramfs is generated so we need something like this
-    # delivered via a dracut module that gets into an overlay in the
-    # original rpm-ostree compose.
-    rm -v $initdir/usr/lib/systemd/system-generators/systemd-gpt-auto-generator
-}}
-''')
-    return tmpd
-
-
-def cleanup_dracut_version(rootfs, tmpd):
-    # we can nuke this from the rootfs now; any dracut regeneration from this
-    # point on (e.g. in derived builds, or client side) will be able to see the
-    # os-release changes done by inject_version_info
-    shutil.rmtree(f'{rootfs}/usr/lib/dracut/modules.d/99dracut-coreos-version')
-    del tmpd
 
 
 # This re-implements cosa's overlay logic.
