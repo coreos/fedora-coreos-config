@@ -34,6 +34,33 @@
       "rebaseWhen": "behind-base-branch"
     },
     {
+      "matchPackageNames": [
+        "/^quay.io/bootc-devel/fedora-bootc*/"
+      ],
+      "matchBaseBranches": [
+        "rawhide"
+      ],
+      "schedule": ["before 5am"],
+      "enabled": true,
+      "automerge": true,
+      "automergeType": "branch",
+      "groupName": "bootc base image",
+      "branchPrefix": "renovate/bump-bootc-base-image/",
+      "group": {
+        "branchTopic": "{{{baseBranch}}}",
+        "commitMessageTopic": "{{{groupName}}}"
+      },
+      "commitMessageTopic": "bootc base image",
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Notes"
+      ],
+      "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{configDescription}}}{{{controls}}}{{{footer}}}",
+      "recreateWhen": "always",
+      "rebaseWhen": "behind-base-branch"
+    },
+    {
       "matchDatasources": [
         "docker"
       ],
