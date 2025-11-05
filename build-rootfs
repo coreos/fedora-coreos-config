@@ -141,22 +141,23 @@ def build_rootfs(target_rootfs, manifest_path, packages, locked_nevras, overlays
     if nodocs and tmpd is not None:
         del tmpd
 
+def get_bootc_base_imagectl_help():
+    return subprocess.check_output(['/usr/libexec/bootc-base-imagectl', 'build-rootfs', '-h'], encoding='utf-8')
+
 
 def repo_arg_supported():
     # Detect if we have https://gitlab.com/fedora/bootc/base-images/-/merge_requests/248.
     # If not, then we can't use `--repo`. That's OK because that should only
     # happen on RHEL, where we don't have any default repos anyway and only rely on
     # the mounted secret repo file.
-    help = subprocess.check_output(['/usr/libexec/bootc-base-imagectl', 'build-rootfs', '-h'], encoding='utf-8')
-    return '--repo REPO' in help
+    return '--repo REPO' in get_bootc_base_imagectl_help()
 
 
 def lock_arg_supported():
     # Detect if we have https://gitlab.com/fedora/bootc/base-images/-/merge_requests/279.
     # If not, then we can't use `--lock`. That should only happen in RHCOS,
     # where we only use this for autolocking and not base lockfile management.
-    help = subprocess.check_output(['/usr/libexec/bootc-base-imagectl', 'build-rootfs', '-h'], encoding='utf-8')
-    return '--lock NEVRA' in help
+    return '--lock NEVRA' in get_bootc_base_imagectl_help()
 
 
 def workaround_rhel_97826(argsfile):
