@@ -21,7 +21,7 @@ FROM ${BUILDER_IMG} as builder
 ARG VERSION=overridden
 ARG MANIFEST=overridden
 # XXX: see inject_passwd_group() in build-rootfs
-ARG PASSWD_GROUP_DIR
+ARG PASSWD_GROUP_DIR=none
 ARG STRICT_MODE=0
 
 COPY . /src
