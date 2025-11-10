@@ -145,13 +145,13 @@
       }
     },
     "bind-libs": {
-      "evra": "32:9.18.41-1.fc43.s390x",
+      "evra": "32:9.18.41-2.fc43.s390x",
       "metadata": {
         "sourcerpm": "bind"
       }
     },
     "bind-utils": {
-      "evra": "32:9.18.41-1.fc43.s390x",
+      "evra": "32:9.18.41-2.fc43.s390x",
       "metadata": {
         "sourcerpm": "bind"
       }
@@ -175,7 +175,7 @@
       }
     },
     "btrfs-progs": {
-      "evra": "6.17-1.fc43.s390x",
+      "evra": "6.17.1-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "btrfs-progs"
       }
@@ -499,7 +499,7 @@
       }
     },
     "dnsmasq": {
-      "evra": "2.90-7.fc43.s390x",
+      "evra": "2.91-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "dnsmasq"
       }
@@ -553,19 +553,19 @@
       }
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.193-3.fc43.noarch",
+      "evra": "0.194-1.fc43.noarch",
       "metadata": {
         "sourcerpm": "elfutils"
       }
     },
     "elfutils-libelf": {
-      "evra": "0.193-3.fc43.s390x",
+      "evra": "0.194-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "elfutils"
       }
     },
     "elfutils-libs": {
-      "evra": "0.193-3.fc43.s390x",
+      "evra": "0.194-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "elfutils"
       }
@@ -733,7 +733,7 @@
       }
     },
     "glib2": {
-      "evra": "2.86.0-2.fc43.s390x",
+      "evra": "2.86.1-2.fc43.s390x",
       "metadata": {
         "sourcerpm": "glib2"
       }
@@ -841,7 +841,7 @@
       }
     },
     "hwdata": {
-      "evra": "0.400-1.fc43.noarch",
+      "evra": "0.401-1.fc43.noarch",
       "metadata": {
         "sourcerpm": "hwdata"
       }
@@ -889,25 +889,25 @@
       }
     },
     "iptables-libs": {
-      "evra": "1.8.11-11.fc43.s390x",
+      "evra": "1.8.11-12.fc43.s390x",
       "metadata": {
         "sourcerpm": "iptables"
       }
     },
     "iptables-nft": {
-      "evra": "1.8.11-11.fc43.s390x",
+      "evra": "1.8.11-12.fc43.s390x",
       "metadata": {
         "sourcerpm": "iptables"
       }
     },
     "iptables-services": {
-      "evra": "1.8.11-11.fc43.noarch",
+      "evra": "1.8.11-12.fc43.noarch",
       "metadata": {
         "sourcerpm": "iptables"
       }
     },
     "iptables-utils": {
-      "evra": "1.8.11-11.fc43.s390x",
+      "evra": "1.8.11-12.fc43.s390x",
       "metadata": {
         "sourcerpm": "iptables"
       }
@@ -991,25 +991,25 @@
       }
     },
     "kernel": {
-      "evra": "6.17.4-300.fc43.s390x",
+      "evra": "6.17.7-300.fc43.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.17.4-300.fc43.s390x",
+      "evra": "6.17.7-300.fc43.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.17.4-300.fc43.s390x",
+      "evra": "6.17.7-300.fc43.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.17.4-300.fc43.s390x",
+      "evra": "6.17.7-300.fc43.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1177,7 +1177,7 @@
       }
     },
     "libdrm": {
-      "evra": "2.4.126-1.fc43.s390x",
+      "evra": "2.4.128-3.fc43.s390x",
       "metadata": {
         "sourcerpm": "libdrm"
       }
@@ -1219,7 +1219,7 @@
       }
     },
     "libgcc": {
-      "evra": "15.2.1-2.fc43.s390x",
+      "evra": "15.2.1-3.fc43.s390x",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1315,7 +1315,7 @@
       }
     },
     "libluksmeta": {
-      "evra": "9-25.fc43.s390x",
+      "evra": "10-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "luksmeta"
       }
@@ -1513,7 +1513,7 @@
       }
     },
     "libsolv": {
-      "evra": "0.7.34-5.fc43.s390x",
+      "evra": "0.7.35-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "libsolv"
       }
@@ -1549,7 +1549,7 @@
       }
     },
     "libstdc++": {
-      "evra": "15.2.1-2.fc43.s390x",
+      "evra": "15.2.1-3.fc43.s390x",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1585,7 +1585,7 @@
       }
     },
     "libtirpc": {
-      "evra": "1.3.7-0.fc43.s390x",
+      "evra": "1.3.7-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "libtirpc"
       }
@@ -1633,7 +1633,7 @@
       }
     },
     "libxcrypt": {
-      "evra": "4.4.38-8.fc43.s390x",
+      "evra": "4.5.1-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "libxcrypt"
       }
@@ -1699,7 +1699,7 @@
       }
     },
     "luksmeta": {
-      "evra": "9-25.fc43.s390x",
+      "evra": "10-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "luksmeta"
       }
@@ -1729,7 +1729,7 @@
       }
     },
     "makedumpfile": {
-      "evra": "1.7.7-4.fc43.s390x",
+      "evra": "1.7.8-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "makedumpfile"
       }
@@ -2077,7 +2077,7 @@
       }
     },
     "qemu-user-static-x86": {
-      "evra": "2:10.1.1-1.fc43.s390x",
+      "evra": "2:10.1.2-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "qemu"
       }
@@ -2107,13 +2107,13 @@
       }
     },
     "rpm-ostree": {
-      "evra": "2025.11-1.fc43.s390x",
+      "evra": "2025.12-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
     },
     "rpm-ostree-libs": {
-      "evra": "2025.11-1.fc43.s390x",
+      "evra": "2025.12-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "rpm-ostree"
       }
@@ -2179,13 +2179,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "42.13-1.fc43.noarch",
+      "evra": "42.14-1.fc43.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "42.13-1.fc43.noarch",
+      "evra": "42.14-1.fc43.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2227,7 +2227,7 @@
       }
     },
     "skopeo": {
-      "evra": "1:1.20.0-4.fc43.s390x",
+      "evra": "1:1.20.0-5.fc43.s390x",
       "metadata": {
         "sourcerpm": "skopeo"
       }
@@ -2335,7 +2335,7 @@
       }
     },
     "sudo": {
-      "evra": "1.9.17-5.p1.fc43.s390x",
+      "evra": "1.9.17-6.p2.fc43.s390x",
       "metadata": {
         "sourcerpm": "sudo"
       }
@@ -2461,13 +2461,13 @@
       }
     },
     "vim-data": {
-      "evra": "2:9.1.1863-1.fc43.noarch",
+      "evra": "2:9.1.1888-1.fc43.noarch",
       "metadata": {
         "sourcerpm": "vim"
       }
     },
     "vim-minimal": {
-      "evra": "2:9.1.1863-1.fc43.s390x",
+      "evra": "2:9.1.1888-1.fc43.s390x",
       "metadata": {
         "sourcerpm": "vim"
       }
@@ -2546,19 +2546,16 @@
     }
   },
   "metadata": {
-    "generated": "2025-10-27T00:00:00Z",
+    "generated": "2025-11-10T00:00:00Z",
     "rpmmd_repos": {
-      "fedora-candidate-compose": {
+      "fedora": {
         "generated": "2025-10-23T03:37:17Z"
       },
       "fedora-coreos-pool": {
-        "generated": "2025-10-24T07:08:23Z"
+        "generated": "2025-11-06T15:39:21Z"
       },
-      "fedora-next": {
-        "generated": "2025-10-24T04:56:06Z"
-      },
-      "fedora-next-updates": {
-        "generated": "2025-10-27T17:09:13Z"
+      "fedora-updates": {
+        "generated": "2025-11-10T00:42:43Z"
       }
     }
   }
