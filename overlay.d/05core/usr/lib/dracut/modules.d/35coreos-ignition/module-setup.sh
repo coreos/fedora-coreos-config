@@ -59,8 +59,8 @@ install() {
     inst_simple "$moddir/80-coreos-boot-disk.rules" \
         "/usr/lib/coreos/80-coreos-boot-disk.rules"
 
-    inst_script "$moddir/coreos-disk-contains-fs.sh" \
-        "/usr/lib/udev/coreos-disk-contains-fs"
+    inst_script "$moddir/coreos-disk-contains-partition-name.sh" \
+        "/usr/lib/udev/coreos-disk-contains-partition-name"
 
     inst_script "$moddir/coreos-ignition-setup-user.sh" \
         "/usr/sbin/coreos-ignition-setup-user"
