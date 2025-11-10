@@ -43,6 +43,11 @@ jobs:
           # snooze and warn lines. Let's do the same here so we don't get warnings.
           # See https://github.com/coreos/fedora-coreos-releng-automation/pull/179
           sed -E -i 's/^(\s+)((snooze:|warn:)\s+.*)/\1# \2 (disabled on promotion)/' origin/kola-denylist.yaml
+      - name: Normalize build-args.conf
+        run: |
+          # Ignore DESCRIPTION differences between streams since it's stream-specific.
+          sed -i '/^DESCRIPTION=/d' origin/build-args.conf
+          sed -i '/^DESCRIPTION=/d' new/build-args.conf
       - name: Compare trees
         uses: coreos/actions-lib/check-diff@main
         with:

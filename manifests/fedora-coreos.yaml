@@ -235,3 +235,10 @@ postprocess:
         echo "${actuals}" 1>&2
         exit 1
     fi
+
+  # We don't want auto-generated mount units. See also
+  # https://github.com/systemd/systemd/issues/13099
+  - |
+    #!/usr/bin/env bash
+    set -x
+    rm -vf /usr/lib/systemd/system-generators/systemd-gpt-auto-generator
