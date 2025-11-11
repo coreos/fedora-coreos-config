@@ -3,7 +3,7 @@
 # see: https://github.com/coreos/coreos-assembler/pull/866.
 - pattern: coreos.unique.boot.failure
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2019
-  snooze: 2025-11-10
+  snooze: 2025-12-05
   warn: true
   arches:
     - aarch64
