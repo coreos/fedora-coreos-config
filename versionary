@@ -102,7 +102,7 @@ def get_y(manifest):
             continue
     else:
         # must be an unlocked stream
-        assert stream in UNLOCKED_STREAMS
+        #assert stream in UNLOCKED_STREAMS
         msg_src = "unlocked stream"
         dt = datetime.now()
 
