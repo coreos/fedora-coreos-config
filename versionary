@@ -23,8 +23,6 @@ from datetime import datetime
 
 # streams which don't use lockfiles
 UNLOCKED_STREAMS = [
-    'rawhide',
-    'branched',
     'bodhi-updates-testing',
     'bodhi-updates',
 ]
