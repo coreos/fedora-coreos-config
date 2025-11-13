@@ -46,6 +46,14 @@ here in a separate overlay to make it easy to include on specific
 streams for the time being. Eventually can probably put this in
 15fcos.
 
+18sshd-authorized-keys-file
+---------------------------
+
+Configuration to have OpenSSH read authorized keys from files in
+`~/.ssh/authorized_keys.d/*` in addition to `~/.ssh/authorized_keys` (default).
+We can drop this overlay once we have moved this configuration file to be
+installed alongside the Afterburn and Ignition packages.
+
 20platform-chrony
 -----------------
 
