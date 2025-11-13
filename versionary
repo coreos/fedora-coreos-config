@@ -13,6 +13,7 @@
 import argparse
 import json
 import os
+import platform
 import re
 import subprocess
 import sys
@@ -84,9 +85,10 @@ def get_y(manifest):
     # XXX: should sanity check that the lockfiles for all the basearches have
     # matching timestamps
     exts = ['json', 'yaml']
+    basearch = platform.machine()
     for ext in exts:
         try:
-            with open(f"src/config/manifest-lock.x86_64.{ext}") as f:
+            with open(f"src/config/manifest-lock.{basearch}.{ext}") as f:
                 lockfile = yaml.safe_load(f)
                 generated = lockfile.get('metadata', {}).get('generated')
                 if not generated:
