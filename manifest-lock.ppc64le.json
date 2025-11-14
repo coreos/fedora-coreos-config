@@ -73,7 +73,7 @@
       }
     },
     "amd-gpu-firmware": {
-      "evra": "20251021-1.fc44.noarch",
+      "evra": "20251111-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -163,7 +163,7 @@
       }
     },
     "bootc": {
-      "evra": "1.8.0-1.fc44.ppc64le",
+      "evra": "1.10.0-2.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "bootc"
       }
@@ -409,7 +409,7 @@
       }
     },
     "curl": {
-      "evra": "8.17.0-1.fc44.ppc64le",
+      "evra": "8.17.0-2.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "curl"
       }
@@ -547,13 +547,13 @@
       }
     },
     "e2fsprogs": {
-      "evra": "1.47.3-2.fc43.ppc64le",
+      "evra": "1.47.3-3.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "e2fsprogs"
       }
     },
     "e2fsprogs-libs": {
-      "evra": "1.47.3-2.fc43.ppc64le",
+      "evra": "1.47.3-3.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "e2fsprogs"
       }
@@ -661,7 +661,7 @@
       }
     },
     "flatpak-session-helper": {
-      "evra": "1.16.1-12.fc44.ppc64le",
+      "evra": "1.17.0-1.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "flatpak"
       }
@@ -679,31 +679,31 @@
       }
     },
     "fuse-common": {
-      "evra": "3.16.2-5.fc42.ppc64le",
+      "evra": "3.17.4-1.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "fuse3"
       }
     },
     "fuse-overlayfs": {
-      "evra": "1.13-4.fc43.ppc64le",
+      "evra": "1.13-5.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "fuse-overlayfs"
       }
     },
     "fuse-sshfs": {
-      "evra": "3.7.3-12.fc43.ppc64le",
+      "evra": "3.7.5-2.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "fuse-sshfs"
       }
     },
     "fuse3": {
-      "evra": "3.16.2-5.fc42.ppc64le",
+      "evra": "3.17.4-1.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "fuse3"
       }
     },
     "fuse3-libs": {
-      "evra": "3.16.2-5.fc42.ppc64le",
+      "evra": "3.17.4-1.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "fuse3"
       }
@@ -859,31 +859,31 @@
       }
     },
     "grub2-common": {
-      "evra": "1:2.12-41.fc44.noarch",
+      "evra": "1:2.12-47.fc44.noarch",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-ppc64le": {
-      "evra": "1:2.12-41.fc44.ppc64le",
+      "evra": "1:2.12-47.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-ppc64le-modules": {
-      "evra": "1:2.12-41.fc44.noarch",
+      "evra": "1:2.12-47.fc44.noarch",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-tools": {
-      "evra": "1:2.12-41.fc44.ppc64le",
+      "evra": "1:2.12-47.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "grub2"
       }
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.12-41.fc44.ppc64le",
+      "evra": "1:2.12-47.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "grub2"
       }
@@ -931,7 +931,7 @@
       }
     },
     "intel-gpu-firmware": {
-      "evra": "20251021-1.fc44.noarch",
+      "evra": "20251111-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1159,7 +1159,7 @@
       }
     },
     "libatomic": {
-      "evra": "15.2.1-3.fc44.ppc64le",
+      "evra": "15.2.1-4.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1219,13 +1219,13 @@
       }
     },
     "libcom_err": {
-      "evra": "1.47.3-2.fc43.ppc64le",
+      "evra": "1.47.3-3.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "e2fsprogs"
       }
     },
     "libcurl-minimal": {
-      "evra": "8.17.0-1.fc44.ppc64le",
+      "evra": "8.17.0-2.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "curl"
       }
@@ -1303,7 +1303,7 @@
       }
     },
     "libgcc": {
-      "evra": "15.2.1-3.fc44.ppc64le",
+      "evra": "15.2.1-4.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1615,7 +1615,7 @@
       }
     },
     "libss": {
-      "evra": "1.47.3-2.fc43.ppc64le",
+      "evra": "1.47.3-3.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "e2fsprogs"
       }
@@ -1645,7 +1645,7 @@
       }
     },
     "libstdc++": {
-      "evra": "15.2.1-3.fc44.ppc64le",
+      "evra": "15.2.1-4.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "gcc"
       }
@@ -1771,13 +1771,13 @@
       }
     },
     "linux-firmware": {
-      "evra": "20251021-1.fc44.noarch",
+      "evra": "20251111-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "linux-firmware-whence": {
-      "evra": "20251021-1.fc44.noarch",
+      "evra": "20251111-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1993,7 +1993,7 @@
       }
     },
     "nvidia-gpu-firmware": {
-      "evra": "20251021-1.fc44.noarch",
+      "evra": "20251111-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2053,19 +2053,19 @@
       }
     },
     "ostree": {
-      "evra": "2025.6-2.fc44.ppc64le",
+      "evra": "2025.6-3.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-grub2": {
-      "evra": "2025.6-2.fc44.ppc64le",
+      "evra": "2025.6-3.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "ostree"
       }
     },
     "ostree-libs": {
-      "evra": "2025.6-2.fc44.ppc64le",
+      "evra": "2025.6-3.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "ostree"
       }
@@ -2233,13 +2233,13 @@
       }
     },
     "qed-firmware": {
-      "evra": "20251021-1.fc44.noarch",
+      "evra": "20251111-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "qemu-user-static-x86": {
-      "evra": "2:10.1.2-3.fc44.ppc64le",
+      "evra": "2:10.1.2-4.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "qemu"
       }
@@ -2708,13 +2708,13 @@
     }
   },
   "metadata": {
-    "generated": "2025-11-13T00:00:00Z",
+    "generated": "2025-11-14T00:00:00Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2025-11-13T08:35:41Z"
+        "generated": "2025-11-13T18:27:55Z"
       },
       "fedora-rawhide": {
-        "generated": "2025-11-13T05:58:39Z"
+        "generated": "2025-11-14T05:52:42Z"
       }
     }
   }
