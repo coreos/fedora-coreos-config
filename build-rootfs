@@ -432,11 +432,21 @@ def inject_content_manifest(target_rootfs, manifest):
 
 
 def verify_strict_mode(rootfs, locked_nevras):
-    rpms = bwrap(rootfs, ['rpm', '-qa', '--qf', '%{NEVRA}\t%{NEVR}\n'], capture=True)
+    cmd = ['rpm', '-qa', '--qf', '${EPOCH}\t%{NVRA}\t%{NVR}\t%{NEVRA}\t%{NEVR}\n']
+    rpms = bwrap(rootfs, cmd, capture=True)
     for rpm in rpms.splitlines():
-        nevra, nevr = rpm.split()
-        if nevra not in locked_nevras and nevr not in locked_nevras:
-            raise Exception(f"found unlocked RPM in strict mode: {rpm}")
+        epoch, nvra, nvr, nevra, nevr = rpm.split()
+        if nevra in locked_nevras or nevr in locked_nevras:
+            continue
+        # Do one more check. If a package has an Epoch explicitly
+        # set to 0 [1] (rather than just an undefined Epoch) then
+        # rpm-ostree won't write that value into the lockfiles. We
+        # need to check just the NVR or NVRA in that case.
+        # [1] https://src.fedoraproject.org/rpms/perl/blob/a8ff590c732b326216ab1499780e5964e4b03ddf/f/perl.spec#_2048
+        if epoch is '0':
+            if nvra in locked_nevras or nvr in locked_nevras:
+                continue
+        raise Exception(f"found unlocked RPM in strict mode: {rpm}")
     print("Strict mode: all installed packages were locked")
 
 
