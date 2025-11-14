@@ -24,13 +24,13 @@ get_ipv4_for_nic() {
 
 get_fedora_container_ref() {
     local repo='quay.io/fedora/fedora'
-    local tag='42'
+    local tag='43'
     echo "${repo}:${tag}"
 }
 
 get_fedora_minimal_container_ref() {
     local repo='quay.io/fedora/fedora-minimal'
-    local tag='42'
+    local tag='43'
     echo "${repo}:${tag}"
 }
 
