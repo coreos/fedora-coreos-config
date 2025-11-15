@@ -26,7 +26,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/a/alternatives-1.33-3.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/a/amd-gpu-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/a/amd-gpu-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/a/attr-2.5.2-6.fc43.aarch64.rpm
   - repoid: fedora-rawhide
@@ -54,7 +54,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/b/bind-utils-9.18.41-2.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/b/bootc-1.10.0-2.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/b/bootc-1.10.0-2.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/b/bootupd-0.2.31-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -138,7 +138,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/c/cryptsetup-libs-2.8.1-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/c/curl-8.17.0-2.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/c/curl-8.17.0-3.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/c/cyrus-sasl-gssapi-2.1.28-33.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -184,9 +184,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/d/duktape-2.7.0-10.fc43.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/e/e2fsprogs-1.47.3-3.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/e/e2fsprogs-1.47.3-3.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/e/e2fsprogs-libs-1.47.3-3.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/e/e2fsprogs-libs-1.47.3-3.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/e/efi-filesystem-6-5.fc44.noarch.rpm
   - repoid: fedora-rawhide
@@ -228,21 +228,21 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/f/findutils-4.10.0-6.fc43.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/f/flatpak-session-helper-1.17.0-1.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/f/flatpak-session-helper-1.17.0-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/f/fmt-11.2.0-3.fc43.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/f/fstrm-0.6.1-13.fc43.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/f/fuse-common-3.17.4-1.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/f/fuse-common-3.17.4-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/f/fuse-overlayfs-1.13-5.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/f/fuse-overlayfs-1.13-5.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/f/fuse-sshfs-3.7.5-2.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/f/fuse-sshfs-3.7.5-2.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/f/fuse3-3.17.4-1.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/f/fuse3-3.17.4-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/f/fuse3-libs-3.17.4-1.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/f/fuse3-libs-3.17.4-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/f/fwupd-2.0.16-2.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -264,13 +264,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/glib2-2.87.0-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/glibc-2.42.9000-10.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/g/glibc-2.42.9000-11.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/glibc-common-2.42.9000-10.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/g/glibc-common-2.42.9000-11.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/glibc-gconv-extra-2.42.9000-10.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/g/glibc-gconv-extra-2.42.9000-11.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/glibc-minimal-langpack-2.42.9000-10.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/g/glibc-minimal-langpack-2.42.9000-11.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/gmp-6.3.0-4.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -296,13 +296,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/grep-3.12-2.fc43.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/g/grub2-common-2.12-47.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/grub2-common-2.12-47.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/g/grub2-efi-aa64-2.12-47.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/grub2-efi-aa64-2.12-47.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/g/grub2-tools-2.12-47.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/grub2-tools-2.12-47.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/g/grub2-tools-minimal-2.12-47.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/grub2-tools-minimal-2.12-47.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/gssproxy-0.9.2-9.fc43.aarch64.rpm
   - repoid: fedora-rawhide
@@ -318,7 +318,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/inih-62-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/i/intel-gpu-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/intel-gpu-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/i/ipcalc-1.0.3-12.fc43.aarch64.rpm
   - repoid: fedora-rawhide
@@ -362,13 +362,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kdump-utils-1.0.58-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/k/kernel-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-core-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/k/kernel-core-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-modules-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/k/kernel-modules-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-modules-core-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/k/kernel-modules-core-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kexec-tools-2.0.32-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -394,7 +394,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libassuan-2.5.7-4.fc43.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/l/libatomic-15.2.1-4.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libatomic-15.2.1-4.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libattr-2.5.2-6.fc43.aarch64.rpm
   - repoid: fedora-rawhide
@@ -414,9 +414,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libcollection-0.7.0-59.fc43.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/l/libcom_err-1.47.3-3.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libcom_err-1.47.3-3.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/l/libcurl-minimal-8.17.0-2.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/l/libcurl-minimal-8.17.0-3.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libdaemon-0.14-32.fc43.aarch64.rpm
   - repoid: fedora-rawhide
@@ -442,7 +442,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libfido2-1.16.0-4.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/l/libgcc-15.2.1-4.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libgcc-15.2.1-4.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libgcrypt-1.11.2-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -544,7 +544,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libsolv-0.7.35-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/l/libss-1.47.3-3.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libss-1.47.3-3.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libsss_certmap-2.11.1-4.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -554,7 +554,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libsss_sudo-2.11.1-4.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/l/libstdc++-15.2.1-4.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libstdc++-15.2.1-4.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libtalloc-2.4.3-4.fc43.aarch64.rpm
   - repoid: fedora-rawhide
@@ -596,9 +596,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/libzstd-1.5.7-3.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/l/linux-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/linux-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/l/linux-firmware-whence-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/linux-firmware-whence-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/l/lld18-libs-18.1.8-8.fc43.aarch64.rpm
   - repoid: fedora-rawhide
@@ -644,7 +644,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/ncurses-libs-6.5-7.20250614.fc43.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/net-tools-2.0-0.74.20160912git.fc43.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/n/net-tools-2.0-0.75.20160912git.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/netavark-1.17.0-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -676,7 +676,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/numactl-libs-2.0.19-3.fc43.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/n/nvidia-gpu-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/nvidia-gpu-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/n/nvme-cli-2.15-2.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -696,9 +696,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/os-prober-1.81-10.fc43.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/o/ostree-2025.6-3.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/ostree-2025.6-3.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/o/ostree-libs-2025.6-3.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/o/ostree-libs-2025.6-3.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/p11-kit-0.25.8-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -750,9 +750,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/p/publicsuffix-list-dafsa-20250616-2.fc43.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/q/qed-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/q/qed-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/q/qemu-user-static-x86-10.1.2-4.fc44.aarch64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/q/qemu-user-static-x86-10.1.2-4.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/r/rdma-core-common-59.0-4.fc44.noarch.rpm
   - repoid: fedora-rawhide
@@ -882,9 +882,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/u/util-linux-core-2.41.2-7.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/v/vim-data-9.1.1888-1.fc44.noarch.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/v/vim-data-9.1.1914-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/v/vim-minimal-9.1.1888-1.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/v/vim-minimal-9.1.1914-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/w/wasmedge-rt-0.15.0-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -938,7 +938,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/a/alternatives-1.33-3.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/a/amd-gpu-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/a/amd-gpu-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/a/attr-2.5.2-6.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -968,7 +968,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/b/bind-utils-9.18.41-2.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/b/bootc-1.10.0-2.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/b/bootc-1.10.0-2.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/b/bootupd-0.2.31-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1050,7 +1050,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/c/cryptsetup-libs-2.8.1-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/c/curl-8.17.0-2.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/c/curl-8.17.0-3.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/c/cyrus-sasl-gssapi-2.1.28-33.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1096,9 +1096,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/d/duktape-2.7.0-10.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/e/e2fsprogs-1.47.3-3.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/e/e2fsprogs-1.47.3-3.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/e/e2fsprogs-libs-1.47.3-3.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/e/e2fsprogs-libs-1.47.3-3.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/e/elfutils-default-yama-scope-0.194-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
@@ -1134,21 +1134,21 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/f/findutils-4.10.0-6.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/f/flatpak-session-helper-1.17.0-1.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/f/flatpak-session-helper-1.17.0-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/f/fmt-11.2.0-3.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/f/fstrm-0.6.1-13.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/f/fuse-common-3.17.4-1.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/f/fuse-common-3.17.4-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/f/fuse-overlayfs-1.13-5.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/f/fuse-overlayfs-1.13-5.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/f/fuse-sshfs-3.7.5-2.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/f/fuse-sshfs-3.7.5-2.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/f/fuse3-3.17.4-1.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/f/fuse3-3.17.4-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/f/fuse3-libs-3.17.4-1.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/f/fuse3-libs-3.17.4-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/f/fwupd-2.0.16-2.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1170,13 +1170,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/glib2-2.87.0-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/glibc-2.42.9000-10.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/g/glibc-2.42.9000-11.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/glibc-common-2.42.9000-10.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/g/glibc-common-2.42.9000-11.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/glibc-gconv-extra-2.42.9000-10.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/g/glibc-gconv-extra-2.42.9000-11.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/glibc-minimal-langpack-2.42.9000-10.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/g/glibc-minimal-langpack-2.42.9000-11.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/gmp-6.3.0-4.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1200,15 +1200,15 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/grep-3.12-2.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/g/grub2-common-2.12-47.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/grub2-common-2.12-47.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/g/grub2-ppc64le-2.12-47.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/grub2-ppc64le-2.12-47.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/g/grub2-ppc64le-modules-2.12-47.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/grub2-ppc64le-modules-2.12-47.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/g/grub2-tools-2.12-47.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/grub2-tools-2.12-47.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/g/grub2-tools-minimal-2.12-47.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/grub2-tools-minimal-2.12-47.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/gssproxy-0.9.2-9.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1224,7 +1224,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/inih-62-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/i/intel-gpu-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/intel-gpu-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/i/ipcalc-1.0.3-12.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1268,13 +1268,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kdump-utils-1.0.58-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/k/kernel-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-core-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/k/kernel-core-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-modules-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/k/kernel-modules-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-modules-core-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/k/kernel-modules-core-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kexec-tools-2.0.32-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1300,7 +1300,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libassuan-2.5.7-4.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/l/libatomic-15.2.1-4.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libatomic-15.2.1-4.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libattr-2.5.2-6.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1320,9 +1320,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libcollection-0.7.0-59.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/l/libcom_err-1.47.3-3.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libcom_err-1.47.3-3.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/l/libcurl-minimal-8.17.0-2.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/l/libcurl-minimal-8.17.0-3.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libdaemon-0.14-32.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1348,7 +1348,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libfido2-1.16.0-4.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/l/libgcc-15.2.1-4.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libgcc-15.2.1-4.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libgcrypt-1.11.2-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1452,7 +1452,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libsolv-0.7.35-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/l/libss-1.47.3-3.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libss-1.47.3-3.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libsss_certmap-2.11.1-4.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1462,7 +1462,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libsss_sudo-2.11.1-4.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/l/libstdc++-15.2.1-4.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libstdc++-15.2.1-4.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libtalloc-2.4.3-4.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1504,9 +1504,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/libzstd-1.5.7-3.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/l/linux-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/linux-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/l/linux-firmware-whence-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/linux-firmware-whence-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/l/lmdb-libs-0.9.33-4.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1546,7 +1546,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/ncurses-libs-6.5-7.20250614.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/net-tools-2.0-0.74.20160912git.fc43.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/n/net-tools-2.0-0.75.20160912git.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/netavark-1.17.0-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1578,7 +1578,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/numactl-libs-2.0.19-3.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/n/nvidia-gpu-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/nvidia-gpu-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/n/nvme-cli-2.15-2.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1598,11 +1598,11 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/os-prober-1.81-10.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/o/ostree-2025.6-3.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/ostree-2025.6-3.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/o/ostree-grub2-2025.6-3.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/ostree-grub2-2025.6-3.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/o/ostree-libs-2025.6-3.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/o/ostree-libs-2025.6-3.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/p11-kit-0.25.8-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1658,9 +1658,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/p/publicsuffix-list-dafsa-20250616-2.fc43.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/q/qed-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/q/qed-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/q/qemu-user-static-x86-10.1.2-4.fc44.ppc64le.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/q/qemu-user-static-x86-10.1.2-4.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/r/rdma-core-common-59.0-4.fc44.noarch.rpm
   - repoid: fedora-rawhide
@@ -1788,9 +1788,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/u/util-linux-core-2.41.2-7.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/v/vim-data-9.1.1888-1.fc44.noarch.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/v/vim-data-9.1.1914-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/v/vim-minimal-9.1.1888-1.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/v/vim-minimal-9.1.1914-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/w/which-2.23-3.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1842,7 +1842,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/a/alternatives-1.33-3.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/a/amd-gpu-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/a/amd-gpu-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/a/attr-2.5.2-6.fc43.s390x.rpm
   - repoid: fedora-rawhide
@@ -1870,7 +1870,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/b/bind-utils-9.18.41-2.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/b/bootc-1.10.0-2.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/b/bootc-1.10.0-2.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/b/bootupd-0.2.31-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -1952,7 +1952,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/c/cryptsetup-libs-2.8.1-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/c/curl-8.17.0-2.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/c/curl-8.17.0-3.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/c/cyrus-sasl-gssapi-2.1.28-33.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -1998,9 +1998,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/d/duktape-2.7.0-10.fc43.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/e/e2fsprogs-1.47.3-3.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/e/e2fsprogs-1.47.3-3.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/e/e2fsprogs-libs-1.47.3-3.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/e/e2fsprogs-libs-1.47.3-3.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/e/elfutils-default-yama-scope-0.194-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
@@ -2036,21 +2036,21 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/f/findutils-4.10.0-6.fc43.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/f/flatpak-session-helper-1.17.0-1.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/f/flatpak-session-helper-1.17.0-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/f/fmt-11.2.0-3.fc43.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/f/fstrm-0.6.1-13.fc43.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/f/fuse-common-3.17.4-1.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/f/fuse-common-3.17.4-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/f/fuse-overlayfs-1.13-5.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/f/fuse-overlayfs-1.13-5.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/f/fuse-sshfs-3.7.5-2.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/f/fuse-sshfs-3.7.5-2.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/f/fuse3-3.17.4-1.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/f/fuse3-3.17.4-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/f/fuse3-libs-3.17.4-1.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/f/fuse3-libs-3.17.4-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/f/fwupd-2.0.16-2.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -2066,13 +2066,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/glib2-2.87.0-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/glibc-2.42.9000-10.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/g/glibc-2.42.9000-11.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/glibc-common-2.42.9000-10.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/g/glibc-common-2.42.9000-11.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/glibc-gconv-extra-2.42.9000-10.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/g/glibc-gconv-extra-2.42.9000-11.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/glibc-minimal-langpack-2.42.9000-10.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/g/glibc-minimal-langpack-2.42.9000-11.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/gmp-6.3.0-4.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -2110,7 +2110,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/inih-62-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/i/intel-gpu-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/intel-gpu-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/i/ipcalc-1.0.3-12.fc43.s390x.rpm
   - repoid: fedora-rawhide
@@ -2152,13 +2152,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kdump-utils-1.0.58-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/k/kernel-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-core-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/k/kernel-core-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-modules-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/k/kernel-modules-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-modules-core-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/k/kernel-modules-core-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kexec-tools-2.0.32-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -2202,9 +2202,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libcollection-0.7.0-59.fc43.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/l/libcom_err-1.47.3-3.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libcom_err-1.47.3-3.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/l/libcurl-minimal-8.17.0-2.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/l/libcurl-minimal-8.17.0-3.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libdaemon-0.14-32.fc43.s390x.rpm
   - repoid: fedora-rawhide
@@ -2230,7 +2230,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libfido2-1.16.0-4.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/l/libgcc-15.2.1-4.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libgcc-15.2.1-4.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libgcrypt-1.11.2-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -2330,7 +2330,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libsolv-0.7.35-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/l/libss-1.47.3-3.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libss-1.47.3-3.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libsss_certmap-2.11.1-4.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -2340,7 +2340,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libsss_sudo-2.11.1-4.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/l/libstdc++-15.2.1-4.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libstdc++-15.2.1-4.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libtalloc-2.4.3-4.fc43.s390x.rpm
   - repoid: fedora-rawhide
@@ -2380,9 +2380,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/libzstd-1.5.7-3.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/l/linux-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/linux-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/l/linux-firmware-whence-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/linux-firmware-whence-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/l/lmdb-libs-0.9.33-4.fc43.s390x.rpm
   - repoid: fedora-rawhide
@@ -2422,7 +2422,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/ncurses-libs-6.5-7.20250614.fc43.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/net-tools-2.0-0.74.20160912git.fc43.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/n/net-tools-2.0-0.75.20160912git.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/netavark-1.17.0-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -2452,7 +2452,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/nss-altfiles-2.23.0-7.fc43.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/n/nvidia-gpu-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/nvidia-gpu-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/n/nvme-cli-2.15-2.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -2470,9 +2470,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/o/openssl-libs-3.5.4-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/o/ostree-2025.6-3.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/o/ostree-2025.6-3.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/o/ostree-libs-2025.6-3.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/o/ostree-libs-2025.6-3.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/p11-kit-0.25.8-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -2524,9 +2524,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/p/publicsuffix-list-dafsa-20250616-2.fc43.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/q/qed-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/q/qed-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/q/qemu-user-static-x86-10.1.2-4.fc44.s390x.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/q/qemu-user-static-x86-10.1.2-4.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/r/rdma-core-common-59.0-4.fc44.noarch.rpm
   - repoid: fedora-rawhide
@@ -2550,7 +2550,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/r/runc-1.3.3-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/s390utils-core-2.38.0-2.fc43.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/s/s390utils-core-2.39.0-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/samba-client-libs-4.23.3-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -2656,9 +2656,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/v/veritysetup-2.8.1-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/v/vim-data-9.1.1888-1.fc44.noarch.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/v/vim-data-9.1.1914-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/v/vim-minimal-9.1.1888-1.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/v/vim-minimal-9.1.1914-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/w/which-2.23-3.fc43.s390x.rpm
   - repoid: fedora-rawhide
@@ -2710,9 +2710,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/a/alternatives-1.33-3.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/a/amd-gpu-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/a/amd-gpu-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/a/amd-ucode-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/a/amd-ucode-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/a/attr-2.5.2-6.fc43.x86_64.rpm
   - repoid: fedora-rawhide
@@ -2740,7 +2740,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/b/bind-utils-9.18.41-2.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/b/bootc-1.10.0-2.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/b/bootc-1.10.0-2.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/b/bootupd-0.2.31-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
@@ -2824,7 +2824,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/c/cryptsetup-libs-2.8.1-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/c/curl-8.17.0-2.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/c/curl-8.17.0-3.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/c/cyrus-sasl-gssapi-2.1.28-33.fc44.x86_64.rpm
   - repoid: fedora-rawhide
@@ -2870,9 +2870,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/d/duktape-2.7.0-10.fc43.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/e/e2fsprogs-1.47.3-3.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/e/e2fsprogs-1.47.3-3.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/e/e2fsprogs-libs-1.47.3-3.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/e/e2fsprogs-libs-1.47.3-3.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/e/efi-filesystem-6-5.fc44.noarch.rpm
   - repoid: fedora-rawhide
@@ -2914,21 +2914,21 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/f/findutils-4.10.0-6.fc43.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/f/flatpak-session-helper-1.17.0-1.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/f/flatpak-session-helper-1.17.0-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/f/fmt-11.2.0-3.fc43.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/f/fstrm-0.6.1-13.fc43.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/f/fuse-common-3.17.4-1.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/f/fuse-common-3.17.4-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/f/fuse-overlayfs-1.13-5.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/f/fuse-overlayfs-1.13-5.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/f/fuse-sshfs-3.7.5-2.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/f/fuse-sshfs-3.7.5-2.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/f/fuse3-3.17.4-1.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/f/fuse3-3.17.4-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/f/fuse3-libs-3.17.4-1.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/f/fuse3-libs-3.17.4-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/f/fwupd-2.0.16-2.fc44.x86_64.rpm
   - repoid: fedora-rawhide
@@ -2950,13 +2950,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/glib2-2.87.0-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/glibc-2.42.9000-10.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/g/glibc-2.42.9000-11.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/glibc-common-2.42.9000-10.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/g/glibc-common-2.42.9000-11.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/glibc-gconv-extra-2.42.9000-10.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/g/glibc-gconv-extra-2.42.9000-11.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/glibc-minimal-langpack-2.42.9000-10.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/g/glibc-minimal-langpack-2.42.9000-11.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/gmp-6.3.0-4.fc44.x86_64.rpm
   - repoid: fedora-rawhide
@@ -2982,17 +2982,17 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/grep-3.12-2.fc43.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/g/grub2-common-2.12-47.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/grub2-common-2.12-47.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/g/grub2-efi-x64-2.12-47.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/grub2-efi-x64-2.12-47.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/g/grub2-pc-2.12-47.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/grub2-pc-2.12-47.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/g/grub2-pc-modules-2.12-47.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/grub2-pc-modules-2.12-47.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/g/grub2-tools-2.12-47.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/grub2-tools-2.12-47.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/g/grub2-tools-minimal-2.12-47.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/grub2-tools-minimal-2.12-47.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/gssproxy-0.9.2-9.fc43.x86_64.rpm
   - repoid: fedora-rawhide
@@ -3008,7 +3008,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/inih-62-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/i/intel-gpu-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/intel-gpu-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/i/ipcalc-1.0.3-12.fc43.x86_64.rpm
   - repoid: fedora-rawhide
@@ -3052,13 +3052,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kdump-utils-1.0.58-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/k/kernel-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-core-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/k/kernel-core-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-modules-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/k/kernel-modules-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-modules-core-6.18.0-0.rc5.251112g24172e0d79900.46.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/k/kernel-modules-core-6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kexec-tools-2.0.32-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
@@ -3102,9 +3102,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libcollection-0.7.0-59.fc43.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/l/libcom_err-1.47.3-3.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libcom_err-1.47.3-3.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/l/libcurl-minimal-8.17.0-2.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/l/libcurl-minimal-8.17.0-3.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libdaemon-0.14-32.fc43.x86_64.rpm
   - repoid: fedora-rawhide
@@ -3130,7 +3130,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libfido2-1.16.0-4.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/l/libgcc-15.2.1-4.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libgcc-15.2.1-4.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libgcrypt-1.11.2-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
@@ -3232,7 +3232,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libsolv-0.7.35-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/l/libss-1.47.3-3.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libss-1.47.3-3.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libsss_certmap-2.11.1-4.fc44.x86_64.rpm
   - repoid: fedora-rawhide
@@ -3242,7 +3242,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libsss_sudo-2.11.1-4.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/l/libstdc++-15.2.1-4.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libstdc++-15.2.1-4.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libtalloc-2.4.3-4.fc43.x86_64.rpm
   - repoid: fedora-rawhide
@@ -3284,9 +3284,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/libzstd-1.5.7-3.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/l/linux-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/linux-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/l/linux-firmware-whence-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/linux-firmware-whence-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/l/lld18-libs-18.1.8-8.fc43.x86_64.rpm
   - repoid: fedora-rawhide
@@ -3334,7 +3334,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/ncurses-libs-6.5-7.20250614.fc43.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/net-tools-2.0-0.74.20160912git.fc43.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/n/net-tools-2.0-0.75.20160912git.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/netavark-1.17.0-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
@@ -3366,7 +3366,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/numactl-libs-2.0.19-3.fc43.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/n/nvidia-gpu-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/nvidia-gpu-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/n/nvme-cli-2.15-2.fc44.x86_64.rpm
   - repoid: fedora-rawhide
@@ -3386,9 +3386,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/os-prober-1.81-10.fc43.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/o/ostree-2025.6-3.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/ostree-2025.6-3.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/o/ostree-libs-2025.6-3.fc44.x86_64.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/o/ostree-libs-2025.6-3.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/p11-kit-0.25.8-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
@@ -3440,7 +3440,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/p/publicsuffix-list-dafsa-20250616-2.fc43.noarch.rpm
   - repoid: fedora-rawhide
-    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/q/qed-firmware-20251111-1.fc44.noarch.rpm
+    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/q/qed-firmware-20251111-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/r/rdma-core-common-59.0-4.fc44.noarch.rpm
   - repoid: fedora-rawhide
@@ -3570,9 +3570,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/u/util-linux-core-2.41.2-7.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/v/vim-data-9.1.1888-1.fc44.noarch.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/v/vim-data-9.1.1914-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/v/vim-minimal-9.1.1888-1.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/v/vim-minimal-9.1.1914-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/w/wasmedge-rt-0.15.0-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
