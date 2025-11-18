@@ -26,6 +26,19 @@ if [ "${PTUUID:-}" != "$UNINITIALIZED_GUID" ]; then
     exit 0
 fi
 
+
+# Mount /boot. Note that we mount /boot but we don't unmount it because we
+# are run in a systemd unit with MountFlags=slave so it is unmounted for us.
+bootmnt=/mnt/boot_partition/
+bootdev=/dev/disk/by-label/boot
+mount -o rw ${bootdev} ${bootmnt}
+# Make sure we delete any pre-existing bootuuid.cfg
+# bootc install stamps it during the disk image creation
+# since we are changing the uuid here we want to remove this file
+# otherwise it will prevent a reboot
+rm -f ${bootmnt}/grub2/bootuuid.cfg
+
+
 echo "Randomizing disk GUID"
 sgdisk --disk-guid=R --move-second-header "$PKNAME"
 udevadm settle || :

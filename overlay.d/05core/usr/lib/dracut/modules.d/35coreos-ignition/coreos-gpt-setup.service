@@ -28,3 +28,6 @@ OnFailureJobMode=isolate
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/sbin/coreos-gpt-setup /dev/disk/by-label/boot
+# MountFlags=slave is so the umount of /boot is guaranteed to happen.
+# /boot will only be mounted for the lifetime of the unit.
+MountFlags=slave
