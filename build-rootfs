@@ -432,7 +432,7 @@ def inject_content_manifest(target_rootfs, manifest):
 
 
 def verify_strict_mode(rootfs, locked_nevras):
-    cmd = ['rpm', '-qa', '--qf', '${EPOCH}\t%{NVRA}\t%{NVR}\t%{NEVRA}\t%{NEVR}\n']
+    cmd = ['rpm', '-qa', '--qf', '%{EPOCH}\t%{NVRA}\t%{NVR}\t%{NEVRA}\t%{NEVR}\n']
     rpms = bwrap(rootfs, cmd, capture=True)
     for rpm in rpms.splitlines():
         epoch, nvra, nvr, nevra, nevr = rpm.split()
