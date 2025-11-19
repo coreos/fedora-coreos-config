@@ -175,7 +175,7 @@
       }
     },
     "bsdtar": {
-      "evra": "3.8.2-1.fc44.ppc64le",
+      "evra": "3.8.3-1.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "libarchive"
       }
@@ -373,13 +373,13 @@
       }
     },
     "criu": {
-      "evra": "4.1.1-4.fc44.ppc64le",
+      "evra": "4.2-11.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "criu"
       }
     },
     "criu-libs": {
-      "evra": "4.1.1-4.fc44.ppc64le",
+      "evra": "4.2-11.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "criu"
       }
@@ -1057,31 +1057,31 @@
       }
     },
     "kdump-utils": {
-      "evra": "1.0.58-1.fc44.ppc64le",
+      "evra": "1.0.59-1.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "kdump-utils"
       }
     },
     "kernel": {
-      "evra": "6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.ppc64le",
+      "evra": "6.18.0-0.rc6.251118ge7c375b181600.52.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.ppc64le",
+      "evra": "6.18.0-0.rc6.251118ge7c375b181600.52.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.ppc64le",
+      "evra": "6.18.0-0.rc6.251118ge7c375b181600.52.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.18.0-0.rc5.251114g6da43bbeb6918.48.fc44.ppc64le",
+      "evra": "6.18.0-0.rc6.251118ge7c375b181600.52.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1147,7 +1147,7 @@
       }
     },
     "libarchive": {
-      "evra": "3.8.2-1.fc44.ppc64le",
+      "evra": "3.8.3-1.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "libarchive"
       }
@@ -1549,7 +1549,7 @@
       }
     },
     "librtas": {
-      "evra": "2.0.6-4.fc43.ppc64le",
+      "evra": "2.0.6-5.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "librtas"
       }
@@ -1969,7 +1969,7 @@
       }
     },
     "nmstate": {
-      "evra": "2.2.54-1.fc44.ppc64le",
+      "evra": "2.2.55-1.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "nmstate"
       }
@@ -2329,7 +2329,7 @@
       }
     },
     "sdbus-cpp": {
-      "evra": "2.1.0-3.fc43.ppc64le",
+      "evra": "2.1.0-4.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "sdbus-cpp"
       }
@@ -2708,13 +2708,13 @@
     }
   },
   "metadata": {
-    "generated": "2025-11-18T00:00:00Z",
+    "generated": "2025-11-19T00:00:00Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2025-11-17T06:12:05Z"
+        "generated": "2025-11-19T07:25:16Z"
       },
       "fedora-rawhide": {
-        "generated": "2025-11-17T05:34:12Z"
+        "generated": "2025-11-19T05:34:45Z"
       }
     }
   }
