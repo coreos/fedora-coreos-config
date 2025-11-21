@@ -260,7 +260,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/gettext-runtime-0.26-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/git-core-2.51.1-1.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/g/git-core-2.52.0-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/glib2-2.87.0-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -288,7 +288,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/gnupg2-verify-2.4.8-4.fc43.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/gnutls-3.8.10-5.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/g/gnutls-3.8.11-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/g/google-compute-engine-guest-configs-udev-20250221.00-2.fc43.noarch.rpm
   - repoid: fedora-rawhide
@@ -362,13 +362,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kdump-utils-1.0.59-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/k/kernel-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-core-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/k/kernel-core-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-modules-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/k/kernel-modules-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kernel-modules-core-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.aarch64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/k/kernel-modules-core-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.aarch64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/k/kexec-tools-2.0.32-1.fc44.aarch64.rpm
   - repoid: fedora-rawhide
@@ -786,9 +786,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/sed-4.9-6.fc44.aarch64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/selinux-policy-42.15-1.fc44.noarch.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/s/selinux-policy-42.16-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/selinux-policy-targeted-42.15-1.fc44.noarch.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/s/selinux-policy-targeted-42.16-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/aarch64/Packages/s/setup-2.15.0-27.fc44.noarch.rpm
   - repoid: fedora-rawhide
@@ -1166,7 +1166,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/gettext-runtime-0.26-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/git-core-2.51.1-1.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/g/git-core-2.52.0-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/glib2-2.87.0-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1194,7 +1194,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/gnupg2-verify-2.4.8-4.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/gnutls-3.8.10-5.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/g/gnutls-3.8.11-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/g/gpgme-1.24.3-6.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1268,13 +1268,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kdump-utils-1.0.59-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/k/kernel-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-core-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/k/kernel-core-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-modules-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/k/kernel-modules-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kernel-modules-core-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.ppc64le.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/k/kernel-modules-core-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/k/kexec-tools-2.0.32-1.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -1694,9 +1694,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/sed-4.9-6.fc44.ppc64le.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/selinux-policy-42.15-1.fc44.noarch.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/s/selinux-policy-42.16-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/selinux-policy-targeted-42.15-1.fc44.noarch.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/ppc64le/os/Packages/s/selinux-policy-targeted-42.16-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/ppc64le/Packages/s/servicelog-1.1.16-9.fc43.ppc64le.rpm
   - repoid: fedora-rawhide
@@ -2062,7 +2062,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/gdisk-1.0.10-4.fc43.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/git-core-2.51.1-1.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/g/git-core-2.52.0-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/glib2-2.87.0-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -2090,7 +2090,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/gnupg2-verify-2.4.8-4.fc43.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/gnutls-3.8.10-5.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/g/gnutls-3.8.11-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/g/gpgme-1.24.3-6.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -2152,13 +2152,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kdump-utils-1.0.59-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/k/kernel-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-core-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/k/kernel-core-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-modules-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/k/kernel-modules-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kernel-modules-core-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.s390x.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/k/kernel-modules-core-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.s390x.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/k/kexec-tools-2.0.32-1.fc44.s390x.rpm
   - repoid: fedora-rawhide
@@ -2562,9 +2562,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/sed-4.9-6.fc44.s390x.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/selinux-policy-42.15-1.fc44.noarch.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/s/selinux-policy-42.16-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/selinux-policy-targeted-42.15-1.fc44.noarch.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/s390x/os/Packages/s/selinux-policy-targeted-42.16-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/s390x/Packages/s/setup-2.15.0-27.fc44.noarch.rpm
   - repoid: fedora-rawhide
@@ -2946,7 +2946,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/gettext-runtime-0.26-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/git-core-2.51.1-1.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/g/git-core-2.52.0-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/glib2-2.87.0-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
@@ -2974,7 +2974,7 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/gnupg2-verify-2.4.8-4.fc43.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/gnutls-3.8.10-5.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/g/gnutls-3.8.11-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/g/google-compute-engine-guest-configs-udev-20250221.00-2.fc43.noarch.rpm
   - repoid: fedora-rawhide
@@ -3052,13 +3052,13 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kdump-utils-1.0.59-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/k/kernel-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-core-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/k/kernel-core-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-modules-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/k/kernel-modules-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kernel-modules-core-6.18.0-0.rc6.251118ge7c375b181600.52.fc44.x86_64.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/k/kernel-modules-core-6.18.0-0.rc6.251120g23cb64fb7625.54.fc44.x86_64.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/k/kexec-tools-2.0.32-1.fc44.x86_64.rpm
   - repoid: fedora-rawhide
@@ -3474,9 +3474,9 @@ arches:
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/sed-4.9-6.fc44.x86_64.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/selinux-policy-42.15-1.fc44.noarch.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/s/selinux-policy-42.16-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
-    url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/selinux-policy-targeted-42.15-1.fc44.noarch.rpm
+    url: http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/s/selinux-policy-targeted-42.16-1.fc44.noarch.rpm
   - repoid: fedora-rawhide
     url: https://kojipkgs.fedoraproject.org/repos-dist/coreos-pool/latest/x86_64/Packages/s/setup-2.15.0-27.fc44.noarch.rpm
   - repoid: fedora-rawhide
