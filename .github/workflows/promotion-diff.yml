@@ -45,9 +45,10 @@ jobs:
           sed -E -i 's/^(\s+)((snooze:|warn:)\s+.*)/\1# \2 (disabled on promotion)/' origin/kola-denylist.yaml
       - name: Normalize build-args.conf
         run: |
-          # Ignore DESCRIPTION differences between streams since it's stream-specific.
-          sed -i '/^DESCRIPTION=/d' origin/build-args.conf
-          sed -i '/^DESCRIPTION=/d' new/build-args.conf
+          # Ignore those args differences between streams since it's stream-specific.
+          for arg in DESCRIPTION STREAM; do
+              sed -i "/^${arg}=/d" origin/build-args.conf new/build-args.conf
+          done
       - name: Compare trees
         uses: coreos/actions-lib/check-diff@main
         with:
