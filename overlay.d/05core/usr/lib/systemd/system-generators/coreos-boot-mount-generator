@@ -24,6 +24,13 @@ if [ -f /run/ostree-live ]; then
     exit 0
 fi
 
+# Don't create mount units for /boot in bcvk ephemeral environments
+# where there are no block devices by default.
+rootfstype=$(karg rootfstype)
+if [ "${rootfstype}" = "virtiofs" ]; then
+    exit 0
+fi
+
 add_wants() {
     local name="$1"; shift
     local wants_dir="${UNIT_DIR}/local-fs.target.wants"
