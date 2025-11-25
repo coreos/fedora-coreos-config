@@ -204,6 +204,8 @@ def bisect(args):
         firstgood = None
         for buildid in builds_info.keys():
             status = builds_info[buildid]['status']
+            if status == 'INCONCLUSIVE':
+                pass  # Not much for us to do on that one
             if status == 'BAD':
                 lastbad = buildid
             elif status == 'UNKNOWN':
@@ -236,26 +238,35 @@ def bisect(args):
             steps += 1
         log(f"Executing test for new build: {newbuildid}. ~{steps} steps left")
         ec = subprocess.call([testscript, newbuildid])
-        if ec == 0:
+        if ec == 99:
+            # Test script has returned a special exit code indicating
+            # the tests were inconclusive.
+            log_warn(f"{newbuildid} results were inconclusive")
+            result = 'inconclusive'
+        elif ec == 0:
             log_success(f"{newbuildid} passed")
-            success = True
+            result = 'pass'
         else:
             log_warn(f"{newbuildid} failed")
-            success = False
+            result = 'fail'
 
 
         # update the data with the results
-        if success:
+        builds_info[newbuildid]['heuristic'] = 'TESTED'
+        if result == 'inconclusive':
+            builds_info[newbuildid]['status'] = 'INCONCLUSIVE'
+        elif result == 'pass':
             for b in reversed(builds_info.keys()):
-                builds_info[b]['status'] = 'GOOD'
-                if b == newbuildid:
-                    break
+                if builds_info[b]['status'] == 'UNKNOWN':
+                    builds_info[b]['status'] = 'GOOD'
+                    if b == newbuildid:
+                        break
         else:
             for b in builds_info.keys():
-                builds_info[b]['status'] = 'BAD'
-                if b == newbuildid:
-                    break
-        builds_info[b]['heuristic'] = 'TESTED'
+                if builds_info[b]['status'] == 'UNKNOWN':
+                    builds_info[b]['status'] = 'BAD'
+                    if b == newbuildid:
+                        break
 
         # Save the state in case the script gets interrupted
         write_data(datafile, builds_info)
