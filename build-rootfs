@@ -443,7 +443,7 @@ def verify_strict_mode(rootfs, locked_nevras):
         # rpm-ostree won't write that value into the lockfiles. We
         # need to check just the NVR or NVRA in that case.
         # [1] https://src.fedoraproject.org/rpms/perl/blob/a8ff590c732b326216ab1499780e5964e4b03ddf/f/perl.spec#_2048
-        if epoch is '0':
+        if epoch == '0':
             if nvra in locked_nevras or nvr in locked_nevras:
                 continue
         raise Exception(f"found unlocked RPM in strict mode: {rpm}")
