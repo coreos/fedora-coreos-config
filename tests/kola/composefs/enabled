@@ -9,12 +9,6 @@ set -euo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-# RHCOS based on 9.4 doesn't use composefs, but legacy sysroot.readonly flag
-if is_rhcos && [[ "$(get_rhel_ver)" = "9.4" ]]; then
-    echo "skipping 9.4"
-    exit 0
-fi
-
 features=$(ostree --version)
 if ! [[ "${features}" =~ "composefs" ]]; then
     fatal "Error: ostree has no composefs support: ${features}"
