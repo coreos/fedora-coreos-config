@@ -379,13 +379,13 @@
       }
     },
     "crun": {
-      "evra": "1.25-1.fc44.s390x",
+      "evra": "1.25.1-1.fc44.s390x",
       "metadata": {
         "sourcerpm": "crun"
       }
     },
     "crypto-policies": {
-      "evra": "20250714-5.gitcd6043a.fc44.noarch",
+      "evra": "20251125-1.gitd04d331.fc44.noarch",
       "metadata": {
         "sourcerpm": "crypto-policies"
       }
@@ -505,7 +505,7 @@
       }
     },
     "docker-cli": {
-      "evra": "29.0.2-2.fc44.s390x",
+      "evra": "29.0.4-1.fc44.s390x",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
@@ -745,25 +745,25 @@
       }
     },
     "glibc": {
-      "evra": "2.42.9000-11.fc44.s390x",
+      "evra": "2.42.9000-13.fc44.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.42.9000-11.fc44.s390x",
+      "evra": "2.42.9000-13.fc44.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.42.9000-11.fc44.s390x",
+      "evra": "2.42.9000-13.fc44.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.42.9000-11.fc44.s390x",
+      "evra": "2.42.9000-13.fc44.s390x",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -817,7 +817,7 @@
       }
     },
     "gnutls": {
-      "evra": "3.8.11-5.fc44.s390x",
+      "evra": "3.8.11-6.fc44.s390x",
       "metadata": {
         "sourcerpm": "gnutls"
       }
@@ -1003,25 +1003,25 @@
       }
     },
     "kernel": {
-      "evra": "6.18.0-0.rc6.251121gfd95357fd8c6.55.fc44.s390x",
+      "evra": "6.18.0-0.rc7.58.fc44.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.18.0-0.rc6.251121gfd95357fd8c6.55.fc44.s390x",
+      "evra": "6.18.0-0.rc7.58.fc44.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.18.0-0.rc6.251121gfd95357fd8c6.55.fc44.s390x",
+      "evra": "6.18.0-0.rc7.58.fc44.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.18.0-0.rc6.251121gfd95357fd8c6.55.fc44.s390x",
+      "evra": "6.18.0-0.rc7.58.fc44.s390x",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1069,7 +1069,7 @@
       }
     },
     "less": {
-      "evra": "685-1.fc44.s390x",
+      "evra": "685-6.fc44.s390x",
       "metadata": {
         "sourcerpm": "less"
       }
@@ -1405,7 +1405,7 @@
       }
     },
     "libnghttp2": {
-      "evra": "1.68.0-1.fc44.s390x",
+      "evra": "1.68.0-2.fc44.s390x",
       "metadata": {
         "sourcerpm": "nghttp2"
       }
@@ -1765,13 +1765,13 @@
       }
     },
     "moby-engine": {
-      "evra": "29.0.2-2.fc44.s390x",
+      "evra": "29.0.4-1.fc44.s390x",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
     },
     "moby-filesystem": {
-      "evra": "29.0.2-2.fc44.noarch",
+      "evra": "29.0.4-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "moby-engine"
       }
@@ -1873,13 +1873,13 @@
       }
     },
     "ngtcp2": {
-      "evra": "1.16.0-1.fc44.s390x",
+      "evra": "1.18.0-1.fc44.s390x",
       "metadata": {
         "sourcerpm": "ngtcp2"
       }
     },
     "ngtcp2-crypto-gnutls": {
-      "evra": "1.16.0-1.fc44.s390x",
+      "evra": "1.18.0-1.fc44.s390x",
       "metadata": {
         "sourcerpm": "ngtcp2"
       }
@@ -2221,7 +2221,7 @@
       }
     },
     "sdbus-cpp": {
-      "evra": "2.2.0-1.fc44.s390x",
+      "evra": "2.2.1-1.fc44.s390x",
       "metadata": {
         "sourcerpm": "sdbus-cpp"
       }
@@ -2263,13 +2263,13 @@
       }
     },
     "shadow-utils": {
-      "evra": "2:4.18.0-3.fc43.s390x",
+      "evra": "2:4.18.0-7.fc44.s390x",
       "metadata": {
         "sourcerpm": "shadow-utils"
       }
     },
     "shadow-utils-subid": {
-      "evra": "2:4.18.0-3.fc43.s390x",
+      "evra": "2:4.18.0-7.fc44.s390x",
       "metadata": {
         "sourcerpm": "shadow-utils"
       }
@@ -2551,13 +2551,13 @@
       }
     },
     "xz": {
-      "evra": "1:5.8.1-3.fc44.s390x",
+      "evra": "1:5.8.1-4.fc44.s390x",
       "metadata": {
         "sourcerpm": "xz"
       }
     },
     "xz-libs": {
-      "evra": "1:5.8.1-3.fc44.s390x",
+      "evra": "1:5.8.1-4.fc44.s390x",
       "metadata": {
         "sourcerpm": "xz"
       }
@@ -2600,13 +2600,13 @@
     }
   },
   "metadata": {
-    "generated": "2025-11-24T00:00:00Z",
+    "generated": "2025-11-26T00:00:00Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2025-11-21T12:18:27Z"
+        "generated": "2025-11-25T20:54:13Z"
       },
       "fedora-rawhide": {
-        "generated": "2025-11-24T05:34:23Z"
+        "generated": "2025-11-26T05:34:13Z"
       }
     }
   }
