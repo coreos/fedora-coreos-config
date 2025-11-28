@@ -31,7 +31,7 @@
       }
     },
     "WALinuxAgent-udev": {
-      "evra": "2.14.0.1-1.fc44.noarch",
+      "evra": "2.15.0.1-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "WALinuxAgent"
       }
@@ -73,7 +73,7 @@
       }
     },
     "amd-gpu-firmware": {
-      "evra": "20251111-1.fc44.noarch",
+      "evra": "20251125-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -931,7 +931,7 @@
       }
     },
     "intel-gpu-firmware": {
-      "evra": "20251111-1.fc44.noarch",
+      "evra": "20251125-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1771,13 +1771,13 @@
       }
     },
     "linux-firmware": {
-      "evra": "20251111-1.fc44.noarch",
+      "evra": "20251125-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
     },
     "linux-firmware-whence": {
-      "evra": "20251111-1.fc44.noarch",
+      "evra": "20251125-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -1867,13 +1867,13 @@
       }
     },
     "nano": {
-      "evra": "8.6-1.fc44.ppc64le",
+      "evra": "8.7-1.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "nano"
       }
     },
     "nano-default-editor": {
-      "evra": "8.6-1.fc44.noarch",
+      "evra": "8.7-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "nano"
       }
@@ -1993,7 +1993,7 @@
       }
     },
     "nvidia-gpu-firmware": {
-      "evra": "20251111-1.fc44.noarch",
+      "evra": "20251125-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2233,7 +2233,7 @@
       }
     },
     "qed-firmware": {
-      "evra": "20251111-1.fc44.noarch",
+      "evra": "20251125-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "linux-firmware"
       }
@@ -2341,13 +2341,13 @@
       }
     },
     "selinux-policy": {
-      "evra": "42.16-1.fc44.noarch",
+      "evra": "42.17-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
     },
     "selinux-policy-targeted": {
-      "evra": "42.16-1.fc44.noarch",
+      "evra": "42.17-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "selinux-policy"
       }
@@ -2708,13 +2708,13 @@
     }
   },
   "metadata": {
-    "generated": "2025-11-27T00:00:00Z",
+    "generated": "2025-11-28T00:00:00Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2025-11-26T11:47:42Z"
+        "generated": "2025-11-27T11:27:32Z"
       },
       "fedora-rawhide": {
-        "generated": "2025-11-26T05:34:13Z"
+        "generated": "2025-11-27T05:34:49Z"
       }
     }
   }
