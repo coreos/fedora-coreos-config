@@ -343,13 +343,13 @@
       }
     },
     "coreutils": {
-      "evra": "9.8-3.fc44.aarch64",
+      "evra": "9.9-1.fc44.aarch64",
       "metadata": {
         "sourcerpm": "coreutils"
       }
     },
     "coreutils-common": {
-      "evra": "9.8-3.fc44.aarch64",
+      "evra": "9.9-1.fc44.aarch64",
       "metadata": {
         "sourcerpm": "coreutils"
       }
@@ -1081,25 +1081,25 @@
       }
     },
     "kernel": {
-      "evra": "6.18.0-0.rc7.58.fc44.aarch64",
+      "evra": "6.18.0-0.rc7.251127g765e56e41a5a.61.fc44.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.18.0-0.rc7.58.fc44.aarch64",
+      "evra": "6.18.0-0.rc7.251127g765e56e41a5a.61.fc44.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.18.0-0.rc7.58.fc44.aarch64",
+      "evra": "6.18.0-0.rc7.251127g765e56e41a5a.61.fc44.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.18.0-0.rc7.58.fc44.aarch64",
+      "evra": "6.18.0-0.rc7.251127g765e56e41a5a.61.fc44.aarch64",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -1705,7 +1705,7 @@
       }
     },
     "libtool-ltdl": {
-      "evra": "2.5.4-7.fc43.aarch64",
+      "evra": "2.5.4-8.fc44.aarch64",
       "metadata": {
         "sourcerpm": "libtool"
       }
@@ -2527,49 +2527,49 @@
       }
     },
     "systemd": {
-      "evra": "258.2-1.fc44.aarch64",
+      "evra": "259~rc2-2.fc44.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-container": {
-      "evra": "258.2-1.fc44.aarch64",
+      "evra": "259~rc2-2.fc44.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-libs": {
-      "evra": "258.2-1.fc44.aarch64",
+      "evra": "259~rc2-2.fc44.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-pam": {
-      "evra": "258.2-1.fc44.aarch64",
+      "evra": "259~rc2-2.fc44.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-resolved": {
-      "evra": "258.2-1.fc44.aarch64",
+      "evra": "259~rc2-2.fc44.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-shared": {
-      "evra": "258.2-1.fc44.aarch64",
+      "evra": "259~rc2-2.fc44.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-sysusers": {
-      "evra": "258.2-1.fc44.aarch64",
+      "evra": "259~rc2-2.fc44.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
     },
     "systemd-udev": {
-      "evra": "258.2-1.fc44.aarch64",
+      "evra": "259~rc2-2.fc44.aarch64",
       "metadata": {
         "sourcerpm": "systemd"
       }
@@ -2732,13 +2732,13 @@
     }
   },
   "metadata": {
-    "generated": "2025-11-28T00:00:00Z",
+    "generated": "2025-11-29T00:00:00Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2025-11-27T11:29:59Z"
+        "generated": "2025-11-28T07:44:04Z"
       },
       "fedora-rawhide": {
-        "generated": "2025-11-27T05:34:49Z"
+        "generated": "2025-11-28T05:50:34Z"
       }
     }
   }
