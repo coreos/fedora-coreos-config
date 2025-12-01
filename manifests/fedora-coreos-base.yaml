@@ -24,7 +24,6 @@ ostree-layers:
   - overlay/08nouveau
   - overlay/09misc
   - overlay/20platform-chrony
-  - overlay/25azure-udev-rules
   - overlay/30lvmdevices
 
 conditional-include:
