@@ -313,7 +313,7 @@
       }
     },
     "container-selinux": {
-      "evra": "4:2.243.0-1.fc44.noarch",
+      "evra": "4:2.244.0-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "container-selinux"
       }
@@ -595,19 +595,19 @@
       }
     },
     "fedora-release-common": {
-      "evra": "44-0.5.noarch",
+      "evra": "44-0.7.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
     },
     "fedora-release-coreos": {
-      "evra": "44-0.5.noarch",
+      "evra": "44-0.7.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
     },
     "fedora-release-identity-coreos": {
-      "evra": "44-0.5.noarch",
+      "evra": "44-0.7.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
@@ -709,7 +709,7 @@
       }
     },
     "fwupd": {
-      "evra": "2.0.16-2.fc44.ppc64le",
+      "evra": "2.0.18-1.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "fwupd"
       }
@@ -769,25 +769,25 @@
       }
     },
     "glibc": {
-      "evra": "2.42.9000-13.fc44.ppc64le",
+      "evra": "2.42.9000-14.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-common": {
-      "evra": "2.42.9000-13.fc44.ppc64le",
+      "evra": "2.42.9000-14.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-gconv-extra": {
-      "evra": "2.42.9000-13.fc44.ppc64le",
+      "evra": "2.42.9000-14.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "glibc"
       }
     },
     "glibc-minimal-langpack": {
-      "evra": "2.42.9000-13.fc44.ppc64le",
+      "evra": "2.42.9000-14.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "glibc"
       }
@@ -1033,7 +1033,7 @@
       }
     },
     "json-glib": {
-      "evra": "1.10.8-1.fc44.ppc64le",
+      "evra": "1.10.8-4.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "json-glib"
       }
@@ -1063,25 +1063,25 @@
       }
     },
     "kernel": {
-      "evra": "6.18.0-0.rc7.251129g19eef1d98eed.63.fc44.ppc64le",
+      "evra": "6.18.0-65.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-core": {
-      "evra": "6.18.0-0.rc7.251129g19eef1d98eed.63.fc44.ppc64le",
+      "evra": "6.18.0-65.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules": {
-      "evra": "6.18.0-0.rc7.251129g19eef1d98eed.63.fc44.ppc64le",
+      "evra": "6.18.0-65.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
     },
     "kernel-modules-core": {
-      "evra": "6.18.0-0.rc7.251129g19eef1d98eed.63.fc44.ppc64le",
+      "evra": "6.18.0-65.fc44.ppc64le",
       "metadata": {
         "sourcerpm": "kernel"
       }
@@ -2708,13 +2708,13 @@
     }
   },
   "metadata": {
-    "generated": "2025-12-01T00:00:00Z",
+    "generated": "2025-12-02T00:00:00Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2025-11-30T11:28:32Z"
+        "generated": "2025-12-01T11:18:21Z"
       },
       "fedora-rawhide": {
-        "generated": "2025-11-30T05:54:59Z"
+        "generated": "2025-12-02T05:37:10Z"
       }
     }
   }
