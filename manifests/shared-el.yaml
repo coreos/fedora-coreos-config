@@ -2,7 +2,7 @@ conditional-include:
   # Include shared-el9 workarounds on Fedora and EL9
   - if: id == "fedora"
     include: shared-el9.yaml
-  - if: osversion == "rhel-9.6"
+  - if: osversion == "rhel-9.8"
     include: shared-el9.yaml
   - if: osversion == "centos-9"
     include: shared-el9.yaml
