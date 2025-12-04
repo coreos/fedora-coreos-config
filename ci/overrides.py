@@ -170,6 +170,8 @@ def do_pin(args):
     for lockfile_path in get_lockfiles():
         merge_overrides(lockfile_path, overrides)
 
+    konflux_rpm_lock(overrides)
+
 
 def do_srpms(args):
     printed = False
