@@ -619,19 +619,19 @@
       }
     },
     "fedora-release-common": {
-      "evra": "44-0.7.noarch",
+      "evra": "44-0.8.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
     },
     "fedora-release-coreos": {
-      "evra": "44-0.7.noarch",
+      "evra": "44-0.8.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
     },
     "fedora-release-identity-coreos": {
-      "evra": "44-0.7.noarch",
+      "evra": "44-0.8.noarch",
       "metadata": {
         "sourcerpm": "fedora-release"
       }
@@ -943,7 +943,7 @@
       }
     },
     "hwdata": {
-      "evra": "0.401-1.fc44.noarch",
+      "evra": "0.402-1.fc44.noarch",
       "metadata": {
         "sourcerpm": "hwdata"
       }
@@ -1525,7 +1525,7 @@
       }
     },
     "libnvme": {
-      "evra": "1.15-4.fc44.x86_64",
+      "evra": "1.16.1-1.fc44.x86_64",
       "metadata": {
         "sourcerpm": "libnvme"
       }
@@ -2047,7 +2047,7 @@
       }
     },
     "nvme-cli": {
-      "evra": "2.15-2.fc44.x86_64",
+      "evra": "2.16-1.fc44.x86_64",
       "metadata": {
         "sourcerpm": "nvme-cli"
       }
@@ -2725,7 +2725,7 @@
       }
     },
     "zlib-ng-compat": {
-      "evra": "2.3.1-3.fc44.x86_64",
+      "evra": "2.3.2-1.fc44.x86_64",
       "metadata": {
         "sourcerpm": "zlib-ng"
       }
@@ -2744,13 +2744,13 @@
     }
   },
   "metadata": {
-    "generated": "2025-12-04T00:00:00Z",
+    "generated": "2025-12-05T00:00:00Z",
     "rpmmd_repos": {
       "fedora-coreos-pool": {
-        "generated": "2025-12-03T11:11:08Z"
+        "generated": "2025-12-04T18:30:42Z"
       },
       "fedora-rawhide": {
-        "generated": "2025-12-03T05:34:58Z"
+        "generated": "2025-12-04T18:50:26Z"
       }
     }
   }
