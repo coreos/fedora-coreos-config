@@ -2,15 +2,6 @@
 # into "official" builds of Fedora CoreOS (such as including `fedora-release-coreos`)
 # or are very "opinionated" like disabling SSH passwords by default.
 
-ref: fedora/${basearch}/coreos/${stream}
-metadata:
-  license: MIT
-  name: fedora-coreos
-  summary: Fedora CoreOS ${stream}
-
-add-commit-metadata:
-  fedora-coreos.stream: ${stream}
-
 include: fedora-coreos-base.yaml
 conditional-include:
   - if: releasever >= 41
@@ -61,7 +52,6 @@ ostree-layers:
   - overlay/15fcos
   - overlay/17fcos-container-signing
 
-automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
 mutate-os-release: "${releasever}"
 
 packages:
@@ -78,15 +68,6 @@ packages:
   # Introduce a default colored prompt for Fedora's default shell bash.
   # https://github.com/coreos/fedora-coreos-tracker/issues/1567
   - bash-color-prompt
-
-# Add the docker group to /etc/group
-# https://github.com/coreos/fedora-coreos-tracker/issues/2
-# This will be no longer needed when systemd-sysusers has been implemented:
-# https://github.com/projectatomic/rpm-ostree/issues/49
-# This is re-implemented below for the container-native flow. Nuke this once
-# that's the only path we support.
-etc-group-members:
-  - docker
 
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos-base.yaml
@@ -185,7 +166,6 @@ postprocess:
   # https://github.com/coreos/fedora-coreos-tracker/issues/2
   # This will be no longer needed when systemd-sysusers has been implemented:
   # https://github.com/projectatomic/rpm-ostree/issues/49
-  # We can nuke `etc-group-members` once this is the only path we support.
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail

@@ -61,26 +61,6 @@ conditional-include:
 # Be minimal
 recommends: false
 
-ignore-removed-users:
-  - root
-ignore-removed-groups:
-  - root
-# Add the sudo group to /etc/group
-# This is re-implemented below for the container-native flow. Nuke this once
-# that's the only path we support.
-etc-group-members:
-  - sudo
-
-check-passwd:
-  type: "file"
-  filename: "passwd"
-check-groups:
-  type: "file"
-  filename: "group"
-
-# we can drop this when it's the rpm-ostree default
-rpmdb: sqlite
-
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos.yaml
 postprocess:
@@ -118,7 +98,6 @@ postprocess:
     ln -sf multi-user.target /usr/lib/systemd/system/default.target
 
   # Add the sudo group to /etc/group in container-native flow.
-  # We can nuke `etc-group-members` once this is the only supported path.
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
