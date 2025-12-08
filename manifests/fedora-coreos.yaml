@@ -11,11 +11,6 @@ metadata:
 add-commit-metadata:
   fedora-coreos.stream: ${stream}
 
-variables:
-  # upper manifests can override this when deriving from minimal-plus instead of
-  # doing a base compose
-  deriving: false
-
 include: fedora-coreos-base.yaml
 conditional-include:
   - if: releasever >= 41
