@@ -34,19 +34,11 @@ conditional-include:
     include:
       packages:
         - nfs-client-utils
-
   # Do the alternatives migration from 43
   - if: releasever >= 43
     include:
       ostree-layers:
         - overlay/50alternatives
-  # Perform migration to container signing versus ostree commit signing.
-  # This is a requirement for moving to build-via-container in F43,
-  # thus it must happen before the switch to F43.
-  - if: releasever < 43
-    include:
-      ostree-layers:
-        - overlay/35container-signing-migration
 
 ostree-layers:
   - overlay/15fcos
