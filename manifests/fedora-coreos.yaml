@@ -44,8 +44,6 @@ ostree-layers:
   - overlay/15fcos
   - overlay/17fcos-container-signing
 
-mutate-os-release: "${releasever}"
-
 packages:
   - fedora-release-coreos
   - fedora-repos-ostree

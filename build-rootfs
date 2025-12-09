@@ -25,8 +25,9 @@ INPUTHASH = '/run/inputhash'
 
 def main():
     manifest_name = sys.argv[1]
-    version = sys.argv[2]
-    target_rootfs = sys.argv[3]
+    base_version = sys.argv[2]
+    version = sys.argv[3]
+    target_rootfs = sys.argv[4]
 
     manifest_path = os.path.join(SRCDIR, manifest_name)
     manifest = get_treefile(manifest_path)
@@ -72,7 +73,7 @@ def main():
     inject_content_manifest(target_rootfs, manifest)
 
     if version != "":
-        inject_version_info(target_rootfs, manifest['mutate-os-release'], version)
+        inject_version_info(target_rootfs, base_version, version)
 
     strict_mode = os.getenv('STRICT_MODE')
     if strict_mode == '1':

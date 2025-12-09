@@ -68,11 +68,11 @@ def parse_args():
 
 def get_x(config):
     """
-        X is the Fedora release version on which we're based.
+        X is the base release version on which we're based.
     """
-    releasever = config['VERSION']
-    eprint(f"x: {releasever} (from config)")
-    return int(releasever)
+    base_version = config['BASE_VERSION']
+    eprint(f"x: {base_version} (from config)")
+    return int(base_version)
 
 
 def get_y(config):
