@@ -339,7 +339,7 @@ if vereq $version $last_release; then
             rpm-ostree upgrade
         else
             # else we need to rebase
-            rpm-ostree rebase "ostree-image-signed:docker://quay.io/fedora/fedora-coreos:{target_stream}"
+            rpm-ostree rebase "ostree-image-signed:docker://quay.io/fedora/fedora-coreos:${target_stream}"
         fi
     else
         # Since in the next steps we are making multiple copies of the update on the
