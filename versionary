@@ -11,6 +11,7 @@
 '''
 
 import argparse
+import dotenv
 import json
 import os
 import platform
@@ -48,8 +49,8 @@ def main():
         os.chdir(args.workdir)
     assert os.path.isdir('builds'), 'Missing builds/ dir'
 
-    manifest = get_flattened_manifest()
-    x, y, z = (get_x(manifest), get_y(manifest), get_z(manifest, args.dev))
+    config = dotenv.dotenv_values('src/config/build-args.conf')
+    x, y, z = (get_x(config), get_y(config), get_z(config, args.dev))
     n = get_next_iteration(x, y, z)
     new_version = f'{x}.{y}.{z}.{n}'
 
@@ -65,22 +66,22 @@ def parse_args():
     return parser.parse_args()
 
 
-def get_x(manifest):
+def get_x(config):
     """
         X is the Fedora release version on which we're based.
     """
-    releasever = manifest['releasever']
-    eprint(f"x: {releasever} (from manifest)")
+    releasever = config['VERSION']
+    eprint(f"x: {releasever} (from config)")
     return int(releasever)
 
 
-def get_y(manifest):
+def get_y(config):
     """
         Y is the base snapshot date in YYYYMMDD format of Fedora. We derive
         this using the timestamp in the base lockfile.
     """
 
-    stream = manifest['add-commit-metadata']['fedora-coreos.stream']
+    stream = config['STREAM']
 
     # XXX: should sanity check that the lockfiles for all the basearches have
     # matching timestamps
@@ -111,14 +112,14 @@ def get_y(manifest):
     return int(ymd)
 
 
-def get_z(manifest, dev):
+def get_z(config, dev):
     """
         Z is the stream indicator.
     """
     if dev:
         eprint("z: dev (overridden)")
         return 'dev'
-    stream = manifest['add-commit-metadata']['fedora-coreos.stream']
+    stream = config['STREAM']
     assert stream in STREAM_TO_NUM, f"Unknown stream: {stream}"
     mapped = STREAM_TO_NUM[stream]
     eprint(f"z: {mapped} (mapped from stream {stream})")
@@ -149,12 +150,6 @@ def get_next_iteration(x, y, z):
     n = last_version[3] + 1
     eprint(f"n: {n} (incremented from previous version {last_buildid})")
     return n
-
-
-def get_flattened_manifest():
-    return yaml.safe_load(
-        subprocess.check_output(['rpm-ostree', 'compose', 'tree',
-                                 '--print-only', 'src/config/manifest.yaml']))
 
 
 def parse_version(version):
