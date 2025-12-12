@@ -25,11 +25,13 @@ INPUTHASH = '/run/inputhash'
 
 def main():
     manifest_name = sys.argv[1]
-    base_version = sys.argv[2]
-    version = sys.argv[3]
-    target_rootfs = sys.argv[4]
+    image_cfg_name = sys.argv[2]
+    base_version = sys.argv[3]
+    version = sys.argv[4]
+    target_rootfs = sys.argv[5]
 
     manifest_path = os.path.join(SRCDIR, manifest_name)
+    image_cfg_path = os.path.join(SRCDIR, image_cfg_name)
     manifest = get_treefile(manifest_path)
 
     packages = list(manifest['packages'])
@@ -68,7 +70,7 @@ def main():
     )
 
     inject_live(target_rootfs)
-    inject_image_json(target_rootfs, manifest_path)
+    inject_image_json(target_rootfs, image_cfg_path, manifest_path)
     inject_platforms_json(target_rootfs)
     inject_content_manifest(target_rootfs, manifest)
 
@@ -389,10 +391,9 @@ def inject_live(rootfs):
     shutil.copytree(os.path.join(SRCDIR, "live"), target_path)
 
 
-def inject_image_json(rootfs, manifest_path):
+def inject_image_json(rootfs, image_cfg_path, manifest_path):
     manifest_vars = yaml.safe_load(open(manifest_path))['variables']
-    image = flatten_image_yaml(os.path.join(SRCDIR, 'image.yaml'),
-                               format_args=manifest_vars)
+    image = flatten_image_yaml(image_cfg_path, format_args=manifest_vars)
     fn = os.path.join(rootfs, 'usr/share/coreos-assembler/image.json')
     with open(fn, 'w') as f:
         json.dump(image, f, sort_keys=True)
