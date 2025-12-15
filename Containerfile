@@ -20,6 +20,7 @@ FROM ${BUILDER_IMG} as builder
 
 ARG VERSION=overridden
 ARG MANIFEST=overridden
+ARG STREAM=overridden
 # XXX: see inject_passwd_group() in build-rootfs
 ARG PASSWD_GROUP_DIR
 ARG STRICT_MODE=0
@@ -46,7 +47,8 @@ RUN --mount=type=bind,target=/run/src,rw \
       rpm-ostree experimental compose build-chunked-oci \
         --bootc --format-version=1 --rootfs /target-rootfs \
         --output oci-archive:/run/src/out.ociarchive \
-        --label com.coreos.inputhash=$(cat /run/inputhash)
+        --label com.coreos.inputhash=$(cat /run/inputhash) \
+        --label com.coreos.stream=$STREAM
 
 FROM oci-archive:./out.ociarchive
 ARG VERSION
