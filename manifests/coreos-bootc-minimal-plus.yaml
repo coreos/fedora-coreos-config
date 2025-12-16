@@ -5,7 +5,6 @@ postprocess:
 # This is the historical default and what FCOS currently ships. fedora-bootc
 # uses the new `root` value, but migrating FCOS is not that simple...
 # https://coreos.github.io/rpm-ostree/treefile/#experimental-options
-# We can nuke `opt-usrlocal: var` above once this is the only path we support.
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
@@ -22,8 +21,6 @@ postprocess:
   # the future... For more details, see
   # https://github.com/CentOS/centos-bootc/issues/167
   # https://coreos.github.io/rpm-ostree/treefile/#experimental-options
-  # We can nuke `machineid-compat: false` above once we only support the
-  # container-native path.
   - |
     #!/usr/bin/env bash
     set -xeuo pipefail
