@@ -17,7 +17,7 @@ include:
   - networking-tools.yaml
   - user-experience.yaml
   - shared-el.yaml
-  - coreos-bootc-minimal-plus.yaml
+  - coreos-bootc-delta.yaml
 
 ostree-layers:
   - overlay/05core
