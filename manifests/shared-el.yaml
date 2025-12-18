@@ -6,6 +6,7 @@ conditional-include:
     include: shared-el9.yaml
   - if: osversion == "centos-9"
     include: shared-el9.yaml
+
   # Include shared-el10 workarounds on Fedora and EL10
   - if: id == "fedora"
     include: shared-el10.yaml
@@ -14,8 +15,14 @@ conditional-include:
   - if: osversion == "centos-10"
     include: shared-el10.yaml
 
-packages:
-  # Include udev rules for NVMe backed Azure Instances [1]
-  # and unmanaged SRIOV network devices.
-  # [1] https://issues.redhat.com/browse/COS-3124
-  - azure-vm-utils
+  # Include Azure specific packages for x86_64 and aarch64
+  - if:
+      - basearch != "ppc64le"
+      - basearch != "riscv64"
+      - basearch != "s390x"
+    include:
+      packages:
+        # Include udev rules for NVMe backed Azure Instances [1]
+        # and unmanaged SRIOV network devices.
+        # [1] https://issues.redhat.com/browse/COS-3124
+        - azure-vm-utils
