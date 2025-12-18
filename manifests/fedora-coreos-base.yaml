@@ -119,7 +119,6 @@ packages:
   - wireguard-tools
   # Storage
   - btrfs-progs
-  - WALinuxAgent-udev
   # Allow communication between sudo and SSSD
   # for caching sudo rules by SSSD.
   # https://github.com/coreos/fedora-coreos-tracker/issues/445
