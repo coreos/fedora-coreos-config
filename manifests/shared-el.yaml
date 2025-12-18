@@ -26,3 +26,5 @@ conditional-include:
         # and unmanaged SRIOV network devices.
         # [1] https://issues.redhat.com/browse/COS-3124
         - azure-vm-utils
+        # Include udev rules azure storage and productid
+        - WALinuxAgent-udev
