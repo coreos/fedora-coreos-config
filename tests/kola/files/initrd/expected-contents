@@ -17,9 +17,12 @@ set -xeuo pipefail
 . "$KOLA_EXT_DATA/commonlib.sh"
 
 required_initrd_files=(
-    # Files from the 25azure-udev-rules overlay
+    # Files from the WALinuxAgent-udev package
     "/usr/lib/udev/rules.d/66-azure-storage.rules"
     "/usr/lib/udev/rules.d/99-azure-product-uuid.rules"
+    # Files from the azure-vm-utils package
+    "/usr/lib/udev/rules.d/80-azure-disk.rules"
+    "/usr/lib/udev/rules.d/10-azure-unmanaged-sriov.rules"
     # Files from the google-compute-engine-guest-configs-udev RPM (FCOS)
     # or 30gcp-udev-rules overlay (RHCOS). We can probably remove these
     # checks once RHCOS is using the RPM too.
