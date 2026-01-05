@@ -43,6 +43,7 @@ conditional-include:
 ostree-layers:
   - overlay/15fcos
   - overlay/17fcos-container-signing
+  - overlay/18sshd-authorized-keys-file
 
 packages:
   - fedora-release-coreos
