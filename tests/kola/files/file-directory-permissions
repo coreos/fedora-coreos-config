@@ -9,15 +9,13 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-# List of known files and directories with group write permission
+# List of known files and directories with group write permission (FCOS & EL)
 list_known=()
+# List of known files and directories with group write permission (EL only)
+list_known_el=()
 
-# List of known files and directories with group write permission (RHCOS only)
-list_known_rhcos=()
-
-is_fcos="false"
-if [[ "$(source /etc/os-release && echo "${ID}")" == "fedora" ]]; then
-    is_fcos="true"
+if ! is_fcos; then
+    list_known+=("${list_known_el[@]}")
 fi
 
 unknown=""
@@ -29,14 +27,6 @@ while IFS= read -r -d '' e; do
             break
         fi
     done
-    if [[ "${is_fcos}" == "false" ]]; then
-        for k in "${list_known_rhcos[@]}"; do
-            if [[ "${k}" == "${e}" ]]; then
-                found="true"
-                break
-            fi
-        done
-    fi
     if [[ "${found}" == "false" ]]; then
         unknown+=" ${e}"
     fi
