@@ -1,0 +1,84 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   description: |
+##      Verify that block device partitions follow the Discoverable Parition Specification
+##      See: https://uapi-group.org/specifications/specs/discoverable_partitions_specification/
+
+set -euo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+XBOOTLDR_UUID="BC13C2FF-59E6-4262-A352-B275FD6F7172"
+ESP_UUID="C12A7328-F81F-11D2-BA4B-00A0C93EC93B"
+
+case "$(uname -m)" in
+    x86_64)  ROOT_UUID="4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709" ;;
+    aarch64) ROOT_UUID="B921B045-1DF0-41C3-AF44-4C6F280D3FAE" ;;
+    ppc64)   ROOT_UUID="912ADE1D-A839-4913-8964-A10EEE08FBD2" ;;
+    ppc64le) ROOT_UUID="C31C45E6-3F39-412E-80FB-4809C4980599" ;;
+    s390x)   ROOT_UUID="5EEAD9A9-FE09-4A1E-A1D7-520D00531306" ;;
+    riscv64) ROOT_UUID="72EC70A6-CF74-40E6-BD49-4BDA08E8F224" ;;
+
+    *)
+        echo "Unsupported architecture: $(uname -m)" >&2
+        exit 1
+        ;;
+esac
+
+# get root mount major:minor
+DEV_MAJ_MIN="$(findmnt -no MAJ:MIN /sysroot | tr -d '[:space:]')"
+[[ -n "$DEV_MAJ_MIN" ]] || fatal "Failed to determine MAJ:MIN for /sysroot"
+
+# get backing block device
+DEVICE="$(basename "$(dirname "$(readlink -f "/sys/dev/block/$DEV_MAJ_MIN")")")"
+[[ -b "/dev/$DEVICE" ]] || fatal "Block device /dev/$DEVICE not found"
+
+# get partitions
+LSBLK_JSON="$(lsblk -o name,parttype,uuid,mountpoint,parttypename,label --json "/dev/$DEVICE")"
+
+
+# NOTE: Not adding a check for whether we found the XBootldr
+# partition or not as there would be a few cases where it won't be used
+# Ex. In composefs-native UKI case
+root_found=0
+esp_found=0
+
+while read -r part; do
+    label="$(jq -r '.label // empty' <<<"$part")"
+    parttype="$(jq -r '.parttype // empty' <<<"$part" | tr '[:lower:]' '[:upper:]')"
+    name="$(jq -r '.name' <<<"$part")"
+
+    [[ -n "$label" ]] || continue
+    [[ -n "$parttype" ]] || fatal "Partition '$name' has no parttype"
+
+    case "$label" in
+        boot)
+            [[ "$parttype" == "$XBOOTLDR_UUID" ]] || \
+                fatal "Partition '$label' does not have DPS UUID. Have: $parttype, Need: $XBOOTLDR_UUID"
+            ;;
+        root)
+            root_found=1
+            [[ "$parttype" == "$ROOT_UUID" ]] || \
+                fatal "Partition '$label' does not have DPS UUID. Have: $parttype, Need: $ROOT_UUID"
+            ;;
+        EFI-SYSTEM)
+            esp_found=1
+            [[ "$parttype" == "$ESP_UUID" ]] || \
+                fatal "Partition '$label' does not have DPS UUID. Have: $parttype, Need: $ESP_UUID"
+            ;;
+    esac
+done < <(echo "$LSBLK_JSON" | jq -c '.blockdevices[0].children[]?')
+
+[[ "$root_found" -eq 1 ]] || fatal "Root partition not found"
+
+case "$(uname -m)" in
+    # This list is taken from
+    # https://github.com/coreos/coreos-assembler/tree/c9a1e313f92eb5d9153c220c1f14f65a99fb305b/src/osbuild-manifests
+    x86_64|aarch64|riscv64)
+        [[ "$esp_found" -eq 1 ]] || fatal "EFI partition not found"
+    ;;
+esac
+
+echo "DPS UUID test passed"
