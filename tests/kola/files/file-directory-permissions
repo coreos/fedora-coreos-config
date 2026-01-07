@@ -13,9 +13,7 @@ set -xeuo pipefail
 list_known=()
 
 # List of known files and directories with group write permission (RHCOS only)
-list_known_rhcos=(
-    '/usr/share/licenses/publicsuffix-list-dafsa/COPYING'
-)
+list_known_rhcos=()
 
 is_fcos="false"
 if [[ "$(source /etc/os-release && echo "${ID}")" == "fedora" ]]; then
