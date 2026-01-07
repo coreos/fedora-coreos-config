@@ -6,8 +6,8 @@ kernel_arguments:
     # and RHCOS here. Currently the worst case output of `kdumpctl estimate`
     # is aarch64 RHCOS where the it says "Recommended crashkernel: 448M".
     # Though for some reason when we set crashkernel=448M ppc64le complains
-    # and wants 512M so let's set it to 512M here.
-    - crashkernel=512M
+    # and wants 528M so let's set it to 528M here.
+    - crashkernel=528M
 systemd:
   units:
     - name: kdump.service
