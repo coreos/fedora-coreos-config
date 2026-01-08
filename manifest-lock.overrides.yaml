@@ -19,3 +19,23 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7ad98024bb
       type: fast-track
+  kernel:
+    evr: 6.17.12-300.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2087
+      type: pin
+  kernel-core:
+    evr: 6.17.12-300.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2087
+      type: pin
+  kernel-modules:
+    evr: 6.17.12-300.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2087
+      type: pin
+  kernel-modules-core:
+    evr: 6.17.12-300.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2087
+      type: pin
