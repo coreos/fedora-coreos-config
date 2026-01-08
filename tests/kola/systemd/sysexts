@@ -1,0 +1,64 @@
+#!/bin/bash
+## kola:
+##   # Marked as exclusive as we layer content over /usr with the sysexts
+##   exclusive: true
+##   # No sysexts exists for RHCOS right now
+##   distros: fcos
+##   # Should work the same on all platforms
+##   # Needs internet access to download the sysexts
+##   tags: "platform-independent needs-internet"
+##   description: Verify setting up and enabling systemd system extensions
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+# Uses sysexts from https://extensions.fcos.fr until we have official sysexts
+# available in Fedora.
+SYSEXTS_BASE_URL="https://extensions.fcos.fr/fedora"
+
+install -d -m 0755 -o 0 -g 0 /var/lib/extensions /var/lib/extensions.d
+restorecon -RFv /var/lib/extensions /var/lib/extensions.d
+systemctl enable --now systemd-sysext.service
+
+install_sysext() {
+  local -r SYSEXT="${1}"
+  install -d -m 0755 -o 0 -g 0 "/etc/sysupdate.${SYSEXT}.d"
+  restorecon -RFv "/etc/sysupdate.${SYSEXT}.d"
+  curl --silent --fail --location "${SYSEXTS_BASE_URL}/${SYSEXT}.conf" \
+    | tee "/etc/sysupdate.${SYSEXT}.d/${SYSEXT}.conf"
+  /usr/lib/systemd/systemd-sysupdate update --component "${SYSEXT}"
+}
+
+install_sysext python3
+
+systemctl restart systemd-sysext.service
+systemd-sysext status
+
+if [[ ! -f "/usr/bin/python3" ]]; then
+    fatal "python3 binary not found but sysext enabled"
+fi
+
+if [[ "$(/usr/bin/python3 -c 'print("python3-on-fcos-via-sysext")')" != "python3-on-fcos-via-sysext" ]]; then
+    fatal "could not execute simple Python command"
+fi
+
+uninstall_sysext() {
+  local -r SYSEXT="${1}"
+  rm "/var/lib/extensions/${SYSEXT}.raw"
+  rm "/var/lib/extensions.d/${SYSEXT}-"*".raw"
+  rm "/etc/sysupdate.${SYSEXT}.d/${SYSEXT}.conf"
+  rmdir "/etc/sysupdate.${SYSEXT}.d/"
+}
+
+uninstall_sysext python3
+
+systemctl restart systemd-sysext.service
+systemd-sysext status
+
+if [[ -f "/usr/bin/python3" ]]; then
+    fatal "python3 binary found but sysext disabled"
+fi
+
+ok "systemd system extensions functional"
