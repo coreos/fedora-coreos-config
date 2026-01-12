@@ -20,22 +20,26 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7ad98024bb
       type: fast-track
   kernel:
-    evr: 6.17.12-300.fc43
+    evr: 6.18.5-200.fc43
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-1118e5854e
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2087
-      type: pin
+      type: fast-track
   kernel-core:
-    evr: 6.17.12-300.fc43
+    evr: 6.18.5-200.fc43
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-1118e5854e
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2087
-      type: pin
+      type: fast-track
   kernel-modules:
-    evr: 6.17.12-300.fc43
+    evr: 6.18.5-200.fc43
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-1118e5854e
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2087
-      type: pin
+      type: fast-track
   kernel-modules-core:
-    evr: 6.17.12-300.fc43
+    evr: 6.18.5-200.fc43
     metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-1118e5854e
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2087
-      type: pin
+      type: fast-track
