@@ -63,6 +63,11 @@ jobs:
                 echo "BRANCH_NAME=fcc-sync-${SOURCE_BRANCH}" >> $GITHUB_ENV
                 echo "TITLE_PREFIX=[release-${OCP_VERSION}] " >> $GITHUB_ENV
                 ;;
+              rhel-*)
+                TARGET_REPO=coreos/rhel-coreos-config
+                echo "TARGET_BRANCH=${SOURCE_BRANCH}" >> $GITHUB_ENV
+                echo "BRANCH_NAME=fcc-sync-${SOURCE_BRANCH}" >> $GITHUB_ENV
+                echo "TITLE_PREFIX=[${SOURCE_BRANCH}] " >> $GITHUB_ENV
               *)
                 echo "SOURCE_BRANCH=$SOURCE_BRANCH is invalid" >&2
                 exit 1
