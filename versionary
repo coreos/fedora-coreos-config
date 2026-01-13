@@ -176,7 +176,7 @@ def get_next_iteration_from_git(y_as_timestamp):
             ['git', 'rev-list', '--count', '--after', y_as_timestamp, 'HEAD'],
             cwd="src/config", text=True
         ).strip()
-        print(
+        eprint(
             f"n: {commit_count_since_change} "
             "(calculated using git commit history)"
         )
