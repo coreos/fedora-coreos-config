@@ -9,16 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  ignition:
-    evr: 2.25.1-1.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7ad98024bb
-      type: fast-track
-  ignition-grub:
-    evr: 2.25.1-1.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7ad98024bb
-      type: fast-track
   kernel:
     evr: 6.18.5-200.fc43
     metadata:
