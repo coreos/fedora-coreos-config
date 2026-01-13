@@ -68,6 +68,7 @@ jobs:
                 echo "TARGET_BRANCH=${SOURCE_BRANCH}" >> $GITHUB_ENV
                 echo "BRANCH_NAME=fcc-sync-${SOURCE_BRANCH}" >> $GITHUB_ENV
                 echo "TITLE_PREFIX=[${SOURCE_BRANCH}] " >> $GITHUB_ENV
+                ;;
               *)
                 echo "SOURCE_BRANCH=$SOURCE_BRANCH is invalid" >&2
                 exit 1
