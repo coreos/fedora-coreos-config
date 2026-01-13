@@ -50,8 +50,13 @@ def main():
     assert os.path.isdir('builds'), 'Missing builds/ dir'
 
     config = dotenv.dotenv_values('src/config/build-args.conf')
-    x, y, z = (get_x(config), get_y(config), get_z(config, args.dev))
-    n = get_next_iteration(x, y, z)
+    x, z = (get_x(config), get_z(config, args.dev))
+    y, y_as_timestamp = get_y(config)
+    # Default behavior generates the iteration from Git (dev mode uses builds)
+    if args.dev:
+        n = get_next_iteration_from_builds(x, y, z)
+    else:
+        n = get_next_iteration_from_git(y_as_timestamp)
     new_version = f'{x}.{y}.{z}.{n}'
 
     # sanity check the new version by trying to re-parse it
@@ -62,7 +67,9 @@ def main():
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--workdir', help="path to cosa workdir")
-    parser.add_argument('--dev', action='store_true', help="generate a developer version")
+    parser.add_argument(
+        "--dev", action="store_true", help="generate a developer version"
+    )
     return parser.parse_args()
 
 
@@ -109,7 +116,7 @@ def get_y(config):
 
     ymd = dt.strftime('%Y%m%d')
     eprint(f"y: {ymd} ({msg_src})")
-    return int(ymd)
+    return int(ymd), str(dt)
 
 
 def get_z(config, dev):
@@ -126,7 +133,7 @@ def get_z(config, dev):
     return mapped
 
 
-def get_next_iteration(x, y, z):
+def get_next_iteration_from_builds(x, y, z):
     try:
         with open('builds/builds.json') as f:
             builds = json.load(f)
@@ -150,6 +157,36 @@ def get_next_iteration(x, y, z):
     n = last_version[3] + 1
     eprint(f"n: {n} (incremented from previous version {last_buildid})")
     return n
+
+
+def get_next_iteration_from_git(y_as_timestamp):
+    """
+    Compute the next iteration number based on git commit history.
+
+    Given the Y component of the version (YYYY-MM-DD HH:MM:SS date),
+    this counts all commits from the start of that date up to HEAD.
+    This guarantees that multiple builds on the same day each receive a
+    unique `.n` value, even if several changes occur.
+
+    See: https://github.com/coreos/fedora-coreos-tracker/issues/2015
+    """
+    try:
+        # Count commits after that point
+        commit_count_since_change = subprocess.check_output(
+            ['git', 'rev-list', '--count', '--after', y_as_timestamp, 'HEAD'],
+            cwd="src/config", text=True
+        ).strip()
+        print(
+            f"n: {commit_count_since_change} "
+            "(calculated using git commit history)"
+        )
+        return commit_count_since_change
+    except subprocess.CalledProcessError as err:
+        msg = (
+            "Git command failed: unable to determine the next "
+            f"iteration value ({err})"
+        )
+        raise RuntimeError(msg) from err
 
 
 def parse_version(version):
