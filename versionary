@@ -99,10 +99,12 @@ def get_y(config):
             with open(f"src/config/manifest-lock.{basearch}.{ext}") as f:
                 lockfile = yaml.safe_load(f)
                 generated = lockfile.get('metadata', {}).get('generated')
+                print(generated)
                 if not generated:
                     raise Exception("Missing 'metadata.generated' key "
                                     f"from {lockfile}")
                 dt = datetime.strptime(generated, '%Y-%m-%dT%H:%M:%SZ')
+                print(dt)
                 assert stream not in UNLOCKED_STREAMS
                 msg_src = "from lockfile"
                 break
@@ -113,6 +115,7 @@ def get_y(config):
         assert stream in UNLOCKED_STREAMS
         msg_src = "unlocked stream"
         dt = datetime.now()
+        print(dt)
 
     ymd = dt.strftime('%Y%m%d')
     eprint(f"y: {ymd} ({msg_src})")
@@ -172,6 +175,7 @@ def get_next_iteration_from_git(y_as_timestamp):
     """
     try:
         # Count commits after that point
+        print(y_as_timestamp)
         commit_count_since_change = subprocess.check_output(
             ['git', 'rev-list', '--count', '--after', y_as_timestamp, 'HEAD'],
             cwd="src/config", text=True
