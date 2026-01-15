@@ -38,10 +38,12 @@ spec:
     - linux/arm64
     - linux/s390x
     - linux/ppc64le
+  - name: clone-depth
+    value: 50
   pipelineRef:
     params:
     - name: bundle
-      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:d29a4d1bc4f331a327e23d96ba48e4cdd2d8e732078faf6970dd9657e9b817e6
+      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:b16aa8d0330ebe9161b2671976893fc9cf9ae128ade608d60fb80e75c400620d
     - name: name
       value: buildah-build-bootc-multi-platform-oci-ta
     - name: kind
