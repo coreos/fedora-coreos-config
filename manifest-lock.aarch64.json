@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.54.0-2.fc43.aarch64"
+      "evra": "1:1.54.3-2.fc43.aarch64"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.54.0-2.fc43.aarch64"
+      "evra": "1:1.54.3-2.fc43.aarch64"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.54.0-2.fc43.aarch64"
+      "evra": "1:1.54.3-2.fc43.aarch64"
     },
     "NetworkManager-team": {
-      "evra": "1:1.54.0-2.fc43.aarch64"
+      "evra": "1:1.54.3-2.fc43.aarch64"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.54.0-2.fc43.aarch64"
+      "evra": "1:1.54.3-2.fc43.aarch64"
     },
     "WALinuxAgent-udev": {
       "evra": "2.15.0.1-1.fc43.noarch"
@@ -73,16 +73,16 @@
       "evra": "1:2.16-2.fc43.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.18.41-2.fc43.aarch64"
+      "evra": "32:9.18.43-1.fc43.aarch64"
     },
     "bind-utils": {
-      "evra": "32:9.18.41-2.fc43.aarch64"
+      "evra": "32:9.18.43-1.fc43.aarch64"
     },
     "bootc": {
-      "evra": "1.10.0-2.fc43.aarch64"
+      "evra": "1.11.0-2.fc43.aarch64"
     },
     "bootupd": {
-      "evra": "0.2.31-1.fc43.aarch64"
+      "evra": "0.2.32-2.fc43.aarch64"
     },
     "bsdtar": {
       "evra": "3.8.4-1.fc43.aarch64"
@@ -154,10 +154,10 @@
       "evra": "0.21.3-11.fc43.noarch"
     },
     "container-selinux": {
-      "evra": "4:2.244.0-1.fc43.noarch"
+      "evra": "4:2.245.0-1.fc43.noarch"
     },
     "containerd": {
-      "evra": "2.1.5-1.fc43.aarch64"
+      "evra": "2.1.6-1.fc43.aarch64"
     },
     "containers-common": {
       "evra": "5:0.64.2-1.fc43.noarch"
@@ -256,7 +256,7 @@
       "evra": "2.91-1.fc43.aarch64"
     },
     "docker-cli": {
-      "evra": "29.0.4-1.fc43.aarch64"
+      "evra": "29.1.3-1.fc43.aarch64"
     },
     "dosfstools": {
       "evra": "4.2-16.fc43.aarch64"
@@ -337,7 +337,7 @@
       "evra": "1:4.10.0-6.fc43.aarch64"
     },
     "flatpak-session-helper": {
-      "evra": "1.16.1-1.fc43.aarch64"
+      "evra": "1.16.2-1.fc43.aarch64"
     },
     "fmt": {
       "evra": "11.2.0-3.fc43.aarch64"
@@ -361,7 +361,7 @@
       "evra": "3.16.2-5.fc42.aarch64"
     },
     "fwupd": {
-      "evra": "2.0.18-1.fc43.aarch64"
+      "evra": "2.0.19-1.fc43.aarch64"
     },
     "gawk": {
       "evra": "5.3.2-2.fc43.aarch64"
@@ -391,16 +391,16 @@
       "evra": "2.86.3-1.fc43.aarch64"
     },
     "glibc": {
-      "evra": "2.42-4.fc43.aarch64"
+      "evra": "2.42-5.fc43.aarch64"
     },
     "glibc-common": {
-      "evra": "2.42-4.fc43.aarch64"
+      "evra": "2.42-5.fc43.aarch64"
     },
     "glibc-gconv-extra": {
-      "evra": "2.42-4.fc43.aarch64"
+      "evra": "2.42-5.fc43.aarch64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.42-4.fc43.aarch64"
+      "evra": "2.42-5.fc43.aarch64"
     },
     "gmp": {
       "evra": "1:6.3.0-4.fc43.aarch64"
@@ -409,22 +409,22 @@
       "evra": "20241231-1.fc43.noarch"
     },
     "gnupg2": {
-      "evra": "2.4.8-4.fc43.aarch64"
+      "evra": "2.4.9-1.fc43.aarch64"
     },
     "gnupg2-dirmngr": {
-      "evra": "2.4.8-4.fc43.aarch64"
+      "evra": "2.4.9-1.fc43.aarch64"
     },
     "gnupg2-gpg-agent": {
-      "evra": "2.4.8-4.fc43.aarch64"
+      "evra": "2.4.9-1.fc43.aarch64"
     },
     "gnupg2-gpgconf": {
-      "evra": "2.4.8-4.fc43.aarch64"
+      "evra": "2.4.9-1.fc43.aarch64"
     },
     "gnupg2-keyboxd": {
-      "evra": "2.4.8-4.fc43.aarch64"
+      "evra": "2.4.9-1.fc43.aarch64"
     },
     "gnupg2-verify": {
-      "evra": "2.4.8-4.fc43.aarch64"
+      "evra": "2.4.9-1.fc43.aarch64"
     },
     "gnutls": {
       "evra": "3.8.11-5.fc43.aarch64"
@@ -460,10 +460,10 @@
       "evra": "0.402-1.fc43.noarch"
     },
     "ignition": {
-      "evra": "2.24.0-1.fc43.aarch64"
+      "evra": "2.25.1-1.fc43.aarch64"
     },
     "ignition-grub": {
-      "evra": "2.24.0-1.fc43.aarch64"
+      "evra": "2.25.1-1.fc43.aarch64"
     },
     "inih": {
       "evra": "62-1.fc43.aarch64"
@@ -514,7 +514,7 @@
       "evra": "14-5.fc43.aarch64"
     },
     "jq": {
-      "evra": "1.7.1-12.fc43.aarch64"
+      "evra": "1.8.1-1.fc43.aarch64"
     },
     "json-c": {
       "evra": "0.18-7.fc43.aarch64"
@@ -535,16 +535,16 @@
       "evra": "1.0.59-1.fc43.aarch64"
     },
     "kernel": {
-      "evra": "6.17.11-300.fc43.aarch64"
+      "evra": "6.17.12-300.fc43.aarch64"
     },
     "kernel-core": {
-      "evra": "6.17.11-300.fc43.aarch64"
+      "evra": "6.17.12-300.fc43.aarch64"
     },
     "kernel-modules": {
-      "evra": "6.17.11-300.fc43.aarch64"
+      "evra": "6.17.12-300.fc43.aarch64"
     },
     "kernel-modules-core": {
-      "evra": "6.17.11-300.fc43.aarch64"
+      "evra": "6.17.12-300.fc43.aarch64"
     },
     "kexec-tools": {
       "evra": "2.0.32-1.fc43.aarch64"
@@ -583,7 +583,7 @@
       "evra": "2.5.7-4.fc43.aarch64"
     },
     "libatomic": {
-      "evra": "15.2.1-4.fc43.aarch64"
+      "evra": "15.2.1-5.fc43.aarch64"
     },
     "libattr": {
       "evra": "2.5.2-6.fc43.aarch64"
@@ -592,7 +592,7 @@
       "evra": "0.1.1-59.fc43.aarch64"
     },
     "libblkid": {
-      "evra": "2.41.1-17.fc43.aarch64"
+      "evra": "2.41.3-7.fc43.aarch64"
     },
     "libbpf": {
       "evra": "2:1.6.1-3.fc43.aarch64"
@@ -643,7 +643,7 @@
       "evra": "2.1.12-16.fc43.aarch64"
     },
     "libfdisk": {
-      "evra": "2.41.1-17.fc43.aarch64"
+      "evra": "2.41.3-7.fc43.aarch64"
     },
     "libffi": {
       "evra": "3.5.2-1.fc43.aarch64"
@@ -652,7 +652,7 @@
       "evra": "1.16.0-3.fc43.aarch64"
     },
     "libgcc": {
-      "evra": "15.2.1-4.fc43.aarch64"
+      "evra": "15.2.1-5.fc43.aarch64"
     },
     "libgcrypt": {
       "evra": "1.11.1-2.fc43.aarch64"
@@ -694,7 +694,7 @@
       "evra": "1.6.7-4.fc43.aarch64"
     },
     "liblastlog2": {
-      "evra": "2.41.1-17.fc43.aarch64"
+      "evra": "2.41.3-7.fc43.aarch64"
     },
     "libldb": {
       "evra": "2:4.23.4-1.fc43.aarch64"
@@ -715,7 +715,7 @@
       "evra": "2.15.2-4.fc43.aarch64"
     },
     "libmount": {
-      "evra": "2.41.1-17.fc43.aarch64"
+      "evra": "2.41.3-7.fc43.aarch64"
     },
     "libndp": {
       "evra": "1.9-4.fc43.aarch64"
@@ -796,7 +796,7 @@
       "evra": "4.9.1-2.fc43.aarch64"
     },
     "libsmartcols": {
-      "evra": "2.41.1-17.fc43.aarch64"
+      "evra": "2.41.3-7.fc43.aarch64"
     },
     "libsmbclient": {
       "evra": "2:4.23.4-1.fc43.aarch64"
@@ -820,7 +820,7 @@
       "evra": "2.11.1-4.fc43.aarch64"
     },
     "libstdc++": {
-      "evra": "15.2.1-4.fc43.aarch64"
+      "evra": "15.2.1-5.fc43.aarch64"
     },
     "libtalloc": {
       "evra": "2.4.3-4.fc43.aarch64"
@@ -853,7 +853,7 @@
       "evra": "1.0.29-4.fc43.aarch64"
     },
     "libuuid": {
-      "evra": "2.41.1-17.fc43.aarch64"
+      "evra": "2.41.3-7.fc43.aarch64"
     },
     "libuv": {
       "evra": "1:1.51.0-2.fc43.aarch64"
@@ -925,10 +925,10 @@
       "evra": "4.3-9.fc43.aarch64"
     },
     "moby-engine": {
-      "evra": "29.0.4-1.fc43.aarch64"
+      "evra": "29.1.3-1.fc43.aarch64"
     },
     "moby-filesystem": {
-      "evra": "29.0.4-1.fc43.noarch"
+      "evra": "29.1.3-1.fc43.noarch"
     },
     "mokutil": {
       "evra": "2:0.7.2-2.fc43.aarch64"
@@ -979,7 +979,7 @@
       "evra": "1.18.0-1.fc43.aarch64"
     },
     "nmstate": {
-      "evra": "2.2.55-1.fc43.aarch64"
+      "evra": "2.2.57-2.fc43.aarch64"
     },
     "npth": {
       "evra": "1.8-3.fc43.aarch64"
@@ -1042,10 +1042,10 @@
       "evra": "0.1.10-2.fc43.aarch64"
     },
     "passt": {
-      "evra": "0^20250919.g623dbf6-1.fc43.aarch64"
+      "evra": "0^20251223.g2ba9fd5-1.fc43.aarch64"
     },
     "passt-selinux": {
-      "evra": "0^20250919.g623dbf6-1.fc43.noarch"
+      "evra": "0^20251223.g2ba9fd5-1.fc43.noarch"
     },
     "pciutils": {
       "evra": "3.14.0-2.fc43.aarch64"
@@ -1093,7 +1093,7 @@
       "evra": "4.0.4-7.fc43.1.aarch64"
     },
     "protobuf-c": {
-      "evra": "1.5.1-2.fc43.aarch64"
+      "evra": "1.5.2-1.fc43.aarch64"
     },
     "psmisc": {
       "evra": "23.7-6.fc43.aarch64"
@@ -1105,7 +1105,7 @@
       "evra": "20251125-1.fc43.noarch"
     },
     "qemu-user-static-x86": {
-      "evra": "2:10.1.2-1.fc43.aarch64"
+      "evra": "2:10.1.3-1.fc43.aarch64"
     },
     "readline": {
       "evra": "8.3-2.fc43.aarch64"
@@ -1203,9 +1203,6 @@
     "squashfs-tools": {
       "evra": "4.6.1-7.fc43.aarch64"
     },
-    "ssh-key-dir": {
-      "evra": "0.1.5-3.fc43.aarch64"
-    },
     "sssd-ad": {
       "evra": "2.11.1-4.fc43.aarch64"
     },
@@ -1240,28 +1237,28 @@
       "evra": "1.9.17-6.p2.fc43.aarch64"
     },
     "systemd": {
-      "evra": "258.2-1.fc43.aarch64"
+      "evra": "258.3-2.fc43.aarch64"
     },
     "systemd-container": {
-      "evra": "258.2-1.fc43.aarch64"
+      "evra": "258.3-2.fc43.aarch64"
     },
     "systemd-libs": {
-      "evra": "258.2-1.fc43.aarch64"
+      "evra": "258.3-2.fc43.aarch64"
     },
     "systemd-pam": {
-      "evra": "258.2-1.fc43.aarch64"
+      "evra": "258.3-2.fc43.aarch64"
     },
     "systemd-resolved": {
-      "evra": "258.2-1.fc43.aarch64"
+      "evra": "258.3-2.fc43.aarch64"
     },
     "systemd-shared": {
-      "evra": "258.2-1.fc43.aarch64"
+      "evra": "258.3-2.fc43.aarch64"
     },
     "systemd-sysusers": {
-      "evra": "258.2-1.fc43.aarch64"
+      "evra": "258.3-2.fc43.aarch64"
     },
     "systemd-udev": {
-      "evra": "258.2-1.fc43.aarch64"
+      "evra": "258.3-2.fc43.aarch64"
     },
     "tar": {
       "evra": "2:1.35-6.fc43.aarch64"
@@ -1285,16 +1282,16 @@
       "evra": "4.1.3-8.fc43.aarch64"
     },
     "tzdata": {
-      "evra": "2025b-3.fc43.noarch"
+      "evra": "2025c-1.fc43.noarch"
     },
     "userspace-rcu": {
       "evra": "0.15.3-2.fc43.aarch64"
     },
     "util-linux": {
-      "evra": "2.41.1-17.fc43.aarch64"
+      "evra": "2.41.3-7.fc43.aarch64"
     },
     "util-linux-core": {
-      "evra": "2.41.1-17.fc43.aarch64"
+      "evra": "2.41.3-7.fc43.aarch64"
     },
     "vim-data": {
       "evra": "2:9.1.1972-1.fc43.noarch"
@@ -1333,7 +1330,7 @@
       "evra": "0.0.30-4.fc43.aarch64"
     },
     "zlib-ng-compat": {
-      "evra": "2.3.2-1.fc43.aarch64"
+      "evra": "2.3.2-2.fc43.aarch64"
     },
     "zram-generator": {
       "evra": "1.2.1-3.fc43.aarch64"
@@ -1343,6 +1340,6 @@
     }
   },
   "metadata": {
-    "generated": "2025-12-14T00:00:00Z"
+    "generated": "2026-01-05T00:00:00Z"
   }
 }
