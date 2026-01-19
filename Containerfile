@@ -44,7 +44,12 @@ RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
 RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
     --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
     --mount=type=secret,id=contentsets \
-        /src/build-rootfs "${MANIFEST}" "${IMAGE_CONFIG}" "${BASE_VERSION}" "${VERSION}" /target-rootfs
+        /src/build-rootfs                      \
+            --manifest-name "${MANIFEST}"      \
+            --image-cfg-name "${IMAGE_CONFIG}" \
+            --base-version "${BASE_VERSION}"   \
+            --version "${VERSION}"             \
+            --target-rootfs /target-rootfs
 RUN --mount=type=bind,target=/run/src,rw \
       rpm-ostree experimental compose build-chunked-oci \
         --bootc --format-version=1 --rootfs /target-rootfs \
