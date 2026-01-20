@@ -1,14 +1,6 @@
 # This file contains defaults for image.yaml and historically lived in
 # coreos-assembler.
 
-# related: https://github.com/osbuild/bootc-image-builder/pull/932
-bootfs: "ext4"
-rootfs: "xfs"
-# Add arguments here that will be passed to e.g. mkfs.xfs
-rootfs-args: ""
-# Set to "true" to enable composefs
-composefs: false
-
 # Additional default kernel arguments injected into disk images
 extra-kargs: []
 
