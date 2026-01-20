@@ -10,9 +10,6 @@ extra-kargs:
     # Disable SMT on systems vulnerable to MDS or any similar future issue.
     - mitigations=auto,nosmt
 
-# Optional remote by which to prefix the deployed OSTree ref
-ostree-remote: fedora
-
 vmware-os-type: fedora64Guest
 # VMware hardware versions: https://kb.vmware.com/s/article/1003746
 # We use the newest version allowed by the oldest non-EOL VMware
