@@ -6,15 +6,25 @@
 # https://github.com/coreos/fedora-coreos-tracker/issues/586
 size: 10
 
+# Additional default kernel arguments injected into disk images
 extra-kargs:
     # Disable SMT on systems vulnerable to MDS or any similar future issue.
     - mitigations=auto,nosmt
 
-vmware-os-type: fedora64Guest
-# VMware hardware versions: https://kb.vmware.com/s/article/1003746
-# We use the newest version allowed by the oldest non-EOL VMware
-# Workstation/Player/Fusion/ESXi release: https://lifecycle.vmware.com/
+# VMware OVA settings.
+## VMware hardware versions: https://kb.vmware.com/s/article/1003746
+## We use the newest version allowed by the oldest non-EOL VMware
+## Workstation/Player/Fusion/ESXi release: https://lifecycle.vmware.com/
 vmware-hw-version: 17
+## Identify as Fedora 64 bit Guest
+vmware-os-type: fedora64Guest
+## Enable SecureBoot by default
+vmware-secure-boot: true
+
+# AWS AMI Settings.
+aws-imdsv2-only: true
+aws-volume-type: "gp3"
+aws-x86-boot-mode: "uefi-preferred"
 
 compressor: xz
 
@@ -33,5 +43,3 @@ container-imgref: "ostree-image-signed:docker://quay.io/fedora/fedora-coreos:{st
 # Enable 'erofs' by default for the rootfs in the Live ISO/PXE artifacts
 live-rootfs-fstype: "erofs"
 live-rootfs-fsoptions: "-zlzma,level=6 -Efragments -C1048576 --quiet"
-
-include: image-default.yaml
