@@ -47,6 +47,7 @@ RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
         /src/build-rootfs                      \
             --manifest-name "${MANIFEST}"      \
             --image-cfg-name "${IMAGE_CONFIG}" \
+            --stream "${STREAM}"               \
             --base-version "${BASE_VERSION}"   \
             --version "${VERSION}"             \
             --target-rootfs /target-rootfs

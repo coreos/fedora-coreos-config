@@ -30,6 +30,7 @@ def main():
     parser = argparse.ArgumentParser(description='Build an FCOS rootfs.')
     parser.add_argument('--manifest-name', required=True, help='Name of the manifest file.')
     parser.add_argument('--image-cfg-name', required=True, help='Name of the image config file.')
+    parser.add_argument('--stream', required=True, help='The CoreOS stream name.')
     parser.add_argument('--base-version', required=True, help='Base version string.')
     parser.add_argument('--version', required=True, help='Full version string.')
     parser.add_argument('--target-rootfs', required=True, help='Path to the target rootfs.')
@@ -76,7 +77,7 @@ def main():
     )
 
     inject_live(args.target_rootfs)
-    inject_image_json(args.target_rootfs, image_cfg_path, manifest_path)
+    inject_image_json(args.target_rootfs, image_cfg_path, args.stream)
     inject_platforms_json(args.target_rootfs)
     inject_content_manifest(args.target_rootfs, manifest)
 
@@ -400,9 +401,8 @@ def inject_live(rootfs):
     shutil.copytree(os.path.join(SRCDIR, "live"), target_path)
 
 
-def inject_image_json(rootfs, image_cfg_path, manifest_path):
-    manifest_vars = yaml.safe_load(open(manifest_path))['variables']
-    image = flatten_image_yaml(image_cfg_path, format_args=manifest_vars)
+def inject_image_json(rootfs, image_cfg_path, stream):
+    image = flatten_image_yaml(image_cfg_path, format_args={'stream': stream})
     fn = os.path.join(rootfs, 'usr/share/coreos-assembler/image.json')
     with open(fn, 'w') as f:
         json.dump(image, f, sort_keys=True)
