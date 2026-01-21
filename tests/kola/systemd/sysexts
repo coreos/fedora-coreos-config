@@ -1,34 +1,117 @@
 #!/bin/bash
 ## kola:
-##   # Marked as exclusive as we layer content over /usr with the sysexts
+##   # Marked as exclusive as we layer content over /usr with sysexts
 ##   exclusive: true
-##   # No sysexts exists for RHCOS right now
+##   # Limited to FCOS for now as we don't have easy access to repos on RHCOS
 ##   distros: fcos
+##   # Limited to x86_64 & aarch64 for now (see inline TODO)
+##   architectures: "x86_64 aarch64"
 ##   # Should work the same on all platforms
-##   # Needs internet access to download the sysexts
+##   # Needs internet access to download RPMs to build sysexts
 ##   tags: "platform-independent needs-internet"
-##   description: Verify setting up and enabling systemd system extensions
+##   description: Verify building, setting up and enabling systemd system extensions (sysexts)
 
 set -xeuo pipefail
 
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-# Uses sysexts from https://extensions.fcos.fr until we have official sysexts
-# available in Fedora.
-SYSEXTS_BASE_URL="https://extensions.fcos.fr/fedora"
+# Install tools that we need to build the sysexts
+rpm-ostree install --apply-live erofs-utils lz4
 
+build_sysext(){
+  local -r rpm="${1}"
+
+  tmpdir="/tmp/sysext-${rpm}"
+  mkdir "${tmpdir}"
+  pushd "${tmpdir}" > /dev/null
+
+  mkdir -p "rpms"
+  pushd "rpms" > /dev/null
+
+  # Download RPMs:
+  # - Resolve dependency relative to the current root
+  # - Only get packages for the current arch and arch independent ones
+  # - Disable the OpenH264 repo as it's a frequent source of flakes
+  dnf download \
+      --resolve \
+      --arch="noarch" \
+      --arch="$(arch)" \
+      --disablerepo=fedora-cisco-openh264 \
+      "${rpm}"
+
+  # Figure out version to use
+  pkg="$(ls ${rpm}-*.rpm | sort -h | head -1)"
+  epoch="$(rpm -qp --queryformat '%{EPOCH}' ${pkg})"
+  version="$(rpm -qp --queryformat '%{VERSION}-%{RELEASE}' ${pkg})"
+  if [[ "${epoch}" == "(none)" ]]; then
+      epoch=""
+  else
+      epoch="${epoch}-"
+  fi
+  version="${epoch}${version}"
+
+  popd > /dev/null
+
+  mkdir rootfs
+  pushd rootfs > /dev/null
+
+  # Post process architecture to match systemd architecture list
+  # TODO: Figure out the mapping for other architectures
+  if [[ "$(arch)" == "x86_64" ]]; then
+      arch="x86-64"
+  elif [[ "$(arch)" == "aarch64" ]]; then
+      arch="arm64"
+  else
+      echo "Unsupported architecture"
+      exit 1
+  fi
+
+  id="$(source /etc/os-release; echo "${ID}")"
+  version_id="$(source /etc/os-release; echo "${VERSION_ID}")"
+
+  # Write extension config file
+  install -d -m0755 usr/lib/extension-release.d
+  {
+  echo "ID=\"${id}\""
+  echo "VERSION_ID=\"${version_id}\""
+  echo "ARCHITECTURE=\"${arch}\""
+  } | tee "usr/lib/extension-release.d/extension-release.${rpm}"
+
+  # Extract the RPMs
+  for r in ../rpms/*.rpm; do
+    echo "Extracting: $(basename ${r})"
+    rpm2cpio "${r}" > ${r}.tar
+    cpio -idmv &> /dev/null < ${r}.tar
+    rm ${r}.tar
+  done
+
+  # Reset SELinux labels
+  filecontexts="/etc/selinux/targeted/contexts/files/file_contexts"
+  setfiles -r . ${filecontexts} . && chcon --user=system_u --recursive .
+
+  popd > /dev/null
+
+  # Create the EROFS image
+  name="${rpm}-${version}-${version_id}-${arch}.raw"
+  mkfs.erofs -zlz4 "${name}" rootfs
+  mv "${name}" /tmp
+
+  popd > /dev/null
+}
+
+build_sysext "python3"
+
+# Setup folders
 install -d -m 0755 -o 0 -g 0 /var/lib/extensions /var/lib/extensions.d
 restorecon -RFv /var/lib/extensions /var/lib/extensions.d
 systemctl enable --now systemd-sysext.service
 
 install_sysext() {
-  local -r SYSEXT="${1}"
-  install -d -m 0755 -o 0 -g 0 "/etc/sysupdate.${SYSEXT}.d"
-  restorecon -RFv "/etc/sysupdate.${SYSEXT}.d"
-  curl --silent --fail --location "${SYSEXTS_BASE_URL}/${SYSEXT}.conf" \
-    | tee "/etc/sysupdate.${SYSEXT}.d/${SYSEXT}.conf"
-  /usr/lib/systemd/systemd-sysupdate update --component "${SYSEXT}"
+  local -r name="${1}"
+  mv "/tmp/${name}"*".raw" "/var/lib/extensions.d"
+  ln -snf "/var/lib/extensions.d/${name}"*".raw" "/var/lib/extensions/${name}.raw"
+  restorecon -RFv "/var/lib/extensions.d" "/var/lib/extensions"
 }
 
 install_sysext python3
@@ -45,11 +128,9 @@ if [[ "$(/usr/bin/python3 -c 'print("python3-on-fcos-via-sysext")')" != "python3
 fi
 
 uninstall_sysext() {
-  local -r SYSEXT="${1}"
-  rm "/var/lib/extensions/${SYSEXT}.raw"
-  rm "/var/lib/extensions.d/${SYSEXT}-"*".raw"
-  rm "/etc/sysupdate.${SYSEXT}.d/${SYSEXT}.conf"
-  rmdir "/etc/sysupdate.${SYSEXT}.d/"
+  local -r name="${1}"
+  rm "/var/lib/extensions/${name}.raw"
+  rm "/var/lib/extensions.d/${name}-"*".raw"
 }
 
 uninstall_sysext python3
