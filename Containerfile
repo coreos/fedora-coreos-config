@@ -34,9 +34,6 @@ COPY . /src
 # canonicalize permission bits, see also https://gitlab.com/fedora/bootc/base-images/-/merge_requests/274
 RUN chmod -R a=rX,u+w /src
 
-# this allows FCOS/SCOS/RHCOS to do specific things before going into the shared build-rootfs script
-RUN if test -x /src/buildroot-prep; then /src/buildroot-prep; fi
-
 # useful if you're hacking on rpm-ostree/bootc-base-imagectl
 # COPY rpm-ostree /usr/bin/
 # COPY bootc-base-imagectl /usr/libexec/
