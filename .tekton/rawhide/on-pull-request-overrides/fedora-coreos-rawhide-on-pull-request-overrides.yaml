@@ -1,19 +1,20 @@
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
-  name: fedora-coreos-next-on-push
+  name: fedora-coreos-rawhide-on-pull-request-overrides
   namespace: coreos-tenant
   labels:
-    appstudio.openshift.io/application: fedora-coreos-next
-    appstudio.openshift.io/component: fedora-coreos-next
+    appstudio.openshift.io/application: fedora-coreos-rawhide
+    appstudio.openshift.io/component: fedora-coreos-rawhide
     pipelines.appstudio.openshift.io/type: build
   annotations:
     build.appstudio.openshift.io/repo: https://github.com/coreos/fedora-coreos-config?rev={{revision}}
-    build.appstudio.redhat.com/cancel-in-progress: "false"
+    build.appstudio.redhat.com/cancel-in-progress: "true"
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && !(files.all.all(f, f.matches("ci/buildroot/") || f.matches(".tekton/fcos-buildroot/"))) && target_branch == "next"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && "manifest-lock.overrides*".pathChanged() && target_branch == "rawhide"
   creationTimestamp: null
 spec:
   params:
@@ -22,7 +23,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/konflux-fedora/coreos-tenant/fedora-coreos-{{target_branch}}:{{revision}}
+    value: quay.io/konflux-fedora/coreos-tenant/fedora-coreos-{{target_branch}}:on-pr-{{revision}}
   - name: dockerfile
     value: Containerfile
   - name: path-context
@@ -45,6 +46,8 @@ spec:
     value: true
   - name: prefetch-input
     value: '[{"type": "rpm", "path": "."}]'
+  - name: image-expires-after
+    value: 5d
   pipelineRef:
     params:
     - name: bundle
@@ -55,4 +58,4 @@ spec:
       value: pipeline
     resolver: bundles
   taskRunTemplate:
-    serviceAccountName: build-pipeline-fedora-coreos-next
+    serviceAccountName: build-pipeline-fedora-coreos-rawhide
