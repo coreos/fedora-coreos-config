@@ -283,12 +283,12 @@ def prepare_local_rpm_overrides(rootfs):
 
     pkglist = subprocess.check_output(['dnf', 'repoquery', f'--repofrompath=overrides,file://{overrides_repo}',
                                        '--repo=overrides', '--latest-limit=1', f'--arch={ARCH},noarch',
-                                       '--qf', 'pkg: %{name} %{evr} %{arch}\n'], encoding='utf-8')
+                                       '--qf=pkg,%{name},%{evr},%{arch}\\n'], encoding='utf-8')
     lockfile = {}
     for line in pkglist.splitlines():
-        if not line.startswith("pkg: "):
+        if not line.startswith("pkg"):
             continue
-        _, name, evr, arch = line.strip().split()
+        _, name, evr, arch = line.split(',')
         lockfile[name] = {"evra": f"{evr}.{arch}"}
 
     if len(lockfile) == 0:
