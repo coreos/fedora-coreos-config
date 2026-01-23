@@ -36,9 +36,14 @@ def main():
     base_version = os.getenv('BASE_VERSION')
     version = os.getenv('VERSION')
     stream = os.getenv('STREAM')
+    id = os.getenv('ID')
 
-    manifest = get_treefile(manifest_path)
-
+    manifest = get_treefile(
+        manifest=manifest_path,
+        id=id,
+        stream=stream,
+        base_version=base_version
+    )
     packages = list(manifest['packages'])
 
     repos = manifest.get('repos', [])
@@ -92,16 +97,17 @@ def main():
     calculate_inputhash(args.target_rootfs, overlays, manifest)
 
 
-def get_treefile(manifest_path):
+def get_treefile(manifest, id, stream, base_version):
     with tempfile.NamedTemporaryFile(suffix='.json', mode='w') as tmp_manifest:
-        # This ensures that the treefile represents only the CoreOS bits and
-        # doesn't recurse into fedora-bootc. We can drop this once we've fully
-        # cut over to derivation.
+        # Substitute in a few values from build-args into the treefile.
         json.dump({
             "variables": {
-                "deriving": True
+                "deriving": True,
+                "id": id,
+                "stream": stream,
+                "osversion": f"{id}-{base_version}"
             },
-            "include": manifest_path
+            "include": manifest
         }, tmp_manifest)
         tmp_manifest.flush()
         data = subprocess.check_output(['rpm-ostree', 'compose', 'tree',
