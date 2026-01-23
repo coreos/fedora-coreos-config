@@ -28,16 +28,15 @@ IS_HERMETIC = os.path.exists(HERMETIC_REPO)
 
 def main():
     parser = argparse.ArgumentParser(description='Build an FCOS rootfs.')
-    parser.add_argument('--manifest-name', required=True, help='Name of the manifest file.')
-    parser.add_argument('--image-cfg-name', required=True, help='Name of the image config file.')
-    parser.add_argument('--stream', required=True, help='The CoreOS stream name.')
-    parser.add_argument('--base-version', required=True, help='Base version string.')
-    parser.add_argument('--version', required=True, help='Full version string.')
     parser.add_argument('--target-rootfs', required=True, help='Path to the target rootfs.')
     args = parser.parse_args()
 
-    manifest_path = os.path.join(SRCDIR, args.manifest_name)
-    image_cfg_path = os.path.join(SRCDIR, args.image_cfg_name)
+    manifest_path = os.path.join(SRCDIR, os.getenv('MANIFEST'))
+    image_cfg_path = os.path.join(SRCDIR, os.getenv('IMAGE_CONFIG'))
+    base_version = os.getenv('BASE_VERSION')
+    version = os.getenv('VERSION')
+    stream = os.getenv('STREAM')
+
     manifest = get_treefile(manifest_path)
 
     packages = list(manifest['packages'])
@@ -77,11 +76,11 @@ def main():
     )
 
     inject_live(args.target_rootfs)
-    inject_image_json(args.target_rootfs, image_cfg_path, args.stream)
+    inject_image_json(args.target_rootfs, image_cfg_path, stream)
     inject_platforms_json(args.target_rootfs)
     inject_content_manifest(args.target_rootfs, manifest)
 
-    inject_version_info(args.target_rootfs, args.base_version, args.version)
+    inject_version_info(args.target_rootfs, base_version, version)
 
     strict_mode = os.getenv('STRICT_MODE')
     if strict_mode == '1':
