@@ -45,12 +45,15 @@ def main():
 
     config = dotenv.dotenv_values('src/config/build-args.conf')
     x, z = (get_x(config), get_z(config, args.dev))
-    y, y_as_timestamp = get_y()
+    dt = get_timestamp()  # A datetime object
+    # Convert to a YYYYMMDD formatted string for y.
+    y = int(dt.strftime('%Y%m%d'))
+
     # Default behavior generates the iteration from Git (dev mode uses builds)
     if args.dev:
         n = get_next_iteration_from_builds(x, y, z)
     else:
-        n = get_next_iteration_from_git(y_as_timestamp)
+        n = get_next_iteration_from_git(str(dt))
     new_version = f'{x}.{y}.{z}.{n}'
 
     # sanity check the new version by trying to re-parse it
@@ -76,10 +79,10 @@ def get_x(config):
     return int(base_version)
 
 
-def get_y():
+def get_timestamp():
     """
-        Y is the base snapshot date in YYYYMMDD format of Fedora. We derive
-        this using the timestamp in the base lockfile.
+        Get the timestamp from either the lockfiles, or use the
+        current time if no lockfiles exist.
     """
 
     # XXX: should sanity check that the lockfiles for all the basearches have
@@ -103,9 +106,8 @@ def get_y():
         msg_src = "from datetime.now()"
         dt = datetime.now()
 
-    ymd = dt.strftime('%Y%m%d')
-    eprint(f"y: {ymd} ({msg_src})")
-    return int(ymd), str(dt)
+    eprint(f"timestamp: {dt.strftime('%Y%m%d')} ({msg_src})")
+    return dt
 
 
 def get_z(config, dev):
@@ -148,7 +150,7 @@ def get_next_iteration_from_builds(x, y, z):
     return n
 
 
-def get_next_iteration_from_git(y_as_timestamp):
+def get_next_iteration_from_git(timestamp):
     """
     Compute the next iteration number based on git commit history.
 
@@ -162,7 +164,7 @@ def get_next_iteration_from_git(y_as_timestamp):
     try:
         # Count commits after that point
         commit_count_since_change = subprocess.check_output(
-            ['git', 'rev-list', '--count', '--after', y_as_timestamp, 'HEAD'],
+            ['git', 'rev-list', '--count', '--after', timestamp, 'HEAD'],
             cwd="src/config", text=True
         ).strip()
         eprint(
