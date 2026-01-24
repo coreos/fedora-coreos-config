@@ -44,7 +44,7 @@ def main():
     assert os.path.isdir('builds'), 'Missing builds/ dir'
 
     config = dotenv.dotenv_values('src/config/build-args.conf')
-    x, z = (get_x(config), get_z(config, args.dev))
+    x, z = (get_x(config), get_z(config))
     dt = get_timestamp()  # A datetime object
     # Convert to a YYYYMMDD formatted string for y.
     y = int(dt.strftime('%Y%m%d'))
@@ -54,7 +54,9 @@ def main():
         n = get_next_iteration_from_builds(x, y, z)
     else:
         n = get_next_iteration_from_git(str(dt))
-    new_version = f'{x}.{y}.{z}.{n}'
+
+    dev = 'dev' if args.dev else ''
+    new_version = f'{x}.{y}.{z}.{dev}{n}'
 
     # sanity check the new version by trying to re-parse it
     assert parse_version(new_version) is not None
@@ -110,13 +112,10 @@ def get_timestamp():
     return dt
 
 
-def get_z(config, dev):
+def get_z(config):
     """
         Z is the stream indicator.
     """
-    if dev:
-        eprint("z: dev (overridden)")
-        return 'dev'
     stream = config['STREAM']
     assert stream in STREAM_TO_NUM, f"Unknown stream: {stream}"
     mapped = STREAM_TO_NUM[stream]
@@ -181,7 +180,9 @@ def get_next_iteration_from_git(timestamp):
 
 
 def parse_version(version):
-    m = re.match(r'^([0-9]{2})\.([0-9]{8})\.([0-9]+|dev)\.([0-9]+)$', version)
+    # Note that (?:pattern) os a non-matching group in python regex so
+    # it won't show up in the matched m.groups()
+    m = re.match(r'^([0-9]{2})\.([0-9]{8})\.([0-9]+)\.(?:dev)?([0-9]+)$', version)
     if m is None:
         return None
     # sanity-check date
@@ -189,7 +190,7 @@ def parse_version(version):
         time.strptime(m.group(2), '%Y%m%d')
     except ValueError:
         return None
-    return tuple(map(lambda x: 'dev' if x == 'dev' else int(x), m.groups()))
+    return tuple(map(int, m.groups()))
 
 
 def eprint(*args):
