@@ -23,12 +23,6 @@ import yaml
 
 from datetime import datetime
 
-# streams which don't use lockfiles
-UNLOCKED_STREAMS = [
-    'bodhi-updates-testing',
-    'bodhi-updates',
-]
-
 # https://github.com/coreos/fedora-coreos-tracker/issues/211#issuecomment-543547587
 STREAM_TO_NUM = {
     'next': 1,
@@ -51,7 +45,7 @@ def main():
 
     config = dotenv.dotenv_values('src/config/build-args.conf')
     x, z = (get_x(config), get_z(config, args.dev))
-    y, y_as_timestamp = get_y(config)
+    y, y_as_timestamp = get_y()
     # Default behavior generates the iteration from Git (dev mode uses builds)
     if args.dev:
         n = get_next_iteration_from_builds(x, y, z)
@@ -82,13 +76,11 @@ def get_x(config):
     return int(base_version)
 
 
-def get_y(config):
+def get_y():
     """
         Y is the base snapshot date in YYYYMMDD format of Fedora. We derive
         this using the timestamp in the base lockfile.
     """
-
-    stream = config['STREAM']
 
     # XXX: should sanity check that the lockfiles for all the basearches have
     # matching timestamps
@@ -103,15 +95,12 @@ def get_y(config):
                     raise Exception("Missing 'metadata.generated' key "
                                     f"from {lockfile}")
                 dt = datetime.strptime(generated, '%Y-%m-%dT%H:%M:%SZ')
-                assert stream not in UNLOCKED_STREAMS
                 msg_src = "from lockfile"
                 break
         except FileNotFoundError:
             continue
     else:
-        # must be an unlocked stream
-        assert stream in UNLOCKED_STREAMS
-        msg_src = "unlocked stream"
+        msg_src = "from datetime.now()"
         dt = datetime.now()
 
     ymd = dt.strftime('%Y%m%d')
