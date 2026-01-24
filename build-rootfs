@@ -113,6 +113,7 @@ def get_treefile(manifest, id, stream, version):
                 "stream": stream,
                 "osversion": f"{id}-{major_version}"
             },
+            "releasever": int(major_version),  # Only needed/used by Fedora
             "include": manifest
         }, tmp_manifest)
         tmp_manifest.flush()
