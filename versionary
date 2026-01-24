@@ -77,7 +77,7 @@ def get_x(config):
     """
         X is the base release version on which we're based.
     """
-    base_version = config['BASE_VERSION']
+    base_version = config['VERSION']
     eprint(f"x: {base_version} (from config)")
     return int(base_version)
 

@@ -19,11 +19,11 @@ ARG BUILDER_IMG=overridden
 FROM ${BUILDER_IMG} as builder
 
 ARG ID=overridden
-ARG BASE_VERSION=overridden
 ARG VERSION=overridden
+ARG STREAM=overridden
+ARG MUTATE_OS_RELEASE=overridden
 ARG MANIFEST=overridden
 ARG IMAGE_CONFIG=overridden
-ARG STREAM=overridden
 # XXX: see inject_passwd_group() in build-rootfs
 ARG PASSWD_GROUP_DIR
 ARG STRICT_MODE=0
