@@ -8,6 +8,8 @@
     Implements the Fedora CoreOS versioning scheme as per:
         https://github.com/coreos/fedora-coreos-tracker/issues/81
         https://github.com/coreos/fedora-coreos-tracker/issues/211
+    And also the RHCOS/SCOS versioning scheme such as:
+        9.8.20260125-0
 '''
 
 import argparse
@@ -24,7 +26,7 @@ import yaml
 from datetime import datetime
 
 # https://github.com/coreos/fedora-coreos-tracker/issues/211#issuecomment-543547587
-STREAM_TO_NUM = {
+FCOS_STREAM_TO_NUM = {
     'next': 1,
     'testing': 2,
     'stable': 3,
@@ -43,20 +45,47 @@ def main():
         os.chdir(args.workdir)
     assert os.path.isdir('builds'), 'Missing builds/ dir'
 
-    config = dotenv.dotenv_values('src/config/build-args.conf')
-    x, z = (get_x(config), get_z(config))
-    dt = get_timestamp()  # A datetime object
-    # Convert to a YYYYMMDD formatted string for y.
-    y = int(dt.strftime('%Y%m%d'))
+    # Initialize all the components of our versions
+    x, y, z, n = (0, 0, 0, 0)
 
-    # Default behavior generates the iteration from Git (dev mode uses builds)
-    if args.dev:
+    # Pick up values from our build-args.
+    config = dotenv.dotenv_values('src/config/build-args.conf')
+
+    # Grab the current datetime object representing the timestamp
+    # for the timestamp component of our version.
+    dt = get_timestamp()
+
+    # The base version in FCOS is a single number (i.e. 43) while
+    # in RHCOS/SCOS it's two numbers separated by . (i.e. 9.8 or 10.0)
+    x, y = split_base_version(config['VERSION'])
+
+    # The y component in FCOS is the timestamp, while in RHCOS/SCOS
+    # it's the z component. We'll convert to a YYYYMMDD formatted string.
+    if not y:
+        y = int(dt.strftime('%Y%m%d'))
+    else:
+        z = int(dt.strftime('%Y%m%d'))
+
+    # At this point if z isn't defined then we're FCOS
+    if not z:
+        z = FCOS_STREAM_TO_NUM[config['STREAM']]
+
+    # For !FCOS and in dev mode we'll default to getting the build ID
+    # n component by incrementing on top of the last build. For FCOS
+    # not in dev mode we'll calculate the n by looking at git history.
+    if args.dev or config['ID'] != 'fedora':
         n = get_next_iteration_from_builds(x, y, z)
     else:
         n = get_next_iteration_from_git(str(dt))
 
+    # On !FCOS the delimeter for the `n` component is a -
+    n_delimiter = '.' if config['ID'] == 'fedora' else '-'
+
+    # Now we can compute the final version. Note we prepend the
+    # `dev` string for the n component if --dev was passed.
     dev = 'dev' if args.dev else ''
-    new_version = f'{x}.{y}.{z}.{dev}{n}'
+    new_version = f'{x}.{y}.{z}{n_delimiter}{dev}{n}'
+    eprint(f'VERSIONARY: selected new version for build: {new_version}')
 
     # sanity check the new version by trying to re-parse it
     assert parse_version(new_version) is not None
@@ -70,15 +99,6 @@ def parse_args():
         "--dev", action="store_true", help="generate a developer version"
     )
     return parser.parse_args()
-
-
-def get_x(config):
-    """
-        X is the base release version on which we're based.
-    """
-    base_version = config['VERSION']
-    eprint(f"x: {base_version} (from config)")
-    return int(base_version)
 
 
 def get_timestamp():
@@ -112,15 +132,12 @@ def get_timestamp():
     return dt
 
 
-def get_z(config):
-    """
-        Z is the stream indicator.
-    """
-    stream = config['STREAM']
-    assert stream in STREAM_TO_NUM, f"Unknown stream: {stream}"
-    mapped = STREAM_TO_NUM[stream]
-    eprint(f"z: {mapped} (mapped from stream {stream})")
-    return mapped
+def split_base_version(base_version):
+    components = base_version.split('.')
+    if len(components) == 1:
+        return int(components[0]), 0
+    else:
+        return int(components[0]), int(components[1])
 
 
 def get_next_iteration_from_builds(x, y, z):
@@ -182,12 +199,16 @@ def get_next_iteration_from_git(timestamp):
 def parse_version(version):
     # Note that (?:pattern) os a non-matching group in python regex so
     # it won't show up in the matched m.groups()
-    m = re.match(r'^([0-9]{2})\.([0-9]{8})\.([0-9]+)\.(?:dev)?([0-9]+)$', version)
+    m = re.match(r'^([0-9]+)\.([0-9]+)\.([0-9]+)(?:\.|-)(?:dev)?([0-9]+)$', version)
     if m is None:
         return None
-    # sanity-check date
+    # sanity-check date. The time could be in the y component or z component
+    # so we have to look for it in either.
+    timegroup = 2
+    if len(m.group(3)) == 8:
+        timegroup = 3
     try:
-        time.strptime(m.group(2), '%Y%m%d')
+        time.strptime(m.group(timegroup), '%Y%m%d')
     except ValueError:
         return None
     return tuple(map(int, m.groups()))
