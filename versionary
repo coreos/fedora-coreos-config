@@ -49,7 +49,7 @@ def main():
     x, y, z, n = (0, 0, 0, 0)
 
     # Pick up values from our build-args.
-    config = dotenv.dotenv_values('src/config/build-args.conf')
+    config = dotenv.dotenv_values(args.build_args)
 
     # Grab the current datetime object representing the timestamp
     # for the timestamp component of our version.
@@ -94,6 +94,8 @@ def main():
 
 def parse_args():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--build-args', help="path to build-args.conf",
+                        default='src/config/build-args.conf')
     parser.add_argument('--workdir', help="path to cosa workdir")
     parser.add_argument(
         "--dev", action="store_true", help="generate a developer version"
