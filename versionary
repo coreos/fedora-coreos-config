@@ -135,16 +135,16 @@ def get_next_iteration_from_builds(x, y, z):
         return 0
 
     last_buildid = builds['builds'][0]['id']
-    last_version = parse_version(last_buildid)
-    if not last_version:
+    last_version_tuple = parse_version(last_buildid)
+    if not last_version_tuple:
         eprint(f"n: 0 (previous version {last_buildid} does not match scheme)")
         return 0
 
-    if (x, y, z) != last_version[:3]:
+    if (x, y, z) != last_version_tuple[:3]:
         eprint(f"n: 0 (previous version {last_buildid} x.y.z does not match)")
         return 0
 
-    n = last_version[3] + 1
+    n = last_version_tuple[3] + 1
     eprint(f"n: {n} (incremented from previous version {last_buildid})")
     return n
 
