@@ -15,7 +15,7 @@ for event_kustomization in $REPO_ROOT/.tekton/*/*/kustomization.yaml; do
   event_name=$(basename "${event_dir}")
   stream_dir=$(dirname "${event_dir}")
   stream_name=$(basename "${stream_dir}")
-  if [[ "$event_name" = "base" ]]; then
+  if [[ "$event_name" = "base" ]] || [[ "$stream_name" = "base" ]]; then
     continue
   fi
   echo -e "  generating ${stream_name}-${event_name} pipelinerun"
