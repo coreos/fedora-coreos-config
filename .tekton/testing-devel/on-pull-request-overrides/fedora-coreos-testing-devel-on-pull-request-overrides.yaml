@@ -1,11 +1,11 @@
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
-  name: fedora-coreos-on-pull-request
+  name: fedora-coreos-testing-devel-on-pull-request-overrides
   namespace: coreos-tenant
   labels:
-    appstudio.openshift.io/application: fedora-coreos
-    appstudio.openshift.io/component: fedora-coreos
+    appstudio.openshift.io/application: fedora-coreos-testing-devel
+    appstudio.openshift.io/component: fedora-coreos-testing-devel
     pipelines.appstudio.openshift.io/type: build
   annotations:
     build.appstudio.openshift.io/repo: https://github.com/coreos/fedora-coreos-config?rev={{revision}}
@@ -14,6 +14,7 @@ metadata:
     build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && "manifest-lock.overrides*".pathChanged() && target_branch == "testing-devel"
   creationTimestamp: null
 spec:
   params:
@@ -50,11 +51,11 @@ spec:
   pipelineRef:
     params:
     - name: bundle
-      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:b16aa8d0330ebe9161b2671976893fc9cf9ae128ade608d60fb80e75c400620d
+      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:d10dce3f9cc8437db7a5ba1bae5df3ac94359c5db7c9d4a4ae1b843fa9658540
     - name: name
       value: buildah-build-bootc-multi-platform-oci-ta
     - name: kind
       value: pipeline
     resolver: bundles
   taskRunTemplate:
-    serviceAccountName: build-pipeline-fedora-coreos
+    serviceAccountName: build-pipeline-fedora-coreos-testing-devel
