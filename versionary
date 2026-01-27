@@ -189,7 +189,7 @@ def get_next_iteration_from_git(timestamp):
             f"n: {commit_count_since_change} "
             "(calculated using git commit history)"
         )
-        return commit_count_since_change
+        return int(commit_count_since_change)
     except subprocess.CalledProcessError as err:
         msg = (
             "Git command failed: unable to determine the next "
