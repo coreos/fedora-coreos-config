@@ -13,7 +13,7 @@ metadata:
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "testing" && !(files.all.all(f, f.matches("ci/buildroot/") || f.matches(".tekton/fcos-buildroot/")))
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && !(files.all.all(f, f.matches("ci/buildroot/") || f.matches(".tekton/fcos-buildroot/"))) && target_branch == "testing"
   creationTimestamp: null
 spec:
   params:
@@ -48,7 +48,7 @@ spec:
   pipelineRef:
     params:
     - name: bundle
-      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:b16aa8d0330ebe9161b2671976893fc9cf9ae128ade608d60fb80e75c400620d
+      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:d10dce3f9cc8437db7a5ba1bae5df3ac94359c5db7c9d4a4ae1b843fa9658540
     - name: name
       value: buildah-build-bootc-multi-platform-oci-ta
     - name: kind
