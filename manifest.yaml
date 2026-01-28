@@ -1,12 +1,6 @@
-variables:
-  stream: rawhide
-  prod: false
-
 metadata:
   # tell `cosa build` to default to buildah path
   build_with_buildah: true
-
-releasever: 44
 
 repos:
   - fedora-rawhide
