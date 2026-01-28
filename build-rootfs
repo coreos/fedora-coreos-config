@@ -27,8 +27,16 @@ IS_HERMETIC = os.path.exists(HERMETIC_REPO)
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Build an FCOS rootfs.')
-    parser.add_argument('--target-rootfs', required=True, help='Path to the target rootfs.')
+    parser = argparse.ArgumentParser(description='Build a CoreOS rootfs.')
+    subparsers = parser.add_subparsers(help='Subcommands', required=True)
+
+    cmd_make_rootfs = \
+        subparsers.add_parser('make-rootfs',
+                              help='Generate a container root filesystem')
+    cmd_make_rootfs.add_argument('--target-rootfs', required=True,
+                                 help='Path to the target rootfs.')
+    cmd_make_rootfs.set_defaults(func=build_rootfs)
+
     args = parser.parse_args()
 
     variables = {
@@ -43,7 +51,7 @@ def main():
         'passwd_group_dir': os.getenv('PASSWD_GROUP_DIR')
     }
 
-    build_rootfs(**variables)
+    args.func(**variables)
 
 
 def get_treefile(manifest, id, stream, version):
