@@ -31,26 +31,19 @@ def main():
     parser.add_argument('--target-rootfs', required=True, help='Path to the target rootfs.')
     args = parser.parse_args()
 
-    manifest_path = os.path.join(SRCDIR, os.getenv('MANIFEST'))
-    image_cfg_path = os.path.join(SRCDIR, os.getenv('IMAGE_CONFIG'))
-    version = os.getenv('VERSION')
-    stream = os.getenv('STREAM')
-    id = os.getenv('ID')
-    mutate_os_release = os.getenv('MUTATE_OS_RELEASE')
-    strict_mode = os.getenv('STRICT_MODE')
-    passwd_group_dir = os.getenv('PASSWD_GROUP_DIR')
+    variables = {
+        'target_rootfs': args.target_rootfs,
+        'manifest_path': os.path.join(SRCDIR, os.getenv('MANIFEST')),
+        'image_cfg_path': os.path.join(SRCDIR, os.getenv('IMAGE_CONFIG')),
+        'version': os.getenv('VERSION'),
+        'stream': os.getenv('STREAM'),
+        'id': os.getenv('ID'),
+        'mutate_os_release': os.getenv('MUTATE_OS_RELEASE'),
+        'strict_mode': os.getenv('STRICT_MODE'),
+        'passwd_group_dir': os.getenv('PASSWD_GROUP_DIR')
+    }
 
-    build_rootfs(
-        target_rootfs=args.target_rootfs,
-        manifest_path=manifest_path,
-        image_cfg_path=image_cfg_path,
-        id=id,
-        stream=stream,
-        version=version,
-        strict_mode=strict_mode,
-        passwd_group_dir=passwd_group_dir,
-        mutate_os_release=mutate_os_release
-    )
+    build_rootfs(**variables)
 
 
 def get_treefile(manifest, id, stream, version):
