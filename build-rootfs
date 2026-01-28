@@ -38,13 +38,17 @@ def main():
                                  help='Path to the target rootfs.')
     cmd_make_rootfs.set_defaults(func=build_rootfs)
 
+    cmd_parse_treefile = \
+        subparsers.add_parser('parse-treefile',
+                              help='Print flattened treefile to stdout')
+    cmd_parse_treefile.set_defaults(func=print_treefile)
     args = parser.parse_args()
 
     # Convert srcdir arg into absolute path
     args.srcdir = os.path.abspath(args.srcdir)
 
     variables = {
-        'target_rootfs': args.target_rootfs,
+        'target_rootfs': getattr(args, 'target_rootfs', ''),
         'srcdir': args.srcdir,
         'manifest_path': os.path.join(args.srcdir, os.getenv('MANIFEST')),
         'image_cfg_path': os.path.join(args.srcdir, os.getenv('IMAGE_CONFIG')),
@@ -57,6 +61,10 @@ def main():
     }
 
     args.func(**variables)
+
+
+def print_treefile(manifest_path, id, stream, version, **kwargs):
+    print(json.dumps(get_treefile(manifest_path, id, stream, version)))
 
 
 def get_treefile(manifest_path, id, stream, version):
