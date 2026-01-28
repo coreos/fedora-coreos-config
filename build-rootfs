@@ -40,66 +40,17 @@ def main():
     strict_mode = os.getenv('STRICT_MODE')
     passwd_group_dir = os.getenv('PASSWD_GROUP_DIR')
 
-    manifest = get_treefile(
-        manifest=manifest_path,
+    build_rootfs(
+        target_rootfs=args.target_rootfs,
+        manifest_path=manifest_path,
+        image_cfg_path=image_cfg_path,
         id=id,
         stream=stream,
-        version=version
+        version=version,
+        strict_mode=strict_mode,
+        passwd_group_dir=passwd_group_dir,
+        mutate_os_release=mutate_os_release
     )
-    packages = list(manifest['packages'])
-
-    repos = manifest.get('repos', [])
-    lockfile_repos = manifest.get('lockfile-repos', [])
-    if repos or lockfile_repos:
-        inject_yumrepos()
-
-    local_overrides = prepare_local_rpm_overrides(args.target_rootfs)
-    if local_overrides:
-        repos += ['overrides']
-
-    locked_nevras = get_locked_nevras(local_overrides)
-    if locked_nevras:
-        # Lockfile repos require special handling because we only want locked
-        # NEVRAs to appear there. For lack of a generic solution for any repo
-        # there, we only special-case the one place where we know we use this.
-        if lockfile_repos == ['fedora-coreos-pool']:
-            if not IS_HERMETIC:
-                modify_pool_repo(locked_nevras)
-                repos += lockfile_repos
-        elif len(lockfile_repos) > 0:
-            raise Exception(f"unknown lockfile-repo found in {lockfile_repos}")
-
-    overlays = gather_overlays(manifest)
-    nodocs = (manifest.get('documentation') is False)
-    recommends = manifest.get('recommends')
-    # We generate the initramfs using dracut ourselves later after our
-    # CoreOS postprocess scripts have run. If this version of rpm-ostree
-    # supports it we'll tell it to not run dracut in the initial compose.
-    no_initramfs = True if no_initramfs_arg_supported() else False
-
-    build_rootfs(
-        args.target_rootfs, manifest_path, packages, locked_nevras,
-        overlays, repos, nodocs, recommends, no_initramfs, passwd_group_dir
-    )
-
-    inject_live(args.target_rootfs)
-    inject_image_json(args.target_rootfs, image_cfg_path, stream)
-    inject_platforms_json(args.target_rootfs)
-    inject_content_manifest(args.target_rootfs, manifest)
-
-    inject_version_info(
-        rootfs=args.target_rootfs,
-        replace_version=mutate_os_release,
-        version=version
-    )
-
-    if strict_mode == '1':
-        verify_strict_mode(args.target_rootfs, locked_nevras)
-    run_postprocess_scripts(args.target_rootfs, manifest)
-    run_dracut(args.target_rootfs)
-    cleanup_extraneous_files(args.target_rootfs)
-
-    calculate_inputhash(args.target_rootfs, overlays, manifest)
 
 
 def get_treefile(manifest, id, stream, version):
@@ -138,13 +89,51 @@ def inject_yumrepos():
         for repo in glob.glob(f'{SRCDIR}/*.repo'):
             shutil.copy(repo, "/etc/yum.repos.d")
 
-def build_rootfs(
-    target_rootfs, manifest_path, packages, locked_nevras,
-    overlays, repos, nodocs, recommends, no_initramfs,
-    passwd_group_dir
-):
+
+def build_rootfs(target_rootfs, manifest_path,
+                 image_cfg_path, id, stream, version,
+                 strict_mode, passwd_group_dir, mutate_os_release):
+
+    manifest = get_treefile(
+        manifest=manifest_path,
+        id=id,
+        stream=stream,
+        version=version
+    )
+    packages = list(manifest['packages'])
+
+    repos = manifest.get('repos', [])
+    lockfile_repos = manifest.get('lockfile-repos', [])
+    if repos or lockfile_repos:
+        inject_yumrepos()
+
+    local_overrides = prepare_local_rpm_overrides(target_rootfs)
+    if local_overrides:
+        repos += ['overrides']
+
+    locked_nevras = get_locked_nevras(local_overrides)
+    if locked_nevras:
+        # Lockfile repos require special handling because we only want locked
+        # NEVRAs to appear there. For lack of a generic solution for any repo
+        # there, we only special-case the one place where we know we use this.
+        if lockfile_repos == ['fedora-coreos-pool']:
+            if not IS_HERMETIC:
+                modify_pool_repo(locked_nevras)
+                repos += lockfile_repos
+        elif len(lockfile_repos) > 0:
+            raise Exception(f"unknown lockfile-repo found in {lockfile_repos}")
+
+    overlays = gather_overlays(manifest)
+    nodocs = (manifest.get('documentation') is False)
+    recommends = manifest.get('recommends')
+    # We generate the initramfs using dracut ourselves later after our
+    # CoreOS postprocess scripts have run. If this version of rpm-ostree
+    # supports it we'll tell it to not run dracut in the initial compose.
+    no_initramfs = True if no_initramfs_arg_supported() else False
+
     if passwd_group_dir is not None:
         inject_passwd_group(os.path.join(SRCDIR, passwd_group_dir))
+
     with tempfile.NamedTemporaryFile(mode='w') as argsfile:
         for pkg in packages:
             argsfile.write(f"--install={pkg}\n")
@@ -176,6 +165,25 @@ def build_rootfs(
                                target_rootfs] + cache_arg)
     if nodocs and tmpd is not None:
         del tmpd
+
+    inject_live(target_rootfs)
+    inject_image_json(target_rootfs, image_cfg_path, stream)
+    inject_platforms_json(target_rootfs)
+    inject_content_manifest(target_rootfs, manifest)
+
+    inject_version_info(
+        rootfs=target_rootfs,
+        replace_version=mutate_os_release,
+        version=version
+    )
+
+    if strict_mode == '1':
+        verify_strict_mode(target_rootfs, locked_nevras)
+    run_postprocess_scripts(target_rootfs, manifest)
+    run_dracut(target_rootfs)
+    cleanup_extraneous_files(target_rootfs)
+
+    calculate_inputhash(target_rootfs, overlays, manifest)
 
 def get_bootc_base_imagectl_help():
     return subprocess.check_output(['/usr/libexec/bootc-base-imagectl', 'build-rootfs', '-h'], encoding='utf-8')
