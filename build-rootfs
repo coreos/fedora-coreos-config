@@ -54,7 +54,7 @@ def main():
     args.func(**variables)
 
 
-def get_treefile(manifest, id, stream, version):
+def get_treefile(manifest_path, id, stream, version):
     with tempfile.NamedTemporaryFile(suffix='.json', mode='w') as tmp_manifest:
         # Substitute in a few values from build-args into the treefile.
         major_version = version.split('.')[0]
@@ -66,7 +66,7 @@ def get_treefile(manifest, id, stream, version):
                 "osversion": f"{id}-{major_version}"
             },
             "releasever": int(major_version),  # Only needed/used by Fedora
-            "include": manifest
+            "include": manifest_path
         }, tmp_manifest)
         tmp_manifest.flush()
         data = subprocess.check_output(['rpm-ostree', 'compose', 'tree',
@@ -96,7 +96,7 @@ def build_rootfs(target_rootfs, manifest_path,
                  strict_mode, passwd_group_dir, mutate_os_release):
 
     manifest = get_treefile(
-        manifest=manifest_path,
+        manifest_path=manifest_path,
         id=id,
         stream=stream,
         version=version
