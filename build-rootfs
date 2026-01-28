@@ -54,7 +54,7 @@ def main():
         'image_cfg_path': os.path.join(args.srcdir, os.getenv('IMAGE_CONFIG')),
         'version': os.getenv('VERSION'),
         'stream': os.getenv('STREAM'),
-        'id': os.getenv('ID'),
+        'osid': os.getenv('ID'),
         'mutate_os_release': os.getenv('MUTATE_OS_RELEASE'),
         'strict_mode': os.getenv('STRICT_MODE'),
         'passwd_group_dir': os.getenv('PASSWD_GROUP_DIR')
@@ -63,20 +63,20 @@ def main():
     args.func(**variables)
 
 
-def print_treefile(manifest_path, id, stream, version, **kwargs):
-    print(json.dumps(get_treefile(manifest_path, id, stream, version)))
+def print_treefile(manifest_path, osid, stream, version, **kwargs):
+    print(json.dumps(get_treefile(manifest_path, osid, stream, version)))
 
 
-def get_treefile(manifest_path, id, stream, version):
+def get_treefile(manifest_path, osid, stream, version):
     with tempfile.NamedTemporaryFile(suffix='.json', mode='w') as tmp_manifest:
         # Substitute in a few values from build-args into the treefile.
         major_version = version.split('.')[0]
         json.dump({
             "variables": {
                 "deriving": True,
-                "id": id,
+                "id": osid,
                 "stream": stream,
-                "osversion": f"{id}-{major_version}"
+                "osversion": f"{osid}-{major_version}"
             },
             "releasever": int(major_version),  # Only needed/used by Fedora
             "include": manifest_path
@@ -105,12 +105,12 @@ def inject_yumrepos(srcdir):
 
 
 def build_rootfs(target_rootfs, srcdir, manifest_path,
-                 image_cfg_path, id, stream, version,
+                 image_cfg_path, osid, stream, version,
                  strict_mode, passwd_group_dir, mutate_os_release):
 
     manifest = get_treefile(
         manifest_path=manifest_path,
-        id=id,
+        osid=osid,
         stream=stream,
         version=version
     )
