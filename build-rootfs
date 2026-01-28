@@ -50,8 +50,8 @@ def main():
     variables = {
         'target_rootfs': getattr(args, 'target_rootfs', ''),
         'srcdir': args.srcdir,
-        'manifest_path': os.path.join(args.srcdir, os.getenv('MANIFEST')),
-        'image_cfg_path': os.path.join(args.srcdir, os.getenv('IMAGE_CONFIG')),
+        'manifest_name': os.getenv('MANIFEST'),
+        'image_config': os.getenv('IMAGE_CONFIG'),
         'version': os.getenv('VERSION'),
         'stream': os.getenv('STREAM'),
         'osid': os.getenv('ID'),
@@ -63,7 +63,10 @@ def main():
     args.func(**variables)
 
 
-def print_treefile(manifest_path, osid, stream, version, **kwargs):
+def print_treefile(manifest_name, osid, stream, version, srcdir, **kwargs):
+    if not manifest_name or not osid or not stream or not version or not srcdir:
+        raise Exception("Must set env vars before calling. Source build-args.conf")
+    manifest_path = os.path.join(srcdir, manifest_name)
     print(json.dumps(get_treefile(manifest_path, osid, stream, version)))
 
 
@@ -104,9 +107,17 @@ def inject_yumrepos(srcdir):
             shutil.copy(repo, "/etc/yum.repos.d")
 
 
-def build_rootfs(target_rootfs, srcdir, manifest_path,
-                 image_cfg_path, osid, stream, version,
+def build_rootfs(target_rootfs, srcdir, manifest_name,
+                 image_config, osid, stream, version,
                  strict_mode, passwd_group_dir, mutate_os_release):
+
+    # we allow strict_mode and passwd_group_dir to be None. Check all others.
+    if not target_rootfs or not manifest_name or not image_config or \
+        not osid or not stream or not version or not mutate_os_release:
+        raise Exception("Must set env vars before calling. Source build-args.conf")
+
+    manifest_path = os.path.join(srcdir, manifest_name)
+    image_cfg_path = os.path.join(srcdir, image_config)
 
     manifest = get_treefile(
         manifest_path=manifest_path,
