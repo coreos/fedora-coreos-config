@@ -1,12 +1,6 @@
-variables:
-  stream: next-devel
-  prod: false
-
 metadata:
   # tell `cosa build` to default to buildah path
   build_with_buildah: true
-
-releasever: 43
 
 repos:
   # These repos are there to make it easier to add new packages to the OS and to
