@@ -6,8 +6,11 @@ include: fedora-coreos-base.yaml
 conditional-include:
   - if: releasever >= 41
     include: selinux-workaround.yaml
-  # If not production then disable Zincati
-  - if: prod == false
+  # If not on a production stream then disable Zincati
+  - if:
+      - stream != "stable"
+      - stream != "testing"
+      - stream != "next"
     include:
       postprocess:
         - |
