@@ -20,7 +20,6 @@ import yaml
 
 
 ARCH = os.uname().machine
-SRCDIR = '/src'
 INPUTHASH = '/run/inputhash'
 HERMETIC_REPO = '/etc/yum.repos.d/cachi2.repo'
 IS_HERMETIC = os.path.exists(HERMETIC_REPO)
@@ -28,6 +27,8 @@ IS_HERMETIC = os.path.exists(HERMETIC_REPO)
 
 def main():
     parser = argparse.ArgumentParser(description='Build a CoreOS rootfs.')
+    parser.add_argument('--srcdir', default='/src',
+                        help='The source config directory')
     subparsers = parser.add_subparsers(help='Subcommands', required=True)
 
     cmd_make_rootfs = \
@@ -39,10 +40,14 @@ def main():
 
     args = parser.parse_args()
 
+    # Convert srcdir arg into absolute path
+    args.srcdir = os.path.abspath(args.srcdir)
+
     variables = {
         'target_rootfs': args.target_rootfs,
-        'manifest_path': os.path.join(SRCDIR, os.getenv('MANIFEST')),
-        'image_cfg_path': os.path.join(SRCDIR, os.getenv('IMAGE_CONFIG')),
+        'srcdir': args.srcdir,
+        'manifest_path': os.path.join(args.srcdir, os.getenv('MANIFEST')),
+        'image_cfg_path': os.path.join(args.srcdir, os.getenv('IMAGE_CONFIG')),
         'version': os.getenv('VERSION'),
         'stream': os.getenv('STREAM'),
         'id': os.getenv('ID'),
@@ -74,7 +79,7 @@ def get_treefile(manifest_path, id, stream, version):
     return json.loads(data)
 
 
-def inject_yumrepos():
+def inject_yumrepos(srcdir):
     # first delete all the default repos
     for repo in glob.glob('/etc/yum.repos.d/*.repo'):
         if os.path.basename(repo) == 'secret.repo':
@@ -87,11 +92,11 @@ def inject_yumrepos():
 
     # and now inject our repos
     if not IS_HERMETIC:
-        for repo in glob.glob(f'{SRCDIR}/*.repo'):
+        for repo in glob.glob(f'{srcdir}/*.repo'):
             shutil.copy(repo, "/etc/yum.repos.d")
 
 
-def build_rootfs(target_rootfs, manifest_path,
+def build_rootfs(target_rootfs, srcdir, manifest_path,
                  image_cfg_path, id, stream, version,
                  strict_mode, passwd_group_dir, mutate_os_release):
 
@@ -106,13 +111,13 @@ def build_rootfs(target_rootfs, manifest_path,
     repos = manifest.get('repos', [])
     lockfile_repos = manifest.get('lockfile-repos', [])
     if repos or lockfile_repos:
-        inject_yumrepos()
+        inject_yumrepos(srcdir)
 
-    local_overrides = prepare_local_rpm_overrides(target_rootfs)
+    local_overrides = prepare_local_rpm_overrides(target_rootfs, srcdir)
     if local_overrides:
         repos += ['overrides']
 
-    locked_nevras = get_locked_nevras(local_overrides)
+    locked_nevras = get_locked_nevras(local_overrides, srcdir)
     if locked_nevras:
         # Lockfile repos require special handling because we only want locked
         # NEVRAs to appear there. For lack of a generic solution for any repo
@@ -124,7 +129,7 @@ def build_rootfs(target_rootfs, manifest_path,
         elif len(lockfile_repos) > 0:
             raise Exception(f"unknown lockfile-repo found in {lockfile_repos}")
 
-    overlays = gather_overlays(manifest)
+    overlays = gather_overlays(manifest, srcdir)
     nodocs = (manifest.get('documentation') is False)
     recommends = manifest.get('recommends')
     # We generate the initramfs using dracut ourselves later after our
@@ -133,7 +138,7 @@ def build_rootfs(target_rootfs, manifest_path,
     no_initramfs = True if no_initramfs_arg_supported() else False
 
     if passwd_group_dir is not None:
-        inject_passwd_group(os.path.join(SRCDIR, passwd_group_dir))
+        inject_passwd_group(os.path.join(srcdir, passwd_group_dir))
 
     with tempfile.NamedTemporaryFile(mode='w') as argsfile:
         for pkg in packages:
@@ -167,9 +172,9 @@ def build_rootfs(target_rootfs, manifest_path,
     if nodocs and tmpd is not None:
         del tmpd
 
-    inject_live(target_rootfs)
+    inject_live(target_rootfs, srcdir)
     inject_image_json(target_rootfs, image_cfg_path, stream)
-    inject_platforms_json(target_rootfs)
+    inject_platforms_json(target_rootfs, srcdir)
     inject_content_manifest(target_rootfs, manifest)
 
     inject_version_info(
@@ -296,8 +301,8 @@ def run_dracut(rootfs):
                    '--no-hostonly', f"/usr/lib/modules/{kver}/initramfs.img", kver])
 
 
-def prepare_local_rpm_overrides(rootfs):
-    overrides_repo = os.path.join(SRCDIR, 'overrides/rpm')
+def prepare_local_rpm_overrides(rootfs, srcdir):
+    overrides_repo = os.path.join(srcdir, 'overrides/rpm')
     if not os.path.isdir(f'{overrides_repo}/repodata'):
         return None
 
@@ -340,10 +345,10 @@ def bwrap(rootfs, args, capture=False):
     subprocess.check_call(args)
 
 
-def get_locked_nevras(local_overrides):
-    lockfile_path = os.path.join(SRCDIR, f"manifest-lock.{ARCH}.json")
-    overrides_path = os.path.join(SRCDIR, "manifest-lock.overrides.yaml")
-    overrides_arch_path = os.path.join(SRCDIR, f"manifest-lock.overrides.{ARCH}.yaml")
+def get_locked_nevras(local_overrides, srcdir):
+    lockfile_path = os.path.join(srcdir, f"manifest-lock.{ARCH}.json")
+    overrides_path = os.path.join(srcdir, "manifest-lock.overrides.yaml")
+    overrides_arch_path = os.path.join(srcdir, f"manifest-lock.overrides.{ARCH}.yaml")
 
     # we go from lowest priority to highest here: base lockfiles, overrides, local overrides
     locks = {}
@@ -401,13 +406,13 @@ def inject_version_info(rootfs, replace_version, version):
 
 
 # This re-implements cosa's overlay logic.
-def gather_overlays(manifest):
+def gather_overlays(manifest, srcdir):
     overlays = []
     for layer in manifest.get('ostree-layers', []):
         assert layer.startswith('overlay/')
-        overlays.append(os.path.join(SRCDIR, 'overlay.d', layer[len('overlay/'):]))
+        overlays.append(os.path.join(srcdir, 'overlay.d', layer[len('overlay/'):]))
 
-    rootfs_override = os.path.join(SRCDIR, 'overrides/rootfs')
+    rootfs_override = os.path.join(srcdir, 'overrides/rootfs')
     if os.path.isdir(rootfs_override) and len(os.listdir(rootfs_override)) > 0:
         print("Injecting rootfs override")
         overlays.append(rootfs_override)
@@ -416,9 +421,9 @@ def gather_overlays(manifest):
 
 
 # Inject live/ bits.
-def inject_live(rootfs):
+def inject_live(rootfs, srcdir):
     target_path = os.path.join(rootfs, 'usr/share/coreos-assembler/live')
-    shutil.copytree(os.path.join(SRCDIR, "live"), target_path)
+    shutil.copytree(os.path.join(srcdir, "live"), target_path)
 
 
 def inject_image_json(rootfs, image_cfg_path, stream):
@@ -587,8 +592,8 @@ def merge_dicts(x, y):
     return ret
 
 
-def inject_platforms_json(rootfs):
-    with open(os.path.join(SRCDIR, 'platforms.yaml')) as f:
+def inject_platforms_json(rootfs, srcdir):
+    with open(os.path.join(srcdir, 'platforms.yaml')) as f:
         platforms = yaml.safe_load(f)
     fn = os.path.join(rootfs, 'usr/share/coreos-assembler/platforms.json')
     if ARCH in platforms:
