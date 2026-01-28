@@ -20,101 +20,69 @@ import yaml
 
 
 ARCH = os.uname().machine
-SRCDIR = '/src'
 INPUTHASH = '/run/inputhash'
 HERMETIC_REPO = '/etc/yum.repos.d/cachi2.repo'
 IS_HERMETIC = os.path.exists(HERMETIC_REPO)
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Build an FCOS rootfs.')
-    parser.add_argument('--target-rootfs', required=True, help='Path to the target rootfs.')
+    parser = argparse.ArgumentParser(description='Build a CoreOS rootfs.')
+    parser.add_argument('--srcdir', default='/src',
+                        help='The source config directory')
+    subparsers = parser.add_subparsers(help='Subcommands', required=True)
+
+    cmd_make_rootfs = \
+        subparsers.add_parser('make-rootfs',
+                              help='Generate a container root filesystem')
+    cmd_make_rootfs.add_argument('--target-rootfs', required=True,
+                                 help='Path to the target rootfs.')
+    cmd_make_rootfs.set_defaults(func=build_rootfs)
+
+    cmd_parse_treefile = \
+        subparsers.add_parser('parse-treefile',
+                              help='Print flattened treefile to stdout')
+    cmd_parse_treefile.set_defaults(func=print_treefile)
     args = parser.parse_args()
 
-    manifest_path = os.path.join(SRCDIR, os.getenv('MANIFEST'))
-    image_cfg_path = os.path.join(SRCDIR, os.getenv('IMAGE_CONFIG'))
-    version = os.getenv('VERSION')
-    stream = os.getenv('STREAM')
-    id = os.getenv('ID')
-    mutate_os_release = os.getenv('MUTATE_OS_RELEASE')
-    strict_mode = os.getenv('STRICT_MODE')
-    passwd_group_dir = os.getenv('PASSWD_GROUP_DIR')
+    # Convert srcdir arg into absolute path
+    args.srcdir = os.path.abspath(args.srcdir)
 
-    manifest = get_treefile(
-        manifest=manifest_path,
-        id=id,
-        stream=stream,
-        version=version
-    )
-    packages = list(manifest['packages'])
+    variables = {
+        'target_rootfs': getattr(args, 'target_rootfs', ''),
+        'srcdir': args.srcdir,
+        'manifest_name': os.getenv('MANIFEST'),
+        'image_config': os.getenv('IMAGE_CONFIG'),
+        'version': os.getenv('VERSION'),
+        'stream': os.getenv('STREAM'),
+        'osid': os.getenv('ID'),
+        'mutate_os_release': os.getenv('MUTATE_OS_RELEASE'),
+        'strict_mode': os.getenv('STRICT_MODE'),
+        'passwd_group_dir': os.getenv('PASSWD_GROUP_DIR')
+    }
 
-    repos = manifest.get('repos', [])
-    lockfile_repos = manifest.get('lockfile-repos', [])
-    if repos or lockfile_repos:
-        inject_yumrepos()
-
-    local_overrides = prepare_local_rpm_overrides(args.target_rootfs)
-    if local_overrides:
-        repos += ['overrides']
-
-    locked_nevras = get_locked_nevras(local_overrides)
-    if locked_nevras:
-        # Lockfile repos require special handling because we only want locked
-        # NEVRAs to appear there. For lack of a generic solution for any repo
-        # there, we only special-case the one place where we know we use this.
-        if lockfile_repos == ['fedora-coreos-pool']:
-            if not IS_HERMETIC:
-                modify_pool_repo(locked_nevras)
-                repos += lockfile_repos
-        elif len(lockfile_repos) > 0:
-            raise Exception(f"unknown lockfile-repo found in {lockfile_repos}")
-
-    overlays = gather_overlays(manifest)
-    nodocs = (manifest.get('documentation') is False)
-    recommends = manifest.get('recommends')
-    # We generate the initramfs using dracut ourselves later after our
-    # CoreOS postprocess scripts have run. If this version of rpm-ostree
-    # supports it we'll tell it to not run dracut in the initial compose.
-    no_initramfs = True if no_initramfs_arg_supported() else False
-
-    build_rootfs(
-        args.target_rootfs, manifest_path, packages, locked_nevras,
-        overlays, repos, nodocs, recommends, no_initramfs, passwd_group_dir
-    )
-
-    inject_live(args.target_rootfs)
-    inject_image_json(args.target_rootfs, image_cfg_path, stream)
-    inject_platforms_json(args.target_rootfs)
-    inject_content_manifest(args.target_rootfs, manifest)
-
-    inject_version_info(
-        rootfs=args.target_rootfs,
-        replace_version=mutate_os_release,
-        version=version
-    )
-
-    if strict_mode == '1':
-        verify_strict_mode(args.target_rootfs, locked_nevras)
-    run_postprocess_scripts(args.target_rootfs, manifest)
-    run_dracut(args.target_rootfs)
-    cleanup_extraneous_files(args.target_rootfs)
-
-    calculate_inputhash(args.target_rootfs, overlays, manifest)
+    args.func(**variables)
 
 
-def get_treefile(manifest, id, stream, version):
+def print_treefile(manifest_name, osid, stream, version, srcdir, **kwargs):
+    if not manifest_name or not osid or not stream or not version or not srcdir:
+        raise Exception("Must set env vars before calling. Source build-args.conf")
+    manifest_path = os.path.join(srcdir, manifest_name)
+    print(json.dumps(get_treefile(manifest_path, osid, stream, version)))
+
+
+def get_treefile(manifest_path, osid, stream, version):
     with tempfile.NamedTemporaryFile(suffix='.json', mode='w') as tmp_manifest:
         # Substitute in a few values from build-args into the treefile.
         major_version = version.split('.')[0]
         json.dump({
             "variables": {
                 "deriving": True,
-                "id": id,
+                "id": osid,
                 "stream": stream,
-                "osversion": f"{id}-{major_version}"
+                "osversion": f"{osid}-{major_version}"
             },
             "releasever": int(major_version),  # Only needed/used by Fedora
-            "include": manifest
+            "include": manifest_path
         }, tmp_manifest)
         tmp_manifest.flush()
         data = subprocess.check_output(['rpm-ostree', 'compose', 'tree',
@@ -122,7 +90,7 @@ def get_treefile(manifest, id, stream, version):
     return json.loads(data)
 
 
-def inject_yumrepos():
+def inject_yumrepos(srcdir):
     # first delete all the default repos
     for repo in glob.glob('/etc/yum.repos.d/*.repo'):
         if os.path.basename(repo) == 'secret.repo':
@@ -135,16 +103,62 @@ def inject_yumrepos():
 
     # and now inject our repos
     if not IS_HERMETIC:
-        for repo in glob.glob(f'{SRCDIR}/*.repo'):
+        for repo in glob.glob(f'{srcdir}/*.repo'):
             shutil.copy(repo, "/etc/yum.repos.d")
 
-def build_rootfs(
-    target_rootfs, manifest_path, packages, locked_nevras,
-    overlays, repos, nodocs, recommends, no_initramfs,
-    passwd_group_dir
-):
+
+def build_rootfs(target_rootfs, srcdir, manifest_name,
+                 image_config, osid, stream, version,
+                 strict_mode, passwd_group_dir, mutate_os_release):
+
+    # we allow strict_mode and passwd_group_dir to be None. Check all others.
+    if not target_rootfs or not manifest_name or not image_config or \
+        not osid or not stream or not version or not mutate_os_release:
+        raise Exception("Must set env vars before calling. Source build-args.conf")
+
+    manifest_path = os.path.join(srcdir, manifest_name)
+    image_cfg_path = os.path.join(srcdir, image_config)
+
+    manifest = get_treefile(
+        manifest_path=manifest_path,
+        osid=osid,
+        stream=stream,
+        version=version
+    )
+    packages = list(manifest['packages'])
+
+    repos = manifest.get('repos', [])
+    lockfile_repos = manifest.get('lockfile-repos', [])
+    if repos or lockfile_repos:
+        inject_yumrepos(srcdir)
+
+    local_overrides = prepare_local_rpm_overrides(target_rootfs, srcdir)
+    if local_overrides:
+        repos += ['overrides']
+
+    locked_nevras = get_locked_nevras(local_overrides, srcdir)
+    if locked_nevras:
+        # Lockfile repos require special handling because we only want locked
+        # NEVRAs to appear there. For lack of a generic solution for any repo
+        # there, we only special-case the one place where we know we use this.
+        if lockfile_repos == ['fedora-coreos-pool']:
+            if not IS_HERMETIC:
+                modify_pool_repo(locked_nevras)
+                repos += lockfile_repos
+        elif len(lockfile_repos) > 0:
+            raise Exception(f"unknown lockfile-repo found in {lockfile_repos}")
+
+    overlays = gather_overlays(manifest, srcdir)
+    nodocs = (manifest.get('documentation') is False)
+    recommends = manifest.get('recommends')
+    # We generate the initramfs using dracut ourselves later after our
+    # CoreOS postprocess scripts have run. If this version of rpm-ostree
+    # supports it we'll tell it to not run dracut in the initial compose.
+    no_initramfs = True if no_initramfs_arg_supported() else False
+
     if passwd_group_dir is not None:
-        inject_passwd_group(os.path.join(SRCDIR, passwd_group_dir))
+        inject_passwd_group(os.path.join(srcdir, passwd_group_dir))
+
     with tempfile.NamedTemporaryFile(mode='w') as argsfile:
         for pkg in packages:
             argsfile.write(f"--install={pkg}\n")
@@ -176,6 +190,25 @@ def build_rootfs(
                                target_rootfs] + cache_arg)
     if nodocs and tmpd is not None:
         del tmpd
+
+    inject_live(target_rootfs, srcdir)
+    inject_image_json(target_rootfs, image_cfg_path, stream)
+    inject_platforms_json(target_rootfs, srcdir)
+    inject_content_manifest(target_rootfs, manifest)
+
+    inject_version_info(
+        rootfs=target_rootfs,
+        replace_version=mutate_os_release,
+        version=version
+    )
+
+    if strict_mode == '1':
+        verify_strict_mode(target_rootfs, locked_nevras)
+    run_postprocess_scripts(target_rootfs, manifest)
+    run_dracut(target_rootfs)
+    cleanup_extraneous_files(target_rootfs)
+
+    calculate_inputhash(target_rootfs, overlays, manifest)
 
 def get_bootc_base_imagectl_help():
     return subprocess.check_output(['/usr/libexec/bootc-base-imagectl', 'build-rootfs', '-h'], encoding='utf-8')
@@ -287,8 +320,8 @@ def run_dracut(rootfs):
                    '--no-hostonly', f"/usr/lib/modules/{kver}/initramfs.img", kver])
 
 
-def prepare_local_rpm_overrides(rootfs):
-    overrides_repo = os.path.join(SRCDIR, 'overrides/rpm')
+def prepare_local_rpm_overrides(rootfs, srcdir):
+    overrides_repo = os.path.join(srcdir, 'overrides/rpm')
     if not os.path.isdir(f'{overrides_repo}/repodata'):
         return None
 
@@ -331,10 +364,10 @@ def bwrap(rootfs, args, capture=False):
     subprocess.check_call(args)
 
 
-def get_locked_nevras(local_overrides):
-    lockfile_path = os.path.join(SRCDIR, f"manifest-lock.{ARCH}.json")
-    overrides_path = os.path.join(SRCDIR, "manifest-lock.overrides.yaml")
-    overrides_arch_path = os.path.join(SRCDIR, f"manifest-lock.overrides.{ARCH}.yaml")
+def get_locked_nevras(local_overrides, srcdir):
+    lockfile_path = os.path.join(srcdir, f"manifest-lock.{ARCH}.json")
+    overrides_path = os.path.join(srcdir, "manifest-lock.overrides.yaml")
+    overrides_arch_path = os.path.join(srcdir, f"manifest-lock.overrides.{ARCH}.yaml")
 
     # we go from lowest priority to highest here: base lockfiles, overrides, local overrides
     locks = {}
@@ -392,13 +425,13 @@ def inject_version_info(rootfs, replace_version, version):
 
 
 # This re-implements cosa's overlay logic.
-def gather_overlays(manifest):
+def gather_overlays(manifest, srcdir):
     overlays = []
     for layer in manifest.get('ostree-layers', []):
         assert layer.startswith('overlay/')
-        overlays.append(os.path.join(SRCDIR, 'overlay.d', layer[len('overlay/'):]))
+        overlays.append(os.path.join(srcdir, 'overlay.d', layer[len('overlay/'):]))
 
-    rootfs_override = os.path.join(SRCDIR, 'overrides/rootfs')
+    rootfs_override = os.path.join(srcdir, 'overrides/rootfs')
     if os.path.isdir(rootfs_override) and len(os.listdir(rootfs_override)) > 0:
         print("Injecting rootfs override")
         overlays.append(rootfs_override)
@@ -407,9 +440,9 @@ def gather_overlays(manifest):
 
 
 # Inject live/ bits.
-def inject_live(rootfs):
+def inject_live(rootfs, srcdir):
     target_path = os.path.join(rootfs, 'usr/share/coreos-assembler/live')
-    shutil.copytree(os.path.join(SRCDIR, "live"), target_path)
+    shutil.copytree(os.path.join(srcdir, "live"), target_path)
 
 
 def inject_image_json(rootfs, image_cfg_path, stream):
@@ -578,8 +611,8 @@ def merge_dicts(x, y):
     return ret
 
 
-def inject_platforms_json(rootfs):
-    with open(os.path.join(SRCDIR, 'platforms.yaml')) as f:
+def inject_platforms_json(rootfs, srcdir):
+    with open(os.path.join(srcdir, 'platforms.yaml')) as f:
         platforms = yaml.safe_load(f)
     fn = os.path.join(rootfs, 'usr/share/coreos-assembler/platforms.json')
     if ARCH in platforms:
