@@ -46,7 +46,7 @@ def main():
     assert os.path.isdir('builds'), 'Missing builds/ dir'
 
     # Initialize all the components of our versions
-    x, y, z, n = (0, 0, 0, 0)
+    x, y, z, n = (None, None, None, None)
 
     # Pick up values from our build-args.
     config = dotenv.dotenv_values(args.build_args)
@@ -61,13 +61,13 @@ def main():
 
     # The y component in FCOS is the timestamp, while in RHCOS/SCOS
     # it's the z component. We'll convert to a YYYYMMDD formatted string.
-    if not y:
+    if y is None:
         y = int(dt.strftime('%Y%m%d'))
     else:
         z = int(dt.strftime('%Y%m%d'))
 
     # At this point if z isn't defined then we're FCOS
-    if not z:
+    if z is None:
         z = FCOS_STREAM_TO_NUM[config['STREAM']]
 
     # For !FCOS and in dev mode we'll default to getting the build ID
@@ -137,7 +137,7 @@ def get_timestamp():
 def split_base_version(base_version):
     components = base_version.split('.')
     if len(components) == 1:
-        return int(components[0]), 0
+        return int(components[0]), None
     else:
         return int(components[0]), int(components[1])
 
