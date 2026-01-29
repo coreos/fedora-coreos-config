@@ -7,3 +7,19 @@
 ##  warn: true
 ##  arches:
 ##    - aarch64
+
+- pattern: kdump.crash.ssh
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2100
+  snooze: 2026-02-28
+  arches:
+    - s390x
+  streams:
+    - rawhide
+
+- pattern: ext.config.kdump.crash
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2100
+  snooze: 2026-02-28
+  arches:
+    - s390x
+  streams:
+    - rawhide
