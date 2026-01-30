@@ -6,13 +6,3 @@ repos:
   - fedora-rawhide
 
 include: manifests/fedora-coreos.yaml
-
-conditional-include:
-  # Temporary hack to include systemd-pam. This is fixed in bootc base
-  # images [1], but they are having trouble building rawhide right now [2].
-  # [1] https://gitlab.com/fedora/bootc/base-images/-/merge_requests/350
-  # [2] https://gitlab.com/fedora/bootc/tracker/-/issues/84
-  - if: releasever == 44
-    include:
-      packages:
-        - systemd-pam
