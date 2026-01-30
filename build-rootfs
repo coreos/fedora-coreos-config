@@ -73,15 +73,20 @@ def print_treefile(manifest_name, osid, stream, version, srcdir, **kwargs):
 def get_treefile(manifest_path, osid, stream, version):
     with tempfile.NamedTemporaryFile(suffix='.json', mode='w') as tmp_manifest:
         # Substitute in a few values from build-args into the treefile.
-        major_version = version.split('.')[0]
+        ## Split the version to get components for releasever and osversion
+        (x, y, _) = version.split('.', 2)
+        osversion = f"{osid}-{x}"
+        if osid == "rhel":
+            # For RHCOS we add the minor to the osversion
+            osversion = f"{osid}-{x}.{y}"
         json.dump({
             "variables": {
                 "deriving": True,
                 "id": osid,
                 "stream": stream,
-                "osversion": f"{osid}-{major_version}"
+                "osversion": osversion
             },
-            "releasever": int(major_version),  # Only needed/used by Fedora
+            "releasever": int(x),  # Only needed/used by Fedora
             "include": manifest_path
         }, tmp_manifest)
         tmp_manifest.flush()
