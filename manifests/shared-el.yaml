@@ -10,7 +10,7 @@ conditional-include:
   # Include shared-el10 workarounds on Fedora and EL10
   - if: id == "fedora"
     include: shared-el10.yaml
-  - if: osversion == "rhel-10.1"
+  - if: osversion == "rhel-10.2"
     include: shared-el10.yaml
   - if: osversion == "centos-10"
     include: shared-el10.yaml
