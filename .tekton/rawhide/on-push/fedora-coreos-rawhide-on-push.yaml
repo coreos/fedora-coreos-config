@@ -41,10 +41,14 @@ spec:
     - linux/ppc64le
   - name: clone-depth
     value: 50
+  - name: hermetic
+    value: true
+  - name: prefetch-input
+    value: '[{"type": "rpm", "path": "."}]'
   pipelineRef:
     params:
     - name: bundle
-      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:b16aa8d0330ebe9161b2671976893fc9cf9ae128ade608d60fb80e75c400620d
+      value: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:2678dd50429012f562c349ad52bce30f4bba3a0f6832b874c303e418d5b8a4ae
     - name: name
       value: buildah-build-bootc-multi-platform-oci-ta
     - name: kind
