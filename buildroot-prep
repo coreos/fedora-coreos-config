@@ -8,8 +8,11 @@ set -euo pipefail
 arch=$(uname -m)
 . /etc/os-release
 
-cp /src/fedora-coreos-continuous.repo /etc/yum.repos.d
-
+# cachi2 is the repo Konflux injects when hermetic build is enabled and
+# is self-sufficient to pull all the required RPMs.
+if [ ! -f "/etc/yum.repos.d/cachi2.repo" ]; then
+    cp /src/fedora-coreos-continuous.repo /etc/yum.repos.d
+fi
 # NOTE: try to remove anything that queries repos here once it's no longer
 # needed so that we don't unnecessarily pay for repo metadata.
 
