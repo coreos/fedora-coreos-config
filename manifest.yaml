@@ -1,11 +1,5 @@
-variables:
-  stream: stable
-  prod: true
-
 metadata:
   # tell `cosa build` to default to buildah path
   build_with_buildah: true
-
-releasever: 43
 
 include: manifests/fedora-coreos.yaml
