@@ -2,14 +2,6 @@
 # Add things in this file which are somewhat "opinionated", not necessarily
 # core functionality.
 
-variables:
-  id: "fedora"
-  # osversion is unused in Fedora for now, but it's needed because we
-  # do some conditional_includes: which do leverage the osversion
-  # defined in rhcos/scos. When https://github.com/coreos/rpm-ostree/pull/5392
-  # merges we can define this with values from other vars: osversion: "${id}-${releasever}"
-  osversion: "unused"
-
 include:
   - system-configuration.yaml
   - ignition-and-ostree.yaml
