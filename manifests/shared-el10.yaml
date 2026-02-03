@@ -26,3 +26,6 @@ postprocess:
     EOF
     /usr/sbin/semodule -i /tmp/fcos-workarounds.cil
     rm /tmp/fcos-workarounds.cil
+    # Also remove created LOCK files as we don't want those
+    # to end up in /usr/etc
+    rm -f /etc/selinux/targeted/semanage.*.LOCK
