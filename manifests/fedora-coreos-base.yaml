@@ -19,15 +19,6 @@ ostree-layers:
   - overlay/30lvmdevices
 
 conditional-include:
-  - if: releasever > 42
-    include:
-      postprocess:
-        # Hack to avoid running out of space on aarch64. This should save us about 29M.
-        # https://github.com/coreos/fedora-coreos-tracker/issues/2004
-        - |
-          #!/usr/bin/env bash
-          set -eux -o pipefail
-          rm -vrf /usr/lib/modules/*aarch64/dtb/qcom/
   - if: releasever < 44
     include:
       postprocess:
@@ -82,6 +73,13 @@ postprocess:
     if [ -f /run/.containerenv ]; then
       grep sudo /usr/lib/group >> /etc/group
     fi
+
+  # Hack to avoid running out of space on aarch64. This should save us about 29M.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/2004
+  - |
+    #!/usr/bin/env bash
+    set -eux -o pipefail
+    rm -vrf /usr/lib/modules/*aarch64/dtb/qcom/
 
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go
