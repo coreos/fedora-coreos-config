@@ -4,8 +4,6 @@
 
 include: fedora-coreos-base.yaml
 conditional-include:
-  - if: releasever >= 41
-    include: selinux-workaround.yaml
   # If not on a production stream then disable Zincati
   - if:
       - stream != "stable"
