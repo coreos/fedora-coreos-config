@@ -74,7 +74,7 @@ def get_treefile(manifest_path, osid, stream, version):
     with tempfile.NamedTemporaryFile(suffix='.json', mode='w') as tmp_manifest:
         # Substitute in a few values from build-args into the treefile.
         ## Split the version to get components for releasever and osversion
-        (x, y, _) = version.split('.', 2)
+        (x, y, _) = version.split('.', 2) if '.' in version else (version, '0', '0')
         osversion = f"{osid}-{x}"
         if osid == "rhel":
             # For RHCOS we add the minor to the osversion
