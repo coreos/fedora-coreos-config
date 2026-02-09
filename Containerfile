@@ -20,6 +20,7 @@ FROM ${BUILDER_IMG} as builder
 
 ARG ID=overridden
 ARG VERSION=overridden
+ARG DESCRIPTION=overridden
 ARG STREAM=overridden
 ARG MUTATE_OS_RELEASE=overridden
 ARG MANIFEST=overridden
@@ -27,6 +28,7 @@ ARG IMAGE_CONFIG=overridden
 # XXX: see inject_passwd_group() in build-rootfs
 ARG PASSWD_GROUP_DIR
 ARG STRICT_MODE=0
+ARG INJECT_OPENSHIFT_VERSION_LABELS=""
 
 COPY . /src
 # canonicalize permission bits, see also https://gitlab.com/fedora/bootc/base-images/-/merge_requests/274
@@ -51,7 +53,9 @@ RUN --mount=type=bind,target=/run/src,rw \
         --bootc --format-version=1 --rootfs /target-rootfs \
         --output oci-archive:/run/src/out.ociarchive \
         --label com.coreos.inputhash=$(cat /run/inputhash) \
-        --label com.coreos.stream=$STREAM
+        --label com.coreos.stream=$STREAM \
+        ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.versions=machine-os=${VERSION}} \
+        ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.version-display-names=machine-os="${DESCRIPTION}"}
 
 FROM oci-archive:./out.ociarchive
 ARG VERSION
