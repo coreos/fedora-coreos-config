@@ -8,28 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  iptables-libs:
-    evr: 1.8.11-13.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4499166f3b
-      reason: https://github.com/coreos/fedora-coreos-config/pull/3976#issuecomment-3787091131
-      type: fast-track
-  iptables-nft:
-    evr: 1.8.11-13.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4499166f3b
-      reason: https://github.com/coreos/fedora-coreos-config/pull/3976#issuecomment-3787091131
-      type: fast-track
-  iptables-services:
-    evra: 1.8.11-13.fc44.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4499166f3b
-      reason: https://github.com/coreos/fedora-coreos-config/pull/3976#issuecomment-3787091131
-      type: fast-track
-  iptables-utils:
-    evr: 1.8.11-13.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-4499166f3b
-      reason: https://github.com/coreos/fedora-coreos-config/pull/3976#issuecomment-3787091131
-      type: fast-track
+packages: {}
