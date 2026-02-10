@@ -1,22 +1,16 @@
 #!/bin/bash
 set -euo pipefail
 
-# This script is called in the buildah path to modify the build environment
-# before entering the shared build-rootfs script. Example use cases are to
-# fast-track fixes or work around bugs.
+# This script is called very early in the buildah path from build-rootfs
+# after inject_yumrepos() to modify the build environment. Example use cases
+# are to fast-track fixes or work around bugs.
+# Note that any dowloaded packages here needs to be included in lockfiles (the main
+# or overrides one).
 
 arch=$(uname -m)
 . /etc/os-release
 
-# cachi2 is the repo Konflux injects when hermetic build is enabled and
-# is self-sufficient to pull all the required RPMs.
-if [ ! -f "/etc/yum.repos.d/cachi2.repo" ]; then
-    cp /src/fedora-coreos-continuous.repo /etc/yum.repos.d
-fi
-# NOTE: try to remove anything that queries repos here once it's no longer
-# needed so that we don't unnecessarily pay for repo metadata.
-
 # make sure we have https://github.com/coreos/rpm-ostree/pull/5454
 if ! rpm-ostree compose build-chunked-oci -h | grep -q -- --label; then
-    sudo dnf update rpm-ostree -y --repo fedora-coreos-continuous --releasever "$VERSION_ID"
+    sudo dnf update rpm-ostree -y
 fi

@@ -112,6 +112,13 @@ def inject_yumrepos(srcdir):
             shutil.copy(repo, "/etc/yum.repos.d")
 
 
+def run_buildroot_prep():
+    # This allows FCOS/SCOS/RHCOS to do specific things before the main
+    # build process. Runs after inject_yumrepos() so repos are available.
+    buildroot_prep = os.path.join(SRCDIR, 'buildroot-prep')
+    if os.path.isfile(buildroot_prep):
+        subprocess.check_call([buildroot_prep])
+
 def build_rootfs(target_rootfs, srcdir, manifest_name,
                  image_config, osid, stream, version,
                  strict_mode, passwd_group_dir, mutate_os_release):
