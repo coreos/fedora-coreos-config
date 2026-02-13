@@ -8,4 +8,9 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
+packages:
+  podman:
+    evr: 5:5.7.1-1.fc43
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2110
+      type: pin
