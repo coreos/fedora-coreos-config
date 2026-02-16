@@ -34,8 +34,10 @@ get_fedora_minimal_container_ref() {
     echo "${repo}:${tag}"
 }
 
+# Look for the "com.coreos.stream" annotation from the container image
 get_fcos_stream() {
-    rpm-ostree status -b --json | jq -r '.deployments[0]["base-commit-meta"]["fedora-coreos.stream"]'
+    rpm-ostree status -b --json \
+        | jq --raw-output '.deployments[0]."base-commit-meta"."ostree.container.image-config" | fromjson | .config.Labels."com.coreos.stream"'
 }
 
 is_fcos() {

@@ -18,11 +18,12 @@ ARG BUILDER_IMG=overridden
 
 FROM ${BUILDER_IMG} as builder
 
-ARG BASE_VERSION=overridden
+ARG ID=overridden
 ARG VERSION=overridden
+ARG STREAM=overridden
+ARG MUTATE_OS_RELEASE=overridden
 ARG MANIFEST=overridden
 ARG IMAGE_CONFIG=overridden
-ARG STREAM=overridden
 # XXX: see inject_passwd_group() in build-rootfs
 ARG PASSWD_GROUP_DIR
 ARG STRICT_MODE=0
@@ -44,7 +45,7 @@ RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
 RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
     --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
     --mount=type=secret,id=contentsets \
-        /src/build-rootfs "${MANIFEST}" "${IMAGE_CONFIG}" "${BASE_VERSION}" "${VERSION}" /target-rootfs
+        /src/build-rootfs --srcdir=/src make-rootfs --target-rootfs /target-rootfs
 RUN --mount=type=bind,target=/run/src,rw \
       rpm-ostree experimental compose build-chunked-oci \
         --bootc --format-version=1 --rootfs /target-rootfs \
