@@ -40,7 +40,7 @@ jobs:
     container: quay.io/fedora/fedora:latest
     steps:
       - name: Install dependencies
-        run: dnf install -y git jq python3-bodhi-client python3-pyyaml python3-libdnf5
+        run: dnf install -y git jq python3-bodhi-client python3-pyyaml python3-libdnf5 python3-dotenv
       - name: Check out repository
         uses: actions/checkout@v3
         with:
