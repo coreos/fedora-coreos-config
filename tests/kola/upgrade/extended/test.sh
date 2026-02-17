@@ -73,12 +73,30 @@ fi
 booted_deployment_json=$(rpm-ostree status  --json | \
                          jq -r '.deployments[] | select(.booted == true)')
 version=$(jq -r '.version' <<< "${booted_deployment_json}")
+
+# The stream info can come from one of 3 places depending on how old
+# the build is.
+#
+# 1. <=41 the stream was just directly attached to base-commit-meta
 stream=$(jq -r '.["base-commit-meta"]["fedora-coreos.stream"]' <<< "${booted_deployment_json}")
-if [ "$stream" == "null" ]; then
-    # On a container based deployment we don't have the fedora coreos stream
-    # in the same place it used to be. Try to grab it from the new place.
+if [ "${stream}" == "null" ]; then
+    # 2. In 42 we switched to shipping updates as containers and the stream moved to
+    # an annotation in the ostree manifest.
     ostree_manifest=$(jq -r '.["base-commit-meta"]["ostree.manifest"]' <<< "${booted_deployment_json}")
-    stream=$(jq -r '.annotations | .["fedora-coreos.stream"]' <<< "${ostree_manifest}")
+    if [ "${ostree_manifest}" != "null" ]; then
+        stream=$(jq -r '.annotations | .["fedora-coreos.stream"]' <<< "${ostree_manifest}")
+    fi
+fi
+if [ "${stream}" == "null" ]; then
+    # 3. In 43+ we moved to building the OS via container tools and we
+    # moved to the com.coreos.stream label.
+    container_image_config=$(jq -r '.["base-commit-meta"]["ostree.container.image-config"]' <<< "${booted_deployment_json}")
+    if [ "${container_image_config}" != "null" ]; then
+        stream=$(jq -r '.config.Labels["com.coreos.stream"]' <<< "${container_image_config}")
+    fi
+fi
+if [ -z "${stream}" -o "${stream}" == "null" ]; then
+    fatal "Stream was not detected from booted deployment"
 fi
 
 # Pick up the last release for the current stream from the update server
