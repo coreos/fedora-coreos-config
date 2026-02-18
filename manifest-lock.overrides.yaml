@@ -9,31 +9,23 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  audit:
-    evr: 4.1.2-2.fc43
+  coreos-installer:
+    evr: 0.25.0-5.fc43
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-1a9b66e130
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c9a2529ed0
       type: fast-track
-  audit-libs:
-    evr: 4.1.2-2.fc43
+  coreos-installer-bootinfra:
+    evr: 0.25.0-5.fc43
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-1a9b66e130
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c9a2529ed0
       type: fast-track
-  audit-rules:
-    evr: 4.1.2-2.fc43
+  podman:
+    evr: 5:5.7.1-1.fc43
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-1a9b66e130
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1935#issuecomment-3298693537
-      type: fast-track
-  ignition:
-    evr: 2.24.0-1.fc43
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2110
+      type: pin
+  zincati:
+    evr: 0.0.32-1.fc43
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-c8b9f97712
-      type: fast-track
-  ignition-grub:
-    evr: 2.24.0-1.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-c8b9f97712
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7fbf04756e
       type: fast-track
