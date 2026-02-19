@@ -74,7 +74,7 @@ def get_treefile(manifest_path, osid, stream, version):
     with tempfile.NamedTemporaryFile(suffix='.json', mode='w') as tmp_manifest:
         # Substitute in a few values from build-args into the treefile.
         ## Split the version to get components for releasever and osversion
-        (x, y, _) = version.split('.', 2)
+        (x, y, _) = version.split('.', 2) if '.' in version else (version, '0', '0')
         osversion = f"{osid}-{x}"
         if osid == "rhel":
             # For RHCOS we add the minor to the osversion
@@ -111,6 +111,13 @@ def inject_yumrepos(srcdir):
         for repo in glob.glob(f'{srcdir}/*.repo'):
             shutil.copy(repo, "/etc/yum.repos.d")
 
+
+def run_buildroot_prep():
+    # This allows FCOS/SCOS/RHCOS to do specific things before the main
+    # build process. Runs after inject_yumrepos() so repos are available.
+    buildroot_prep = os.path.join(SRCDIR, 'buildroot-prep')
+    if os.path.isfile(buildroot_prep):
+        subprocess.check_call([buildroot_prep])
 
 def build_rootfs(target_rootfs, srcdir, manifest_name,
                  image_config, osid, stream, version,
