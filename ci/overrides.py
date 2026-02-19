@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import argparse
+import dotenv
 import functools
 import os
 import sys
@@ -154,11 +155,17 @@ def do_graduate(_args):
     for fn in get_lockfiles():
         graduate_lockfile(base, fn)
 
+@functools.cache
+def get_build_args():
+    return dotenv.dotenv_values(os.path.join(basedir, 'build-args.conf'))
 
 def get_treefile():
-    treefile = subprocess.check_output(['rpm-ostree', 'compose', 'tree',
-                                        '--print-only',
-                                        os.path.join(basedir, 'manifest.yaml')])
+    build_args = get_build_args()
+    treefile = subprocess.check_output(
+        [os.path.join(basedir, 'build-rootfs'),
+        f'--srcdir={basedir}', 'parse-treefile'],
+        env=build_args
+    )
     return json.loads(treefile)
 
 
@@ -184,9 +191,8 @@ def get_dnf_base(treefile):
 @functools.cache
 def get_stream():
     '''Get the current stream name.'''
-    with open(os.path.join(basedir, 'manifest.yaml')) as fh:
-        manifest = yaml.safe_load(fh)
-    return manifest['variables']['stream']
+    build_args = get_build_args()
+    return build_args['STREAM']
 
 
 @functools.cache
@@ -392,8 +398,8 @@ def check_url(u):
 
 
 def get_expected_dist_tag():
-    with open(os.path.join(basedir, 'manifest.yaml')) as f:
-        releasever = yaml.safe_load(f)['releasever']
+    build_args = get_build_args()
+    releasever = build_args['VERSION']
     return f'.fc{releasever}'
 
 
