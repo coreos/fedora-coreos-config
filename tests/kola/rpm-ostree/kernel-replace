@@ -80,8 +80,7 @@ build_derived_ociarchive() {
         c9s_mirror="https://mirror.stream.centos.org/9-stream/BaseOS/${arch}/os"
         # we're probably already on CentOS and running the latest kernel. so
         # here we need to instead pick whatever the latest that's *not* the same
-        printf "[main]\nskip_system_repo_lock=true" > dnf_config
-        dnf_opts="--config=dnf_config --repofrompath=tmp,"${c9s_mirror}" --disablerepo=* --enablerepo tmp"
+        dnf_opts="--repofrompath=tmp,"${c9s_mirror}" --disablerepo=* --enablerepo tmp"
         kver=$(dnf repoquery $dnf_opts kernel --qf '%{EVR}' | \
                   grep -v "$(rpm -q kernel --qf '%{EVR}')" | tail -n1)
         dnf download $dnf_opts --resolve kernel-{,core-,modules-,modules-core-,modules-extra-}$kver
@@ -89,8 +88,11 @@ build_derived_ociarchive() {
       fedora)
         VERSION_ID=$(. /etc/os-release; echo $VERSION_ID)
         previous_version_id=$((VERSION_ID - 1))
-        dnf download --releasever "${previous_version_id}" --resolve \
-          --disablerepo=* --enablerepo=updates --enablerepo=fedora kernel
+        # Workaround https://github.com/coreos/fedora-coreos-tracker/issues/2113
+        # with the skip_system_repo_lock=true setting in dnf configuration file.
+        printf "[main]\nskip_system_repo_lock=true" > dnf_config
+        dnf download --config=dnf_config --releasever "${previous_version_id}" \
+          --resolve --disablerepo=* --enablerepo=updates --enablerepo=fedora kernel
         kver=$(rpm -qp --qf '%{EVR}' ./kernel-core*rpm)
         ;;
       *)
