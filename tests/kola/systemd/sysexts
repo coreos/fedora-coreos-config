@@ -33,7 +33,9 @@ build_sysext(){
   # - Resolve dependency relative to the current root
   # - Only get packages for the current arch and arch independent ones
   # - Disable the OpenH264 repo as it's a frequent source of flakes
+  printf "[main]\nskip_system_repo_lock=true" > dnf_config
   dnf download \
+      --config=dnf_config \
       --resolve \
       --arch="noarch" \
       --arch="$(arch)" \
