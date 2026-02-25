@@ -40,10 +40,10 @@
       "evra": "1.33-5.fc44.x86_64"
     },
     "amd-gpu-firmware": {
-      "evra": "20260110-1.fc44.noarch"
+      "evra": "20260221-1.fc45.noarch"
     },
     "amd-ucode-firmware": {
-      "evra": "20260110-1.fc44.noarch"
+      "evra": "20260221-1.fc45.noarch"
     },
     "attr": {
       "evra": "2.5.2-8.fc44.x86_64"
@@ -127,7 +127,7 @@
       "evra": "21-14.fc44.x86_64"
     },
     "clevis-pin-tpm2": {
-      "evra": "0.5.3-12.fc44.x86_64"
+      "evra": "0.5.4-1.fc45.x86_64"
     },
     "clevis-systemd": {
       "evra": "21-14.fc44.x86_64"
@@ -217,16 +217,16 @@
       "evra": "2.1.28-35.fc44.x86_64"
     },
     "dbus": {
-      "evra": "1:1.16.0-8.fc44.x86_64"
+      "evra": "1:1.16.2-1.fc45.x86_64"
     },
     "dbus-broker": {
       "evra": "37-8.fc44.x86_64"
     },
     "dbus-common": {
-      "evra": "1:1.16.0-8.fc44.noarch"
+      "evra": "1:1.16.2-1.fc45.noarch"
     },
     "dbus-libs": {
-      "evra": "1:1.16.0-8.fc44.x86_64"
+      "evra": "1:1.16.2-1.fc45.x86_64"
     },
     "device-mapper": {
       "evra": "1.02.212-2.fc44.x86_64"
@@ -253,7 +253,7 @@
       "evra": "3.12-5.fc44.x86_64"
     },
     "dnf5": {
-      "evra": "5.3.0.0-7.fc44.x86_64"
+      "evra": "5.4.0.0-2.fc45.x86_64"
     },
     "dnsmasq": {
       "evra": "2.92-4.fc44.x86_64"
@@ -472,16 +472,16 @@
       "evra": "0.404-1.fc45.noarch"
     },
     "ignition": {
-      "evra": "2.25.1-2.fc44.x86_64"
+      "evra": "2.26.0-1.fc45.x86_64"
     },
     "ignition-grub": {
-      "evra": "2.25.1-2.fc44.x86_64"
+      "evra": "2.26.0-1.fc45.x86_64"
     },
     "inih": {
       "evra": "62-2.fc44.x86_64"
     },
     "intel-gpu-firmware": {
-      "evra": "20260110-1.fc44.noarch"
+      "evra": "20260221-1.fc45.noarch"
     },
     "ipcalc": {
       "evra": "1.0.3-13.fc44.x86_64"
@@ -547,16 +547,16 @@
       "evra": "1.0.59-2.fc44.x86_64"
     },
     "kernel": {
-      "evra": "6.20.0-0.rc0.260217g9702969978695.10.fc45.x86_64"
+      "evra": "7.0.0-0.rc1.15.fc45.x86_64"
     },
     "kernel-core": {
-      "evra": "6.20.0-0.rc0.260217g9702969978695.10.fc45.x86_64"
+      "evra": "7.0.0-0.rc1.15.fc45.x86_64"
     },
     "kernel-modules": {
-      "evra": "6.20.0-0.rc0.260217g9702969978695.10.fc45.x86_64"
+      "evra": "7.0.0-0.rc1.15.fc45.x86_64"
     },
     "kernel-modules-core": {
-      "evra": "6.20.0-0.rc0.260217g9702969978695.10.fc45.x86_64"
+      "evra": "7.0.0-0.rc1.15.fc45.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.32-3.fc44.x86_64"
@@ -577,7 +577,7 @@
       "evra": "0.14.3-1.fc45.x86_64"
     },
     "krb5-libs": {
-      "evra": "1.21.3-12.fc44.x86_64"
+      "evra": "1.22.2-2.fc45.x86_64"
     },
     "less": {
       "evra": "691-2.fc44.x86_64"
@@ -634,10 +634,10 @@
       "evra": "0.5.0-61.fc44.x86_64"
     },
     "libdnf5": {
-      "evra": "5.3.0.0-7.fc44.x86_64"
+      "evra": "5.4.0.0-2.fc45.x86_64"
     },
     "libdnf5-cli": {
-      "evra": "5.3.0.0-7.fc44.x86_64"
+      "evra": "5.4.0.0-2.fc45.x86_64"
     },
     "libdrm": {
       "evra": "2.4.131-1.fc44.x86_64"
@@ -667,10 +667,10 @@
       "evra": "16.0.1-0.7.fc45.x86_64"
     },
     "libgcrypt": {
-      "evra": "1.11.2-1.fc44.x86_64"
+      "evra": "1.12.1-1.fc45.x86_64"
     },
     "libgpg-error": {
-      "evra": "1.58-2.fc44.x86_64"
+      "evra": "1.59-1.fc45.x86_64"
     },
     "libibverbs": {
       "evra": "61.0-2.fc44.x86_64"
@@ -703,13 +703,13 @@
       "evra": "1.5.0-7.fc44.x86_64"
     },
     "libksba": {
-      "evra": "1.6.7-5.fc44.x86_64"
+      "evra": "1.6.8-1.fc45.x86_64"
     },
     "liblastlog2": {
       "evra": "2.41.3-12.fc44.x86_64"
     },
     "libldb": {
-      "evra": "2:4.24.0-0.2.rc1.fc44.x86_64"
+      "evra": "2:4.24.0-0.4.rc2.fc45.x86_64"
     },
     "libluksmeta": {
       "evra": "10-2.fc44.x86_64"
@@ -811,7 +811,7 @@
       "evra": "2.41.3-12.fc44.x86_64"
     },
     "libsmbclient": {
-      "evra": "2:4.24.0-0.2.rc1.fc44.x86_64"
+      "evra": "2:4.24.0-0.4.rc2.fc45.x86_64"
     },
     "libsolv": {
       "evra": "0.7.35-4.fc44.x86_64"
@@ -877,7 +877,7 @@
       "evra": "0.3.2-12.fc44.x86_64"
     },
     "libwbclient": {
-      "evra": "2:4.24.0-0.2.rc1.fc44.x86_64"
+      "evra": "2:4.24.0-0.4.rc2.fc45.x86_64"
     },
     "libxcrypt": {
       "evra": "4.5.2-3.fc44.x86_64"
@@ -895,10 +895,10 @@
       "evra": "1.5.7-5.fc44.x86_64"
     },
     "linux-firmware": {
-      "evra": "20260110-1.fc44.noarch"
+      "evra": "20260221-1.fc45.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20260110-1.fc44.noarch"
+      "evra": "20260221-1.fc45.noarch"
     },
     "lld18-libs": {
       "evra": "18.1.8-8.fc43.x86_64"
@@ -940,7 +940,7 @@
       "evra": "4.3-9.fc44.x86_64"
     },
     "microcode_ctl": {
-      "evra": "2:2.1-73.fc44.x86_64"
+      "evra": "2:2.1-74.fc45.x86_64"
     },
     "moby-engine": {
       "evra": "29.2.1-2.fc44.x86_64"
@@ -1012,13 +1012,13 @@
       "evra": "1.8-4.fc44.x86_64"
     },
     "nss-altfiles": {
-      "evra": "2.23.0-8.fc44.x86_64"
+      "evra": "2.23.0-9.fc45.x86_64"
     },
     "numactl-libs": {
       "evra": "2.0.19-4.fc44.x86_64"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20260110-1.fc44.noarch"
+      "evra": "20260221-1.fc45.noarch"
     },
     "nvme-cli": {
       "evra": "2.16-2.fc44.x86_64"
@@ -1105,7 +1105,7 @@
       "evra": "0.3.2-1.fc44.x86_64"
     },
     "policycoreutils": {
-      "evra": "3.10-1.fc44.x86_64"
+      "evra": "3.10-2.fc45.x86_64"
     },
     "polkit": {
       "evra": "127-2.fc44.x86_64"
@@ -1129,7 +1129,7 @@
       "evra": "20260116-1.fc44.noarch"
     },
     "qed-firmware": {
-      "evra": "20260110-1.fc44.noarch"
+      "evra": "20260221-1.fc45.noarch"
     },
     "rdma-core-common": {
       "evra": "61.0-2.fc44.noarch"
@@ -1156,7 +1156,7 @@
       "evra": "6.0.1-5.fc45.x86_64"
     },
     "rpm-sequoia": {
-      "evra": "1.10.0-2.fc44.x86_64"
+      "evra": "1.10.1-1.fc45.x86_64"
     },
     "rsync": {
       "evra": "3.4.1-6.fc45.x86_64"
@@ -1165,16 +1165,16 @@
       "evra": "2:1.4.0-3.fc44.x86_64"
     },
     "samba-client-libs": {
-      "evra": "2:4.24.0-0.2.rc1.fc44.x86_64"
+      "evra": "2:4.24.0-0.4.rc2.fc45.x86_64"
     },
     "samba-common": {
-      "evra": "2:4.24.0-0.2.rc1.fc44.noarch"
+      "evra": "2:4.24.0-0.4.rc2.fc45.noarch"
     },
     "samba-core-libs": {
-      "evra": "2:4.24.0-0.2.rc1.fc44.x86_64"
+      "evra": "2:4.24.0-0.4.rc2.fc45.x86_64"
     },
     "samba-ndr-libs": {
-      "evra": "2:4.24.0-0.2.rc1.fc44.x86_64"
+      "evra": "2:4.24.0-0.4.rc2.fc45.x86_64"
     },
     "sdbus-cpp": {
       "evra": "2.2.1-2.fc44.x86_64"
@@ -1360,7 +1360,7 @@
       "evra": "0.0.32-1.fc45.x86_64"
     },
     "zlib-ng-compat": {
-      "evra": "2.3.3-2.fc45.x86_64"
+      "evra": "2.3.3-5.fc45.x86_64"
     },
     "zram-generator": {
       "evra": "1.2.1-5.fc44.x86_64"
@@ -1370,6 +1370,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-02-18T00:00:00Z"
+    "generated": "2026-02-25T00:00:00Z"
   }
 }
