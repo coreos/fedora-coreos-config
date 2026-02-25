@@ -15,3 +15,12 @@
     - s390x
   streams:
     - rawhide
+
+- pattern: ext.config.rpm-ostree.kernel-replace
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2115
+  snooze: 2026-03-10
+  warn: true
+  arches:
+    - ppc64le
+  streams:
+    - rawhide
