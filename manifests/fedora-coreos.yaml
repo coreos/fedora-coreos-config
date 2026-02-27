@@ -4,8 +4,6 @@
 
 include: fedora-coreos-base.yaml
 conditional-include:
-  - if: releasever >= 41
-    include: selinux-workaround.yaml
   # If not on a production stream then disable Zincati
   - if:
       - stream != "stable"
@@ -42,6 +40,11 @@ conditional-include:
     include:
       ostree-layers:
         - overlay/50alternatives
+  # Drop fedora-repos-ostree in F44
+  - if: releasever < 44
+    include:
+      packages:
+        - fedora-repos-ostree
 
 ostree-layers:
   - overlay/15fcos
@@ -50,7 +53,6 @@ ostree-layers:
 
 packages:
   - fedora-release-coreos
-  - fedora-repos-ostree
   # CL ships this.
   - moby-engine
   # Already pulled in by moby-engine, but let's be explicit. Typhoon uses it.
