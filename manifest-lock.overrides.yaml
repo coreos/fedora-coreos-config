@@ -21,6 +21,16 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c623038804
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2110
       type: fast-track
+  ignition:
+    evr: 2.26.0-1.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-a5a9467ef8
+      type: fast-track
+  ignition-grub:
+    evr: 2.26.0-1.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-a5a9467ef8
+      type: fast-track
   podman:
     evr: 5:5.8.0-1.fc43
     metadata:
