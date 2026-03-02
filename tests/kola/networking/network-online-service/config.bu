@@ -1,9 +1,0 @@
-variant: fcos
-version: 1.6.0
-systemd:
-  units:
-    # Disable nfs-client.target temporarily while we are pulling it in
-    # for nfs-utils.
-    # https://github.com/coreos/fedora-coreos-config/pull/3530#issuecomment-2932405290
-    - name: nfs-client.target
-      enabled: false
