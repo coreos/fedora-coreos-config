@@ -88,8 +88,11 @@ build_derived_ociarchive() {
       fedora)
         VERSION_ID=$(. /etc/os-release; echo $VERSION_ID)
         previous_version_id=$((VERSION_ID - 1))
-        dnf download --releasever "${previous_version_id}" --resolve \
-          --disablerepo=* --enablerepo=updates --enablerepo=fedora kernel
+        # Workaround https://github.com/coreos/fedora-coreos-tracker/issues/2113
+        # with the skip_system_repo_lock=true setting in dnf configuration file.
+        printf "[main]\nskip_system_repo_lock=true" > dnf_config
+        dnf download --config=dnf_config --releasever "${previous_version_id}" \
+          --resolve --disablerepo=* --enablerepo=updates --enablerepo=fedora kernel
         kver=$(rpm -qp --qf '%{EVR}' ./kernel-core*rpm)
         ;;
       *)
