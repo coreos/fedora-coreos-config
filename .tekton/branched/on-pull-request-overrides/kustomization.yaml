@@ -33,3 +33,6 @@ patches:
       - op: replace
         path: /metadata/name
         value: 'fedora-coreos-branched-on-pull-request-overrides'
+      - op: replace
+        path: /spec/params/10/value
+        value: false
