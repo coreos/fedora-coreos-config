@@ -4,6 +4,8 @@
 ##   tags: "platform-independent needs-internet"
 ##   description: Verify that the alternatives config is properly migrated and test the migration
 ##   distros: fcos
+##   ## package layering needs more memory
+##   minMemory: 1536
 # See
 # - https://github.com/coreos/fedora-coreos-tracker/issues/1818
 
