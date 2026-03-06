@@ -9,18 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  containers-common:
-    evra: 5:0.67.0-1.fc43.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c623038804
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2110
-      type: fast-track
-  containers-common-extra:
-    evra: 5:0.67.0-1.fc43.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c623038804
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2110
-      type: fast-track
   coreos-installer:
     evr: 0.26.0-1.fc43
     metadata:
@@ -40,16 +28,4 @@ packages:
     evr: 2.26.0-1.fc43
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-a5a9467ef8
-      type: fast-track
-  podman:
-    evr: 5:5.8.0-1.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c623038804
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2110
-      type: fast-track
-  skopeo:
-    evr: 1:1.22.0-2.fc43
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c623038804
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2110
       type: fast-track
