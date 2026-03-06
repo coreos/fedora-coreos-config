@@ -28,10 +28,10 @@
       "evra": "0.9.3.1-5.fc44.noarch"
     },
     "afterburn": {
-      "evra": "5.10.0-3.fc44.ppc64le"
+      "evra": "5.10.0-4.fc44.ppc64le"
     },
     "afterburn-dracut": {
-      "evra": "5.10.0-3.fc44.ppc64le"
+      "evra": "5.10.0-4.fc44.ppc64le"
     },
     "alternatives": {
       "evra": "1.33-5.fc44.ppc64le"
@@ -129,9 +129,6 @@
     "cloud-utils-growpart": {
       "evra": "0.33-13.fc44.noarch"
     },
-    "compat-gpgme124": {
-      "evra": "1.24.3-12.fc44.ppc64le"
-    },
     "composefs": {
       "evra": "1.0.8-5.fc44.ppc64le"
     },
@@ -160,16 +157,16 @@
       "evra": "2.2.0-4.fc44.ppc64le"
     },
     "containers-common": {
-      "evra": "5:0.67.0-1.fc43.noarch"
+      "evra": "5:0.67.0-1.fc44.noarch"
     },
     "containers-common-extra": {
-      "evra": "5:0.67.0-1.fc43.noarch"
+      "evra": "5:0.67.0-1.fc44.noarch"
     },
     "coreos-installer": {
-      "evra": "0.26.0-1.fc43.ppc64le"
+      "evra": "0.26.0-1.fc44.ppc64le"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.26.0-1.fc43.ppc64le"
+      "evra": "0.26.0-1.fc44.ppc64le"
     },
     "coreutils": {
       "evra": "9.9-4.fc44.ppc64le"
@@ -346,7 +343,7 @@
       "evra": "3.18.1-2.fc44.ppc64le"
     },
     "fwupd": {
-      "evra": "2.0.19-1.fc44.ppc64le"
+      "evra": "2.0.20-1.fc44.ppc64le"
     },
     "gawk": {
       "evra": "5.3.2-3.fc44.ppc64le"
@@ -448,10 +445,10 @@
       "evra": "0.404-1.fc44.noarch"
     },
     "ignition": {
-      "evra": "2.26.0-1.fc43.ppc64le"
+      "evra": "2.26.0-2.fc44.ppc64le"
     },
     "ignition-grub": {
-      "evra": "2.26.0-1.fc43.ppc64le"
+      "evra": "2.26.0-2.fc44.ppc64le"
     },
     "inih": {
       "evra": "62-2.fc44.ppc64le"
@@ -589,7 +586,7 @@
       "evra": "2.77-2.fc44.ppc64le"
     },
     "libcap-ng": {
-      "evra": "0.9-7.fc44.ppc64le"
+      "evra": "0.9.1-1.fc44.ppc64le"
     },
     "libcbor": {
       "evra": "0.13.0-2.fc44.ppc64le"
@@ -1072,7 +1069,7 @@
       "evra": "2.5.1-1.fc44.ppc64le"
     },
     "podman": {
-      "evra": "5:5.8.0-1.fc43.ppc64le"
+      "evra": "5:5.8.0-1.fc44.ppc64le"
     },
     "podman-sequoia": {
       "evra": "0.3.2-1.fc44.ppc64le"
@@ -1138,7 +1135,7 @@
       "evra": "6.0.1-2.fc44.ppc64le"
     },
     "rpm-sequoia": {
-      "evra": "1.10.0-2.fc44.ppc64le"
+      "evra": "1.10.1-1.fc44.ppc64le"
     },
     "rsync": {
       "evra": "3.4.1-6.fc44.ppc64le"
@@ -1165,10 +1162,10 @@
       "evra": "4.9-7.fc44.ppc64le"
     },
     "selinux-policy": {
-      "evra": "42.23-1.fc44.noarch"
+      "evra": "42.24-1.fc44.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "42.23-1.fc44.noarch"
+      "evra": "42.24-1.fc44.noarch"
     },
     "servicelog": {
       "evra": "1.1.16-10.fc44.ppc64le"
@@ -1192,7 +1189,7 @@
       "evra": "2.4-3.fc44.ppc64le"
     },
     "skopeo": {
-      "evra": "1:1.22.0-2.fc43.ppc64le"
+      "evra": "1:1.22.0-2.fc44.ppc64le"
     },
     "slang": {
       "evra": "2.3.3-9.fc44.ppc64le"
@@ -1303,10 +1300,10 @@
       "evra": "2.41.3-12.fc44.ppc64le"
     },
     "vim-data": {
-      "evra": "2:9.1.2146-2.fc44.noarch"
+      "evra": "2:9.2.112-2.fc44.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.1.2146-2.fc44.ppc64le"
+      "evra": "2:9.2.112-2.fc44.ppc64le"
     },
     "which": {
       "evra": "2.23-4.fc44.ppc64le"
@@ -1346,6 +1343,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-03-05T00:00:00Z"
+    "generated": "2026-03-06T00:00:00Z"
   }
 }
