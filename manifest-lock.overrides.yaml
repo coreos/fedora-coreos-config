@@ -9,6 +9,18 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  afterburn:
+    evr: 5.10.0-4.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-da57357ea0
+      reason: https://github.com/coreos/fedora-coreos-config/pull/3885#issuecomment-4013155688
+      type: fast-track
+  afterburn-dracut:
+    evr: 5.10.0-4.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-da57357ea0
+      reason: https://github.com/coreos/fedora-coreos-config/pull/3885#issuecomment-4013155688
+      type: fast-track
   coreos-installer:
     evr: 0.26.0-1.fc44
     metadata:
@@ -26,6 +38,18 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-ac444ae4ce
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
+      type: fast-track
+  ignition:
+    evr: 2.26.0-2.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-da57357ea0
+      reason: https://github.com/coreos/fedora-coreos-config/pull/3885#issuecomment-4013155688
+      type: fast-track
+  ignition-grub:
+    evr: 2.26.0-2.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-da57357ea0
+      reason: https://github.com/coreos/fedora-coreos-config/pull/3885#issuecomment-4013155688
       type: fast-track
   libcap-ng:
     evr: 0.9.1-1.fc44
