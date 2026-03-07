@@ -57,6 +57,19 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-8770342aca
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
+  libmaxminddb:
+    evr: 1.13.1-1.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-814fe58971
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
+      type: fast-track
+  # Using F43 version of the package because no F44 version has been built yet.
+  libnetfilter_conntrack:
+    evr: 1.1.1-1.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-5373cb4438
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
+      type: fast-track
   rpm-sequoia:
     evr: 1.10.1-1.fc44
     metadata:
