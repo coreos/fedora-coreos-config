@@ -10,8 +10,17 @@
 
 - pattern: '*kdump.crash*'
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2100
-  # snooze: 2026-02-28 (disabled on promotion)
+  # snooze: 2026-03-31 (disabled on promotion)
   arches:
     - s390x
+  streams:
+    - rawhide
+
+- pattern: ext.config.rpm-ostree.kernel-replace
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2115
+  # snooze: 2026-03-10 (disabled on promotion)
+  # warn: true (disabled on promotion)
+  arches:
+    - ppc64le
   streams:
     - rawhide

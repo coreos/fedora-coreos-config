@@ -42,7 +42,7 @@ spec:
   - name: clone-depth
     value: 50
   - name: hermetic
-    value: true
+    value: false
   - name: prefetch-input
     value: '[{"type": "rpm", "path": "."}]'
   pipelineRef:
