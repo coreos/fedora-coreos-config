@@ -109,8 +109,8 @@ mkdir -p "${UNIT_DIR}/coreos-ignition-setup-user.service.d"
 mkdir -p "${UNIT_DIR}/coreos-copy-firstboot-network.service.d"
 cat > "${UNIT_DIR}/coreos-ignition-setup-user.service.d/diskful.conf" <<EOF
 [Unit]
-Requires=dev-disk-by\x2dlabel-boot.device
-After=dev-disk-by\x2dlabel-boot.device
+After=boot-part-discovered.target
+ConditionFileNotEmpty=/run/coreos/boot-partition-status
 EOF
 cp "${UNIT_DIR}/coreos-ignition-setup-user.service.d/diskful.conf" \
     "${UNIT_DIR}/coreos-copy-firstboot-network.service.d/diskful.conf"

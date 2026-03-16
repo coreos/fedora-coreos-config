@@ -60,6 +60,9 @@ Before=local-fs.target
 Requires=systemd-fsck@${devservice}
 After=systemd-fsck@${devservice}
 
+After=boot-part-discovered.target
+ConditionFileNotEmpty=/run/coreos/boot-partition-status
+
 [Mount]
 What=${path}
 Where=${mount_pt}

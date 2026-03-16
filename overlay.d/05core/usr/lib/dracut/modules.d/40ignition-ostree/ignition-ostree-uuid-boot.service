@@ -14,8 +14,12 @@ Before=ignition-kargs.service
 ConditionKernelCommandLine=!bootfs.roothash
 
 Before=systemd-fsck@dev-disk-by\x2dlabel-boot.service
-Requires=dev-disk-by\x2dlabel-boot.device
-After=dev-disk-by\x2dlabel-boot.device
+# Requires=dev-disk-by\x2dlabel-boot.device
+# After=dev-disk-by\x2dlabel-boot.device
+
+# Make sure boot partition actually exists
+After=boot-part-discovered.target
+ConditionFileNotEmpty=/run/coreos/boot-partition-status
 
 [Service]
 Type=oneshot

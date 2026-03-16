@@ -2,10 +2,12 @@
 Description=Ignition OSTree: Check Root Filesystem Size
 Documentation=https://docs.fedoraproject.org/en-US/fedora-coreos/storage/
 DefaultDependencies=false
-ConditionKernelCommandLine=ostree
+ConditionKernelCommandLine=|ostree
+ConditionKernelCommandLine=|composefs
 ConditionPathExists=!/run/ostree-live
 After=ignition-ostree-growfs.service
 After=ostree-prepare-root.service
+# TODO(Johan-Liebert1): We need bootc-initramfs-setup.service here
 Requires=ostree-prepare-root.service
 # Allow Ignition config to blank out the warning
 Before=ignition-files.service

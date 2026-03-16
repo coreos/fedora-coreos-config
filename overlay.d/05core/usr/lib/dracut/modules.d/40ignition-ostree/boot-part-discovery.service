@@ -1,0 +1,11 @@
+[Unit]
+Description=Discover Boot Partition Availability
+ConditionPathExists=/etc/initrd-release
+Before=boot-part-discovered.target
+After=local-fs-pre.target
+Before=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/boot-part-discovery.sh
+RemainAfterExit=yes

@@ -1,0 +1,21 @@
+[Unit]
+Description=bootc setup root
+Documentation=man:bootc(1)
+DefaultDependencies=no
+ConditionKernelCommandLine=composefs
+ConditionPathExists=/etc/initrd-release
+After=sysroot.mount
+After=ostree-prepare-root.service
+Requires=sysroot.mount
+Before=initrd-root-fs.target
+
+OnFailure=emergency.target
+OnFailureJobMode=isolate
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/bootc/initramfs-setup setup-root
+StandardInput=null
+StandardOutput=journal
+StandardError=journal+console
+RemainAfterExit=yes
