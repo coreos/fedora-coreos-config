@@ -30,7 +30,8 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-a5a9467ef8
       type: fast-track
   podman:
-    evr: 5:5.7.1-1.fc43
+    evr: 5:5.8.1-1.fc43
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2110
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-ca0e969a69
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2110#issuecomment-4070713706
+      type: fast-track
