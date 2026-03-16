@@ -8,6 +8,14 @@
 ##  arches:
 ##    - aarch64
 
+- pattern: '*kdump.crash*'
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2100
+  snooze: 2026-03-31
+  arches:
+    - s390x
+  streams:
+    - next-devel
+
 - pattern: ext.config.rpm-ostree.kernel-replace
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2115
   snooze: 2026-03-10
