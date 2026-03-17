@@ -51,11 +51,10 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-8770342aca
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
-  # Using F43 version of the package because no F44 version has been built yet.
   libnetfilter_conntrack:
-    evr: 1.1.1-1.fc43
+    evr: 1.1.1-1.fc44
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-5373cb4438
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-8c7b40ffb4
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
   libnfsidmap:
