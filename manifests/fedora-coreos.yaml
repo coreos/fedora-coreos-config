@@ -45,11 +45,18 @@ conditional-include:
     include:
       packages:
         - fedora-repos-ostree
+  # We carry our own ssh config for authorized keys in <44. In 44+
+  # The config is delivered via the ignition + afterburn RPMs
+  # https://src.fedoraproject.org/rpms/ignition/c/3ccce9fe2c0462f4a17923937933ab9c26db0aa5?branch=rawhide
+  # https://src.fedoraproject.org/rpms/rust-afterburn/c/e61c6e5f776410ea72e8f731cec88567577f6bb8?branch=rawhide
+  - if: releasever <= 43
+    include:
+      ostree-layers:
+        - overlay/18sshd-authorized-keys-file
 
 ostree-layers:
   - overlay/15fcos
   - overlay/17fcos-container-signing
-  - overlay/18sshd-authorized-keys-file
 
 packages:
   - fedora-release-coreos
