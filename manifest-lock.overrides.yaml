@@ -15,12 +15,6 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-cfa95147df
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
-  conmon:
-    evr: 2:2.2.1-2.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-997f429896
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
   coreos-installer:
     evr: 0.26.0-1.fc44
     metadata:
@@ -31,24 +25,6 @@ packages:
     evr: 0.26.0-1.fc44
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-37e1d57b10
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
-  fwupd:
-    evr: 2.0.20-1.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-ac444ae4ce
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
-  hwdata:
-    evra: 0.405-1.fc44.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-cb5258323e
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
-  libcap-ng:
-    evr: 0.9.1-1.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-8770342aca
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
   libnetfilter_conntrack:
