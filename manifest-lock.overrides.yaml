@@ -15,6 +15,18 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-cfa95147df
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
+  container-selinux:
+    evra: 4:2.247.0-1.fc44.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-82048e93a4
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
+      type: fast-track
+  libmaxminddb:
+    evr: 1.13.3-1.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7a764c205a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
+      type: fast-track
   libnetfilter_conntrack:
     evr: 1.1.1-1.fc44
     metadata:
@@ -25,6 +37,12 @@ packages:
     evr: 1:2.8.7-0.fc44
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-61d402814c
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
+      type: fast-track
+  libsolv:
+    evr: 0.7.36-2.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-58c7e4e7c3
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
   nfs-client-utils:
@@ -49,5 +67,17 @@ packages:
     evr: 1:2.8.7-0.fc44
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-61d402814c
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
+      type: fast-track
+  vim-data:
+    evra: 2:9.2.148-1.fc44.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-f5d072060b
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
+      type: fast-track
+  vim-minimal:
+    evr: 2:9.2.148-1.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-f5d072060b
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
