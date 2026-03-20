@@ -13,6 +13,7 @@ Before=ignition-kargs.service
 # If we're going to reprovision the bootfs, then there's no need to restamp
 ConditionKernelCommandLine=!bootfs.roothash
 
+# TODO(Johan-Lieber1): This
 Before=systemd-fsck@dev-disk-by\x2dlabel-boot.service
 # Requires=dev-disk-by\x2dlabel-boot.device
 # After=dev-disk-by\x2dlabel-boot.device

@@ -3,6 +3,7 @@ export PATH="/usr/bin:/usr/sbin:${PATH}"
 set -euo pipefail
 
 . /usr/lib/coreos/generator-lib.sh
+. /usr/libexec/boot-part-discovery.sh
 
 # Turn out if you boot with "root=..." $UNIT_DIR is not writable.
 [ -w "${UNIT_DIR}" ] || {
@@ -28,6 +29,16 @@ fi
 # where there are no block devices by default.
 rootfstype=$(karg rootfstype)
 if [ "${rootfstype}" = "virtiofs" ]; then
+    exit 0
+fi
+
+# Do not create dynamic mount service for /boot if there
+# is no /boot partition
+#
+# Using just After=boot-part-discovery.target won't work
+# as we have What=/dev/disk/by-label/boot in the Mount section
+# which prompts systemd to wait for udev
+if ! boot_part_exists; then
     exit 0
 fi
 
@@ -59,9 +70,6 @@ Documentation=https://github.com/coreos/fedora-coreos-config
 Before=local-fs.target
 Requires=systemd-fsck@${devservice}
 After=systemd-fsck@${devservice}
-
-After=boot-part-discovered.target
-ConditionFileNotEmpty=/run/coreos/boot-partition-status
 
 [Mount]
 What=${path}

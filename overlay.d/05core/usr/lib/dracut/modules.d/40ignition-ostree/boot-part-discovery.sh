@@ -1,26 +1,32 @@
 #!/bin/bash
 
-set -euo pipefail
-
+XBOOTLDR_UUID="BC13C2FF-59E6-4262-A352-B275FD6F7172"
 BOOT_STATUS_DIR="/run/coreos"
 BOOT_STATUS_FILE="${BOOT_STATUS_DIR}/boot-partition-status"
 
-mkdir -p "$BOOT_STATUS_DIR"
+boot_part_exists() {
+    LSBLK_JSON="$(lsblk -o name,parttype,uuid,mountpoint,parttypename,label --json)"
 
-XBOOTLDR_UUID="BC13C2FF-59E6-4262-A352-B275FD6F7172"
+    while read -r part; do
+        parttype="$(jq -r '.parttype // empty' <<<"$part" | tr '[:lower:]' '[:upper:]')"
+        name="$(jq -r '.name' <<<"$part")"
 
-LSBLK_JSON="$(lsblk -o name,parttype,uuid,mountpoint,parttypename,label --json)"
+        [[ -n "$parttype" ]] || echo "Partition '$name' has no parttype"
 
-while read -r part; do
-    parttype="$(jq -r '.parttype // empty' <<<"$part" | tr '[:lower:]' '[:upper:]')"
-    name="$(jq -r '.name' <<<"$part")"
+        if [[ "$parttype" == "$XBOOTLDR_UUID" ]]; then
+            return 0
+        fi
+    done < <(echo "$LSBLK_JSON" | jq -c '.blockdevices[].children[]?')
 
-    [[ -n "$parttype" ]] || echo "Partition '$name' has no parttype"
+    return 1
+}
 
-    if [[ "$parttype" == "$XBOOTLDR_UUID" ]]; then
+# Only run when executed directly, not when sourced
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+    if boot_part_exists; then
+        mkdir -p "$BOOT_STATUS_DIR"
         echo "available" > "$BOOT_STATUS_FILE"
-        break
     else
-        echo "not boot"
+        echo "Boot partition not found"
     fi
-done < <(echo "$LSBLK_JSON" | jq -c '.blockdevices[].children[]?')
+fi
