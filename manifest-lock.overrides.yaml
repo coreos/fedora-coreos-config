@@ -27,12 +27,6 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7a764c205a
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
-  libnetfilter_conntrack:
-    evr: 1.1.1-1.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-8c7b40ffb4
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
   libnfsidmap:
     evr: 1:2.8.7-0.fc44
     metadata:
