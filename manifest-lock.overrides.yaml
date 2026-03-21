@@ -39,12 +39,6 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-61d402814c
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
-  libsolv:
-    evr: 0.7.36-2.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-58c7e4e7c3
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
   nfs-client-utils:
     evr: 1:2.8.7-0.fc44
     metadata:
@@ -67,17 +61,5 @@ packages:
     evr: 1:2.8.7-0.fc44
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-61d402814c
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
-  vim-data:
-    evra: 2:9.2.148-1.fc44.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-f5d072060b
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
-  vim-minimal:
-    evr: 2:9.2.148-1.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-f5d072060b
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
