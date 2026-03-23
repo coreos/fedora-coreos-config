@@ -17,7 +17,6 @@ set -xeuo pipefail
 #
 # - The symlinks in /usr/lib/firmware are often broken and are typically not an
 #   issue, so let's skip this location altogether.
-# - json-glib -> https://bugzilla.redhat.com/show_bug.cgi?id=2297094
 #
 list_broken_symlinks_skip=(
     '/etc/mtab'
@@ -28,7 +27,6 @@ list_broken_symlinks_skip=(
     '/usr/lib/bootc/storage'
     '/usr/lib/firmware'
     '/usr/lib/modules/'
-    '/usr/share/licenses/json-glib/COPYING'
     '/usr/share/rhel/secrets/etc-pki-entitlement'
     '/usr/share/rhel/secrets/redhat.repo'
     '/usr/share/rhel/secrets/rhsm'
