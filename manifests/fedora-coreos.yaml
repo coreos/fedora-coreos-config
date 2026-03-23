@@ -109,11 +109,9 @@ postprocess:
   # Make sure that we do not ship broken symlinks:
   # https://github.com/coreos/fedora-coreos-config/issues/1782
   # Remove known broken symlinks that point to non-existing files or directories:
-  # - Remove `.build-id` for binaries that we remove in other parts of the FCOS manifest
   # - Remove links to man pages that we remove in FCOS
   # Man pages are removed in FCOS thus the links in alternatives pointing to those are left there broken.
   # Docs removal comes from manifests/fedora-coreos.yaml
-  # - systemd-gpt-auto-generator comes from ignition-and-ostree.yaml
   - |
     #!/usr/bin/env bash
     set -euo pipefail
@@ -127,7 +125,6 @@ postprocess:
     # why we are removing them in the postprocess scripts here.
     # The .build-id links are pointing to binaries that we remove in other parts of the FCOS manifest.
     list_known_removed_folders=(
-      '/usr/lib/systemd/system-generators/systemd-gpt-auto-generator'
       '/usr/share/doc/'
       '/usr/share/info/'
       '/usr/share/man/'
@@ -217,4 +214,6 @@ postprocess:
   - |
     #!/usr/bin/env bash
     set -x
-    rm -vf /usr/lib/systemd/system-generators/systemd-gpt-auto-generator
+    # Find the .build-id file and remove it too so we don't have a broken symlink.
+    build_id_file=$(find -L /usr/lib/.build-id/ -samefile /usr/lib/systemd/system-generators/systemd-gpt-auto-generator)
+    rm -vf $build_id_file /usr/lib/systemd/system-generators/systemd-gpt-auto-generator

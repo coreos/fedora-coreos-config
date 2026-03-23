@@ -17,6 +17,7 @@ set -xeuo pipefail
 #
 # - The symlinks in /usr/lib/firmware are often broken and are typically not an
 #   issue, so let's skip this location altogether.
+# - .build-id -> https://github.com/rpm-software-management/rpm/issues/2801
 #
 list_broken_symlinks_skip=(
     '/etc/mtab'
