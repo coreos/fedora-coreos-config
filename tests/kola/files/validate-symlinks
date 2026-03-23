@@ -13,6 +13,13 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
+# We use nodocs but there are some symliks to docs (like from /etc/alternatives) that still linger
+list_known_removed_folders=(
+  '/usr/share/doc/'
+  '/usr/share/info/'
+  '/usr/share/man/'
+)
+
 # List of known broken symlinks that require further investigation.
 #
 # - The symlinks in /usr/lib/firmware are often broken and are typically not an
@@ -50,6 +57,13 @@ find /usr/ /etc/ -type l -not -path "/usr/etc*" | while read -r file_name; do
     if [[ -e "${real_path}" ]]; then
         continue
     fi
+
+    for removed_folder in "${list_known_removed_folders[@]}"; do
+      if [[ "${real_path}" == "${removed_folder}"* ]]; then
+          continue 2  # continue outer while loop
+      fi
+    done
+
     found="false"
     for search_element in "${list_broken_symlinks_skip[@]}"; do
         if [[ "${file_name}" == "${search_element}"* || "${file_name}" == "${search_element}" ]]; then

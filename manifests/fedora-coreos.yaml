@@ -106,59 +106,6 @@ postprocess:
     cat "${conf_file}" >> /tmp/rpm-ostreed.conf
     cp /tmp/rpm-ostreed.conf "${conf_file}"
     rm /tmp/rpm-ostreed.conf
-  # Make sure that we do not ship broken symlinks:
-  # https://github.com/coreos/fedora-coreos-config/issues/1782
-  # Remove known broken symlinks that point to non-existing files or directories:
-  # - Remove links to man pages that we remove in FCOS
-  # Man pages are removed in FCOS thus the links in alternatives pointing to those are left there broken.
-  # Docs removal comes from manifests/fedora-coreos.yaml
-  - |
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    list_broken_symlinks_folders=(
-      '/etc/alternatives/'
-      '/usr/lib/.build-id/'
-    )
-
-    # It is not possible to remove files from usr after first boot so that is
-    # why we are removing them in the postprocess scripts here.
-    # The .build-id links are pointing to binaries that we remove in other parts of the FCOS manifest.
-    list_known_removed_folders=(
-      '/usr/share/doc/'
-      '/usr/share/info/'
-      '/usr/share/man/'
-      )
-    for folder in "${list_broken_symlinks_folders[@]}"; do
-        find "${folder}" -type l | while read -r file_name; do
-            real_path=$(realpath -m "${file_name}");
-            if [[ -e "${real_path}" ]]; then
-              continue
-            fi
-            for element in "${list_known_removed_folders[@]}"; do
-              if [[ "${real_path}" == "${element}"* ]]; then
-                  rm -r "${file_name}"
-              fi
-            done
-        done
-    done
-
-  # Delete documentation. (Note that fedora-bootc doesn't explicitly set
-  # `documentation`, and neither do we, so the rpm-ostree default is true. We
-  # historically have effectively done the equivalent of `documentation: false`
-  # though.)
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-
-    # We don't ship man(1) or info(1)
-    rm -rf /usr/share/info
-    rm -rf /usr/share/man
-    # Drop text docs too
-    rm -rf /usr/share/doc
-
-    # Nuke broken alternatives links
-    rm -f /etc/alternatives/*-man
 
   # Add the docker group to /etc/group
   # https://github.com/coreos/fedora-coreos-tracker/issues/2
