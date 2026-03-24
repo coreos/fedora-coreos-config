@@ -1,11 +1,11 @@
 [Unit]
-Description=bootc setup root
+Description=CoreOS Root Setup
 Documentation=man:bootc(1)
 DefaultDependencies=no
-ConditionKernelCommandLine=composefs
+ConditionKernelCommandLine=|composefs
+ConditionKernelCommandLine=|ostree
 ConditionPathExists=/etc/initrd-release
 After=sysroot.mount
-After=ostree-prepare-root.service
 Requires=sysroot.mount
 Before=initrd-root-fs.target
 
@@ -14,7 +14,7 @@ OnFailureJobMode=isolate
 
 [Service]
 Type=oneshot
-ExecStart=/usr/lib/bootc/initramfs-setup setup-root
+ExecStart=/usr/libexec/coreos-root-setup
 StandardInput=null
 StandardOutput=journal
 StandardError=journal+console

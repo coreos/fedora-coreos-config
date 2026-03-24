@@ -6,9 +6,8 @@ ConditionKernelCommandLine=|ostree
 ConditionKernelCommandLine=|composefs
 ConditionPathExists=!/run/ostree-live
 After=ignition-ostree-growfs.service
-After=ostree-prepare-root.service
-# TODO(Johan-Liebert1): We need bootc-initramfs-setup.service here
-Requires=ostree-prepare-root.service
+After=coreos-root-setup.service
+Requires=coreos-root-setup.service
 # Allow Ignition config to blank out the warning
 Before=ignition-files.service
 
