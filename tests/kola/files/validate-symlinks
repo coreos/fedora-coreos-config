@@ -48,6 +48,7 @@ if is_scos || is_rhcos; then
         '/etc/pki/tls/'
         '/etc/rhsm-host'
         '/etc/sysconfig/grub'
+        '/usr/lib64/libmtcr_ul.a'
     )
     list_broken_symlinks_skip+=("${rhcos_list[@]}")
 fi
