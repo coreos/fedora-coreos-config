@@ -46,21 +46,27 @@ packages:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
   ignition:
-    evr: 2.26.0-2.fc44
+    evr: 2.26.0-4.fc44
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-da57357ea0
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-477703d3e9
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
   ignition-grub:
-    evr: 2.26.0-2.fc44
+    evr: 2.26.0-4.fc44
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-da57357ea0
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-477703d3e9
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
   libcap-ng:
     evr: 0.9.2-1.fc44
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-e42eb4fe32
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
+      type: fast-track
+  libtasn1:
+    evr: 4.21.0-1.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-48a302496d
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
   ngtcp2:
