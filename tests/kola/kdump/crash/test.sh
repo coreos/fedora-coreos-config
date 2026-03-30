@@ -4,7 +4,8 @@
 ##   minMemory: 4096
 ##   # Skip checks for things like kernel crashes in the console logs.
 ##   # For this test we trigger a kernel crash on purpose.
-##   tags: skip-base-checks
+##   # This test should run on any platform and for that reason the platform-independent tag is needed.
+##   tags: "skip-base-checks platform-independent"
 ##   # This test includes a few reboots and the generation of a vmcore,
 ##   # which can take longer than the default 10 minute timeout.
 ##   timeoutMin: 15
