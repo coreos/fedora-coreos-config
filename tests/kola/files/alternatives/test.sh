@@ -4,6 +4,8 @@
 ##   tags: "platform-independent needs-internet"
 ##   description: Verify that the alternatives config is properly migrated and test the migration
 ##   distros: fcos
+##   ## package layering needs more memory
+##   minMemory: 1536
 # See
 # - https://github.com/coreos/fedora-coreos-tracker/issues/1818
 
@@ -32,7 +34,9 @@ fi
 # To test the migration we will re-create the setup from an older FCOS node
 
 # We need to overlay iptables-legacy as it is not included in the base image
-# since 43.
+# since 43. To make sure we can always get the same version of iptables-legacy
+# as the iptables version in FCOS let's include the fedora-coreos-pool.repo.
+cp "${KOLA_EXT_DATA}/fedora-coreos-pool.repo" /etc/yum.repos.d/
 rpm-ostree install --apply-live iptables-legacy
 
 # First, reset iptables to the legacy backend
