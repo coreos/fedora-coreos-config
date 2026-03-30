@@ -9,6 +9,16 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  coreos-installer:
+    evr: 0.26.0-1.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-4c93ab89d9
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.26.0-1.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-4c93ab89d9
+      type: fast-track
   ignition:
     evr: 2.26.0-1.fc43
     metadata:
@@ -20,7 +30,20 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-a5a9467ef8
       type: fast-track
   podman:
-    evr: 5:5.7.1-1.fc43
+    evr: 5:5.8.1-1.fc43
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2110
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-ca0e969a69
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2110#issuecomment-4070713706
+      type: fast-track
+  vim-data:
+    evra: 2:9.2.148-1.fc43.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7eaf665007
+      reason: https://github.com/coreos/fedora-coreos-config/pull/4062#issuecomment-4071913334
+      type: fast-track
+  vim-minimal:
+    evr: 2:9.2.148-1.fc43
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7eaf665007
+      reason: https://github.com/coreos/fedora-coreos-config/pull/4062#issuecomment-4071913334
+      type: fast-track
