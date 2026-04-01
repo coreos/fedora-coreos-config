@@ -9,18 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  bind-libs:
-    evr: 32:9.18.47-1.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-19d899e92d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
-  bind-utils:
-    evr: 32:9.18.47-1.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-19d899e92d
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
   bootc:
     evr: 1.14.1-1.fc44
     metadata:
