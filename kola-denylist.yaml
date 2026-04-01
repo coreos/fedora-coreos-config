@@ -25,3 +25,12 @@
     - aarch64
   streams:
     - rawhide
+
+- pattern: fcos.upgrade.basic
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2129
+  snooze: 2026-04-13
+  warn: true
+  arches:
+    - ppc64le
+  streams:
+    - rawhide
