@@ -1,0 +1,65 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: fedora-coreos-{{ stream }}-{{ event_type }}
+  namespace: coreos-tenant
+  labels:
+    appstudio.openshift.io/application: fedora-coreos-{{ stream }}
+    appstudio.openshift.io/component: fedora-coreos-{{ stream }}
+    pipelines.appstudio.openshift.io/type: build
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/coreos/fedora-coreos-config?rev={{ '{{revision}}' }}
+    build.appstudio.redhat.com/cancel-in-progress: "{{ cancel_in_progress | lower }}"
+    build.appstudio.redhat.com/commit_sha: '{{ '{{revision}}' }}'
+{%- if event_type != 'on-push' %}
+    build.appstudio.redhat.com/pull_request_number: '{{ '{{pull_request_number}}' }}'
+{%- endif %}
+    build.appstudio.redhat.com/target_branch: '{{ '{{target_branch}}' }}'
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-cel-expression: {{ cel_expression }}
+  creationTimestamp: null
+spec:
+  params:
+  - name: git-url
+    value: '{{ '{{source_url}}' }}'
+  - name: revision
+    value: '{{ '{{revision}}' }}'
+  - name: output-image
+    value: {{ output_image }}
+  - name: dockerfile
+    value: Containerfile
+  - name: path-context
+    value: .
+  - name: privileged-nested
+    value: true
+  - name: build-args-file
+    value: build-args.conf
+  - name: workingdir-mount
+    value: /run/src
+  - name: build-platforms
+    value:
+    - linux/amd64
+    - linux/arm64
+    - linux/s390x
+    - linux/ppc64le
+  - name: clone-depth
+    value: 50
+  - name: hermetic
+    value: {{ hermetic | lower }}
+  - name: prefetch-input
+    value: '[{"type": "rpm", "path": "."}]'
+{%- if image_expires_after %}
+  - name: image-expires-after
+    value: {{ image_expires_after }}
+{%- endif %}
+  pipelineRef:
+    params:
+    - name: bundle
+      value: {{ pipeline_bundle }}
+    - name: name
+      value: buildah-build-bootc-multi-platform-oci-ta
+    - name: kind
+      value: pipeline
+    resolver: bundles
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-fedora-coreos-{{ stream }}
