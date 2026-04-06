@@ -16,9 +16,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Execute generate command
-        run: ./ci/generate-tekton-pipelinerun
-
-      - name: Check for Git differences
-        # This step checks if the 'generate' command created any uncommitted changes.
-        run: |
-          git diff --exit-code
+        run: ./ci/generate-tekton-pipelinerun.py --check
