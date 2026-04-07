@@ -1,0 +1,7 @@
+variant: fcos
+version: 1.5.0
+boot_device:
+  mirror:
+    devices:
+      - /dev/vda
+      - /dev/vdb
