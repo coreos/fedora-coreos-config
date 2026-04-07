@@ -168,3 +168,26 @@ assert_confidential_type_match() {
     local expected=$1
     [ "${cvm_type}" == "${expected}" ]
 }
+
+# Checks that a file contains content matching one or more
+# regular expressions.
+assert_file_has_content () {
+    fpath=$1
+    shift
+    for re in "$@"; do
+        if ! grep -q -e "$re" "$fpath"; then
+            _fatal_print_file "$fpath" "File '$fpath' doesn't match regexp '$re'"
+        fi
+    done
+}
+
+# Checks that a file contains content matching one or more
+# literal (fixed) strings.
+assert_file_has_content_literal () {
+    fpath=$1; shift
+    for s in "$@"; do
+        if ! grep -q -F -e "$s" "$fpath"; then
+            _fatal_print_file "$fpath" "File '$fpath' doesn't match fixed string list '$s'"
+        fi
+    done
+}
