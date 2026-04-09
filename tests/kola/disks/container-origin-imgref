@@ -1,0 +1,29 @@
+#!/bin/bash
+## kola:
+##   # We need internet to check the container imgref
+##   tags: needs-internet
+##   exclusive: false
+##   description: |
+##      Verify that the deployed container image on the disk image has
+##      a correct ostree sigverify prefix.
+
+set -euo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+EXPECTED_IMGREF_PREFIX="ostree-image-signed:docker://"
+
+# get the running container imgref
+booted_imgref=$(rpm-ostree status --booted --json | jq -r '.deployments[0]."container-image-reference"')
+
+# Verify the booted imgref starts with the expected prefix
+if [[ ! $booted_imgref =~ ^$EXPECTED_IMGREF_PREFIX ]]; then
+  echo "booted deployment imgref:" "$booted_imgref"
+  echo "Expected prefix:" "$EXPECTED_IMGREF_PREFIX"
+  fatal "The booted deployment imgref does start with the expected prefix"
+fi
+
+# Verify ostree does accept the imgref as valid
+ostree container info "$booted_imgref"
+ok
