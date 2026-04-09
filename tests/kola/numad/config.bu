@@ -1,0 +1,6 @@
+variant: fcos
+version: 1.6.0
+systemd:
+  units:
+    - name: numad.service
+      enabled: true
