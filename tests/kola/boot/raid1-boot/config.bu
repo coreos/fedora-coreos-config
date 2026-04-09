@@ -1,6 +1,8 @@
 variant: fcos
 version: 1.5.0
 boot_device:
+  # This will be replaced by https://github.com/coreos/coreos-assembler/pull/4525
+  layout: {{LAYOUT}}
   mirror:
     devices:
       - /dev/vda
