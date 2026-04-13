@@ -16,7 +16,7 @@
       "evra": "1:1.56.0-1.fc45.s390x"
     },
     "aardvark-dns": {
-      "evra": "2:1.17.0-3.fc44.s390x"
+      "evra": "2:1.17.1-1.fc45.s390x"
     },
     "acl": {
       "evra": "2.3.2-6.fc44.s390x"
@@ -37,7 +37,7 @@
       "evra": "1.33-5.fc44.s390x"
     },
     "amd-gpu-firmware": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "attr": {
       "evra": "2.5.2-8.fc44.s390x"
@@ -67,10 +67,10 @@
       "evra": "1:2.17-2.fc44.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.18.47-1.fc45.s390x"
+      "evra": "32:9.18.48-1.fc45.s390x"
     },
     "bind-utils": {
-      "evra": "32:9.18.47-1.fc45.s390x"
+      "evra": "32:9.18.48-1.fc45.s390x"
     },
     "bootc": {
       "evra": "1.15.0-1.fc45.s390x"
@@ -178,10 +178,10 @@
       "evra": "2.9.11-10.fc44.s390x"
     },
     "criu": {
-      "evra": "4.2-16.fc45.s390x"
+      "evra": "4.2-17.fc45.s390x"
     },
     "criu-libs": {
-      "evra": "4.2-16.fc45.s390x"
+      "evra": "4.2-17.fc45.s390x"
     },
     "crun": {
       "evra": "1.27-1.fc45.s390x"
@@ -190,13 +190,13 @@
       "evra": "20251128-3.git19878fe.fc44.noarch"
     },
     "cryptsetup": {
-      "evra": "2.8.4-1.fc44.s390x"
+      "evra": "2.8.6-1.fc45.s390x"
     },
     "cryptsetup-libs": {
-      "evra": "2.8.4-1.fc44.s390x"
+      "evra": "2.8.6-1.fc45.s390x"
     },
     "curl": {
-      "evra": "8.19.0-2.fc45.s390x"
+      "evra": "8.20.0~rc1-1.fc45.s390x"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-35.fc44.s390x"
@@ -217,16 +217,16 @@
       "evra": "1:1.16.2-1.fc45.s390x"
     },
     "device-mapper": {
-      "evra": "1.02.213-1.fc45.s390x"
+      "evra": "1.02.213-2.fc45.s390x"
     },
     "device-mapper-event": {
-      "evra": "1.02.213-1.fc45.s390x"
+      "evra": "1.02.213-2.fc45.s390x"
     },
     "device-mapper-event-libs": {
-      "evra": "1.02.213-1.fc45.s390x"
+      "evra": "1.02.213-2.fc45.s390x"
     },
     "device-mapper-libs": {
-      "evra": "1.02.213-1.fc45.s390x"
+      "evra": "1.02.213-2.fc45.s390x"
     },
     "device-mapper-multipath": {
       "evra": "0.14.3-1.fc45.s390x"
@@ -241,13 +241,13 @@
       "evra": "3.12-5.fc44.s390x"
     },
     "dnf5": {
-      "evra": "5.4.0.0-5.fc45.s390x"
+      "evra": "5.4.0.0-6.fc45.s390x"
     },
     "dnsmasq": {
       "evra": "2.92-4.fc44.s390x"
     },
     "docker-cli": {
-      "evra": "29.3.1-1.fc45.s390x"
+      "evra": "29.4.0-1.fc45.s390x"
     },
     "dosfstools": {
       "evra": "4.2-18.fc44.s390x"
@@ -289,13 +289,13 @@
       "evra": "45-0.1.noarch"
     },
     "fedora-release-common": {
-      "evra": "45-0.2.noarch"
+      "evra": "45-0.5.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "45-0.2.noarch"
+      "evra": "45-0.5.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "45-0.2.noarch"
+      "evra": "45-0.5.noarch"
     },
     "fedora-repos": {
       "evra": "45-0.1.noarch"
@@ -319,7 +319,7 @@
       "evra": "1:4.10.0-7.fc44.s390x"
     },
     "flatpak-session-helper": {
-      "evra": "1.17.3-2.fc45.s390x"
+      "evra": "1.17.6-1.fc45.s390x"
     },
     "fmt": {
       "evra": "11.2.0-4.fc44.s390x"
@@ -430,7 +430,7 @@
       "evra": "62-2.fc44.s390x"
     },
     "intel-gpu-firmware": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "ipcalc": {
       "evra": "1.0.3-13.fc44.s390x"
@@ -493,16 +493,16 @@
       "evra": "1.0.61-1.fc45.s390x"
     },
     "kernel": {
-      "evra": "7.0.0-0.rc6.260403gd8a9a4b11a13.52.fc45.s390x"
+      "evra": "7.0.0-0.rc7.260410g9a9c8ce300cd3.58.fc45.s390x"
     },
     "kernel-core": {
-      "evra": "7.0.0-0.rc6.260403gd8a9a4b11a13.52.fc45.s390x"
+      "evra": "7.0.0-0.rc7.260410g9a9c8ce300cd3.58.fc45.s390x"
     },
     "kernel-modules": {
-      "evra": "7.0.0-0.rc6.260403gd8a9a4b11a13.52.fc45.s390x"
+      "evra": "7.0.0-0.rc7.260410g9a9c8ce300cd3.58.fc45.s390x"
     },
     "kernel-modules-core": {
-      "evra": "7.0.0-0.rc6.260403gd8a9a4b11a13.52.fc45.s390x"
+      "evra": "7.0.0-0.rc7.260410g9a9c8ce300cd3.58.fc45.s390x"
     },
     "kexec-tools": {
       "evra": "2.0.32-3.fc44.s390x"
@@ -553,10 +553,10 @@
       "evra": "0.12.2-7.fc44.s390x"
     },
     "libcap": {
-      "evra": "2.77-2.fc44.s390x"
+      "evra": "2.78-1.fc45.s390x"
     },
     "libcap-ng": {
-      "evra": "0.9.2-1.fc45.s390x"
+      "evra": "0.9.3-1.fc45.s390x"
     },
     "libcbor": {
       "evra": "0.13.0-2.fc44.s390x"
@@ -565,7 +565,7 @@
       "evra": "1.47.4-1.fc45.s390x"
     },
     "libcurl-minimal": {
-      "evra": "8.19.0-2.fc45.s390x"
+      "evra": "8.20.0~rc1-1.fc45.s390x"
     },
     "libdaemon": {
       "evra": "0.14-33.fc44.s390x"
@@ -574,10 +574,10 @@
       "evra": "0.5.0-62.fc45.s390x"
     },
     "libdnf5": {
-      "evra": "5.4.0.0-5.fc45.s390x"
+      "evra": "5.4.0.0-6.fc45.s390x"
     },
     "libdnf5-cli": {
-      "evra": "5.4.0.0-5.fc45.s390x"
+      "evra": "5.4.0.0-6.fc45.s390x"
     },
     "libdrm": {
       "evra": "2.4.131-1.fc44.s390x"
@@ -682,7 +682,7 @@
       "evra": "1.0.1-32.fc44.s390x"
     },
     "libnfsidmap": {
-      "evra": "1:2.9.1-0.fc45.s390x"
+      "evra": "1:2.9.1-1.fc45.s390x"
     },
     "libnftnl": {
       "evra": "1.3.1-2.fc44.s390x"
@@ -826,10 +826,10 @@
       "evra": "1.5.7-5.fc44.s390x"
     },
     "linux-firmware": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.34-2.fc44.s390x"
@@ -847,10 +847,10 @@
       "evra": "10-2.fc44.s390x"
     },
     "lvm2": {
-      "evra": "2.03.39-1.fc45.s390x"
+      "evra": "2.03.39-2.fc45.s390x"
     },
     "lvm2-libs": {
-      "evra": "2.03.39-1.fc45.s390x"
+      "evra": "2.03.39-2.fc45.s390x"
     },
     "lz4-libs": {
       "evra": "1.10.0-4.fc44.s390x"
@@ -865,19 +865,19 @@
       "evra": "4.6-1.fc45.s390x"
     },
     "moby-engine": {
-      "evra": "29.3.1-1.fc45.s390x"
+      "evra": "29.4.0-1.fc45.s390x"
     },
     "moby-filesystem": {
-      "evra": "29.3.1-1.fc45.noarch"
+      "evra": "29.4.0-1.fc45.noarch"
     },
     "mpfr": {
       "evra": "4.2.2-3.fc44.s390x"
     },
     "nano": {
-      "evra": "8.7.1-1.fc45.s390x"
+      "evra": "9.0-1.fc45.s390x"
     },
     "nano-default-editor": {
-      "evra": "8.7.1-1.fc45.noarch"
+      "evra": "9.0-1.fc45.noarch"
     },
     "ncurses": {
       "evra": "6.6-1.fc44.s390x"
@@ -901,16 +901,16 @@
       "evra": "0.52.25-6.fc44.s390x"
     },
     "nfs-client-utils": {
-      "evra": "1:2.9.1-0.fc45.s390x"
+      "evra": "1:2.9.1-1.fc45.s390x"
     },
     "nfs-common-utils": {
-      "evra": "1:2.9.1-0.fc45.s390x"
+      "evra": "1:2.9.1-1.fc45.s390x"
     },
     "nfsv3-client-utils": {
-      "evra": "1:2.9.1-0.fc45.s390x"
+      "evra": "1:2.9.1-1.fc45.s390x"
     },
     "nfsv4-client-utils": {
-      "evra": "1:2.9.1-0.fc45.s390x"
+      "evra": "1:2.9.1-1.fc45.s390x"
     },
     "nftables": {
       "evra": "1:1.1.6-2.fc44.s390x"
@@ -925,7 +925,7 @@
       "evra": "1.21.0-1.fc45.s390x"
     },
     "nmstate": {
-      "evra": "2.2.59-1.fc45.s390x"
+      "evra": "2.2.59-3.fc45.s390x"
     },
     "npth": {
       "evra": "1.8-4.fc44.s390x"
@@ -934,7 +934,7 @@
       "evra": "2.23.0-9.fc45.s390x"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "nvme-cli": {
       "evra": "2.16-2.fc44.s390x"
@@ -1018,7 +1018,7 @@
       "evra": "0.3.2-1.fc44.s390x"
     },
     "policycoreutils": {
-      "evra": "3.10-2.fc45.s390x"
+      "evra": "3.10-3.fc45.s390x"
     },
     "polkit": {
       "evra": "127-4.fc45.s390x"
@@ -1042,7 +1042,7 @@
       "evra": "20260116-1.fc44.noarch"
     },
     "qed-firmware": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "qemu-user-static-x86": {
       "evra": "2:11.0.0-0.6.rc2.fc45.s390x"
@@ -1052,6 +1052,12 @@
     },
     "readline": {
       "evra": "8.3-4.fc44.s390x"
+    },
+    "redhat-systemd-presets": {
+      "evra": "102-1.fc45.noarch"
+    },
+    "redhat-systemd-presets-common": {
+      "evra": "102-1.fc45.noarch"
     },
     "rpcbind": {
       "evra": "1.2.8-1.fc44.s390x"
@@ -1078,7 +1084,7 @@
       "evra": "3.4.1-6.fc45.s390x"
     },
     "runc": {
-      "evra": "2:1.4.1-1.fc45.s390x"
+      "evra": "2:1.4.2-1.fc45.s390x"
     },
     "s390utils-core": {
       "evra": "2:2.41.0-1.fc45.s390x"
@@ -1126,7 +1132,7 @@
       "evra": "2.4-3.fc44.s390x"
     },
     "skopeo": {
-      "evra": "1:1.22.0-2.fc45.s390x"
+      "evra": "1:1.22.1-2.fc45.s390x"
     },
     "slang": {
       "evra": "2.3.3-9.fc44.s390x"
@@ -1237,7 +1243,7 @@
       "evra": "2.42-7.fc45.s390x"
     },
     "veritysetup": {
-      "evra": "2.8.4-1.fc44.s390x"
+      "evra": "2.8.6-1.fc45.s390x"
     },
     "vim-data": {
       "evra": "2:9.2.280-1.fc45.noarch"
@@ -1283,6 +1289,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-04-07T00:00:00Z"
+    "generated": "2026-04-13T00:00:00Z"
   }
 }

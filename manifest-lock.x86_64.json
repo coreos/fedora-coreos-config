@@ -19,7 +19,7 @@
       "evra": "2.15.0.1-3.fc44.noarch"
     },
     "aardvark-dns": {
-      "evra": "2:1.17.0-3.fc44.x86_64"
+      "evra": "2:1.17.1-1.fc45.x86_64"
     },
     "acl": {
       "evra": "2.3.2-6.fc44.x86_64"
@@ -40,10 +40,10 @@
       "evra": "1.33-5.fc44.x86_64"
     },
     "amd-gpu-firmware": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "amd-ucode-firmware": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "attr": {
       "evra": "2.5.2-8.fc44.x86_64"
@@ -76,10 +76,10 @@
       "evra": "1:2.17-2.fc44.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.18.47-1.fc45.x86_64"
+      "evra": "32:9.18.48-1.fc45.x86_64"
     },
     "bind-utils": {
-      "evra": "32:9.18.47-1.fc45.x86_64"
+      "evra": "32:9.18.48-1.fc45.x86_64"
     },
     "bootc": {
       "evra": "1.15.0-1.fc45.x86_64"
@@ -187,10 +187,10 @@
       "evra": "2.9.11-10.fc44.x86_64"
     },
     "criu": {
-      "evra": "4.2-16.fc45.x86_64"
+      "evra": "4.2-17.fc45.x86_64"
     },
     "criu-libs": {
-      "evra": "4.2-16.fc45.x86_64"
+      "evra": "4.2-17.fc45.x86_64"
     },
     "crun": {
       "evra": "1.27-1.fc45.x86_64"
@@ -202,13 +202,13 @@
       "evra": "20251128-3.git19878fe.fc44.noarch"
     },
     "cryptsetup": {
-      "evra": "2.8.4-1.fc44.x86_64"
+      "evra": "2.8.6-1.fc45.x86_64"
     },
     "cryptsetup-libs": {
-      "evra": "2.8.4-1.fc44.x86_64"
+      "evra": "2.8.6-1.fc45.x86_64"
     },
     "curl": {
-      "evra": "8.19.0-2.fc45.x86_64"
+      "evra": "8.20.0~rc1-1.fc45.x86_64"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-35.fc44.x86_64"
@@ -229,16 +229,16 @@
       "evra": "1:1.16.2-1.fc45.x86_64"
     },
     "device-mapper": {
-      "evra": "1.02.213-1.fc45.x86_64"
+      "evra": "1.02.213-2.fc45.x86_64"
     },
     "device-mapper-event": {
-      "evra": "1.02.213-1.fc45.x86_64"
+      "evra": "1.02.213-2.fc45.x86_64"
     },
     "device-mapper-event-libs": {
-      "evra": "1.02.213-1.fc45.x86_64"
+      "evra": "1.02.213-2.fc45.x86_64"
     },
     "device-mapper-libs": {
-      "evra": "1.02.213-1.fc45.x86_64"
+      "evra": "1.02.213-2.fc45.x86_64"
     },
     "device-mapper-multipath": {
       "evra": "0.14.3-1.fc45.x86_64"
@@ -253,13 +253,13 @@
       "evra": "3.12-5.fc44.x86_64"
     },
     "dnf5": {
-      "evra": "5.4.0.0-5.fc45.x86_64"
+      "evra": "5.4.0.0-6.fc45.x86_64"
     },
     "dnsmasq": {
       "evra": "2.92-4.fc44.x86_64"
     },
     "docker-cli": {
-      "evra": "29.3.1-1.fc45.x86_64"
+      "evra": "29.4.0-1.fc45.x86_64"
     },
     "dosfstools": {
       "evra": "4.2-18.fc44.x86_64"
@@ -310,13 +310,13 @@
       "evra": "45-0.1.noarch"
     },
     "fedora-release-common": {
-      "evra": "45-0.2.noarch"
+      "evra": "45-0.5.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "45-0.2.noarch"
+      "evra": "45-0.5.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "45-0.2.noarch"
+      "evra": "45-0.5.noarch"
     },
     "fedora-repos": {
       "evra": "45-0.1.noarch"
@@ -340,7 +340,7 @@
       "evra": "1:4.10.0-7.fc44.x86_64"
     },
     "flatpak-session-helper": {
-      "evra": "1.17.3-2.fc45.x86_64"
+      "evra": "1.17.6-1.fc45.x86_64"
     },
     "fmt": {
       "evra": "11.2.0-4.fc44.x86_64"
@@ -442,22 +442,22 @@
       "evra": "3.12-3.fc44.x86_64"
     },
     "grub2-common": {
-      "evra": "1:2.12-56.fc45.noarch"
+      "evra": "1:2.12-57.fc45.noarch"
     },
     "grub2-efi-x64": {
-      "evra": "1:2.12-56.fc45.x86_64"
+      "evra": "1:2.12-57.fc45.x86_64"
     },
     "grub2-pc": {
-      "evra": "1:2.12-56.fc45.x86_64"
+      "evra": "1:2.12-57.fc45.x86_64"
     },
     "grub2-pc-modules": {
-      "evra": "1:2.12-56.fc45.noarch"
+      "evra": "1:2.12-57.fc45.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.12-56.fc45.x86_64"
+      "evra": "1:2.12-57.fc45.x86_64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.12-56.fc45.x86_64"
+      "evra": "1:2.12-57.fc45.x86_64"
     },
     "gssproxy": {
       "evra": "0.9.2-11.fc45.x86_64"
@@ -481,7 +481,7 @@
       "evra": "62-2.fc44.x86_64"
     },
     "intel-gpu-firmware": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "ipcalc": {
       "evra": "1.0.3-13.fc44.x86_64"
@@ -547,16 +547,16 @@
       "evra": "1.0.61-1.fc45.x86_64"
     },
     "kernel": {
-      "evra": "7.0.0-0.rc6.260403gd8a9a4b11a13.52.fc45.x86_64"
+      "evra": "7.0.0-0.rc7.260410g9a9c8ce300cd3.58.fc45.x86_64"
     },
     "kernel-core": {
-      "evra": "7.0.0-0.rc6.260403gd8a9a4b11a13.52.fc45.x86_64"
+      "evra": "7.0.0-0.rc7.260410g9a9c8ce300cd3.58.fc45.x86_64"
     },
     "kernel-modules": {
-      "evra": "7.0.0-0.rc6.260403gd8a9a4b11a13.52.fc45.x86_64"
+      "evra": "7.0.0-0.rc7.260410g9a9c8ce300cd3.58.fc45.x86_64"
     },
     "kernel-modules-core": {
-      "evra": "7.0.0-0.rc6.260403gd8a9a4b11a13.52.fc45.x86_64"
+      "evra": "7.0.0-0.rc7.260410g9a9c8ce300cd3.58.fc45.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.32-3.fc44.x86_64"
@@ -607,10 +607,10 @@
       "evra": "0.12.2-7.fc44.x86_64"
     },
     "libcap": {
-      "evra": "2.77-2.fc44.x86_64"
+      "evra": "2.78-1.fc45.x86_64"
     },
     "libcap-ng": {
-      "evra": "0.9.2-1.fc45.x86_64"
+      "evra": "0.9.3-1.fc45.x86_64"
     },
     "libcbor": {
       "evra": "0.13.0-2.fc44.x86_64"
@@ -619,7 +619,7 @@
       "evra": "1.47.4-1.fc45.x86_64"
     },
     "libcurl-minimal": {
-      "evra": "8.19.0-2.fc45.x86_64"
+      "evra": "8.20.0~rc1-1.fc45.x86_64"
     },
     "libdaemon": {
       "evra": "0.14-33.fc44.x86_64"
@@ -628,10 +628,10 @@
       "evra": "0.5.0-62.fc45.x86_64"
     },
     "libdnf5": {
-      "evra": "5.4.0.0-5.fc45.x86_64"
+      "evra": "5.4.0.0-6.fc45.x86_64"
     },
     "libdnf5-cli": {
-      "evra": "5.4.0.0-5.fc45.x86_64"
+      "evra": "5.4.0.0-6.fc45.x86_64"
     },
     "libdrm": {
       "evra": "2.4.131-1.fc44.x86_64"
@@ -736,7 +736,7 @@
       "evra": "1.0.1-32.fc44.x86_64"
     },
     "libnfsidmap": {
-      "evra": "1:2.9.1-0.fc45.x86_64"
+      "evra": "1:2.9.1-1.fc45.x86_64"
     },
     "libnftnl": {
       "evra": "1.3.1-2.fc44.x86_64"
@@ -883,10 +883,10 @@
       "evra": "1.5.7-5.fc44.x86_64"
     },
     "linux-firmware": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "lld18-libs": {
       "evra": "18.1.8-8.fc43.x86_64"
@@ -910,10 +910,10 @@
       "evra": "10-2.fc44.x86_64"
     },
     "lvm2": {
-      "evra": "2.03.39-1.fc45.x86_64"
+      "evra": "2.03.39-2.fc45.x86_64"
     },
     "lvm2-libs": {
-      "evra": "2.03.39-1.fc45.x86_64"
+      "evra": "2.03.39-2.fc45.x86_64"
     },
     "lz4-libs": {
       "evra": "1.10.0-4.fc44.x86_64"
@@ -931,10 +931,10 @@
       "evra": "2:2.1-74.fc45.x86_64"
     },
     "moby-engine": {
-      "evra": "29.3.1-1.fc45.x86_64"
+      "evra": "29.4.0-1.fc45.x86_64"
     },
     "moby-filesystem": {
-      "evra": "29.3.1-1.fc45.noarch"
+      "evra": "29.4.0-1.fc45.noarch"
     },
     "mokutil": {
       "evra": "2:0.7.2-4.fc45.x86_64"
@@ -943,10 +943,10 @@
       "evra": "4.2.2-3.fc44.x86_64"
     },
     "nano": {
-      "evra": "8.7.1-1.fc45.x86_64"
+      "evra": "9.0-1.fc45.x86_64"
     },
     "nano-default-editor": {
-      "evra": "8.7.1-1.fc45.noarch"
+      "evra": "9.0-1.fc45.noarch"
     },
     "ncurses": {
       "evra": "6.6-1.fc44.x86_64"
@@ -970,16 +970,16 @@
       "evra": "0.52.25-6.fc44.x86_64"
     },
     "nfs-client-utils": {
-      "evra": "1:2.9.1-0.fc45.x86_64"
+      "evra": "1:2.9.1-1.fc45.x86_64"
     },
     "nfs-common-utils": {
-      "evra": "1:2.9.1-0.fc45.x86_64"
+      "evra": "1:2.9.1-1.fc45.x86_64"
     },
     "nfsv3-client-utils": {
-      "evra": "1:2.9.1-0.fc45.x86_64"
+      "evra": "1:2.9.1-1.fc45.x86_64"
     },
     "nfsv4-client-utils": {
-      "evra": "1:2.9.1-0.fc45.x86_64"
+      "evra": "1:2.9.1-1.fc45.x86_64"
     },
     "nftables": {
       "evra": "1:1.1.6-2.fc44.x86_64"
@@ -994,7 +994,7 @@
       "evra": "1.21.0-1.fc45.x86_64"
     },
     "nmstate": {
-      "evra": "2.2.59-1.fc45.x86_64"
+      "evra": "2.2.59-3.fc45.x86_64"
     },
     "npth": {
       "evra": "1.8-4.fc44.x86_64"
@@ -1002,11 +1002,17 @@
     "nss-altfiles": {
       "evra": "2.23.0-9.fc45.x86_64"
     },
+    "numactl": {
+      "evra": "2.0.19-4.fc44.x86_64"
+    },
     "numactl-libs": {
       "evra": "2.0.19-4.fc44.x86_64"
     },
+    "numad": {
+      "evra": "0.5-50.20251104git.fc44.x86_64"
+    },
     "nvidia-gpu-firmware": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "nvme-cli": {
       "evra": "2.16-2.fc44.x86_64"
@@ -1093,7 +1099,7 @@
       "evra": "0.3.2-1.fc44.x86_64"
     },
     "policycoreutils": {
-      "evra": "3.10-2.fc45.x86_64"
+      "evra": "3.10-3.fc45.x86_64"
     },
     "polkit": {
       "evra": "127-4.fc45.x86_64"
@@ -1117,13 +1123,19 @@
       "evra": "20260116-1.fc44.noarch"
     },
     "qed-firmware": {
-      "evra": "20260309-1.fc45.noarch"
+      "evra": "20260410-1.fc45.noarch"
     },
     "rdma-core-common": {
       "evra": "62.0-1.fc45.noarch"
     },
     "readline": {
       "evra": "8.3-4.fc44.x86_64"
+    },
+    "redhat-systemd-presets": {
+      "evra": "102-1.fc45.noarch"
+    },
+    "redhat-systemd-presets-common": {
+      "evra": "102-1.fc45.noarch"
     },
     "rpcbind": {
       "evra": "1.2.8-1.fc44.x86_64"
@@ -1150,7 +1162,7 @@
       "evra": "3.4.1-6.fc45.x86_64"
     },
     "runc": {
-      "evra": "2:1.4.1-1.fc45.x86_64"
+      "evra": "2:1.4.2-1.fc45.x86_64"
     },
     "samba-client-libs": {
       "evra": "2:4.24.0-7.fc45.x86_64"
@@ -1198,7 +1210,7 @@
       "evra": "16.1-7.x86_64"
     },
     "skopeo": {
-      "evra": "1:1.22.0-2.fc45.x86_64"
+      "evra": "1:1.22.1-2.fc45.x86_64"
     },
     "slang": {
       "evra": "2.3.3-9.fc44.x86_64"
@@ -1358,6 +1370,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-04-07T00:00:00Z"
+    "generated": "2026-04-13T00:00:00Z"
   }
 }
