@@ -34,6 +34,17 @@ packages:
   # https://github.com/coreos/fedora-coreos-tracker/issues/753
   - stalld
 
+conditional-include:
+  # numad is not available for s390x
+  - if: basearch != "s390x"
+    include:
+      packages:
+        # https://github.com/coreos/fedora-coreos-tracker/issues/2096
+        # numad: Daemon that provides placement advice for efficient use of CPUs and memory on systems with NUMA topology.
+        # numactl: Control NUMA policy for processes or shared memory
+        - numad
+        - numactl
+
 postprocess:
   # Mask systemd-repart. Ignition is responsible for partition setup on first
   # boot and does not use systemd-repart currently. See also

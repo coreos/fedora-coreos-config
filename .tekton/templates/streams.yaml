@@ -1,0 +1,42 @@
+# Configuration for Fedora CoreOS Tekton PipelineRun generation
+#
+# Each stream has a corresponding branch in the repository.
+# Streams with has_overrides=true get an additional on-pull-request-overrides
+# pipeline that triggers when manifest-lock.overrides* files change.
+
+# Shared configuration
+config:
+  pipeline_bundle: quay.io/bootc-devel/tekton-catalog/pipeline-buildah-build-bootc-multi-platform-oci-ta@sha256:2678dd50429012f562c349ad52bce30f4bba3a0f6832b874c303e418d5b8a4ae
+
+# Stream definitions
+#
+# Optional per-stream settings:
+#   has_overrides: bool - whether to generate on-pull-request-overrides pipeline
+#   hermetic: bool - whether to use hermetic builds (default: true)
+#   on_push_cel_expression: string - custom CEL expression for on-push event
+#
+streams:
+  - name: stable
+    has_overrides: false
+
+  - name: testing
+    has_overrides: false
+
+  - name: next
+    has_overrides: false
+
+  - name: testing-devel
+    has_overrides: true
+
+  - name: next-devel
+    has_overrides: true
+
+  - name: rawhide
+    has_overrides: true
+    # rawhide on-push only triggers when .tekton/trigger file changes
+    on_push_cel_expression: 'event == "push" && target_branch == "rawhide" && ".tekton/trigger".pathChanged()'
+
+  - name: branched
+    has_overrides: true
+    # branched uses non-hermetic builds
+    hermetic: false
