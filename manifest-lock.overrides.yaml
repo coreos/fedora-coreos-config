@@ -8,28 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  glibc:
-    evr: 2.43.9000-10.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-16d5de8bc9
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2133#issuecomment-4241138887
-      type: fast-track
-  glibc-common:
-    evr: 2.43.9000-10.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-16d5de8bc9
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2133#issuecomment-4241138887
-      type: fast-track
-  glibc-gconv-extra:
-    evr: 2.43.9000-10.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-16d5de8bc9
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2133#issuecomment-4241138887
-      type: fast-track
-  glibc-minimal-langpack:
-    evr: 2.43.9000-10.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-16d5de8bc9
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2133#issuecomment-4241138887
-      type: fast-track
+packages: {}
