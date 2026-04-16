@@ -169,25 +169,35 @@ assert_confidential_type_match() {
     [ "${cvm_type}" == "${expected}" ]
 }
 
+# Fatal error including file path and content for debugging
+fatal_print_file() {
+    local fpath=$1
+    shift
+    ls -al "$fpath" >&2
+    sed -e 's/^/# /' < "$fpath" >&2
+    fatal "$@"
+}
+
 # Checks that a file contains content matching one or more
 # regular expressions.
-assert_file_has_content () {
-    fpath=$1
+assert_file_has_content() {
+    local fpath=$1
     shift
     for re in "$@"; do
         if ! grep -q -e "$re" "$fpath"; then
-            _fatal_print_file "$fpath" "File '$fpath' doesn't match regexp '$re'"
+            fatal_print_file "$fpath" "File '$fpath' doesn't match regexp '$re'"
         fi
     done
 }
 
 # Checks that a file contains content matching one or more
 # literal (fixed) strings.
-assert_file_has_content_literal () {
-    fpath=$1; shift
+assert_file_has_content_literal() {
+    local fpath=$1
+    shift
     for s in "$@"; do
         if ! grep -q -F -e "$s" "$fpath"; then
-            _fatal_print_file "$fpath" "File '$fpath' doesn't match fixed string list '$s'"
+            fatal_print_file "$fpath" "File '$fpath' doesn't match fixed string list '$s'"
         fi
     done
 }
