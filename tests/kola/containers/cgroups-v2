@@ -1,11 +1,12 @@
 #!/bin/bash
 ## kola:
-##   # This test only runs on FCOS because RHCOS does not currently
-##   # support cgroupsv2 by default.
-##   # TODO-RHCOS: drop "fcos" tag when cgroupsv2 lands in RHCOS
-##   distros: fcos
+##   # Check to make sure we are running cgroups v2
 ##   exclusive: false
-##   description: Verify the system supports cgroupsv2 on FCOS.
+##   description: Verify the system supports cgroupsv2.
+##   # Abuse creationDate here since we are introducing
+##   # the test running on RHCOS and don't want hard failures
+##   # there if the test needs to be adjusted.
+##   creationDate: 2026-04-16
 
 set -xeuo pipefail
 
