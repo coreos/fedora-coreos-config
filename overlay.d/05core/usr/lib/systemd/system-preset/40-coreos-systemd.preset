@@ -9,8 +9,3 @@ disable systemd-oomd.service
 # bits in the manifest (ignition-and-ostree.yaml), but
 # we want to support overlaying builds of systemd from git.
 disable systemd-firstboot.service
-
-# This hasn't been tested with ostree/rpm-ostree and heavily overlaps
-# with the latter.  Preemptively disable the service; it will hopefully
-# be subpackaged though for Fedora.
-disable systemd-sysext.service
