@@ -4,9 +4,3 @@
 # We don't have swap by default, and systemd-oomd strongly recommends it.
 disable systemd-oomd.service
 disable systemd-oomd.socket
-
-# Disable systemd-firstboot because it conflicts with Ignition.
-# In most cases this is handled via the remove-from-packages
-# bits in the manifest (ignition-and-ostree.yaml), but
-# we want to support overlaying builds of systemd from git.
-disable systemd-firstboot.service
