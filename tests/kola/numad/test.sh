@@ -33,7 +33,7 @@ fi
 podman run --privileged --name stress-ng --pid=host                      \
     --volume=root:/root/:nocopy --volume=vartmp:/var/tmp/:nocopy         \
     --workdir /root --rootfs /var/cosaroot                               \
-    stress-ng --temp-path /var/tmp --vm 1 --vm-bytes 1024M --timeout 25s
+    stress-ng --temp-path /var/tmp --vm 1 --vm-bytes 1024M --timeout 45s
 
 logfile="/var/log/numad.log"
 for node in 0 1; do
