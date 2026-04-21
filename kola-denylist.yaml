@@ -34,3 +34,37 @@
     - ppc64le
   streams:
     - rawhide
+
+# Waiting a bootc release to fix s390x with `bootc install`
+# Right now bootc is not setting `sysroot.bootloader` to `zipl`
+# On s390x causing the bootloader to not be updated.
+- pattern: ostree.hotfix
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  arches:
+     - s390x
+  streams:
+    - rawhide
+- pattern: rpmostree.upgrade-rollback
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  arches:
+     - s390x
+  streams:
+    - rawhide
+- pattern: rpmostree.install-uninstall
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  arches:
+     - s390x
+  streams:
+    - rawhide
+- pattern: multipath.day2
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  arches:
+     - s390x
+  streams:
+    - rawhide
+- pattern: ext.config.systemd.condition-needs-update
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  arches:
+     - s390x
+  streams:
+    - rawhide
