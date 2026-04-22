@@ -155,3 +155,12 @@ postprocess:
         echo "${actuals}" 1>&2
         exit 1
     fi
+
+  # We don't want auto-generated mount units. See also
+  # https://github.com/systemd/systemd/issues/13099
+  - |
+    #!/usr/bin/env bash
+    set -x
+    # Find the .build-id file and remove it too so we don't have a broken symlink.
+    build_id_file=$(find -L /usr/lib/.build-id/ -samefile /usr/lib/systemd/system-generators/systemd-gpt-auto-generator)
+    rm -vf $build_id_file /usr/lib/systemd/system-generators/systemd-gpt-auto-generator
