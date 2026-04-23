@@ -77,10 +77,17 @@ build_derived_ociarchive() {
 
     case "$OS_ID" in
       rhcos|scos|rhel|centos)
-        c9s_mirror="https://mirror.stream.centos.org/9-stream/BaseOS/${arch}/os"
+        # Use the matching CentOS Stream version based on RHEL/SCOS major version
+        if match_maj_ver "10"; then
+            cs_mirror="https://mirror.stream.centos.org/10-stream/BaseOS/${arch}/os"
+        elif match_maj_ver "9"; then
+            cs_mirror="https://mirror.stream.centos.org/9-stream/BaseOS/${arch}/os"
+        else
+            fatal "Unhandled major RHEL/SCOS VERSION"
+        fi
         # we're probably already on CentOS and running the latest kernel. so
         # here we need to instead pick whatever the latest that's *not* the same
-        dnf_opts="--repofrompath=tmp,"${c9s_mirror}" --disablerepo=* --enablerepo tmp"
+        dnf_opts="--repofrompath=tmp,${cs_mirror} --disablerepo=* --enablerepo tmp"
         kver=$(dnf repoquery $dnf_opts kernel --qf '%{EVR}' | \
                   grep -v "$(rpm -q kernel --qf '%{EVR}')" | tail -n1)
         dnf download $dnf_opts --resolve kernel-{,core-,modules-,modules-core-,modules-extra-}$kver
