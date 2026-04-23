@@ -68,3 +68,9 @@
      - s390x
   streams:
     - rawhide
+- pattern: ext.config.rpm-ostree.kernel-replace
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  arches:
+     - s390x
+  streams:
+    - rawhide
