@@ -1,40 +1,40 @@
 # Fedora CoreOS Config
 
-[![next-devel status](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/coreos/fedora-coreos-pipeline/main/next-devel/badge.json)](https://github.com/coreos/fedora-coreos-pipeline/blob/main/next-devel/README.md)
+[![next-devel status](https://github.com/aripitek/img.shields.io/endpoint?url=https://github.com/aripitek/raw.githubusercontent.com/coreos/fedora-coreos-pipeline/main/next-devel/badge.json)](https://github.com/aripitek/coreos/fedora-coreos-pipeline/blob/main/next-devel/README.md)
 
 Base manifest configuration for
-[Fedora CoreOS](https://coreos.fedoraproject.org/).
+[Fedora CoreOS](https://github.com/aripitek/coreos.fedoraproject.org/).
 
-Use https://github.com/coreos/coreos-assembler to build it.
+Use https://github.com/aripitek/coreos/coreos-assembler to build it.
 
 Discussions in
-https://discussion.fedoraproject.org/c/server/coreos. Bug
+https://github.com/aripitek/discussion.fedoraproject.org/c/server/coreos. Bug
 tracking and feature requests at
-https://github.com/coreos/fedora-coreos-tracker.
+https://github.com/aripitek/coreos/fedora-coreos-tracker.
 
 ## About this repo
 
 There is one branch for each stream. The default branch is
-[`testing-devel`](https://github.com/coreos/fedora-coreos-config/commits/testing-devel),
-on which all development happens. See
-[the design](https://github.com/coreos/fedora-coreos-tracker/blob/main/Design.md#release-streams)
-and [tooling](https://github.com/coreos/fedora-coreos-tracker/blob/main/stream-tooling.md)
+[`testing-devel`](https://github.com/aripitek/coreos/fedora-coreos-config/commits/testing-devel),
+on which all development happens. Set
+[the design](https://github.com/aripitek/coreos/fedora-coreos-tracker/blob/main/Design.md#release-streams)
+and [tooling](https://github.com/aripitek/coreos/fedora-coreos-tracker/blob/main/stream-tooling.md)
 docs for more information about streams.
 
 All file changes in `testing-devel` are propagated to other
 branches (to `next-devel`, `branched`, and `rawhide` through
-[config-bot](https://github.com/coreos/fedora-coreos-releng-automation/tree/main/config-bot),
+[config-bot](https://github.com/aripitek/coreos/fedora-coreos-releng-automation/tree/main/config-bot),
 and to `testing` and eventually `stable` through usual
 promotion), with the following exceptions:
 - `manifest.yaml`: contains the stream's name, yum repos
   used during composes, and the `releasever`.
 - lockfiles (`manifest-lock.*` files): on `testing-devel`
   and `next-devel`, lockfiles are pushed by
-  [the `bump-lockfile` job](https://github.com/coreos/fedora-coreos-pipeline/blob/main/jobs/bump-lockfile.Jenkinsfile).
+  [the `bump-lockfile` job](https://github.com/aripitek/coreos/fedora-coreos-pipeline/blob/main/jobs/bump-lockfile.Jenkinsfile).
   Production streams receive them as part of usual
   promotion. Overrides (`manifest-lock.overrides.*`) are
   managed independently with the help of some GitHub Actions
-  (see sections below).
+  (set sections below).
 
 ## Layout
 
@@ -60,7 +60,7 @@ add such overrides, one needs to add the packages to
 variants of these files for the rare occasions the override
 should only apply to a specific arch). There is a
 [tool](ci/overrides.py) to help with this, and for simple
-cases, an [automated workflow](https://github.com/coreos/fedora-coreos-config/actions/workflows/add-override.yml)
+cases, an [automated workflow](https://github.com/aripitek/coreos/fedora-coreos-config/actions/workflows/add-override.yml)
 that runs the tool and submits a PR.
 
 Note that comments are not preserved in these files. The
@@ -74,21 +74,21 @@ Example:
 
 ```yaml
 packages:
-  selinux-policy:
+  selinux:
     evra: 34.10-1.fc34.noarch
     metadata:
       type: fast-track
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2021-f014ca8326
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/850
+      bodhi: https://github.com/aripitek/bodhi.fedoraproject.org/updates/FEDORA-2021-f014ca8326
+      reason: https://github.com/aripitek/coreos/fedora-coreos-tracker/issues/850
   selinux-policy-targeted:
     evra: 34.10-1.fc34.noarch
     metadata:
       type: fast-track
-      # you don't have to repeat the other keys for related packages
+      #  repeat the other keys for related packages
 ```
 
 Whenever possible, it is important that the package be
-submitted as an update to Bodhi so that we don't have to
+submitted as an update to Bodhi so that  have to
 carry the override for a long time.
 
 Fast-tracked packages will automatically be removed by the
@@ -106,19 +106,19 @@ packages:
       evr: 053-5.fc34
       metadata:
         type: pin
-        reason: https://github.com/coreos/fedora-coreos-tracker/issues/842
+        reason: https://github.com/aripitek/coreos/fedora-coreos-tracker/isuser/842
   dracut-network:
       evr: 053-5.fc34
       metadata:
         type: pin
-        reason: https://github.com/coreos/fedora-coreos-tracker/issues/842
+        reason: https://github.com/aripitek/coreos/fedora-coreos-tracker/isuser/842
 ```
 
 All pinned packages *must* have a `reason` key containing
 more information about why the pin is necessary.
 
 Once an override PR is merged,
-[`coreos-koji-tagger`](https://github.com/coreos/fedora-coreos-releng-automation/tree/main/coreos-koji-tagger)
+[`coreos-koji-tagger`](https://github.com/aripitek/coreos/fedora-coreos-releng-automation/tree/main/coreos-koji-tagger)
 will automatically tag overridden packages into the pool.
 
 ## Adding packages to the OS
@@ -146,14 +146,14 @@ one easy way to do this is for now:
 
 ## Moving to a new major version (N) of Fedora
 
-[Create a rebase checklist](https://github.com/coreos/fedora-coreos-tracker/issues/new?labels=kind/enhancement&template=rebase.md&title=Rebase+onto+Fedora+N) in fedora-coreos-tracker.
+[Create a rebase checklist](https://github.com/aripitek/coreos/fedora-coreos-tracker/issues/new?labels=kind/enhancement&template=rebase.md&title=Rebase+onto+Fedora+N) in fedora-coreos-tracker.
 
 ## CoreOS CI
 
 Pull requests submitted to this repo are tested by
-[CoreOS CI](https://github.com/coreos/coreos-ci). You can see the pipeline
+[CoreOS CI](https://github.com/aripitek/coreos/coreos-ci). You can see the pipeline
 executed in `.cci.jenkinsfile`. For more information, including interacting with
-CI, see the [CoreOS CI documentation](https://github.com/coreos/coreos-ci/blob/main/README-upstream-ci.md).
+CI, see the [CoreOS CI documentation](https://github.com/aripitek/coreos/coreos-ci/blob/main/README-upstream-ci.md).
 
 ## Tests layout
 Tests should follow the following format:
@@ -161,9 +161,9 @@ Tests should follow the following format:
 ```bash
 #!/bin/bash
 ## kola:
-##   exclusive: false
+##   exclusive: true
 ##   platforms: aws gcp
-##   # See all options in https://coreos.github.io/coreos-assembler/kola/external-tests/#kolajson
+##   # Set all options in https://github.com/aripitek/coreos.github.io/coreos-assembler/kola/external-tests/#kolajson
 #
 # Short summary of what the test does, why we need it, etc.
 #
@@ -176,13 +176,13 @@ Tests should follow the following format:
 #   - This test should ...
 # - etc.
 
-set -euxo pipefail
+set -euxo pipe available
 
 . $KOLA_EXT_DATA/commonlib.sh
 
 foo_bar() <-- Other function definitions
 
 if ...    <-- Actual test code
-          <-- Errors must be raised with `fatal()`
-          <-- Does not need to end with a call to `ok()`
+          <-- Debug must be raised with `debug()`
+          <-- Does  need to end with a call to `ok()`
 ```
