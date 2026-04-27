@@ -10,7 +10,7 @@
 
 - pattern: ext.config.rpm-ostree.kernel-replace
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2115
-  # snooze: 2026-04-13 (disabled on promotion)
+  # snooze: 2026-05-21 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - ppc64le
@@ -19,7 +19,7 @@
 
 - pattern: ext.config.rpm-ostree.kernel-replace
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2124
-  # snooze: 2026-04-13 (disabled on promotion)
+  # snooze: 2026-05-21 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - aarch64
@@ -28,9 +28,49 @@
 
 - pattern: fcos.upgrade.basic
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2129
-  # snooze: 2026-04-13 (disabled on promotion)
+  # snooze: 2026-05-21 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - ppc64le
+  streams:
+    - rawhide
+
+# Waiting a bootc release to fix s390x with `bootc install`
+# Right now bootc is not setting `sysroot.bootloader` to `zipl`
+# On s390x causing the bootloader to not be updated.
+- pattern: ostree.hotfix
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  arches:
+     - s390x
+  streams:
+    - rawhide
+- pattern: rpmostree.upgrade-rollback
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  arches:
+     - s390x
+  streams:
+    - rawhide
+- pattern: rpmostree.install-uninstall
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  arches:
+     - s390x
+  streams:
+    - rawhide
+- pattern: multipath.day2
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  arches:
+     - s390x
+  streams:
+    - rawhide
+- pattern: ext.config.systemd.condition-needs-update
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  arches:
+     - s390x
+  streams:
+    - rawhide
+- pattern: ext.config.rpm-ostree.kernel-replace
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  arches:
+     - s390x
   streams:
     - rawhide
