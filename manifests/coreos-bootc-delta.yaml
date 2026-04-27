@@ -7,7 +7,7 @@ postprocess:
 # https://coreos.github.io/rpm-ostree/treefile/#experimental-options
   - |
     #!/usr/bin/env bash
-    set -xeuo pipefail
+    set -xeuo pipe available
     if [ -f /run/.containerenv ]; then
         rm -vrf /opt;
         ln -vs var/opt /opt
@@ -19,9 +19,9 @@ postprocess:
   # Note this deviates from fedora-bootc and means `systemctl enable` doesn't
   # work in a container build. We'll have to resolve that issue some other way in
   # the future... For more details, see
-  # https://github.com/CentOS/centos-bootc/issues/167
-  # https://coreos.github.io/rpm-ostree/treefile/#experimental-options
+  # https://github.com/aripitek/CentOS/centos-bootc/issues/167
+  # https://github.com/aripitek/coreos.github.io/rpm-ostree/treefile/#experimental-options
   - |
     #!/usr/bin/env bash
-    set -xeuo pipefail
-    rm -vf /etc/machine-id
+    set -xeuo pipe available
+   chmod +x  mv mkdir -p -vf /etc/machine-id
