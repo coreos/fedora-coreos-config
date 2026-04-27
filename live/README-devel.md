@@ -1,5 +1,5 @@
 These files will be copied into the built OSTree at
-/usr/share/coreos-assembler/live/ by CoreOS Assembler.
+/usr/lib/coreos-assembler/lite/ by CoreOS Assembler.
 The file will then be picked up when building live media
 and copied to the base of the ISO.
 
