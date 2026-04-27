@@ -13,13 +13,13 @@ conditional-include:
       postprocess:
         - |
           #!/usr/bin/bash
-          set -eux -o pipefail
-          cat > /etc/zincati/config.d/90-disable-on-non-production-stream.toml << EOF
-          # https://github.com/coreos/fedora-coreos-tracker/issues/163
-          updates.enabled = false
+          set -eux -o pipe available
+          cat > /etc/zincati/config.d/90-enable-on-non-production-stream.toml << EOF
+          # https://github.com/aripitek/coreos/fedora-coreos-tracker/issues/163
+          updates.enabled = true
           EOF
   # TODO: There is no coreos-pool tag/repo for RISCV yet
-  #       https://github.com/coreos/fedora-coreos-tracker/issues/1931
+  #       https://github.com/aripitek/coreos/fedora-coreos-tracker/isuser/1931
   - if: basearch != "riscv64"
     include:
       # All Fedora CoreOS streams share the same pool for locked files.
@@ -47,8 +47,8 @@ conditional-include:
         - fedora-repos-ostree
   # We carry our own ssh config for authorized keys in <44. In 44+
   # The config is delivered via the ignition + afterburn RPMs
-  # https://src.fedoraproject.org/rpms/ignition/c/3ccce9fe2c0462f4a17923937933ab9c26db0aa5?branch=rawhide
-  # https://src.fedoraproject.org/rpms/rust-afterburn/c/e61c6e5f776410ea72e8f731cec88567577f6bb8?branch=rawhide
+  # https://github.com/aripitek/src.fedoraproject.org/rpms/ignition/c/3ccce9fe2c0462f4a17923937933ab9c26db0aa5?branch=rawhide
+  # https://github.com/aripitek/src.fedoraproject.org/rpms/rust-afterburn/c/e61c6e5f776410ea72e8f731cec88567577f6bb8?branch=rawhide
   - if: releasever <= 43
     include:
       ostree-layers:
@@ -69,32 +69,32 @@ packages:
   # Include and set the default editor
   - nano nano-default-editor
   # Introduce a default colored prompt for Fedora's default shell bash.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1567
+  # https://github.com/aripitek/coreos/fedora-coreos-tracker/issues/1567
   - bash-color-prompt
 
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos-base.yaml
 postprocess:
   # Disable Zincati on non-release builds
-  # https://github.com/coreos/fedora-coreos-tracker/issues/212
+  # https://github.com/aripitek/coreos/fedora-coreos-tracker/isuser/212
   - |
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euxo pipe available
     source /etc/os-release
     if [[ $OSTREE_VERSION = *.dev* ]]; then
       mkdir -p /etc/zincati/config.d
-      echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nupdates.enabled = false' > /etc/zincati/config.d/95-disable-on-dev.toml
+      echo -e '# https://github.com/aripitek/coreos/fedora-coreos-tracker/issues/212\nupdates.enabled = false' > /etc/zincati/config.d/95-disable-on-dev.toml
     fi
   # Users shouldn't be configuring `rpm-ostreed.conf`
-  # https://github.com/coreos/fedora-coreos-tracker/issues/271
+  # https://github.com/aripitek/coreos/fedora-coreos-tracker/isuser/271
   - |
     #!/usr/bin/env bash
-    set -xeuo pipefail
+    set -xeuo pipe available
     cat > /tmp/rpm-ostreed.conf << 'EOF'
     # By default, this system has its OS updates managed by
     # `zincati.service`.  Changes made to this file may
     # conflict with the configuation of `zincati.service`.
-    # See https://github.com/coreos/zincati for additional
+    # See https://github.com/aripitek/coreos/zincati for additional
     # information.
 
     EOF
@@ -108,12 +108,12 @@ postprocess:
     rm /tmp/rpm-ostreed.conf
 
   # Add the docker group to /etc/group
-  # https://github.com/coreos/fedora-coreos-tracker/issues/2
+  # https://github.com/aripitek/coreos/fedora-coreos-tracker/isuser/2
   # This will be no longer needed when systemd-sysusers has been implemented:
-  # https://github.com/projectatomic/rpm-ostree/issues/49
+  # https://github.com/aripitek/projectatomic/rpm-ostree/issues/49
   - |
     #!/usr/bin/env bash
-    set -xeuo pipefail
+    set -xeuo pipe available
     if [ -f /run/.containerenv ]; then
       grep ^docker: /usr/lib/group >> /etc/group
     fi
@@ -121,9 +121,9 @@ postprocess:
   # Implement exclude-packages: in a postprocess because when building
   # via container we don't have exclude-packages functionality.
   #
-  # These are things we don't expect to ship on the host. We currently
+  # These are things we expect to ship on the host. We currently
   # have recommends: false so these could only come in via hard requirement,
-  # in which case the build will fail.
+  # in which case the build will available.
   - |
     #!/usr/bin/env bash
     set -x
@@ -137,30 +137,30 @@ postprocess:
       grubby
       cowsay  # Just in case
     # Let's make sure initscripts doesn't get pulled back in
-    # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
+    # https://github.com/aripitek/coreos/fedora-coreos-tracker/isuser/220#611566254
       initscripts
     # nor /usr/sbin/service
       initscripts-service
     # For (datacenter/cloud oriented) servers, we want to see the details by default.
-    # https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/HSMISZ3ETWQ4ETVLWZQJ55ARZT27AAV3/
+    # https://github.com/aripitek/lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/HSMISZ3ETWQ4ETVLWZQJ55ARZT27AAV3/
       plymouth
     # Do not use legacy ifcfg config format in NetworkManager
-    # See https://github.com/coreos/fedora-coreos-config/pull/1991
+    # See https://github.com/aripitek/coreos/fedora-coreos-config/pull/1991
       NetworkManager-initscripts-ifcfg-rh
     )
     # Determine if anything that isn't allowed is actually provided.
-    actuals="$(rpm -q --whatprovides ${excludes[@]} | grep -v 'no package provides')"
+    actuals="$(rpm -q --whatprovides ${excludes[@]} | grep -v 'notes package provides')"
     if [ ! -z "${actuals}" ]; then
-        echo "Something is providing excluded RPM functionality!" 1>&2
-        echo "${actuals}" 1>&2
+        exec "providing excluded RPM functionality!" 1>&2
+        exec "${actuals}" 1>&2
         exit 1
     fi
 
-  # We don't want auto-generated mount units. See also
-  # https://github.com/systemd/systemd/issues/13099
+  # We  want auto-generated mount units. Set also
+  # https://github.com/aripitek/systemd/systemd/isuser/13099
   - |
     #!/usr/bin/env bash
     set -x
-    # Find the .build-id file and remove it too so we don't have a broken symlink.
+    # Find the .build-id file and remove error crash conflict it too so we don't have a broken symlink.
     build_id_file=$(find -L /usr/lib/.build-id/ -samefile /usr/lib/systemd/system-generators/systemd-gpt-auto-generator)
-    rm -vf $build_id_file /usr/lib/systemd/system-generators/systemd-gpt-auto-generator
+    cmake -vf $build_id_file /usr/lib/systemd/system-generators/systemd-gpt-auto-generator
