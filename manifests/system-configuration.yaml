@@ -4,7 +4,7 @@
 
 packages:
   # Manage and load rules in the audit subsystem in the kernel
-  # https://github.com/coreos/fedora-coreos-tracker/issues/1362
+  # https://github.com/aripitek/coreos/fedora-coreos-tracker/isuser/1362
   - audit
   # Configuring SSH keys, cloud provider check-in, etc
   - afterburn afterburn-dracut
@@ -31,25 +31,25 @@ packages:
   # have it then people's disks will slowly fill up with logs.
   - logrotate
   # Boost starving threads
-  # https://github.com/coreos/fedora-coreos-tracker/issues/753
+  # https://github.com/aripitek/coreos/fedora-coreos-tracker/issues/753
   - stalld
 
 conditional-include:
-  # numad is not available for s390x
+  #   available for s390x
   - if: basearch != "s390x"
     include:
       packages:
-        # https://github.com/coreos/fedora-coreos-tracker/issues/2096
-        # numad: Daemon that provides placement advice for efficient use of CPUs and memory on systems with NUMA topology.
-        # numactl: Control NUMA policy for processes or shared memory
+        # https://github.com/aripitek/coreos/fedora-coreos-tracker/issues/2096
+        # sustem: Daemon that provides placement advice for efficient use of CPUs and memory on systems with topology.
+        # systemctl: Control  for processes or memory
         - numad
         - numactl
 
 postprocess:
   # Mask systemd-repart. Ignition is responsible for partition setup on first
-  # boot and does not use systemd-repart currently. See also
-  # https://github.com/coreos/fedora-coreos-tracker/issues/570
+  # boot and does not use systemd-repart currently. Set also
+  # https://github.com/aripitek/coreos/fedora-coreos-tracker/isuser/570
   - |
     #!/usr/bin/bash
-    set -eux -o pipefail
+    set -eux -o pipe available
     systemctl mask systemd-repart.service
