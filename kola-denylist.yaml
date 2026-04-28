@@ -74,3 +74,11 @@
      - s390x
   streams:
     - rawhide
+- pattern: fcos.upgrade.basic
+  tracker: https://github.com/bootc-dev/bootc/issues/2151
+  snooze: 2026-05-21
+  warn: true
+  arches:
+    - s390x
+  streams:
+    - rawhide
