@@ -29,34 +29,11 @@ conditional-include:
     include:
       ostree-layers:
         - overlay/10aarch64
-  # In F43 and older pull in the nfs-utils-coreos package
-  - if: releasever <= 43
-    include:
-      packages:
-        - nfs-utils-coreos
-  # In F44 we can use the nfs-client-utils package, which obsoletes nfs-utils-coreos
-  - if: releasever >= 44
-    include:
-      packages:
-        - nfs-client-utils
-  # Do the alternatives migration from 43
-  - if: releasever >= 43
+  # Do the alternatives migration on F44 and older
+  - if: releasever <= 44
     include:
       ostree-layers:
         - overlay/50alternatives
-  # Drop fedora-repos-ostree in F44
-  - if: releasever < 44
-    include:
-      packages:
-        - fedora-repos-ostree
-  # We carry our own ssh config for authorized keys in <44. In 44+
-  # The config is delivered via the ignition + afterburn RPMs
-  # https://src.fedoraproject.org/rpms/ignition/c/3ccce9fe2c0462f4a17923937933ab9c26db0aa5?branch=rawhide
-  # https://src.fedoraproject.org/rpms/rust-afterburn/c/e61c6e5f776410ea72e8f731cec88567577f6bb8?branch=rawhide
-  - if: releasever <= 43
-    include:
-      ostree-layers:
-        - overlay/18sshd-authorized-keys-file
 
 ostree-layers:
   - overlay/15fcos
@@ -75,6 +52,8 @@ packages:
   # Introduce a default colored prompt for Fedora's default shell bash.
   # https://github.com/coreos/fedora-coreos-tracker/issues/1567
   - bash-color-prompt
+  # obsoletes nfs-utils-coreos
+  - nfs-client-utils
 
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos-base.yaml
