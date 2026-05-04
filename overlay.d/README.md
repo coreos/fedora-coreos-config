@@ -86,8 +86,3 @@ change [1]. See [2].
 
 [1] https://github.com/coreos/fedora-coreos-tracker/issues/1969
 [2] https://github.com/coreos/fedora-coreos-tracker/issues/2029
-
-50alternatives
---------------
-
-Temporary overlay for the alternatives migration scripts.
