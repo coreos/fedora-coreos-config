@@ -29,11 +29,6 @@ conditional-include:
     include:
       ostree-layers:
         - overlay/10aarch64
-  # Do the alternatives migration on F44 and older
-  - if: releasever <= 44
-    include:
-      ostree-layers:
-        - overlay/50alternatives
 
 ostree-layers:
   - overlay/15fcos
