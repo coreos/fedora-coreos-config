@@ -5,7 +5,7 @@ properties([
     disableConcurrentBuilds(abortPrevious: true)
 ])
 
-// We run `kolaTestIso` which requires at least 8Gi. Add 1Gi for overhead.
+// We run kola tests, including iso.* tests, which require at least 8Gi. Add 1Gi for overhead.
 cosaPod(cpus: 4, memory: "9Gi") {
     checkoutToDir(scm, 'config')
 
@@ -38,14 +38,18 @@ cosaPod(cpus: 4, memory: "9Gi") {
     if (env.CHANGE_TARGET in mechanical_streams) {
         no_strict_build = true
     }
-    cosaBuild(skipInit: true, noStrict: no_strict_build, extraFetchArgs: '--with-cosa-overrides', extraArgs: parent_arg)
 
-    stage("Build Live ISO") {
+    // Don't run tests until all artifacts are built, as iso.* tests are now folded into kola.
+    stage("Build") {
+        cosaBuild(skipInit: true, skipKola: true, noStrict: no_strict_build, extraFetchArgs: '--with-cosa-overrides', extraArgs: parent_arg)
+    }
+
+    stage("Build Artifacts") {
         shwrap("cd /srv/coreos && cosa osbuild metal metal4k live")
     }
 
-    stage("Test ISO") {
-        kolaTestIso()
+    stage("Kola Tests") {
+        kola()
     }
 
     // also print the pkgdiff as a separate stage to make it more visible
