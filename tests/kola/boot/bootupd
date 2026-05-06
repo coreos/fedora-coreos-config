@@ -29,6 +29,11 @@ case "$(arch)" in
         fi
         ;;
     ppc64le)
+        bl_status=$(systemctl status bootloader-update.service 2>&1 || true)
+        if ! echo "$bl_status" | grep -iq "ConditionArchitecture=!ppc64-le was not met"; then
+            fatal "bootloader-update.service was not skipped for ppc64le"
+        fi
+
         # ppc64le has it if built by osbuild, otherwise not
         if [ -e /sysroot/.aleph-version.json ]; then
             check_state_file=1
@@ -38,7 +43,13 @@ case "$(arch)" in
         if ! bootupctl status | grep "${grub_version}"; then
             fatal "bootupctl status output should include grub2-tools package version"
         fi
-        ;& # fallthrough
+        ;;& # fallthrough to default
+    s390x)
+        bl_status=$(systemctl status bootloader-update.service 2>&1 || true)
+        if ! echo "$bl_status" | grep -iq "ConditionArchitecture=!s390x was not met"; then
+            fatal "bootloader-update.service was not skipped for s390x"
+        fi
+        ;;& # fallthrough to default
     *)
         if ! rpm -q bootupd; then
             exit 0
