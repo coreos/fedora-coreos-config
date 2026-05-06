@@ -3,6 +3,7 @@
 ##   # We need internet to check the container imgref
 ##   tags: needs-internet
 ##   exclusive: false
+##   distros: fcos
 ##   description: |
 ##      Verify that the deployed container image on the disk image has
 ##      a correct ostree sigverify prefix.
