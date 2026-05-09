@@ -42,7 +42,7 @@ jobs:
       - name: Install dependencies
         run: dnf install -y git jq python3-bodhi-client python3-pyyaml python3-libdnf5 python3-dotenv
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event.inputs.target }}
           # We need an unbroken commit chain when pushing to the fork.  Don't

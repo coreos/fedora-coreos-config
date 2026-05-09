@@ -52,7 +52,7 @@ jobs:
       - name: Install dependencies
         run: dnf install -y python3-bodhi-client rpm-ostree python3-libdnf5 python3-dotenv # see related TODO above
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
         with:
           ref: ${{ matrix.branch }}
           submodules: true
