@@ -40,29 +40,25 @@ packages:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
       type: fast-track
   kernel:
-    evr: 6.19.12-300.fc44
+    evr: 6.19.14-101.fc44
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c21dc238a2
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2142
+      type: pin
   kernel-core:
-    evr: 6.19.12-300.fc44
+    evr: 6.19.14-101.fc44
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c21dc238a2
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2142
+      type: pin
   kernel-modules:
-    evr: 6.19.12-300.fc44
+    evr: 6.19.14-101.fc44
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c21dc238a2
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2142
+      type: pin
   kernel-modules-core:
-    evr: 6.19.12-300.fc44
+    evr: 6.19.14-101.fc44
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c21dc238a2
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2055#issuecomment-4013167589
-      type: fast-track
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2142
+      type: pin
   krb5-libs:
     evr: 1.22.2-3.fc44
     metadata:
