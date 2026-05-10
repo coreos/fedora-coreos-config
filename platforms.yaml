@@ -42,6 +42,15 @@ aarch64:
     kernel_arguments:
       - console=tty0
       - console=ttyAMA0,115200n8
+  hetzner:
+    # Related issue: https://github.com/coreos/fedora-coreos-tracker/issues/1959
+    grub_commands:
+      - serial --speed=115200
+      - terminal_input serial console
+      - terminal_output serial console
+    kernel_arguments:
+      - console=tty0
+      - console=ttyS0,115200n8
   openstack:
     # Graphical console primary, serial console available for logging
     # https://docs.openstack.org/diskimage-builder/latest/elements/bootloader/README.html
