@@ -1,0 +1,13 @@
+# We don't want bootupd to stamp the boot and UEFI partitions
+# with the boot uuid because these will change at first boot.
+# See https://github.com/coreos/fedora-coreos-config/pull/3898
+[install.bootupd]
+skip-boot-uuid = true
+
+# We don't want bootc to append the kargs list with boot=UUID= and root=UUID= info
+# as CoreOS already handles this.
+# Empty strings mean mount spec kargs are omitted entirely.
+# See https://github.com/bootc-dev/bootc/issues/1441
+[install]
+root-mount-spec = ""
+boot-mount-spec = ""
