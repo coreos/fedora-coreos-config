@@ -22,3 +22,30 @@ storage:
           # Increase the frequency at which we check for updates
           [agent.timing]
           steady_interval_secs = 20
+    # Switch to non CDN ostree repo. The pull through cache that the
+    # CDN (cloudfront) uses is probably now more harmful than it is
+    # useful because no one is using the OSTree repo for FCOS these days.
+    # We noticed painfully slow downloads in our upgrade tests and
+    # this should help.
+    - path: /etc/ostree/remotes.d/fedora.conf
+      # make writable by all so below zincati ExecStartPre copy over it
+      mode: 0666
+      overwrite: true
+      contents:
+        inline: |
+          [remote "fedora"]
+          url=https://kojipkgs.fedoraproject.org/ostree/repo/
+          gpg-verify=true
+          gpgkeypath=/etc/pki/rpm-gpg/
+    # The oci migration script had a check for the URL to make sure we only
+    # migrated the people who were using the defaults so we need to switch
+    # it back when the oci migraiton happens.
+    # https://github.com/coreos/fedora-coreos-config/blob/d4c815329d88dd9dbaf1902a2b60a08df4b41c1a/overlay.d/35oci-migration/usr/libexec/coreos-oci-rebase#L43
+    - path: /etc/systemd/system/zincati.service.d/005-fixup-remote-url.conf
+      mode: 0644
+      contents:
+        inline: |
+          [Service]
+          ExecStartPre=/bin/bash -c \
+            "test -f /usr/lib/systemd/system/zincati.service.d/010-oci-migration.conf && \
+                cp -v /usr/etc/ostree/remotes.d/fedora.conf /etc/ostree/remotes.d/fedora.conf || true"
