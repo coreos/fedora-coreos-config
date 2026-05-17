@@ -389,4 +389,15 @@ while true; do
     # Ignore error here. Older systemd (~F32) errors here if one of
     # the services isn't active.
     systemctl status rpm-ostreed zincati --lines=0 || true
+
+    # If the upgrade stalls out (remote infra flaking?) let's best effort
+    # try to restart zincati to get it back on track.
+    lastline="$(journalctl -b0 --since='5 minutes ago' -u rpm-ostreed -n 1)"
+    if [ "${lastline}"  == '-- No entries --' ]; then
+        echo "rpm-ostree has stalled for more than 5 minutes; restarting zincati"
+        sudo systemctl stop zincati
+        sudo rpm-ostree cancel
+        sudo systemctl stop rpm-ostreed
+        sudo systemctl start zincati
+    fi
 done
