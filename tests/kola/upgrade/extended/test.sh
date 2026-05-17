@@ -390,11 +390,25 @@ while true; do
     # the services isn't active.
     systemctl status rpm-ostreed zincati --lines=0 || true
 
-    # If the upgrade stalls out (remote infra flaking?) let's best effort
-    # try to restart zincati to get it back on track.
-    lastline="$(journalctl -b0 --since='5 minutes ago' -u rpm-ostreed -n 1)"
-    if [ "${lastline}"  == '-- No entries --' ]; then
-        echo "rpm-ostree has stalled for more than 5 minutes; restarting zincati"
+    # Determine if we've stalled and need to best-effort retry
+    need_reset='false'
+
+    # If the upgrade stalls out (remote infra flaking?) for 5 minutes -> reset
+    line="$(journalctl -b0 --since='5 minutes ago' -u rpm-ostreed -n 1)"
+    if [ "${line}"  == '-- No entries --' ]; then
+        echo "rpm-ostree has stalled for 5 minutes; restarting zincati"
+        need_reset='true'
+    fi
+
+    # If we've hit the finish_pipe bug -> reset
+    # https://github.com/coreos/fedora-coreos-tracker/issues/2149
+    line="$(journalctl --until='30 seconds ago' -u rpm-ostreed -n 1)"
+    if [[ "${line}"  =~ 'DEBUG finish_pipe: closing pipe' ]]; then
+        echo "rpm-ostree has stalled on finish_pipe bug; restarting zincati"
+        need_reset='true'
+    fi
+
+    if [ "${need_reset}" == "true" ]; then
         sudo systemctl stop zincati
         sudo rpm-ostree cancel
         sudo systemctl stop rpm-ostreed
