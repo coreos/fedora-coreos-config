@@ -40,10 +40,10 @@
       "evra": "1.33-5.fc44.x86_64"
     },
     "amd-gpu-firmware": {
-      "evra": "20260410-1.fc45.noarch"
+      "evra": "20260519-1.fc45.noarch"
     },
     "amd-ucode-firmware": {
-      "evra": "20260410-1.fc45.noarch"
+      "evra": "20260519-1.fc45.noarch"
     },
     "attr": {
       "evra": "2.5.2-8.fc44.x86_64"
@@ -208,7 +208,7 @@
       "evra": "2.8.6-1.fc45.x86_64"
     },
     "curl": {
-      "evra": "8.20.0-1.fc45.x86_64"
+      "evra": "8.20.0-2.fc45.x86_64"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-35.fc44.x86_64"
@@ -391,16 +391,16 @@
       "evra": "2.88.1-1.fc45.x86_64"
     },
     "glibc": {
-      "evra": "2.43.9000-15.fc45.x86_64"
+      "evra": "2.43.9000-16.fc45.x86_64"
     },
     "glibc-common": {
-      "evra": "2.43.9000-15.fc45.x86_64"
+      "evra": "2.43.9000-16.fc45.x86_64"
     },
     "glibc-gconv-extra": {
-      "evra": "2.43.9000-15.fc45.x86_64"
+      "evra": "2.43.9000-16.fc45.x86_64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.43.9000-15.fc45.x86_64"
+      "evra": "2.43.9000-16.fc45.x86_64"
     },
     "gmp": {
       "evra": "1:6.3.0-5.fc44.x86_64"
@@ -478,7 +478,7 @@
       "evra": "62-2.fc44.x86_64"
     },
     "intel-gpu-firmware": {
-      "evra": "20260410-1.fc45.noarch"
+      "evra": "20260519-1.fc45.noarch"
     },
     "ipcalc": {
       "evra": "1.0.3-13.fc44.x86_64"
@@ -544,16 +544,16 @@
       "evra": "1.0.61-1.fc45.x86_64"
     },
     "kernel": {
-      "evra": "7.1.0-0.rc3.260518g6916d5703ddf.29.fc45.x86_64"
+      "evra": "7.1.0-0.rc4.260519gab5fce87a778.31.fc45.x86_64"
     },
     "kernel-core": {
-      "evra": "7.1.0-0.rc3.260518g6916d5703ddf.29.fc45.x86_64"
+      "evra": "7.1.0-0.rc4.260519gab5fce87a778.31.fc45.x86_64"
     },
     "kernel-modules": {
-      "evra": "7.1.0-0.rc3.260518g6916d5703ddf.29.fc45.x86_64"
+      "evra": "7.1.0-0.rc4.260519gab5fce87a778.31.fc45.x86_64"
     },
     "kernel-modules-core": {
-      "evra": "7.1.0-0.rc3.260518g6916d5703ddf.29.fc45.x86_64"
+      "evra": "7.1.0-0.rc4.260519gab5fce87a778.31.fc45.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.32-3.fc44.x86_64"
@@ -595,7 +595,7 @@
       "evra": "2.5.2-8.fc44.x86_64"
     },
     "libblkid": {
-      "evra": "2.42-7.fc45.x86_64"
+      "evra": "2.42.1-2.fc45.x86_64"
     },
     "libbpf": {
       "evra": "2:1.7.0-1.fc45.x86_64"
@@ -616,7 +616,7 @@
       "evra": "1.47.4-1.fc45.x86_64"
     },
     "libcurl-minimal": {
-      "evra": "8.20.0-1.fc45.x86_64"
+      "evra": "8.20.0-2.fc45.x86_64"
     },
     "libdaemon": {
       "evra": "0.14-33.fc44.x86_64"
@@ -646,7 +646,7 @@
       "evra": "2.1.12-17.fc44.x86_64"
     },
     "libfdisk": {
-      "evra": "2.42-7.fc45.x86_64"
+      "evra": "2.42.1-2.fc45.x86_64"
     },
     "libffi": {
       "evra": "3.5.2-2.fc44.x86_64"
@@ -664,7 +664,7 @@
       "evra": "1.61-1.fc45.x86_64"
     },
     "libibverbs": {
-      "evra": "62.0-1.fc45.x86_64"
+      "evra": "63.0-1.fc45.x86_64"
     },
     "libicu": {
       "evra": "77.1-2.fc44.x86_64"
@@ -697,7 +697,7 @@
       "evra": "1.8.0-1.fc45.x86_64"
     },
     "liblastlog2": {
-      "evra": "2.42-7.fc45.x86_64"
+      "evra": "2.42.1-2.fc45.x86_64"
     },
     "libldb": {
       "evra": "2:4.24.2-1.fc45.x86_64"
@@ -718,7 +718,7 @@
       "evra": "2.15.2-7.fc45.x86_64"
     },
     "libmount": {
-      "evra": "2.42-7.fc45.x86_64"
+      "evra": "2.42.1-2.fc45.x86_64"
     },
     "libndp": {
       "evra": "1.9-5.fc44.x86_64"
@@ -793,7 +793,7 @@
       "evra": "4.9.1-3.fc44.x86_64"
     },
     "libsmartcols": {
-      "evra": "2.42-7.fc45.x86_64"
+      "evra": "2.42.1-2.fc45.x86_64"
     },
     "libsmbclient": {
       "evra": "2:4.24.2-1.fc45.x86_64"
@@ -850,7 +850,7 @@
       "evra": "1.0.29-5.fc44.x86_64"
     },
     "libuuid": {
-      "evra": "2.42-7.fc45.x86_64"
+      "evra": "2.42.1-2.fc45.x86_64"
     },
     "libuv": {
       "evra": "1:1.52.1-1.fc45.x86_64"
@@ -880,10 +880,10 @@
       "evra": "1.5.7-5.fc44.x86_64"
     },
     "linux-firmware": {
-      "evra": "20260410-1.fc45.noarch"
+      "evra": "20260519-1.fc45.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20260410-1.fc45.noarch"
+      "evra": "20260519-1.fc45.noarch"
     },
     "lld18-libs": {
       "evra": "18.1.8-8.fc43.x86_64"
@@ -1009,7 +1009,7 @@
       "evra": "0.5-50.20251104git.fc44.x86_64"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20260410-1.fc45.noarch"
+      "evra": "20260519-1.fc45.noarch"
     },
     "nvme-cli": {
       "evra": "2.16-2.fc44.x86_64"
@@ -1120,10 +1120,10 @@
       "evra": "20260116-1.fc44.noarch"
     },
     "qed-firmware": {
-      "evra": "20260410-1.fc45.noarch"
+      "evra": "20260519-1.fc45.noarch"
     },
     "rdma-core-common": {
-      "evra": "62.0-1.fc45.noarch"
+      "evra": "63.0-1.fc45.noarch"
     },
     "readline": {
       "evra": "8.3-4.fc44.x86_64"
@@ -1174,7 +1174,7 @@
       "evra": "2:4.24.2-1.fc45.x86_64"
     },
     "sdbus-cpp": {
-      "evra": "2.2.1-2.fc44.x86_64"
+      "evra": "2.2.1-3.fc45.x86_64"
     },
     "sed": {
       "evra": "4.10-1.fc45.x86_64"
@@ -1258,7 +1258,7 @@
       "evra": "2.13.0-1.fc45.x86_64"
     },
     "stalld": {
-      "evra": "1.26.3-2.fc44.x86_64"
+      "evra": "1.27.1-2.fc45.x86_64"
     },
     "sudo": {
       "evra": "1.9.17-8.p2.fc45.x86_64"
@@ -1315,16 +1315,16 @@
       "evra": "0.15.6-1.fc44.x86_64"
     },
     "util-linux": {
-      "evra": "2.42-7.fc45.x86_64"
+      "evra": "2.42.1-2.fc45.x86_64"
     },
     "util-linux-core": {
-      "evra": "2.42-7.fc45.x86_64"
+      "evra": "2.42.1-2.fc45.x86_64"
     },
     "vim-data": {
-      "evra": "2:9.2.390-1.fc45.noarch"
+      "evra": "2:9.2.500-1.fc45.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.2.390-1.fc45.x86_64"
+      "evra": "2:9.2.500-1.fc45.x86_64"
     },
     "wasmedge-rt": {
       "evra": "0.16.1-1.fc44.x86_64"
@@ -1336,7 +1336,7 @@
       "evra": "1.0.20250521-3.fc44.x86_64"
     },
     "xfsprogs": {
-      "evra": "6.19.0-1.fc45.x86_64"
+      "evra": "7.0.0-1.fc45.x86_64"
     },
     "xxhash-libs": {
       "evra": "0.8.3-4.fc44.x86_64"
@@ -1367,6 +1367,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-05-19T00:00:00Z"
+    "generated": "2026-05-21T00:00:00Z"
   }
 }
