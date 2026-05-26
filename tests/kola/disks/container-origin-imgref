@@ -1,7 +1,5 @@
 #!/bin/bash
 ## kola:
-##   # We need internet to check the container imgref
-##   tags: needs-internet
 ##   exclusive: false
 ##   distros: fcos
 ##   description: |
@@ -22,9 +20,19 @@ booted_imgref=$(rpm-ostree status --booted --json | jq -r '.deployments[0]."cont
 if [[ ! $booted_imgref =~ ^$EXPECTED_IMGREF_PREFIX ]]; then
   echo "booted deployment imgref:" "$booted_imgref"
   echo "Expected prefix:" "$EXPECTED_IMGREF_PREFIX"
-  fatal "The booted deployment imgref does start with the expected prefix"
+  fatal "The booted deployment imgref does not start with the expected prefix"
 fi
 
-# Verify ostree does accept the imgref as valid
-ostree container info "$booted_imgref"
+# Verify ostree does accept the imgref as valid. Using --help
+# avoids reaching out to the remote registry while still
+# validating the imgref format locally.
+
+# First, verify the --help trick rejects an invalid imgref so we
+# know it is actually validating.
+if ostree container info "invalid-imgref:docker://example.com/repo:tag" --help 2>/dev/null; then
+  fatal "ostree container info did not reject an invalid imgref"
+fi
+
+# Now validate the real booted imgref
+ostree container info "$booted_imgref" --help
 ok
