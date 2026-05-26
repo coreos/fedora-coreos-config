@@ -19,6 +19,7 @@ KOJI_URL = 'https://koji.fedoraproject.org/kojihub'
 ARCHES = ['s390x', 'x86_64', 'ppc64le', 'aarch64']
 TRIVIAL_FAST_TRACKS = [
     # Packages that don't need a reason URL when fast-tracking
+    'bootc',
     'console-login-helper-messages',
     'ignition',
     'ostree',
