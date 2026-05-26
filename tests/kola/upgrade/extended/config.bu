@@ -22,3 +22,10 @@ storage:
           # Increase the frequency at which we check for updates
           [agent.timing]
           steady_interval_secs = 20
+    # Get some more logs from rpm-ostree (shows image pull progress)
+    - path: /etc/systemd/system/rpm-ostreed.service.d/debug.conf
+      mode: 0644
+      contents:
+        inline: |
+          [Service]
+          Environment="RUST_LOG=debug"

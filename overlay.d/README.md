@@ -24,6 +24,12 @@ https://bugzilla.redhat.com/show_bug.cgi?id=1700056
 
 Warning about `/etc/sysconfig`.
 
+10bootc
+-------
+
+Configuration files for bootc and image-builder. These are used when building
+our disk images.
+
 15fcos
 ------
 
@@ -45,14 +51,6 @@ fedora-coreos containers pulled from quay.io. Initially adding
 here in a separate overlay to make it easy to include on specific
 streams for the time being. Eventually can probably put this in
 15fcos.
-
-18sshd-authorized-keys-file
----------------------------
-
-Configuration to have OpenSSH read authorized keys from files in
-`~/.ssh/authorized_keys.d/*` in addition to `~/.ssh/authorized_keys` (default).
-We can drop this overlay once we have moved this configuration file to be
-installed alongside the Afterburn and Ignition packages.
 
 20platform-chrony
 -----------------
@@ -88,8 +86,3 @@ change [1]. See [2].
 
 [1] https://github.com/coreos/fedora-coreos-tracker/issues/1969
 [2] https://github.com/coreos/fedora-coreos-tracker/issues/2029
-
-50alternatives
---------------
-
-Temporary overlay for the alternatives migration scripts.

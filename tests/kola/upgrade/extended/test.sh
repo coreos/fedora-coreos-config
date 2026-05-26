@@ -254,29 +254,6 @@ selinux-sanity-check() {
 
 ok "Reached version: $version"
 
-verify-alternatives-migration() {
-    # Do verification only if version is 43 or later.
-    if [ "$(get_fedora_ver)" -le 43 ]; then
-        ok "Skipping alternatives migration verfication for versions before 43"
-        return 0
-    fi
-
-    # Verify /var/lib/alternatives dir is removed
-    if [[ -e /var/lib/alternatives ]]; then
-        fatal "Error: migration didn't remove /var/lib/alternatives"
-    fi
-
-    # Verify iptables migration
-    if [[ $(alternatives --display iptables | grep -c -E 'link currently points to /usr/(bin|sbin)/iptables-nft') != "1" ]]; then
-        fatal "Error: migration did not set iptables to nft backend"
-    fi
-    if [[ $(iptables --version | grep -c "nf_tables") != "1" ]]; then
-        fatal "Error: iptables not reset to nftables backend"
-    fi
-
-    ok "alternatives migration verification passed."
-}
-
 # Are we all the way at the desired target version?
 # If so then we can exit with success!
 if vereq $version $target_version; then
@@ -289,8 +266,6 @@ if vereq $version $target_version; then
     fi
     # One last check!
     selinux-sanity-check
-    # One more last check
-    verify-alternatives-migration
     exit 0
 fi
 
@@ -414,4 +389,29 @@ while true; do
     # Ignore error here. Older systemd (~F32) errors here if one of
     # the services isn't active.
     systemctl status rpm-ostreed zincati --lines=0 || true
+
+    # Determine if we've stalled and need to best-effort retry
+    need_reset='false'
+
+    # If the upgrade stalls out (remote infra flaking?) for 5 minutes -> reset
+    line="$(journalctl -b0 --since='5 minutes ago' -u rpm-ostreed -n 1)"
+    if [ "${line}"  == '-- No entries --' ]; then
+        echo "rpm-ostree has stalled for 5 minutes; restarting zincati"
+        need_reset='true'
+    fi
+
+    # If we've hit the finish_pipe bug -> reset
+    # https://github.com/coreos/fedora-coreos-tracker/issues/2149
+    line="$(journalctl --until='30 seconds ago' -u rpm-ostreed -n 1)"
+    if [[ "${line}"  =~ 'DEBUG finish_pipe: closing pipe' ]]; then
+        echo "rpm-ostree has stalled on finish_pipe bug; restarting zincati"
+        need_reset='true'
+    fi
+
+    if [ "${need_reset}" == "true" ]; then
+        sudo systemctl stop zincati
+        sudo rpm-ostree cancel
+        sudo systemctl stop rpm-ostreed
+        sudo systemctl start zincati
+    fi
 done
