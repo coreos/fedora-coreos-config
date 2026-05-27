@@ -1,6 +1,4 @@
 [install]
-# Name of the ostree stateroot
-stateroot = "fedora-coreos"
 # Make sure bootc enforces that
 # `/etc/containers/policy.json` includes
 # a default policy that verifies our images signature.
