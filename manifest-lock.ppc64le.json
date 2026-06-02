@@ -178,7 +178,7 @@
       "evra": "2.15-9.fc44.ppc64le"
     },
     "cracklib": {
-      "evra": "2.9.11-10.fc44.ppc64le"
+      "evra": "2.10.3-1.fc44.ppc64le"
     },
     "criu": {
       "evra": "4.2-13.fc44.ppc64le"
@@ -187,7 +187,7 @@
       "evra": "4.2-13.fc44.ppc64le"
     },
     "crun": {
-      "evra": "1.27.1-1.fc44.ppc64le"
+      "evra": "1.28-1.fc44.ppc64le"
     },
     "crypto-policies": {
       "evra": "20251128-3.git19878fe.fc44.noarch"
@@ -682,7 +682,7 @@
       "evra": "2.41.4-8.fc44.ppc64le"
     },
     "libldb": {
-      "evra": "2:4.24.2-1.fc44.ppc64le"
+      "evra": "2:4.24.3-1.fc44.ppc64le"
     },
     "libluksmeta": {
       "evra": "10-2.fc44.ppc64le"
@@ -790,10 +790,10 @@
       "evra": "2.41.4-8.fc44.ppc64le"
     },
     "libsmbclient": {
-      "evra": "2:4.24.2-1.fc44.ppc64le"
+      "evra": "2:4.24.3-1.fc44.ppc64le"
     },
     "libsolv": {
-      "evra": "0.7.37-2.fc44.ppc64le"
+      "evra": "0.7.39-1.fc44.ppc64le"
     },
     "libss": {
       "evra": "1.47.3-4.fc44.ppc64le"
@@ -856,7 +856,7 @@
       "evra": "0.3.2-12.fc44.ppc64le"
     },
     "libwbclient": {
-      "evra": "2:4.24.2-1.fc44.ppc64le"
+      "evra": "2:4.24.3-1.fc44.ppc64le"
     },
     "libxcrypt": {
       "evra": "4.5.2-3.fc44.ppc64le"
@@ -1045,10 +1045,10 @@
       "evra": "0.1.11-1.fc44.ppc64le"
     },
     "passt": {
-      "evra": "0^20260120.g386b5f5-1.fc44.ppc64le"
+      "evra": "0^20260526.g038c51e-1.fc44.ppc64le"
     },
     "passt-selinux": {
-      "evra": "0^20260120.g386b5f5-1.fc44.noarch"
+      "evra": "0^20260526.g038c51e-1.fc44.noarch"
     },
     "pciutils": {
       "evra": "3.14.0-3.fc44.ppc64le"
@@ -1150,16 +1150,16 @@
       "evra": "2:1.4.2-1.fc44.ppc64le"
     },
     "samba-client-libs": {
-      "evra": "2:4.24.2-1.fc44.ppc64le"
+      "evra": "2:4.24.3-1.fc44.ppc64le"
     },
     "samba-common": {
-      "evra": "2:4.24.2-1.fc44.noarch"
+      "evra": "2:4.24.3-1.fc44.noarch"
     },
     "samba-core-libs": {
-      "evra": "2:4.24.2-1.fc44.ppc64le"
+      "evra": "2:4.24.3-1.fc44.ppc64le"
     },
     "samba-ndr-libs": {
-      "evra": "2:4.24.2-1.fc44.ppc64le"
+      "evra": "2:4.24.3-1.fc44.ppc64le"
     },
     "sdbus-cpp": {
       "evra": "2.2.1-2.fc44.ppc64le"
@@ -1249,28 +1249,28 @@
       "evra": "1.9.17-8.p2.fc44.ppc64le"
     },
     "systemd": {
-      "evra": "259.5-1.fc44.ppc64le"
+      "evra": "259.6-1.fc44.ppc64le"
     },
     "systemd-container": {
-      "evra": "259.5-1.fc44.ppc64le"
+      "evra": "259.6-1.fc44.ppc64le"
     },
     "systemd-libs": {
-      "evra": "259.5-1.fc44.ppc64le"
+      "evra": "259.6-1.fc44.ppc64le"
     },
     "systemd-pam": {
-      "evra": "259.5-1.fc44.ppc64le"
+      "evra": "259.6-1.fc44.ppc64le"
     },
     "systemd-resolved": {
-      "evra": "259.5-1.fc44.ppc64le"
+      "evra": "259.6-1.fc44.ppc64le"
     },
     "systemd-shared": {
-      "evra": "259.5-1.fc44.ppc64le"
+      "evra": "259.6-1.fc44.ppc64le"
     },
     "systemd-sysusers": {
-      "evra": "259.5-1.fc44.ppc64le"
+      "evra": "259.6-1.fc44.ppc64le"
     },
     "systemd-udev": {
-      "evra": "259.5-1.fc44.ppc64le"
+      "evra": "259.6-1.fc44.ppc64le"
     },
     "tar": {
       "evra": "2:1.35-8.fc44.ppc64le"
@@ -1329,9 +1329,6 @@
     "xz-libs": {
       "evra": "1:5.8.2-2.fc44.ppc64le"
     },
-    "yajl": {
-      "evra": "2.1.0-40.fc44.ppc64le"
-    },
     "zchunk-libs": {
       "evra": "1.5.1-4.fc44.ppc64le"
     },
@@ -1349,6 +1346,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-06-01T00:00:00Z"
+    "generated": "2026-06-02T00:00:00Z"
   }
 }
