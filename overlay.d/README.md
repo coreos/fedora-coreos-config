@@ -24,7 +24,7 @@ https://bugzilla.redhat.com/show_bug.cgi?id=1700056
 
 Warning about `/etc/sysconfig`.
 
-10bootc
+10disk-images
 -------
 
 Configuration files for bootc and image-builder. These are used when building
