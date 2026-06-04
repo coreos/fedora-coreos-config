@@ -4,7 +4,7 @@
 # 1. It gathers the list of FCOS-specific packages using the manifests.
 # 2. It gathers the list of FCOS-specific overlays using the manifests.
 # 3. It runs `bootc-base-imagectl rebuild`, passing in the packages and overlays.
-# 4. It injects various metadata (e.g. image.json, live/ bits, and platforms.json).
+# 4. It injects various metadata (e.g. image.json, live/ bits, platforms.json, and disk.yaml).
 # 5. It runs the postprocess scripts defined in the manifest.
 
 import argparse
@@ -211,6 +211,7 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
     inject_live(target_rootfs, srcdir)
     inject_image_json(target_rootfs, image_cfg_path, stream)
     inject_platforms_json(target_rootfs, srcdir)
+    inject_disk_yaml(target_rootfs, srcdir)
     inject_content_manifest(target_rootfs, manifest)
 
     inject_version_info(
@@ -647,6 +648,13 @@ def inject_platforms_json(rootfs, srcdir):
         with open(fn, 'w') as f:
             json.dump(platforms[ARCH], f, sort_keys=True, indent=2)
             f.write('\n')
+
+
+def inject_disk_yaml(rootfs, srcdir):
+    dst = os.path.join(rootfs, 'usr/lib/image-builder/bootc/disk.yaml')
+    # We write a relative symlink otherwise it get resolved under `/target-rootfs`
+    # which does not exist in the final image.
+    os.symlink(f'{ARCH}.yaml', dst)
 
 
 if __name__ == "__main__":
