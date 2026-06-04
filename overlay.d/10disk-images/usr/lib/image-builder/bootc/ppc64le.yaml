@@ -1,0 +1,44 @@
+# We don't want osbuild to inject mount units for the
+# disks as we will change the disks uuids anyway
+mount_configuration: none
+partition_table:
+  type: "gpt"
+  uuid: "00000000-0000-4000-a000-000000000001"
+  # Reserve the last 2048 512-byte blocks for CoreOS which moves the
+  # secondary GPT header to the end of the disk on first boot.
+  # See https://github.com/coreos/fedora-coreos-config/blob/7fbf510367d495529d2a915707b547d4c663f609/overlay.d/05core/usr/lib/dracut/modules.d/35coreos-ignition/coreos-gpt-setup.sh#L30
+  extra_padding: 1031168
+  partitions:
+    # PowerPC PReP Boot partition — required for GRUB on ppc64le (petitboot)
+    - size: "4 MiB"
+      bootable: true
+      type: 9E1A2D38-C612-4316-AA26-8B49521E5A8B
+
+    # Reserved partition — placeholder at position 2, no EFI on ppc64le
+    - size: "1 MiB"
+      type: 8DA63339-0007-60C0-C436-083AC8230908
+
+    # Extended Boot Loader partition
+    - size: "384 MiB"
+      type: BC13C2FF-59E6-4262-A352-B275FD6F7172
+      payload_type: "filesystem"
+      payload:
+        type: "ext4"
+        uuid: "96d15588-3596-4b3c-adca-a2ff7279ea63"
+        mountpoint: "/boot"
+        label: "boot"
+        fstab_options: "defaults"
+        fstab_freq: 0
+        fstab_passno: 0
+
+    # Root partition — DPS type for ppc64le
+    - type: C31C45E6-3F39-412E-80FB-4809C4980599
+      payload_type: "filesystem"
+      payload:
+        type: "xfs"
+        uuid: "910678ff-f77e-4a7d-8d53-86f2ac47a823"
+        mountpoint: "/"
+        label: "root"
+        fstab_options: "defaults"
+        fstab_freq: 0
+        fstab_passno: 0
