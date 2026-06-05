@@ -1,7 +1,5 @@
 #!/bin/bash
 ## kola:
-##   # This test reprovisions the rootfs.
-##   tags: "reprovision"
 ##   # This uses appendKernelArgs and multipath, which is QEMU only
 ##   platforms: qemu
 ##   # Root reprovisioning requires at least 4GiB of memory.

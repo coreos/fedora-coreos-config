@@ -8,8 +8,7 @@
 ##   # We intentionally put the root filesystem on partition 5.  This is
 ##   # legal but usually not intended, so Butane warns about it.
 ##   allowConfigWarnings: true
-##   # This test reprovisions the rootfs.
-##   tags: reprovision platform-independent
+##   tags: platform-independent
 ##   description: Verify the root reprovision and swap enabled are supported.
 
 set -xeuo pipefail
