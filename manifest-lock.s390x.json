@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.57.3~dev-1.fc45.s390x"
+      "evra": "1:1.57.4~dev-2.fc45.s390x"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.57.3~dev-1.fc45.s390x"
+      "evra": "1:1.57.4~dev-2.fc45.s390x"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.57.3~dev-1.fc45.s390x"
+      "evra": "1:1.57.4~dev-2.fc45.s390x"
     },
     "NetworkManager-team": {
-      "evra": "1:1.57.3~dev-1.fc45.s390x"
+      "evra": "1:1.57.4~dev-2.fc45.s390x"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.57.3~dev-1.fc45.s390x"
+      "evra": "1:1.57.4~dev-2.fc45.s390x"
     },
     "aardvark-dns": {
       "evra": "2:1.17.1-1.fc45.s390x"
@@ -196,7 +196,7 @@
       "evra": "2.8.6-1.fc45.s390x"
     },
     "curl": {
-      "evra": "8.20.0-2.fc45.s390x"
+      "evra": "8.21.0~rc1-1.fc45.s390x"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-35.fc44.s390x"
@@ -247,7 +247,7 @@
       "evra": "2.92rel2-9.fc45.s390x"
     },
     "docker-cli": {
-      "evra": "29.5.2-1.fc45.s390x"
+      "evra": "29.5.3-1.fc45.s390x"
     },
     "dosfstools": {
       "evra": "4.2-18.fc44.s390x"
@@ -562,7 +562,7 @@
       "evra": "1.47.4-1.fc45.s390x"
     },
     "libcurl-minimal": {
-      "evra": "8.20.0-2.fc45.s390x"
+      "evra": "8.21.0~rc1-1.fc45.s390x"
     },
     "libdaemon": {
       "evra": "0.14-33.fc44.s390x"
@@ -859,10 +859,10 @@
       "evra": "4.6-1.fc45.s390x"
     },
     "moby-engine": {
-      "evra": "29.5.2-1.fc45.s390x"
+      "evra": "29.5.3-1.fc45.s390x"
     },
     "moby-filesystem": {
-      "evra": "29.5.2-1.fc45.noarch"
+      "evra": "29.5.3-1.fc45.noarch"
     },
     "mpfr": {
       "evra": "4.2.2-3.fc44.s390x"
@@ -1102,10 +1102,10 @@
       "evra": "4.10-1.fc45.s390x"
     },
     "selinux-policy": {
-      "evra": "45.3-1.fc45.noarch"
+      "evra": "45.4-1.fc45.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "45.3-1.fc45.noarch"
+      "evra": "45.4-1.fc45.noarch"
     },
     "setup": {
       "evra": "2.15.0-29.fc45.noarch"
@@ -1141,7 +1141,7 @@
       "evra": "1.8.1.0-2.fc45.s390x"
     },
     "sqlite-libs": {
-      "evra": "3.53.1-1.fc45.s390x"
+      "evra": "3.53.2-1.fc45.s390x"
     },
     "squashfs-tools": {
       "evra": "4.7.4-1.fc45.s390x"
@@ -1240,16 +1240,16 @@
       "evra": "2.8.6-1.fc45.s390x"
     },
     "vim-data": {
-      "evra": "2:9.2.530-1.fc45.noarch"
+      "evra": "2:9.2.597-1.fc45.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.2.530-1.fc45.s390x"
+      "evra": "2:9.2.597-1.fc45.s390x"
     },
     "which": {
       "evra": "2.25-1.fc45.s390x"
     },
     "wireguard-tools": {
-      "evra": "1.0.20250521-3.fc44.s390x"
+      "evra": "1.0.20260223-1.fc45.s390x"
     },
     "xfsprogs": {
       "evra": "7.0.1-1.fc45.s390x"
@@ -1280,6 +1280,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-06-05T00:00:00Z"
+    "generated": "2026-06-06T00:00:00Z"
   }
 }

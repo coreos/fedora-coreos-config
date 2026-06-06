@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.57.3~dev-1.fc45.aarch64"
+      "evra": "1:1.57.4~dev-2.fc45.aarch64"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.57.3~dev-1.fc45.aarch64"
+      "evra": "1:1.57.4~dev-2.fc45.aarch64"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.57.3~dev-1.fc45.aarch64"
+      "evra": "1:1.57.4~dev-2.fc45.aarch64"
     },
     "NetworkManager-team": {
-      "evra": "1:1.57.3~dev-1.fc45.aarch64"
+      "evra": "1:1.57.4~dev-2.fc45.aarch64"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.57.3~dev-1.fc45.aarch64"
+      "evra": "1:1.57.4~dev-2.fc45.aarch64"
     },
     "WALinuxAgent-udev": {
       "evra": "2.15.0.1-3.fc44.noarch"
@@ -205,7 +205,7 @@
       "evra": "2.8.6-1.fc45.aarch64"
     },
     "curl": {
-      "evra": "8.20.0-2.fc45.aarch64"
+      "evra": "8.21.0~rc1-1.fc45.aarch64"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-35.fc44.aarch64"
@@ -256,7 +256,7 @@
       "evra": "2.92rel2-9.fc45.aarch64"
     },
     "docker-cli": {
-      "evra": "29.5.2-1.fc45.aarch64"
+      "evra": "29.5.3-1.fc45.aarch64"
     },
     "dosfstools": {
       "evra": "4.2-18.fc44.aarch64"
@@ -436,16 +436,16 @@
       "evra": "3.12-3.fc44.aarch64"
     },
     "grub2-common": {
-      "evra": "1:2.12-60.fc45.noarch"
+      "evra": "1:2.12-62.fc45.noarch"
     },
     "grub2-efi-aa64": {
-      "evra": "1:2.12-60.fc45.aarch64"
+      "evra": "1:2.12-62.fc45.aarch64"
     },
     "grub2-tools": {
-      "evra": "1:2.12-60.fc45.aarch64"
+      "evra": "1:2.12-62.fc45.aarch64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.12-60.fc45.aarch64"
+      "evra": "1:2.12-62.fc45.aarch64"
     },
     "gssproxy": {
       "evra": "0.9.2-11.fc45.aarch64"
@@ -607,7 +607,7 @@
       "evra": "1.47.4-1.fc45.aarch64"
     },
     "libcurl-minimal": {
-      "evra": "8.20.0-2.fc45.aarch64"
+      "evra": "8.21.0~rc1-1.fc45.aarch64"
     },
     "libdaemon": {
       "evra": "0.14-33.fc44.aarch64"
@@ -913,10 +913,10 @@
       "evra": "4.6-1.fc45.aarch64"
     },
     "moby-engine": {
-      "evra": "29.5.2-1.fc45.aarch64"
+      "evra": "29.5.3-1.fc45.aarch64"
     },
     "moby-filesystem": {
-      "evra": "29.5.2-1.fc45.noarch"
+      "evra": "29.5.3-1.fc45.noarch"
     },
     "mokutil": {
       "evra": "2:0.7.2-5.fc45.aarch64"
@@ -1168,10 +1168,10 @@
       "evra": "4.10-1.fc45.aarch64"
     },
     "selinux-policy": {
-      "evra": "45.3-1.fc45.noarch"
+      "evra": "45.4-1.fc45.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "45.3-1.fc45.noarch"
+      "evra": "45.4-1.fc45.noarch"
     },
     "setup": {
       "evra": "2.15.0-29.fc45.noarch"
@@ -1213,7 +1213,7 @@
       "evra": "1.15.3-4.fc44.aarch64"
     },
     "sqlite-libs": {
-      "evra": "3.53.1-1.fc45.aarch64"
+      "evra": "3.53.2-1.fc45.aarch64"
     },
     "squashfs-tools": {
       "evra": "4.7.4-1.fc45.aarch64"
@@ -1309,10 +1309,10 @@
       "evra": "2.42.1-4.fc45.aarch64"
     },
     "vim-data": {
-      "evra": "2:9.2.530-1.fc45.noarch"
+      "evra": "2:9.2.597-1.fc45.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.2.530-1.fc45.aarch64"
+      "evra": "2:9.2.597-1.fc45.aarch64"
     },
     "wasmedge-rt": {
       "evra": "0.17.0-1.fc45.aarch64"
@@ -1321,7 +1321,7 @@
       "evra": "2.25-1.fc45.aarch64"
     },
     "wireguard-tools": {
-      "evra": "1.0.20250521-3.fc44.aarch64"
+      "evra": "1.0.20260223-1.fc45.aarch64"
     },
     "xfsprogs": {
       "evra": "7.0.1-1.fc45.aarch64"
@@ -1352,6 +1352,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-06-05T00:00:00Z"
+    "generated": "2026-06-06T00:00:00Z"
   }
 }
