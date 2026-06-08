@@ -15,7 +15,7 @@ ostree-layers:
   - overlay/05core
   - overlay/08nouveau
   - overlay/09misc
-  - overlay/10bootc
+  - overlay/10disk-images
   - overlay/20platform-chrony
   - overlay/30lvmdevices
 
@@ -44,6 +44,7 @@ documentation: false
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos.yaml
 postprocess:
+
   # Mask dnsmasq. We include dnsmasq for host services that use the dnsmasq
   # binary but intentionally mask the systemd service so users can't easily
   # use it as an external dns server. We prefer they use a container for that.
@@ -82,6 +83,17 @@ postprocess:
     #!/usr/bin/env bash
     set -eux -o pipefail
     rm -vrf /usr/lib/modules/*aarch64/dtb/qcom/
+
+  # Inject the ostree stateroot name from the NAME build-arg.
+  # This is done in postprocess rather than an overlay so that the
+  # value is sourced from build-args and shared across FCOS/RHCOS/SCOS.
+  - |
+    #!/usr/bin/bash
+    set -eux -o pipefail
+    cat > /usr/lib/bootc/install/20-ostree-stateroot.toml << EOF
+    [install]
+    stateroot = "${NAME}"
+    EOF
 
 # Packages listed here should be specific to Fedore CoreOS (as in not yet
 # available in RHCOS or not desired in RHCOS). All other packages should go
