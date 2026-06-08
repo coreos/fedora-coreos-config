@@ -1,0 +1,6 @@
+# This is actually overwritten by image-builder's
+# disk.yaml partition table definition but is still required
+# Drop this when https://github.com/osbuild/images/issues/2380
+# is fixed.
+[install.filesystem.root]
+type = "xfs"

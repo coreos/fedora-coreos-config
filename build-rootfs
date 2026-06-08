@@ -4,7 +4,7 @@
 # 1. It gathers the list of FCOS-specific packages using the manifests.
 # 2. It gathers the list of FCOS-specific overlays using the manifests.
 # 3. It runs `bootc-base-imagectl rebuild`, passing in the packages and overlays.
-# 4. It injects various metadata (e.g. image.json, live/ bits, and platforms.json).
+# 4. It injects various metadata (e.g. image.json, live/ bits, platforms.json, and disk.yaml).
 # 5. It runs the postprocess scripts defined in the manifest.
 
 import argparse
@@ -22,6 +22,11 @@ import yaml
 ARCH = os.uname().machine
 INPUTHASH = '/run/inputhash'
 HERMETIC_REPO = '/etc/yum.repos.d/cachi2.repo'
+
+# Build-args to propagate as env vars into the postprocess bwrap sandbox.
+# Add entries here as needed; they must also be declared as ARG in the
+# Containerfile builder stage so they are present in os.environ.
+POSTPROCESS_ENV_VARS = ['NAME']
 IS_HERMETIC = os.path.exists(HERMETIC_REPO)
 
 
@@ -206,6 +211,7 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
     inject_live(target_rootfs, srcdir)
     inject_image_json(target_rootfs, image_cfg_path, stream)
     inject_platforms_json(target_rootfs, srcdir)
+    inject_disk_yaml(target_rootfs, srcdir)
     inject_content_manifest(target_rootfs, manifest)
 
     inject_version_info(
@@ -308,18 +314,25 @@ def inject_passwd_group(parent_dir):
     shutil.copy(os.path.join(parent_dir, 'group'), dst_group)
 
 
+
 def run_postprocess_scripts(rootfs, manifest):
     # Since we have the derive-only manifest handy, just run the scripts now. An
     # alternative is to run it as a second stage, which would avoid the bwrap,
     # but operating on the raw rootfs means we don't pay for deleted files (nor
     # without requiring another rechunk).
+    # Propagate select build-args as env vars for postprocess scripts.
+    env = {}
+    for var in POSTPROCESS_ENV_VARS:
+        val = os.getenv(var)
+        if val:
+            env[var] = val
     for i, script in enumerate(manifest.get('postprocess', [])):
         name = f'usr/libexec/coreos-postprocess-{i}'
         with open(os.path.join(rootfs, name), mode='w') as f:
             os.fchmod(f.fileno(), 0o755)
             f.write(script)
         print(f"Running CoreOS postprocess script {i}", flush=True)
-        bwrap(rootfs, [f'/{name}'])
+        bwrap(rootfs, [f'/{name}'], env=env)
         os.unlink(os.path.join(rootfs, name))
 
 
@@ -327,9 +340,9 @@ def run_dracut(rootfs):
     print(f"Running dracut to generate the initramfs", flush=True)
     # https://docs.fedoraproject.org/en-US/bootc/initramfs/#_modifying_and_regenerating_the_initrd
     kver = bwrap(rootfs, ['ls', '/usr/lib/modules'], capture=True).strip()
-    bwrap(rootfs, ['env', 'DRACUT_NO_XATTR=1',
-                   'dracut', '--verbose', '--force',  '--reproducible',
-                   '--no-hostonly', f"/usr/lib/modules/{kver}/initramfs.img", kver])
+    bwrap(rootfs, env={'DRACUT_NO_XATTR': '1'},
+          args=['dracut', '--verbose', '--force',  '--reproducible',
+                '--no-hostonly', f"/usr/lib/modules/{kver}/initramfs.img", kver])
 
 
 def prepare_local_rpm_overrides(rootfs, srcdir):
@@ -366,11 +379,15 @@ priority=1
 
 # Could upstream this as e.g. `bootc-base-imagectl runroot /rootfs <cmd>` maybe?
 # But we'd need to carry it anyway at least for RHCOS 9.6.
-def bwrap(rootfs, args, capture=False):
+def bwrap(rootfs, args, env=dict(), capture=False):
+    env_args = []
+    for k, v in env.items():
+        env_args.extend(['--setenv', k, v])
+
     args = ['bwrap', '--bind', f'{rootfs}', '/', '--dev', '/dev',
             '--proc', '/proc', '--tmpfs', '/tmp', '--tmpfs', '/var',
             '--tmpfs', '/var/tmp', '--tmpfs', '/run',
-            '--bind', '/run/.containerenv', '/run/.containerenv', '--'] + args
+            '--bind', '/run/.containerenv', '/run/.containerenv'] + env_args + ['--'] + args
     if capture:
         return subprocess.check_output(args, encoding='utf-8')
     subprocess.check_call(args)
@@ -631,6 +648,13 @@ def inject_platforms_json(rootfs, srcdir):
         with open(fn, 'w') as f:
             json.dump(platforms[ARCH], f, sort_keys=True, indent=2)
             f.write('\n')
+
+
+def inject_disk_yaml(rootfs, srcdir):
+    dst = os.path.join(rootfs, 'usr/lib/image-builder/bootc/disk.yaml')
+    # We write a relative symlink otherwise it get resolved under `/target-rootfs`
+    # which does not exist in the final image.
+    os.symlink(f'{ARCH}.yaml', dst)
 
 
 if __name__ == "__main__":
