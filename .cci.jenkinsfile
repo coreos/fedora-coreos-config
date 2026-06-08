@@ -5,8 +5,9 @@ properties([
     disableConcurrentBuilds(abortPrevious: true)
 ])
 
-// We run kola tests, including iso.* tests, which require at least 8Gi. Add 1Gi for overhead.
-cosaPod(cpus: 4, memory: "9Gi") {
+// We run kola tests including iso.* tests which are resource
+// intensive. Let's give the system a lot of memory.
+cosaPod(cpus: 4, memory: "12Gi") {
     checkoutToDir(scm, 'config')
 
     def basearch = shwrapCapture("cosa basearch")
