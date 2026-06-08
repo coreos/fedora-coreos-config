@@ -43,15 +43,14 @@ case "$(arch)" in
         if ! bootupctl status | grep "${grub_version}"; then
             fatal "bootupctl status output should include grub2-tools package version"
         fi
-        ;& # fallthrough
-    *)
-        if [[ "$(arch)" == "s390x" ]]; then
-            bl_status=$(systemctl status bootloader-update.service 2>&1 || true)
-            if ! echo "$bl_status" | grep -iq "ConditionArchitecture=!s390x was not met"; then
-                fatal "bootloader-update.service was not skipped for s390x"
-            fi
+        ;;& # fallthrough to default
+    s390x)
+        bl_status=$(systemctl status bootloader-update.service 2>&1 || true)
+        if ! echo "$bl_status" | grep -iq "ConditionArchitecture=!s390x was not met"; then
+            fatal "bootloader-update.service was not skipped for s390x"
         fi
-
+        ;;& # fallthrough to default
+    *)
         if ! rpm -q bootupd; then
             exit 0
         fi
