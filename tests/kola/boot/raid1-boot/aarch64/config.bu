@@ -1,0 +1,8 @@
+variant: fcos
+version: 1.6.0
+boot_device:
+  layout: aarch64
+  mirror:
+    devices:
+      - /dev/vda
+      - /dev/vdb
