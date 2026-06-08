@@ -1,7 +1,6 @@
 #!/bin/bash
 ## kola:
-##   # This test reprovisions the rootfs automatically.
-##   tags: "platform-independent reprovision"
+##   tags: "platform-independent"
 ##   # Trigger automatic XFS reprovisioning (heuristic)
 ##   minDisk: 1000
 ##   # Root reprovisioning requires at least 4GiB of memory.
