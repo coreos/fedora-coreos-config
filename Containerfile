@@ -19,6 +19,7 @@ ARG BUILDER_IMG=overridden
 FROM ${BUILDER_IMG} as builder
 
 ARG ID=overridden
+ARG NAME=overridden
 ARG VERSION=overridden
 ARG DESCRIPTION=overridden
 ARG STREAM=overridden
