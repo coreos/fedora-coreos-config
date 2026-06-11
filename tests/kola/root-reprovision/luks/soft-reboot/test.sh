@@ -25,6 +25,14 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
       [[ ${blktype} == crypt ]]
       ok "root is on LUKS device"
 
+      # Workaround: manually add x-initrd.attach to crypttab if not
+      # already present. This can be removed once coreos/ignition#2219
+      # is included in the base image.
+      if ! grep -q x-initrd.attach /etc/crypttab; then
+          sed -i '/^myluksdev /s/$/,x-initrd.attach/' /etc/crypttab
+          systemctl daemon-reload
+      fi
+
       /tmp/autopkgtest-soft-reboot soft-rebooted
       ;;
 
