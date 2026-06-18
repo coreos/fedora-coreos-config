@@ -42,3 +42,5 @@ packages:
   - which
   # provides utilities for inspecting/setting devices connected to the PCI bus
   - pciutils
+  # Used by admins interactively and wanted on EL systems (RHCOS)
+  - openssl

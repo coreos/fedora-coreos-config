@@ -137,7 +137,6 @@ packages:
   - sssd-client sssd-ad sssd-ipa sssd-krb5 sssd-ldap
   # Used by admins interactively
   - attr
-  - openssl
   # Provides terminal tools like clear, reset, tput, and tset
   - ncurses
   # file-transfer: note fuse-sshfs is not in RHEL
