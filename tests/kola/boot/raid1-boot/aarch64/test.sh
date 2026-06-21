@@ -10,8 +10,6 @@
 ##   # timeout value than the default.
 ##   timeoutMin: 15
 ##   architectures: "aarch64"
-##   # This test reprovisions the boot and rootfs.
-##   tags: reprovision
 ##   description: Verify updating multiple EFIs using RAID 1 works.
 ##   creationDate: 2026-05-06
 
