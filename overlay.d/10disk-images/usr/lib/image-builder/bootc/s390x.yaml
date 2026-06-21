@@ -1,0 +1,41 @@
+# We don't want osbuild to inject mount units for the
+# disks as we will change the disks uuids anyway
+mount_configuration: none
+partition_table:
+  type: "gpt"
+  uuid: "00000000-0000-4000-a000-000000000001"
+  # Reserve the last 2048 512-byte blocks for CoreOS which moves the
+  # secondary GPT header to the end of the disk on first boot.
+  # See https://github.com/coreos/fedora-coreos-config/blob/7fbf510367d495529d2a915707b547d4c663f609/overlay.d/05core/usr/lib/dracut/modules.d/35coreos-ignition/coreos-gpt-setup.sh#L30
+  extra_padding: 1031168
+  partitions:
+    # s390x has no BIOS/EFI/PReP boot partition. Partition numbers are
+    # explicitly set to 3 and 4 to keep them consistent with other arches
+    # (slots 1 and 2 are left unused).
+
+    # Extended Boot Loader partition
+    - partnum: 3
+      size: "384 MiB"
+      type: BC13C2FF-59E6-4262-A352-B275FD6F7172
+      payload_type: "filesystem"
+      payload:
+        type: "ext4"
+        uuid: "96d15588-3596-4b3c-adca-a2ff7279ea63"
+        mountpoint: "/boot"
+        label: "boot"
+        fstab_options: "defaults"
+        fstab_freq: 0
+        fstab_passno: 0
+
+    # Root partition — DPS type for s390x
+    - partnum: 4
+      type: 5EEAD9A9-FE09-4A1E-A1D7-520D00531306
+      payload_type: "filesystem"
+      payload:
+        type: "xfs"
+        uuid: "910678ff-f77e-4a7d-8d53-86f2ac47a823"
+        mountpoint: "/"
+        label: "root"
+        fstab_options: "defaults"
+        fstab_freq: 0
+        fstab_passno: 0
