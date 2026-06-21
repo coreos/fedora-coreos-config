@@ -8,11 +8,7 @@
 ##   # We do a bunch of copies/rebuilds of the whole OS.
 ##   minDisk: 20
 ##   # Needs internet access as we fetch files from koji
-##   # We add the "reprovision" tag here even though we aren't
-##   # reprovisioning as a hack so that in our pipeline the test
-##   # will execute with no other tests. We were seeing a lot of
-##   # timeouts on ppc64le.
-##   tags: "needs-internet platform-independent reprovision"
+##   tags: "needs-internet platform-independent"
 ##   description: Verify that build of a container image with a new kernel
 ##     and reboot into it succeeds.
 
