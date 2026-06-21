@@ -10,28 +10,28 @@
 
 - pattern: ext.config.rpm-ostree.kernel-replace
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2115
-  # snooze: 2026-06-04 (disabled on promotion)
+  # snooze: 2026-07-03 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - ppc64le
 
 - pattern: ext.config.rpm-ostree.kernel-replace
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2124
-  # snooze: 2026-06-04 (disabled on promotion)
+  # snooze: 2026-07-03 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - aarch64
 
 - pattern: fcos.upgrade.basic
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2129
-  # snooze: 2026-06-04 (disabled on promotion)
+  # snooze: 2026-07-03 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - ppc64le
 
 - pattern: ext.config.docker.swarm-overlay-network
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2143
-  # snooze: 2026-06-04 (disabled on promotion)
+  # snooze: 2026-07-03 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - s390x
