@@ -651,13 +651,13 @@ def inject_platforms_json(rootfs, srcdir):
 
 
 def inject_disk_yaml(rootfs, srcdir):
-    dst = os.path.join(rootfs, 'usr/lib/image-builder/bootc/disk.yaml')
+    dst = os.path.join(rootfs, 'usr/lib/image-builder/bootc')
     if os.path.exists(dst):
-        # We write a relative symlink otherwise it get resolved under `/target-rootfs`
-        # which does not exist in the final image.
-        os.symlink(f'{ARCH}.yaml', dst)
+        # Relative symlink as both files are in the same directory
+        print(f"Creating symlink to arch specific image-builder config: 'disk.yaml' -> '{ARCH}.yaml'")
+        os.symlink(f'{ARCH}.yaml', os.path.join(dst, 'disk.yaml'))
     else:
-        print("Not creating arch specific symlink for image-builder disk config (does not exist)")
+        print("No image-builder config found. Skipping symlink to arch specific config.")
 
 
 if __name__ == "__main__":
