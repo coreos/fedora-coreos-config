@@ -29,6 +29,24 @@ conditional-include:
     include:
       ostree-layers:
         - overlay/10aarch64
+  # Temporary workaround. containers-common moved policy.json from
+  # /etc/containers to /usr/share/containers. The rpm-ostreed bind mount
+  # could use CONTAINERS_POLICY_JSON env var instead, but bootc has a
+  # hardcoded path that prevents this approach.
+  # Copy the file until bootc supports the new config location.
+  #
+  # See:
+  # https://github.com/bootc-dev/bootc/issues/2258
+  # https://github.com/coreos/fedora-coreos-config/issues/4215
+  - if: releasever == 45
+    include:
+      postprocess:
+        - |
+          #!/usr/bin/bash
+          set -eux -o pipefail
+          src=/usr/share/containers/policy.json
+          dest=/etc/containers/policy.json
+          cp "${src}" "${dest}"
 
 ostree-layers:
   - overlay/15fcos
