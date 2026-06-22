@@ -8,6 +8,10 @@ systemd:
     # the setup steps in the tests.
     - name: zincati.service
       enabled: false
+    # We want the messages from systemd coming to the console
+    # throughout the update process.
+    - name: coreos-printk-quiet.service
+      enabled: false
 storage:
   files:
     - path: /etc/systemd/journald.conf.d/forward-to-console.conf
