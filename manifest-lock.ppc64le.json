@@ -28,10 +28,10 @@
       "evra": "0.9.3.1-5.fc44.noarch"
     },
     "afterburn": {
-      "evra": "5.10.0-7.fc45.ppc64le"
+      "evra": "5.10.0-8.fc45.ppc64le"
     },
     "afterburn-dracut": {
-      "evra": "5.10.0-7.fc45.ppc64le"
+      "evra": "5.10.0-8.fc45.ppc64le"
     },
     "alternatives": {
       "evra": "1.33-5.fc44.ppc64le"
@@ -70,19 +70,19 @@
       "evra": "1.08.2-4.fc44.ppc64le"
     },
     "bind-libs": {
-      "evra": "32:9.18.49-1.fc45.ppc64le"
+      "evra": "32:9.18.49-2.fc45.ppc64le"
     },
     "bind-utils": {
-      "evra": "32:9.18.49-1.fc45.ppc64le"
+      "evra": "32:9.18.49-2.fc45.ppc64le"
     },
     "bootc": {
       "evra": "1.16.0-1.fc45.ppc64le"
     },
     "bootupd": {
-      "evra": "0.2.34-1.fc45.ppc64le"
+      "evra": "0.2.35-1.fc45.ppc64le"
     },
     "bsdtar": {
-      "evra": "3.8.7-1.fc45.ppc64le"
+      "evra": "3.8.7-2.fc45.ppc64le"
     },
     "btrfs-progs": {
       "evra": "7.0-2.fc45.ppc64le"
@@ -100,7 +100,7 @@
       "evra": "1.34.6-3.fc44.ppc64le"
     },
     "ca-certificates": {
-      "evra": "2025.2.80_v9.0.304-7.fc45.noarch"
+      "evra": "2025.2.80_v9.0.304-8.fc45.noarch"
     },
     "catatonit": {
       "evra": "0.2.1-5.fc44.ppc64le"
@@ -112,28 +112,28 @@
       "evra": "7.5-1.fc45.ppc64le"
     },
     "clevis": {
-      "evra": "22-1.fc45.ppc64le"
+      "evra": "22-2.fc45.ppc64le"
     },
     "clevis-dracut": {
-      "evra": "22-1.fc45.ppc64le"
+      "evra": "22-2.fc45.ppc64le"
     },
     "clevis-luks": {
-      "evra": "22-1.fc45.ppc64le"
+      "evra": "22-2.fc45.ppc64le"
     },
     "clevis-pin-tpm2": {
       "evra": "0.5.4-1.fc45.ppc64le"
     },
     "clevis-systemd": {
-      "evra": "22-1.fc45.ppc64le"
+      "evra": "22-2.fc45.ppc64le"
     },
     "cloud-utils-growpart": {
       "evra": "0.33-13.fc44.noarch"
     },
     "composefs": {
-      "evra": "1.0.8-5.fc44.ppc64le"
+      "evra": "1.0.8-6.fc45.ppc64le"
     },
     "composefs-libs": {
-      "evra": "1.0.8-5.fc44.ppc64le"
+      "evra": "1.0.8-6.fc45.ppc64le"
     },
     "conmon": {
       "evra": "2:2.2.1-2.fc45.ppc64le"
@@ -157,22 +157,22 @@
       "evra": "2.2.3-1.fc45.ppc64le"
     },
     "containers-common": {
-      "evra": "5:0.67.0-1.fc45.noarch"
+      "evra": "5:0.68.0-1.fc45.noarch"
     },
     "containers-common-extra": {
-      "evra": "5:0.67.0-1.fc45.noarch"
+      "evra": "5:0.68.0-1.fc45.noarch"
     },
     "coreos-installer": {
-      "evra": "0.26.0-2.fc45.ppc64le"
+      "evra": "0.26.0-3.fc45.ppc64le"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.26.0-2.fc45.ppc64le"
+      "evra": "0.26.0-3.fc45.ppc64le"
     },
     "coreutils": {
-      "evra": "9.11-3.fc45.ppc64le"
+      "evra": "9.11-4.fc45.ppc64le"
     },
     "coreutils-common": {
-      "evra": "9.11-3.fc45.ppc64le"
+      "evra": "9.11-4.fc45.ppc64le"
     },
     "cpio": {
       "evra": "2.15-9.fc44.ppc64le"
@@ -190,22 +190,22 @@
       "evra": "1.28-1.fc45.ppc64le"
     },
     "crypto-policies": {
-      "evra": "20260331-1.git4c567b2.fc45.noarch"
+      "evra": "20260331-2.git4c567b2.fc45.noarch"
     },
     "cryptsetup": {
-      "evra": "2.8.6-1.fc45.ppc64le"
+      "evra": "2.8.6-2.fc45.ppc64le"
     },
     "cryptsetup-libs": {
-      "evra": "2.8.6-1.fc45.ppc64le"
+      "evra": "2.8.6-2.fc45.ppc64le"
     },
     "curl": {
-      "evra": "8.21.0~rc2-1.fc45.ppc64le"
+      "evra": "8.21.0~rc3-3.fc45.ppc64le"
     },
     "cyrus-sasl-gssapi": {
-      "evra": "2.1.28-35.fc44.ppc64le"
+      "evra": "2.1.28-36.fc45.ppc64le"
     },
     "cyrus-sasl-lib": {
-      "evra": "2.1.28-35.fc44.ppc64le"
+      "evra": "2.1.28-36.fc45.ppc64le"
     },
     "dbus": {
       "evra": "1:1.16.2-1.fc45.ppc64le"
@@ -244,25 +244,25 @@
       "evra": "3.12-5.fc44.ppc64le"
     },
     "dnf5": {
-      "evra": "5.4.2.1-3.fc45.ppc64le"
+      "evra": "5.4.2.1-4.fc45.ppc64le"
     },
     "dnsmasq": {
       "evra": "2.92rel2-9.fc45.ppc64le"
     },
     "docker-cli": {
-      "evra": "29.5.3-1.fc45.ppc64le"
+      "evra": "29.6.0-1.fc45.ppc64le"
     },
     "dosfstools": {
       "evra": "4.2-18.fc44.ppc64le"
     },
     "dracut": {
-      "evra": "109-3.fc45.ppc64le"
+      "evra": "109-6.fc45.ppc64le"
     },
     "dracut-network": {
-      "evra": "109-3.fc45.ppc64le"
+      "evra": "109-6.fc45.ppc64le"
     },
     "dracut-squash": {
-      "evra": "109-3.fc45.ppc64le"
+      "evra": "109-6.fc45.ppc64le"
     },
     "duktape": {
       "evra": "2.7.0-11.fc44.ppc64le"
@@ -274,10 +274,10 @@
       "evra": "1.47.4-1.fc45.ppc64le"
     },
     "elfutils-libelf": {
-      "evra": "0.195-1.fc45.ppc64le"
+      "evra": "0.195-2.fc45.ppc64le"
     },
     "elfutils-libs": {
-      "evra": "0.195-1.fc45.ppc64le"
+      "evra": "0.195-2.fc45.ppc64le"
     },
     "ethtool": {
       "evra": "2:7.0-1.fc45.ppc64le"
@@ -367,22 +367,22 @@
       "evra": "1.0-1.fc45.ppc64le"
     },
     "git-core": {
-      "evra": "2.54.0-1.fc45.ppc64le"
+      "evra": "2.54.0-2.fc45.ppc64le"
     },
     "glib2": {
       "evra": "2.89.0-1.fc45.ppc64le"
     },
     "glibc": {
-      "evra": "2.43.9000-19.fc45.ppc64le"
+      "evra": "2.43.9000-20.fc45.ppc64le"
     },
     "glibc-common": {
-      "evra": "2.43.9000-19.fc45.ppc64le"
+      "evra": "2.43.9000-20.fc45.ppc64le"
     },
     "glibc-gconv-extra": {
-      "evra": "2.43.9000-19.fc45.ppc64le"
+      "evra": "2.43.9000-20.fc45.ppc64le"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.43.9000-19.fc45.ppc64le"
+      "evra": "2.43.9000-20.fc45.ppc64le"
     },
     "gmp": {
       "evra": "1:6.3.0-5.fc44.ppc64le"
@@ -412,7 +412,7 @@
       "evra": "3.8.13-1.fc45.ppc64le"
     },
     "gpgme": {
-      "evra": "2.0.1-4.fc45.ppc64le"
+      "evra": "2.0.1-5.fc45.ppc64le"
     },
     "grep": {
       "evra": "3.12-3.fc44.ppc64le"
@@ -484,10 +484,10 @@
       "evra": "2:1.9.5-2.fc44.ppc64le"
     },
     "iscsi-initiator-utils": {
-      "evra": "6.2.1.11-0.git4b3e853.fc45.4.ppc64le"
+      "evra": "6.2.1.11-0.git4b3e853.fc45.5.ppc64le"
     },
     "iscsi-initiator-utils-iscsiuio": {
-      "evra": "6.2.1.11-0.git4b3e853.fc45.4.ppc64le"
+      "evra": "6.2.1.11-0.git4b3e853.fc45.5.ppc64le"
     },
     "isns-utils-libs": {
       "evra": "0.103-4.fc44.ppc64le"
@@ -496,7 +496,7 @@
       "evra": "2.14-4.fc44.ppc64le"
     },
     "jose": {
-      "evra": "14-6.fc44.ppc64le"
+      "evra": "14-7.fc45.ppc64le"
     },
     "jq": {
       "evra": "1.8.1-3.fc45.ppc64le"
@@ -520,16 +520,16 @@
       "evra": "1.0.61-1.fc45.ppc64le"
     },
     "kernel": {
-      "evra": "7.1.0-0.rc7.260611g9716c086c8e8.50.fc45.ppc64le"
+      "evra": "7.2.0-0.rc0.260622gef0c9f75a195.6.fc45.ppc64le"
     },
     "kernel-core": {
-      "evra": "7.1.0-0.rc7.260611g9716c086c8e8.50.fc45.ppc64le"
+      "evra": "7.2.0-0.rc0.260622gef0c9f75a195.6.fc45.ppc64le"
     },
     "kernel-modules": {
-      "evra": "7.1.0-0.rc7.260611g9716c086c8e8.50.fc45.ppc64le"
+      "evra": "7.2.0-0.rc0.260622gef0c9f75a195.6.fc45.ppc64le"
     },
     "kernel-modules-core": {
-      "evra": "7.1.0-0.rc7.260611g9716c086c8e8.50.fc45.ppc64le"
+      "evra": "7.2.0-0.rc0.260622gef0c9f75a195.6.fc45.ppc64le"
     },
     "kexec-tools": {
       "evra": "2.0.32-3.fc44.ppc64le"
@@ -541,16 +541,16 @@
       "evra": "1.6.3-7.fc44.ppc64le"
     },
     "kmod": {
-      "evra": "34.2-4.fc44.ppc64le"
+      "evra": "34.2-5.fc45.ppc64le"
     },
     "kmod-libs": {
-      "evra": "34.2-4.fc44.ppc64le"
+      "evra": "34.2-5.fc45.ppc64le"
     },
     "kpartx": {
       "evra": "0.14.3-1.fc45.ppc64le"
     },
     "krb5-libs": {
-      "evra": "1.22.2-7.fc45.ppc64le"
+      "evra": "1.22.2-8.fc45.ppc64le"
     },
     "less": {
       "evra": "702-1.fc45.ppc64le"
@@ -562,7 +562,7 @@
       "evra": "0.3.111-23.fc44.ppc64le"
     },
     "libarchive": {
-      "evra": "3.8.7-1.fc45.ppc64le"
+      "evra": "3.8.7-2.fc45.ppc64le"
     },
     "libassuan": {
       "evra": "2.5.7-5.fc44.ppc64le"
@@ -571,7 +571,7 @@
       "evra": "2.5.2-9.fc45.ppc64le"
     },
     "libblkid": {
-      "evra": "2.42.1-5.fc45.ppc64le"
+      "evra": "2.42.2-1.fc45.ppc64le"
     },
     "libbpf": {
       "evra": "2:1.7.0-1.fc45.ppc64le"
@@ -592,7 +592,7 @@
       "evra": "1.47.4-1.fc45.ppc64le"
     },
     "libcurl-minimal": {
-      "evra": "8.21.0~rc2-1.fc45.ppc64le"
+      "evra": "8.21.0~rc3-3.fc45.ppc64le"
     },
     "libdaemon": {
       "evra": "0.14-33.fc44.ppc64le"
@@ -601,10 +601,10 @@
       "evra": "0.5.0-62.fc45.ppc64le"
     },
     "libdnf5": {
-      "evra": "5.4.2.1-3.fc45.ppc64le"
+      "evra": "5.4.2.1-4.fc45.ppc64le"
     },
     "libdnf5-cli": {
-      "evra": "5.4.2.1-3.fc45.ppc64le"
+      "evra": "5.4.2.1-4.fc45.ppc64le"
     },
     "libdrm": {
       "evra": "2.4.134-1.fc45.ppc64le"
@@ -619,16 +619,16 @@
       "evra": "4.33-15.fc44.ppc64le"
     },
     "libevent": {
-      "evra": "2.1.12-17.fc44.ppc64le"
+      "evra": "2.1.12-18.fc45.ppc64le"
     },
     "libfdisk": {
-      "evra": "2.42.1-5.fc45.ppc64le"
+      "evra": "2.42.2-1.fc45.ppc64le"
     },
     "libffi": {
       "evra": "3.5.2-2.fc44.ppc64le"
     },
     "libfido2": {
-      "evra": "1.17.0-2.fc45.ppc64le"
+      "evra": "1.17.0-3.fc45.ppc64le"
     },
     "libgcc": {
       "evra": "16.1.1-2.fc45.ppc64le"
@@ -652,25 +652,25 @@
       "evra": "2.0.0-62.fc45.ppc64le"
     },
     "libipa_hbac": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "libjose": {
-      "evra": "14-6.fc44.ppc64le"
+      "evra": "14-7.fc45.ppc64le"
     },
     "libkcapi": {
-      "evra": "1.5.0-8.fc45.ppc64le"
+      "evra": "1.5.0-10.fc45.ppc64le"
     },
     "libkcapi-hasher": {
-      "evra": "1.5.0-8.fc45.ppc64le"
+      "evra": "1.5.0-10.fc45.ppc64le"
     },
     "libkcapi-hmaccalc": {
-      "evra": "1.5.0-8.fc45.ppc64le"
+      "evra": "1.5.0-10.fc45.ppc64le"
     },
     "libksba": {
       "evra": "1.8.0-1.fc45.ppc64le"
     },
     "liblastlog2": {
-      "evra": "2.42.1-5.fc45.ppc64le"
+      "evra": "2.42.2-1.fc45.ppc64le"
     },
     "libldb": {
       "evra": "2:4.24.3-3.fc45.ppc64le"
@@ -691,7 +691,7 @@
       "evra": "2.15.3-1.fc45.ppc64le"
     },
     "libmount": {
-      "evra": "2.42.1-5.fc45.ppc64le"
+      "evra": "2.42.2-1.fc45.ppc64le"
     },
     "libndp": {
       "evra": "1.9-5.fc44.ppc64le"
@@ -706,13 +706,13 @@
       "evra": "1.0.1-32.fc44.ppc64le"
     },
     "libnfsidmap": {
-      "evra": "1:2.9.1-3.rc4.fc45.ppc64le"
+      "evra": "1:2.9.1-4.rc4.fc45.ppc64le"
     },
     "libnftnl": {
       "evra": "1.3.1-2.fc44.ppc64le"
     },
     "libnghttp2": {
-      "evra": "1.69.0-1.fc45.ppc64le"
+      "evra": "1.69.0-3.fc45.ppc64le"
     },
     "libnl3": {
       "evra": "3.12.0-3.fc44.ppc64le"
@@ -724,7 +724,7 @@
       "evra": "2.0.1-5.fc44.ppc64le"
     },
     "libnvme": {
-      "evra": "1.16.1-3.fc45.ppc64le"
+      "evra": "1.16.1-4.fc45.ppc64le"
     },
     "libpcap": {
       "evra": "14:1.10.6-2.fc44.ppc64le"
@@ -742,7 +742,7 @@
       "evra": "1.4.5-16.fc45.ppc64le"
     },
     "librepo": {
-      "evra": "1.20.0-6.fc45.ppc64le"
+      "evra": "1.20.0-7.fc45.ppc64le"
     },
     "libreport-filesystem": {
       "evra": "2.17.15-11.fc45.noarch"
@@ -772,7 +772,7 @@
       "evra": "4.9.3-1.fc45.ppc64le"
     },
     "libsmartcols": {
-      "evra": "2.42.1-5.fc45.ppc64le"
+      "evra": "2.42.2-1.fc45.ppc64le"
     },
     "libsmbclient": {
       "evra": "2:4.24.3-3.fc45.ppc64le"
@@ -784,16 +784,16 @@
       "evra": "1.47.4-1.fc45.ppc64le"
     },
     "libsss_certmap": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "libsss_idmap": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "libsss_nss_idmap": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "libsss_sudo": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "libstdc++": {
       "evra": "16.1.1-2.fc45.ppc64le"
@@ -829,7 +829,7 @@
       "evra": "1.0.30-1.fc45.ppc64le"
     },
     "libuuid": {
-      "evra": "2.42.1-5.fc45.ppc64le"
+      "evra": "2.42.2-1.fc45.ppc64le"
     },
     "libuv": {
       "evra": "1:1.52.1-1.fc45.ppc64le"
@@ -901,10 +901,10 @@
       "evra": "4.6-1.fc45.ppc64le"
     },
     "moby-engine": {
-      "evra": "29.5.3-1.fc45.ppc64le"
+      "evra": "29.6.0-1.fc45.ppc64le"
     },
     "moby-filesystem": {
-      "evra": "29.5.3-1.fc45.noarch"
+      "evra": "29.6.0-1.fc45.noarch"
     },
     "mpfr": {
       "evra": "4.2.2-3.fc44.ppc64le"
@@ -937,16 +937,16 @@
       "evra": "0.52.25-7.fc45.ppc64le"
     },
     "nfs-client-utils": {
-      "evra": "1:2.9.1-3.rc4.fc45.ppc64le"
+      "evra": "1:2.9.1-4.rc4.fc45.ppc64le"
     },
     "nfs-common-utils": {
-      "evra": "1:2.9.1-3.rc4.fc45.ppc64le"
+      "evra": "1:2.9.1-4.rc4.fc45.ppc64le"
     },
     "nfsv3-client-utils": {
-      "evra": "1:2.9.1-3.rc4.fc45.ppc64le"
+      "evra": "1:2.9.1-4.rc4.fc45.ppc64le"
     },
     "nfsv4-client-utils": {
-      "evra": "1:2.9.1-3.rc4.fc45.ppc64le"
+      "evra": "1:2.9.1-4.rc4.fc45.ppc64le"
     },
     "nftables": {
       "evra": "1:1.1.6-3.fc45.ppc64le"
@@ -955,10 +955,10 @@
       "evra": "1:1.1.6-3.fc45.noarch"
     },
     "ngtcp2": {
-      "evra": "1.22.1-1.fc45.ppc64le"
+      "evra": "1.22.1-2.fc45.ppc64le"
     },
     "ngtcp2-crypto-gnutls": {
-      "evra": "1.22.1-1.fc45.ppc64le"
+      "evra": "1.22.1-2.fc45.ppc64le"
     },
     "nmstate": {
       "evra": "2.2.60-3.fc45.ppc64le"
@@ -982,40 +982,43 @@
       "evra": "20260519-1.fc45.noarch"
     },
     "nvme-cli": {
-      "evra": "2.16-2.fc44.ppc64le"
+      "evra": "2.16-3.fc45.ppc64le"
     },
     "oniguruma": {
       "evra": "6.9.10-4.fc44.ppc64le"
     },
     "openldap": {
-      "evra": "2.6.13-1.fc45.ppc64le"
+      "evra": "2.6.13-2.fc45.ppc64le"
     },
     "openssh": {
-      "evra": "10.3p1-2.fc45.ppc64le"
+      "evra": "10.3p1-4.fc45.ppc64le"
     },
     "openssh-clients": {
-      "evra": "10.3p1-2.fc45.ppc64le"
+      "evra": "10.3p1-4.fc45.ppc64le"
     },
     "openssh-server": {
-      "evra": "10.3p1-2.fc45.ppc64le"
+      "evra": "10.3p1-4.fc45.ppc64le"
     },
     "openssl": {
-      "evra": "1:3.5.7-1.fc45.ppc64le"
+      "evra": "1:4.0.1-1.fc45.ppc64le"
     },
     "openssl-libs": {
+      "evra": "1:4.0.1-1.fc45.ppc64le"
+    },
+    "openssl3-libs": {
       "evra": "1:3.5.7-1.fc45.ppc64le"
     },
     "os-prober": {
       "evra": "1.81-11.fc44.ppc64le"
     },
     "ostree": {
-      "evra": "2026.1-2.fc45.ppc64le"
+      "evra": "2026.1-4.fc45.ppc64le"
     },
     "ostree-grub2": {
-      "evra": "2026.1-2.fc45.ppc64le"
+      "evra": "2026.1-4.fc45.ppc64le"
     },
     "ostree-libs": {
-      "evra": "2026.1-2.fc45.ppc64le"
+      "evra": "2026.1-4.fc45.ppc64le"
     },
     "p11-kit": {
       "evra": "0.26.2-1.fc45.ppc64le"
@@ -1024,10 +1027,10 @@
       "evra": "0.26.2-1.fc45.ppc64le"
     },
     "pam": {
-      "evra": "1.7.2-1.fc44.ppc64le"
+      "evra": "1.7.2-2.fc45.ppc64le"
     },
     "pam-libs": {
-      "evra": "1.7.2-1.fc44.ppc64le"
+      "evra": "1.7.2-2.fc45.ppc64le"
     },
     "passim-libs": {
       "evra": "0.1.11-1.fc45.ppc64le"
@@ -1063,10 +1066,10 @@
       "evra": "2.5.1-1.fc45.ppc64le"
     },
     "podman": {
-      "evra": "5:5.8.2-1.fc45.ppc64le"
+      "evra": "5:6.0.0~rc1-2.fc45.ppc64le"
     },
     "podman-sequoia": {
-      "evra": "0.3.2-2.fc45.ppc64le"
+      "evra": "0.3.2-3.fc45.ppc64le"
     },
     "policycoreutils": {
       "evra": "3.10-5.fc45.ppc64le"
@@ -1126,22 +1129,22 @@
       "evra": "6.0.1-6.fc45.ppc64le"
     },
     "rpm-ostree": {
-      "evra": "2026.2-1.fc45.ppc64le"
+      "evra": "2026.2-2.fc45.ppc64le"
     },
     "rpm-ostree-libs": {
-      "evra": "2026.2-1.fc45.ppc64le"
+      "evra": "2026.2-2.fc45.ppc64le"
     },
     "rpm-plugin-selinux": {
       "evra": "6.0.1-6.fc45.ppc64le"
     },
     "rpm-sequoia": {
-      "evra": "1.10.2-2.fc45.ppc64le"
+      "evra": "1.10.2-3.fc45.ppc64le"
     },
     "rsync": {
-      "evra": "3.4.4-1.fc45.ppc64le"
+      "evra": "3.4.4-2.fc45.ppc64le"
     },
     "runc": {
-      "evra": "2:1.4.3-1.fc45.ppc64le"
+      "evra": "2:1.5.0-1.fc45.ppc64le"
     },
     "samba-client-libs": {
       "evra": "2:4.24.3-3.fc45.ppc64le"
@@ -1171,7 +1174,7 @@
       "evra": "1.1.16-10.fc44.ppc64le"
     },
     "setup": {
-      "evra": "2.15.0-29.fc45.noarch"
+      "evra": "2.15.1-1.fc45.noarch"
     },
     "sg3_utils": {
       "evra": "1.48-9.fc45.ppc64le"
@@ -1189,7 +1192,7 @@
       "evra": "2.4-11.fc45.ppc64le"
     },
     "skopeo": {
-      "evra": "1:1.22.2-1.fc45.ppc64le"
+      "evra": "1:1.23.0-3.fc45.ppc64le"
     },
     "slang": {
       "evra": "2.3.3-9.fc44.ppc64le"
@@ -1201,7 +1204,7 @@
       "evra": "1.2.2-4.fc44.ppc64le"
     },
     "socat": {
-      "evra": "1.8.1.0-2.fc45.ppc64le"
+      "evra": "1.8.1.1-2.fc45.ppc64le"
     },
     "sqlite-libs": {
       "evra": "3.53.2-1.fc45.ppc64le"
@@ -1210,37 +1213,37 @@
       "evra": "4.7.4-1.fc45.ppc64le"
     },
     "sssd-ad": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "sssd-client": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "sssd-common": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "sssd-common-pac": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "sssd-ipa": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "sssd-krb5": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "sssd-krb5-common": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "sssd-ldap": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "sssd-nfs-idmap": {
-      "evra": "2.13.0-2.fc45.ppc64le"
+      "evra": "2.13.1-2.fc45.ppc64le"
     },
     "stalld": {
-      "evra": "1.27.1-2.fc45.ppc64le"
+      "evra": "1.28.1-1.fc45.ppc64le"
     },
     "sudo": {
-      "evra": "1.9.17-13.p2.fc45.ppc64le"
+      "evra": "1.9.17-14.p2.fc45.ppc64le"
     },
     "systemd": {
       "evra": "260.1-2.fc45.ppc64le"
@@ -1276,16 +1279,16 @@
       "evra": "0.19.0-12.fc44.ppc64le"
     },
     "toolbox": {
-      "evra": "0.3-4.fc44.ppc64le"
+      "evra": "0.3-5.fc45.ppc64le"
     },
     "tpm2-tools": {
-      "evra": "5.7-5.fc44.ppc64le"
+      "evra": "5.7-6.fc45.ppc64le"
     },
     "tpm2-tss": {
-      "evra": "4.1.3-9.fc44.ppc64le"
+      "evra": "4.1.3-10.fc45.ppc64le"
     },
     "tpm2-tss-fapi": {
-      "evra": "4.1.3-9.fc44.ppc64le"
+      "evra": "4.1.3-10.fc45.ppc64le"
     },
     "tzdata": {
       "evra": "2026b-1.fc45.noarch"
@@ -1294,10 +1297,10 @@
       "evra": "0.15.6-1.fc44.ppc64le"
     },
     "util-linux": {
-      "evra": "2.42.1-5.fc45.ppc64le"
+      "evra": "2.42.2-1.fc45.ppc64le"
     },
     "util-linux-core": {
-      "evra": "2.42.1-5.fc45.ppc64le"
+      "evra": "2.42.2-1.fc45.ppc64le"
     },
     "vim-data": {
       "evra": "2:9.2.597-1.fc45.noarch"
@@ -1327,7 +1330,7 @@
       "evra": "1:5.8.3-1.fc45.ppc64le"
     },
     "zchunk-libs": {
-      "evra": "1.5.3-1.fc45.ppc64le"
+      "evra": "1.5.3-2.fc45.ppc64le"
     },
     "zincati": {
       "evra": "0.0.32-1.fc45.ppc64le"
@@ -1343,6 +1346,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-06-17T00:00:00Z"
+    "generated": "2026-06-23T00:00:00Z"
   }
 }
