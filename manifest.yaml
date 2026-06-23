@@ -1,7 +1,3 @@
-metadata:
-  # tell `cosa build` to default to buildah path
-  build_with_buildah: true
-
 conditional-include:
   # TODO: There is no coreos-pool for RISCV yet
   #       https://github.com/coreos/fedora-coreos-tracker/issues/1931
