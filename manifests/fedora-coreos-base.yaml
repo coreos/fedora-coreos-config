@@ -12,12 +12,8 @@ include:
   - coreos-bootc-delta.yaml
 
 ostree-layers:
-  - overlay.d/05core
-  - overlay.d/08nouveau
   - overlay.d/09misc
   - overlay.d/10disk-images
-  - overlay.d/20platform-chrony
-  - overlay.d/30lvmdevices
 
 conditional-include:
   - if: releasever < 44
