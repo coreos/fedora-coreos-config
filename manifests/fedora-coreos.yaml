@@ -28,7 +28,7 @@ conditional-include:
   - if: basearch == "aarch64"
     include:
       ostree-layers:
-        - overlay/10aarch64
+        - overlay.d/10aarch64
   # Temporary workaround. containers-common moved policy.json from
   # /etc/containers to /usr/share/containers. The rpm-ostreed bind mount
   # could use CONTAINERS_POLICY_JSON env var instead, but bootc has a
@@ -49,8 +49,8 @@ conditional-include:
           cp "${src}" "${dest}"
 
 ostree-layers:
-  - overlay/15fcos
-  - overlay/17fcos-container-signing
+  - overlay.d/15fcos
+  - overlay.d/17fcos-container-signing
 
 packages:
   - fedora-release-coreos

@@ -165,7 +165,7 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
         elif len(lockfile_repos) > 0:
             raise Exception(f"unknown lockfile-repo found in {lockfile_repos}")
 
-    overlays = gather_overlays(manifest, srcdir)
+    add_dirs = gather_add_dirs(manifest, srcdir)
     nodocs = (manifest.get('documentation') is False)
     recommends = manifest.get('recommends')
     # We generate the initramfs using dracut ourselves later after our
@@ -179,8 +179,8 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
     with tempfile.NamedTemporaryFile(mode='w') as argsfile:
         for pkg in packages:
             argsfile.write(f"--install={pkg}\n")
-        for overlay in overlays:
-            argsfile.write(f"--add-dir={overlay}\n")
+        for add_dir in add_dirs:
+            argsfile.write(f"--add-dir={add_dir}\n")
         if nodocs:
             argsfile.write("--no-docs\n")
             # temporarily work around https://issues.redhat.com/browse/RHEL-97826
@@ -229,7 +229,7 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
     run_dracut(target_rootfs)
     cleanup_extraneous_files(target_rootfs)
 
-    calculate_inputhash(target_rootfs, overlays, manifest)
+    calculate_inputhash(target_rootfs, add_dirs, manifest)
 
 def get_bootc_base_imagectl_help():
     return subprocess.check_output(['/usr/libexec/bootc-base-imagectl', 'build-rootfs', '-h'], encoding='utf-8')
@@ -456,19 +456,17 @@ def inject_version_info(rootfs, replace_version, version):
             f.write(f'{k}={v}\n')
 
 
-# This re-implements cosa's overlay logic.
-def gather_overlays(manifest, srcdir):
-    overlays = []
+def gather_add_dirs(manifest, srcdir):
+    add_dirs = []
     for layer in manifest.get('ostree-layers', []):
-        assert layer.startswith('overlay/')
-        overlays.append(os.path.join(srcdir, 'overlay.d', layer[len('overlay/'):]))
+        add_dirs.append(os.path.join(srcdir, layer))
 
     rootfs_override = os.path.join(srcdir, 'overrides/rootfs')
     if os.path.isdir(rootfs_override) and len(os.listdir(rootfs_override)) > 0:
         print("Injecting rootfs override")
-        overlays.append(rootfs_override)
+        add_dirs.append(rootfs_override)
 
-    return overlays
+    return add_dirs
 
 
 # Inject live/ bits.
