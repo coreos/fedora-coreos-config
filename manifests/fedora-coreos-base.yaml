@@ -15,24 +15,6 @@ ostree-layers:
   - overlay.d/09misc
   - overlay.d/10disk-images
 
-conditional-include:
-  - if: releasever < 44
-    include:
-      postprocess:
-        # Enable SELinux booleans used by OpenShift
-        # https://github.com/coreos/fedora-coreos-tracker/issues/284
-        # This definition is no longer used to actually effect change
-        # in the OpenShift Node images so let's drop it in 44+. The
-        # config for the OpenShift Node image is now in:
-        # https://github.com/openshift/os/blob/c96e35987fb1093beb7631f27aecf324ae8a44f5/packages-openshift.yaml#L98-L103
-        - |
-          #!/usr/bin/bash
-          set -eux -o pipefail
-          setsebool -P -N container_use_cephfs on  # RHBZ#1692369
-          setsebool -P -N virt_use_samba on  # RHBZ#1754825
-          rm -f /etc/selinux/targeted/semanage.*.LOCK
-
-
 # Be minimal
 recommends: false
 documentation: false
