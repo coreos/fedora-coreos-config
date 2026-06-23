@@ -10,42 +10,50 @@
 
 packages:
   systemd:
-    evr: 260.1-2.fc45
+    evr: 261-2.fc45
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-config/issues/4196
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7954447c81
+      reason: https://github.com/coreos/fedora-coreos-config/issues/4196#issuecomment-4782286962
+      type: fast-track
   systemd-container:
-    evr: 260.1-2.fc45
+    evr: 261-2.fc45
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-config/issues/4196
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7954447c81
+      reason: https://github.com/coreos/fedora-coreos-config/issues/4196#issuecomment-4782286962
+      type: fast-track
   systemd-libs:
-    evr: 260.1-2.fc45
+    evr: 261-2.fc45
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-config/issues/4196
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7954447c81
+      reason: https://github.com/coreos/fedora-coreos-config/issues/4196#issuecomment-4782286962
+      type: fast-track
   systemd-pam:
-    evr: 260.1-2.fc45
+    evr: 261-2.fc45
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-config/issues/4196
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7954447c81
+      reason: https://github.com/coreos/fedora-coreos-config/issues/4196#issuecomment-4782286962
+      type: fast-track
   systemd-resolved:
-    evr: 260.1-2.fc45
+    evr: 261-2.fc45
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-config/issues/4196
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7954447c81
+      reason: https://github.com/coreos/fedora-coreos-config/issues/4196#issuecomment-4782286962
+      type: fast-track
   systemd-shared:
-    evr: 260.1-2.fc45
+    evr: 261-2.fc45
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-config/issues/4196
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7954447c81
+      reason: https://github.com/coreos/fedora-coreos-config/issues/4196#issuecomment-4782286962
+      type: fast-track
   systemd-sysusers:
-    evr: 260.1-2.fc45
+    evr: 261-2.fc45
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-config/issues/4196
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7954447c81
+      reason: https://github.com/coreos/fedora-coreos-config/issues/4196#issuecomment-4782286962
+      type: fast-track
   systemd-udev:
-    evr: 260.1-2.fc45
+    evr: 261-2.fc45
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-config/issues/4196
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7954447c81
+      reason: https://github.com/coreos/fedora-coreos-config/issues/4196#issuecomment-4782286962
+      type: fast-track
