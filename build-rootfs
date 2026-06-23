@@ -3,7 +3,7 @@
 # This script is called by the Containerfile to build FCOS. Here's what it does at a high-level:
 # 1. It gathers the list of FCOS-specific packages using the manifests.
 # 2. It gathers the list of FCOS-specific overlays using the manifests.
-# 3. It runs `bootc-base-imagectl rebuild`, passing in the packages and overlays.
+# 3. It runs `bootc-base-imagectl make-rootfs`.
 # 4. It injects various metadata (e.g. image.json, live/ bits, platforms.json, and disk.yaml).
 # 5. It runs the postprocess scripts defined in the manifest.
 
@@ -198,6 +198,9 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
             for locked_nevra in locked_nevras:
                 argsfile.write(f"--lock={locked_nevra}\n")
         argsfile.flush()
+        # print out argsfile content for debugging
+        with open(argsfile.name, "r") as f:
+            print(f"Using following argsfile for bootc-base-imagectl:\n{f.read()}", flush=True)
         cache_arg = []
         if os.path.isdir('/cache') and rpm_ostree_has_cachedir_fix():
             cache_arg = ['--cachedir=/cache']
