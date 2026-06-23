@@ -7,13 +7,7 @@ recommends: false
 documentation: false
 
 include:
-  - system-configuration.yaml
-  - ignition-and-ostree.yaml
-  - file-transfer.yaml
-  - networking-tools.yaml
-  - user-experience.yaml
   - shared-el.yaml
-  - coreos-bootc-delta.yaml
 
 conditional-include:
   # If not on a production stream then disable Zincati
