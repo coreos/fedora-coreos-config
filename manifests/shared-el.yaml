@@ -1,3 +1,11 @@
+include:
+  - system-configuration.yaml
+  - ignition-and-ostree.yaml
+  - file-transfer.yaml
+  - networking-tools.yaml
+  - user-experience.yaml
+  - coreos-bootc-delta.yaml
+
 conditional-include:
   # Include shared-el9 workarounds on Fedora and EL9
   - if: id == "fedora"
