@@ -600,6 +600,9 @@
     "libbpf": {
       "evra": "2:1.7.0-1.fc45.x86_64"
     },
+    "libbrotli": {
+      "evra": "1.2.0-4.fc45.x86_64"
+    },
     "libbsd": {
       "evra": "0.12.2-7.fc44.x86_64"
     },
@@ -615,7 +618,7 @@
     "libcom_err": {
       "evra": "1.47.4-1.fc45.x86_64"
     },
-    "libcurl-minimal": {
+    "libcurl": {
       "evra": "8.21.0~rc3-3.fc45.x86_64"
     },
     "libdaemon": {
@@ -738,6 +741,9 @@
     "libnghttp2": {
       "evra": "1.69.0-3.fc45.x86_64"
     },
+    "libnghttp3": {
+      "evra": "1.16.0-1.fc45.x86_64"
+    },
     "libnl3": {
       "evra": "3.12.0-3.fc44.x86_64"
     },
@@ -800,6 +806,12 @@
     },
     "libss": {
       "evra": "1.47.4-1.fc45.x86_64"
+    },
+    "libssh": {
+      "evra": "0.12.0-1.fc45.x86_64"
+    },
+    "libssh-config": {
+      "evra": "0.12.0-1.fc45.noarch"
     },
     "libsss_certmap": {
       "evra": "2.13.1-2.fc45.x86_64"
@@ -988,6 +1000,9 @@
       "evra": "1.22.1-2.fc45.x86_64"
     },
     "ngtcp2-crypto-gnutls": {
+      "evra": "1.22.1-2.fc45.x86_64"
+    },
+    "ngtcp2-crypto-ossl": {
       "evra": "1.22.1-2.fc45.x86_64"
     },
     "nmstate": {
@@ -1267,28 +1282,28 @@
       "evra": "1.9.17-14.p2.fc45.x86_64"
     },
     "systemd": {
-      "evra": "260.1-2.fc45.x86_64"
+      "evra": "261-2.fc45.x86_64"
     },
     "systemd-container": {
-      "evra": "260.1-2.fc45.x86_64"
+      "evra": "261-2.fc45.x86_64"
     },
     "systemd-libs": {
-      "evra": "260.1-2.fc45.x86_64"
+      "evra": "261-2.fc45.x86_64"
     },
     "systemd-pam": {
-      "evra": "260.1-2.fc45.x86_64"
+      "evra": "261-2.fc45.x86_64"
     },
     "systemd-resolved": {
-      "evra": "260.1-2.fc45.x86_64"
+      "evra": "261-2.fc45.x86_64"
     },
     "systemd-shared": {
-      "evra": "260.1-2.fc45.x86_64"
+      "evra": "261-2.fc45.x86_64"
     },
     "systemd-sysusers": {
-      "evra": "260.1-2.fc45.x86_64"
+      "evra": "261-2.fc45.x86_64"
     },
     "systemd-udev": {
-      "evra": "260.1-2.fc45.x86_64"
+      "evra": "261-2.fc45.x86_64"
     },
     "tar": {
       "evra": "2:1.35-8.fc44.x86_64"
@@ -1370,6 +1385,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-06-23T00:00:00Z"
+    "generated": "2026-06-24T00:00:00Z"
   }
 }

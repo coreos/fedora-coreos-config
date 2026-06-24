@@ -576,6 +576,9 @@
     "libbpf": {
       "evra": "2:1.7.0-1.fc45.ppc64le"
     },
+    "libbrotli": {
+      "evra": "1.2.0-4.fc45.ppc64le"
+    },
     "libbsd": {
       "evra": "0.12.2-7.fc44.ppc64le"
     },
@@ -591,7 +594,7 @@
     "libcom_err": {
       "evra": "1.47.4-1.fc45.ppc64le"
     },
-    "libcurl-minimal": {
+    "libcurl": {
       "evra": "8.21.0~rc3-3.fc45.ppc64le"
     },
     "libdaemon": {
@@ -714,6 +717,9 @@
     "libnghttp2": {
       "evra": "1.69.0-3.fc45.ppc64le"
     },
+    "libnghttp3": {
+      "evra": "1.16.0-1.fc45.ppc64le"
+    },
     "libnl3": {
       "evra": "3.12.0-3.fc44.ppc64le"
     },
@@ -782,6 +788,12 @@
     },
     "libss": {
       "evra": "1.47.4-1.fc45.ppc64le"
+    },
+    "libssh": {
+      "evra": "0.12.0-1.fc45.ppc64le"
+    },
+    "libssh-config": {
+      "evra": "0.12.0-1.fc45.noarch"
     },
     "libsss_certmap": {
       "evra": "2.13.1-2.fc45.ppc64le"
@@ -958,6 +970,9 @@
       "evra": "1.22.1-2.fc45.ppc64le"
     },
     "ngtcp2-crypto-gnutls": {
+      "evra": "1.22.1-2.fc45.ppc64le"
+    },
+    "ngtcp2-crypto-ossl": {
       "evra": "1.22.1-2.fc45.ppc64le"
     },
     "nmstate": {
@@ -1246,28 +1261,28 @@
       "evra": "1.9.17-14.p2.fc45.ppc64le"
     },
     "systemd": {
-      "evra": "260.1-2.fc45.ppc64le"
+      "evra": "261-2.fc45.ppc64le"
     },
     "systemd-container": {
-      "evra": "260.1-2.fc45.ppc64le"
+      "evra": "261-2.fc45.ppc64le"
     },
     "systemd-libs": {
-      "evra": "260.1-2.fc45.ppc64le"
+      "evra": "261-2.fc45.ppc64le"
     },
     "systemd-pam": {
-      "evra": "260.1-2.fc45.ppc64le"
+      "evra": "261-2.fc45.ppc64le"
     },
     "systemd-resolved": {
-      "evra": "260.1-2.fc45.ppc64le"
+      "evra": "261-2.fc45.ppc64le"
     },
     "systemd-shared": {
-      "evra": "260.1-2.fc45.ppc64le"
+      "evra": "261-2.fc45.ppc64le"
     },
     "systemd-sysusers": {
-      "evra": "260.1-2.fc45.ppc64le"
+      "evra": "261-2.fc45.ppc64le"
     },
     "systemd-udev": {
-      "evra": "260.1-2.fc45.ppc64le"
+      "evra": "261-2.fc45.ppc64le"
     },
     "tar": {
       "evra": "2:1.35-8.fc44.ppc64le"
@@ -1346,6 +1361,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-06-23T00:00:00Z"
+    "generated": "2026-06-24T00:00:00Z"
   }
 }

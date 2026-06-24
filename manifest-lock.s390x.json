@@ -546,6 +546,9 @@
     "libbpf": {
       "evra": "2:1.7.0-1.fc45.s390x"
     },
+    "libbrotli": {
+      "evra": "1.2.0-4.fc45.s390x"
+    },
     "libbsd": {
       "evra": "0.12.2-7.fc44.s390x"
     },
@@ -561,7 +564,7 @@
     "libcom_err": {
       "evra": "1.47.4-1.fc45.s390x"
     },
-    "libcurl-minimal": {
+    "libcurl": {
       "evra": "8.21.0~rc3-3.fc45.s390x"
     },
     "libdaemon": {
@@ -684,6 +687,9 @@
     "libnghttp2": {
       "evra": "1.69.0-3.fc45.s390x"
     },
+    "libnghttp3": {
+      "evra": "1.16.0-1.fc45.s390x"
+    },
     "libnl3": {
       "evra": "3.12.0-3.fc44.s390x"
     },
@@ -746,6 +752,12 @@
     },
     "libss": {
       "evra": "1.47.4-1.fc45.s390x"
+    },
+    "libssh": {
+      "evra": "0.12.0-1.fc45.s390x"
+    },
+    "libssh-config": {
+      "evra": "0.12.0-1.fc45.noarch"
     },
     "libsss_certmap": {
       "evra": "2.13.1-2.fc45.s390x"
@@ -919,6 +931,9 @@
       "evra": "1.22.1-2.fc45.s390x"
     },
     "ngtcp2-crypto-gnutls": {
+      "evra": "1.22.1-2.fc45.s390x"
+    },
+    "ngtcp2-crypto-ossl": {
       "evra": "1.22.1-2.fc45.s390x"
     },
     "nmstate": {
@@ -1186,28 +1201,28 @@
       "evra": "1.9.17-14.p2.fc45.s390x"
     },
     "systemd": {
-      "evra": "260.1-2.fc45.s390x"
+      "evra": "261-2.fc45.s390x"
     },
     "systemd-container": {
-      "evra": "260.1-2.fc45.s390x"
+      "evra": "261-2.fc45.s390x"
     },
     "systemd-libs": {
-      "evra": "260.1-2.fc45.s390x"
+      "evra": "261-2.fc45.s390x"
     },
     "systemd-pam": {
-      "evra": "260.1-2.fc45.s390x"
+      "evra": "261-2.fc45.s390x"
     },
     "systemd-resolved": {
-      "evra": "260.1-2.fc45.s390x"
+      "evra": "261-2.fc45.s390x"
     },
     "systemd-shared": {
-      "evra": "260.1-2.fc45.s390x"
+      "evra": "261-2.fc45.s390x"
     },
     "systemd-sysusers": {
-      "evra": "260.1-2.fc45.s390x"
+      "evra": "261-2.fc45.s390x"
     },
     "systemd-udev": {
-      "evra": "260.1-2.fc45.s390x"
+      "evra": "261-2.fc45.s390x"
     },
     "tar": {
       "evra": "2:1.35-8.fc44.s390x"
@@ -1289,6 +1304,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-06-23T00:00:00Z"
+    "generated": "2026-06-24T00:00:00Z"
   }
 }
