@@ -2,7 +2,13 @@
 # into "official" builds of Fedora CoreOS (such as including `fedora-release-coreos`)
 # or are very "opinionated" like disabling SSH passwords by default.
 
-include: fedora-coreos-base.yaml
+# Be minimal
+recommends: false
+documentation: false
+
+include:
+  - shared-el.yaml
+
 conditional-include:
   # If not on a production stream then disable Zincati
   - if:
@@ -28,7 +34,7 @@ conditional-include:
   - if: basearch == "aarch64"
     include:
       ostree-layers:
-        - overlay/10aarch64
+        - overlay.d/10aarch64
   # Temporary workaround. containers-common moved policy.json from
   # /etc/containers to /usr/share/containers. The rpm-ostreed bind mount
   # could use CONTAINERS_POLICY_JSON env var instead, but bootc has a
@@ -49,10 +55,66 @@ conditional-include:
           cp "${src}" "${dest}"
 
 ostree-layers:
-  - overlay/15fcos
-  - overlay/17fcos-container-signing
+  - overlay.d/09misc
+  - overlay.d/10disk-images
+  - overlay.d/15fcos
+  - overlay.d/17fcos-container-signing
 
+# Packages listed here should be specific to Fedore CoreOS (as in not yet
+# available in RHCOS or not desired in RHCOS). All other packages should go
+# into one of the sub-manifests listed at the top.
 packages:
+  # Security
+  - polkit
+  # Containers
+  - systemd-container catatonit
+  - fuse-overlayfs slirp4netns
+  # Some host applications(i.e. NetworkManager) use dnsmasq
+  # as the binary for some various utility operations.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/519
+  - dnsmasq
+  # For podman v4 netavark gets pulled in but it only recommends
+  # aardvark-dns (which provides name resolution based on container
+  # names). This functionality was previously provided by dnsname from
+  # podman-plugins in the podman v3 stack.
+  # See https://github.com/containers/netavark/pull/217
+  - aardvark-dns
+  # Since we need `containernetworking-plugins` installed to continue
+  # to support CNI networks we need to also explicitly install
+  # `netavark` so we get both of them installed since both of them
+  # provide `container-network-stack`.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1128#issuecomment-1071458717
+  - netavark
+  # Active Directory support
+  - adcli
+  # Additional firewall support; we aren't including these in RHCOS or they
+  # don't exist in RHEL
+  - iptables-nft iptables-services
+  # WireGuard https://github.com/coreos/fedora-coreos-tracker/issues/362
+  - wireguard-tools
+  # Storage
+  - btrfs-progs
+  # Allow communication between sudo and SSSD
+  # for caching sudo rules by SSSD.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/445
+  - libsss_sudo
+  # SSSD; we only ship a subset of the backends
+  - sssd-client sssd-ad sssd-ipa sssd-krb5 sssd-ldap
+  # Used by admins interactively
+  - attr
+  - openssl
+  # Provides terminal tools like clear, reset, tput, and tset
+  - ncurses
+  # file-transfer: note fuse-sshfs is not in RHEL
+  # so we can't put it in file-transfer.yaml
+  - fuse-sshfs
+  # Improved MOTD experience
+  - console-login-helper-messages-motdgen
+  # i18n
+  - kbd
+  # NIC firmware we've traditionally shipped but then were split out of linux-firmware in Fedora
+  - qed-firmware # https://github.com/coreos/fedora-coreos-tracker/issues/1746
+  # CoreOS release RPM
   - fedora-release-coreos
   # CL ships this.
   - moby-engine
@@ -68,9 +130,99 @@ packages:
   # obsoletes nfs-utils-coreos
   - nfs-client-utils
 
+# Architecture specific packages:
+# - irqbalance
+#   - This thing is crying out to be pulled into systemd, but that hasn't happened
+#     yet.  Also we may want to add to rpm-ostree something like arch negation;
+#     basically right now it doesn't exist on s390x.
+#     Anyways, it was requested by the Red Hat perf team for RHCOS, so we have it here.
+#     https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
+#     https://access.redhat.com/solutions/41535
+# - qemu-user-static-x86
+#   - Include this on non-x86_64 FCOS images to allow access to the large
+#     inventory of containers only built for x86_64.
+#     https://github.com/coreos/fedora-coreos-tracker/issues/1237
+# - google-compute-engine-guest-configs-udev
+#   - Add this package on x86_64 and aarch64 (the two architectures
+#     GCP supports. https://github.com/coreos/fedora-coreos-tracker/issues/1494
+#     This should be moved to a shared manifest when RHEL has this package.
+# - crun-wasm wasmedge-rt
+#   - Support for wasm runtime: https://github.com/coreos/fedora-coreos-tracker/issues/1375
+packages-x86_64:
+  - irqbalance
+  - google-compute-engine-guest-configs-udev
+  - crun-wasm wasmedge-rt
+  # Include AMD microcode updates, see https://github.com/coreos/fedora-coreos-tracker/issues/1618.
+  # This normally should belong in bootable-rpm-ostree.yaml (alongside
+  # `microcode_ctl`), but this change hasn't hit RHCOS yet.
+  - amd-ucode-firmware
+packages-ppc64le:
+  - irqbalance
+  - librtas
+  - powerpc-utils-core
+  - ppc64-diag-rtas
+  - qemu-user-static-x86
+packages-aarch64:
+  - irqbalance
+  - qemu-user-static-x86
+  - google-compute-engine-guest-configs-udev
+  - crun-wasm wasmedge-rt
+packages-s390x:
+  - qemu-user-static-x86
+
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos-base.yaml
 postprocess:
+  # Mask dnsmasq. We include dnsmasq for host services that use the dnsmasq
+  # binary but intentionally mask the systemd service so users can't easily
+  # use it as an external dns server. We prefer they use a container for that.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/519
+  - |
+    #!/usr/bin/bash
+    set -eux -o pipefail
+    systemctl mask dnsmasq.service
+
+  # sudo prefers its config files to be mode 440, and some security scanners
+  # complain if /etc/sudoers.d files are world-readable.
+  # https://bugzilla.redhat.com/show_bug.cgi?id=1981979
+  # This is added by the 05core overlay listed above.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    chmod 440 /etc/sudoers.d/coreos-sudo-group
+
+  # Set the default systemd target to `multi-user.target`.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    ln -sf multi-user.target /usr/lib/systemd/system/default.target
+
+  # Add the sudo group to /etc/group in container-native flow.
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    if [ -f /run/.containerenv ]; then
+      grep sudo /usr/lib/group >> /etc/group
+    fi
+
+  # Hack to avoid running out of space on aarch64. This should save us about 29M.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/2004
+  - |
+    #!/usr/bin/env bash
+    set -eux -o pipefail
+    rm -vrf /usr/lib/modules/*aarch64/dtb/qcom/
+
+  # Inject the ostree stateroot name from the NAME build-arg.
+  # This is done in postprocess rather than an overlay so that the
+  # value is sourced from build-args and shared across FCOS/RHCOS/SCOS.
+  - |
+    #!/usr/bin/bash
+    set -eux -o pipefail
+    cat > /usr/lib/bootc/install/20-ostree-stateroot.toml << EOF
+    [install]
+    stateroot = "${NAME}"
+    EOF
+
   # Disable Zincati on non-release builds
   # https://github.com/coreos/fedora-coreos-tracker/issues/212
   - |
@@ -81,6 +233,7 @@ postprocess:
       mkdir -p /etc/zincati/config.d
       echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nupdates.enabled = false' > /etc/zincati/config.d/95-disable-on-dev.toml
     fi
+
   # Users shouldn't be configuring `rpm-ostreed.conf`
   # https://github.com/coreos/fedora-coreos-tracker/issues/271
   - |
