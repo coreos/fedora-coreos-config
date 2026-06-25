@@ -461,6 +461,11 @@ def gather_add_dirs(manifest, srcdir):
     for layer in manifest.get('ostree-layers', []):
         add_dirs.append(os.path.join(srcdir, layer))
 
+    # sort by the base name of the directory to allow for overriding
+    # files in layers that sort earlier. i.e. a file in 03-core/etc/foo.d/file
+    # would override a file in 02-core/etc/foo.d/file.
+    add_dirs.sort(key=lambda x: os.path.basename(x))
+
     rootfs_override = os.path.join(srcdir, 'overrides/rootfs')
     if os.path.isdir(rootfs_override) and len(os.listdir(rootfs_override)) > 0:
         print("Injecting rootfs override")
