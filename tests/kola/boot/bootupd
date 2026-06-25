@@ -17,44 +17,58 @@ set -xeuo pipefail
 # s390x, let's just conditionally check that *if* bootupd is installed, then
 # it's functioning as expected. We can harden it more once we've hard cut over
 # to 9.4.
+
+current_arch="$(arch)"
+
+check_bootloader_service_inactive() {
+    local bl_active
+    bl_active=$(systemctl is-active bootloader-update.service 2>&1 || true)
+    if [ "${bl_active}" != "inactive" ]; then
+        fatal "bootloader-update.service is ${bl_active} on ${current_arch}"
+    fi
+}
+
+check_grub_version() {
+    local package="$1"
+    local format="$2"
+    local version
+    version=$(rpm -q "$package" --qf "$format")
+    if [ -z "$version" ]; then
+        fatal "Could not retrieve version for package ${package}"
+    fi
+    if ! bootupctl status | grep -F "${version}"; then
+        fatal "bootupctl status output should include ${package} package version"
+    fi
+}
+
 check_state_file=
-case "$(arch)" in
+
+case "$current_arch" in
     aarch64|x86_64)
         # on these arches, we always expect state files to exist
         check_state_file=1
         # aarch64 (and x86_64) uses uefi firmware, should check grub2
-        evr=$(rpm -q grub2-common --qf '%{EVR}')
-        if ! bootupctl status | grep "${evr}"; then
-            fatal "bootupctl status output should include grub2 package version"
-        fi
+        check_grub_version "grub2-common" '%{EVR}'
         ;;
-    ppc64le)
-        bl_status=$(systemctl status bootloader-update.service 2>&1 || true)
-        if ! echo "$bl_status" | grep -iq "ConditionArchitecture=!ppc64-le was not met"; then
-            fatal "bootloader-update.service was not skipped for ppc64le"
-        fi
-
-        # ppc64le has it if built by osbuild, otherwise not
-        if [ -e /sysroot/.aleph-version.json ]; then
-            check_state_file=1
-        fi
-        # ppc64le (and x86_64) uses bios firmware, should check grub2-tools
-        grub_version=$(rpm -q grub2-tools --qf '%{NEVRA}')
-        if ! bootupctl status | grep "${grub_version}"; then
-            fatal "bootupctl status output should include grub2-tools package version"
-        fi
-        ;;& # fallthrough to default
-    s390x)
-        bl_status=$(systemctl status bootloader-update.service 2>&1 || true)
-        if ! echo "$bl_status" | grep -iq "ConditionArchitecture=!s390x was not met"; then
-            fatal "bootloader-update.service was not skipped for s390x"
-        fi
-        ;;& # fallthrough to default
-    *)
-        if ! rpm -q bootupd; then
+    ppc64le|s390x)
+        # For ppc64le and s390x, only check if bootupd is installed
+        if ! rpm -q bootupd &>/dev/null; then
             exit 0
         fi
+
+        check_bootloader_service_inactive
+
+        # ppc64le-specific checks
+        if [ "$current_arch" = "ppc64le" ]; then
+            # ppc64le has it if built by osbuild, otherwise not
+            if [ -e /sysroot/.aleph-version.json ]; then
+                check_state_file=1
+            fi
+            # ppc64le (and x86_64) uses bios firmware, should check grub2-tools
+            check_grub_version "grub2-tools" '%{NEVRA}'
+        fi
         ;;
+    *) fatal "Unhandled architecture: $(current_arch)" ;;
 esac
 
 state_file=/boot/bootupd-state.json
