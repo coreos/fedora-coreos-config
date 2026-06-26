@@ -459,7 +459,7 @@ def inject_version_info(rootfs, replace_version, version):
 def gather_add_dirs(manifest, srcdir):
     add_dirs = []
     for layer in manifest.get('ostree-layers', []):
-        add_dirs.append(os.path.join(srcdir, layer))
+        add_dirs.append(os.path.normpath(os.path.join(srcdir, layer)))
 
     # sort by the base name of the directory to allow for overriding
     # files in layers that sort earlier. i.e. a file in 03-core/etc/foo.d/file
