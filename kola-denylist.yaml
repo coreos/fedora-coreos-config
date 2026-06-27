@@ -29,6 +29,15 @@
   arches:
     - ppc64le
 
+- pattern: fcos.upgrade.basic
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2174
+  snooze: 2026-07-10
+  warn: true
+  arches:
+    - aarch64
+  platforms:
+    - gcp
+
 - pattern: ext.config.docker.swarm-overlay-network
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2143
   snooze: 2026-07-03
