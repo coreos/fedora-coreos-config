@@ -9,6 +9,11 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
+if ! is_fcos && match_maj_ver "9"; then
+    ok "Skipping: PQC not in DEFAULT crypto policy on rhcos9 and c9s"
+    exit 0
+fi
+
 # A list of websites all which support PQC algorithms
 pqcsites=(
     "https://cloud.google.com"
