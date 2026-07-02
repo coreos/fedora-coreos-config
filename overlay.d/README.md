@@ -86,3 +86,12 @@ change [1]. See [2].
 
 [1] https://github.com/coreos/fedora-coreos-tracker/issues/1969
 [2] https://github.com/coreos/fedora-coreos-tracker/issues/2029
+
+40import-virtiofs-systemd-credentials
+-------------------------------------
+
+Support exposing systemd-credentials via virtiofs. This is a
+cross-architecture alternative way to get settings into an
+instance when Ignition isn't an option (i.e. non-coreos bootable
+container) or when we want to explicity test behavior when no
+Ignition is provided to an instance.

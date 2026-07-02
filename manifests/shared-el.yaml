@@ -46,6 +46,7 @@ conditional-include:
         - overlay.d/08nouveau
         - overlay.d/20platform-chrony
         - overlay.d/30lvmdevices
+        - overlay.d/40import-virtiofs-systemd-credentials
   - if: id != "fedora"
     include:
       ostree-layers:
@@ -53,3 +54,4 @@ conditional-include:
         - fedora-coreos-config/overlay.d/08nouveau
         - fedora-coreos-config/overlay.d/20platform-chrony
         - fedora-coreos-config/overlay.d/30lvmdevices
+        - fedora-coreos-config/overlay.d/40import-virtiofs-systemd-credentials
