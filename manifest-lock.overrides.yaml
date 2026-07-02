@@ -14,3 +14,8 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-629714e3d0
       type: fast-track
+  fwupd:
+    evr: 2.1.3-1.fc44
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2176
+      type: pin
