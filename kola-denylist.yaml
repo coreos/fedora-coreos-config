@@ -38,13 +38,6 @@
   platforms:
     - gcp
 
-- pattern: ext.config.docker.swarm-overlay-network
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2143
-  snooze: 2026-07-17
-  warn: true
-  arches:
-    - s390x
-
 - pattern: ext.config.disks.boot-partition-space
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2179
   snooze: 2026-07-17
