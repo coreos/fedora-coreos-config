@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.57.4~dev-2.fc45.aarch64"
+      "evra": "1:1.58~rc1-1.fc45.aarch64"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.57.4~dev-2.fc45.aarch64"
+      "evra": "1:1.58~rc1-1.fc45.aarch64"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.57.4~dev-2.fc45.aarch64"
+      "evra": "1:1.58~rc1-1.fc45.aarch64"
     },
     "NetworkManager-team": {
-      "evra": "1:1.57.4~dev-2.fc45.aarch64"
+      "evra": "1:1.58~rc1-1.fc45.aarch64"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.57.4~dev-2.fc45.aarch64"
+      "evra": "1:1.58~rc1-1.fc45.aarch64"
     },
     "WALinuxAgent-udev": {
       "evra": "2.15.0.1-5.fc45.noarch"
@@ -154,7 +154,7 @@
       "evra": "0.21.3-13.fc44.noarch"
     },
     "container-selinux": {
-      "evra": "4:2.249.0-1.fc45.noarch"
+      "evra": "4:2.250.0-1.fc45.noarch"
     },
     "containerd": {
       "evra": "2.3.2-1.fc45.aarch64"
@@ -253,7 +253,7 @@
       "evra": "5.4.2.1-4.fc45.aarch64"
     },
     "dnsmasq": {
-      "evra": "2.92rel2-9.fc45.aarch64"
+      "evra": "2.93-1.fc45.aarch64"
     },
     "docker-cli": {
       "evra": "29.6.1-1.fc45.aarch64"
@@ -460,7 +460,7 @@
       "evra": "3.25-4.fc44.aarch64"
     },
     "hwdata": {
-      "evra": "0.408-1.fc45.noarch"
+      "evra": "0.409-1.fc45.noarch"
     },
     "ignition": {
       "evra": "2.26.0-4.fc45.aarch64"
@@ -694,7 +694,7 @@
       "evra": "2.42.2-1.fc45.aarch64"
     },
     "libldb": {
-      "evra": "2:4.24.3-3.fc45.aarch64"
+      "evra": "2:4.24.4-1.fc45.aarch64"
     },
     "libluksmeta": {
       "evra": "10-2.fc44.aarch64"
@@ -775,16 +775,16 @@
       "evra": "2.6.0-3.fc44.aarch64"
     },
     "libselinux": {
-      "evra": "3.10-2.fc45.aarch64"
+      "evra": "3.11-1.fc45.aarch64"
     },
     "libselinux-utils": {
-      "evra": "3.10-2.fc45.aarch64"
+      "evra": "3.11-1.fc45.aarch64"
     },
     "libsemanage": {
-      "evra": "3.10-2.fc45.aarch64"
+      "evra": "3.11-1.fc45.aarch64"
     },
     "libsepol": {
-      "evra": "3.10-1.fc44.aarch64"
+      "evra": "3.11-1.fc45.aarch64"
     },
     "libslirp": {
       "evra": "4.9.3-1.fc45.aarch64"
@@ -793,7 +793,7 @@
       "evra": "2.42.2-1.fc45.aarch64"
     },
     "libsmbclient": {
-      "evra": "2:4.24.3-3.fc45.aarch64"
+      "evra": "2:4.24.4-1.fc45.aarch64"
     },
     "libsolv": {
       "evra": "0.7.39-3.fc45.aarch64"
@@ -865,7 +865,7 @@
       "evra": "0.3.2-12.fc44.aarch64"
     },
     "libwbclient": {
-      "evra": "2:4.24.3-3.fc45.aarch64"
+      "evra": "2:4.24.4-1.fc45.aarch64"
     },
     "libxcrypt": {
       "evra": "4.5.2-3.fc44.aarch64"
@@ -1105,7 +1105,7 @@
       "evra": "0.3.2-3.fc45.aarch64"
     },
     "policycoreutils": {
-      "evra": "3.10-5.fc45.aarch64"
+      "evra": "3.11-1.fc45.aarch64"
     },
     "polkit": {
       "evra": "127-4.fc45.aarch64"
@@ -1174,16 +1174,16 @@
       "evra": "2:1.5.0-2.fc45.aarch64"
     },
     "samba-client-libs": {
-      "evra": "2:4.24.3-3.fc45.aarch64"
+      "evra": "2:4.24.4-1.fc45.aarch64"
     },
     "samba-common": {
-      "evra": "2:4.24.3-3.fc45.noarch"
+      "evra": "2:4.24.4-1.fc45.noarch"
     },
     "samba-core-libs": {
-      "evra": "2:4.24.3-3.fc45.aarch64"
+      "evra": "2:4.24.4-1.fc45.aarch64"
     },
     "samba-ndr-libs": {
-      "evra": "2:4.24.3-3.fc45.aarch64"
+      "evra": "2:4.24.4-1.fc45.aarch64"
     },
     "sdbus-cpp": {
       "evra": "2.3.1-2.fc45.aarch64"
@@ -1333,10 +1333,10 @@
       "evra": "2.42.2-1.fc45.aarch64"
     },
     "vim-data": {
-      "evra": "2:9.2.725-1.fc45.noarch"
+      "evra": "2:9.2.780-1.fc45.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.2.725-1.fc45.aarch64"
+      "evra": "2:9.2.780-1.fc45.aarch64"
     },
     "wasmedge-rt": {
       "evra": "0.17.0-2.fc45.aarch64"
@@ -1379,6 +1379,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-07-04T00:00:00Z"
+    "generated": "2026-07-05T00:00:00Z"
   }
 }

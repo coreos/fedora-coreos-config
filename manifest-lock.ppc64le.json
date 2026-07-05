@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.57.4~dev-2.fc45.ppc64le"
+      "evra": "1:1.58~rc1-1.fc45.ppc64le"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.57.4~dev-2.fc45.ppc64le"
+      "evra": "1:1.58~rc1-1.fc45.ppc64le"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.57.4~dev-2.fc45.ppc64le"
+      "evra": "1:1.58~rc1-1.fc45.ppc64le"
     },
     "NetworkManager-team": {
-      "evra": "1:1.57.4~dev-2.fc45.ppc64le"
+      "evra": "1:1.58~rc1-1.fc45.ppc64le"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.57.4~dev-2.fc45.ppc64le"
+      "evra": "1:1.58~rc1-1.fc45.ppc64le"
     },
     "aardvark-dns": {
       "evra": "2:2.0.0-1.fc45.ppc64le"
@@ -151,7 +151,7 @@
       "evra": "0.21.3-13.fc44.noarch"
     },
     "container-selinux": {
-      "evra": "4:2.249.0-1.fc45.noarch"
+      "evra": "4:2.250.0-1.fc45.noarch"
     },
     "containerd": {
       "evra": "2.3.2-1.fc45.ppc64le"
@@ -247,7 +247,7 @@
       "evra": "5.4.2.1-4.fc45.ppc64le"
     },
     "dnsmasq": {
-      "evra": "2.92rel2-9.fc45.ppc64le"
+      "evra": "2.93-1.fc45.ppc64le"
     },
     "docker-cli": {
       "evra": "29.6.1-1.fc45.ppc64le"
@@ -442,7 +442,7 @@
       "evra": "3.25-4.fc44.ppc64le"
     },
     "hwdata": {
-      "evra": "0.408-1.fc45.noarch"
+      "evra": "0.409-1.fc45.noarch"
     },
     "ignition": {
       "evra": "2.26.0-4.fc45.ppc64le"
@@ -676,7 +676,7 @@
       "evra": "2.42.2-1.fc45.ppc64le"
     },
     "libldb": {
-      "evra": "2:4.24.3-3.fc45.ppc64le"
+      "evra": "2:4.24.4-1.fc45.ppc64le"
     },
     "libluksmeta": {
       "evra": "10-2.fc44.ppc64le"
@@ -760,16 +760,16 @@
       "evra": "2.6.0-3.fc44.ppc64le"
     },
     "libselinux": {
-      "evra": "3.10-2.fc45.ppc64le"
+      "evra": "3.11-1.fc45.ppc64le"
     },
     "libselinux-utils": {
-      "evra": "3.10-2.fc45.ppc64le"
+      "evra": "3.11-1.fc45.ppc64le"
     },
     "libsemanage": {
-      "evra": "3.10-2.fc45.ppc64le"
+      "evra": "3.11-1.fc45.ppc64le"
     },
     "libsepol": {
-      "evra": "3.10-1.fc44.ppc64le"
+      "evra": "3.11-1.fc45.ppc64le"
     },
     "libservicelog": {
       "evra": "1.1.19-17.fc44.ppc64le"
@@ -781,7 +781,7 @@
       "evra": "2.42.2-1.fc45.ppc64le"
     },
     "libsmbclient": {
-      "evra": "2:4.24.3-3.fc45.ppc64le"
+      "evra": "2:4.24.4-1.fc45.ppc64le"
     },
     "libsolv": {
       "evra": "0.7.39-3.fc45.ppc64le"
@@ -853,7 +853,7 @@
       "evra": "0.3.2-12.fc44.ppc64le"
     },
     "libwbclient": {
-      "evra": "2:4.24.3-3.fc45.ppc64le"
+      "evra": "2:4.24.4-1.fc45.ppc64le"
     },
     "libxcrypt": {
       "evra": "4.5.2-3.fc44.ppc64le"
@@ -1087,7 +1087,7 @@
       "evra": "0.3.2-3.fc45.ppc64le"
     },
     "policycoreutils": {
-      "evra": "3.10-5.fc45.ppc64le"
+      "evra": "3.11-1.fc45.ppc64le"
     },
     "polkit": {
       "evra": "127-4.fc45.ppc64le"
@@ -1162,16 +1162,16 @@
       "evra": "2:1.5.0-2.fc45.ppc64le"
     },
     "samba-client-libs": {
-      "evra": "2:4.24.3-3.fc45.ppc64le"
+      "evra": "2:4.24.4-1.fc45.ppc64le"
     },
     "samba-common": {
-      "evra": "2:4.24.3-3.fc45.noarch"
+      "evra": "2:4.24.4-1.fc45.noarch"
     },
     "samba-core-libs": {
-      "evra": "2:4.24.3-3.fc45.ppc64le"
+      "evra": "2:4.24.4-1.fc45.ppc64le"
     },
     "samba-ndr-libs": {
-      "evra": "2:4.24.3-3.fc45.ppc64le"
+      "evra": "2:4.24.4-1.fc45.ppc64le"
     },
     "sdbus-cpp": {
       "evra": "2.3.1-2.fc45.ppc64le"
@@ -1318,10 +1318,10 @@
       "evra": "2.42.2-1.fc45.ppc64le"
     },
     "vim-data": {
-      "evra": "2:9.2.725-1.fc45.noarch"
+      "evra": "2:9.2.780-1.fc45.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.2.725-1.fc45.ppc64le"
+      "evra": "2:9.2.780-1.fc45.ppc64le"
     },
     "which": {
       "evra": "2.25-1.fc45.ppc64le"
@@ -1361,6 +1361,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-07-04T00:00:00Z"
+    "generated": "2026-07-05T00:00:00Z"
   }
 }
