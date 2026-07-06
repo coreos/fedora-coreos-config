@@ -30,6 +30,7 @@ check_bootupctl_components() {
     case "$(arch)" in
         x86_64) components=("BIOS" "EFI") ;;
         aarch64) components=("EFI") ;;
+        ppc64le) components=("BIOS") ;;
         *) fatal "Unhandled architecture: $(arch)" ;;
     esac
 
