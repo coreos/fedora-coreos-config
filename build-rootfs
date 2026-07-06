@@ -3,7 +3,7 @@
 # This script is called by the Containerfile to build FCOS. Here's what it does at a high-level:
 # 1. It gathers the list of FCOS-specific packages using the manifests.
 # 2. It gathers the list of FCOS-specific overlays using the manifests.
-# 3. It runs `bootc-base-imagectl rebuild`, passing in the packages and overlays.
+# 3. It runs `bootc-base-imagectl make-rootfs`.
 # 4. It injects various metadata (e.g. image.json, live/ bits, platforms.json, and disk.yaml).
 # 5. It runs the postprocess scripts defined in the manifest.
 
@@ -165,7 +165,7 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
         elif len(lockfile_repos) > 0:
             raise Exception(f"unknown lockfile-repo found in {lockfile_repos}")
 
-    overlays = gather_overlays(manifest, srcdir)
+    add_dirs = gather_add_dirs(manifest, srcdir)
     nodocs = (manifest.get('documentation') is False)
     recommends = manifest.get('recommends')
     # We generate the initramfs using dracut ourselves later after our
@@ -179,8 +179,8 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
     with tempfile.NamedTemporaryFile(mode='w') as argsfile:
         for pkg in packages:
             argsfile.write(f"--install={pkg}\n")
-        for overlay in overlays:
-            argsfile.write(f"--add-dir={overlay}\n")
+        for add_dir in add_dirs:
+            argsfile.write(f"--add-dir={add_dir}\n")
         if nodocs:
             argsfile.write("--no-docs\n")
             # temporarily work around https://issues.redhat.com/browse/RHEL-97826
@@ -198,6 +198,9 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
             for locked_nevra in locked_nevras:
                 argsfile.write(f"--lock={locked_nevra}\n")
         argsfile.flush()
+        # print out argsfile content for debugging
+        with open(argsfile.name, "r") as f:
+            print(f"Using following argsfile for bootc-base-imagectl:\n{f.read()}", flush=True)
         cache_arg = []
         if os.path.isdir('/cache') and rpm_ostree_has_cachedir_fix():
             cache_arg = ['--cachedir=/cache']
@@ -226,7 +229,7 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
     run_dracut(target_rootfs)
     cleanup_extraneous_files(target_rootfs)
 
-    calculate_inputhash(target_rootfs, overlays, manifest)
+    calculate_inputhash(target_rootfs, add_dirs, manifest)
 
 def get_bootc_base_imagectl_help():
     return subprocess.check_output(['/usr/libexec/bootc-base-imagectl', 'build-rootfs', '-h'], encoding='utf-8')
@@ -331,7 +334,7 @@ def run_postprocess_scripts(rootfs, manifest):
         with open(os.path.join(rootfs, name), mode='w') as f:
             os.fchmod(f.fileno(), 0o755)
             f.write(script)
-        print(f"Running CoreOS postprocess script {i}", flush=True)
+        print(f"\n<<< Running CoreOS postprocess script {i} >>>\n", flush=True)
         bwrap(rootfs, [f'/{name}'], env=env)
         os.unlink(os.path.join(rootfs, name))
 
@@ -453,19 +456,22 @@ def inject_version_info(rootfs, replace_version, version):
             f.write(f'{k}={v}\n')
 
 
-# This re-implements cosa's overlay logic.
-def gather_overlays(manifest, srcdir):
-    overlays = []
+def gather_add_dirs(manifest, srcdir):
+    add_dirs = []
     for layer in manifest.get('ostree-layers', []):
-        assert layer.startswith('overlay/')
-        overlays.append(os.path.join(srcdir, 'overlay.d', layer[len('overlay/'):]))
+        add_dirs.append(os.path.normpath(os.path.join(srcdir, layer)))
+
+    # sort by the base name of the directory to allow for overriding
+    # files in layers that sort earlier. i.e. a file in 03-core/etc/foo.d/file
+    # would override a file in 02-core/etc/foo.d/file.
+    add_dirs.sort(key=lambda x: os.path.basename(x))
 
     rootfs_override = os.path.join(srcdir, 'overrides/rootfs')
     if os.path.isdir(rootfs_override) and len(os.listdir(rootfs_override)) > 0:
         print("Injecting rootfs override")
-        overlays.append(rootfs_override)
+        add_dirs.append(rootfs_override)
 
-    return overlays
+    return add_dirs
 
 
 # Inject live/ bits.
@@ -651,13 +657,13 @@ def inject_platforms_json(rootfs, srcdir):
 
 
 def inject_disk_yaml(rootfs, srcdir):
-    dst = os.path.join(rootfs, 'usr/lib/image-builder/bootc/disk.yaml')
+    dst = os.path.join(rootfs, 'usr/lib/image-builder/bootc')
     if os.path.exists(dst):
-        # We write a relative symlink otherwise it get resolved under `/target-rootfs`
-        # which does not exist in the final image.
-        os.symlink(f'{ARCH}.yaml', dst)
+        # Relative symlink as both files are in the same directory
+        print(f"Creating symlink to arch specific image-builder config: 'disk.yaml' -> '{ARCH}.yaml'")
+        os.symlink(f'{ARCH}.yaml', os.path.join(dst, 'disk.yaml'))
     else:
-        print("Not creating arch specific symlink for image-builder disk config (does not exist)")
+        print("No image-builder config found. Skipping symlink to arch specific config.")
 
 
 if __name__ == "__main__":
