@@ -9,9 +9,9 @@
 ##   # This test includes a lot of disk I/O and needs a higher
 ##   # timeout value than the default.
 ##   timeoutMin: 15
-##   architectures: "x86_64"
+##   architectures: "ppc64le"
 ##   description: Verify updating the bootloader while using RAID 1 works.
-##   creationDate: 2026-05-06
+##   creationDate: 2026-06-11
 
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib_raid1.sh"

@@ -41,20 +41,19 @@ cd $(mktemp -d)
 
 # define OS ID in order to assign appropriate kernel later
 OS_ID=$(. /etc/os-release; echo $ID)
-imagepath=/var/tmp/coreos.ociarchive
-imagespec="oci-archive:${imagepath}"
-derived_imagepath=/var/tmp/coreos-derived.ociarchive
-derived_imagespec="oci-archive:${derived_imagepath}"
+baseimage="localhost/coreos-base:latest"
+imagespec="containers-storage:${baseimage}"
+derivedimage="localhost/coreos-derived:latest"
+derived_imagespec="containers-storage:${derivedimage}"
 arch=$(arch)
 
 
-build_base_ociarchive() {
-    # Take the existing ostree commit, and export it to a container image/ociarchive
+build_base_image() {
+    # Take the existing ostree commit, and export it to a container image
     rpm-ostree status --json > status.json
     checksum=$(jq -r '.deployments[0].checksum' < status.json)
     v0=$(jq -r '.deployments[0].version' < status.json)
     imgref=$(jq -r '.deployments[0]["container-image-reference"]' < status.json)
-    rm -f ${imagepath}
     encapsulate_args=()
     # A hack...if we're booted into a container, then we need to fake things out
     # for the merge commit to turn it back into an image.  What we *really* want
@@ -66,7 +65,7 @@ build_base_ociarchive() {
     ostree container encapsulate "${encapsulate_args[@]}" --repo=/ostree/repo ${checksum} "${imagespec}"
 }
 
-build_derived_ociarchive() {
+build_derived_image() {
     # do the container build in a temporary context directory
     contextdir=$(mktemp -d)
     pushd ${contextdir}
@@ -108,7 +107,7 @@ build_derived_ociarchive() {
     echo "$kver" > /var/kola-kernel.evr
 
     cat > Containerfile << EOF
-FROM $imagespec
+FROM $baseimage
 # Disable yum repos since we are overriding local files and we don't
 # want to reach out to the repos. This is done in a way such that if
 # there are no repo files (i.e. like on RHCOS) then it succeeds anyway.
@@ -123,9 +122,9 @@ EOF
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
   "")
-    # First thing, let's create the base and derived OCI archive image files
-    build_base_ociarchive
-    build_derived_ociarchive
+    # First thing, let's create the base and derived images
+    build_base_image
+    build_derived_image
 
     # Since we're switching OS update streams, turn off zincati
     systemctl mask --now zincati
