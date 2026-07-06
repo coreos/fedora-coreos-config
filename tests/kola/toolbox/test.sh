@@ -20,7 +20,7 @@ run_as_core() {
 
 # Functions for testing basic functionality - overridden depending on toolbox being used
 toolbox_create() {
-    run_as_core /bin/toolbox create --assumeyes 1> /dev/null
+    run_as_core /bin/toolbox create --assumeyes
 }
 
 toolbox_run_basic() {

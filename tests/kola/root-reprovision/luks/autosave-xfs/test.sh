@@ -1,7 +1,6 @@
 #!/bin/bash
 ## kola:
-##   # This test reprovisions the rootfs.
-##   tags: "platform-independent reprovision"
+##   tags: "platform-independent"
 ##   # Root reprovisioning requires at least 4GiB of memory.
 ##   minMemory: 4096
 ##   # A TPM backend device is not available on s390x to suport TPM.

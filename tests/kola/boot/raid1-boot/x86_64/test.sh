@@ -10,8 +10,6 @@
 ##   # timeout value than the default.
 ##   timeoutMin: 15
 ##   architectures: "x86_64"
-##   # This test reprovisions the boot and rootfs.
-##   tags: reprovision
 ##   description: Verify updating the bootloader while using RAID 1 works.
 ##   creationDate: 2026-05-06
 
