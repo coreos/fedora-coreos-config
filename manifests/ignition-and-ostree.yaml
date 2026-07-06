@@ -15,3 +15,18 @@ packages:
 packages-s390x:
   # for Secure Execution
   - veritysetup
+
+postprocess:
+  # We have our own generator for /boot and we don't mount /boot/efi by default
+  # thus we don't strictly need systemd-gpt-auto-generator on Fedora CoreOS.
+  # With https://github.com/systemd/systemd/issues/13099 fixed, we can consider
+  # including it again after more testing. Current known issues are:
+  # - systemd-gpt-auto-generator conflicts with Ignition LUKS provisioning on
+  #   EFI systems.
+  #   See: https://github.com/coreos/fedora-coreos-tracker/issues/2137
+  - |
+    #!/usr/bin/env bash
+    set -x
+    # Find the .build-id file and remove it too so we don't have a broken symlink.
+    build_id_file=$(find -L /usr/lib/.build-id/ -samefile /usr/lib/systemd/system-generators/systemd-gpt-auto-generator)
+    rm -vf $build_id_file /usr/lib/systemd/system-generators/systemd-gpt-auto-generator

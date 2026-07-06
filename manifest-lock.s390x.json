@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.56.1-1.fc44.s390x"
+      "evra": "1:1.56.1-2.fc44.s390x"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.56.1-1.fc44.s390x"
+      "evra": "1:1.56.1-2.fc44.s390x"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.56.1-1.fc44.s390x"
+      "evra": "1:1.56.1-2.fc44.s390x"
     },
     "NetworkManager-team": {
-      "evra": "1:1.56.1-1.fc44.s390x"
+      "evra": "1:1.56.1-2.fc44.s390x"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.56.1-1.fc44.s390x"
+      "evra": "1:1.56.1-2.fc44.s390x"
     },
     "aardvark-dns": {
       "evra": "2:1.17.1-1.fc44.s390x"
@@ -76,7 +76,7 @@
       "evra": "1.15.2-1.fc44.s390x"
     },
     "bootupd": {
-      "evra": "0.2.34-1.fc44.s390x"
+      "evra": "0.2.35-1.fc44.s390x"
     },
     "bsdtar": {
       "evra": "3.8.7-1.fc44.s390x"
@@ -166,10 +166,10 @@
       "evra": "0.26.0-2.fc44.s390x"
     },
     "coreutils": {
-      "evra": "9.10-3.fc44.s390x"
+      "evra": "9.10-4.fc44.s390x"
     },
     "coreutils-common": {
-      "evra": "9.10-3.fc44.s390x"
+      "evra": "9.10-4.fc44.s390x"
     },
     "cpio": {
       "evra": "2.15-9.fc44.s390x"
@@ -247,7 +247,7 @@
       "evra": "2.92rel2-9.fc44.s390x"
     },
     "docker-cli": {
-      "evra": "29.5.2-1.fc44.s390x"
+      "evra": "29.5.3-1.fc44.s390x"
     },
     "dosfstools": {
       "evra": "4.2-18.fc44.s390x"
@@ -316,7 +316,7 @@
       "evra": "1:4.10.0-7.fc44.s390x"
     },
     "flatpak-session-helper": {
-      "evra": "1.17.7-1.fc44.s390x"
+      "evra": "1.18.0-1.fc44.s390x"
     },
     "fmt": {
       "evra": "11.2.0-4.fc44.s390x"
@@ -340,7 +340,7 @@
       "evra": "3.18.2-1.fc44.s390x"
     },
     "fwupd": {
-      "evra": "2.1.3-1.fc44.s390x"
+      "evra": "2.1.5-1.fc44.s390x"
     },
     "gawk": {
       "evra": "5.3.2-3.fc44.s390x"
@@ -490,16 +490,16 @@
       "evra": "1.0.61-1.fc44.s390x"
     },
     "kernel": {
-      "evra": "7.0.11-200.fc44.s390x"
+      "evra": "7.0.12-201.fc44.s390x"
     },
     "kernel-core": {
-      "evra": "7.0.11-200.fc44.s390x"
+      "evra": "7.0.12-201.fc44.s390x"
     },
     "kernel-modules": {
-      "evra": "7.0.11-200.fc44.s390x"
+      "evra": "7.0.12-201.fc44.s390x"
     },
     "kernel-modules-core": {
-      "evra": "7.0.11-200.fc44.s390x"
+      "evra": "7.0.12-201.fc44.s390x"
     },
     "kexec-tools": {
       "evra": "2.0.32-3.fc44.s390x"
@@ -523,7 +523,7 @@
       "evra": "1.22.2-4.fc44.s390x"
     },
     "less": {
-      "evra": "692-6.fc44.s390x"
+      "evra": "702-1.fc44.s390x"
     },
     "libacl": {
       "evra": "2.3.2-6.fc44.s390x"
@@ -544,7 +544,7 @@
       "evra": "0.1.1-61.fc44.s390x"
     },
     "libblkid": {
-      "evra": "2.41.4-8.fc44.s390x"
+      "evra": "2.41.5-1.fc44.s390x"
     },
     "libbpf": {
       "evra": "2:1.6.3-2.fc44.s390x"
@@ -598,7 +598,7 @@
       "evra": "2.1.12-17.fc44.s390x"
     },
     "libfdisk": {
-      "evra": "2.41.4-8.fc44.s390x"
+      "evra": "2.41.5-1.fc44.s390x"
     },
     "libffi": {
       "evra": "3.5.2-2.fc44.s390x"
@@ -628,10 +628,7 @@
       "evra": "1.3.1-61.fc44.s390x"
     },
     "libipa_hbac": {
-      "evra": "2.13.0-1.fc44.s390x"
-    },
-    "libjcat": {
-      "evra": "0.2.6-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "libjose": {
       "evra": "14-6.fc44.s390x"
@@ -649,7 +646,7 @@
       "evra": "1.6.7-5.fc44.s390x"
     },
     "liblastlog2": {
-      "evra": "2.41.4-8.fc44.s390x"
+      "evra": "2.41.5-1.fc44.s390x"
     },
     "libldb": {
       "evra": "2:4.24.3-1.fc44.s390x"
@@ -667,10 +664,10 @@
       "evra": "1.0.5-9.fc44.s390x"
     },
     "libmodulemd": {
-      "evra": "2.15.2-7.fc44.s390x"
+      "evra": "2.15.3-1.fc44.s390x"
     },
     "libmount": {
-      "evra": "2.41.4-8.fc44.s390x"
+      "evra": "2.41.5-1.fc44.s390x"
     },
     "libndp": {
       "evra": "1.9-5.fc44.s390x"
@@ -685,7 +682,7 @@
       "evra": "1.0.1-32.fc44.s390x"
     },
     "libnfsidmap": {
-      "evra": "1:2.8.7-4.fc44.s390x"
+      "evra": "1:2.8.7-5.fc44.s390x"
     },
     "libnftnl": {
       "evra": "1.3.1-2.fc44.s390x"
@@ -751,7 +748,7 @@
       "evra": "4.9.1-3.fc44.s390x"
     },
     "libsmartcols": {
-      "evra": "2.41.4-8.fc44.s390x"
+      "evra": "2.41.5-1.fc44.s390x"
     },
     "libsmbclient": {
       "evra": "2:4.24.3-1.fc44.s390x"
@@ -763,16 +760,16 @@
       "evra": "1.47.3-4.fc44.s390x"
     },
     "libsss_certmap": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "libsss_idmap": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "libsss_nss_idmap": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "libsss_sudo": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "libstdc++": {
       "evra": "16.1.1-2.fc44.s390x"
@@ -805,7 +802,7 @@
       "evra": "1.0.30-1.fc44.s390x"
     },
     "libuuid": {
-      "evra": "2.41.4-8.fc44.s390x"
+      "evra": "2.41.5-1.fc44.s390x"
     },
     "libuv": {
       "evra": "1:1.51.0-3.fc44.s390x"
@@ -874,10 +871,10 @@
       "evra": "4.3-11.fc44.s390x"
     },
     "moby-engine": {
-      "evra": "29.5.2-1.fc44.s390x"
+      "evra": "29.5.3-1.fc44.s390x"
     },
     "moby-filesystem": {
-      "evra": "29.5.2-1.fc44.noarch"
+      "evra": "29.5.3-1.fc44.noarch"
     },
     "mpfr": {
       "evra": "4.2.2-3.fc44.s390x"
@@ -910,16 +907,16 @@
       "evra": "0.52.25-6.fc44.s390x"
     },
     "nfs-client-utils": {
-      "evra": "1:2.8.7-4.fc44.s390x"
+      "evra": "1:2.8.7-5.fc44.s390x"
     },
     "nfs-common-utils": {
-      "evra": "1:2.8.7-4.fc44.s390x"
+      "evra": "1:2.8.7-5.fc44.s390x"
     },
     "nfsv3-client-utils": {
-      "evra": "1:2.8.7-4.fc44.s390x"
+      "evra": "1:2.8.7-5.fc44.s390x"
     },
     "nfsv4-client-utils": {
-      "evra": "1:2.8.7-4.fc44.s390x"
+      "evra": "1:2.8.7-5.fc44.s390x"
     },
     "nftables": {
       "evra": "1:1.1.6-2.fc44.s390x"
@@ -964,10 +961,10 @@
       "evra": "10.2p1-10.fc44.s390x"
     },
     "openssl": {
-      "evra": "1:3.5.5-2.fc44.s390x"
+      "evra": "1:3.5.7-1.fc44.s390x"
     },
     "openssl-libs": {
-      "evra": "1:3.5.5-2.fc44.s390x"
+      "evra": "1:3.5.7-1.fc44.s390x"
     },
     "ostree": {
       "evra": "2026.1-1.fc44.s390x"
@@ -991,10 +988,10 @@
       "evra": "0.1.11-1.fc44.s390x"
     },
     "passt": {
-      "evra": "0^20260526.g038c51e-1.fc44.s390x"
+      "evra": "0^20260611.ga9c61ff-1.fc44.s390x"
     },
     "passt-selinux": {
-      "evra": "0^20260526.g038c51e-1.fc44.noarch"
+      "evra": "0^20260611.ga9c61ff-1.fc44.noarch"
     },
     "pciutils": {
       "evra": "3.14.0-3.fc44.s390x"
@@ -1063,7 +1060,7 @@
       "evra": "8.3-4.fc44.s390x"
     },
     "rpcbind": {
-      "evra": "1.2.8-2.fc44.s390x"
+      "evra": "1.2.9-0.fc44.s390x"
     },
     "rpm": {
       "evra": "6.0.1-2.fc44.s390x"
@@ -1111,10 +1108,10 @@
       "evra": "4.9-7.fc44.s390x"
     },
     "selinux-policy": {
-      "evra": "44.2-1.fc44.noarch"
+      "evra": "44.3-1.fc44.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "44.2-1.fc44.noarch"
+      "evra": "44.3-1.fc44.noarch"
     },
     "setup": {
       "evra": "2.15.0-28.fc44.noarch"
@@ -1147,7 +1144,7 @@
       "evra": "1.2.2-4.fc44.s390x"
     },
     "socat": {
-      "evra": "1.8.1.0-2.fc44.s390x"
+      "evra": "1.8.1.1-1.fc44.s390x"
     },
     "sqlite-libs": {
       "evra": "3.51.2-1.fc44.s390x"
@@ -1156,31 +1153,31 @@
       "evra": "4.6.1-8.fc44.s390x"
     },
     "sssd-ad": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "sssd-client": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "sssd-common": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "sssd-common-pac": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "sssd-ipa": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "sssd-krb5": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "sssd-krb5-common": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "sssd-ldap": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "sssd-nfs-idmap": {
-      "evra": "2.13.0-1.fc44.s390x"
+      "evra": "2.13.1-1.fc44.s390x"
     },
     "stalld": {
       "evra": "1.27.1-2.fc44.s390x"
@@ -1240,10 +1237,10 @@
       "evra": "0.15.6-1.fc44.s390x"
     },
     "util-linux": {
-      "evra": "2.41.4-8.fc44.s390x"
+      "evra": "2.41.5-1.fc44.s390x"
     },
     "util-linux-core": {
-      "evra": "2.41.4-8.fc44.s390x"
+      "evra": "2.41.5-1.fc44.s390x"
     },
     "veritysetup": {
       "evra": "2.8.4-1.fc44.s390x"
@@ -1258,7 +1255,7 @@
       "evra": "2.25-1.fc44.s390x"
     },
     "wireguard-tools": {
-      "evra": "1.0.20250521-3.fc44.s390x"
+      "evra": "1.0.20260223-1.fc44.s390x"
     },
     "xfsprogs": {
       "evra": "7.0.1-2.fc44.s390x"
@@ -1289,6 +1286,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-06-07T00:00:00Z"
+    "generated": "2026-06-21T00:00:00Z"
   }
 }

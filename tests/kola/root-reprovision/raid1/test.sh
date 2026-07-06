@@ -9,8 +9,6 @@
 ##   # This test includes a lot of disk I/O and needs a higher
 ##   # timeout value than the default.
 ##   timeoutMin: 15
-##   # This test reprovisions the rootfs.
-##   tags: reprovision
 ##   description: Verify the root reprovision with RAID 1 works.
 
 set -xeuo pipefail
