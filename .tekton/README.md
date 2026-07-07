@@ -29,3 +29,5 @@ After any manual changes, run the script below to regenerate the configuration f
 # Check if files are up to date (useful for CI)
 ./ci/generate-tekton-pipelinerun.py --check
 ```
+
+Testing the pipeline: DNM
