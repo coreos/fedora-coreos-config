@@ -11,11 +11,13 @@ partition_table:
   partitions:
     # Reserved partition — placeholder at position 1, mirrors the BIOS-BOOT
     # slot on x86_64 so partition numbering stays consistent across arches
-    - size: "1 MiB"
+    - label: "reserved"
+      size: "1 MiB"
       type: 8DA63339-0007-60C0-C436-083AC8230908
 
     # EFI System Partition — aarch64 is UEFI-only, no legacy BIOS boot
-    - size: "127 MiB"
+    - label: "EFI-SYSTEM"
+      size: "127 MiB"
       type: C12A7328-F81F-11D2-BA4B-00A0C93EC93B
       payload_type: "filesystem"
       payload:
@@ -27,7 +29,8 @@ partition_table:
         fstab_passno: 2
 
     # Extended Boot Loader partition
-    - size: "384 MiB"
+    - label: "boot"
+      size: "384 MiB"
       type: BC13C2FF-59E6-4262-A352-B275FD6F7172
       payload_type: "filesystem"
       payload:
@@ -40,7 +43,8 @@ partition_table:
         fstab_passno: 0
 
     # Root partition — DPS type for aarch64
-    - type: B921B045-1DF0-41C3-AF44-4C6F280D3FAE
+    - label: "root"
+      type: B921B045-1DF0-41C3-AF44-4C6F280D3FAE
       payload_type: "filesystem"
       payload:
         type: "xfs"
