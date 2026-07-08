@@ -10,12 +10,14 @@ partition_table:
   extra_padding: 1031168
   partitions:
     # BIOS Boot partition — required for legacy BIOS boot on x86_64
-    - size: "1 MiB"
+    - label: "BIOS-BOOT"
+      size: "1 MiB"
       bootable: true
       type: 21686148-6449-6E6F-744E-656564454649
 
     # EFI System Partition
-    - size: "127 MiB"
+    - label: "EFI-SYSTEM"
+      size: "127 MiB"
       type: C12A7328-F81F-11D2-BA4B-00A0C93EC93B
       payload_type: "filesystem"
       payload:
@@ -27,7 +29,8 @@ partition_table:
         fstab_passno: 2
 
     # Extended Boot Loader partition
-    - size: "384 MiB"
+    - label: "boot"
+      size: "384 MiB"
       type: BC13C2FF-59E6-4262-A352-B275FD6F7172
       payload_type: "filesystem"
       payload:
@@ -40,7 +43,8 @@ partition_table:
         fstab_passno: 0
 
     # Root partition — DPS type for x86_64
-    - type: 4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709
+    - label: "root"
+      type: 4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709
       payload_type: "filesystem"
       payload:
         type: "xfs"
