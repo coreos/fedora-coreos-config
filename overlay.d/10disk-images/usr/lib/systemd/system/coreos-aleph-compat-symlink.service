@@ -1,0 +1,27 @@
+# Create a compat symlink for the aleph file.
+# /sysroot is mounted read-only in the running system, so a tmpfiles.d
+# entry cannot create the symlink. Instead we use a oneshot service with
+# MountFlags=slave to transiently remount /sysroot read-write in its own
+# mount namespace.
+# See https://github.com/coreos/fedora-coreos-tracker/issues/2187
+[Unit]
+Description=Create CoreOS Aleph Compatibility Symlink
+# Only run if the symlink does not already exist
+ConditionPathExists=!/sysroot/.coreos-aleph-version.json
+# Only run if the target aleph file exists
+ConditionPathExists=/sysroot/.bootc-aleph.json
+# Need /sysroot to be mounted
+RequiresMountsFor=/sysroot
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# MountFlags=slave creates a new mount namespace so the temporary
+# read-write remount of /sysroot is invisible to the rest of the system.
+MountFlags=slave
+# Single ExecStart: with MountFlags=slave each ExecStart= runs in its own
+# mount namespace, so the rw remount must happen in the same process as ln.
+ExecStart=/bin/sh -c 'mount -o remount,rw /sysroot && ln -s .bootc-aleph.json /sysroot/.coreos-aleph-version.json'
+
+[Install]
+WantedBy=multi-user.target
