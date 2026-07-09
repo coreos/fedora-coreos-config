@@ -19,7 +19,7 @@ set -xeuo pipefail
 
 # make sure our key was actually used
 # grep -q causes sshd -T to fail on SIGPIPE
-if ! sshd -T | grep "^hostkey /etc/ssh-host-key$" >/dev/null; then
+if ! sshd -T | grep -i "^hostkey /etc/ssh-host-key$" >/dev/null; then
     sshd -T
     fatal "configured host key not used by sshd"
 fi
@@ -28,8 +28,8 @@ ok "configured host key used by sshd"
 # sshd starts successfully if any keys are mode 600, which would invalidate
 # the test except that our HostKey directive should replace the default
 # keys.  verify this.
-if [[ $(sshd -T | grep "^hostkey " | wc -l) != 1 ]]; then
-    sshd -T | grep "^hostkey "
+if [[ $(sshd -T | grep -i "^hostkey " | wc -l) != 1 ]]; then
+    sshd -T | grep -i "^hostkey "
     fatal "sshd uses multiple host keys"
 fi
 ok "sshd uses only the configured host key"
