@@ -5,6 +5,10 @@ partition_table:
   # We want the disk size to be 10G
   # XXX: pull that from `image-base.yaml`
   size: "10GiB"
+  policy:
+    # Tell image builder to not expand the root partition
+    # we will do it on the first boot.
+    grow_root_to_fill_disk: false
   type: "gpt"
   uuid: "00000000-0000-4000-a000-000000000001"
   # Reserve the last 2048 512-byte blocks for CoreOS which moves the
