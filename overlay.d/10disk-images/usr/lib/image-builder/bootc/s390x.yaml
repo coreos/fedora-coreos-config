@@ -30,6 +30,9 @@ partition_table:
 
     # Root partition — DPS type for s390x
     - label: "root"
+      # We want enough to hold the rootfs content
+      # and have at least 30% free space on top.
+      size: "3GiB"
       partnum: 4
       type: 5EEAD9A9-FE09-4A1E-A1D7-520D00531306
       payload_type: "filesystem"

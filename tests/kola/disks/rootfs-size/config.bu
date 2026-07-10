@@ -1,0 +1,6 @@
+variant: fcos
+version: 1.5.0
+kernel_arguments:
+  # Prevent the growfs service to run
+  should_exist:
+    - rd.systemd.mask=ignition-ostree-growfs.service
