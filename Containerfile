@@ -51,13 +51,13 @@ RUN --mount=type=bind,target=/run/src,rw \
         --bootc --format-version=1 --rootfs /target-rootfs \
         --output oci-archive:/run/src/out.ociarchive \
         --label com.coreos.inputhash=$(cat /run/inputhash) \
-        --label com.coreos.stream=$STREAM \
         ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.versions=machine-os=${VERSION}} \
         ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.version-display-names=machine-os="${DESCRIPTION}"}
 
 FROM oci-archive:./out.ociarchive
 ARG VERSION
 ARG NAME=overridden
+ARG STREAM=overridden
 ARG DESCRIPTION=overridden
 # Need to reference builder here to force ordering. But since we have to run
 # something anyway, we might as well cleanup after ourselves.
@@ -69,6 +69,7 @@ LABEL containers.bootc=1 \
       ostree.bootable=1 \
       org.opencontainers.image.version=$VERSION \
       com.coreos.osname=$NAME \
+      com.coreos.stream=$STREAM \
       org.opencontainers.image.title=$DESCRIPTION \
       org.opencontainers.image.description=$DESCRIPTION
 STOPSIGNAL SIGRTMIN+3
