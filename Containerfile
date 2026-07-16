@@ -30,6 +30,8 @@ ARG IMAGE_CONFIG=overridden
 ARG PASSWD_GROUP_DIR
 ARG STRICT_MODE=0
 ARG INJECT_OPENSHIFT_VERSION_LABELS=""
+ARG BUILDER_IMG_CHUNKER=""
+ARG BUILDER_IMG_CHUNKER_MAX_LAYERS=""
 
 COPY . /src
 # canonicalize permission bits, see also https://gitlab.com/fedora/bootc/base-images/-/merge_requests/274
@@ -50,12 +52,33 @@ RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
 # NOTE: use 'bash <<EOF' here instead of '<<EOF' because of our konflux integration [1]
 #       [1] https://github.com/coreos/fedora-coreos-config/pull/4263#issuecomment-5005085765
 RUN --mount=type=bind,target=/run/src,rw bash <<EOF
-    rpm-ostree experimental compose build-chunked-oci                                                 \
-        --bootc --format-version=1 --rootfs /target-rootfs                                            \
-        --output oci-archive:/run/src/out.ociarchive                                                  \
-        --label com.coreos.inputhash=$(cat /run/inputhash)                                            \
-        ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.versions=machine-os=${VERSION}} \
-        ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.version-display-names=machine-os="${DESCRIPTION}"}
+    set -eux -o pipefail
+    case "${BUILDER_IMG_CHUNKER:-}" in
+        'chunkah')
+            # The '--prune /sysroot/ --label ostree.commit- --label ostree.final-diffid-'
+            # will strip OSTree data and labels for bootc compatibility; see
+            # https://github.com/coreos/chunkah#compatibility-with-bootable-bootc-images
+            chunkah build --rootfs /target-rootfs                                                             \
+                --prune /sysroot/ --label ostree.commit- --label ostree.final-diffid-                         \
+                --output oci-archive:/run/src/out.ociarchive                                                  \
+                --label com.coreos.inputhash=$(cat /run/inputhash)                                            \
+                ${BUILDER_IMG_CHUNKER_MAX_LAYERS:+--max-layers=${BUILDER_IMG_CHUNKER_MAX_LAYERS}}             \
+                ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.versions=machine-os=${VERSION}} \
+                ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.version-display-names=machine-os="${DESCRIPTION}"}
+            ;;
+        "")
+            rpm-ostree experimental compose build-chunked-oci                                                 \
+                --bootc --format-version=1 --rootfs /target-rootfs                                            \
+                --output oci-archive:/run/src/out.ociarchive                                                  \
+                --label com.coreos.inputhash=$(cat /run/inputhash)                                            \
+                ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.versions=machine-os=${VERSION}} \
+                ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.version-display-names=machine-os="${DESCRIPTION}"}
+            ;;
+        *)
+            echo "error: unknown BUILDER_IMG_CHUNKER value: ${BUILDER_IMG_CHUNKER}" >&2
+            exit 1
+            ;;
+    esac
 EOF
 
 FROM oci-archive:./out.ociarchive
