@@ -46,22 +46,25 @@ RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
     --mount=type=secret,id=yumrepos,target=/etc/yum.repos.d/secret.repo \
     --mount=type=secret,id=contentsets \
         /src/build-rootfs --srcdir=/src make-rootfs --target-rootfs /target-rootfs
-RUN --mount=type=bind,target=/run/src,rw \
-      rpm-ostree experimental compose build-chunked-oci \
-        --bootc --format-version=1 --rootfs /target-rootfs \
-        --output oci-archive:/run/src/out.ociarchive \
-        --label com.coreos.inputhash=$(cat /run/inputhash) \
-        --label com.coreos.stream=$STREAM \
-        ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.versions=machine-os=${VERSION}} \
-        ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.version-display-names=machine-os="${DESCRIPTION}"}
+
+# XXX: add chunkah to bootc base image
+# (and wrap it as `bootc-base-imagectl rechunk --chunkah`?)
+FROM quay.io/jlebon/chunkah AS chunkah
+RUN --mount=type=bind,from=builder,target=/builder,ro \
+    --mount=type=bind,target=/run/src,rw \
+        chunkah build --prune /sysroot/ --rootfs /builder/target-rootfs --max-layers 128 \
+            --label com.coreos.stream=$STREAM --label com.coreos.inputhash=$(cat /builder/run/inputhash) \
+            ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.versions=machine-os=${VERSION}} \
+            ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.version-display-names=machine-os="${DESCRIPTION}"} \
+                > /run/src/out.ociarchive
 
 FROM oci-archive:./out.ociarchive
 ARG VERSION
 ARG NAME=overridden
 ARG DESCRIPTION=overridden
-# Need to reference builder here to force ordering. But since we have to run
+# Need to reference chunkah here to force ordering. But since we have to run
 # something anyway, we might as well cleanup after ourselves.
-RUN --mount=type=bind,from=builder,target=/var/tmp \
+RUN --mount=type=bind,from=chunkah,target=/var/tmp \
     --mount=type=bind,target=/run/src,rw \
       rm /run/src/out.ociarchive
 
