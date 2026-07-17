@@ -70,10 +70,10 @@
       "evra": "1.08.2-4.fc44.ppc64le"
     },
     "bind-libs": {
-      "evra": "32:9.18.50-15.fc45.ppc64le"
+      "evra": "32:9.18.50-21.fc45.ppc64le"
     },
     "bind-utils": {
-      "evra": "32:9.18.50-15.fc45.ppc64le"
+      "evra": "32:9.18.50-21.fc45.ppc64le"
     },
     "bootc": {
       "evra": "1.16.0-1.fc45.ppc64le"
@@ -250,7 +250,7 @@
       "evra": "2.93-1.fc45.ppc64le"
     },
     "docker-cli": {
-      "evra": "29.6.1-1.fc45.ppc64le"
+      "evra": "29.6.2-1.fc45.ppc64le"
     },
     "dosfstools": {
       "evra": "4.2-18.fc44.ppc64le"
@@ -523,16 +523,16 @@
       "evra": "1.0.61-1.fc45.ppc64le"
     },
     "kernel": {
-      "evra": "7.2.0-0.rc3.260714g3b029c035b34.27.fc45.ppc64le"
+      "evra": "7.2.0-0.rc3.260715g58717b2a1365.29.fc45.ppc64le"
     },
     "kernel-core": {
-      "evra": "7.2.0-0.rc3.260714g3b029c035b34.27.fc45.ppc64le"
+      "evra": "7.2.0-0.rc3.260715g58717b2a1365.29.fc45.ppc64le"
     },
     "kernel-modules": {
-      "evra": "7.2.0-0.rc3.260714g3b029c035b34.27.fc45.ppc64le"
+      "evra": "7.2.0-0.rc3.260715g58717b2a1365.29.fc45.ppc64le"
     },
     "kernel-modules-core": {
-      "evra": "7.2.0-0.rc3.260714g3b029c035b34.27.fc45.ppc64le"
+      "evra": "7.2.0-0.rc3.260715g58717b2a1365.29.fc45.ppc64le"
     },
     "kexec-tools": {
       "evra": "2.0.32-3.fc44.ppc64le"
@@ -646,7 +646,7 @@
       "evra": "1.61-1.fc45.ppc64le"
     },
     "libibverbs": {
-      "evra": "63.0-2.fc45.ppc64le"
+      "evra": "64.0-1.fc45.ppc64le"
     },
     "libicu": {
       "evra": "78.3-7.fc45.ppc64le"
@@ -715,7 +715,7 @@
       "evra": "1.0.2-1.fc45.ppc64le"
     },
     "libnfsidmap": {
-      "evra": "1:2.9.1-4.rc4.fc45.ppc64le"
+      "evra": "1:2.9.1-5.rc5.fc45.ppc64le"
     },
     "libnftnl": {
       "evra": "1.3.1-2.fc44.ppc64le"
@@ -919,10 +919,10 @@
       "evra": "4.6-1.fc45.ppc64le"
     },
     "moby-engine": {
-      "evra": "29.6.1-1.fc45.ppc64le"
+      "evra": "29.6.2-1.fc45.ppc64le"
     },
     "moby-filesystem": {
-      "evra": "29.6.1-1.fc45.noarch"
+      "evra": "29.6.2-1.fc45.noarch"
     },
     "mpfr": {
       "evra": "4.2.2-3.fc44.ppc64le"
@@ -955,16 +955,16 @@
       "evra": "0.52.25-7.fc45.ppc64le"
     },
     "nfs-client-utils": {
-      "evra": "1:2.9.1-4.rc4.fc45.ppc64le"
+      "evra": "1:2.9.1-5.rc5.fc45.ppc64le"
     },
     "nfs-common-utils": {
-      "evra": "1:2.9.1-4.rc4.fc45.ppc64le"
+      "evra": "1:2.9.1-5.rc5.fc45.ppc64le"
     },
     "nfsv3-client-utils": {
-      "evra": "1:2.9.1-4.rc4.fc45.ppc64le"
+      "evra": "1:2.9.1-5.rc5.fc45.ppc64le"
     },
     "nfsv4-client-utils": {
-      "evra": "1:2.9.1-4.rc4.fc45.ppc64le"
+      "evra": "1:2.9.1-5.rc5.fc45.ppc64le"
     },
     "nftables": {
       "evra": "1:1.1.6-3.fc45.ppc64le"
@@ -1057,10 +1057,10 @@
       "evra": "0.1.11-1.fc45.ppc64le"
     },
     "passt": {
-      "evra": "0^20260611.ga9c61ff-1.fc45.ppc64le"
+      "evra": "0^20260716.g090d739-2.fc45.ppc64le"
     },
     "passt-selinux": {
-      "evra": "0^20260611.ga9c61ff-1.fc45.noarch"
+      "evra": "0^20260716.g090d739-2.fc45.noarch"
     },
     "pciutils": {
       "evra": "3.15.0-1.fc45.ppc64le"
@@ -1129,7 +1129,7 @@
       "evra": "2:11.0.0-11.fc45.ppc64le"
     },
     "rdma-core-common": {
-      "evra": "63.0-2.fc45.noarch"
+      "evra": "64.0-1.fc45.noarch"
     },
     "readline": {
       "evra": "8.3-4.fc44.ppc64le"
@@ -1303,13 +1303,13 @@
       "evra": "0.3-5.fc45.ppc64le"
     },
     "tpm2-tools": {
-      "evra": "5.7-6.fc45.ppc64le"
+      "evra": "5.8-1.fc45.ppc64le"
     },
     "tpm2-tss": {
-      "evra": "4.1.3-10.fc45.ppc64le"
+      "evra": "4.2.0-1.fc45.ppc64le"
     },
     "tpm2-tss-fapi": {
-      "evra": "4.1.3-10.fc45.ppc64le"
+      "evra": "4.2.0-1.fc45.ppc64le"
     },
     "tzdata": {
       "evra": "2026b-1.fc45.noarch"
@@ -1339,7 +1339,7 @@
       "evra": "7.0.1-2.fc45.ppc64le"
     },
     "xkeyboard-config": {
-      "evra": "2.47-1.fc45.noarch"
+      "evra": "2.48-4.fc45.noarch"
     },
     "xxhash-libs": {
       "evra": "0.8.3-4.fc44.ppc64le"
@@ -1367,6 +1367,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-07-16T00:00:00Z"
+    "generated": "2026-07-17T00:00:00Z"
   }
 }
