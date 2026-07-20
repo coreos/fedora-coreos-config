@@ -14,7 +14,8 @@ partition_table:
     # (slots 1 and 2 are left unused).
 
     # Extended Boot Loader partition
-    - partnum: 3
+    - label: "boot"
+      partnum: 3
       size: "384 MiB"
       type: BC13C2FF-59E6-4262-A352-B275FD6F7172
       payload_type: "filesystem"
@@ -28,7 +29,8 @@ partition_table:
         fstab_passno: 0
 
     # Root partition — DPS type for s390x
-    - partnum: 4
+    - label: "root"
+      partnum: 4
       type: 5EEAD9A9-FE09-4A1E-A1D7-520D00531306
       payload_type: "filesystem"
       payload:
