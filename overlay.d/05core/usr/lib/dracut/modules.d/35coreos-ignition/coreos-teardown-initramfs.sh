@@ -256,12 +256,12 @@ main() {
         echo "info: flushing all routing"
         ip route flush table main
         ip route flush cache
-    fi
 
-    # Now that the configuration has been propagated (or not)
-    # clean it up so that no information from outside of the
-    # real root is passed on to NetworkManager in the real root
-    rm -rf /run/NetworkManager/
+        # Since we have taken down the network clean up /run/NetworkManager
+        # so that no information from outside of the real root is passed on
+        # to NetworkManager in the real root
+        rm -rf /run/NetworkManager/
+    fi
 
     rm -f /run/udev/rules.d/80-coreos-boot-disk.rules
     rm -f /dev/disk/by-id/coreos-boot-disk
