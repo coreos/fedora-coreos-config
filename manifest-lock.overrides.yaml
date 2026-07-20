@@ -9,8 +9,13 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  bootupd:
-    evr: 0.2.35-1.fc44
+  fwupd:
+    evr: 2.1.3-1.fc44
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-629714e3d0
-      type: fast-track
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2176
+  libjcat:
+    evr: 0.2.6-1.fc44
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2176

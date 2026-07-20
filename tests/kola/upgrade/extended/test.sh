@@ -58,9 +58,6 @@ set -eux -o pipefail
 need_restart='false'
 arch=$(arch)
 
-# Stop zincati so we can avoid racing with zincati for some of the  setup here.
-systemctl disable zincati --now
-
 # If there is an ostree repo archive tarball, let's extract/use it.
 if [ -f "$KOLA_EXT_DATA/ostree-repo.tar" ]; then
     tar -C /srv/ -xf "$KOLA_EXT_DATA/ostree-repo.tar"
