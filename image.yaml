@@ -2,3 +2,12 @@
 # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
 # streams.
 include: image-base.yaml
+
+# Use bootc install to-filesystem to build the disk image
+# Only for `next` and `rawhide` streams for now
+# See https://github.com/coreos/fedora-coreos-tracker/issues/1827
+bootc-install-to-fs: true
+
+# Bootc will inject the ostree prefix when doing the ostree
+# deployment so we need only the OCI imgref here
+container-imgref: "quay.io/fedora/fedora-coreos:{stream}"
