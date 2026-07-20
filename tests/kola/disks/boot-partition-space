@@ -1,0 +1,42 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   creationDate: 2026-06-30
+##   description: Verify that the /boot partition has enough space for updates
+#
+# During an ostree update, the incoming deployment files (kernel, initrd, etc.)
+# are written to /boot alongside the current deployment, meaning at a minimum 2
+# must be able to coexist to perform an update. On a previously updated system,
+# usually the previous rollback deployment is not pruned until after the incoming
+# ones are written, but ostree does handle the case where there isn't enough space
+# by cleaning up the old rollback first. So, ideally we want space for 3 deployments,
+# but 2 is the minimum required for an update.
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+# Calculate total - used to account for reserved blocks which can be used by root
+total=$(df --output=size -B1 /boot | tail -n 1)
+used=$(df --output=used -B1 /boot | tail -n 1)
+available=$((total - used))
+echo "/boot space: used=${used} bytes, available=${available} bytes"
+
+# NOTE: assumes that there is only one deployment when this test is running
+single_deployment=$(du -sb /boot/ostree/*/ | cut -f1)
+echo "space used by a single deployment: $single_deployment bytes"
+
+# Include a 10% buffer to account for potential size increases between updates.
+recommended_min=$((single_deployment * 11 / 10))
+if ((available < recommended_min)); then
+    fatal "/boot partition does not have the minimum space for updating (must be able to hold 2 deployments). Available: ${available}, minimum: ${recommended_min}"
+fi
+ok "/boot partition has the minimum space for an update"
+
+recommended_ideal=$((single_deployment * 21 / 10))
+if ((available < recommended_ideal)); then
+    echo "WARNING: /boot partition does not have the recommended space for updating (should be able to hold 3 deployments). Available: ${available}, recommended: ${recommended_ideal}"
+fi
+
+ok "/boot partition has enough space"
