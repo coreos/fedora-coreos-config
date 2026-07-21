@@ -64,7 +64,7 @@ RUN --mount=type=bind,target=/run/src,rw bash <<EOF
                 --label com.coreos.inputhash=$(cat /run/inputhash)                                            \
                 ${BUILDER_IMG_CHUNKER_MAX_LAYERS:+--max-layers=${BUILDER_IMG_CHUNKER_MAX_LAYERS}}             \
                 ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.versions=machine-os=${VERSION}} \
-                ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.version-display-names=machine-os="${DESCRIPTION}"}
+                ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.version-display-names=machine-os=\"${DESCRIPTION}\"}
             ;;
         "")
             rpm-ostree experimental compose build-chunked-oci                                                 \
@@ -72,7 +72,7 @@ RUN --mount=type=bind,target=/run/src,rw bash <<EOF
                 --output oci-archive:/run/src/out.ociarchive                                                  \
                 --label com.coreos.inputhash=$(cat /run/inputhash)                                            \
                 ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.versions=machine-os=${VERSION}} \
-                ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.version-display-names=machine-os="${DESCRIPTION}"}
+                ${INJECT_OPENSHIFT_VERSION_LABELS:+--label io.openshift.build.version-display-names=machine-os=\"${DESCRIPTION}\"}
             ;;
         *)
             echo "error: unknown BUILDER_IMG_CHUNKER value: ${BUILDER_IMG_CHUNKER}" >&2
