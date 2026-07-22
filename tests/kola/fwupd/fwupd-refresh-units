@@ -1,0 +1,37 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   description: Verify fwupd-refresh.timer is enabled and that
+##                fwupd-refresh.service is enabled and can run.
+##   tags: "platform-independent needs-internet"
+##   creationDate: 2026-07-21
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+# SERVICE
+unit="fwupd-refresh.service"
+if ! systemctl is-enabled "${unit}" 1> /dev/null; then
+    fatal "Unit ${unit} should be enabled"
+fi
+ok "Unit ${unit} is enabled as expected"
+
+if ! systemctl restart "${unit}" 1> /dev/null; then
+    systemctl status "${unit}"
+    fatal "Failed to run ${unit}"
+fi
+ok "Ran ${unit} successfully"
+
+# TIMER
+unit="fwupd-refresh.timer"
+if is_rhcos && match_maj_ver "9"; then
+    ok "${unit} not enabled on EL9, skipping check."
+    exit 0
+fi
+
+if ! systemctl is-enabled ${unit} 1> /dev/null; then
+    fatal "Unit ${unit} should be enabled"
+fi
+ok "Unit ${unit} is enabled as expected"
