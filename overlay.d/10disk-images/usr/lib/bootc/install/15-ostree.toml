@@ -2,4 +2,7 @@
 # Make sure bootc enforces that
 # `/etc/containers/policy.json` includes
 # a default policy that verifies our images signature.
-enforce-container-sigpolicy = true
+# NOTE: enforce-container-sigpolicy requires bootc >= 1.15.2
+# (containers/bootc#2116). Re-enable once the lockfile is
+# bumped past bootc-1.15.1.
+# enforce-container-sigpolicy = true
