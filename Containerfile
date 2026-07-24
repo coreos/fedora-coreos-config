@@ -49,9 +49,7 @@ RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
     --mount=type=secret,id=contentsets \
         /src/build-rootfs --srcdir=/src make-rootfs --target-rootfs /target-rootfs
 # Take the rootfs and created a chunked container out of it
-# NOTE: use 'bash <<EOF' here instead of '<<EOF' because of our konflux integration [1]
-#       [1] https://github.com/coreos/fedora-coreos-config/pull/4263#issuecomment-5005085765
-RUN --mount=type=bind,target=/run/src,rw bash <<EOF
+RUN --mount=type=bind,target=/run/src,rw <<EOF
     set -eux -o pipefail
     case "${BUILDER_IMG_CHUNKER:-}" in
         'chunkah')
