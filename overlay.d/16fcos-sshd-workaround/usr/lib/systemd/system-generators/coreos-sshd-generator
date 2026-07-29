@@ -1,0 +1,32 @@
+#!/bin/bash
+# The upstream sshd@.service overrides AuthorizedKeysFile in the
+# ExecStart command, which excludes .ssh/authorized_keys.d/* where ignition
+# and afterburn place SSH keys. This generator reads the configured
+# AuthorizedKeysFile via sshd -G and appends the systemd credentials
+# path so that both user/distro config and ephemeral keys are honoured.
+#
+# See https://github.com/coreos/fedora-coreos-tracker/issues/2098
+
+NORMAL_DIR="$1"
+
+# First, ensure that the ExecStart line hasn't changed
+upstream_service="/usr/lib/systemd/system/sshd@.service"
+if ! grep -q -- '-o "AuthorizedKeysFile ${CREDENTIALS_DIRECTORY}/ssh.ephemeral-authorized_keys-all .ssh/authorized_keys"' "$upstream_service" 2>/dev/null; then
+    echo "coreos-sshd-generator: upstream sshd@.service ExecStart has changed" >&2
+    exit 1
+fi
+
+# Parse AuthorizedKeysFile value from sshd -G
+auth_keys=$(sshd -G | grep -i "^authorizedkeysfile " | cut -d" " -f2-)
+if [ -z "$auth_keys" ]; then
+    echo "coreos-sshd-generator: failed to get AuthorizedKeysFile from sshd -G" >&2
+    exit 1
+fi
+
+# Write drop-in to override ExecStart
+mkdir -p "$NORMAL_DIR/sshd@.service.d"
+cat > "$NORMAL_DIR/sshd@.service.d/50-authorized-keys-file.conf" <<EOF
+[Service]
+ExecStart=
+ExecStart=-/usr/sbin/sshd -i \$OPTIONS -o "AuthorizedKeysFile \${CREDENTIALS_DIRECTORY}/ssh.ephemeral-authorized_keys-all $auth_keys"
+EOF
