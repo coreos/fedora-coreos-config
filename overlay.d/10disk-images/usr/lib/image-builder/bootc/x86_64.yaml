@@ -2,9 +2,9 @@
 # disks as we will change the disks uuids anyway
 mount_configuration: none
 partition_table:
-  # We want the disk size to be 10G
-  # XXX: pull that from `image-base.yaml`
-  size: "10GiB"
+  # # We want the disk size to be 10G
+  # # XXX: pull that from `image-base.yaml`
+  # size: "10GiB"
   policy:
     # Tell image builder to not expand the root partition
     # we will do it on the first boot.
