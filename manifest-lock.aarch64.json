@@ -79,7 +79,7 @@
       "evra": "32:9.18.50-22.fc45.aarch64"
     },
     "bootc": {
-      "evra": "1.16.5-1.fc45.aarch64"
+      "evra": "1.16.6-1.fc45.aarch64"
     },
     "bootupd": {
       "evra": "0.2.35-3.fc45.aarch64"
@@ -214,16 +214,16 @@
       "evra": "2.1.28-37.fc45.aarch64"
     },
     "dbus": {
-      "evra": "1:1.16.2-1.fc45.aarch64"
+      "evra": "1:1.16.2-6.fc45.aarch64"
     },
     "dbus-broker": {
       "evra": "37-9.fc45.aarch64"
     },
     "dbus-common": {
-      "evra": "1:1.16.2-1.fc45.noarch"
+      "evra": "1:1.16.2-6.fc45.noarch"
     },
     "dbus-libs": {
-      "evra": "1:1.16.2-1.fc45.aarch64"
+      "evra": "1:1.16.2-6.fc45.aarch64"
     },
     "device-mapper": {
       "evra": "1.02.215-3.fc45.aarch64"
@@ -439,16 +439,16 @@
       "evra": "3.12-4.fc45.aarch64"
     },
     "grub2-common": {
-      "evra": "1:2.12-72.fc45.noarch"
+      "evra": "1:2.12-73.fc45.noarch"
     },
     "grub2-efi-aa64": {
-      "evra": "1:2.12-72.fc45.aarch64"
+      "evra": "1:2.12-73.fc45.aarch64"
     },
     "grub2-tools": {
-      "evra": "1:2.12-72.fc45.aarch64"
+      "evra": "1:2.12-73.fc45.aarch64"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.12-72.fc45.aarch64"
+      "evra": "1:2.12-73.fc45.aarch64"
     },
     "gssproxy": {
       "evra": "0.9.2-12.fc45.aarch64"
@@ -538,16 +538,16 @@
       "evra": "1.0.61-2.fc45.aarch64"
     },
     "kernel": {
-      "evra": "7.2.0-0.rc5.41.fc45.aarch64"
+      "evra": "7.2.0-0.rc5.260728g62cc90241548.42.fc45.aarch64"
     },
     "kernel-core": {
-      "evra": "7.2.0-0.rc5.41.fc45.aarch64"
+      "evra": "7.2.0-0.rc5.260728g62cc90241548.42.fc45.aarch64"
     },
     "kernel-modules": {
-      "evra": "7.2.0-0.rc5.41.fc45.aarch64"
+      "evra": "7.2.0-0.rc5.260728g62cc90241548.42.fc45.aarch64"
     },
     "kernel-modules-core": {
-      "evra": "7.2.0-0.rc5.41.fc45.aarch64"
+      "evra": "7.2.0-0.rc5.260728g62cc90241548.42.fc45.aarch64"
     },
     "kexec-tools": {
       "evra": "2.0.32-4.fc45.aarch64"
@@ -805,10 +805,10 @@
       "evra": "1.47.4-2.fc45.aarch64"
     },
     "libssh": {
-      "evra": "0.12.1-1.fc45.aarch64"
+      "evra": "0.12.2-1.fc45.aarch64"
     },
     "libssh-config": {
-      "evra": "0.12.1-1.fc45.noarch"
+      "evra": "0.12.2-1.fc45.noarch"
     },
     "libsss_certmap": {
       "evra": "2.13.1-5.fc45.aarch64"
@@ -1075,10 +1075,10 @@
       "evra": "0.1.11-2.fc45.aarch64"
     },
     "passt": {
-      "evra": "0^20260716.g090d739-2.fc45.aarch64"
+      "evra": "0^20260728.gf8df3f1-2.fc45.aarch64"
     },
     "passt-selinux": {
-      "evra": "0^20260716.g090d739-2.fc45.noarch"
+      "evra": "0^20260728.gf8df3f1-2.fc45.noarch"
     },
     "pciutils": {
       "evra": "3.15.0-2.fc45.aarch64"
@@ -1385,6 +1385,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-07-29T00:00:00Z"
+    "generated": "2026-07-30T00:00:00Z"
   }
 }
