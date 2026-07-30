@@ -51,9 +51,9 @@ partition_table:
 
     # Root partition — DPS type for x86_64
     - label: "root"
-      # We want enough to hold the rootfs content
-      # and have at least 30% free space on top.
-      size: "3GiB"
+      # This is set at build time by
+      # inject_disk_yaml() in build-rootfs
+      size: OVERRIDEN
       type: 4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709
       payload_type: "filesystem"
       payload:

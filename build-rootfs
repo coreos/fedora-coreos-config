@@ -4,8 +4,9 @@
 # 1. It gathers the list of FCOS-specific packages using the manifests.
 # 2. It gathers the list of FCOS-specific overlays using the manifests.
 # 3. It runs `bootc-base-imagectl make-rootfs`.
-# 4. It injects various metadata (e.g. image.json, live/ bits, platforms.json, and disk.yaml).
+# 4. It injects various metadata (e.g. image.json, live/ bits, and platforms.json).
 # 5. It runs the postprocess scripts defined in the manifest.
+# 6. It computes the rootfs size and injects it into the disk partition YAML.
 
 import argparse
 import glob
@@ -214,7 +215,6 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
     inject_live(target_rootfs, srcdir)
     inject_image_json(target_rootfs, image_cfg_path, stream)
     inject_platforms_json(target_rootfs, srcdir)
-    inject_disk_yaml(target_rootfs, srcdir)
     inject_content_manifest(target_rootfs, manifest)
 
     inject_version_info(
@@ -228,6 +228,7 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
     run_postprocess_scripts(target_rootfs, manifest)
     run_dracut(target_rootfs)
     cleanup_extraneous_files(target_rootfs)
+    inject_disk_yaml(target_rootfs)
 
     calculate_inputhash(target_rootfs, add_dirs, manifest)
 
@@ -656,14 +657,44 @@ def inject_platforms_json(rootfs, srcdir):
             f.write('\n')
 
 
-def inject_disk_yaml(rootfs, srcdir):
+def inject_disk_yaml(rootfs):
     dst = os.path.join(rootfs, 'usr/lib/image-builder/bootc')
-    if os.path.exists(dst):
-        # Relative symlink as both files are in the same directory
-        print(f"Creating symlink to arch specific image-builder config: 'disk.yaml' -> '{ARCH}.yaml'")
-        os.symlink(f'{ARCH}.yaml', os.path.join(dst, 'disk.yaml'))
-    else:
-        print("No image-builder config found. Skipping symlink to arch specific config.")
+    if not os.path.exists(dst):
+        print("No image-builder config found. Skipping disk YAML injection.")
+        return
+
+    # XXX handle variants when this lands in image-builder
+    # https://github.com/osbuild/image-builder/issues/2566
+    arch_yaml = os.path.join(dst, f'{ARCH}.yaml')
+
+    # Compute total size of rootfs content
+    result = subprocess.check_output(['du', '-sb', rootfs], encoding='utf-8')
+    total_bytes = int(result.split()[0])
+    mib = 1024 * 1024
+    # We add 30% margin on top
+    # Round to nearest MiB
+    # The // floor division is fine here as we added some headroom
+    size_mib = int(total_bytes * 1.3) // mib
+
+    # Update the root partition size in the target disk YAML
+    with open(arch_yaml) as f:
+        disk_config = yaml.safe_load(f)
+
+    for partition in disk_config['partition_table']['partitions']:
+        if partition.get('label') == 'root':
+            partition['size'] = f"{size_mib} MiB"
+            break
+
+    # Note that dumping yaml with this will loose comments, but that's fine
+    # we still have them in the source repo.
+    with open(arch_yaml, 'w') as f:
+        yaml.dump(disk_config, f, default_flow_style=False)
+
+    # Relative symlink as both files are in the same directory
+    print(f"Creating symlink to arch specific image-builder config: 'disk.yaml' -> '{ARCH}.yaml'")
+    os.symlink(f'{ARCH}.yaml', os.path.join(dst, 'disk.yaml'))
+
+    print(f"Injected rootfs partition size: {size_mib} MiB ({size_mib / 1024:.1f} GiB)")
 
 
 if __name__ == "__main__":

@@ -51,9 +51,9 @@ partition_table:
 
     # Root partition — DPS type for aarch64
     - label: "root"
-      # We want enough to hold the rootfs content
-      # and have at least 30% free space on top.
-      size: "3GiB"
+      # This is set at build time by
+      # inject_disk_yaml() in build-rootfs
+      size: OVERRIDEN
       type: B921B045-1DF0-41C3-AF44-4C6F280D3FAE
       payload_type: "filesystem"
       payload:
