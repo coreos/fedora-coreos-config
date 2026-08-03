@@ -54,6 +54,24 @@ conditional-include:
           dest=/etc/containers/policy.json
           cp "${src}" "${dest}"
 
+  # WARN: Temporary workaround
+  #
+  # The Fedora sshd@.service overrides AuthorizedKeysFile on the
+  # ExecStart command line, excluding .ssh/authorized_keys.d/* where
+  # Ignition and Afterburn place SSH keys. This breaks auth for
+  # socket-activated sshd.
+  #
+  # See:
+  # - https://github.com/coreos/fedora-coreos-tracker/issues/2098
+  # - https://bugzilla.mindrot.org/show_bug.cgi?id=3957
+  # - https://bugzilla.redhat.com/show_bug.cgi?id=2503149
+  #
+  # TODO: delete if openssh ever supports AuthorizedKeysFile+= (https://bugzilla.mindrot.org/show_bug.cgi?id=3957)
+  - if: releasever <= 45
+    include:
+      ostree-layers:
+        - overlay.d/16fcos-sshd-workaround
+
 ostree-layers:
   - overlay.d/09misc
   - overlay.d/10disk-images

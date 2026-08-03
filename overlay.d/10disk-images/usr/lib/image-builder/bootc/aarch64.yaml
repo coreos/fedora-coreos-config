@@ -54,3 +54,5 @@ partition_table:
         fstab_options: "defaults"
         fstab_freq: 0
         fstab_passno: 0
+        mkfs_options:
+          agcount: 2
