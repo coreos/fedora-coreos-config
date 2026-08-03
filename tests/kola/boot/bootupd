@@ -68,7 +68,7 @@ case "$current_arch" in
             check_grub_version "grub2-tools" '%{NEVRA}'
         fi
         ;;
-    *) fatal "Unhandled architecture: $(current_arch)" ;;
+    *) fatal "Unhandled architecture: ${current_arch}" ;;
 esac
 
 state_file=/boot/bootupd-state.json
