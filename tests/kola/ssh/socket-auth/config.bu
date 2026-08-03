@@ -1,0 +1,8 @@
+variant: fcos
+version: 1.6.0
+systemd:
+  units:
+    - name: sshd.service
+      mask: true
+    - name: sshd.socket
+      enabled: true
