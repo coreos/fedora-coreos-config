@@ -229,6 +229,18 @@ main() {
     # Load libraries from dracut
     load_dracut_libs
 
+    # Hopefully our logic is sound enough that this is never needed, but
+    # user's can explicitly disable initramfs network/hostname propagation
+    # with the coreos.no_persist_ip karg.
+    if dracut_func getargbool 0 'coreos.no_persist_ip'; then
+        echo "info: coreos.no_persist_ip karg detected"
+        echo "info: skipping propagating initramfs settings"
+    else
+        propagate_initramfs_hostname
+        propagate_initramfs_networking
+        propagate_ifname_udev_rules
+    fi
+
     # If we're using iSCSI, then we can't tear down networking since we'll lose
     # root. This means in that case that the network config written to the real
     # root won't be applied "from scratch". But anyway, since networking must
@@ -244,24 +256,12 @@ main() {
         echo "info: flushing all routing"
         ip route flush table main
         ip route flush cache
-    fi
 
-    # Hopefully our logic is sound enough that this is never needed, but
-    # user's can explicitly disable initramfs network/hostname propagation
-    # with the coreos.no_persist_ip karg.
-    if dracut_func getargbool 0 'coreos.no_persist_ip'; then
-        echo "info: coreos.no_persist_ip karg detected"
-        echo "info: skipping propagating initramfs settings"
-    else
-        propagate_initramfs_hostname
-        propagate_initramfs_networking
-        propagate_ifname_udev_rules
+        # Since we have taken down the network clean up /run/NetworkManager
+        # so that no information from outside of the real root is passed on
+        # to NetworkManager in the real root
+        rm -rf /run/NetworkManager/
     fi
-
-    # Now that the configuration has been propagated (or not)
-    # clean it up so that no information from outside of the
-    # real root is passed on to NetworkManager in the real root
-    rm -rf /run/NetworkManager/
 
     rm -f /run/udev/rules.d/80-coreos-boot-disk.rules
     rm -f /dev/disk/by-id/coreos-boot-disk
