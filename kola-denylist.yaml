@@ -46,3 +46,10 @@
     - rawhide
   arches:
     - aarch64
+
+- pattern: ext.config.rpm-ostree.kernel-replace
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2205
+  snooze: 2026-08-15
+  warn: true
+  streams:
+    - rawhide
