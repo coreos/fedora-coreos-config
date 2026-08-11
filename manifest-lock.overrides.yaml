@@ -29,3 +29,18 @@ packages:
     metadata:
       type: pin
       reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
+  dracut:
+    evr: 109-7.fc45
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
+      type: pin
+  dracut-network:
+    evr: 109-7.fc45
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
+      type: pin
+  dracut-squash:
+    evr: 109-7.fc45
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
+      type: pin
