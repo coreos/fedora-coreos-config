@@ -116,6 +116,25 @@ def inject_yumrepos(srcdir):
         for repo in glob.glob(f'{srcdir}/*.repo'):
             shutil.copy(repo, "/etc/yum.repos.d")
 
+    # Debug: print content of hermetic repo file
+    if IS_HERMETIC:
+        with open(HERMETIC_REPO, 'r') as f:
+            print(f"Content of {HERMETIC_REPO}:\n{f.read()}")
+
+    # Debug: print content of directories and repo files
+    cachi2_pool = '/cachi2/output/deps/rpm/x86_64/fedora-coreos-pool'
+    if os.path.isdir(cachi2_pool):
+        print(f"Content of {cachi2_pool}:\n{os.listdir(cachi2_pool)}", flush=True)
+    else:
+        print(f"Directory {cachi2_pool} does not exist", flush=True)
+
+    yum_repos_dir = '/etc/yum.repos.d/'
+    if os.path.isdir(yum_repos_dir):
+        print(f"Content of {yum_repos_dir}:\n{os.listdir(yum_repos_dir)}", flush=True)
+        for repo_file in glob.glob(f'{yum_repos_dir}*.repo'):
+            with open(repo_file, 'r') as f:
+                print(f"Content of {repo_file}:\n{f.read()}", flush=True)
+
 
 def run_buildroot_prep():
     # This allows FCOS/SCOS/RHCOS to do specific things before the main
