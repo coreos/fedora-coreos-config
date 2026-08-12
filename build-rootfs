@@ -178,7 +178,8 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
         # NEVRAs to appear there. For lack of a generic solution for any repo
         # there, we only special-case the one place where we know we use this.
         if lockfile_repos == ['fedora-coreos-pool']:
-            modify_pool_repo(locked_nevras)
+            if not IS_HERMETIC:
+                modify_pool_repo(locked_nevras)
             repos += lockfile_repos
         elif len(lockfile_repos) > 0:
             raise Exception(f"unknown lockfile-repo found in {lockfile_repos}")
