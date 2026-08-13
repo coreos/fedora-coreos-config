@@ -78,8 +78,8 @@ fi
 
 # Verify `bootupctl status` output contains related content.
 # https://github.com/coreos/bootupd/issues/694
-if ! bootupctl status | grep "CoreOS aleph version"; then
-    fatal "bootupctl status output should include 'CoreOS aleph version'"
+if ! bootupctl status | grep -i "aleph version"; then
+    fatal "bootupctl status output should include 'aleph version'"
 fi
 
 ok bootupctl

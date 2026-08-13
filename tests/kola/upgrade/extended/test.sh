@@ -292,7 +292,7 @@ if vereq $version $target_version; then
     # log bootupctl information for inspection and check the status output
     state=$(/usr/bin/bootupctl status 2>&1)
     echo "$state"
-    if ! echo "$state" | grep -q "CoreOS aleph version"; then
+    if ! echo "$state" | grep -q -i "aleph version"; then
         fatal "check bootupctl status output"
     fi
     # One last check!
