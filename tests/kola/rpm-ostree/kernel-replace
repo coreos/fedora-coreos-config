@@ -70,6 +70,7 @@ build_derived_image() {
     contextdir=$(mktemp -d)
     pushd ${contextdir}
 
+	running_kver=$(rpm -q kernel --qf '%{EVR}')
     case "$OS_ID" in
       rhcos|scos|rhel|centos)
         # Use the matching CentOS Stream version based on RHEL/SCOS major version
@@ -84,7 +85,7 @@ build_derived_image() {
         # here we need to instead pick whatever the latest that's *not* the same
         dnf_opts="--repofrompath=tmp,${cs_mirror} --disablerepo=* --enablerepo tmp"
         kver=$(dnf repoquery $dnf_opts kernel --qf '%{EVR}' | \
-                  grep -v "$(rpm -q kernel --qf '%{EVR}')" | tail -n1)
+                  grep -v "${running_kver}" | tail -n1)
         dnf download $dnf_opts --resolve kernel-{,core-,modules-,modules-core-,modules-extra-}$kver
         ;;
       fedora)
@@ -94,8 +95,12 @@ build_derived_image() {
         # with the skip_system_repo_lock=true setting in dnf configuration file.
         printf "[main]\nskip_system_repo_lock=true" > dnf_config
         dnf download --config=dnf_config --releasever "${previous_version_id}" \
-          --resolve --disablerepo=* --enablerepo=updates --enablerepo=fedora kernel
+          --resolve --disablerepo=* --enablerepo=updates --enablerepo=fedora kernel-core kernel
         kver=$(rpm -qp --qf '%{EVR}' ./kernel-core*rpm)
+		if [[ "${kver}" ==  "${running_kver}" && "$(get_fcos_stream)" == "rawhide" ]]; then
+			ok "Skipping: no kernel other than the running one (${running_kver}) found"
+			exit 0
+		fi
         ;;
       *)
         echo "Unknown OS_ID: ${OS_ID}"
