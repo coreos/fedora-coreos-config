@@ -37,19 +37,19 @@
       "evra": "1.33-6.fc45.ppc64le"
     },
     "amd-gpu-firmware": {
-      "evra": "20260622-1.fc45.noarch"
+      "evra": "20260810-1.fc45.noarch"
     },
     "attr": {
       "evra": "2.6.0-2.fc45.ppc64le"
     },
     "audit": {
-      "evra": "4.2.1-1.fc45.ppc64le"
+      "evra": "4.2.1-2.fc45.ppc64le"
     },
     "audit-libs": {
-      "evra": "4.2.1-1.fc45.ppc64le"
+      "evra": "4.2.1-2.fc45.ppc64le"
     },
     "audit-rules": {
-      "evra": "4.2.1-1.fc45.ppc64le"
+      "evra": "4.2.1-2.fc45.ppc64le"
     },
     "authselect": {
       "evra": "1.7.1-2.fc45.ppc64le"
@@ -106,7 +106,7 @@
       "evra": "0.2.1-6.fc45.ppc64le"
     },
     "chrony": {
-      "evra": "4.8-7.fc45.ppc64le"
+      "evra": "4.9-0.1.pre1.fc46.ppc64le"
     },
     "cifs-utils": {
       "evra": "7.6-3.fc45.ppc64le"
@@ -121,7 +121,7 @@
       "evra": "22-3.fc45.ppc64le"
     },
     "clevis-pin-tpm2": {
-      "evra": "0.5.4-1.fc45.ppc64le"
+      "evra": "0.5.5-1.fc45.ppc64le"
     },
     "clevis-systemd": {
       "evra": "22-3.fc45.ppc64le"
@@ -187,7 +187,7 @@
       "evra": "4.2.1-2.fc45.ppc64le"
     },
     "crun": {
-      "evra": "1.28-2.fc45.ppc64le"
+      "evra": "1.29.1-1.fc46.ppc64le"
     },
     "crypto-policies": {
       "evra": "20260713-2.gitc42da77.fc45.noarch"
@@ -199,7 +199,7 @@
       "evra": "2.8.7-1.fc45.ppc64le"
     },
     "curl": {
-      "evra": "8.21.0-4.fc45.ppc64le"
+      "evra": "8.21.0-5.fc45.ppc64le"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-37.fc45.ppc64le"
@@ -220,16 +220,16 @@
       "evra": "1:1.16.2-6.fc45.ppc64le"
     },
     "device-mapper": {
-      "evra": "1.02.215-3.fc45.ppc64le"
+      "evra": "1.02.216-1.fc45.ppc64le"
     },
     "device-mapper-event": {
-      "evra": "1.02.215-3.fc45.ppc64le"
+      "evra": "1.02.216-1.fc45.ppc64le"
     },
     "device-mapper-event-libs": {
-      "evra": "1.02.215-3.fc45.ppc64le"
+      "evra": "1.02.216-1.fc45.ppc64le"
     },
     "device-mapper-libs": {
-      "evra": "1.02.215-3.fc45.ppc64le"
+      "evra": "1.02.216-1.fc45.ppc64le"
     },
     "device-mapper-multipath": {
       "evra": "0.14.3-2.fc45.ppc64le"
@@ -250,7 +250,7 @@
       "evra": "2.93-2.fc45.ppc64le"
     },
     "docker-cli": {
-      "evra": "29.7.1-1.fc45.ppc64le"
+      "evra": "29.7.2-1.fc45.ppc64le"
     },
     "dosfstools": {
       "evra": "4.2-19.fc45.ppc64le"
@@ -286,25 +286,25 @@
       "evra": "2.8.1-2.fc45.ppc64le"
     },
     "fedora-gpg-keys": {
-      "evra": "45-0.1.noarch"
+      "evra": "46-0.1.noarch"
     },
     "fedora-release-common": {
-      "evra": "45-0.8.noarch"
+      "evra": "46-0.1.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "45-0.8.noarch"
+      "evra": "46-0.1.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "45-0.8.noarch"
+      "evra": "46-0.1.noarch"
     },
     "fedora-repos": {
-      "evra": "45-0.1.noarch"
+      "evra": "46-0.1.noarch"
     },
     "fedora-repos-archive": {
-      "evra": "45-0.1.noarch"
+      "evra": "46-0.1.noarch"
     },
     "fedora-repos-rawhide": {
-      "evra": "45-0.1.noarch"
+      "evra": "46-0.1.noarch"
     },
     "file": {
       "evra": "5.47-3.fc45.ppc64le"
@@ -322,7 +322,7 @@
       "evra": "1.5.2-3.fc45.ppc64le"
     },
     "flatpak-session-helper": {
-      "evra": "1.18.0-2.fc45.ppc64le"
+      "evra": "1.19.0-1.fc46.ppc64le"
     },
     "fmt": {
       "evra": "12.1.0-3.fc45.ppc64le"
@@ -346,7 +346,7 @@
       "evra": "3.18.2-2.fc45.ppc64le"
     },
     "fwupd": {
-      "evra": "2.1.3-1.fc45.ppc64le"
+      "evra": "2.1.7-1.fc45.ppc64le"
     },
     "gawk": {
       "evra": "5.4.1-1.fc45.ppc64le"
@@ -394,22 +394,22 @@
       "evra": "20241231-4.fc45.noarch"
     },
     "gnupg2": {
-      "evra": "2.4.9-17.fc45.ppc64le"
+      "evra": "2.4.9-18.fc45.ppc64le"
     },
     "gnupg2-dirmngr": {
-      "evra": "2.4.9-17.fc45.ppc64le"
+      "evra": "2.4.9-18.fc45.ppc64le"
     },
     "gnupg2-gpg-agent": {
-      "evra": "2.4.9-17.fc45.ppc64le"
+      "evra": "2.4.9-18.fc45.ppc64le"
     },
     "gnupg2-gpgconf": {
-      "evra": "2.4.9-17.fc45.ppc64le"
+      "evra": "2.4.9-18.fc45.ppc64le"
     },
     "gnupg2-keyboxd": {
-      "evra": "2.4.9-17.fc45.ppc64le"
+      "evra": "2.4.9-18.fc45.ppc64le"
     },
     "gnupg2-verify": {
-      "evra": "2.4.9-17.fc45.ppc64le"
+      "evra": "2.4.9-18.fc45.ppc64le"
     },
     "gnutls": {
       "evra": "3.8.13-3.fc45.ppc64le"
@@ -421,19 +421,19 @@
       "evra": "3.12-4.fc45.ppc64le"
     },
     "grub2-common": {
-      "evra": "1:2.12-73.fc45.noarch"
+      "evra": "1:2.12-74.fc45.noarch"
     },
     "grub2-ppc64le": {
-      "evra": "1:2.12-73.fc45.ppc64le"
+      "evra": "1:2.12-74.fc45.ppc64le"
     },
     "grub2-ppc64le-modules": {
-      "evra": "1:2.12-73.fc45.noarch"
+      "evra": "1:2.12-74.fc45.noarch"
     },
     "grub2-tools": {
-      "evra": "1:2.12-73.fc45.ppc64le"
+      "evra": "1:2.12-74.fc45.ppc64le"
     },
     "grub2-tools-minimal": {
-      "evra": "1:2.12-73.fc45.ppc64le"
+      "evra": "1:2.12-74.fc45.ppc64le"
     },
     "gssproxy": {
       "evra": "0.9.2-12.fc45.ppc64le"
@@ -457,7 +457,7 @@
       "evra": "62-3.fc45.ppc64le"
     },
     "intel-gpu-firmware": {
-      "evra": "20260622-1.fc45.noarch"
+      "evra": "20260810-1.fc45.noarch"
     },
     "ipcalc": {
       "evra": "1.0.3-14.fc45.ppc64le"
@@ -523,16 +523,16 @@
       "evra": "1.0.61-2.fc45.ppc64le"
     },
     "kernel": {
-      "evra": "7.2.0-0.rc6.260805gc21bb4193868.50.fc45.ppc64le"
+      "evra": "7.2.0-0.rc6.260807gf9a2394a2348.52.fc45.ppc64le"
     },
     "kernel-core": {
-      "evra": "7.2.0-0.rc6.260805gc21bb4193868.50.fc45.ppc64le"
+      "evra": "7.2.0-0.rc6.260807gf9a2394a2348.52.fc45.ppc64le"
     },
     "kernel-modules": {
-      "evra": "7.2.0-0.rc6.260805gc21bb4193868.50.fc45.ppc64le"
+      "evra": "7.2.0-0.rc6.260807gf9a2394a2348.52.fc45.ppc64le"
     },
     "kernel-modules-core": {
-      "evra": "7.2.0-0.rc6.260805gc21bb4193868.50.fc45.ppc64le"
+      "evra": "7.2.0-0.rc6.260807gf9a2394a2348.52.fc45.ppc64le"
     },
     "kexec-tools": {
       "evra": "2.0.32-4.fc45.ppc64le"
@@ -598,7 +598,7 @@
       "evra": "1.47.4-2.fc45.ppc64le"
     },
     "libcurl": {
-      "evra": "8.21.0-4.fc45.ppc64le"
+      "evra": "8.21.0-5.fc45.ppc64le"
     },
     "libdaemon": {
       "evra": "0.14-34.fc45.ppc64le"
@@ -646,7 +646,7 @@
       "evra": "1.61-2.fc45.ppc64le"
     },
     "libibverbs": {
-      "evra": "64.0-2.fc45.ppc64le"
+      "evra": "64.0-3.fc45.ppc64le"
     },
     "libicu": {
       "evra": "78.3-8.fc45.ppc64le"
@@ -659,9 +659,6 @@
     },
     "libipa_hbac": {
       "evra": "2.13.1-5.fc45.ppc64le"
-    },
-    "libjcat": {
-      "evra": "0.2.6-1.fc45.ppc64le"
     },
     "libjose": {
       "evra": "14-8.fc45.ppc64le"
@@ -721,7 +718,7 @@
       "evra": "1.3.1-3.fc45.ppc64le"
     },
     "libnghttp2": {
-      "evra": "1.69.0-4.fc45.ppc64le"
+      "evra": "1.69.0-5.fc45.ppc64le"
     },
     "libnghttp3": {
       "evra": "1.18.0-1.fc45.ppc64le"
@@ -766,10 +763,10 @@
       "evra": "2.6.1-3.fc45.ppc64le"
     },
     "libselinux": {
-      "evra": "3.11-3.fc45.ppc64le"
+      "evra": "3.11-4.fc45.ppc64le"
     },
     "libselinux-utils": {
-      "evra": "3.11-3.fc45.ppc64le"
+      "evra": "3.11-4.fc45.ppc64le"
     },
     "libsemanage": {
       "evra": "3.11-3.fc45.ppc64le"
@@ -880,10 +877,10 @@
       "evra": "1.5.7-6.fc45.ppc64le"
     },
     "linux-firmware": {
-      "evra": "20260622-1.fc45.noarch"
+      "evra": "20260810-1.fc45.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20260622-1.fc45.noarch"
+      "evra": "20260810-1.fc45.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.34-3.fc45.ppc64le"
@@ -895,16 +892,16 @@
       "evra": "4.99.6-2.fc45.ppc64le"
     },
     "lua-libs": {
-      "evra": "5.5.0-3.fc45.ppc64le"
+      "evra": "5.5.1-1.fc45.ppc64le"
     },
     "luksmeta": {
       "evra": "10-3.fc45.ppc64le"
     },
     "lvm2": {
-      "evra": "2.03.41-3.fc45.ppc64le"
+      "evra": "2.03.42-1.fc45.ppc64le"
     },
     "lvm2-libs": {
-      "evra": "2.03.41-3.fc45.ppc64le"
+      "evra": "2.03.42-1.fc45.ppc64le"
     },
     "lz4-libs": {
       "evra": "1.10.0-5.fc45.ppc64le"
@@ -919,10 +916,10 @@
       "evra": "4.6-2.fc45.ppc64le"
     },
     "moby-engine": {
-      "evra": "29.7.1-1.fc45.ppc64le"
+      "evra": "29.7.2-1.fc45.ppc64le"
     },
     "moby-filesystem": {
-      "evra": "29.7.1-1.fc45.noarch"
+      "evra": "29.7.2-1.fc45.noarch"
     },
     "mpfr": {
       "evra": "4.2.2-4.fc45.ppc64le"
@@ -1003,7 +1000,7 @@
       "evra": "0.5-51.20251104git.fc45.ppc64le"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20260622-1.fc45.noarch"
+      "evra": "20260810-1.fc45.noarch"
     },
     "nvme-cli": {
       "evra": "2.16-4.fc45.ppc64le"
@@ -1015,13 +1012,13 @@
       "evra": "2.6.13-4.fc45.ppc64le"
     },
     "openssh": {
-      "evra": "10.4p1-3.fc45.ppc64le"
+      "evra": "10.4p1-4.fc45.ppc64le"
     },
     "openssh-clients": {
-      "evra": "10.4p1-3.fc45.ppc64le"
+      "evra": "10.4p1-4.fc45.ppc64le"
     },
     "openssh-server": {
-      "evra": "10.4p1-3.fc45.ppc64le"
+      "evra": "10.4p1-4.fc45.ppc64le"
     },
     "openssl": {
       "evra": "1:4.0.1-5.fc45.ppc64le"
@@ -1045,10 +1042,10 @@
       "evra": "2026.2-3.fc45.ppc64le"
     },
     "p11-kit": {
-      "evra": "0.26.4-2.fc45.ppc64le"
+      "evra": "0.26.5-1.fc45.ppc64le"
     },
     "p11-kit-trust": {
-      "evra": "0.26.4-2.fc45.ppc64le"
+      "evra": "0.26.5-1.fc45.ppc64le"
     },
     "pam": {
       "evra": "1.7.2-4.fc45.ppc64le"
@@ -1126,16 +1123,16 @@
       "evra": "20260624-2.fc45.noarch"
     },
     "qed-firmware": {
-      "evra": "20260622-1.fc45.noarch"
+      "evra": "20260810-1.fc45.noarch"
     },
     "qemu-user-static-x86": {
-      "evra": "2:11.1.0-0.1.rc2.fc45.ppc64le"
+      "evra": "2:11.1.0-0.2.rc3.fc45.ppc64le"
     },
     "rdma-core-common": {
-      "evra": "64.0-2.fc45.noarch"
+      "evra": "64.0-3.fc45.noarch"
     },
     "readline": {
-      "evra": "8.3-5.fc45.ppc64le"
+      "evra": "8.3-6.fc45.ppc64le"
     },
     "redhat-systemd-presets": {
       "evra": "102-3.fc45.noarch"
@@ -1315,7 +1312,7 @@
       "evra": "4.2.0-1.fc45.ppc64le"
     },
     "tzdata": {
-      "evra": "2026b-2.fc45.noarch"
+      "evra": "2026c-1.fc45.noarch"
     },
     "userspace-rcu": {
       "evra": "0.15.6-2.fc45.ppc64le"
@@ -1327,10 +1324,10 @@
       "evra": "2.42.2-3.fc45.ppc64le"
     },
     "vim-data": {
-      "evra": "2:9.2.843-1.fc45.noarch"
+      "evra": "2:9.2.920-1.fc45.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.2.843-1.fc45.ppc64le"
+      "evra": "2:9.2.920-1.fc45.ppc64le"
     },
     "which": {
       "evra": "2.25-2.fc45.ppc64le"
@@ -1370,6 +1367,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-08-06T00:00:00Z"
+    "generated": "2026-08-14T00:00:00Z"
   }
 }
