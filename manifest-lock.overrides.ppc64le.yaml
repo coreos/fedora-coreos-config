@@ -1,0 +1,21 @@
+packages:
+  kernel:
+    evra: 7.3.0-0.rc0.260818g0f23d56f17fd.3.fc46.ppc64le
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2212
+  kernel-core:
+    evra: 7.3.0-0.rc0.260818g0f23d56f17fd.3.fc46.ppc64le
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2212
+  kernel-modules:
+    evra: 7.3.0-0.rc0.260818g0f23d56f17fd.3.fc46.ppc64le
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2212
+  kernel-modules-core:
+    evra: 7.3.0-0.rc0.260818g0f23d56f17fd.3.fc46.ppc64le
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2212
