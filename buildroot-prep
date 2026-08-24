@@ -7,10 +7,16 @@ set -euo pipefail
 # Note that any dowloaded packages here needs to be included in lockfiles (the main
 # or overrides one).
 
-arch=$(uname -m)
-. /etc/os-release
-
-# make sure we have https://github.com/coreos/rpm-ostree/pull/5454
-if ! rpm-ostree compose build-chunked-oci -h | grep -q -- --label; then
-    sudo dnf update rpm-ostree -y
+# Get the newer fedora-repos with gpgkeys in /usr/
+# https://github.com/coreos/fedora-coreos-tracker/issues/2172
+if [ "$(rpm -q fedora-repos)" == 'fedora-repos-44-1.noarch' ]; then
+    # cachi2 is the repo Konflux injects when hermetic build is enabled
+    # and if it's there we can just update from it.
+    if [ -f "/etc/yum.repos.d/cachi2.repo" ]; then
+        sudo dnf update -y fedora-{repos,repos-archive,gpg-keys}
+    else
+        # else we need to pull from koji for now
+        sudo dnf update -y --disablerepo=* \
+            https://kojipkgs.fedoraproject.org//packages/fedora-repos/44/2/noarch/fedora-{repos,repos-archive,gpg-keys}-44-2.noarch.rpm
+    fi
 fi
