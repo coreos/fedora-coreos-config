@@ -8,5 +8,22 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
-
+packages:
+  fedora-gpg-keys:
+    evra: 44-2.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-fce4201fed
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2172#issuecomment-5395194209
+      type: fast-track
+  fedora-repos:
+    evra: 44-2.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-fce4201fed
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2172#issuecomment-5395194209
+      type: fast-track
+  fedora-repos-archive:
+    evra: 44-2.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-fce4201fed
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2172#issuecomment-5395194209
+      type: fast-track
