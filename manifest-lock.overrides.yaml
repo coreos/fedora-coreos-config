@@ -12,23 +12,35 @@ packages:
   console-login-helper-messages:
     evra: 0.21.3-13.fc44.noarch
     metadata:
-      type: pin
       reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
+      type: pin
   console-login-helper-messages-issuegen:
     evra: 0.21.3-13.fc44.noarch
     metadata:
-      type: pin
       reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
+      type: pin
   console-login-helper-messages-motdgen:
     evra: 0.21.3-13.fc44.noarch
     metadata:
-      type: pin
       reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
+      type: pin
   console-login-helper-messages-profile:
     evra: 0.21.3-13.fc44.noarch
     metadata:
-      type: pin
       reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
+      type: pin
+  coreos-installer:
+    evr: 0.26.0-5.fc46
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-ab3f874092
+      reason: https://github.com/coreos/coreos-installer/pull/1763
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.26.0-5.fc46
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-ab3f874092
+      reason: https://github.com/coreos/coreos-installer/pull/1763
+      type: fast-track
   dracut:
     evr: 109-7.fc45
     metadata:
