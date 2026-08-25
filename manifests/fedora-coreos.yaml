@@ -35,19 +35,6 @@ conditional-include:
     include:
       ostree-layers:
         - overlay.d/10aarch64
-  # Temporary workaround. RPM repo configuration has moved from /etc/yum.repos.d
-  # to /usr/share/dnf5/repos.d, leading to rpm-ostree to no longer work. Until
-  # we are ready to support the new path, we can copy the config over.
-  #
-  # See: https://github.com/coreos/fedora-coreos-tracker/issues/2172
-  - if: releasever >= 45
-    include:
-      postprocess:
-        - |
-          #!/usr/bin/bash
-          set -eux -o pipefail
-          cp /usr/share/dnf5/repos.d/* /etc/yum.repos.d/
-          cp /usr/share/pki/rpm-gpg/* /etc/pki/rpm-gpg/
   # Temporary workaround. containers-common moved policy.json from
   # /etc/containers to /usr/share/containers. The rpm-ostreed bind mount
   # could use CONTAINERS_POLICY_JSON env var instead, but bootc has a
