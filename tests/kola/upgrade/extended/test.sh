@@ -290,10 +290,10 @@ ok "Reached version: $version"
 if vereq $version $target_version; then
     ok "Fully upgraded to $target_version"
     # log bootupctl information for inspection and check the status output
-    state=$(/usr/bin/bootupctl status 2>&1)
-    echo "$state"
-    if ! echo "$state" | grep -q "CoreOS aleph version"; then
-        fatal "check bootupctl status output"
+    state=$(/usr/bin/bootupctl status --json 2>&1)
+    echo "$state" | jq
+    if ! echo "$state" | jq -e '."aleph-version"' > /dev/null; then
+        fatal "check bootupctl status --json output - should include 'aleph-version'"
     fi
     # One last check!
     selinux-sanity-check

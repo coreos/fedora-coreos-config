@@ -61,7 +61,11 @@ case "$current_arch" in
         # ppc64le-specific checks
         if [ "$current_arch" = "ppc64le" ]; then
             # ppc64le has it if built by osbuild, otherwise not
-            if [ -e /sysroot/.aleph-version.json ]; then
+            # https://github.com/coreos/fedora-coreos-tracker/issues/2187
+            # We now also look for the aleph created by bootc as it
+            # replaced the one created by osbuild since moving to
+            # `bootc install` to create disk images.
+            if [ -e /sysroot/.aleph-version.json ] || [ -e /sysroot/.bootc-aleph.json ]; then
                 check_state_file=1
             fi
             # ppc64le (and x86_64) uses bios firmware, should check grub2-tools
@@ -78,8 +82,8 @@ fi
 
 # Verify `bootupctl status` output contains related content.
 # https://github.com/coreos/bootupd/issues/694
-if ! bootupctl status | grep "CoreOS aleph version"; then
-    fatal "bootupctl status output should include 'CoreOS aleph version'"
+if ! bootupctl status --json | jq -e '."aleph-version"' > /dev/null; then
+    fatal "bootupctl status --json output should include 'aleph-version'"
 fi
 
 ok bootupctl

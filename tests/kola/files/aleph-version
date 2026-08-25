@@ -1,14 +1,28 @@
 #!/bin/bash
 ## kola:
 ##   exclusive: false
-##   description: Verify /sysroot/.coreos-aleph-version.json exists.
+##   description: Verify /sysroot/.coreos-aleph-version.json or
+##     /sysroot/.bootc-aleph.json exists.
 
 # Defined in https://github.com/coreos/fedora-coreos-tracker/blob/master/internals/README-internals.md#aleph-version
+#
+# https://github.com/coreos/fedora-coreos-tracker/issues/2187
+# We now also look for the aleph created by bootc as it replaced
+# the one created by osbuild since moving to `bootc install` to
+# create disk images.
 
 set -xeuo pipefail
 
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-jq . < /sysroot/.coreos-aleph-version.json >/dev/null
+aleph_file=""
+if [ -f /sysroot/.bootc-aleph.json ]; then
+    aleph_file=/sysroot/.bootc-aleph.json
+elif [ -f /sysroot/.coreos-aleph-version.json ]; then
+    aleph_file=/sysroot/.coreos-aleph-version.json
+else
+    fatal "Neither /sysroot/.coreos-aleph-version.json nor /sysroot/.bootc-aleph.json exists"
+fi
+jq . < "${aleph_file}" >/dev/null
 ok aleph
