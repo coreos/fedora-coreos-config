@@ -591,6 +591,9 @@
     "libassuan": {
       "evra": "2.5.7-5.fc44.x86_64"
     },
+    "libatasmart": {
+      "evra": "0.19-32.fc44.x86_64"
+    },
     "libattr": {
       "evra": "2.6.0-1.fc44.x86_64"
     },
@@ -600,11 +603,44 @@
     "libblkid": {
       "evra": "2.41.5-1.fc44.x86_64"
     },
+    "libblockdev": {
+      "evra": "3.5.0-1.fc44.x86_64"
+    },
+    "libblockdev-crypto": {
+      "evra": "3.5.0-1.fc44.x86_64"
+    },
+    "libblockdev-fs": {
+      "evra": "3.5.0-1.fc44.x86_64"
+    },
+    "libblockdev-loop": {
+      "evra": "3.5.0-1.fc44.x86_64"
+    },
+    "libblockdev-mdraid": {
+      "evra": "3.5.0-1.fc44.x86_64"
+    },
+    "libblockdev-nvme": {
+      "evra": "3.5.0-1.fc44.x86_64"
+    },
+    "libblockdev-part": {
+      "evra": "3.5.0-1.fc44.x86_64"
+    },
+    "libblockdev-smart": {
+      "evra": "3.5.0-1.fc44.x86_64"
+    },
+    "libblockdev-swap": {
+      "evra": "3.5.0-1.fc44.x86_64"
+    },
+    "libblockdev-utils": {
+      "evra": "3.5.0-1.fc44.x86_64"
+    },
     "libbpf": {
       "evra": "2:1.6.3-2.fc44.x86_64"
     },
     "libbsd": {
       "evra": "0.12.2-7.fc44.x86_64"
+    },
+    "libbytesize": {
+      "evra": "2.12-2.fc44.x86_64"
     },
     "libcap": {
       "evra": "2.78-1.fc44.x86_64"
@@ -668,6 +704,9 @@
     },
     "libgpg-error": {
       "evra": "1.58-2.fc44.x86_64"
+    },
+    "libgudev": {
+      "evra": "238-9.fc44.x86_64"
     },
     "libibverbs": {
       "evra": "61.0-2.fc44.x86_64"
@@ -852,6 +891,9 @@
     "libtool-ltdl": {
       "evra": "2.5.4-10.fc44.x86_64"
     },
+    "libudisks2": {
+      "evra": "2.11.2-1.fc44.x86_64"
+    },
     "libunistring": {
       "evra": "1.1-11.fc44.x86_64"
     },
@@ -1005,8 +1047,26 @@
     "npth": {
       "evra": "1.8-4.fc44.x86_64"
     },
+    "nspr": {
+      "evra": "4.39.0-3.fc44.x86_64"
+    },
+    "nss": {
+      "evra": "3.126.0-1.fc44.x86_64"
+    },
     "nss-altfiles": {
       "evra": "2.23.0-9.fc44.x86_64"
+    },
+    "nss-softokn": {
+      "evra": "3.126.0-1.fc44.x86_64"
+    },
+    "nss-softokn-freebl": {
+      "evra": "3.126.0-1.fc44.x86_64"
+    },
+    "nss-sysinit": {
+      "evra": "3.126.0-1.fc44.x86_64"
+    },
+    "nss-util": {
+      "evra": "3.126.0-1.fc44.x86_64"
     },
     "numactl": {
       "evra": "2.0.19-4.fc44.x86_64"
@@ -1314,6 +1374,9 @@
     "tzdata": {
       "evra": "2026c-1.fc44.noarch"
     },
+    "udisks2": {
+      "evra": "2.11.2-1.fc44.x86_64"
+    },
     "userspace-rcu": {
       "evra": "0.15.6-1.fc44.x86_64"
     },
@@ -1328,6 +1391,9 @@
     },
     "vim-minimal": {
       "evra": "2:9.2.967-1.fc44.x86_64"
+    },
+    "volume_key-libs": {
+      "evra": "0.3.12-29.fc44.x86_64"
     },
     "wasmedge-rt": {
       "evra": "0.17.1-1.fc44.x86_64"
