@@ -27,3 +27,13 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-fce4201fed
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2172#issuecomment-5395194209
       type: fast-track
+  ignition:
+    evr: 2.27.0-1.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-199ec5afb1
+      type: fast-track
+  ignition-grub:
+    evr: 2.27.0-1.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-199ec5afb1
+      type: fast-track
