@@ -129,6 +129,8 @@ packages:
   - bash-color-prompt
   # obsoletes nfs-utils-coreos
   - nfs-client-utils
+  # Required by fwupd to mount ESPs
+  - udisks2
 
 # Architecture specific packages:
 # - irqbalance
