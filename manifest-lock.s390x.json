@@ -418,10 +418,10 @@
       "evra": "0.410-1.fc44.noarch"
     },
     "ignition": {
-      "evra": "2.26.0-4.fc44.s390x"
+      "evra": "2.27.0-1.fc44.s390x"
     },
     "ignition-grub": {
-      "evra": "2.26.0-4.fc44.s390x"
+      "evra": "2.27.0-1.fc44.s390x"
     },
     "inih": {
       "evra": "62-2.fc44.s390x"
@@ -537,6 +537,9 @@
     "libassuan": {
       "evra": "2.5.7-5.fc44.s390x"
     },
+    "libatasmart": {
+      "evra": "0.19-32.fc44.s390x"
+    },
     "libattr": {
       "evra": "2.6.0-1.fc44.s390x"
     },
@@ -546,11 +549,44 @@
     "libblkid": {
       "evra": "2.41.5-1.fc44.s390x"
     },
+    "libblockdev": {
+      "evra": "3.5.0-1.fc44.s390x"
+    },
+    "libblockdev-crypto": {
+      "evra": "3.5.0-1.fc44.s390x"
+    },
+    "libblockdev-fs": {
+      "evra": "3.5.0-1.fc44.s390x"
+    },
+    "libblockdev-loop": {
+      "evra": "3.5.0-1.fc44.s390x"
+    },
+    "libblockdev-mdraid": {
+      "evra": "3.5.0-1.fc44.s390x"
+    },
+    "libblockdev-nvme": {
+      "evra": "3.5.0-1.fc44.s390x"
+    },
+    "libblockdev-part": {
+      "evra": "3.5.0-1.fc44.s390x"
+    },
+    "libblockdev-smart": {
+      "evra": "3.5.0-1.fc44.s390x"
+    },
+    "libblockdev-swap": {
+      "evra": "3.5.0-1.fc44.s390x"
+    },
+    "libblockdev-utils": {
+      "evra": "3.5.0-1.fc44.s390x"
+    },
     "libbpf": {
       "evra": "2:1.6.3-2.fc44.s390x"
     },
     "libbsd": {
       "evra": "0.12.2-7.fc44.s390x"
+    },
+    "libbytesize": {
+      "evra": "2.12-2.fc44.s390x"
     },
     "libcap": {
       "evra": "2.78-1.fc44.s390x"
@@ -614,6 +650,9 @@
     },
     "libgpg-error": {
       "evra": "1.58-2.fc44.s390x"
+    },
+    "libgudev": {
+      "evra": "238-9.fc44.s390x"
     },
     "libibverbs": {
       "evra": "61.0-2.fc44.s390x"
@@ -795,6 +834,9 @@
     "libtool-ltdl": {
       "evra": "2.5.4-10.fc44.s390x"
     },
+    "libudisks2": {
+      "evra": "2.11.2-1.fc44.s390x"
+    },
     "libunistring": {
       "evra": "1.1-11.fc44.s390x"
     },
@@ -936,8 +978,26 @@
     "npth": {
       "evra": "1.8-4.fc44.s390x"
     },
+    "nspr": {
+      "evra": "4.39.0-3.fc44.s390x"
+    },
+    "nss": {
+      "evra": "3.126.0-1.fc44.s390x"
+    },
     "nss-altfiles": {
       "evra": "2.23.0-9.fc44.s390x"
+    },
+    "nss-softokn": {
+      "evra": "3.126.0-1.fc44.s390x"
+    },
+    "nss-softokn-freebl": {
+      "evra": "3.126.0-1.fc44.s390x"
+    },
+    "nss-sysinit": {
+      "evra": "3.126.0-1.fc44.s390x"
+    },
+    "nss-util": {
+      "evra": "3.126.0-1.fc44.s390x"
     },
     "nvidia-gpu-firmware": {
       "evra": "20260810-1.fc44.noarch"
@@ -1233,6 +1293,9 @@
     "tzdata": {
       "evra": "2026c-1.fc44.noarch"
     },
+    "udisks2": {
+      "evra": "2.11.2-1.fc44.s390x"
+    },
     "userspace-rcu": {
       "evra": "0.15.6-1.fc44.s390x"
     },
@@ -1250,6 +1313,9 @@
     },
     "vim-minimal": {
       "evra": "2:9.2.967-1.fc44.s390x"
+    },
+    "volume_key-libs": {
+      "evra": "0.3.12-29.fc44.s390x"
     },
     "which": {
       "evra": "2.25-1.fc44.s390x"
@@ -1286,6 +1352,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-08-27T00:00:00Z"
+    "generated": "2026-08-28T00:00:00Z"
   }
 }
