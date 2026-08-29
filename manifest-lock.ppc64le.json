@@ -445,10 +445,10 @@
       "evra": "0.410-1.fc45.noarch"
     },
     "ignition": {
-      "evra": "2.26.0-5.fc45.ppc64le"
+      "evra": "2.27.0-1.fc45.ppc64le"
     },
     "ignition-grub": {
-      "evra": "2.26.0-5.fc45.ppc64le"
+      "evra": "2.27.0-1.fc45.ppc64le"
     },
     "inih": {
       "evra": "62-3.fc45.ppc64le"
@@ -567,11 +567,44 @@
     "libassuan": {
       "evra": "2.5.7-6.fc45.ppc64le"
     },
+    "libatasmart": {
+      "evra": "0.19-33.fc45.ppc64le"
+    },
     "libattr": {
       "evra": "2.6.0-2.fc45.ppc64le"
     },
     "libblkid": {
       "evra": "2.42.2-3.fc45.ppc64le"
+    },
+    "libblockdev": {
+      "evra": "3.5.0-4.fc45.ppc64le"
+    },
+    "libblockdev-crypto": {
+      "evra": "3.5.0-4.fc45.ppc64le"
+    },
+    "libblockdev-fs": {
+      "evra": "3.5.0-4.fc45.ppc64le"
+    },
+    "libblockdev-loop": {
+      "evra": "3.5.0-4.fc45.ppc64le"
+    },
+    "libblockdev-mdraid": {
+      "evra": "3.5.0-4.fc45.ppc64le"
+    },
+    "libblockdev-nvme": {
+      "evra": "3.5.0-4.fc45.ppc64le"
+    },
+    "libblockdev-part": {
+      "evra": "3.5.0-4.fc45.ppc64le"
+    },
+    "libblockdev-smart": {
+      "evra": "3.5.0-4.fc45.ppc64le"
+    },
+    "libblockdev-swap": {
+      "evra": "3.5.0-4.fc45.ppc64le"
+    },
+    "libblockdev-utils": {
+      "evra": "3.5.0-4.fc45.ppc64le"
     },
     "libbpf": {
       "evra": "2:1.7.0-2.fc45.ppc64le"
@@ -581,6 +614,9 @@
     },
     "libbsd": {
       "evra": "0.12.2-8.fc45.ppc64le"
+    },
+    "libbytesize": {
+      "evra": "2.12-5.fc45.ppc64le"
     },
     "libcap": {
       "evra": "2.78-2.fc45.ppc64le"
@@ -641,6 +677,9 @@
     },
     "libgpg-error": {
       "evra": "1.61-2.fc45.ppc64le"
+    },
+    "libgudev": {
+      "evra": "238-10.fc45.ppc64le"
     },
     "libibverbs": {
       "evra": "64.0-3.fc45.ppc64le"
@@ -834,6 +873,9 @@
     "libtool-ltdl": {
       "evra": "2.5.4-11.fc45.ppc64le"
     },
+    "libudisks2": {
+      "evra": "2.11.2-1.fc45.ppc64le"
+    },
     "libunistring": {
       "evra": "1.1-12.fc45.ppc64le"
     },
@@ -984,8 +1026,26 @@
     "npth": {
       "evra": "1.8-5.fc45.ppc64le"
     },
+    "nspr": {
+      "evra": "4.39.0-5.fc45.ppc64le"
+    },
+    "nss": {
+      "evra": "3.126.0-1.fc45.ppc64le"
+    },
     "nss-altfiles": {
       "evra": "2.23.0-10.fc45.ppc64le"
+    },
+    "nss-softokn": {
+      "evra": "3.126.0-1.fc45.ppc64le"
+    },
+    "nss-softokn-freebl": {
+      "evra": "3.126.0-1.fc45.ppc64le"
+    },
+    "nss-sysinit": {
+      "evra": "3.126.0-1.fc45.ppc64le"
+    },
+    "nss-util": {
+      "evra": "3.126.0-1.fc45.ppc64le"
     },
     "numactl": {
       "evra": "2.0.19-5.fc45.ppc64le"
@@ -1311,6 +1371,9 @@
     "tzdata": {
       "evra": "2026c-1.fc45.noarch"
     },
+    "udisks2": {
+      "evra": "2.11.2-1.fc45.ppc64le"
+    },
     "userspace-rcu": {
       "evra": "0.15.6-2.fc45.ppc64le"
     },
@@ -1325,6 +1388,9 @@
     },
     "vim-minimal": {
       "evra": "2:9.2.967-1.fc45.ppc64le"
+    },
+    "volume_key-libs": {
+      "evra": "0.3.12-33.fc45.ppc64le"
     },
     "which": {
       "evra": "2.25-2.fc45.ppc64le"
@@ -1364,6 +1430,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-08-26T00:00:00Z"
+    "generated": "2026-08-29T00:00:00Z"
   }
 }
