@@ -94,7 +94,7 @@
       "evra": "7.1-1.fc46.x86_64"
     },
     "bubblewrap": {
-      "evra": "0.11.2-2.fc45.x86_64"
+      "evra": "0.12.0-1.fc46.x86_64"
     },
     "bzip2": {
       "evra": "1.0.8-24.fc45.x86_64"
@@ -112,10 +112,10 @@
       "evra": "0.2.1-6.fc45.x86_64"
     },
     "chrony": {
-      "evra": "4.9-0.2.pre1.fc46.x86_64"
+      "evra": "4.9-1.fc46.x86_64"
     },
     "cifs-utils": {
-      "evra": "7.6-3.fc45.x86_64"
+      "evra": "7.7-1.fc46.x86_64"
     },
     "clevis": {
       "evra": "22-3.fc45.x86_64"
@@ -208,7 +208,7 @@
       "evra": "2.8.7-1.fc45.x86_64"
     },
     "curl": {
-      "evra": "8.22.0~rc2-1.fc46.x86_64"
+      "evra": "8.22.0~rc3-1.fc46.x86_64"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-37.fc45.x86_64"
@@ -394,16 +394,16 @@
       "evra": "2.89.4-1.fc46.x86_64"
     },
     "glibc": {
-      "evra": "2.44-2.fc46.x86_64"
+      "evra": "2.44.9000-1.fc46.x86_64"
     },
     "glibc-common": {
-      "evra": "2.44-2.fc46.x86_64"
+      "evra": "2.44.9000-1.fc46.x86_64"
     },
     "glibc-gconv-extra": {
-      "evra": "2.44-2.fc46.x86_64"
+      "evra": "2.44.9000-1.fc46.x86_64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.44-2.fc46.x86_64"
+      "evra": "2.44.9000-1.fc46.x86_64"
     },
     "gmp": {
       "evra": "1:6.3.0-6.fc45.x86_64"
@@ -472,10 +472,10 @@
       "evra": "0.410-1.fc45.noarch"
     },
     "ignition": {
-      "evra": "2.26.0-5.fc45.x86_64"
+      "evra": "2.27.0-1.fc46.x86_64"
     },
     "ignition-grub": {
-      "evra": "2.26.0-5.fc45.x86_64"
+      "evra": "2.27.0-1.fc46.x86_64"
     },
     "inih": {
       "evra": "62-3.fc45.x86_64"
@@ -594,11 +594,44 @@
     "libassuan": {
       "evra": "2.5.7-6.fc45.x86_64"
     },
+    "libatasmart": {
+      "evra": "0.19-33.fc45.x86_64"
+    },
     "libattr": {
       "evra": "2.6.0-2.fc45.x86_64"
     },
     "libblkid": {
       "evra": "2.42.2-3.fc45.x86_64"
+    },
+    "libblockdev": {
+      "evra": "3.5.0-4.fc45.x86_64"
+    },
+    "libblockdev-crypto": {
+      "evra": "3.5.0-4.fc45.x86_64"
+    },
+    "libblockdev-fs": {
+      "evra": "3.5.0-4.fc45.x86_64"
+    },
+    "libblockdev-loop": {
+      "evra": "3.5.0-4.fc45.x86_64"
+    },
+    "libblockdev-mdraid": {
+      "evra": "3.5.0-4.fc45.x86_64"
+    },
+    "libblockdev-nvme": {
+      "evra": "3.5.0-4.fc45.x86_64"
+    },
+    "libblockdev-part": {
+      "evra": "3.5.0-4.fc45.x86_64"
+    },
+    "libblockdev-smart": {
+      "evra": "3.5.0-4.fc45.x86_64"
+    },
+    "libblockdev-swap": {
+      "evra": "3.5.0-4.fc45.x86_64"
+    },
+    "libblockdev-utils": {
+      "evra": "3.5.0-4.fc45.x86_64"
     },
     "libbpf": {
       "evra": "2:1.7.0-2.fc45.x86_64"
@@ -608,6 +641,9 @@
     },
     "libbsd": {
       "evra": "0.12.2-8.fc45.x86_64"
+    },
+    "libbytesize": {
+      "evra": "2.12-5.fc45.x86_64"
     },
     "libcap": {
       "evra": "2.78-2.fc45.x86_64"
@@ -622,7 +658,7 @@
       "evra": "1.47.4-2.fc45.x86_64"
     },
     "libcurl": {
-      "evra": "8.22.0~rc2-1.fc46.x86_64"
+      "evra": "8.22.0~rc3-1.fc46.x86_64"
     },
     "libdaemon": {
       "evra": "0.14-34.fc45.x86_64"
@@ -664,10 +700,13 @@
       "evra": "16.2.1-2.fc46.x86_64"
     },
     "libgcrypt": {
-      "evra": "1.12.2-2.fc45.x86_64"
+      "evra": "1.12.3-1.fc46.x86_64"
     },
     "libgpg-error": {
       "evra": "1.61-2.fc45.x86_64"
+    },
+    "libgudev": {
+      "evra": "238-10.fc45.x86_64"
     },
     "libibverbs": {
       "evra": "64.0-3.fc45.x86_64"
@@ -855,6 +894,9 @@
     "libtool-ltdl": {
       "evra": "2.5.4-11.fc45.x86_64"
     },
+    "libudisks2": {
+      "evra": "2.11.2-1.fc45.x86_64"
+    },
     "libunistring": {
       "evra": "1.1-12.fc45.x86_64"
     },
@@ -916,7 +958,7 @@
       "evra": "4.99.6-2.fc45.x86_64"
     },
     "lua-libs": {
-      "evra": "5.5.1-1.fc45.x86_64"
+      "evra": "5.5.1-2.fc46.x86_64"
     },
     "luksmeta": {
       "evra": "10-3.fc45.x86_64"
@@ -940,7 +982,7 @@
       "evra": "4.6-2.fc45.x86_64"
     },
     "microcode_ctl": {
-      "evra": "2:2.1-76.fc45.x86_64"
+      "evra": "2:20260812-1.fc46.x86_64"
     },
     "moby-engine": {
       "evra": "29.7.2-1.fc45.x86_64"
@@ -1017,8 +1059,26 @@
     "npth": {
       "evra": "1.8-5.fc45.x86_64"
     },
+    "nspr": {
+      "evra": "4.39.0-6.fc46.x86_64"
+    },
+    "nss": {
+      "evra": "3.127.0-1.fc46.x86_64"
+    },
     "nss-altfiles": {
       "evra": "2.23.0-10.fc45.x86_64"
+    },
+    "nss-softokn": {
+      "evra": "3.127.0-1.fc46.x86_64"
+    },
+    "nss-softokn-freebl": {
+      "evra": "3.127.0-1.fc46.x86_64"
+    },
+    "nss-sysinit": {
+      "evra": "3.127.0-1.fc46.x86_64"
+    },
+    "nss-util": {
+      "evra": "3.127.0-1.fc46.x86_64"
     },
     "numactl": {
       "evra": "2.0.19-5.fc45.x86_64"
@@ -1204,10 +1264,10 @@
       "evra": "4.10-2.fc45.x86_64"
     },
     "selinux-policy": {
-      "evra": "45.14-1.fc46.noarch"
+      "evra": "45.15-1.fc46.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "45.14-1.fc46.noarch"
+      "evra": "45.15-1.fc46.noarch"
     },
     "setup": {
       "evra": "2.15.1-2.fc45.noarch"
@@ -1335,6 +1395,9 @@
     "tzdata": {
       "evra": "2026c-1.fc45.noarch"
     },
+    "udisks2": {
+      "evra": "2.11.2-1.fc45.x86_64"
+    },
     "userspace-rcu": {
       "evra": "0.15.6-2.fc45.x86_64"
     },
@@ -1349,6 +1412,9 @@
     },
     "vim-minimal": {
       "evra": "2:9.2.967-1.fc46.x86_64"
+    },
+    "volume_key-libs": {
+      "evra": "0.3.12-33.fc45.x86_64"
     },
     "wasmedge-rt": {
       "evra": "0.17.1-2.fc45.x86_64"
@@ -1391,6 +1457,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-08-27T00:00:00Z"
+    "generated": "2026-08-29T00:00:00Z"
   }
 }
