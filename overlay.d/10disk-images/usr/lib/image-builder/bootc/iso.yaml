@@ -1,0 +1,10 @@
+label: fedora-coreos
+kernel_args:
+  - console=tty0
+  - console=ttyS0
+grub2:
+  timeout: 5
+  entries:
+    - name: Fedora CoreOS (Live)
+      linux: ${kernelpath} ${root} ignition.firstboot ignition.platform.id=metal coreos.liveiso=fedora-coreos
+      initrd: ${initrdpath}
