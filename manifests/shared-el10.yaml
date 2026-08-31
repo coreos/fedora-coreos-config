@@ -24,6 +24,7 @@ postprocess:
     (typeattributeset cil_gen_require afterburn_t)
     (typepermissive afterburn_t)
     EOF
+    mkdir -p /etc/selinux/targeted/tmp
     /usr/sbin/semodule -i /tmp/fcos-workarounds.cil
     rm /tmp/fcos-workarounds.cil
     # Also remove created LOCK files as we don't want those

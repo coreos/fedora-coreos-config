@@ -36,6 +36,17 @@ packages:
   # we need dmsquash-live dracut module to create the live iso
   # in image-builder.
   - dracut-live
+  # erofs-utils provides mkfs.erofs, needed by osbuild when building live ISOs
+  - erofs-utils
+  # python is needed by osbuild runners
+  - python3
+  # grub2-efi-x64-cdboot provides gcdx64.efi needed by osbuild's grub2.iso
+  # stage when building live ISOs
+  - shim
+  - grub2-efi-*-cdboot
+  - grub2-efi-x64-cdboot
+  - xorriso
+  - isomd5sum
 
 conditional-include:
   # numad is not available for s390x
@@ -56,3 +67,21 @@ postprocess:
     #!/usr/bin/bash
     set -eux -o pipefail
     systemctl mask systemd-repart.service
+  # shim and grub2-efi-x64-cdboot install EFI binaries into /usr/lib/efi/
+  # but mark /boot/efi/EFI/ entries as ghost (not present in the container
+  # filesystem). osbuild's grub2.iso stage expects files under
+  # /boot/efi/EFI/fedora/, so populate that directory with symlinks to the
+  # real files from both /usr/lib/efi/shim/ and /usr/lib/efi/grub2/.
+  - |
+    #!/usr/bin/bash
+    set -eux -o pipefail
+    mkdir -p /boot/efi/EFI/fedora
+    for f in /usr/lib/efi/shim/*/EFI/fedora/* /usr/lib/efi/grub2/*/EFI/fedora/*; do
+      ln -sfn "${f}" /boot/efi/EFI/fedora/"$(basename "${f}")"
+    done
+  # Disable composefs for ostree as it is incompatible with the erofs rootfs
+  # used by the bootc-generic-iso pipeline.
+  - |
+    #!/usr/bin/bash
+    set -eux -o pipefail
+    printf '[composefs]\nenabled = no\n[sysroot]\nreadonly = false\n' > /usr/lib/ostree/prepare-root.conf
