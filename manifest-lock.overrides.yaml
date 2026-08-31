@@ -9,15 +9,13 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  ostree:
-    evr: 2026.3-1.fc44
+  ignition:
+    evr: 2.27.0-1.fc44
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-da86341d50
-      reason: https://github.com/coreos/fedora-coreos-config/pull/4265#issuecomment-5091027307
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-199ec5afb1
       type: fast-track
-  ostree-libs:
-    evr: 2026.3-1.fc44
+  ignition-grub:
+    evr: 2.27.0-1.fc44
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-da86341d50
-      reason: https://github.com/coreos/fedora-coreos-config/pull/4265#issuecomment-5091027307
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-199ec5afb1
       type: fast-track
