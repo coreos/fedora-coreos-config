@@ -161,7 +161,7 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
         if lockfile_repos == ['fedora-coreos-pool']:
             if not IS_HERMETIC:
                 modify_pool_repo(locked_nevras)
-                repos += lockfile_repos
+            repos += lockfile_repos
         elif len(lockfile_repos) > 0:
             raise Exception(f"unknown lockfile-repo found in {lockfile_repos}")
 
