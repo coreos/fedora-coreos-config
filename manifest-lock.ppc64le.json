@@ -76,7 +76,7 @@
       "evra": "32:9.18.50-1.fc44.ppc64le"
     },
     "bootc": {
-      "evra": "1.16.7-1.fc44.ppc64le"
+      "evra": "1.16.10-1.fc44.ppc64le"
     },
     "bootupd": {
       "evra": "0.2.35-1.fc44.ppc64le"
@@ -85,7 +85,7 @@
       "evra": "3.8.7-1.fc44.ppc64le"
     },
     "btrfs-progs": {
-      "evra": "7.0-1.fc44.ppc64le"
+      "evra": "7.1-1.fc44.ppc64le"
     },
     "bubblewrap": {
       "evra": "0.11.0-4.fc44.ppc64le"
@@ -154,7 +154,7 @@
       "evra": "4:2.250.0-1.fc44.noarch"
     },
     "containerd": {
-      "evra": "2.3.3-2.fc44.ppc64le"
+      "evra": "2.3.4-1.fc44.ppc64le"
     },
     "containers-common": {
       "evra": "5:0.67.0-1.fc44.noarch"
@@ -199,7 +199,7 @@
       "evra": "2.8.7-1.fc44.ppc64le"
     },
     "curl": {
-      "evra": "8.18.0-8.fc44.ppc64le"
+      "evra": "8.18.0-9.fc44.ppc64le"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-35.fc44.ppc64le"
@@ -244,7 +244,7 @@
       "evra": "3.12-5.fc44.ppc64le"
     },
     "dnf5": {
-      "evra": "5.4.2.1-1.fc44.ppc64le"
+      "evra": "5.4.3.0-2.fc44.ppc64le"
     },
     "dnsmasq": {
       "evra": "2.92rel2-9.fc44.ppc64le"
@@ -274,13 +274,13 @@
       "evra": "1.47.3-4.fc44.ppc64le"
     },
     "elfutils-default-yama-scope": {
-      "evra": "0.195-1.fc44.noarch"
+      "evra": "0.196-1.fc44.noarch"
     },
     "elfutils-libelf": {
-      "evra": "0.195-1.fc44.ppc64le"
+      "evra": "0.196-1.fc44.ppc64le"
     },
     "elfutils-libs": {
-      "evra": "0.195-1.fc44.ppc64le"
+      "evra": "0.196-1.fc44.ppc64le"
     },
     "ethtool": {
       "evra": "2:7.1-1.fc44.ppc64le"
@@ -289,7 +289,7 @@
       "evra": "2.8.1-1.fc44.ppc64le"
     },
     "fedora-gpg-keys": {
-      "evra": "44-1.noarch"
+      "evra": "44-2.noarch"
     },
     "fedora-release-common": {
       "evra": "44-18.noarch"
@@ -301,10 +301,10 @@
       "evra": "44-18.noarch"
     },
     "fedora-repos": {
-      "evra": "44-1.noarch"
+      "evra": "44-2.noarch"
     },
     "fedora-repos-archive": {
-      "evra": "44-1.noarch"
+      "evra": "44-2.noarch"
     },
     "file": {
       "evra": "5.46-10.fc44.ppc64le"
@@ -445,10 +445,10 @@
       "evra": "0.410-1.fc44.noarch"
     },
     "ignition": {
-      "evra": "2.26.0-4.fc44.ppc64le"
+      "evra": "2.27.0-1.fc44.ppc64le"
     },
     "ignition-grub": {
-      "evra": "2.26.0-4.fc44.ppc64le"
+      "evra": "2.27.0-1.fc44.ppc64le"
     },
     "inih": {
       "evra": "62-2.fc44.ppc64le"
@@ -520,16 +520,16 @@
       "evra": "1.0.61-1.fc44.ppc64le"
     },
     "kernel": {
-      "evra": "7.1.8-200.fc44.ppc64le"
+      "evra": "7.1.10-200.fc44.ppc64le"
     },
     "kernel-core": {
-      "evra": "7.1.8-200.fc44.ppc64le"
+      "evra": "7.1.10-200.fc44.ppc64le"
     },
     "kernel-modules": {
-      "evra": "7.1.8-200.fc44.ppc64le"
+      "evra": "7.1.10-200.fc44.ppc64le"
     },
     "kernel-modules-core": {
-      "evra": "7.1.8-200.fc44.ppc64le"
+      "evra": "7.1.10-200.fc44.ppc64le"
     },
     "kexec-tools": {
       "evra": "2.0.32-3.fc44.ppc64le"
@@ -553,7 +553,7 @@
       "evra": "1.22.2-4.fc44.ppc64le"
     },
     "less": {
-      "evra": "704-2.fc44.ppc64le"
+      "evra": "704-4.fc44.ppc64le"
     },
     "libacl": {
       "evra": "2.4.0-1.fc44.ppc64le"
@@ -567,6 +567,9 @@
     "libassuan": {
       "evra": "2.5.7-5.fc44.ppc64le"
     },
+    "libatasmart": {
+      "evra": "0.19-32.fc44.ppc64le"
+    },
     "libattr": {
       "evra": "2.6.0-1.fc44.ppc64le"
     },
@@ -576,17 +579,50 @@
     "libblkid": {
       "evra": "2.41.5-1.fc44.ppc64le"
     },
+    "libblockdev": {
+      "evra": "3.5.0-1.fc44.ppc64le"
+    },
+    "libblockdev-crypto": {
+      "evra": "3.5.0-1.fc44.ppc64le"
+    },
+    "libblockdev-fs": {
+      "evra": "3.5.0-1.fc44.ppc64le"
+    },
+    "libblockdev-loop": {
+      "evra": "3.5.0-1.fc44.ppc64le"
+    },
+    "libblockdev-mdraid": {
+      "evra": "3.5.0-1.fc44.ppc64le"
+    },
+    "libblockdev-nvme": {
+      "evra": "3.5.0-1.fc44.ppc64le"
+    },
+    "libblockdev-part": {
+      "evra": "3.5.0-1.fc44.ppc64le"
+    },
+    "libblockdev-smart": {
+      "evra": "3.5.0-1.fc44.ppc64le"
+    },
+    "libblockdev-swap": {
+      "evra": "3.5.0-1.fc44.ppc64le"
+    },
+    "libblockdev-utils": {
+      "evra": "3.5.0-1.fc44.ppc64le"
+    },
     "libbpf": {
       "evra": "2:1.6.3-2.fc44.ppc64le"
     },
     "libbsd": {
       "evra": "0.12.2-7.fc44.ppc64le"
     },
+    "libbytesize": {
+      "evra": "2.12-2.fc44.ppc64le"
+    },
     "libcap": {
       "evra": "2.78-1.fc44.ppc64le"
     },
     "libcap-ng": {
-      "evra": "0.9.3-1.fc44.ppc64le"
+      "evra": "0.9.5-1.fc44.ppc64le"
     },
     "libcbor": {
       "evra": "0.13.0-2.fc44.ppc64le"
@@ -598,7 +634,7 @@
       "evra": "1.47.3-4.fc44.ppc64le"
     },
     "libcurl-minimal": {
-      "evra": "8.18.0-8.fc44.ppc64le"
+      "evra": "8.18.0-9.fc44.ppc64le"
     },
     "libdaemon": {
       "evra": "0.14-33.fc44.ppc64le"
@@ -607,10 +643,10 @@
       "evra": "0.5.0-61.fc44.ppc64le"
     },
     "libdnf5": {
-      "evra": "5.4.2.1-1.fc44.ppc64le"
+      "evra": "5.4.3.0-2.fc44.ppc64le"
     },
     "libdnf5-cli": {
-      "evra": "5.4.2.1-1.fc44.ppc64le"
+      "evra": "5.4.3.0-2.fc44.ppc64le"
     },
     "libdrm": {
       "evra": "2.4.134-1.fc44.ppc64le"
@@ -637,13 +673,16 @@
       "evra": "1.16.0-5.fc44.ppc64le"
     },
     "libgcc": {
-      "evra": "16.1.1-2.fc44.ppc64le"
+      "evra": "16.2.1-2.fc44.ppc64le"
     },
     "libgcrypt": {
       "evra": "1.12.2-1.fc44.ppc64le"
     },
     "libgpg-error": {
       "evra": "1.58-2.fc44.ppc64le"
+    },
+    "libgudev": {
+      "evra": "238-9.fc44.ppc64le"
     },
     "libibverbs": {
       "evra": "61.0-2.fc44.ppc64le"
@@ -679,7 +718,7 @@
       "evra": "2.41.5-1.fc44.ppc64le"
     },
     "libldb": {
-      "evra": "2:4.24.5-1.fc44.ppc64le"
+      "evra": "2:4.24.6-1.fc44.ppc64le"
     },
     "libluksmeta": {
       "evra": "10-2.fc44.ppc64le"
@@ -787,7 +826,7 @@
       "evra": "2.41.5-1.fc44.ppc64le"
     },
     "libsmbclient": {
-      "evra": "2:4.24.5-1.fc44.ppc64le"
+      "evra": "2:4.24.6-1.fc44.ppc64le"
     },
     "libsolv": {
       "evra": "0.7.39-1.fc44.ppc64le"
@@ -808,7 +847,7 @@
       "evra": "2.13.1-2.fc44.ppc64le"
     },
     "libstdc++": {
-      "evra": "16.1.1-2.fc44.ppc64le"
+      "evra": "16.2.1-2.fc44.ppc64le"
     },
     "libtalloc": {
       "evra": "2.4.4-1.fc44.ppc64le"
@@ -834,6 +873,9 @@
     "libtool-ltdl": {
       "evra": "2.5.4-10.fc44.ppc64le"
     },
+    "libudisks2": {
+      "evra": "2.11.2-1.fc44.ppc64le"
+    },
     "libunistring": {
       "evra": "1.1-11.fc44.ppc64le"
     },
@@ -853,7 +895,7 @@
       "evra": "0.3.2-12.fc44.ppc64le"
     },
     "libwbclient": {
-      "evra": "2:4.24.5-1.fc44.ppc64le"
+      "evra": "2:4.24.6-1.fc44.ppc64le"
     },
     "libxcrypt": {
       "evra": "4.5.2-3.fc44.ppc64le"
@@ -975,8 +1017,26 @@
     "npth": {
       "evra": "1.8-4.fc44.ppc64le"
     },
+    "nspr": {
+      "evra": "4.39.0-3.fc44.ppc64le"
+    },
+    "nss": {
+      "evra": "3.126.0-1.fc44.ppc64le"
+    },
     "nss-altfiles": {
       "evra": "2.23.0-9.fc44.ppc64le"
+    },
+    "nss-softokn": {
+      "evra": "3.126.0-1.fc44.ppc64le"
+    },
+    "nss-softokn-freebl": {
+      "evra": "3.126.0-1.fc44.ppc64le"
+    },
+    "nss-sysinit": {
+      "evra": "3.126.0-1.fc44.ppc64le"
+    },
+    "nss-util": {
+      "evra": "3.126.0-1.fc44.ppc64le"
     },
     "numactl": {
       "evra": "2.0.19-4.fc44.ppc64le"
@@ -991,7 +1051,7 @@
       "evra": "20260810-1.fc44.noarch"
     },
     "nvme-cli": {
-      "evra": "2.16-2.fc44.ppc64le"
+      "evra": "2.16-3.fc44.ppc64le"
     },
     "oniguruma": {
       "evra": "6.9.10-4.fc44.ppc64le"
@@ -1000,13 +1060,13 @@
       "evra": "2.6.13-1.fc44.ppc64le"
     },
     "openssh": {
-      "evra": "10.2p1-13.fc44.ppc64le"
+      "evra": "10.2p1-14.fc44.ppc64le"
     },
     "openssh-clients": {
-      "evra": "10.2p1-13.fc44.ppc64le"
+      "evra": "10.2p1-14.fc44.ppc64le"
     },
     "openssh-server": {
-      "evra": "10.2p1-13.fc44.ppc64le"
+      "evra": "10.2p1-14.fc44.ppc64le"
     },
     "openssl": {
       "evra": "1:3.5.7-2.fc44.ppc64le"
@@ -1141,22 +1201,22 @@
       "evra": "1.10.2-4.fc44.ppc64le"
     },
     "rsync": {
-      "evra": "3.4.4-1.fc44.ppc64le"
+      "evra": "3.5.0-1.fc44.ppc64le"
     },
     "runc": {
       "evra": "2:1.5.1-1.fc44.ppc64le"
     },
     "samba-client-libs": {
-      "evra": "2:4.24.5-1.fc44.ppc64le"
+      "evra": "2:4.24.6-1.fc44.ppc64le"
     },
     "samba-common": {
-      "evra": "2:4.24.5-1.fc44.noarch"
+      "evra": "2:4.24.6-1.fc44.noarch"
     },
     "samba-core-libs": {
-      "evra": "2:4.24.5-1.fc44.ppc64le"
+      "evra": "2:4.24.6-1.fc44.ppc64le"
     },
     "samba-ndr-libs": {
-      "evra": "2:4.24.5-1.fc44.ppc64le"
+      "evra": "2:4.24.6-1.fc44.ppc64le"
     },
     "sdbus-cpp": {
       "evra": "2.2.1-2.fc44.ppc64le"
@@ -1165,10 +1225,10 @@
       "evra": "4.9-7.fc44.ppc64le"
     },
     "selinux-policy": {
-      "evra": "44.6-1.fc44.noarch"
+      "evra": "44.7-1.fc44.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "44.6-1.fc44.noarch"
+      "evra": "44.7-1.fc44.noarch"
     },
     "servicelog": {
       "evra": "1.1.16-10.fc44.ppc64le"
@@ -1293,6 +1353,9 @@
     "tzdata": {
       "evra": "2026c-1.fc44.noarch"
     },
+    "udisks2": {
+      "evra": "2.11.2-1.fc44.ppc64le"
+    },
     "userspace-rcu": {
       "evra": "0.15.6-1.fc44.ppc64le"
     },
@@ -1303,10 +1366,13 @@
       "evra": "2.41.5-1.fc44.ppc64le"
     },
     "vim-data": {
-      "evra": "2:9.2.920-1.fc44.noarch"
+      "evra": "2:9.2.967-1.fc44.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.2.920-1.fc44.ppc64le"
+      "evra": "2:9.2.967-1.fc44.ppc64le"
+    },
+    "volume_key-libs": {
+      "evra": "0.3.12-29.fc44.ppc64le"
     },
     "which": {
       "evra": "2.25-1.fc44.ppc64le"
@@ -1343,6 +1409,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-08-17T00:00:00Z"
+    "generated": "2026-08-30T00:00:00Z"
   }
 }
