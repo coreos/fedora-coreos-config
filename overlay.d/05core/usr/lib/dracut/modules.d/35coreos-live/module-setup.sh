@@ -58,4 +58,11 @@ install() {
 
     install_and_enable_unit "coreos-livepxe-persist-osmet.service" \
         "initrd.target"
+
+    # HACK: Create the stamp file that is-live-image checks to detect a live boot.
+    # In cosa-built ISOs this is created by buildextend-live;
+    # This should be created inside while creating the ISO
+    # by the image-builder
+    mkdir -p "${initdir}/etc"
+    : > "${initdir}/etc/coreos-live-initramfs"
 }

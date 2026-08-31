@@ -2,6 +2,8 @@
 Description=Persist Osmet Files (ISO)
 ConditionPathExists=/run/ostree-live
 ConditionKernelCommandLine=coreos.liveiso
+# Only run if the cosa-style rootfs.img exists (not present in image-builder ISOs)
+ConditionPathExists=/run/media/iso/images/pxeboot/rootfs.img
 RequiresMountsFor=/run/media/iso
 Before=initrd-switch-root.target
 # DefaultDependencies=true so this unit gets stopped on switchroot to

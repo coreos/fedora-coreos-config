@@ -22,10 +22,12 @@ case "${1:-unset}" in
         # anyway but ostree-prepare-root still wants to e.g. remount `/etc`.
         # Could tweak the logic there, but for now just mask the file entirely.
         # We have our own /var and /etc transient mounts.
-        mount --bind /dev/null /usr/lib/ostree/prepare-root.conf
+
+        # Commenting out the old bind mount to /dev/null
+        # mount --bind /dev/null /usr/lib/ostree/prepare-root.conf
         ;;
     stop)
-        umount -l /usr/lib/ostree/prepare-root.conf
+        #umount -l /usr/lib/ostree/prepare-root.conf
         umount -l /proc/cmdline
         rm /tmp/cmdline
         ;;
