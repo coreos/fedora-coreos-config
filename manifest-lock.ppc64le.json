@@ -70,10 +70,10 @@
       "evra": "1.08.2-4.fc44.ppc64le"
     },
     "bind-libs": {
-      "evra": "32:9.18.50-1.fc44.ppc64le"
+      "evra": "32:9.18.50-2.fc44.ppc64le"
     },
     "bind-utils": {
-      "evra": "32:9.18.50-1.fc44.ppc64le"
+      "evra": "32:9.18.50-2.fc44.ppc64le"
     },
     "bootc": {
       "evra": "1.16.10-1.fc44.ppc64le"
@@ -88,7 +88,7 @@
       "evra": "7.1-1.fc44.ppc64le"
     },
     "bubblewrap": {
-      "evra": "0.11.0-4.fc44.ppc64le"
+      "evra": "0.12.0-1.fc44.ppc64le"
     },
     "bzip2": {
       "evra": "1.0.8-23.fc44.ppc64le"
@@ -106,10 +106,10 @@
       "evra": "0.2.1-5.fc44.ppc64le"
     },
     "chrony": {
-      "evra": "4.8-5.fc44.ppc64le"
+      "evra": "4.9-1.fc44.ppc64le"
     },
     "cifs-utils": {
-      "evra": "7.6-2.fc44.ppc64le"
+      "evra": "7.7-1.fc44.ppc64le"
     },
     "clevis": {
       "evra": "21-14.fc44.ppc64le"
@@ -286,7 +286,7 @@
       "evra": "2:7.1-1.fc44.ppc64le"
     },
     "expat": {
-      "evra": "2.8.1-1.fc44.ppc64le"
+      "evra": "2.8.3-1.fc44.ppc64le"
     },
     "fedora-gpg-keys": {
       "evra": "44-2.noarch"
@@ -508,28 +508,28 @@
       "evra": "1.10.8-5.fc44.ppc64le"
     },
     "kbd": {
-      "evra": "2.9.0-3.fc44.ppc64le"
+      "evra": "2.9.0-4.fc44.ppc64le"
     },
     "kbd-legacy": {
-      "evra": "2.9.0-3.fc44.noarch"
+      "evra": "2.9.0-4.fc44.noarch"
     },
     "kbd-misc": {
-      "evra": "2.9.0-3.fc44.noarch"
+      "evra": "2.9.0-4.fc44.noarch"
     },
     "kdump-utils": {
       "evra": "1.0.61-1.fc44.ppc64le"
     },
     "kernel": {
-      "evra": "7.1.10-200.fc44.ppc64le"
+      "evra": "7.1.12-200.fc44.ppc64le"
     },
     "kernel-core": {
-      "evra": "7.1.10-200.fc44.ppc64le"
+      "evra": "7.1.12-200.fc44.ppc64le"
     },
     "kernel-modules": {
-      "evra": "7.1.10-200.fc44.ppc64le"
+      "evra": "7.1.12-200.fc44.ppc64le"
     },
     "kernel-modules-core": {
-      "evra": "7.1.10-200.fc44.ppc64le"
+      "evra": "7.1.12-200.fc44.ppc64le"
     },
     "kexec-tools": {
       "evra": "2.0.32-3.fc44.ppc64le"
@@ -1078,13 +1078,13 @@
       "evra": "1.81-11.fc44.ppc64le"
     },
     "ostree": {
-      "evra": "2026.3-1.fc44.ppc64le"
+      "evra": "2026.4-1.fc44.ppc64le"
     },
     "ostree-grub2": {
       "evra": "2026.3-1.fc44.ppc64le"
     },
     "ostree-libs": {
-      "evra": "2026.3-1.fc44.ppc64le"
+      "evra": "2026.4-1.fc44.ppc64le"
     },
     "p11-kit": {
       "evra": "0.26.5-1.fc44.ppc64le"
@@ -1225,10 +1225,10 @@
       "evra": "4.9-7.fc44.ppc64le"
     },
     "selinux-policy": {
-      "evra": "44.7-1.fc44.noarch"
+      "evra": "44.8-1.fc44.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "44.7-1.fc44.noarch"
+      "evra": "44.8-1.fc44.noarch"
     },
     "servicelog": {
       "evra": "1.1.16-10.fc44.ppc64le"
@@ -1409,6 +1409,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-08-30T00:00:00Z"
+    "generated": "2026-09-01T00:00:00Z"
   }
 }
