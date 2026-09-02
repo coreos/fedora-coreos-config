@@ -1,17 +1,11 @@
 # This unit will run early in boot and detect if:
-# - In the diskful case, the user copied in firstboot networking config files
-#   into `/boot` (most likely by using `coreos-installer install
+# - user copied in firstboot networking config files
+#   into `/etc` (by using `coreos-installer install
 #   --copy-network`).
-# - In the live case, the user provided firstboot networking config files in
-#   `/etc` (most likely by using `coreos-installer iso network embed`).
 #
 # Since this unit is modifying network configuration there are some
 # dependencies that we have:
 #
-# - In the diskful case, we need to look for networking configuration on the
-#   /boot partition
-#     - i.e. after /dev/disk/by-label/boot is available
-#     - which is injected via coreos-diskful-generator
 # - Need to run before networking is brought up.
 #     - This is done in nm-initrd.service [1]
 #     - i.e. Before=nm-initrd.service
@@ -23,8 +17,7 @@
 #         - Another is to run *after* nm-config.sh [2] in dracut-cmdline [3]
 #           and just delete all the files created by nm-initrd-generator.
 #             - i.e. After=dracut-cmdline.service, but Before=nm-initrd.service
-#     - We'll go with the second option here because the need for the /boot
-#       device (mentioned above) means we can't start before dracut-cmdline.service
+#     - We'll go with the second option here.
 #
 # [1] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/nm-initrd.service
 # [2] https://github.com/dracutdevs/dracut/blob/master/modules.d/35network-manager/nm-config.sh
@@ -33,13 +26,14 @@
 [Unit]
 Description=Copy CoreOS Firstboot Networking Config
 ConditionPathExists=/usr/lib/initrd-release
+ConditionPathExists=/etc/coreos-firstboot-network
 DefaultDependencies=false
 # We're pulled in by ignition-complete.target; as good practice, add a matching
 # Before to be explicit about it gating on this unit passing.
+Before=network-pre.target ignition-diskful.target
 Before=ignition-complete.target
 Before=nm-initrd.service
-# compat: remove when everyone is on dracut 054+
-Before=dracut-initqueue.service
+Wants=network-pre.target
 After=dracut-cmdline.service
 # And since the boot device may be on multipath; optionally wait for it to
 # appear via the dynamic target.
@@ -56,7 +50,4 @@ Before=ignition-kargs.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-# The MountFlags=slave is so the umount of /boot is guaranteed to happen
-# /boot will only be mounted for the lifetime of the unit.
-MountFlags=slave
 ExecStart=/usr/sbin/coreos-copy-firstboot-network
