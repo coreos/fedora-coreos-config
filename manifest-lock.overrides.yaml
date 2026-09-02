@@ -49,3 +49,19 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
       type: pin
+
+  container-selinux:
+    evra: 4:2.249.0-1.fc45.noarch
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
+  selinux-policy:
+    evra: 45.7-1.fc45.noarch
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
+  selinux-policy-targeted:
+    evra: 45.7-1.fc45.noarch
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
