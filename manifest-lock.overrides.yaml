@@ -34,3 +34,14 @@ packages:
     metadata:
       type: pin
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
+
+  selinux-policy:
+    evra: 44.6-1.fc44.noarch
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
+  selinux-policy-targeted:
+    evra: 44.6-1.fc44.noarch
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
