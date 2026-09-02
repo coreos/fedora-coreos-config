@@ -103,36 +103,30 @@ if ! cmdline_bool 'ignition.firstboot'; then
     exit 0
 fi
 
-# coreos-ignition-setup-user.service and `coreos-copy-firstboot-network.service`
+# coreos-ignition-setup-user.service
 # should depend on the boot device node only on diskful boots
 mkdir -p "${UNIT_DIR}/coreos-ignition-setup-user.service.d"
-mkdir -p "${UNIT_DIR}/coreos-copy-firstboot-network.service.d"
 cat > "${UNIT_DIR}/coreos-ignition-setup-user.service.d/diskful.conf" <<EOF
 [Unit]
 Requires=dev-disk-by\x2dlabel-boot.device
 After=dev-disk-by\x2dlabel-boot.device
 EOF
-cp "${UNIT_DIR}/coreos-ignition-setup-user.service.d/diskful.conf" \
-    "${UNIT_DIR}/coreos-copy-firstboot-network.service.d/diskful.conf"
 
-# If booting from iSCSI, then we need networking first before we
-# can see the bootfs. This has some implications.
+# If booting from iSCSI, the boot device (where the Ignition config lives)
+# is only reachable after networking is up. Note: this is about the Ignition
+# config, not the network config — network config is already in the initramfs
+# (placed there by coreos-installer) and handled by
+# coreos-copy-firstboot-network.service without needing the boot device.
+#
+# Since `ignition-fetch-offline.service` tries to read the Ignition config
+# from the boot device immediately (before networking), it would fail on
+# iSCSI. We neuter it and let `ignition-fetch.service` (which runs after
+# networking is up) fetch the Ignition config instead.
 if test -n "$(cmdline_arg rd.iscsi.firmware)" || test -n "$(cmdline_arg netroot)"; then
     mkdir -p "${EARLY_DIR}/ignition-complete.target.requires"
-
-    # In the injected Ignition config case, `coreos-ignition-setup-user.service`
-    # can't "pass" the config to `ignition-fetch-offline.service`. So we neuter
-    # the latter so that `ignition-fetch.service` (which runs after networking
-    # comes up) can pick it up instead.
     ln -sf /dev/null "${EARLY_DIR}/ignition-complete.target.requires/ignition-fetch-offline.service"
-    # activate ignition-fetch.service
     mkdir -p /run/ignition
     touch /run/ignition/neednet
-
-    # With iSCSI, configuring networking via kargs is a hard requirement
-    # since it can't be picked up from the bootfs (i.e. injected via
-    # `--copy-network`). So neuter `coreos-copy-firstboot-network.service`.
-    ln -sf /dev/null "${EARLY_DIR}/ignition-complete.target.requires/coreos-copy-firstboot-network.service"
 fi
 
 # create symlink for udev rule
