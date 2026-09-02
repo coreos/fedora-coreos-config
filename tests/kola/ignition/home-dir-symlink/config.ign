@@ -1,0 +1,16 @@
+{
+  "ignition": {
+    "version": "3.5.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "groups": [
+          "wheel"
+        ],
+        "homeDir": "/home/core",
+        "name": "core"
+      }
+    ]
+  }
+}
