@@ -49,3 +49,24 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
       type: pin
+
+  policycoreutils:
+    evr: 3.10-5.fc45
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
+  libselinux:
+    evr: 3.10-2.fc45
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
+  libselinux-utils:
+    evr: 3.10-2.fc45
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
+  libsemanage:
+    evr: 3.10-2.fc45
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
