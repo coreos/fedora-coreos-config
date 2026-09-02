@@ -8,5 +8,29 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages: {}
-
+packages:
+  policycoreutils:
+    evr: 3.10-4.fc44
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
+  libselinux:
+    evr: 3.10-1.fc44
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
+  libselinux-utils:
+    evr: 3.10-1.fc44
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
+  libsemanage:
+    evr: 3.10-1.fc44
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
+  libsepol:
+    evr: 3.10-1.fc44
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
