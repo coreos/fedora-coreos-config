@@ -2,6 +2,12 @@
 # disks as we will change the disks uuids anyway
 mount_configuration: none
 partition_table:
+  # We want the disk size to be 10G
+  # XXX: pull that from `image-base.yaml`
+  size: "10GiB"
+  # Tell image builder to not expand the root partition
+  # we will do it on the first boot.
+  grow_root_to_fill_disk: false
   type: "gpt"
   uuid: "00000000-0000-4000-a000-000000000001"
   # Reserve the last 2048 512-byte blocks for CoreOS which moves the
@@ -44,6 +50,9 @@ partition_table:
 
     # Root partition — DPS type for x86_64
     - label: "root"
+      # We want enough to hold the rootfs content
+      # and have at least 30% free space on top.
+      size: "3GiB"
       type: 4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709
       payload_type: "filesystem"
       payload:

@@ -2,6 +2,9 @@
 # disks as we will change the disks uuids anyway
 mount_configuration: none
 partition_table:
+  # We want the disk size to be 10G
+  # XXX: pull that from `image-base.yaml`
+  size: "10GiB"
   type: "gpt"
   uuid: "00000000-0000-4000-a000-000000000001"
   # Reserve the last 2048 512-byte blocks for CoreOS which moves the
@@ -30,6 +33,9 @@ partition_table:
 
     # Root partition — DPS type for s390x
     - label: "root"
+      # We want enough to hold the rootfs content
+      # and have at least 30% free space on top.
+      size: "3GiB"
       partnum: 4
       type: 5EEAD9A9-FE09-4A1E-A1D7-520D00531306
       payload_type: "filesystem"
