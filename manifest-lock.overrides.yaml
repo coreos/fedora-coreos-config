@@ -19,3 +19,13 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-199ec5afb1
       type: fast-track
+  selinux-policy:
+    evra: 44.6-1.fc44.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
+      type: pin
+  selinux-policy-targeted:
+    evra: 44.6-1.fc44.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
+      type: pin
