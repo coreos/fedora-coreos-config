@@ -11,7 +11,7 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-for file in /etc/issue.d/22*.issue
+for file in /run/issue.d/22*.issue
 do
     if [ ! -f "$file" ]; then
     fatal "Network Device info does not exist"

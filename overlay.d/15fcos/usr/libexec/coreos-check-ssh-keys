@@ -39,10 +39,10 @@ main() {
     fi
 
     if [ -n "$output" ]; then
-        echo "$output" > /etc/issue.d/30_ssh_authorized_keys.issue
+        echo "$output" > /run/issue.d/30_coreos_ignition_ssh_authorized_keys.issue
     else
         echo -e "${warn}No SSH authorized keys provided by Ignition or Afterburn${nc}" \
-            > /etc/issue.d/30_ssh_authorized_keys.issue
+            > /run/issue.d/30_coreos_ignition_ssh_authorized_keys.issue
     fi
 }
 
