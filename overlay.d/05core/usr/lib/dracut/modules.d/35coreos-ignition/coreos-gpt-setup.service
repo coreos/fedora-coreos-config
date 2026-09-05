@@ -9,8 +9,11 @@ Before=ignition-diskful.target
 # iSCSI, but we still run.
 After=coreos-copy-firstboot-network.service
 
-Requires=dev-disk-by\x2dlabel-boot.device
-After=dev-disk-by\x2dlabel-boot.device
+# Requires=dev-disk-by\x2dlabel-boot.device
+# After=dev-disk-by\x2dlabel-boot.device
+
+After=boot-part-discovered.target
+ConditionFileNotEmpty=/run/coreos/boot-partition-status
 
 # And since the boot device may be on multipath; optionally wait for it to
 # appear via the dynamic target.
