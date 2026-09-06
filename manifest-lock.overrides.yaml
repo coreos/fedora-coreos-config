@@ -9,6 +9,11 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  bootc:
+    evr: 1.16.9-1.fc46
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2219
+      type: pin
   console-login-helper-messages:
     evra: 0.21.3-13.fc44.noarch
     metadata:
