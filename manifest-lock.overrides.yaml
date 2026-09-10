@@ -44,6 +44,18 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
       type: pin
+  elfutils-libelf:
+    evr: 0.196-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-aad3eba395
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  elfutils-libs:
+    evr: 0.196-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-aad3eba395
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
   ignition:
     evr: 2.27.0-1.fc45
     metadata:
