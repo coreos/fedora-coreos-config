@@ -51,6 +51,11 @@ RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
 # Take the rootfs and created a chunked container out of it
 RUN --mount=type=bind,target=/run/src,rw <<EOF
     set -eux -o pipefail
+    EXTRA_ARGS=()
+    if [ -n "${INJECT_OPENSHIFT_VERSION_LABELS}" ]; then
+        EXTRA_ARGS+=(--label "io.openshift.build.versions=machine-os=${VERSION}")
+        EXTRA_ARGS+=(--label "io.openshift.build.version-display-names=machine-os=${DESCRIPTION}")
+    fi
     case "${BUILDER_IMG_CHUNKER:-}" in
         'chunkah')
             # The '--prune /sysroot/ --label ostree.commit- --label ostree.final-diffid-'
@@ -61,16 +66,14 @@ RUN --mount=type=bind,target=/run/src,rw <<EOF
                 --output oci-archive:/run/src/out.ociarchive                                                  \
                 --label com.coreos.inputhash=$(cat /run/inputhash)                                            \
                 ${BUILDER_IMG_CHUNKER_MAX_LAYERS:+--max-layers=${BUILDER_IMG_CHUNKER_MAX_LAYERS}}             \
-                ${INJECT_OPENSHIFT_VERSION_LABELS:+--label 'io.openshift.build.versions=machine-os=${VERSION}'} \
-                ${INJECT_OPENSHIFT_VERSION_LABELS:+--label 'io.openshift.build.version-display-names=machine-os=\"${DESCRIPTION}\"'}
+                "${EXTRA_ARGS[@]}"
             ;;
         "")
             rpm-ostree experimental compose build-chunked-oci                                                 \
                 --bootc --format-version=1 --rootfs /target-rootfs                                            \
                 --output oci-archive:/run/src/out.ociarchive                                                  \
                 --label com.coreos.inputhash=$(cat /run/inputhash)                                            \
-                ${INJECT_OPENSHIFT_VERSION_LABELS:+--label 'io.openshift.build.versions=machine-os=${VERSION}'} \
-                ${INJECT_OPENSHIFT_VERSION_LABELS:+--label 'io.openshift.build.version-display-names=machine-os=\"${DESCRIPTION}\"'}
+                "${EXTRA_ARGS[@]}"
             ;;
         *)
             echo "error: unknown BUILDER_IMG_CHUNKER value: ${BUILDER_IMG_CHUNKER}" >&2
