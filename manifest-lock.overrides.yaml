@@ -9,13 +9,48 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  selinux-policy:
-    evra: 44.6-1.fc44.noarch
+  console-login-helper-messages:
+    evra: 0.21.3-13.fc44.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
+      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
       type: pin
-  selinux-policy-targeted:
-    evra: 44.6-1.fc44.noarch
+  console-login-helper-messages-issuegen:
+    evra: 0.21.3-13.fc44.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
+      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
       type: pin
+  console-login-helper-messages-motdgen:
+    evra: 0.21.3-13.fc44.noarch
+    metadata:
+      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
+      type: pin
+  console-login-helper-messages-profile:
+    evra: 0.21.3-13.fc44.noarch
+    metadata:
+      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
+      type: pin
+  dracut:
+    evr: 109-7.fc45
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
+      type: pin
+  dracut-network:
+    evr: 109-7.fc45
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
+      type: pin
+  dracut-squash:
+    evr: 109-7.fc45
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
+      type: pin
+  ignition:
+    evr: 2.27.0-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-e9b6491300
+      type: fast-track
+  ignition-grub:
+    evr: 2.27.0-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-e9b6491300
+      type: fast-track
