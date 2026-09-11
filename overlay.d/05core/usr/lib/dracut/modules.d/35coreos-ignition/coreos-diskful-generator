@@ -125,6 +125,10 @@ EOF
 if test -n "$(cmdline_arg rd.iscsi.firmware)" || test -n "$(cmdline_arg netroot)"; then
     mkdir -p "${EARLY_DIR}/ignition-complete.target.requires"
     ln -sf /dev/null "${EARLY_DIR}/ignition-complete.target.requires/ignition-fetch-offline.service"
+    # The boot device is behind the network on iSCSI; neuter the legacy
+    # rescue service to avoid a deadlock with its
+    # After=dev-disk-by\x2dlabel-boot.device ordering.
+    ln -sf /dev/null "${EARLY_DIR}/ignition-complete.target.requires/coreos-rescue-misplaced-network.service"
     mkdir -p /run/ignition
     touch /run/ignition/neednet
 fi
