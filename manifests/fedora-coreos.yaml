@@ -54,6 +54,13 @@ conditional-include:
       ostree-layers:
         - overlay.d/16fcos-sshd-workaround
 
+  # Backward compatibility: rescue/warn firstboot network config
+  # coreos-installer placed in /boot. Drop when Fedora 46 lands.
+  - if: releasever <= 45
+    include:
+      ostree-layers:
+        - overlay.d/11legacy-copy-network
+
 ostree-layers:
   - overlay.d/09misc
   - overlay.d/10disk-images
