@@ -32,8 +32,6 @@ DefaultDependencies=false
 # Before to be explicit about it gating on this unit passing.
 Before=ignition-complete.target
 Before=nm-initrd.service
-# compat: remove when everyone is on dracut 054+
-Before=dracut-initqueue.service
 After=dracut-cmdline.service
 # Need to run after coreos-enable-network since it may re-run the NM cmdline
 # hook which will generate NM configs from the network kargs, but we want to
