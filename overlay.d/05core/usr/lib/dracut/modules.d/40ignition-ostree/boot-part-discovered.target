@@ -1,0 +1,7 @@
+[Unit]
+Description=Boot Partition Discovery Complete
+Documentation=man:systemd.special(7)
+ConditionPathExists=/etc/initrd-release
+# After=local-fs-pre.target
+# Before=local-fs.target
+Requires=boot-part-discovery.service

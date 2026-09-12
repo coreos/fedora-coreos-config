@@ -5,8 +5,12 @@ OnFailure=emergency.target
 OnFailureJobMode=isolate
 
 # That's a weak dependency, so service won't fail if boot dissaperears
-Wants=dev-disk-by\x2dlabel-boot.device
-After=dev-disk-by\x2dlabel-boot.device
+# Wants=dev-disk-by\x2dlabel-boot.device
+# After=dev-disk-by\x2dlabel-boot.device
+
+# TODO(Johan-Liebert1): We won't reach diskful.target
+After=boot-part-discovered.target
+ConditionFileNotEmpty=/run/coreos/boot-partition-status
 
 # Start after ignition has finished with disks but before mounting them
 After=ignition-disks.service

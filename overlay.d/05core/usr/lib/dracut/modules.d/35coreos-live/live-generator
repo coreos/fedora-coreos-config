@@ -34,13 +34,12 @@ add_requires sysroot-var.mount initrd-root-fs.target
 # https://github.com/coreos/fedora-coreos-tracker/issues/1423
 add_requires coreos-enable-network.service initrd-root-fs.target
 
-mkdir -p "${UNIT_DIR}/ostree-prepare-root.service.d"
-cat > "${UNIT_DIR}/ostree-prepare-root.service.d/10-live.conf" <<EOF
-# With live PXE there's no ostree= argument on the kernel command line, so
-# we need to find the tree path and pass it to ostree-prepare-root.  But
-# ostree-prepare-root only knows how to read the path from
-# /proc/cmdline, so we need to synthesize the proper karg and bind-mount
-# it over /proc/cmdline.
+mkdir -p "${UNIT_DIR}/coreos-root-setup.service.d"
+cat > "${UNIT_DIR}/coreos-root-setup.service.d/10-live.conf" <<EOF
+# With live PXE there's no ostree=/composefs= argument on the kernel command line, so
+# we need to find the tree path and pass it to (ostree|bootc)-prepare-root.  But
+# they only knows how to read the path from /proc/cmdline, so we need to synthesize
+# the proper karg and bind-mount it over /proc/cmdline.
 # https://github.com/ostreedev/ostree/issues/1920
 
 [Unit]
@@ -210,8 +209,8 @@ RequiresMountsFor=/run/ephemeral
 ConditionPathExists=/usr/lib/initrd-release
 ConditionPathExists=!/run/ephemeral/var
 # We want to run after ostree is set up
-After=ostree-prepare-root.service
-Requires=ostree-prepare-root.service
+After=coreos-root-setup.service
+Requires=coreos-root-setup.service
 
 [Service]
 Type=oneshot

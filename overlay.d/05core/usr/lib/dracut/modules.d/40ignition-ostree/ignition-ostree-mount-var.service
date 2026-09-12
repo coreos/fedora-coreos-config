@@ -1,6 +1,7 @@
 [Unit]
 Description=Mount OSTree /var
 DefaultDependencies=false
+# We do not need this for composefs
 ConditionKernelCommandLine=ostree
 ConditionPathExists=!/run/ostree-live
 

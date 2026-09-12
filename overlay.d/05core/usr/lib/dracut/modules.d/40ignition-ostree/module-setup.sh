@@ -77,7 +77,8 @@ install() {
         rm        \
         sed       \
         sfdisk    \
-        find
+        find      \
+        fsverity
 
     # In some cases we had to vendor gdisk in Ignition.
     # If this is the case here use that one.
@@ -120,6 +121,12 @@ install() {
     install_ignition_unit ignition-ostree-mount-state-overlays.service
     inst_script "$moddir/ignition-ostree-mount-state-overlays.sh" \
         /usr/libexec/ignition-ostree-mount-state-overlays
+
+    inst_simple "$moddir/boot-part-discovery.target" "$systemdsystemunitdir/boot-part-discovery.target"
+
+    install_ignition_unit boot-part-discovery.service
+    inst_script "$moddir/boot-part-discovery.sh" \
+        /usr/libexec/boot-part-discovery.sh
 
     inst_script "$moddir/coreos-relabel" /usr/bin/coreos-relabel
 }

@@ -1,17 +1,127 @@
 #!/bin/bash
 set -euo pipefail
 
-mount -o remount,rw /boot
+ESP_MOUNT=/var/tmp/efi
 
-# We're done provisioning. Remove the whole /boot/ignition directory if present,
-# which may include a baked Ignition config. See
-# https://github.com/coreos/fedora-coreos-tracker/issues/889.
-rm -rf /boot/ignition
+BOOTC_STATUS="$(bootc status --json)"
 
-# Regarding the lack of `-f` for rm ; we should have only run if GRUB detected
-# this file. Fail if we are unable to remove it, rather than risking rerunning
-# Ignition at next boot.
-rm /boot/ignition.firstboot
+IS_COMPOSEFS=false
+BOOTLOADER=""
+BOOT_TYPE=""
+
+if [[ $(jq -r '.status.booted.composefs' <<< "$BOOTC_STATUS") != null ]]; then
+    IS_COMPOSEFS=true
+    BOOT_TYPE=$(jq -r '.status.booted.composefs.bootType' <<< "$BOOTC_STATUS" | tr '[:upper:]' '[:lower:]')
+    BOOTLOADER=$(jq -r '.status.booted.composefs.bootloader' <<< "$BOOTC_STATUS" | tr '[:upper:]' '[:lower:]')
+fi
+
+handle_ignition_grub() {
+    mount -o remount,rw /boot
+
+    # We're done provisioning. Remove the whole /boot/ignition directory if present,
+    # which may include a baked Ignition config. See
+    # https://github.com/coreos/fedora-coreos-tracker/issues/889.
+    rm -rf /boot/ignition
+
+    # Regarding the lack of `-f` for rm ; we should have only run if GRUB detected
+    # this file. Fail if we are unable to remove it, rather than risking rerunning
+    # Ignition at next boot.
+    rm /boot/ignition.firstboot
+}
+
+# Mounts ESP at /var/tmp/efi
+mount_esp() {
+    mkdir -p $ESP_MOUNT
+
+    local LSBLK_JSON
+    local ESP_DEV
+    LSBLK_JSON="$(lsblk -o path,parttype,name --json)"
+
+    while read -r part; do
+        parttype="$(jq -r '.parttype // empty' <<<"$part" | tr '[:lower:]' '[:upper:]')"
+        path="$(jq -r '.path // empty' <<<"$part")"
+
+        if [[ -z "$parttype" ]]; then
+            echo "Partition '$path' has no parttype"
+            continue
+        fi
+
+        if [[ "$parttype" == "C12A7328-F81F-11D2-BA4B-00A0C93EC93B" ]]; then
+            ESP_DEV="$path"
+            break
+        fi
+    done < <(echo "$LSBLK_JSON" | jq -c '.blockdevices[].children[]?')
+
+    if [[ "$ESP_DEV" == "" ]]; then
+        echo "ESP not found"
+        exit 1
+    fi
+
+    mount "$ESP_DEV" $ESP_MOUNT
+}
+
+# Unounts ESP and deletes /var/tmp/efi
+unmount_esp() {
+    umount $ESP_MOUNT
+    rmdir $ESP_MOUNT
+}
+
+# simply remove the UKI addon
+# TODO: Maybe this can be done in bootc
+handle_ignition_uki() {
+    mount_esp
+
+    local verity
+    verity=$(jq -r '.status.booted.composefs.verity' <<< "$BOOTC_STATUS")
+
+    rm -rf "/var/tmp/efi/EFI/Linux/bootc/bootc_composefs-${verity}.efi.extra.d/ignition.addon.efi"
+
+    unmount_esp
+}
+
+handle_ignition_composefs() {
+    # We have a few cases here
+    # 1. systemd-boot + BLS
+    # 2. systemd-boot + UKI
+    # 3. grub + BLS
+    # 4. grub + UKI
+    #
+    # Both the UKI cases are the same and we just need to
+    # remove the UKI addon
+    #
+    # systemd-boot BLS doesn't accept variables in the config files
+    # so we handle it differently
+    #
+    # grub BLS should be the same as ostree
+    if [[ $BOOTLOADER == "grub" && $BOOT_TYPE == "bls" ]]; then
+        handle_ignition_grub
+        return
+    fi
+
+    # UKI
+    if [[ $BOOT_TYPE == "uki" ]]; then
+        handle_ignition_uki
+        return
+    fi
+
+    # systemd-boot BLS
+    # TODO: Maybe better to put this in bootc
+    mount_esp
+
+    local verity
+    verity=$(jq -r '.status.booted.composefs.verity' <<< "$BOOTC_STATUS")
+
+    boot_entry=$(ls "$ESP_MOUNT/loader/entries")
+    sed -i 's;ignition.firstboot;;' "$ESP_MOUNT/loader/entries/$boot_entry"
+
+    unmount_esp
+}
+
+if $IS_COMPOSEFS; then
+    handle_ignition_composefs
+else
+    handle_ignition_grub
+fi
 
 # rdcore zipl checks for /boot/ignition.firstboot
 if [[ $(uname -m) = s390x ]]; then
