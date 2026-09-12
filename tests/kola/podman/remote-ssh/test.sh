@@ -18,11 +18,6 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-# TODO: use run_as_core_user from commonlib once it lands
-run_as_core_user() {
-    sudo -iu core -- "$@" 2>&1 | cat
-}
-
 # Private key, root authorized_keys, and podman.socket are provisioned via config.bu
 run_as_core_user podman system connection add --identity /home/core/.ssh/test_key con1 root@localhost
 if ! run_as_core_user podman --connection con1 info; then
