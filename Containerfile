@@ -3,6 +3,8 @@
 #     podman build --security-opt=label=disable --cap-add=all --device /dev/fuse \
 #         --build-arg-file build-args.conf -v $PWD:/run/src . -t localhost/fedora-coreos
 #
+# (This is also in Justfile - if you change the above also change that)
+#
 # Note: we should be able to drop the `-v $PWD:/run/src` once
 # https://github.com/containers/buildah/issues/5952 is fixed.
 #
