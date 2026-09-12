@@ -1,0 +1,39 @@
+#!/bin/bash
+set -euo pipefail
+
+LEGACY_DIR="/boot/coreos-firstboot-network"
+
+warn() {
+    echo "$@" | tee /dev/kmsg /dev/console || true
+}
+
+if mountpoint -q /boot; then
+    if [[ -d "${LEGACY_DIR}" ]] && [[ -n "$(ls -A "${LEGACY_DIR}" 2>/dev/null)" ]]; then
+        warn "========================================================================"
+        warn "WARNING: MISPLACED FIRSTBOOT NETWORK CONFIGURATION DETECTED!"
+        warn "========================================================================"
+        warn "Found network configuration in '${LEGACY_DIR}'."
+        warn ""
+        warn "This CoreOS image no longer reads firstboot network config from /boot."
+        warn "Network config placed there by an older coreos-installer was NOT applied."
+        warn ""
+        warn "This is especially critical for systems that require networking in early"
+        warn "initramfs (e.g. iSCSI boot) since the config was not available when needed."
+        warn ""
+        warn "ACTION REQUIRED: Re-install using an updated 'coreos-installer' that"
+        warn "embeds network config in the initramfs."
+        warn "========================================================================"
+    fi
+else
+    warn "========================================================================"
+    warn "WARNING: /boot IS NOT MOUNTED"
+    warn "========================================================================"
+    warn "If this system boots from a network device (e.g. iSCSI), this may be"
+    warn "caused by firstboot network config placed in /boot by an older"
+    warn "coreos-installer. This CoreOS image expects network config embedded"
+    warn "in the initramfs, not in /boot."
+    warn ""
+    warn "ACTION REQUIRED: Re-install using an updated 'coreos-installer' that"
+    warn "embeds network config in the initramfs."
+    warn "========================================================================"
+fi
