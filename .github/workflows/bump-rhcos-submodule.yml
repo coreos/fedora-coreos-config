@@ -79,7 +79,7 @@ jobs:
           echo "TARGET_REPO_NAME=${TARGET_REPO#*/}" >> $GITHUB_ENV
           echo "JIRA=${JIRA:-NO-JIRA}" >> $GITHUB_ENV
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.TARGET_REPO }}
           # We need an unbroken commit chain when pushing to the fork.  Don't
