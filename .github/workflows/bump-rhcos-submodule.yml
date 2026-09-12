@@ -120,7 +120,7 @@ jobs:
           EOF
 
       - name: Open pull request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.COREOSBOT_RELENG_TOKEN }}
           push-to-fork: coreosbot-releng/${{ env.TARGET_REPO_NAME }}
