@@ -1,0 +1,28 @@
+variant: fcos
+version: 1.6.0
+systemd:
+  units:
+    - name: podman.socket
+      enabled: true
+passwd:
+  users:
+    - name: root
+      ssh_authorized_keys:
+        - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEdRYc7DLXX6EJX6sZsr3LDEqn/1W9SGhcleXRdmSczL core@test
+storage:
+  files:
+    - path: /home/core/.ssh/test_key
+      mode: 0600
+      user:
+        name: core
+      group:
+        name: core
+      contents:
+        inline: |
+          -----BEGIN OPENSSH PRIVATE KEY-----
+          b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+          QyNTUxOQAAACBHUWHOwy11+hCV+rGbK9ywxKp/9VvUhoXJXl0XZknMywAAAJgerWOqHq1j
+          qgAAAAtzc2gtZWQyNTUxOQAAACBHUWHOwy11+hCV+rGbK9ywxKp/9VvUhoXJXl0XZknMyw
+          AAAEC1e4w/76P1M9BK9wralN+XICltcHhpDd+jGUJD68FJcUdRYc7DLXX6EJX6sZsr3LDE
+          qn/1W9SGhcleXRdmSczLAAAAFHNhbmRib3hAMTc3ZjU0MWI2MTI3AQ==
+          -----END OPENSSH PRIVATE KEY-----

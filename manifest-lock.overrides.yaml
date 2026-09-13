@@ -9,41 +9,58 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  ignition:
-    evr: 2.27.0-1.fc44
+  bootc:
+    evr: 1.16.12-1.fc45
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-199ec5afb1
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-076c278f50
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
-  ignition-grub:
-    evr: 2.27.0-1.fc44
+  console-login-helper-messages:
+    evra: 0.21.3-13.fc44.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-199ec5afb1
+      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
+      type: pin
+  console-login-helper-messages-issuegen:
+    evra: 0.21.3-13.fc44.noarch
+    metadata:
+      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
+      type: pin
+  console-login-helper-messages-motdgen:
+    evra: 0.21.3-13.fc44.noarch
+    metadata:
+      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
+      type: pin
+  console-login-helper-messages-profile:
+    evra: 0.21.3-13.fc44.noarch
+    metadata:
+      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
+      type: pin
+  container-selinux:
+    evra: 4:2.250.0-1.fc44.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
+      type: pin
+  dracut:
+    evr: 109-7.fc45
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
+      type: pin
+  dracut-network:
+    evr: 109-7.fc45
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
+      type: pin
+  dracut-squash:
+    evr: 109-7.fc45
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
+      type: pin
+  librepo:
+    evr: 1.21.0-2.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-04f4e78da2
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
-  libselinux:
-    evr: 3.10-1.fc44
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
-      type: pin
-  libselinux-utils:
-    evr: 3.10-1.fc44
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
-      type: pin
-  libsemanage:
-    evr: 3.10-1.fc44
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
-      type: pin
-  libsepol:
-    evr: 3.10-1.fc44
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
-      type: pin
-  policycoreutils:
-    evr: 3.10-4.fc44
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
-      type: pin
   selinux-policy:
     evra: 44.6-1.fc44.noarch
     metadata:
