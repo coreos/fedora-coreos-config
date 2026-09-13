@@ -35,37 +35,6 @@ conditional-include:
     include:
       ostree-layers:
         - overlay.d/10aarch64
-  # Temporary workaround. RPM repo configuration has moved from /etc/yum.repos.d
-  # to /usr/share/dnf5/repos.d, leading to rpm-ostree to no longer work. Until
-  # we are ready to support the new path, we can copy the config over.
-  #
-  # See: https://github.com/coreos/fedora-coreos-tracker/issues/2172
-  - if: releasever >= 45
-    include:
-      postprocess:
-        - |
-          #!/usr/bin/bash
-          set -eux -o pipefail
-          cp /usr/share/dnf5/repos.d/* /etc/yum.repos.d/
-          cp /usr/share/pki/rpm-gpg/* /etc/pki/rpm-gpg/
-  # Temporary workaround. containers-common moved policy.json from
-  # /etc/containers to /usr/share/containers. The rpm-ostreed bind mount
-  # could use CONTAINERS_POLICY_JSON env var instead, but bootc has a
-  # hardcoded path that prevents this approach.
-  # Copy the file until bootc supports the new config location.
-  #
-  # See:
-  # https://github.com/bootc-dev/bootc/issues/2258
-  # https://github.com/coreos/fedora-coreos-config/issues/4215
-  - if: releasever == 45
-    include:
-      postprocess:
-        - |
-          #!/usr/bin/bash
-          set -eux -o pipefail
-          src=/usr/share/containers/policy.json
-          dest=/etc/containers/policy.json
-          cp "${src}" "${dest}"
 
   # WARN: Temporary workaround
   #
@@ -80,7 +49,7 @@ conditional-include:
   # - https://bugzilla.redhat.com/show_bug.cgi?id=2503149
   #
   # TODO: delete if openssh ever supports AuthorizedKeysFile+= (https://bugzilla.mindrot.org/show_bug.cgi?id=3957)
-  - if: releasever <= 45
+  - if: releasever <= 46
     include:
       ostree-layers:
         - overlay.d/16fcos-sshd-workaround
@@ -160,6 +129,8 @@ packages:
   - bash-color-prompt
   # obsoletes nfs-utils-coreos
   - nfs-client-utils
+  # Required by fwupd to mount ESPs
+  - udisks2
 
 # Architecture specific packages:
 # - irqbalance
