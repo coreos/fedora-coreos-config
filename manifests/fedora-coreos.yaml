@@ -72,6 +72,20 @@ conditional-include:
       ostree-layers:
         - overlay.d/16fcos-sshd-workaround
 
+  # add zram-generator-defaults for releases >= 46
+  # systemd-oomd strongly recommends it
+  # See :
+  #   - https://fedoraproject.org/wiki/Changes/CoreOS_default_to_enable_systemd-oomd_and_swap_on_Zram
+  - if: releasever >= 46
+    include:
+      packages:
+        - zram-generator-defaults
+  # For releases <45 we explicitely disable oomd service and socket
+  - if: releasever < 46
+    include:
+      ostree-layers:
+        - overlay.d/10-disable-systemd-oomd
+
 ostree-layers:
   - overlay.d/09misc
   - overlay.d/10disk-images
