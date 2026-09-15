@@ -19,6 +19,6 @@ if [ "${rootfs}" != "overlay" ]; then
     fatal "Error: Expected overlay on /, found: ${rootfs}"
 fi
 
-journalctl -u ostree-prepare-root.service | grep -q "composefs: mounted successfully"
+journalctl -u coreos-root-setup.service | grep -q "composefs: mounted successfully"
 
 ok "composefs is on"

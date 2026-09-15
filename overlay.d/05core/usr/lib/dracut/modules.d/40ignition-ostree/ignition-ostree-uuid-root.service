@@ -2,7 +2,8 @@
 Description=Ignition OSTree: Regenerate Filesystem UUID (root)
 # These conditions match those generated in coreos-diskful-generator
 DefaultDependencies=false
-ConditionKernelCommandLine=ostree
+ConditionKernelCommandLine=|ostree
+ConditionKernelCommandLine=|composefs
 ConditionPathExists=!/run/ostree-live
 Before=sysroot.mount initrd-root-fs.target
 After=ignition-disks.service
