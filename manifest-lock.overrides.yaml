@@ -14,6 +14,16 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-d4d1984a1b
       type: fast-track
+  ignition:
+    evr: 2.27.0-3.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-2d1e2ae051
+      type: fast-track
+  ignition-grub:
+    evr: 2.27.0-3.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-2d1e2ae051
+      type: fast-track
   libselinux:
     evr: 3.10-1.fc44
     metadata:
