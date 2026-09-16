@@ -21,7 +21,7 @@ import yaml
 
 ARCH = os.uname().machine
 INPUTHASH = '/run/inputhash'
-HERMETIC_REPO = '/etc/yum.repos.d/cachi2.repo'
+HERMETIC_REPO = '/etc/yum.repos.d/hermeto.repo'
 
 # Build-args to propagate as env vars into the postprocess bwrap sandbox.
 # Add entries here as needed; they must also be declared as ARG in the
