@@ -49,3 +49,13 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
       type: pin
+  rpm-ostree:
+    evr: 2026.3-1.fc46
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-93d15da3c4
+      type: fast-track
+  rpm-ostree-libs:
+    evr: 2026.3-1.fc46
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-93d15da3c4
+      type: fast-track
