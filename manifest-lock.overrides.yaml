@@ -15,6 +15,11 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-076c278f50
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
+  bootupd:
+    evr: 0.3.2-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-9156db426c
+      type: fast-track
   console-login-helper-messages:
     evra: 0.21.3-13.fc44.noarch
     metadata:
