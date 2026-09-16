@@ -1,0 +1,18 @@
+#!/bin/bash
+set -euo pipefail
+
+HOSTNQN_FILE="/etc/nvme/hostnqn"
+HOSTID_FILE="/etc/nvme/hostid"
+
+install -d -m 0755 /etc/nvme
+
+if ! command -v nvme >/dev/null 2>&1; then
+    echo "nvme command not found" >&2
+    exit 1
+fi
+
+hostnqn=$(nvme gen-hostnqn)
+hostid=$(uuidgen)
+
+printf '%s\n' "${hostnqn}" > "${HOSTNQN_FILE}"
+printf '%s\n' "${hostid}" > "${HOSTID_FILE}"

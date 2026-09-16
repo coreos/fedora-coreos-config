@@ -1,0 +1,21 @@
+# The nvme-cli %post scriptlet generates /etc/nvme/hostnqn at RPM
+# build time, which means every node booted from the same image
+# shares the same hostnqn. Generate a unique one on first boot.
+# See https://issues.redhat.com/browse/OCPBUGS-100442
+[Unit]
+Description=Generate unique NVMe hostnqn
+ConditionFirstBoot=true
+ConditionPathExists=/usr/sbin/nvme
+Before=first-boot-complete.target systemd-machine-id-commit.service
+Wants=first-boot-complete.target
+DefaultDependencies=no
+After=local-fs.target
+Requires=local-fs.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/libexec/coreos-generate-nvme-hostnqn
+
+[Install]
+WantedBy=basic.target
