@@ -2,6 +2,9 @@
 # disks as we will change the disks uuids anyway
 mount_configuration: none
 partition_table:
+  # We want the disk size to be 10G
+  # XXX: pull that from `image-base.yaml`
+  size: "10GiB"
   type: "gpt"
   uuid: "00000000-0000-4000-a000-000000000001"
   # Reserve the last 2048 512-byte blocks for CoreOS which moves the
@@ -36,6 +39,9 @@ partition_table:
 
     # Root partition — DPS type for ppc64le
     - label: "root"
+      # This is set at build time by
+      # inject_disk_yaml() in build-rootfs
+      size: OVERRIDEN
       type: C31C45E6-3F39-412E-80FB-4809C4980599
       payload_type: "filesystem"
       payload:
