@@ -1,0 +1,34 @@
+#!/bin/bash
+## kola:
+##   exclusive: false
+##   description: Verify per-node NVMe hostnqn and hostid were generated on first boot.
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+hostnqn_file="/etc/nvme/hostnqn"
+hostid_file="/etc/nvme/hostid"
+
+if [ ! -f "${hostnqn_file}" ]; then
+    fatal "${hostnqn_file} does not exist"
+fi
+
+if [ ! -f "${hostid_file}" ]; then
+    fatal "${hostid_file} does not exist"
+fi
+
+hostnqn=$(cat "${hostnqn_file}")
+hostid=$(cat "${hostid_file}")
+
+# Verify it looks like a valid NQN (starts with nqn.)
+if [[ ! "${hostnqn}" =~ ^nqn\. ]]; then
+    fatal "hostnqn does not look valid: ${hostnqn}"
+fi
+
+if [[ ! "${hostid}" =~ ^[[:xdigit:]]{8}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{12}$ ]]; then
+    fatal "hostid does not look like a UUID: ${hostid}"
+fi
+
+ok "NVMe hostnqn and hostid are present and valid: ${hostnqn} / ${hostid}"
