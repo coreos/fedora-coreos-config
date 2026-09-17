@@ -36,7 +36,7 @@ case "$(get_fcos_stream)" in
     *) ;;
 esac
 
-rpm-ostree install --apply-live "${commands[@]}"
+rpm-ostree install -y --apply-live "${commands[@]}"
 
 failed=""
 
