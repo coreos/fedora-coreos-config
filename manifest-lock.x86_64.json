@@ -85,7 +85,7 @@
       "evra": "1.16.12-1.fc45.x86_64"
     },
     "bootupd": {
-      "evra": "0.2.35-3.fc45.x86_64"
+      "evra": "0.3.2-1.fc45.x86_64"
     },
     "bsdtar": {
       "evra": "3.8.8-3.fc45.x86_64"
@@ -160,7 +160,7 @@
       "evra": "4:2.250.0-1.fc44.noarch"
     },
     "containerd": {
-      "evra": "2.3.4-1.fc45.x86_64"
+      "evra": "2.3.5-1.fc45.x86_64"
     },
     "containers-common": {
       "evra": "5:0.69.0-1.fc45.noarch"
@@ -202,10 +202,10 @@
       "evra": "20260713-2.gitc42da77.fc45.noarch"
     },
     "cryptsetup": {
-      "evra": "2.8.7-1.fc45.x86_64"
+      "evra": "2.8.8-1.fc45.x86_64"
     },
     "cryptsetup-libs": {
-      "evra": "2.8.7-1.fc45.x86_64"
+      "evra": "2.8.8-1.fc45.x86_64"
     },
     "curl": {
       "evra": "8.21.0-5.fc45.x86_64"
@@ -322,10 +322,10 @@
       "evra": "45-0.6.noarch"
     },
     "file": {
-      "evra": "5.47-3.fc45.x86_64"
+      "evra": "5.48-3.fc45.x86_64"
     },
     "file-libs": {
-      "evra": "5.47-3.fc45.x86_64"
+      "evra": "5.48-3.fc45.x86_64"
     },
     "filesystem": {
       "evra": "3.18-59.fc45.x86_64"
@@ -469,10 +469,10 @@
       "evra": "0.411-1.fc45.noarch"
     },
     "ignition": {
-      "evra": "2.27.0-1.fc45.x86_64"
+      "evra": "2.27.0-3.fc45.x86_64"
     },
     "ignition-grub": {
-      "evra": "2.27.0-1.fc45.x86_64"
+      "evra": "2.27.0-3.fc45.x86_64"
     },
     "inih": {
       "evra": "62-3.fc45.x86_64"
@@ -544,16 +544,16 @@
       "evra": "1.0.61-2.fc45.x86_64"
     },
     "kernel": {
-      "evra": "7.2.4-300.fc45.x86_64"
+      "evra": "7.2.5-300.fc45.x86_64"
     },
     "kernel-core": {
-      "evra": "7.2.4-300.fc45.x86_64"
+      "evra": "7.2.5-300.fc45.x86_64"
     },
     "kernel-modules": {
-      "evra": "7.2.4-300.fc45.x86_64"
+      "evra": "7.2.5-300.fc45.x86_64"
     },
     "kernel-modules-core": {
-      "evra": "7.2.4-300.fc45.x86_64"
+      "evra": "7.2.5-300.fc45.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.32-4.fc45.x86_64"
@@ -796,7 +796,7 @@
       "evra": "1.16.2-1.fc45.x86_64"
     },
     "libpcap": {
-      "evra": "14:1.10.6-3.fc45.x86_64"
+      "evra": "14:1.10.7-1.fc45.x86_64"
     },
     "libpciaccess": {
       "evra": "0.16-18.fc45.x86_64"
@@ -1225,10 +1225,10 @@
       "evra": "6.1.0-1.fc45.x86_64"
     },
     "rpm-ostree": {
-      "evra": "2026.2-4.fc45.x86_64"
+      "evra": "2026.3-1.fc45.x86_64"
     },
     "rpm-ostree-libs": {
-      "evra": "2026.2-4.fc45.x86_64"
+      "evra": "2026.3-1.fc45.x86_64"
     },
     "rpm-plugin-selinux": {
       "evra": "6.1.0-1.fc45.x86_64"
@@ -1345,28 +1345,28 @@
       "evra": "1.9.17-16.p2.fc45.x86_64"
     },
     "systemd": {
-      "evra": "261.2-1.fc45.x86_64"
+      "evra": "262~rc1-6.fc45.x86_64"
     },
     "systemd-container": {
-      "evra": "261.2-1.fc45.x86_64"
+      "evra": "262~rc1-6.fc45.x86_64"
     },
     "systemd-libs": {
-      "evra": "261.2-1.fc45.x86_64"
+      "evra": "262~rc1-6.fc45.x86_64"
     },
     "systemd-pam": {
-      "evra": "261.2-1.fc45.x86_64"
+      "evra": "262~rc1-6.fc45.x86_64"
     },
     "systemd-resolved": {
-      "evra": "261.2-1.fc45.x86_64"
+      "evra": "262~rc1-6.fc45.x86_64"
     },
     "systemd-shared": {
-      "evra": "261.2-1.fc45.x86_64"
+      "evra": "262~rc1-6.fc45.x86_64"
     },
     "systemd-sysusers": {
-      "evra": "261.2-1.fc45.x86_64"
+      "evra": "262~rc1-6.fc45.x86_64"
     },
     "systemd-udev": {
-      "evra": "261.2-1.fc45.x86_64"
+      "evra": "262~rc1-6.fc45.x86_64"
     },
     "tar": {
       "evra": "2:1.35-10.fc45.x86_64"
@@ -1454,6 +1454,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-09-13T00:00:00Z"
+    "generated": "2026-09-17T00:00:00Z"
   }
 }
