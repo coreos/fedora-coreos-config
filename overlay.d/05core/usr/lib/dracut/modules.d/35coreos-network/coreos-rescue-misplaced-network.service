@@ -1,0 +1,21 @@
+# If an older coreos-installer wrote firstboot network config to
+# /boot/coreos-firstboot-network, copy it to /etc so that
+# coreos-copy-firstboot-network.service can pick it up.
+# Only runs when /etc/coreos-firstboot-network does not already exist
+# (i.e. no config was embedded in the initramfs by a newer installer).
+[Unit]
+Description=Rescue Misplaced Firstboot Network Config From /boot
+ConditionPathExists=/usr/lib/initrd-release
+ConditionPathExists=!/etc/coreos-firstboot-network
+DefaultDependencies=false
+Before=coreos-copy-firstboot-network.service
+After=dracut-cmdline.service
+After=coreos-enable-network.service
+# Avoid races with ignition-kargs.service which accesses /boot rw.
+Before=ignition-kargs.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+MountFlags=slave
+ExecStart=/usr/sbin/coreos-rescue-misplaced-network

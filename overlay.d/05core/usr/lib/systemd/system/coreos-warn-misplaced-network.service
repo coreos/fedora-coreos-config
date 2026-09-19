@@ -1,0 +1,12 @@
+[Unit]
+Description=Warn if firstboot network config was placed in /boot by older coreos-installer
+After=boot.mount
+Before=emergency.service rescue.service multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-warn-misplaced-network
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target emergency.target rescue.target
