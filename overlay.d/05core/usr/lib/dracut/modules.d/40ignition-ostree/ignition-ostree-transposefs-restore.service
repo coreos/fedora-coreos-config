@@ -12,7 +12,8 @@ Before=sysroot.mount
 OnFailure=emergency.target
 OnFailureJobMode=isolate
 
-ConditionKernelCommandLine=ostree
+ConditionKernelCommandLine=|ostree
+ConditionKernelCommandLine=|composefs
 ConditionPathIsDirectory=/run/ignition-ostree-transposefs
 
 [Service]
