@@ -79,7 +79,7 @@ def get_treefile(manifest_path, osid, stream, version):
     with tempfile.NamedTemporaryFile(suffix='.json', mode='w') as tmp_manifest:
         # Substitute in a few values from build-args into the treefile.
         ## Split the version to get components for releasever and osversion
-        (x, y, _) = version.split('.', 2) if '.' in version else (version, '0', '0')
+        x, y = (version.split('.') + ['0'])[:2]
         osversion = f"{osid}-{x}"
         if osid == "rhel":
             # For RHCOS we add the minor to the osversion
@@ -103,9 +103,6 @@ def get_treefile(manifest_path, osid, stream, version):
 def inject_yumrepos(srcdir):
     # first delete all the default repos
     for repo in glob.glob('/etc/yum.repos.d/*.repo'):
-        if os.path.basename(repo) == 'secret.repo':
-            # this is a supported podman secret to inject repo files; see Containerfile
-            continue
         if repo == HERMETIC_REPO:
             # this is the repo Konflux injects when hermetic build is enabled
             continue
@@ -113,6 +110,9 @@ def inject_yumrepos(srcdir):
 
     # and now inject our repos
     if not IS_HERMETIC:
+        secret_repo = '/run/secrets/yumrepos'
+        if os.path.exists(secret_repo):
+            shutil.copy(secret_repo, '/etc/yum.repos.d/secret.repo')
         for repo in glob.glob(f'{srcdir}/*.repo'):
             shutil.copy(repo, "/etc/yum.repos.d")
 
