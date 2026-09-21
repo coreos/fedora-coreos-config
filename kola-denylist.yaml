@@ -47,3 +47,8 @@
     - branched
   arches:
     - aarch64
+
+- pattern: ext.config.upgrade.extended
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2226
+  snooze: 2026-10-21
+  warn: true
