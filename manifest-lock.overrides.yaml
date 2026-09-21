@@ -70,12 +70,6 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-29048aad4c
       type: fast-track
-  librepo:
-    evr: 1.21.0-2.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-04f4e78da2
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
-      type: fast-track
   rpm-ostree:
     evr: 2026.3-1.fc45
     metadata:
