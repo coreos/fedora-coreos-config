@@ -24,31 +24,6 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-2d1e2ae051
       type: fast-track
-  libselinux:
-    evr: 3.10-1.fc44
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
-      type: pin
-  libselinux-utils:
-    evr: 3.10-1.fc44
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
-      type: pin
-  libsemanage:
-    evr: 3.10-1.fc44
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
-      type: pin
-  libsepol:
-    evr: 3.10-1.fc44
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
-      type: pin
-  policycoreutils:
-    evr: 3.10-4.fc44
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2216
-      type: pin
   rpm-ostree:
     evr: 2026.3-1.fc44
     metadata:
