@@ -208,6 +208,9 @@ packages-aarch64:
   - crun-wasm wasmedge-rt
 packages-s390x:
   - qemu-user-static-x86
+  # chccwdev/vmur/zkey split from s390utils-core in 2.44.0; required by ignition dracut module
+  # https://github.com/coreos/fedora-coreos-tracker/issues/2228
+  - s390utils-base
 
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos-base.yaml
