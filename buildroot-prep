@@ -4,19 +4,25 @@ set -euo pipefail
 # This script is called very early in the buildah path from build-rootfs
 # after inject_yumrepos() to modify the build environment. Example use cases
 # are to fast-track fixes or work around bugs.
-# Note that any dowloaded packages here needs to be included in lockfiles (the main
+# Note that any downloaded packages here needs to be included in lockfiles (the main
 # or overrides one).
 
-# Get the newer fedora-repos with gpgkeys in /usr/
-# https://github.com/coreos/fedora-coreos-tracker/issues/2172
-if [ "$(rpm -q fedora-repos)" == 'fedora-repos-44-1.noarch' ]; then
-    # cachi2 is the repo Konflux injects when hermetic build is enabled
+# Get the newer rpm-ostree in `next*` streams. Fedora 45 is the only
+# place where the 2026.3-1 made it into the bootc builder container [1].
+# [1] https://github.com/coreos/fedora-coreos-tracker/issues/2226#issuecomment-5805504703
+if [ "$(rpm -q --qf '%{NVR}' rpm-ostree)" == 'rpm-ostree-2026.3-1.fc45' ]; then
+    # hermeto.repo is the repo Konflux injects when hermetic build is enabled
     # and if it's there we can just update from it.
-    if [ -f "/etc/yum.repos.d/cachi2.repo" ]; then
-        sudo dnf update -y fedora-{repos,repos-archive,gpg-keys}
+    if [ -f "/etc/yum.repos.d/hermeto.repo" ]; then
+        sudo dnf update -y rpm-ostree rpm-ostree-libs
     else
         # else we need to pull from koji for now
-        sudo dnf update -y --disablerepo=* \
-            https://kojipkgs.fedoraproject.org//packages/fedora-repos/44/2/noarch/fedora-{repos,repos-archive,gpg-keys}-44-2.noarch.rpm
+        sudo dnf upgrade -y --disablerepo=* \
+            https://kojipkgs.fedoraproject.org//packages/rpm-ostree/2026.3/2.fc45/$(arch)/rpm-ostree{,-libs}-2026.3-2.fc45.$(arch).rpm
+    fi
+    # if we didn't get the update we need then let's error
+    if [ "$(rpm -q --qf '%{NVR}' rpm-ostree)" != 'rpm-ostree-2026.3-2.fc45' ]; then
+        echo "Expected rpm-ostree-2026.3-2.fc45 but got $(rpm -q --qf '%{NVR}' rpm-ostree)"
+        exit 1
     fi
 fi
