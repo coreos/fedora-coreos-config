@@ -35,14 +35,16 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-2d1e2ae051
       type: fast-track
   rpm-ostree:
-    evr: 2026.3-1.fc44
+    evr: 2026.3-2.fc44
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-47c5906d53
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-d03472ee52
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2226
       type: fast-track
   rpm-ostree-libs:
-    evr: 2026.3-1.fc44
+    evr: 2026.3-2.fc44
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-47c5906d53
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-d03472ee52
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2226
       type: fast-track
   selinux-policy:
     evra: 44.6-1.fc44.noarch
