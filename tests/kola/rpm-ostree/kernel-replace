@@ -59,7 +59,13 @@ if [ ! -f /var/kola-kernel.evr ]; then
       kver=$(dnf repoquery kernel --qf '%{EVR}' --repofrompath=tmp,"${c9s_mirror}" --disablerepo '*' --enablerepo tmp | \
                 grep -v "$(rpm -q kernel --qf '%{EVR}')" | tail -n1)
       kver="${kver}.${arch}"
-      url="${c9s_mirror}/Packages/kernel"
+      # Use dnf download instead of constructing direct mirror URLs.
+      # Direct URLs to mirror.stream.centos.org can hit 403 from
+      # GeoIP-routed mirror nodes; dnf download handles failover.
+      mkdir -p /var/kola-kernel-rpms
+      dnf download --destdir=/var/kola-kernel-rpms \
+          --repofrompath=tmp,"${c9s_mirror}" --disablerepo '*' --enablerepo tmp \
+          kernel-{,core-,modules-,modules-core-,modules-extra-}${kver}
       ;;
     fedora)
       # to get the version to use: koji latest-pkg f40 kernel
@@ -73,10 +79,15 @@ if [ ! -f /var/kola-kernel.evr ]; then
       ;;
   esac
   echo "$kver" > /var/kola-kernel.evr
-  echo "$url" > /var/kola-kernel.url
+  # Save url only for Fedora path (CentOS/RHEL uses locally downloaded RPMs)
+  if [ -n "${url:-}" ]; then
+    echo "$url" > /var/kola-kernel.url
+  fi
 else
   kver=$(cat /var/kola-kernel.evr)
-  url=$(cat /var/kola-kernel.url)
+  if [ -f /var/kola-kernel.url ]; then
+    url=$(cat /var/kola-kernel.url)
+  fi
 fi
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
@@ -114,13 +125,27 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
     td=$(mktemp -d)
     cd ${td}
     version=$(rpm-ostree --version | grep Version)
-    cat > Containerfile << EOF
+    if [ -d /var/kola-kernel-rpms ]; then
+      # CentOS/RHEL path: use locally downloaded RPMs (downloaded via
+      # dnf download on first boot for mirror failover resilience)
+      cp /var/kola-kernel-rpms/*.rpm .
+      cat > Containerfile << EOF
+FROM localhost/coreos
+COPY *.rpm /tmp/rpms/
+RUN rpm-ostree override replace /tmp/rpms/*.rpm && \
+    rpm-ostree cleanup -m && \
+    ostree container commit
+EOF
+    else
+      # Fedora path: use direct Koji URLs
+      cat > Containerfile << EOF
 FROM localhost/coreos
 RUN rpm-ostree override replace \
     $url-{,core-,modules-,modules-core-,modules-extra-}$kver.rpm && \
     rpm-ostree cleanup -m && \
     ostree container commit
 EOF
+    fi
     # Older podman found in RHEL8 blows up without /etc/resolv.conf
     # which happens in our qemu path.
     touched_resolv_conf=0
