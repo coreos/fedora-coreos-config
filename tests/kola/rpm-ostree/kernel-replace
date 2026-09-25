@@ -54,12 +54,19 @@ if [ ! -f /var/kola-kernel.evr ]; then
   case "$OS_ID" in
     rhcos|scos|rhel|centos)
       c9s_mirror="https://mirror.stream.centos.org/9-stream/BaseOS/${arch}/os"
+      dnf_opts="--repofrompath=tmp,${c9s_mirror} --disablerepo=* --enablerepo tmp"
       # we're probably already on CentOS and running the latest kernel. so
       # here we need to instead pick whatever the latest that's *not* the same
-      kver=$(dnf repoquery kernel --qf '%{EVR}' --repofrompath=tmp,"${c9s_mirror}" --disablerepo '*' --enablerepo tmp | \
+      kver=$(dnf repoquery $dnf_opts kernel --qf '%{EVR}' | \
                 grep -v "$(rpm -q kernel --qf '%{EVR}')" | tail -n1)
+      # Download kernel RPMs locally; direct HTTP URLs to
+      # mirror.stream.centos.org fail with HTTP 403 due to GeoIP-based
+      # DNS routing. dnf download handles mirror failover automatically.
+      mkdir -p /var/kola-kernel-rpms
+      pushd /var/kola-kernel-rpms
+      dnf download $dnf_opts --resolve kernel-{,core-,modules-,modules-core-,modules-extra-}$kver
+      popd
       kver="${kver}.${arch}"
-      url="${c9s_mirror}/Packages/kernel"
       ;;
     fedora)
       # to get the version to use: koji latest-pkg f40 kernel
@@ -73,10 +80,8 @@ if [ ! -f /var/kola-kernel.evr ]; then
       ;;
   esac
   echo "$kver" > /var/kola-kernel.evr
-  echo "$url" > /var/kola-kernel.url
 else
   kver=$(cat /var/kola-kernel.evr)
-  url=$(cat /var/kola-kernel.url)
 fi
 
 case "${AUTOPKGTEST_REBOOT_MARK:-}" in
@@ -116,8 +121,7 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
     version=$(rpm-ostree --version | grep Version)
     cat > Containerfile << EOF
 FROM localhost/coreos
-RUN rpm-ostree override replace \
-    $url-{,core-,modules-,modules-core-,modules-extra-}$kver.rpm && \
+RUN rpm-ostree override replace /tmp/buildcontext/*rpm && \
     rpm-ostree cleanup -m && \
     ostree container commit
 EOF
@@ -130,7 +134,7 @@ EOF
         3.*) touched_resolv_conf=1; touch /etc/resolv.conf;;
       esac
     fi
-    podman build --net=host -t localhost/coreos-derived --squash .
+    podman build --net=host --volume /var/kola-kernel-rpms:/tmp/buildcontext:z -t localhost/coreos-derived --squash .
     if test "${touched_resolv_conf}" -eq 1; then
       rm -vf /etc/resolv.conf
     fi
