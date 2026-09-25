@@ -75,6 +75,17 @@ def print_treefile(manifest_name, osid, stream, version, srcdir, **kwargs):
     print(json.dumps(get_treefile(manifest_path, osid, stream, version)))
 
 
+def get_lockfile_dir(srcdir, stream):
+    """
+    Returns the directory containing lockfiles.
+    First looks in lockfiles/${stream}/, then falls back to srcdir root.
+    """
+    stream_dir = os.path.join(srcdir, 'lockfiles', stream)
+    if os.path.isdir(stream_dir):
+        return stream_dir
+    return srcdir
+
+
 def get_treefile(manifest_path, osid, stream, version):
     with tempfile.NamedTemporaryFile(suffix='.json', mode='w') as tmp_manifest:
         # Substitute in a few values from build-args into the treefile.
@@ -156,7 +167,7 @@ def build_rootfs(target_rootfs, srcdir, manifest_name,
     if local_overrides:
         repos += ['overrides']
 
-    locked_nevras = get_locked_nevras(local_overrides, srcdir)
+    locked_nevras = get_locked_nevras(local_overrides, srcdir, stream)
     if locked_nevras:
         # Lockfile repos require special handling because we only want locked
         # NEVRAs to appear there. For lack of a generic solution for any repo
@@ -399,10 +410,11 @@ def bwrap(rootfs, args, env=dict(), capture=False):
     subprocess.check_call(args)
 
 
-def get_locked_nevras(local_overrides, srcdir):
-    lockfile_path = os.path.join(srcdir, f"manifest-lock.{ARCH}.json")
-    overrides_path = os.path.join(srcdir, "manifest-lock.overrides.yaml")
-    overrides_arch_path = os.path.join(srcdir, f"manifest-lock.overrides.{ARCH}.yaml")
+def get_locked_nevras(local_overrides, srcdir, stream):
+    lockfile_dir = get_lockfile_dir(srcdir, stream)
+    lockfile_path = os.path.join(lockfile_dir, f"manifest-lock.{ARCH}.json")
+    overrides_path = os.path.join(lockfile_dir, "manifest-lock.overrides.yaml")
+    overrides_arch_path = os.path.join(lockfile_dir, f"manifest-lock.overrides.{ARCH}.yaml")
 
     # we go from lowest priority to highest here: base lockfiles, overrides, local overrides
     locks = {}
