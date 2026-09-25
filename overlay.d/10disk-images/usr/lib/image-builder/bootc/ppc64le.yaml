@@ -8,6 +8,10 @@ partition_table:
   # secondary GPT header to the end of the disk on first boot.
   # See https://github.com/coreos/fedora-coreos-config/blob/7fbf510367d495529d2a915707b547d4c663f609/overlay.d/05core/usr/lib/dracut/modules.d/35coreos-ignition/coreos-gpt-setup.sh#L30
   extra_padding: 1031168
+  policy:
+    # Tell image builder to not expand the root partition
+    # we will do it on the first boot.
+    grow_root_to_fill_disk: false
   partitions:
     # PowerPC PReP Boot partition — required for GRUB on ppc64le (petitboot)
     - label: "PowerPC-PReP-boot"
@@ -36,6 +40,9 @@ partition_table:
 
     # Root partition — DPS type for ppc64le
     - label: "root"
+      # This is set at build time by
+      # inject_disk_yaml() in build-rootfs
+      size: OVERRIDDEN
       type: C31C45E6-3F39-412E-80FB-4809C4980599
       payload_type: "filesystem"
       payload:
