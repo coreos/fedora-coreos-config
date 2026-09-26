@@ -19,12 +19,6 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-1c4e9ab463
       type: fast-track
-  bootc:
-    evr: 1.16.12-1.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-076c278f50
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
-      type: fast-track
   bootupd:
     evr: 0.3.2-1.fc45
     metadata:
