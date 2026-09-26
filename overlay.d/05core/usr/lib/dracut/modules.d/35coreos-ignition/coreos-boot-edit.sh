@@ -14,11 +14,53 @@ karg() {
     echo "${value}"
 }
 
+# Prefer the boot partition on the same disk as the already-mounted rootfs.
+# /dev/disk/by-label/boot is ambiguous when other disks also carry LABEL=boot
+# (e.g. leftover Fibre Channel LUNs). Using the wrong bootfs here makes
+# `rdcore bind-boot` stamp GRUB/`boot=UUID=` onto that foreign filesystem
+# while root stays on the install disk.
+# See: https://github.com/coreos/fedora-coreos-tracker/issues/976
+resolve_bootdev() {
+    local rootdev diskpath bootdev="" name typ
+
+    rootdev=$(awk '$2 == "/sysroot" { print $1; exit }' /proc/mounts)
+    rootdev=${rootdev%%\[*}
+
+    if [[ -n "${rootdev}" && -e "${rootdev}" ]]; then
+        # Walk to the whole-disk device (handles partition and simple LUKS).
+        diskpath=""
+        while read -r name typ; do
+            if [[ "${typ}" == "disk" ]]; then
+                diskpath="${name}"
+            fi
+        done < <(lsblk -nsrpn -o NAME,TYPE "${rootdev}" 2>/dev/null || true)
+
+        if [[ -n "${diskpath}" ]]; then
+            bootdev=$(lsblk -rpn -o NAME,PARTLABEL "${diskpath}" \
+                | awk '$2 == "boot" { print $1; exit }')
+            if [[ -z "${bootdev}" ]]; then
+                bootdev=$(lsblk -rpn -o NAME,LABEL "${diskpath}" \
+                    | awk '$2 == "boot" { print $1; exit }')
+            fi
+        fi
+    fi
+
+    if [[ -n "${bootdev}" ]]; then
+        echo "${bootdev}"
+        return 0
+    fi
+
+    # Last resort: unique-boot.service should already have failed if several
+    # LABEL=boot devices exist. Keep this fallback for unusual layouts.
+    echo /dev/disk/by-label/boot
+}
+
 # Mount /boot. Note that we mount /boot but we don't unmount it because we
 # are run in a systemd unit with MountFlags=slave so it is unmounted for us.
 bootmnt=/sysroot/boot
-bootdev=/dev/disk/by-label/boot
-mount -o rw ${bootdev} ${bootmnt}
+bootdev=$(resolve_bootdev)
+echo "coreos-boot-edit: mounting boot from ${bootdev}"
+mount -o rw "${bootdev}" "${bootmnt}"
 
 # Clean up firstboot networking config files if the user copied them into the
 # installed system (most likely by using `coreos-installer install --copy-network`).
