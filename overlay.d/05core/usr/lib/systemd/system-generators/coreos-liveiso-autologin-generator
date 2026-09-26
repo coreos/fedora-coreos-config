@@ -78,7 +78,11 @@ if jq -e .userConfigProvided /etc/.ignition-result.json &>/dev/null; then
     exit 0
 fi
 
+# F44 and older getty@.service
 write_dropin "getty@.service"        "--noclear"
+# F45 and newer kmsconvt@.service
+# https://fedoraproject.org/wiki/Changes/UseKmsconVTConsole
+write_dropin "kmsconvt@.service"     "--noclear"
 # Also autologin on serial console if someone enables that
 write_dropin "serial-getty@.service" "--keep-baud 115200,38400,9600"
 
