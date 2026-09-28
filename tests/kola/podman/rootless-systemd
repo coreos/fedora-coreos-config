@@ -52,26 +52,19 @@ podman build -t httpd .
 podman run -t -d --name httpd --publish 8080:80 httpd
 "
 
-runascoreuser() {
-    # NOTE: If we don't use `| cat` the output won't get copied
-    # to our unit and won't show up in the `systemctl status` output
-    # of the ext test.
-    sudo -u core "$@" | cat
-}
-
 main() {
 
     # Execute script as the core user to build/run the container
     echo "$runascoreuserscript" > /tmp/runascoreuserscript
     chmod +x /tmp/runascoreuserscript
-    runascoreuser /tmp/runascoreuserscript
+    run_as_core_user /tmp/runascoreuserscript
 
     sleep 5
 
     retryflag="--retry-all-errors"
     # Try to grab the web page. Retry as it might not be up fully yet.
-    if ! curl --silent --show-error --retry 5 ${retryflag} http://localhost:8080 >/dev/null; then
-        runascoreuser podman logs httpd
+    if ! curl --silent --show-error --retry 5 ${retryflag} http://localhost:8080 > /dev/null; then
+        run_as_core_user podman logs httpd
         fatal "setup http server container failed"
     fi
 
