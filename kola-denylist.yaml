@@ -16,3 +16,10 @@
   warn: true
   arches:
     - ppc64le
+# RHCOS 4.17 is EOL (end of Maintenance Support Apr 2026). The kernel-replace
+# test fails with HTTP 403 from mirror.stream.centos.org due to GeoIP mirror
+# routing. While we still build 4.17 occasionally for upgrade paths (4.16→4.18),
+# this test is not worth fixing on a dead branch. The dnf download fix exists
+# on testing-devel and rhcos-4.18 (PR #4405).
+- pattern: ext.config.shared.rpm-ostree.kernel-replace
+  tracker: https://github.com/coreos/rhel-coreos-config/issues/305
