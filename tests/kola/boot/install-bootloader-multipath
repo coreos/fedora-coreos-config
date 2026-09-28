@@ -38,8 +38,18 @@ case "${AUTOPKGTEST_REBOOT_MARK:-}" in
     ;;
 rebooted)
     ok "second boot"
-    if ! bootupctl status --json | jq -e '."aleph-version"' > /dev/null; then
-        fatal "bootupctl status --json output should include 'aleph-version'"
+    # The aleph-version field in JSON output was added in bootupd v0.2.36
+    # TODO: remove check when bootupd >= 0.2.36 lands in RHCOS
+    bootupd_version=$(rpm -q --queryformat '%{VERSION}' bootupd)
+    required_version="0.2.36"
+    if vergte "${bootupd_version}" "${required_version}"; then
+        if ! bootupctl status --json | jq -e '."aleph-version"' > /dev/null; then
+            fatal "bootupctl status --json output should include 'aleph-version'"
+        fi
+    else
+        if ! bootupctl status | grep -i "aleph version"; then
+            fatal "bootupctl status output should include 'Aleph version'"
+        fi
     fi
 
     ok bootupctl
