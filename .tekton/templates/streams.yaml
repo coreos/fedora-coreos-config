@@ -17,13 +17,13 @@ config:
 #
 streams:
   - name: stable
-    has_overrides: false
+    has_overrides: true
 
   - name: testing
-    has_overrides: false
+    has_overrides: true
 
   - name: next
-    has_overrides: false
+    has_overrides: true
 
   - name: testing-devel
     has_overrides: true
