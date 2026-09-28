@@ -491,7 +491,7 @@ def inject_image_json(rootfs, image_cfg_path, stream):
 
 
 def inject_content_manifest(target_rootfs, manifest):
-    content_manifest_path = '/run/secrets/contentsets'
+    content_manifest_path = '/run/secrets/container-image-build/contentsets'
     if not os.path.exists(content_manifest_path):
         return
 

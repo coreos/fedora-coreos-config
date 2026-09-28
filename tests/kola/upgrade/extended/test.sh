@@ -134,15 +134,29 @@ fi
 # Pick up the last release for the current stream from the update server
 test -f /srv/updateinfo.json || \
     curl -L "https://updates.coreos.fedoraproject.org/v1/graph?basearch=${arch}&stream=${stream}&rollout_wariness=0&oci=true" > /srv/updateinfo.json
-last_release=$(jq -r .nodes[-1].version /srv/updateinfo.json)
-last_release_index=$(jq '.nodes | length-1' /srv/updateinfo.json)
-latest_edge=$(jq -r .edges[0][1] /srv/updateinfo.json)
-
-# Now that we have the release from update json, let's check if it has an edge pointing to it
-# The latest_edge would ideally have the value of last_release_index if the release has rolled out
-# If the edge does not exist, we would pick the second last release as our last_release
-if [ $last_release_index != $latest_edge ]; then
-    last_release=$(jq -r .nodes[-2].version /srv/updateinfo.json)
+# Extract all destination indexes and select the newest one.
+#
+# Edges contain [source, destination] node indexes.
+# [.edges[][1]] | max // empty means:
+#   [.edges[][1]]
+#   - Iterate over every edge in .edges.
+#   - Extract element 1, the edge’s destination node index.
+#   - Collect those indexes into an array.
+#   max
+#   - Select the largest destination index.
+#   - If there are no edges, the result is null.
+#   // empty
+#   - If the result is null, emit no output.
+#   - In Bash, command substitution then produces an empty string.
+last_release_index=$(jq -r '[.edges[][1]] | max // empty' /srv/updateinfo.json)
+if [ -z "${last_release_index}" ]; then
+    fatal "Update graph contains no usable edges"
+fi
+# Grab the actual version string from the index.
+last_release=$(jq -r --argjson index "${last_release_index}" \
+    '.nodes[$index].version' /srv/updateinfo.json)
+if [ -z "${last_release}" ] || [ "${last_release}" == "null" ]; then
+    fatal "Update graph edge points to a missing node"
 fi
 
 # If the user dropped down a /etc/target_stream file then we'll
@@ -292,7 +306,7 @@ if vereq $version $target_version; then
     # log bootupctl information for inspection and check the status output
     state=$(/usr/bin/bootupctl status 2>&1)
     echo "$state"
-    if ! echo "$state" | grep -q "CoreOS aleph version"; then
+    if ! echo "$state" | grep -q -i "aleph version"; then
         fatal "check bootupctl status output"
     fi
     # One last check!

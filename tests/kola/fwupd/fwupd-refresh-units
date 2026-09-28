@@ -26,7 +26,7 @@ ok "Ran ${unit} successfully"
 
 # TIMER
 unit="fwupd-refresh.timer"
-if is_rhcos && match_maj_ver "9"; then
+if match_maj_ver "9"; then
     ok "${unit} not enabled on EL9, skipping check."
     exit 0
 fi
