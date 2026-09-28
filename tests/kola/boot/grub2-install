@@ -32,10 +32,15 @@ case ${arch} in
     # OSBuild) that adds "part_gpt". The aleph stage in osbuild is
     # the only one that creates a file at /sysroot/.aleph-version.json
     #
+    # https://github.com/coreos/fedora-coreos-tracker/issues/2187
+    # We now also look for the aleph created by bootc as it
+    # replaced the one created by osbuild since moving to
+    # `bootc install` to create disk images.
+    #
     # sync grub2-install parameters with the bootupd invocation from:
     # https://github.com/coreos/bootupd/blob/main/src/bios.rs
     grub_modules+=("mdraid1x")
-    if [ -f /sysroot/.aleph-version.json ]; then
+    if [ -f /sysroot/.aleph-version.json ] || [ -f /sysroot/.bootc-aleph.json ]; then
         # collapse this if in't the previous line when all is moved
         # over to building using OSBuild.
         grub_modules+=("part_gpt")

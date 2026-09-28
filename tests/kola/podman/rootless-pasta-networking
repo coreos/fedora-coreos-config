@@ -32,13 +32,6 @@ result=\$(curl https://ignition-test-fixtures.s3.amazonaws.com/resources/anonymo
 EOF
 "
 
-runascoreuser() {
-    # NOTE: If we don't use `| cat` the output won't get copied
-    # to our unit and won't show up in the `systemctl status` output
-    # of the ext test.
-    sudo -u core "$@" | cat
-}
-
 main() {
 
     # Execute script as the core user to exercise rootless podman
@@ -46,7 +39,7 @@ main() {
     echo "$runascoreuserscript" > $runascoreuserscriptpath
     chmod +x $runascoreuserscriptpath
     chown core $runascoreuserscriptpath
-    if runascoreuser $runascoreuserscriptpath; then
+    if run_as_core_user $runascoreuserscriptpath; then
         ok "Podman with pasta networking succeeded!"
     else
         fatal "Podman with pasta networking failed"
