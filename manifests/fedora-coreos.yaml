@@ -221,6 +221,24 @@ postprocess:
     set -eux -o pipefail
     systemctl mask dnsmasq.service
 
+  # Mask systemd's new IMDS subsystem (systemd >= 262, ENABLE_IMDS). On cloud
+  # guests systemd-imds-generator pulls in systemd-imds-early-network.service,
+  # which runs `systemd-imdsd --setup-network` in the init_t domain and is
+  # denied by SELinux when writing net_conf_t / systemd_resolved_var_run_t,
+  # so the unit fails and trips the boot health check. FCOS gets metadata via
+  # afterburn and configures networking via NetworkManager, so it does not
+  # need systemd's IMDS pre-networking. Mask the whole subsystem until (if
+  # ever) it is wanted and selinux-policy grows rules for it.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/2232
+  - |
+    #!/usr/bin/bash
+    set -eux -o pipefail
+    systemctl mask systemd-imds-early-network.service \
+                    systemd-imds-import.service \
+                    systemd-imds-metrics.socket \
+                    systemd-imdsd.socket \
+                    systemd-imdsd@.service
+
   # sudo prefers its config files to be mode 440, and some security scanners
   # complain if /etc/sudoers.d files are world-readable.
   # https://bugzilla.redhat.com/show_bug.cgi?id=1981979
