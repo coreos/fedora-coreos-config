@@ -47,3 +47,31 @@
     - branched
   arches:
     - aarch64
+
+- pattern: fcos.ignition.v3.noop
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2231
+  snooze: 2026-10-06
+  warn: true
+  platforms:
+    - azure
+  streams:
+    - testing
+    - testing-devel
+    - stable
+    - next
+    - next-devel
+    - rawhide
+
+- pattern: fcos.ignition.misc.empty
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2231
+  snooze: 2026-10-06
+  warn: true
+  platforms:
+    - azure
+  streams:
+    - testing
+    - testing-devel
+    - stable
+    - next
+    - next-devel
+    - rawhide
