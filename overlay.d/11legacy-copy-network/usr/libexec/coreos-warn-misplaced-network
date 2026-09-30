@@ -1,0 +1,27 @@
+#!/bin/bash
+set -euo pipefail
+
+MOTD_FILE="/etc/motd.d/coreos-warn-misplaced-network.motd"
+YELLOW=$(echo -e '\033[0;33m')
+RESET=$(echo -e '\033[0m')
+mkdir -p /etc/motd.d
+cat > "${MOTD_FILE}" <<EOF
+${YELLOW}
+##########################################################################
+WARNING: MISPLACED FIRSTBOOT NETWORK CONFIGURATION DETECTED
+
+During first boot, network configuration was found in
+/boot/coreos-firstboot-network. This was placed there by an older
+version of coreos-installer. The configuration was automatically
+rescued and applied, but this compatibility workaround will be
+removed in a future release.
+
+ACTION REQUIRED: Re-install using an updated coreos-installer that
+embeds network config in the initramfs instead of /boot.
+
+See https://docs.fedoraproject.org/en-US/fedora-coreos/faq/#_why_am_i_getting_a_warning_about_misplaced_firstboot_network_configuration
+
+To dismiss this warning, delete /etc/motd.d/coreos-warn-misplaced-network.motd
+##########################################################################
+${RESET}
+EOF
