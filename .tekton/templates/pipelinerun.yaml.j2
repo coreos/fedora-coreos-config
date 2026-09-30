@@ -52,6 +52,19 @@ spec:
   - name: image-expires-after
     value: {{ image_expires_after }}
 {%- endif %}
+  # We have to override the default computeResources values
+  # See https://redhat.atlassian.net/browse/COS-5180
+  taskRunSpecs:
+    - pipelineTaskName: rpms-signature-scan
+      stepSpecs:
+        - name: rpms-signature-scan
+          computeResources:
+            limits:
+              cpu: 200m
+              memory: 512Mi
+            requests:
+              cpu: 200m
+              memory: 512Mi
   pipelineRef:
     params:
     - name: bundle
