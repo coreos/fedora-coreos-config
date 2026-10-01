@@ -14,26 +14,6 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2219
       type: pin
-  console-login-helper-messages:
-    evra: 0.21.3-13.fc44.noarch
-    metadata:
-      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
-      type: pin
-  console-login-helper-messages-issuegen:
-    evra: 0.21.3-13.fc44.noarch
-    metadata:
-      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
-      type: pin
-  console-login-helper-messages-motdgen:
-    evra: 0.21.3-13.fc44.noarch
-    metadata:
-      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
-      type: pin
-  console-login-helper-messages-profile:
-    evra: 0.21.3-13.fc44.noarch
-    metadata:
-      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
-      type: pin
   dracut:
     evr: 109-7.fc45
     metadata:
