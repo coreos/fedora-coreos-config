@@ -24,16 +24,6 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
       type: pin
-  ignition:
-    evr: 2.27.0-3.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-2d1e2ae051
-      type: fast-track
-  ignition-grub:
-    evr: 2.27.0-3.fc44
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-2d1e2ae051
-      type: fast-track
   rpm-ostree:
     evr: 2026.3-2.fc44
     metadata:
