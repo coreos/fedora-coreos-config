@@ -1,7 +1,8 @@
 [Unit]
 Description=Ignition OSTree: Grow Root Filesystem
 DefaultDependencies=false
-ConditionKernelCommandLine=ostree
+ConditionKernelCommandLine=|ostree
+ConditionKernelCommandLine=|composefs
 ConditionPathExists=!/run/ostree-live
 Before=initrd-root-fs.target
 Before=sysroot.mount
