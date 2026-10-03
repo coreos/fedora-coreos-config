@@ -24,6 +24,16 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
       type: pin
+  coreos-installer:
+    evr: 0.27.0-1.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-dcd141daac
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.27.0-1.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-dcd141daac
+      type: fast-track
   ignition:
     evr: 2.27.0-3.fc44
     metadata:
