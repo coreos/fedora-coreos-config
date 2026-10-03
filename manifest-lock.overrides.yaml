@@ -34,6 +34,11 @@ packages:
     metadata:
       reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
       type: pin
+  container-selinux:
+    evra: 4:2.249.0-1.fc45.noarch
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
+      type: pin
   dracut:
     evr: 109-7.fc45
     metadata:
@@ -49,19 +54,33 @@ packages:
     metadata:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
       type: pin
-
-  container-selinux:
-    evra: 4:2.249.0-1.fc45.noarch
+  glibc:
+    evr: 2.44.9000-2.fc46
     metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206#issuecomment-5974312796
       type: pin
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
+  glibc-common:
+    evr: 2.44.9000-2.fc46
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206#issuecomment-5974312796
+      type: pin
+  glibc-gconv-extra:
+    evr: 2.44.9000-2.fc46
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206#issuecomment-5974312796
+      type: pin
+  glibc-minimal-langpack:
+    evr: 2.44.9000-2.fc46
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206#issuecomment-5974312796
+      type: pin
   selinux-policy:
     evra: 45.7-1.fc45.noarch
     metadata:
-      type: pin
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
+      type: pin
   selinux-policy-targeted:
     evra: 45.7-1.fc45.noarch
     metadata:
-      type: pin
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
+      type: pin
