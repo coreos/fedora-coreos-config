@@ -67,10 +67,10 @@
       "evra": "1:2.18-1.fc45.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.18.50-34.fc45.s390x"
+      "evra": "32:9.18.50-35.fc45.s390x"
     },
     "bind-utils": {
-      "evra": "32:9.18.50-34.fc45.s390x"
+      "evra": "32:9.18.50-35.fc45.s390x"
     },
     "bootc": {
       "evra": "1.16.13-1.fc45.s390x"
@@ -79,7 +79,7 @@
       "evra": "0.3.2-1.fc45.s390x"
     },
     "bsdtar": {
-      "evra": "3.8.8-3.fc45.s390x"
+      "evra": "3.8.9-2.fc45.s390x"
     },
     "btrfs-progs": {
       "evra": "7.1-1.fc45.s390x"
@@ -241,7 +241,7 @@
       "evra": "3.12-6.fc45.s390x"
     },
     "dnf5": {
-      "evra": "5.4.6.0-2.fc45.s390x"
+      "evra": "5.4.6.0-3.fc45.s390x"
     },
     "dnsmasq": {
       "evra": "2.93-2.fc45.s390x"
@@ -316,7 +316,7 @@
       "evra": "1.5.2-3.fc45.s390x"
     },
     "flatpak-session-helper": {
-      "evra": "1.19.0^really1.18.2-2.fc45.s390x"
+      "evra": "1.19.0^really1.18.4-1.fc45.s390x"
     },
     "fmt": {
       "evra": "12.1.0-3.fc45.s390x"
@@ -406,7 +406,7 @@
       "evra": "3.12-4.fc45.s390x"
     },
     "gssproxy": {
-      "evra": "0.9.2-12.fc45.s390x"
+      "evra": "0.9.2-13.fc45.s390x"
     },
     "gzip": {
       "evra": "1.14-4.fc45.s390x"
@@ -415,7 +415,7 @@
       "evra": "3.25-5.fc45.s390x"
     },
     "hwdata": {
-      "evra": "0.411-1.fc45.noarch"
+      "evra": "0.412-1.fc45.noarch"
     },
     "ignition": {
       "evra": "2.27.0-3.fc45.s390x"
@@ -535,7 +535,7 @@
       "evra": "0.3.111-24.fc45.s390x"
     },
     "libarchive": {
-      "evra": "3.8.8-3.fc45.s390x"
+      "evra": "3.8.9-2.fc45.s390x"
     },
     "libassuan": {
       "evra": "2.5.7-6.fc45.s390x"
@@ -613,10 +613,10 @@
       "evra": "0.5.0-63.fc45.s390x"
     },
     "libdnf5": {
-      "evra": "5.4.6.0-2.fc45.s390x"
+      "evra": "5.4.6.0-3.fc45.s390x"
     },
     "libdnf5-cli": {
-      "evra": "5.4.6.0-2.fc45.s390x"
+      "evra": "5.4.6.0-3.fc45.s390x"
     },
     "libdrm": {
       "evra": "2.4.134-2.fc45.s390x"
@@ -643,7 +643,7 @@
       "evra": "1.17.0-5.fc45.s390x"
     },
     "libgcc": {
-      "evra": "16.2.1-2.fc45.s390x"
+      "evra": "16.2.1-2.fc45.1.s390x"
     },
     "libgcrypt": {
       "evra": "1.12.2-2.fc45.s390x"
@@ -667,7 +667,7 @@
       "evra": "2.0.0-63.fc45.s390x"
     },
     "libipa_hbac": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "libjose": {
       "evra": "14-8.fc45.s390x"
@@ -721,13 +721,13 @@
       "evra": "1.0.2-2.fc45.s390x"
     },
     "libnfsidmap": {
-      "evra": "1:2.9.2-1.rc1.fc45.s390x"
+      "evra": "1:2.9.2-1.rc1.fc45.1.s390x"
     },
     "libnftnl": {
       "evra": "1.3.1-3.fc45.s390x"
     },
     "libnghttp2": {
-      "evra": "1.69.0-5.fc45.s390x"
+      "evra": "1.69.0-6.fc45.s390x"
     },
     "libnghttp3": {
       "evra": "1.18.0-1.fc45.s390x"
@@ -760,10 +760,10 @@
       "evra": "1.4.5-18.fc45.s390x"
     },
     "librepo": {
-      "evra": "1.21.1-1.fc45.s390x"
+      "evra": "1.21.1-2.fc45.s390x"
     },
     "libreport-filesystem": {
-      "evra": "2.17.15-13.fc45.noarch"
+      "evra": "2.17.15-14.fc45.noarch"
     },
     "libseccomp": {
       "evra": "2.6.1-3.fc45.s390x"
@@ -790,7 +790,7 @@
       "evra": "2:4.25.0-0.2.rc2.fc45.s390x"
     },
     "libsolv": {
-      "evra": "0.7.39-7.fc45.s390x"
+      "evra": "0.7.40-2.fc45.s390x"
     },
     "libss": {
       "evra": "1.47.4-2.fc45.s390x"
@@ -802,19 +802,19 @@
       "evra": "0.12.2-1.fc45.noarch"
     },
     "libsss_certmap": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "libsss_idmap": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "libsss_nss_idmap": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "libsss_sudo": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "libstdc++": {
-      "evra": "16.2.1-2.fc45.s390x"
+      "evra": "16.2.1-2.fc45.1.s390x"
     },
     "libtalloc": {
       "evra": "2.5.0-2.fc45.s390x"
@@ -868,10 +868,10 @@
       "evra": "4.5.2-4.fc45.s390x"
     },
     "libxkbcommon": {
-      "evra": "1.13.1-3.fc45.s390x"
+      "evra": "1.13.1-4.fc45.s390x"
     },
     "libxml2": {
-      "evra": "2.13.9-4.fc45.s390x"
+      "evra": "2.15.4-1.fc45.s390x"
     },
     "libxmlb": {
       "evra": "0.3.29-1.fc45.s390x"
@@ -961,16 +961,16 @@
       "evra": "0.52.25-9.fc45.s390x"
     },
     "nfs-client-utils": {
-      "evra": "1:2.9.2-1.rc1.fc45.s390x"
+      "evra": "1:2.9.2-1.rc1.fc45.1.s390x"
     },
     "nfs-common-utils": {
-      "evra": "1:2.9.2-1.rc1.fc45.s390x"
+      "evra": "1:2.9.2-1.rc1.fc45.1.s390x"
     },
     "nfsv3-client-utils": {
-      "evra": "1:2.9.2-1.rc1.fc45.s390x"
+      "evra": "1:2.9.2-1.rc1.fc45.1.s390x"
     },
     "nfsv4-client-utils": {
-      "evra": "1:2.9.2-1.rc1.fc45.s390x"
+      "evra": "1:2.9.2-1.rc1.fc45.1.s390x"
     },
     "nftables": {
       "evra": "1:1.1.6-4.fc45.s390x"
@@ -1213,7 +1213,7 @@
       "evra": "2:4.20.0-1.fc45.s390x"
     },
     "shared-mime-info": {
-      "evra": "2.5.1-2.fc45.s390x"
+      "evra": "2.5.1-3.fc45.s390x"
     },
     "skopeo": {
       "evra": "1:1.24.0-2.fc45.s390x"
@@ -1237,31 +1237,31 @@
       "evra": "4.7.4-2.fc45.s390x"
     },
     "sssd-ad": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "sssd-client": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "sssd-common": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "sssd-common-pac": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "sssd-ipa": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "sssd-krb5": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "sssd-krb5-common": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "sssd-ldap": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "sssd-nfs-idmap": {
-      "evra": "2.13.1-6.fc45.s390x"
+      "evra": "2.13.1-7.fc45.s390x"
     },
     "stalld": {
       "evra": "1.28.1-2.fc45.s390x"
@@ -1379,6 +1379,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-10-03T00:00:00Z"
+    "generated": "2026-10-04T00:00:00Z"
   }
 }
