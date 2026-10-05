@@ -160,10 +160,10 @@
       "evra": "5:0.67.2-1.fc44.noarch"
     },
     "coreos-installer": {
-      "evra": "0.26.0-3.fc44.s390x"
+      "evra": "0.27.0-1.fc44.s390x"
     },
     "coreos-installer-bootinfra": {
-      "evra": "0.26.0-3.fc44.s390x"
+      "evra": "0.27.0-1.fc44.s390x"
     },
     "coreutils": {
       "evra": "9.10-5.fc44.s390x"
@@ -747,6 +747,9 @@
     "libpath_utils": {
       "evra": "0.2.1-61.fc44.s390x"
     },
+    "libpathrs": {
+      "evra": "0.2.6-1.fc44.s390x"
+    },
     "libpcap": {
       "evra": "14:1.10.7-1.fc44.s390x"
     },
@@ -1153,7 +1156,7 @@
       "evra": "3.5.1-1.fc44.s390x"
     },
     "runc": {
-      "evra": "2:1.5.1-1.fc44.s390x"
+      "evra": "2:1.5.2-3.fc44.s390x"
     },
     "s390utils-core": {
       "evra": "2:2.41.0-2.fc44.s390x"
@@ -1339,7 +1342,7 @@
       "evra": "2.47-1.fc44.noarch"
     },
     "xxhash-libs": {
-      "evra": "0.8.3-4.fc44.s390x"
+      "evra": "0.8.4-1.fc44.s390x"
     },
     "xz": {
       "evra": "1:5.8.2-2.fc44.s390x"
@@ -1364,6 +1367,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-10-04T00:00:00Z"
+    "generated": "2026-10-05T00:00:00Z"
   }
 }
