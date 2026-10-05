@@ -47,3 +47,10 @@
     - branched
   arches:
     - aarch64
+
+- pattern: iso.miniso-install*.nm.*
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2235
+  snooze: 2026-10-12
+  warn: true
+  streams:
+    - rawhide
