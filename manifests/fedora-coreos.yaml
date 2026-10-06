@@ -54,6 +54,25 @@ conditional-include:
           #!/usr/bin/env bash
           set -eux -o pipefail
           rm -vrf /usr/lib/modules/*aarch64/dtb/qcom/
+  # Dracut 111 has a bug, which causes our CI to fail. This bug has been fixed in Dracut 112, and is
+  # in the process of being backported to 111. While we wait for the backport / release, we will manually
+  # patch this file.
+  #
+  # Tracker:       https://github.com/coreos/fedora-coreos-tracker/issues/2206
+  # Upsteam patch: https://github.com/dracut-ng/dracut/pull/2494
+  - if: releasever >= 45
+    include:
+      postprocess:
+        - |
+          #!/usr/bin/env bash
+          set -eux -o pipefail
+
+          crypt_generator_path="/usr/lib/dracut/modules.d/70crypt/crypt-generator.sh"
+          expected_sha="e47fa3ecf60760b0613b175ed70b61d42bb9e15a211448668ba3cd53fdd4995f"
+
+          if sha256sum "${crypt_generator_path}" | grep -q "^${expected_sha}"; then
+            sed -i 's/return /exit /g' "${crypt_generator_path}"
+          fi
 
   # WARN: Temporary workaround
   #
