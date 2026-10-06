@@ -9,16 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  afterburn:
-    evr: 5.11.0-1.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-1c4e9ab463
-      type: fast-track
-  afterburn-dracut:
-    evr: 5.11.0-1.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-1c4e9ab463
-      type: fast-track
   console-login-helper-messages:
     evra: 0.21.3-13.fc44.noarch
     metadata:
@@ -78,18 +68,6 @@ packages:
     evr: 2.27.0-3.fc45
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-29048aad4c
-      type: fast-track
-  rpm-ostree:
-    evr: 2026.3-2.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-31d034c133
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2226
-      type: fast-track
-  rpm-ostree-libs:
-    evr: 2026.3-2.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-31d034c133
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2226
       type: fast-track
   selinux-policy:
     evra: 44.6-1.fc44.noarch
