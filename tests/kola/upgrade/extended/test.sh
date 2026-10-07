@@ -273,6 +273,8 @@ if [ -f /etc/zincati/config.d/90-disable-on-non-production-stream.toml ]; then
     need_restart='true'
 fi
 
+# Avoid xtrace expanding JSON variables into large, noisy log entries.
+set +x
 booted_deployment_json=$(rpm-ostree status  --json | \
                          jq -r '.deployments[] | select(.booted == true)')
 version=$(jq -r '.version' <<< "${booted_deployment_json}")
@@ -301,6 +303,9 @@ fi
 if [ -z "${stream}" ] || [ "${stream}" == "null" ]; then
     fatal "Stream was not detected from booted deployment"
 fi
+echo "version=${version}"
+echo "stream=${stream}"
+set -x
 
 # Pick up the last release for the current stream from the update server
 test -f /srv/updateinfo.json || \
@@ -343,6 +348,8 @@ ok "Reached version: $version"
 # Are we all the way at the desired target version?
 # If so then we can exit with success!
 if vereq $version $target_version; then
+    # Avoid xtrace expanding the bootupctl JSON into a large log entry.
+    set +x
     ok "Fully upgraded to $target_version"
     # log bootupctl information for inspection and check the status output
     state=$(/usr/bin/bootupctl status --json 2>&1)
@@ -350,6 +357,7 @@ if vereq $version $target_version; then
     if ! echo "$state" | jq -e '."aleph-version"' > /dev/null; then
         fatal "check bootupctl status --json output - should include 'aleph-version'"
     fi
+    set -x
     # One last check!
     selinux-sanity-check
     exit 0
@@ -409,8 +417,11 @@ if vereq $version $last_release; then
     # Since we'll be manually running `rpm-ostree` let's stop zincati
     systemctl stop zincati
 
+    # Avoid xtrace expanding the image-inspection JSON into a large log entry.
+    set +x
     inspect=$(skopeo inspect --retry-times=3 -n docker://quay.io/fedora/fedora-coreos:${target_stream})
     registry_version=$(jq -r '.Labels."org.opencontainers.image.version"' <<< "${inspect}")
+    set -x
     if [ "${registry_version}" == "${target_version}" ]; then
         # If the container is already pushed to the registry we'll use the registry
         if [ "${stream}" == "${target_stream}" ]; then
