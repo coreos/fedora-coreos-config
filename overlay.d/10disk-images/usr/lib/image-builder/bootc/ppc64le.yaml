@@ -40,6 +40,8 @@ partition_table:
 
     # Root partition — DPS type for ppc64le
     - label: "root"
+      # bump when ext.config.disks.rootfs-free-space fail
+      size: 3.5GiB
       type: C31C45E6-3F39-412E-80FB-4809C4980599
       payload_type: "filesystem"
       payload:

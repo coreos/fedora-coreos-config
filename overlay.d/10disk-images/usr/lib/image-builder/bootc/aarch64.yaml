@@ -48,6 +48,8 @@ partition_table:
 
     # Root partition — DPS type for aarch64
     - label: "root"
+      # bump when ext.config.disks.rootfs-free-space fail
+      size: 3.5GiB
       type: B921B045-1DF0-41C3-AF44-4C6F280D3FAE
       payload_type: "filesystem"
       payload:

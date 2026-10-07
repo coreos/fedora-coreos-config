@@ -34,6 +34,8 @@ partition_table:
 
     # Root partition — DPS type for s390x
     - label: "root"
+      # bump when ext.config.disks.rootfs-free-space fail
+      size: 3.5GiB
       partnum: 4
       type: 5EEAD9A9-FE09-4A1E-A1D7-520D00531306
       payload_type: "filesystem"
