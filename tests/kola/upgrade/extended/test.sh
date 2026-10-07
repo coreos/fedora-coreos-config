@@ -15,6 +15,135 @@ set -eux -o pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
+grab-gpg-keys() {
+    # For older FCOS we had an issue where when we tried to pull the
+    # commits from the repo it would fail if we were on N-2 because
+    # the newer commits would be signed with a key the old OS didn't
+    # know anything about. We applied a workaround in newer releases,
+    # so this workaround should be limited to zincati older than v0.0.24
+    # https://github.com/coreos/fedora-coreos-tracker/issues/749
+    max_version=${target_version:0:2} # i.e. 36, 37, 38, etc..
+    for ver in $(seq $VERSION_ID $max_version); do
+        file="/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${ver}-primary"
+        if [ ! -e $file ]; then
+            need_restart='true'
+            curl -L "https://src.fedoraproject.org/rpms/fedora-repos/raw/rawhide/f/RPM-GPG-KEY-fedora-${ver}-primary" | \
+                sudo tee $file
+            sudo chcon -v --reference="/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${VERSION_ID}-primary" $file
+        fi
+    done
+}
+
+fix-update-url() {
+    # We switched to non stg URL in zincati v0.0.10 [1]. For older clients
+    # we need to update the runtime configuration of zincati to get past the problem.
+    # [1] https://github.com/coreos/zincati/commit/1d73801ccd015cdce89f082cb1eeb9b4b8335760
+    file='/etc/zincati/config.d/50-fedora-coreos-cincinnati.toml'
+    if [ ! -e $file ]; then
+        need_restart='true'
+        cat > $file <<'EOF'
+[cincinnati]
+base_url= "https://updates.coreos.fedoraproject.org"
+EOF
+    fi
+}
+
+fix-allow-downgrade() {
+    # Older FCOS will complain about an upgrade target being 'chronologically older than current'
+    # This is documented in https://github.com/coreos/fedora-coreos-tracker/issues/481
+    # We can workaround the problem via a config dropin:
+    file='/etc/zincati/config.d/99-fedora-coreos-allow-downgrade.toml'
+    if [ ! -e $file ]; then
+        need_restart='true'
+        cat > $file <<'EOF'
+updates.allow_downgrade = true
+EOF
+    fi
+}
+
+move-to-cgroups-v2() {
+    # When upgrading to latest F41+ the system won't even boot on cgroups v1
+    if grep -q unified_cgroup_hierarchy /proc/cmdline; then
+        systemctl stop zincati
+        rpm-ostree cancel
+        rpm-ostree kargs --delete=systemd.unified_cgroup_hierarchy
+        need_restart='true'
+    fi
+}
+
+selinux-sanity-check() {
+    # Drop the rollback deployment. In the case where the name of a
+    # label gets changed then the rollback deployment will show files
+    # as unlabeled_t because the currently loaded policy (i.e. the upgraded
+    # policy) doesn't know about the old label. Since we are more concerned
+    # about the upgraded system let's just focus on finding unlabeled files
+    # there and drop the rollback deployment.
+    # https://github.com/coreos/fedora-coreos-tracker/issues/2007#issuecomment-3197248482
+    echo "Dropping rollback deployment"
+    rpm-ostree cleanup --rollback
+    # Verify SELinux labels are sane. Migration scripts should have cleaned
+    # up https://github.com/coreos/fedora-coreos-tracker/issues/1772
+    unlabeled="$(find /sysroot -context '*unlabeled_t*' -print0 | xargs --null -I{} ls -ldZ '{}')"
+    if [ -n "${unlabeled}" ]; then
+        fatal "Some unlabeled files were found"
+    fi
+    mislabeled="$(restorecon -vnr /var/ /etc/ /usr/ /boot/)"
+    if [ -n "${mislabeled}" ]; then
+        # Exceptions for files that could be wrong (sometimes upgrades are messy)
+        # - Would relabel /var/lib/cni from system_u:object_r:var_lib_t:s0 to system_u:object_r:container_var_lib_t:s0
+        # - Would relabel /etc/selinux/targeted/semanage.read.LOCK from system_u:object_r:semanage_trans_lock_t:s0 to system_u:object_r:selinux_config_t:s0
+        # - Would relabel /etc/selinux/targeted/semanage.trans.LOCK from system_u:object_r:semanage_trans_lock_t:s0 to system_u:object_r:selinux_config_t:s0
+        # - Would relabel /etc/systemd/journald.conf.d from system_u:object_r:etc_t:s0 to system_u:object_r:systemd_conf_t:s0
+        # - Would relabel /etc/systemd/journald.conf.d/forward-to-console.conf from system_u:object_r:etc_t:s0 to system_u:object_r:systemd_conf_t:s0
+        # - Would relabel /boot/lost+found from system_u:object_r:unlabeled_t:s0 to system_u:object_r:lost_found_t:s0' ']'
+        # - Would relabel /var/lib/systemd/home from system_u:object_r:init_var_lib_t:s0 to system_u:object_r:systemd_homed_library_dir_t:s0
+        #       - 39.20230916.1.1->41.20240928.10.1
+        #       - https://github.com/fedora-selinux/selinux-policy/commit/3ba70ae27d067f7edc0a52ff722511c5ada724f2
+        # - Would relabel /var/cache/systemd from system_u:object_r:var_t:s0 to system_u:object_r:systemd_cache_t:s0
+        #   Would relabel /var/cache/systemd/home from system_u:object_r:var_t:s0 to system_u:object_r:systemd_homed_cache_t:s0
+        #       - 38.20230322.1.0->42.20241023.91.0
+        #       - https://github.com/fedora-selinux/selinux-policy/commit/b08568ca696f14d3232adef6a291ebb0ec80ba46
+        #       - https://github.com/coreos/fedora-coreos-tracker/issues/1819
+        # - Would relabel /var/lib/systemd/random-seed from system_u:object_r:init_var_lib_t:s0 to system_u:object_r:random_seed_t:s0
+        #       - 42.20250526.1.0 -> 42.20250609.1.0
+        #       - https://github.com/coreos/fedora-coreos-tracker/issues/1965#issuecomment-2959831808
+        # - Would relabel /var/opt/kola* from unconfined_u:object_r:var_t:s0 to unconfined_u:object_r:usr_t:s0
+        #       - 42.20250410.2.0 -> 43.20251031.20.0
+        #       - https://github.com/coreos/fedora-coreos-tracker/issues/2052#issuecomment-3474594545
+        declare -A exceptions=(
+           ['/var/lib/cni']=1
+           ['/etc/selinux/targeted/semanage.read.LOCK']=1
+           ['/etc/selinux/targeted/semanage.trans.LOCK']=1
+           ['/etc/systemd/journald.conf.d']=1
+           ['/etc/systemd/journald.conf.d/forward-to-console.conf']=1
+           ['/boot/lost+found']=1
+           ['/var/lib/systemd/home']=1
+           ['/var/cache/systemd']=1
+           ['/var/cache/systemd/home']=1
+           ['/var/lib/systemd/random-seed']=1
+           ['/var/opt/kola']=1
+           ['/var/opt/kola/extdata']=1
+           ['/var/opt/kola/extdata/commonlib.sh']=1
+        )
+        paths="$(echo "${mislabeled}" | grep "Would relabel" | cut -d ' ' -f 3)"
+        found=""
+        while read -r path; do
+            # Add in a glob exception for /var/srv since that's where our OSTree repo is
+            if [[ "${path}" =~ /var/srv ]]; then
+                 continue
+            fi
+            if [[ "${exceptions[$path]:-noexception}" == 'noexception' ]]; then
+                echo "Unexpected mislabeled file found: ${path}"
+                found="1"
+            fi
+        done <<< "${paths}"
+        if [ "${found}" == "1" ];then
+            fatal "Some unexpected mislabeled files were found."
+        fi
+    fi
+    ok "Selinux sanity checks passed"
+}
+
 # This test will attempt to test an upgrade from a given starting
 # point (assumed by the caller passing in a specific
 # `cosa kola run --build=x.y.z`) all the way to the latest build
@@ -166,136 +295,6 @@ test -f /etc/target_stream && target_stream=$(< /etc/target_stream)
 test -f /srv/builds.json || \
     curl -L "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/builds.json" > /srv/builds.json
 target_version=$(jq -r .builds[0].id /srv/builds.json)
-
-
-grab-gpg-keys() {
-    # For older FCOS we had an issue where when we tried to pull the
-    # commits from the repo it would fail if we were on N-2 because
-    # the newer commits would be signed with a key the old OS didn't
-    # know anything about. We applied a workaround in newer releases,
-    # so this workaround should be limited to zincati older than v0.0.24
-    # https://github.com/coreos/fedora-coreos-tracker/issues/749
-    max_version=${target_version:0:2} # i.e. 36, 37, 38, etc..
-    for ver in $(seq $VERSION_ID $max_version); do
-        file="/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${ver}-primary"
-        if [ ! -e $file ]; then
-            need_restart='true'
-            curl -L "https://src.fedoraproject.org/rpms/fedora-repos/raw/rawhide/f/RPM-GPG-KEY-fedora-${ver}-primary" | \
-                sudo tee $file
-            sudo chcon -v --reference="/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${VERSION_ID}-primary" $file
-        fi
-    done
-}
-
-fix-update-url() {
-    # We switched to non stg URL in zincati v0.0.10 [1]. For older clients
-    # we need to update the runtime configuration of zincati to get past the problem.
-    # [1] https://github.com/coreos/zincati/commit/1d73801ccd015cdce89f082cb1eeb9b4b8335760
-    file='/etc/zincati/config.d/50-fedora-coreos-cincinnati.toml'
-    if [ ! -e $file ]; then
-        need_restart='true'
-        cat > $file <<'EOF'
-[cincinnati]
-base_url= "https://updates.coreos.fedoraproject.org"
-EOF
-    fi
-}
-
-fix-allow-downgrade() {
-    # Older FCOS will complain about an upgrade target being 'chronologically older than current'
-    # This is documented in https://github.com/coreos/fedora-coreos-tracker/issues/481
-    # We can workaround the problem via a config dropin:
-    file='/etc/zincati/config.d/99-fedora-coreos-allow-downgrade.toml'
-    if [ ! -e $file ]; then
-        need_restart='true'
-        cat > $file <<'EOF'
-updates.allow_downgrade = true
-EOF
-    fi
-}
-
-move-to-cgroups-v2() {
-    # When upgrading to latest F41+ the system won't even boot on cgroups v1
-    if grep -q unified_cgroup_hierarchy /proc/cmdline; then
-        systemctl stop zincati
-        rpm-ostree cancel
-        rpm-ostree kargs --delete=systemd.unified_cgroup_hierarchy
-        need_restart='true'
-    fi
-}
-
-selinux-sanity-check() {
-    # Drop the rollback deployment. In the case where the name of a
-    # label gets changed then the rollback deployment will show files
-    # as unlabeled_t because the currently loaded policy (i.e. the upgraded
-    # policy) doesn't know about the old label. Since we are more concerned
-    # about the upgraded system let's just focus on finding unlabeled files
-    # there and drop the rollback deployment.
-    # https://github.com/coreos/fedora-coreos-tracker/issues/2007#issuecomment-3197248482
-    echo "Dropping rollback deployment"
-    rpm-ostree cleanup --rollback
-    # Verify SELinux labels are sane. Migration scripts should have cleaned
-    # up https://github.com/coreos/fedora-coreos-tracker/issues/1772
-    unlabeled="$(find /sysroot -context '*unlabeled_t*' -print0 | xargs --null -I{} ls -ldZ '{}')"
-    if [ -n "${unlabeled}" ]; then
-        fatal "Some unlabeled files were found"
-    fi
-    mislabeled="$(restorecon -vnr /var/ /etc/ /usr/ /boot/)"
-    if [ -n "${mislabeled}" ]; then
-        # Exceptions for files that could be wrong (sometimes upgrades are messy)
-        # - Would relabel /var/lib/cni from system_u:object_r:var_lib_t:s0 to system_u:object_r:container_var_lib_t:s0
-        # - Would relabel /etc/selinux/targeted/semanage.read.LOCK from system_u:object_r:semanage_trans_lock_t:s0 to system_u:object_r:selinux_config_t:s0
-        # - Would relabel /etc/selinux/targeted/semanage.trans.LOCK from system_u:object_r:semanage_trans_lock_t:s0 to system_u:object_r:selinux_config_t:s0
-        # - Would relabel /etc/systemd/journald.conf.d from system_u:object_r:etc_t:s0 to system_u:object_r:systemd_conf_t:s0
-        # - Would relabel /etc/systemd/journald.conf.d/forward-to-console.conf from system_u:object_r:etc_t:s0 to system_u:object_r:systemd_conf_t:s0
-        # - Would relabel /boot/lost+found from system_u:object_r:unlabeled_t:s0 to system_u:object_r:lost_found_t:s0' ']'
-        # - Would relabel /var/lib/systemd/home from system_u:object_r:init_var_lib_t:s0 to system_u:object_r:systemd_homed_library_dir_t:s0
-        #       - 39.20230916.1.1->41.20240928.10.1
-        #       - https://github.com/fedora-selinux/selinux-policy/commit/3ba70ae27d067f7edc0a52ff722511c5ada724f2
-        # - Would relabel /var/cache/systemd from system_u:object_r:var_t:s0 to system_u:object_r:systemd_cache_t:s0
-        #   Would relabel /var/cache/systemd/home from system_u:object_r:var_t:s0 to system_u:object_r:systemd_homed_cache_t:s0
-        #       - 38.20230322.1.0->42.20241023.91.0
-        #       - https://github.com/fedora-selinux/selinux-policy/commit/b08568ca696f14d3232adef6a291ebb0ec80ba46
-        #       - https://github.com/coreos/fedora-coreos-tracker/issues/1819
-        # - Would relabel /var/lib/systemd/random-seed from system_u:object_r:init_var_lib_t:s0 to system_u:object_r:random_seed_t:s0
-        #       - 42.20250526.1.0 -> 42.20250609.1.0
-        #       - https://github.com/coreos/fedora-coreos-tracker/issues/1965#issuecomment-2959831808
-        # - Would relabel /var/opt/kola* from unconfined_u:object_r:var_t:s0 to unconfined_u:object_r:usr_t:s0
-        #       - 42.20250410.2.0 -> 43.20251031.20.0
-        #       - https://github.com/coreos/fedora-coreos-tracker/issues/2052#issuecomment-3474594545
-        declare -A exceptions=(
-           ['/var/lib/cni']=1
-           ['/etc/selinux/targeted/semanage.read.LOCK']=1
-           ['/etc/selinux/targeted/semanage.trans.LOCK']=1
-           ['/etc/systemd/journald.conf.d']=1
-           ['/etc/systemd/journald.conf.d/forward-to-console.conf']=1
-           ['/boot/lost+found']=1
-           ['/var/lib/systemd/home']=1
-           ['/var/cache/systemd']=1
-           ['/var/cache/systemd/home']=1
-           ['/var/lib/systemd/random-seed']=1
-           ['/var/opt/kola']=1
-           ['/var/opt/kola/extdata']=1
-           ['/var/opt/kola/extdata/commonlib.sh']=1
-        )
-        paths="$(echo "${mislabeled}" | grep "Would relabel" | cut -d ' ' -f 3)"
-        found=""
-        while read -r path; do
-            # Add in a glob exception for /var/srv since that's where our OSTree repo is
-            if [[ "${path}" =~ /var/srv ]]; then
-                 continue
-            fi
-            if [[ "${exceptions[$path]:-noexception}" == 'noexception' ]]; then
-                echo "Unexpected mislabeled file found: ${path}"
-                found="1"
-            fi
-        done <<< "${paths}"
-        if [ "${found}" == "1" ];then
-            fatal "Some unexpected mislabeled files were found."
-        fi
-    fi
-    ok "Selinux sanity checks passed"
-}
 
 ok "Reached version: $version"
 
