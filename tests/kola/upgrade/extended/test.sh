@@ -278,6 +278,7 @@ set +x
 booted_deployment_json=$(rpm-ostree status  --json | \
                          jq -r '.deployments[] | select(.booted == true)')
 version=$(jq -r '.version' <<< "${booted_deployment_json}")
+ok "Reached version: ${version}"
 
 # The stream info can come from one of 3 places depending on how old
 # the build is.
@@ -303,8 +304,31 @@ fi
 if [ -z "${stream}" ] || [ "${stream}" == "null" ]; then
     fatal "Stream was not detected from booted deployment"
 fi
-echo "version=${version}"
-echo "stream=${stream}"
+ok "Reached stream: ${stream}"
+
+# If the user dropped down a /etc/target_stream file then we'll
+# pick up the info from there.
+target_stream=$stream
+test -f /etc/target_stream && target_stream=$(< /etc/target_stream)
+test -f /srv/builds.json || \
+    curl -L "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/builds.json" > /srv/builds.json
+target_version=$(jq -r .builds[0].id /srv/builds.json)
+ok "Target version: ${target_version}"
+ok "Target stream: ${target_stream}"
+
+# Are we all the way at the desired target version?
+# If so then we can exit with success!
+if vereq $version $target_version; then
+    ok "Fully upgraded to $target_version"
+    # Verify bootupctl status includes aleph-version.
+    state=$(/usr/bin/bootupctl status --json 2>&1)
+    if ! echo "$state" | jq -e '."aleph-version"' > /dev/null; then
+        fatal "check bootupctl status --json output - should include 'aleph-version'"
+    fi
+    # One last check!
+    selinux-sanity-check
+    exit 0
+fi
 set -x
 
 # Pick up the last release for the current stream from the update server
@@ -333,34 +357,6 @@ last_release=$(jq -r --argjson index "${last_release_index}" \
     '.nodes[$index].version' /srv/updateinfo.json)
 if [ -z "${last_release}" ] || [ "${last_release}" == "null" ]; then
     fatal "Update graph edge points to a missing node"
-fi
-
-# If the user dropped down a /etc/target_stream file then we'll
-# pick up the info from there.
-target_stream=$stream
-test -f /etc/target_stream && target_stream=$(< /etc/target_stream)
-test -f /srv/builds.json || \
-    curl -L "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/builds.json" > /srv/builds.json
-target_version=$(jq -r .builds[0].id /srv/builds.json)
-
-ok "Reached version: $version"
-
-# Are we all the way at the desired target version?
-# If so then we can exit with success!
-if vereq $version $target_version; then
-    # Avoid xtrace expanding the bootupctl JSON into a large log entry.
-    set +x
-    ok "Fully upgraded to $target_version"
-    # log bootupctl information for inspection and check the status output
-    state=$(/usr/bin/bootupctl status --json 2>&1)
-    echo "$state" | jq
-    if ! echo "$state" | jq -e '."aleph-version"' > /dev/null; then
-        fatal "check bootupctl status --json output - should include 'aleph-version'"
-    fi
-    set -x
-    # One last check!
-    selinux-sanity-check
-    exit 0
 fi
 
 # Apply workarounds based on the current version of the system.
