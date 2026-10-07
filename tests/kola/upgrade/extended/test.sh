@@ -14,6 +14,7 @@ set -eux -o pipefail
 
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
+. /etc/os-release # for $VERSION_ID
 
 # This test starts from a caller-selected build (`cosa kola run
 # --build=x.y.z`) and verifies that it can update and boot. Only production
@@ -223,8 +224,6 @@ selinux-sanity-check() {
     fi
     ok "Selinux sanity checks passed"
 }
-
-. /etc/os-release # for $VERSION_ID
 
 need_restart='false'
 arch=$(arch)
