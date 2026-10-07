@@ -15,6 +15,86 @@ set -eux -o pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
+# This test starts from a caller-selected build (`cosa kola run
+# --build=x.y.z`) and verifies that it can update and boot. Only production
+# streams have update graphs, so the test harness that is running this test
+# (i.e. the one calling `cosa kola run`) will need to determine what stream
+# makes the most sense to use as a starting point for the test.
+#
+# For example, the kola-upgrade test in the Fedora CoreOS pipeline uses this
+# mapping to map each requested FCOS stream to a production stream for the
+# graph-based update:
+#
+#   stable        -> stable
+#   testing       -> testing
+#   next          -> next
+#   testing-devel -> testing
+#   next-devel    -> next
+#   branched      -> next
+#   rawhide       -> next
+#
+# Zincati follows that production stream's graph to its latest release. The
+# test then upgrades to the latest build in the requested target stream and
+# verifies that it boots. For example, a next-devel test first updates from
+# next, then upgrades to the next-devel candidate build (the current build
+# under test).
+#
+# `/etc/target_stream` selects a target stream different from the booted
+# build's stream (this is only necessary if you are targeting a different
+# stream than the starting build).
+# An example invocation for this test would look like:
+#
+# ```
+# cat > target_stream.bu <<'EOF'
+# variant: fcos
+# version: 1.0.0
+# storage:
+#   files:
+#     - path: /etc/target_stream
+#       mode: 0644
+#       contents:
+#         inline: |
+#           next-devel
+# EOF
+#
+# cosa buildfetch --artifact=qemu --stream=next --decompress --build=45.20260913.1.1
+# cosa kola run --build=45.20260913.1.1 --debug --tag extended-upgrade \
+#     --append-butane target_stream.bu
+# ```
+
+# The target image must also be published for the test architecture. Otherwise
+# the final `skopeo inspect` fails and so does the test. For example, if
+# next-devel has no arm64 image, `skopeo` reports:
+# `no image found in image index for architecture "arm64", variant "v8", OS "linux"`
+#
+# More info:
+# - https://github.com/coreos/fedora-coreos-pipeline/blob/main/jobs/kola-upgrade.Jenkinsfile
+# - https://github.com/coreos/fedora-coreos-pipeline/blob/main/utils.groovy#L672
+#
+# You can monitor the progress from the console and journal:
+#   - everything:
+#       - tail -f tmp/kola/ext.config.upgrade.extended/*/console.txt
+#   - major events:
+#       - tail -f tmp/kola/ext.config.upgrade.extended/*/journal.txt | grep --color -i 'ok reached version'
+#
+# For convenience, here is a list of the earliest releases on each
+# stream/architecture. x86_64 minimum version has to be 32.x because
+# of https://github.com/coreos/fedora-coreos-tracker/issues/1448
+#
+# stable
+#   - x86_64  31.20200108.3.0 -> works for BIOS, not UEFI
+#             32.20200601.3.0
+#   - aarch64 34.20210821.3.0
+#   - s390x   36.20220618.3.1
+# testing
+#   - x86_64  32.20200601.2.1
+#   - aarch64 34.20210904.2.0
+#   - s390x   36.20220618.2.0
+# next
+#   - x86_64  32.20200416.1.0
+#   - aarch64 34.20210904.1.0
+#   - s390x   36.20220618.1.1
+
 grab-gpg-keys() {
     # For older FCOS we had an issue where when we tried to pull the
     # commits from the repo it would fail if we were on N-2 because
@@ -28,8 +108,8 @@ grab-gpg-keys() {
         if [ ! -e $file ]; then
             need_restart='true'
             curl -L "https://src.fedoraproject.org/rpms/fedora-repos/raw/rawhide/f/RPM-GPG-KEY-fedora-${ver}-primary" | \
-                sudo tee $file
-            sudo chcon -v --reference="/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${VERSION_ID}-primary" $file
+                tee $file
+            chcon -v --reference="/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-${VERSION_ID}-primary" $file
         fi
     done
 }
@@ -144,44 +224,6 @@ selinux-sanity-check() {
     ok "Selinux sanity checks passed"
 }
 
-# This test will attempt to test an upgrade from a given starting
-# point (assumed by the caller passing in a specific
-# `cosa kola run --build=x.y.z`) all the way to the latest build
-# that is staged to be released. The test is basic in that it
-# essentially tests 1) updates work 2) boot works.
-#
-# An example invocation for this test would look like:
-
-# ```
-# cosa buildfetch --stream=next --build=34.20210904.1.0 --artifact=qemu
-# cosa decompress --build=34.20210904.1.0
-# cosa kola run --build=34.20210904.1.0 --tag extended-upgrade
-# ```
-#
-# You can monitor the progress from the console and journal:
-#   - everything:
-#       - tail -f tmp/kola/ext.config.upgrade.extended/*/console.txt
-#   - major events:
-#       - tail -f tmp/kola/ext.config.upgrade.extended/*/journal.txt | grep --color -i 'ok reached version'
-#
-# For convenience, here is a list of the earliest releases on each
-# stream/architecture. x86_64 minimum version has to be 32.x because
-# of https://github.com/coreos/fedora-coreos-tracker/issues/1448
-#
-# stable
-#   - x86_64  31.20200108.3.0 -> works for BIOS, not UEFI
-#             32.20200601.3.0
-#   - aarch64 34.20210821.3.0
-#   - s390x   36.20220618.3.1
-# testing
-#   - x86_64  32.20200601.2.1
-#   - aarch64 34.20210904.2.0
-#   - s390x   36.20220618.2.0
-# next
-#   - x86_64  32.20200416.1.0
-#   - aarch64 34.20210904.1.0
-#   - s390x   36.20220618.1.1
-
 . /etc/os-release # for $VERSION_ID
 
 need_restart='false'
@@ -256,7 +298,7 @@ if [ "${stream}" == "null" ]; then
         stream=$(jq -r '.config.Labels["com.coreos.stream"]' <<< "${container_image_config}")
     fi
 fi
-if [ -z "${stream}" -o "${stream}" == "null" ]; then
+if [ -z "${stream}" ] || [ "${stream}" == "null" ]; then
     fatal "Stream was not detected from booted deployment"
 fi
 
@@ -456,9 +498,9 @@ while true; do
     fi
 
     if [ "${need_reset}" == "true" ]; then
-        sudo systemctl stop zincati
-        sudo rpm-ostree cancel
-        sudo systemctl stop rpm-ostreed
-        sudo systemctl start zincati
+        systemctl stop zincati
+        rpm-ostree cancel
+        systemctl stop rpm-ostreed
+        systemctl start zincati
     fi
 done
