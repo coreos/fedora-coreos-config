@@ -87,6 +87,12 @@ ARG VERSION
 ARG NAME=overridden
 ARG STREAM=overridden
 ARG DESCRIPTION=overridden
+ARG MAINTAINER=overridden
+ARG VENDOR=overridden
+ARG URL=overridden
+ARG DISTRIBUTION_SCOPE=overridden
+ARG COMPONENT=overridden
+ARG CPE_NAME=overridden
 # Need to reference builder here to force ordering. But since we have to run
 # something anyway, we might as well cleanup after ourselves.
 RUN --mount=type=bind,from=builder,target=/var/tmp \
@@ -97,8 +103,17 @@ LABEL containers.bootc=1 \
       ostree.bootable=1 \
       org.opencontainers.image.version=$VERSION \
       com.coreos.osname=$NAME \
+      name=$NAME \
       com.coreos.stream=$STREAM \
       org.opencontainers.image.title=$DESCRIPTION \
-      org.opencontainers.image.description=$DESCRIPTION
+      org.opencontainers.image.description=$DESCRIPTION \
+      io.k8s.description=$DESCRIPTION \
+      description=$DESCRIPTION \
+      maintainer=$MAINTAINER \
+      vendor=$VENDOR \
+      url=$URL \
+      distribution-scope=$DISTRIBUTION_SCOPE \
+      com.redhat.component=$COMPONENT \
+      cpe=$CPE_NAME
 STOPSIGNAL SIGRTMIN+3
 CMD ["/sbin/init"]
