@@ -44,24 +44,6 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-e792ae6c86
       type: fast-track
-  dracut:
-    evr: 111-4.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-8b32dd0101
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
-      type: fast-track
-  dracut-network:
-    evr: 111-4.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-8b32dd0101
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
-      type: fast-track
-  dracut-squash:
-    evr: 111-4.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-8b32dd0101
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2206
-      type: fast-track
   ignition:
     evr: 2.27.0-3.fc45
     metadata:
