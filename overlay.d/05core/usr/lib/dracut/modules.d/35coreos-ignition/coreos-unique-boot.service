@@ -8,8 +8,12 @@ After=systemd-udevd.service
 # And since the boot device may be on multipath; optionally wait for it to
 # appear via the dynamic target.
 After=coreos-multipath-wait.target
-Requires=dev-disk-by\x2dlabel-boot.device
-After=dev-disk-by\x2dlabel-boot.device
+# Requires=dev-disk-by\x2dlabel-boot.device
+# After=dev-disk-by\x2dlabel-boot.device
+
+After=boot-part-discovered.target
+ConditionFileNotEmpty=/run/coreos/boot-partition-status
+
 # Run before services that modify/use `boot` partition
 Before=coreos-gpt-setup.service coreos-boot-edit.service
 

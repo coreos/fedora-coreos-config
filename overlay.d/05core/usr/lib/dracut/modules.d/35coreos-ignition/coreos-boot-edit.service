@@ -10,8 +10,13 @@ OnFailureJobMode=isolate
 
 # Since we are mounting /boot, require the device first. This isn't strictly
 # necessary since we run late, but on principle let's make clear the dependency.
-Requires=dev-disk-by\x2dlabel-boot.device
-After=dev-disk-by\x2dlabel-boot.device
+
+# Requires=dev-disk-by\x2dlabel-boot.device
+# After=dev-disk-by\x2dlabel-boot.device
+
+After=boot-part-discovered.target
+ConditionFileNotEmpty=/run/coreos/boot-partition-status
+
 # Start after Ignition has finished
 After=ignition-files.service
 # As above, this isn't strictly necessary, but on principle.
