@@ -1,0 +1,19 @@
+[Unit]
+Description=Ignition OSTree: Populate initramfs (subsequent boot)
+After=initrd-root-fs.target
+# We need to run before any services which execute:
+# - /usr/bin/ignition
+# - /usr/bin/afterburn
+Before=afterburn-hostname.service
+# This ensures we don't duplicate work on firstboot
+ConditionPathExists=!/usr/bin/ignition
+ConditionKernelCommandLine=ostree
+OnFailure=emergency.target
+OnFailureJobMode=isolate
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# So we can transiently mount sysroot
+MountFlags=slave
+ExecStart=/usr/libexec/ignition-ostree-transposefs populate-initramfs-subsequent
