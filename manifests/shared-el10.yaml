@@ -1,4 +1,13 @@
 # Shared with EL 10 (CentOS Stream 10 and RHCOS 10) only
+
+# Backward compatibility: rescue/warn firstboot network config
+# coreos-installer placed in /boot. This will drop out in EL11+.
+conditional-include:
+  - if: id != "fedora"
+    include:
+      ostree-layers:
+        - fedora-coreos-config/overlay.d/11legacy-copy-network
+
 packages:
   # GPU Firmware files (not broken out into subpackage of linux-firmware in RHEL yet)
   - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware

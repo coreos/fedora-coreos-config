@@ -9,6 +9,9 @@ passwd:
     - name: root
       ssh_authorized_keys:
         - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEdRYc7DLXX6EJX6sZsr3LDEqn/1W9SGhcleXRdmSczL core@test
+    - name: core
+      ssh_authorized_keys:
+        - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEdRYc7DLXX6EJX6sZsr3LDEqn/1W9SGhcleXRdmSczL core@test
 storage:
   files:
     - path: /home/core/.ssh/test_key
