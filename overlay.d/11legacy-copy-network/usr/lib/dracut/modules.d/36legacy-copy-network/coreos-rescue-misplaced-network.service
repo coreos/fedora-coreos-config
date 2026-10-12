@@ -1,0 +1,30 @@
+# If an older coreos-installer wrote firstboot network config to
+# /boot/coreos-firstboot-network, copy it directly to the NetworkManager
+# connections directory. Mutually exclusive with
+# coreos-copy-firstboot-network.service via ConditionPathExists.
+[Unit]
+Description=Rescue Misplaced Firstboot Network Config From /boot
+ConditionPathExists=/usr/lib/initrd-release
+ConditionPathExists=!/etc/coreos-firstboot-network
+ConditionPathExists=/dev/disk/by-label/boot
+# We're pulled in by ignition-complete.target; as good practice, add a matching
+# Before to be explicit about it gating on this unit passing.
+Before=ignition-complete.target
+Before=nm-initrd.service
+After=dracut-cmdline.service
+After=coreos-enable-network.service
+# Wait for the boot device so ConditionPathExists is evaluated reliably.
+# On iSCSI, coreos-diskful-generator neuters this unit to avoid a
+# deadlock (the boot device is behind the network there).
+After=dev-disk-by\x2dlabel-boot.device
+# The boot device may be on multipath; optionally wait for it to
+# appear via the dynamic target.
+After=coreos-multipath-wait.target
+# Avoid races with ignition-kargs.service which accesses /boot rw.
+Before=ignition-kargs.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+MountFlags=slave
+ExecStart=/usr/sbin/coreos-rescue-misplaced-network
