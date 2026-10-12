@@ -17,7 +17,7 @@ set -xeuo pipefail
 . "$KOLA_EXT_DATA/commonlib.sh"
 
 # Install tools that we need to build the sysexts
-rpm-ostree install --apply-live erofs-utils lz4
+rpm-ostree install -y --apply-live erofs-utils lz4
 
 build_sysext(){
   local -r rpm="${1}"

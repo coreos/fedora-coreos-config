@@ -45,7 +45,7 @@ RUN chmod -R a=rX,u+w /src
 RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
         rm -rf /cache/cache/*lock*
 RUN --mount=type=cache,rw,id=coreos-build-cache,target=/cache \
-    --mount=type=secret,id=container-image-build/yumrepos,target=/etc/yum.repos.d/secret.repo \
+    --mount=type=secret,id=container-image-build/yumrepos,target=/run/secrets/yumrepos \
     --mount=type=secret,id=container-image-build/contentsets \
         /src/build-rootfs --srcdir=/src make-rootfs --target-rootfs /target-rootfs
 # Take the rootfs and created a chunked container out of it

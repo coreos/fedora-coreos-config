@@ -201,3 +201,11 @@ assert_file_has_content_literal() {
         fi
     done
 }
+
+# Run a command as the 'core' user
+run_as_core_user() {
+    # NOTE: If we don't use `| cat` the output won't get copied
+    # to our unit and won't show up in the `systemctl status` output
+    # of the ext test.
+    sudo -iu core -- "$@" 2>&1 | cat
+}

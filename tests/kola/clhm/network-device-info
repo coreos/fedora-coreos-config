@@ -11,10 +11,18 @@ set -xeuo pipefail
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-for file in /etc/issue.d/22*.issue
-do
-    if [ ! -f "$file" ]; then
-    fatal "Network Device info does not exist"
+# CLHM v0.22.0 switched writing issues from /etc to /run.
+# Check both locations until all
+# streams have picked up the new CLHM.
+found=false
+for file in /run/issue.d/22*.issue /etc/issue.d/22*.issue; do
+    if [ -f "$file" ]; then
+        found=true
+        break
     fi
 done
+
+if ! $found; then
+    fatal "Network Device info does not exist"
+fi
 ok "Network Device info exists"

@@ -15,7 +15,7 @@ WARN='\e\[0;33m' # yellow
 RESET='\e\[0m' # reset
 
 warning="${WARN}Ignition: warning at \\$.systemd.units.0.contents: unit \"echo.service\" is enabled, but has no install section so enable does nothing${RESET}"
-warningsfile="/etc/issue.d/30_coreos_ignition_warnings.issue"
+warningsfile="/run/issue.d/30_coreos_ignition_warnings.issue"
 
 # Check for the motd file
 if ! test -f ${warningsfile}; then
