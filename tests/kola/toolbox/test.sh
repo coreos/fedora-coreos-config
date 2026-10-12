@@ -6,29 +6,25 @@
 ##   description: Make sure that basic toolbox functionality works (creating,
 ##     running commands, and removing).
 ##   creationDate: 2026-05-05
+# IMPORTANT: Commands are run indirectly via `run_as_core_user` to re-create the
+# user environment needed for unprivileged podman functionality.
 
 set -xeuo pipefail
 
 # shellcheck disable=SC1091
 . "$KOLA_EXT_DATA/commonlib.sh"
 
-# IMPORTANT: Commands are run indirectly via `su - core` to re-create the
-# user environment needed for unprivileged podman functionality.
-run_as_core() {
-    su - core -c "$(printf '%q ' "$@")"
-}
-
 # Functions for testing basic functionality - overridden depending on toolbox being used
 toolbox_create() {
-    run_as_core /bin/toolbox create --assumeyes
+    run_as_core_user /bin/toolbox create --assumeyes
 }
 
 toolbox_run_basic() {
-    run_as_core /bin/toolbox run touch ok_toolbox
+    run_as_core_user /bin/toolbox run touch ok_toolbox
 }
 
 toolbox_list() {
-    run_as_core /bin/toolbox list --containers
+    run_as_core_user /bin/toolbox list --containers
 }
 
 toolbox_count() {
@@ -37,7 +33,7 @@ toolbox_count() {
 
 toolbox_rm() {
     toolbox="$(toolbox_list | awk '/(fedora|rhel)-toolbox-/ {print $2}')"
-    run_as_core /bin/toolbox rm -f "${toolbox}"
+    run_as_core_user /bin/toolbox rm -f "${toolbox}"
 }
 
 # Older variants (e.g. RHEL-9.8) use https://github.com/coreos/toolbox
@@ -58,11 +54,11 @@ EOF
 
     toolbox_create() {
         # Container created on first run of any command
-        run_as_core /bin/toolbox true
+        run_as_core_user /bin/toolbox true
     }
 
     toolbox_run_basic() {
-        run_as_core /bin/toolbox touch /host/home/core/ok_toolbox
+        run_as_core_user /bin/toolbox touch /host/home/core/ok_toolbox
     }
 
     toolbox_list() {
