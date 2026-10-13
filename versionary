@@ -38,6 +38,10 @@ FCOS_STREAM_TO_NUM = {
     'bodhi-updates': 94,
 }
 
+# RHCOS stream to number mapping
+RHCOS_STREAM_TO_NUM = {
+    'nvidia': '01',
+}
 
 def main():
     args = parse_args()
@@ -59,36 +63,63 @@ def main():
     # in RHCOS/SCOS it's two numbers separated by . (i.e. 9.8 or 10.0)
     x, y = split_base_version(config['VERSION'])
 
-    # The y component in FCOS is the timestamp, while in RHCOS/SCOS
-    # it's the z component. We'll convert to a YYYYMMDD formatted string.
-    if y is None:
-        y = int(dt.strftime('%Y%m%d'))
+    # For RHCOS with FROM image, extract version from baseimage
+    # to preserve the base image's creation so we know from what baseimage
+    # the layer was done
+    if config['ID'] == 'rhel' and config.get('FROM'):
+        base_version = get_version_from_image(config['FROM'])
+        if not base_version:
+            raise RuntimeError(f"Could not get version from image {config['FROM']}. "
+                             "Version label is required for NVIDIA builds.")
+        parsed = parse_version(base_version)
+        if not parsed:
+            raise RuntimeError(f"Could not parse version {base_version} from image {config['FROM']}")
+        # Use the base image's version
+        x, y, z = parsed[0], parsed[1], parsed[2]
+        n = get_next_iteration_nvidia(x, y, z)
     else:
-        z = int(dt.strftime('%Y%m%d'))
+        # The y component in FCOS is the timestamp, while in RHCOS/SCOS
+        # it's the z component. We'll convert to a YYYYMMDD formatted string.
+        if y is None:
+            y = int(dt.strftime('%Y%m%d'))
+        else:
+            z = int(dt.strftime('%Y%m%d'))
 
-    # At this point if z isn't defined then we're FCOS
-    if z is None:
-        z = FCOS_STREAM_TO_NUM[config['STREAM']]
+        # At this point if z isn't defined then we're FCOS
+        if z is None:
+            z = FCOS_STREAM_TO_NUM[config['STREAM']]
 
-    # For !FCOS and in dev mode we'll default to getting the build ID
-    # n component by incrementing on top of the last build. For FCOS
-    # not in dev mode we'll calculate the n by looking at git history.
-    if args.dev or config['ID'] != 'fedora':
-        n = get_next_iteration_from_builds(x, y, z)
-    else:
-        n = get_next_iteration_from_git(str(dt))
-
+        # For !FCOS and in dev mode we'll default to getting the build ID
+        # n component by incrementing on top of the last build. For FCOS
+        # not in dev mode we'll calculate the n by looking at git history.
+        if args.dev or config['ID'] != 'fedora':
+            n = get_next_iteration_from_builds(x, y, z)
+        else:
+            n = get_next_iteration_from_git(str(dt))
     # On !FCOS the delimeter for the `n` component is a -
     n_delimiter = '.' if config['ID'] == 'fedora' else '-'
 
-    # Now we can compute the final version. Note we prepend the
-    # `dev` string for the n component if --dev was passed.
-    dev = 'dev' if args.dev else ''
-    new_version = f'{x}.{y}.{z}{n_delimiter}{dev}{n}'
+    # For RHCOS with FROM image
+    if config['ID'] == 'rhel' and config.get('FROM'):
+        nvidia_prefix = RHCOS_STREAM_TO_NUM['nvidia']
+        dev = 'dev' if args.dev else ''
+        new_version = f'{x}.{y}.{z}{n_delimiter}{dev}{nvidia_prefix}{n:02d}'
+    else:
+        # Now we can compute the final version. Note we prepend the
+        # `dev` string for the n component if --dev was passed.
+        dev = 'dev' if args.dev else ''
+        new_version = f'{x}.{y}.{z}{n_delimiter}{dev}{n}'
+
     eprint(f'VERSIONARY: selected new version for build: {new_version}')
 
     # sanity check the new version by trying to re-parse it
-    assert parse_version(new_version) is not None
+    parsed = parse_version(new_version)
+    eprint(f'VERSIONARY: parse_version returned: {parsed}')
+    if parsed is None:
+        eprint(f'VERSIONARY ERROR: Failed to parse generated version: {new_version}')
+        eprint(f'VERSIONARY ERROR: x={x}, y={y}, z={z}, n={n}, n_delimiter={n_delimiter}')
+        sys.exit(1)
+    assert parsed is not None
     print(new_version)
 
 
@@ -140,6 +171,97 @@ def split_base_version(base_version):
         return int(components[0]), None
     else:
         return int(components[0]), int(components[1])
+
+
+def get_version_from_image(from_image):
+    """
+    Get version from a container image using skopeo inspect.
+    Returns the version string or None if not found.
+    """
+    # Map platform.machine() to container arch names
+    machine = platform.machine()
+    arch_map = {
+        'x86_64': 'amd64',
+        'aarch64': 'arm64',
+        'arm64': 'arm64',
+    }
+    arch = arch_map.get(machine, machine)
+
+    try:
+        result = subprocess.run(
+            ['skopeo', 'inspect', '--raw', f'docker://{from_image}'],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        manifest_list = json.loads(result.stdout)
+        digest = None
+        for manifest in manifest_list.get('manifests', []):
+            platform_info = manifest.get('platform', {})
+            if platform_info.get('architecture') == arch and platform_info.get('os') == 'linux':
+                digest = manifest.get('digest')
+                break
+
+        if not digest:
+            eprint(f"Warning: Could not find digest for {arch}/linux in manifest list")
+            return None
+
+        image_repo = from_image.split(':')[0] if ':' in from_image else from_image
+        result = subprocess.run(
+            ['skopeo', 'inspect', '--no-tags', f'docker://{image_repo}@{digest}'],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        image_data = json.loads(result.stdout)
+
+        labels = image_data.get('Labels', {})
+        version = labels.get('org.opencontainers.image.version')
+
+        if version:
+            #(e.g., "10.2.20260423-0 (Plow)")
+            version = version.split()[0]
+            return version
+
+    except (subprocess.CalledProcessError, json.JSONDecodeError, KeyError) as e:
+        eprint(f"Warning: Could not get version from image: {e}")
+
+    return None
+
+
+def get_next_iteration_nvidia(x, y, z):
+    """
+    Get the next iteration number for NVIDIA builds.
+    First checks builds/builds.json for existing NVIDIA builds with matching x.y.z.
+    If found, increments from the highest build number.
+    Otherwise, starts with 01 for the first NVIDIA build of this base version.
+    """
+    try:
+        with open('builds/builds.json') as f:
+            builds = json.load(f)
+    except FileNotFoundError:
+        builds = {'builds': []}
+
+    if len(builds['builds']) == 0:
+        return 1
+
+    for build in builds['builds']:
+        last_buildid = build['id']
+        last_version_tuple = parse_version(last_buildid)
+        if not last_version_tuple:
+            continue
+
+        # Check if this build matches our x.y.z
+        if (x, y, z) == last_version_tuple[:3]:
+            # Found a matching build, increment from it
+            # Extract just the iteration part (last 2 digits) from nvidia format
+            last_n = last_version_tuple[3] % 100  # 101 → 1, 102 → 2, etc.
+            n = last_n + 1
+            return n
+
+    # No matching builds found, start with 01
+    eprint(f"n: 01 (first NVIDIA build for {x}.{y}.{z})")
+    return 1
 
 
 def get_next_iteration_from_builds(x, y, z):
@@ -213,7 +335,12 @@ def parse_version(version):
         time.strptime(m.group(timegroup), '%Y%m%d')
     except ValueError:
         return None
-    return tuple(map(int, m.groups()))
+
+    # For NVIDIA versions, the last group is 4 digits (01xx)
+    # Keep the full number (e.g., 0101 → 101, 0102 → 102)
+    n = int(m.group(4))
+
+    return (int(m.group(1)), int(m.group(2)), int(m.group(3)), n)
 
 
 def eprint(*args):
