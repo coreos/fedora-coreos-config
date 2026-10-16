@@ -1,4 +1,6 @@
 enable coreos-check-ssh-keys.service
 # https://fedoraproject.org/wiki/Changes/EnableFwupdRefreshByDefault
 enable fwupd-refresh.timer
+# https://github.com/coreos/bootupd/pull/1138
+enable bootupd-varlink.socket
 enable coreos-warn-invalid-mounts.service
