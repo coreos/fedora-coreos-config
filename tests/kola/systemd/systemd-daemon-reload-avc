@@ -1,0 +1,10 @@
+#!/bin/bash
+# kola: { "exclusive": true }
+# Verify there are no AVC denials and check for avc denials after reloading the systemd manager configuration
+#
+# https://bugzilla.redhat.com/show_bug.cgi?id=1924869
+set -xeuo pipefail
+
+. $KOLA_EXT_DATA/commonlib.sh
+
+systemctl daemon-reload
