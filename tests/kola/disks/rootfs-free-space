@@ -1,0 +1,27 @@
+#!/bin/bash
+## kola:
+##   appendKernelArgs: "coreos.disable_growfs"
+##   description: Verify that the coreos.disable_growfs karg makes the
+##     growfs service a no-op, and that the ungrown rootfs still has at
+##     least 25% free space.
+##   creationDate: 2026-10-07
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+MIN_FREE_SPACE_EXPECTED=20
+
+if [ -f /run/ignition-ostree-growfs.stamp ]; then
+    fatal "rootfs was grown even though coreos.disable_growfs was set"
+fi
+ok "rootfs was not grown due to coreos.disable_growfs"
+
+used_pcent=$(df --output=pcent /sysroot | tail -n 1 | tr -dc '0-9')
+free_pcent=$((100 - used_pcent))
+echo "/sysroot free space: ${free_pcent}%"
+
+if [ "${free_pcent}" -lt $MIN_FREE_SPACE_EXPECTED ]; then
+    fatal "/sysroot has less than ${MIN_FREE_SPACE_EXPECTED}% free space (${free_pcent}%) without growfs"
+fi
+ok "/sysroot has at least 25% free space without growfs"
