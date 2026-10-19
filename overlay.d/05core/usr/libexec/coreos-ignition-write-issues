@@ -6,7 +6,6 @@ IGNITION_RESULT=/etc/.ignition-result.json
 WARN='\033[0;33m' # yellow
 RESET='\033[0m' # reset
 
-mkdir -p /run/issue.d
 touch /run/issue.d/30_coreos_ignition_provisioning.issue
 
 d=$(date --date "$(jq -r .provisioningDate "${IGNITION_RESULT}")" +"%Y/%m/%d %H:%M:%S %Z")
