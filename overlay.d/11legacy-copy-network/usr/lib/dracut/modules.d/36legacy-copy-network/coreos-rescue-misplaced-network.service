@@ -17,6 +17,22 @@ After=coreos-enable-network.service
 # On iSCSI, coreos-diskful-generator neuters this unit to avoid a
 # deadlock (the boot device is behind the network there).
 After=dev-disk-by\x2dlabel-boot.device
+# Both `coreos-gpt-setup.service` (sgdisk) and
+# `ignition-ostree-uuid-boot.service` (tune2fs) cause the
+# kernel to detect disk changes, temporarily removing the
+# `/dev/disk/by-label/boot` symlink and creating a race condition.
+#
+# Order this service before `coreos-gpt-setup.service` rather
+# than `ignition-ostree-uuid-boot.service`. Since
+# `coreos-gpt-setup.service` already runs before
+# `ignition-ostree-uuid-boot.service`, this ensures our service
+# runs before both services that can cause the symlink to disappear.
+Before=coreos-gpt-setup.service
+# coreos-boot-edit.service unconditionally removes
+# /boot/coreos-firstboot-network after Ignition completes. Although
+# boot-edit runs late (After=ignition-files.service), there is no
+# explicit ordering between it and this unit without this directive.
+Before=coreos-boot-edit.service
 # The boot device may be on multipath; optionally wait for it to
 # appear via the dynamic target.
 After=coreos-multipath-wait.target
