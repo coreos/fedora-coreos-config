@@ -37,7 +37,7 @@
       "evra": "1.33-6.fc45.s390x"
     },
     "amd-gpu-firmware": {
-      "evra": "20260916-1.fc46.noarch"
+      "evra": "20261019-1.fc46.noarch"
     },
     "attr": {
       "evra": "2.6.0-2.fc45.s390x"
@@ -67,10 +67,10 @@
       "evra": "1:2.18-1.fc45.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.18.50-35.fc46.s390x"
+      "evra": "32:9.18.51^git20261003.d0a87358-12.fc46.s390x"
     },
     "bind-utils": {
-      "evra": "32:9.18.50-35.fc46.s390x"
+      "evra": "32:9.18.51^git20261003.d0a87358-12.fc46.s390x"
     },
     "bootc": {
       "evra": "1.16.9-1.fc46.s390x"
@@ -151,7 +151,7 @@
       "evra": "4:2.249.0-1.fc45.noarch"
     },
     "containerd": {
-      "evra": "2.3.5-1.fc46.s390x"
+      "evra": "2.4.2-1.fc46.s390x"
     },
     "containers-common": {
       "evra": "5:0.69.2-1.fc46.noarch"
@@ -430,7 +430,7 @@
       "evra": "62-3.fc45.s390x"
     },
     "intel-gpu-firmware": {
-      "evra": "20260916-1.fc46.noarch"
+      "evra": "20261019-1.fc46.noarch"
     },
     "ipcalc": {
       "evra": "1.2.0-1.fc46.s390x"
@@ -493,16 +493,16 @@
       "evra": "1.0.61-2.fc45.s390x"
     },
     "kernel": {
-      "evra": "7.3.0-0.rc7.261016g2f2f7eeef8b0.62.fc46.s390x"
+      "evra": "7.3.0-65.fc46.s390x"
     },
     "kernel-core": {
-      "evra": "7.3.0-0.rc7.261016g2f2f7eeef8b0.62.fc46.s390x"
+      "evra": "7.3.0-65.fc46.s390x"
     },
     "kernel-modules": {
-      "evra": "7.3.0-0.rc7.261016g2f2f7eeef8b0.62.fc46.s390x"
+      "evra": "7.3.0-65.fc46.s390x"
     },
     "kernel-modules-core": {
-      "evra": "7.3.0-0.rc7.261016g2f2f7eeef8b0.62.fc46.s390x"
+      "evra": "7.3.0-65.fc46.s390x"
     },
     "kexec-tools": {
       "evra": "2.0.32-4.fc45.s390x"
@@ -889,10 +889,10 @@
       "evra": "1.5.7-6.fc45.s390x"
     },
     "linux-firmware": {
-      "evra": "20260916-1.fc46.noarch"
+      "evra": "20261019-1.fc46.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20260916-1.fc46.noarch"
+      "evra": "20261019-1.fc46.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.34-3.fc45.s390x"
@@ -1018,7 +1018,7 @@
       "evra": "3.131.0-1.fc46.s390x"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20260916-1.fc46.noarch"
+      "evra": "20261019-1.fc46.noarch"
     },
     "nvme-cli": {
       "evra": "2.16-6.fc46.s390x"
@@ -1129,7 +1129,7 @@
       "evra": "20260624-2.fc45.noarch"
     },
     "qed-firmware": {
-      "evra": "20260916-1.fc46.noarch"
+      "evra": "20261019-1.fc46.noarch"
     },
     "qemu-user-static-x86": {
       "evra": "2:11.1.2-2.fc46.s390x"
@@ -1273,28 +1273,28 @@
       "evra": "1.9.17-17.p2.fc46.s390x"
     },
     "systemd": {
-      "evra": "262-3.fc46.s390x"
+      "evra": "262.1-1.fc46.s390x"
     },
     "systemd-container": {
-      "evra": "262-3.fc46.s390x"
+      "evra": "262.1-1.fc46.s390x"
     },
     "systemd-libs": {
-      "evra": "262-3.fc46.s390x"
+      "evra": "262.1-1.fc46.s390x"
     },
     "systemd-pam": {
-      "evra": "262-3.fc46.s390x"
+      "evra": "262.1-1.fc46.s390x"
     },
     "systemd-resolved": {
-      "evra": "262-3.fc46.s390x"
+      "evra": "262.1-1.fc46.s390x"
     },
     "systemd-shared": {
-      "evra": "262-3.fc46.s390x"
+      "evra": "262.1-1.fc46.s390x"
     },
     "systemd-sysusers": {
-      "evra": "262-3.fc46.s390x"
+      "evra": "262.1-1.fc46.s390x"
     },
     "systemd-udev": {
-      "evra": "262-3.fc46.s390x"
+      "evra": "262.1-1.fc46.s390x"
     },
     "tar": {
       "evra": "2:1.35-9.fc45.s390x"
@@ -1382,6 +1382,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-10-18T00:00:00Z"
+    "generated": "2026-10-20T00:00:00Z"
   }
 }

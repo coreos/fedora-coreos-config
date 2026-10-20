@@ -37,7 +37,7 @@
       "evra": "1.33-6.fc45.ppc64le"
     },
     "amd-gpu-firmware": {
-      "evra": "20260916-1.fc46.noarch"
+      "evra": "20261019-1.fc46.noarch"
     },
     "attr": {
       "evra": "2.6.0-2.fc45.ppc64le"
@@ -70,10 +70,10 @@
       "evra": "1.08.2-5.fc45.ppc64le"
     },
     "bind-libs": {
-      "evra": "32:9.18.50-35.fc46.ppc64le"
+      "evra": "32:9.18.51^git20261003.d0a87358-12.fc46.ppc64le"
     },
     "bind-utils": {
-      "evra": "32:9.18.50-35.fc46.ppc64le"
+      "evra": "32:9.18.51^git20261003.d0a87358-12.fc46.ppc64le"
     },
     "bootc": {
       "evra": "1.16.9-1.fc46.ppc64le"
@@ -154,7 +154,7 @@
       "evra": "4:2.249.0-1.fc45.noarch"
     },
     "containerd": {
-      "evra": "2.3.5-1.fc46.ppc64le"
+      "evra": "2.4.2-1.fc46.ppc64le"
     },
     "containers-common": {
       "evra": "5:0.69.2-1.fc46.noarch"
@@ -457,7 +457,7 @@
       "evra": "62-3.fc45.ppc64le"
     },
     "intel-gpu-firmware": {
-      "evra": "20260916-1.fc46.noarch"
+      "evra": "20261019-1.fc46.noarch"
     },
     "ipcalc": {
       "evra": "1.2.0-1.fc46.ppc64le"
@@ -928,10 +928,10 @@
       "evra": "1.5.7-6.fc45.ppc64le"
     },
     "linux-firmware": {
-      "evra": "20260916-1.fc46.noarch"
+      "evra": "20261019-1.fc46.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20260916-1.fc46.noarch"
+      "evra": "20261019-1.fc46.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.34-3.fc45.ppc64le"
@@ -1066,7 +1066,7 @@
       "evra": "0.5-51.20251104git.fc45.ppc64le"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20260916-1.fc46.noarch"
+      "evra": "20261019-1.fc46.noarch"
     },
     "nvme-cli": {
       "evra": "2.16-6.fc46.ppc64le"
@@ -1189,7 +1189,7 @@
       "evra": "20260624-2.fc45.noarch"
     },
     "qed-firmware": {
-      "evra": "20260916-1.fc46.noarch"
+      "evra": "20261019-1.fc46.noarch"
     },
     "qemu-user-static-x86": {
       "evra": "2:11.1.2-2.fc46.ppc64le"
@@ -1333,28 +1333,28 @@
       "evra": "1.9.17-17.p2.fc46.ppc64le"
     },
     "systemd": {
-      "evra": "262-3.fc46.ppc64le"
+      "evra": "262.1-1.fc46.ppc64le"
     },
     "systemd-container": {
-      "evra": "262-3.fc46.ppc64le"
+      "evra": "262.1-1.fc46.ppc64le"
     },
     "systemd-libs": {
-      "evra": "262-3.fc46.ppc64le"
+      "evra": "262.1-1.fc46.ppc64le"
     },
     "systemd-pam": {
-      "evra": "262-3.fc46.ppc64le"
+      "evra": "262.1-1.fc46.ppc64le"
     },
     "systemd-resolved": {
-      "evra": "262-3.fc46.ppc64le"
+      "evra": "262.1-1.fc46.ppc64le"
     },
     "systemd-shared": {
-      "evra": "262-3.fc46.ppc64le"
+      "evra": "262.1-1.fc46.ppc64le"
     },
     "systemd-sysusers": {
-      "evra": "262-3.fc46.ppc64le"
+      "evra": "262.1-1.fc46.ppc64le"
     },
     "systemd-udev": {
-      "evra": "262-3.fc46.ppc64le"
+      "evra": "262.1-1.fc46.ppc64le"
     },
     "tar": {
       "evra": "2:1.35-9.fc45.ppc64le"
@@ -1439,6 +1439,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-10-18T00:00:00Z"
+    "generated": "2026-10-20T00:00:00Z"
   }
 }
