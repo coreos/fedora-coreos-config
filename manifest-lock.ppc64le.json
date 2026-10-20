@@ -1,19 +1,19 @@
 {
   "packages": {
     "NetworkManager": {
-      "evra": "1:1.58.1-1.fc45.ppc64le"
+      "evra": "1:1.58.1-3.fc45.ppc64le"
     },
     "NetworkManager-cloud-setup": {
-      "evra": "1:1.58.1-1.fc45.ppc64le"
+      "evra": "1:1.58.1-3.fc45.ppc64le"
     },
     "NetworkManager-libnm": {
-      "evra": "1:1.58.1-1.fc45.ppc64le"
+      "evra": "1:1.58.1-3.fc45.ppc64le"
     },
     "NetworkManager-team": {
-      "evra": "1:1.58.1-1.fc45.ppc64le"
+      "evra": "1:1.58.1-3.fc45.ppc64le"
     },
     "NetworkManager-tui": {
-      "evra": "1:1.58.1-1.fc45.ppc64le"
+      "evra": "1:1.58.1-3.fc45.ppc64le"
     },
     "aardvark-dns": {
       "evra": "2:2.1.0-1.fc45.ppc64le"
@@ -286,22 +286,22 @@
       "evra": "2.8.3-1.fc45.ppc64le"
     },
     "fedora-gpg-keys": {
-      "evra": "45-0.6.noarch"
+      "evra": "45-1.noarch"
     },
     "fedora-release-common": {
-      "evra": "45-0.10.noarch"
+      "evra": "45-13.noarch"
     },
     "fedora-release-coreos": {
-      "evra": "45-0.10.noarch"
+      "evra": "45-13.noarch"
     },
     "fedora-release-identity-coreos": {
-      "evra": "45-0.10.noarch"
+      "evra": "45-13.noarch"
     },
     "fedora-repos": {
-      "evra": "45-0.6.noarch"
+      "evra": "45-1.noarch"
     },
     "fedora-repos-archive": {
-      "evra": "45-0.6.noarch"
+      "evra": "45-1.noarch"
     },
     "file": {
       "evra": "5.48-3.fc45.ppc64le"
@@ -520,16 +520,16 @@
       "evra": "1.0.61-2.fc45.ppc64le"
     },
     "kernel": {
-      "evra": "7.2.9-300.fc45.ppc64le"
+      "evra": "7.2.11-300.fc45.ppc64le"
     },
     "kernel-core": {
-      "evra": "7.2.9-300.fc45.ppc64le"
+      "evra": "7.2.11-300.fc45.ppc64le"
     },
     "kernel-modules": {
-      "evra": "7.2.9-300.fc45.ppc64le"
+      "evra": "7.2.11-300.fc45.ppc64le"
     },
     "kernel-modules-core": {
-      "evra": "7.2.9-300.fc45.ppc64le"
+      "evra": "7.2.11-300.fc45.ppc64le"
     },
     "kexec-tools": {
       "evra": "2.0.32-4.fc45.ppc64le"
@@ -547,7 +547,7 @@
       "evra": "34.2-6.fc45.ppc64le"
     },
     "kmscon": {
-      "evra": "10.0.4-1.fc45.ppc64le"
+      "evra": "10.0.4-5.fc45.ppc64le"
     },
     "kpartx": {
       "evra": "0.14.3-2.fc45.ppc64le"
@@ -580,34 +580,34 @@
       "evra": "2.42.4-1.fc45.ppc64le"
     },
     "libblockdev": {
-      "evra": "3.5.0-4.fc45.ppc64le"
+      "evra": "3.5.0-5.fc45.ppc64le"
     },
     "libblockdev-crypto": {
-      "evra": "3.5.0-4.fc45.ppc64le"
+      "evra": "3.5.0-5.fc45.ppc64le"
     },
     "libblockdev-fs": {
-      "evra": "3.5.0-4.fc45.ppc64le"
+      "evra": "3.5.0-5.fc45.ppc64le"
     },
     "libblockdev-loop": {
-      "evra": "3.5.0-4.fc45.ppc64le"
+      "evra": "3.5.0-5.fc45.ppc64le"
     },
     "libblockdev-mdraid": {
-      "evra": "3.5.0-4.fc45.ppc64le"
+      "evra": "3.5.0-5.fc45.ppc64le"
     },
     "libblockdev-nvme": {
-      "evra": "3.5.0-4.fc45.ppc64le"
+      "evra": "3.5.0-5.fc45.ppc64le"
     },
     "libblockdev-part": {
-      "evra": "3.5.0-4.fc45.ppc64le"
+      "evra": "3.5.0-5.fc45.ppc64le"
     },
     "libblockdev-smart": {
-      "evra": "3.5.0-4.fc45.ppc64le"
+      "evra": "3.5.0-5.fc45.ppc64le"
     },
     "libblockdev-swap": {
-      "evra": "3.5.0-4.fc45.ppc64le"
+      "evra": "3.5.0-5.fc45.ppc64le"
     },
     "libblockdev-utils": {
-      "evra": "3.5.0-4.fc45.ppc64le"
+      "evra": "3.5.0-5.fc45.ppc64le"
     },
     "libbpf": {
       "evra": "2:1.7.0-2.fc45.ppc64le"
@@ -793,7 +793,7 @@
       "evra": "1.4.5-18.fc45.ppc64le"
     },
     "librepo": {
-      "evra": "1.21.1-2.fc45.ppc64le"
+      "evra": "1.21.2-2.fc45.ppc64le"
     },
     "libreport-filesystem": {
       "evra": "2.17.15-14.fc45.noarch"
@@ -1270,10 +1270,10 @@
       "evra": "1.48-11.fc45.ppc64le"
     },
     "shadow-utils": {
-      "evra": "2:4.20.0-1.fc45.ppc64le"
+      "evra": "2:4.20.0-2.fc45.ppc64le"
     },
     "shadow-utils-subid": {
-      "evra": "2:4.20.0-1.fc45.ppc64le"
+      "evra": "2:4.20.0-2.fc45.ppc64le"
     },
     "shared-mime-info": {
       "evra": "2.5.1-3.fc45.ppc64le"
@@ -1439,6 +1439,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-10-10T00:00:00Z"
+    "generated": "2026-10-19T00:00:00Z"
   }
 }
