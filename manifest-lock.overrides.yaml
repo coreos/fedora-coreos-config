@@ -24,6 +24,12 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-d4d1984a1b
       type: fast-track
+  ca-certificates:
+    evra: 2026.2.92_v9.0.319-1.fc44.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-56e14eb520
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2244
+      type: fast-track
   container-selinux:
     evra: 4:2.250.0-1.fc44.noarch
     metadata:
