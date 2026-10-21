@@ -9,6 +9,12 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  ca-certificates:
+    evra: 2026.2.92_v9.0.319-1.fc45.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-78521f021a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2244
+      type: fast-track
   console-login-helper-messages:
     evra: 0.21.3-13.fc44.noarch
     metadata:
