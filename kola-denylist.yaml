@@ -37,8 +37,3 @@
     - aarch64
   platforms:
     - gcp
-
-- pattern: ext.config.fwupd.fwupd-refresh-units
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2245
-  snooze: 2026-10-31
-  warn: true
