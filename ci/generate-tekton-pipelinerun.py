@@ -25,7 +25,6 @@ except ImportError as e:
 EVENT_CONFIGS = {
     "on-push": {
         "cancel_in_progress": False,
-        "cel_expression_base": 'event == "push" && !(files.all.all(f, f.matches("ci/buildroot/") || f.matches(".tekton/fcos-buildroot/")))',
         "output_image_suffix": ":{{revision}}",
         "image_expires_after": None,
     },
@@ -73,6 +72,8 @@ def generate_pipelinerun(
     # Check for custom CEL expression for on-push event
     if event_type == "on-push" and "on_push_cel_expression" in stream_config:
         cel_expression = stream_config["on_push_cel_expression"]
+    elif "cel_expression_base" not in event_config:
+        cel_expression = f'"false"'
     else:
         # Build the CEL expression with stream-specific branch filter
         cel_expression = f'{event_config["cel_expression_base"]} && target_branch == "{stream_name}"'
