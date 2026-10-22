@@ -228,6 +228,13 @@ selinux-sanity-check() {
 need_restart='false'
 arch=$(arch)
 
+# Keep Zincati under the test's control. Ignition versions before 2.14 do not
+# remove pre-existing enablement symlinks for units set to `enabled: false`.
+# Disabling it here also persists across subsequent upgrades.
+if systemctl is-enabled zincati.service 1>/dev/null; then
+    systemctl disable --now zincati.service
+fi
+
 # If there is an ostree repo archive tarball, let's extract/use it.
 if [ -f "$KOLA_EXT_DATA/ostree-repo.tar" ]; then
     tar -C /srv/ -xf "$KOLA_EXT_DATA/ostree-repo.tar"
