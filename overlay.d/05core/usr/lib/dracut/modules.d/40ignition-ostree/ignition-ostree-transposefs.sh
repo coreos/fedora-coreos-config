@@ -306,9 +306,32 @@ case "${1:-}" in
         if [ -d "${saved_root}" ]; then
             echo "Restoring rootfs from RAM..."
             mount_and_restore_filesystem_by_label root /sysroot "${saved_root}"
+
             chcon -v --reference "${saved_root}" /sysroot  # the root of the fs itself
-            chattr +i $(ls -d /sysroot/ostree/deploy/*/deploy/*/)
+
+            cfs_digest=$(karg composefs)
+
+            if [[ "$cfs_digest" == "" ]]; then
+                chattr +i $(ls -d /sysroot/ostree/deploy/*/deploy/*/)
+            elif [[ ${cfs_digest:0:1} != "?" ]]; then
+                echo "Re-enabling fsverity on composefs repo..."
+                # tmpfs has no fsverity, so we need to reenable fsverity
+                hash_alg=""
+
+                if [[ $cfs_digest =~ ^[0-9a-fA-F]{64}$ ]]; then
+                    hash_alg="sha256"
+                elif [[ $cfs_digest =~ ^[0-9a-fA-F]{128}$ ]]; then
+                    hash_alg="sha512"
+                else
+                    echo "Bad verity in cmdline '$cfs_digest'"
+                    exit 1
+                fi
+
+                echo "Enabling fs-verity again..."
+                find /sysroot/composefs/objects -type f -exec fsverity enable {} --hash-alg $hash_alg \;
+            fi
         fi
+
         if [ -d "${saved_boot}" ]; then
             echo "Restoring bootfs from RAM..."
             mount_and_restore_filesystem_by_label boot /sysroot/boot "${saved_boot}"
