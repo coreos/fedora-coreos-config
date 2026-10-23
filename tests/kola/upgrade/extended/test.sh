@@ -6,6 +6,7 @@
 ##   timeoutMin: 50
 ##   # Bigger disk since we copy in the OSTree tarball
 ##   minDisk: 30
+##   bindMountHostRO: ["/srv,/var/cosaroot"]
 ##   # Only run this test when specifically requested.
 ##   requiredTag: extended-upgrade
 ##   description: Verify upgrade works.
@@ -42,7 +43,8 @@ set -eux -o pipefail
 #
 # `/etc/target_stream` selects a target stream different from the booted
 # build's stream (this is only necessary if you are targeting a different
-# stream than the starting build).
+# stream than the starting build). Setting `/etc/target_stream` to "local"
+# will make the test upgrade to the latest local build.
 # An example invocation for this test would look like:
 #
 # ```
@@ -314,11 +316,29 @@ ok "Reached stream: ${stream}"
 
 # If the user dropped down a /etc/target_stream file then we'll
 # pick up the info from there.
+ociarchive=
 target_stream=$stream
 test -f /etc/target_stream && target_stream=$(< /etc/target_stream)
-test -f /srv/builds.json || \
-    curl -L "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/builds.json" > /srv/builds.json
-target_version=$(jq -r .builds[0].id /srv/builds.json)
+
+if [[ "${target_stream}" == "local" ]]; then
+    ok "Test will use latest local build."
+    meta="/var/cosaroot/builds/latest/$arch/meta.json"
+    if [[ ! -f "$meta" ]]; then
+        fatal "Target stream is 'local', but $meta does not exist"
+    fi
+    target_stream=$(jq -r '.["coreos-assembler.oci-imported-labels"]["com.coreos.stream"]' "$meta")
+    target_version=$(jq -r '.buildid' "$meta")
+    ociarchive=$(jq -r '.images.ostree.path' "$meta")
+    ociarchive="/var/cosaroot/builds/latest/$arch/$ociarchive"
+    if [[ ! -f "${ociarchive}" ]]; then
+        fatal "Target ociarchive '${ociarchive}' does not exist"
+    fi
+else
+    test -f /srv/builds.json || \
+        curl -L "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/builds.json" > /srv/builds.json
+    target_version=$(jq -r .builds[0].id /srv/builds.json)
+fi
+
 ok "Target version: ${target_version}"
 ok "Target stream: ${target_stream}"
 
@@ -416,36 +436,42 @@ systemd-run --wait --property=After=coreos-fix-selinux-labels.service \
 # we have one more test. We'll now rebase to the target
 # version, which should be in the compose OSTree repo.
 if vereq $version $last_release; then
+    ok "On the last release, going to rebase to the target version"
     # Since we'll be manually running `rpm-ostree` let's stop zincati
     systemctl stop zincati
-
-    # Avoid xtrace expanding the image-inspection JSON into a large log entry.
-    set +x
-    inspect=$(skopeo inspect --retry-times=3 -n docker://quay.io/fedora/fedora-coreos:${target_stream})
-    registry_version=$(jq -r '.Labels."org.opencontainers.image.version"' <<< "${inspect}")
-    set -x
-    if [ "${registry_version}" == "${target_version}" ]; then
-        # If the container is already pushed to the registry we'll use the registry
-        if [ "${stream}" == "${target_stream}" ]; then
-            # If we aren't switching steams we can just upgrade
-            rpm-ostree upgrade
-        else
-            # else we need to rebase
-            rpm-ostree rebase "ostree-image-signed:docker://quay.io/fedora/fedora-coreos:${target_stream}"
-        fi
-    else
-        # Since in the next steps we are making multiple copies of the update on the
-        # system (i.e. update.ociarchive and copying into OSTree storage) let's free
-        # up some space by dropping the rollback deployment.
+    if [[ -n "${ociarchive}" ]]; then
+        ok "Target ociarchive: ${ociarchive}"
         rpm-ostree cleanup --rollback
-        # Pull the ociarchive from the builds dir here because the
-        # containers aren't pushed to quay yet. This can happen in the
-        # case where the release job isn't autotriggered (i.e. prod builds)
-        # or if somehow the release job failed.
-        curl -L -o /srv/update.ociarchive \
-            "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/${target_version}/${arch}/fedora-coreos-${target_version}-ostree.${arch}.ociarchive"
-        rpm-ostree rebase "ostree-unverified-image:oci-archive:/srv/update.ociarchive"
-        rm /srv/update.ociarchive
+        rpm-ostree rebase "ostree-unverified-image:oci-archive:${ociarchive}"
+    else
+        # Avoid xtrace expanding the image-inspection JSON into a large log entry.
+        set +x
+        inspect=$(skopeo inspect --retry-times=3 -n docker://quay.io/fedora/fedora-coreos:${target_stream})
+        registry_version=$(jq -r '.Labels."org.opencontainers.image.version"' <<< "${inspect}")
+        set -x
+        if [ "${registry_version}" == "${target_version}" ]; then
+            # If the container is already pushed to the registry we'll use the registry
+            if [ "${stream}" == "${target_stream}" ]; then
+                # If we aren't switching steams we can just upgrade
+                rpm-ostree upgrade
+            else
+                # else we need to rebase
+                rpm-ostree rebase "ostree-image-signed:docker://quay.io/fedora/fedora-coreos:${target_stream}"
+            fi
+        else
+            # Since in the next steps we are making multiple copies of the update on the
+            # system (i.e. update.ociarchive and copying into OSTree storage) let's free
+            # up some space by dropping the rollback deployment.
+            rpm-ostree cleanup --rollback
+            # Pull the ociarchive from the builds dir here because the
+            # containers aren't pushed to quay yet. This can happen in the
+            # case where the release job isn't autotriggered (i.e. prod builds)
+            # or if somehow the release job failed.
+            curl -L -o /srv/update.ociarchive \
+                "https://builds.coreos.fedoraproject.org/prod/streams/${target_stream}/builds/${target_version}/${arch}/fedora-coreos-${target_version}-ostree.${arch}.ociarchive"
+            rpm-ostree rebase "ostree-unverified-image:oci-archive:/srv/update.ociarchive"
+            rm /srv/update.ociarchive
+        fi
     fi
     /tmp/autopkgtest-reboot $version # execute the reboot
     sleep infinity
