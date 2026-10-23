@@ -16,7 +16,7 @@
       "evra": "1:1.56.1-2.fc44.x86_64"
     },
     "WALinuxAgent-udev": {
-      "evra": "2.15.0.1-3.fc44.noarch"
+      "evra": "2.16.0.2-4.fc44.noarch"
     },
     "aardvark-dns": {
       "evra": "2:1.17.1-1.fc44.x86_64"
@@ -40,10 +40,10 @@
       "evra": "1.33-5.fc44.x86_64"
     },
     "amd-gpu-firmware": {
-      "evra": "20260916-1.fc44.noarch"
+      "evra": "20261019-1.fc44.noarch"
     },
     "amd-ucode-firmware": {
-      "evra": "20260916-1.fc44.noarch"
+      "evra": "20261019-1.fc44.noarch"
     },
     "attr": {
       "evra": "2.6.0-1.fc44.x86_64"
@@ -76,13 +76,13 @@
       "evra": "1:2.17-2.fc44.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.18.50-2.fc44.x86_64"
+      "evra": "32:9.18.51^git20261003.d0a87358-2.fc44.x86_64"
     },
     "bind-utils": {
-      "evra": "32:9.18.50-2.fc44.x86_64"
+      "evra": "32:9.18.51^git20261003.d0a87358-2.fc44.x86_64"
     },
     "bootc": {
-      "evra": "1.16.13-1.fc44.x86_64"
+      "evra": "1.17.1-1.fc44.x86_64"
     },
     "bootupd": {
       "evra": "0.3.2-1.fc44.x86_64"
@@ -106,7 +106,7 @@
       "evra": "1.34.8-1.fc44.x86_64"
     },
     "ca-certificates": {
-      "evra": "2026.2.90_v9.0.317-1.fc44.noarch"
+      "evra": "2026.2.92_v9.0.319-1.fc44.noarch"
     },
     "catatonit": {
       "evra": "0.2.1-5.fc44.x86_64"
@@ -115,22 +115,22 @@
       "evra": "4.9-1.fc44.x86_64"
     },
     "cifs-utils": {
-      "evra": "7.8-2.fc44.x86_64"
+      "evra": "7.9-2.fc44.x86_64"
     },
     "clevis": {
-      "evra": "21-14.fc44.x86_64"
+      "evra": "23-1.fc44.x86_64"
     },
     "clevis-dracut": {
-      "evra": "21-14.fc44.x86_64"
+      "evra": "23-1.fc44.x86_64"
     },
     "clevis-luks": {
-      "evra": "21-14.fc44.x86_64"
+      "evra": "23-1.fc44.x86_64"
     },
     "clevis-pin-tpm2": {
       "evra": "0.5.4-1.fc44.x86_64"
     },
     "clevis-systemd": {
-      "evra": "21-14.fc44.x86_64"
+      "evra": "23-1.fc44.x86_64"
     },
     "cloud-utils-growpart": {
       "evra": "0.33-13.fc44.noarch"
@@ -478,7 +478,7 @@
       "evra": "62-2.fc44.x86_64"
     },
     "intel-gpu-firmware": {
-      "evra": "20260916-1.fc44.noarch"
+      "evra": "20261019-1.fc44.noarch"
     },
     "ipcalc": {
       "evra": "1.1.0-4.fc44.x86_64"
@@ -580,7 +580,7 @@
       "evra": "1.22.2-4.fc44.x86_64"
     },
     "less": {
-      "evra": "704-4.fc44.x86_64"
+      "evra": "710-1.fc44.x86_64"
     },
     "libacl": {
       "evra": "2.4.0-1.fc44.x86_64"
@@ -943,10 +943,10 @@
       "evra": "1.5.7-5.fc44.x86_64"
     },
     "linux-firmware": {
-      "evra": "20260916-1.fc44.noarch"
+      "evra": "20261019-1.fc44.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20260916-1.fc44.noarch"
+      "evra": "20261019-1.fc44.noarch"
     },
     "lld18-libs": {
       "evra": "18.1.8-10.fc44.x86_64"
@@ -1090,7 +1090,7 @@
       "evra": "0.5-50.20251104git.fc44.x86_64"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20260916-1.fc44.noarch"
+      "evra": "20261019-1.fc44.noarch"
     },
     "nvme-cli": {
       "evra": "2.16-3.fc44.x86_64"
@@ -1201,7 +1201,7 @@
       "evra": "20260116-1.fc44.noarch"
     },
     "qed-firmware": {
-      "evra": "20260916-1.fc44.noarch"
+      "evra": "20261019-1.fc44.noarch"
     },
     "rdma-core-common": {
       "evra": "61.1^20260812git975bdaf-1.fc44.noarch"
@@ -1294,7 +1294,7 @@
       "evra": "1.2.2-4.fc44.x86_64"
     },
     "socat": {
-      "evra": "1.8.1.1-1.fc44.x86_64"
+      "evra": "1.8.1.3-1.fc44.x86_64"
     },
     "spdlog": {
       "evra": "1.15.3-4.fc44.x86_64"
@@ -1339,28 +1339,28 @@
       "evra": "1.9.17-10.p2.fc44.x86_64"
     },
     "systemd": {
-      "evra": "259.9-1.fc44.x86_64"
+      "evra": "259.10-1.fc44.x86_64"
     },
     "systemd-container": {
-      "evra": "259.9-1.fc44.x86_64"
+      "evra": "259.10-1.fc44.x86_64"
     },
     "systemd-libs": {
-      "evra": "259.9-1.fc44.x86_64"
+      "evra": "259.10-1.fc44.x86_64"
     },
     "systemd-pam": {
-      "evra": "259.9-1.fc44.x86_64"
+      "evra": "259.10-1.fc44.x86_64"
     },
     "systemd-resolved": {
-      "evra": "259.9-1.fc44.x86_64"
+      "evra": "259.10-1.fc44.x86_64"
     },
     "systemd-shared": {
-      "evra": "259.9-1.fc44.x86_64"
+      "evra": "259.10-1.fc44.x86_64"
     },
     "systemd-sysusers": {
-      "evra": "259.9-1.fc44.x86_64"
+      "evra": "259.10-1.fc44.x86_64"
     },
     "systemd-udev": {
-      "evra": "259.9-1.fc44.x86_64"
+      "evra": "259.10-1.fc44.x86_64"
     },
     "tar": {
       "evra": "2:1.35-9.fc44.x86_64"
@@ -1448,6 +1448,6 @@
     }
   },
   "metadata": {
-    "generated": "2026-10-20T00:00:00Z"
+    "generated": "2026-10-23T00:00:00Z"
   }
 }
