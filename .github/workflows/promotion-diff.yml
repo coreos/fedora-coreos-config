@@ -46,7 +46,7 @@ jobs:
       - name: Normalize build-args.conf
         run: |
           # Ignore those args differences between streams since it's stream-specific.
-          for arg in DESCRIPTION STREAM; do
+          for arg in DESCRIPTION STREAM COMPONENT; do
               sed -i "/^${arg}=/d" origin/build-args.conf new/build-args.conf
           done
       - name: Compare trees
