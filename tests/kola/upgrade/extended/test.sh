@@ -3,7 +3,7 @@
 ##   # - needs-internet: to pull updates
 ##   tags: "needs-internet"
 ##   # Extend the timeout since a lot of updates/reboots can happen.
-##   timeoutMin: 50
+##   timeoutMin: 75
 ##   # Bigger disk since we copy in the OSTree tarball
 ##   minDisk: 30
 ##   # Only run this test when specifically requested.
