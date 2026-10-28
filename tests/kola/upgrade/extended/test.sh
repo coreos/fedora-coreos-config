@@ -3,7 +3,7 @@
 ##   # - needs-internet: to pull updates
 ##   tags: "needs-internet"
 ##   # Extend the timeout since a lot of updates/reboots can happen.
-##   timeoutMin: 50
+##   timeoutMin: 75
 ##   # Bigger disk since we copy in the OSTree tarball
 ##   minDisk: 30
 ##   # Only run this test when specifically requested.
@@ -507,6 +507,14 @@ while true; do
     line="$(journalctl --until='30 seconds ago' -u rpm-ostreed -n 1)"
     if [[ "${line}"  =~ 'DEBUG finish_pipe: closing pipe' ]]; then
         echo "rpm-ostree has stalled on finish_pipe bug; restarting zincati"
+        need_reset='true'
+    fi
+
+    # If zincati failed to stage due to a transient network error -> reset
+    # e.g. "[16] Error in the HTTP2 framing layer"
+    #      "[18] Transferred a partial file"
+    if journalctl -b0 --since='30 seconds ago' -u zincati | grep -q 'failed to stage deployment'; then
+        echo "zincati failed to stage deployment (transient error?); restarting zincati"
         need_reset='true'
     fi
 
