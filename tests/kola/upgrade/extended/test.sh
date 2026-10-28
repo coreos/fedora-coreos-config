@@ -510,6 +510,14 @@ while true; do
         need_reset='true'
     fi
 
+    # If zincati failed to stage due to a transient network error -> reset
+    # e.g. "[16] Error in the HTTP2 framing layer"
+    #      "[18] Transferred a partial file"
+    if journalctl -b0 --since='30 seconds ago' -u zincati | grep -q 'failed to stage deployment'; then
+        echo "zincati failed to stage deployment (transient error?); restarting zincati"
+        need_reset='true'
+    fi
+
     if [ "${need_reset}" == "true" ]; then
         systemctl stop zincati
         rpm-ostree cancel
