@@ -476,6 +476,16 @@ set -o pipefail
 # before signaling reboot will mean we get less timeouts in the code that
 # waits for the reboot to happen.
 #
+# We also use systemd-inhibit here to prevent the reboot from
+# happening until autopkgtest-reboot-prepare has returned.
+# autopkgtest-reboot-prepare is basically kolet flagging to kola
+# that the client (running the test) is requesting a reboot. kolet
+# then waits for for kola to acknowledge the reboot request by doing
+# a echo > /run/kolet-reboot-ack via m.SSH in harness.go. If we don't
+# wait for autopkgtest-reboot-prepare to return before going down for
+# a reboot then the m.SSH in harness.go will fail and the test will
+# get marked as failed for no reason.
+#
 # The strategy of using systemd-run for this was lifted from
 # https://github.com/coreos/coreos-assembler/commit/242a88eae7e167efa9e04dcef9b751c6df137333
 #
@@ -483,7 +493,8 @@ set -o pipefail
 verlt $version '35.00000000.0.0' && setenforce 0
 systemd-run -u refchanged                      \
     --path-property=PathChanged=/ostree/deploy \
-    bash /tmp/autopkgtest-reboot-prepare $version
+    systemd-inhibit --why='Wait for autopkgtest-reboot-prepare to finish' \
+        bash /tmp/autopkgtest-reboot-prepare $version
 
 # While we wait, loop to show status of zincati and rpm-ostreed
 while true; do
