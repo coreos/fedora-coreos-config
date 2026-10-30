@@ -30,6 +30,30 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-dcd141daac
       type: fast-track
+  kernel:
+    evr: 7.2.11-200.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-1a3e2d0ffe
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2249
+      type: fast-track
+  kernel-core:
+    evr: 7.2.11-200.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-1a3e2d0ffe
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2249
+      type: fast-track
+  kernel-modules:
+    evr: 7.2.11-200.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-1a3e2d0ffe
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2249
+      type: fast-track
+  kernel-modules-core:
+    evr: 7.2.11-200.fc44
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-1a3e2d0ffe
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2249
+      type: fast-track
   selinux-policy:
     evra: 44.6-1.fc44.noarch
     metadata:
