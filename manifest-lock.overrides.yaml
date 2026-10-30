@@ -9,6 +9,54 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  amd-gpu-firmware:
+    evra: 20261019-1.fc45.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-b7618e98ac
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  bind-libs:
+    evr: 32:9.18.51^git20261003.d0a87358-12.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-468290e984
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  bind-utils:
+    evr: 32:9.18.51^git20261003.d0a87358-12.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-468290e984
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  bootc:
+    evr: 1.17.1-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-6c8c8a543a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  clevis:
+    evr: 24-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-b86561a89a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  clevis-dracut:
+    evr: 24-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-b86561a89a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  clevis-luks:
+    evr: 24-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-b86561a89a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  clevis-systemd:
+    evr: 24-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-b86561a89a
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
   console-login-helper-messages:
     evra: 0.21.3-13.fc44.noarch
     metadata:
@@ -44,16 +92,22 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-e792ae6c86
       type: fast-track
-  docker-cli:
-    evr: 29.8.2-2.fc45
+  device-mapper-persistent-data:
+    evr: 1.3.4-1.fc45
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-e1568cab6a
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-0a70021e19
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  docker-cli:
+    evr: 29.9.2-2.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c2c6574f41
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
   expat:
-    evr: 2.8.5-1.fc45
+    evr: 2.9.0-1.fc45
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7dfe15a3db
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-ee64631b98
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
   git-core:
@@ -72,10 +126,22 @@ packages:
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-29048aad4c
       type: fast-track
+  intel-gpu-firmware:
+    evra: 20261019-1.fc45.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-b7618e98ac
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
   ipcalc:
     evr: 1.2.0-1.fc45
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-b34a5f9e05
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  less:
+    evr: 710-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-0120403afa
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
   libmaxminddb:
@@ -90,16 +156,76 @@ packages:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-0dcc30f3b3
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
-  moby-engine:
-    evr: 29.8.2-2.fc45
+  linux-firmware:
+    evra: 20261019-1.fc45.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-e1568cab6a
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-b7618e98ac
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  linux-firmware-whence:
+    evra: 20261019-1.fc45.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-b7618e98ac
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  moby-engine:
+    evr: 29.9.2-2.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c2c6574f41
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
   moby-filesystem:
-    evra: 29.8.2-2.fc45.noarch
+    evra: 29.9.2-2.fc45.noarch
     metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-e1568cab6a
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-c2c6574f41
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  nspr:
+    evr: 4.39.0-9.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-98737a8fcd
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  nss:
+    evr: 3.131.0-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-98737a8fcd
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  nss-softokn:
+    evr: 3.131.0-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-98737a8fcd
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  nss-softokn-freebl:
+    evr: 3.131.0-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-98737a8fcd
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  nss-sysinit:
+    evr: 3.131.0-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-98737a8fcd
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  nss-util:
+    evr: 3.131.0-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-98737a8fcd
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  nvidia-gpu-firmware:
+    evra: 20261019-1.fc45.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-b7618e98ac
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  openldap:
+    evr: 2.6.15-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-0a2af6fbd0
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
   passt:
@@ -112,6 +238,12 @@ packages:
     evra: 0^20261002.gcba3570-1.fc45.noarch
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-9405ab07fa
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  qed-firmware:
+    evra: 20261019-1.fc45.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-b7618e98ac
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
   rsync:
@@ -134,5 +266,17 @@ packages:
     evra: 2026e-1.fc45.noarch
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-7428f74679
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  vim-data:
+    evra: 2:9.2.1202-1.fc45.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-fd41c7fe07
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  vim-minimal:
+    evr: 2:9.2.1202-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-fd41c7fe07
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
