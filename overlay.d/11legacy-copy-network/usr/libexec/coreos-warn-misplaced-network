@@ -16,8 +16,8 @@ version of coreos-installer. The configuration was automatically
 rescued and applied, but this compatibility workaround will be
 removed in a future release.
 
-ACTION REQUIRED: Re-install using an updated coreos-installer that
-embeds network config in the initramfs instead of /boot.
+Future deployments should use an updated coreos-installer to embed network
+configurations into the initramfs rather than /boot.
 
 See https://docs.fedoraproject.org/en-US/fedora-coreos/faq/#_why_am_i_getting_a_warning_about_misplaced_firstboot_network_configuration
 
