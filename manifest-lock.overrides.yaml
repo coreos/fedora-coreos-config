@@ -9,12 +9,6 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
-  WALinuxAgent-udev:
-    evra: 2.16.0.2-4.fc45.noarch
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-763252716b
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
-      type: fast-track
   amd-gpu-firmware:
     evra: 20261019-1.fc45.noarch
     metadata:
@@ -284,11 +278,5 @@ packages:
     evr: 2:9.2.1202-1.fc45
     metadata:
       bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-fd41c7fe07
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
-      type: fast-track
-  wasmedge-rt:
-    evr: 0.18.1-1.fc45
-    metadata:
-      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-d3d42724e2
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
