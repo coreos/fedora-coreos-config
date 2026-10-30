@@ -491,7 +491,11 @@ set -o pipefail
 #
 # On <35 SELinux won't allow a path unit to monitor /ostree/deploy, so disable
 verlt $version '35.00000000.0.0' && setenforce 0
+
+# Keep the service active after exit so later inotify close events from
+# ostree finalizing the deployment don't trigger it a second time.
 systemd-run -u refchanged                      \
+    --property=RemainAfterExit=yes             \
     --path-property=PathChanged=/ostree/deploy \
     systemd-inhibit --why='Wait for autopkgtest-reboot-prepare to finish' \
         bash /tmp/autopkgtest-reboot-prepare $version
