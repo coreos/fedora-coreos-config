@@ -10,8 +10,8 @@ set -xeuo pipefail
 . "$KOLA_EXT_DATA/commonlib.sh"
 
 # Test volume
-if ! is_service_active test-volume.service; then
-  fatal "test-volume.service failed to start"
+if [[ $(systemctl show test-volume.service --property=Result --value) != "success" ]]; then
+  fatal "test-volume.service did not start successfully"
 fi
 volume_info=$(podman volume inspect systemd-test)
 if [[ "$(jq -r '.[0].Labels."org.test.Key"' <<< "$volume_info")" != "quadlet-test-volume" ]]; then

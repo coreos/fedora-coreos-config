@@ -87,7 +87,10 @@ jobs:
           commit-message: ${{ env.COMMIT_TITLE }}
           push-to-fork: coreosbot-releng/fedora-coreos-config
           title: ${{ env.PR_TITLE }}
-          body: "Requested by @${{ github.actor }} via [GitHub workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/add-override.yml) ([source](${{ github.server_url }}/${{ github.repository }}/blob/testing-devel/.github/workflows/add-override.yml))."
+          body: |
+            Requested by @${{ github.actor }} via [GitHub workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/add-override.yml) ([source](${{ github.server_url }}/${{ github.repository }}/blob/testing-devel/.github/workflows/add-override.yml)).
+
+            ${{ github.event.inputs.reason && format('See: {0}', github.event.inputs.reason) || '' }}
           committer: "CoreOS Bot <coreosbot@fedoraproject.org>"
           author: "CoreOS Bot <coreosbot@fedoraproject.org>"
           delete-branch: true
