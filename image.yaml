@@ -4,7 +4,7 @@
 include: image-base.yaml
 
 # Use bootc install to-filesystem to build the disk image
-# Only for `next` and `rawhide` streams for now
+# Enabled for the F45 development streams
 # See https://github.com/coreos/fedora-coreos-tracker/issues/1827
 bootc-install-to-fs: true
 
