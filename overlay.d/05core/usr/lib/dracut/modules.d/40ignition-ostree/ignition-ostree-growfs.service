@@ -2,6 +2,9 @@
 Description=Ignition OSTree: Grow Root Filesystem
 DefaultDependencies=false
 ConditionKernelCommandLine=ostree
+# Allow disabling automatic growth of the root partition via the
+# coreos.disable_growfs karg; e.g. for testing purposes.
+ConditionKernelCommandLine=!coreos.disable_growfs
 ConditionPathExists=!/run/ostree-live
 Before=initrd-root-fs.target
 Before=sysroot.mount
