@@ -45,15 +45,6 @@ conditional-include:
           #!/usr/bin/env bash
           set -eux -o pipefail
           rm -vrf /usr/lib/modules/*aarch64/dtb/*
-  # On Fedora 44 we just removed qcom and not all DTBs
-  # https://github.com/coreos/fedora-coreos-tracker/issues/2004
-  - if: releasever <= 44
-    include:
-      postprocess:
-        - |
-          #!/usr/bin/env bash
-          set -eux -o pipefail
-          rm -vrf /usr/lib/modules/*aarch64/dtb/qcom/
   # Dracut 111 has a bug, which causes our CI to fail. This bug has been fixed in Dracut 112, and is
   # in the process of being backported to 111. While we wait for the backport / release, we will manually
   # patch this file.
