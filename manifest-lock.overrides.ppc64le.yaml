@@ -19,3 +19,8 @@ packages:
     metadata:
       type: pin
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2212
+  podman:
+    evra: 5:6.1.4-1.fc46.ppc64le
+    metadata:
+      type: pin
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2250
