@@ -1,5 +1,6 @@
 #!/bin/bash
 ## kola:
+##   platforms: qemu
 ##   appendKernelArgs: "coreos.disable_growfs"
 ##   description: Verify that the coreos.disable_growfs karg makes the
 ##     growfs service a no-op, and that the ungrown rootfs still has at
