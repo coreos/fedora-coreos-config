@@ -38,9 +38,11 @@ FCOS_STREAM_TO_NUM = {
     'bodhi-updates': 94,
 }
 
-# RHCOS stream to number mapping
+# RHCOS stream to number mapping for layered builds
+# Keys are substrings matched against the STREAM variable
 RHCOS_STREAM_TO_NUM = {
-    'nvidia': '01',
+    'ocp4nv': '01',
+    'cocl': '02',
 }
 
 def main():
