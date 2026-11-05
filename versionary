@@ -248,7 +248,7 @@ def get_next_iteration_layered(x, y, z):
     try:
         with open('builds/builds.json') as f:
             builds = json.load(f)
-    except FileNotFoundError:
+    except (FileNotFoundError, json.JSONDecodeError):
         builds = {'builds': []}
 
     if len(builds['builds']) == 0:
@@ -277,7 +277,7 @@ def get_next_iteration_from_builds(x, y, z):
     try:
         with open('builds/builds.json') as f:
             builds = json.load(f)
-    except FileNotFoundError:
+    except (FileNotFoundError, json.JSONDecodeError):
         builds = {'builds': []}
 
     if len(builds['builds']) == 0:
