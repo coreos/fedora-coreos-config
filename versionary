@@ -76,7 +76,7 @@ def main():
             raise RuntimeError(f"Could not parse version {base_version} from image {config['FROM']}")
         # Use the base image's version
         x, y, z = parsed[0], parsed[1], parsed[2]
-        n = get_next_iteration_nvidia(x, y, z)
+        n = get_next_iteration_layered(x, y, z)
     else:
         # The y component in FCOS is the timestamp, while in RHCOS/SCOS
         # it's the z component. We'll convert to a YYYYMMDD formatted string.
@@ -219,12 +219,12 @@ def get_version_from_image(from_image):
     return None
 
 
-def get_next_iteration_nvidia(x, y, z):
+def get_next_iteration_layered(x, y, z):
     """
-    Get the next iteration number for NVIDIA builds.
-    First checks builds/builds.json for existing NVIDIA builds with matching x.y.z.
+    Get the next iteration number for layered builds (ocp4nv, cocl, etc.).
+    First checks builds/builds.json for existing layered builds with matching x.y.z.
     If found, increments from the highest build number.
-    Otherwise, starts with 01 for the first NVIDIA build of this base version.
+    Otherwise, starts with 01 for the first layered build of this base version.
     """
     try:
         with open('builds/builds.json') as f:
@@ -244,13 +244,13 @@ def get_next_iteration_nvidia(x, y, z):
         # Check if this build matches our x.y.z
         if (x, y, z) == last_version_tuple[:3]:
             # Found a matching build, increment from it
-            # Extract just the iteration part (last 2 digits) from nvidia format
+            # Extract just the iteration part (last 2 digits) from layered format
             last_n = last_version_tuple[3] % 100  # 101 → 1, 102 → 2, etc.
             n = last_n + 1
             return n
 
     # No matching builds found, start with 01
-    eprint(f"n: 01 (first NVIDIA build for {x}.{y}.{z})")
+    eprint(f"n: 01 (first layered build for {x}.{y}.{z})")
     return 1
 
 
@@ -326,8 +326,8 @@ def parse_version(version):
     except ValueError:
         return None
 
-    # For NVIDIA versions, the last group is 4 digits (01xx)
-    # Keep the full number (e.g., 0101 → 101, 0102 → 102)
+    # For layered versions, the last group is 4 digits (01xx, 02xx, etc.)
+    # Keep the full number (e.g., 0101 → 101, 0201 → 201)
     n = int(m.group(4))
 
     return (int(m.group(1)), int(m.group(2)), int(m.group(3)), n)
