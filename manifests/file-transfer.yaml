@@ -6,3 +6,9 @@ packages:
   # Explicit dependency on curl because we use it in coreos-livepxe-rootfs.sh
   # We need curl and not curl-minimal because we support TFTP.
   - curl
+  # Same reasoning as above, we need libcurl and not
+  # libcurl-minimal. Make the dependency explicit so the
+  # solver can't substitute libcurl-minimal even when it
+  # is newer than the locked version, for example see:
+  # https://github.com/coreos/afterburn/pull/1321#issuecomment-6668477878
+  - libcurl
