@@ -47,6 +47,8 @@ spec:
     value: '[{"type": "rpm", "path": "."}]'
   - name: skip-checks
     value: true
+  - name: slack-webhook-notification-keyname
+    value: fcos-slack-webhook
   # We have to override the default computeResources values
   # See https://redhat.atlassian.net/browse/COS-5180
   taskRunSpecs:

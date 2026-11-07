@@ -48,6 +48,8 @@ spec:
     value: '[{"type": "rpm", "path": "."}]'
   - name: skip-checks
     value: true
+  - name: slack-webhook-notification-keyname
+    value: fcos-slack-webhook
   - name: image-expires-after
     value: 5d
   # We have to override the default computeResources values
