@@ -112,12 +112,22 @@ def get_treefile(manifest_path, osid, stream, version):
 
 
 def inject_yumrepos(srcdir):
+    # Directories containing default repos to clean up.
+    # We need both locations for compatibility:
+    # - /usr/share/dnf5/repos.d/ is the new location
+    # - /etc/yum.repos.d/ is the legacy location still used by RHCOS
+    repo_dirs = [
+        '/usr/share/dnf5/repos.d',
+        '/etc/yum.repos.d',
+    ]
+
     # first delete all the default repos
-    for repo in glob.glob('/usr/share/dnf5/repos.d/*.repo'):
-        if repo == HERMETIC_REPO:
-            # this is the repo Konflux injects when hermetic build is enabled
-            continue
-        os.unlink(repo)
+    for repo_dir in repo_dirs:
+        for repo in glob.glob(f'{repo_dir}/*.repo'):
+            if repo == HERMETIC_REPO:
+                # this is the repo Konflux injects when hermetic build is enabled
+                continue
+            os.unlink(repo)
 
     # and now inject our repos
     if not IS_HERMETIC:
