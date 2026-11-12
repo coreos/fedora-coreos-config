@@ -8,7 +8,7 @@ set -euo pipefail
 
 label=$1
 
-# Keep this in sync with https://github.com/coreos/coreos-assembler/blob/e3905fd2e138de04184c1cd86b99b0fd83cbe5cf/src/create_disk.sh#L17
+# Keep this in sync with the UUIDs found in https://github.com/coreos/coreos-assembler/blob/58d30c21409dea31f4a48f5942831da03cc93e6e/src/osbuild-manifests/coreos.osbuild.x86_64.mpp.yaml#L23-L26
 bootfs_uuid="96d15588-3596-4b3c-adca-a2ff7279ea63"
 rootfs_uuid="910678ff-f77e-4a7d-8d53-86f2ac47a823"
 
