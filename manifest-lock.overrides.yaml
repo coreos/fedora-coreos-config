@@ -58,25 +58,25 @@ packages:
       reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
       type: fast-track
   console-login-helper-messages:
-    evra: 0.21.3-13.fc44.noarch
+    evra: 0.23.1-1.fc45.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2251
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-9d20e53041
+      type: fast-track
   console-login-helper-messages-issuegen:
-    evra: 0.21.3-13.fc44.noarch
+    evra: 0.23.1-1.fc45.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2251
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-9d20e53041
+      type: fast-track
   console-login-helper-messages-motdgen:
-    evra: 0.21.3-13.fc44.noarch
+    evra: 0.23.1-1.fc45.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2251
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-9d20e53041
+      type: fast-track
   console-login-helper-messages-profile:
-    evra: 0.21.3-13.fc44.noarch
+    evra: 0.23.1-1.fc45.noarch
     metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2251
-      type: pin
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-9d20e53041
+      type: fast-track
   coreos-installer:
     evr: 0.27.0-1.fc45
     metadata:
