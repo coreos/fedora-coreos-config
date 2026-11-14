@@ -18,10 +18,10 @@ ConditionKernelCommandLine=!loglevel
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-# We need to make /run/sysctl.d if it doesn't exist and also
-# ensure it has a SELinux label that works for systemd-sysctl.service.
-# Then we just generate a sysctl file which is read by systemd-sysctl.service.
-ExecStart=/bin/bash -euo pipefail -c 'mkdir -p /run/sysctl.d && chcon --reference=/etc/sysctl.d /run/sysctl.d && echo "kernel.printk = 4" > /run/sysctl.d/01-coreos-printk.conf'
+# Using systemd-tmpfiles "inline" like this delegates things like selinux labeling
+# to it.
+ExecStart=/usr/bin/systemd-tmpfiles --create -
+StandardInputText=f /run/sysctl.d/01-coreos-printk.conf - - - - kernel.printk = 4
 
 [Install]
 WantedBy=sysinit.target
