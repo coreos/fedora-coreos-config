@@ -50,6 +50,10 @@ spec:
     value: '[{"type": "rpm", "path": "."}]'
   - name: skip-checks
     value: true
+{%- if stream in ['stable', 'next', 'testing'] %}
+  - name: slack-webhook-notification-keyname
+    value: fcos-slack-webhook
+{%- endif %}
 {%- if image_expires_after %}
   - name: image-expires-after
     value: {{ image_expires_after }}
