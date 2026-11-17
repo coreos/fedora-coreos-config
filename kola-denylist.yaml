@@ -8,26 +8,12 @@
 ##  arches:
 ##    - aarch64
 
-# Remove when https://bodhi.fedoraproject.org/updates/FEDORA-2026-fd41c7fe07
-# reaches f45-updates and vim matches the fast-tracked vim-data package.
-- pattern: ext.config.extensions.package
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2127
-  streams:
-    - testing
-
 - pattern: ext.config.rpm-ostree.kernel-replace
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2115
   # snooze: 2026-10-31 (disabled on promotion)
   # warn: true (disabled on promotion)
   arches:
     - ppc64le
-
-- pattern: ext.config.rpm-ostree.kernel-replace
-  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2124
-  # snooze: 2026-10-31 (disabled on promotion)
-  # warn: true (disabled on promotion)
-  arches:
-    - aarch64
 
 - pattern: fcos.upgrade.basic
   tracker: https://github.com/coreos/fedora-coreos-tracker/issues/2129
