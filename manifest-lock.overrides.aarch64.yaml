@@ -1,0 +1,23 @@
+# This lockfile should be used to pin to a package version (`type: pin`) or to
+# fast-track packages ahead of Bodhi (`type: fast-track`). Fast-tracked
+# packages will automatically be removed once they are in the stable repos.
+#
+# IMPORTANT: YAML comments *will not* be preserved. All `pin` overrides *must*
+# include a URL in the `metadata.reason` key. Overrides of type `fast-track`
+# *should* include a Bodhi update URL in the `metadata.bodhi` key and a URL
+# in the `metadata.reason` key, though it's acceptable to omit a `reason`
+# for FCOS-specific packages (ignition, afterburn, etc.).
+
+packages:
+  WALinuxAgent-udev:
+    evra: 2.16.0.2-4.fc45.noarch
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-763252716b
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
+  wasmedge-rt:
+    evra: 0.18.1-1.fc45.aarch64
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-d3d42724e2
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2127#issuecomment-5624897433
+      type: fast-track
