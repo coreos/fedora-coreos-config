@@ -38,9 +38,11 @@ FCOS_STREAM_TO_NUM = {
     'bodhi-updates': 94,
 }
 
-# RHCOS stream to number mapping
+# RHCOS stream to number mapping for layered builds
+# Keys are substrings matched against the STREAM variable
 RHCOS_STREAM_TO_NUM = {
-    'nvidia': '01',
+    'ocp4nv': '01',
+    'cocl': '02',
 }
 
 def main():
@@ -63,20 +65,25 @@ def main():
     # in RHCOS/SCOS it's two numbers separated by . (i.e. 9.8 or 10.0)
     x, y = split_base_version(config['VERSION'])
 
-    # For RHCOS with FROM image, extract version from baseimage
+    # Determine if this is a layered RHCOS build (ocp4nv, cocl, etc.)
+    layered_stream_type = None
+    if config['ID'] == 'rhel' and config.get('FROM'):
+        layered_stream_type = get_layered_stream_type(config.get('STREAM', ''))
+
+    # For RHCOS layered builds, extract version from baseimage
     # to preserve the base image's creation so we know from what baseimage
     # the layer was done
-    if config['ID'] == 'rhel' and config.get('FROM'):
+    if layered_stream_type:
         base_version = get_version_from_image(config['FROM'])
         if not base_version:
             raise RuntimeError(f"Could not get version from image {config['FROM']}. "
-                             "Version label is required for NVIDIA builds.")
+                             "Version label is required for layered builds.")
         parsed = parse_version(base_version)
         if not parsed:
             raise RuntimeError(f"Could not parse version {base_version} from image {config['FROM']}")
         # Use the base image's version
         x, y, z = parsed[0], parsed[1], parsed[2]
-        n = get_next_iteration_nvidia(x, y, z)
+        n = get_next_iteration_layered(x, y, z)
     else:
         # The y component in FCOS is the timestamp, while in RHCOS/SCOS
         # it's the z component. We'll convert to a YYYYMMDD formatted string.
@@ -99,11 +106,11 @@ def main():
     # On !FCOS the delimeter for the `n` component is a -
     n_delimiter = '.' if config['ID'] == 'fedora' else '-'
 
-    # For RHCOS with FROM image
-    if config['ID'] == 'rhel' and config.get('FROM'):
-        nvidia_prefix = RHCOS_STREAM_TO_NUM['nvidia']
+    # For RHCOS layered builds
+    if layered_stream_type:
+        stream_prefix = RHCOS_STREAM_TO_NUM[layered_stream_type]
         dev = 'dev' if args.dev else ''
-        new_version = f'{x}.{y}.{z}{n_delimiter}{dev}{nvidia_prefix}{n:02d}'
+        new_version = f'{x}.{y}.{z}{n_delimiter}{dev}{stream_prefix}{n:02d}'
     else:
         # Now we can compute the final version. Note we prepend the
         # `dev` string for the n component if --dev was passed.
@@ -172,6 +179,18 @@ def split_base_version(base_version):
         return int(components[0]), int(components[1])
 
 
+def get_layered_stream_type(stream):
+    """
+    Determine the layered stream type by checking if any key from
+    RHCOS_STREAM_TO_NUM is contained in the stream name.
+    Returns the matching key or None if no match found.
+    """
+    for key in RHCOS_STREAM_TO_NUM:
+        if key in stream:
+            return key
+    return None
+
+
 def get_version_from_image(from_image):
     """
     Get version from a container image using skopeo inspect.
@@ -219,17 +238,17 @@ def get_version_from_image(from_image):
     return None
 
 
-def get_next_iteration_nvidia(x, y, z):
+def get_next_iteration_layered(x, y, z):
     """
-    Get the next iteration number for NVIDIA builds.
-    First checks builds/builds.json for existing NVIDIA builds with matching x.y.z.
+    Get the next iteration number for layered builds (ocp4nv, cocl, etc.).
+    First checks builds/builds.json for existing layered builds with matching x.y.z.
     If found, increments from the highest build number.
-    Otherwise, starts with 01 for the first NVIDIA build of this base version.
+    Otherwise, starts with 01 for the first layered build of this base version.
     """
     try:
         with open('builds/builds.json') as f:
             builds = json.load(f)
-    except FileNotFoundError:
+    except (FileNotFoundError, json.JSONDecodeError):
         builds = {'builds': []}
 
     if len(builds['builds']) == 0:
@@ -244,13 +263,13 @@ def get_next_iteration_nvidia(x, y, z):
         # Check if this build matches our x.y.z
         if (x, y, z) == last_version_tuple[:3]:
             # Found a matching build, increment from it
-            # Extract just the iteration part (last 2 digits) from nvidia format
+            # Extract just the iteration part (last 2 digits) from layered format
             last_n = last_version_tuple[3] % 100  # 101 → 1, 102 → 2, etc.
             n = last_n + 1
             return n
 
     # No matching builds found, start with 01
-    eprint(f"n: 01 (first NVIDIA build for {x}.{y}.{z})")
+    eprint(f"n: 01 (first layered build for {x}.{y}.{z})")
     return 1
 
 
@@ -258,7 +277,7 @@ def get_next_iteration_from_builds(x, y, z):
     try:
         with open('builds/builds.json') as f:
             builds = json.load(f)
-    except FileNotFoundError:
+    except (FileNotFoundError, json.JSONDecodeError):
         builds = {'builds': []}
 
     if len(builds['builds']) == 0:
@@ -326,8 +345,8 @@ def parse_version(version):
     except ValueError:
         return None
 
-    # For NVIDIA versions, the last group is 4 digits (01xx)
-    # Keep the full number (e.g., 0101 → 101, 0102 → 102)
+    # For layered versions, the last group is 4 digits (01xx, 02xx, etc.)
+    # Keep the full number (e.g., 0101 → 101, 0201 → 201)
     n = int(m.group(4))
 
     return (int(m.group(1)), int(m.group(2)), int(m.group(3)), n)
