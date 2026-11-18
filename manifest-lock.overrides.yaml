@@ -8,44 +8,4 @@
 # in the `metadata.reason` key, though it's acceptable to omit a `reason`
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
-packages:
-  bootc:
-    evr: 1.16.9-1.fc46
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2219
-      type: pin
-  console-login-helper-messages:
-    evra: 0.21.3-13.fc44.noarch
-    metadata:
-      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
-      type: pin
-  console-login-helper-messages-issuegen:
-    evra: 0.21.3-13.fc44.noarch
-    metadata:
-      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
-      type: pin
-  console-login-helper-messages-motdgen:
-    evra: 0.21.3-13.fc44.noarch
-    metadata:
-      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
-      type: pin
-  console-login-helper-messages-profile:
-    evra: 0.21.3-13.fc44.noarch
-    metadata:
-      reason: https://github.com/fedora-selinux/selinux-policy/pull/3169
-      type: pin
-  container-selinux:
-    evra: 4:2.249.0-1.fc45.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
-      type: pin
-  selinux-policy:
-    evra: 45.7-1.fc45.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
-      type: pin
-  selinux-policy-targeted:
-    evra: 45.7-1.fc45.noarch
-    metadata:
-      reason: https://github.com/coreos/fedora-coreos-tracker/issues/2217
-      type: pin
+packages: {}
