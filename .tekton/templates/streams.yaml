@@ -33,8 +33,6 @@ streams:
 
   - name: rawhide
     has_overrides: true
-    # rawhide on-push only triggers when .tekton/trigger file changes
-    on_push_cel_expression: 'event == "push" && target_branch == "rawhide" && ".tekton/trigger".pathChanged()'
 
   - name: branched
     has_overrides: true
