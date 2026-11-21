@@ -47,6 +47,13 @@ spec:
     value: '[{"type": "rpm", "path": "."}]'
   - name: skip-checks
     value: true
+  # Opt in to Slack failure notifications (finally task in the pipeline bundle).
+  # Requires Secret slack-webhook-notification-secret with key fcos-slack-webhook in coreos-tenant.
+  # See https://github.com/coreos/fedora-coreos-tracker/issues/2197 and COS-5236.
+  - name: slack-webhook-notification-keyname
+    value: fcos-slack-webhook
+  - name: slack-webhook-notification-secret-name
+    value: slack-webhook-notification-secret
   # We have to override the default computeResources values
   # See https://redhat.atlassian.net/browse/COS-5180
   taskRunSpecs:

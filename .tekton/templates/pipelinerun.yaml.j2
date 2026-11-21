@@ -54,6 +54,15 @@ spec:
   - name: image-expires-after
     value: {{ image_expires_after }}
 {%- endif %}
+{%- if event_type == 'on-push' %}
+  # Opt in to Slack failure notifications (finally task in the pipeline bundle).
+  # Requires Secret slack-webhook-notification-secret with key fcos-slack-webhook in coreos-tenant.
+  # See https://github.com/coreos/fedora-coreos-tracker/issues/2197 and COS-5236.
+  - name: slack-webhook-notification-keyname
+    value: fcos-slack-webhook
+  - name: slack-webhook-notification-secret-name
+    value: slack-webhook-notification-secret
+{%- endif %}
   # We have to override the default computeResources values
   # See https://redhat.atlassian.net/browse/COS-5180
   taskRunSpecs:
