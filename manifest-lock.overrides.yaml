@@ -9,6 +9,12 @@
 # for FCOS-specific packages (ignition, afterburn, etc.).
 
 packages:
+  bootupd:
+    evr: 0.4.0-1.fc45
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2026-47490d6dfd
+      reason: https://github.com/coreos/bootupd/issues/1184
+      type: fast-track
   console-login-helper-messages:
     evra: 0.23.1-1.fc45.noarch
     metadata:
