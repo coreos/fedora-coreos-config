@@ -40,10 +40,10 @@
       "evra": "1.33-6.fc45.x86_64"
     },
     "amd-gpu-firmware": {
-      "evra": "20261019-1.fc46.noarch"
+      "evra": "20261124-1.fc46.noarch"
     },
     "amd-ucode-firmware": {
-      "evra": "20261019-1.fc46.noarch"
+      "evra": "20261124-1.fc46.noarch"
     },
     "attr": {
       "evra": "2.6.0-3.fc46.x86_64"
@@ -76,16 +76,16 @@
       "evra": "1:2.18-1.fc45.noarch"
     },
     "bind-libs": {
-      "evra": "32:9.18.51^git20261102.973d8646-1.fc46.x86_64"
+      "evra": "32:9.18.51^git20261102.973d8646-43.fc46.x86_64"
     },
     "bind-utils": {
-      "evra": "32:9.18.51^git20261102.973d8646-1.fc46.x86_64"
+      "evra": "32:9.18.51^git20261102.973d8646-43.fc46.x86_64"
     },
     "bootc": {
       "evra": "1.17.1-1.fc46.x86_64"
     },
     "bootupd": {
-      "evra": "0.3.2-1.fc46.x86_64"
+      "evra": "0.4.0-1.fc46.x86_64"
     },
     "bsdtar": {
       "evra": "3.8.9-2.fc46.x86_64"
@@ -193,22 +193,22 @@
       "evra": "4.3.1-1.fc46.x86_64"
     },
     "crun": {
-      "evra": "1.31-1.fc46.x86_64"
+      "evra": "1.31-2.fc46.x86_64"
     },
     "crun-wasm": {
-      "evra": "1.31-1.fc46.x86_64"
+      "evra": "1.31-2.fc46.x86_64"
     },
     "crypto-policies": {
       "evra": "20260713-2.gitc42da77.fc45.noarch"
     },
     "cryptsetup": {
-      "evra": "2.8.8-1.fc46.x86_64"
+      "evra": "2.8.9-1.fc46.x86_64"
     },
     "cryptsetup-libs": {
-      "evra": "2.8.8-1.fc46.x86_64"
+      "evra": "2.8.9-1.fc46.x86_64"
     },
     "curl": {
-      "evra": "8.23.0-3.fc46.x86_64"
+      "evra": "8.24.0~rc2-1.fc46.x86_64"
     },
     "cyrus-sasl-gssapi": {
       "evra": "2.1.28-37.fc45.x86_64"
@@ -259,7 +259,7 @@
       "evra": "2.93-3.fc46.x86_64"
     },
     "docker-cli": {
-      "evra": "29.10.0-2.fc46.x86_64"
+      "evra": "29.10.1-1.fc46.x86_64"
     },
     "dosfstools": {
       "evra": "4.2-28.fc46.x86_64"
@@ -394,52 +394,52 @@
       "evra": "2.90.1-1.fc46.x86_64"
     },
     "glibc": {
-      "evra": "2.44.9000-7.fc46.x86_64"
+      "evra": "2.44.9000-10.fc46.x86_64"
     },
     "glibc-common": {
-      "evra": "2.44.9000-7.fc46.x86_64"
+      "evra": "2.44.9000-10.fc46.x86_64"
     },
     "glibc-gconv-extra": {
-      "evra": "2.44.9000-7.fc46.x86_64"
+      "evra": "2.44.9000-10.fc46.x86_64"
     },
     "glibc-minimal-langpack": {
-      "evra": "2.44.9000-7.fc46.x86_64"
+      "evra": "2.44.9000-10.fc46.x86_64"
     },
     "gmp": {
       "evra": "1:6.3.0-6.fc45.x86_64"
     },
     "gnulib-l10n": {
-      "evra": "20241231-4.fc45.noarch"
+      "evra": "20241231-5.fc46.noarch"
     },
     "gnupg2": {
-      "evra": "2.4.9-18.fc45.x86_64"
+      "evra": "2.4.9-19.fc46.x86_64"
     },
     "gnupg2-dirmngr": {
-      "evra": "2.4.9-18.fc45.x86_64"
+      "evra": "2.4.9-19.fc46.x86_64"
     },
     "gnupg2-gpg-agent": {
-      "evra": "2.4.9-18.fc45.x86_64"
+      "evra": "2.4.9-19.fc46.x86_64"
     },
     "gnupg2-gpgconf": {
-      "evra": "2.4.9-18.fc45.x86_64"
+      "evra": "2.4.9-19.fc46.x86_64"
     },
     "gnupg2-keyboxd": {
-      "evra": "2.4.9-18.fc45.x86_64"
+      "evra": "2.4.9-19.fc46.x86_64"
     },
     "gnupg2-verify": {
-      "evra": "2.4.9-18.fc45.x86_64"
+      "evra": "2.4.9-19.fc46.x86_64"
     },
     "gnutls": {
-      "evra": "3.8.13-6.fc46.x86_64"
+      "evra": "3.8.14-1.fc46.x86_64"
     },
     "google-compute-engine-guest-configs-udev": {
       "evra": "20260623.00-4.fc45.noarch"
     },
     "gpgme": {
-      "evra": "2.2.0-1.fc46.x86_64"
+      "evra": "2.3.1-1.fc46.x86_64"
     },
     "grep": {
-      "evra": "3.12-4.fc45.x86_64"
+      "evra": "3.12-5.fc46.x86_64"
     },
     "grub2-common": {
       "evra": "1:2.12-88.fc46.noarch"
@@ -481,7 +481,7 @@
       "evra": "63-1.fc46.x86_64"
     },
     "intel-gpu-firmware": {
-      "evra": "20261019-1.fc46.noarch"
+      "evra": "20261124-1.fc46.noarch"
     },
     "ipcalc": {
       "evra": "1.2.0-4.fc46.x86_64"
@@ -493,16 +493,16 @@
       "evra": "7.3.0-2.fc46.x86_64"
     },
     "iptables-libs": {
-      "evra": "1.8.13-3.fc46.x86_64"
+      "evra": "1.8.13-4.fc46.x86_64"
     },
     "iptables-nft": {
-      "evra": "1.8.13-3.fc46.x86_64"
+      "evra": "1.8.13-4.fc46.x86_64"
     },
     "iptables-services": {
-      "evra": "1.8.13-3.fc46.noarch"
+      "evra": "1.8.13-4.fc46.noarch"
     },
     "iptables-utils": {
-      "evra": "1.8.13-3.fc46.x86_64"
+      "evra": "1.8.13-4.fc46.x86_64"
     },
     "iputils": {
       "evra": "20250605-3.fc45.x86_64"
@@ -547,16 +547,16 @@
       "evra": "1.0.61-2.fc45.x86_64"
     },
     "kernel": {
-      "evra": "7.4.0-0.rc3.261119g4405c18c95d2.29.fc46.x86_64"
+      "evra": "7.4.0-0.rc4.261125g4dce97c6c265.35.fc46.x86_64"
     },
     "kernel-core": {
-      "evra": "7.4.0-0.rc3.261119g4405c18c95d2.29.fc46.x86_64"
+      "evra": "7.4.0-0.rc4.261125g4dce97c6c265.35.fc46.x86_64"
     },
     "kernel-modules": {
-      "evra": "7.4.0-0.rc3.261119g4405c18c95d2.29.fc46.x86_64"
+      "evra": "7.4.0-0.rc4.261125g4dce97c6c265.35.fc46.x86_64"
     },
     "kernel-modules-core": {
-      "evra": "7.4.0-0.rc3.261119g4405c18c95d2.29.fc46.x86_64"
+      "evra": "7.4.0-0.rc4.261125g4dce97c6c265.35.fc46.x86_64"
     },
     "kexec-tools": {
       "evra": "2.0.32-4.fc45.x86_64"
@@ -574,13 +574,13 @@
       "evra": "34.3-1.fc46.x86_64"
     },
     "kmscon": {
-      "evra": "10.1.1-2.fc46.x86_64"
+      "evra": "10.1.2-1.fc46.x86_64"
     },
     "kpartx": {
       "evra": "0.15.1-1.fc46.x86_64"
     },
     "krb5-libs": {
-      "evra": "1.22.2-11.fc46.x86_64"
+      "evra": "1.22.3-1.fc46.x86_64"
     },
     "less": {
       "evra": "710-2.fc46.x86_64"
@@ -661,7 +661,7 @@
       "evra": "1.47.4-2.fc45.x86_64"
     },
     "libcurl": {
-      "evra": "8.23.0-3.fc46.x86_64"
+      "evra": "8.24.0~rc2-1.fc46.x86_64"
     },
     "libdaemon": {
       "evra": "0.14-34.fc45.x86_64"
@@ -706,7 +706,7 @@
       "evra": "1.12.4-1.fc46.x86_64"
     },
     "libgpg-error": {
-      "evra": "1.61-2.fc45.x86_64"
+      "evra": "1.61-3.fc46.x86_64"
     },
     "libgudev": {
       "evra": "238-10.fc45.x86_64"
@@ -739,7 +739,7 @@
       "evra": "1.5.1-2.fc46.x86_64"
     },
     "libksba": {
-      "evra": "1.9.0-1.fc46.x86_64"
+      "evra": "1.9.1-1.fc46.x86_64"
     },
     "liblastlog2": {
       "evra": "2.42.4-2.fc46.x86_64"
@@ -781,7 +781,7 @@
       "evra": "1:3.1.1-0.fc46.x86_64"
     },
     "libnftnl": {
-      "evra": "1.3.2-1.fc46.x86_64"
+      "evra": "1.3.2-2.fc46.x86_64"
     },
     "libnghttp2": {
       "evra": "1.69.0-6.fc46.x86_64"
@@ -820,7 +820,7 @@
       "evra": "1.4.5-18.fc45.x86_64"
     },
     "librepo": {
-      "evra": "1.22.0-1.fc46.x86_64"
+      "evra": "1.22.1-1.fc46.x86_64"
     },
     "libreport-filesystem": {
       "evra": "2.17.15-14.fc46.noarch"
@@ -856,10 +856,10 @@
       "evra": "1.47.4-2.fc45.x86_64"
     },
     "libssh": {
-      "evra": "0.12.2-1.fc45.x86_64"
+      "evra": "0.12.2-2.fc46.x86_64"
     },
     "libssh-config": {
-      "evra": "0.12.2-1.fc45.noarch"
+      "evra": "0.12.2-2.fc46.noarch"
     },
     "libsss_certmap": {
       "evra": "2.14.0~beta2-1.fc46.x86_64"
@@ -877,7 +877,7 @@
       "evra": "16.2.1-3.fc46.x86_64"
     },
     "libtalloc": {
-      "evra": "2.5.0-2.fc46.x86_64"
+      "evra": "2.5.0-4.fc46.x86_64"
     },
     "libtasn1": {
       "evra": "4.21.0-2.fc45.x86_64"
@@ -931,7 +931,7 @@
       "evra": "2:4.25.1-1.fc46.x86_64"
     },
     "libxcrypt": {
-      "evra": "4.5.2-4.fc45.x86_64"
+      "evra": "4.5.2-8.fc46.x86_64"
     },
     "libxkbcommon": {
       "evra": "1.13.1-4.fc46.x86_64"
@@ -946,13 +946,13 @@
       "evra": "0.2.5-19.fc45.x86_64"
     },
     "libzstd": {
-      "evra": "1.5.7-6.fc45.x86_64"
+      "evra": "1.6.0-1.fc46.x86_64"
     },
     "linux-firmware": {
-      "evra": "20261019-1.fc46.noarch"
+      "evra": "20261124-1.fc46.noarch"
     },
     "linux-firmware-whence": {
-      "evra": "20261019-1.fc46.noarch"
+      "evra": "20261124-1.fc46.noarch"
     },
     "lmdb-libs": {
       "evra": "0.9.34-3.fc45.x86_64"
@@ -985,16 +985,16 @@
       "evra": "1.8.0-1.fc46.x86_64"
     },
     "mdadm": {
-      "evra": "4.6-3.fc46.x86_64"
+      "evra": "4.6-5.fc46.x86_64"
     },
     "microcode_ctl": {
       "evra": "2:20260812-1.fc46.x86_64"
     },
     "moby-engine": {
-      "evra": "29.10.0-2.fc46.x86_64"
+      "evra": "29.10.1-1.fc46.x86_64"
     },
     "moby-filesystem": {
-      "evra": "29.10.0-2.fc46.noarch"
+      "evra": "29.10.1-1.fc46.noarch"
     },
     "mokutil": {
       "evra": "2:0.7.2-7.fc45.x86_64"
@@ -1063,25 +1063,25 @@
       "evra": "1.8-5.fc45.x86_64"
     },
     "nspr": {
-      "evra": "4.39.0-12.fc46.x86_64"
+      "evra": "4.41.0-1.fc46.x86_64"
     },
     "nss": {
-      "evra": "3.133.0-1.fc46.x86_64"
+      "evra": "3.134.0-1.fc46.x86_64"
     },
     "nss-altfiles": {
       "evra": "2.23.0-10.fc45.x86_64"
     },
     "nss-softokn": {
-      "evra": "3.133.0-1.fc46.x86_64"
+      "evra": "3.134.0-1.fc46.x86_64"
     },
     "nss-softokn-freebl": {
-      "evra": "3.133.0-1.fc46.x86_64"
+      "evra": "3.134.0-1.fc46.x86_64"
     },
     "nss-sysinit": {
-      "evra": "3.133.0-1.fc46.x86_64"
+      "evra": "3.134.0-1.fc46.x86_64"
     },
     "nss-util": {
-      "evra": "3.133.0-1.fc46.x86_64"
+      "evra": "3.134.0-1.fc46.x86_64"
     },
     "numactl": {
       "evra": "2.0.19-5.fc45.x86_64"
@@ -1093,7 +1093,7 @@
       "evra": "0.5-51.20251104git.fc45.x86_64"
     },
     "nvidia-gpu-firmware": {
-      "evra": "20261019-1.fc46.noarch"
+      "evra": "20261124-1.fc46.noarch"
     },
     "nvme-cli": {
       "evra": "2.16-6.fc46.x86_64"
@@ -1132,10 +1132,10 @@
       "evra": "2026.4-1.fc46.x86_64"
     },
     "p11-kit": {
-      "evra": "0.26.5-1.fc45.x86_64"
+      "evra": "0.26.6-1.fc46.x86_64"
     },
     "p11-kit-trust": {
-      "evra": "0.26.5-1.fc45.x86_64"
+      "evra": "0.26.6-1.fc46.x86_64"
     },
     "pam": {
       "evra": "1.7.2-4.fc45.x86_64"
@@ -1177,7 +1177,7 @@
       "evra": "2.5.1-2.fc45.x86_64"
     },
     "podman": {
-      "evra": "5:6.2.0-1.fc46.x86_64"
+      "evra": "5:6.2.1-1.fc46.x86_64"
     },
     "podman-sequoia": {
       "evra": "0.4.0-1.fc46.x86_64"
@@ -1207,7 +1207,7 @@
       "evra": "20260624-2.fc45.noarch"
     },
     "qed-firmware": {
-      "evra": "20261019-1.fc46.noarch"
+      "evra": "20261124-1.fc46.noarch"
     },
     "rdma-core-common": {
       "evra": "65.0-5.fc46.noarch"
@@ -1267,10 +1267,10 @@
       "evra": "4.10-2.fc45.x86_64"
     },
     "selinux-policy": {
-      "evra": "45.25-1.fc46.noarch"
+      "evra": "45.26-1.fc46.noarch"
     },
     "selinux-policy-targeted": {
-      "evra": "45.25-1.fc46.noarch"
+      "evra": "45.26-1.fc46.noarch"
     },
     "setup": {
       "evra": "2.15.1-2.fc45.noarch"
@@ -1351,28 +1351,31 @@
       "evra": "1.9.17-17.p2.fc46.x86_64"
     },
     "systemd": {
-      "evra": "262.2-1.fc46.x86_64"
+      "evra": "262.2-7.fc46.x86_64"
     },
     "systemd-container": {
-      "evra": "262.2-1.fc46.x86_64"
+      "evra": "262.2-7.fc46.x86_64"
     },
     "systemd-libs": {
-      "evra": "262.2-1.fc46.x86_64"
+      "evra": "262.2-7.fc46.x86_64"
     },
     "systemd-pam": {
-      "evra": "262.2-1.fc46.x86_64"
+      "evra": "262.2-7.fc46.x86_64"
     },
     "systemd-resolved": {
-      "evra": "262.2-1.fc46.x86_64"
+      "evra": "262.2-7.fc46.x86_64"
     },
     "systemd-shared": {
-      "evra": "262.2-1.fc46.x86_64"
+      "evra": "262.2-7.fc46.x86_64"
     },
     "systemd-sysusers": {
-      "evra": "262.2-1.fc46.x86_64"
+      "evra": "262.2-7.fc46.x86_64"
+    },
+    "systemd-tools": {
+      "evra": "262.2-7.fc46.x86_64"
     },
     "systemd-udev": {
-      "evra": "262.2-1.fc46.x86_64"
+      "evra": "262.2-7.fc46.x86_64"
     },
     "tar": {
       "evra": "2:1.35-9.fc45.x86_64"
@@ -1411,10 +1414,10 @@
       "evra": "2.42.4-2.fc46.x86_64"
     },
     "vim-data": {
-      "evra": "2:9.2.1302-2.fc46.noarch"
+      "evra": "2:9.2.1302-3.fc46.noarch"
     },
     "vim-minimal": {
-      "evra": "2:9.2.1302-2.fc46.x86_64"
+      "evra": "2:9.2.1302-3.fc46.x86_64"
     },
     "volume_key-libs": {
       "evra": "0.3.12-33.fc45.x86_64"
@@ -1456,10 +1459,10 @@
       "evra": "1.2.1-6.fc45.x86_64"
     },
     "zstd": {
-      "evra": "1.5.7-6.fc45.x86_64"
+      "evra": "1.6.0-1.fc46.x86_64"
     }
   },
   "metadata": {
-    "generated": "2026-11-24T00:00:00Z"
+    "generated": "2026-11-27T00:00:00Z"
   }
 }
