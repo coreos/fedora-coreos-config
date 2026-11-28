@@ -1,0 +1,10 @@
+# This file defines BKCs which enable automatic firmware updates on
+# systems where it's safe, e.g. QEMU, by matching against the manufacturer's
+# HWID. Upgrades/downgrades are applied by `fwupdmgr sync`. This command is
+# called by fwupd-refresh.service, which is triggered by fwupd-refresh.timer.
+#
+# See https://github.com/fwupd/fwupd/issues/10444#issuecomment-6860015715
+
+# Manufacturer = QEMU
+[3486fece-d7a3-58e0-a818-dd3796662b51]
+HostBkc = uefi-secure-boot
